@@ -26,7 +26,6 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocVariableCheckTest
     extends AbstractModuleTestSupport {
@@ -67,10 +66,11 @@ public class JavadocVariableCheckTest
     public void testDefault()
             throws Exception {
         final String[] expected = {
-            "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "311:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "318:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "337:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "309:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "316:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "335:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableTags.java"), expected);
@@ -80,9 +80,9 @@ public class JavadocVariableCheckTest
     public void testAnother()
             throws Exception {
         final String[] expected = {
-            "23:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "30:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "36:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "21:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "28:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "34:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableInner.java"), expected);
@@ -91,7 +91,9 @@ public class JavadocVariableCheckTest
     @Test
     public void testAnother2()
             throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "26:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableInner2.java"), expected);
     }
@@ -100,13 +102,13 @@ public class JavadocVariableCheckTest
     public void testAnother3()
             throws Exception {
         final String[] expected = {
-            "17:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "22:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "42:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "15:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "20:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "40:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "47:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "48:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "49:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "50:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "51:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "52:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocVariablePublicOnly.java"), expected);
@@ -116,7 +118,8 @@ public class JavadocVariableCheckTest
     public void testAnother4()
             throws Exception {
         final String[] expected = {
-            "52:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "15:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "50:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocVariablePublicOnly2.java"), expected);
@@ -125,22 +128,22 @@ public class JavadocVariableCheckTest
     @Test
     public void testJavadocVariableOnInnerClassFields() throws Exception {
         final String[] expected = {
+            "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "14:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "17:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "24:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "25:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "26:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "27:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "28:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "29:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "36:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "37:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "38:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "39:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "40:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "41:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "48:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "49:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "50:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "51:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "52:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "53:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableOnInnerClassFields.java"),
@@ -150,27 +153,27 @@ public class JavadocVariableCheckTest
     @Test
     public void testJavadocVariableOnPublicInnerClassFields() throws Exception {
         final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "14:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "17:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "23:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "24:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "25:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "26:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "27:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "28:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "35:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "36:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "37:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "38:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "39:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "40:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "47:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "48:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "49:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "50:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "51:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "52:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "59:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "60:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "61:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "62:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "63:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "64:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "74:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "72:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableOnPublicInnerClassFields.java"),
@@ -178,12 +181,26 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testScopes2() throws Exception {
+    public void testAccessModifiersPublicProtected() throws Exception {
         final String[] expected = {
-            "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "26:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "27:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "14:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "24:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "25:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "36:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "37:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "48:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "49:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "61:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "62:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "72:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "73:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "84:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "85:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "96:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "97:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "108:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "109:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableNoJavadoc2.java"),
@@ -191,41 +208,27 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testExcludeScope() throws Exception {
+    public void testAccessModifiersPackagePrivate() throws Exception {
         final String[] expected = {
-            "17:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "28:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "29:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "26:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "27:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "38:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "39:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "40:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "41:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "50:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "51:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "52:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "53:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "63:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "64:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "65:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "66:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "74:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "75:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "76:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "77:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "86:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "87:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "88:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "89:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "98:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "99:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "100:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "101:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "110:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "111:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "112:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "113:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "123:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "121:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableNoJavadoc3.java"),
@@ -236,42 +239,42 @@ public class JavadocVariableCheckTest
     public void testIgnoredVariableNames()
             throws Exception {
         final String[] expected = {
+            "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "14:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "17:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "24:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "25:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "26:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "27:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "28:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "29:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "36:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "37:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "38:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "39:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "40:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "41:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "48:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "49:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "50:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "51:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "52:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "53:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "61:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "62:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "63:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "64:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "65:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "66:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "72:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "73:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "74:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "75:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "76:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "77:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "84:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "85:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "86:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "87:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "88:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "89:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "96:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "97:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "98:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "99:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "100:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "101:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "108:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "109:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "110:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "111:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "112:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "113:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableNoJavadoc4.java"),
@@ -282,43 +285,43 @@ public class JavadocVariableCheckTest
     public void testDoNotIgnoreAnythingWhenIgnoreNamePatternIsEmpty()
             throws Exception {
         final String[] expected = {
+            "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "14:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "17:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "24:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "25:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "26:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "27:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "28:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "29:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "36:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "37:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "38:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "39:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "40:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "41:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "48:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "49:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "50:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "51:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "52:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "53:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "61:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "62:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "63:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "64:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "65:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "66:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "72:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "73:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "74:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "75:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "76:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "77:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "84:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "85:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "86:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "87:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "88:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "89:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "96:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "97:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "98:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "99:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "100:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "101:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "108:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "109:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "110:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "111:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "112:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "113:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "123:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "121:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableNoJavadoc5.java"),
@@ -328,7 +331,7 @@ public class JavadocVariableCheckTest
     @Test
     public void testLambdaLocalVariablesDoNotNeedJavadoc() throws Exception {
         final String[] expected = {
-            "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableNoJavadocNeededInLambda.java"),
@@ -338,13 +341,25 @@ public class JavadocVariableCheckTest
     @Test
     public void testInterfaceMemberScopeIsPublic() throws Exception {
         final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "20:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "27:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "25:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableInterfaceMemberScopeIsPublic.java"),
                 expected);
     }
 
+    @Test
+    public void testMethodInnerClass() throws Exception {
+        final String[] expected = {
+            "9:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "10:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "11:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "12:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocVariableMethodInnerClass.java"),
+            expected);
+    }
 }

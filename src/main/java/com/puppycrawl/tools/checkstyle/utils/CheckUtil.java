@@ -314,7 +314,13 @@ public final class CheckUtil {
      * @return the access modifier of the method/constructor.
      */
     public static AccessModifierOption getAccessModifierFromModifiersToken(DetailAST ast) {
-        final DetailAST modsToken = ast.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST modsToken;
+        if (ast.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+            modsToken = ast.findFirstToken(TokenTypes.ANNOTATIONS);
+        }
+        else {
+            modsToken = ast.findFirstToken(TokenTypes.MODIFIERS);
+        }
         AccessModifierOption accessModifier =
                 getAccessModifierFromModifiersTokenDirectly(modsToken);
 
@@ -322,7 +328,8 @@ public final class CheckUtil {
             if (ScopeUtil.isInEnumBlock(ast) && ast.getType() == TokenTypes.CTOR_DEF) {
                 accessModifier = AccessModifierOption.PRIVATE;
             }
-            else if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
+            else if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)
+                        || ScopeUtil.isInEnumBlock(ast)) {
                 accessModifier = AccessModifierOption.PUBLIC;
             }
         }
