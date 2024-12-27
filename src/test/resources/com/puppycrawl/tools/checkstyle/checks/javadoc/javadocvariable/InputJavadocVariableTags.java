@@ -1,10 +1,8 @@
 /*
 JavadocVariable
-scope = (default)private
-excludeScope = (default)null
+accessModifiers = (default)private
 ignoreNamePattern = (default)null
 tokens = (default)ENUM_CONSTANT_DEF
-
 
 */
 
@@ -15,7 +13,7 @@ import java.io.IOException;
 class InputJavadocVariableTags1
 {
     // Invalid - should be Javadoc
-    private int mMissingJavadoc; // violation
+    private int mMissingJavadoc; // violation, 'Missing a Javadoc comment'
 
     // Invalid - should be Javadoc
     void method1()
@@ -308,14 +306,14 @@ class InputJavadocVariableTags1
 
 enum InputJavadocVariableTagsEnum
 {
-    CONSTANT_A, // violation
+    CONSTANT_A,
 
     /**
      *
      */
     CONSTANT_B,
 
-    CONSTANT_C // violation
+    CONSTANT_C
     {
         /**
          *
@@ -334,7 +332,7 @@ enum InputJavadocVariableTagsEnum
 @interface InputJavadocVariableTagsAnnotation
 {
     String someField();
-    int A_CONSTANT = 0; // violation
+    int A_CONSTANT = 0; // violation, 'Missing a Javadoc comment'
     /** Some javadoc. */
     int B_CONSTANT = 1;
     /** @return This tag is valid here and expected with Java 8 */
