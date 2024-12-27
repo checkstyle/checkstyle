@@ -56,15 +56,27 @@ window.addEventListener("scroll", function () {
     } else {
         scrollButton.style.display = "none";
     }
+
+    console.log("hamburger classes: ", document.getElementById("hamburger").classList);
+
+    // if (document.getElementById("hamburger").classList.contains("openMenu")) {
+    //     document.getElementById("leftColumn").style.display = "block";
+    // }
 });
 
 function setBodyColumnMargin() {
     const leftColumn = document.querySelector('#leftColumn');
     const bodyColumn = document.querySelector('#bodyColumn');
 
+    if (document.getElementById("hamburger")) {
+        resetStyling();
+    }
+
+    console.log("after if condition")
     // If in mobile view use margin as defined in site.css
     if (window.innerWidth < 823) {
         bodyColumn.style.marginLeft = '1.5em';
+        setCollapsableMenuButton();
         return;
     }
 
@@ -73,5 +85,50 @@ function setBodyColumnMargin() {
     bodyColumn.style.marginLeft = `${leftColumnWidth + 27}px`;
 }
 
+function setCollapsableMenuButton() {
+    const menu = document.getElementById("leftColumn");
+    console.log("entered setCollapsableMenuButton()")
+
+    const breadcrumbs = document.getElementById("breadcrumbs");
+
+    const hamburger = document.createElement('div');
+    hamburger.id = 'hamburger'
+
+    for (let i = 0; i < 3; i++) {
+        const line = document.createElement('span');
+        hamburger.appendChild(line);
+    }
+
+    const xright = document.getElementsByClassName("xright")[0];
+    xright.appendChild(document.createTextNode(" | "));
+    xright.appendChild(hamburger);
+
+    hamburger.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        console.log("burger clicked....")
+
+        hamburger.classList.toggle("openMenu");
+        // menu.style.display = menu.style.display === "block" ? "none" : "block";
+        menu.style.display = hamburger.classList.contains("openMenu") ? "none" : "block";
+        menu.style.top = `${breadcrumbs.offsetHeight + 10}px`;
+        menu.style.height = `calc(100vh - ${breadcrumbs.offsetHeight + 10}px)`;
+    })
+}
+
+function resetStyling() {
+    const hamburger = document.getElementById("hamburger");
+    hamburger.remove()
+
+    const menu = document.getElementById("leftColumn");
+    menu.style.display = "block";
+    menu.style.removeProperty("top");
+    menu.style.removeProperty("height");
+
+    const xright = document.getElementsByClassName("xright")[0];
+    xright.lastChild.remove();
+}
+
 window.addEventListener('load', setBodyColumnMargin);
+// window.addEventListener('load', setCollapsableMenuButton);
 window.addEventListener('resize', setBodyColumnMargin);
