@@ -35,7 +35,7 @@
         </macro>
         <p id="Example1-code">
           By default, this setting will report a violation if
-          there is no javadoc for any scope member.
+          there is no javadoc for a member with any access modifier.
         </p>
         <macro name="example">
           <param name="path"
@@ -44,8 +44,8 @@
         </macro>
 
         <p id="Example2-config">
-          To configure the check for <code>public</code>
-          scope:
+          To configure the check <code>public</code>
+          access modifier:
         </p>
 
         <macro name="example">
@@ -64,8 +64,8 @@
         </macro>
 
         <p id="Example3-config">
-          To configure the check for members which are in <code>private</code>, but not in
-          <code>protected</code> scope:
+          To configure the check for members which are in <code>private</code> or
+          <code>package</code> access modifier:
         </p>
 
         <macro name="example">
@@ -75,8 +75,7 @@
         </macro>
         <p id="Example3-code">
           This setting will report a violation if there is no
-          javadoc for <code>private</code> member and
-          ignores <code>protected</code> member.
+          javadoc for <code>private</code>  or <code>package</code> member.
         </p>
         <macro name="example">
           <param name="path"
