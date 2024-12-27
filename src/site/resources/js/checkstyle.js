@@ -62,15 +62,64 @@ function setBodyColumnMargin() {
     const leftColumn = document.querySelector('#leftColumn');
     const bodyColumn = document.querySelector('#bodyColumn');
 
+    const hamburger = document.getElementById("hamburger");
+    if (hamburger) {
+        resetStyling();
+    }
+
     // If in mobile view use margin as defined in site.css
     if (window.innerWidth < 823) {
         bodyColumn.style.marginLeft = '1.5em';
+        setCollapsableMenuButton();
         return;
     }
 
     // Else calculate margin based on left column width
     const leftColumnWidth = leftColumn.offsetWidth;
     bodyColumn.style.marginLeft = `${leftColumnWidth + 27}px`;
+}
+
+function setCollapsableMenuButton() {
+    const menu = document.getElementById("leftColumn");
+    menu.style.display = "none";
+
+    const breadcrumbs = document.getElementById("breadcrumbs");
+    breadcrumbs.classList.add('mobile-version');
+
+    const hamburger = document.createElement('div');
+    hamburger.id = 'hamburger'
+
+    for (let i = 0; i < 3; i++) {
+        const line = document.createElement('span');
+        hamburger.appendChild(line);
+    }
+
+    const xright = document.getElementsByClassName("xright")[0];
+    xright.classList.add('mobile-version');
+    xright.appendChild(document.createTextNode(" | "));
+    xright.appendChild(hamburger);
+
+    hamburger.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        hamburger.classList.toggle("openMenu");
+        menu.style.display = hamburger.classList.contains("openMenu") ? "block" : "none";
+    })
+}
+
+function resetStyling() {
+    const hamburger = document.getElementById("hamburger");
+    hamburger.remove()
+
+    const menu = document.getElementById("leftColumn");
+    menu.style.display = "block";
+
+    const breadcrumbs = document.getElementById("breadcrumbs");
+    breadcrumbs.classList.remove('mobile-version');
+
+    const xright = document.getElementsByClassName("xright")[0];
+    xright.classList.remove('mobile-version');
+    xright.lastChild.remove();
 }
 
 window.addEventListener('load', setBodyColumnMargin);
