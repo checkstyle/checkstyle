@@ -49,6 +49,18 @@ window.addEventListener("load", function () {
     }
 });
 
+let isMenuVisible = false;
+function setMenuVisibility() {
+    console.log("Menu visible: ", isMenuVisible)
+    document.getElementById("leftColumn").style.display = "none";
+    if ((window.innerWidth < 823 && isMenuVisible) || window.innerWidth > 823) {
+        console.log("Menu should be visible........")
+        document.getElementById("leftColumn").style.display = "block";
+    } else {
+        isMenuVisible = false;
+    }
+}
+
 window.addEventListener("scroll", function () {
     "use strict";
     if (document.documentElement.scrollTop > scrollDistanceToButtonVisibility) {
@@ -56,21 +68,87 @@ window.addEventListener("scroll", function () {
     } else {
         scrollButton.style.display = "none";
     }
+
+    console.log("Scrolling event.....")
+    setMenuVisibility()
 });
 
 function setBodyColumnMargin() {
     const leftColumn = document.querySelector('#leftColumn');
     const bodyColumn = document.querySelector('#bodyColumn');
 
+    console.log("setBodyColumnMargin() called.....")
+    setMenuVisibility()
+
+    if (document.getElementById("hamburger")) {
+        resetStyling();
+    }
+
+    console.log("after if condition")
+    console.log("width: ", document.body.clientWidth)
+    console.log("height: ", document.body.clientHeight)
+
     // If in mobile view use margin as defined in site.css
     if (window.innerWidth < 823) {
         bodyColumn.style.marginLeft = '1.5em';
+        setCollapsableMenuButton();
         return;
     }
 
     // Else calculate margin based on left column width
     const leftColumnWidth = leftColumn.offsetWidth;
     bodyColumn.style.marginLeft = `${leftColumnWidth + 27}px`;
+}
+
+function setCollapsableMenuButton() {
+    const hamburger = document.createElement('div');
+    hamburger.id = 'hamburger'
+
+    for (let i = 0; i < 3; i++) {
+        const line = document.createElement('span');
+        hamburger.appendChild(line);
+    }
+
+    const xright = document.getElementsByClassName("xright")[0];
+    xright.appendChild(document.createTextNode(" | "));
+    xright.appendChild(hamburger);
+
+    hamburger.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const menu = document.getElementById("leftColumn");
+        const breadcrumbs = document.getElementById("breadcrumbs");
+
+        menu.style.top = `${breadcrumbs.offsetHeight + 10}px`;
+        menu.style.height = `calc(100vh - ${breadcrumbs.offsetHeight + 10}px)`;
+
+        if (hamburger.classList.contains('openMenu')) {
+            hamburger.classList.remove('openMenu');
+            menu.style.display = "none";
+            isMenuVisible = false;
+        }
+        else {
+            hamburger.classList.add('openMenu');
+            menu.style.display = "block";
+            isMenuVisible = true;
+        }
+    })
+}
+
+function resetStyling() {
+    const hamburger = document.getElementById("hamburger");
+    hamburger.remove()
+
+    const menu = document.getElementById("leftColumn");
+    menu.style.removeProperty("top");
+    menu.style.removeProperty("height");
+
+    const xright = document.getElementsByClassName("xright")[0];
+    xright.lastChild.remove();
+
+    if (window.innerWidth > 823) {
+        isMenuVisible = false;
+    }
 }
 
 window.addEventListener('load', setBodyColumnMargin);
