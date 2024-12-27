@@ -216,12 +216,17 @@ no-error-pmd)
   echo "CS_version: ${CS_POM_VERSION}"
   mvn -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  checkout_from "https://github.com/pmd/build-tools.git"
+  #  checkout_from "https://github.com/pmd/build-tools.git"
+  checkout_from "https://github.com/kkoutsilis/build-tools.git"
   cd .ci-temp/build-tools/
+  git ls-remote
+  git checkout "66d""ed33c74662cb3da612f3d34a5ae""fa""a629b443"
   mvn -e --no-transfer-progress install
   cd ..
-  git clone https://github.com/pmd/pmd.git
+  git clone https://github.com/kkoutsilis/pmd.git
   cd pmd
+  git ls-remote
+  git checkout "fa6a862ac8278906d7bcf21852f6552d27a46a73"
   ./mvnw verify --show-version --errors --batch-mode --no-transfer-progress \
                 -DskipTests \
                 -Dmaven.javadoc.skip=true \
@@ -279,8 +284,10 @@ no-error-xwiki)
   echo "version:${CS_POM_VERSION} antlr4:${ANTLR4_VERSION}"
   mvn -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  checkout_from "https://github.com/xwiki/xwiki-commons.git"
+  checkout_from "https://github.com/kkoutsilis/xwiki-commons"
   cd .ci-temp/xwiki-commons
+  git ls-remote
+  git checkout "88f75d13376587956a5e5bd""dad0fa003383f190a"
   # Build custom Checkstyle rules
   mvn -e --no-transfer-progress -f \
     xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
@@ -311,8 +318,10 @@ no-error-xwiki)
   cd ..
   removeFolderWithProtectedFiles xwiki-rendering
   cd ..
-  checkout_from https://github.com/xwiki/xwiki-platform.git
+  checkout_from https://github.com/kkoutsilis/xwiki-platform.git
   cd .ci-temp/xwiki-platform
+  git ls-remote
+  git checkout "1195e41a44e1b6ae""c4b""ba625da299f6008077f7f"
   # Validate xwiki-platform
   mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ..
@@ -748,22 +757,6 @@ no-error-methods-distance)
      -Dcheckstyle.configLocation=../../config/checkstyle-checks.xml
   cd ..
   removeFolderWithProtectedFiles  methods-distance
-  ;;
-
-no-error-spring-cloud-gcp)
-  set -e
-  CS_POM_VERSION="$(getCheckstylePomVersion)"
-  echo CS_version: "${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
-  echo "Checkout target sources ..."
-  checkout_from https://github.com/googlecloudplatform/spring-cloud-gcp
-  cd .ci-temp/spring-cloud-gcp
-  git checkout "7c99f37087ac8f""eb""db""f7e185375a217b744895a4"
-  mvn -e --no-transfer-progress checkstyle:check@checkstyle-validation \
-   -Dmaven-checkstyle-plugin.version=3.1.1 \
-   -Dpuppycrawl-tools-checkstyle.version="${CS_POM_VERSION}"
-  cd ..
-  removeFolderWithProtectedFiles spring-cloud-gcp
   ;;
 
 no-error-equalsverifier)

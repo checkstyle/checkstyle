@@ -1,10 +1,8 @@
 /*
 JavadocVariable
-scope = protected
-excludeScope = (default)null
+accessModifiers = public, protected
 ignoreNamePattern = (default)null
 tokens = (default)ENUM_CONSTANT_DEF
-
 
 */
 
@@ -12,8 +10,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
 public class InputJavadocVariableNoJavadoc2 //comment test
 {
-    public int i1; // violation
-    protected int i2; // violation
+    public int i1; // violation, 'Missing a Javadoc comment'
+    protected int i2; // violation, 'Missing a Javadoc comment'
     int i3;
     private int i4;
 
@@ -23,8 +21,8 @@ public class InputJavadocVariableNoJavadoc2 //comment test
     private void foo4() {}
 
     protected class ProtectedInner {
-        public int i1; // violation
-        protected int i2; // violation
+        public int i1; // violation, 'Missing a Javadoc comment'
+        protected int i2; // violation, 'Missing a Javadoc comment'
         int i3;
         private int i4;
 
@@ -35,8 +33,8 @@ public class InputJavadocVariableNoJavadoc2 //comment test
     }
 
     class PackageInner {
-        public int i1;
-        protected int i2;
+        public int i1; // violation, 'Missing a Javadoc comment'
+        protected int i2; // violation, 'Missing a Javadoc comment'
         int i3;
         private int i4;
 
@@ -47,8 +45,8 @@ public class InputJavadocVariableNoJavadoc2 //comment test
     }
 
     private class PrivateInner {
-        public int i1;
-        protected int i2;
+        public int i1; // violation, 'Missing a Javadoc comment'
+        protected int i2; // violation, 'Missing a Javadoc comment'
         int i3;
         private int i4;
 
@@ -60,8 +58,8 @@ public class InputJavadocVariableNoJavadoc2 //comment test
 }
 
 class  PackageClass2 {
-    public int i1;
-    protected int i2;
+    public int i1; // violation, 'Missing a Javadoc comment'
+    protected int i2; // violation, 'Missing a Javadoc comment'
     int i3;
     private int i4;
 
@@ -71,8 +69,8 @@ class  PackageClass2 {
     private void foo4() {}
 
     public class PublicInner {
-        public int i1;
-        protected int i2;
+        public int i1; // violation, 'Missing a Javadoc comment'
+        protected int i2; // violation, 'Missing a Javadoc comment'
         int i3;
         private int i4;
 
@@ -83,8 +81,8 @@ class  PackageClass2 {
     }
 
     protected class ProtectedInner {
-        public int i1;
-        protected int i2;
+        public int i1; // violation, 'Missing a Javadoc comment'
+        protected int i2; // violation, 'Missing a Javadoc comment'
         int i3;
         private int i4;
 
@@ -95,8 +93,8 @@ class  PackageClass2 {
     }
 
     class PackageInner {
-        public int i1;
-        protected int i2;
+        public int i1; // violation, 'Missing a Javadoc comment'
+        protected int i2; // violation, 'Missing a Javadoc comment'
         int i3;
         private int i4;
 
@@ -107,8 +105,8 @@ class  PackageClass2 {
     }
 
     private class PrivateInner {
-        public int i1;
-        protected int i2;
+        public int i1; // violation, 'Missing a Javadoc comment'
+        protected int i2; // violation, 'Missing a Javadoc comment'
         int i3;
         private int i4;
 
