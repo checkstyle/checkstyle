@@ -2,8 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="JavadocVariable">
-      <property name="scope" value="private"/>
-      <property name="excludeScope" value="protected"/>
+      <property name="accessModifiers" value="private,package"/>
     </module>
   </module>
 </module>
