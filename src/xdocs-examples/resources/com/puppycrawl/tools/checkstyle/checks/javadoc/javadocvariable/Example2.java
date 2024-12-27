@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="JavadocVariable">
-      <property name="scope" value="public"/>
+      <property name="accessModifiers" value="public"/>
     </module>
   </module>
 </module>
