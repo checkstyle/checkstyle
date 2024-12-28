@@ -88,42 +88,30 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-
         <p>
-          Example:
+          Example1:
         </p>
         <p id="Example1-code">
           The check passes without violations in the following:
         </p>
         <source>
-class InputClassComplexity {
-  Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
+class Example1{
+  Set set = new HashSet(); // Set, HashSet ignored
+  Map map = new HashMap(); // Map, HashMap ignored
   Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  Place place = new Place(); // Counted, 3
-  int value = 10; // int is ignored due to default excludedClasses property
+  Time1 time = new Time1(); // Counted, 2
+  Place1 place = new Place1(); // Counted, 3
+  int value = 10; // int is ignored
+  BufferedReader br;
+  File file;
   void method() {
-    var result = &quot;result&quot;; // var is ignored due to default excludedClasses property
+    var result = &quot;result&quot;; // var is ignored
   }
 }
+class Place1 {}
+class Time1 {}
         </source>
-
-        <p id="Example2-code">
-          The check results in a violation in the following:
-        </p>
-        <source>
-class InputClassComplexity {
-  Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  // mention of 18 other user defined classes
-  Place place = new Place(); // violation, total is 21
-}
-        </source>
-
-        <p id="Example3-config">
+        <p id="Example2-config">
           To configure the check with a threshold of 2:
         </p>
         <source>
@@ -135,87 +123,68 @@ class InputClassComplexity {
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-
         <p>
-          Example:
+          Example2:
         </p>
-        <p id="Example3-code">
-          The check passes without violations in the following:
-        </p>
-        <source>
-// A is ignored because the superclass doesn't depend on the permitted subclasses
-sealed class InputClassComplexity permits A {
-  Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-}
-
-final class A extends InputClassComplexity { } // InputClassComplexity is counted, 1
-        </source>
-
-        <p id="Example4-code">
+        <p id="Example2-code">
           The check results in a violation in the following:
         </p>
         <source>
-// A is ignored because the superclass doesn't depend on the permitted subclasses
-sealed class InputClassComplexity permits A {
-  Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
+class Example2{ // violation 'Class Fan-Out Complexity is 5 (max allowed is 2)'
+  Set set = new HashSet(); // Set, HashSet ignored
+  Map map = new HashMap(); // Map, HashMap ignored
   Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  Place place = new Place(); // violation, total is 3
+  Time2 time = new Time2(); // Counted, 2
+  Place2 place = new Place2(); // Counted, 3
+  int value = 10; // int is ignored
+  BufferedReader br; // Counted, 4
+  File file; // Counted, 5
+  void method() {
+    var result = &quot;result&quot;; // var is ignored
+  }
 }
-
-final class A extends InputClassComplexity { } // InputClassComplexity is counted, 1
+class Place2 {}
+class Time2 {}
         </source>
 
-        <p id="Example5-config">
+        <p id="Example3-config">
           To configure the check with three excluded classes <code>HashMap</code>,
-          <code>HashSet</code> and <code>Place</code>:
+          <code>HashSet</code> and <code>Place3</code>:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
-      &lt;property name=&quot;excludedClasses&quot; value=&quot;HashMap, HashSet, Place&quot;/&gt;
+      &lt;property name=&quot;excludedClasses&quot; value=&quot;HashMap, HashSet, Place3&quot;/&gt;
+      &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-
         <p>
-          Example:
+          Example3:
         </p>
-        <p id="Example5-code">
-          The check passes without violations in the following:
-        </p>
-        <source>
-class InputClassComplexity {
-  Set set = new HashSet(); // Set counted 1, HashSet ignored
-  Map map = new HashMap(); // Map counted 2, HashMap ignored
-  Date date = new Date(); // Counted, 3
-  Time time = new Time(); // Counted, 4
-  // mention of 16 other user defined classes
-  Place place = new Place(); // Ignored
-}
-        </source>
-
-        <p id="Example6-code">
+        <p id="Example3-code">
           The check results in a violation in the following:
         </p>
         <source>
-class InputClassComplexity {
+class Example3{ // violation 'Class Fan-Out Complexity is 7 (max allowed is 3)'
   Set set = new HashSet(); // Set counted 1, HashSet ignored
   Map map = new HashMap(); // Map counted 2, HashMap ignored
   Date date = new Date(); // Counted, 3
-  Time time = new Time(); // Counted, 4
-  // mention of 16 other user defined classes
-  Space space = new Space(); // violation, total is 21
+  Time3 time = new Time3(); // Counted, 4
+  Place3 place = new Place3(); // Counted, 5
+  int value = 10; // int is ignored
+  BufferedReader br; // Counted, 6
+  File file; // Counted, 7
+  void method() {
+    var result = &quot;result&quot;; // var is ignored
+  }
 }
+class Place3 {}
+class Time3 {}
         </source>
-
-        <p id="Example7-config">
+        <p id="Example4-config">
           To configure the check to exclude classes with a regular expression
           <code>.*Reader$</code>:
         </p>
@@ -224,91 +193,71 @@ class InputClassComplexity {
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
       &lt;property name=&quot;excludeClassesRegexps&quot; value=&quot;.*Reader$&quot;/&gt;
+      &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-
         <p>
-          Example:
+          Example4:
         </p>
-        <p id="Example7-code">
-          The check passes without violations in the following:
-        </p>
-        <source>
-class InputClassComplexity {
-  Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  // mention of 18 other user defined classes
-  BufferedReader br; // Ignored
-}
-        </source>
-
-        <p id="Example8-code">
+        <p id="Example4-code">
           The check results in a violation in the following:
         </p>
         <source>
-class InputClassComplexity {
-  Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
+class Example4{ // violation 'Class Fan-Out Complexity is 4 (max allowed is 3)'
+  Set set = new HashSet(); // Set, HashSet ignored
+  Map map = new HashMap(); // Map, HashMap ignored
   Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  // mention of 18 other user defined classes
-  File file; // violation, total is 21
+  Time4 time = new Time4(); // Counted, 2
+  Place4 place = new Place4(); // Counted, 3
+  int value = 10; // int is ignored
+  BufferedReader br; // Ignored
+  File file; // Counted, 4
+  void method() {
+    var result = &quot;result&quot;; // var is ignored
+  }
 }
+class Place4 {}
+class Time4 {}
         </source>
 
-        <p id="Example9-config">
+        <p id="Example5-config">
           To configure the check with an excluded package <code>java.io</code>:
         </p>
-
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
       &lt;property name=&quot;excludedPackages&quot; value=&quot;java.io&quot;/&gt;
+      &lt;property name=&quot;max&quot; value=&quot;5&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-
         <p>
-          Example:
+          Example5:
         </p>
-        <p id="Example9-code">
+        <p id="Example5-code">
           The check passes without violations in the following:
         </p>
         <source>
-import java.io.BufferedReader;
-
-class InputClassComplexity {
-  Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
+class Example5{
+  Set set = new HashSet(); // Set, HashSet ignored
+  Map map = new HashMap(); // Map, HashMap ignored
   Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  // mention of 18 other user defined classes
+  Time5 time = new Time5(); // Counted, 2
+  Place5 place = new Place5(); // Counted, 3
+  int value = 10; // int is ignored
   BufferedReader br; // Ignored
+  File file; // Ignored
+  void method() {
+    var result = &quot;result&quot;; // var is ignored
+  }
 }
+class Place5 {}
+class Time5 {}
         </source>
-
-        <p id="Example10-code">
-          The check results in a violation in the following:
-        </p>
-        <source>
-import java.util.StringTokenizer;
-
-class InputClassComplexity {
-  Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  // mention of 18 other user defined classes
-  StringTokenizer st; // violation, total is 21
-}
-        </source>
-
         <p>
           Override property <code>excludedPackages</code> to mark some packages as excluded.
           Each member of <code>excludedPackages</code> should be a valid identifier:
@@ -335,7 +284,7 @@ class InputClassComplexity {
           wildcard (e.g. <code>import java.math.*</code>). Instead of wildcard import you should
           use direct import (e.g. <code>import java.math.BigDecimal</code>).
         </p>
-        <p id="Example11-config">
+        <p id="Example6-config">
           Also note, that checkstyle will not exclude classes within the same file
           even if it was listed in the <code>excludedPackages</code> parameter. For example,
           assuming the config is
@@ -344,37 +293,39 @@ class InputClassComplexity {
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
-      &lt;property name=&quot;excludedPackages&quot; value=&quot;a.b&quot;/&gt;
+      &lt;property name=&quot;excludedPackages&quot; value=&quot;java.util&quot;/&gt;
+      &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example11-code">
-          And the file <code>a.b.Foo.java</code> is:
+        <p>
+          Example6:
+        </p>
+        <p id="Example6-code">
+          And the file is:
         </p>
         <source>
-package a.b;
-
-import a.b.Bar;
-import a.b.c.Baz;
-
-class Foo {
-  Bar bar; // Will be ignored, located inside ignored a.b package
-  Baz baz; // Will not be ignored, located inside a.b.c package
-  Data data; // Will not be ignored, same file
-
-  class Data {
-    Foo foo; // Will not be ignored, same file
+class Example6{ // violation 'Class Fan-Out Complexity is 4 (max allowed is 3)'
+  Set set = new HashSet(); // Set, HashSet ignored
+  Map map = new HashMap(); // Map, HashMap ignored
+  Date date = new Date(); // Ignored
+  Time6 time = new Time6(); // Counted, 1
+  Place6 place = new Place6(); // Counted, 2
+  int value = 10; // int is ignored
+  BufferedReader br; // Counted, 3
+  File file; // Counted, 4
+  void method() {
+    var result = &quot;result&quot;; // var is ignored
   }
 }
+class Place6 {}
+class Time6 {}
         </source>
         <p>
-          The <code>bar</code> member will not be counted,
-          since the <code>a.b</code> added to the <code>excludedPackages</code>.
-          The <code>baz</code> member will be counted,
-          since the <code>a.b.c</code> was not added to the <code>excludedPackages</code>.
-          The <code>data</code> and <code>foo</code> members will be counted, as they are
-          inside same file.
+          The <code>Set, Map, HashMap, HashSet, Date</code> member will not be counted,
+          since the <code>java.util</code> added to the <code>excludedPackages</code>.
+          The <code>BufferReader, File</code> member will be counted,
         </p>
       </subsection>
 
