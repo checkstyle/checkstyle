@@ -80,23 +80,25 @@
 &lt;/module&gt;
         </source>
         <p id="Example1-code">
-        Example:
+        Example1:
         </p>
         <source>
-class Test
-{
-  // Violation for param &quot;b&quot; and at tags &quot;deprecated&quot;, &quot;throws&quot; and &quot;return&quot;.
+class Example1 {
+
   /**
-  * Some summary.
-  *
-  * &lt;code&gt;@param&lt;/code&gt; a Some description
-  * &lt;code&gt;@param&lt;/code&gt; b
-  * &lt;code&gt;@deprecated&lt;/code&gt;
-  * &lt;code&gt;@throws&lt;/code&gt; Exception
-  * &lt;code&gt;@return&lt;/code&gt;
-  */
-  public int method(String a, int b) throws Exception {
-    return 1;
+   * Some summary.
+   *
+   * @param a Some description
+   * @param b
+   * @deprecated
+   * @throws Exception
+   * @return
+   */
+  public void testMethod(){
+    // violation 6 lines above 'At-clause should have a non-empty description'
+    // violation 6 lines above 'At-clause should have a non-empty description'
+    // violation 6 lines above 'At-clause should have a non-empty description'
+    // violation 6 lines above 'At-clause should have a non-empty description'
   }
 }
         </source>
@@ -114,23 +116,25 @@ class Test
 &lt;/module&gt;
         </source>
         <p id="Example2-code">
-        Example:
+        Example2:
         </p>
         <source>
-class Test
-{
-  // Violation for param &quot;b&quot; and at tag &quot;throws&quot;.
+class Example2 {
+
   /**
-  * Some summary.
-  *
-  * &lt;code&gt;@param&lt;/code&gt; a Some description
-  * &lt;code&gt;@param&lt;/code&gt; b
-  * &lt;code&gt;@deprecated&lt;/code&gt;
-  * &lt;code&gt;@throws&lt;/code&gt; Exception
-  * &lt;code&gt;@return&lt;/code&gt;
-  */
-  public int method(String a, int b) throws Exception {
-    return 1;
+   * Some summary.
+   *
+   * @param a Some description
+   * @param b
+   * @deprecated
+   * @throws Exception
+   * @return
+   */
+  public void testMethod(){
+    // violation 6 lines above 'At-clause should have a non-empty description'
+    // @deprecated ignored as not mentioned in javadocTokens
+    // violation 6 lines above 'At-clause should have a non-empty description'
+    // @return ignored as not mentioned in javadocTokens
   }
 }
         </source>
