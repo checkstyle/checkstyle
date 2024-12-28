@@ -124,7 +124,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         checker = createChecker(checkConfig);
     }
 
-    // until #15799
     @Disabled
     @Test
     public void testAllCheckSectionJavaDocs() throws Exception {

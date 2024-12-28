@@ -269,7 +269,6 @@ public class XdocsPagesTest {
         return availableChecks.matches(linkPattern);
     }
 
-    // until #15799
     @Disabled
     @Test
     public void testAllConfigsHaveLinkInSite() throws Exception {
@@ -292,7 +291,6 @@ public class XdocsPagesTest {
         }
     }
 
-    // until #15799
     @Disabled
     @Test
     public void testAllChecksPageInSyncWithChecksSummaries() throws Exception {
@@ -629,7 +627,6 @@ public class XdocsPagesTest {
         return true;
     }
 
-    // until #15799
     @Disabled
     @Test
     public void testAllCheckSections() throws Exception {
