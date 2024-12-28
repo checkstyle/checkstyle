@@ -4,26 +4,26 @@
     <module name="Indentation"/>
   </module>
 </module>
+*/
 
-*/package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;
+package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;
 
 // xdoc section -- start
 class Example4 {
-    String field = "example";   // basicOffset
-    int[] values = {            // basicOffset
-        10,                     // arrayInitIndent
-        20,                     // arrayInitIndent
-        30                      // arrayInitIndent
-    };                          // arrayInitIndent
+    String field = "example";// basicOffset
+    int[] values = {// basicOffset
+        10,
+        20,
+        30
+    };
 
-    void processValues() throws Exception // basicOffset
-    {                                     // braceAdjustment
-        handleValue("Test String", 42);                    // basicOffset
-    }                                     // braceAdjustment
+    void processValues() throws Exception {
+        handleValue("Test String", 42);
+    }
 
     void handleValue(String aFooString,
                      int aFooInt) { // indent:8 ; expected: > 4; ok, because 8 > 4
-        boolean cond1 = true; // defining conditions
+        boolean cond1 = true;
         boolean cond2 = false;
         boolean cond3 = true;
         boolean cond4 = false;
@@ -37,20 +37,20 @@ class Example4 {
         }
 
         if ((cond1 && cond2)
-              || (cond3 && cond4)
-              || !(cond5 && cond6)) {
-            field = field.toUpperCase()
-                 .concat(" TASK")
-                 .replaceAll("TASK", "COMPLETED")
-                 .repeat(1);
+                || (cond3 && cond4) //ok,lineWrappingIndentation
+                || !(cond5 && cond6)) { //ok,lineWrappingIndentation
+            field.toUpperCase()
+                 .concat(" TASK") //ok,lineWrappingIndentation
+                 .chars().forEach(c -> { //ok,lineWrappingIndentation
+                     System.out.println((char) c);
+                 });
         }
     }
 
-    void demonstrateSwitch()               // basicOffset
-        throws Exception {                 // throwsIndent
-        switch (field) {                   // basicOffset
-            case "EXAMPLE": processValues(); // caseIndent
-            case "COMPLETED": handleValue("Completed Case", 456); // caseIndent
+    void demonstrateSwitch() throws Exception {
+        switch (field) {
+            case "EXAMPLE": processValues();// caseIndent
+            case "COMPLETED": handleValue("Completed Case", 456);// caseIndent
         }
     }
 

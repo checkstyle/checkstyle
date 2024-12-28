@@ -12,20 +12,20 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;
 
 // xdoc section -- start
 class Example3 {
-    String field = "example";   // basicOffset
-    int[] values = {            // basicOffset
-        10,                     // arrayInitIndent
-        20,                     // arrayInitIndent
-        30                      // arrayInitIndent
-    };                          // arrayInitIndent
+    String field = "example";// basicOffset
+    int[] values = {// basicOffset
+        10,
+        20,
+        30
+    };
 
-    void processValues() throws Exception {  // basicOffset
-        handleValue("Test String", 42);       // basicOffset
+    void processValues() throws Exception {
+        handleValue("Test String", 42);
     }
 
     void handleValue(String aFooString,
-                     int aFooInt) {  // violation,"incorrect indentation level 21"
-        boolean cond1 = true; // defining conditions
+                     int aFooInt) {// violation,"incorrect indentation level 21"
+        boolean cond1 = true;
         boolean cond2 = false;
         boolean cond3 = true;
         boolean cond4 = false;
@@ -49,10 +49,10 @@ class Example3 {
         }
     }
 
-    void demonstrateSwitch() throws Exception {  // basicOffset
-        switch (field) {                         // basicOffset
-            case "EXAMPLE": processValues();      // caseIndent
-            case "COMPLETED": handleValue("Completed Case", 456);  // caseIndent
+    void demonstrateSwitch() throws Exception {
+        switch (field) {
+            case "EXAMPLE": processValues();// caseIndent
+            case "COMPLETED": handleValue("Completed Case", 456);// caseIndent
         }
     }
 }

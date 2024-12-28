@@ -127,43 +127,47 @@ if ((condition1 &amp;&amp; condition2)
         </p>
         <source>
 class Example1 {
-    String field = &quot;example&quot;; // basicOffset
+    String field = &quot;example&quot;;// basicOffset
+    int[] values = {// basicOffset
+        10,
+        20,
+        30
+    };
 
-    int[] values = {           // basicOffset
-        10,                     // arrayInitIndent
-        20,                     // arrayInitIndent
-        30                      // arrayInitIndent
-    };                          // arrayInitIndent
+    void processValues() throws Exception {
+        handleValue(&quot;Test String&quot;, 42);// basicOffset
+    }
 
-    void processValues() throws Exception { // basicOffset
-        handleValues();                  // basicOffset
-    }                                     // braceAdjustment
+    void handleValue(String aFooString,
+                     int aFooInt) {// indent:8 ; expected: &gt; 4; ok, because 8 &gt; 4
+        boolean cond1 = true;
+        boolean cond2 = false;
+        boolean cond3 = true;
+        boolean cond4 = false;
+        boolean cond5 = true;
+        boolean cond6 = false;
 
-    void handleValues() {                 // basicOffset
-        boolean condition1 = true;        // defining conditions
-        boolean condition2 = false;
-        boolean condition3 = true;
-        boolean condition4 = false;
-        boolean condition5 = true;
-        boolean condition6 = false;
+        if (cond1
+            || cond2) {
+            field = field.toUpperCase()
+                .concat(&quot; TASK&quot;);
+        }
 
-        if (condition1 &amp;&amp; condition2   // basicOffset
-            || condition3 &amp;&amp; condition4
-            || !(condition5 &amp;&amp; condition6)) {
-            field = field.toUpperCase()           // basicOffset
-                .concat(&quot; TASK&quot;)
-                .replaceAll(&quot;TASK&quot;, &quot;COMPLETED&quot;);
+        if ((cond1 &amp;&amp; cond2)
+                || (cond3 &amp;&amp; cond4) //ok,lineWrappingIndentation
+                || !(cond5 &amp;&amp; cond6)) { //ok,lineWrappingIndentation
+            field.toUpperCase()
+                 .concat(&quot; TASK&quot;) //ok,lineWrappingIndentation
+                 .chars().forEach(c -&gt; { //ok,lineWrappingIndentation
+                     System.out.println((char) c);
+                 });
         }
     }
 
-    void demonstrateSwitch() throws Exception { // basicOffset
-        switch (field) {                       // basicOffset
-            case &quot;EXAMPLE&quot;:
-                processValues();               // caseIndent
-                break;                          // caseIndent
-            case &quot;COMPLETED&quot;:
-                handleValues();                // caseIndent
-                break;                          // caseIndent
+    void demonstrateSwitch() throws Exception {
+        switch (field) {
+            case &quot;EXAMPLE&quot;: processValues();// caseIndent
+            case &quot;COMPLETED&quot;: handleValue(&quot;Completed Case&quot;, 456);// caseIndent
         }
     }
 }
@@ -188,38 +192,47 @@ class Example1 {
         </p>
         <source>
 class Example2 {
-    String field = &quot;example&quot;;   // basicOffset
-    int[] values = {            // basicOffset
-        10,                     // arrayInitIndent
-        20,                     // arrayInitIndent
-        30                      // arrayInitIndent
-    };                          // arrayInitIndent
+    String field = &quot;example&quot;;// basicOffset
+    int[] values = {// basicOffset
+        10,
+        20,
+        30
+    };
 
-    void processValues() throws Exception // basicOffset
-    {                                     // braceAdjustment
-        handleValues();                   // basicOffset
-    }                                     // braceAdjustment
+    void processValues() throws Exception {
+        handleValue(&quot;Test String&quot;, 42);// basicOffset
+    }
 
-    void handleValues() {                 // basicOffset
-        boolean condition1 = true;        // defining conditions
-        boolean condition2 = false;
-        boolean condition3 = true;
-        boolean condition4 = false;
-        boolean condition5 = true;
-        boolean condition6 = false;
+    void handleValue(String aFooString,
+                     int aFooInt) {
+        boolean cond1 = true;
+        boolean cond2 = false;
+        boolean cond3 = true;
+        boolean cond4 = false;
+        boolean cond5 = true;
+        boolean cond6 = false;
 
-        if (condition1 &amp;&amp; condition2    // basicOffset
-                  || condition3 &amp;&amp; condition4
-                  ||!(condition5 &amp;&amp; condition6)) {
-            field = field.toUpperCase()           // basicOffset
-                .concat(&quot; TASK&quot;)
-                .replaceAll(&quot;TASK&quot;, &quot;COMPLETED&quot;);
+        if (cond1
+            || cond2) {
+            field = field.toUpperCase()
+                .concat(&quot; TASK&quot;);
+        }
+
+        if ((cond1 &amp;&amp; cond2)
+                || (cond3 &amp;&amp; cond4) //ok,lineWrappingIndentation
+                || !(cond5 &amp;&amp; cond6)) { //ok,lineWrappingIndentation
+            field.toUpperCase()
+                 .concat(&quot; TASK&quot;) //ok,lineWrappingIndentation
+                 .chars().forEach(c -&gt; { //ok,lineWrappingIndentation
+                     System.out.println((char) c);
+                 });
         }
     }
 
-    void demonstrateSwitch() throws Exception {    // basicOffset
-        switch (field) {// basicOffset
-        case &quot;EXAMPLE&quot;: processValues(); // caseIndent
+    void demonstrateSwitch() throws Exception {
+        switch (field) {
+        case &quot;EXAMPLE&quot;: processValues();// caseIndent
+        case &quot;COMPLETED&quot;: handleValue(&quot;Completed Case&quot;, 456);// caseIndent
         }
     }
 
@@ -243,20 +256,20 @@ class Example2 {
         </p>
         <source>
 class Example3 {
-    String field = &quot;example&quot;;   // basicOffset
-    int[] values = {            // basicOffset
-        10,                     // arrayInitIndent
-        20,                     // arrayInitIndent
-        30                      // arrayInitIndent
-    };                          // arrayInitIndent
+    String field = &quot;example&quot;;// basicOffset
+    int[] values = {// basicOffset
+        10,
+        20,
+        30
+    };
 
-    void processValues() throws Exception {  // basicOffset
-        handleValue(&quot;Test String&quot;, 42);       // basicOffset
+    void processValues() throws Exception {
+        handleValue(&quot;Test String&quot;, 42);
     }
 
     void handleValue(String aFooString,
-                     int aFooInt) {  // violation,&quot;incorrect indentation level 21&quot;
-        boolean cond1 = true; // defining conditions
+                     int aFooInt) {// violation,&quot;incorrect indentation level 21&quot;
+        boolean cond1 = true;
         boolean cond2 = false;
         boolean cond3 = true;
         boolean cond4 = false;
@@ -280,10 +293,10 @@ class Example3 {
         }
     }
 
-    void demonstrateSwitch() throws Exception {  // basicOffset
-        switch (field) {                         // basicOffset
-            case &quot;EXAMPLE&quot;: processValues();      // caseIndent
-            case &quot;COMPLETED&quot;: handleValue(&quot;Completed Case&quot;, 456);  // caseIndent
+    void demonstrateSwitch() throws Exception {
+        switch (field) {
+            case &quot;EXAMPLE&quot;: processValues();// caseIndent
+            case &quot;COMPLETED&quot;: handleValue(&quot;Completed Case&quot;, 456);// caseIndent
         }
     }
 }
@@ -293,21 +306,20 @@ class Example3 {
         </p>
         <source>
 class Example4 {
-    String field = &quot;example&quot;;   // basicOffset
-    int[] values = {            // basicOffset
-        10,                     // arrayInitIndent
-        20,                     // arrayInitIndent
-        30                      // arrayInitIndent
-    };                          // arrayInitIndent
+    String field = &quot;example&quot;;// basicOffset
+    int[] values = {// basicOffset
+        10,
+        20,
+        30
+    };
 
-    void processValues() throws Exception // basicOffset
-    {                                     // braceAdjustment
-        handleValue(&quot;Test String&quot;, 42);                    // basicOffset
-    }                                     // braceAdjustment
+    void processValues() throws Exception {
+        handleValue(&quot;Test String&quot;, 42);
+    }
 
     void handleValue(String aFooString,
                      int aFooInt) { // indent:8 ; expected: &gt; 4; ok, because 8 &gt; 4
-        boolean cond1 = true; // defining conditions
+        boolean cond1 = true;
         boolean cond2 = false;
         boolean cond3 = true;
         boolean cond4 = false;
@@ -321,20 +333,20 @@ class Example4 {
         }
 
         if ((cond1 &amp;&amp; cond2)
-              || (cond3 &amp;&amp; cond4)
-              || !(cond5 &amp;&amp; cond6)) {
-            field = field.toUpperCase()
-                 .concat(&quot; TASK&quot;)
-                 .replaceAll(&quot;TASK&quot;, &quot;COMPLETED&quot;)
-                 .repeat(1);
+                || (cond3 &amp;&amp; cond4) //ok,lineWrappingIndentation
+                || !(cond5 &amp;&amp; cond6)) { //ok,lineWrappingIndentation
+            field.toUpperCase()
+                 .concat(&quot; TASK&quot;) //ok,lineWrappingIndentation
+                 .chars().forEach(c -&gt; { //ok,lineWrappingIndentation
+                     System.out.println((char) c);
+                 });
         }
     }
 
-    void demonstrateSwitch()               // basicOffset
-        throws Exception {                 // throwsIndent
-        switch (field) {                   // basicOffset
-            case &quot;EXAMPLE&quot;: processValues(); // caseIndent
-            case &quot;COMPLETED&quot;: handleValue(&quot;Completed Case&quot;, 456); // caseIndent
+    void demonstrateSwitch() throws Exception {
+        switch (field) {
+            case &quot;EXAMPLE&quot;: processValues();// caseIndent
+            case &quot;COMPLETED&quot;: handleValue(&quot;Completed Case&quot;, 456);// caseIndent
         }
     }
 
