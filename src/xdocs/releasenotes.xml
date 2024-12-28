@@ -10,6 +10,50 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.21.1">
+      <div class="releaseDate">28.12.2024</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            UnusedLocalVariable: False Positive when  inner class has same field as variable .
+            Author: Konstantinos Koutsilis
+            <a href="https://github.com/checkstyle/checkstyle/issues/11374">#11374</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Refactor SummaryJavadoc to avoid null usage .
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/14881">#14881</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: Mostafahassen1, Amit Kumar Deohoria, Anmol
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: Rohan Gupta, Aryan Sankar, sreekarsai193
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: sumiyaaax, Anmol
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+          <li>
+            Resolve Pitest Suppression in Pitest-Javadoc Profile.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/13999">#13999</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: ahmedyoussefg
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.21.0">
       <div class="releaseDate">12.12.2024</div>
       <p>New:</p>
