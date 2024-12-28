@@ -35,42 +35,42 @@
             <tr>
               <td>allowClassName</td>
               <td>Control whether to allow a method name to have the same name as the enclosing class name. Setting this property <code>false</code> helps to avoid confusion between constructors and methods.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToPackage</td>
               <td>Control if check should apply to package-private members.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
             <tr>
               <td>applyToPrivate</td>
               <td>Control if check should apply to private members.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
             <tr>
               <td>applyToProtected</td>
               <td>Control if check should apply to protected members.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
             <tr>
               <td>applyToPublic</td>
               <td>Control if check should apply to public members.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
             <tr>
               <td>format</td>
               <td>Sets the pattern to match valid identifiers.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^[a-z][a-zA-Z0-9]*$&quot;</code></td>
               <td>3.0</td>
             </tr>
@@ -228,7 +228,7 @@ class Example5 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

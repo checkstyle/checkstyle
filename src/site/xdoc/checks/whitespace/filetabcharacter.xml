@@ -44,14 +44,14 @@
             <tr>
               <td>eachLine</td>
               <td>Control whether to report on each line containing a tab, or just the first instance.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>fileExtensions</td>
               <td>Specify the file extensions of the files to process.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../../../xdocs/property_types.html#String.5B.5D">String[]</a></td>
               <td><code>all files</code></td>
               <td>5.0</td>
             </tr>
@@ -180,7 +180,7 @@ class Example3 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#Checker">Checker</a>
+          <a href="../../../../xdocs/config.html#Checker">Checker</a>
         </p>
       </subsection>
     </section>

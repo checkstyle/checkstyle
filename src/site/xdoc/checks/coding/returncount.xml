@@ -46,21 +46,21 @@
             <tr>
               <td>format</td>
               <td>Specify method names to ignore.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^equals$&quot;</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td>max</td>
               <td>Specify maximum allowed number of return statements in non-void methods/lambdas.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../../../xdocs/property_types.html#int">int</a></td>
               <td><code>2</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td>maxForVoid</td>
               <td>Specify maximum allowed number of return statements in void methods/constructors/lambdas.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../../../xdocs/property_types.html#int">int</a></td>
               <td><code>1</code></td>
               <td>6.19</td>
             </tr>
@@ -68,20 +68,20 @@
               <td>tokens</td>
               <td>tokens to check</td>
               <td>subset of tokens
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
                     CTOR_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
                     METHOD_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
                     LAMBDA</a>
                   .
               </td>
               <td>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
                     CTOR_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
                     METHOD_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
                     LAMBDA</a>
                   .
               </td>
@@ -379,7 +379,7 @@ public class Example5 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

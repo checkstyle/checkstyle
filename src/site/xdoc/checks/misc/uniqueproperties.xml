@@ -35,7 +35,7 @@
             <tr>
               <td>fileExtensions</td>
               <td>Specify the file extensions of the files to process.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../../../xdocs/property_types.html#String.5B.5D">String[]</a></td>
               <td><code>.properties</code></td>
               <td>5.7</td>
             </tr>
@@ -125,7 +125,7 @@ key.one=54 // OK, file is not checked
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#Checker">Checker</a>
+          <a href="../../../../xdocs/config.html#Checker">Checker</a>
         </p>
       </subsection>
     </section>

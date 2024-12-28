@@ -122,7 +122,7 @@ public class Example2 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../config.html#Checker">Checker</a>
+          <a href="../../../xdocs/config.html#Checker">Checker</a>
         </p>
       </subsection>
     </section>

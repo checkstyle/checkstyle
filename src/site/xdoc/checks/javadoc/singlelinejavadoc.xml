@@ -30,7 +30,7 @@
               <td>ignoreInlineTags</td>
               <td>Control whether <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
  inline tags</a> must be ignored.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.8</td>
             </tr>
@@ -38,15 +38,15 @@
               <td>ignoredTags</td>
               <td>Specify <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
  block tags</a> which are ignored by the check.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../../../xdocs/property_types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>6.8</td>
             </tr>
             <tr>
               <td>violateExecutionOnNonTightHtml</td>
-              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../writingjavadocchecks.html#Tight-HTML_rules">
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../../../xdocs/writingjavadocchecks.html#Tight-HTML_rules">
      Tight-HTML Rules</a>.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.3</td>
             </tr>
@@ -307,7 +307,7 @@ public class Example4 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

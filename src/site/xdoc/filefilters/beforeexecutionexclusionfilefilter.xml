@@ -42,7 +42,7 @@
             <tr>
               <td>fileNamePattern</td>
               <td>Define regular expression to match the file name against.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>7.2</td>
             </tr>
@@ -107,7 +107,7 @@
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../config.html#Checker">Checker</a>
+          <a href="../../../xdocs/config.html#Checker">Checker</a>
         </p>
       </subsection>
     </section>

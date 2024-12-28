@@ -36,7 +36,7 @@
             <tr>
               <td>excludedClasses</td>
               <td>Specify pattern for qualified names of classes which are allowed to have a <code>main</code> method.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^$&quot;</code></td>
               <td>3.2</td>
             </tr>
@@ -158,7 +158,7 @@ record MyRecord2() {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

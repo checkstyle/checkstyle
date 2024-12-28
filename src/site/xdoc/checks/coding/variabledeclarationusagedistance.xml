@@ -29,28 +29,28 @@
             <tr>
               <td>allowedDistance</td>
               <td>Specify distance between declaration of variable and its first usage. Values should be greater than 0.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../../../xdocs/property_types.html#int">int</a></td>
               <td><code>3</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td>ignoreFinal</td>
               <td>Allow to ignore variables with a 'final' modifier.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td>ignoreVariablePattern</td>
               <td>Define RegExp to ignore distance calculation for variables listed in this pattern.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;&quot;</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td>validateBetweenScopes</td>
               <td>Allow to calculate the distance between declaration of variable and its first usage in the different scopes.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
@@ -341,7 +341,7 @@ public class Example5 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

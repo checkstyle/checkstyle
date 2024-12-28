@@ -49,14 +49,14 @@
             <tr>
               <td>checkLastCaseGroup</td>
               <td>Control whether the last case group must be checked.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>4.0</td>
             </tr>
             <tr>
               <td>reliefPattern</td>
               <td>Define the RegExp to match the relief comment that suppresses the warning about a fall through.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;falls?[ -]?thr(u|ough)&quot;</code></td>
               <td>4.0</td>
             </tr>
@@ -240,7 +240,7 @@ class Example3 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

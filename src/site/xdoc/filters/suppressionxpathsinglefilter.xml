@@ -49,35 +49,35 @@
             <tr>
               <td>checks</td>
               <td>Define a Regular Expression matched against the name of the check associated with an audit event.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
             <tr>
               <td>files</td>
               <td>Define a Regular Expression matched against the file name associated with an audit event.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
             <tr>
               <td>id</td>
               <td>Define a string matched against the ID of the check associated with an audit event.</td>
-              <td><a href="../property_types.html#String">String</a></td>
+              <td><a href="../../../xdocs/property_types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
             <tr>
               <td>message</td>
               <td>Define a Regular Expression matched against the message of the check associated with an audit event.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
             <tr>
               <td>query</td>
               <td>Define a string xpath query.</td>
-              <td><a href="../property_types.html#String">String</a></td>
+              <td><a href="../../../xdocs/property_types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
@@ -464,7 +464,7 @@ public class TestClass {
       </subsection>
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

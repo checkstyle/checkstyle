@@ -50,35 +50,35 @@
             <tr>
               <td>checkFormat</td>
               <td>Specify check pattern to suppress.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;.*&quot;</code></td>
               <td>8.6</td>
             </tr>
             <tr>
               <td>idFormat</td>
               <td>Specify check ID pattern to suppress.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.24</td>
             </tr>
             <tr>
               <td>messageFormat</td>
               <td>Specify message pattern to suppress.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.6</td>
             </tr>
             <tr>
               <td>offCommentFormat</td>
               <td>Specify comment pattern to trigger filter to begin suppression.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;// CHECKSTYLE:OFF&quot;</code></td>
               <td>8.6</td>
             </tr>
             <tr>
               <td>onCommentFormat</td>
               <td>Specify comment pattern to trigger filter to end suppression.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;// CHECKSTYLE:ON&quot;</code></td>
               <td>8.6</td>
             </tr>
@@ -359,7 +359,7 @@ public class Example9 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../config.html#Checker">Checker</a>
+          <a href="../../../xdocs/config.html#Checker">Checker</a>
         </p>
       </subsection>
     </section>

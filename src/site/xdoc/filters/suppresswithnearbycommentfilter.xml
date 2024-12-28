@@ -49,49 +49,49 @@
             <tr>
               <td>checkC</td>
               <td>Control whether to check C style comments (<code>&#47;* ... *&#47;</code>).</td>
-              <td><a href="../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>checkCPP</td>
               <td>Control whether to check C++ style comments (<code>//</code>).</td>
-              <td><a href="../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>checkFormat</td>
               <td>Specify check pattern to suppress.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;.*&quot;</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>commentFormat</td>
               <td>Specify comment pattern to trigger filter to begin suppression.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;SUPPRESS CHECKSTYLE (\w+)&quot;</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>idFormat</td>
               <td>Specify check ID pattern to suppress.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.24</td>
             </tr>
             <tr>
               <td>influenceFormat</td>
               <td>Specify negative/zero/positive value that defines the number of lines preceding/at/following the suppression comment.</td>
-              <td><a href="../property_types.html#String">String</a></td>
+              <td><a href="../../../xdocs/property_types.html#String">String</a></td>
               <td><code>&quot;0&quot;</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>messageFormat</td>
               <td>Define message pattern to suppress.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>5.0</td>
             </tr>
@@ -318,7 +318,7 @@ public class UserService {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
