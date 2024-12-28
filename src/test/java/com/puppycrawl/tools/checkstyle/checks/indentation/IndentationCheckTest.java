@@ -1099,6 +1099,17 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testTextBlock() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, getNonCompilablePath("InputIndentationTextBlock.java"), expected);
+    }
+
+    @Test
     public void testValidNewKeywordWithForceStrictCondition() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
