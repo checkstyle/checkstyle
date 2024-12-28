@@ -19,12 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class ClassFanOutComplexityCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
     @Override
@@ -34,100 +33,48 @@ public class ClassFanOutComplexityCheckExamplesTest
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "21:1: " + getCheckMessage(ClassFanOutComplexityCheck.MSG_KEY, 5, 2),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "22:1: " + getCheckMessage(ClassFanOutComplexityCheck.MSG_KEY, 7, 3),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+            "22:1: " + getCheckMessage(ClassFanOutComplexityCheck.MSG_KEY, 4, 3),
         };
-
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-
+            "22:1: " + getCheckMessage(ClassFanOutComplexityCheck.MSG_KEY, 4, 3),
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
-    }
-
-    @Test
-    public void testExample7() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example7.txt"), expected);
-    }
-
-    @Test
-    public void testExample8() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example8.txt"), expected);
-    }
-
-    @Test
-    public void testExample9() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example9.txt"), expected);
-    }
-
-    @Test
-    public void testExample10() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example10.txt"), expected);
-    }
-
-    @Test
-    public void testExample11() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example11.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 }
