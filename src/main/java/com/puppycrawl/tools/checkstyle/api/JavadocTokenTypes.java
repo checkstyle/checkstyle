@@ -1410,7 +1410,7 @@ public final class JavadocTokenTypes {
      *                        |--HTML_TAG_NAME -> b
      *                        `--END -> >
      *                    |--TEXT -> connection
-     *     	              `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *                    `--HTML_ELEMENT_END -> HTML_ELEMENT_END
      *                        |--START -> <
      *                        |--SLASH -> /
      *                        |--HTML_TAG_NAME -> b
