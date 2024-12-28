@@ -229,7 +229,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.NoArrayTrailingCommaCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.NoEnumTrailingCommaCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck",

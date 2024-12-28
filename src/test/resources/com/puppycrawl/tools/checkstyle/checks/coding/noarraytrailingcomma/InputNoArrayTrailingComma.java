@@ -17,16 +17,17 @@ public class InputNoArrayTrailingComma {
     int[] t2 = new int[] {
             1,
             2,
-            3, // violation
+            3, // violation 'Array should not contain trailing comma.'
     };
 
     int[] t3 = new int[] {1,2,3};
 
-    int[] t4 = new int[] {1,2,3,}; // violation
+    int[] t4 = new int[] {1,2,3,}; // violation 'Array should not contain trailing comma.'
 
     int[][] t5 = new int[][] {{1, 2}, {3, 3}, {5, 6}};
 
-    int[][] t6 = new int[][] {{1, 2}, {3, 3}, {5, 6},}; // violation
+    // violation below 'Array should not contain trailing comma.'
+    int[][] t6 = new int[][] {{1, 2}, {3, 3}, {5, 6},};
 
     int[][] t7 = new int[][]
     {
@@ -40,17 +41,17 @@ public class InputNoArrayTrailingComma {
         {1,
          2},
         {3, 3},
-        {5, 6}, // violation
+        {5, 6}, // violation 'Array should not contain trailing comma.'
     };
 
     int[][] t9 = new int[][] {
-            {1,2,}, // violation
+            {1,2,}, // violation 'Array should not contain trailing comma.'
             {2,3}
     };
 
     int[][] t10 = new int[][] {
             {1,
-            2,} // violation
+            2,} // violation 'Array should not contain trailing comma.'
     };
 
     int[][] t11 = new int[][] {
@@ -64,5 +65,5 @@ public class InputNoArrayTrailingComma {
 
     int[][] t14 = new int[][]{};
 
-    int[] t15 = new int[] {1,}; // violation
+    int[] t15 = new int[] {1,}; // violation 'Array should not contain trailing comma.'
 }
