@@ -1397,26 +1397,26 @@ public final class JavadocTokenTypes {
      * <pre>{@code @throws IOException if <b>connection</b> problems occur}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_TAG[1x0] : [@throws IOException if <b>connection</b> problems occur]
-     *        |--THROWS_LITERAL[1x0] : [@throws]
-     *        |--WS[1x7] : [ ]
-     *        |--CLASS_NAME[1x8] : [IOException]
-     *        |--WS[1x19] : [ ]
-     *        |--DESCRIPTION[1x20] : [if <b>connection</b> problems occur]
-     *            |--TEXT[1x20] : [if ]
-     *            |--HTML_ELEMENT[1x23] : [<b>connection</b>]
-     *                |--HTML_TAG[1x23] : [<b>connection</b>]
-     *                    |--HTML_ELEMENT_START[1x23] : [<b>]
-     *                        |--START[1x23] : [<]
-     *                        |--HTML_TAG_NAME[1x24] : [b]
-     *                        |--END[1x25] : [>]
-     *                    |--TEXT[1x26] : [connection]
-     *                    |--HTML_ELEMENT_END[1x36] : [</b>]
-     *                        |--START[1x36] : [<]
-     *                        |--SLASH[1x37] : [/]
-     *                        |--HTML_TAG_NAME[1x38] : [b]
-     *                        |--END[1x39] : [>]
-     *            |--TEXT[1x40] : [ problems occur]
+     * {@code |--JAVADOC_TAG -> JAVADOC_TAG
+     *        |--THROWS_LITERAL -> @throws
+     *        |--WS ->
+     *        |--CLASS_NAME -> IOException
+     *        |--WS ->
+     *        `--DESCRIPTION -> DESCRIPTION
+     *            |--TEXT -> if
+     *            |--HTML_ELEMENT -> HTML_ELEMENT
+     *                `--HTML_TAG -> HTML_TAG
+     *                    |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *                        |--START -> <
+     *                        |--HTML_TAG_NAME -> b
+     *                        `--END -> >
+     *                    |--TEXT -> connection
+     *     	              `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *                        |--START -> <
+     *                        |--SLASH -> /
+     *                        |--HTML_TAG_NAME -> b
+     *                        `--END -> >
+     *            |--TEXT ->  problems occur
      * }
      * </pre>
      */
