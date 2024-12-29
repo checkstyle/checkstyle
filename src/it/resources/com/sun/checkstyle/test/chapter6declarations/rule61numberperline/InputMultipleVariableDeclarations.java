@@ -19,7 +19,7 @@ public class InputMultipleVariableDeclarations
             strings1[];
 
     void method2() {
-        for (int i=0, j=0; i < 10; i++, j--) { //ok
+        for (int i=0, j=0; i < 10; i++, j--) { 
         }
 
         for(int i=0; i<4;i++) {
@@ -45,7 +45,7 @@ public class InputMultipleVariableDeclarations
                 strings1[];
 
         void method2() {
-            for (int i=0, j=0; i < 10; i++, j--) { //ok
+            for (int i=0, j=0; i < 10; i++, j--) { 
             }
 
             for(int i=0; i<4;i++) {
@@ -71,7 +71,7 @@ public class InputMultipleVariableDeclarations
                     strings1[];
 
             void method2() {
-                for (int i=0, j=0; i < 10; i++, j--) { //ok
+                for (int i=0, j=0; i < 10; i++, j--) { 
                 }
 
                 for(int i=0; i<4;i++) {

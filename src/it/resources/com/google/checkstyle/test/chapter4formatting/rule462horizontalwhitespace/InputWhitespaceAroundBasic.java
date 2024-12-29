@@ -35,8 +35,8 @@ class InputWhitespaceAroundBasic {
     b= 1; // violation ''=' is not preceded with whitespace.'
     b +=1; // violation ''\+=' is not followed by whitespace.'
     b -=- 1 + (+ b); // violation ''-=' is not followed by whitespace.'
-    b = b++ + b--; // ok
-    b = ++ b - -- b; // ok
+    b = b++ + b--; 
+    b = ++ b - -- b; 
   }
 
   /** method. */
@@ -86,11 +86,11 @@ class InputWhitespaceAroundBasic {
 
   /** test casts. */
   private void testCasts() {
-    Object o = (Object) new Object(); // ok
-    o = (Object) o; // ok
-    o = ( Object ) o; // ok
+    Object o = (Object) new Object(); 
+    o = (Object) o; 
+    o = ( Object ) o; 
     o = (Object)
-            o; // ok
+            o; 
   }
 
   /** test questions. */
@@ -221,7 +221,7 @@ class InputWhitespaceAroundBasic {
       //  '':' is not preceded with whitespace.'
       for (int x :ll) {} // violation '':' is not followed by whitespace.'
       for (int x: ll) {} // violation '':' is not preceded with whitespace.'
-      for (int x : ll) {} // ok
+      for (int x : ll) {} 
     }
   }
 
@@ -235,8 +235,8 @@ class InputWhitespaceAroundBasic {
       // 2 violations above:
       //  ''->' is not followed by whitespace.'
       //  ''->' is not followed by whitespace.'
-      l = () -> {}; // ok
-      l = () -> {}; // ok
+      l = () -> {}; 
+      l = () -> {}; 
 
       java.util.Arrays.sort(null, String::compareToIgnoreCase);
       java.util.Arrays.sort(null, String::compareToIgnoreCase);
