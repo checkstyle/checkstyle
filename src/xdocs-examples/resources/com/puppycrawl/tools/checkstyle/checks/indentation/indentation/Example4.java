@@ -37,7 +37,7 @@ class Example4 {
         }
 
         if ((cond1 && cond2)
-                || (cond3 && cond4)         // ok, lineWrappingIndentation
+                || (cond3 && cond4)          // ok, lineWrappingIndentation
                 || !(cond5 && cond6)) {      // ok, lineWrappingIndentation
             field.toUpperCase()
                  .concat(" TASK")            // ok, lineWrappingIndentation
