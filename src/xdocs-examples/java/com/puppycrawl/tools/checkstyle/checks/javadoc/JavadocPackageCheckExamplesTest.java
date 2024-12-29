@@ -19,12 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck.MSG_LEGACY_PACKAGE_HTML;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck.MSG_PACKAGE_INFO;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class JavadocPackageCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,9 +36,26 @@ public class JavadocPackageCheckExamplesTest extends AbstractExamplesModuleTestS
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
+            "1: " + getCheckMessage(MSG_PACKAGE_INFO),
+        };
+
+        verifyWithInlineConfigParser(getPath("nonlegacy/Example1.java"), expected);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("legacy/Example2.java"), expected);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("legacywithboth/Example3.java"), expected);
     }
+
 }
