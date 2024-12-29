@@ -112,6 +112,10 @@
   <!-- Example needs to exclude fully qualified name longer than 85 characters  -->
   <suppress checks="LineLength" files="classdataabstractioncoupling[\\/]Example11.java"/>
 
+  <!-- Examples need spacing to be more readable -->
+  <suppress checks="LineLength"
+    files="indentation[\\/]Example[1-5].java"/>
+
   <!-- Example must show PackageDeclaration violations -->
   <suppress checks="PackageDeclaration"
     files="packagedeclaration[\\/]Example\d+.*"/>
