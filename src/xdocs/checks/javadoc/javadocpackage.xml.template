@@ -36,16 +36,68 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocpackage/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocpackage/nonlegacy/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
+        <p id="Example1-structure">
+          File structure with no package-info.java file in directory:<br/>
+          Example1.java
+        </p>
         <p id="Example1-code">
-          To configure the check to use legacy <code>package.html</code> file
-          when <code>package-info.java</code> file is absent:
+          The following violation is raised in default when
+          package-info.java file is missing from directory.
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocpackage/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocpackage/nonlegacy/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example2-config">
+          To configure the check with allowlegacy set to true:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocpackage/legacy/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-structure">
+          File structure with with package.html file in same directory:<br/>
+          Example2.java<br/>
+          package.html
+        </p>
+        <p id="Example2-code">
+          The legacy configuration (allowLegacy=true) allows the use of the legacy package.html
+          file as an alternative to package-info.java removing violation
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocpackage/legacy/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example3-config">
+          To configure the check with allowlegacy set to true:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocpackage/legacywithboth/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-structure">
+          File structure with both package-info.java and package.html file in same directory:<br/>
+          Example3.java<br/>
+          package.html<br/>
+          package-info.java
+        </p>
+        <p id="Example3-code">
+          The legacy configuration (allowLegacy=true) allows the use of package.html files
+          in place of package-info.java but still enforces that only one file
+          (either package-info.java or package.html) exists in a package.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocpackage/legacywithboth/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
