@@ -42,7 +42,7 @@ class Example3 {
                 || (cond3 && cond4)        // violation, "incorrect indentation"
                 || !(cond5 && cond6)) {    // violation, "incorrect indentation"
             field.toUpperCase()
-                 .concat(" TASK")            // violation, "incorrect indentation"
+                 .concat(" TASK")           // violation, "incorrect indentation"
                  .chars().forEach(c -> {    // violation, "incorrect indentation"
                      System.out.println((char) c);
                  });

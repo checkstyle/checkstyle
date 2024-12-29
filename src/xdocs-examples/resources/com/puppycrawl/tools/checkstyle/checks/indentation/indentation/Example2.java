@@ -43,7 +43,7 @@ class Example2 {
                 || !(cond5 && cond6)) {       // ok, lineWrappingIndentation
             field.toUpperCase()
                  .concat(" TASK")             // ok, lineWrappingIndentation
-                 .chars().forEach(c -> {       // ok, lineWrappingIndentation
+                 .chars().forEach(c -> {      // ok, lineWrappingIndentation
                      System.out.println((char) c);
                  });
         }
