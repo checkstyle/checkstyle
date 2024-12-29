@@ -126,30 +126,48 @@ if ((condition1 &amp;&amp; condition2)
           (in comment name of property that controls indentations):
         </p>
         <source>
-class Test {
-    String field;               // basicOffset
-    int[] arr = {               // basicOffset
-        5,                      // arrayInitIndent
-        6 };                    // arrayInitIndent
-    void bar() throws Exception // basicOffset
-    {                           // braceAdjustment
-        foo();                  // basicOffset
-    }                           // braceAdjustment
-    void foo() {                // basicOffset
-        if ((cond1 &amp;&amp; cond2)    // basicOffset
-                  || (cond3 &amp;&amp; cond4)    // lineWrappingIndentation, forceStrictCondition
-                  ||!(cond5 &amp;&amp; cond6)) { // lineWrappingIndentation, forceStrictCondition
-            field.doSomething()          // basicOffset
-                .doSomething()           // lineWrappingIndentation and forceStrictCondition
-                .doSomething( c -&gt; {     // lineWrappingIndentation and forceStrictCondition
-                    return c.doSome();   // basicOffset
-                });
+class Example1 {
+    String field = &quot;example&quot;;                  // basicOffset
+    int[] values = {                            // basicOffset
+        10,
+        20,
+        30
+    };
+
+    void processValues() throws Exception {
+        handleValue(&quot;Test String&quot;, 42);          // basicOffset
+    }
+
+    void handleValue(String aFooString,
+                     int aFooInt) {             // indent:8 ; expected: &gt; 4;
+        boolean cond1 = true;
+        boolean cond2 = false;
+        boolean cond3 = true;
+        boolean cond4 = false;
+        boolean cond5 = true;
+        boolean cond6 = false;
+
+        if (cond1
+            || cond2) {
+            field = field.toUpperCase()
+                .concat(&quot; TASK&quot;);
+        }
+
+        if ((cond1 &amp;&amp; cond2)
+                || (cond3 &amp;&amp; cond4)          // ok, lineWrappingIndentation
+                || !(cond5 &amp;&amp; cond6)) {       // ok, lineWrappingIndentation
+            field.toUpperCase()
+                 .concat(&quot; TASK&quot;)             // ok, lineWrappingIndentation
+                 .chars().forEach(c -&gt; {       // ok, lineWrappingIndentation
+                     System.out.println((char) c);
+                 });
         }
     }
-    void fooCase()                // basicOffset
-        throws Exception {        // throwsIndent
-        switch (field) {          // basicOffset
-            case &quot;value&quot; : bar(); // caseIndent
+
+    void demonstrateSwitch() throws Exception {
+        switch (field) {
+            case &quot;EXAMPLE&quot;: processValues();                        // caseIndent
+            case &quot;COMPLETED&quot;: handleValue(&quot;Completed Case&quot;, 456);   // caseIndent
         }
     }
 }
@@ -173,10 +191,51 @@ class Test {
           (in comment name of property that controls indentation):
         </p>
         <source>
-void fooCase() {          // basicOffset
-    switch (field) {      // basicOffset
-    case &quot;value&quot; : bar(); // caseIndent
+class Example2 {
+    String field = &quot;example&quot;;                  // basicOffset
+    int[] values = {                            // basicOffset
+        10,
+        20,
+        30
+    };
+
+    void processValues() throws Exception {
+        handleValue(&quot;Test String&quot;, 42);          // basicOffset
     }
+
+    void handleValue(String aFooString,
+                     int aFooInt) {
+        boolean cond1 = true;
+        boolean cond2 = false;
+        boolean cond3 = true;
+        boolean cond4 = false;
+        boolean cond5 = true;
+        boolean cond6 = false;
+
+        if (cond1
+            || cond2) {
+            field = field.toUpperCase()
+                .concat(&quot; TASK&quot;);
+        }
+
+        if ((cond1 &amp;&amp; cond2)
+                || (cond3 &amp;&amp; cond4)           // ok, lineWrappingIndentation
+                || !(cond5 &amp;&amp; cond6)) {        // ok, lineWrappingIndentation
+            field.toUpperCase()
+                 .concat(&quot; TASK&quot;)              // ok, lineWrappingIndentation
+                 .chars().forEach(c -&gt; {       // ok, lineWrappingIndentation
+                     System.out.println((char) c);
+                 });
+        }
+    }
+
+    void demonstrateSwitch() throws Exception {
+        switch (field) {
+        case &quot;EXAMPLE&quot;: processValues();                            // caseIndent
+        case &quot;COMPLETED&quot;: handleValue(&quot;Completed Case&quot;, 456);       // caseIndent
+        }
+    }
+
 }
         </source>
         <p id="Example3-config">
@@ -196,21 +255,49 @@ void fooCase() {          // basicOffset
           even code is aligned further to the right for better reading:
         </p>
         <source>
-void foo(String aFooString,
-        int aFooInt) { // indent:8 ; expected: 4; violation, because 8 != 4
-    if (cond1
-        || cond2) {
-        field.doSomething()
-            .doSomething();
+class Example3 {
+    String field = &quot;example&quot;;                  // basicOffset
+    int[] values = {                            // basicOffset
+        10,
+        20,
+        30
+    };
+
+    void processValues() throws Exception {
+        handleValue(&quot;Test String&quot;, 42);
     }
-    if ((cond1 &amp;&amp; cond2)
-              || (cond3 &amp;&amp; cond4)    // violation
-              ||!(cond5 &amp;&amp; cond6)) { // violation
-        field.doSomething()
-             .doSomething()          // violation
-             .doSomething( c -&gt; {    // violation
-                 return c.doSome();
-            });
+
+    void handleValue(String aFooString,
+                     int aFooInt) {      // violation, &quot;incorrect indentation&quot;
+        boolean cond1 = true;
+        boolean cond2 = false;
+        boolean cond3 = true;
+        boolean cond4 = false;
+        boolean cond5 = true;
+        boolean cond6 = false;
+
+        if (cond1
+            || cond2) {
+            field = field.toUpperCase()
+                .concat(&quot; TASK&quot;);
+        }
+
+        if ((cond1 &amp;&amp; cond2)
+                || (cond3 &amp;&amp; cond4)      // violation, &quot;incorrect indentation&quot;
+                || !(cond5 &amp;&amp; cond6)) {    // violation, &quot;incorrect indentation&quot;
+            field.toUpperCase()
+                 .concat(&quot; TASK&quot;)             // violation, &quot;incorrect indentation&quot;
+                 .chars().forEach(c -&gt; {     // violation, &quot;incorrect indentation&quot;
+                     System.out.println((char) c);
+                 });
+        }
+    }
+
+    void demonstrateSwitch() throws Exception {
+        switch (field) {
+            case &quot;EXAMPLE&quot;: processValues();                            // caseIndent
+            case &quot;COMPLETED&quot;: handleValue(&quot;Completed Case&quot;, 456);       // caseIndent
+        }
     }
 }
         </source>
@@ -218,21 +305,49 @@ void foo(String aFooString,
           But if forceStrictCondition = false, this code is valid:
         </p>
         <source>
-void foo(String aFooString,
-        int aFooInt) { // indent:8 ; expected: &gt; 4; ok, because 8 &gt; 4
-    if (cond1
-        || cond2) {
-        field.doSomething()
-            .doSomething();
+class Example4 {
+    String field = &quot;example&quot;;                   // basicOffset
+    int[] values = {                            // basicOffset
+        10,
+        20,
+        30
+    };
+
+    void processValues() throws Exception {
+        handleValue(&quot;Test String&quot;, 42);
     }
-    if ((cond1 &amp;&amp; cond2)
-              || (cond3 &amp;&amp; cond4)
-              ||!(cond5 &amp;&amp; cond6)) {
-        field.doSomething()
-             .doSomething()
-             .doSomething( c -&gt; {
-                 return c.doSome();
-            });
+
+    void handleValue(String aFooString,
+                     int aFooInt) {            // indent:8 ; expected: &gt; 4
+        boolean cond1 = true;
+        boolean cond2 = false;
+        boolean cond3 = true;
+        boolean cond4 = false;
+        boolean cond5 = true;
+        boolean cond6 = false;
+
+        if (cond1
+            || cond2) {
+            field = field.toUpperCase()
+                .concat(&quot; TASK&quot;);
+        }
+
+        if ((cond1 &amp;&amp; cond2)
+                || (cond3 &amp;&amp; cond4)         // ok, lineWrappingIndentation
+                || !(cond5 &amp;&amp; cond6)) {      // ok, lineWrappingIndentation
+            field.toUpperCase()
+                 .concat(&quot; TASK&quot;)            // ok, lineWrappingIndentation
+                 .chars().forEach(c -&gt; {     // ok, lineWrappingIndentation
+                     System.out.println((char) c);
+                 });
+        }
+    }
+
+    void demonstrateSwitch() throws Exception {
+        switch (field) {
+            case &quot;EXAMPLE&quot;: processValues();                            // caseIndent
+            case &quot;COMPLETED&quot;: handleValue(&quot;Completed Case&quot;, 456);       // caseIndent
+        }
     }
 }
         </source>
