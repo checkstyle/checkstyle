@@ -41,10 +41,10 @@ public class NoCloneCheckTest
             "17:5: " + getCheckMessage(MSG_KEY),
             "34:5: " + getCheckMessage(MSG_KEY),
             "42:5: " + getCheckMessage(MSG_KEY),
-            "46:13: " + getCheckMessage(MSG_KEY),
-            "59:5: " + getCheckMessage(MSG_KEY),
-            "67:5: " + getCheckMessage(MSG_KEY),
-            "106:5: " + getCheckMessage(MSG_KEY),
+            "47:13: " + getCheckMessage(MSG_KEY),
+            "61:5: " + getCheckMessage(MSG_KEY),
+            "69:5: " + getCheckMessage(MSG_KEY),
+            "108:5: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoClone.java"), expected);
