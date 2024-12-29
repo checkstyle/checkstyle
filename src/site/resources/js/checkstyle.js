@@ -15,6 +15,10 @@ window.addEventListener("load", function () {
         event.preventDefault();
         document.documentElement.scrollTop = 0;
     });
+
+    if (this.window.innerWidth < 823) {
+        setCollapsableMenuButton();
+    }
 });
 
 window.addEventListener("load", function () {
@@ -62,6 +66,14 @@ function setBodyColumnMargin() {
     const leftColumn = document.querySelector('#leftColumn');
     const bodyColumn = document.querySelector('#bodyColumn');
 
+    if (window.innerWidth > 823 && document.getElementById("hamburger")) {
+        resetStyling();
+    }
+
+    console.log("after if condition");
+    console.log("width: ", document.body.clientWidth);
+    console.log("height: ", document.body.clientHeight);
+
     // If in mobile view use margin as defined in site.css
     if (window.innerWidth < 823) {
         bodyColumn.style.marginLeft = '1.5em';
@@ -73,5 +85,49 @@ function setBodyColumnMargin() {
     bodyColumn.style.marginLeft = `${leftColumnWidth + 27}px`;
 }
 
-window.addEventListener('load', setBodyColumnMargin);
-window.addEventListener('resize', setBodyColumnMargin);
+function setCollapsableMenuButton() {
+    const hamburger = document.createElement("div");
+    hamburger.id = "hamburger";
+
+    for (let i = 0; i < 3; i++) {
+        const line = document.createElement("span");
+        hamburger.appendChild(line);
+    }
+
+    const xright = document.getElementsByClassName("xright")[0];
+    xright.appendChild(document.createTextNode(" | "));
+    xright.appendChild(hamburger);
+
+    hamburger.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const menu = document.getElementById("leftColumn");
+        const breadcrumbs = document.getElementById("breadcrumbs");
+
+        menu.style.top = `${breadcrumbs.offsetHeight + 10}px`;
+        menu.style.height = `calc(100vh - ${breadcrumbs.offsetHeight + 10}px)`;
+
+        if (hamburger.classList.contains("openMenu")) {
+            hamburger.classList.remove("openMenu");
+            menu.style.display = "none";
+        } else {
+            hamburger.classList.add("openMenu");
+            menu.style.display = "block";
+        }
+    });
+}
+
+function resetStyling() {
+    const hamburger = document.getElementById("hamburger");
+    hamburger.remove();
+
+    const menu = document.getElementById("leftColumn");
+    menu.style.removeProperty("top");
+    menu.style.removeProperty("height");
+
+    const xright = document.getElementsByClassName("xright")[0];
+    xright.lastChild.remove();
+}
+
+window.addEventListener("load", setBodyColumnMargin);
+window.addEventListener("resize", setBodyColumnMargin);
