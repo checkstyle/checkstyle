@@ -144,10 +144,8 @@ class InputNoWhitespaceBeforeDefault
     /** assert statement test */
     public void assertTest()
     {
-        // OK
         assert true;
 
-        // OK
         assert true : "Whups";
 
         // evil colons, should be OK
