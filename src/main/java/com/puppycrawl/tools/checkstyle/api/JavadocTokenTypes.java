@@ -1397,7 +1397,8 @@ public final class JavadocTokenTypes {
      * <pre>{@code @throws IOException if <b>connection</b> problems occur}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_TAG -> JAVADOC_TAG
+     * {@code
+     *   JAVADOC_TAG -> JAVADOC_TAG
      *        |--THROWS_LITERAL -> @throws
      *        |--WS ->
      *        |--CLASS_NAME -> IOException
@@ -1415,7 +1416,7 @@ public final class JavadocTokenTypes {
      *                        |--START -> <
      *                        |--SLASH -> /
      *                        |--HTML_TAG_NAME -> b
-     *                        `--END -> >
+     *                        `--END -> -&gt;
      *            |--TEXT ->  problems occur
      * }
      * </pre>
