@@ -14,7 +14,7 @@ public class InputNoClone
         super.clone();
     }
 
-    public Object clone() throws CloneNotSupportedException // violation
+    public Object clone() throws CloneNotSupportedException // violation 'Avoid using clone method.'
     {
         return super.clone();
     }
@@ -31,7 +31,7 @@ public class InputNoClone
 
 class NoSuperClone
 {
-    public Object clone() // violation
+    public Object clone() // violation 'Avoid using clone method.'
     {
         return null;
     }
@@ -39,11 +39,12 @@ class NoSuperClone
 
 class InnerClone
 {
-    public Object clone() // violation
+    public Object clone() // violation 'Avoid using clone method.'
     {
         class Inner
         {
-            public Object clone() throws CloneNotSupportedException // violation
+            // violation below 'Avoid using clone method.'
+            public Object clone() throws CloneNotSupportedException
             {
                 return super.clone();
             }
@@ -56,7 +57,8 @@ class InnerClone
 // type arguments are ignored when checking super calls
 class CloneWithTypeArguments<T> extends CloneWithTypeArgumentsAndNoSuper<T>
 {
-    public CloneWithTypeArguments<T> clone() throws CloneNotSupportedException // violation
+    // violation below 'Avoid using clone method.'
+    public CloneWithTypeArguments<T> clone() throws CloneNotSupportedException
     {
         return (CloneWithTypeArguments<T>) super.<T>clone();
     }
@@ -64,7 +66,7 @@ class CloneWithTypeArguments<T> extends CloneWithTypeArgumentsAndNoSuper<T>
 
 class CloneWithTypeArgumentsAndNoSuper<T>
 {
-    public CloneWithTypeArgumentsAndNoSuper<T> clone() // violation
+    public CloneWithTypeArgumentsAndNoSuper<T> clone() // violation 'Avoid using clone method.'
             throws CloneNotSupportedException
     {
         return null;
@@ -103,5 +105,5 @@ class AnotherClass {
 }
 
 class NativeTest {
-    public native Object clone(); // violation
+    public native Object clone(); // violation 'Avoid using clone method.'
 }
