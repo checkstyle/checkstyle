@@ -16,7 +16,7 @@ class Example2 {
 
   }; // OK, nested type declarations are ignored
 
-}; // violation
+}; // violation 'Unnecessary semicolon'
 
 interface T {
 
