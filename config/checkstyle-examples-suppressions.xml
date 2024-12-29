@@ -63,6 +63,10 @@
     files="commentsindentation[\\/]Example[1-9].java"/>
 
   <!-- violation required by to show behavior of Check -->
+  <suppress checks="Indentation"
+    files="indentation[\\/]Example[1-5].java"/>
+
+  <!-- violation required by to show behavior of Check -->
   <suppress checks="FileLength"
     files="cyclomaticcomplexity[\\/]Example\d+.*"/>
 
@@ -91,6 +95,10 @@
   <suppress checks="FileLength"
     files="visibilitymodifier[\\/]Example\d+.java"/>
 
+  <!-- Examples need spacing to be more readable -->
+  <suppress checks="FileLength"
+    files="indentation[\\/]Example[1-5].java"/>
+
   <!-- No new line by design to show violation -->
   <suppress checks="NewlineAtEndOfFile"
     files="newlineatendoffile[\\/]Example\d+.*"/>
@@ -103,6 +111,10 @@
 
   <!-- Example needs to exclude fully qualified name longer than 85 characters  -->
   <suppress checks="LineLength" files="classdataabstractioncoupling[\\/]Example11.java"/>
+
+  <!-- Examples need spacing to be more readable -->
+  <suppress checks="LineLength"
+    files="indentation[\\/]Example[1-5].java"/>
 
   <!-- Example must show PackageDeclaration violations -->
   <suppress checks="PackageDeclaration"
