@@ -127,19 +127,19 @@ if ((condition1 &amp;&amp; condition2)
         </p>
         <source>
 class Example1 {
-    String field = &quot;example&quot;;                                      // basicOffset
-    int[] values = {                                                // basicOffset
+    String field = &quot;example&quot;;                  // basicOffset
+    int[] values = {                            // basicOffset
         10,
         20,
         30
     };
 
     void processValues() throws Exception {
-        handleValue(&quot;Test String&quot;, 42);                              // basicOffset
+        handleValue(&quot;Test String&quot;, 42);          // basicOffset
     }
 
     void handleValue(String aFooString,
-                     int aFooInt) {                                 // indent:8 ; expected: &gt; 4; ok, because 8 &gt; 4
+                     int aFooInt) {             // indent:8 ; expected: &gt; 4;
         boolean cond1 = true;
         boolean cond2 = false;
         boolean cond3 = true;
@@ -154,11 +154,11 @@ class Example1 {
         }
 
         if ((cond1 &amp;&amp; cond2)
-                || (cond3 &amp;&amp; cond4)                              // ok, lineWrappingIndentation
-                || !(cond5 &amp;&amp; cond6)) {                           // ok, lineWrappingIndentation
+                || (cond3 &amp;&amp; cond4)          // ok, lineWrappingIndentation
+                || !(cond5 &amp;&amp; cond6)) {       // ok, lineWrappingIndentation
             field.toUpperCase()
-                 .concat(&quot; TASK&quot;)                                 // ok, lineWrappingIndentation
-                 .chars().forEach(c -&gt; {                          // ok, lineWrappingIndentation
+                 .concat(&quot; TASK&quot;)             // ok, lineWrappingIndentation
+                 .chars().forEach(c -&gt; {       // ok, lineWrappingIndentation
                      System.out.println((char) c);
                  });
         }
@@ -192,15 +192,15 @@ class Example1 {
         </p>
         <source>
 class Example2 {
-    String field = &quot;example&quot;;                                      // basicOffset
-    int[] values = {                                                // basicOffset
+    String field = &quot;example&quot;;                  // basicOffset
+    int[] values = {                            // basicOffset
         10,
         20,
         30
     };
 
     void processValues() throws Exception {
-        handleValue(&quot;Test String&quot;, 42);                              // basicOffset
+        handleValue(&quot;Test String&quot;, 42);          // basicOffset
     }
 
     void handleValue(String aFooString,
@@ -219,11 +219,11 @@ class Example2 {
         }
 
         if ((cond1 &amp;&amp; cond2)
-                || (cond3 &amp;&amp; cond4)                               // ok, lineWrappingIndentation
-                || !(cond5 &amp;&amp; cond6)) {                            // ok, lineWrappingIndentation
+                || (cond3 &amp;&amp; cond4)           // ok, lineWrappingIndentation
+                || !(cond5 &amp;&amp; cond6)) {        // ok, lineWrappingIndentation
             field.toUpperCase()
-                 .concat(&quot; TASK&quot;)                                  // ok, lineWrappingIndentation
-                 .chars().forEach(c -&gt; {                           // ok, lineWrappingIndentation
+                 .concat(&quot; TASK&quot;)              // ok, lineWrappingIndentation
+                 .chars().forEach(c -&gt; {       // ok, lineWrappingIndentation
                      System.out.println((char) c);
                  });
         }
@@ -256,8 +256,8 @@ class Example2 {
         </p>
         <source>
 class Example3 {
-    String field = &quot;example&quot;;                                      // basicOffset
-    int[] values = {                                                // basicOffset
+    String field = &quot;example&quot;;                  // basicOffset
+    int[] values = {                            // basicOffset
         10,
         20,
         30
@@ -268,7 +268,7 @@ class Example3 {
     }
 
     void handleValue(String aFooString,
-                     int aFooInt) {                                // violation, &quot;incorrect indentation level 21&quot;
+                     int aFooInt) {      // violation, &quot;incorrect indentation&quot;
         boolean cond1 = true;
         boolean cond2 = false;
         boolean cond3 = true;
@@ -283,11 +283,11 @@ class Example3 {
         }
 
         if ((cond1 &amp;&amp; cond2)
-                || (cond3 &amp;&amp; cond4)                             // violation, &quot;incorrect indentation level 16&quot;
-                || !(cond5 &amp;&amp; cond6)) {                          // violation, &quot;incorrect indentation level 16&quot;
+                || (cond3 &amp;&amp; cond4)      // violation, &quot;incorrect indentation&quot;
+                || !(cond5 &amp;&amp; cond6)) {    // violation, &quot;incorrect indentation&quot;
             field.toUpperCase()
-                 .concat(&quot; TASK&quot;)                                // violation, &quot;incorrect indentation&quot;
-                 .chars().forEach(c -&gt; {                         // violation, &quot;incorrect indentation&quot;
+                 .concat(&quot; TASK&quot;)             // violation, &quot;incorrect indentation&quot;
+                 .chars().forEach(c -&gt; {     // violation, &quot;incorrect indentation&quot;
                      System.out.println((char) c);
                  });
         }
@@ -306,8 +306,8 @@ class Example3 {
         </p>
         <source>
 class Example4 {
-    String field = &quot;example&quot;;                                      // basicOffset
-    int[] values = {                                                // basicOffset
+    String field = &quot;example&quot;;                   // basicOffset
+    int[] values = {                            // basicOffset
         10,
         20,
         30
@@ -318,7 +318,7 @@ class Example4 {
     }
 
     void handleValue(String aFooString,
-                     int aFooInt) {                                // indent:8 ; expected: &gt; 4; ok, because 8 &gt; 4
+                     int aFooInt) {            // indent:8 ; expected: &gt; 4
         boolean cond1 = true;
         boolean cond2 = false;
         boolean cond3 = true;
@@ -333,11 +333,11 @@ class Example4 {
         }
 
         if ((cond1 &amp;&amp; cond2)
-                || (cond3 &amp;&amp; cond4)                             // ok, lineWrappingIndentation
-                || !(cond5 &amp;&amp; cond6)) {                          // ok, lineWrappingIndentation
+                || (cond3 &amp;&amp; cond4)         // ok, lineWrappingIndentation
+                || !(cond5 &amp;&amp; cond6)) {      // ok, lineWrappingIndentation
             field.toUpperCase()
-                 .concat(&quot; TASK&quot;)                                // ok, lineWrappingIndentation
-                 .chars().forEach(c -&gt; {                         // ok, lineWrappingIndentation
+                 .concat(&quot; TASK&quot;)            // ok, lineWrappingIndentation
+                 .chars().forEach(c -&gt; {     // ok, lineWrappingIndentation
                      System.out.println((char) c);
                  });
         }
