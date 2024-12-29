@@ -197,7 +197,6 @@ public class InputJava14SwitchExpression {
             };
             throw new AssertionError("Expected exception not thrown.");
         } catch (IllegalStateException ex) {
-            //OK
         }
     }
 
