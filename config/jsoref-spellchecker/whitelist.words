@@ -753,6 +753,8 @@ LBRACK
 lcurly
 Leanback
 leftcurly
+legacy
+legacywithboth
 len
 lexer
 lgpl
@@ -927,6 +929,7 @@ nonemptyblocks
 NONGROUP
 NONJAVA
 nonjavadoc
+nonlegacy
 nonnull
 nonrequiredjavadoc
 nonvalidating
