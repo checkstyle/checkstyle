@@ -22,6 +22,7 @@ AFilter
 aggregators
 allchecks
 allclasses
+allowlegacy
 alot
 amazonaws
 androidx
@@ -753,6 +754,7 @@ LBRACK
 lcurly
 Leanback
 leftcurly
+legacywithboth
 len
 lexer
 lgpl
@@ -927,6 +929,7 @@ nonemptyblocks
 NONGROUP
 NONJAVA
 nonjavadoc
+nonlegacy
 nonnull
 nonrequiredjavadoc
 nonvalidating
