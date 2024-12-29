@@ -25,19 +25,19 @@ public class InputUnnecessarySemicolonAfterOuterTypeDeclaration {
 
     };  // OK, nested class
 
-}; // violation
+}; // violation 'Unnecessary semicolon'
 
 enum e {
 
-}; // violation
+}; // violation 'Unnecessary semicolon'
 
 @interface an {
 
-}; // violation
+}; // violation 'Unnecessary semicolon'
 
 interface i {
 
-}; // violation
+}; // violation 'Unnecessary semicolon'
 
 
 enum okEnum {}
