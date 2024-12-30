@@ -894,13 +894,16 @@ public final class JavadocTokenTypes {
      * <pre>{@code @throws IOException connection problems}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_TAG[1x0] : [@throws IOException connection problems]
-     *        |--THROWS_LITERAL[1x0] : [@throws]
-     *        |--WS[1x7] : [ ]
-     *        |--CLASS_NAME[1x8] : [IOException]
-     *        |--WS[1x19] : [ ]
-     *        |--DESCRIPTION[1x20] : [connection problems]
-     *            |--TEXT[1x20] : [connection problems]
+     * {@code
+     * JAVADOC_TAG -&gt JAVADOC_TAG
+     *  |--THROWS_LITERAL -&gt @throws
+     *  |--WS -&gt
+     *  |--CLASS_NAME -&gt IOException
+     *  |--WS -&gt
+     *  `--DESCRIPTION -&gt DESCRIPTION
+     *      |--TEXT -&gt connection problems
+     *      |--NEWLINE -&gt \r\n
+     *      `--TEXT -&gt
      * }
      * </pre>
      *
