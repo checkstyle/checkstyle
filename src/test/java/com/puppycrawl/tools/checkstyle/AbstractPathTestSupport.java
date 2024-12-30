@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -98,7 +98,7 @@ public abstract class AbstractPathTestSupport {
      * @noinspectionreason RedundantThrows - false positive
      */
     protected static String readFile(String filename) throws IOException {
-        return toLfLineEnding(Files.readString(Paths.get(filename)));
+        return toLfLineEnding(Files.readString(Path.of(filename)));
     }
 
     /**

@@ -488,7 +488,7 @@ public class CheckstyleAntTask extends Task {
             // oops, we've got an additional one to process, don't
             // forget it. No sweat, it's fully resolved via the setter.
             log("Adding standalone file for audit", Project.MSG_VERBOSE);
-            allFiles.add(new File(fileName));
+            allFiles.add(java.nio.file.Path.of(fileName).toFile());
         }
 
         final List<File> filesFromFileSets = scanFileSets();
@@ -531,7 +531,7 @@ public class CheckstyleAntTask extends Task {
         int concreteFilesCount = 0;
 
         for (String resource : resources) {
-            final File file = new File(resource);
+            final File file = java.nio.file.Path.of(resource).toFile();
             if (file.isFile()) {
                 concreteFilesCount++;
                 allFiles.add(file);
