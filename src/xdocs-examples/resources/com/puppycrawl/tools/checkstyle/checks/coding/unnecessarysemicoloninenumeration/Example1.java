@@ -10,20 +10,20 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicoloninenum
 
 // xdoc section -- start
 enum One {
-    A,B; // violation, 'Unnecessary semicolon'
+    A,B; // violation 'Unnecessary semicolon'
 }
 enum Two {
-    A,B,; // violation, 'Unnecessary semicolon'
+    A,B,; // violation 'Unnecessary semicolon'
 }
 enum Three {
-    A,B(); // violation, 'Unnecessary semicolon'
+    A,B(); // violation 'Unnecessary semicolon'
 }
 enum Four {
-    A,B{}; // violation, 'Unnecessary semicolon'
+    A,B{}; // violation 'Unnecessary semicolon'
 }
 enum Five {
     A,
     B
-    ; // violation, 'Unnecessary semicolon'
+    ; // violation 'Unnecessary semicolon'
 }
 // xdoc section -- end
