@@ -7,7 +7,6 @@
   </module>
 </module>
 */
-
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;
 
 // xdoc section -- start

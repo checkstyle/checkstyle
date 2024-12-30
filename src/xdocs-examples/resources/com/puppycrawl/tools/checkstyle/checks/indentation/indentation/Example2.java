@@ -7,7 +7,6 @@
   </module>
 </module>
 */
-
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;
 
 // xdoc section -- start
@@ -31,7 +30,6 @@ class Example2 {
         boolean cond4 = false;
         boolean cond5 = true;
         boolean cond6 = false;
-
         if (cond1
             || cond2) {
             field = field.toUpperCase()
@@ -55,9 +53,7 @@ class Example2 {
         case "COMPLETED": handleValue("Completed Case", 456);       // caseIndent
         }
     }
-
 }
-
 // xdoc section -- end
 
 

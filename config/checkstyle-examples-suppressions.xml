@@ -95,10 +95,6 @@
   <suppress checks="FileLength"
     files="visibilitymodifier[\\/]Example\d+.java"/>
 
-  <!-- Examples need spacing to be more readable -->
-  <suppress checks="FileLength"
-    files="indentation[\\/]Example[1-5].java"/>
-
   <!-- No new line by design to show violation -->
   <suppress checks="NewlineAtEndOfFile"
     files="newlineatendoffile[\\/]Example\d+.*"/>

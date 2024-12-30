@@ -211,7 +211,6 @@ class Example2 {
         boolean cond4 = false;
         boolean cond5 = true;
         boolean cond6 = false;
-
         if (cond1
             || cond2) {
             field = field.toUpperCase()
@@ -235,7 +234,6 @@ class Example2 {
         case &quot;COMPLETED&quot;: handleValue(&quot;Completed Case&quot;, 456);       // caseIndent
         }
     }
-
 }
         </source>
         <p id="Example3-config">

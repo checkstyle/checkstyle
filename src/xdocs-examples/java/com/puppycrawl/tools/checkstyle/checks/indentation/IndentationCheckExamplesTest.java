@@ -47,11 +47,11 @@ public class IndentationCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "27:22: " + getCheckMessage(MSG_ERROR, "int", 21, 8),
+            "26:22: " + getCheckMessage(MSG_ERROR, "int", 21, 8),
+            "41:17: " + getCheckMessage(MSG_ERROR, "||", 16, 12),
             "42:17: " + getCheckMessage(MSG_ERROR, "||", 16, 12),
-            "43:17: " + getCheckMessage(MSG_ERROR, "||", 16, 12),
+            "44:18: " + getCheckMessage(MSG_ERROR, ".", 17, 16),
             "45:18: " + getCheckMessage(MSG_ERROR, ".", 17, 16),
-            "46:18: " + getCheckMessage(MSG_ERROR, ".", 17, 16),
         };
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }

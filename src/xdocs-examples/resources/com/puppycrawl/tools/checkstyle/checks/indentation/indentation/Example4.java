@@ -5,7 +5,6 @@
   </module>
 </module>
 */
-
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;
 
 // xdoc section -- start
@@ -54,5 +53,4 @@ class Example4 {
         }
     }
 }
-
 // xdoc section -- end
