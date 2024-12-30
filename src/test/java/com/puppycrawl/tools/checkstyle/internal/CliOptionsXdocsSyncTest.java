@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -123,7 +122,7 @@ public class CliOptionsXdocsSyncTest {
     }
 
     private static NodeList getSectionsFromXdoc(String xdocPath) throws Exception {
-        final Path path = Paths.get(xdocPath);
+        final Path path = Path.of(xdocPath);
         final String input = Files.readString(path);
         final Document document = XmlUtil.getRawXml(path.getFileName().toString(), input, input);
         return document.getElementsByTagName("section");

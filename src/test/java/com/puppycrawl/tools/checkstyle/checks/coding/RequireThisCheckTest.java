@@ -399,7 +399,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     public void testFor() throws Exception {
         final String[] expected = {
             "22:13: " + getCheckMessage(MSG_VARIABLE, "bottom", ""),
-            "30:34: " + getCheckMessage(MSG_VARIABLE, "name", ""),
+            "30:32: " + getCheckMessage(MSG_VARIABLE, "name", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisFor.java"), expected);
