@@ -28,7 +28,7 @@ import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -616,7 +616,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     public void testLoadConfigurationDeprecated() throws Exception {
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-                        new InputSource(Files.newInputStream(Paths.get(
+                        new InputSource(Files.newInputStream(Path.of(
                             getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml")))),
                         new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
 
@@ -696,7 +696,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
         final DefaultConfiguration configuration1 =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-                        new InputSource(Files.newInputStream(Paths.get(
+                        new InputSource(Files.newInputStream(Path.of(
                             getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml")))),
                         new PropertiesExpander(new Properties()),
                         ConfigurationLoader.IgnoredModulesOptions.EXECUTE);
@@ -747,7 +747,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         for (String configFile : configFiles) {
             final DefaultConfiguration config =
                     (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-                            new InputSource(Files.newInputStream(Paths.get(
+                            new InputSource(Files.newInputStream(Path.of(
                                     getPath(configFile)))),
                             new PropertiesExpander(new Properties()),
                             IgnoredModulesOptions.OMIT);

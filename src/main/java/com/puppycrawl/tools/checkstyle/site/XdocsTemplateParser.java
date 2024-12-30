@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.site;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -181,7 +181,7 @@ public class XdocsTemplateParser extends XdocParser {
     private void processMacroEnd(Sink sink) throws MacroExecutionException {
         final MacroRequest request = new MacroRequest(sourceContent,
                 new XdocsTemplateParser(), macroParameters,
-                new File(TEMP_DIR));
+                Path.of(TEMP_DIR).toFile());
 
         try {
             executeMacro(macroName, request, sink);

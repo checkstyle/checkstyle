@@ -20,7 +20,7 @@ public final class InputIndentationTryResourcesNotStrict { //indent:0 exp:0
     static void fooMethod(String zipFileName) throws IOException { //indent:4 exp:4
 
         Charset charset = StandardCharsets.US_ASCII; //indent:8 exp:8
-        Path filePath = Paths.get(zipFileName); //indent:8 exp:8
+        Path filePath = Path.of(zipFileName); //indent:8 exp:8
 
         try //indent:8 exp:8
             ( //indent:12 exp:>=8
