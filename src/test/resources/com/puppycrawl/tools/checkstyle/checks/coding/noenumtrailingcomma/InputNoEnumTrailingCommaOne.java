@@ -20,23 +20,23 @@ public class InputNoEnumTrailingCommaOne {
 
     enum Foo3 {
         FOO,
-        BAR, // violation
+        BAR, // violation 'Enum should not contain trailing comma.'
     }
 
     enum Foo4 {
         FOO,
-        BAR, // violation
+        BAR, // violation 'Enum should not contain trailing comma.'
         ;
     }
 
     enum Foo5 {
         FOO,
-        BAR,; // violation
+        BAR,; // violation 'Enum should not contain trailing comma.'
     }
 
-    enum Foo6 { FOO, BAR,; } // violation
+    enum Foo6 { FOO, BAR,; } // violation 'Enum should not contain trailing comma.'
 
-    enum Foo7 { FOO, BAR, } // violation
+    enum Foo7 { FOO, BAR, } // violation 'Enum should not contain trailing comma.'
 
     enum Foo8 {
         FOO,
@@ -50,12 +50,12 @@ public class InputNoEnumTrailingCommaOne {
 
     enum Foo11 {}
 
-    enum Foo12 { FOO, } // violation
+    enum Foo12 { FOO, } // violation 'Enum should not contain trailing comma.'
 
     enum Foo13 { FOO }
 
     enum Foo14 {
-        FOO, // violation
+        FOO, // violation 'Enum should not contain trailing comma.'
     }
 
     enum Foo15 {
@@ -73,7 +73,7 @@ public class InputNoEnumTrailingCommaOne {
 
     enum Foo19 {
         FOO
-        , // violation
+        , // violation 'Enum should not contain trailing comma.'
     }
 
     enum Foo20 {

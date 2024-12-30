@@ -17,15 +17,16 @@ public class InputNoEnumTrailingCommaTwo {
     }
 
     enum Foo25 {
-        A,B(){ public String toString() { return "";}}, // violation
+        // violation below 'Enum should not contain trailing comma.'
+        A,B(){ public String toString() { return "";}},
     }
 
     enum Foo26 {
-        A,B(), // violation
+        A,B(), // violation 'Enum should not contain trailing comma.'
     }
 
     enum Foo27 {
-        A,B{}, // violation
+        A,B{}, // violation 'Enum should not contain trailing comma.'
     }
 
     enum Foo28 {
@@ -41,28 +42,29 @@ public class InputNoEnumTrailingCommaTwo {
     }
 
     enum Foo31 {
-        A,B(),; // violation
+        A,B(),; // violation 'Enum should not contain trailing comma.'
     }
 
     enum Foo32 {
-        A,B{},; // violation
+        A,B{},; // violation 'Enum should not contain trailing comma.'
     }
 
     enum Foo33 {
-        A,B(){ public String toString() { return "";}},; // violation
+        // violation below 'Enum should not contain trailing comma.'
+        A,B(){ public String toString() { return "";}},;
     }
 
     enum Foo34 {
         A, B, C;
         enum NestedFoo1 {
-            First, Second, Third, // violation
+            First, Second, Third, // violation 'Enum should not contain trailing comma.'
         }
     }
 
     enum Foo35 {
         A, B, C;
         enum NestedFoo1 {
-            First, Second, Third,; // violation
+            First, Second, Third,; // violation 'Enum should not contain trailing comma.'
         }
     }
 
@@ -79,7 +81,7 @@ public class InputNoEnumTrailingCommaTwo {
     }
 
     enum Foo38 {
-        A, B,; // violation
+        A, B,; // violation 'Enum should not contain trailing comma.'
         Foo38() {};
     }
 
