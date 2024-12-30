@@ -69,7 +69,7 @@ public class Example1 {
     try {
       throw new RuntimeException();
     } catch (RuntimeException expected) {
-    } // violation above
+    } // violation above 'Empty catch block'
   }
 
   private void exampleMethod2() {
@@ -84,7 +84,7 @@ public class Example1 {
     try {
       throw new RuntimeException();
     } catch (RuntimeException o) {
-    } // violation above
+    } // violation above 'Empty catch block'
   }
 
   private void exampleMethod4 () {
@@ -132,7 +132,7 @@ public class Example2 {
     try {
       throw new RuntimeException();
     } catch (RuntimeException o) {
-    } // violation above
+    } // violation above 'Empty catch block'
   }
 
   private void exampleMethod4 () {
@@ -165,7 +165,7 @@ public class Example3 {
     try {
       throw new RuntimeException();
     } catch (RuntimeException expected) {
-    } // violation above
+    } // violation above 'Empty catch block'
   }
 
   private void exampleMethod2() {
@@ -173,14 +173,14 @@ public class Example3 {
       throw new RuntimeException();
     } catch (RuntimeException ignore) {
       // no handling
-    } // violation 2 lines above
+    } // violation 2 lines above 'Empty catch block'
   }
 
   private void exampleMethod3 () {
     try {
       throw new RuntimeException();
     } catch (RuntimeException o) {
-    } // violation above
+    } // violation above 'Empty catch block'
   }
 
   private void exampleMethod4 () {
@@ -245,7 +245,7 @@ public class Example4 {
   private void exampleMethod5() {
     try {
       throw new RuntimeException();
-      // violation below
+      // violation below 'Empty catch block'
     } catch (RuntimeException e) {
       /*
        *
@@ -276,7 +276,7 @@ public class Example5 {
     try {
       throw new RuntimeException();
     } catch (RuntimeException e) {
-    } // violation above
+    } // violation above 'Empty catch block'
   }
 
   private void exampleMethod2() {

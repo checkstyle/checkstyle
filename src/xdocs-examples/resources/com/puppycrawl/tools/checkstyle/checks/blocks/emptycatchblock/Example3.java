@@ -16,7 +16,7 @@ public class Example3 {
     try {
       throw new RuntimeException();
     } catch (RuntimeException expected) {
-    } // violation above
+    } // violation above 'Empty catch block'
   }
 
   private void exampleMethod2() {
@@ -24,14 +24,14 @@ public class Example3 {
       throw new RuntimeException();
     } catch (RuntimeException ignore) {
       // no handling
-    } // violation 2 lines above
+    } // violation 2 lines above 'Empty catch block'
   }
 
   private void exampleMethod3 () {
     try {
       throw new RuntimeException();
     } catch (RuntimeException o) {
-    } // violation above
+    } // violation above 'Empty catch block'
   }
 
   private void exampleMethod4 () {

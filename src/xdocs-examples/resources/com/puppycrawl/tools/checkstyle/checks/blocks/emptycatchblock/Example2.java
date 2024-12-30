@@ -31,7 +31,7 @@ public class Example2 {
     try {
       throw new RuntimeException();
     } catch (RuntimeException o) {
-    } // violation above
+    } // violation above 'Empty catch block'
   }
 
   private void exampleMethod4 () {

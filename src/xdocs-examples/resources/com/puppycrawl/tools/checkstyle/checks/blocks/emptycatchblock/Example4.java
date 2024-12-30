@@ -47,7 +47,7 @@ public class Example4 {
   private void exampleMethod5() {
     try {
       throw new RuntimeException();
-      // violation below
+      // violation below 'Empty catch block'
     } catch (RuntimeException e) {
       /*
        *
