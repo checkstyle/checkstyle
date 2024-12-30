@@ -52,15 +52,15 @@ public class NoEnumTrailingCommaCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultTwo() throws Exception {
         final String[] expected = {
-            "20:55: " + getCheckMessage(MSG_KEY),
-            "24:14: " + getCheckMessage(MSG_KEY),
-            "28:14: " + getCheckMessage(MSG_KEY),
-            "44:14: " + getCheckMessage(MSG_KEY),
-            "48:14: " + getCheckMessage(MSG_KEY),
-            "52:55: " + getCheckMessage(MSG_KEY),
-            "58:33: " + getCheckMessage(MSG_KEY),
-            "65:33: " + getCheckMessage(MSG_KEY),
-            "82:13: " + getCheckMessage(MSG_KEY),
+            "21:55: " + getCheckMessage(MSG_KEY),
+            "25:14: " + getCheckMessage(MSG_KEY),
+            "29:14: " + getCheckMessage(MSG_KEY),
+            "45:14: " + getCheckMessage(MSG_KEY),
+            "49:14: " + getCheckMessage(MSG_KEY),
+            "54:55: " + getCheckMessage(MSG_KEY),
+            "60:33: " + getCheckMessage(MSG_KEY),
+            "67:33: " + getCheckMessage(MSG_KEY),
+            "84:13: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoEnumTrailingCommaTwo.java"), expected);
@@ -71,9 +71,9 @@ public class NoEnumTrailingCommaCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "13:21: " + getCheckMessage(MSG_KEY),
             "33:10: " + getCheckMessage(MSG_KEY),
-            "77:55: " + getCheckMessage(MSG_KEY),
-            "82:9: " + getCheckMessage(MSG_KEY),
-            "85:9: " + getCheckMessage(MSG_KEY),
+            "78:55: " + getCheckMessage(MSG_KEY),
+            "83:9: " + getCheckMessage(MSG_KEY),
+            "86:9: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoEnumTrailingCommaThree.java"), expected);

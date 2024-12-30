@@ -10,7 +10,7 @@ public class InputNoEnumTrailingCommaThree {
 
     public enum Foo40 {
         ONE_ONE(1,1),
-        ONE_TWO(1,2),; // violation
+        ONE_TWO(1,2),; // violation 'Enum should not contain trailing comma.'
 
         int major, minor;
 
@@ -30,7 +30,7 @@ public class InputNoEnumTrailingCommaThree {
             @Override
             public void someFunction(){
             }
-        },; // violation
+        },; // violation 'Enum should not contain trailing comma.'
 
         int major, minor;
 
@@ -74,14 +74,15 @@ public class InputNoEnumTrailingCommaThree {
     }
 
     enum Foo44 {
-        A,B(){ public String toString() { return "";}},; // violation
+        // violation below 'Enum should not contain trailing comma.'
+        A,B(){ public String toString() { return "";}},;
         interface SomeInterface {}
     }
 
     enum Foo45 {
-        , // violation
+        , // violation 'Enum should not contain trailing comma.'
     }
     enum Foo46 {
-        ,; // violation
+        ,; // violation 'Enum should not contain trailing comma.'
     }
 }
