@@ -241,8 +241,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding"
                     + ".UnnecessarySemicolonAfterTypeMemberDeclarationCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding"
-                    + ".UnnecessarySemicolonInEnumerationCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding"
                     + ".UnnecessarySemicolonInTryWithResourcesCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding"
                     + ".UnusedCatchParameterShouldBeUnnamedCheck",
