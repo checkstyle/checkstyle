@@ -164,7 +164,8 @@ public class LineWrappingHandler {
 
         for (DetailAST node : firstNodesOnLines.values()) {
             final int currentType = node.getType();
-            if (checkForNullParameterChild(node) || checkForMethodLparenNewLine(node)) {
+            if (checkForNullParameterChild(node) || checkForMethodLparenNewLine(node)
+                    || isNodeTextBlockLiteral(node)) {
                 continue;
             }
             if (currentType == TokenTypes.RPAREN) {
@@ -270,6 +271,18 @@ public class LineWrappingHandler {
             curNode = getNextCurNode(curNode);
         }
         return result;
+    }
+
+    /**
+     * Checks if node is {@code TEXT_BLOCK_LITERAL_BEGIN},
+     *     {@code TEXT_BLOCK_LITERAL_END} or {@code TEXT_BLOCK_LITERAL_CONTENT}.
+     *
+     * @param node the node
+     * @return true if above is the case
+     */
+    private static boolean isNodeTextBlockLiteral(DetailAST node) {
+        return node.getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN
+                    || node.getType() == TokenTypes.TEXT_BLOCK_LITERAL_END;
     }
 
     /**
