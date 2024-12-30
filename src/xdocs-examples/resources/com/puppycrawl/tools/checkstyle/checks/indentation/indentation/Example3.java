@@ -7,6 +7,7 @@
   </module>
 </module>
 */
+
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;
 
 // xdoc section -- start
@@ -24,12 +25,9 @@ class Example3 {
 
     void handleValue(String aFooString,
                      int aFooInt) {      // violation, "incorrect indentation"
-        boolean cond1 = true;
-        boolean cond2 = false;
-        boolean cond3 = true;
-        boolean cond4 = false;
-        boolean cond5 = true;
-        boolean cond6 = false;
+
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
 
         if (cond1
             || cond2) {

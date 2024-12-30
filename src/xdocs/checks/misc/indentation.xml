@@ -140,12 +140,9 @@ class Example1 {
 
     void handleValue(String aFooString,
                      int aFooInt) {             // indent:8 ; expected: &gt; 4;
-        boolean cond1 = true;
-        boolean cond2 = false;
-        boolean cond3 = true;
-        boolean cond4 = false;
-        boolean cond5 = true;
-        boolean cond6 = false;
+
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
 
         if (cond1
             || cond2) {
@@ -205,12 +202,10 @@ class Example2 {
 
     void handleValue(String aFooString,
                      int aFooInt) {
-        boolean cond1 = true;
-        boolean cond2 = false;
-        boolean cond3 = true;
-        boolean cond4 = false;
-        boolean cond5 = true;
-        boolean cond6 = false;
+
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
+
         if (cond1
             || cond2) {
             field = field.toUpperCase()
@@ -267,12 +262,9 @@ class Example3 {
 
     void handleValue(String aFooString,
                      int aFooInt) {      // violation, &quot;incorrect indentation&quot;
-        boolean cond1 = true;
-        boolean cond2 = false;
-        boolean cond3 = true;
-        boolean cond4 = false;
-        boolean cond5 = true;
-        boolean cond6 = false;
+
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
 
         if (cond1
             || cond2) {
@@ -317,12 +309,9 @@ class Example4 {
 
     void handleValue(String aFooString,
                      int aFooInt) {            // indent:8 ; expected: &gt; 4
-        boolean cond1 = true;
-        boolean cond2 = false;
-        boolean cond3 = true;
-        boolean cond4 = false;
-        boolean cond5 = true;
-        boolean cond6 = false;
+
+        boolean cond1,cond2,cond3,cond4,cond5,cond6;
+        cond1=cond2=cond3=cond4=cond5=cond6=false;
 
         if (cond1
             || cond2) {
