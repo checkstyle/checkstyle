@@ -128,7 +128,7 @@ if ((condition1 &amp;&amp; condition2)
         <source>
 class Example1 {
     String field = &quot;example&quot;;                  // basicOffset
-    int[] values = {                            // basicOffset
+    int[] values = {                           // basicOffset
         10,
         20,
         30
@@ -155,10 +155,10 @@ class Example1 {
 
         if ((cond1 &amp;&amp; cond2)
                 || (cond3 &amp;&amp; cond4)          // ok, lineWrappingIndentation
-                || !(cond5 &amp;&amp; cond6)) {       // ok, lineWrappingIndentation
+                || !(cond5 &amp;&amp; cond6)) {      // ok, lineWrappingIndentation
             field.toUpperCase()
                  .concat(&quot; TASK&quot;)             // ok, lineWrappingIndentation
-                 .chars().forEach(c -&gt; {       // ok, lineWrappingIndentation
+                 .chars().forEach(c -&gt; {      // ok, lineWrappingIndentation
                      System.out.println((char) c);
                  });
         }
@@ -193,7 +193,7 @@ class Example1 {
         <source>
 class Example2 {
     String field = &quot;example&quot;;                  // basicOffset
-    int[] values = {                            // basicOffset
+    int[] values = {                           // basicOffset
         10,
         20,
         30
@@ -220,10 +220,10 @@ class Example2 {
 
         if ((cond1 &amp;&amp; cond2)
                 || (cond3 &amp;&amp; cond4)           // ok, lineWrappingIndentation
-                || !(cond5 &amp;&amp; cond6)) {        // ok, lineWrappingIndentation
+                || !(cond5 &amp;&amp; cond6)) {       // ok, lineWrappingIndentation
             field.toUpperCase()
-                 .concat(&quot; TASK&quot;)              // ok, lineWrappingIndentation
-                 .chars().forEach(c -&gt; {       // ok, lineWrappingIndentation
+                 .concat(&quot; TASK&quot;)             // ok, lineWrappingIndentation
+                 .chars().forEach(c -&gt; {      // ok, lineWrappingIndentation
                      System.out.println((char) c);
                  });
         }
@@ -257,7 +257,7 @@ class Example2 {
         <source>
 class Example3 {
     String field = &quot;example&quot;;                  // basicOffset
-    int[] values = {                            // basicOffset
+    int[] values = {                           // basicOffset
         10,
         20,
         30
@@ -283,11 +283,11 @@ class Example3 {
         }
 
         if ((cond1 &amp;&amp; cond2)
-                || (cond3 &amp;&amp; cond4)      // violation, &quot;incorrect indentation&quot;
+                || (cond3 &amp;&amp; cond4)        // violation, &quot;incorrect indentation&quot;
                 || !(cond5 &amp;&amp; cond6)) {    // violation, &quot;incorrect indentation&quot;
             field.toUpperCase()
-                 .concat(&quot; TASK&quot;)             // violation, &quot;incorrect indentation&quot;
-                 .chars().forEach(c -&gt; {     // violation, &quot;incorrect indentation&quot;
+                 .concat(&quot; TASK&quot;)           // violation, &quot;incorrect indentation&quot;
+                 .chars().forEach(c -&gt; {    // violation, &quot;incorrect indentation&quot;
                      System.out.println((char) c);
                  });
         }
@@ -333,7 +333,7 @@ class Example4 {
         }
 
         if ((cond1 &amp;&amp; cond2)
-                || (cond3 &amp;&amp; cond4)         // ok, lineWrappingIndentation
+                || (cond3 &amp;&amp; cond4)          // ok, lineWrappingIndentation
                 || !(cond5 &amp;&amp; cond6)) {      // ok, lineWrappingIndentation
             field.toUpperCase()
                  .concat(&quot; TASK&quot;)            // ok, lineWrappingIndentation
