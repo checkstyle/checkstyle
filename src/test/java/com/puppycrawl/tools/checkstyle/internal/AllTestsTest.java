@@ -25,7 +25,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,7 +48,7 @@ public class AllTestsTest {
     public void testAllInputsHaveTest() throws Exception {
         final Map<String, List<String>> allTests = new HashMap<>();
 
-        walkVisible(Paths.get("src/test/java"), filePath -> {
+        walkVisible(Path.of("src/test/java"), filePath -> {
             grabAllTests(allTests, filePath.toFile());
         });
 
@@ -57,10 +56,10 @@ public class AllTestsTest {
             .that(allTests.keySet())
             .isNotEmpty();
 
-        walkVisible(Paths.get("src/test/resources/com/puppycrawl"), filePath -> {
+        walkVisible(Path.of("src/test/resources/com/puppycrawl"), filePath -> {
             verifyInputFile(allTests, filePath.toFile());
         });
-        walkVisible(Paths.get("src/test/resources-noncompilable/com/puppycrawl"), filePath -> {
+        walkVisible(Path.of("src/test/resources-noncompilable/com/puppycrawl"), filePath -> {
             verifyInputFile(allTests, filePath.toFile());
         });
     }
@@ -69,7 +68,7 @@ public class AllTestsTest {
     public void testAllTestsHaveProductionCode() throws Exception {
         final Map<String, List<String>> allTests = new HashMap<>();
 
-        walkVisible(Paths.get("src/main/java"), filePath -> {
+        walkVisible(Path.of("src/main/java"), filePath -> {
             grabAllFiles(allTests, filePath.toFile());
         });
 
@@ -77,7 +76,7 @@ public class AllTestsTest {
             .that(allTests.keySet())
             .isNotEmpty();
 
-        walkVisible(Paths.get("src/test/java"), filePath -> {
+        walkVisible(Path.of("src/test/java"), filePath -> {
             verifyHasProductionFile(allTests, filePath.toFile());
         });
     }
