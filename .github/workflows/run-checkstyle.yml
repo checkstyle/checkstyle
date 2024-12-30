@@ -59,8 +59,10 @@ jobs:
             ls -la
             echo "Content of config.xml:"
             cat config.xml
+            echo ""
             echo "Content of Test.java:"
             cat -n Test.java
+            echo ""
             JAR_NAME=$(find . -name "*-all.jar")
             echo "Executing: java -jar ""$JAR_NAME"" -c config.xml Test.java"
             java -jar "$JAR_NAME" -c config.xml Test.java
