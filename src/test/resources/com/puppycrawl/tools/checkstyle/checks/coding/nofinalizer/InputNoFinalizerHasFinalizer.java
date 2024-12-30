@@ -8,7 +8,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.nofinalizer;
 
 public class InputNoFinalizerHasFinalizer
 {
-    public void finalize() // violation
+    public void finalize() // violation 'Avoid using finalizer method.'
     {
         // It's not enough to check if the METHOD_DEF branch contains a PARAMETER_DEF, as that would
         // treat this method as having a parameter.
