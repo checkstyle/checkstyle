@@ -22,7 +22,7 @@ public class InputEmptyCatchBlockDefault
     private void foo1() {
         try {
             throw new RuntimeException();
-        } catch (Exception e) {} // violation
+        } catch (Exception e) {} // violation 'Empty catch block'
 
     }
 
@@ -30,7 +30,7 @@ public class InputEmptyCatchBlockDefault
         try {
             throw new IOException();
         } catch (IOException | NullPointerException | ArithmeticException ignore) {
-        } // violation above
+        } // violation above 'Empty catch block'
     }
 
     private void foo3() { // comment

@@ -22,7 +22,7 @@ public class InputEmptyCatchBlockDefaultLF
     private void foo1() {
         try {
             throw new RuntimeException();
-        } catch (Exception e) {} // violation
+        } catch (Exception e) {} // violation 'Empty catch block'
 
     }
 
@@ -50,8 +50,8 @@ public class InputEmptyCatchBlockDefaultLF
     private void foo5() {
         try {
             throw new IOException();
-        } catch (IOException | NullPointerException | ArithmeticException e) {  // violation
-        }
+        } catch (IOException | NullPointerException | ArithmeticException e) {
+        } // violation above 'Empty catch block'
     }
 
     private void foo6() {
@@ -84,7 +84,7 @@ public class InputEmptyCatchBlockDefaultLF
     {
         try {
         }
-        catch (Exception e) {  // violation
+        catch (Exception e) {  // violation 'Empty catch block'
             //This is expected
             /* This is expected */
             /**This is expected */
@@ -173,7 +173,7 @@ public class InputEmptyCatchBlockDefaultLF
     private void some() {
         try {
             throw new IOException();
-        } catch (IOException e) { // violation
+        } catch (IOException e) { // violation 'Empty catch block'
             /* ololo
              * blalba
              */
@@ -182,7 +182,7 @@ public class InputEmptyCatchBlockDefaultLF
     private void some1() {
         try {
             throw new IOException();
-        } catch (IOException e) { // violation
+        } catch (IOException e) { // violation 'Empty catch block'
             /* lalala
              * This is expected
              */
@@ -201,7 +201,7 @@ public class InputEmptyCatchBlockDefaultLF
     private void some3() {
         try {
             throw new IOException();
-        } catch (IOException e) { // violation
+        } catch (IOException e) { // violation 'Empty catch block'
             // some comment
             //This is expected
         }
@@ -217,7 +217,7 @@ public class InputEmptyCatchBlockDefaultLF
     private void some5() {
         try {
             throw new IOException();
-        } catch (IOException e) { // violation
+        } catch (IOException e) { // violation 'Empty catch block'
             /* some comment */
             //This is expected
         }
@@ -226,7 +226,7 @@ public class InputEmptyCatchBlockDefaultLF
     private void emptyMultilineComment() {
         try {
             throw new IOException();
-        } catch (IOException e) { // violation
+        } catch (IOException e) { // violation 'Empty catch block'
             /*
 */
         }

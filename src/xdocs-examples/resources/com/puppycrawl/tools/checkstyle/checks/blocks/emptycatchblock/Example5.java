@@ -16,7 +16,7 @@ public class Example5 {
     try {
       throw new RuntimeException();
     } catch (RuntimeException e) {
-    } // violation above
+    } // violation above 'Empty catch block'
   }
 
   private void exampleMethod2() {
