@@ -27,41 +27,41 @@ public class InputUnnecessarySemicolonInEnumeration{
         A,B(){ public String toString() { return "";}},
     }
     enum Semicolon {
-        A,B; // violation
+        A,B; // violation 'Unnecessary semicolon'
     }
     enum CommaAndSemicolon {
-        A,B,; // violation
+        A,B,; // violation 'Unnecessary semicolon'
     }
     enum BlockAndSemicolon {
-        A,B{}; // violation
+        A,B{}; // violation 'Unnecessary semicolon'
     }
     enum ParensAndSemicolon {
-        A,B(); // violation
+        A,B(); // violation 'Unnecessary semicolon'
     }
     enum BlockAndCommaAndSemicolon {
-        A,B{ public String toString() { return "";}},; // violation
+        A,B{ public String toString() { return "";}},; // violation 'Unnecessary semicolon'
     }
     enum ParensAndCommaAndSemicolon {
-        A,B(),; // violation
+        A,B(),; // violation 'Unnecessary semicolon'
     }
     enum All {
-        A,B(){ public String toString() { return "";}},; // violation
+        A,B(){ public String toString() { return "";}},; // violation 'Unnecessary semicolon'
     }
     enum SemicolonNextLine {
         A,B
-        ; // violation
+        ; // violation 'Unnecessary semicolon'
     }
     enum NestedEnum {
         A, B, C;
         enum Nested {
-            First, Second, Third; // violation
+            First, Second, Third; // violation 'Unnecessary semicolon'
         }
     }
     enum NoEnums {
-        ; // violation
+        ; // violation 'Unnecessary semicolon'
     }
     enum NoEnums2 {
-        ,; // violation
+        ,; // violation 'Unnecessary semicolon'
     }
     enum NoEnums3 {
         ;
