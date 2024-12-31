@@ -19,12 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_ORDERING;
+import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_SEPARATED_IN_GROUP;
+import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_SEPARATION;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class ImportOrderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,55 +36,68 @@ public class ImportOrderCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "15:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.io.IOException"),
+            "15:1: " + getCheckMessage(MSG_ORDERING, "java.io.IOException"),
+            "19:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "javax.net.ssl.TrustManager"),
+            "22:1: " + getCheckMessage(MSG_ORDERING, "java.util.Set"),
+            "23:1: " + getCheckMessage(MSG_ORDERING, "com.neurologic.http.HttpClient"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "19:1: " + getCheckMessage(MSG_ORDERING, "java.lang.Math"),
+            "22:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.net.URL"),
+            "27:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "javax.net.ssl.X509TrustManager"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "21:1: " + getCheckMessage(MSG_ORDERING, "java.io.File"),
+            "23:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.io.IOException"),
+            "27:1: " + getCheckMessage(MSG_ORDERING, "javax.WindowConstants.*"),
+            "29:1: " + getCheckMessage(MSG_SEPARATION, "org.apache.http.ClientConnectionManager"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+            "24:1: " + getCheckMessage(MSG_ORDERING, "javax.swing.JComponent"),
+            "27:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.net.URL"),
+            "29:1: " + getCheckMessage(MSG_ORDERING, "javax.swing.JComponent"),
+            "30:1: " + getCheckMessage(MSG_ORDERING, "com.neurologic.http.HttpClient"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example4.java"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-
+            "17:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "javax.swing.JComponent"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example5.java"), expected);
     }
 
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-
+            "19:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.Set"),
+            "20:1: " + getCheckMessage(MSG_ORDERING, "java.lang.Math.abs"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example6.java"), expected);
     }
 
     @Test
@@ -91,7 +106,7 @@ public class ImportOrderCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example7.java"), expected);
     }
 
     @Test
@@ -100,25 +115,26 @@ public class ImportOrderCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example8.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example8.java"), expected);
     }
 
     @Test
     public void testExample9() throws Exception {
         final String[] expected = {
-
+            "21:1: " + getCheckMessage(MSG_ORDERING,
+                    "io.netty.handler.codec.http.HttpHeaders.Names.DATE"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example9.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example9.java"), expected);
     }
 
     @Test
     public void testExample10() throws Exception {
         final String[] expected = {
-
+            "18:1: " + getCheckMessage(MSG_SEPARATION, "javax.swing.JComponent"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example10.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example10.java"), expected);
     }
 
     @Test
@@ -127,15 +143,15 @@ public class ImportOrderCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example11.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example11.java"), expected);
     }
 
     @Test
     public void testExample12() throws Exception {
         final String[] expected = {
-
+            "17:1: " + getCheckMessage(MSG_ORDERING, "java.io.File.createTempFile"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example12.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example12.java"), expected);
     }
 }
