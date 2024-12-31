@@ -7,14 +7,15 @@
 */
 
 // xdoc section -- start
-package com.company;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.io.*; // OK
-import static java.util.*; // OK
+import static java.io.File.separator; // OK
+import static java.util.Collections.*; // OK
 import java.time.*; // OK
 import javax.net.*; // OK
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
 
-import org.apache.commons.io.FileUtils; // should not be separated by line
-// xdoc section -- end
+import org.apache.commons.io.FileUtils; // violation, "Extra separation"
+public class Example11 {
+}

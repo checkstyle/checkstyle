@@ -2,23 +2,22 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="CustomImportOrder">
-      <property name="customImportOrderRules"
-        value="STATIC, STANDARD_JAVA_PACKAGE, THIRD_PARTY_PACKAGE"/>
+      <property name="separateLineBetweenGroups" value="true"/>
     </module>
   </module>
 </module>
 */
 
 // xdoc section -- start
-package com.company;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.util.*; // OK
-
+import static java.io.File.separator; // OK
+import static java.util.Collections.*; // OK
 import java.time.*; // OK
 import javax.net.*; // OK
-import static java.io.*; // violation as static imports should be in top
-
-import org.apache.commons.io.FileUtils; // OK
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
+import org.apache.commons.io.FileUtils; // OK
 // xdoc section -- end
+public class Example13 {
+}

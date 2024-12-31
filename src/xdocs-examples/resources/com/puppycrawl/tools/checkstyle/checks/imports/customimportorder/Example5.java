@@ -11,15 +11,18 @@
 */
 
 // xdoc section -- start
-package com.company;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.util.*; // OK
-import static java.io.*; // OK
+import static java.util.Collections.*;
+import static java.io.File.separator;
 
-import org.json.JSONObject; // OK
+import org.apache.commons.lang3.StringUtils;
 
 import java.time.*; // OK
 import javax.net.*; // OK
 
-import org.apache.commons.io.FileUtils; // violation
+import org.apache.commons.io.FileUtils; // violation, "wrong order"
 // xdoc section -- end
+
+public class Example5 {
+}
