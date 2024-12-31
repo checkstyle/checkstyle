@@ -12,14 +12,17 @@
 */
 
 // xdoc section -- start
-package com.company;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.io.*; // OK
-import static java.util.*; // OK
-import java.time.*; // violation
-import javax.net.*; // violation
+import static java.io.File.separator;
+import static java.util.Collections.*;
+import java.time.*; // violation, "wrong order"
+import javax.net.*; // violation, "wrong order"
 
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
+
 import org.apache.commons.io.FileUtils; // OK
 // xdoc section -- end
+public class Example12 {
+}
