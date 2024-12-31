@@ -11,14 +11,15 @@
   </module>
 </module>
 */
-//non-compiled with javac: Compilable with Java7
+//non-compiled with javac: Compilable with Java11
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 // xdoc section -- start
 import static io.netty.handler.codec.http.HttpConstants.COLON;
 import static io.netty.handler.codec.http.HttpHeaders.addHeader;
 import static io.netty.handler.codec.http.HttpHeaders.setHeader;
-import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // violation, wrong order, should sort alphabetically
+import static io.netty.handler.codec.http.HttpHeaders.Names.DATE;
+// violation above 'Wrong order for...'
 
 public class Example9 { }
 // xdoc section -- end

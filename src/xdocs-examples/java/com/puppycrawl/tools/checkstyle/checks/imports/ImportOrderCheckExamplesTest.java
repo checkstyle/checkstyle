@@ -38,9 +38,9 @@ public class ImportOrderCheckExamplesTest extends AbstractExamplesModuleTestSupp
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.io.IOException"),
             "15:1: " + getCheckMessage(MSG_ORDERING, "java.io.IOException"),
-            "17:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "javax.net.ssl.TrustManager"),
-            "20:1: " + getCheckMessage(MSG_ORDERING, "java.util.Set"),
-            "21:1: " + getCheckMessage(MSG_ORDERING, "com.neurologic.http.HttpClient"),
+            "19:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "javax.net.ssl.TrustManager"),
+            "22:1: " + getCheckMessage(MSG_ORDERING, "java.util.Set"),
+            "23:1: " + getCheckMessage(MSG_ORDERING, "com.neurologic.http.HttpClient"),
         };
 
         verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);

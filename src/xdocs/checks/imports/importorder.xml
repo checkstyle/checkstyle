@@ -128,8 +128,10 @@
 import java.io.IOException;
 import java.net.URL;
 
-import java.io.IOException; // 2 violations
-// extra separation before import and wrong order, comes before 'java.net.URL'.
+import java.io.IOException;
+// 2 violations above:
+//  'Extra separation in import group before 'java.io.IOException''
+//  'Wrong order for 'java.io.IOException' import.'
 import javax.net.ssl.TrustManager; // violation, extra separation due to above comment
 import javax.swing.JComponent;
 import org.apache.http.conn.ClientConnectionManager; // OK
@@ -318,7 +320,7 @@ public class Example4 { }
 import static java.io.File.createTempFile;
 import java.lang.Math.sqrt;
 
-import javax.swing.JComponent; // violation, extra separation in import group
+import javax.swing.JComponent; // violation '...separation in import group...'
 import static javax.windowConstants.*; // OK
 // all static imports are processed like non static imports.
 public class Example5 { }
