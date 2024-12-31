@@ -9,6 +9,8 @@
   </module>
 </module>
 */
+//non-compiled with javac: Compilable with Java11
+package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 // xdoc section -- start
 import static java.lang.Math.PI;
@@ -18,5 +20,5 @@ import static javax.WindowConstants.*; // OK
 
 import java.net.URL;
 
-public class SomeClass { }
+public class Example10 { }
 // xdoc section -- end
