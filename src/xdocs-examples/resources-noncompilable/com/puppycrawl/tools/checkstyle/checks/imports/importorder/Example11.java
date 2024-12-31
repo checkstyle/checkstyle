@@ -2,18 +2,20 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="ImportOrder">
-      <property name="staticGroups" value="java, javax"/>
+      <property name="staticGroups" value=""/>
       <property name="option" value="top"/>
     </module>
   </module>
 </module>
 */
+//non-compiled with javac: Compilable with Java7
+package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 // xdoc section -- start
 import static java.io.File.listRoots;   // OK
 import static javax.swing.WindowConstants.*; // OK
-import static java.io.File.createTempFile; // violation should be before javax
+import static java.io.File.createTempFile; // OK
 import static com.puppycrawl.tools.checkstyle;  // OK
 
-public class SomeClass { }
+public class Example11 { }
 // xdoc section -- end

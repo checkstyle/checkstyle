@@ -11,6 +11,8 @@
   </module>
 </module>
 */
+//non-compiled with javac: Compilable with Java7
+package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 // xdoc section -- start
 import static java.lang.System.out;
@@ -26,5 +28,5 @@ import javax.net.ssl.X509TrustManager; // violation, groups should not be separa
 
 import org.apache.http.conn.ClientConnectionManager;
 
-public class SomeClass { }
+public class Example2 { }
 // xdoc section -- end
