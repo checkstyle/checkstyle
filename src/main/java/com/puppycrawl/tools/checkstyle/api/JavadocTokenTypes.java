@@ -879,10 +879,13 @@ public final class JavadocTokenTypes {
      * <pre>{@code @see "Spring Framework"}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_TAG[1x0] : [@see "Spring Framework"]
-     *        |--SEE_LITERAL[1x0] : [@see]
-     *        |--WS[1x4] : [ ]
-     *        |--STRING[1x5] : ["Spring Framework"]
+     * {@code
+     * JAVADOC_TAG -&gt JAVADOC_TAG
+     *  |--SEE_LITERAL -&gt @see
+     *  |--WS -&gt
+     *  |--STRING -&gt "Spring Framework"
+     *  |--NEWLINE -&gt \r\n
+     *  `--WS -&gt
      * }
      * </pre>
      *
