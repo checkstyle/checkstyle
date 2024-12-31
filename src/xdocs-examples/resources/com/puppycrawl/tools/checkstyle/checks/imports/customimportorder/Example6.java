@@ -13,14 +13,17 @@
 */
 
 // xdoc section -- start
-package com.company;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.util.*; // OK
-import static java.io.*; // OK
+import static java.util.Collections.*; // OK
+import static java.io.File.separator; // OK
 
-import java.time.*; // OK
-import javax.net.*; // OK
-import org.apache.commons.io.FileUtils; // violation
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation
+import java.time.*;
+import javax.net.*;
+import org.apache.commons.io.FileUtils; // violation, "should be separated"
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation, "should be separated"
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
 // xdoc section -- end
+
+public class Example6 {
+}
