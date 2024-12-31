@@ -8,6 +8,8 @@
   </module>
 </module>
 */
+//non-compiled with javac: Compilable with Java11
+package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 // xdoc section -- start
 import static java.lang.Math.PI;
@@ -17,6 +19,6 @@ import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphab
 import java.util.Set; // violation, extra separation in import group
 import static java.lang.Math.abs; // violation, wrong order, all static imports comes at 'top'
 import org.abego.*;
-
-public class SomeClass { }
 // xdoc section -- end
+
+public class Example6 { }
