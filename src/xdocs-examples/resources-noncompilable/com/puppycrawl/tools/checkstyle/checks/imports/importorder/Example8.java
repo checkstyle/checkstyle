@@ -11,6 +11,8 @@
   </module>
 </module>
 */
+//non-compiled with javac: Compilable with Java11
+package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 // xdoc section -- start
 import static io.netty.handler.codec.http.HttpConstants.COLON;
@@ -18,5 +20,5 @@ import static io.netty.handler.codec.http.HttpHeaders.addHeader;
 import static io.netty.handler.codec.http.HttpHeaders.setHeader;
 import static io.netty.handler.codec.http.HttpHeaders.Names.DATE;
 
-public class InputEclipseStaticImportsOrder { }
+public class Example8 { }
 // xdoc section -- end
