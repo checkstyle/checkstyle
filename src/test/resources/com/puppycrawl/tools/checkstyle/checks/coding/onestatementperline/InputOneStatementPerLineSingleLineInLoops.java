@@ -24,7 +24,7 @@ public class InputOneStatementPerLineSingleLineInLoops {
      */
     public void doIllegal2() {
         one = 1
-        ; two = 2; // violation
+        ; two = 2; // violation 'Only one statement per line allowed.'
     }
 
     /**
@@ -50,7 +50,7 @@ public class InputOneStatementPerLineSingleLineInLoops {
     /**
      * Two declaration statements on the same line are illegal.
      */
-    int a; int b; // violation
+    int a; int b; // violation 'Only one statement per line allowed.'
 
     /**
      * Two declaration statements which are not on the same line
@@ -62,7 +62,7 @@ public class InputOneStatementPerLineSingleLineInLoops {
     /**
      * Two assignment (declaration) statements on the same line are illegal.
      */
-    int e = 1; int f = 2; // violation
+    int e = 1; int f = 2; // violation 'Only one statement per line allowed.'
 
     /**
      * Two assignment (declaration) statements on the different lines
@@ -82,10 +82,11 @@ public class InputOneStatementPerLineSingleLineInLoops {
         int var2 = 2;
 
         //Two increment statements on the same line are illegal.
-        var1++; var2++; // violation
+        var1++; var2++; // violation 'Only one statement per line allowed.'
 
         //Two object creation statements on the same line are illegal.
-        Object obj1 = new Object(); Object obj2 = new Object(); // violation
+        // violation below 'Only one statement per line allowed.'
+        Object obj1 = new Object(); Object obj2 = new Object();
     }
 
 }

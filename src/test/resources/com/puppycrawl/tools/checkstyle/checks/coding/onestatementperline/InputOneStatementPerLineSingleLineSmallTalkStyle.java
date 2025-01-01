@@ -10,7 +10,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
 /**
  * Two import statements on the same line are illegal.
  */
-import java.io.EOFException; import java.io.BufferedReader; // violation
+// violation below 'Only one statement per line allowed.'
+import java.io.EOFException; import java.io.BufferedReader;
 
 public class InputOneStatementPerLineSingleLineSmallTalkStyle {
   /**
@@ -84,7 +85,7 @@ public class InputOneStatementPerLineSingleLineSmallTalkStyle {
    * Simplest form of an illegal layout.
    */
   public void doIllegal() {
-    one = 1; two = 2; // violation
+    one = 1; two = 2; // violation 'Only one statement per line allowed.'
   }
 
   /**

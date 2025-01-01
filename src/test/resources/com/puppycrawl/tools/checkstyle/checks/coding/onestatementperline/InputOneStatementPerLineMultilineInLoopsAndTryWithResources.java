@@ -50,7 +50,7 @@ public class InputOneStatementPerLineMultilineInLoopsAndTryWithResources {
             k = 1
             ; n<5
             ;
-            n++, k--) { var1++; var2++; } // violation
+            n++, k--) { var1++; var2++; } // violation 'Only one statement per line allowed.'
     }
 
     /**
@@ -83,7 +83,8 @@ public class InputOneStatementPerLineMultilineInLoopsAndTryWithResources {
      */
   private void issue2211fail() {
     try(
-  AutoCloseable i=new java.io.PipedReader();AutoCloseable k=new java.io.PipedReader();// violation
+            // violation below 'Only one statement per line allowed.'
+  AutoCloseable i=new java.io.PipedReader();AutoCloseable k=new java.io.PipedReader();
     ) {
     } catch (Exception e1) {
     }
@@ -94,7 +95,8 @@ public class InputOneStatementPerLineMultilineInLoopsAndTryWithResources {
      * @see <a href="https://github.com/checkstyle/checkstyle/pull/2750#issuecomment-166032327"/>
      */
   private void issue2211fail2() {
-    try(AutoCloseable i=new StringReader("");AutoCloseable k=new StringReader("");) { // violation
+      // violation below 'Only one statement per line allowed.'
+    try(AutoCloseable i=new StringReader("");AutoCloseable k=new StringReader("");) {
     } catch (Exception e1) {
     }
   }

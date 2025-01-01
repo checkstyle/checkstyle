@@ -40,8 +40,8 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMultiCaseSmallTalkStyle() throws Exception {
         final String[] expected = {
-            "13:59: " + getCheckMessage(MSG_KEY),
-            "87:21: " + getCheckMessage(MSG_KEY),
+            "14:59: " + getCheckMessage(MSG_KEY),
+            "88:21: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOneStatementPerLineSingleLineSmallTalkStyle.java"),
@@ -55,7 +55,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
             "53:17: " + getCheckMessage(MSG_KEY),
             "65:25: " + getCheckMessage(MSG_KEY),
             "85:23: " + getCheckMessage(MSG_KEY),
-            "88:63: " + getCheckMessage(MSG_KEY),
+            "89:63: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOneStatementPerLineSingleLineInLoops.java"),
@@ -102,8 +102,8 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     public void testLoopsAndTryWithResourceWithMultilineStatements() throws Exception {
         final String[] expected = {
             "53:39: " + getCheckMessage(MSG_KEY),
-            "86:44: " + getCheckMessage(MSG_KEY),
-            "97:45: " + getCheckMessage(MSG_KEY),
+            "87:44: " + getCheckMessage(MSG_KEY),
+            "99:45: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOneStatementPerLineMultilineInLoopsAndTryWithResources.java"),
@@ -114,11 +114,11 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     public void oneStatementNonCompilableInputTest() throws Exception {
         final String[] expected = {
             "39:4: " + getCheckMessage(MSG_KEY),
-            "44:54: " + getCheckMessage(MSG_KEY),
-            "45:54: " + getCheckMessage(MSG_KEY),
-            "45:70: " + getCheckMessage(MSG_KEY),
-            "46:46: " + getCheckMessage(MSG_KEY),
-            "50:81: " + getCheckMessage(MSG_KEY),
+            "46:54: " + getCheckMessage(MSG_KEY),
+            "51:54: " + getCheckMessage(MSG_KEY),
+            "51:70: " + getCheckMessage(MSG_KEY),
+            "54:46: " + getCheckMessage(MSG_KEY),
+            "60:81: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
@@ -128,10 +128,10 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testResourceReferenceVariableIgnored() throws Exception {
         final String[] expected = {
-            "32:42: " + getCheckMessage(MSG_KEY),
-            "36:43: " + getCheckMessage(MSG_KEY),
-            "42:46: " + getCheckMessage(MSG_KEY),
-            "46:46: " + getCheckMessage(MSG_KEY),
+            "33:42: " + getCheckMessage(MSG_KEY),
+            "38:43: " + getCheckMessage(MSG_KEY),
+            "45:46: " + getCheckMessage(MSG_KEY),
+            "50:46: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
