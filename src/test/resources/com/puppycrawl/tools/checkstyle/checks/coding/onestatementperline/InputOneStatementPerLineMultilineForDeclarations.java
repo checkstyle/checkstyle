@@ -46,7 +46,7 @@ public class InputOneStatementPerLineMultilineForDeclarations {
      * on the same line are illegal.
      */
     int o = 1, p = 2,
-        r = 5; int t; // violation
+        r = 5; int t; // violation 'Only one statement per line allowed.'
 
     /**
      * Two assignment (declaration) statement
@@ -63,7 +63,7 @@ public class InputOneStatementPerLineMultilineForDeclarations {
      */
     int var1 = 5,
         var4 = 5; int var2 = 6,
-        var3 = 5; // violation
+        var3 = 5; // violation 'Only one statement per line allowed.'
 
     /**
      * Two statements on the same line
@@ -71,7 +71,7 @@ public class InputOneStatementPerLineMultilineForDeclarations {
      * are illegal.
      */
     int var6 = 5; int var7 = 6,
-        var8 = 5; // violation
+        var8 = 5; // violation 'Only one statement per line allowed.'
 
     /**
      * Two statements on the same line
@@ -83,7 +83,7 @@ public class InputOneStatementPerLineMultilineForDeclarations {
 
         );toString(
 
-        ); // violation
+        ); // violation 'Only one statement per line allowed.'
     }
 
     /**
@@ -92,7 +92,7 @@ public class InputOneStatementPerLineMultilineForDeclarations {
      */
     int var9 = 1,
         var10 = 5
-            ; int var11 = 2; // violation
+            ; int var11 = 2; // violation 'Only one statement per line allowed.'
 
     /**
      * Multiline for loop statement is legal.
