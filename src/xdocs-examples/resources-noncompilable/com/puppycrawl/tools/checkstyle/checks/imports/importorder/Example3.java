@@ -11,6 +11,8 @@
   </module>
 </module>
 */
+//non-compiled with javac: Compilable with Java11
+package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 // xdoc section -- start
 import static java.io.File.createTempFile;
@@ -30,5 +32,5 @@ import org.linux.apache.server.SoapServer; // OK
 import com.neurologic.http.HttpClient; // OK
 import com.neurologic.http.impl.ApacheHttpClient; // OK
 
-public class SomeClass { }
+public class Example3 { }
 // xdoc section -- end
