@@ -11,13 +11,13 @@
 // xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.io.File.separator; // OK
-import static java.util.Collections.*; // OK
-import java.time.*; // OK
-import javax.net.*; // OK
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
-import org.apache.commons.io.FileUtils; // OK
+import static java.io.File.separator;
+import static java.util.Collections.*;
+import java.time.*;
+import javax.net.*;
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
+import org.apache.commons.io.FileUtils;
 // xdoc section -- end
 public class Example13 {
 }

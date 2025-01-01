@@ -18,8 +18,8 @@ import static java.io.File.separator;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.time.*; // OK
-import javax.net.*; // OK
+import java.time.*;
+import javax.net.*;
 
 import org.apache.commons.io.FileUtils; // violation, "wrong order"
 // xdoc section -- end

@@ -14,13 +14,13 @@
 // xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.io.File.separator; // OK
-import static java.util.Collections.*; // OK
+import static java.io.File.separator;
+import static java.util.Collections.*;
 import java.time.*; // violation, "wrong order"
 import javax.net.*; // violation, "wrong order"
 
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
 
 import org.apache.commons.io.FileUtils; // OK
 // xdoc section -- end

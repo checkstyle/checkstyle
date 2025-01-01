@@ -15,15 +15,15 @@
 // xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.util.Collections.*; // OK
+import static java.util.Collections.*;
 import static java.io.File.separator; // violation, "Wrong lexicographical"
 
-import java.time.*; // OK
-import javax.net.*; // OK
+import java.time.*;
+import javax.net.*;
 import org.apache.commons.io.FileUtils; // violation, "should be separated"
 
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
 // xdoc section -- end
 public class Example8 {
 }
