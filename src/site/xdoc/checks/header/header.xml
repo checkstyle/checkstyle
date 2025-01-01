@@ -16,27 +16,6 @@
           set directly in the <code>header</code> property
           without the need for an external file.
         </div>
-
-        <p>
-          Property <code>ignoreLines</code> specifies the line
-          numbers to ignore when matching lines in a header file. This
-          property is very useful for supporting headers that contain
-          copyright dates. For example, consider the following header:
-        </p>
-
-        <source>
-line 1: ////////////////////////////////////////////////////////////////////
-line 2: // checkstyle:
-line 3: // Checks Java source code for adherence to a set of rules.
-line 4: // Copyright (C) 2002  Oliver Burn
-line 5: ////////////////////////////////////////////////////////////////////
-        </source>
-
-        <p>
-          Since the year information will change over time, you can tell
-          Checkstyle to ignore line 4 by setting property <code>ignoreLines</code> to
-          <code>4</code>.
-        </p>
       </subsection>
 
       <subsection name="Notes" id="Notes">
@@ -87,7 +66,7 @@ line 5: ////////////////////////////////////////////////////////////////////
             </tr>
             <tr>
               <td>ignoreLines</td>
-              <td>Specify the line numbers to ignore.</td>
+              <td>Specifies the line numbers to ignore when matching lines in a content of headerFile.</td>
               <td><a href="../../property_types.html#int.5B.5D">int[]</a></td>
               <td><code>{}</code></td>
               <td>3.2</td>
@@ -107,34 +86,60 @@ line 5: ////////////////////////////////////////////////////////////////////
   &lt;module name=&quot;Header&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example1-code">Example1:</p>
+        <source>
+package com.puppycrawl.tools.checkstyle.checks.header.header;
+// OK, as by default there is not specific header defined to validate it presence
+public class Example1 { }
+        </source>
 
         <p id="Example2-config">
-          To configure the check to use header file <code>&quot;config/java.header&quot;</code> and
+          To configure the check to use header file <code>&quot;java.header&quot;</code> and
           ignore lines <code>2</code>, <code>3</code>, and <code> 4</code> and only process Java
-          files:
+          files. 'ignoreLines' property is very useful for supporting headers that contain
+          copyright dates or other content that slightly different in some files:
         </p>
 
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;Header&quot;&gt;
-    &lt;property name=&quot;headerFile&quot; value=&quot;config/java.header&quot;/&gt;
+    &lt;property name=&quot;headerFile&quot; value=&quot;${config.folder}/java.header&quot;/&gt;
     &lt;property name=&quot;ignoreLines&quot; value=&quot;2, 3, 4&quot;/&gt;
     &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-
-        <p id="Example3-code">
-          To configure the check to verify that each file starts with the
-          header
-        </p>
+        <p id="java-raw">content of &quot;java.header&quot; file:</p>
         <source>
-// Copyright (C) 2004 MyCompany
-// All rights reserved
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 20XX-20XX the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+        </source>
+        <p id="Example2-code">Example2:</p>
+        <source>
+package com.puppycrawl.tools.checkstyle.checks.header.header;
+/* violation on first line 'Line does not match expected header line of' */
+// because headerFile is bigger then target java file
+public class Example2 { }
         </source>
 
         <p id="Example3-config">
-          without the need for an external header file:
+          Without the need for an external header file:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
@@ -143,6 +148,32 @@ line 5: ////////////////////////////////////////////////////////////////////
       value=&quot;// Copyright (C) 2004 MyCompany\n// All rights reserved&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example3:</p>
+        <source>
+package com.puppycrawl.tools.checkstyle.checks.header.header;
+/* violation on first line 'Line does not match expected header' */
+public class Example3 { }
+        </source>
+
+        <p id="Example4-config">
+          In case target file is less in size than header file:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;Header&quot;&gt;
+    &lt;property name=&quot;headerFile&quot; value=&quot;${config.folder}/java.header&quot;/&gt;
+    &lt;property name=&quot;ignoreLines&quot; value=&quot;2, 3, 4&quot;/&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Example:</p>
+        <source>
+package com.puppycrawl.tools.checkstyle.checks.header.header;
+/* violation on first line 'Missing a header - not enough lines in file' */
+// because content defined in 'headerFile' is bigger then target java file
+public class Example4 { }
         </source>
       </subsection>
 

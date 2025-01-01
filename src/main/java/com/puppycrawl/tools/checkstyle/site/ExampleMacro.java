@@ -108,6 +108,10 @@ public class ExampleMacro extends AbstractMacro {
 
             writeSnippet(sink, code);
         }
+        else if ("raw".equals(type)) {
+            final String content = String.join(NEWLINE, lines);
+            writeSnippet(sink, content);
+        }
         else {
             final String message = String.format(Locale.ROOT, "Unknown example type: %s", type);
             throw new MacroExecutionException(message);
