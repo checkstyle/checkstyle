@@ -4,24 +4,26 @@
     <module name="CustomImportOrder">
       <property name="customImportOrderRules"
         value="SAME_PACKAGE(3), THIRD_PARTY_PACKAGE, STATIC, SPECIAL_IMPORTS"/>
-      <property name="specialImportsRegExp" value="^android\."/>
+      <property name="specialImportsRegExp" value="^java\.lang\.String$"/>
     </module>
   </module>
 </module>
 */
 
 // xdoc section -- start
-package com.puppycrawl.tools.checkstyle.imports;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import com.google.common.annotations.GwtCompatible;
 import com.google.common.annotations.Beta;
 import com.google.common.annotations.VisibleForTesting;
+import org.apache.commons.io.FileUtils;
 
-import org.abego.treelayout.Configuration;
+import static java.util.Collections.emptyList;
 
-import static sun.tools.util.ModifierFilter.ALL_ACCESS;
+import com.google.common.annotations.GwtCompatible; // violation, "wrong order"
 
-import com.google.common.annotations.GwtCompatible; // violation here - should be in the
-                                                    // THIRD_PARTY_PACKAGE group
-import android.*;
+import java.lang.String;
 // xdoc section -- end
+
+public class Example15 {
+}
