@@ -16,27 +16,6 @@
           set directly in the <code>header</code> property
           without the need for an external file.
         </div>
-
-        <p>
-          Property <code>ignoreLines</code> specifies the line
-          numbers to ignore when matching lines in a header file. This
-          property is very useful for supporting headers that contain
-          copyright dates. For example, consider the following header:
-        </p>
-
-        <source>
-line 1: ////////////////////////////////////////////////////////////////////
-line 2: // checkstyle:
-line 3: // Checks Java source code for adherence to a set of rules.
-line 4: // Copyright (C) 2002  Oliver Burn
-line 5: ////////////////////////////////////////////////////////////////////
-        </source>
-
-        <p>
-          Since the year information will change over time, you can tell
-          Checkstyle to ignore line 4 by setting property <code>ignoreLines</code> to
-          <code>4</code>.
-        </p>
       </subsection>
 
       <subsection name="Notes" id="Notes">
@@ -64,39 +43,69 @@ line 5: ////////////////////////////////////////////////////////////////////
 
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example1.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example1:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example1.java"/>
+          <param name="type" value="code"/>
         </macro>
 
         <p id="Example2-config">
-          To configure the check to use header file <code>"config/java.header"</code> and
+          To configure the check to use header file <code>"java.header"</code> and
           ignore lines <code>2</code>, <code>3</code>, and <code> 4</code> and only process Java
-          files:
+          files. 'ignoreLines' property is very useful for supporting headers that contain
+          copyright dates or other content that slightly different in some files:
         </p>
 
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
-
-        <p id="Example3-code">
-          To configure the check to verify that each file starts with the
-          header
-        </p>
+        <p id="java-raw">content of "java.header" file:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/java.header"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example2-code">Example2:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
 
         <p id="Example3-config">
-          without the need for an external header file:
+          Without the need for an external header file:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example3.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example3:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example4-config">
+          In case target file is less in size than header file:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example4.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
