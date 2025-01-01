@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISSING;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class HeaderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -33,28 +34,34 @@ public class HeaderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "1: " + getCheckMessage(MSG_MISSING),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "1: " + getCheckMessage(HeaderCheck.MSG_MISMATCH, "// Copyright (C) 2004 MyCompany"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        System.setProperty("config.folder", "src/xdocs-examples/resources/com/puppycrawl" +
+                "/tools/checkstyle/checks/header/header");
+        verifyWithInlineConfigParser(
+                getPath("Example4.java"), expected);
     }
 }
