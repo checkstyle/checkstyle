@@ -14,18 +14,19 @@
 */
 
 // xdoc section -- start
-package com.company;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.io.*; // OK
-import static java.util.*; // OK
+import static java.io.File.separator;
+import static java.util.Collections.*;
 
-import java.time.*; // violation should be in standard package group
-                   // below special import
+import java.time.*; // violation, "wrong order"
 
-import javax.net.*; // Violation should be in special import group
+import javax.net.*; // violation, "wrong order"
 
-import org.apache.commons.io.FileUtils; // Violation should be in
-                                       // THIRD PARTY PACKAGE GROUP
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // Violation
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // Violation
+import org.apache.commons.io.FileUtils; // violation, "wrong order"
+
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation, "wrong order"
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // violation, "wrong order"
 // xdoc section -- end
+public class Example10 {
+}
