@@ -22,7 +22,7 @@ import javax.net.*; // violation, "wrong order"
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
 
-import org.apache.commons.io.FileUtils; // OK
+import org.apache.commons.io.FileUtils;
 // xdoc section -- end
 public class Example12 {
 }
