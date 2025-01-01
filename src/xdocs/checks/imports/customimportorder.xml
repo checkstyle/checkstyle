@@ -187,13 +187,13 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
           Example:
         </p>
         <source>
-package com.company;
-import org.apache.commons.io.FileUtils; // OK
-import static java.util.*; // OK
-import java.time.*; // OK
-import static java.io.*; // OK
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
+import org.apache.commons.io.FileUtils;
+import static java.util.Collections.*;
+import java.time.*;
+import static java.io.File.separator;
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
         </source>
         <p id="Example2-config">
           To configure the check so that it checks in the order
@@ -213,17 +213,16 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
           Example:
         </p>
         <source>
-package com.company;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
+import static java.util.Collections.*;
 
-import static java.util.*; // OK
+import java.time.*;
+import javax.net.*;
+import static java.io.File.separator; // violation, &quot;wrong order&quot;
 
-import java.time.*; // OK
-import javax.net.*; // OK
-import static java.io.*; // violation as static imports should be in top
-
-import org.apache.commons.io.FileUtils; // OK
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
+import org.apache.commons.io.FileUtils;
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
         </source>
         <p id="Example3-config">
           To configure the check such that only java packages are included in standard java packages
@@ -243,17 +242,17 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
         Example:
         </p>
         <source>
-package com.company;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.util.*; // OK
-import static java.io.*; // OK
+import static java.util.Collections.*;
+import static java.io.File.separator;
 
-import java.time.*; // OK
-import javax.net.*; // violation as it is not included in standard java package group.
+import java.time.*;
+import javax.net.*; // violation, &quot;should be separated&quot;.
 
-import org.apache.commons.io.FileUtils; // violation
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
+import org.apache.commons.io.FileUtils; // violation, &quot;Extra separation&quot;
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
         </source>
         <p id="Example4-config">
           To configure the check to include only &quot;com&quot; packages
@@ -274,17 +273,17 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
           Example:
         </p>
         <source>
-package com.company;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.util.*; // OK
-import static java.io.*; // OK
+import static java.util.Collections.*;
+import static java.io.File.separator;
 
-import java.time.*; // OK
-import javax.net.*; // OK
+import java.time.*;
+import javax.net.*;
 
-import org.apache.commons.io.FileUtils; // violation(should be in end)
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
+import org.apache.commons.io.FileUtils; // violation, &quot;should be placed at the end&quot;
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation, &quot;should be separated&quot;
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
         </source>
         <p id="Example5-config">
           To configure the check to force some packages in special import group:
@@ -304,17 +303,17 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
         Example:
         </p>
         <source>
-package com.company;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.util.*; // OK
-import static java.io.*; // OK
+import static java.util.Collections.*;
+import static java.io.File.separator;
 
-import org.json.JSONObject; // OK
+import org.apache.commons.lang3.StringUtils;
 
 import java.time.*; // OK
 import javax.net.*; // OK
 
-import org.apache.commons.io.FileUtils; // violation
+import org.apache.commons.io.FileUtils; // violation, &quot;wrong order&quot;
         </source>
         <p id="Example6-config">
           To configure the check such that empty line separator between two groups is enabled:
@@ -336,15 +335,15 @@ import org.apache.commons.io.FileUtils; // violation
           Example:
         </p>
         <source>
-package com.company;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.util.*; // OK
-import static java.io.*; // OK
+import static java.util.Collections.*; // OK
+import static java.io.File.separator; // OK
 
-import java.time.*; // OK
-import javax.net.*; // OK
-import org.apache.commons.io.FileUtils; // violation
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation
+import java.time.*;
+import javax.net.*;
+import org.apache.commons.io.FileUtils; // violation, &quot;should be separated&quot;
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation, &quot;should be separated&quot;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
         </source>
         <p id="Example7-config">
@@ -368,10 +367,10 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
           Example:
         </p>
         <source>
-package com.company;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.util.*; // OK
-import static java.io.*; // Violation since it should come before&quot;java.util&quot;
+import static java.util.Collections.*; // OK
+import static java.io.File.separator; // violation, &quot;Wrong lexicographical&quot;
 
 import java.time.*; // OK
 import javax.net.*; // OK
@@ -412,14 +411,14 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
           Example:
         </p>
         <source>
-package com.company;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.util.*; // OK
-import static java.io.*; // Violation since it should come before&quot;java.util&quot;
+import static java.util.Collections.*; // OK
+import static java.io.File.separator; // violation, &quot;Wrong lexicographical&quot;
 
 import java.time.*; // OK
 import javax.net.*; // OK
-import org.apache.commons.io.FileUtils; // Violation should be separated by space
+import org.apache.commons.io.FileUtils; // violation, &quot;should be separated&quot;
 
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
@@ -452,16 +451,16 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
           Example:
         </p>
         <source>
-package com.company;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.io.*; // OK
-import static java.util.*; // OK
+import static java.io.File.separator; // OK
+import static java.util.Collections.*; // OK
 
 import java.time.*; // OK
 import javax.net.*; // OK
 
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // Violation
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // Violation
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation, &quot;wrong order&quot;
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // violation, &quot;wrong order&quot;
 
 import org.apache.commons.io.FileUtils;
         </source>
@@ -499,20 +498,19 @@ import org.apache.commons.io.FileUtils;
           Example:
         </p>
         <source>
-package com.company;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.io.*; // OK
-import static java.util.*; // OK
+import static java.io.File.separator; // OK
+import static java.util.Collections.*; // OK
 
-import java.time.*; // violation should be in standard package group
-                   // below special import
+import java.time.*; // violation, &quot;wrong order&quot;
 
-import javax.net.*; // Violation should be in special import group
+import javax.net.*; // violation, &quot;wrong order&quot;
 
-import org.apache.commons.io.FileUtils; // Violation should be in
-                                       // THIRD PARTY PACKAGE GROUP
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // Violation
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // Violation
+import org.apache.commons.io.FileUtils; // violation, &quot;wrong order&quot;
+
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation, &quot;wrong order&quot;
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // violation, &quot;wrong order&quot;
         </source>
         <p id="Example11-config">
           To configure the check so that it matches default NetBeans formatter configuration
@@ -534,16 +532,16 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // Viola
           Example:
         </p>
         <source>
-package com.company;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.io.*; // OK
-import static java.util.*; // OK
+import static java.io.File.separator; // OK
+import static java.util.Collections.*; // OK
 import java.time.*; // OK
 import javax.net.*; // OK
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
 
-import org.apache.commons.io.FileUtils; // should not be separated by line
+import org.apache.commons.io.FileUtils; // violation, &quot;Extra separation&quot;
         </source>
         <p id="Example12-config">
           To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
@@ -565,15 +563,16 @@ import org.apache.commons.io.FileUtils; // should not be separated by line
           Example:
         </p>
         <source>
-package com.company;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.io.*; // OK
-import static java.util.*; // OK
-import java.time.*; // violation
-import javax.net.*; // violation
+import static java.io.File.separator; // OK
+import static java.util.Collections.*; // OK
+import java.time.*; // violation, &quot;wrong order&quot;
+import javax.net.*; // violation, &quot;wrong order&quot;
 
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
+
 import org.apache.commons.io.FileUtils; // OK
         </source>
         <p id="Example13-config">
@@ -593,10 +592,10 @@ import org.apache.commons.io.FileUtils; // OK
           Example:
         </p>
         <source>
-package com.company;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.io.*; // OK
-import static java.util.*; // OK
+import static java.io.File.separator; // OK
+import static java.util.Collections.*; // OK
 import java.time.*; // OK
 import javax.net.*; // OK
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
@@ -621,29 +620,29 @@ import org.apache.commons.io.FileUtils; // OK
           Example of ASCII order:
         </p>
         <source>
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
+
 import java.awt.Dialog;
 import java.awt.Window;
 import java.awt.color.ColorSpace;
-import java.awt.Frame; // violation here - in ASCII order 'F' should go before 'c',
-                       // as all uppercase come before lowercase letters
+import java.awt.Frame; // violation, &quot;Wrong lexicographical&quot;
         </source>
         <p id="Example15-code">
           To force checking imports sequence such as:
         </p>
         <source>
-package com.puppycrawl.tools.checkstyle.imports;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import com.google.common.annotations.GwtCompatible;
 import com.google.common.annotations.Beta;
 import com.google.common.annotations.VisibleForTesting;
+import org.apache.commons.io.FileUtils;
 
-import org.abego.treelayout.Configuration;
+import static java.util.Collections.emptyList;
 
-import static sun.tools.util.ModifierFilter.ALL_ACCESS;
+import com.google.common.annotations.GwtCompatible; // violation, &quot;wrong order&quot;
 
-import com.google.common.annotations.GwtCompatible; // violation here - should be in the
-                                                    // THIRD_PARTY_PACKAGE group
-import android.*;
+import java.lang.String;
         </source>
         <p id="Example15-config">
           configure as follows:
@@ -654,7 +653,7 @@ import android.*;
     &lt;module name=&quot;CustomImportOrder&quot;&gt;
       &lt;property name=&quot;customImportOrderRules&quot;
         value=&quot;SAME_PACKAGE(3), THIRD_PARTY_PACKAGE, STATIC, SPECIAL_IMPORTS&quot;/&gt;
-      &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^android\.&quot;/&gt;
+      &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^java\.lang\.String$&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
