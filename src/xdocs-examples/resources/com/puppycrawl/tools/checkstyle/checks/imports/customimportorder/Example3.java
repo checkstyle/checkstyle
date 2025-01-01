@@ -9,7 +9,7 @@
   </module>
 </module>
 */
-
+// xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import static java.util.Collections.*;
@@ -21,6 +21,6 @@ import javax.net.*; // violation, "should be separated".
 import org.apache.commons.io.FileUtils; // violation, "Extra separation"
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
-
+// xdoc section -- end
 public class Example3 {
 }

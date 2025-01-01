@@ -21,12 +21,12 @@ import static java.util.Collections.*; // OK
 
 import java.time.*; // violation, "wrong order"
 
-
 import javax.net.*; // violation, "wrong order"
 
 import org.apache.commons.io.FileUtils; // violation, "wrong order"
 
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation, "wrong order"
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // violation, "wrong order"
+// xdoc section -- end
 public class Example10 {
 }

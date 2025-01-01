@@ -17,5 +17,6 @@ import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
 
 import org.apache.commons.io.FileUtils; // violation, "Extra separation"
+// xdoc section -- end
 public class Example11 {
 }

@@ -19,5 +19,6 @@ import static java.io.File.separator; // violation, "wrong order"
 import org.apache.commons.io.FileUtils;
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
+// xdoc section -- end
 public class Example2 {
 }

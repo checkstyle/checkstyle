@@ -13,5 +13,6 @@ import java.time.*;
 import static java.io.File.separator;
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
+// xdoc section -- end
 public class Example1 {
 }
