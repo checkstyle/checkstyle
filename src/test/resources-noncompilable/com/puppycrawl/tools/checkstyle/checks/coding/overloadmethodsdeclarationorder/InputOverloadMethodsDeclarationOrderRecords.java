@@ -18,7 +18,8 @@ public class InputOverloadMethodsDeclarationOrderRecords {
         public void notFoo() {
         }
 
-        public void foo(int i, String s) { // violation
+        // violation below 'All overloaded methods should be placed next to each other.'
+        public void foo(int i, String s) {
         }
 
         public void foo(String s, int i) {
@@ -38,7 +39,8 @@ public class InputOverloadMethodsDeclarationOrderRecords {
 
          }
 
-        public void foo() { // violation
+        // violation below 'All overloaded methods should be placed next to each other.'
+        public void foo() {
         }
 
         public MyRecord2{}
@@ -53,14 +55,15 @@ public class InputOverloadMethodsDeclarationOrderRecords {
         public void notFoo() {
         }
 
-
-        public void foo() { // violation
+        // violation below 'All overloaded methods should be placed next to each other.'
+        public void foo() {
         }
 
         public MyClass() {
         }
 
-        public void foo(int i, String s) { // violation
+        // violation below 'All overloaded methods should be placed next to each other.'
+        public void foo(int i, String s) {
         }
 
         public void foo(String s, int i) {
