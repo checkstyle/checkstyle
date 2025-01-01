@@ -48,7 +48,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example1.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -56,7 +56,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example1.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p>
@@ -79,7 +79,7 @@
         </ul>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example2.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">
@@ -87,7 +87,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example2.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example3-config">
@@ -104,7 +104,7 @@
 
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example3.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">
@@ -112,7 +112,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example3.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
         <p>
@@ -141,7 +141,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example4.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">
@@ -149,7 +149,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example4.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example5-config">
@@ -163,7 +163,7 @@
         </ul>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example5.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example5-code">
@@ -171,7 +171,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example5.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
         <p>
@@ -201,7 +201,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example6.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example6.java"/>
           <param name="type" value="config"/>
         </macro>
 
@@ -210,7 +210,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example6.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example6.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -220,7 +220,7 @@
 
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example7.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example7.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example7-code">
@@ -228,7 +228,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example7.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example7.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -257,7 +257,7 @@ import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example8.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example8.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example8-code">
@@ -265,7 +265,7 @@ import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example8.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example8.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example9-config">
@@ -273,7 +273,7 @@ import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example9.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example9.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example9-code">
@@ -283,9 +283,9 @@ import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
 import static io.netty.handler.codec.http.HttpConstants.COLON;
 import static io.netty.handler.codec.http.HttpHeaders.addHeader;
 import static io.netty.handler.codec.http.HttpHeaders.setHeader;
-import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // violation
+import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // violation, wrong order, should sort alphabetically
 
-public class InputEclipseStaticImportsOrder { }
+public class Example9 { }
         </source>
         <p>
           To configure the check to enforce static import group separation
@@ -295,7 +295,7 @@ public class InputEclipseStaticImportsOrder { }
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example10.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example10.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example10-code">
@@ -303,7 +303,7 @@ public class InputEclipseStaticImportsOrder { }
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example10.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example10.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example11-config">
@@ -312,7 +312,7 @@ public class InputEclipseStaticImportsOrder { }
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example11.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example11.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example11-code">
@@ -320,7 +320,7 @@ public class InputEclipseStaticImportsOrder { }
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example11.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example11.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example12-config">
@@ -332,7 +332,7 @@ public class InputEclipseStaticImportsOrder { }
 
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example12.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example12.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example12-code">
@@ -340,7 +340,7 @@ public class InputEclipseStaticImportsOrder { }
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example12.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example12.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
