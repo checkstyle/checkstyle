@@ -7,6 +7,9 @@
   </module>
 </module>
 */
-
 // xdoc section -- start
+package com.puppycrawl.tools.checkstyle.checks.header.header;
+/* violation on first line 'Missing a header - not enough lines in file' */
+public class Example2 { }
 // xdoc section -- end
+// violation 14 lines above 'Missing a header - not enough lines in file'
