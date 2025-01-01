@@ -310,8 +310,8 @@ import static java.io.File.separator;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.time.*; // OK
-import javax.net.*; // OK
+import java.time.*;
+import javax.net.*;
 
 import org.apache.commons.io.FileUtils; // violation, &quot;wrong order&quot;
         </source>
@@ -337,14 +337,14 @@ import org.apache.commons.io.FileUtils; // violation, &quot;wrong order&quot;
         <source>
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.util.Collections.*; // OK
-import static java.io.File.separator; // OK
+import static java.util.Collections.*;
+import static java.io.File.separator;
 
 import java.time.*;
 import javax.net.*;
 import org.apache.commons.io.FileUtils; // violation, &quot;should be separated&quot;
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation, &quot;should be separated&quot;
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
         </source>
         <p id="Example7-config">
           To configure the check such that import groups are forced to be sorted alphabetically:
@@ -369,14 +369,14 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
         <source>
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.util.Collections.*; // OK
+import static java.util.Collections.*;
 import static java.io.File.separator; // violation, &quot;Wrong lexicographical&quot;
 
-import java.time.*; // OK
-import javax.net.*; // OK
-import org.apache.commons.io.FileUtils; // OK
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
+import java.time.*;
+import javax.net.*;
+import org.apache.commons.io.FileUtils;
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
         </source>
         <p>To configure the check so that it matches default Eclipse formatter configuration
            (tested on Kepler and Luna releases):</p>
@@ -413,15 +413,15 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
         <source>
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.util.Collections.*; // OK
+import static java.util.Collections.*;
 import static java.io.File.separator; // violation, &quot;Wrong lexicographical&quot;
 
-import java.time.*; // OK
-import javax.net.*; // OK
+import java.time.*;
+import javax.net.*;
 import org.apache.commons.io.FileUtils; // violation, &quot;should be separated&quot;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
         </source>
         <p id="Example9-config">
           To configure the check so that it matches default Eclipse formatter configuration
@@ -453,11 +453,11 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
         <source>
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.io.File.separator; // OK
-import static java.util.Collections.*; // OK
+import static java.io.File.separator;
+import static java.util.Collections.*;
 
-import java.time.*; // OK
-import javax.net.*; // OK
+import java.time.*;
+import javax.net.*;
 
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation, &quot;wrong order&quot;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // violation, &quot;wrong order&quot;
@@ -500,8 +500,8 @@ import org.apache.commons.io.FileUtils;
         <source>
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.io.File.separator; // OK
-import static java.util.Collections.*; // OK
+import static java.io.File.separator;
+import static java.util.Collections.*;
 
 import java.time.*; // violation, &quot;wrong order&quot;
 
@@ -534,12 +534,12 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // viola
         <source>
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.io.File.separator; // OK
-import static java.util.Collections.*; // OK
-import java.time.*; // OK
-import javax.net.*; // OK
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
+import static java.io.File.separator;
+import static java.util.Collections.*;
+import java.time.*;
+import javax.net.*;
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
 
 import org.apache.commons.io.FileUtils; // violation, &quot;Extra separation&quot;
         </source>
@@ -565,15 +565,15 @@ import org.apache.commons.io.FileUtils; // violation, &quot;Extra separation&quo
         <source>
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.io.File.separator; // OK
-import static java.util.Collections.*; // OK
+import static java.io.File.separator;
+import static java.util.Collections.*;
 import java.time.*; // violation, &quot;wrong order&quot;
 import javax.net.*; // violation, &quot;wrong order&quot;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
 
-import org.apache.commons.io.FileUtils; // OK
+import org.apache.commons.io.FileUtils;
         </source>
         <p id="Example13-config">
           Also, this check can be configured to force empty line separator between
@@ -594,13 +594,13 @@ import org.apache.commons.io.FileUtils; // OK
         <source>
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import static java.io.File.separator; // OK
-import static java.util.Collections.*; // OK
-import java.time.*; // OK
-import javax.net.*; // OK
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
-import org.apache.commons.io.FileUtils; // OK
+import static java.io.File.separator;
+import static java.util.Collections.*;
+import java.time.*;
+import javax.net.*;
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
+import org.apache.commons.io.FileUtils;
         </source>
         <p id="Example14-config">
           It is possible to enforce <a href="https://en.wikipedia.org/wiki/ASCII#Order">
