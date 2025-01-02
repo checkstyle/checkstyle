@@ -1356,7 +1356,7 @@
         <artifactId>maven-site-plugin</artifactId>
         <version>${maven.site.plugin.version}</version>
         <configuration>
-          <xdocDirectory>${basedir}/src/xdocs</xdocDirectory>
+          <xdocDirectory>src/site/xdoc</xdocDirectory>
           <validate>true</validate>
         </configuration>
       </plugin>
