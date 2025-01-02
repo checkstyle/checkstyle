@@ -62,7 +62,7 @@ compare_results() {
   local EXECUTION_TIME_SECONDS=$1
   if [ -z "$EXECUTION_TIME_SECONDS" ]; then
         echo "Missing EXECUTION_TIME_SECONDS as an argument."
-        exit 1
+        return 1
     fi
   # Calculate absolute percentage difference for execution time
   local DEVIATION_IN_SECONDS=$(echo "scale=4; \
@@ -76,11 +76,11 @@ compare_results() {
   if (( $(echo "$DEVIATION_IN_SECONDS > $THRESHOLD_PERCENTAGE" | bc -l) )); then
     echo "Difference exceeds the maximum allowed difference (${DEVIATION_IN_SECONDS}% \
      > ${THRESHOLD_PERCENTAGE}%)!"
-    exit 1
+    return 1
   else
     echo "Difference is within the maximum allowed difference (${DEVIATION_IN_SECONDS}% \
      <= ${THRESHOLD_PERCENTAGE}%)."
-    exit 0
+    return 0
   fi
 }
 
