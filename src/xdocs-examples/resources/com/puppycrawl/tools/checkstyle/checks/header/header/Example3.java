@@ -6,8 +6,9 @@
   </module>
 </module>
 */
-
 // xdoc section -- start
-// Copyright (C) 2004 MyCompany
-// All rights reserved
+package com.puppycrawl.tools.checkstyle.checks.header.header;
+/* violation on first line 'Line does not match expected header' */
+public class Example3 { }
 // xdoc section -- end
+// violation 13 lines above 'Line does not match expected header'
