@@ -92,7 +92,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class XdocsPagesTest {
     private static final Path SITE_PATH = Paths.get("src/site/site.xml");
 
-    private static final Path AVAILABLE_CHECKS_PATH = Paths.get("src/xdocs/checks.xml");
+    private static final Path AVAILABLE_CHECKS_PATH = Paths.get("src/site/xdoc/checks.xml");
     private static final String LINK_TEMPLATE =
             "(?s).*<a href=\"[^\"]+#%1$s\">([\\r\\n\\s])*%1$s([\\r\\n\\s])*</a>.*";
 
@@ -229,6 +229,30 @@ public class XdocsPagesTest {
     private static final Set<String> GOOGLE_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigGoogleStyleModules());
 
+    private static final Set<String> NON_MODULE_XDOC = Set.of(
+        "config_system_properties.xml",
+        "sponsoring.xml",
+        "consulting.xml",
+        "index.xml",
+        "extending.xml",
+        "contributing.xml",
+        "running.xml",
+        "checks.xml",
+        "property_types.xml",
+        "google_style.xml",
+        "sun_style.xml",
+        "style_configs.xml",
+        "writingfilters.xml",
+        "writingfilefilters.xml",
+        "eclipse.xml",
+        "netbeans.xml",
+        "idea.xml",
+        "beginning_development.xml",
+        "writingchecks.xml",
+        "config.xml",
+        "report_issue.xml"
+    );
+
     @TempDir
     private static File temporaryFolder;
 
@@ -276,11 +300,14 @@ public class XdocsPagesTest {
             final String expectedFile = path.toString()
                     .replace(".xml", ".html")
                     .replaceAll("\\\\", "/")
-                    .replaceAll("src[\\\\/]xdocs[\\\\/]", "");
+                    .replaceAll("src[\\\\/]site[\\\\/]xdoc[\\\\/]", "");
             final boolean isConfigHtmlFile = Pattern.matches("config_[a-z]+.html", expectedFile);
             final boolean isChecksIndexHtmlFile = "checks/index.html".equals(expectedFile);
+            final boolean isOldReleaseNotes = path.toString().contains("releasenotes_");
+            final boolean isInnerPage = "report_issue.html".equals(expectedFile);
 
-            if (!isConfigHtmlFile && !isChecksIndexHtmlFile) {
+            if (!isConfigHtmlFile && !isChecksIndexHtmlFile
+                && !isOldReleaseNotes && !isInnerPage) {
                 final String expectedLink = String.format(Locale.ROOT, "href=\"%s\"", expectedFile);
                 assertWithMessage("Expected to find link to '" + expectedLink + "' in " + SITE_PATH)
                         .that(siteContent)
@@ -296,9 +323,9 @@ public class XdocsPagesTest {
 
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
-            if ("config_system_properties.xml".equals(fileName)
-                    || path.toString().contains("filefilters")
-                    || path.toString().contains("filters")) {
+            if (isNonModulePage(fileName)
+                || path.toString().contains("filefilters")
+                || path.toString().contains("filters")) {
                 continue;
             }
 
@@ -631,9 +658,7 @@ public class XdocsPagesTest {
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
 
-            if ("config_system_properties.xml".equals(fileName)
-                    || "index.xml".equals(fileName)
-                    || Pattern.matches("config_[a-z]+.xml", fileName)) {
+            if (isNonModulePage(fileName)) {
                 continue;
             }
 
@@ -670,6 +695,12 @@ public class XdocsPagesTest {
                 lastSectionName = sectionName;
             }
         }
+    }
+
+    public static boolean isNonModulePage(String fileName) {
+        return NON_MODULE_XDOC.contains(fileName)
+            || fileName.startsWith("releasenotes")
+            || Pattern.matches("config_[a-z]+.xml", fileName);
     }
 
     @Test
