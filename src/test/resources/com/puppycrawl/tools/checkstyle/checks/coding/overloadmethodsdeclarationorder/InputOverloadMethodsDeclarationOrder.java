@@ -29,7 +29,8 @@ class InputOverloadMethodsDeclarationOrder
     }
 
     //violation: because overloads never split
-    public void overloadMethod(String s, Boolean b, int i) // violation
+    // violation below 'All overloaded methods should be placed next to each other.'
+    public void overloadMethod(String s, Boolean b, int i)
     {
         //some foo code
     }
@@ -57,14 +58,15 @@ class InputOverloadMethodsDeclarationOrder
         }
 
         //violation: because overloads never split
-        public void overloadMethod(String s, Boolean b, int i) // violation
+        // violation below 'All overloaded methods should be placed next to each other.'
+        public void overloadMethod(String s, Boolean b, int i)
         {
             //some foo code
         };
 
         public void overloadMethod(double d)
         {
-          // violation 2 lines above
+          // violation 2 lines above 'All overloaded methods should be placed next to each other.'
           /*
            * Explanation of violation:
            * There is a semicolon at the end of the previous method
@@ -80,7 +82,9 @@ interface Fooable
     public abstract void foo(int i);
     public abstract void foo(String s);
     public abstract void noFoo();
-    public abstract void foo(String s, Boolean b, int i); // violation
+
+    // violation below 'All overloaded methods should be placed next to each other.'
+    public abstract void foo(String s, Boolean b, int i);
 }
 
 enum FooType {
@@ -124,7 +128,8 @@ enum FooType {
     }
 
     //violation: because overloads never split
-    public void overloadMethod(String s, Boolean b, int i) // violation
+    // violation below 'All overloaded methods should be placed next to each other.'
+    public void overloadMethod(String s, Boolean b, int i)
     {
         //some foo code
     }
@@ -135,7 +140,8 @@ enum FooType {
 
     private interface Testing {}
 
-    void test(int x) {} // violation
+    // violation below 'All overloaded methods should be placed next to each other.'
+    void test(int x) {}
 
     private class Inner {
         void test() {}
@@ -146,10 +152,11 @@ enum FooType {
 
         String str;
 
-        void test(int x) {} // violation
+        // violation below 'All overloaded methods should be placed next to each other.'
+        void test(int x) {}
     }
-
-    void test(double d) {} // violation
+    // violation below 'All overloaded methods should be placed next to each other.'
+    void test(double d) {}
 }
 
 enum Foo2 {
