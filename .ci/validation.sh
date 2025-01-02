@@ -405,7 +405,7 @@ verify-regexp-id)
   do
     a=$(grep -c "<module name=\"Regexp.*" "$FILE") || a=0
     b=$(grep "<module name=\"Regexp" -A 1 "$FILE" | grep -c "<property name=\"id\"") || b=0
-    if [ ${a} != ${b} ]
+    if [ "${a}" != "${b}" ]
     then
       echo "Error: $FILE has Regexp modules without id property immediately after module name."
       fail=1
