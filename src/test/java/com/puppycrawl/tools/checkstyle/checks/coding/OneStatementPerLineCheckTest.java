@@ -115,8 +115,8 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "39:4: " + getCheckMessage(MSG_KEY),
             "46:54: " + getCheckMessage(MSG_KEY),
-            "51:54: " + getCheckMessage(MSG_KEY),
-            "51:70: " + getCheckMessage(MSG_KEY),
+            "48:54: " + getCheckMessage(MSG_KEY),
+            "48:70: " + getCheckMessage(MSG_KEY),
             "54:46: " + getCheckMessage(MSG_KEY),
             "60:81: " + getCheckMessage(MSG_KEY),
         };

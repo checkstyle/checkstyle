@@ -45,10 +45,10 @@ public class InputOneStatementPerLine {
     // violation below 'Only one statement per line allowed.'
     ints.stream().map( t -> { int m = t * 2; return m; } );
 
-    // 2 violations 3 lines below:
-    // 'Only one statement per line allowed.'
-    // 'Only one statement per line allowed.'
     ints.stream().map( t -> { int m = t * 2; return m; } ); int i = 3;
+    // 2 violations above:
+    // 'Only one statement per line allowed.'
+    // 'Only one statement per line allowed.'
 
     // violation below 'Only one statement per line allowed.'
     ints.stream().map( t -> t * 2); int k = 4;
