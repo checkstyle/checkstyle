@@ -1099,6 +1099,24 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testTextBlockLiteral() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = {
+            "18:1: " + getCheckMessage(MSG_ERROR, "\"\"\"", 0, 8),
+            "25:17: " + getCheckMessage(MSG_ERROR, "\"\"\"", 16, 12),
+            "36:1: " + getCheckMessage(MSG_ERROR, "\"\"\"", 0, 12),
+            "43:1: " + getCheckMessage(MSG_ERROR, "\"\"\"", 0, 12),
+            "49:9: " + getCheckMessage(MSG_ERROR, "\"\"\"", 8, 12),
+            "68:15: " + getCheckMessage(MSG_ERROR, "\"\"\"", 14, 12),
+        };
+        verifyWarns(checkConfig, getNonCompilablePath("InputIndentationTextBlock.java"), expected);
+    }
+
+    @Test
     public void testValidNewKeywordWithForceStrictCondition() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
