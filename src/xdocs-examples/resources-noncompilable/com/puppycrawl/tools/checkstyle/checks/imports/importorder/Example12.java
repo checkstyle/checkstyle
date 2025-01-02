@@ -8,12 +8,14 @@
   </module>
 </module>
 */
+//non-compiled with javac: Compilable with Java11
+package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 // xdoc section -- start
 import static java.io.File.listRoots;   // OK
 import static javax.swing.WindowConstants.*; // OK
-import static java.io.File.createTempFile; // violation should be before javax
+import static java.io.File.createTempFile; // violation, should be before javax
 import static com.puppycrawl.tools.checkstyle;  // OK
-
-public class SomeClass { }
 // xdoc section -- end
+
+public class Example12 { }

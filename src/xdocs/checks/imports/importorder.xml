@@ -128,16 +128,16 @@
 import java.io.IOException;
 import java.net.URL;
 
-import java.io.IOException; // violation, extra separation before import
-                            // and wrong order, comes before 'java.net.URL'.
+import java.io.IOException;
+// 2 violations above:
+//  'Extra separation in import group before 'java.io.IOException''
+//  'Wrong order for 'java.io.IOException' import.'
 import javax.net.ssl.TrustManager; // violation, extra separation due to above comment
 import javax.swing.JComponent;
 import org.apache.http.conn.ClientConnectionManager; // OK
 import java.util.Set; // violation, wrong order, 'java' should not come after 'org' imports
 import com.neurologic.http.HttpClient; // violation, wrong order, 'com' imports comes at top
 import com.neurologic.http.impl.ApacheHttpClient; // OK
-
-public class SomeClass { }
         </source>
         <p>
           To configure the check so that it matches default Eclipse formatter configuration
@@ -186,8 +186,6 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager; // violation, groups should not be separated internally
 
 import org.apache.http.conn.ClientConnectionManager;
-
-public class SomeClass { }
         </source>
         <p id="Example3-config">
           To configure the check so that it matches default Eclipse formatter configuration
@@ -234,8 +232,6 @@ import org.linux.apache.server.SoapServer; // OK
 
 import com.neurologic.http.HttpClient; // OK
 import com.neurologic.http.impl.ApacheHttpClient; // OK
-
-public class SomeClass { }
         </source>
         <p>
           To configure the check so that it matches default IntelliJ IDEA formatter
@@ -285,13 +281,11 @@ public class SomeClass { }
 import com.neurologic.http.impl.ApacheHttpClient; // OK
 import static java.awt.Button.A;
 import javax.swing.JComponent; // violation, wrong order, caused by above static import
-                               // all static imports comes at bottom
+// all static imports comes at bottom
 import java.net.URL; // violation, extra separation in import group
 import java.security.KeyManagementException;
 import javax.swing.JComponent; // violation, wrong order, 'javax' should be above 'java' imports
 import com.neurologic.http.HttpClient; // violation, wrong order, 'com' imports should be at top
-
-public class TestClass { }
         </source>
         <p id="Example5-config">
           To configure the check so that it matches default NetBeans formatter configuration
@@ -318,10 +312,9 @@ public class TestClass { }
 import static java.io.File.createTempFile;
 import java.lang.Math.sqrt;
 
-import javax.swing.JComponent; // violation, extra separation in import group
+import javax.swing.JComponent; // violation '...separation in import group...'
 import static javax.windowConstants.*; // OK
-                                    // all static imports are processed like non static imports.
-public class SomeClass { }
+// all static imports are processed like non static imports.
         </source>
         <p>
           Group descriptions enclosed in slashes are interpreted as regular expressions.
@@ -370,8 +363,6 @@ import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphab
 import java.util.Set; // violation, extra separation in import group
 import static java.lang.Math.abs; // violation, wrong order, all static imports comes at 'top'
 import org.abego.*;
-
-public class SomeClass { }
         </source>
 
         <p id="Example7-config">
@@ -397,8 +388,6 @@ import static org.abego.treelayout.Configuration.AlignmentInLevel; // Group 1
 import static java.lang.Math.abs; // Group 2
 import static java.lang.String.format; // Group 2
 import static com.google.common.primitives.Doubles.BYTES; // Group &quot;everything else&quot;
-
-public class SomeClass { }
         </source>
 
         <p>
@@ -445,8 +434,6 @@ import static io.netty.handler.codec.http.HttpConstants.COLON;
 import static io.netty.handler.codec.http.HttpHeaders.addHeader;
 import static io.netty.handler.codec.http.HttpHeaders.setHeader;
 import static io.netty.handler.codec.http.HttpHeaders.Names.DATE;
-
-public class InputEclipseStaticImportsOrder { }
         </source>
         <p id="Example9-config">
           Example for <code>useContainerOrderingForStatic=false</code>
@@ -471,9 +458,9 @@ public class InputEclipseStaticImportsOrder { }
 import static io.netty.handler.codec.http.HttpConstants.COLON;
 import static io.netty.handler.codec.http.HttpHeaders.addHeader;
 import static io.netty.handler.codec.http.HttpHeaders.setHeader;
-import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // violation
+import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // violation, wrong order, should sort alphabetically
 
-public class InputEclipseStaticImportsOrder { }
+public class Example9 { }
         </source>
         <p>
           To configure the check to enforce static import group separation
@@ -502,8 +489,6 @@ import static javax.swing.JComponent; // violation, should be separated from pre
 import static javax.WindowConstants.*; // OK
 
 import java.net.URL;
-
-public class SomeClass { }
         </source>
         <p id="Example11-config">
           To configure the Check with groups of static imports when staticGroups=&quot;&quot;
@@ -527,8 +512,6 @@ import static java.io.File.listRoots;   // OK
 import static javax.swing.WindowConstants.*; // OK
 import static java.io.File.createTempFile; // OK
 import static com.puppycrawl.tools.checkstyle;  // OK
-
-public class SomeClass { }
         </source>
         <p id="Example12-config">
           To configure the Check with groups of static imports when
@@ -553,10 +536,8 @@ public class SomeClass { }
         <source>
 import static java.io.File.listRoots;   // OK
 import static javax.swing.WindowConstants.*; // OK
-import static java.io.File.createTempFile; // violation should be before javax
+import static java.io.File.createTempFile; // violation, should be before javax
 import static com.puppycrawl.tools.checkstyle;  // OK
-
-public class SomeClass { }
         </source>
       </subsection>
 
