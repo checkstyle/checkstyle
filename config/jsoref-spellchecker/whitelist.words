@@ -418,7 +418,7 @@ FDF
 FEF
 fenum
 ffd
-fff
+FFF
 FFFD
 FFFF
 Fgoogle
@@ -453,6 +453,7 @@ Fjava
 Fjavadoc
 Flas
 flattr
+fluido
 Fmain
 Fmessages
 Fmetrics
@@ -876,7 +877,6 @@ NAMEFILE
 nameofaffectedcheck
 namespace
 Nanos
-navcolumn
 nbactions
 nbia
 nbsp
@@ -946,7 +946,6 @@ nowhitespaceafter
 nowhitespacebefore
 nowhitespacebeforecasedefaultcolon
 nowildcard
-nowrap
 npath
 npathcomplexity
 npe
@@ -1145,7 +1144,6 @@ revwalk
 rfc
 rfe
 Rgb
-rgba
 rhs
 rhysd
 rickgiles
