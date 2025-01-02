@@ -209,11 +209,11 @@
   </module>
   <module name="RegexpOnFilename">
     <property name="id" value="xmlFileLocation"/>
-    <property name="folderPattern" value="[\\/]src[\\/]xdocs[\\/]"/>
+    <property name="folderPattern" value="[\\/]src[\\/]site[\\/]xdocs[\\/]"/>
     <property name="fileNamePattern" value="\.(xml)|(vm)$"/>
     <property name="match" value="false"/>
     <message key="regexp.filename.mismatch"
-      value="All files in the ''src/xdocs'' folder should have the ''xml'' or ''vm'' extension."/>
+      value="All files in the ''xdoc'' folder should have the ''xml'' or ''vm'' extension."/>
   </module>
   <module name="RegexpOnFilename">
     <property name="id" value="testFileLocation"/>
