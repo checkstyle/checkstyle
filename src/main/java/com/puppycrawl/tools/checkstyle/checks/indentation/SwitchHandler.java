@@ -76,6 +76,23 @@ public class SwitchHandler extends BlockParentHandler {
             false);
     }
 
+    /**
+     * Compute the indentation amount for this handler.
+     *
+     * @return the expected indentation amount
+     */
+    @Override
+    protected IndentLevel getIndentImpl() {
+        final IndentLevel thisIndent;
+        if (getParent() instanceof IfHandler) {
+            thisIndent = getParent().getIndent();
+        }
+        else {
+            thisIndent = getParent().getSuggestedChildIndent(this);
+        }
+        return thisIndent;
+    }
+
     @Override
     public void checkIndentation() {
         checkSwitchExpr();
