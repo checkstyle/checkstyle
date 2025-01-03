@@ -16,8 +16,8 @@ package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import static java.io.File.separator;
 import static java.util.Collections.*;
-import java.time.*; // violation, "wrong order"
-import javax.net.*; // violation, "wrong order"
+import java.time.*; // violation, 'wrong order'
+import javax.net.*; // violation, 'wrong order'
 
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;

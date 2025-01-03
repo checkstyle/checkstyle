@@ -22,8 +22,8 @@ import static java.util.Collections.*;
 import java.time.*;
 import javax.net.*;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation, "wrong order"
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // violation, "wrong order"
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation, 'wrong order'
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // violation, 'wrong order'
 
 import org.apache.commons.io.FileUtils;
 // xdoc section -- end

@@ -16,9 +16,9 @@ import static java.util.Collections.*;
 import static java.io.File.separator;
 
 import java.time.*;
-import javax.net.*; // violation, "should be separated".
+import javax.net.*; // violation, 'should be separated'
 
-import org.apache.commons.io.FileUtils; // violation, "Extra separation"
+import org.apache.commons.io.FileUtils; // violation, 'Extra separation'
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
 // xdoc section -- end

@@ -18,8 +18,8 @@ import static java.io.File.separator;
 import java.time.*;
 import javax.net.*;
 
-import org.apache.commons.io.FileUtils; // violation, "should be placed at the end"
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation, "should be separated"
+import org.apache.commons.io.FileUtils; // violation, 'should be placed at the end'
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation, 'should be separated'
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
 // xdoc section -- end
 public class Example4 {

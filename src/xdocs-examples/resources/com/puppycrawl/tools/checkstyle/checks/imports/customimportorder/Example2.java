@@ -14,7 +14,7 @@ import static java.util.Collections.*;
 
 import java.time.*;
 import javax.net.*;
-import static java.io.File.separator; // violation, "wrong order"
+import static java.io.File.separator; // violation, 'wrong order'
 
 import org.apache.commons.io.FileUtils;
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;

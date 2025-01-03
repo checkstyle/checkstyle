@@ -20,7 +20,7 @@ import org.apache.commons.io.FileUtils;
 
 import static java.util.Collections.emptyList;
 
-import com.google.common.annotations.GwtCompatible; // violation, "wrong order"
+import com.google.common.annotations.GwtCompatible; // violation, 'wrong order'
 
 import java.lang.String;
 // xdoc section -- end
