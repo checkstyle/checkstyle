@@ -90,7 +90,7 @@ public final class MetadataGeneratorUtil {
             throws IOException {
         final List<File> validFiles = new ArrayList<>();
         for (String folder : moduleFolders) {
-            try (Stream<Path> files = Files.walk(Paths.get(path + "/" + folder))) {
+            try (Stream<Path> files = Files.walk(Path.of(path + "/" + folder))) {
                 validFiles.addAll(
                         files.map(Path::toFile)
                         .filter(file -> {

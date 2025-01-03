@@ -539,7 +539,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             if (!initialValue.startsWith("/dtds")) {
                 value = currentXdocPath
                         .getParent()
-                        .resolve(Paths.get(value))
+                        .resolve(Path.of(value))
                         .normalize()
                         .toString()
                         .replaceAll("src[\\\\/]site[\\\\/]xdoc[\\\\/]", "")

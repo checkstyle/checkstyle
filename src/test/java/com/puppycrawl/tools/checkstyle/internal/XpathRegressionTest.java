@@ -136,8 +136,8 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     @BeforeEach
     public void setUp() throws Exception {
-        javaDir = Paths.get("src/it/java/" + getPackageLocation());
-        inputDir = Paths.get(getPath(""));
+        javaDir = Path.of("src/it/java/" + getPackageLocation());
+        inputDir = Path.of(getPath(""));
     }
 
     @Override

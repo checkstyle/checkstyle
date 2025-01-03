@@ -342,7 +342,7 @@ public final class InlineConfigParser {
                                                 boolean setFilteredViolations) throws Exception {
         final TestInputConfiguration.Builder testInputConfigBuilder =
                 new TestInputConfiguration.Builder();
-        final Path filePath = Paths.get(inputFilePath);
+        final Path filePath = Path.of(inputFilePath);
         final List<String> lines = readFile(filePath);
         try {
             setModules(testInputConfigBuilder, inputFilePath, lines);
@@ -364,7 +364,7 @@ public final class InlineConfigParser {
             throws Exception {
         final TestInputConfiguration.Builder testInputConfigBuilder =
                 new TestInputConfiguration.Builder();
-        final Path filePath = Paths.get(inputFilePath);
+        final Path filePath = Path.of(inputFilePath);
         final List<String> lines = readFile(filePath);
 
         try {
@@ -393,7 +393,7 @@ public final class InlineConfigParser {
     public static TestInputConfiguration parseWithXmlHeader(String inputFilePath)
             throws Exception {
 
-        final Path filePath = Paths.get(inputFilePath);
+        final Path filePath = Path.of(inputFilePath);
         final List<String> lines = readFile(filePath);
         if (!checkIsXmlConfig(lines)) {
             throw new CheckstyleException("Config cannot be parsed as xml.");

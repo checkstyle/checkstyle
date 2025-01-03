@@ -123,7 +123,7 @@ public class CliOptionsXdocsSyncTest {
     }
 
     private static NodeList getSectionsFromXdoc(String xdocPath) throws Exception {
-        final Path path = Paths.get(xdocPath);
+        final Path path = Path.of(xdocPath);
         final String input = Files.readString(path);
         final Document document = XmlUtil.getRawXml(path.getFileName().toString(), input, input);
         return document.getElementsByTagName("section");
