@@ -553,6 +553,13 @@
               Checks that Javadocs are located at the correct position.</td>
           </tr>
           <tr>
+            <td><a href="checks/metrics/javancss.html#JavaNCSS">JavaNCSS</a></td>
+            <td>
+              Determines complexity of methods, classes and files by counting
+              the Non Commenting Source Statements (NCSS).
+            </td>
+          </tr>
+          <tr>
             <td><a href="checks/javadoc/javadocblocktaglocation.html#JavadocBlockTagLocation">
               JavadocBlockTagLocation</a></td>
             <td>Checks that a javadoc block tag appears only at the beginning of a line,
@@ -637,13 +644,6 @@
               </a>
             </td>
             <td>Checks that a variable has a Javadoc comment.</td>
-          </tr>
-          <tr>
-            <td><a href="checks/metrics/javancss.html#JavaNCSS">JavaNCSS</a></td>
-            <td>
-              Determines complexity of methods, classes and files by counting
-              the Non Commenting Source Statements (NCSS).
-            </td>
           </tr>
           <tr>
             <td>
@@ -785,15 +785,6 @@
           </tr>
           <tr>
             <td>
-              <a href="checks/annotation/missingoverride.html#MissingOverride">MissingOverride</a>
-            </td>
-            <td>
-              Verifies that the <code>@Override</code> annotation is present
-              when the <code>@inheritDoc</code> javadoc tag is present.
-            </td>
-          </tr>
-          <tr>
-            <td>
               <a href="checks/coding/missingnullcaseinswitch.html#MissingNullCaseInSwitch">
                 MissingNullCaseInSwitch
               </a>
@@ -801,6 +792,15 @@
             <td>
               Checks that a given switch statement or expression that use a reference type
               in its selector expression has a <code>null</code> case label.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/annotation/missingoverride.html#MissingOverride">MissingOverride</a>
+            </td>
+            <td>
+              Verifies that the <code>@Override</code> annotation is present
+              when the <code>@inheritDoc</code> javadoc tag is present.
             </td>
           </tr>
           <tr>
@@ -857,6 +857,14 @@
             </td>
           </tr>
           <tr>
+            <td>
+              <a href="checks/metrics/npathcomplexity.html#NPathComplexity">
+                NPathComplexity
+              </a>
+            </td>
+            <td>Checks the NPATH complexity against a specified limit.</td>
+          </tr>
+          <tr>
             <td><a href="checks/blocks/needbraces.html#NeedBraces">NeedBraces</a></td>
             <td>
             Checks for braces around code blocks.</td>
@@ -904,6 +912,14 @@
             </td>
           </tr>
           <tr>
+            <td>
+              <a href="checks/coding/noenumtrailingcomma.html#NoEnumTrailingComma">
+                NoEnumTrailingComma
+              </a>
+            </td>
+            <td>Checks that enum definition does not contain a trailing comma.</td>
+          </tr>
+          <tr>
             <td><a href="checks/coding/nofinalizer.html#NoFinalizer">NoFinalizer</a></td>
             <td>Checks that there is no method <code>finalize</code> with zero parameters.</td>
           </tr>
@@ -911,23 +927,6 @@
             <td><a href="checks/whitespace/nolinewrap.html#NoLineWrap">NoLineWrap</a></td>
             <td>
             Checks that chosen statements are not line-wrapped.</td>
-          </tr>
-          <tr>
-            <td>
-              <a href="checks/javadoc/nonemptyatclausedescription.html#NonEmptyAtclauseDescription">
-                NonEmptyAtclauseDescription
-              </a>
-            </td>
-            <td>
-            Checks that the block tag is followed by description.</td>
-          </tr>
-          <tr>
-            <td>
-              <a href="checks/coding/noenumtrailingcomma.html#NoEnumTrailingComma">
-                NoEnumTrailingComma
-              </a>
-            </td>
-            <td>Checks that enum definition does not contain a trailing comma.</td>
           </tr>
           <tr>
             <td>
@@ -959,11 +958,12 @@
           </tr>
           <tr>
             <td>
-              <a href="checks/metrics/npathcomplexity.html#NPathComplexity">
-                NPathComplexity
+              <a href="checks/javadoc/nonemptyatclausedescription.html#NonEmptyAtclauseDescription">
+                NonEmptyAtclauseDescription
               </a>
             </td>
-            <td>Checks the NPATH complexity against a specified limit.</td>
+            <td>
+            Checks that the block tag is followed by description.</td>
           </tr>
           <tr>
             <td>
@@ -1079,14 +1079,6 @@
           </tr>
           <tr>
             <td>
-              <a href="checks/sizes/recordcomponentnumber.html#RecordComponentNumber">
-                RecordComponentNumber
-              </a>
-            </td>
-            <td>Checks the number of record components in the header of a record definition.</td>
-          </tr>
-          <tr>
-            <td>
               <a href="checks/naming/recordcomponentname.html#RecordComponentName">
                 RecordComponentName
               </a>
@@ -1094,6 +1086,14 @@
             <td>
               Checks that record component names conform to a specified pattern.
             </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/sizes/recordcomponentnumber.html#RecordComponentNumber">
+                RecordComponentNumber
+              </a>
+            </td>
+            <td>Checks the number of record components in the header of a record definition.</td>
           </tr>
           <tr>
             <td>
@@ -1169,6 +1169,16 @@
             <td>Checks that a specified pattern matches a single-line in Java files.</td>
           </tr>
           <tr>
+            <td>
+              <a href="checks/javadoc/requireemptylinebeforeblocktaggroup.html#RequireEmptyLineBeforeBlockTagGroup">
+                RequireEmptyLineBeforeBlockTagGroup
+              </a>
+            </td>
+            <td>
+              Checks that one blank line before the block tag if it is present in Javadoc.
+            </td>
+          </tr>
+          <tr>
             <td><a href="checks/coding/requirethis.html#RequireThis">RequireThis</a></td>
             <td>
               Checks that references to instance variables and methods of the present
@@ -1187,6 +1197,14 @@
           <tr>
             <td><a href="checks/blocks/rightcurly.html#RightCurly">RightCurly</a></td>
             <td>Checks the placement of right curly braces (<code>'}'</code>) for code blocks.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/design/sealedshouldhavepermitslist.html#SealedShouldHavePermitsList">SealedShouldHavePermitsList</a>
+            </td>
+            <td>
+              Checks that sealed classes and interfaces have a permits list.
+            </td>
           </tr>
           <tr>
             <td><a href="checks/whitespace/separatorwrap.html#SeparatorWrap">SeparatorWrap</a></td>
@@ -1215,16 +1233,6 @@
             <td>
               Checks that a Javadoc block can fit in a single-line and doesn't contain
               block tags.</td>
-          </tr>
-          <tr>
-            <td>
-              <a href="checks/javadoc/requireemptylinebeforeblocktaggroup.html#RequireEmptyLineBeforeBlockTagGroup">
-                RequireEmptyLineBeforeBlockTagGroup
-              </a>
-            </td>
-            <td>
-              Checks that one blank line before the block tag if it is present in Javadoc.
-            </td>
           </tr>
           <tr>
             <td>
@@ -1284,14 +1292,6 @@
             </td>
           </tr>
           <tr>
-            <td>
-              <a href="checks/design/sealedshouldhavepermitslist.html#SealedShouldHavePermitsList">SealedShouldHavePermitsList</a>
-            </td>
-            <td>
-            Checks that sealed classes and interfaces have a permits list.
-            </td>
-          </tr>
-          <tr>
             <td><a href="checks/design/throwscount.html#ThrowsCount">ThrowsCount</a></td>
             <td>
             Restricts throws statements to a specified count.</td>
@@ -1312,17 +1312,17 @@
               for consistency regarding their keys.</td>
           </tr>
           <tr>
+            <td><a href="checks/naming/typename.html#TypeName">TypeName</a></td>
+            <td>
+              Checks that type names conform to a specified pattern.</td>
+          </tr>
+          <tr>
             <td>
               <a href="checks/whitespace/typecastparenpad.html#TypecastParenPad">
                 TypecastParenPad
               </a>
             </td>
             <td>Checks the policy on the padding of parentheses for typecasts.</td>
-          </tr>
-          <tr>
-            <td><a href="checks/naming/typename.html#TypeName">TypeName</a></td>
-            <td>
-              Checks that type names conform to a specified pattern.</td>
           </tr>
           <tr>
             <td><a href="checks/misc/uncommentedmain.html#UncommentedMain">UncommentedMain</a></td>
@@ -1347,6 +1347,22 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/unnecessarysemicolonafteroutertypedeclaration.html#UnnecessarySemicolonAfterOuterTypeDeclaration">
+                UnnecessarySemicolonAfterOuterTypeDeclaration
+              </a>
+            </td>
+            <td>Checks if unnecessary semicolon is used after type declaration.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/unnecessarysemicolonaftertypememberdeclaration.html#UnnecessarySemicolonAfterTypeMemberDeclaration">
+                UnnecessarySemicolonAfterTypeMemberDeclaration
+              </a>
+            </td>
+            <td>Checks if unnecessary semicolon is used after type member declaration.</td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/unnecessarysemicoloninenumeration.html#UnnecessarySemicolonInEnumeration">
                 UnnecessarySemicolonInEnumeration
               </a>
@@ -1363,31 +1379,6 @@
           </tr>
           <tr>
             <td>
-              <a href="checks/coding/unnecessarysemicolonafteroutertypedeclaration.html#UnnecessarySemicolonAfterOuterTypeDeclaration">
-                UnnecessarySemicolonAfterOuterTypeDeclaration
-              </a>
-            </td>
-            <td>Checks if unnecessary semicolon is used after type declaration.</td>
-          </tr>
-          <tr>
-            <td>
-              <a href="checks/coding/unnecessarysemicolonaftertypememberdeclaration.html#UnnecessarySemicolonAfterTypeMemberDeclaration">
-                UnnecessarySemicolonAfterTypeMemberDeclaration
-              </a>
-            </td>
-            <td>Checks if unnecessary semicolon is used after type member declaration.</td>
-          </tr>
-          <tr>
-            <td><a href="checks/imports/unusedimports.html#UnusedImports">UnusedImports</a></td>
-            <td>
-            Checks for unused import statements.</td>
-          </tr>
-          <tr>
-            <td><a href="checks/misc/upperell.html#UpperEll">UpperEll</a></td>
-            <td>Checks that long constants are defined with an upper ell.</td>
-          </tr>
-          <tr>
-            <td>
               <a href="checks/coding/unusedcatchparametershouldbeunnamed.html#UnusedCatchParameterShouldBeUnnamed">
                 UnusedCatchParameterShouldBeUnnamed
               </a>
@@ -1395,6 +1386,11 @@
             <td>
               Ensures that catch parameters that are not used are declared as an unnamed variable.
             </td>
+          </tr>
+          <tr>
+            <td><a href="checks/imports/unusedimports.html#UnusedImports">UnusedImports</a></td>
+            <td>
+            Checks for unused import statements.</td>
           </tr>
           <tr>
             <td>
@@ -1415,12 +1411,32 @@
             <td>Checks that a local variable is declared and/or assigned, but not used.</td>
           </tr>
           <tr>
+            <td><a href="checks/misc/upperell.html#UpperEll">UpperEll</a></td>
+            <td>Checks that long constants are defined with an upper ell.</td>
+          </tr>
+          <tr>
             <td>
               <a href="checks/coding/variabledeclarationusagedistance.html#VariableDeclarationUsageDistance">
                 VariableDeclarationUsageDistance
               </a>
             </td>
             <td>Checks the distance between declaration of variable and its first usage.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/design/visibilitymodifier.html#VisibilityModifier">
+                VisibilityModifier
+              </a>
+            </td>
+            <td>Checks visibility of class members.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/design/visibilitymodifier.html#VisibilityModifier">
+                VisibilityModifier
+              </a>
+            </td>
+            <td>Checks visibility of class members.</td>
           </tr>
           <tr>
             <td>
@@ -1432,14 +1448,6 @@
               Ensures that <code>when</code> is used instead of a single
               <code>if</code> statement inside a case block.
             </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="checks/design/visibilitymodifier.html#VisibilityModifier">
-                VisibilityModifier
-              </a>
-            </td>
-            <td>Checks visibility of class members.</td>
           </tr>
           <tr>
             <td>
