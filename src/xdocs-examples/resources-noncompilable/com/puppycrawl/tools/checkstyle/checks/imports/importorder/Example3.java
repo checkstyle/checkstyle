@@ -11,6 +11,8 @@
   </module>
 </module>
 */
+//non-compiled with javac: Compilable with Java11
+package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 // xdoc section -- start
 import static java.io.File.createTempFile;
@@ -25,10 +27,10 @@ import org.albedo.*;
 import static javax.WindowConstants.*; // violation, wrong order, 'javax' comes before 'org'
 import javax.swing.JComponent;
 import org.apache.http.ClientConnectionManager; // violation, must separate from previous import
-import org.linux.apache.server.SoapServer; // OK
+import org.linux.apache.server.SoapServer;
 
-import com.neurologic.http.HttpClient; // OK
-import com.neurologic.http.impl.ApacheHttpClient; // OK
-
-public class SomeClass { }
+import com.neurologic.http.HttpClient;
+import com.neurologic.http.impl.ApacheHttpClient;
 // xdoc section -- end
+
+public class Example3 { }
