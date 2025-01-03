@@ -107,6 +107,12 @@ line 5: ////////////////////////////////////////////////////////////////////
   &lt;module name=&quot;Header&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example1-code">Example1:</p>
+        <source>
+package com.puppycrawl.tools.checkstyle.checks.header.header;
+// OK, as by default there is not specific header defined to validate it presence
+public class Example1 { }
+        </source>
 
         <p id="Example2-config">
           To configure the check to use header file <code>&quot;config/java.header&quot;</code> and
@@ -123,18 +129,16 @@ line 5: ////////////////////////////////////////////////////////////////////
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-
-        <p id="Example3-code">
-          To configure the check to verify that each file starts with the
-          header
-        </p>
+        <p id="Example2-code">Example2:</p>
         <source>
-// Copyright (C) 2004 MyCompany
-// All rights reserved
+package com.puppycrawl.tools.checkstyle.checks.header.header;
+/* violation on first line 'Missing a header - not enough lines in file' */
+// due to values at 'ignoreLines'
+public class Example2 { }
         </source>
 
         <p id="Example3-config">
-          without the need for an external header file:
+          When Line does not match expected header:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
@@ -143,6 +147,31 @@ line 5: ////////////////////////////////////////////////////////////////////
       value=&quot;// Copyright (C) 2004 MyCompany\n// All rights reserved&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example3:</p>
+        <source>
+package com.puppycrawl.tools.checkstyle.checks.header.header;
+/* violation on first line 'Line does not match expected header' */
+public class Example3 { }
+        </source>
+
+        <p id="Example4-config">
+          without the need for an external header file:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;Header&quot;&gt;
+    &lt;property name=&quot;headerFile&quot; value=&quot;${config.folder}/java.header&quot;/&gt;
+    &lt;property name=&quot;ignoreLines&quot; value=&quot;2, 3, 4&quot;/&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Example4:</p>
+        <source>
+package com.puppycrawl.tools.checkstyle.checks.header.header;
+
+public class Example4 { }
         </source>
       </subsection>
 
