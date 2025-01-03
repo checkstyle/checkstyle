@@ -1205,7 +1205,7 @@ public class MainTest {
     @Test
     public void testPrintTreeJavadocOption(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
-        final String expected = Files.readString(Paths.get(
+        final String expected = Files.readString(Path.of(
             getPath("InputMainExpectedInputJavadocComment.txt")))
             .replaceAll("\\\\r\\\\n", "\\\\n").replaceAll("\r\n", "\n");
 
@@ -1518,7 +1518,7 @@ public class MainTest {
     @Test
     public void testPrintFullTreeOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws IOException {
-        final String expected = Files.readString(Paths.get(
+        final String expected = Files.readString(Path.of(
             getPath("InputMainExpectedInputAstTreeStringPrinterJavadoc.txt")))
                 .replaceAll("\\\\r\\\\n", "\\\\n")
                 .replaceAll("\r\n", "\n");

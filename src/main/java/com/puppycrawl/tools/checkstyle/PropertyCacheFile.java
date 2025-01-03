@@ -143,7 +143,7 @@ public final class PropertyCacheFile {
      * @throws IOException  when there is a problems with file save
      */
     public void persist() throws IOException {
-        final Path path = Paths.get(fileName);
+        final Path path = Path.of(fileName);
         final Path directory = path.getParent();
 
         if (directory != null) {

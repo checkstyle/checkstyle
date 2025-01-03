@@ -313,24 +313,24 @@ public final class SiteUtil {
             new HashMap<>();
 
     /** Path to main source code folder. */
-    private static final String MAIN_FOLDER_PATH = Paths.get(
+    private static final String MAIN_FOLDER_PATH = Path.of(
             SRC, "main", "java", "com", "puppycrawl", "tools", "checkstyle").toString();
 
     /** List of files who are superclasses and contain certain properties that checks inherit. */
     private static final List<File> MODULE_SUPER_CLASS_FILES = List.of(
-        new File(Paths.get(MAIN_FOLDER_PATH,
+        new File(Path.of(MAIN_FOLDER_PATH,
                 CHECKS, NAMING, "AbstractAccessControlNameCheck.java").toString()),
-        new File(Paths.get(MAIN_FOLDER_PATH,
+        new File(Path.of(MAIN_FOLDER_PATH,
                 CHECKS, NAMING, "AbstractNameCheck.java").toString()),
-        new File(Paths.get(MAIN_FOLDER_PATH,
+        new File(Path.of(MAIN_FOLDER_PATH,
                 CHECKS, "javadoc", "AbstractJavadocCheck.java").toString()),
-        new File(Paths.get(MAIN_FOLDER_PATH,
+        new File(Path.of(MAIN_FOLDER_PATH,
                 "api", "AbstractFileSetCheck.java").toString()),
-        new File(Paths.get(MAIN_FOLDER_PATH,
+        new File(Path.of(MAIN_FOLDER_PATH,
                 CHECKS, "header", "AbstractHeaderCheck.java").toString()),
-        new File(Paths.get(MAIN_FOLDER_PATH,
+        new File(Path.of(MAIN_FOLDER_PATH,
                 CHECKS, "metrics", "AbstractClassCouplingCheck.java").toString()),
-        new File(Paths.get(MAIN_FOLDER_PATH,
+        new File(Path.of(MAIN_FOLDER_PATH,
                 CHECKS, "whitespace", "AbstractParenPadCheck.java").toString())
     );
 
@@ -505,7 +505,7 @@ public final class SiteUtil {
      * @throws MacroExecutionException if an I/O error occurs.
      */
     public static Set<Path> getXdocsTemplatesFilePaths() throws MacroExecutionException {
-        final Path directory = Paths.get("src/site/xdoc");
+        final Path directory = Path.of("src/site/xdoc");
         try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
                 (path, attr) -> {
                     return attr.isRegularFile()
@@ -1272,7 +1272,7 @@ public final class SiteUtil {
             throw new MacroExecutionException("Failed to get parent path for " + templatePath);
         }
         return templatePathParent
-                .relativize(Paths.get(SRC, "site/xdoc", document))
+                .relativize(Path.of(SRC, "site/xdoc", document))
                 .toString()
                 .replace(".xml", ".html")
                 .replace('\\', '/');

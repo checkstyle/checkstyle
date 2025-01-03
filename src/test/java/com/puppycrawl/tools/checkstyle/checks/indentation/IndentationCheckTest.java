@@ -29,6 +29,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,7 +63,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             final int tabWidth)
                     throws IOException {
         final List<IndentComment> result = new ArrayList<>();
-        try (BufferedReader br = Files.newBufferedReader(Paths.get(aFileName),
+        try (BufferedReader br = Files.newBufferedReader(Path.of(aFileName),
                 StandardCharsets.UTF_8)) {
             int lineNumber = 1;
             for (String line = br.readLine(); line != null; line = br.readLine()) {

@@ -279,7 +279,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     public void testPathToCacheContainsOnlyFileName() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
         final String fileName = "temp.cache";
-        final Path filePath = Paths.get(fileName);
+        final Path filePath = Path.of(fileName);
         final PropertyCacheFile cache = new PropertyCacheFile(config, fileName);
 
         // no exception expected

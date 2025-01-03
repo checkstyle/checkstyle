@@ -58,7 +58,7 @@ public final class XdocUtil {
      * @throws IOException if an I/O error occurs.
      */
     public static Set<Path> getXdocsFilePaths() throws IOException {
-        final Path directory = Paths.get(DIRECTORY_PATH);
+        final Path directory = Path.of(DIRECTORY_PATH);
         try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
                 (path, attr) -> {
                     return attr.isRegularFile()
@@ -78,7 +78,7 @@ public final class XdocUtil {
      * @throws IOException if an I/O error occurs.
      */
     public static Set<Path> getXdocsTemplatesFilePaths() throws IOException {
-        final Path directory = Paths.get(DIRECTORY_PATH);
+        final Path directory = Path.of(DIRECTORY_PATH);
         try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
                 (path, attr) -> {
                     return attr.isRegularFile()

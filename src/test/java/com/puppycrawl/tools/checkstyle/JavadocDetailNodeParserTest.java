@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
@@ -46,7 +47,7 @@ public class JavadocDetailNodeParserTest extends AbstractModuleTestSupport {
         final JavadocDetailNodeParser.ParseStatus status = parser.parseJavadocAsDetailNode(ast);
         final String actual = toLfLineEnding(DetailNodeTreeStringPrinter.printTree(status.getTree(),
                 "", ""));
-        final String expected = toLfLineEnding(Files.readString(Paths.get(
+        final String expected = toLfLineEnding(Files.readString(Path.of(
                 getPath("ExpectedJavadocDetailNodeParser.txt"))));
         assertWithMessage("Invalid parse result")
                 .that(actual)
