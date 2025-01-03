@@ -67,7 +67,7 @@ do
   done < <(head -n "$EARLIEST_CHANGE_LINE_NUMBER" "$CURRENT_XDOC_PATH" | tac)
 
   # Extract file name from path, i.e. 'config_misc' and remove '.vm' if it exists.
-  CURRENT_XDOC_NAME=$(echo "$CURRENT_XDOC_PATH" | sed 's/src\/xdocs\/\(.*\)\.xml/\1/' \
+  CURRENT_XDOC_NAME=$(echo "$CURRENT_XDOC_PATH" | sed 's/src\/site\/xdoc\/\(.*\)\.xml/\1/' \
     | sed 's/.vm//')
   echo "CURRENT_XDOC_NAME=$CURRENT_XDOC_NAME"
 
