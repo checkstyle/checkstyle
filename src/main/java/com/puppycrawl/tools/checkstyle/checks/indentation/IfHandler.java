@@ -45,7 +45,8 @@ public class IfHandler extends BlockParentHandler {
     @Override
     public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
         final IndentLevel result;
-        if (child instanceof ElseHandler) {
+        if (child instanceof ElseHandler
+                || child instanceof SwitchHandler) {
             result = getIndent();
         }
         else {
