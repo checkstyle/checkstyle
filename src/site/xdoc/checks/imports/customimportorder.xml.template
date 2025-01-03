@@ -131,7 +131,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -139,7 +139,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">
@@ -148,7 +148,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">
@@ -156,7 +156,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example3-config">
@@ -164,7 +164,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">
@@ -172,7 +172,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example4-config">
@@ -181,7 +181,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">
@@ -189,7 +189,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example5-config">
@@ -197,7 +197,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example5-code">
@@ -205,7 +205,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example6-config">
@@ -213,7 +213,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example6.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example6-code">
@@ -221,7 +221,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example6.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example7-config">
@@ -229,7 +229,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example7.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example7.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example7-code">
@@ -237,7 +237,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example7.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example7.java"/>
           <param name="type" value="code"/>
         </macro>
         <p>To configure the check so that it matches default Eclipse formatter configuration
@@ -258,7 +258,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </ul>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example8.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example8.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example8-code">
@@ -266,7 +266,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example8.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example8.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example9-config">
@@ -281,7 +281,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </ul>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example9.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example9.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example9-code">
@@ -289,7 +289,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example9.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example9.java"/>
           <param name="type" value="code"/>
         </macro>
         <p>To configure the check so that it matches default IntelliJ IDEA formatter configuration
@@ -310,7 +310,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
 
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example10.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example10.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example10-code">
@@ -318,7 +318,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example10.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example10.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example11-config">
@@ -332,7 +332,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
 
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example11.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example11.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example11-code">
@@ -340,7 +340,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example11.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example11.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example12-config">
@@ -349,7 +349,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example12.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example12.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example12-code">
@@ -357,7 +357,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example12.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example12.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example13-config">
@@ -366,7 +366,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example13.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example13.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example13-code">
@@ -374,7 +374,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example13.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example13.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example14-config">
@@ -384,7 +384,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example14.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example14.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example14-code">
@@ -392,7 +392,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example14.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example14.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example15-code">
@@ -400,7 +400,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example15.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example15.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example15-config">
@@ -408,7 +408,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example15.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example15.java"/>
           <param name="type" value="config"/>
         </macro>
       </subsection>
