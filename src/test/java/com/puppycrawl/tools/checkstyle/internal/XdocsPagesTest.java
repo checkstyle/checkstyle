@@ -628,6 +628,8 @@ public class XdocsPagesTest {
 
                 properties.setProperty("checkstyle.header.file",
                         new File("config/java.header").getCanonicalPath());
+                properties.setProperty("config.folder",
+                        new File("config").getCanonicalPath());
 
                 final PropertiesExpander expander = new PropertiesExpander(properties);
                 final Configuration config = ConfigurationLoader.loadConfiguration(new InputSource(
