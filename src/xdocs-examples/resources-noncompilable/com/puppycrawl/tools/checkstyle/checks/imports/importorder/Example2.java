@@ -11,6 +11,8 @@
   </module>
 </module>
 */
+//non-compiled with javac: Compilable with Java11
+package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 // xdoc section -- start
 import static java.lang.System.out;
@@ -25,6 +27,6 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager; // violation, groups should not be separated internally
 
 import org.apache.http.conn.ClientConnectionManager;
-
-public class SomeClass { }
 // xdoc section -- end
+
+public class Example2 { }
