@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.gui;
 
 import java.io.File;
+import java.nio.file.Path;
 
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
@@ -54,7 +55,7 @@ public final class Main {
     private static void createMainFrame(String... args) {
         final MainFrame mainFrame = new MainFrame();
         if (args.length > 0) {
-            final File sourceFile = new File(args[0]);
+            final File sourceFile = Path.of(args[0]).toFile();
             mainFrame.openFile(sourceFile);
         }
         mainFrame.setTitle("Checkstyle GUI");

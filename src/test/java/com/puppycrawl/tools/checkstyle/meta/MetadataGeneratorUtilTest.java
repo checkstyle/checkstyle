@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper.MSG_DE
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -103,7 +102,7 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
 
         final Set<String> metaFiles;
         try (Stream<Path> fileStream = Files.walk(
-                Paths.get(System.getProperty("user.dir") + "/src/main/resources/com/puppycrawl"
+                Path.of(System.getProperty("user.dir") + "/src/main/resources/com/puppycrawl"
                         + "/tools/checkstyle/meta"))) {
             metaFiles = fileStream
                     .filter(Files::isRegularFile)
