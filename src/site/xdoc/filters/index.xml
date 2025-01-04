@@ -23,6 +23,51 @@
           </tr>
           <tr>
             <td>
+              <a href="suppresswarningsfilter.html#SuppressWarningsFilter">
+                SuppressWarningsFilter
+              </a>
+            </td>
+            <td>
+              Filter <code>SuppressWarningsFilter</code> uses annotation
+              <code>@SuppressWarnings</code> to suppress audit events.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="suppresswithnearbycommentfilter.html#SuppressWithNearbyCommentFilter">
+                SuppressWithNearbyCommentFilter
+              </a>
+            </td>
+            <td>
+              Filter <code>SuppressWithNearbyCommentFilter</code> uses
+              nearby comments to suppress audit events.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="suppresswithnearbytextfilter.html#SuppressWithNearbyTextFilter">
+                SuppressWithNearbyTextFilter
+              </a>
+            </td>
+            <td>
+              Filter <code>SuppressWithNearbyTextFilter</code> uses plain text to suppress
+              nearby audit events. The filter can suppress all checks which have Checker
+              as a parent module.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="suppresswithplaintextcommentfilter.html#SuppressWithPlainTextCommentFilter">
+                SuppressWithPlainTextCommentFilter
+              </a>
+            </td>
+            <td>
+              Filter <code>SuppressWithPlainTextCommentFilter</code> uses plain text to suppress
+              audit events.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="suppressioncommentfilter.html#SuppressionCommentFilter">
                 SuppressionCommentFilter
               </a>
@@ -84,51 +129,6 @@
               Filter <code>SuppressionXpathSingleFilter</code> suppresses audit events for
               Checks violations in the specified file, class, checks, message, module id,
               and xpath.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="suppresswarningsfilter.html#SuppressWarningsFilter">
-                SuppressWarningsFilter
-              </a>
-            </td>
-            <td>
-              Filter <code>SuppressWarningsFilter</code> uses annotation
-              <code>@SuppressWarnings</code> to suppress audit events.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="suppresswithnearbycommentfilter.html#SuppressWithNearbyCommentFilter">
-                SuppressWithNearbyCommentFilter
-              </a>
-            </td>
-            <td>
-              Filter <code>SuppressWithNearbyCommentFilter</code> uses
-              nearby comments to suppress audit events.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="suppresswithnearbytextfilter.html#SuppressWithNearbyTextFilter">
-                SuppressWithNearbyTextFilter
-              </a>
-            </td>
-            <td>
-              Filter <code>SuppressWithNearbyTextFilter</code> uses plain text to suppress
-              nearby audit events. The filter can suppress all checks which have Checker
-              as a parent module.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="suppresswithplaintextcommentfilter.html#SuppressWithPlainTextCommentFilter">
-                SuppressWithPlainTextCommentFilter
-              </a>
-            </td>
-            <td>
-              Filter <code>SuppressWithPlainTextCommentFilter</code> uses plain text to suppress
-              audit events.
             </td>
           </tr>
         </table>
