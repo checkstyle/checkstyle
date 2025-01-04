@@ -25,7 +25,6 @@ import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
@@ -136,8 +135,8 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     @BeforeEach
     public void setUp() throws Exception {
-        javaDir = Paths.get("src/it/java/" + getPackageLocation());
-        inputDir = Paths.get(getPath(""));
+        javaDir = Path.of("src/it/java/" + getPackageLocation());
+        inputDir = Path.of(getPath(""));
     }
 
     @Override

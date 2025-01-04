@@ -33,7 +33,6 @@ import java.io.ObjectOutputStream;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
@@ -279,7 +278,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     public void testPathToCacheContainsOnlyFileName() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
         final String fileName = "temp.cache";
-        final Path filePath = Paths.get(fileName);
+        final Path filePath = Path.of(fileName);
         final PropertyCacheFile cache = new PropertyCacheFile(config, fileName);
 
         // no exception expected

@@ -29,7 +29,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.BitSet;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -263,8 +262,8 @@ public final class CommonUtil {
             resultPath = path;
         }
         else {
-            final Path pathAbsolute = Paths.get(path);
-            final Path pathBase = Paths.get(baseDirectory);
+            final Path pathAbsolute = Path.of(path);
+            final Path pathBase = Path.of(baseDirectory);
             resultPath = pathBase.relativize(pathAbsolute).toString();
         }
         return resultPath;
@@ -392,7 +391,7 @@ public final class CommonUtil {
      */
     private static URI getFilepathOrClasspathUri(String filename) throws CheckstyleException {
         final URI uri;
-        final File file = new File(filename);
+        final File file = Path.of(filename).toFile();
 
         if (file.exists()) {
             uri = file.toURI();
@@ -485,7 +484,7 @@ public final class CommonUtil {
      * @return file name without extension.
      */
     public static String getFileNameWithoutExtension(String fullFilename) {
-        final String fileName = new File(fullFilename).getName();
+        final String fileName = Path.of(fullFilename).toFile().getName();
         final int dotIndex = fileName.lastIndexOf('.');
         final String fileNameWithoutExtension;
         if (dotIndex == -1) {
@@ -508,7 +507,7 @@ public final class CommonUtil {
      *         or empty string if file does not have an extension.
      */
     public static String getFileExtension(String fileNameWithExtension) {
-        final String fileName = Paths.get(fileNameWithExtension).toString();
+        final String fileName = Path.of(fileNameWithExtension).toString();
         final int dotIndex = fileName.lastIndexOf('.');
         final String extension;
         if (dotIndex == -1) {

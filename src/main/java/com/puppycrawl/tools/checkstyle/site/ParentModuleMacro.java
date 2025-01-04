@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.site;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Locale;
 
 import org.apache.maven.doxia.macro.AbstractMacro;
@@ -94,7 +93,7 @@ public class ParentModuleMacro extends AbstractMacro {
             throw new MacroExecutionException("Failed to get parent path for " + templatePath);
         }
         return templatePathParent
-                .relativize(Paths.get("src", "site/xdoc", "config.xml"))
+                .relativize(Path.of("src", "site/xdoc", "config.xml"))
                 .toString()
                 .replace(".xml", ".html")
                 .replace('\\', '/')

@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -226,7 +227,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
      * @throws IllegalStateException if the file could not be read.
      */
     private static FileText getFileText(String fileName) {
-        final File file = new File(fileName);
+        final File file = Path.of(fileName).toFile();
         FileText result = null;
 
         // some violations can be on a directory, instead of a file

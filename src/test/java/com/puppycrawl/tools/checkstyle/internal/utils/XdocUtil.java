@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.internal.utils;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -58,7 +57,7 @@ public final class XdocUtil {
      * @throws IOException if an I/O error occurs.
      */
     public static Set<Path> getXdocsFilePaths() throws IOException {
-        final Path directory = Paths.get(DIRECTORY_PATH);
+        final Path directory = Path.of(DIRECTORY_PATH);
         try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
                 (path, attr) -> {
                     return attr.isRegularFile()
@@ -78,7 +77,7 @@ public final class XdocUtil {
      * @throws IOException if an I/O error occurs.
      */
     public static Set<Path> getXdocsTemplatesFilePaths() throws IOException {
-        final Path directory = Paths.get(DIRECTORY_PATH);
+        final Path directory = Path.of(DIRECTORY_PATH);
         try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
                 (path, attr) -> {
                     return attr.isRegularFile()
