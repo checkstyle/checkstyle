@@ -14,10 +14,10 @@ public class InputParameterAssignmentWithUnchecked {
         int i = field;
         this.field = field;
         i++;
-        field = 0; // violation
-        field += 1; // violation
+        field = 0; // violation 'Assignment of parameter 'field' is not allowed.'
+        field += 1; // violation 'Assignment of parameter 'field' is not allowed.'
         this.field++;
-        field--; // violation
+        field--; // violation 'Assignment of parameter 'field' is not allowed.'
     }
     // without parameters
     void foo2() {
@@ -25,7 +25,8 @@ public class InputParameterAssignmentWithUnchecked {
     }
     @SuppressWarnings(value = "unchecked")
     void foo3(String field, int field1) {
-        this.field = (field1 += field.length()); // violation
+        // violation below 'Assignment of parameter 'field1' is not allowed.'
+        this.field = (field1 += field.length());
     }
 
     void foo4() {
@@ -42,15 +43,24 @@ public class InputParameterAssignmentWithUnchecked {
         int i = EXPR;
     }
 
-    SomeInterface obj = q -> q++; // violation
-    SomeInterface obj2 = (int q) -> q += 12; // violation
-    SomeInterface obj3 = (w) -> w--; // violation
+    SomeInterface obj = q -> q++; // violation 'Assignment of parameter 'q' is not allowed.'
+
+    // violation below 'Assignment of parameter 'q' is not allowed.'
+    SomeInterface obj2 = (int q) -> q += 12;
+
+    SomeInterface obj3 = (w) -> w--; // violation 'Assignment of parameter 'w' is not allowed.'
+
     AnotherInterface obj4 = (int q, int w) -> obj.equals(obj2);
-    AnotherInterface obj5 = (q, w) -> w = 14; // violation
-    SomeInterface obj6 = (@Nullable int a) -> a += 12; // violation
+
+    // violation below 'Assignment of parameter 'w' is not allowed.'
+    AnotherInterface obj5 = (q, w) -> w = 14;
+
+    // violation below 'Assignment of parameter 'a' is not allowed.'
+    SomeInterface obj6 = (@Nullable int a) -> a += 12;
+
     AnotherInterface obj7 = (@Nullable int c, @Nullable int d) -> {
-        c += d; // violation
-        d += c; // violation
+        c += d; // violation 'Assignment of parameter 'c' is not allowed.'
+        d += c; // violation 'Assignment of parameter 'd' is not allowed.'
     };
 
     void method() {
@@ -60,7 +70,7 @@ public class InputParameterAssignmentWithUnchecked {
             int c = 12;
             c++;
             SomeInterface r = (field) -> this.field++;
-            d -= 10; // violation
+            d -= 10; // violation 'Assignment of parameter 'd' is not allowed.'
         };
     }
 

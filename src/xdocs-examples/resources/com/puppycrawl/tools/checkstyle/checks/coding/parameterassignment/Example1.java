@@ -18,7 +18,8 @@ class Example1 {
     if (parameter <= 0 ) {
       throw new IllegalArgumentException("A positive value is expected");
     }
-    parameter -= 2;  // violation
+    // violation below 'Assignment of parameter 'parameter' is not allowed.'
+    parameter -= 2;
     return parameter;
   }
 
@@ -27,18 +28,18 @@ class Example1 {
       throw new IllegalArgumentException("A positive value is expected");
     }
     int local = parameter;
-    local -= 2;  // OK
+    local -= 2;
     return local;
   }
-
-  IntPredicate obj = a -> ++a == 12; // violation
+  // violation below 'Assignment of parameter 'a' is not allowed.'
+  IntPredicate obj = a -> ++a == 12;
   IntBinaryOperator obj2 = (int a, int b) -> {
-    a++;     // violation
-    b += 12; // violation
+    a++;     // violation 'Assignment of parameter 'a' is not allowed.'
+    b += 12; // violation 'Assignment of parameter 'b' is not allowed.'
     return a + b;
   };
   IntPredicate obj3 = a -> {
-    int b = a; // ok
+    int b = a;
     return ++b == 12;
   };
 }
