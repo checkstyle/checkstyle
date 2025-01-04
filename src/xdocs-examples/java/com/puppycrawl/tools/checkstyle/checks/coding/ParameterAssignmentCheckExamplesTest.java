@@ -34,10 +34,10 @@ public class ParameterAssignmentCheckExamplesTest extends AbstractExamplesModule
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "21:15: " + getCheckMessage(MSG_KEY, "parameter"),
-            "34:27: " + getCheckMessage(MSG_KEY, "a"),
-            "36:6: " + getCheckMessage(MSG_KEY, "a"),
-            "37:7: " + getCheckMessage(MSG_KEY, "b"),
+            "22:15: " + getCheckMessage(MSG_KEY, "parameter"),
+            "35:27: " + getCheckMessage(MSG_KEY, "a"),
+            "37:6: " + getCheckMessage(MSG_KEY, "a"),
+            "38:7: " + getCheckMessage(MSG_KEY, "b"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
