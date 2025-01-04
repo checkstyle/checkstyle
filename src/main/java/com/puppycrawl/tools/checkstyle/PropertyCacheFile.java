@@ -29,7 +29,6 @@ import java.math.BigInteger;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
@@ -143,7 +142,7 @@ public final class PropertyCacheFile {
      * @throws IOException  when there is a problems with file save
      */
     public void persist() throws IOException {
-        final Path path = Paths.get(fileName);
+        final Path path = Path.of(fileName);
         final Path directory = path.getParent();
 
         if (directory != null) {

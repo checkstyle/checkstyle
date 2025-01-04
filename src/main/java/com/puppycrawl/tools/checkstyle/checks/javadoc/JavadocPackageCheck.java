@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -114,8 +115,8 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
         final boolean isDirChecked = !directoriesChecked.add(dir);
         if (!isDirChecked) {
             // Check for the preferred file.
-            final File packageInfo = new File(dir, "package-info.java");
-            final File packageHtml = new File(dir, "package.html");
+            final File packageInfo = Path.of(dir.getPath(), "package-info.java").toFile();
+            final File packageHtml = Path.of(dir.getPath(), "package.html").toFile();
 
             if (packageInfo.exists()) {
                 if (packageHtml.exists()) {
