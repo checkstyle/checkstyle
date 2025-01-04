@@ -995,17 +995,17 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     *   --JAVADOC_TAG -> JAVADOC_TAG
-     *      |--SERIAL_FIELD_LITERAL -> @serialField
-     *      |--WS ->
-     *      |--FIELD_NAME -> counter
-     *      |--WS ->
-     *      |--FIELD_TYPE -> Integer
-     *      |--WS ->
-     *      `--DESCRIPTION -> DESCRIPTION
-     *          |--TEXT -> objects counter
-     *          |--NEWLINE -> \r\n
-     *          `--TEXT ->
+     *   --JAVADOC_TAG -&gt; JAVADOC_TAG
+     *      |--SERIAL_FIELD_LITERAL -&gt; @serialField
+     *      |--WS -&gt;
+     *      |--FIELD_NAME -&gt; counter
+     *      |--WS -&gt;
+     *      |--FIELD_TYPE -&gt; Integer
+     *      |--WS -&gt;
+     *      `--DESCRIPTION -&gt; DESCRIPTION
+     *          |--TEXT -&gt; objects counter
+     *          |--NEWLINE -&gt; \r\n
+     *          `--TEXT -&gt;
      * }</pre>
      *
      * @see
