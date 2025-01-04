@@ -305,8 +305,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharacters4\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharacters2\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharacters3\.java"/>
