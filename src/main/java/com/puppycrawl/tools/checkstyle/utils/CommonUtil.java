@@ -390,12 +390,13 @@ public final class CommonUtil {
      * @return resolved file URI
      * @throws CheckstyleException on failure
      */
+    @SuppressWarnings("modernizer")
     private static URI getFilepathOrClasspathUri(String filename) throws CheckstyleException {
         final URI uri;
-        final Path file = Path.of(filename);
+        final File file = new File(filename);
 
-        if (Files.exists(file)) {
-            uri = file.toUri();
+        if (file.exists()) {
+            uri = file.toURI();
         }
         else {
             final int lastIndexOfClasspathProtocol;
