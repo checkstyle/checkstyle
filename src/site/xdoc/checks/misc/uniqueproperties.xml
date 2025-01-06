@@ -52,13 +52,14 @@
   &lt;module name=&quot;UniqueProperties&quot;/&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example1-code">
+        <p id="Example1-raw">
           Example: in foo.properties file
         </p>
         <source>
+# // violation below 'Duplicated property 'key.one' (2 occurrence(s)).'
 key.one=44
-key.two=32 // OK
-key.one=54 // violation
+key.two=32
+key.one=54
         </source>
         <p id="Example2-config">
           To configure the check to scan custom file extensions:
@@ -70,21 +71,23 @@ key.one=54 // violation
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example2-code">
+        <p id="Example2-raw">
           Example: in foo.customProperties file
         </p>
         <source>
+# // violation below 'Duplicated property 'key.one' (2 occurrence(s)).'
 key.one=44
-key.two=32 // OK
-key.one=54 // violation
+key.two=32
+key.one=54
         </source>
-        <p id="Example3-code">
+        <p id="Example3-raw">
           Example: in foo.properties file
         </p>
         <source>
+# OK below, no duplication violation, as the file is not checked
 key.one=44
-key.two=32 // OK
-key.one=54 // OK, file is not checked
+key.two=32
+key.one=54
         </source>
       </subsection>
 

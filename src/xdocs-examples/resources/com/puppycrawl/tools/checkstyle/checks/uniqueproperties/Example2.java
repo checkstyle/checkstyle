@@ -6,8 +6,8 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.uniqueproperties;
+
+public class Example2 { }
 // xdoc section -- start
-key.one=44
-key.two=32 // OK
-key.one=54 // violation
 // xdoc section -- end
