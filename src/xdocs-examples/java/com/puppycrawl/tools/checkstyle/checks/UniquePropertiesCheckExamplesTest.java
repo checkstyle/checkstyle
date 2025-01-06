@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class UniquePropertiesCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,12 +35,15 @@ public class UniquePropertiesCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "2: " + getCheckMessage(MSG_KEY, "<module", 2),
+            "6: " + getCheckMessage(MSG_KEY, "//", 5),
+            "11: " + getCheckMessage(MSG_KEY, "key.one", 2),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.properties"), expected);
     }
 
+    @Disabled
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
@@ -49,6 +53,7 @@ public class UniquePropertiesCheckExamplesTest extends AbstractExamplesModuleTes
         verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
     }
 
+    @Disabled
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
