@@ -736,13 +736,16 @@
       <plugin>
         <groupId>org.gaul</groupId>
         <artifactId>modernizer-maven-plugin</artifactId>
-        <version>2.9.0</version>
+        <version>3.0.0</version>
         <configuration>
           <javaVersion>${java.version}</javaVersion>
           <includeTestClasses>false</includeTestClasses>
           <exclusionPatterns>
             <!-- until https://github.com/gaul/modernizer-maven-plugin/issues/300 -->
             <exclusionPattern>java/util/Optional.get:.*</exclusionPattern>
+            <!-- until https://github.com/gaul/modernizer-maven-plugin/issues/318 -->
+            <exclusionPattern>java/io/File.*</exclusionPattern>
+            <exclusionPattern>java/nio/file/Paths.get:.*</exclusionPattern>
           </exclusionPatterns>
         </configuration>
         <executions>
