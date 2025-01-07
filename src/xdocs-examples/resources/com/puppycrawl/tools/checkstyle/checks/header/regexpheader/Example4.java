@@ -3,12 +3,12 @@
   <module name="RegexpHeader">
     <property
       name="header"
-      value="^package .*\n\n.*"/>
+      value="^.*"/>
   </module>
 </module>
 */
-
 // xdoc section -- start
-package com.some.package;
-public class ThisWillFail { }
+package com.puppycrawl.tools.checkstyle.checks.header.regexpheader;
+//OK, as regex value matches all lines
+public class Example4 { }
 // xdoc section -- end
