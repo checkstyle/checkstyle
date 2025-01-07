@@ -145,6 +145,12 @@ line 6: ^\W*$
   &lt;module name=&quot;RegexpHeader&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example1-code">Example1:</p>
+        <source>
+package com.puppycrawl.tools.checkstyle.checks.header.header;
+// OK, as by default there is not specific header defined to validate it presence
+public class Example1 { }
+        </source>
 
         <p id="Example2-config">
           To configure the check to use header file <code>&quot;config/java.header&quot;</code> and
@@ -153,23 +159,22 @@ line 6: ^\W*$
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;RegexpHeader&quot;&gt;
-    &lt;property name=&quot;headerFile&quot; value=&quot;config/java.header&quot;/&gt;
+    &lt;property name=&quot;headerFile&quot; value=&quot;${config.folder}/java.header&quot;/&gt;
     &lt;property name=&quot;multiLines&quot; value=&quot;10, 13&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-
-        <p id="Example3-code">
-          To configure the check to verify that each file starts with the
-          header
-        </p>
+        <p id="Example2-code">Example2:</p>
         <source>
-^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$
-^// All rights reserved$
+package com.puppycrawl.tools.checkstyle.checks.header.header;
+/* violation on first line 'Line does not match expected header line of' */
+// because headerFile is bigger then target java file
+public class Example2 { }
         </source>
 
         <p id="Example3-config">
-          without the need for an external header file:
+          To configure the check to verify that each file starts with the
+          header
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
@@ -177,45 +182,38 @@ line 6: ^\W*$
     &lt;property
       name=&quot;header&quot;
       value=&quot;^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$
-        \n^// All rights reserved$&quot;/&gt;
+      \n^// All rights reserved$&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example3-code">Example3:</p>
+        <source>
+package com.puppycrawl.tools.checkstyle.checks.header.regexpheader;
+/* violation on first line 'Line does not match expected header line' */
+public class Example3 { }
+        </source>
 
         <p id="Example4-config">
-          For regex containing <code>&quot;\n\n&quot;</code>
+          For regex containing <code>&quot;.*&quot;</code>
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;RegexpHeader&quot;&gt;
     &lt;property
       name=&quot;header&quot;
-      value=&quot;^package .*\n\n.*&quot;/&gt;
+      value=&quot;^.*&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example4-code">
-          <code>&quot;\n\n&quot;</code> will be treated as '^$' and will forcefully
-          expect the line to be empty. For example -
+          <code>&quot;.*&quot;</code> will match all lines and
+          expect no violation. For example -
         </p>
         <source>
-package com.some.package;
-public class ThisWillFail { }
+package com.puppycrawl.tools.checkstyle.checks.header.regexpheader;
+//OK, as regex value matches all lines
+public class Example4 { }
         </source>
-        <p id="Example5-code">
-          would fail for the regex above. Expected -
-        </p>
-        <source>
-package com.some.package;
-
-public class ThisWillPass { }
-        </source>
-
-        <p>
-          <u>Note</u>: <code>ignoreLines</code> property has been
-          removed from this check to simplify it. To make some line optional
-          use &quot;^.*$&quot; regexp for this line.
-        </p>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
