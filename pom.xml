@@ -286,7 +286,13 @@
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
-      <version>1.9.4</version>
+      <version>1.10.0</version>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
@@ -737,6 +743,8 @@
           <exclusionPatterns>
             <!-- until https://github.com/gaul/modernizer-maven-plugin/issues/300 -->
             <exclusionPattern>java/util/Optional.get:.*</exclusionPattern>
+            <!-- until https://github.com/gaul/modernizer-maven-plugin/issues/303 -->
+            <exclusionPattern>java/nio/file/Paths.get:(Ljava/net/URI;)Ljava/nio/file/Path;</exclusionPattern>
           </exclusionPatterns>
         </configuration>
         <executions>
