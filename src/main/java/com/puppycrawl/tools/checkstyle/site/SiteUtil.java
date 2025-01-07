@@ -30,7 +30,6 @@ import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -318,19 +317,19 @@ public final class SiteUtil {
 
     /** List of files who are superclasses and contain certain properties that checks inherit. */
     private static final List<File> MODULE_SUPER_CLASS_FILES = List.of(
-        new File(Paths.get(MAIN_FOLDER_PATH,
+        new File(Path.of(MAIN_FOLDER_PATH,
                 CHECKS, NAMING, "AbstractAccessControlNameCheck.java").toString()),
-        new File(Paths.get(MAIN_FOLDER_PATH,
+        new File(Path.of(MAIN_FOLDER_PATH,
                 CHECKS, NAMING, "AbstractNameCheck.java").toString()),
-        new File(Paths.get(MAIN_FOLDER_PATH,
+        new File(Path.of(MAIN_FOLDER_PATH,
                 CHECKS, "javadoc", "AbstractJavadocCheck.java").toString()),
-        new File(Paths.get(MAIN_FOLDER_PATH,
+        new File(Path.of(MAIN_FOLDER_PATH,
                 "api", "AbstractFileSetCheck.java").toString()),
-        new File(Paths.get(MAIN_FOLDER_PATH,
+        new File(Path.of(MAIN_FOLDER_PATH,
                 CHECKS, "header", "AbstractHeaderCheck.java").toString()),
-        new File(Paths.get(MAIN_FOLDER_PATH,
+        new File(Path.of(MAIN_FOLDER_PATH,
                 CHECKS, "metrics", "AbstractClassCouplingCheck.java").toString()),
-        new File(Paths.get(MAIN_FOLDER_PATH,
+        new File(Path.of(MAIN_FOLDER_PATH,
                 CHECKS, "whitespace", "AbstractParenPadCheck.java").toString())
     );
 
