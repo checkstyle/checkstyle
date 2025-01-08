@@ -25,10 +25,10 @@ import javax.swing.ScrollPaneLayout;
 import javax.swing.BorderFactory;
 import static java.io.File.listRoots;
 
-import static javax.swing.WindowConstants.*; // violation
-import static javax.swing.WindowConstants.*; // violation
+import static javax.swing.WindowConstants.*; // violation Avoid star imports, Please import static members individually
+import static javax.swing.WindowConstants.*; // violation Avoid star imports, Please import static members individually
 import static java.io.File.createTempFile;
-import static java.io.File.*; // violation
+import static java.io.File.*; // violation: Avoid static imports, Please import static members individually
 
 import java.awt.Component;
 import java.awt.Graphics2D;
