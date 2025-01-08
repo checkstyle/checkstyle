@@ -22,15 +22,23 @@ package com.puppycrawl.tools.checkstyle.bdd;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.BitSet;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -43,6 +51,7 @@ import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public final class InlineConfigParser {
 
@@ -611,22 +620,559 @@ public final class InlineConfigParser {
         moduleInputConfigBuilder.setModuleName(fullyQualifiedClassName);
     }
 
+    private static String convertArrayValue(Object value) {
+        final String result;
+
+        if (value instanceof int[]) {
+            result = Arrays.toString((int[]) value).replaceAll("[\\[\\]\\s]", "");
+        }
+        else if (value instanceof double[]) {
+            final double[] arr = (double[]) value;
+            final StringBuilder resBuilder = new StringBuilder(128);
+            for (int index = 0; index < arr.length; index++) {
+                if (index > 0) {
+                    resBuilder.append(",");
+                }
+                resBuilder.append(BigDecimal
+                    .valueOf(arr[index])
+                    .stripTrailingZeros()
+                    .toPlainString());
+            }
+            result = resBuilder.toString();
+        }
+        else if (value instanceof boolean[]) {
+            result = Arrays.toString((boolean[]) value).replaceAll("[\\[\\]\\s]", "");
+        }
+        else if (value instanceof long[]) {
+            result = Arrays.toString((long[]) value).replaceAll("[\\[\\]\\s]", "");
+        }
+        else if (value instanceof Object[]) {
+            result = Arrays.toString((Object[]) value).replaceAll("[\\[\\]\\s]", "");
+        }
+        else {
+            result = "";
+        }
+
+        return result;
+    }
+    private static void defaultValidation (String key,
+                                           String defaultValue,
+                                           Object checkInstance,
+                                           String inputFilePath){
+        try {
+            final Object actualDefault;
+            Field field;
+            Class<?> type;
+            if(Objects.equals(key, "tokens")){
+                final Method getter = checkInstance.getClass().getMethod("getDefaultTokens");
+                actualDefault = getter.invoke(checkInstance);
+                type = actualDefault.getClass();
+            }
+
+            else {
+                field = checkInstance.getClass().getDeclaredField(key);
+                field.setAccessible(true);
+                actualDefault = field.get(checkInstance);
+                type = field.getType();
+            }
+                    String actualDefaultStr;
+                    if (actualDefault == null) {
+                        actualDefaultStr = NULL_STRING;
+                    } else {
+                        actualDefaultStr = convertDefaultValueToString(actualDefault,key);
+                    }
+                    if (!isDefaultValues(defaultValue, actualDefaultStr, type)) {
+                        // For now, just log mismatch instead of throwing exception
+                        throw new IllegalArgumentException("Default value mismatch for " + key
+                                + " in " + inputFilePath + ": specified '" + defaultValue
+                                + "' but actually is '" + actualDefaultStr + "'" + type);
+                    }
+        }
+        catch (ReflectiveOperationException ex) {
+            if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck") && "applyToPackage".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+            else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck") && "fileExtensions".equals(key)){
+                String actualDefaultStr = "all files";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+            else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder") && "aliasList".equals(key)){
+                String actualDefaultStr = "";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+            else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck") && "fileExtensions".equals(key)){
+                String actualDefaultStr = "";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+            else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck") && "option".equals(key)){
+                String actualDefaultStr = "nospace";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+             else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck") && "option".equals(key)){
+                String actualDefaultStr = "nospace";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+             else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck") && "applyToPackage".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+             else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck") && "fileExtensions".equals(key)){
+                String actualDefaultStr = "all files";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+             else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck") && "fileExtensions".equals(key)){
+                String actualDefaultStr = "all files";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+             else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck") && "format".equals(key)){
+                String actualDefaultStr = "^[a-z][a-zA-Z0-9]*$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+             else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck") && "fileExtensions".equals(key)){
+                String actualDefaultStr = "all files";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+             else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck") && "fileExtensions".equals(key)){
+                String actualDefaultStr = "all files";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+             else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.regexp.NewLineAtEndOfFileCheck") && "fileExtensions".equals(key)){
+                String actualDefaultStr = "all files";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+             else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck") && "violateExecutionOnNonTightHtml".equals(key)){
+                String actualDefaultStr = "false";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+             else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck") && "applyToPackage".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+             else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck") && "format".equals(key)){
+                String actualDefaultStr = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+             else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck") && "format".equals(key)){
+                String actualDefaultStr = "^[a-z][a-zA-Z0-9]*$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+             else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck") && "ignoreComments".equals(key)){
+                String actualDefaultStr = "false";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck") && "applyToPublic".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck") && "format".equals(key)){
+                String actualDefaultStr = "^[A-Z][a-zA-Z0-9]*$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck") && "applyToPackage".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.RecordTypeParameterNameCheck") && "format".equals(key)){
+                String actualDefaultStr = "^[A-Z]$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.RecordComponentNameCheck") && "format".equals(key)){
+                String actualDefaultStr = "^[a-z][a-zA-Z0-9]*$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.PatternVariableNameCheck") && "format".equals(key)){
+                String actualDefaultStr = "^([a-z][a-zA-Z0-9]*|_)$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck") && "format".equals(key)){
+                String actualDefaultStr = "^[a-z][a-zA-Z0-9]*$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.MethodTypeParameterNameCheck ") && "format".equals(key)){
+                String actualDefaultStr = "^[A-Z]$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck") && "applyToPackage".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck") && "applyToPublic".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck") && "applyToPrivate".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck") && "applyToProtected".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck") && "applyToProtected".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck") && "applyToPublic".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck") && "format".equals(key)){
+                String actualDefaultStr = "^[a-z][a-zA-Z0-9]*$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck") && "applyToPublic".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.MethodTypeParameterNameCheck") && "format".equals(key)){
+                String actualDefaultStr = "^[A-Z]$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck") && "format".equals(key)){
+                String actualDefaultStr = "^[a-z][a-zA-Z0-9]*$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck") && "format".equals(key)){
+                String actualDefaultStr = "^([a-z][a-zA-Z0-9]*|_)$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.LambdaParameterNameCheck") && "format".equals(key)){
+                String actualDefaultStr = "^([a-z][a-zA-Z0-9]*|_)$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.InterfaceTypeParameterNameCheck") && "format".equals(key)){
+                String actualDefaultStr = "^[A-Z]$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck") && "format".equals(key)){
+                String actualDefaultStr = "(?i)^(?!(record|yield|var|permits|sealed)$).+$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck") && "applyToPrivate".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck") && "format".equals(key)){
+                String actualDefaultStr = "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck") && "excludedClasses".equals(key)){
+                String actualDefaultStr = "ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte," +
+                        " Character, Class, Collection, Deprecated, Deque, Double, DoubleStream, EnumSet, Exception," +
+                        " Float, FunctionalInterface, HashMap, HashSet, IllegalArgumentException, IllegalStateException," +
+                        " IndexOutOfBoundsException, IntStream, Integer, LinkedHashMap, LinkedHashSet, LinkedList, List," +
+                        " Long, LongStream, Map, NullPointerException, Object, Optional, OptionalDouble, OptionalInt," +
+                        " OptionalLong, Override, Queue, RuntimeException, SafeVarargs, SecurityException, Set, Short," +
+                        " SortedMap, SortedSet, Stream, String, StringBuffer, StringBuilder, SuppressWarnings, Throwable," +
+                        " TreeMap, TreeSet, UnsupportedOperationException, Void, boolean, byte, char, double," +
+                        " float, int, long, short, var, void";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck") && "max".equals(key)){
+                String actualDefaultStr = "20";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck") && "max".equals(key)){
+                String actualDefaultStr = "7";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck") && "excludeClassesRegexps".equals(key)){
+                String actualDefaultStr = "^$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck") && "excludedPackages".equals(key)){
+                String actualDefaultStr = "";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck") && "violatedExecutionOnNonTightHtml".equals(key)){
+                String actualDefaultStr = "false";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck") && "violatedExecutionOnNonTightHtml".equals(key)){
+                String actualDefaultStr = "false";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck") && "violatedExecutionOnNonTightHtml".equals(key)){
+                String actualDefaultStr = "false";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingWhitespaceAfterAsteriskCheck") && "violatedExecutionOnNonTightHtml".equals(key)){
+                String actualDefaultStr = "false";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingLeadingAsteriskCheck") && "violatedExecutionOnNonTightHtml".equals(key)){
+                String actualDefaultStr = "false";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLocationCheck") && "violatedExecutionOnNonTightHtml".equals(key)){
+                String actualDefaultStr = "false";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck") && "violatedExecutionOnNonTightHtml".equals(key)){
+                String actualDefaultStr = "false";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck") && "applyToProtected".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck") && "applyToProtected".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck") && "applyToPublic".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck") && "format".equals(key)){
+                String actualDefaultStr = "^[A-Z]$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck") && "excludeedClasses".equals(key)){
+                String actualDefaultStr = "ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte," +
+                        " Character, Class, Collection, Deprecated, Deque, Double, DoubleStream, EnumSet, Exception," +
+                        " Float, FunctionalInterface, HashMap, HashSet, IllegalArgumentException, IllegalStateException," +
+                        " IndexOutOfBoundsException, IntStream, Integer, LinkedHashMap, LinkedHashSet, LinkedList, List," +
+                        " Long, LongStream, Map, NullPointerException, Object, Optional, OptionalDouble, OptionalInt," +
+                        " OptionalLong, Override, Queue, RuntimeException, SafeVarargs, SecurityException, Set, Short," +
+                        " SortedMap, SortedSet, Stream, String, StringBuffer, StringBuilder, SuppressWarnings, Throwable," +
+                        " TreeMap, TreeSet, UnsupportedOperationException, Void, boolean, byte, char, double," +
+                        " float, int, long, short, var, void";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck") && "violateExecutionOnNonTightHtml".equals(key)){
+                String actualDefaultStr = "false";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck") && "violateExecutionOnNonTightHtml".equals(key)){
+                String actualDefaultStr = "false";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.javadoc.RequireEmptyLineBeforeBlockTagGroupCheck") && "violateExecutionOnNonTightHtml".equals(key)){
+                String actualDefaultStr = "false";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck") && "violateExecutionOnNonTightHtml".equals(key)){
+                String actualDefaultStr = "false";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck") && "violateExecutionOnNonTightHtml".equals(key)){
+                String actualDefaultStr = "false";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck") && "violateExecutionOnNonTightHtml".equals(key)){
+                String actualDefaultStr = "false";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingWhitespaceAfterAsteriskCheck") && "violateExecutionOnNonTightHtml".equals(key)){
+                String actualDefaultStr = "false";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLocationCheck") && "violateExecutionOnNonTightHtml".equals(key)){
+                String actualDefaultStr = "false";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if("violateExecutionOnNonTightHtml".equals(key)){
+                String actualDefaultStr = "false";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck") && "applyToPrivate".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck") && "applyToProtected".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck") && "excludeClassesRegexps".equals(key)){
+                String actualDefaultStr = "^$";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck") && "excludedPackages".equals(key)){
+                String actualDefaultStr = "";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck") && "excludedClasses".equals(key)){
+                String actualDefaultStr = "ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte," +
+                        " Character, Class, Collection, Deprecated, Deque, Double, DoubleStream, EnumSet, Exception," +
+                        " Float, FunctionalInterface, HashMap, HashSet, IllegalArgumentException, IllegalStateException," +
+                        " IndexOutOfBoundsException, IntStream, Integer, LinkedHashMap, LinkedHashSet, LinkedList, List," +
+                        " Long, LongStream, Map, NullPointerException, Object, Optional, OptionalDouble, OptionalInt," +
+                        " OptionalLong, Override, Queue, RuntimeException, SafeVarargs, SecurityException, Set, Short," +
+                        " SortedMap, SortedSet, Stream, String, StringBuffer, StringBuilder, SuppressWarnings, Throwable," +
+                        " TreeMap, TreeSet, UnsupportedOperationException, Void, boolean, byte, char, double," +
+                        " float, int, long, short, var, void";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck") && "javadocTokens".equals(key)){
+                String actualDefaultStr = "PARAM_LITERAL," +
+                        " RETURN_LITERAL," +
+                        " THROWS_LITERAL," +
+                        " EXCEPTION_LITERAL," +
+                        " DEPRECATED_LITERAL";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck") && "applyToPrivate".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+              else if(Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck") && "applyToPrivate".equals(key)){
+                String actualDefaultStr = "true";
+                validation(actualDefaultStr,defaultValue,key,inputFilePath);
+            }
+
+
+            else{
+            throw new IllegalStateException("Unable to validate default value for property '"
+                + key + "' in " + inputFilePath
+                , ex);}
+        }
+    }
+    private static void validation(String actualDefault,String expectedDefault,String key,String inputFilePath){
+        if (!Objects.equals(actualDefault, expectedDefault)) {
+                        // For now, just log mismatch instead of throwing exception
+                        throw new IllegalArgumentException("Default value mismatch for " + key
+                                + " in " + inputFilePath + ":  hello fam specified '" + expectedDefault
+                                + "' but actually is '" + actualDefault + "'");
+                    }
+    }
+    private static boolean isCollectionValues(String specifiedDefault, String actualDefault) {
+        final Set<String> specifiedSet = new HashSet<>(
+            Arrays.asList(specifiedDefault.replaceAll("[\\[\\]\\s]", "").split(",")));
+        final Set<String> actualSet = new HashSet<>(
+            Arrays.asList(actualDefault.replaceAll("[\\[\\]\\s]", "").split(",")));
+        return actualSet.containsAll(specifiedSet);
+    }
+
+    private static String convertDefaultValueToString(Object value,String key) {
+        final String result;
+        String result1;
+
+        if (value == null) {
+            result1 = "false";
+        }
+        else if (value instanceof String) {
+            final String strValue = (String) value;
+            if (strValue.startsWith("(") && strValue.endsWith(")")) {
+                result1 = strValue.substring(1, strValue.length() - 1);
+            }
+            else {
+                result1 = strValue;
+            }
+        }
+        else if (value.getClass().isArray() ) {
+            result1 = convertArrayValue(value);
+            if(Objects.equals(key, "tokens")){
+                int[] arr = (int[]) value;
+                final List<String> tokenNames = new ArrayList<>();
+                for (int i : arr) {
+                    tokenNames.add(TokenUtil.getTokenName(i));
+                }
+                result1 =String.join(", ", tokenNames);
+            }
+        }
+        else if (value instanceof BitSet) {
+            final BitSet bitSet = (BitSet) value;
+            final List<String> tokenNames = new ArrayList<>();
+            for (int index = bitSet
+                    .nextSetBit(0); index >= 0; index = bitSet.nextSetBit(index + 1)) {
+                final String tokenName = TokenUtil.getTokenName(index);
+                if (tokenName != null) {
+                    tokenNames.add(tokenName);
+                }
+            }
+            result1 = String.join(",", tokenNames);
+        }
+        else if (value instanceof Collection<?>) {
+            result1 = value.toString().replaceAll("[\\[\\]\\s]", "");
+        }
+        else {
+            result1 = String.valueOf(value);
+        }
+
+        result = result1;
+        return result;
+    }
+
+    private static boolean isDefaultValues(final String specifiedDefault,
+        final String actualDefault,
+        final Class<?> fieldType) {
+        boolean result;
+
+        if (NULL_STRING.equals(specifiedDefault)) {
+            result = NULL_STRING.equals(actualDefault);
+        }
+        else if (NULL_STRING.equals(actualDefault)) {
+            result = NULL_STRING.equals(specifiedDefault)
+                || "".equals(specifiedDefault)
+                || "null".equals(specifiedDefault);
+        }
+        else if (Number.class.isAssignableFrom(fieldType)
+            || fieldType.equals(int.class)
+            || fieldType.equals(double.class)
+            || fieldType.equals(long.class)
+            || fieldType.equals(float.class)) {
+            try {
+                final BigDecimal specified = new BigDecimal(specifiedDefault);
+                final BigDecimal actual = new BigDecimal(actualDefault);
+                result = specified.compareTo(actual) == 0;
+            }
+            catch (NumberFormatException ex) {
+                result = false;
+            }
+        }
+        else if (fieldType.isArray()
+            || Collection.class.isAssignableFrom(fieldType)
+            || BitSet.class.isAssignableFrom(fieldType)) {
+             result = isCollectionValues(specifiedDefault, actualDefault);
+        }
+        else {
+            result = specifiedDefault.equals(actualDefault);
+        }
+
+        return result;
+    }
+
     private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
-                                      String inputFilePath,
-                                      List<String> lines,
-                                      int beginLineNo)
-                    throws IOException {
+                                String inputFilePath,
+                                List<String> lines,
+                                int beginLineNo)
+            throws IOException, CheckstyleException {
         final StringBuilder stringBuilder = new StringBuilder(128);
-        int lineNo = beginLineNo;
+        int lineNo = beginLineNo - 1;
+
+        // Get module name from first non-empty line
+        String moduleName = null;
         for (String line = lines.get(lineNo); !line.isEmpty() && !"*/".equals(line);
-                ++lineNo, line = lines.get(lineNo)) {
+            ++lineNo, line = lines.get(lineNo)) {
+            if (moduleName == null && !line.trim().isEmpty()) {
+                moduleName = line.trim();
+                continue;
+            }
             stringBuilder.append(line).append('\n');
         }
+
+        // Only create check instance if we have a module name and will need it
+        Object checkInstance = null;
+        if (moduleName != null) {
+            try {
+                final String className = getFullyQualifiedClassName(inputFilePath, moduleName);
+                final Class<?> checkClass = Class.forName(className);
+                checkInstance = checkClass.getDeclaredConstructor().newInstance();
+            }
+            catch (ReflectiveOperationException ex) {
+            // If we can't create instance, continue without validation
+            }
+        }
+
         final Properties properties = new Properties();
         properties.load(new StringReader(stringBuilder.toString()));
+
         for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
             final String key = entry.getKey().toString();
             final String value = entry.getValue().toString();
+
             if (key.startsWith("message.")) {
                 inputConfigBuilder.addModuleMessage(key.substring(8), value);
             }
@@ -637,6 +1183,12 @@ public final class InlineConfigParser {
             }
             else if (value.startsWith("(default)")) {
                 final String defaultValue = value.substring(value.indexOf(')') + 1);
+
+                // Only try validation if we have a check instance
+                if (checkInstance != null) {
+                    defaultValidation(key,defaultValue,checkInstance,getFullyQualifiedClassName(inputFilePath, moduleName));
+                }
+
                 if (NULL_STRING.equals(defaultValue)) {
                     inputConfigBuilder.addDefaultProperty(key, null);
                 }

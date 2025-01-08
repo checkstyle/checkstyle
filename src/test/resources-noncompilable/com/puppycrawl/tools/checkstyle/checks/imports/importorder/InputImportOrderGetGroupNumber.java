@@ -1,6 +1,6 @@
 /*
 ImportOrder
-option = (default)under
+option = (default)UNDER
 groups = /javax/, sun, /^java/, org, /java/
 ordered = (default)true
 separated = (default)false

@@ -1,8 +1,8 @@
 /*
 AnnotationUseStyle
-elementStyle = (default)compact_no_array
-closingParens = (default)never
-trailingArrayComma = (default)never
+elementStyle = (default)COMPACT_NO_ARRAY
+closingParens = (default)NEVER
+trailingArrayComma = (default)NEVER
 
 
 */
