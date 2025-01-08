@@ -22,11 +22,18 @@ package com.puppycrawl.tools.checkstyle.bdd;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.BitSet;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -42,6 +49,8 @@ import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public final class InlineConfigParser {
 
@@ -481,13 +490,14 @@ public final class InlineConfigParser {
 
     private static void handleKeyValueConfig(TestInputConfiguration.Builder testInputConfigBuilder,
                                              String inputFilePath, List<String> lines)
-            throws CheckstyleException, IOException {
+            throws CheckstyleException, IOException, ReflectiveOperationException {
         int lineNo = 0;
         while (lineNo < lines.size()) {
             final ModuleInputConfiguration.Builder moduleInputConfigBuilder =
                     new ModuleInputConfiguration.Builder();
-            setModuleName(moduleInputConfigBuilder, inputFilePath, lines.get(lineNo));
-            setProperties(moduleInputConfigBuilder, inputFilePath, lines, lineNo + 1);
+            final String moduleName = lines.get(lineNo);
+            setModuleName(moduleInputConfigBuilder, inputFilePath, moduleName);
+            setProperties(moduleInputConfigBuilder, inputFilePath, lines, lineNo + 1, moduleName);
             testInputConfigBuilder.addChildModule(moduleInputConfigBuilder.build());
             do {
                 lineNo++;
@@ -613,24 +623,210 @@ public final class InlineConfigParser {
         moduleInputConfigBuilder.setModuleName(fullyQualifiedClassName);
     }
 
-    private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
-                                      String inputFilePath,
-                                      List<String> lines,
-                                      int beginLineNo)
-                    throws IOException {
+    private static String toStringConvertForArrayValue(Object value) {
+        String result = NULL_STRING;
+
+        if (value instanceof double[]) {
+            final double[] arr = (double[]) value;
+            result = Arrays.stream(arr)
+                           .boxed()
+                           .map(number -> {
+                               return BigDecimal.valueOf(number)
+                                                .stripTrailingZeros()
+                                                .toPlainString();
+                           })
+                           .collect(Collectors.joining(","));
+        }
+        else if (value instanceof int[]) {
+            result = Arrays.toString((int[]) value).replaceAll("[\\[\\]\\s]", "");
+        }
+        else if (value instanceof boolean[]) {
+            result = Arrays.toString((boolean[]) value).replaceAll("[\\[\\]\\s]", "");
+        }
+        else if (value instanceof long[]) {
+            result = Arrays.toString((long[]) value).replaceAll("[\\[\\]\\s]", "");
+        }
+        else if (value instanceof Object[]) {
+            result = Arrays.toString((Object[]) value).replaceAll("[\\[\\]\\s]", "");
+        }
+        return result;
+    }
+
+    /**
+     * Validate default value.
+     *
+     * @param propertyName the property name.
+     * @param propertyDefaultValue the specified default value in the file.
+     * @param fullyQualifiedModuleName the fully qualified module name.
+     */
+    private static void validateDefault(String propertyName,
+                                           String propertyDefaultValue,
+                                           String fullyQualifiedModuleName)
+            throws ReflectiveOperationException {
+        final Object checkInstance = createCheckInstance(fullyQualifiedModuleName);
+        final Object actualDefault;
+        final Class<?> propertyType;
+        final String actualDefaultAsString;
+
+        if ("tokens".equals(propertyName)) {
+            final Method getter = checkInstance.getClass().getMethod("getDefaultTokens");
+            actualDefault = getter.invoke(checkInstance);
+            propertyType = actualDefault.getClass();
+            final int[] arr = (int[]) actualDefault;
+            actualDefaultAsString = Arrays.stream(arr)
+                                          .mapToObj(TokenUtil::getTokenName)
+                                          .collect(Collectors.joining(", "));
+        }
+        else if ("javadocTokens".equals(propertyName)) {
+            final Method getter = checkInstance.getClass().getMethod("getDefaultJavadocTokens");
+            actualDefault = getter.invoke(checkInstance);
+            propertyType = actualDefault.getClass();
+            final int[] arr = (int[]) actualDefault;
+            actualDefaultAsString = Arrays.stream(arr)
+                                          .mapToObj(JavadocUtil::getTokenName)
+                                          .collect(Collectors.joining(", "));
+        }
+        else {
+            actualDefault = getPropertyDefaultValue(checkInstance, propertyName);
+            if (actualDefault == null) {
+                propertyType = null;
+            }
+            else {
+                propertyType = actualDefault.getClass();
+            }
+            actualDefaultAsString = convertDefaultValueToString(actualDefault);
+        }
+        if (!isDefaultValue(propertyDefaultValue, actualDefaultAsString, propertyType)) {
+            final String message = String.format(Locale.ROOT,
+                    "Default value mismatch for %s in %s: specified '%s' but actually is '%s'",
+                    propertyName, fullyQualifiedModuleName,
+                    propertyDefaultValue, actualDefaultAsString);
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    private static boolean isCollectionValues(String specifiedDefault, String actualDefault) {
+        final Set<String> specifiedSet = new HashSet<>(
+            Arrays.asList(specifiedDefault.replaceAll("[\\[\\]\\s]", "").split(",")));
+        final Set<String> actualSet = new HashSet<>(
+            Arrays.asList(actualDefault.replaceAll("[\\[\\]\\s]", "").split(",")));
+        return actualSet.containsAll(specifiedSet);
+    }
+
+    private static String convertDefaultValueToString(Object value) {
+        final String defaultValueAsString;
+        if (value == null) {
+            defaultValueAsString = NULL_STRING;
+        }
+        else if (value instanceof String) {
+            defaultValueAsString = toStringForStringValue((String) value);
+        }
+        else if (value.getClass().isArray()) {
+            defaultValueAsString = toStringConvertForArrayValue(value);
+        }
+        else if (value instanceof BitSet) {
+            defaultValueAsString = toStringForBitSetValue((BitSet) value);
+        }
+        else if (value instanceof Collection<?>) {
+            defaultValueAsString = toStringForCollectionValue((Collection<?>) value);
+        }
+        else {
+            defaultValueAsString = String.valueOf(value);
+        }
+        return defaultValueAsString;
+    }
+
+    private static String toStringForStringValue(String strValue) {
+        final String str;
+        if (strValue.startsWith("(") && strValue.endsWith(")")) {
+            str = strValue.substring(1, strValue.length() - 1);
+        }
+        else {
+            str = strValue;
+        }
+        return str;
+    }
+
+    private static String toStringForBitSetValue(BitSet bitSet) {
+        return bitSet.stream()
+                     .mapToObj(TokenUtil::getTokenName)
+                     .collect(Collectors.joining(","));
+    }
+
+    private static String toStringForCollectionValue(Collection<?> collection) {
+        return collection.toString().replaceAll("[\\[\\]\\s]", "");
+    }
+
+    /**
+     * Validate default value.
+     *
+     * @param propertyDefaultValue the specified default value in the file.
+     * @param actualDefault the actual default value
+     * @param fieldType the data type of default value.
+     */
+    private static boolean isDefaultValue(final String propertyDefaultValue,
+                                          final String actualDefault,
+                                          final Class<?> fieldType) {
+        final boolean result;
+
+        if (NULL_STRING.equals(actualDefault)) {
+            result = isNull(propertyDefaultValue);
+        }
+        else if (isNumericType(fieldType)) {
+            final BigDecimal specified = new BigDecimal(propertyDefaultValue);
+            final BigDecimal actual = new BigDecimal(actualDefault);
+            result = specified.compareTo(actual) == 0;
+        }
+        else if (fieldType.isArray()
+            || Collection.class.isAssignableFrom(fieldType)
+            || BitSet.class.isAssignableFrom(fieldType)) {
+            result = isCollectionValues(propertyDefaultValue, actualDefault);
+        }
+        else if (fieldType.isEnum() || fieldType.isLocalClass()) {
+            result = propertyDefaultValue.equalsIgnoreCase(actualDefault);
+        }
+        else {
+            result = propertyDefaultValue.equals(actualDefault);
+        }
+        return result;
+    }
+
+    private static Object createCheckInstance(String className) throws
+            ReflectiveOperationException {
+        final Class<?> checkClass = Class.forName(className);
+        return checkClass.getDeclaredConstructor().newInstance();
+    }
+
+    private static String readPropertiesContent(int beginLineNo, List<String> lines) {
         final StringBuilder stringBuilder = new StringBuilder(128);
         int lineNo = beginLineNo;
-        for (String line = lines.get(lineNo); !line.isEmpty() && !"*/".equals(line);
-                ++lineNo, line = lines.get(lineNo)) {
+        String line = lines.get(lineNo);
+        while (!line.isEmpty() && !"*/".equals(line)) {
             stringBuilder.append(line).append('\n');
+            lineNo++;
+            line = lines.get(lineNo);
         }
-        final Properties properties = new Properties();
-        properties.load(new StringReader(stringBuilder.toString()));
+        return stringBuilder.toString();
+    }
+
+    private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
+                            String inputFilePath,
+                            List<String> lines,
+                            int beginLineNo, String moduleName)
+            throws IOException, CheckstyleException, ReflectiveOperationException {
+
+        final String propertyContent = readPropertiesContent(beginLineNo, lines);
+        final Map<Object, Object> properties = loadProperties(propertyContent);
+
         for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
             final String key = entry.getKey().toString();
             final String value = entry.getValue().toString();
+
             if (key.startsWith("message.")) {
                 inputConfigBuilder.addModuleMessage(key.substring(8), value);
+            }
+            else if (NULL_STRING.equals(value)) {
+                inputConfigBuilder.addNonDefaultProperty(key, null);
             }
             else if (value.startsWith("(file)")) {
                 final String fileName = value.substring(value.indexOf(')') + 1);
@@ -639,6 +835,11 @@ public final class InlineConfigParser {
             }
             else if (value.startsWith("(default)")) {
                 final String defaultValue = value.substring(value.indexOf(')') + 1);
+                final String fullyQualifiedModuleName =
+                        getFullyQualifiedClassName(inputFilePath, moduleName);
+
+                validateDefault(key, defaultValue, fullyQualifiedModuleName);
+
                 if (NULL_STRING.equals(defaultValue)) {
                     inputConfigBuilder.addDefaultProperty(key, null);
                 }
@@ -647,12 +848,7 @@ public final class InlineConfigParser {
                 }
             }
             else {
-                if (NULL_STRING.equals(value)) {
-                    inputConfigBuilder.addNonDefaultProperty(key, null);
-                }
-                else {
-                    inputConfigBuilder.addNonDefaultProperty(key, value);
-                }
+                inputConfigBuilder.addNonDefaultProperty(key, value);
             }
         }
     }
@@ -931,5 +1127,45 @@ public final class InlineConfigParser {
             throw new CheckstyleException(
                     "Violation message should be specified on line " + lineNum);
         }
+    }
+
+    private static Map<Object, Object> loadProperties(String propertyContent) throws IOException {
+        final Properties properties = new Properties();
+        properties.load(new StringReader(propertyContent));
+        return properties;
+    }
+
+    private static boolean isNumericType(Class<?> fieldType) {
+        return Number.class.isAssignableFrom(fieldType)
+                || fieldType.equals(int.class)
+                || fieldType.equals(double.class)
+                || fieldType.equals(long.class)
+                || fieldType.equals(float.class);
+    }
+
+    public static Object getPropertyDefaultValue(Object checkInstance,
+                                                 String propertyName)
+            throws IllegalAccessException {
+        Object result = null;
+        Class<?> currentClass = checkInstance.getClass();
+        while (currentClass != null) {
+            try {
+                final Field field = currentClass.getDeclaredField(propertyName);
+                field.setAccessible(true);
+                result = field.get(checkInstance);
+                break;
+            }
+            catch (NoSuchFieldException ex) {
+                currentClass = currentClass.getSuperclass();
+            }
+        }
+        return result;
+    }
+
+    private static boolean isNull(String propertyDefaultValue) {
+        return NULL_STRING.equals(propertyDefaultValue)
+                || propertyDefaultValue.isEmpty()
+                || "null".equals(propertyDefaultValue)
+                || "\"\"".equals(propertyDefaultValue);
     }
 }

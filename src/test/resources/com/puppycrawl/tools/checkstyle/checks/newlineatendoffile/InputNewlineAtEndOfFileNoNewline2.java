@@ -1,7 +1,7 @@
 /* // violation 'File does not end with a newline.'
 NewlineAtEndOfFile
 lineSeparator = (default)LF_CR_CRLF
-fileExtensions = (default)all files
+fileExtensions = (default)""
 message.noNewlineAtEOF = File does not end with a newline :)
 
 
