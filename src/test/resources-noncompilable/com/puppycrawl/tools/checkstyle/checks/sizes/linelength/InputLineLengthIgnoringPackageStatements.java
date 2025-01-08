@@ -1,6 +1,6 @@
 /*
 LineLength
-fileExtensions = (default)all files
+fileExtensions = (default)
 ignorePattern = ^package.*
 max = 75
 

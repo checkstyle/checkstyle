@@ -1,7 +1,7 @@
 /* // violation
 FileLength
 max = 20
-fileExtensions = (default)all files
+fileExtensions = (default)""
 
 
 */
