@@ -9,8 +9,8 @@ allowStaticMemberImports = true
 
 package com.puppycrawl.tools.checkstyle.checks.imports.avoidstarimport;
 
-import java.io.*; // violation
-import java.lang.*; // violation
+import java.io.*; // violation, 'Using the '.*' form of import should be avoided - java.io.*.'
+import java.lang.*; // violation, 'Using the '.*' form of import should be avoided - java.lang.*.'
 import java.sql.Connection;
 import java.util.List;
 import java.util.List;

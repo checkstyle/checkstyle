@@ -10,10 +10,10 @@ package com.puppycrawl.tools.checkstyle.checks.imports.avoidstarimport;
 
 // xdoc section -- start
 import java.util.Scanner;
-import java.io.*;                 // violation
-import static java.lang.Math.*;   // violation
-import java.util.*;               // violation
-import java.net.*;                // violation
+import java.io.*;                 // violation, 'Using the '.*' form of import should be avoided - java.io.*.'
+import static java.lang.Math.*;   // violation, 'Using the '.*' form of import should be avoided - java.lang.Math.*.'
+import java.util.*;               // violation, 'Using the '.*' form of import should be avoided - java.util.*.'
+import java.net.*;                // violation, 'Using the '.*' form of import should be avoided - java.net.*.'
 // xdoc section -- end
 
 class Example1 {}
