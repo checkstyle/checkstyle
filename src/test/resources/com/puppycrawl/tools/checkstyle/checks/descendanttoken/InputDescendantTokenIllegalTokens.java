@@ -8,7 +8,7 @@ maximumNumber = (default)2147483647
 sumTokenCounts = (default)false
 minimumMessage = (default)null
 maximumMessage = (default)null
-tokens = (default)empty
+tokens = (default)
 
 
 */
