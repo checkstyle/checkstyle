@@ -9,8 +9,8 @@ allowStaticMemberImports = true
 
 package com.puppycrawl.tools.checkstyle.checks.imports.avoidstarimport;
 
-import java.io.*; // violation
-import java.lang.*; // violation
+import java.io.*; // violation Avoid wildcard imports
+import java.lang.*; // violation Avoid wildcard imports
 import java.sql.Connection;
 import java.util.List;
 import java.util.List;
