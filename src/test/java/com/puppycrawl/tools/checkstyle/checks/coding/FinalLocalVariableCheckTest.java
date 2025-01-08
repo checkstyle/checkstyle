@@ -139,8 +139,13 @@ public class FinalLocalVariableCheckTest
     public void testInputFinalLocalVariable2Two() throws Exception {
 
         final String[] excepted = {
-            "78:36: " + getCheckMessage(MSG_KEY, "_o"),
-            "83:37: " + getCheckMessage(MSG_KEY, "_o1"),
+            "53:36: " + getCheckMessage(MSG_KEY, "bParam"),
+            "57:34: " + getCheckMessage(MSG_KEY, "cParam"),
+            "61:36: " + getCheckMessage(MSG_KEY, "dParam"),
+            "61:48: " + getCheckMessage(MSG_KEY, "eParam"),
+            "92:36: " + getCheckMessage(MSG_KEY, "_o"),
+            "97:37: " + getCheckMessage(MSG_KEY, "_o1"),
+            "129:43: " + getCheckMessage(MSG_KEY, "e"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariable2Two.java"), excepted);

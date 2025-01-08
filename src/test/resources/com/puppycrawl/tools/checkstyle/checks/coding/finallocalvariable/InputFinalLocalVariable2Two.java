@@ -49,6 +49,20 @@ public class InputFinalLocalVariable2Two {
 interface Inter2
 {
     void method(int aParam);
+
+    default void defaultMethod(int bParam) {
+    // violation above "Variable 'bParam' should be declared final"
+    }
+
+    static void staticMethod(int cParam) {
+    // violation above "Variable 'cParam' should be declared final"
+    }
+
+    private void privateMethod(int dParam, int eParam) {
+    // 2 violations above:
+    //  "Variable 'dParam' should be declared final"
+    //  "Variable 'eParam' should be declared final"
+    }
 }
 
 abstract class AbstractClass2
@@ -106,5 +120,17 @@ enum Enum12 {
     {
         int var = 0;
         var = 1;
+    }
+}
+
+class ExceptionCatch {
+    {
+        try {
+        } catch (IllegalArgumentException e) { // violation, "Variable 'e' should be declared final"
+        }
+
+        try {
+        } catch (IllegalArgumentException | NullPointerException e) {
+        }
     }
 }
