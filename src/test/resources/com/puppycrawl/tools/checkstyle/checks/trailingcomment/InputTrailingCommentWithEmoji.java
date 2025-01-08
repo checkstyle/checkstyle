@@ -1,6 +1,6 @@
 /*
 TrailingComment
-format = (default)^[\s});]*$
+format = (default)^[\\s});]*$
 legalComment = ^ this is ok
 
 
