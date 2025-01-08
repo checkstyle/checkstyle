@@ -1,6 +1,6 @@
 /*
 IllegalImport
-illegalPkgs = (default)
+illegalPkgs = (default)sun
 illegalClasses = ^java\\.util\\.(List|Arrays)
 regexp = true
 
