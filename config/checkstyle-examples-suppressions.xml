@@ -55,6 +55,10 @@
   <suppress id="discouragedRegexpInViolationMessage"
     files="operatorwrap[\\/]Example2.java"/>
 
+  <!-- Suppress forbidden regex messages for avoidstarimport examples -->
+  <suppress id="forbiddenRegexpInViolationMessage"
+    files="avoidstarimport[\\/]Example[1-6].java"/>
+
   <suppress checks="CommentsIndentation"
     files="singlespaceseparator[\\/]Example2.java"/>
 

@@ -25,10 +25,10 @@ import javax.swing.ScrollPaneLayout;
 import javax.swing.BorderFactory;
 import static java.io.File.listRoots;
 
-import static javax.swing.WindowConstants.*; // violation
-import static javax.swing.WindowConstants.*; // violation
+import static javax.swing.WindowConstants.*; // violation, 'Using the '.*' form of import should be avoided.'
+import static javax.swing.WindowConstants.*; // violation, 'Using the '.*' form of import should be avoided.'
 import static java.io.File.createTempFile;
-import static java.io.File.*; // violation
+import static java.io.File.*; // violation, 'Using the '.*' form of import should be avoided.'
 
 import java.awt.Component;
 import java.awt.Graphics2D;
