@@ -28,7 +28,7 @@ import static java.io.File.listRoots;
 import static javax.swing.WindowConstants.*; // ok as excluded in checks
 import static javax.swing.WindowConstants.*; // ok as excluded in checks
 import static java.io.File.createTempFile;
-import static java.io.File.*; // violation
+import static java.io.File.*; // violation, 'Using the '.*' form of import should be avoided.'
 
 import java.awt.Component;
 import java.awt.Graphics2D;
