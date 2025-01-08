@@ -43,7 +43,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example1.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -51,7 +51,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example1.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">
@@ -61,7 +61,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example2.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">
@@ -69,7 +69,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example2.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example3-config">
@@ -78,7 +78,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example3.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">
@@ -86,7 +86,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example3.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example4-config">
@@ -95,7 +95,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example4.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">
@@ -103,7 +103,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example4.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example5-config">
@@ -112,7 +112,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example5.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example5-code">
@@ -120,7 +120,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example5.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example6-config">
@@ -130,7 +130,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example6.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example6.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example6-code">
@@ -138,7 +138,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example6.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example6.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
