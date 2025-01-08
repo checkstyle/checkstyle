@@ -22,10 +22,12 @@ package com.puppycrawl.tools.checkstyle.bdd;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -37,6 +39,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import org.xml.sax.InputSource;
 
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
@@ -615,9 +618,22 @@ public final class InlineConfigParser {
                                       String inputFilePath,
                                       List<String> lines,
                                       int beginLineNo)
-                    throws IOException {
+            throws IOException, CheckstyleException {
         final StringBuilder stringBuilder = new StringBuilder(128);
+        String moduleName = lines.get(beginLineNo-1);
+        final String fullyQualifiedClassName = getFullyQualifiedClassName(inputFilePath, moduleName);
         int lineNo = beginLineNo;
+
+        // Create check instance for default value validation
+       final AbstractCheck checkInstance;
+       try {
+           Class<?> checkClass = Class.forName(fullyQualifiedClassName);
+           checkInstance = (AbstractCheck) checkClass.getDeclaredConstructor().newInstance();
+       }
+       catch (ReflectiveOperationException ex) {
+           throw new CheckstyleException("Unable to instantiate " + fullyQualifiedClassName, ex);
+       }
+
         for (String line = lines.get(lineNo); !line.isEmpty() && !"*/".equals(line);
                 ++lineNo, line = lines.get(lineNo)) {
             stringBuilder.append(line).append('\n');
@@ -637,6 +653,32 @@ public final class InlineConfigParser {
             }
             else if (value.startsWith("(default)")) {
                 final String defaultValue = value.substring(value.indexOf(')') + 1);
+                 try {
+                // Get actual default from check instance
+                Field field = checkInstance.getClass().getDeclaredField(key);
+                field.setAccessible(true); // Make private fields accessible
+                Object actualDefault = field.get(checkInstance);
+                String actualDefaultStr;
+                     if (actualDefault == null) {
+                         actualDefaultStr = NULL_STRING;
+                     }
+                     else if (actualDefault.getClass().isArray()) {
+                       actualDefaultStr = Arrays.toString((int[]) actualDefault).replaceAll("[\\[\\]\\s]", "");
+                     }
+                     else {
+                         actualDefaultStr = String.valueOf(actualDefault);
+                     }
+
+                     // Compare specified default with actual default
+                if (!actualDefaultStr.equals(defaultValue)) {
+                    throw new CheckstyleException(String.format(
+                        "Default value mismatch for %s in %s: specified '%s' but actually is '%s'",
+                        key, moduleName, defaultValue, actualDefaultStr));
+                }
+            }
+            catch (ReflectiveOperationException ex) {
+                throw new CheckstyleException("Unable to get default value for " + key, ex);
+            }
                 if (NULL_STRING.equals(defaultValue)) {
                     inputConfigBuilder.addDefaultProperty(key, null);
                 }
