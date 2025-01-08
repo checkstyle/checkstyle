@@ -1,6 +1,6 @@
 /*
 NestedIfDepth
-depth = (default)1
+depth = (default)0
 
 */
 

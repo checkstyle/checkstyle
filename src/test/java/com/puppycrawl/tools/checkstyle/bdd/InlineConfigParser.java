@@ -22,15 +22,23 @@ package com.puppycrawl.tools.checkstyle.bdd;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.BitSet;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -43,6 +51,7 @@ import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public final class InlineConfigParser {
 
@@ -611,22 +620,432 @@ public final class InlineConfigParser {
         moduleInputConfigBuilder.setModuleName(fullyQualifiedClassName);
     }
 
-    private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
-                                      String inputFilePath,
-                                      List<String> lines,
-                                      int beginLineNo)
-                    throws IOException {
-        final StringBuilder stringBuilder = new StringBuilder(128);
-        int lineNo = beginLineNo;
-        for (String line = lines.get(lineNo); !line.isEmpty() && !"*/".equals(line);
-                ++lineNo, line = lines.get(lineNo)) {
-            stringBuilder.append(line).append('\n');
+    private static String convertArrayValue(Object value) {
+        final String result;
+
+        if (value instanceof int[]) {
+            result = Arrays.toString((int[]) value).replaceAll("[\\[\\]\\s]", "");
         }
+        else if (value instanceof double[]) {
+            final double[] arr = (double[]) value;
+            final StringBuilder resBuilder = new StringBuilder(128);
+            for (int index = 0; index < arr.length; index++) {
+                if (index > 0) {
+                    resBuilder.append(',');
+                }
+                resBuilder.append(BigDecimal
+                        .valueOf(arr[index])
+                        .stripTrailingZeros()
+                        .toPlainString());
+            }
+            result = resBuilder.toString();
+        }
+        else if (value instanceof boolean[]) {
+            result = Arrays.toString((boolean[]) value).replaceAll("[\\[\\]\\s]", "");
+        }
+        else if (value instanceof long[]) {
+            result = Arrays.toString((long[]) value).replaceAll("[\\[\\]\\s]", "");
+        }
+        else if (value instanceof Object[]) {
+            result = Arrays.toString((Object[]) value).replaceAll("[\\[\\]\\s]", "");
+        }
+        else {
+            result = "";
+        }
+
+        return result;
+    }
+
+    /**
+     * HardCoded Default value for key = format.
+     *
+     * @param key the property name.
+     * @param inputFilePath the path to the file.
+     * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
+     *      parser requires giant if/else
+     */
+    // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
+    // -@cs[JavaNCSS] splitting this method is not reasonable.
+    // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
+    private static String hardCodedDefaultForFormat(String key, String inputFilePath) {
+        if (!"format".equals(key)) {
+            throw new IllegalStateException("Unable to validate default value for property '"
+                    + key + "' in " + inputFilePath);
+        }
+
+        final Map<String, String> patterns = new HashMap<>();
+        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck",
+            "^[a-z][a-zA-Z0-9]*$");
+        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck",
+            "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$");
+        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck",
+            "^[a-z][a-zA-Z0-9]*$");
+        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck",
+            "^[A-Z][a-zA-Z0-9]*$");
+        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.RecordTypeParameterNameCheck",
+            "^[A-Z]$");
+        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.RecordComponentNameCheck",
+            "^[a-z][a-zA-Z0-9]*$");
+        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.PatternVariableNameCheck",
+            "^([a-z][a-zA-Z0-9]*|_)$");
+        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck",
+            "^[a-z][a-zA-Z0-9]*$");
+        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.MethodTypeParameterNameCheck",
+            "^[A-Z]$");
+        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck",
+            "^[a-z][a-zA-Z0-9]*$");
+        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck",
+            "^[a-z][a-zA-Z0-9]*$");
+        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck",
+            "^([a-z][a-zA-Z0-9]*|_)$");
+        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.LambdaParameterNameCheck",
+            "^([a-z][a-zA-Z0-9]*|_)$");
+        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming"
+                        + ".InterfaceTypeParameterNameCheck",
+            "^[A-Z]$");
+        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck",
+            "(?i)^(?!(record|yield|var|permits|sealed)$).+$");
+        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck",
+            "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$");
+        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck",
+            "^[A-Z]$");
+
+        final String pattern = patterns.get(inputFilePath);
+        if (pattern == null) {
+            throw new IllegalStateException("Unable to validate default value for property '"
+            + key + "' in " + inputFilePath);
+        }
+        return pattern;
+    }
+
+    /**
+     * HardCoded Default value.
+     *
+     * @param key the property name.
+     * @param defaultValue the specified default value in the file.
+     * @param inputFilePath the path to the file.
+     * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
+     */
+    // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
+    // -@cs[JavaNCSS] splitting this method is not reasonable.
+    // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
+    private static void hardCodedDefault(String key, String inputFilePath, String defaultValue) {
+        final Map<String, String> commonDefaults = new HashMap<>();
+        commonDefaults.put("fileExtensions", "all files");
+        commonDefaults.put("violateExecutionOnNonTightHtml", "false");
+        commonDefaults.put("applyToPrivate", "true");
+        commonDefaults.put("applyToProtected", "true");
+        commonDefaults.put("applyToPublic", "true");
+        commonDefaults.put("applyToPackage", "true");
+
+        final Map<String, Map<String, String>> pathDefaults = new HashMap<>();
+
+        final String excludedClasses = "ArrayIndexOutOfBoundsException,"
+                + " ArrayList, Boolean, Byte,"
+                + " Character, Class, Collection, Deprecated, Deque, Double,"
+                + " DoubleStream, EnumSet, Exception,"
+                + " Float, FunctionalInterface, HashMap, HashSet,"
+                + " IllegalArgumentException, IllegalStateException,"
+                + " IndexOutOfBoundsException, IntStream, Integer,"
+                + " LinkedHashMap, LinkedHashSet, LinkedList, List,"
+                + " Long, LongStream, Map, NullPointerException,"
+                + " Object, Optional, OptionalDouble, OptionalInt,"
+                + " OptionalLong, Override, Queue, RuntimeException,"
+                + " SafeVarargs, SecurityException, Set, Short,"
+                + " SortedMap, SortedSet, Stream, String, StringBuffer,"
+                + " StringBuilder, SuppressWarnings, Throwable,"
+                + " TreeMap, TreeSet, UnsupportedOperationException,"
+                + " Void, boolean, byte, char, double,"
+                + " float, int, long, short, var, void";
+
+        pathDefaults.put("com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder",
+            Map.of("aliasList", ""));
+        pathDefaults.put("com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck",
+            Map.of("fileExtensions", ""));
+        pathDefaults.put("com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck",
+            Map.of("option", "nospace"));
+        pathDefaults.put("com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck",
+            Map.of("option", "nospace"));
+        pathDefaults.put("com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck",
+            Map.of("ignoreComments", "false"));
+        pathDefaults.put("com.puppycrawl.tools.checkstyle.checks"
+                        + ".metrics.ClassFanOutComplexityCheck",
+            Map.of("excludedClasses", excludedClasses,
+                  "max", "20",
+                  "excludeClassesRegexps", "^$",
+                  "excludedPackages", ""));
+        pathDefaults.put("com.puppycrawl.tools.checkstyle.checks"
+                        + ".metrics.ClassDataAbstractionCouplingCheck",
+            Map.of("excludedClasses", excludedClasses,
+                  "max", "7",
+                  "excludeClassesRegexps", "^$",
+                  "excludedPackages", "",
+                  "excludeedClasses", excludedClasses));
+        pathDefaults.put("com.puppycrawl.tools.checkstyle.checks"
+                        + ".javadoc.NonEmptyAtclauseDescriptionCheck",
+            Map.of("javadocTokens", "PARAM_LITERAL, RETURN_LITERAL,"
+                    + " THROWS_LITERAL, EXCEPTION_LITERAL, DEPRECATED_LITERAL"));
+
+        final String actualDefaultStr;
+        if ("format".equals(key)) {
+            actualDefaultStr = hardCodedDefaultForFormat(key, inputFilePath);
+        }
+        else if (pathDefaults.containsKey(inputFilePath)
+                && pathDefaults.get(inputFilePath).containsKey(key)) {
+            actualDefaultStr = pathDefaults.get(inputFilePath).get(key);
+        }
+        else if (commonDefaults.containsKey(key)) {
+            actualDefaultStr = commonDefaults.get(key);
+        }
+        else {
+            throw new IllegalStateException("Unable to validate default value for property '"
+            + key + "' in " + inputFilePath);
+        }
+        validation(actualDefaultStr, defaultValue, key, inputFilePath);
+    }
+
+    /**
+     * Validate default value.
+     *
+     * @param key the property name.
+     * @param defaultValue the specified default value in the file.
+     * @param checkInstance the specific check instance.
+     * @param inputFilePath the path to the file.
+     * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
+     *      parser requires giant if/else
+     */
+    // -@cs[MethodLength] splitting this method is not reasonable
+    // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
+    // -@cs[JavaNCSS] splitting this method is not reasonable.
+    // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
+    private static void defaultValidation(String key,
+                                           String defaultValue,
+                                           Object checkInstance,
+                                           String inputFilePath) {
+        try {
+            final Object actualDefault;
+            final Field field;
+            final Class<?> type;
+            if (Objects.equals(key, "tokens")) {
+                final Method getter = checkInstance.getClass().getMethod("getDefaultTokens");
+                actualDefault = getter.invoke(checkInstance);
+                type = actualDefault.getClass();
+            }
+
+            else {
+                field = checkInstance.getClass().getDeclaredField(key);
+                field.setAccessible(true);
+                actualDefault = field.get(checkInstance);
+                type = field.getType();
+            }
+            final String actualDefaultStr;
+            if (actualDefault == null) {
+                actualDefaultStr = NULL_STRING;
+            }
+            else {
+                actualDefaultStr = convertDefaultValueToString(actualDefault, key);
+            }
+            if (!isDefaultValues(defaultValue, actualDefaultStr, type)) {
+                // For now, just log mismatch instead of throwing exception
+                throw new IllegalArgumentException("Default value mismatch for " + key
+                        + " in " + inputFilePath + ": specified '" + defaultValue
+                        + "' but actually is '" + actualDefaultStr + "'");
+            }
+
+        }
+        catch (ReflectiveOperationException ex) {
+
+            hardCodedDefault(key, inputFilePath, defaultValue);
+
+        }
+    }
+
+    private static void validation(String actualDefault, String expectedDefault,
+                                   String key, String inputFilePath) {
+        if (!Objects.equals(actualDefault, expectedDefault)) {
+            // For now, just log mismatch instead of throwing exception
+            throw new IllegalArgumentException("Default value mismatch for " + key
+                                + " in " + inputFilePath
+                                + ": specified '" + expectedDefault
+                                + "' but actually is '" + actualDefault + "'"
+            );
+        }
+    }
+
+    private static boolean isCollectionValues(String specifiedDefault, String actualDefault) {
+        final Set<String> specifiedSet = new HashSet<>(
+            Arrays.asList(specifiedDefault.replaceAll("[\\[\\]\\s]", "").split(",")));
+        final Set<String> actualSet = new HashSet<>(
+            Arrays.asList(actualDefault.replaceAll("[\\[\\]\\s]", "").split(",")));
+        return actualSet.containsAll(specifiedSet);
+    }
+
+    // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
+    // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
+
+    private static String convertDefaultValueToString(Object value, String key) {
+        final String defaultStr;
+        if (value == null) {
+            defaultStr = handleNullValue();
+        }
+        else if (value instanceof String) {
+            defaultStr = handleStringValue((String) value);
+        }
+        else if (value.getClass().isArray()) {
+            defaultStr = handleArrayValue(value, key);
+        }
+        else if (value instanceof BitSet) {
+            defaultStr = handleBitSetValue((BitSet) value);
+        }
+        else if (value instanceof Collection<?>) {
+            defaultStr = handleCollectionValue((Collection<?>) value);
+        }
+        else {
+            defaultStr = String.valueOf(value);
+        }
+        return defaultStr;
+    }
+
+    private static String handleNullValue() {
+        return "false";
+    }
+
+    private static String handleStringValue(String strValue) {
+        final String str;
+        if (strValue.startsWith("(") && strValue.endsWith(")")) {
+            str = strValue.substring(1, strValue.length() - 1);
+        }
+        else {
+            str = strValue;
+        }
+        return str;
+    }
+
+    private static String handleArrayValue(Object value, String key) {
+        String result = convertArrayValue(value);
+        if (Objects.equals(key, "tokens") && value instanceof int[]) {
+            final int[] arr = (int[]) value;
+            final List<String> tokenNames = new ArrayList<>();
+            for (int index : arr) {
+                tokenNames.add(TokenUtil.getTokenName(index));
+            }
+            result = String.join(", ", tokenNames);
+        }
+        return result;
+    }
+
+    private static String handleBitSetValue(BitSet bitSet) {
+        final List<String> tokenNames = new ArrayList<>();
+        for (int index = bitSet.nextSetBit(0); index >= 0; index = bitSet.nextSetBit(index + 1)) {
+            final String tokenName = TokenUtil.getTokenName(index);
+            if (tokenName != null) {
+                tokenNames.add(tokenName);
+            }
+        }
+        return String.join(",", tokenNames);
+    }
+
+    private static String handleCollectionValue(Collection<?> collection) {
+        return collection.toString().replaceAll("[\\[\\]\\s]", "");
+    }
+
+    // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
+
+    private static boolean isDefaultValues(final String specifiedDefault,
+        final String actualDefault,
+        final Class<?> fieldType) {
+        boolean result;
+
+        if (NULL_STRING.equals(specifiedDefault)) {
+            result = NULL_STRING.equals(actualDefault);
+        }
+        else if (NULL_STRING.equals(actualDefault)) {
+            result = NULL_STRING.equals(specifiedDefault)
+                || "".equals(specifiedDefault)
+                || "null".equals(specifiedDefault);
+        }
+        else if (Number.class.isAssignableFrom(fieldType)
+            || fieldType.equals(int.class)
+            || fieldType.equals(double.class)
+            || fieldType.equals(long.class)
+            || fieldType.equals(float.class)) {
+            try {
+                final BigDecimal specified = new BigDecimal(specifiedDefault);
+                final BigDecimal actual = new BigDecimal(actualDefault);
+                result = specified.compareTo(actual) == 0;
+            }
+            catch (NumberFormatException ex) {
+                result = false;
+            }
+        }
+        else if (fieldType.isArray()
+            || Collection.class.isAssignableFrom(fieldType)
+            || BitSet.class.isAssignableFrom(fieldType)) {
+            result = isCollectionValues(specifiedDefault, actualDefault);
+        }
+        else {
+            if (fieldType.isEnum() || fieldType.isLocalClass()) {
+                result = specifiedDefault.equalsIgnoreCase(actualDefault);
+            }
+            else {
+                result = specifiedDefault.equals(actualDefault);
+            }
+        }
+        return result;
+    }
+
+    private static String extractModuleName(List<String> lines,
+                                            int lineNo, StringBuilder stringBuilder) {
+        int lineNum = lineNo;
+        String moduleName = null;
+
+        for (String line = lines.get(lineNum);
+            !line.isEmpty() && !"*/".equals(line);
+            ++lineNum, line = lines.get(lineNum)) {
+            if (moduleName == null && !line.isBlank()) {
+                moduleName = line.trim();
+            }
+            else {
+                stringBuilder.append(line).append('\n');
+            }
+        }
+        return moduleName;
+    }
+
+    private static Object createCheckInstance(String moduleName, String inputFilePath) {
+        try {
+            final String className = getFullyQualifiedClassName(inputFilePath, moduleName);
+            final Class<?> checkClass = Class.forName(className);
+            return checkClass.getDeclaredConstructor().newInstance();
+        }
+        catch (ReflectiveOperationException
+               | CheckstyleException ex) {
+            throw new IllegalStateException("Unable to create check instance " + moduleName, ex);
+        }
+    }
+
+    // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
+    // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
+
+    private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
+                                String inputFilePath,
+                                List<String> lines,
+                                int beginLineNo)
+            throws IOException, CheckstyleException {
+        final StringBuilder stringBuilder = new StringBuilder(128);
+        final int lineNo = beginLineNo - 1;
+
+        final String moduleName = extractModuleName(lines, lineNo, stringBuilder);
+
+        final Object checkInstance = createCheckInstance(moduleName, inputFilePath);
+
         final Properties properties = new Properties();
         properties.load(new StringReader(stringBuilder.toString()));
+
         for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
             final String key = entry.getKey().toString();
             final String value = entry.getValue().toString();
+
             if (key.startsWith("message.")) {
                 inputConfigBuilder.addModuleMessage(key.substring(8), value);
             }
@@ -637,6 +1056,12 @@ public final class InlineConfigParser {
             }
             else if (value.startsWith("(default)")) {
                 final String defaultValue = value.substring(value.indexOf(')') + 1);
+
+                if (checkInstance != null) {
+                    defaultValidation(key, defaultValue, checkInstance,
+                            getFullyQualifiedClassName(inputFilePath, moduleName));
+                }
+
                 if (NULL_STRING.equals(defaultValue)) {
                     inputConfigBuilder.addDefaultProperty(key, null);
                 }
