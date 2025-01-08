@@ -1,6 +1,6 @@
 /*
 PackageName
-format = (default)^[a-z]+(\.[a-zA-Z_]\w*)*$
+format = (default)^[a-z]+(\\.[a-zA-Z_]\\w*)*$
 
 
 */
