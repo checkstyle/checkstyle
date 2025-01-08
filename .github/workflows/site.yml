@@ -92,18 +92,18 @@ jobs:
           path: .ci-temp/checkstyle
           fetch-depth: 0
 
+      - name: Setup local maven cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
-
-      - name: Setup local maven cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2/repository
-          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
       - name: Generate site
         run: |
