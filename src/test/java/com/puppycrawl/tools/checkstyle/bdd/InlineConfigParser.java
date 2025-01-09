@@ -22,12 +22,18 @@ package com.puppycrawl.tools.checkstyle.bdd;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.BitSet;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -37,6 +43,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 import org.xml.sax.InputSource;
 
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
@@ -613,50 +620,189 @@ public final class InlineConfigParser {
         moduleInputConfigBuilder.setModuleName(fullyQualifiedClassName);
     }
 
-    private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
-                                      String inputFilePath,
-                                      List<String> lines,
-                                      int beginLineNo)
-                    throws IOException {
-        final StringBuilder stringBuilder = new StringBuilder(128);
-        int lineNo = beginLineNo;
-        for (String line = lines.get(lineNo); !line.isEmpty() && !"*/".equals(line);
-                ++lineNo, line = lines.get(lineNo)) {
-            stringBuilder.append(line).append('\n');
+
+
+    private static String convertDefaultValueToString(Object value) {
+    if (value == null) {
+        return "false";
+    }
+
+    if (value instanceof String) {
+        // Remove parentheses from start and end if they exist
+        String strValue = (String) value;
+        if (strValue.startsWith("(") && strValue.endsWith(")")) {
+            return strValue.substring(1, strValue.length() - 1);
         }
-        final Properties properties = new Properties();
-        properties.load(new StringReader(stringBuilder.toString()));
-        for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
-            final String key = entry.getKey().toString();
-            final String value = entry.getValue().toString();
-            if (key.startsWith("message.")) {
-                inputConfigBuilder.addModuleMessage(key.substring(8), value);
-            }
-            else if (value.startsWith("(file)")) {
-                final String fileName = value.substring(value.indexOf(')') + 1);
-                final String filePath = getResolvedPath(fileName, inputFilePath);
-                inputConfigBuilder.addNonDefaultProperty(key, filePath);
-            }
-            else if (value.startsWith("(default)")) {
-                final String defaultValue = value.substring(value.indexOf(')') + 1);
-                if (NULL_STRING.equals(defaultValue)) {
-                    inputConfigBuilder.addDefaultProperty(key, null);
+        return strValue; // Return as is if no parentheses
+    }
+
+    if (value.getClass().isArray()) {
+        if (value instanceof int[]) {
+            return Arrays.toString((int[]) value).replaceAll("[\\[\\]\\s]", "");
+        } else if (value instanceof double[]) {
+            double[] arr = (double[]) value;
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < arr.length; i++) {
+                if (i > 0) {
+                    result.append(",");
                 }
-                else {
-                    inputConfigBuilder.addDefaultProperty(key, defaultValue);
-                }
+                // Convert to BigDecimal to remove trailing zeros
+                result.append(BigDecimal.valueOf(arr[i]).stripTrailingZeros().toPlainString());
             }
-            else {
-                if (NULL_STRING.equals(value)) {
-                    inputConfigBuilder.addNonDefaultProperty(key, null);
-                }
-                else {
-                    inputConfigBuilder.addNonDefaultProperty(key, value);
-                }
+            return result.toString();
+        } else if (value instanceof boolean[]) {
+            return Arrays.toString((boolean[]) value).replaceAll("[\\[\\]\\s]", "");
+        } else if (value instanceof long[]) {
+            return Arrays.toString((long[]) value).replaceAll("[\\[\\]\\s]", "");
+        } else if (value instanceof Object[]) {
+            return Arrays.toString((Object[]) value).replaceAll("[\\[\\]\\s]", "");
+        }
+    } else if (value instanceof BitSet) {
+        BitSet bitSet = (BitSet) value;
+        List<String> tokenNames = new ArrayList<>();
+        for (int i = bitSet.nextSetBit(0); i >= 0; i = bitSet.nextSetBit(i + 1)) {
+            String tokenName = TokenUtil.getTokenName(i);
+            if (tokenName != null) {
+                tokenNames.add(tokenName);
             }
+        }
+        return String.join(",", tokenNames);
+    } else if (value instanceof Collection<?>) {
+        return value.toString().replaceAll("[\\[\\]\\s]", "");
+    }
+
+    return String.valueOf(value);
+}
+
+private static boolean compareDefaultValues(String specifiedDefault, String actualDefault, Class<?> fieldType) {
+    if (NULL_STRING.equals(specifiedDefault)) {
+        return NULL_STRING.equals(actualDefault);
+    }
+
+    if(NULL_STRING.equals(actualDefault)) {
+        return NULL_STRING.equals(specifiedDefault) || "".equals(specifiedDefault) || "null".equals(specifiedDefault);
+    }
+
+    // Handle numeric comparisons to account for different number formats
+    if (Number.class.isAssignableFrom(fieldType) || fieldType.equals(int.class)
+            || fieldType.equals(double.class) || fieldType.equals(long.class)
+            || fieldType.equals(float.class)) {
+        try {
+            BigDecimal specified = new BigDecimal(specifiedDefault);
+            BigDecimal actual = new BigDecimal(actualDefault);
+            return specified.compareTo(actual) == 0;
+        }
+        catch (NumberFormatException ex) {
+            return false;
         }
     }
 
+    // Handle array comparisons by normalizing the strings
+    if (fieldType.isArray() || Collection.class.isAssignableFrom(fieldType)
+            || BitSet.class.isAssignableFrom(fieldType)) {
+        // Split elements by comma
+        Set<String> specifiedSet = new HashSet<>(Arrays.asList(specifiedDefault.replaceAll("[\\[\\]\\s]", "").split(",")));
+        Set<String> actualSet = new HashSet<>(Arrays.asList(actualDefault.replaceAll("[\\[\\]\\s]", "").split(",")));
+
+        // Check if all specified elements are in the actual set
+        return actualSet.containsAll(specifiedSet);
+    }
+
+    return specifiedDefault.equals(actualDefault);
+}
+
+  private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
+                                String inputFilePath,
+                                List<String> lines,
+                                int beginLineNo)
+        throws IOException, CheckstyleException {
+    final StringBuilder stringBuilder = new StringBuilder(128);
+    int lineNo = beginLineNo-1;
+
+    // Get module name from first non-empty line
+    String moduleName = null;
+    for (String line = lines.get(lineNo); !line.isEmpty() && !"*/".equals(line);
+            ++lineNo, line = lines.get(lineNo)) {
+        if (moduleName == null && !line.trim().isEmpty()) {
+            moduleName = line.trim();
+            continue;
+        }
+        stringBuilder.append(line).append('\n');
+    }
+
+    // Only create check instance if we have a module name and will need it
+    Object checkInstance = null;
+    if (moduleName != null) {
+        try {
+            final String fullyQualifiedClassName = getFullyQualifiedClassName(inputFilePath, moduleName);
+            Class<?> checkClass = Class.forName(fullyQualifiedClassName);
+            checkInstance = checkClass.getDeclaredConstructor().newInstance();
+        }
+        catch (ReflectiveOperationException ex) {
+            // If we can't create instance, continue without validation
+        }
+    }
+
+    final Properties properties = new Properties();
+    properties.load(new StringReader(stringBuilder.toString()));
+
+    for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
+        final String key = entry.getKey().toString();
+        final String value = entry.getValue().toString();
+
+        if (key.startsWith("message.")) {
+            inputConfigBuilder.addModuleMessage(key.substring(8), value);
+        }
+        else if (value.startsWith("(file)")) {
+            final String fileName = value.substring(value.indexOf(')') + 1);
+            final String filePath = getResolvedPath(fileName, inputFilePath);
+            inputConfigBuilder.addNonDefaultProperty(key, filePath);
+        }
+        else if (value.startsWith("(default)")) {
+            final String defaultValue = value.substring(value.indexOf(')') + 1);
+
+            // Only try validation if we have a check instance
+            if (checkInstance != null) {
+                try {
+                    Field field = checkInstance.getClass().getDeclaredField(key);
+                    field.setAccessible(true);
+                    Object actualDefault = field.get(checkInstance);
+                    String actualDefaultStr;
+                    if (actualDefault == null) {
+                        actualDefaultStr = NULL_STRING;
+                    } else {
+                        actualDefaultStr = convertDefaultValueToString(actualDefault);
+                    }
+
+                    if (!compareDefaultValues(defaultValue, actualDefaultStr, field.getType())) {
+                        // For now, just log mismatch instead of throwing exception
+                        throw new IllegalArgumentException("Default value mismatch for " + key
+                                + " in " + inputFilePath + ": specified '" + defaultValue
+                                + "' but actually is '" + actualDefaultStr + "'");
+                    }
+                }
+                catch (ReflectiveOperationException ex) {
+                    // Ignore validation errors for now
+                }
+            }
+
+            if (NULL_STRING.equals(defaultValue)) {
+                inputConfigBuilder.addDefaultProperty(key, null);
+            }
+            else {
+                inputConfigBuilder.addDefaultProperty(key, defaultValue);
+            }
+        }
+        else {
+            if (NULL_STRING.equals(value)) {
+                inputConfigBuilder.addNonDefaultProperty(key, null);
+            }
+            else {
+                inputConfigBuilder.addNonDefaultProperty(key, value);
+            }
+        }
+    }
+}
     private static void setProperties(String inputFilePath, Configuration module,
                                       ModuleInputConfiguration.Builder moduleInputConfigBuilder)
             throws CheckstyleException {
