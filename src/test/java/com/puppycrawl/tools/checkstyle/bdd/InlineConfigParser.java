@@ -33,6 +33,7 @@ import java.util.BitSet;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -42,6 +43,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 import org.xml.sax.InputSource;
 
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
@@ -616,49 +618,67 @@ public final class InlineConfigParser {
         moduleInputConfigBuilder.setModuleName(fullyQualifiedClassName);
     }
 
+
+
     private static String convertDefaultValueToString(Object value) {
     if (value == null) {
         return "false";
     }
 
+    if (value instanceof String) {
+        // Remove parentheses from start and end if they exist
+        String strValue = (String) value;
+        if (strValue.startsWith("(") && strValue.endsWith(")")) {
+            return strValue.substring(1, strValue.length() - 1);
+        }
+        return strValue; // Return as is if no parentheses
+    }
+
     if (value.getClass().isArray()) {
         if (value instanceof int[]) {
             return Arrays.toString((int[]) value).replaceAll("[\\[\\]\\s]", "");
-        }
-        else if (value instanceof double[]) {
-            return Arrays.toString((double[]) value).replaceAll("[\\[\\]\\s]", "");
-        }
-        else if (value instanceof boolean[]) {
+        } else if (value instanceof double[]) {
+            double[] arr = (double[]) value;
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < arr.length; i++) {
+                if (i > 0) {
+                    result.append(",");
+                }
+                // Convert to BigDecimal to remove trailing zeros
+                result.append(BigDecimal.valueOf(arr[i]).stripTrailingZeros().toPlainString());
+            }
+            return result.toString();
+        } else if (value instanceof boolean[]) {
             return Arrays.toString((boolean[]) value).replaceAll("[\\[\\]\\s]", "");
-        }
-        else if (value instanceof long[]) {
+        } else if (value instanceof long[]) {
             return Arrays.toString((long[]) value).replaceAll("[\\[\\]\\s]", "");
-        }
-        else if (value instanceof Object[]) {
+        } else if (value instanceof Object[]) {
             return Arrays.toString((Object[]) value).replaceAll("[\\[\\]\\s]", "");
         }
-    }
-    else if (value instanceof BitSet) {
+    } else if (value instanceof BitSet) {
         BitSet bitSet = (BitSet) value;
-        int[] tokens = new int[bitSet.cardinality()];
-        int index = 0;
+        List<String> tokenNames = new ArrayList<>();
         for (int i = bitSet.nextSetBit(0); i >= 0; i = bitSet.nextSetBit(i + 1)) {
-            tokens[index] = i;
-            index++;
+            String tokenName = TokenUtil.getTokenName(i);
+            if (tokenName != null) {
+                tokenNames.add(tokenName);
+            }
         }
-        return Arrays.toString(tokens).replaceAll("[\\[\\]\\s]", "");
-    }
-    else if (value instanceof Collection<?>) {
+        return String.join(",", tokenNames);
+    } else if (value instanceof Collection<?>) {
         return value.toString().replaceAll("[\\[\\]\\s]", "");
     }
 
     return String.valueOf(value);
 }
 
-
 private static boolean compareDefaultValues(String specifiedDefault, String actualDefault, Class<?> fieldType) {
     if (NULL_STRING.equals(specifiedDefault)) {
         return NULL_STRING.equals(actualDefault);
+    }
+
+    if(NULL_STRING.equals(actualDefault)) {
+        return NULL_STRING.equals(specifiedDefault) || "".equals(specifiedDefault) || "null".equals(specifiedDefault);
     }
 
     // Handle numeric comparisons to account for different number formats
@@ -678,9 +698,12 @@ private static boolean compareDefaultValues(String specifiedDefault, String actu
     // Handle array comparisons by normalizing the strings
     if (fieldType.isArray() || Collection.class.isAssignableFrom(fieldType)
             || BitSet.class.isAssignableFrom(fieldType)) {
-        String normalizedSpecified = specifiedDefault.replaceAll("[\\[\\]\\s]", "");
-        String normalizedActual = actualDefault.replaceAll("[\\[\\]\\s]", "");
-        return normalizedSpecified.equals(normalizedActual);
+        // Split elements by comma
+        Set<String> specifiedSet = new HashSet<>(Arrays.asList(specifiedDefault.replaceAll("[\\[\\]\\s]", "").split(",")));
+        Set<String> actualSet = new HashSet<>(Arrays.asList(actualDefault.replaceAll("[\\[\\]\\s]", "").split(",")));
+
+        // Check if all specified elements are in the actual set
+        return actualSet.containsAll(specifiedSet);
     }
 
     return specifiedDefault.equals(actualDefault);
@@ -746,14 +769,14 @@ private static boolean compareDefaultValues(String specifiedDefault, String actu
                     if (actualDefault == null) {
                         actualDefaultStr = NULL_STRING;
                     } else {
-                        actualDefaultStr = String.valueOf(actualDefault);
+                        actualDefaultStr = convertDefaultValueToString(actualDefault);
                     }
 
-                    if (!actualDefaultStr.equals(defaultValue)) {
+                    if (!compareDefaultValues(defaultValue, actualDefaultStr, field.getType())) {
                         // For now, just log mismatch instead of throwing exception
-                        System.out.println("Warning: Default value mismatch for " + key
-                            + " in " + moduleName + ": specified '" + defaultValue
-                            + "' but actually is '" + actualDefaultStr + "'");
+                        throw new IllegalArgumentException("Default value mismatch for " + key
+                                + " in " + inputFilePath + ": specified '" + defaultValue
+                                + "' but actually is '" + actualDefaultStr + "'");
                     }
                 }
                 catch (ReflectiveOperationException ex) {

@@ -1,6 +1,6 @@
 /*
 OperatorWrap
-option = (default)nl
+option = (default)NL
 tokens = METHOD_REF
 
 
