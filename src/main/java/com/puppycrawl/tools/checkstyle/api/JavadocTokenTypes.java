@@ -973,14 +973,13 @@ public final class JavadocTokenTypes {
      * <pre>{@code @serial include}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code 
-     *   JAVADOC_TAG -&gt; JAVADOC_TAG
-     *     |--CUSTOM_NAME -&gt; @code
-     *     |--WS -&gt;
-     *     `--DESCRIPTION -&gt; DESCRIPTION
-     *         |--TEXT -&gt; @serial include
-     *         |--NEWLINE -&gt; \r\n
-     *         `--TEXT -&gt;
+     * {@code JAVADOC_TAG -&gt JAVADOC_TAG
+     *         |--CUSTOM_NAME -&gt @code
+     *         |--WS -&gt
+     *         `--DESCRIPTION -&gt DESCRIPTION
+     *             |--TEXT -&gt @serial include
+     *             |--NEWLINE -&gt \r\n
+     *             `--TEXT -&gt
      * }
      * </pre>
      *
