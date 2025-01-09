@@ -2,7 +2,7 @@
 AnnotationUseStyle
 elementStyle = (default)compact_no_array
 closingParens = (default)never
-trailingArrayComma = (default)never
+trailingArrayComma = (default)NEVER
 
 
 */

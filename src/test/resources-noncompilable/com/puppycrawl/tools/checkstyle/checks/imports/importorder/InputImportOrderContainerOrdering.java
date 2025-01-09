@@ -1,6 +1,6 @@
 /*
 ImportOrder
-option = (default)under
+option = (default)UNDER
 groups = (default)
 ordered = (default)true
 separated = (default)false
