@@ -320,6 +320,23 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             filePath2, expectedFromFile2));
     }
 
+    protected final void verifyWithInlineConfigParserSeparateConfigAndTarget(String filePath1,
+                                                                             String filePath2,
+                                                                             String... expected)
+            throws Exception {
+        final TestInputConfiguration testInputConfiguration1 =
+                InlineConfigParser.parse(filePath1);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration1.createConfiguration();
+        final TestInputConfiguration testInputConfiguration2 =
+                InlineConfigParser.parse(filePath2);
+        final List<String> actualViolations = getActualViolationsForFile(parsedConfig, filePath2);
+        verifyViolations(filePath2, testInputConfiguration2.getViolations(), actualViolations);
+        assertWithMessage("Violations for %s differ.", filePath2)
+                .that(actualViolations)
+                .containsExactlyElementsIn(expected);
+    }
+
     /**
      * Performs verification of the file with the given file path using specified configuration
      * and the array expected messages. Also performs verification of the config specified in
