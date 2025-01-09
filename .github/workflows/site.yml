@@ -98,18 +98,18 @@ jobs:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
+      - name: Generate site
+        run: |
+          bash
+          cd .ci-temp/checkstyle
+          mvn -e --no-transfer-progress clean site -Pno-validations -Dmaven.javadoc.skip=false
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
-
-      - name: Generate site
-        run: |
-          bash
-          cd .ci-temp/checkstyle
-          mvn -e --no-transfer-progress clean site -Pno-validations -Dmaven.javadoc.skip=false
 
       - name: Copy site to AWS S3 Bucket
         env:
@@ -136,8 +136,10 @@ jobs:
     needs: [ generate_site ]
     if: failure() || success()
     steps:
-      - name: Checkout repository
+      - name: Checkout master branch
         uses: actions/checkout@v4
+        with:
+          repository: checkstyle/checkstyle
 
       - name: Get message
         env:
