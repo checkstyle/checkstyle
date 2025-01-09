@@ -136,8 +136,10 @@ jobs:
     needs: [ generate_site ]
     if: failure() || success()
     steps:
-      - name: Checkout repository
+      - name: Checkout master branch
         uses: actions/checkout@v4
+        with:
+          repository: checkstyle/checkstyle
 
       - name: Get message
         env:
