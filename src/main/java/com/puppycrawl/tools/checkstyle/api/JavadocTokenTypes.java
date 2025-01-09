@@ -974,13 +974,13 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code 
-     *   JAVADOC_TAG -&gt JAVADOC_TAG
-     *     |--CUSTOM_NAME -&gt @code
-     *     |--WS -&gt
-     *     `--DESCRIPTION -&gt DESCRIPTION
-     *         |--TEXT -&gt @serial include
-     *         |--NEWLINE -&gt \r\n
-     *         `--TEXT -&gt
+     *   JAVADOC_TAG -&gt; JAVADOC_TAG
+     *     |--CUSTOM_NAME -&gt; @code
+     *     |--WS -&gt;
+     *     `--DESCRIPTION -&gt; DESCRIPTION
+     *         |--TEXT -&gt; @serial include
+     *         |--NEWLINE -&gt; \r\n
+     *         `--TEXT -&gt;
      * }
      * </pre>
      *
