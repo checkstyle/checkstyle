@@ -1,44 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/DECORATION/1.8.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0
-                        https://maven.apache.org/xsd/decoration-1.8.0.xsd">
+<site xmlns="http://maven.apache.org/SITE/2.0.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://maven.apache.org/SITE/2.0.0
+                          https://maven.apache.org/xsd/site-2.0.0.xsd">
 
-  <bannerLeft>
-    <alt>Checkstyle</alt>
-    <href>https://checkstyle.org</href>
-    <src>images/header-checkstyle-logo.png</src>
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-fluido-skin</artifactId>
+    <version>2.0.1</version>
+  </skin>
+  <bannerLeft href="https://checkstyle.org">
+    <image src="images/header-checkstyle-logo.png" alt="Checkstyle"/>
   </bannerLeft>
-  <bannerRight>
-    <alt>Checkstyle</alt>
-    <href>https://checkstyle.org</href>
-    <src>images/header-right-ruller.png</src>
+  <bannerRight href="https://checkstyle.org">
+    <image src="images/header-right-ruller.png" alt="Checkstyle"/>
   </bannerRight>
 
   <publishDate position="right" />
   <version position="right" />
 
   <poweredBy>
-    <logo name="GitHub" href="https://github.com/checkstyle/checkstyle"
-        img="images/github_logo_social_coding_outlined.png"
-          />
+    <logo name="GitHub" href="https://github.com/checkstyle/checkstyle">
+      <image src="images/github_logo_social_coding_outlined.png" alt="GitHub"/>
+    </logo>
     <logo name="Twitter"
-          img="images/twitter_button.png"
           href="https://twitter.com/checkstyle_java/"
-          />
+          >
+      <image src="images/twitter_button.png" alt="Twitter"/>
+    </logo>
     <logo name="Stackoverflow"
-          img="images/stackoverflow.jpeg"
           href="https://stackoverflow.com/questions/tagged/checkstyle"
-          />
+          >
+      <image src="images/stackoverflow.jpeg" alt="Stackoverflow"/>
+    </logo>
     <logo name="GoogleGroups"
-          img="images/groups.png"
           href="https://groups.google.com/forum/#!forum/checkstyle"
-          />
+          >
+      <image src="images/groups.png" alt="GoogleGroups"/>
+    </logo>
     <logo name="JProfiler"
-          img="https://www.ej-technologies.com/images/product_banners/jprofiler_medium.png"
           href="https://www.ej-technologies.com/products/jprofiler/overview.html"
-          />
+          >
+      <image src="https://www.ej-technologies.com/images/product_banners/jprofiler_medium.png"
+             alt="JProfiler"/>
+    </logo>
   </poweredBy>
 
   <body>
@@ -378,4 +384,4 @@
 
     <menu ref="reports"/>
   </body>
-</project>
+</site>

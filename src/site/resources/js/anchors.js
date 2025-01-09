@@ -14,9 +14,18 @@
         const scriptElementSrc = scriptElement.attributes.src.textContent;
         const relativePath = scriptElementSrc.replace(/\/js\/anchors.js/, '');
 
+        // fixing table links in google_style.html & sun_style.html
+        if (window.location.href.includes("google_style.html") ||
+            window.location.href.includes("sun_style.html")) {
+            document.querySelectorAll("tr > td:nth-child(1) > a:nth-child(1)")
+                .forEach((link) => {
+                link.id = "a" + link.id;
+            });
+        }
+
         var anchors = document.getElementsByTagName("h2");
         [].forEach.call(anchors, function (anchorItem) {
-            var name = anchorItem.childNodes[0].name;
+            var name = anchorItem.childNodes[0].textContent.replaceAll(" ", "_");
             var link = "" + url + "#" + name + "";
 
             var a = document.createElement("a");
