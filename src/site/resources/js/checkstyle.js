@@ -7,7 +7,7 @@ const scrollDistanceToButtonVisibility = 500;
 
 window.addEventListener("load", function () {
     "use strict";
-    scrollButton = document.querySelector("a[title=\"toTop\"]");
+    scrollButton = document.querySelector(".pull-right > a");
     scrollButton.innerText = "To Top";
     scrollButton.style.display = "none";
 
@@ -49,6 +49,12 @@ window.addEventListener("load", function () {
     }
 });
 
+// for newer version of site.
+window.addEventListener("load", function () {
+    const bodyColumn = this.document.getElementById("bodyColumn");
+    bodyColumn.classList.remove("span10");
+});
+
 window.addEventListener("scroll", function () {
     "use strict";
     if (document.documentElement.scrollTop > scrollDistanceToButtonVisibility) {
@@ -59,8 +65,8 @@ window.addEventListener("scroll", function () {
 });
 
 function setBodyColumnMargin() {
-    const leftColumn = document.querySelector('#leftColumn');
-    const bodyColumn = document.querySelector('#bodyColumn');
+    const leftColumn = document.querySelector("#leftColumn");
+    const bodyColumn = document.querySelector("#bodyColumn");
 
     if (window.innerWidth > 823 && document.querySelector("#hamburger")) {
         resetStyling();
@@ -68,7 +74,7 @@ function setBodyColumnMargin() {
 
     // If in mobile view use margin as defined in site.css
     if (window.innerWidth < 823) {
-        bodyColumn.style.marginLeft = '1.5em';
+        bodyColumn.style.marginLeft = "1.5em";
         if (!document.querySelector("#hamburger")) {
             setCollapsableMenuButton();
         }
@@ -81,7 +87,7 @@ function setBodyColumnMargin() {
 }
 
 function setCollapsableMenuButton() {
-    const hamburger = document.createElement("div");
+    const hamburger = document.createElement("li");
     hamburger.id = "hamburger";
 
     for (let i = 0; i < 3; i++) {
@@ -89,9 +95,8 @@ function setCollapsableMenuButton() {
         hamburger.appendChild(line);
     }
 
-    const xright = document.querySelector(".xright");
-    xright.appendChild(document.createTextNode(" | "));
-    xright.appendChild(hamburger);
+    const breadcrumb = document.querySelector(".breadcrumb");
+    breadcrumb.appendChild(hamburger);
 
     hamburger.addEventListener("click", (e) => {
         e.preventDefault();

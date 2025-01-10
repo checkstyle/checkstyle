@@ -107,6 +107,7 @@ beanutils
 beforeexecutionexclusionfilefilter
 bestpractices
 bew
+bff
 bitbucket
 bjrke
 bleh
@@ -124,7 +125,7 @@ BNOT
 booleanexpressioncomplexity
 bothfiles
 Bpmn
-breadcrumbs
+breadcrumb
 BSR
 Bsubscribe
 BTest
@@ -453,6 +454,7 @@ Fjava
 Fjavadoc
 Flas
 flattr
+fluido
 Fmain
 Fmessages
 Fmetrics
@@ -876,7 +878,6 @@ NAMEFILE
 nameofaffectedcheck
 namespace
 Nanos
-navcolumn
 nbactions
 nbia
 nbsp
@@ -1072,6 +1073,7 @@ Postgresql
 ppc
 prebuilts
 PRESIZE
+prettyprint
 printf
 println
 PRINTSTACKTRACE
@@ -1338,7 +1340,6 @@ tngtech
 toc
 todo
 todocomment
-Tokencom
 tokenizer
 tokennizer
 tokentype
@@ -1348,7 +1349,6 @@ toolongpackagetotestcoveragegooglesjavastylerule
 TOSTRING
 Touchscreen
 trailingcomment
-Treecom
 treelayout
 treemap
 treeset
