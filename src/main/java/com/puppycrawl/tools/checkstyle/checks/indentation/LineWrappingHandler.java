@@ -84,6 +84,7 @@ public class LineWrappingHandler {
         TokenTypes.LCURLY,
         TokenTypes.RCURLY,
         TokenTypes.LITERAL_NEW,
+        TokenTypes.LITERAL_YIELD,
         TokenTypes.ARRAY_INIT,
         TokenTypes.LITERAL_DEFAULT,
         TokenTypes.LITERAL_CASE,
