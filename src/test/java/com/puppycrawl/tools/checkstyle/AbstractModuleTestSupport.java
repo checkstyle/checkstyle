@@ -321,6 +321,34 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Verifies the target file against the configuration specified in a separate configuration
+     * file.
+     * This method is intended for use cases when the configuration is stored in one file and the
+     * content to verify is stored in another file.
+     *
+     * @param fileWithConfig file path of the configuration file
+     * @param targetFile file path of the target file to be verified
+     * @param expected an array of expected messages
+     * @throws Exception if an exception occurs during verification process
+     */
+    protected final void verifyWithInlineConfigParserSeparateConfigAndTarget(String fileWithConfig,
+                                                                             String targetFile,
+                                                                             String... expected)
+            throws Exception {
+        final TestInputConfiguration testInputConfiguration1 =
+                InlineConfigParser.parse(fileWithConfig);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration1.createConfiguration();
+        final List<TestInputViolation> inputViolations =
+                InlineConfigParser.getViolationsFromInputFile(targetFile);
+        final List<String> actualViolations = getActualViolationsForFile(parsedConfig, targetFile);
+        verifyViolations(targetFile, inputViolations, actualViolations);
+        assertWithMessage("Violations for %s differ.", targetFile)
+                .that(actualViolations)
+                .containsExactlyElementsIn(expected);
+    }
+
+    /**
      * Performs verification of the file with the given file path using specified configuration
      * and the array expected messages. Also performs verification of the config specified in
      * input file

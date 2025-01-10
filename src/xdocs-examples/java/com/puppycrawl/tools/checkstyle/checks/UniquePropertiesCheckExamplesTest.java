@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class UniquePropertiesCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -33,28 +34,35 @@ public class UniquePropertiesCheckExamplesTest extends AbstractExamplesModuleTes
 
     @Test
     public void testExample1() throws Exception {
+        final String configFilePath = getPath("Example1.java");
+        final String propertyFilePath = getPath("Example1.properties");
         final String[] expected = {
-
+            "2: " + getCheckMessage(MSG_KEY, "key.one", 2),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(configFilePath,
+                propertyFilePath, expected);
     }
 
     @Test
     public void testExample2() throws Exception {
+        final String configFilePath = getPath("Example2.java");
+        final String propertyFilePath = getPath("Example2.customProperties");
         final String[] expected = {
-
+            "2: " + getCheckMessage(MSG_KEY, "key.one", 2),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(configFilePath,
+                propertyFilePath, expected);
     }
 
     @Test
     public void testExample3() throws Exception {
-        final String[] expected = {
+        final String configFilePath = getPath("Example2.java");
+        final String propertyFilePath = getPath("Example3.properties");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        };
-
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(configFilePath,
+                propertyFilePath, expected);
     }
 }
