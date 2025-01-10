@@ -3,11 +3,8 @@
   <module name="OrderedProperties"/>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.orderedproperties;
 
+public class Example1 { }
 // xdoc section -- start
-A =65
-a =97
-key =107 than nothing
-key.sub =k is 107 and dot is 46
-key.png =value - violation
 // xdoc section -- end
