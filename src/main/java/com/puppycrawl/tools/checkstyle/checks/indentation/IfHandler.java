@@ -47,8 +47,9 @@ public class IfHandler extends BlockParentHandler {
         final IndentLevel result;
         if (child instanceof ElseHandler) {
             result = getIndent();
-        }
-        else {
+        } else if (child instanceof SwitchHandler && !isOnStartOfLine(child.getMainAst())) {
+            result = getIndent();
+        } else {
             result = super.getSuggestedChildIndent(child);
         }
         return result;
