@@ -48,16 +48,16 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/orderedproperties/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/orderedproperties/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example1-code">
+        <p id="Example1-raw">
           Example properties file:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/orderedproperties/Example1.txt"/>
-          <param name="type" value="code"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/orderedproperties/Example1.properties"/>
+          <param name="type" value="raw"/>
         </macro>
         <p>
           We check order of key's only. Here we would like to use a Locale independent
