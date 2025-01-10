@@ -951,10 +951,12 @@ public final class JavadocTokenTypes {
      * <pre>{@code @serial exclude}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_TAG[1x0] : [@serial exclude]
-     *        |--SERIAL_LITERAL[1x0] : [@serial]
-     *        |--WS[1x7] : [ ]
-     *        |--LITERAL_EXCLUDE[1x8] : [exclude]
+     * {@code JAVADOC_TAG -&gt JAVADOC_TAG
+     *         |--SERIAL_LITERAL -&gt @serial
+     *         |--WS -&gt
+     *         |--LITERAL_EXCLUDE -&gt exclude
+     *         |--NEWLINE -&gt \r\n
+     *         `--WS -&gt
      * }
      * </pre>
      *
