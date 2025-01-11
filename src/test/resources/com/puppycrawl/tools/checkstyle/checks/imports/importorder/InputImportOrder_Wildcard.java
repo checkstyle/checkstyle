@@ -1,6 +1,6 @@
 /*
 ImportOrder
-option = (default)under
+option = (default)UNDER
 groups = com, *, java
 ordered = (default)true
 separated = (default)false

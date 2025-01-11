@@ -1,6 +1,6 @@
 /*
 ImportOrder
-option = (default)under
+option = (default)UNDER
 groups = java.awt,javax.swing,java.io
 ordered = (default)true
 separated = (default)false
