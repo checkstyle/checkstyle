@@ -1599,11 +1599,15 @@ public class MainTest {
     }
 
     @Test
-    public void testDebugOption(@SysErr Capturable systemErr) {
+    public void testDebugOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         assertMainReturnCode(0, "-c", "/google_checks.xml", getPath("InputMain.java"), "-d");
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
-            .isNotEqualTo("");
+            .contains("FINE: Checkstyle debug logging enabled");
+        assertWithMessage("Unexpected system error log")
+            .that(systemOut.getCapturedData())
+            .contains("Audit done.");
+
     }
 
     @Test
