@@ -382,6 +382,7 @@ emptystatement
 emptytag
 Emtpy
 endline
+enegger
 ENMI
 ent
 enum
@@ -827,6 +828,7 @@ methodparampad
 methodsandconstructorsannotations
 methodtypeparametername
 MEZk
+mfussenegger
 Micha
 microsoft
 minimalistic
@@ -896,6 +898,7 @@ ncss
 needbraces
 NEGS
 Nejmeh
+neovim
 NEQ
 nestedfordepth
 nestedifdepth
@@ -970,6 +973,7 @@ nullness
 numberperline
 numericliterals
 nutsandbolts
+nvim
 nvuillam
 OAuth
 objblock
@@ -1235,6 +1239,7 @@ solr
 someinner
 somename
 someoneelse
+someuser
 sonarcloud
 sonarqube
 sonarsource
