@@ -977,12 +977,12 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     * JAVADOC_TAG -> JAVADOC_TAG
-     *   |--SERIAL_LITERAL -> @serial
-     *   |--WS ->
-     *   |--LITERAL_INCLUDE -> include
-     *   |--NEWLINE -> \r\n
-     *   `--WS ->
+     * JAVADOC_TAG -&gt JAVADOC_TAG
+     *  |--SERIAL_LITERAL -&gt @serial
+     *  |--WS -&gt
+     *  |--LITERAL_INCLUDE -&gt include
+     *  |--NEWLINE -&gt \r\n
+     *  `--WS -&gt
      * }
      * </pre>
      *
