@@ -19,12 +19,12 @@
       },
       "results": [
         {
-          "level": "note",
+          "level": "error",
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file://./Test.java"
+                  "uri": "file:///home/someuser/Code/Test.java"
                 },
                 "region": {
                   "startColumn": 1,
@@ -37,26 +37,6 @@
             "text": "found an error"
           },
           "ruleId": "ruleId"
-        },
-        {
-          "level": "none",
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file://./Test.java"
-                },
-                "region": {
-                  "startColumn": 1,
-                  "startLine": 1
-                }
-              }
-            }
-          ],
-          "message": {
-            "text": "found another error"
-          },
-          "ruleId": "ruleId2"
         }
       ]
     }
