@@ -1,7 +1,7 @@
 /*
 CustomImportOrder
 customImportOrderRules = (default)
-standardPackageRegExp = (default)^(java|javax)\.
+standardPackageRegExp = (default)^(java|javax)\\.
 thirdPartyPackageRegExp = (default).*
 specialImportsRegExp = (default)^$
 separateLineBetweenGroups = (default)true
