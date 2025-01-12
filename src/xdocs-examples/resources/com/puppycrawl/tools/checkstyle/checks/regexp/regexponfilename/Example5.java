@@ -7,10 +7,11 @@
   </module>
 </module>
 */
-
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexponfilename;
+/*
 // xdoc section -- start
-src/main/java/JavaClass.java  //OK
-src/main/MainClass.java  //OK
-src/main/java/java_class.java  //violation, file names should be in Camel Case
-src/main/main_class.java  //violation, file names should be in Camel Case
+checks/regexp/regexponfilename/Example5.java // OK, camelcase
+checks/regexp/regexponfilename/testexample5.xml // Violation, not camlecase
 // xdoc section -- end
+*/
+class Example5 {}

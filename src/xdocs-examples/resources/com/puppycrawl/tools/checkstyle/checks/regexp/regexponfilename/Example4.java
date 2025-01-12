@@ -8,9 +8,11 @@
   </module>
 </module>
 */
-
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexponfilename;
+/*
 // xdoc section -- start
-src/main/resources/sun_checks.xml  //OK
-src/main/resources/check_properties.properties  //OK
-src/main/resources/JavaClass.java  //violation, xml|property files are allowed in resource folder
+checks/regexp/regexponfilename/TestExample4.java
+checks/regexp/regexponfilename/TestExample4.xml // Violation, 'pattern mismatch'
 // xdoc section -- end
+*/
+class Example4 {}
