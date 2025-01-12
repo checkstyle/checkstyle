@@ -17,6 +17,7 @@
   <allow pkg="com.puppycrawl.tools.checkstyle.api"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.checks"/>
   <allow pkg="java.io"/>
+  <allow pkg="java.nio"/>
   <allow pkg="java.net"/>
   <allow pkg="java.util"/>
   <allow class="javax.annotation.Nullable"/>
@@ -236,6 +237,7 @@
 
     <allow pkg="java.awt"/>
     <allow pkg="java.io"/>
+    <allow pkg="java.nio"/>
     <allow pkg="javax.swing"/>
     <allow pkg="java.util" exact-match="true"/>
     <allow pkg="com.puppycrawl.tools.checkstyle.api" local-only="true"/>

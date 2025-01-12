@@ -25,7 +25,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -66,7 +65,7 @@ public class XdocsUrlTest {
 
     private static final String SUPPRESS_WARNINGS_HOLDER = "SuppressWarningsHolder";
 
-    private static final Path AVAILABLE_CHECKS_PATH = Paths.get("src/site/xdoc/checks.xml");
+    private static final Path AVAILABLE_CHECKS_PATH = Path.of("src/site/xdoc/checks.xml");
 
     private static Map<String, List<String>> getXdocsMap() throws IOException {
         final Map<String, List<String>> checksNamesMap = new HashMap<>();
