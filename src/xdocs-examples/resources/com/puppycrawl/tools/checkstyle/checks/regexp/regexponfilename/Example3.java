@@ -5,13 +5,18 @@
     <property name="fileExtensions" value="md"/>
     <property name="match" value="false"/>
     <message key="regexp.filename.mismatch"
-      value="No '*.md' files other then 'README.md'"/>
+      value="No *.md files other than README.md"/>
   </module>
 </module>
 */
-
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexponfilename;
+/*
 // xdoc section -- start
-src/site/resources/README.md  //OK
-src/site/resources/Logo.png  //OK
-src/site/resources/Text.md  //violation, .md files other than 'README.md' are not allowed
+.../checkstyle.xml
+.../Test Example1.xml
+.../TestExample2.xml
+.../TestExample3.md  // violation, 'No *.md files other than README.md'
+.../TestExample4.xml
 // xdoc section -- end
+*/
+class Example3{}
