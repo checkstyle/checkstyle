@@ -75,7 +75,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testThrowsDetection() throws Exception {
+    public void testThrowsDetection1() throws Exception {
         final String[] expected = {
             "25:19: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
                     "UnsupportedOperationException"),
@@ -97,17 +97,25 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
                     "IllegalArgumentException"),
             "105:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
                     "IllegalArgumentException"),
-            "120:31: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodThrowsDetection1.java"), expected);
+    }
+
+    @Test
+    public void testThrowsDetection2() throws Exception {
+        final String[] expected = {
+            "27:31: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
                     "IllegalArgumentException"),
-            "133:19: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+            "40:19: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
                     "UnsupportedOperationException"),
-            "149:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+            "56:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
                     "RuntimeException"),
-            "163:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+            "70:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
                     "RuntimeException"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputJavadocMethodThrowsDetection.java"), expected);
+                getPath("InputJavadocMethodThrowsDetection2.java"), expected);
     }
 
     @Test
