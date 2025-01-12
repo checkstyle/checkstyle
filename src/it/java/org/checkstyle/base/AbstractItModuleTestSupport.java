@@ -30,7 +30,7 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -616,7 +616,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     protected Integer[] getLinesWithWarn(String fileName) throws IOException {
         final List<Integer> result = new ArrayList<>();
         try (BufferedReader br = Files.newBufferedReader(
-                Paths.get(fileName), StandardCharsets.UTF_8)) {
+                Path.of(fileName), StandardCharsets.UTF_8)) {
             int lineNumber = 1;
             while (true) {
                 final String line = br.readLine();
