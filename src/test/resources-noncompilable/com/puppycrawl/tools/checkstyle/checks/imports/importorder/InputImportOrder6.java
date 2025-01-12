@@ -1,6 +1,6 @@
 /*
 ImportOrder
-option = (default)UNDER
+option = (default)under
 groups = /awt/, /jar/, /jar.*.JarInputStream/, /jar.*.JarInput/
 ordered = (default)true
 separated = true

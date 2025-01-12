@@ -1,6 +1,6 @@
 /*
 EmptyBlock
-option = (default)STATEMENT
+option = (default)statement
 tokens = LITERAL_DEFAULT, LITERAL_CASE, LITERAL_SWITCH
 
 

@@ -1,6 +1,6 @@
 /*
 ImportOrder
-option = (default)UNDER
+option = (default)under
 groups = /java/,/rga/,/myO/,/org/,/organ./
 ordered = (default)true
 separated = (default)false

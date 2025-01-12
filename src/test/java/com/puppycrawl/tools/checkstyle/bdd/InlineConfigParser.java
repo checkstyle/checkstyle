@@ -702,7 +702,7 @@ public final class InlineConfigParser {
                 // For now, just log mismatch instead of throwing exception
                 throw new IllegalArgumentException("Default value mismatch for " + key
                         + " in " + inputFilePath + ": specified '" + defaultValue
-                        + "' but actually is '" + actualDefaultStr + "'" + type);
+                        + "' but actually is '" + actualDefaultStr + "'");
             }
         }
         catch (ReflectiveOperationException ex) {
@@ -1327,7 +1327,12 @@ public final class InlineConfigParser {
             result = isCollectionValues(specifiedDefault, actualDefault);
         }
         else {
-            result = specifiedDefault.equals(actualDefault);
+            if (fieldType.isEnum() || fieldType.isLocalClass()) {
+                result = specifiedDefault.equalsIgnoreCase(actualDefault);
+            }
+            else {
+                result = specifiedDefault.equals(actualDefault);
+            }
         }
         return result;
     }

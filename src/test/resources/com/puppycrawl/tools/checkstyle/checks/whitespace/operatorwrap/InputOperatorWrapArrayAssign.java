@@ -1,6 +1,6 @@
 /*
 OperatorWrap
-option = (default)NL
+option = (default)nl
 tokens = ASSIGN
 
 

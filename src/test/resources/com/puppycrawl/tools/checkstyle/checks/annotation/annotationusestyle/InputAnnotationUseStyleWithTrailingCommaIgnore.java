@@ -1,7 +1,7 @@
 /*
 AnnotationUseStyle
-elementStyle = (default)COMPACT_NO_ARRAY
-closingParens = (default)NEVER
+elementStyle = (default)compact_no_array
+closingParens = (default)never
 trailingArrayComma = ignore
 
 

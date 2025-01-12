@@ -1,6 +1,6 @@
 /*
 ImportOrder
-option = (default)UNDER
+option = (default)under
 groups = java, /^javax?\\.(awt|swing)\\./
 ordered = false
 separated = (default)false

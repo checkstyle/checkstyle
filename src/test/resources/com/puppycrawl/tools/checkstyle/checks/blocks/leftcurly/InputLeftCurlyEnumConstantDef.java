@@ -1,6 +1,6 @@
 /*
 LeftCurly
-option = (default)EOL
+option = (default)eol
 ignoreEnums = (default)true
 tokens = ENUM_CONSTANT_DEF
 

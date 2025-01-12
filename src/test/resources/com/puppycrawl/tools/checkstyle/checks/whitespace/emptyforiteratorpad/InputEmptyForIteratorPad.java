@@ -1,6 +1,6 @@
 /*
 EmptyForIteratorPad
-option = (default)NOSPACE
+option = (default)nospace
 
 
 */
