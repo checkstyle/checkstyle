@@ -10,7 +10,7 @@ validateOnlyOverlapping = false
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
+
 
 public class InputRequireThisFor {
     private String name;
@@ -27,6 +27,6 @@ public class InputRequireThisFor {
         for (String name : new String[]{}) {
         }
 
-        Path jarfile = Paths.get(name + ".jar"); // violation '.*variable 'name' needs .*'
+        Path jarfile = Path.of(name + ".jar"); // violation '.*variable 'name' needs .*'
     }
 }

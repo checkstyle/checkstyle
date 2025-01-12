@@ -4224,6 +4224,13 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocPackageCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference dir</message>
+    <lineContent>final Path packageInfo = Path.of(dir.getPath(), &quot;package-info.java&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocPackageCheck.java</fileName>
     <specifier>method.invocation</specifier>
     <message>call to setFileExtensions(java.lang.String...) not allowed on the given receiver.</message>
     <lineContent>setFileExtensions(&quot;java&quot;);</lineContent>
