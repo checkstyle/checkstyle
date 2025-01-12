@@ -11,7 +11,7 @@ public class InputSimplifyBooleanReturnWithYield {
     boolean test(int x, boolean c) {
         return switch (x) {
             case 1 -> {
-                if (c) { // violation
+                if (c) { // violation, Conditional logic can be removed.
                     yield true;
                 } else {
                     yield false;
@@ -25,7 +25,7 @@ public class InputSimplifyBooleanReturnWithYield {
     boolean test2(int x, boolean c) {
         return switch (x) {
             case 1 -> {
-                if (c) yield true; // violation
+                if (c) yield true; // violation, Conditional logic can be removed.
                 else yield false;
             }
             case 2 -> false;
@@ -36,7 +36,7 @@ public class InputSimplifyBooleanReturnWithYield {
     boolean test3(int x, boolean c) {
         return switch (x) {
             case 1: {
-                if (c) yield true; // violation
+                if (c) yield true; // violation, Conditional logic can be removed.
                 else yield false;
             }
             case 2: {
@@ -51,7 +51,7 @@ public class InputSimplifyBooleanReturnWithYield {
     boolean test4(int x, boolean c) {
         switch (x) {
             case 1: {
-                if (c) { // violation
+                if (c) { // violation, Conditional logic can be removed.
                     return true;
                 } else {
                     return false;
