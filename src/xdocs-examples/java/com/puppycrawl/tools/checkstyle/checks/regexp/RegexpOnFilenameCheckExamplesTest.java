@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck.MSG_MATCH;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class RegexpOnFilenameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -33,64 +33,64 @@ public class RegexpOnFilenameCheckExamplesTest extends AbstractExamplesModuleTes
 
     @Test
     public void testExample1() throws Exception {
+        final String configFilePath = getPath("Example1.java");
+        final String testExampleFilePath = getPath("Test Example1.xml");
         final String[] expected = {
-
+            "1: " + getCheckMessage(MSG_MATCH, "", "\\s"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(configFilePath,
+                testExampleFilePath, expected);
     }
 
     @Test
     public void testExample2() throws Exception {
+        final String configFilePath = getPath("Example2.java");
+        final String testExampleFilePath = getPath("TestExample2.xml");
         final String[] expected = {
-
+            "1: " + getCheckMessage(MSG_MATCH, "", "TestExample2\\.xml"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(configFilePath,
+                testExampleFilePath, expected);
     }
 
     @Test
     public void testExample3() throws Exception {
+        final String configFilePath = getPath("Example3.java");
+        final String testExampleFilePath = getPath("TestExample3.md");
         final String[] expected = {
-
+            "1: " + getCheckMessage(RegexpOnFilenameCheck.MSG_MISMATCH,
+                    "", "README"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(configFilePath,
+                testExampleFilePath, expected);
     }
 
     @Test
     public void testExample4() throws Exception {
+        final String configFilePath = getPath("Example4.java");
+        final String testExampleFilePath = getPath("TestExample4.xml");
         final String[] expected = {
-
+            "1: " + getCheckMessage(RegexpOnFilenameCheck.MSG_MISMATCH,
+                    "[\\\\/]src[\\\\/]\\w+[\\\\/]resources[\\\\/]", ""),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(configFilePath,
+                testExampleFilePath, expected);
     }
 
     @Test
     public void testExample5() throws Exception {
+        final String configFilePath = getPath("Example5.java");
+        final String testExampleFilePath = getPath("checkstyle.xml");
         final String[] expected = {
-
+            "1: " + getCheckMessage(RegexpOnFilenameCheck.MSG_MISMATCH,
+                    "", "^([A-Z][a-z0-9]+\\.?)+$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
-    }
-
-    @Test
-    public void testExample6() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
-    }
-
-    @Test
-    public void testExample7() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example7.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(configFilePath,
+                testExampleFilePath, expected);
     }
 }
