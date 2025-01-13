@@ -779,8 +779,7 @@ public final class InlineConfigParser {
             Map.of("excludedClasses", excludedClasses,
                   "max", "7",
                   "excludeClassesRegexps", "^$",
-                  "excludedPackages", "",
-                  "excludeedClasses", excludedClasses));
+                  "excludedPackages", ""));
         pathDefaults.put("com.puppycrawl.tools.checkstyle.checks"
                         + ".javadoc.NonEmptyAtclauseDescriptionCheck",
             Map.of("javadocTokens", "PARAM_LITERAL, RETURN_LITERAL,"
@@ -824,7 +823,6 @@ public final class InlineConfigParser {
                                            String inputFilePath) {
         try {
             final Object actualDefault;
-            final Field field;
             final Class<?> type;
             if (Objects.equals(key, "tokens")) {
                 final Method getter = checkInstance.getClass().getMethod("getDefaultTokens");
@@ -833,7 +831,7 @@ public final class InlineConfigParser {
             }
 
             else {
-                field = checkInstance.getClass().getDeclaredField(key);
+                final Field field = checkInstance.getClass().getDeclaredField(key);
                 field.setAccessible(true);
                 actualDefault = field.get(checkInstance);
                 type = field.getType();
@@ -961,7 +959,7 @@ public final class InlineConfigParser {
         }
         else if (NULL_STRING.equals(actualDefault)) {
             result = NULL_STRING.equals(specifiedDefault)
-                || "".equals(specifiedDefault)
+                || specifiedDefault.isEmpty()
                 || "null".equals(specifiedDefault);
         }
         else if (Number.class.isAssignableFrom(fieldType)
