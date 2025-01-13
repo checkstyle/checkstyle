@@ -75,7 +75,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testThrowsDetection() throws Exception {
+    public void testThrowsDetectionOne() throws Exception {
         final String[] expected = {
             "25:19: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
                     "UnsupportedOperationException"),
@@ -95,19 +95,27 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
                     "UnsupportedOperationException"),
             "92:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
                     "IllegalArgumentException"),
-            "105:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodThrowsDetectionOne.java"), expected);
+    }
+
+    @Test
+    public void testThrowsDetectionTwo() throws Exception {
+        final String[] expected = {
+            "26:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
                     "IllegalArgumentException"),
-            "120:31: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+            "41:31: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
                     "IllegalArgumentException"),
-            "133:19: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+            "54:19: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
                     "UnsupportedOperationException"),
-            "149:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+            "70:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
                     "RuntimeException"),
-            "163:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+            "84:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
                     "RuntimeException"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputJavadocMethodThrowsDetection.java"), expected);
+                getPath("InputJavadocMethodThrowsDetectionTwo.java"), expected);
     }
 
     @Test
