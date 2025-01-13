@@ -25,7 +25,6 @@ import java.io.File;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -539,7 +538,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             if (!initialValue.startsWith("/dtds")) {
                 value = currentXdocPath
                         .getParent()
-                        .resolve(Paths.get(value))
+                        .resolve(Path.of(value))
                         .normalize()
                         .toString()
                         .replaceAll("src[\\\\/]site[\\\\/]xdoc[\\\\/]", "")
