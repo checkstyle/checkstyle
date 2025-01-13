@@ -800,7 +800,7 @@ public final class InlineConfigParser {
             throw new IllegalStateException("Unable to validate default value for property '"
             + key + "' in " + inputFilePath);
         }
-        validation(actualDefaultStr, defaultValue, key, inputFilePath);
+        isDefaultValues(defaultValue, actualDefaultStr, String.class);
     }
 
     /**
@@ -858,18 +858,6 @@ public final class InlineConfigParser {
         }
     }
 
-    private static void validation(String actualDefault, String expectedDefault,
-                                   String key, String inputFilePath) {
-        if (!Objects.equals(actualDefault, expectedDefault)) {
-            // For now, just log mismatch instead of throwing exception
-            throw new IllegalArgumentException("Default value mismatch for " + key
-                                + " in " + inputFilePath
-                                + ": specified '" + expectedDefault
-                                + "' but actually is '" + actualDefault + "'"
-            );
-        }
-    }
-
     private static boolean isCollectionValues(String specifiedDefault, String actualDefault) {
         final Set<String> specifiedSet = new HashSet<>(
             Arrays.asList(specifiedDefault.replaceAll("[\\[\\]\\s]", "").split(",")));
@@ -877,9 +865,6 @@ public final class InlineConfigParser {
             Arrays.asList(actualDefault.replaceAll("[\\[\\]\\s]", "").split(",")));
         return actualSet.containsAll(specifiedSet);
     }
-
-    // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
-    // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
 
     private static String convertDefaultValueToString(Object value, String key) {
         final String defaultStr;
@@ -947,8 +932,17 @@ public final class InlineConfigParser {
         return collection.toString().replaceAll("[\\[\\]\\s]", "");
     }
 
+    /**
+     * Validate default value.
+     *
+     * @param key the property name.
+     * @param specifiedDefault the specified default value in the file.
+     * @param actualDefault the actual default value
+     * @param fieldType the data type of default value.
+     * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
+     *      parser requires giant if/else
+     */
     // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
-
     private static boolean isDefaultValues(final String specifiedDefault,
         final String actualDefault,
         final Class<?> fieldType) {
@@ -1021,9 +1015,6 @@ public final class InlineConfigParser {
             throw new IllegalStateException("Unable to create check instance " + moduleName, ex);
         }
     }
-
-    // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
-    // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
 
     private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
                                 String inputFilePath,
