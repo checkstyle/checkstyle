@@ -657,13 +657,285 @@ public final class InlineConfigParser {
     }
 
     /**
+     * HardCoded Default value for key = format.
+     *
+     * @param key the property name.
+     * @param defaultValue the specified default value in the file.
+     * @param inputFilePath the path to the file.
+     * @noinspection IfStatementWithTooManyBranches
+     * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
+     *      parser requires giant if/else
+     */
+    // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
+    // -@cs[JavaNCSS] splitting this method is not reasonable.
+    // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
+    private static String hardCodedDefaultForFormat(String key,
+                                                    String inputFilePath, String defaultValue) {
+        final String actualDefaultStr;
+        if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.naming.LocalVariableNameCheck")
+                    && "format".equals(key)) {
+            actualDefaultStr = "^[a-z][a-zA-Z0-9]*$";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.naming.ConstantNameCheck")
+                    && "format".equals(key)) {
+            actualDefaultStr = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.naming.MemberNameCheck")
+                    && "format".equals(key)) {
+            actualDefaultStr = "^[a-z][a-zA-Z0-9]*$";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.naming.TypeNameCheck")
+                    && "format".equals(key)) {
+            actualDefaultStr = "^[A-Z][a-zA-Z0-9]*$";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.naming.RecordTypeParameterNameCheck")
+                    && "format".equals(key)) {
+            actualDefaultStr = "^[A-Z]$";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.naming.RecordComponentNameCheck")
+                    && "format".equals(key)) {
+            actualDefaultStr = "^[a-z][a-zA-Z0-9]*$";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.naming.PatternVariableNameCheck")
+                    && "format".equals(key)) {
+            actualDefaultStr = "^([a-z][a-zA-Z0-9]*|_)$";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.naming.ParameterNameCheck")
+                    && "format".equals(key)) {
+            actualDefaultStr = "^[a-z][a-zA-Z0-9]*$";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.naming.MethodTypeParameterNameCheck ")
+                    && "format".equals(key)) {
+            actualDefaultStr = "^[A-Z]$";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.naming.StaticVariableNameCheck")
+                    && "format".equals(key)) {
+            actualDefaultStr = "^[a-z][a-zA-Z0-9]*$";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.naming.MethodTypeParameterNameCheck")
+                    && "format".equals(key)) {
+            actualDefaultStr = "^[A-Z]$";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.naming.MethodNameCheck")
+                    && "format".equals(key)) {
+            actualDefaultStr = "^[a-z][a-zA-Z0-9]*$";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.naming.LocalFinalVariableNameCheck")
+                    && "format".equals(key)) {
+            actualDefaultStr = "^([a-z][a-zA-Z0-9]*|_)$";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.naming.LambdaParameterNameCheck")
+                    && "format".equals(key)) {
+            actualDefaultStr = "^([a-z][a-zA-Z0-9]*|_)$";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.naming.InterfaceTypeParameterNameCheck")
+                    && "format".equals(key)) {
+            actualDefaultStr = "^[A-Z]$";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.naming.IllegalIdentifierNameCheck")
+                    && "format".equals(key)) {
+            actualDefaultStr = "(?i)^(?!(record|yield|var|permits|sealed)$).+$";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.naming.CatchParameterNameCheck")
+                    && "format".equals(key)) {
+            actualDefaultStr = "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.naming.ClassTypeParameterNameCheck")
+                    && "format".equals(key)) {
+            actualDefaultStr = "^[A-Z]$";
+        }
+        else {
+            throw new IllegalStateException("Unable to validate default value for property '"
+                + key + "' in " + inputFilePath);
+        }
+        return actualDefaultStr;
+    }
+
+    /**
+     * HardCoded Default value.
+     *
+     * @param key the property name.
+     * @param defaultValue the specified default value in the file.
+     * @param inputFilePath the path to the file.
+     * @noinspection IfStatementWithTooManyBranches
+     * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
+     *      parser requires giant if/else
+     */
+    // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
+    // -@cs[JavaNCSS] splitting this method is not reasonable.
+    // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
+    private static void hardCodedDefault(String key, String inputFilePath, String defaultValue) {
+        final String actualDefaultStr;
+        if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.SuppressWarningsHolder")
+                    && "aliasList".equals(key)) {
+            actualDefaultStr = "";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.whitespace.FileTabCharacterCheck")
+                    && "fileExtensions".equals(key)) {
+            actualDefaultStr = "";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.whitespace.ParenPadCheck")
+                || Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.whitespace.TypecastParenPadCheck")
+                    && "option".equals(key)) {
+            actualDefaultStr = "nospace";
+        }
+        else if ("fileExtensions".equals(key)) {
+            actualDefaultStr = "all files";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.regexp.RegexpSinglelineCheck")
+                    && "ignoreComments".equals(key)) {
+            actualDefaultStr = "false";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.metrics.ClassFanOutComplexityCheck")
+                    && "excludedClasses".equals(key)) {
+            actualDefaultStr = "ArrayIndexOutOfBoundsException,"
+                        + " ArrayList, Boolean, Byte,"
+                        + " Character, Class, Collection, Deprecated, Deque,"
+                        + " Double, DoubleStream, EnumSet, Exception,"
+                        + " Float, FunctionalInterface, HashMap, HashSet,"
+                        + " IllegalArgumentException, IllegalStateException,"
+                        + " IndexOutOfBoundsException, IntStream, Integer,"
+                        + " LinkedHashMap, LinkedHashSet, LinkedList, List,"
+                        + " Long, LongStream, Map, NullPointerException, Object,"
+                        + " Optional, OptionalDouble, OptionalInt,"
+                        + " OptionalLong, Override, Queue, RuntimeException,"
+                        + " SafeVarargs, SecurityException, Set, Short,"
+                        + " SortedMap, SortedSet, Stream, String, StringBuffer,"
+                        + " StringBuilder, SuppressWarnings, Throwable,"
+                        + " TreeMap, TreeSet, UnsupportedOperationException,"
+                        + " Void, boolean, byte, char, double,"
+                        + " float, int, long, short, var, void";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.metrics.ClassFanOutComplexityCheck")
+                    && "max".equals(key)) {
+            actualDefaultStr = "20";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.metrics.ClassDataAbstractionCouplingCheck")
+                    && "max".equals(key)) {
+            actualDefaultStr = "7";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.metrics.ClassDataAbstractionCouplingCheck")
+                    && "excludeClassesRegexps".equals(key)) {
+            actualDefaultStr = "^$";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.metrics.ClassDataAbstractionCouplingCheck")
+                    && "excludedPackages".equals(key)) {
+            actualDefaultStr = "";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.metrics.ClassDataAbstractionCouplingCheck")
+                    && "excludeedClasses".equals(key)) {
+            actualDefaultStr = "ArrayIndexOutOfBoundsException,"
+                        + " ArrayList, Boolean, Byte,"
+                        + " Character, Class, Collection, Deprecated, Deque,"
+                        + " Double, DoubleStream, EnumSet, Exception,"
+                        + " Float, FunctionalInterface, HashMap, HashSet,"
+                        + " IllegalArgumentException, IllegalStateException,"
+                        + " IndexOutOfBoundsException, IntStream, Integer,"
+                        + " LinkedHashMap, LinkedHashSet, LinkedList, List,"
+                        + " Long, LongStream, Map, NullPointerException, Object,"
+                        + " Optional, OptionalDouble, OptionalInt,"
+                        + " OptionalLong, Override, Queue, RuntimeException,"
+                        + " SafeVarargs, SecurityException, Set, Short,"
+                        + " SortedMap, SortedSet, Stream, String, StringBuffer,"
+                        + " StringBuilder, SuppressWarnings, Throwable,"
+                        + " TreeMap, TreeSet, UnsupportedOperationException,"
+                        + " Void, boolean, byte, char, double,"
+                        + " float, int, long, short, var, void";
+        }
+
+        else if ("violateExecutionOnNonTightHtml".equals(key)) {
+            actualDefaultStr = "false";
+        }
+        else if ("applyToPrivate".equals(key) || "applyToProtected".equals(key)
+                    || "applyToPublic".equals(key) || "applyToPackage".equals(key)) {
+            actualDefaultStr = "true";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.metrics.ClassFanOutComplexityCheck")
+                    && "excludeClassesRegexps".equals(key)) {
+            actualDefaultStr = "^$";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.metrics.ClassFanOutComplexityCheck")
+                    && "excludedPackages".equals(key)) {
+            actualDefaultStr = "";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.metrics.ClassDataAbstractionCouplingCheck")
+                    && "excludedClasses".equals(key)) {
+            actualDefaultStr = "ArrayIndexOutOfBoundsException,"
+                        + " ArrayList, Boolean, Byte,"
+                        + " Character, Class, Collection, Deprecated, Deque,"
+                        + " Double, DoubleStream, EnumSet, Exception,"
+                        + " Float, FunctionalInterface, HashMap, HashSet,"
+                        + " IllegalArgumentException, IllegalStateException,"
+                        + " IndexOutOfBoundsException, IntStream, Integer,"
+                        + " LinkedHashMap, LinkedHashSet, LinkedList, List,"
+                        + " Long, LongStream, Map, NullPointerException,"
+                        + " Object, Optional, OptionalDouble, OptionalInt,"
+                        + " OptionalLong, Override, Queue, RuntimeException,"
+                        + " SafeVarargs, SecurityException, Set, Short,"
+                        + " SortedMap, SortedSet, Stream, String, StringBuffer,"
+                        + " StringBuilder, SuppressWarnings, Throwable,"
+                        + " TreeMap, TreeSet, UnsupportedOperationException,"
+                        + " Void, boolean, byte, char, double,"
+                        + " float, int, long, short, var, void";
+        }
+        else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
+                    + ".checks.javadoc.NonEmptyAtclauseDescriptionCheck")
+                    && "javadocTokens".equals(key)) {
+            actualDefaultStr = "PARAM_LITERAL,"
+                        + " RETURN_LITERAL,"
+                        + " THROWS_LITERAL,"
+                        + " EXCEPTION_LITERAL,"
+                        + " DEPRECATED_LITERAL";
+        }
+        else if ("format".equals(key)) {
+            actualDefaultStr = hardCodedDefaultForFormat(key, inputFilePath, defaultValue);
+        }
+        else {
+            throw new IllegalStateException("Unable to validate default value for property '"
+                + key + "' in " + inputFilePath);
+        }
+        validation(actualDefaultStr, defaultValue, key, inputFilePath);
+    }
+
+    /**
      * Validate default value.
      *
      * @param key the property name.
      * @param defaultValue the specified default value in the file.
      * @param checkInstance the specific check instance.
      * @param inputFilePath the path to the file.
-     * @noinspection IfStatementWithTooManyBranches
      * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
      *      parser requires giant if/else
      */
@@ -704,518 +976,12 @@ public final class InlineConfigParser {
                         + " in " + inputFilePath + ": specified '" + defaultValue
                         + "' but actually is '" + actualDefaultStr + "'");
             }
+
         }
         catch (ReflectiveOperationException ex) {
-            if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.MemberNameCheck")
-                    && "applyToPackage".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.regexp.RegexpSinglelineCheck")
-                    && "fileExtensions".equals(key)) {
-                final String actualDefaultStr = "all files";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.SuppressWarningsHolder")
-                    && "aliasList".equals(key)) {
-                final String actualDefaultStr = "";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.whitespace.FileTabCharacterCheck")
-                    && "fileExtensions".equals(key)) {
-                final String actualDefaultStr = "";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.whitespace.ParenPadCheck")
-                    && "option".equals(key)) {
-                final String actualDefaultStr = "nospace";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.whitespace.TypecastParenPadCheck")
-                    && "option".equals(key)) {
-                final String actualDefaultStr = "nospace";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.ConstantNameCheck")
-                    && "applyToPackage".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.sizes.LineLengthCheck")
-                    && "fileExtensions".equals(key)) {
-                final String actualDefaultStr = "all files";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.sizes.FileLengthCheck")
-                    && "fileExtensions".equals(key)) {
-                final String actualDefaultStr = "all files";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.LocalVariableNameCheck")
-                    && "format".equals(key)) {
-                final String actualDefaultStr = "^[a-z][a-zA-Z0-9]*$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.NewlineAtEndOfFileCheck")
-                    && "fileExtensions".equals(key)) {
-                final String actualDefaultStr = "all files";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.regexp.RegexpMultilineCheck")
-                    && "fileExtensions".equals(key)) {
-                final String actualDefaultStr = "all files";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.regexp.NewLineAtEndOfFileCheck")
-                    && "fileExtensions".equals(key)) {
-                final String actualDefaultStr = "all files";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.annotation.MissingDeprecatedCheck")
-                    && "violateExecutionOnNonTightHtml".equals(key)) {
-                final String actualDefaultStr = "false";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.TypeNameCheck")
-                    && "applyToPackage".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.ConstantNameCheck")
-                    && "format".equals(key)) {
-                final String actualDefaultStr = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.MemberNameCheck")
-                    && "format".equals(key)) {
-                final String actualDefaultStr = "^[a-z][a-zA-Z0-9]*$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.regexp.RegexpSinglelineCheck")
-                    && "ignoreComments".equals(key)) {
-                final String actualDefaultStr = "false";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.ConstantNameCheck")
-                    && "applyToPublic".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.TypeNameCheck")
-                    && "format".equals(key)) {
-                final String actualDefaultStr = "^[A-Z][a-zA-Z0-9]*$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.StaticVariableNameCheck")
-                    && "applyToPackage".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.RecordTypeParameterNameCheck")
-                    && "format".equals(key)) {
-                final String actualDefaultStr = "^[A-Z]$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.RecordComponentNameCheck")
-                    && "format".equals(key)) {
-                final String actualDefaultStr = "^[a-z][a-zA-Z0-9]*$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.PatternVariableNameCheck")
-                    && "format".equals(key)) {
-                final String actualDefaultStr = "^([a-z][a-zA-Z0-9]*|_)$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.ParameterNameCheck")
-                    && "format".equals(key)) {
-                final String actualDefaultStr = "^[a-z][a-zA-Z0-9]*$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.MethodTypeParameterNameCheck ")
-                    && "format".equals(key)) {
-                final String actualDefaultStr = "^[A-Z]$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.MethodNameCheck")
-                    && "applyToPackage".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.MemberNameCheck")
-                    && "applyToPublic".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.MemberNameCheck")
-                    && "applyToPrivate".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.MemberNameCheck")
-                    && "applyToProtected".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.ConstantNameCheck")
-                    && "applyToProtected".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.TypeNameCheck")
-                    && "applyToPublic".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.StaticVariableNameCheck")
-                    && "format".equals(key)) {
-                final String actualDefaultStr = "^[a-z][a-zA-Z0-9]*$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.StaticVariableNameCheck")
-                    && "applyToPublic".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.MethodTypeParameterNameCheck")
-                    && "format".equals(key)) {
-                final String actualDefaultStr = "^[A-Z]$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.MethodNameCheck")
-                    && "format".equals(key)) {
-                final String actualDefaultStr = "^[a-z][a-zA-Z0-9]*$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.LocalFinalVariableNameCheck")
-                    && "format".equals(key)) {
-                final String actualDefaultStr = "^([a-z][a-zA-Z0-9]*|_)$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.LambdaParameterNameCheck")
-                    && "format".equals(key)) {
-                final String actualDefaultStr = "^([a-z][a-zA-Z0-9]*|_)$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.InterfaceTypeParameterNameCheck")
-                    && "format".equals(key)) {
-                final String actualDefaultStr = "^[A-Z]$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.IllegalIdentifierNameCheck")
-                    && "format".equals(key)) {
-                final String actualDefaultStr = "(?i)^(?!(record|yield|var|permits|sealed)$).+$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.ConstantNameCheck")
-                    && "applyToPrivate".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.CatchParameterNameCheck")
-                    && "format".equals(key)) {
-                final String actualDefaultStr = "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.metrics.ClassFanOutComplexityCheck")
-                    && "excludedClasses".equals(key)) {
-                final String actualDefaultStr = "ArrayIndexOutOfBoundsException,"
-                        + " ArrayList, Boolean, Byte,"
-                        + " Character, Class, Collection, Deprecated, Deque,"
-                        + " Double, DoubleStream, EnumSet, Exception,"
-                        + " Float, FunctionalInterface, HashMap, HashSet,"
-                        + " IllegalArgumentException, IllegalStateException,"
-                        + " IndexOutOfBoundsException, IntStream, Integer,"
-                        + " LinkedHashMap, LinkedHashSet, LinkedList, List,"
-                        + " Long, LongStream, Map, NullPointerException, Object,"
-                        + " Optional, OptionalDouble, OptionalInt,"
-                        + " OptionalLong, Override, Queue, RuntimeException,"
-                        + " SafeVarargs, SecurityException, Set, Short,"
-                        + " SortedMap, SortedSet, Stream, String, StringBuffer,"
-                        + " StringBuilder, SuppressWarnings, Throwable,"
-                        + " TreeMap, TreeSet, UnsupportedOperationException,"
-                        + " Void, boolean, byte, char, double,"
-                        + " float, int, long, short, var, void";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.metrics.ClassFanOutComplexityCheck")
-                    && "max".equals(key)) {
-                final String actualDefaultStr = "20";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.metrics.ClassDataAbstractionCouplingCheck")
-                    && "max".equals(key)) {
-                final String actualDefaultStr = "7";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.metrics.ClassDataAbstractionCouplingCheck")
-                    && "excludeClassesRegexps".equals(key)) {
-                final String actualDefaultStr = "^$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.metrics.ClassDataAbstractionCouplingCheck")
-                    && "excludedPackages".equals(key)) {
-                final String actualDefaultStr = "";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.javadoc.SummaryJavadocCheck")
-                    && "violatedExecutionOnNonTightHtml".equals(key)) {
-                final String actualDefaultStr = "false";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.javadoc.JavadocTagContinuationIndentationCheck")
-                    && "violatedExecutionOnNonTightHtml".equals(key)) {
-                final String actualDefaultStr = "false";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.javadoc.JavadocParagraphCheck")
-                    && "violatedExecutionOnNonTightHtml".equals(key)) {
-                final String actualDefaultStr = "false";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.javadoc.JavadocMissingWhitespaceAfterAsteriskCheck")
-                    && "violatedExecutionOnNonTightHtml".equals(key)) {
-                final String actualDefaultStr = "false";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.javadoc.JavadocMissingLeadingAsteriskCheck")
-                    && "violatedExecutionOnNonTightHtml".equals(key)) {
-                final String actualDefaultStr = "false";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.javadoc.JavadocBlockTagLocationCheck")
-                    && "violatedExecutionOnNonTightHtml".equals(key)) {
-                final String actualDefaultStr = "false";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.javadoc.AtclauseOrderCheck")
-                    && "violatedExecutionOnNonTightHtml".equals(key)) {
-                final String actualDefaultStr = "false";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.TypeNameCheck")
-                    && "applyToProtected".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.StaticVariableNameCheck")
-                    && "applyToProtected".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.MethodNameCheck")
-                    && "applyToPublic".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.ClassTypeParameterNameCheck")
-                    && "format".equals(key)) {
-                final String actualDefaultStr = "^[A-Z]$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.metrics.ClassDataAbstractionCouplingCheck")
-                    && "excludeedClasses".equals(key)) {
-                final String actualDefaultStr = "ArrayIndexOutOfBoundsException,"
-                        + " ArrayList, Boolean, Byte,"
-                        + " Character, Class, Collection, Deprecated, Deque,"
-                        + " Double, DoubleStream, EnumSet, Exception,"
-                        + " Float, FunctionalInterface, HashMap, HashSet,"
-                        + " IllegalArgumentException, IllegalStateException,"
-                        + " IndexOutOfBoundsException, IntStream, Integer,"
-                        + " LinkedHashMap, LinkedHashSet, LinkedList, List,"
-                        + " Long, LongStream, Map, NullPointerException, Object,"
-                        + " Optional, OptionalDouble, OptionalInt,"
-                        + " OptionalLong, Override, Queue, RuntimeException,"
-                        + " SafeVarargs, SecurityException, Set, Short,"
-                        + " SortedMap, SortedSet, Stream, String, StringBuffer,"
-                        + " StringBuilder, SuppressWarnings, Throwable,"
-                        + " TreeMap, TreeSet, UnsupportedOperationException,"
-                        + " Void, boolean, byte, char, double,"
-                        + " float, int, long, short, var, void";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.javadoc.SummaryJavadocCheck")
-                    && "violateExecutionOnNonTightHtml".equals(key)) {
-                final String actualDefaultStr = "false";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.javadoc.SingleLineJavadocCheck")
-                    && "violateExecutionOnNonTightHtml".equals(key)) {
-                final String actualDefaultStr = "false";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.javadoc.RequireEmptyLineBeforeBlockTagGroupCheck")
-                    && "violateExecutionOnNonTightHtml".equals(key)) {
-                final String actualDefaultStr = "false";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.javadoc.NonEmptyAtclauseDescriptionCheck")
-                    && "violateExecutionOnNonTightHtml".equals(key)) {
-                final String actualDefaultStr = "false";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.javadoc.JavadocTagContinuationIndentationCheck")
-                    && "violateExecutionOnNonTightHtml".equals(key)) {
-                final String actualDefaultStr = "false";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.javadoc.JavadocParagraphCheck")
-                    && "violateExecutionOnNonTightHtml".equals(key)) {
-                final String actualDefaultStr = "false";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.javadoc.JavadocMissingWhitespaceAfterAsteriskCheck")
-                    && "violateExecutionOnNonTightHtml".equals(key)) {
-                final String actualDefaultStr = "false";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.javadoc.JavadocBlockTagLocationCheck")
-                    && "violateExecutionOnNonTightHtml".equals(key)) {
-                final String actualDefaultStr = "false";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if ("violateExecutionOnNonTightHtml".equals(key)) {
-                final String actualDefaultStr = "false";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.TypeNameCheck")
-                    && "applyToPrivate".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.MethodNameCheck")
-                    && "applyToProtected".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.metrics.ClassFanOutComplexityCheck")
-                    && "excludeClassesRegexps".equals(key)) {
-                final String actualDefaultStr = "^$";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.metrics.ClassFanOutComplexityCheck")
-                    && "excludedPackages".equals(key)) {
-                final String actualDefaultStr = "";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.metrics.ClassDataAbstractionCouplingCheck")
-                    && "excludedClasses".equals(key)) {
-                final String actualDefaultStr = "ArrayIndexOutOfBoundsException,"
-                        + " ArrayList, Boolean, Byte,"
-                        + " Character, Class, Collection, Deprecated, Deque,"
-                        + " Double, DoubleStream, EnumSet, Exception,"
-                        + " Float, FunctionalInterface, HashMap, HashSet,"
-                        + " IllegalArgumentException, IllegalStateException,"
-                        + " IndexOutOfBoundsException, IntStream, Integer,"
-                        + " LinkedHashMap, LinkedHashSet, LinkedList, List,"
-                        + " Long, LongStream, Map, NullPointerException,"
-                        + " Object, Optional, OptionalDouble, OptionalInt,"
-                        + " OptionalLong, Override, Queue, RuntimeException,"
-                        + " SafeVarargs, SecurityException, Set, Short,"
-                        + " SortedMap, SortedSet, Stream, String, StringBuffer,"
-                        + " StringBuilder, SuppressWarnings, Throwable,"
-                        + " TreeMap, TreeSet, UnsupportedOperationException,"
-                        + " Void, boolean, byte, char, double,"
-                        + " float, int, long, short, var, void";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.javadoc.NonEmptyAtclauseDescriptionCheck")
-                    && "javadocTokens".equals(key)) {
-                final String actualDefaultStr = "PARAM_LITERAL,"
-                        + " RETURN_LITERAL,"
-                        + " THROWS_LITERAL,"
-                        + " EXCEPTION_LITERAL,"
-                        + " DEPRECATED_LITERAL";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.StaticVariableNameCheck")
-                    && "applyToPrivate".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else if (Objects.equals(inputFilePath, "com.puppycrawl.tools.checkstyle"
-                    + ".checks.naming.MethodNameCheck")
-                    && "applyToPrivate".equals(key)) {
-                final String actualDefaultStr = "true";
-                validation(actualDefaultStr, defaultValue, key, inputFilePath);
-            }
-            else {
-                throw new IllegalStateException("Unable to validate default value for property '"
-                + key + "' in " + inputFilePath, ex);
-            }
+
+            hardCodedDefault(key, inputFilePath, defaultValue);
+
         }
     }
 
