@@ -45,13 +45,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 import org.xml.sax.InputSource;
 
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public final class InlineConfigParser {
 
@@ -1029,9 +1029,9 @@ public final class InlineConfigParser {
     // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
 
     private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
-                                String inputFilePath,
-                                List<String> lines,
-                                int beginLineNo)
+                                      String inputFilePath,
+                                      List<String> lines,
+                                      int beginLineNo)
             throws IOException, CheckstyleException {
         final StringBuilder stringBuilder = new StringBuilder(128);
         final int lineNo = beginLineNo - 1;
@@ -1042,11 +1042,9 @@ public final class InlineConfigParser {
 
         final Properties properties = new Properties();
         properties.load(new StringReader(stringBuilder.toString()));
-
         for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
             final String key = entry.getKey().toString();
             final String value = entry.getValue().toString();
-
             if (key.startsWith("message.")) {
                 inputConfigBuilder.addModuleMessage(key.substring(8), value);
             }
