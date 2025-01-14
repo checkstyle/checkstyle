@@ -1,0 +1,10 @@
+<!-- CSOFF: RegexpSinglelineCheck -->
+<!-- RegexpSingleline check won't warn any lines below here if the line matches regexp -->
+<project>
+    <condition property="checkstyle.ant.skip">
+        <isset property="checkstyle.ant.skip"/>
+    </condition>
+<!-- CSON: RegexpSinglelineCheck -->
+<!-- RegexpSingleline check will warn below here if the line matches regexp -->
+    <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
+</project>
