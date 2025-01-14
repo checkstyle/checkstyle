@@ -61,62 +61,71 @@
         <p id="Example1-config">
           To configure a filter to suppress audit events between a comment
           containing <code>CHECKSTYLE:OFF</code> and a comment containing
-          <code>CHECKSTYLE:ON</code>:
+          <code>CHECKSTYLE:ON</code>.
+          (Checker is configured to check only properties files using OrderedProperties check):
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example1.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-raw">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example1.properties"/>
+          <param name="type" value="raw"/>
         </macro>
         <p id="Example2-config">
             To configure a filter to suppress audit events between a comment
             containing line <code>BEGIN GENERATED CONTENT</code> and a comment
             containing line <code>END GENERATED CONTENT</code>
-            (Checker is configured to check only properties files):
+            (Checker is configured to check only properties files using UniqueProperties check):
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example2-code">Example:</p>
+        <p id="Example2-raw">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example2.txt"/>
-          <param name="type" value="code"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example2.properties"/>
+          <param name="type" value="raw"/>
         </macro>
         <p id="Example3-config">
           To configure a filter so that <code>-- stop tab
           check</code> and <code>-- resume tab check</code> marks allowed tab positions
-          (Checker is configured to check only sql files):
+          (Checker is configured to check only sql files using FileTabCharacter check, and report on
+          each line containing a tab character):
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example3-code">Example:</p>
+        <p id="Example3-raw">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example3.txt"/>
-          <param name="type" value="code"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example3.sql"/>
+          <param name="type" value="raw"/>
         </macro>
         <p id="Example4-config">
           To configure a filter so that name of suppressed check mentioned
           in comment <code>CSOFF: <i>regexp</i></code>
-          and <code>CSON: <i>regexp</i></code> mark a matching check
-          (Checker is configured to check only xml files):
+          and <code>CSON: <i>regexp</i></code> mark a matching check to suppress.
+          (Checker is configured to check only xml files using RegexpSingleline check to detect
+          disallowed 'code' values for the 'type' parameter):
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example4-code">Example:</p>
+        <p id="Example4-raw">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example4.txt"/>
-          <param name="type" value="code"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example4.xml"/>
+          <param name="type" value="raw"/>
         </macro>
         <p id="Example5-config">
           To configure a filter to suppress all audit events between a comment
@@ -126,13 +135,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example5-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example6-config">
@@ -144,7 +153,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example6.java"/>
           <param name="type" value="config"/>
         </macro>
         <p>
@@ -162,14 +171,14 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example7.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example7.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example7-code">Example:</p>
+        <p id="Example7-raw">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example7.txt"/>
-          <param name="type" value="code"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example7.sql"/>
+          <param name="type" value="raw"/>
         </macro>
         <p id="Example8-config">
             Example of how to configure the check to suppress more than one check
@@ -177,14 +186,14 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example8.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example8.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example8-code">Example:</p>
+        <p id="Example8-raw">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example8.txt"/>
-          <param name="type" value="code"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example8.sql"/>
+          <param name="type" value="raw"/>
         </macro>
         <p id="Example9-config">
             This check is not limited to comments. It can match any text in the given file
