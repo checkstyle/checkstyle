@@ -1,0 +1,16 @@
+<project>
+  <p>Examples:</p>
+<!-- CSOFF: RegexpSinglelineCheck -->
+  <macro name="example">
+    <param name="path" value="Example3.java"/>
+    <!-- suppressed violation below  -->
+    <param name="type" value="code"/>
+  </macro>
+<!-- CSON: RegexpSinglelineCheck -->
+  <macro name="example">
+    <param name="path" value="Example4.sql"/>
+    <param name="type" value="code"/>
+    <!-- // violation above 'Type code is not allowed. Use type raw instead'
+    -->
+  </macro>
+</project>
