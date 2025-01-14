@@ -935,7 +935,6 @@ public final class InlineConfigParser {
     /**
      * Validate default value.
      *
-     * @param key the property name.
      * @param specifiedDefault the specified default value in the file.
      * @param actualDefault the actual default value
      * @param fieldType the data type of default value.
