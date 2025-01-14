@@ -118,20 +118,22 @@
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;property name=&quot;fileExtensions&quot; value=&quot;properties&quot;/&gt;
 
-  &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
-    &lt;property name=&quot;offCommentFormat&quot; value=&quot;BEGIN GENERATED CONTENT&quot;/&gt;
-    &lt;property name=&quot;onCommentFormat&quot; value=&quot;END GENERATED CONTENT&quot;/&gt;
+    &lt;module name=&quot;UniqueProperties&quot;/&gt;
+
+    &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
+      &lt;property name=&quot;offCommentFormat&quot; value=&quot;BEGIN GENERATED CONTENT&quot;/&gt;
+      &lt;property name=&quot;onCommentFormat&quot; value=&quot;END GENERATED CONTENT&quot;/&gt;
   &lt;/module&gt;
 
 &lt;/module&gt;
         </source>
-        <p id="Example2-code">Example:</p>
+        <p id="Example2-raw">Example:</p>
         <source>
-//BEGIN GENERATED CONTENT
-my.property=value1 // No violation events will be reported
-my.property=value2 // No violation events will be reported
-//END GENERATED CONTENT
-. . .
+# BEGIN GENERATED CONTENT
+# suppressed violation below
+my.property=value1
+my.property=value2
+# END GENERATED CONTENT
         </source>
         <p id="Example3-config">
           To configure a filter so that <code>-- stop tab
@@ -150,12 +152,14 @@ my.property=value2 // No violation events will be reported
 
 &lt;/module&gt;
         </source>
-        <p id="Example3-code">Example:</p>
+        <p id="Example3-raw">Example:</p>
         <source>
 -- stop tab check
-  SELECT * FROM users // won't warn here if there is a tab character on line
+-- // OK below, no violation as TRATATATATA is not a tab character on line
+  SELECT * FROM users
 -- resume tab check
-  SELECT 1 // will warn here if there is a tab character on line
+-- // violation below, 'MESSAGE HERE'.
+  SELECT 1
         </source>
         <p id="Example4-config">
           To configure a filter so that name of suppressed check mentioned
@@ -175,16 +179,18 @@ my.property=value2 // No violation events will be reported
 
 &lt;/module&gt;
         </source>
-        <p id="Example4-code">Example:</p>
+        <p id="Example4-raw">Example:</p>
         <source>
-// CSOFF: RegexpSinglelineCheck
- // RegexpSingleline check won't warn any lines below here if the line matches regexp
-&lt;condition property=&quot;checkstyle.ant.skip&quot;&gt;
-  &lt;isset property=&quot;checkstyle.ant.skip&quot;/&gt;
-&lt;/condition&gt;
-// CSON: RegexpSinglelineCheck
-// RegexpSingleline check will warn below here if the line matches regexp
-&lt;property name=&quot;checkstyle.pattern.todo&quot; value=&quot;NOTHingWillMatCH_-&quot;/&gt;
+&lt;!-- CSOFF: RegexpSinglelineCheck --&gt;
+&lt;!-- RegexpSingleline check won't warn any lines below here if the line matches regexp --&gt;
+&lt;project&gt;
+    &lt;condition property=&quot;checkstyle.ant.skip&quot;&gt;
+        &lt;isset property=&quot;checkstyle.ant.skip&quot;/&gt;
+    &lt;/condition&gt;
+&lt;!-- CSON: RegexpSinglelineCheck --&gt;
+&lt;!-- RegexpSingleline check will warn below here if the line matches regexp --&gt;
+    &lt;property name=&quot;checkstyle.pattern.todo&quot; value=&quot;NOTHingWillMatCH_-&quot;/&gt;
+&lt;/project&gt;
         </source>
         <p id="Example5-config">
           To configure a filter to suppress all audit events between a comment
@@ -209,11 +215,13 @@ my.property=value2 // No violation events will be reported
         </source>
         <p id="Example5-code">Example:</p>
         <source>
-// CHECKSTYLE_OFF: ALMOST_ALL
-public static final int array [];
-private String [] strArray;
-// CHECKSTYLE_ON: ALMOST_ALL
-private int array1 [];
+public class Example5 {
+  // CHECKSTYLE_OFF: ALMOST_ALL
+  public static final int MAX_ITEMS = 100;
+  private String[] stringArray;
+  // CHECKSTYLE_ON: ALMOST_ALL
+  private int[] intArray;
+}
         </source>
         <p id="Example6-config">
           To configure a filter to suppress Check's violation message <b>which matches
@@ -274,7 +282,7 @@ private int array1 [];
 
 &lt;/module&gt;
         </source>
-        <p id="Example7-code">Example:</p>
+        <p id="Example7-raw">Example:</p>
         <source>
 -- CSOFF join (it is ok to use join here for performance reasons)
 SELECT name, job_name
@@ -301,13 +309,13 @@ EXPLAIN SELECT COUNT(*) FROM restaurants
 
 &lt;/module&gt;
         </source>
-        <p id="Example8-code">Example:</p>
+        <p id="Example8-raw">Example:</p>
         <source>
 -- @cs-: RegexpSinglelineCheck
 -- @cs-: FileTabCharacterCheck
 CREATE TABLE STATION (
   ID INTEGER PRIMARY KEY,
-  CITY CHAR(20),
+  CITY VARCHAR(20),
   STATE CHAR(2),
   LAT_N REAL,
   LONG_W REAL);
@@ -333,7 +341,7 @@ CREATE TABLE STATION (
         <source>
 public class Example9 {
 
-  // ok, opening and closing triple quotes are 'offCommentFormat' and 'onCommentFormat'
+  // ok below, opening and closing triple quotes are 'offCommentFormat' and 'onCommentFormat'
   static final String LOCATION_CSV_SAMPLE = &quot;&quot;&quot;
           locationId,label,regionId,regionLabel,vendorId,vendorLabel,address,address2,city,stateProvinceCode,zipCode,countryCode,latitude,longitude
           ST001,Station 001,ZONE1,Zone 1,CP1,Competitor 1,123 Street,Unit 2,Houston,TX,77033,US,29.761496813335178,-95.53049214204984

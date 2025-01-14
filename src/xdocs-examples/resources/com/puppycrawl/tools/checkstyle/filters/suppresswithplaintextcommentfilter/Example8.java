@@ -10,13 +10,9 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.filters.suppresswithplaintextcommentfilter;
+
+public class Example8 { }
+
 // xdoc section -- start
--- @cs-: RegexpSinglelineCheck
--- @cs-: FileTabCharacterCheck
-CREATE TABLE STATION (
-  ID INTEGER PRIMARY KEY,
-  CITY CHAR(20),
-  STATE CHAR(2),
-  LAT_N REAL,
-  LONG_W REAL);
 // xdoc section -- end

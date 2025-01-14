@@ -10,5 +10,9 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.filters.suppresswithplaintextcommentfilter;
+
+public class Example6 { }
+
 // xdoc section -- start
 // xdoc section -- end
