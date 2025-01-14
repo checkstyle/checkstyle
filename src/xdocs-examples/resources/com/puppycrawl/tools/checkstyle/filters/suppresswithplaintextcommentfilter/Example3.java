@@ -11,9 +11,9 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.filters.suppresswithplaintextcommentfilter;
+
+public class Example3 { }
+
 // xdoc section -- start
--- stop tab check
-  SELECT * FROM users // won't warn here if there is a tab character on line
--- resume tab check
-  SELECT 1 // will warn here if there is a tab character on line
 // xdoc section -- end

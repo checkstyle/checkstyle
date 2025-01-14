@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 @Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class SuppressWithPlainTextCommentFilterExamplesTest
@@ -34,21 +35,12 @@ public class SuppressWithPlainTextCommentFilterExamplesTest
     }
 
     @Test
-    public void testExample1() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
-    }
-
-    @Test
     public void testExample2() throws Exception {
-        final String[] expected = {
+        final String fileWithConfig = getPath("Example2.java");
+        final String targetFile = getPath("Example2.properties");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        };
-
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile, expected);
     }
 
     @Test
