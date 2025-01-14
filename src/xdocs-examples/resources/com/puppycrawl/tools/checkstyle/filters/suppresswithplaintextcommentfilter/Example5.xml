@@ -1,0 +1,17 @@
+<project>
+  <p>Examples:</p>
+<!-- CSOFF: ALMOST_ALL -->
+  <macro name="example">
+    <param name="path" value="Example3.sql"/>
+    <param name="type" value="code"/>
+    <!-- // violation above 'Type code is not allowed. Use type raw instead'
+    (The RegexpSingleline check is explicitly excluded from suppressions.) -->
+  </macro>
+<!-- CSON: ALMOST_ALL -->
+  <macro name="example">
+    <param name="path" value="Example4.sql"/>
+    <param name="type" value="code"/>
+    <!-- // violation above 'Type code is not allowed. Use type raw instead'
+    -->
+  </macro>
+</project>
