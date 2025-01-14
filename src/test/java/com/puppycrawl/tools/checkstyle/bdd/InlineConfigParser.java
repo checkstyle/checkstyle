@@ -762,8 +762,6 @@ public final class InlineConfigParser {
             Map.of("aliasList", ""));
         pathDefaults.put("com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck",
             Map.of("fileExtensions", ""));
-        pathDefaults.put("com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck",
-            Map.of("option", "nospace"));
         pathDefaults.put("com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck",
             Map.of("option", "nospace"));
         pathDefaults.put("com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck",
@@ -786,7 +784,12 @@ public final class InlineConfigParser {
                     + " THROWS_LITERAL, EXCEPTION_LITERAL, DEPRECATED_LITERAL"));
 
         final String actualDefaultStr;
-        if ("format".equals(key)) {
+        if ("option".equals(key)
+                && ("com.puppycrawl.tools.checkstyle"
+                + ".checks.whitespace.ParenPadCheck").equals(inputFilePath)) {
+            actualDefaultStr = "nospace";
+        }
+        else if ("format".equals(key)) {
             actualDefaultStr = hardCodedDefaultForFormat(key, inputFilePath);
         }
         else if (pathDefaults.containsKey(inputFilePath)
