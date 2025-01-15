@@ -725,10 +725,10 @@ public final class JavadocTokenTypes {
      *  |   |--MEMBER -> compare
      *  |   `--PARAMETERS -> PARAMETERS
      *  |       |--LEFT_BRACE -> (
-     *  |       |--ARGUMENT -&gt Object
-     *  |       `--RIGHT_BRACE -&gt )
-     *  |--NEWLINE -&gt \r\n
-     *  `--WS -&gt
+     *  |       |--ARGUMENT -> Object
+     *  |       `--RIGHT_BRACE -> )
+     *  |--NEWLINE -> \r\n
+     *  `--WS ->
      * }
      * </pre>
      */
