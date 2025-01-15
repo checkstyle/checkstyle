@@ -527,6 +527,30 @@ public class MagicNumberCheckTest
     }
 
     @Test
+    public void testIgnoreFieldDeclaration4()
+            throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberIgnoreFieldDeclaration4.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreFieldDeclaration5()
+            throws Exception {
+        final String[] expected = {
+            "14:32: " + getCheckMessage(MSG_KEY, "22"),
+            "14:37: " + getCheckMessage(MSG_KEY, "7.0"),
+            "20:20: " + getCheckMessage(MSG_KEY, "10"),
+            "21:20: " + getCheckMessage(MSG_KEY, "10"),
+            "21:25: " + getCheckMessage(MSG_KEY, "20"),
+            "25:23: " + getCheckMessage(MSG_KEY, "4"),
+            "25:26: " + getCheckMessage(MSG_KEY, "5"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberIgnoreFieldDeclaration5.java"), expected);
+    }
+
+    @Test
     public void testWaiverParentToken()
             throws Exception {
         final String[] expected = {
