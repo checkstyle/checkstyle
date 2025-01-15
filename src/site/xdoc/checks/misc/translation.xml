@@ -130,13 +130,11 @@ messages.properties: Key 'ok' missing.
           Example:
         </p>
         <source>
-#messages.properties
-hello=Hello
-cancel=Cancel
+public class Example1 {
+    public String hello = &quot;Hello&quot;;
+    public String cancel = &quot;Cancel&quot;;
 
-#messages.translations
-hello=Hallo
-ok=OK
+}
         </source>
         <source>
 messages.properties: Properties file 'messages_fr.properties' is missing.
@@ -158,13 +156,13 @@ messages.translations: Properties file 'messages_fr.translations' is missing.
           Example:
         </p>
         <source>
-#ButtonLabels.properties
-hello=Hello
-cancel=Cancel
+public class Example2 {
+    public String hello = &quot;Hello&quot;;
+    public String cancel = &quot;Cancel&quot;;
 
-#ButtonLabels_fr.properties
-hello=Bonjour
-name=Nom
+    public String hello_fr = &quot;Hello&quot;;
+    public String cancel_fr = &quot;Cancel&quot;;
+}
         </source>
         <source>
 ButtonLabels.properties: Key 'name' is missing.
@@ -184,17 +182,19 @@ ButtonLabels_fr.properties: Key 'cancel' is missing.
           Example:
         </p>
         <source>
-#messages.properties
-hello=Hello
-cancel=Cancel
+public class Example3 {
+    // English translations
+    public String hello = &quot;Hello&quot;;
+    public String cancel = &quot;Cancel&quot;;
 
-#messages_ja.properties
-greeting=&#x3053;&#x3093;&#x306b;&#x3061;&#x306f;
-age=&#x5e74;&#x9f62;
+    // French translations
+    public String greeting_fr = &quot;Bonjour&quot;;
+    public String name_fr = &quot;Nom&quot;;
 
-#messages_fr.properties
-greeting=Bonjour
-name=Nom
+    // Japanese translations
+    public String greeting_ja = &quot;&#x3053;&#x3093;&#x306b;&#x3061;&#x306f;&quot;;
+    public String age_ja = &quot;&#x5e74;&#x9f62;&quot;;
+}
         </source>
         <source>
 messages.properties: Key 'age' missing.
