@@ -4,14 +4,15 @@
     <property name="fileNamePattern" value="README"/>
     <property name="fileExtensions" value="md"/>
     <property name="match" value="false"/>
-    <message key="regexp.filename.mismatch"
-      value="No '*.md' files other then 'README.md'"/>
   </module>
 </module>
 */
-
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexponfilename;
+/*
 // xdoc section -- start
-src/site/resources/README.md  //OK
-src/site/resources/Logo.png  //OK
-src/site/resources/Text.md  //violation, .md files other than 'README.md' are not allowed
+checks/regexp/regexponfilename/README.md
+checks/regexp/regexponfilename/Example3.java
+checks/regexp/regexponfilename/TextExample3.md // Violation, 'pattern mismatch'
 // xdoc section -- end
+*/
+class Example3{}
