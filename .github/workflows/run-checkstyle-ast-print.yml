@@ -51,5 +51,5 @@ jobs:
             cat -n Test.java
             echo ""
             JAR_NAME=$(find . -name "*-all.jar")
-            echo "Executing: java -jar ""$JAR_NAME"" -T Test.java"
-            java -jar "$JAR_NAME" -T Test.java
+            echo "Executing: java -jar ""$JAR_NAME"" -J Test.java"
+            java -jar "$JAR_NAME" -J Test.java
