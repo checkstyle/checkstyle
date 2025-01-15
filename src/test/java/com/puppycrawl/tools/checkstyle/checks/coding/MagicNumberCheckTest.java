@@ -126,6 +126,16 @@ public class MagicNumberCheckTest
     }
 
     @Test
+    public void testDefault4()
+            throws Exception {
+        final String[] expected = {
+            "21:27: " + getCheckMessage(MSG_KEY, "42"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberDefault4.java"), expected);
+    }
+
+    @Test
     public void testIgnoreSome1()
             throws Exception {
         final String[] expected = {
@@ -524,6 +534,14 @@ public class MagicNumberCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputMagicNumberIgnoreFieldDeclaration3.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreFieldDeclaration4()
+            throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberIgnoreFieldDeclaration4.java"), expected);
     }
 
     @Test
