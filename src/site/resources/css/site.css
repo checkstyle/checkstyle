@@ -88,10 +88,13 @@ div, p, td, table.bodyTable td, th, table.bodyTable th, li, pre, #breadcrumbs sp
 
 .prettyprint {
   padding: 1em !important;
+  overflow: auto;
+  white-space: nowrap;
 }
 
 .prettyprint code {
   font-size: 15px;
+  text-wrap: nowrap;
 }
 
 .externalLink {
