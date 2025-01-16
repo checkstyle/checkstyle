@@ -86,6 +86,10 @@ div, p, td, table.bodyTable td, th, table.bodyTable th, li, pre, #breadcrumbs sp
   padding: 8px 4px 0 12px;
 }
 
+code {
+  white-space: normal;
+}
+
 .prettyprint {
   padding: 1em !important;
 }
