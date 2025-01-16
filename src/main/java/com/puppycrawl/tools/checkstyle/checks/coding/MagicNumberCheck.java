@@ -268,6 +268,12 @@ public class MagicNumberCheck extends AbstractCheck {
             if (constantDefAST == null || isMagicNumberExists(ast, constantDefAST)) {
                 reportMagicNumber(ast);
             }
+            if (constantDefAST == null) {
+                reportMagicNumber(ast);
+            }
+            else if (isMagicNumberExists(ast, constantDefAST)) {
+                reportMagicNumber(ast);
+            }
         }
     }
 
