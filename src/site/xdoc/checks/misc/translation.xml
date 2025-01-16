@@ -126,10 +126,12 @@ messages.properties: Key 'ok' missing.
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example1-code">
+        <p id="Example1-raw">
           Example:
         </p>
         <source>
+# // violation below 'messages_fr.properties' is missing
+# // violation below 'messages_fr.translations' is missing
 #messages.properties
 hello=Hello
 cancel=Cancel
@@ -154,10 +156,12 @@ messages.translations: Properties file 'messages_fr.translations' is missing.
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example2-code">
+        <p id="Example2-raw">
           Example:
         </p>
         <source>
+# // violation below 'name and cancel' is missing
+
 #ButtonLabels.properties
 hello=Hello
 cancel=Cancel
@@ -180,17 +184,19 @@ ButtonLabels_fr.properties: Key 'cancel' is missing.
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example3-code">
+        <p id="Example3-raw">
           Example:
         </p>
         <source>
+# // violation below 'name, cancel and age' is missing
+
 #messages.properties
 hello=Hello
 cancel=Cancel
 
 #messages_ja.properties
-greeting=&#x3053;&#x3093;&#x306b;&#x3061;&#x306f;
-age=&#x5e74;&#x9f62;
+greeting=こんにちは
+age=年齢
 
 #messages_fr.properties
 greeting=Bonjour
