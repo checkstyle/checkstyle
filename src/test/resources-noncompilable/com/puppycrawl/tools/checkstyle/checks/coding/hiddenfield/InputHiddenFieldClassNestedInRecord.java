@@ -20,7 +20,7 @@ public class InputHiddenFieldClassNestedInRecord {
         class foo2 {
             int a, b;
 
-            foo setA(int a) { // violation
+            foo setA(int a) { // violation, ''a' hides a field'
                 this.a = a;
                 return foo.this;
             }
