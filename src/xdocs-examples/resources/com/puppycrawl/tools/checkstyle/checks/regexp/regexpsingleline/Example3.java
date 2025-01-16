@@ -8,16 +8,18 @@
   </module>
 </module>
 */
-
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
 // xdoc section -- start
-class MyClass {
-    void myFunction() {
-        try {
-            doSomething();
-        } catch (Exception e) {
-            System.exit(1); // OK, as only there is only one occurrence.
-        }
+public class Example3 {
+  void myFunction() {
+    try {
+      doSomething();
+      System.exit(0);
+    } catch (Exception e) {
+      System.exit(1); // violation, as there are more than one occurrence.
     }
-    void doSomething(){};
+  }
+
+  void doSomething(){}
 }
 // xdoc section -- end

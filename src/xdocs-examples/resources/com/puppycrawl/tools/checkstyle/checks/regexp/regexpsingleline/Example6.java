@@ -13,10 +13,8 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
 
+public class Example6 {}
 // xdoc section -- start
-/* // violation, file doesn't contain the term.
- Example sql file.
-*/
-CREATE DATABASE MyDB;
 // xdoc section -- end

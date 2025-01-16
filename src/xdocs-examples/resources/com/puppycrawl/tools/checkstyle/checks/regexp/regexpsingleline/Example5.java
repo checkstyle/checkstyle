@@ -5,15 +5,16 @@
     <property name="minimum" value="1"/>
     <!--  Need to specify a maximum, so 10 times is more than enough. -->
     <property name="maximum" value="10"/>
+    <property name="message"
+                value="File must contain copyright statement"/>
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
 
 // xdoc section -- start
-/**
-* This file is copyrighted under CC. // Ok, as the file contains a copyright statement.
-*/
-class MyClass {
-
-}
+/** // violation 'File must contain copyright statement'
+ * MyClass as a configuration example.
+ */
+public class Example5 {}
 // xdoc section -- end
