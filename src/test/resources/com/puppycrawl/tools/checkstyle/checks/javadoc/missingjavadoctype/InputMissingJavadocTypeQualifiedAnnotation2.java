@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 public class InputMissingJavadocTypeQualifiedAnnotation2 {
     public @interface SomeAnnotation { }
 
-    @SomeAnnotation // ok
+    @SomeAnnotation
     public interface A { }
 
     // violation below 'Missing a Javadoc comment.'
