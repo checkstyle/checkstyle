@@ -128,7 +128,9 @@ public class MagicNumberCheckTest
     @Test
     public void testDefault4()
             throws Exception {
-        final String[] expected = {};
+        final String[] expected = {
+            "20:20: " + getCheckMessage(MSG_KEY, "42"),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputMagicNumberDefault4.java"), expected);
     }
