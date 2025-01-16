@@ -112,7 +112,7 @@ public class InputHiddenFieldLambdas {
     static String note = new String();
     private void foo4() {
         List<String> acceptableNotes = Arrays.asList("C", "D", "E", "F", "G", "A", "B");
-        acceptableNotes.forEach(note -> String.valueOf(note)); // 1 violation
+        acceptableNotes.forEach(note -> String.valueOf(note));
         // violation above, ''note' hides a field'
     }
 
