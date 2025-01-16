@@ -716,19 +716,17 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     * JAVADOC_TAG -> JAVADOC_TAG
-     *  |--SEE_LITERAL -> @see
-     *  |--WS ->
-     *  |--REFERENCE -> REFERENCE
-     *  |   |--PACKAGE_CLASS -> org.apache.utils.Lists.Comparator
-     *  |   |--HASH -> #
-     *  |   |--MEMBER -> compare
-     *  |   `--PARAMETERS -> PARAMETERS
-     *  |       |--LEFT_BRACE -> (
-     *  |       |--ARGUMENT -> Object
-     *  |       `--RIGHT_BRACE -> )
-     *  |--NEWLINE -> \r\n
-     *  `--WS ->
+     * JAVADOC_TAG -> JAVADOC_TAG [1:3]
+     *  |--SEE_LITERAL -> @see [1:3]
+     *  |--WS ->   [1:7]
+     *  |--REFERENCE -> REFERENCE [1:8]
+     *  |   |--PACKAGE_CLASS -> org.apache.utils.Lists.Comparator [1:8]
+     *  |   |--HASH -> # [1:41]
+     *  |   |--MEMBER -> compare [1:42]
+     *  |   `--PARAMETERS -> PARAMETERS [1:49]
+     *  |       |--LEFT_BRACE -> ( [1:49]
+     *  |       |--ARGUMENT -> Object [1:50]
+     *  |       `--RIGHT_BRACE -> ) [1:56]
      * }
      * </pre>
      */
