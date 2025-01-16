@@ -21,7 +21,7 @@ class AnnClass {
 }
 
 public class InputMissingJavadocTypeMultipleQualifiedAnnotation {
-    @Ann1 // ok
+    @Ann1
     @Ann2
     @Ann3
     public interface A { }
@@ -30,7 +30,7 @@ public class InputMissingJavadocTypeMultipleQualifiedAnnotation {
     @Ann3
     public interface B { }
 
-    @Ann2 // ok
+    @Ann2
     @Ann3
     @Ann1
     public interface C { }
@@ -40,7 +40,7 @@ public class InputMissingJavadocTypeMultipleQualifiedAnnotation {
     @Ann3
     public interface D { }
 
-    @AnnClass.Ann2 // ok
+    @AnnClass.Ann2
     @Ann2
     @AnnClass.Ann3
     public interface E { }
