@@ -27,25 +27,28 @@ class InputHiddenFieldReorder
 
     public InputHiddenFieldReorder()
     {
-        int hidden = 0; // violation
+        int hidden = 0; // violation, ''hidden' hides a field'
     }
 
-    public InputHiddenFieldReorder(int hidden) //parameter shadows field // violation
+    public InputHiddenFieldReorder(int hidden) //parameter shadows field
+    // violation above, ''hidden' hides a field'
     {
     }
 
     public void shadow()
     {
-        int hidden = 0; //shadows field // violation
+        int hidden = 0; //shadows field // violation, ''hidden' hides a field'
     }
 
     public void shadowFor()
     {
-        for (int hidden = 0; hidden < 1; hidden++) { //shadows field // violation
+        for (int hidden = 0; hidden < 1; hidden++) { //shadows field
+        // violation above, ''hidden' hides a field'
         }
     }
 
-    public void shadowParam(int hidden) //parameter shadows field // violation
+    public void shadowParam(int hidden) //parameter shadows field
+    // violation above, ''hidden' hides a field'
     {
     }
 
@@ -55,44 +58,46 @@ class InputHiddenFieldReorder
 
         public Inner()
         {
-            int innerHidden = 0; //shadows field // violation
+            int innerHidden = 0; //shadows field // violation, ''innerHidden' hides a field'
         }
 
-        public Inner(int innerHidden) //shadows field // violation
+        public Inner(int innerHidden) //shadows field // violation, ''innerHidden' hides a field'
         {
         }
 
         private void innerShadow()
         {
-            int innerHidden = 0; //shadows inner field // violation
-            int hidden = 0; //shadows outer field // violation
+            int innerHidden = 0; //shadows inner field // violation, ''innerHidden' hides a field'
+            int hidden = 0; //shadows outer field // violation, ''hidden' hides a field'
         }
 
         private void innerShadowFor()
         {
-            for (int innerHidden = 0; innerHidden < 1; innerHidden++) { // violation
+            for (int innerHidden = 0; innerHidden < 1; innerHidden++) {
+            // violation above, ''innerHidden' hides a field'
             }
             //shadows outer field
-            for (int hidden = 0; hidden < 1; hidden++) { // violation
+            for (int hidden = 0; hidden < 1; hidden++) { // violation, ''hidden' hides a field'
             }
         }
 
         private void shadowParam(
-            int innerHidden, //parameter shadows inner field // violation
-            int hidden //parameter shadows outer field // violation
+            int innerHidden, //parameter shadows inner field
+            // violation above, ''innerHidden' hides a field'
+            int hidden //parameter shadows outer field // violation, ''hidden' hides a field'
         )
         {
         }
 
         {
-            int innerHidden = 0;//shadows inner field // violation
-            int hidden = 0; //shadows outer field // violation
+            int innerHidden = 0;//shadows inner field // violation, ''innerHidden' hides a field'
+            int hidden = 0; //shadows outer field // violation, ''hidden' hides a field'
         }
         private int innerHidden = 0;
     }
 
     {
-        int hidden = 0;//shadows field // violation
+        int hidden = 0;//shadows field // violation, ''hidden' hides a field'
     }
     private int hidden = 0;
 }
@@ -114,7 +119,7 @@ enum HiddenEnum1
         public void doSomething()
         {
             //Should be flagged as hiding enum constant member
-            int hidden = 0; // violation
+            int hidden = 0; // violation, ''hidden' hides a field'
         }
 
         /**
@@ -127,20 +132,20 @@ enum HiddenEnum1
     /**
      * ctor parameter hides member
      */
-    HiddenEnum1(int hidden) // violation
+    HiddenEnum1(int hidden) // violation, ''hidden' hides a field'
     {
     }
 
     public void doSomething()
     {
         //Should be flagged as hiding static member
-        int hidden = 0; // violation
+        int hidden = 0; // violation, ''hidden' hides a field'
     }
 
     public static void doSomethingStatic()
     {
         //Should be flagged as hiding static member
-        int hiddenStatic = 0; // violation
+        int hiddenStatic = 0; // violation, ''hiddenStatic' hides a field'
     }
 
     int hidden;
