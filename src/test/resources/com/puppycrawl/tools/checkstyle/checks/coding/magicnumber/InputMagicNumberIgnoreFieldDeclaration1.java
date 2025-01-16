@@ -32,8 +32,6 @@ public class InputMagicNumberIgnoreFieldDeclaration1 {
         final double DOUBLE_CONST1 = 1.500_0D;
         final double DOUBLE_CONST2 = 1.5d;
         final double DOUBLE_CONST3 = 1.5;
-        final int radius = 10;
-        final double area = 22 / 7.0 * radius * radius;
 
 
         int int_var1 = 1;
