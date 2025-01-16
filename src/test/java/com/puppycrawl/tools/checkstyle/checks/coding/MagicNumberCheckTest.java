@@ -527,6 +527,14 @@ public class MagicNumberCheckTest
     }
 
     @Test
+    public void testIgnoreFieldDeclaration4()
+            throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberIgnoreFieldDeclaration4.java"), expected);
+    }
+
+    @Test
     public void testWaiverParentToken()
             throws Exception {
         final String[] expected = {
