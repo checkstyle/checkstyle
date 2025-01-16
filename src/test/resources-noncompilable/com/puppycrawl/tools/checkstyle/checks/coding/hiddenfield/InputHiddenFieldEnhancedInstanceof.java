@@ -23,7 +23,7 @@ public class InputHiddenFieldEnhancedInstanceof {
 
         // Pattern variable price hides field price
         public boolean doStuff(Object f) {
-            return f instanceof Float price && // violation
+            return f instanceof Float price && // violation, ''price' hides a field'
                     price.floatValue() > 0 &&
                     model != null &&
                     price.intValue() == 5;
@@ -34,7 +34,8 @@ public class InputHiddenFieldEnhancedInstanceof {
     static String hiddenStaticField = "hiddenStaticField";
     static {
         // Pattern variable hiddenStaticField hides static field hiddenStaticField
-        if (OBJ instanceof String hiddenStaticField) { // violation
+        if (OBJ instanceof String hiddenStaticField) {
+        // violation above, ''hiddenStaticField' hides a field'
             System.out.println(hiddenStaticField
                     .toLowerCase(Locale.forLanguageTag(hiddenStaticField)));
             boolean stringCheck = "test".equals(hiddenStaticField);
