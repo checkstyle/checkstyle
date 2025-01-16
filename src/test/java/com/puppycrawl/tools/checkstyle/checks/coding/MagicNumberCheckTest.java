@@ -129,7 +129,7 @@ public class MagicNumberCheckTest
     public void testDefault4()
             throws Exception {
         final String[] expected = {
-            "21:27: " + getCheckMessage(MSG_KEY, "42"),
+            "18:27: " + getCheckMessage(MSG_KEY, "42"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputMagicNumberDefault4.java"), expected);
