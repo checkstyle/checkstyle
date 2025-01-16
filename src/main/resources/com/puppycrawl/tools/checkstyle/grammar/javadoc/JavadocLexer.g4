@@ -46,7 +46,7 @@ tokens {
     EMBED_HTML_TAG_NAME, KEYGEN_HTML_TAG_NAME, ATTR_VALUE, Char12,
     HTML_COMMENT_END, SOURCE_HTML_TAG_NAME, TRACK_HTML_TAG_NAME,
     WBR_HTML_TAG_NAME, OPTGROUP_HTML_TAG_NAME, RB_HTML_TAG_NAME,
-    RT_HTML_TAG_NAME, RTC_HTML_TAG_NAME, RP_HTML_TAG_NAME, HTML_TAG_NAME, Char11
+    RT_HTML_TAG_NAME, RTC_HTML_TAG_NAME, RP_HTML_TAG_NAME, HTML_TAG_NAME, Char11,LAMA_LITERAL
 }
 
 @lexer::header {
@@ -125,6 +125,7 @@ NEWLINE: '\n' | '\r\n' | '\r';
 
 AUTHOR_LITERAL : '@author' {isJavadocTagAvailable}?;
 DEPRECATED_LITERAL : '@deprecated' {isJavadocTagAvailable}?;
+LAMA_LITERAL : '@lama' {isJavadocTagAvailable}?;
 EXCEPTION_LITERAL : '@exception' {isJavadocTagAvailable}? -> pushMode(exception);
 PARAM_LITERAL : '@param' {isJavadocTagAvailable}? -> pushMode(param);
 RETURN_LITERAL : '@return' {isJavadocTagAvailable}?;

@@ -31,6 +31,7 @@ options { tokenVocab=JavadocLexer; }
 
     boolean isJavadocTag(int type) {
         switch(type) {
+            case LAMA_LITERAL:
             case AUTHOR_LITERAL:
             case DEPRECATED_LITERAL:
             case EXCEPTION_LITERAL:
