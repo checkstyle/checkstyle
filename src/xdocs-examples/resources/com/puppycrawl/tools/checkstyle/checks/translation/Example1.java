@@ -9,9 +9,5 @@
 package com.puppycrawl.tools.checkstyle.checks.translation;
 
 // xdoc section -- start
-public class Example1 {
-    public String hello = "Hello";
-    public String cancel = "Cancel";
-
-}
+public class Example1 { }
 // xdoc section -- end

@@ -96,13 +96,13 @@ messages.properties: Key 'ok' missing.
                  value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example1-code">
+        <p id="Example1-raw">
           Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1.java"/>
-          <param name="type" value="code"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1.properties"/>
+          <param name="type" value="raw"/>
         </macro>
         <source>
 messages.properties: Properties file 'messages_fr.properties' is missing.
@@ -117,13 +117,13 @@ messages.translations: Properties file 'messages_fr.translations' is missing.
                  value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example2-code">
+        <p id="Example2-raw">
           Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example2.java"/>
-          <param name="type" value="code"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example2.properties"/>
+          <param name="type" value="raw"/>
         </macro>
         <source>
 ButtonLabels.properties: Key 'name' is missing.
@@ -137,13 +137,13 @@ ButtonLabels_fr.properties: Key 'cancel' is missing.
                  value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example3-code">
+        <p id="Example3-raw">
           Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example3.java"/>
-          <param name="type" value="code"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example3.properties"/>
+          <param name="type" value="raw"/>
         </macro>
         <source>
 messages.properties: Key 'age' missing.

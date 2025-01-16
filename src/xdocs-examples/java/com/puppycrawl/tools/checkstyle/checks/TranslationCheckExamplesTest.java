@@ -34,29 +34,45 @@ public class TranslationCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
     @Test
     public void testExample1() throws Exception {
+        final String configFilePath = getPath("Example1.java");
+        final String propertyFilePath = getPath("Example1.properties");
         final String[] expected = {
-            "17:16: " + getCheckMessage(MSG_KEY),
+            "3: " + getCheckMessage(MSG_KEY, "cancel", "messages_fr.properties"),
+            "4: " + getCheckMessage(MSG_KEY, "ok", "messages_fr.translations"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(configFilePath, propertyFilePath, expected);
     }
 
     @Test
     public void testExample2() throws Exception {
+        final String configFilePath = getPath("Example2.java");
+        final String propertyFilePath = getPath("Example2.properties");
         final String[] expected = {
-            "21:16: " + getCheckMessage(MSG_KEY),
-            "24:8: " + getCheckMessage(MSG_KEY),
+            "3: " + getCheckMessage(MSG_KEY, "name", "ButtonLabels.properties"),
+            "4: " + getCheckMessage(MSG_KEY, "cancel", "ButtonLabels_fr.properties"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(configFilePath, propertyFilePath, expected);
+
     }
 
     @Test
     public void testExample3() throws Exception {
+        final String configFilePath = getPath("Example3.java");
+        final String propertyFilePath = getPath("Example3.properties");
         final String[] expected = {
-            "22:10: " + getCheckMessage(MSG_KEY),
+            "3: " + getCheckMessage(MSG_KEY, "age", "messages.properties"),
+            "4: " + getCheckMessage(MSG_KEY, "name", "messages.properties"),
+            "5: " + getCheckMessage(MSG_KEY, "age", "messages_fr.properties"),
+            "6: " + getCheckMessage(MSG_KEY, "cancel", "messages_fr.properties"),
+            "7: " + getCheckMessage(MSG_KEY, "cancel", "messages_ja.properties"),
+            "8: " + getCheckMessage(MSG_KEY, "name", "messages_ja.properties"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(configFilePath, propertyFilePath, expected);
     }
 }
