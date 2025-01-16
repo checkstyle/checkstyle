@@ -17,13 +17,13 @@ public class InputMagicNumberIgnoreFieldDeclaration5 {
     //                    ''7.0' is a magic number'
     public final int a[] = {4, 5};
 
-public int x = 10; // violation ''10' is a magic number'
-public int y = 10 * 20;
-// 2 violations above:
+    public int x = 10; // violation ''10' is a magic number'
+    public int y = 10 * 20;
+    // 2 violations above:
     //                    ''10' is a magic number'
     //                    ''20' is a magic number'
-public int[] z = {4, 5};
-// 2 violations above:
+    public int[] z = {4, 5};
+    // 2 violations above:
     //                    ''4' is a magic number'
     //                    ''5' is a magic number'
 
