@@ -35,7 +35,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p>
@@ -49,20 +49,20 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
 
         <p id="Example2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
-        <p id="Example3-code">Example:</p>
+        <p id="Example3-code">Example with violation:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example4-config">
@@ -71,19 +71,28 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
-        <p id="Example5-code">Example:</p>
+        <p id="Example5-config">
+          An example of how to configure the check to make sure a copyright
+          statement is included in the file:
+        </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example with violation:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example6-config">
@@ -92,20 +101,20 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example6.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example6-code">Example:</p>
+        <p id="Example6-raw">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example6.txt"/>
-          <param name="type" value="code"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example6.sql"/>
+          <param name="type" value="raw"/>
         </macro>
-        <p id="Example7-code">Example:</p>
+        <p id="Example7-raw">Example with violation:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example7.txt"/>
-          <param name="type" value="code"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example7.sql"/>
+          <param name="type" value="raw"/>
         </macro>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
