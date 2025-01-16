@@ -92,10 +92,13 @@ code {
 
 .prettyprint {
   padding: 1em !important;
+  overflow: auto;
+  white-space: nowrap;
 }
 
 .prettyprint code {
   font-size: 15px;
+  text-wrap: nowrap;
 }
 
 .externalLink {
