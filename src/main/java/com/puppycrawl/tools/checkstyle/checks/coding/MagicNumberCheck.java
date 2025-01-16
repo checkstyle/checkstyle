@@ -262,19 +262,19 @@ public class MagicNumberCheck extends AbstractCheck {
         if (shouldTestAnnotationArgs(ast)
                 && shouldTestAnnotationDefaults(ast)
                 && !isInIgnoreList(ast)
-                && (!ignoreHashCodeMethod || !isInHashCodeMethod(ast))) {
+                && (!ignoreHashCodeMethod || !isInHashCodeMethod(ast))
+                && (!ignoreFieldDeclaration || !isFieldDeclaration(ast))) {
             final DetailAST constantDefAST = findContainingConstantDef(ast);
-
             if (constantDefAST == null) {
-                if (!ignoreFieldDeclaration || !isFieldDeclaration(ast)) {
-                    reportMagicNumber(ast);
-                }
+                reportMagicNumber(ast);
             }
             else {
                 final boolean found = isMagicNumberExists(ast, constantDefAST);
+
                 if (found) {
                     reportMagicNumber(ast);
                 }
+
             }
         }
     }
