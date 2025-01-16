@@ -354,6 +354,11 @@ public class GeneratedJavadocTokenTypesTest {
         assertWithMessage(MSG)
             .that(JavadocParser.Char11)
             .isEqualTo(101);
+        assertWithMessage(MSG)
+                .that(JavadocParser.LAMA_LITERAL)
+                .isEqualTo(102);
+
+
 
         final int tokenCount = (int) Arrays.stream(JavadocParser.class.getDeclaredFields())
                 .filter(GeneratedJavadocTokenTypesTest::isPublicStaticFinalInt)
@@ -365,7 +370,7 @@ public class GeneratedJavadocTokenTypesTest {
                         + " 'GeneratedJavadocTokenTypesTest' and verified"
                         + " that their old numbering didn't change")
             .that(tokenCount)
-            .isEqualTo(101);
+            .isEqualTo(102);
     }
 
     /**
