@@ -107,29 +107,31 @@
 
         <p id="Example2-code">Example:</p>
         <source>
-class MyClass {
-    void myFunction() {
-        try {
-            doSomething();
-        } catch (Exception e) {
-            System.exit(1); // OK, as only there is only one occurrence.
-        }
+public class Example2 {
+  void myFunction() {
+    try {
+      doSomething();
+    } catch (Exception e) {
+      System.exit(1); // OK, as only there is only one occurrence.
     }
-    void doSomething(){};
+  }
+
+  void doSomething(){}
 }
         </source>
-        <p id="Example3-code">Example:</p>
+        <p id="Example3-code">Example with violation:</p>
         <source>
-class MyClass {
-    void myFunction() {
-        try {
-            doSomething();
-            System.exit(0);
-        } catch (Exception e) {
-            System.exit(1); // Violation, as there are more than one occurrence.
-        }
+public class Example3 {
+  void myFunction() {
+    try {
+      doSomething();
+      System.exit(0);
+    } catch (Exception e) {
+      System.exit(1); // violation, as there are more than one occurrence.
     }
-    void doSomething(){};
+  }
+
+  void doSomething(){}
 }
         </source>
         <p id="Example4-config">
@@ -139,7 +141,7 @@ class MyClass {
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;RegexpSingleline&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;This file is copyrighted&quot;/&gt;
+    &lt;property name=&quot;format&quot; value=&quot;^[ ]*\* This file is copyrighted&quot;/&gt;
     &lt;property name=&quot;minimum&quot; value=&quot;1&quot;/&gt;
     &lt;!--  Need to specify a maximum, so 10 times is more than enough. --&gt;
     &lt;property name=&quot;maximum&quot; value=&quot;10&quot;/&gt;
@@ -149,20 +151,34 @@ class MyClass {
         <p id="Example4-code">Example:</p>
         <source>
 /**
-* This file is copyrighted under CC. // Ok, as the file contains a copyright statement.
+* This file is copyrighted under CC.
 */
-class MyClass {
-
-}
+public class Example4 {}
         </source>
-        <p id="Example5-code">Example:</p>
+        <p id="Example5-config">
+          An example of how to configure the check to make sure a copyright
+          statement is included in the file:
+        </p>
         <source>
-/** // violation, as the file doesn't contain a copyright statement.
-* MyClass as a configuration example.
-*/
-class MyClass {
-
-}
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpSingleline&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;^[ ]*\* This file is copyrighted&quot;/&gt;
+    &lt;property name=&quot;minimum&quot; value=&quot;1&quot;/&gt;
+    &lt;!--  Need to specify a maximum, so 10 times is more than enough. --&gt;
+    &lt;property name=&quot;maximum&quot; value=&quot;10&quot;/&gt;
+    &lt;property name=&quot;message&quot;
+              value=&quot;File must contain copyright statement&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example5-code">Example with violation:</p>
+        <source>
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
+/* violation on first line 'File must contain copyright statement' */
+/**
+ * MyClass as a configuration example.
+ */
+public class Example5 {}
         </source>
         <p id="Example6-config">
           An example of how to configure the check to make sure sql files contains the term
@@ -183,14 +199,14 @@ class MyClass {
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example6-code">Example:</p>
+        <p id="Example6-raw">Example:</p>
         <source>
 /*
  AP 2.0 License. // Ok, Check ignores the case of the term.
 */
 CREATE DATABASE MyDB;
         </source>
-        <p id="Example7-code">Example:</p>
+        <p id="Example7-raw">Example with violation:</p>
         <source>
 /* // violation, file doesn't contain the term.
  Example sql file.
