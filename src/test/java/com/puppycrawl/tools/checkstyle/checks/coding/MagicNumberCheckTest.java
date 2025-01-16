@@ -126,6 +126,14 @@ public class MagicNumberCheckTest
     }
 
     @Test
+    public void testDefault4()
+            throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberDefault4.java"), expected);
+    }
+
+    @Test
     public void testIgnoreSome1()
             throws Exception {
         final String[] expected = {
