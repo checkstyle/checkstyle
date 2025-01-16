@@ -15,22 +15,35 @@ public class InputHiddenFieldRecordPattern {
     record Point(Color c, int x, int y) { }
 
     public boolean doStuff(Object f) {
-            return f instanceof Color(String s, int x);  // 2 violations
+            return f instanceof Color(String s, int x);
+            // 2 violations above:
+            //    ''s' hides a field'
+            //    ''x' hides a field'
     }
 
 
     public void test(Object f) {
-        if (f instanceof Color(String s, int x)) { // 2 violations
+        if (f instanceof Color(String s, int x)) {
+        // 2 violations above:
+        //    ''s' hides a field'
+        //    ''x' hides a field'
             System.out.println(s);
         }
     }
 
    public void test2(Object f) {
-        if (f instanceof Point(Color(String s, int x), _, int z)) { // 3 violations
+        if (f instanceof Point(Color(String s, int x), _, int z)) {
+        // 3 violations above:
+        //    ''s' hides a field'
+        //    ''x' hides a field'
+        //    ''z' hides a field'
             System.out.println(s);
         }
         switch (f) {
-            case Point(Color(String s, int x), _, _) : break; // 2 violations
+            case Point(Color(String s, int x), _, _) : break;
+            // 2 violations above:
+            //    ''s' hides a field'
+            //    ''x' hides a field'
             default:
                 throw new IllegalStateException();
         }
