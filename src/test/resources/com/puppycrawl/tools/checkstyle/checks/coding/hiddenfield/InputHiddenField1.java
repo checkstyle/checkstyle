@@ -27,7 +27,7 @@ class InputHiddenField1
 
     public InputHiddenField1()
     {
-        int hidden = 0;  // violation
+        int hidden = 0;  // violation, ''hidden' hides a field'
     }
 
     public InputHiddenField1(int hidden) //parameter shadows field
@@ -36,12 +36,13 @@ class InputHiddenField1
 
     public void shadow()
     {
-        int hidden = 0; //shadows field // violation
+        int hidden = 0; //shadows field // violation, ''hidden' hides a field'
     }
 
     public void shadowFor()
     {
-        for (int hidden = 0; hidden < 1; hidden++) { //shadows field // violation
+        for (int hidden = 0; hidden < 1; hidden++) { //shadows field
+        // violation above, ''hidden' hides a field'
         }
     }
 
@@ -55,7 +56,7 @@ class InputHiddenField1
 
         public Inner()
         {
-            int innerHidden = 0; //shadows field // violation
+            int innerHidden = 0; //shadows field // violation, ''innerHidden' hides a field'
         }
 
         public Inner(int innerHidden) //shadows field
@@ -64,16 +65,17 @@ class InputHiddenField1
 
         private void innerShadow()
         {
-            int innerHidden = 0; //shadows inner field // violation
-            int hidden = 0; //shadows outer field // violation
+            int innerHidden = 0; //shadows inner field // violation, ''innerHidden' hides a field'
+            int hidden = 0; //shadows outer field // violation, ''hidden' hides a field'
         }
 
         private void innerShadowFor()
         {
-            for (int innerHidden = 0; innerHidden < 1; innerHidden++) { // violation
+            for (int innerHidden = 0; innerHidden < 1; innerHidden++) {
+            // violation above, ''innerHidden' hides a field'
             }
             //shadows outer field
-            for (int hidden = 0; hidden < 1; hidden++) { // violation
+            for (int hidden = 0; hidden < 1; hidden++) { // violation, ''hidden' hides a field'
             }
         }
 
@@ -85,13 +87,13 @@ class InputHiddenField1
         }
 
         {
-            int innerHidden = 0;//shadows inner field // violation
-            int hidden = 0; //shadows outer field // violation
+            int innerHidden = 0;//shadows inner field // violation, ''innerHidden' hides a field'
+            int hidden = 0; //shadows outer field // violation, ''hidden' hides a field'
         }
     }
 
     {
-        int hidden = 0;//shadows field // violation
+        int hidden = 0;//shadows field // violation, ''hidden' hides a field'
     }
 }
 
@@ -147,21 +149,21 @@ class StaticFields1
 
     public static void staticMethod()
     {
-        int hidden; // violation
+        int hidden; // violation, ''hidden' hides a field'
     }
 
     public void method()
     {
-        int hidden; // violation
+        int hidden; // violation, ''hidden' hides a field'
     }
 
     static
     {
-        int hidden; // violation
+        int hidden; // violation, ''hidden' hides a field'
     }
 
     {
-        int hidden; // violation
+        int hidden; // violation, ''hidden' hides a field'
     }
 }
 
@@ -178,7 +180,7 @@ class StaticMethods1
 
     static
     {
-        // local variables of static initializers don't hide instance fields.
+        // local variables of static initializers don't hide instance fields
         int notHidden;
     }
 
@@ -209,7 +211,7 @@ enum HiddenEnum11
         public void doSomething()
         {
             //Should be flagged as hiding enum constant member
-            int hidden = 0; // violation
+            int hidden = 0; // violation, ''hidden' hides a field'
         }
     };
 
@@ -226,13 +228,13 @@ enum HiddenEnum11
     public void doSomething()
     {
         //Should be flagged as hiding static member
-        int hidden = 0; // violation
+        int hidden = 0; // violation, ''hidden' hides a field'
     }
 
     public static void doSomethingStatic()
     {
         //Should be flagged as hiding static member
-        int hiddenStatic = 0; // violation
+        int hiddenStatic = 0; // violation, ''hiddenStatic' hides a field'
     }
 }
 
