@@ -265,7 +265,7 @@ public class MagicNumberCheck extends AbstractCheck {
                 && (!ignoreHashCodeMethod || !isInHashCodeMethod(ast))
                 && (!ignoreFieldDeclaration || !isFieldDeclaration(ast))) {
             final DetailAST constantDefAST = findContainingConstantDef(ast);
-            if (constantDefAST == null || isMagicNumberExists(ast, constantDefAST)) {
+            if (isMagicNumberExists(ast, constantDefAST)) {
                 reportMagicNumber(ast);
             }
         }
