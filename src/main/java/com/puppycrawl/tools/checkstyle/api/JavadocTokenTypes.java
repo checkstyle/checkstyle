@@ -1747,4 +1747,26 @@ public final class JavadocTokenTypes {
     private JavadocTokenTypes() {
     }
 
+    /**
+     * Represents '@lama' in Javadoc tags.
+     *
+     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code @lama This is a lama usage example.}</pre>
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_TAG -> JAVADOC_TAG
+     *  |--LAMA_LITERAL -> @lama
+     *  |--WS ->
+     *  `--DESCRIPTION -> DESCRIPTION
+     *      |--TEXT -> This is a lama usage example.
+     * }</pre>
+     *
+     * @see #JAVADOC_TAG
+     */
+    public static final int LAMA_LITERAL = JavadocParser.LAMA_LITERAL;
+
+
+
 }
