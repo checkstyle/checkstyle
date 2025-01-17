@@ -27,14 +27,9 @@
 </module>
 */
 
-// xdoc section -- start
--- CSOFF join (it is ok to use join here for performance reasons)
-SELECT name, job_name
-FROM users AS u
-JOIN jobs AS j ON u.job_id = j.id
--- CSON join
+package com.puppycrawl.tools.checkstyle.filters.suppresswithplaintextcommentfilter;
 
--- CSOFF count (test query execution plan)
-EXPLAIN SELECT COUNT(*) FROM restaurants
--- CSON count
+public class Example7 { }
+
+// xdoc section -- start
 // xdoc section -- end

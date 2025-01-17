@@ -2,6 +2,10 @@
 <module name="Checker">
   <property name="fileExtensions" value="sql"/>
 
+  <module name="FileTabCharacter">
+    <property name="eachLine" value="true"/>
+  </module>
+
   <module name="SuppressWithPlainTextCommentFilter">
     <property name="offCommentFormat" value="stop tab check"/>
     <property name="onCommentFormat" value="resume tab check"/>
@@ -11,9 +15,9 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.filters.suppresswithplaintextcommentfilter;
+
+public class Example3 { }
+
 // xdoc section -- start
--- stop tab check
-  SELECT * FROM users // won't warn here if there is a tab character on line
--- resume tab check
-  SELECT 1 // will warn here if there is a tab character on line
 // xdoc section -- end

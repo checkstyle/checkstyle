@@ -14,10 +14,14 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.filters.suppresswithplaintextcommentfilter;
+
 // xdoc section -- start
-// CHECKSTYLE_OFF: ALMOST_ALL
-public static final int array [];
-private String [] strArray;
-// CHECKSTYLE_ON: ALMOST_ALL
-private int array1 [];
+public class Example5 {
+  // CHECKSTYLE_OFF: ALMOST_ALL
+  public static final int MAX_ITEMS = 100;
+  private String[] stringArray;
+  // CHECKSTYLE_ON: ALMOST_ALL
+  private int[] intArray;
+}
 // xdoc section -- end

@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 @Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class SuppressWithPlainTextCommentFilterExamplesTest
@@ -35,38 +36,42 @@ public class SuppressWithPlainTextCommentFilterExamplesTest
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
+        final String fileWithConfig = getPath("Example1.java");
+        final String targetFile = getPath("Example1.properties");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        };
-
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile, expected);
     }
 
     @Test
     public void testExample2() throws Exception {
-        final String[] expected = {
+        final String fileWithConfig = getPath("Example2.java");
+        final String targetFile = getPath("Example2.properties");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        };
-
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile, expected);
     }
 
     @Test
     public void testExample3() throws Exception {
+        final String fileWithConfig = getPath("Example3.java");
+        final String targetFile = getPath("Example3.sql");
         final String[] expected = {
-
+            "6:1: Line contains a tab character.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile, expected);
     }
 
     @Test
     public void testExample4() throws Exception {
+        final String fileWithConfig = getPath("Example4.java");
+        final String targetFile = getPath("Example4.xml");
         final String[] expected = {
-
+            "12: Type code is not allowed. Use type raw instead.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile, expected);
     }
 
     @Test

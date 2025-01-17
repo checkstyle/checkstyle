@@ -2,6 +2,8 @@
 <module name="Checker">
   <property name="fileExtensions" value="properties"/>
 
+  <module name="UniqueProperties"/>
+
   <module name="SuppressWithPlainTextCommentFilter">
     <property name="offCommentFormat" value="BEGIN GENERATED CONTENT"/>
     <property name="onCommentFormat" value="END GENERATED CONTENT"/>
@@ -10,10 +12,9 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.filters.suppresswithplaintextcommentfilter;
+
+public class Example2 { }
+
 // xdoc section -- start
-//BEGIN GENERATED CONTENT
-my.property=value1 // No violation events will be reported
-my.property=value2 // No violation events will be reported
-//END GENERATED CONTENT
-. . .
 // xdoc section -- end
