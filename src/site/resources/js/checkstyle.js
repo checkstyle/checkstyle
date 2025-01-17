@@ -51,8 +51,13 @@ window.addEventListener("load", function () {
 
 // for newer version of site.
 window.addEventListener("load", function () {
-    const bodyColumn = this.document.getElementById("bodyColumn");
+    const bodyColumn = document.getElementById("bodyColumn");
     bodyColumn.classList.remove("span10");
+
+    const externalLinks = document.querySelectorAll(".externalLink");
+    externalLinks.forEach((link) => {
+        link.setAttribute("target", "_blank");
+    });
 });
 
 window.addEventListener("scroll", function () {
