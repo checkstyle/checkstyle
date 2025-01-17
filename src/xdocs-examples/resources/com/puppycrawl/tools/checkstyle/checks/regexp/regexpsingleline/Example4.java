@@ -8,12 +8,11 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
 
 // xdoc section -- start
-/** // violation, as the file doesn't contain a copyright statement.
-* MyClass as a configuration example.
+/**
+* This file is copyrighted under CC.
 */
-class MyClass {
-
-}
+public class Example4 {}
 // xdoc section -- end
