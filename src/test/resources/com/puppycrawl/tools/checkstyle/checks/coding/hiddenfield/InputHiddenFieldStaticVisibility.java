@@ -19,13 +19,13 @@ public class InputHiddenFieldStaticVisibility {
     static Object other = null;
     Object field = null;
 
-    static void method(Object field, Object other) { // violation
+    static void method(Object field, Object other) { // violation, ''other' hides a field'
         // field 'field' can not be referenced form a static context
         // static field 'other' can be referenced from a static context
     }
 
     static class B {
-        void method(Object field, Object other) { // violation
+        void method(Object field, Object other) { // violation, ''other' hides a field'
             // field 'field' can not be referenced form a static context
             // static field 'other' can be referenced from a static context
         }
@@ -33,7 +33,7 @@ public class InputHiddenFieldStaticVisibility {
 
     static Comparator<Object> COMP = new Comparator<Object>() {
         @Override
-        public int compare(Object field, Object other) { // violation
+        public int compare(Object field, Object other) { // violation, ''other' hides a field'
             // field 'field' can not be referenced form a static context
             // static field 'other' can be referenced from a static context
             return 0;
@@ -43,7 +43,7 @@ public class InputHiddenFieldStaticVisibility {
     static Comparator<Object> createComp() {
         return new Comparator<Object>() {
             @Override
-            public int compare(Object field, Object other) { // violation
+            public int compare(Object field, Object other) { // violation, ''other' hides a field'
                 // field 'field' can not be referenced form a static context
                 // static field 'other' can be referenced from a static context
                 return 0;
@@ -55,5 +55,5 @@ public class InputHiddenFieldStaticVisibility {
 
     void foo2(int a) {}
 
-    static void foo3(int someField) {} // violation
+    static void foo3(int someField) {} // violation, ''someField' hides a field'
 }

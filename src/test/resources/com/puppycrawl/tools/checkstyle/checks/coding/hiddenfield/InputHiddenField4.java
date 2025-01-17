@@ -27,25 +27,28 @@ class InputHiddenField4
 
     public InputHiddenField4()
     {
-        int hidden = 0; // violation
+        int hidden = 0; // violation, ''hidden' hides a field'
     }
 
-    public InputHiddenField4(int hidden) //parameter shadows field // violation
+    public InputHiddenField4(int hidden) //parameter shadows field
+    // violation above, ''hidden' hides a field'
     {
     }
 
     public void shadow()
     {
-        int hidden = 0; //shadows field // violation
+        int hidden = 0; //shadows field // violation, ''hidden' hides a field'
     }
 
     public void shadowFor()
     {
-        for (int hidden = 0; hidden < 1; hidden++) { //shadows field // violation
+        for (int hidden = 0; hidden < 1; hidden++) { //shadows field
+        // violation above, ''hidden' hides a field'
         }
     }
 
-    public void shadowParam(int hidden) //parameter shadows field // violation
+    public void shadowParam(int hidden) //parameter shadows field
+    // violation above, ''hidden' hides a field'
     {
     }
 
@@ -55,43 +58,45 @@ class InputHiddenField4
 
         public Inner()
         {
-            int innerHidden = 0; //shadows field // violation
+            int innerHidden = 0; //shadows field // violation, ''innerHidden' hides a field'
         }
 
-        public Inner(int innerHidden) //shadows field // violation
+        public Inner(int innerHidden) //shadows field // violation, ''innerHidden' hides a field'
         {
         }
 
         private void innerShadow()
         {
-            int innerHidden = 0; //shadows inner field // violation
-            int hidden = 0; //shadows outer field // violation
+            int innerHidden = 0; //shadows inner field // violation, ''innerHidden' hides a field'
+            int hidden = 0; //shadows outer field // violation, ''hidden' hides a field'
         }
 
         private void innerShadowFor()
         {
-            for (int innerHidden = 0; innerHidden < 1; innerHidden++) { // violation
+            for (int innerHidden = 0; innerHidden < 1; innerHidden++) {
+            // violation above, ''innerHidden' hides a field'
             }
             //shadows outer field
-            for (int hidden = 0; hidden < 1; hidden++) { // violation
+            for (int hidden = 0; hidden < 1; hidden++) { // violation, ''hidden' hides a field'
             }
         }
 
         private void shadowParam(
-            int innerHidden, //parameter shadows inner field // violation
-            int hidden //parameter shadows outer field // violation
+            int innerHidden, //parameter shadows inner field
+            // violation above, ''innerHidden' hides a field'
+            int hidden //parameter shadows outer field // violation, ''hidden' hides a field'
         )
         {
         }
 
         {
-            int innerHidden = 0;//shadows inner field // violation
-            int hidden = 0; //shadows outer field // violation
+            int innerHidden = 0;//shadows inner field // violation, ''innerHidden' hides a field'
+            int hidden = 0; //shadows outer field // violation, ''hidden' hides a field'
         }
     }
 
     {
-        int hidden = 0;//shadows field // violation
+        int hidden = 0;//shadows field // violation, ''hidden' hides a field'
     }
 }
 
@@ -115,13 +120,13 @@ class PropertySetter14
     }
 
     /** violation - incorrect method name */
-    public void setprop(int prop) // violation
+    public void setprop(int prop) // violation, ''prop' hides a field'
     {
         this.prop = prop;
     }
 
     /** violation - more than one parameter */
-    public void setProp(int prop, int extra) // violation
+    public void setProp(int prop, int extra) // violation, ''prop' hides a field'
     {
         this.prop = prop;
     }
@@ -133,7 +138,7 @@ class PropertySetter24
     private int prop;
 
     /** violation - not a void method */
-    public int setProp(int prop) // violation
+    public int setProp(int prop) // violation, ''prop' hides a field'
     {
         this.prop = prop;
         return 0;
@@ -147,21 +152,21 @@ class StaticFields4
 
     public static void staticMethod()
     {
-        int hidden; // violation
+        int hidden; // violation, ''hidden' hides a field'
     }
 
     public void method()
     {
-        int hidden; // violation
+        int hidden; // violation, ''hidden' hides a field'
     }
 
     static
     {
-        int hidden; // violation
+        int hidden; // violation, ''hidden' hides a field'
     }
 
     {
-        int hidden; // violation
+        int hidden; // violation, ''hidden' hides a field'
     }
 }
 
@@ -188,7 +193,7 @@ class StaticMethods4
         void useX(int x) {
             x++;
         }
-        void useY(int y) { // violation
+        void useY(int y) { // violation, ''y' hides a field'
             y++;
         }
     }
@@ -209,7 +214,7 @@ enum HiddenEnum14
         public void doSomething()
         {
             //Should be flagged as hiding enum constant member
-            int hidden = 0; // violation
+            int hidden = 0; // violation, ''hidden' hides a field'
         }
     };
 
@@ -219,27 +224,27 @@ enum HiddenEnum14
     /**
      * ctor parameter hides member
      */
-    HiddenEnum14(int hidden) // violation
+    HiddenEnum14(int hidden) // violation, ''hidden' hides a field'
     {
     }
 
     public void doSomething()
     {
         //Should be flagged as hiding static member
-        int hidden = 0; // violation
+        int hidden = 0; // violation, ''hidden' hides a field'
     }
 
     public static void doSomethingStatic()
     {
         //Should be flagged as hiding static member
-        int hiddenStatic = 0; // violation
+        int hiddenStatic = 0; // violation, ''hiddenStatic' hides a field'
     }
 }
 
 // we should ignore this if user wants (ignoreAbstractMethods is true)
 abstract class InputHiddenFieldBug10845124 {
     String x;
-    public abstract void methodA(String x); // violation
+    public abstract void methodA(String x); // violation, ''x' hides a field'
 }
 
 class Bug33709464 {
@@ -262,7 +267,7 @@ class PropertySetter34
      * if setterCanReturnItsClass == true then
      *     success as it is then considered to be a setter
      */
-    public PropertySetter34 setProp(int prop) // violation
+    public PropertySetter34 setProp(int prop) // violation, ''prop' hides a field'
     {
         this.prop = prop;
         return this;
@@ -287,7 +292,7 @@ enum PropertySetter44 {
      * if setterCanReturnItsClass == true then
      *     success as it is then considered to be a setter
      */
-    public PropertySetter44 setProp2(int prop2) // violation
+    public PropertySetter44 setProp2(int prop2) // violation, ''prop2' hides a field'
     {
         this.prop2 = prop2;
         return this;
