@@ -43,8 +43,12 @@ h4 {
   float: right;
 }
 
-h2:hover .anchor, h3:hover .anchor, p[id^="Example"]:hover .anchor {
+h1:hover .anchor, h2:hover .anchor, h3:hover .anchor, p[id^="Example"]:hover .anchor {
   visibility: visible;
+}
+
+h1:hover:has(> a > img:first-child) .anchor {
+  visibility: hidden;
 }
 
 .anchor {
