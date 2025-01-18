@@ -40,6 +40,7 @@ jobs:
     if: github.event.comment.body == 'GitHub, generate web site'
           || github.event.comment.body == 'GitHub, generate website'
           || github.event.comment.body == 'GitHub, generate site'
+          || inputs.pr-number != ''
     runs-on: ubuntu-latest
     outputs:
       branch: ${{ steps.branch.outputs.ref }}
