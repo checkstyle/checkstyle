@@ -20,13 +20,19 @@ env:
 on:
   issue_comment:
     types: [ created, edited ]
+  workflow_dispatch:
+    inputs:
+      pr-number:
+        description: 'PR number'
+        required: true
+        type: string
 
 permissions:
   contents: read
   pull-requests: write
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.issue.number || github.ref }}
+  group: ${{ github.workflow }}-${{ inputs.pr-number || github.event.issue.number || github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -45,7 +51,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p .ci-temp
-          curl --fail-with-body -X GET "${{github.event.issue.pull_request.url}}" \
+          if [ -z "${{inputs.pr-number}}" ]; then
+            URL="https://github.com/checkstyle/checkstyle/pull/""${{inputs.pr-number}}"
+          else
+            URL="${{github.event.issue.pull_request.url}}"
+          fi
+          curl --fail-with-body -X GET "$URL" \
               -H "Accept: application/vnd.github+json" \
               -H "Authorization: token $GITHUB_TOKEN" \
               -o .ci-temp/info.json
@@ -77,7 +88,7 @@ jobs:
       - name: Download checkstyle for PR
         uses: actions/checkout@v4
         with:
-          ref: refs/pull/${{ github.event.issue.number }}/head
+          ref: refs/pull/${{ inputs.pr-number || github.event.issue.number }}/head
           path: .ci-temp/checkstyle
           fetch-depth: 0
 
@@ -112,7 +123,8 @@ jobs:
           LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
           aws s3 cp "$SITE" "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/" --recursive
           echo "$LINK/$FOLDER/index.html" > .ci-temp/message
-          ./.ci/generate-extra-site-links.sh ${{ github.event.issue.number }} "$LINK/$FOLDER"
+          PR_NUMBER="${{ inputs.pr-number || github.event.issue.number }}"
+          ./.ci/generate-extra-site-links.sh "$PR_NUMBER" "$LINK/$FOLDER"
 
       - name: Set output
         id: out
