@@ -29,7 +29,6 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ inputs.pr-number || github.event.issue.number || github.ref }}
