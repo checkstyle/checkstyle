@@ -34,9 +34,9 @@ public class IllegalThrowsCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "12:20: " + getCheckMessage(MSG_KEY, "RuntimeException"),
-            "14:20: " + getCheckMessage(MSG_KEY, "Error"),
-            "15:20: " + getCheckMessage(MSG_KEY, "Throwable"),
+            "13:20: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "15:20: " + getCheckMessage(MSG_KEY, "Error"),
+            "16:20: " + getCheckMessage(MSG_KEY, "Throwable"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -45,7 +45,7 @@ public class IllegalThrowsCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "18:20: " + getCheckMessage(MSG_KEY, "NullPointerException"),
+            "19:20: " + getCheckMessage(MSG_KEY, "NullPointerException"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -64,10 +64,10 @@ public class IllegalThrowsCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "14:20: " + getCheckMessage(MSG_KEY, "RuntimeException"),
-            "16:20: " + getCheckMessage(MSG_KEY, "Error"),
-            "17:20: " + getCheckMessage(MSG_KEY, "Throwable"),
-            "20:35: " + getCheckMessage(MSG_KEY, "Error"),
+            "15:20: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "17:20: " + getCheckMessage(MSG_KEY, "Error"),
+            "18:20: " + getCheckMessage(MSG_KEY, "Throwable"),
+            "21:35: " + getCheckMessage(MSG_KEY, "Error"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
