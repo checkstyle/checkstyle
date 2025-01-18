@@ -529,7 +529,11 @@ public class MagicNumberCheckTest
     @Test
     public void testIgnoreFieldDeclaration4()
             throws Exception {
-        final String[] expected = {};
+        final String[] expected = {
+            "25:22: " + getCheckMessage(MSG_KEY, "86400_000"),
+            "29:27: " + getCheckMessage(MSG_KEY, "5"),
+            "30:28: " + getCheckMessage(MSG_KEY, "69"),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputMagicNumberIgnoreFieldDeclaration4.java"), expected);
     }
@@ -538,16 +542,38 @@ public class MagicNumberCheckTest
     public void testIgnoreFieldDeclaration5()
             throws Exception {
         final String[] expected = {
-            "14:32: " + getCheckMessage(MSG_KEY, "22"),
-            "14:37: " + getCheckMessage(MSG_KEY, "7.0"),
-            "20:20: " + getCheckMessage(MSG_KEY, "10"),
-            "21:20: " + getCheckMessage(MSG_KEY, "10"),
-            "21:25: " + getCheckMessage(MSG_KEY, "20"),
-            "25:23: " + getCheckMessage(MSG_KEY, "4"),
-            "25:26: " + getCheckMessage(MSG_KEY, "5"),
+            "17:32: " + getCheckMessage(MSG_KEY, "22"),
+            "17:37: " + getCheckMessage(MSG_KEY, "7.0"),
+            "23:20: " + getCheckMessage(MSG_KEY, "10"),
+            "24:20: " + getCheckMessage(MSG_KEY, "10"),
+            "24:25: " + getCheckMessage(MSG_KEY, "20"),
+            "28:30: " + getCheckMessage(MSG_KEY, "4"),
+            "28:33: " + getCheckMessage(MSG_KEY, "5"),
+            "28:36: " + getCheckMessage(MSG_KEY, "6"),
+            "28:39: " + getCheckMessage(MSG_KEY, "7"),
+            "35:26: " + getCheckMessage(MSG_KEY, "2023"),
+            "35:32: " + getCheckMessage(MSG_KEY, "11"),
+            "35:36: " + getCheckMessage(MSG_KEY, "11"),
+            "35:40: " + getCheckMessage(MSG_KEY, "11"),
+            "42:16: " + getCheckMessage(MSG_KEY, "11"),
+            "42:20: " + getCheckMessage(MSG_KEY, "11"),
+            "42:24: " + getCheckMessage(MSG_KEY, "11"),
+            "48:41: " + getCheckMessage(MSG_KEY, "3"),
+            "49:61: " + getCheckMessage(MSG_KEY, "4"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputMagicNumberIgnoreFieldDeclaration5.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreFieldDeclaration6()
+            throws Exception {
+        final String[] expected = {
+            "16:38: " + getCheckMessage(MSG_KEY, "10"),
+            "17:46: " + getCheckMessage(MSG_KEY, "15"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberIgnoreFieldDeclaration6.java"), expected);
     }
 
     @Test

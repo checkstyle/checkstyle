@@ -9,6 +9,9 @@ constantWaiverParentToken = ARRAY_INIT, ASSIGN, ELIST, EXPR
 
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
+import java.util.concurrent.Callable;
+import java.util.function.BiFunction;
+
 public class InputMagicNumberIgnoreFieldDeclaration4 {
     public final int radius = 10;
     public final double area = 22 / 7.0 * radius * radius;
@@ -17,5 +20,14 @@ public class InputMagicNumberIgnoreFieldDeclaration4 {
     public int x = 10;
     public int y = 10 * 20;
     public int[] z = {4, 5};
+
+    private static final Callable<Void> SLEEP_FOR_A_DAY = () -> {
+        Thread.sleep(86400_000);  // violation ''86400_000' is a magic number'
+        return null;
+    };
+    private static final BiFunction<Integer, Integer, Integer> ADD_AND_SQUARE = (a, b) -> {
+        int sum = a + b + 5; // violation ''5' is a magic number'
+        return sum * sum * 69; // violation ''69' is a magic number'
+    };
 
 }

@@ -262,8 +262,8 @@ public class MagicNumberCheck extends AbstractCheck {
         if (shouldTestAnnotationArgs(ast)
                 && shouldTestAnnotationDefaults(ast)
                 && !isInIgnoreList(ast)
-                && (!ignoreHashCodeMethod || !isInHashCodeMethod(ast))
-                && (!ignoreFieldDeclaration || !isFieldDeclaration(ast))) {
+                && shouldCheckHashCodeMethod(ast)
+                && shouldCheckFieldDeclaration(ast)) {
             final DetailAST constantDefAST = findContainingConstantDef(ast);
             if (isMagicNumberExists(ast, constantDefAST)) {
                 reportMagicNumber(ast);
@@ -292,6 +292,26 @@ public class MagicNumberCheck extends AbstractCheck {
     }
 
     /**
+     * Checks if the given AST node is a HashCode Method and should be checked.
+     *
+     * @param ast the AST node to check
+     * @return true if element should be checked, false otherwise
+     */
+    private boolean shouldCheckHashCodeMethod(DetailAST ast) {
+        return !ignoreHashCodeMethod || !isInHashCodeMethod(ast);
+    }
+
+    /**
+     * Checks if the given AST node is a field declaration and should be checked.
+     *
+     * @param ast the AST node to check
+     * @return true if element should be checked, false otherwise
+     */
+    private boolean shouldCheckFieldDeclaration(DetailAST ast) {
+        return !ignoreFieldDeclaration || !isFieldDeclaration(ast);
+    }
+
+    /**
      * Is magic number somewhere at ast tree.
      *
      * @param ast ast token
@@ -303,10 +323,12 @@ public class MagicNumberCheck extends AbstractCheck {
         DetailAST astNode = ast.getParent();
         while (astNode != constantDefAST) {
             final int type = astNode.getType();
+
             if (!constantWaiverParentToken.get(type)) {
                 found = true;
                 break;
             }
+
             astNode = astNode.getParent();
         }
         return found;
@@ -429,7 +451,8 @@ public class MagicNumberCheck extends AbstractCheck {
     private static boolean isFieldDeclaration(DetailAST ast) {
         DetailAST varDefAST = null;
         DetailAST node = ast;
-        while (node != null && node.getType() != TokenTypes.OBJBLOCK) {
+        while (node != null && node.getType() != TokenTypes.OBJBLOCK
+                && node.getType() != TokenTypes.LAMBDA) {
             if (node.getType() == TokenTypes.VARIABLE_DEF) {
                 varDefAST = node;
                 break;
@@ -443,6 +466,7 @@ public class MagicNumberCheck extends AbstractCheck {
                 && (varDefAST.getParent().getParent().getType() == TokenTypes.CLASS_DEF
                 || varDefAST.getParent().getParent().getType() == TokenTypes.RECORD_DEF
                 || varDefAST.getParent().getParent().getType() == TokenTypes.LITERAL_NEW);
+
     }
 
     /**
