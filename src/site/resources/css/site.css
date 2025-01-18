@@ -43,8 +43,12 @@ h4 {
   float: right;
 }
 
-h2:hover .anchor, h3:hover .anchor, p[id^="Example"]:hover .anchor {
+h1:hover .anchor, h2:hover .anchor, h3:hover .anchor, p[id^="Example"]:hover .anchor {
   visibility: visible;
+}
+
+h1:hover:has(> a > img:first-child) .anchor {
+  visibility: hidden;
 }
 
 .anchor {
@@ -86,12 +90,19 @@ div, p, td, table.bodyTable td, th, table.bodyTable th, li, pre, #breadcrumbs sp
   padding: 8px 4px 0 12px;
 }
 
+code {
+  white-space: normal;
+}
+
 .prettyprint {
   padding: 1em !important;
+  overflow: auto;
+  white-space: nowrap;
 }
 
 .prettyprint code {
   font-size: 15px;
+  text-wrap: nowrap;
 }
 
 .externalLink {

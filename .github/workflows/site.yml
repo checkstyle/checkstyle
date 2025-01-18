@@ -40,17 +40,6 @@ jobs:
       commit_sha: ${{ steps.branch.outputs.commit_sha }}
 
     steps:
-      - uses: shanegenschaw/pull-request-comment-trigger@v3.0.0
-        name: React with rocket on run
-        with:
-          trigger: ','
-          reaction: rocket
-        env:
-          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-
-      - run: 'echo We print it here for this action to work'
-        if: 'true'
-
       - name: Getting PR description
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -117,7 +106,7 @@ jobs:
           REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
           bash
-          TIME=$(date +%Y%H%M%S)
+          TIME=$(date +%Y%m%d%H%M%S)
           FOLDER="${{needs.parse_pr_info.outputs.commit_sha}}_$TIME"
           SITE=".ci-temp/checkstyle/target/site"
           LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"

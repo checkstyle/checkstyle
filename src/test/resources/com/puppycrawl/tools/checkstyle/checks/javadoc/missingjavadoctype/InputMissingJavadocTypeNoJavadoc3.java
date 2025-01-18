@@ -10,7 +10,7 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
-public class InputMissingJavadocTypeNoJavadoc3 // ok
+public class InputMissingJavadocTypeNoJavadoc3
 {
     public int i1;
     protected int i2;
@@ -22,7 +22,7 @@ public class InputMissingJavadocTypeNoJavadoc3 // ok
     void foo3() {}
     private void foo4() {}
 
-    protected class ProtectedInner { // ok
+    protected class ProtectedInner {
         public int i1;
         protected int i2;
         int i3;
