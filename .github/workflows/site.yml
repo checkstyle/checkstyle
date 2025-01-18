@@ -53,9 +53,9 @@ jobs:
         run: |
           mkdir -p .ci-temp
           if [ -z "${{inputs.pr-number}}" ]; then
-            URL="https://github.com/checkstyle/checkstyle/pull/""${{inputs.pr-number}}"
-          else
             URL="${{github.event.issue.pull_request.url}}"
+          else
+            URL="https://github.com/checkstyle/checkstyle/pull/""${{inputs.pr-number}}"
           fi
           curl --fail-with-body -X GET "$URL" \
               -H "Accept: application/vnd.github+json" \
