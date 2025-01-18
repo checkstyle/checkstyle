@@ -106,7 +106,7 @@ jobs:
           REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
           bash
-          TIME=$(date +%Y%H%M%S)
+          TIME=$(date +%Y%m%d%H%M%S)
           FOLDER="${{needs.parse_pr_info.outputs.commit_sha}}_$TIME"
           SITE=".ci-temp/checkstyle/target/site"
           LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
