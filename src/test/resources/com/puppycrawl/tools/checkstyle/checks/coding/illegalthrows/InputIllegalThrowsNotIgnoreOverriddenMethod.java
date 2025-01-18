@@ -13,13 +13,13 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegalthrows;
 public class InputIllegalThrowsNotIgnoreOverriddenMethod
              extends InputIllegalThrowsTestDefault
 {
-    @Override
-    public void methodTwo() throws RuntimeException { // violation
+    @Override // violation below, 'Throwing 'RuntimeException' is not allowed'
+    public void methodTwo() throws RuntimeException {
 
     }
 
-    @Override
-    public java.lang.Throwable methodOne() throws RuntimeException { // violation
+    @Override // violation below, 'Throwing 'RuntimeException' is not allowed'
+    public java.lang.Throwable methodOne() throws RuntimeException {
         return null;
     }
 }
