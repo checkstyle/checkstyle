@@ -55,7 +55,7 @@ jobs:
           if [ -z "${{inputs.pr-number}}" ]; then
             URL="${{github.event.issue.pull_request.url}}"
           else
-            URL="https://github.com/checkstyle/checkstyle/pull/""${{inputs.pr-number}}"
+            URL="https://api.github.com/repos/checkstyle/checkstyle/pulls/""${{inputs.pr-number}}"
           fi
           curl --fail-with-body -X GET "$URL" \
               -H "Accept: application/vnd.github+json" \
@@ -175,7 +175,9 @@ jobs:
           ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
 
       - name: Comment PR
-        uses: checkstyle/contribution/comment-action@master
+        uses: peter-evans/create-or-update-comment@v4
         with:
-          message: ${{steps.out.outputs.message}}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          issue-number: ${{ inputs.pr-number || github.event.issue.number }}
+          body: ${{ steps.out.outputs.message }}
