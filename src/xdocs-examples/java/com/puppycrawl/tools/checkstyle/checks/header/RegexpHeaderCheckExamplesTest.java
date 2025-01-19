@@ -19,12 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class RegexpHeaderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -33,46 +32,34 @@ public class RegexpHeaderCheckExamplesTest extends AbstractExamplesModuleTestSup
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "1: " + getCheckMessage(RegexpHeaderCheck.MSG_HEADER_MISSING),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        System.setProperty("config.folder", "src/xdocs-examples/resources/" + getPackageLocation());
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
+        final String pattern = "^// Copyright \\(C\\) (\\d\\d\\d\\d -)? 2004 MyCompany$      ";
         final String[] expected = {
 
+            "1: " + getCheckMessage(HeaderCheck.MSG_MISMATCH, pattern),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
-    }
-
-    @Test
-    public void testExample5() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 }

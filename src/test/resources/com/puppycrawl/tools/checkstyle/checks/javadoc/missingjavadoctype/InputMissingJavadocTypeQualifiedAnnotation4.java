@@ -21,7 +21,7 @@ public class InputMissingJavadocTypeQualifiedAnnotation4 {
     @InputMissingJavadocTypeQualifiedAnnotation4.SomeAnnotation
     public interface B { }
 
-     @com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype // ok
+     @com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype
          .InputMissingJavadocTypeQualifiedAnnotation4.SomeAnnotation
     public interface C { }
 }

@@ -715,21 +715,18 @@ public final class JavadocTokenTypes {
      * <pre>{@code @see org.apache.utils.Lists.Comparator#compare(Object)}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_TAG[3x0] : [@see org.apache.utils.Lists.Comparator#compare(Object)]
-     *        |--SEE_LITERAL[3x0] : [@see]
-     *        |--WS[3x4] : [ ]
-     *        |--REFERENCE[3x5] : [org.apache.utils.Lists.Comparator#compare(Object)]
-     *            |--PACKAGE_CLASS[3x5] : [org.apache.utils]
-     *            |--DOT[3x21] : [.]
-     *            |--CLASS[3x22] : [Lists]
-     *            |--DOT[3x27] : [.]
-     *            |--CLASS[3x28] : [Comparator]
-     *            |--HASH[3x38] : [#]
-     *            |--MEMBER[3x39] : [compare]
-     *            |--PARAMETERS[3x46] : [(Object)]
-     *                |--LEFT_BRACE[3x46] : [(]
-     *                |--ARGUMENT[3x47] : [Object]
-     *                |--RIGHT_BRACE[3x53] : [)]
+     * {@code
+     * JAVADOC_TAG -&gt JAVADOC_TAG
+     *  |--SEE_LITERAL -&gt @see
+     *  |--WS -&gt
+     *  |--REFERENCE -&gt REFERENCE
+     *      |--PACKAGE_CLASS -&gt org.apache.utils.Lists.Comparator
+     *      |--HASH -&gt #
+     *      |--MEMBER -&gt compare
+     *      `--PARAMETERS -&gt PARAMETERS
+     *          |--LEFT_BRACE -&gt (
+     *          |--ARGUMENT -&gt Object
+     *          `--RIGHT_BRACE -&gt )
      * }
      * </pre>
      */
@@ -743,21 +740,18 @@ public final class JavadocTokenTypes {
      * <pre>{@code @see org.apache.utils.Lists.Comparator#compare(Object)}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_TAG[3x0] : [@see org.apache.utils.Lists.Comparator#compare(Object)]
-     *        |--SEE_LITERAL[3x0] : [@see]
-     *        |--WS[3x4] : [ ]
-     *        |--REFERENCE[3x5] : [org.apache.utils.Lists.Comparator#compare(Object)]
-     *            |--PACKAGE_CLASS[3x5] : [org.apache.utils]
-     *            |--DOT[3x21] : [.]
-     *            |--CLASS[3x22] : [Lists]
-     *            |--DOT[3x27] : [.]
-     *            |--CLASS[3x28] : [Comparator]
-     *            |--HASH[3x38] : [#]
-     *            |--MEMBER[3x39] : [compare]
-     *            |--PARAMETERS[3x46] : [(Object)]
-     *                |--LEFT_BRACE[3x46] : [(]
-     *                |--ARGUMENT[3x47] : [Object]
-     *                |--RIGHT_BRACE[3x53] : [)]
+     * {@code
+     * JAVADOC_TAG -&gt JAVADOC_TAG
+     *  |--SEE_LITERAL -&gt @see
+     *  |--WS -&gt
+     *  |--REFERENCE -&gt REFERENCE
+     *      |--PACKAGE_CLASS -&gt org.apache.utils.Lists.Comparator
+     *      |--HASH -&gt #
+     *      |--MEMBER -&gt compare
+     *      `--PARAMETERS -&gt PARAMETERS
+     *          |--LEFT_BRACE -&gt (
+     *          |--ARGUMENT -&gt Object
+     *          `--RIGHT_BRACE -&gt )
      * }
      * </pre>
      */
@@ -926,13 +920,15 @@ public final class JavadocTokenTypes {
      * <pre>{@code @param T The bar.}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_TAG[4x3] : [@param T The bar.]
-     *        |--PARAM_LITERAL[4x3] : [@param]
-     *        |--WS[4x9] : [ ]
-     *        |--PARAMETER_NAME[4x10] : [T]
-     *        |--WS[4x11] : [ ]
-     *        |--DESCRIPTION[4x12] : [The bar.]
-     *            |--TEXT[4x12] : [The bar.]
+     * {@code JAVADOC_TAG -&gt JAVADOC_TAG
+     *         |--PARAM_LITERAL -&gt @param
+     *         |--WS -&gt
+     *         |--PARAMETER_NAME -&gt T
+     *         |--WS -&gt
+     *         `--DESCRIPTION -&gt DESCRIPTION
+     *             |--TEXT -&gt The bar.
+     *             |--NEWLINE -&gt \r\n
+     *             `--TEXT -&gt
      * }
      * </pre>
      *
@@ -951,10 +947,13 @@ public final class JavadocTokenTypes {
      * <pre>{@code @serial exclude}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_TAG[1x0] : [@serial exclude]
-     *        |--SERIAL_LITERAL[1x0] : [@serial]
-     *        |--WS[1x7] : [ ]
-     *        |--LITERAL_EXCLUDE[1x8] : [exclude]
+     * {@code
+     * JAVADOC_TAG -&gt JAVADOC_TAG
+     *  |--SERIAL_LITERAL -&gt @serial
+     *  |--WS -&gt
+     *  |--LITERAL_EXCLUDE -&gt exclude
+     *  |--NEWLINE -&gt \n
+     *  `--WS -&gt
      * }
      * </pre>
      *
@@ -973,10 +972,13 @@ public final class JavadocTokenTypes {
      * <pre>{@code @serial include}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_TAG[1x0] : [@serial include]
-     *        |--SERIAL_LITERAL[1x0] : [@serial]
-     *        |--WS[1x7] : [ ]
-     *        |--LITERAL_INCLUDE[1x8] : [include]
+     * {@code
+     * JAVADOC_TAG -&gt JAVADOC_TAG
+     *  |--SERIAL_LITERAL -&gt @serial
+     *  |--WS -&gt
+     *  |--LITERAL_INCLUDE -&gt include
+     *  |--NEWLINE -&gt \r\n
+     *  `--WS -&gt
      * }
      * </pre>
      *

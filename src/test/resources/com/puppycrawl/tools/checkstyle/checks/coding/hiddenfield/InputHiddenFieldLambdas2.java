@@ -18,6 +18,7 @@ public class InputHiddenFieldLambdas2 {
     List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
     Integer value = Integer.valueOf(1);
     {
-        numbers.forEach((Integer value) -> String.valueOf(value)); // violation
+        numbers.forEach((Integer value) -> String.valueOf(value));
+        // violation above, ''value' hides a field'
     }
 }

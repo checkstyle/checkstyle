@@ -126,25 +126,25 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-class InputSuppressionCommentFilter
+class Example1
 {
-  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
   //CHECKSTYLE:OFF
   int VAR2; // suppressed violation
   //CHECKSTYLE:ON
 
-  public static final int var3;
-  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+  public static final int var3 = 1;
+  // violation above, 'must match pattern'
 
   //CHECKSTYLE:OFF
-  public static final int var4; // suppressed violation
+  public static final int var4 = 1; // suppressed violation
   //CHECKSTYLE:ON
 
   public void method1()
   {
     try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
+    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
 
     //CHECKSTYLE:OFF
 
@@ -177,31 +177,31 @@ class InputSuppressionCommentFilter
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-class InputSuppressionCommentFilter
+class Example2
 {
-  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
   //stop constant check
-  int VAR2; // violation , Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  int VAR2; // violation, Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
   //resume constant check
 
-  public static final int var3;
-  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+  public static final int var3 = 1;
+  // violation above, Name 'must match pattern'
 
   //stop constant check
-  public static final int var4; // suppressed violation
+  public static final int var4 = 1; // suppressed violation
   //resume constant check
 
   public void method1()
   {
     try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
+    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
 
     //stop constant check
 
     try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
-    catch(Error err) {} // violation , Catching 'Error' is not allowed
+    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
+    catch(Error err) {} // violation, Catching 'Error' is not allowed
 
     //resume constant check
   }
@@ -230,32 +230,32 @@ class InputSuppressionCommentFilter
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-class InputSuppressionCommentFilter
+class Example3
 {
-  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
   //ILLEGAL OFF: Exception
-  int VAR2; // violation , Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  int VAR2; // violation, Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
   //ILLEGAL ON: Exception
 
-  public static final int var3;
-  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+  public static final int var3 = 1;
+  // violation above, 'must match pattern'
 
   //ILLEGAL OFF: Exception
-  public static final int var4;
-  // violation above ,  Name 'var4' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+  public static final int var4 = 1;
+  // violation above,  Name 'must match pattern'
   //ILLEGAL ON: Exception
 
   public void method1()
   {
     try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
+    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
 
     //ILLEGAL OFF: Exception
 
     try {}
     catch(Exception ex) {} // suppressed violation
-    catch(Error err) {} // violation , Catching 'Error' is not allowed
+    catch(Error err) {} // violation, Catching 'Error' is not allowed
 
     //ILLEGAL ON: Exception
   }
@@ -282,25 +282,25 @@ class InputSuppressionCommentFilter
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-class InputSuppressionCommentFilter
+class Example4
 {
-  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
   //CSOFF: MemberName
   int VAR2; // suppressed violation
   //CSON: MemberName
 
-  public static final int var3;
-  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+  public static final int var3 = 1;
+  // violation above, 'must match pattern'
 
   //CSOFF: ConstantName
-  public static final int var4; // suppressed violation
+  public static final int var4 = 1; // suppressed violation
   //CSON: ConstantName
 
   public void method1()
   {
     try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
+    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
 
     //CSOFF: IllegalCatch
 
@@ -333,26 +333,26 @@ class InputSuppressionCommentFilter
         </source>
         <p id="Example5-code">Example:</p>
         <source>
-class InputSuppressionCommentFilter
+class Example5
 {
-  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
   //CHECKSTYLE_OFF: ALMOST_ALL
   int VAR2; // suppressed violation
   //CHECKSTYLE_ON: ALMOST_ALL
 
-  public static final int var3;
-  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+  public static final int var3 = 1;
+  // violation above, 'must match pattern'
 
   //CHECKSTYLE_OFF: ALMOST_ALL
-  public static final int var4;
-  // violation above ,  Name 'var4' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+  public static final int var4 = 1;
+  // violation above, 'must match pattern'
   //CHECKSTYLE_ON: ALMOST_ALL
 
   public void method1()
   {
     try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
+    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
 
     //CHECKSTYLE_OFF: ALMOST_ALL
 
@@ -395,25 +395,25 @@ class InputSuppressionCommentFilter
         </source>
         <p id="Example6-code">Example:</p>
         <source>
-class InputSuppressionCommentFilter
+class Example6
 {
-  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
   //CSOFF MemberID
   int VAR2; // suppressed violation
   //CSON: MemberID
 
-  public static final int var3;
-  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+  public static final int var3 = 1;
+  // violation above, 'must match pattern'
 
   //CSOFF ConstantID
-  public static final int var4; // suppressed violation
+  public static final int var4 = 1; // suppressed violation
   //CSON ConstantID
 
   public void method1()
   {
     try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
+    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
 
     //CSOFF IllegalID
 
@@ -444,21 +444,21 @@ class InputSuppressionCommentFilter
         </source>
         <p id="Example7-code">Example:</p>
         <source>
-class InputSuppressionCommentFilter
+class Example7
 {
-  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
   //csoff MemberName
   int VAR2; // suppressed violation
   //cson MemberName
 
-  public static final int var3;
-  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+  public static final int var3 = 1;
+  // violation above, 'must match pattern'
 
   //csoff ConstantName
   //csoff IllegalCatch
 
-  public static final int var4; // suppressed violation
+  public static final int var4 = 1; // suppressed violation
 
   public void method1()
   {
@@ -493,31 +493,31 @@ class InputSuppressionCommentFilter
         </source>
         <p id="Example8-code">Example:</p>
         <source>
-class InputSuppressionCommentFilter
+class Example8
 {
-  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
   //CHECKSTYLE:OFF
-  int VAR2; // violation , Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  int VAR2; // violation, Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
   //CHECKSTYLE:ON
 
-  public static final int var3;
-  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+  public static final int var3 = 1;
+  // violation above, Name 'must match pattern'
 
   /*CHECKSTYLE:OFF*/
-  public static final int var4; // suppressed violation
+  public static final int var4 = 1; // suppressed violation
   /*CHECKSTYLE:ON*/
 
   public void method1()
   {
     try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
+    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
 
     //CHECKSTYLE:OFF
 
     try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
-    catch(Error err) {} // violation , Catching 'Error' is not allowed
+    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
+    catch(Error err) {} // violation, Catching 'Error' is not allowed
 
     //CHECKSTYLE:ON
   }

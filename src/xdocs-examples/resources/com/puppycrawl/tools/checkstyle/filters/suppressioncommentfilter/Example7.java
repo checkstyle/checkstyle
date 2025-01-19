@@ -12,23 +12,23 @@
   </module>
 </module>
 */
-
+package com.puppycrawl.tools.checkstyle.filters.suppressioncommentfilter;
 // xdoc section -- start
-class InputSuppressionCommentFilter
+class Example7
 {
-  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
   //csoff MemberName
   int VAR2; // suppressed violation
   //cson MemberName
 
-  public static final int var3;
-  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+  public static final int var3 = 1;
+  // violation above, 'must match pattern'
 
   //csoff ConstantName
   //csoff IllegalCatch
 
-  public static final int var4; // suppressed violation
+  public static final int var4 = 1; // suppressed violation
 
   public void method1()
   {

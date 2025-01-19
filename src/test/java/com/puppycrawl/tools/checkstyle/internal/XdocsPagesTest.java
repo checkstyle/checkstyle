@@ -90,9 +90,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * - mvn plexus-component-metadata:generate-metadata - Required to find custom macros and parser
  */
 public class XdocsPagesTest {
-    private static final Path SITE_PATH = Paths.get("src/site/site.xml");
+    private static final Path SITE_PATH = Path.of("src/site/site.xml");
 
-    private static final Path AVAILABLE_CHECKS_PATH = Paths.get("src/site/xdoc/checks.xml");
+    private static final Path AVAILABLE_CHECKS_PATH = Path.of("src/site/xdoc/checks.xml");
     private static final String LINK_TEMPLATE =
             "(?s).*<a href=\"[^\"]+#%1$s\">([\\r\\n\\s])*%1$s([\\r\\n\\s])*</a>.*";
 
@@ -779,7 +779,7 @@ public class XdocsPagesTest {
     public void testAllCheckSectionsEx() throws Exception {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
 
-        final Path path = Paths.get(XdocUtil.DIRECTORY_PATH + "/config.xml");
+        final Path path = Path.of(XdocUtil.DIRECTORY_PATH + "/config.xml");
         final String fileName = path.getFileName().toString();
 
         final String input = Files.readString(path);

@@ -25,7 +25,6 @@ import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -90,7 +89,7 @@ public final class MetadataGeneratorUtil {
             throws IOException {
         final List<File> validFiles = new ArrayList<>();
         for (String folder : moduleFolders) {
-            try (Stream<Path> files = Files.walk(Paths.get(path + "/" + folder))) {
+            try (Stream<Path> files = Files.walk(Path.of(path + "/" + folder))) {
                 validFiles.addAll(
                         files.map(Path::toFile)
                         .filter(file -> {

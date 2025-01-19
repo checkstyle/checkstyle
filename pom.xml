@@ -207,9 +207,9 @@
     <surefire.options />
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.13.2</antlr4.version>
-    <maven.site.plugin.version>3.12.1</maven.site.plugin.version>
+    <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
     <maven.spotbugs.plugin.version>4.8.6.6</maven.spotbugs.plugin.version>
-    <maven.pmd.plugin.version>3.24.0</maven.pmd.plugin.version>
+    <maven.pmd.plugin.version>3.26.0</maven.pmd.plugin.version>
     <pmd.version>7.9.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.12</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
@@ -223,7 +223,7 @@
     <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
     <java.version>11</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
-    <pitest.plugin.version>1.17.3</pitest.plugin.version>
+    <pitest.plugin.version>1.17.4</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
@@ -286,7 +286,13 @@
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
-      <version>1.9.4</version>
+      <version>1.10.0</version>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
@@ -371,7 +377,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.18</version>
+      <version>3.18.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -730,13 +736,16 @@
       <plugin>
         <groupId>org.gaul</groupId>
         <artifactId>modernizer-maven-plugin</artifactId>
-        <version>2.9.0</version>
+        <version>3.0.0</version>
         <configuration>
           <javaVersion>${java.version}</javaVersion>
           <includeTestClasses>false</includeTestClasses>
           <exclusionPatterns>
             <!-- until https://github.com/gaul/modernizer-maven-plugin/issues/300 -->
             <exclusionPattern>java/util/Optional.get:.*</exclusionPattern>
+            <!-- until https://github.com/gaul/modernizer-maven-plugin/issues/318 -->
+            <exclusionPattern>java/io/File.*</exclusionPattern>
+            <exclusionPattern>java/nio/file/Paths.get:.*</exclusionPattern>
           </exclusionPatterns>
         </configuration>
         <executions>
@@ -1672,6 +1681,8 @@
           </execution>
         </executions>
         <configuration>
+          <!-- until #16077 -->
+          <skip>true</skip>
           <catalogHandling>strict</catalogHandling>
           <!-- We need to exclude some files, so the default configuration is not suitable. -->
           <useDefaultFormatFileSet>false</useDefaultFormatFileSet>

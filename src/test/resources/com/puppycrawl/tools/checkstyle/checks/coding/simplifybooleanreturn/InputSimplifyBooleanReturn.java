@@ -19,7 +19,7 @@ public class InputSimplifyBooleanReturn
         boolean even = System.currentTimeMillis() % 2 == 0;
 
         // can be simplified to "if (even)"
-        if (even == true) { // violation
+        if (even == true) { // violation, 'Conditional logic can be removed.'
             return false;
         }
         else {
@@ -32,7 +32,7 @@ public class InputSimplifyBooleanReturn
     {
         boolean even = System.currentTimeMillis() % 2 == 0;
         // can be simplified to "return !even"
-        if (!even) // violation
+        if (!even) // violation, 'Conditional logic can be removed.'
             return true;
         else
             return false;

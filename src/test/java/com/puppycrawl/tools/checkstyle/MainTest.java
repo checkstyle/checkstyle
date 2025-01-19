@@ -36,7 +36,6 @@ import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -1205,7 +1204,7 @@ public class MainTest {
     @Test
     public void testPrintTreeJavadocOption(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
-        final String expected = Files.readString(Paths.get(
+        final String expected = Files.readString(Path.of(
             getPath("InputMainExpectedInputJavadocComment.txt")))
             .replaceAll("\\\\r\\\\n", "\\\\n").replaceAll("\r\n", "\n");
 
@@ -1518,7 +1517,7 @@ public class MainTest {
     @Test
     public void testPrintFullTreeOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws IOException {
-        final String expected = Files.readString(Paths.get(
+        final String expected = Files.readString(Path.of(
             getPath("InputMainExpectedInputAstTreeStringPrinterJavadoc.txt")))
                 .replaceAll("\\\\r\\\\n", "\\\\n")
                 .replaceAll("\r\n", "\n");
@@ -1599,11 +1598,15 @@ public class MainTest {
     }
 
     @Test
-    public void testDebugOption(@SysErr Capturable systemErr) {
+    public void testDebugOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         assertMainReturnCode(0, "-c", "/google_checks.xml", getPath("InputMain.java"), "-d");
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
-            .isNotEqualTo("");
+            .contains("FINE: Checkstyle debug logging enabled");
+        assertWithMessage("Unexpected system error log")
+            .that(systemOut.getCapturedData())
+            .contains("Audit done.");
+
     }
 
     @Test

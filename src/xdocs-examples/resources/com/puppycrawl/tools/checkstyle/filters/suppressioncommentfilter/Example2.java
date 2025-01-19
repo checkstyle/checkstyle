@@ -13,32 +13,34 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.filters.suppressioncommentfilter;
+
 // xdoc section -- start
-class InputSuppressionCommentFilter
+class Example2
 {
-  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
   //stop constant check
-  int VAR2; // violation , Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  int VAR2; // violation, Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
   //resume constant check
 
-  public static final int var3;
-  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+  public static final int var3 = 1;
+  // violation above, Name 'must match pattern'
 
   //stop constant check
-  public static final int var4; // suppressed violation
+  public static final int var4 = 1; // suppressed violation
   //resume constant check
 
   public void method1()
   {
     try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
+    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
 
     //stop constant check
 
     try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
-    catch(Error err) {} // violation , Catching 'Error' is not allowed
+    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
+    catch(Error err) {} // violation, Catching 'Error' is not allowed
 
     //resume constant check
   }

@@ -20,12 +20,12 @@ public class InputHiddenFieldRecords {
         private static int myHiddenInt = 2;
 
         public MyRecord1 {
-            int myHiddenInt = 5; // violation
+            int myHiddenInt = 5; // violation, ''myHiddenInt' hides a field'
         }
 
         MyRecord1(String string) {
             this();
-            int myHiddenInt = 6; // violation
+            int myHiddenInt = 6; // violation, ''myHiddenInt' hides a field'
         }
     }
 
@@ -33,7 +33,7 @@ public class InputHiddenFieldRecords {
         private static int hiddenField = 5;
 
         MyClass(String string) {
-            int hiddenField = 10; // violation
+            int hiddenField = 10; // violation, ''hiddenField' hides a field'
         }
 
         static final Object OBJ = "";
@@ -41,7 +41,8 @@ public class InputHiddenFieldRecords {
 
         static {
 
-            if (OBJ instanceof String hiddenStaticField) { //violation
+            if (OBJ instanceof String hiddenStaticField) {
+            //violation above, ''hiddenStaticField' hides a field'
                 System.out.println(hiddenStaticField
                         .toLowerCase(Locale.forLanguageTag(hiddenStaticField)));
                 boolean stringCheck = "test".equals(hiddenStaticField);
@@ -55,7 +56,7 @@ public class InputHiddenFieldRecords {
         private static int price = 2;
 
         public boolean doStuff(Object f) {
-            return f instanceof Float price && // violation
+            return f instanceof Float price && // violation, ''price' hides a field'
                     price.floatValue() > 0 &&
                     model != null &&
                     price.intValue() == 5;
@@ -64,11 +65,11 @@ public class InputHiddenFieldRecords {
 
     record MyRecord13(String string, Integer x) {
         void foo () {
-            Integer x = 8; // violation
+            Integer x = 8; // violation, ''x' hides a field'
         }
 
         void foo2() {
-            String string = "string"; // violation
+            String string = "string"; // violation, ''string' hides a field'
         }
 
     }
@@ -78,11 +79,11 @@ public class InputHiddenFieldRecords {
         String string = "string";
 
         void foo() {
-            Integer x = 8; // violation
+            Integer x = 8; // violation, ''x' hides a field'
         }
 
         void foo2() {
-            String string = "string"; // violation
+            String string = "string"; // violation, ''string' hides a field'
         }
     }
 

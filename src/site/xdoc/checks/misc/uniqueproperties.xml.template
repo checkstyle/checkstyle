@@ -37,40 +37,40 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example1-code">
+        <p id="Example1-raw">
           Example: in foo.properties file
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/Example1.txt"/>
-          <param name="type" value="code"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/Example1.properties"/>
+          <param name="type" value="raw"/>
         </macro>
         <p id="Example2-config">
           To configure the check to scan custom file extensions:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example2-code">
+        <p id="Example2-raw">
           Example: in foo.customProperties file
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/Example2.txt"/>
-          <param name="type" value="code"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/Example2.customProperties"/>
+          <param name="type" value="raw"/>
         </macro>
-        <p id="Example3-code">
+        <p id="Example3-raw">
           Example: in foo.properties file
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/Example3.txt"/>
-          <param name="type" value="code"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/Example3.properties"/>
+          <param name="type" value="raw"/>
         </macro>
       </subsection>
 

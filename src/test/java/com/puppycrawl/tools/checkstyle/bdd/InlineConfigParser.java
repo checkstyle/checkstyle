@@ -24,7 +24,6 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -212,9 +211,7 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck",
@@ -229,7 +226,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.SuperCloneCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheck",
@@ -341,7 +337,7 @@ public final class InlineConfigParser {
                                                 boolean setFilteredViolations) throws Exception {
         final TestInputConfiguration.Builder testInputConfigBuilder =
                 new TestInputConfiguration.Builder();
-        final Path filePath = Paths.get(inputFilePath);
+        final Path filePath = Path.of(inputFilePath);
         final List<String> lines = readFile(filePath);
         try {
             setModules(testInputConfigBuilder, inputFilePath, lines);
@@ -363,7 +359,7 @@ public final class InlineConfigParser {
             throws Exception {
         final TestInputConfiguration.Builder testInputConfigBuilder =
                 new TestInputConfiguration.Builder();
-        final Path filePath = Paths.get(inputFilePath);
+        final Path filePath = Path.of(inputFilePath);
         final List<String> lines = readFile(filePath);
 
         try {
@@ -392,7 +388,7 @@ public final class InlineConfigParser {
     public static TestInputConfiguration parseWithXmlHeader(String inputFilePath)
             throws Exception {
 
-        final Path filePath = Paths.get(inputFilePath);
+        final Path filePath = Path.of(inputFilePath);
         final List<String> lines = readFile(filePath);
         if (!checkIsXmlConfig(lines)) {
             throw new CheckstyleException("Config cannot be parsed as xml.");
@@ -535,6 +531,8 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck");
         moduleMappings.put("SuppressionXpathSingleFilter",
                 "com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter");
+        moduleMappings.put("IllegalCatch",
+                "com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck");
 
         String fullyQualifiedClassName;
         if (moduleMappings.containsKey(moduleName)) {

@@ -25,7 +25,6 @@ import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
@@ -91,8 +90,8 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     // Checks that allowed to have no XPath IT Regression Testing
     // till https://github.com/checkstyle/checkstyle/issues/6207
     private static final Set<String> MISSING_CHECK_NAMES = Set.of(
-            "DescendantToken",
-            "RedundantModifier");
+            "DescendantToken"
+    );
 
     // Modules that will never have xpath support ever because they not report violations
     private static final Set<String> NO_VIOLATION_MODULES = Set.of(
@@ -135,8 +134,8 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     @BeforeEach
     public void setUp() throws Exception {
-        javaDir = Paths.get("src/it/java/" + getPackageLocation());
-        inputDir = Paths.get(getPath(""));
+        javaDir = Path.of("src/it/java/" + getPackageLocation());
+        inputDir = Path.of(getPath(""));
     }
 
     @Override
