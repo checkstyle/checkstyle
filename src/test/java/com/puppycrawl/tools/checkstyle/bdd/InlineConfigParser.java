@@ -503,8 +503,9 @@ public final class InlineConfigParser {
         while (lineNo < lines.size()) {
             final ModuleInputConfiguration.Builder moduleInputConfigBuilder =
                     new ModuleInputConfiguration.Builder();
-            setModuleName(moduleInputConfigBuilder, inputFilePath, lines.get(lineNo));
-            setProperties(moduleInputConfigBuilder, inputFilePath, lines, lineNo + 1);
+            final String moduleName = lines.get(lineNo);
+            setModuleName(moduleInputConfigBuilder, inputFilePath, moduleName);
+            setProperties(moduleInputConfigBuilder, inputFilePath, lines, lineNo + 1, moduleName);
             testInputConfigBuilder.addChildModule(moduleInputConfigBuilder.build());
             do {
                 lineNo++;
@@ -1019,33 +1020,50 @@ public final class InlineConfigParser {
     }
 
     private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
-                                String inputFilePath,
-                                List<String> lines,
-                                int beginLineNo)
+                            String inputFilePath,
+                            List<String> lines,
+                            int beginLineNo, String moduleName)
             throws IOException, CheckstyleException {
         final StringBuilder stringBuilder = new StringBuilder(128);
-        final int lineNo = beginLineNo - 1;
-
-        final String moduleName = extractModuleName(lines, lineNo, stringBuilder);
-
         final Object checkInstance = createCheckInstance(moduleName, inputFilePath);
 
+        // Read properties content
+        int lineNo = beginLineNo;
+        String line = lines.get(lineNo);
+        while (!line.isEmpty() && !"*/".equals(line)) {
+            stringBuilder.append(line).append('\n');
+            lineNo++;
+            line = lines.get(lineNo);
+        }
+
+        // Load properties
         final Properties properties = new Properties();
         properties.load(new StringReader(stringBuilder.toString()));
 
+        // Process properties
         for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
             final String key = entry.getKey().toString();
             final String value = entry.getValue().toString();
 
             if (key.startsWith("message.")) {
                 inputConfigBuilder.addModuleMessage(key.substring(8), value);
+                continue;
             }
-            else if (value.startsWith("(file)")) {
+
+            // Handle null values early to reduce nesting
+            if (NULL_STRING.equals(value)) {
+                inputConfigBuilder.addNonDefaultProperty(key, null);
+                continue;
+            }
+
+            if (value.startsWith("(file)")) {
                 final String fileName = value.substring(value.indexOf(')') + 1);
                 final String filePath = getResolvedPath(fileName, inputFilePath);
                 inputConfigBuilder.addNonDefaultProperty(key, filePath);
+                continue;
             }
-            else if (value.startsWith("(default)")) {
+
+            if (value.startsWith("(default)")) {
                 final String defaultValue = value.substring(value.indexOf(')') + 1);
 
                 if (checkInstance != null) {
@@ -1059,15 +1077,10 @@ public final class InlineConfigParser {
                 else {
                     inputConfigBuilder.addDefaultProperty(key, defaultValue);
                 }
+                continue;
             }
-            else {
-                if (NULL_STRING.equals(value)) {
-                    inputConfigBuilder.addNonDefaultProperty(key, null);
-                }
-                else {
-                    inputConfigBuilder.addNonDefaultProperty(key, value);
-                }
-            }
+
+            inputConfigBuilder.addNonDefaultProperty(key, value);
         }
     }
 
