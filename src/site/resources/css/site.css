@@ -90,6 +90,10 @@ div, p, td, table.bodyTable td, th, table.bodyTable th, li, pre, #breadcrumbs sp
   padding: 8px 4px 0 12px;
 }
 
+img[src="images/anchor.png"] {
+  max-width: unset;
+}
+
 code {
   white-space: normal;
 }
