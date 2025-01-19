@@ -36,6 +36,7 @@ public class InputNestedForDepthCheckCustomMaxLevelFour {
             for (int i5a = 0; i5a < 10; i5a++) {
                 i += 1;
               }
+             // violation above 'Nested for depth is 5 (max allowed is 4)'
           }
         }
       }
