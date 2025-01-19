@@ -49,6 +49,15 @@ public class InputFinalLocalVariable2Two {
 interface Inter2
 {
     void method(int aParam);
+
+    default void defaultMethod(int bParam) { // violation
+    }
+
+    static void staticMethod(int cParam) { // violation
+    }
+
+    private void privateMethod(int dParam) { // violation
+    }
 }
 
 abstract class AbstractClass2
