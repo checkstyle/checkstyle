@@ -92,6 +92,15 @@ div, p, td, table.bodyTable td, th, table.bodyTable th, li, pre, #breadcrumbs sp
 
 img[src="images/anchor.png"] {
   max-width: unset;
+
+table {
+  text-align: left;
+  border-spacing: 2px;
+  border-collapse: separate;
+}
+
+th {
+  background-color: #ededed;
 }
 
 code {
