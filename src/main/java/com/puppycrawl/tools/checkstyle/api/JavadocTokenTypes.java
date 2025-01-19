@@ -1509,7 +1509,34 @@ public final class JavadocTokenTypes {
     /** End list item tag. */
     public static final int LI_TAG_END = JavadocParser.RULE_liTagEnd + RULE_TYPES_OFFSET;
 
-    /** Table row html tag: {@code <tr></tr>}. */
+    /**
+     * Table row html tag: {@code <tr></tr>}.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <tr></tr>}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   JAVADOC -> JAVADOC
+     *        |--NEWLINE -&gt \r\n
+     *        |--LEADING_ASTERISK -&gt  *
+     *        |--TEXT -&gt
+     *        |--HTML_ELEMENT -&gt HTML_ELEMENT
+     *        |   `--TR -&gt TR
+     *        |       |--TR_TAG_START -&gt TR_TAG_START
+     *        |       |   |--START -&gt &lt
+     *        |       |   |--TR_HTML_TAG_NAME -&gt tr
+     *        |       |   `--END -&gt &gt
+     *        |       `--TR_TAG_END -&gt TR_TAG_END
+     *        |           |--START -&gt &lt
+     *        |           |--SLASH -&gt /
+     *        |           |--TR_HTML_TAG_NAME -&gt tr
+     *        |           `--END -&gt &gt
+     *        |--NEWLINE -&gt \r\n
+     *        |--TEXT -&gt
+     * }
+     * </pre>
+     */
     public static final int TR = JavadocParser.RULE_tr + RULE_TYPES_OFFSET;
     /** Start table row tag. */
     public static final int TR_TAG_START = JavadocParser.RULE_trTagStart + RULE_TYPES_OFFSET;
