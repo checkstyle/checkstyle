@@ -1402,19 +1402,20 @@ public final class JavadocTokenTypes {
      * <pre>{@code @see #method(Processor, String)}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_TAG[1x0] : [@see #method(Processor, String)]
-     *        |--SEE_LITERAL[1x0] : [@see]
-     *        |--WS[1x4] : [ ]
-     *        |--REFERENCE[1x5] : [#method(Processor, String)]
-     *            |--HASH[1x5] : [#]
-     *            |--MEMBER[1x6] : [method]
-     *            |--PARAMETERS[1x12] : [(Processor, String)]
-     *                |--LEFT_BRACE[1x12] : [(]
-     *                |--ARGUMENT[1x13] : [Processor]
-     *                |--COMMA[1x22] : [,]
-     *                |--WS[1x23] : [ ]
-     *                |--ARGUMENT[1x24] : [String]
-     *                |--RIGHT_BRACE[1x30] : [)]
+     * {@code
+     *      JAVADOC_TAG -> JAVADOC_TAG
+     *          |--SEE_LITERAL -> @see
+     *          |--WS ->
+     *          |--REFERENCE -> REFERENCE
+     *              |--HASH -> #
+     *              |--MEMBER -> method
+     *              `--PARAMETERS -> PARAMETERS
+     *                  |--LEFT_BRACE -> (
+     *                  |--ARGUMENT -> Processor
+     *                  |--COMMA -> ,
+     *                  |--WS ->
+     *                  |--ARGUMENT -> String
+     *                  `--RIGHT_BRACE -> )
      * }
      * </pre>
      */
