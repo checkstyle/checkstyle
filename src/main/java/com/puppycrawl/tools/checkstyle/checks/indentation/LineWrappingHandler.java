@@ -164,7 +164,8 @@ public class LineWrappingHandler {
 
         for (DetailAST node : firstNodesOnLines.values()) {
             final int currentType = node.getType();
-            if (checkForNullParameterChild(node) || checkForMethodLparenNewLine(node)) {
+            if (checkForNullParameterChild(node) || checkForMethodLparenNewLine(node)
+                    || !shouldProcessTextBlockLiteral(node)) {
                 continue;
             }
             if (currentType == TokenTypes.RPAREN) {
@@ -270,6 +271,18 @@ public class LineWrappingHandler {
             curNode = getNextCurNode(curNode);
         }
         return result;
+    }
+
+    /**
+     * Checks whether indentation of {@code TEXT_BLOCK_LITERAL_END}
+     *     needs to be checked. Yes if it is first on start of the line.
+     *
+     * @param node the node
+     * @return true if node is line-starting node.
+     */
+    private boolean shouldProcessTextBlockLiteral(DetailAST node) {
+        return node.getType() != TokenTypes.TEXT_BLOCK_LITERAL_END
+                || expandedTabsColumnNo(node) == getLineStart(node);
     }
 
     /**
