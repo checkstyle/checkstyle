@@ -1,6 +1,6 @@
 /*
 IllegalIdentifierName
-format = (default)(?i)^(?!(record|yield|var|permits|sealed)$).+$
+format = (default)^(?!var$|.*\\$).+
 tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF, \
          PARAMETER_DEF, VARIABLE_DEF, METHOD_DEF, ENUM_CONSTANT_DEF, PATTERN_VARIABLE_DEF, \
          RECORD_DEF, RECORD_COMPONENT_DEF, LAMBDA
@@ -18,16 +18,16 @@ public class InputIllegalIdentifierName {
         return Record[].class;
     }
 
-    private static void record(LogRecord... logArray) { // violation
-        for (LogRecord record : logArray) { // violation
+    private static void record(LogRecord... logArray) {
+        for (LogRecord record : logArray) {
             record.getLevel();
         }
     }
 
     class yieldClass {
-        int yield = 6; // violation
+        int yield = 6;
 
-        public void yield() { // violation
+        public void yield() {
 
         }
     }
@@ -42,36 +42,39 @@ public class InputIllegalIdentifierName {
         SUN,
     }
 
-    int yield(Day day) { // violation
+    int yield(Day day) {
         return switch (day) {
             case MON, TUE -> Math.addExact(0, 1);
             case WED -> Math.addExact(1, 1);
             case THU, SAT, FRI, SUN -> 0;
             default -> {
-                yield Math.addExact(2, 1); // ok, yield statement
+                yield Math.addExact(2, 1);
             }
         };
     }
 
     public static void main(String... args) {
-        var var = 4; // violation
+        var var = 4; // violation, 'Name 'var' must match pattern'
 
-        int record = 15; // violation
+        int $amt = 15; // violation, 'must match pattern'
 
-        String yield = "yield"; // violation
+        String yield = "yield";
 
-        record Record // violation
-                (Record record) { // violation
+        record Record
+                (Record record) {
         }
 
-        String yieldString = "yieldString"; // ok, part of another word
-        record MyRecord() {} // ok, part of another word
+        String yieldString = "yield$String"; // ok, part of another word
+        record MyRecord() {}
         var variable = 2; // ok, part of another word
 
         String recordString = "record";
-        recordString = recordString.substring(record, 20);
+        recordString = recordString.substring($amt, 20);
 
-        record MyOtherRecord(String record, String yield, String... var) { // 3 violations
+        record MyOtherRecord(String record, String yield$text, String... var) {
+        // 2 violations above:
+        //            'must match pattern'
+        //            'Name 'var' must match pattern'
         }
     }
 }
