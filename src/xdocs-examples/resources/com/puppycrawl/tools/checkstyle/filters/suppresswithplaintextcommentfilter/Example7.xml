@@ -1,0 +1,16 @@
+<project>
+  <p>Examples:</p>
+<!-- CSOFF typeCode (OK to use examples of type code here) -->
+  <macro name="example">
+    <param name="path" value="Example3.java"/>
+    <param name="type" value="config"/>
+    <!-- // violation above 'Type config is not allowed in this file'
+    (Audit events from the check with id "typeConfig" are not suppressed) -->
+  </macro>
+  <macro name="example">
+    <param name="path" value="Example4.sql"/>
+    <!-- suppressed violation below  -->
+    <param name="type" value="code"/>
+<!-- CSON typeCode -->
+  </macro>
+</project>
