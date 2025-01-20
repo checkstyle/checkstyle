@@ -1157,7 +1157,31 @@ public final class JavadocTokenTypes {
     /** Basefont tag name. */
     public static final int BASEFONT_HTML_TAG_NAME = JavadocParser.BASEFONT_HTML_TAG_NAME;
 
-    /** Br tag name. */
+    /**
+     * Br tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code text before break &lt br &gt text after break}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   JAVADOC -&gt; JAVADOC
+     *        |--NEWLINE -&gt; \r\n
+     *        |--LEADING_ASTERISK -&gt;  *
+     *        |--TEXT -&gt;  text before break
+     *        |--HTML_ELEMENT -&gt; HTML_ELEMENT
+     *        |   `--SINGLETON_ELEMENT -&gt; SINGLETON_ELEMENT
+     *        |       `--BR_TAG -&gt; BR_TAG
+     *        |           |--START -&gt; -&lt;
+     *        |           |--BR_HTML_TAG_NAME -&gt; br
+     *        |           `--END -&gt; &gt;
+     *        |--TEXT -&gt;  text after break
+     *        |--NEWLINE -&gt; \r\n
+     *        |--TEXT -&gt;
+     * }
+     * </pre>
+     */
+
     public static final int BR_HTML_TAG_NAME = JavadocParser.BR_HTML_TAG_NAME;
 
     /** Col tag name. */
@@ -1485,7 +1509,34 @@ public final class JavadocTokenTypes {
     /** End list item tag. */
     public static final int LI_TAG_END = JavadocParser.RULE_liTagEnd + RULE_TYPES_OFFSET;
 
-    /** Table row html tag: {@code <tr></tr>}. */
+    /**
+     * Table row html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <tr></tr>}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   JAVADOC -> JAVADOC
+     *        |--NEWLINE -&gt \r\n
+     *        |--LEADING_ASTERISK -&gt  *
+     *        |--TEXT -&gt
+     *        |--HTML_ELEMENT -&gt HTML_ELEMENT
+     *        |   `--TR -&gt TR
+     *        |       |--TR_TAG_START -&gt TR_TAG_START
+     *        |       |   |--START -&gt &lt
+     *        |       |   |--TR_HTML_TAG_NAME -&gt tr
+     *        |       |   `--END -&gt &gt
+     *        |       `--TR_TAG_END -&gt TR_TAG_END
+     *        |           |--START -&gt &lt
+     *        |           |--SLASH -&gt /
+     *        |           |--TR_HTML_TAG_NAME -&gt tr
+     *        |           `--END -&gt &gt
+     *        |--NEWLINE -&gt \r\n
+     *        |--TEXT -&gt
+     * }
+     * </pre>
+     */
     public static final int TR = JavadocParser.RULE_tr + RULE_TYPES_OFFSET;
     /** Start table row tag. */
     public static final int TR_TAG_START = JavadocParser.RULE_trTagStart + RULE_TYPES_OFFSET;

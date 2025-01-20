@@ -8,7 +8,7 @@ lineRange = $2
 
 com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck
 fileExtensions = (default)all files
-ignorePattern = (default)^(package|import).*
+ignorePattern = (default)^(package|import) .*
 max = 85
 
 
