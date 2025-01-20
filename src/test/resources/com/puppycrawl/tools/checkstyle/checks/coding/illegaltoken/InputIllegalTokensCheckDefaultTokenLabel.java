@@ -33,9 +33,9 @@ public class InputIllegalTokensCheckDefaultTokenLabel
     }
 
     public void methodWithLabels() {
-        label: // violation
+        label: // violation 'IllegalToken'
         {
-            anotherLabel: // violation
+            anotherLabel: // violation 'IllegalToken'
             do {
                 continue anotherLabel;
             } while (false);

@@ -7,7 +7,7 @@ tokens = COMMENT_CONTENT
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 
-/** // violation
+/** // violation 'IllegalToken'
  * Test for illegal tokens
  */
 public class InputIllegalTokensCheckCommentsContent
@@ -35,11 +35,11 @@ public class InputIllegalTokensCheckCommentsContent
     public void methodWithLabels() {
         label:
         {
-            anotherLabel: // some comment href // violation
+            anotherLabel: // some comment href // violation 'IllegalToken'
             do {
                 continue anotherLabel;
             } while (false);
-            break label; // some a href // violation
+            break label; // some a href // violation 'IllegalToken'
         }
     }
 }
