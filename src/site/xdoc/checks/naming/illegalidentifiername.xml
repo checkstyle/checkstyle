@@ -35,7 +35,7 @@
               <td>format</td>
               <td>Sets the pattern to match valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;(?i)^(?!(record|yield|var|permits|sealed)$).+$&quot;</code></td>
+              <td><code>&quot;^(?!var$|.*\$).+&quot;</code></td>
               <td>8.36</td>
             </tr>
             <tr>
@@ -121,34 +121,34 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   Integer var = 4; // violation, 'Name 'var' must match pattern'
-  int record = 15; // violation, 'Name 'record' must match pattern'
+  int record = 15;
   String yield = "yield";
-  // violation above, 'Name 'yield' must match pattern'
 
-  record Record(Record r){} // violation, 'Name 'Record' must match pattern'
+  String test$stuff = "test"; // violation, 'must match pattern'
+  String when = "today";
+  record Record(Record r){}
 
-  record R(Record record){} // violation, 'Name 'record' must match pattern'
+  record R(Record record){}
 
   String yieldString = "yieldString";
-  // ok above, word 'yield' is not used as an identifier by itself
-  record MyRecord(){}
-  // ok above, word 'Record' is not used as an identifier by itself
-  Integer variable = 2;
-  // ok above, word 'var' is not used as an identifier by itself
 
-  int open = 4; // ok, word 'open' can be used as an identifier
+  record MyRecord(){}
+
+  Integer variable = 2;
+
+  int open = 4;
   Object transitive = "transitive";
-  // ok above, word 'transitive' can be used as an identifier
 
   int openInt = 4;
-  // ok above, word 'openInt' can be used as an identifier
+
   Object transitiveObject = "transitiveObject";
-  // ok above, word 'transitiveObject' can be used as an identifier
+
 }
 </code></pre></div>
         <p>
-          To configure the check to include &quot;open&quot; and &quot;transitive&quot; in the set of
-          illegal identifiers:
+          To configure the check to include some of JLS Keywords in the
+          set of illegal identifiers (See <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-3.html#jls-3.9">
+          Java Language Specification </a>for the full list of JLS keywords):
         </p>
         <p id="Example2-config">Configuration:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -156,7 +156,7 @@ public class Example1 {
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalIdentifierName"&gt;
       &lt;property name="format"
-        value="(?i)^(?!(record|yield|var|permits|sealed|open|transitive|_)$).+$"/&gt;
+        value="(?i)^(?!(when|record|yield|var|permits|sealed|open|transitive|_)$|(.*\$)).+$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -168,7 +168,8 @@ public class Example2 {
   int record = 15; // violation, 'Name 'record' must match pattern'
   String yield = "yield";
   // violation above, 'Name 'yield' must match pattern'
-
+  String test$stuff = "test"; // violation, 'must match pattern'
+  String when = "today"; // violation, 'Name 'when' must match pattern'
   record Record(Record r){} // violation, 'Name 'Record' must match pattern'
 
   record R(Record record){} // violation, 'Name 'record' must match pattern'
@@ -179,11 +180,9 @@ public class Example2 {
   // ok above, word 'Record' is not used as an identifier by itself
   Integer variable = 2;
   // ok above, word 'var' is not used as an identifier by itself
-
   int open = 4; // violation, 'Name 'open' must match pattern'
   Object transitive = "transitive";
   // violation above, 'Name 'transitive' must match pattern'
-
   int openInt = 4;
   // ok above, word 'open' is not used as an identifier by itself
   Object transitiveObject = "transitiveObject";
