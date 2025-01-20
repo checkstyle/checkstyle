@@ -19,12 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,19 +32,19 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "13:20: '7' is a magic number.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "15:11: '43' is a magic number.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
@@ -55,52 +53,54 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+            "20: Line is longer than 55 characters (found 65).",
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-
+            "4: Duplicated property 'key.two' (2 occurrence(s)).",
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("Example5.java"), getPath("Example5.properties"), expected);
     }
 
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-
+            "3: Duplicated property 'key.two' (2 occurrence(s)).",
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("Example6.java"), getPath("Example6.properties"), expected);
     }
 
     @Test
     public void testExample7() throws Exception {
         final String[] expected = {
-
+            "17:11: '43' is a magic number.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 
     @Test
     public void testExample8() throws Exception {
         final String[] expected = {
-
+            "21:11: '46' is a magic number.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example8.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }
 
     @Test
@@ -109,6 +109,6 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example9.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
     }
 }

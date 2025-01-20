@@ -1,15 +1,14 @@
 /*xml
 <module name="Checker">
   <module name="SuppressWithNearbyTextFilter">
-    <property name="lineRange" value="-1"/>
+    <property name="lineRange" value="2"/>
   </module>
   <module name="UniqueProperties"/>
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbytextfilter;
+
+public class Example5 {}
 // xdoc section -- start
-key.one=41 # violation
-key.one=42 # ok
-key.one=43 # SUPPRESS CHECKSTYLE because I want to
-key.one=44 # violation
 // xdoc section -- end
