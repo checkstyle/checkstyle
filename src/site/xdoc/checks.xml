@@ -449,8 +449,7 @@
               </a>
             </td>
             <td>
-              Checks identifiers with a pattern for a set of illegal names, such as those
-              that are restricted or contextual keywords.
+              Checks identifiers with a pattern for a set of illegal names.
             </td>
           </tr>
           <tr>

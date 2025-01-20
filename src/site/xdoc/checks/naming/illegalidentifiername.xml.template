@@ -10,12 +10,7 @@
       <p>Since Checkstyle 8.36</p>
       <subsection name="Description" id="Description">
         <div>
-          Checks identifiers with a pattern for a set of illegal names, such as those
-          that are restricted or contextual keywords. Examples include "yield", "record",
-          and "var". Please read more at
-          <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-3.html#jls-3.9">
-          Java Language Specification
-          </a>to get to know more about restricted keywords. Since this check uses a
+          Checks identifiers with a pattern for a set of illegal names. Since this check uses a
           pattern to specify valid identifiers, users can also prohibit the usage
           of certain symbols, such as "$", or any non-ascii character.
         </div>
@@ -47,8 +42,9 @@
           <param name="type" value="code"/>
         </macro>
         <p>
-          To configure the check to include "open" and "transitive" in the set of
-          illegal identifiers:
+          To configure the check to include some of JLS Keywords in the
+          set of illegal identifiers (See <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-3.html#jls-3.9">
+          Java Language Specification </a>for the full list of JLS keywords):
         </p>
         <p id="Example2-config">Configuration:</p>
         <macro name="example">

@@ -26,11 +26,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <div>
- * Checks identifiers with a pattern for a set of illegal names, such as those
- * that are restricted or contextual keywords. Examples include "yield", "record", and
- * "var". Please read more at
- * <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-3.html#jls-3.9">
- * Java Language Specification</a> to get to know more about restricted keywords. Since this
+ * Checks identifiers with a pattern for a set of illegal names. Since this
  * check uses a pattern to specify valid identifiers, users can also prohibit the usage
  * of certain symbols, such as "$", or any non-ascii character.
  * </div>
@@ -39,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code format} - Sets the pattern to match valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "(?i)^(?!(record|yield|var|permits|sealed)$).+$"}.
+ * Default value is {@code "^(?!var$|.*\$).+"}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -97,7 +93,7 @@ public class IllegalIdentifierNameCheck extends AbstractNameCheck {
      * Creates a new {@code IllegalIdentifierNameCheck} instance.
      */
     public IllegalIdentifierNameCheck() {
-        super("(?i)^(?!(record|yield|var|permits|sealed)$).+$");
+        super("^(?!var$|.*\\$).+");
     }
 
     @Override

@@ -5,16 +5,12 @@
              name="IllegalIdentifierName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks identifiers with a pattern for a set of illegal names, such as those
- that are restricted or contextual keywords. Examples include "yield", "record", and
- "var". Please read more at
- &lt;a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-3.html#jls-3.9"&gt;
- Java Language Specification&lt;/a&gt; to get to know more about restricted keywords. Since this
+ Checks identifiers with a pattern for a set of illegal names. Since this
  check uses a pattern to specify valid identifiers, users can also prohibit the usage
  of certain symbols, such as "$", or any non-ascii character.
  &lt;/div&gt;</description>
          <properties>
-            <property default-value="(?i)^(?!(record|yield|var|permits|sealed)$).+$"
+            <property default-value="^(?!var$|.*\$).+"
                       name="format"
                       type="java.util.regex.Pattern">
                <description>Sets the pattern to match valid identifiers.</description>
