@@ -533,6 +533,12 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter");
         moduleMappings.put("IllegalCatch",
                 "com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck");
+        moduleMappings.put("OrderedProperties",
+                "com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck");
+        moduleMappings.put("UniqueProperties",
+                "com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck");
+        moduleMappings.put("RegexpSingleline",
+                "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck");
 
         String fullyQualifiedClassName;
         if (moduleMappings.containsKey(moduleName)) {
