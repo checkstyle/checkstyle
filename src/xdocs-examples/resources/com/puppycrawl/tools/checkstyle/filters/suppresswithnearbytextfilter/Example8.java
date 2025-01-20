@@ -11,11 +11,13 @@
   </module>
 </module>
 */
-
+package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbytextfilter;
 // xdoc section -- start
-int a = 42; // @cs-: MagicNumber for +3 lines
-int b = 43;
-int c = 44;
-int d = 45;
-int e = 46; // violation
+public class Example8 {
+  int a = 42; // @cs-: MagicNumber for +3 lines
+  int b = 43;
+  int c = 44;
+  int d = 45;
+  int e = 46; // violation "'46' is a magic number."
+}
 // xdoc section -- end

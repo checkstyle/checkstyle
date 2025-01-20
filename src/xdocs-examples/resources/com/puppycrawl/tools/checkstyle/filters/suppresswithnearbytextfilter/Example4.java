@@ -13,8 +13,11 @@
   </module>
 </module>
 */
-
+package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbytextfilter;
 // xdoc section -- start
-int a = 42; // SUPPRESS CHECKSTYLE because i want to
-static final int LONG_VAR_NAME_TO_TAKE_MORE_THAN_55_CHARS = 22; // LineLength violation
+public class Example4 {
+  int a = 42; // SUPPRESS CHECKSTYLE because I want to
+  static final int LONG_VAR_NAME_TO_TAKE_MORE_THAN_55_CHARS = 22;
+  // violation above 'Line is longer ...'
+}
 // xdoc section -- end

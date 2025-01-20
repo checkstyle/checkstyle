@@ -10,8 +10,10 @@
   </module>
 </module>
 */
-
+package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbytextfilter;
 // xdoc section -- start
-int a = 42; // -@cs[MagicNumber] We do not consider this number as magic for some reason.
-int b = 43; // violation
+public class Example7 {
+  int a = 42; // -@cs[MagicNumber] We do not consider this number as magic.
+  int b = 43; // violation "'43' is a magic number."
+}
 // xdoc section -- end
