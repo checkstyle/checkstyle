@@ -33,14 +33,11 @@ public class IllegalIdentifierNameCheckExamplesTest extends AbstractExamplesModu
 
     @Test
     public void testExample1() throws Exception {
-        final String format = "(?i)^(?!(record|yield|var|permits|sealed)$).+$";
+        final String format = "^(?!var$|.*\\$).+";
 
         final String[] expected = {
             "17:11: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
-            "18:7: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "19:10: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "22:10: " + getCheckMessage(MSG_INVALID_PATTERN, "Record", format),
-            "24:19: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "22:10: " + getCheckMessage(MSG_INVALID_PATTERN, "test$stuff", format),
         };
 
         verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
@@ -54,10 +51,10 @@ public class IllegalIdentifierNameCheckExamplesTest extends AbstractExamplesModu
             "17:11: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
             "18:7: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
             "19:10: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "22:10: " + getCheckMessage(MSG_INVALID_PATTERN, "Record", format),
-            "24:19: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "33:7: " + getCheckMessage(MSG_INVALID_PATTERN, "open", format),
-            "34:10: " + getCheckMessage(MSG_INVALID_PATTERN, "transitive", format),
+            "23:10: " + getCheckMessage(MSG_INVALID_PATTERN, "Record", format),
+            "25:19: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "34:7: " + getCheckMessage(MSG_INVALID_PATTERN, "open", format),
+            "35:10: " + getCheckMessage(MSG_INVALID_PATTERN, "transitive", format),
         };
 
         verifyWithInlineConfigParser(getNonCompilablePath("Example2.java"), expected);
