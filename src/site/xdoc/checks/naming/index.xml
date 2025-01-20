@@ -77,8 +77,7 @@
               </a>
             </td>
             <td>
-              Checks identifiers with a pattern for a set of illegal names, such as those
-            that are restricted or contextual keywords.
+              Checks identifiers against a regular expression pattern to detect illegal names.
             </td>
           </tr>
           <tr>

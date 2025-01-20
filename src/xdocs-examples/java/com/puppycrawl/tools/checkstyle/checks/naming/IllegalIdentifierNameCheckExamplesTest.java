@@ -33,14 +33,11 @@ public class IllegalIdentifierNameCheckExamplesTest extends AbstractExamplesModu
 
     @Test
     public void testExample1() throws Exception {
-        final String format = "(?i)^(?!(record|yield|var|permits|sealed)$).+$";
+        final String format = "^(?!var$|\\S*\\$)\\S+$";
 
         final String[] expected = {
             "17:11: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
-            "18:7: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "19:10: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "22:10: " + getCheckMessage(MSG_INVALID_PATTERN, "Record", format),
-            "24:19: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "21:10: " + getCheckMessage(MSG_INVALID_PATTERN, "test$stuff", format),
         };
 
         verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
@@ -48,14 +45,17 @@ public class IllegalIdentifierNameCheckExamplesTest extends AbstractExamplesModu
 
     @Test
     public void testExample2() throws Exception {
-        final String format = "(?i)^(?!(record|yield|var|permits|sealed|open|transitive|_)$).+$";
+        final String format =
+            "(?i)^(?!(when|record|yield|var|permits|sealed|open|transitive|_)$|(.*\\$)).+$";
 
         final String[] expected = {
             "17:11: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
             "18:7: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
             "19:10: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "22:10: " + getCheckMessage(MSG_INVALID_PATTERN, "Record", format),
-            "24:19: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "21:10: " + getCheckMessage(MSG_INVALID_PATTERN, "test$stuff", format),
+            "22:10: " + getCheckMessage(MSG_INVALID_PATTERN, "when", format),
+            "23:10: " + getCheckMessage(MSG_INVALID_PATTERN, "Record", format),
+            "25:19: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
             "33:7: " + getCheckMessage(MSG_INVALID_PATTERN, "open", format),
             "34:10: " + getCheckMessage(MSG_INVALID_PATTERN, "transitive", format),
         };
