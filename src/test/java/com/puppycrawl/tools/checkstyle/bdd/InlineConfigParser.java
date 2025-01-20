@@ -1045,23 +1045,16 @@ public final class InlineConfigParser {
 
             if (key.startsWith("message.")) {
                 inputConfigBuilder.addModuleMessage(key.substring(8), value);
-                continue;
             }
-
-            // Handle null values early to reduce nesting
-            if (NULL_STRING.equals(value)) {
+            else if (NULL_STRING.equals(value)) {
                 inputConfigBuilder.addNonDefaultProperty(key, null);
-                continue;
             }
-
-            if (value.startsWith("(file)")) {
+            else if (value.startsWith("(file)")) {
                 final String fileName = value.substring(value.indexOf(')') + 1);
                 final String filePath = getResolvedPath(fileName, inputFilePath);
                 inputConfigBuilder.addNonDefaultProperty(key, filePath);
-                continue;
             }
-
-            if (value.startsWith("(default)")) {
+            else if (value.startsWith("(default)")) {
                 final String defaultValue = value.substring(value.indexOf(')') + 1);
 
                 if (checkInstance != null) {
@@ -1075,10 +1068,11 @@ public final class InlineConfigParser {
                 else {
                     inputConfigBuilder.addDefaultProperty(key, defaultValue);
                 }
-                continue;
-            }
 
-            inputConfigBuilder.addNonDefaultProperty(key, value);
+            }
+            else {
+                inputConfigBuilder.addNonDefaultProperty(key, value);
+            }
         }
     }
 
