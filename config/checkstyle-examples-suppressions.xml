@@ -6,6 +6,10 @@
 
 <suppressions>
 
+  <!-- private class used to show violation on it -->
+  <suppress id="exampleClassName"
+    files="regexp[\\/]Example4.java"/>
+  
   <!-- The files have no exampleClassName by design. -->
   <suppress id="exampleClassName"
     files="outertypefilename[\\/]Example3.java"/>
