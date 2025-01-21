@@ -84,45 +84,59 @@
         <p id="Example1-code"> The statement. </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example1-config"> The check. </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code"> Your statement may be multiline. </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example2-config"> Then the check would be. </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p><b>Note:</b> To search for parentheses () in a regular expression
           you must escape them like \(\). This is required by the regexp engine,
           otherwise it will think they are special instruction characters.
         </p>
+        <p id="Example3-code"> You can make sure that it appear only once. </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
         <p id="Example3-config">
-          And to make sure it appears only once:
+          Then the check would be:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example4-config">
-          It can also be useful to attach a meaningful message to the check:
+        <p id="Example4-code">
+          You can also attach the useful and a meaningful messages to the check
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
+          For that the check would be:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p>
@@ -134,7 +148,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example6-config">
@@ -142,7 +156,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example6.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example7-config">
@@ -151,7 +165,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example7.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example7.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example8-config">
@@ -160,7 +174,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example8.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example8.java"/>
           <param name="type" value="config"/>
         </macro>
         <p>
@@ -176,7 +190,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example9.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example9.java"/>
           <param name="type" value="config"/>
         </macro>
         <p>
@@ -187,7 +201,7 @@
           To configure the check to verify that each file starts with the
           following multiline header.
         </p>
-        <p id="Example10-code">Note the following:</p>
+        <p id="Example10-raw">Note the following:</p>
         <ul>
           <li>\A means the start of the file.</li>
           <li>The date can be any 4-digit number.</li>
@@ -195,40 +209,40 @@
 
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example10.txt"/>
-          <param name="type" value="code"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example10.properties"/>
+          <param name="type" value="raw"/>
         </macro>
         <p id="Example10-config"> The check would be:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example10.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example10.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example11-code">
+        <p id="Example11-raw">
           A more complex example. Note how the import and javadoc multilines are
           handled, there can be any number of them.
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example11.txt"/>
-          <param name="type" value="code"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example11.properties"/>
+          <param name="type" value="raw"/>
         </macro>
         <p id="Example11-config"> The check would be:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example11.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example11.java"/>
           <param name="type" value="config"/>
         </macro>
         <p>
           <b>More examples:</b>
         </p>
-        <p id="Example12-code">
+        <p id="Example12-raw">
           The next 2 examples deal with the following example Java source file:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example12.txt"/>
-          <param name="type" value="code"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example12.properties"/>
+          <param name="type" value="raw"/>
         </macro>
         <p>
           This checks for the presence of the header, the first 16 lines.
@@ -242,7 +256,7 @@
         <p id="Example12-config">The check would be:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example12.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example12.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example13-config">
@@ -251,7 +265,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example13.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example13.java"/>
           <param name="type" value="config"/>
         </macro>
         <p>

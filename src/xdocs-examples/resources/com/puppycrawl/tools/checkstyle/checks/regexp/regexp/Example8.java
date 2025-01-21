@@ -9,5 +9,11 @@
 </module>
 */
 
+// violation 7 lines above 'Line matches the illegal pattern.'
+
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
+
+public class Example8 {}
+
 // xdoc section -- start
 // xdoc section -- end

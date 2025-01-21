@@ -8,6 +8,10 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
+
+public class Example1 {}
+
 // xdoc section -- start
 // This code is copyrighted
 // xdoc section -- end
