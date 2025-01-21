@@ -22,7 +22,7 @@
 
   <poweredBy>
     <logo name="GitHub" href="https://github.com/checkstyle/checkstyle">
-      <image src="images/github_logo_social_coding_outlined.png" alt="GitHub"/>
+      <image src="images/github_logo_social_coding_outlined.png" />
     </logo>
     <logo name="Twitter"
           href="https://twitter.com/checkstyle_java/"
