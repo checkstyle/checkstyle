@@ -3,11 +3,17 @@
   <module name="TreeWalker">
     <module name="Regexp">
       <property name="format" value="// This code is copyrighted\n// \(c\) MyCompany"/>
-      <property name="message" value="Copyright"/>
+      <property name="duplicateLimit" value="0"/>
     </module>
   </module>
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
+
+public class Example3 {}
+
 // xdoc section -- start
+// This code is copyrighted
+// (c) MyCompany
 // xdoc section -- end
