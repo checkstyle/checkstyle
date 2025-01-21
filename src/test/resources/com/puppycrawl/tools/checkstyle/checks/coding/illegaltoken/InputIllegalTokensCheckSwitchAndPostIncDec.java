@@ -15,11 +15,11 @@ public class InputIllegalTokensCheckSwitchAndPostIncDec
     public void methodWithPreviouslyIllegalTokens()
     {
         int i = 0;
-        switch (i) // violation
+        switch (i) // violation 'IllegalToken'
         {
             default:
-                i--; // violation
-                i++; // violation
+                i--; // violation 'IllegalToken'
+                i++; // violation 'IllegalToken'
                 break;
         }
     }
