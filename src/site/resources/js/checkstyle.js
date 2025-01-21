@@ -58,6 +58,11 @@ window.addEventListener("load", function () {
     externalLinks.forEach((link) => {
         link.setAttribute("target", "_blank");
     });
+
+    const bannerImages = document.querySelectorAll("a[class='builtBy']");
+    bannerImages.forEach((image) => {
+        image.removeChild(image.lastChild);
+    });
 });
 
 window.addEventListener("scroll", function () {
