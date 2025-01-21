@@ -1022,10 +1022,9 @@ public final class InlineConfigParser {
                             List<String> lines,
                             int beginLineNo, String moduleName)
             throws IOException, CheckstyleException {
-        final StringBuilder stringBuilder = new StringBuilder(128);
-        final Object checkInstance = createCheckInstance(moduleName, inputFilePath);
 
         // Read properties content
+        final StringBuilder stringBuilder = new StringBuilder(128);
         int lineNo = beginLineNo;
         String line = lines.get(lineNo);
         while (!line.isEmpty() && !"*/".equals(line)) {
@@ -1033,10 +1032,11 @@ public final class InlineConfigParser {
             lineNo++;
             line = lines.get(lineNo);
         }
+        final String propertyContent = stringBuilder.toString();
 
         // Load properties
         final Properties properties = new Properties();
-        properties.load(new StringReader(stringBuilder.toString()));
+        properties.load(new StringReader(propertyContent));
 
         // Process properties
         for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
@@ -1056,11 +1056,10 @@ public final class InlineConfigParser {
             }
             else if (value.startsWith("(default)")) {
                 final String defaultValue = value.substring(value.indexOf(')') + 1);
+                final Object checkInstance = createCheckInstance(moduleName, inputFilePath);
 
-                if (checkInstance != null) {
-                    defaultValidation(key, defaultValue, checkInstance,
-                            getFullyQualifiedClassName(inputFilePath, moduleName));
-                }
+                defaultValidation(key, defaultValue, checkInstance,
+                        getFullyQualifiedClassName(inputFilePath, moduleName));
 
                 if (NULL_STRING.equals(defaultValue)) {
                     inputConfigBuilder.addDefaultProperty(key, null);
