@@ -54,6 +54,10 @@
           you want to match a &lt; symbol you need to enter &amp;lt;. The regular
           expression should be entered on one line.
         </p>
+        <p><b>Note:</b> To search for parentheses () in a regular expression
+          you must escape them like \(\). This is required by the regexp engine,
+          otherwise it will think they are special instruction characters.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="Properties">
@@ -113,99 +117,126 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
-            To configure the check:
-        </p>
-        <p>
-          The following examples are mainly copied from the other 3 checks
-          mentioned above, to show how the same results can be achieved using
-          this check in place of them.
-        </p>
-        <p>
-          <b>To use like Required Regexp check:</b>
-        </p>
-        <p>
+        <p id="Example0-config"> Default configuration does nothing: </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;Regexp&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-config">
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
         </p>
-        <p id="Example1-code"> The statement. </p>
-        <source>
-// This code is copyrighted
-        </source>
-        <p id="Example1-config"> The check. </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;Regexp&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;// This code is copyrighted&quot;/&gt;
+      &lt;property name=&quot;format&quot; value=&quot;// This code is copyrighted\.&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example2-code"> Your statement may be multiline. </p>
+        <p id="Example1-code"> Example1: </p>
+        <source>
+// This code is copyrighted.
+public class Example1 {}
+        </source>
+        <p id="Example2-code">Example2 with violation:</p>
+        <source>
+/*
+ * violation on first line 'Required pattern missing in a file.'
+*/
+public class Example2 {}
+        </source>
+        <p id="Example3-config"> Your statement may be multiline. </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;Regexp&quot;&gt;
+      &lt;property name=&quot;format&quot;
+        value=&quot;// This code is copyrighted\n// \(c\) MyCompany&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example3:</p>
         <source>
 // This code is copyrighted
 // (c) MyCompany
+public class Example3 {}
         </source>
-        <p id="Example2-config"> Then the check would be. </p>
+        <p id="Example4-config">Configure Check to make sure that it appear only once:</p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;Regexp&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;// This code is copyrighted\n// \(c\) MyCompany&quot;/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-        </source>
-        <p><b>Note:</b> To search for parentheses () in a regular expression
-          you must escape them like \(\). This is required by the regexp engine,
-          otherwise it will think they are special instruction characters.
-        </p>
-        <p id="Example3-config">
-          And to make sure it appears only once:
-        </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;Regexp&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;// This code is copyrighted\n// \(c\) MyCompany&quot;/&gt;
+      &lt;property name=&quot;format&quot;
+        value=&quot;// This code is copyrighted\n// \(c\) MyCompany&quot;/&gt;
       &lt;property name=&quot;duplicateLimit&quot; value=&quot;0&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example4-config">
-          It can also be useful to attach a meaningful message to the check:
+        <p id="Example4-code">Example4:</p>
+        <source>
+// This code is copyrighted
+// (c) MyCompany
+public class Example4 {}
+// violation below 'Found duplicate pattern'
+// This code is copyrighted
+// (c) MyCompany
+        </source>
+        <p id="Example5-config">Instead of printing whole regexp that might be unnecessary for
+          user, you can substitute it to some static text:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;Regexp&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;// This code is copyrighted\n// \(c\) MyCompany&quot;/&gt;
+      &lt;property name=&quot;format&quot;
+        value=&quot;// This code is copyrighted\n// \(c\) MyCompany&quot;/&gt;
       &lt;property name=&quot;message&quot; value=&quot;Copyright&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example5-code">Example5 with violation:</p>
+        <source>
+/*
+ * violation on first line 'Required pattern 'Copyright' missing in file.'
+*/
+public class Example5 {}
+        </source>
         <p>
           <b>To use like illegal regexp check:</b>
         </p>
-        <p id="Example5-config">
-          An example of how to configure the check to make sure there are no
+        <p id="Example6-config">
+          Configure the check to make sure there are no
           calls to <code>System.out.println</code>:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;Regexp&quot;&gt;
-      &lt;!-- . matches any character, so we need to escape it and use \. to match dots. --&gt;
       &lt;property name=&quot;format&quot; value=&quot;System\.out\.println&quot;/&gt;
       &lt;property name=&quot;illegalPattern&quot; value=&quot;true&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example6-config">
+        <p id="Example6-code">Example6:</p>
+        <source>
+public class Example6 {
+  private void foo() {
+    System.out.println(&quot;&quot;); // violation, 'Line matches the illegal pattern'
+    System.out.
+      println(&quot;&quot;);
+  }
+}
+        </source>
+        <p id="Example7-config">
           You may want to make the above check ignore comments, like this:
         </p>
         <source>
@@ -219,9 +250,23 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example7-config">
-          An example of how to configure the check to find trailing whitespace
-          at the end of a line:
+        <p id="Example7-code">Example7:</p>
+        <source>
+public class Example7 {
+  private void foo() {
+    System.out.println(&quot;&quot;); // violation, 'Line matches the illegal pattern'
+    System.out.
+      println(&quot;&quot;);
+  }
+  private void foo1() {
+    // System.out.println(&quot;&quot;);
+    System.out.
+      println(&quot;&quot;);
+  }
+}
+        </source>
+        <p id="Example8-config">
+          Configure the check to find trailing whitespace at the end of a line:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
@@ -234,9 +279,16 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example8-config">
-          An example of how to configure the check to find case-insensitive
-          occurrences of &quot;debug&quot;:
+        <p id="Example8-code">Example8:</p>
+        <source>
+public class Example8 {
+  private void foo() {
+
+  }
+}
+        </source>
+        <p id="Example9-config">
+          Configure the check to find case-insensitive occurrences of &quot;debug&quot;:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
@@ -252,7 +304,16 @@
           <b>Note:</b> The (?i) at the beginning of the regular expression
           tells the regexp engine to ignore the case.
         </p>
-        <p id="Example9-config">
+        <p id="Example9-code">Example9:</p>
+        <source>
+public class Example9 {
+  private void foo() {
+    // Debug the code
+    // violation above, 'Line matches the illegal pattern.'
+  }
+}
+        </source>
+        <p id="Example10-config">
           There is also a feature to limit the number of violations reported.
           When the limit is reached the check aborts with a message
           reporting that the limit has been reached.
@@ -270,6 +331,19 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example10-code">Example10:</p>
+        <source>
+public class Example10 {
+  private void foo() {
+    // Debug the code
+    // violation above, 'Line matches the illegal pattern'
+  }
+  private void foo1() {
+    // Debug the code
+    // violation above, 'Line matches the illegal pattern'
+  }
+}
+        </source>
         <p>
           <b>To use like <a href="../header/regexpheader.html#RegexpHeader">RegexpHeader
           </a>:</b>
@@ -278,7 +352,7 @@
           To configure the check to verify that each file starts with the
           following multiline header.
         </p>
-        <p id="Example10-code">Note the following:</p>
+        <p id="Example11-code">Note the following:</p>
         <ul>
           <li>\A means the start of the file.</li>
           <li>The date can be any 4-digit number.</li>
@@ -287,8 +361,9 @@
         <source>
 // Copyright (C) 2004 MyCompany
 // All rights reserved
+public class Example11 {}
         </source>
-        <p id="Example10-config"> The check would be:</p>
+        <p id="Example11-config"> The check would be:</p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
@@ -300,7 +375,7 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example11-code">
+        <p id="Example12-raw">
           A more complex example. Note how the import and javadoc multilines are
           handled, there can be any number of them.
         </p>
@@ -324,7 +399,7 @@ import java.util.thing3;
 * javadoc line 3
 */
         </source>
-        <p id="Example11-config"> The check would be:</p>
+        <p id="Example12-config"> The check would be:</p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
@@ -334,7 +409,8 @@ import java.util.thing3;
         value=&quot;\A/{71}\n// checkstyle:\n// Checks Java source code for
         adherence to a set of rules\.\n// Copyright \(C\) \d\d\d\d  Oliver Burn\n
         // Last modification by \$Author.*\$\n/{71}\n\npackage [\w\.]*;\n\n
-        (import [\w\.]*;\n)*\n/\*\*\n( \*[^/]*\n)* \*/&quot;/&gt;
+        (import [\w\.]*;\n)*\n/\*\*\n( \*[^/]*\n)* \*
+        /&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -342,7 +418,7 @@ import java.util.thing3;
         <p>
           <b>More examples:</b>
         </p>
-        <p id="Example12-code">
+        <p id="Example13-raw">
           The next 2 examples deal with the following example Java source file:
         </p>
         <source>
@@ -417,7 +493,7 @@ public static final int A_SETPOINT = 1;
             make sure they are the same, and that they match the class name.</li>
           <li>The date can be any 4-digit number.</li>
         </ul>
-        <p id="Example12-config">The check would be:</p>
+        <p id="Example13-config">The check would be:</p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
@@ -438,9 +514,11 @@ public static final int A_SETPOINT = 1;
         \* Revision 1.6  2005/12/25 16:13:10  o_sukhodolsky
         \* Fix for rfe 1248106 \(TYPECAST is now accepted by NoWhitespaceAfter\)
         \* \
-        \* Fix for rfe 953266 \(thanks to Paul Guyot \(pguyot\) for submitting patch\)
+        \* Fix for rfe 953266 \(thanks to Paul Guyot \(pguyot\) for submitting
+         patch\)
         \* IllegalType can be configured to accept some abstract classes which
-        \* matches to regexp of illegal type names \(property legalAbstractClassNames\)
+        \* matches to regexp of illegal type names \(property
+         legalAbstractClassNames\)
         \*
         \* TrailingComment now can be configured to accept some trailing comments
         \* \(such as NOI18N\) \(property legalComment, rfe 1385344\).
@@ -453,7 +531,7 @@ public static final int A_SETPOINT = 1;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example13-config">
+        <p id="Example14-config">
           This checks for the presence of a copyright notice within the class
           javadoc, lines 24 to 37.
         </p>
@@ -470,8 +548,9 @@ public static final int A_SETPOINT = 1;
         and shall use it only in\n \*   accordance with the terms of the
         license agreement you entered into\n \*   with ACME\.&amp;lt;/I&amp;gt;\n
         \* &amp;lt;/P&amp;gt;\n \*\n \* &amp;#169; copyright \d\d\d\d ACME\n
-        \*\n \* @author .*)(\n\s\*.*)*/\n[\w|\s]*( class | interface )&quot;/&gt;
-      &lt;property name=&quot;message&quot;
+        \*\n \* @author .*)(\n\s\*.*)*
+        /\n[\w|\s]*( class | interface )&quot;/&gt;
+        &lt;property name=&quot;message&quot;
         value=&quot;Copyright in class/interface Javadoc&quot;/&gt;
       &lt;property name=&quot;duplicateLimit&quot; value=&quot;0&quot;/&gt;
     &lt;/module&gt;

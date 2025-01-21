@@ -10,5 +10,19 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
+
 // xdoc section -- start
+public class Example7 {
+  private void foo() {
+    System.out.println(""); // violation, 'Line matches the illegal pattern'
+    System.out.
+      println("");
+  }
+  private void foo1() {
+    // System.out.println("");
+    System.out.
+      println("");
+  }
+}
 // xdoc section -- end
