@@ -230,6 +230,10 @@ span.wrapper.inline {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+a[class="builtBy"] {
+  margin-top: 20px;
+}
+
 @media screen and (max-width: 823px) {
   #leftColumn {
     float: none;
