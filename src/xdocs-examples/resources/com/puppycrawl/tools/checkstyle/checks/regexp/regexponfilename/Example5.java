@@ -1,0 +1,23 @@
+/*xml
+<module name="Checker">
+  <module name="RegexpOnFilename">
+    <property name="fileNamePattern" value="^([A-Z][a-z0-9]+\.?)+$"/>
+    <property name="match" value="false"/>
+    <property name="ignoreFileNameExtensions" value="true"/>
+    <message key="regexp.filename.mismatch"
+      value="only filenames in camelcase is allowed"/>
+  </module>
+</module>
+*/
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexponfilename;
+/*
+// xdoc section -- start
+checks/regexp/regexponfilename/README.md
+checks/regexp/regexponfilename/TestExample.java
+checks/regexp/regexponfilename/TestExample.md
+checks/regexp/regexponfilename/TestExample.xml
+checks/regexp/regexponfilename/Test Example.xml // violation, 'contains whitespace'
+checks/regexp/regexponfilename/checkstyle.xml // violation, 'not camelcase'
+// xdoc section -- end
+*/
+class Example5 {}
