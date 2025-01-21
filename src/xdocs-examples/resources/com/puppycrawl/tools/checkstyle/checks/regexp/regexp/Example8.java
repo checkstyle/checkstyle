@@ -10,5 +10,12 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
+
 // xdoc section -- start
+public class Example8 {
+  private void foo() { 
+    // violation above 'Trailing whitespace'
+  }
+}
 // xdoc section -- end

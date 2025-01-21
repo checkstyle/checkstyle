@@ -917,7 +917,6 @@ NODESET
 noembed
 noenumtrailingcomma
 nofinalizer
-NOI
 noinspection
 noinspectionreason
 nojavadoc
@@ -1048,7 +1047,6 @@ Perror
 pgjdbc
 Pgpg
 Pgpgv
-pguyot
 php
 picocli
 pid
@@ -1147,7 +1145,6 @@ returnsreceiver
 reviewdog
 revwalk
 rfc
-rfe
 Rgb
 rgba
 rhs
@@ -1199,7 +1196,6 @@ SEO
 separatorwrap
 SERIALVERSIONUID
 servlet
-SETPOINT
 severitymatchfilter
 sevntu
 shanegenschaw
