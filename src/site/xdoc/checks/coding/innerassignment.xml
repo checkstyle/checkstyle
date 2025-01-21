@@ -63,30 +63,30 @@ while ((line = bufferedReader.readLine()) != null); // OK
 public class Example1 {
   void foo() throws IOException {
     int a, b;
-    a = b = 5; // violation
-    a = b += 5; // violation
+    a = b = 5; // violation, 'Inner assignments should be avoided'
+    a = b += 5; // violation, 'Inner assignments should be avoided'
 
     a = 5;
     b = 5;
     a = 5; b = 5;
 
     double myDouble;
-    double[] doubleArray = new double[] {myDouble = 4.5, 15.5}; // violation
-
+    double[] doubleArray = new double[] {myDouble = 4.5, 15.5};
+    // violation above, 'Inner assignments should be avoided'
     String nameOne;
     List&lt;String&gt; myList = new ArrayList&lt;String&gt;();
-    myList.add(nameOne = &quot;tom&quot;); // violation
+    myList.add(nameOne = &quot;tom&quot;); // violation, 'Inner assignments should be avoided'
 
     for (int k = 0; k &lt; 10; k = k + 2) {
         // some code
     }
 
     boolean someVal;
-    if (someVal = true) { // violation
+    if (someVal = true) { // violation, 'Inner assignments should be avoided'
         // some code
     }
 
-    while (someVal = false) {} // violation
+    while (someVal = false) {} // violation, 'Inner assignments should be avoided'
 
     InputStream is = new FileInputStream(&quot;textFile.txt&quot;);
     while ((b = is.read()) != -1) { // OK, this is a common idiom
@@ -96,7 +96,7 @@ public class Example1 {
 
   boolean testMethod() {
     boolean val;
-    return val = true; // violation
+    return val = true; // violation, 'Inner assignments should be avoided'
   }
 }
         </source>
@@ -106,11 +106,11 @@ public class Example2 {
   public void test1(int mode) {
     int x = 0;
     x = switch (mode) {
-      case 1 -&gt; x = 1;  // violation
+      case 1 -&gt; x = 1;  // violation, 'Inner assignments should be avoided'
       case 2 -&gt; {
-        yield x = 2; // violation
+        yield x = 2; // violation, 'Inner assignments should be avoided'
       }
-      default -&gt; x = 0; // violation
+      default -&gt; x = 0; // violation, 'Inner assignments should be avoided'
     };
   }
   public void test2(int mode) {
@@ -127,7 +127,7 @@ public class Example2 {
     switch(mode) {
       case 1:
       case 2: {
-        x = y = 2; // violation
+        x = y = 2; // violation, 'Inner assignments should be avoided'
       }
       case 4:
       case 5:

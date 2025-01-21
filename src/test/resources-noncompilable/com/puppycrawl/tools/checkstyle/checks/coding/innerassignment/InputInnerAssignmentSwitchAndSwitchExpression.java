@@ -25,7 +25,7 @@ public class InputInnerAssignmentSwitchAndSwitchExpression {
                 x = 2;
             }
             case 1, 3, 5 -> {
-                x = y = 1;  // violation
+                x = y = 1;  // violation, 'Inner assignments should be avoided'
             }
             case 0, 7, 8 -> x = 1;
         }
@@ -35,10 +35,10 @@ public class InputInnerAssignmentSwitchAndSwitchExpression {
         int x = 0;
         x = switch (mode) {
             case 2 -> {
-                yield x = 2; // violation
+                yield x = 2; // violation, 'Inner assignments should be avoided'
             }
-            case 1 -> x = 1;  // violation
-            default -> x = 0; // violation
+            case 1 -> x = 1;  // violation, 'Inner assignments should be avoided'
+            default -> x = 0; // violation, 'Inner assignments should be avoided'
         };
     }
 
@@ -46,19 +46,19 @@ public class InputInnerAssignmentSwitchAndSwitchExpression {
         int x = 0;
         x = switch (mode) {
             case 2, 4, 6 -> {
-                yield x = 2; // violation
+                yield x = 2; // violation, 'Inner assignments should be avoided'
             }
-            case 1, 3, 5 -> x = 1;  // violation
-            default -> x = 0; // violation
+            case 1, 3, 5 -> x = 1;  // violation, 'Inner assignments should be avoided'
+            default -> x = 0; // violation, 'Inner assignments should be avoided'
         };
     }
 
     public void test5(String operation) {
         boolean innerFlag, flag;
         switch (operation) {
-            case "Y" -> flag = innerFlag = true; // violation
+            case "Y" -> flag = innerFlag = true; // violation, 'Inner assignments should be avoided'
             case "N" -> {
-                flag = innerFlag = false; // violation
+                flag = innerFlag = false; // violation, 'Inner assignments should be avoided'
             }
         }
     }
@@ -91,11 +91,11 @@ public class InputInnerAssignmentSwitchAndSwitchExpression {
     public void test8(int mode) {
         int x = 4;
         System.out.println(switch (x) {
-            case 1 -> x = 1;   // violation
+            case 1 -> x = 1;   // violation, 'Inner assignments should be avoided'
             case 2 -> {
-                 yield x = 2;      // violation
+                 yield x = 2;      // violation, 'Inner assignments should be avoided'
             }
-            default ->  x = 3;     // violation
+            default ->  x = 3;     // violation, 'Inner assignments should be avoided'
         });
     }
 }
