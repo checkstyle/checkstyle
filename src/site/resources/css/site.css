@@ -92,6 +92,7 @@ div, p, td, table.bodyTable td, th, table.bodyTable th, li, pre, #breadcrumbs sp
 
 img[src="images/anchor.png"] {
   max-width: unset;
+}
 
 table {
   text-align: left;
