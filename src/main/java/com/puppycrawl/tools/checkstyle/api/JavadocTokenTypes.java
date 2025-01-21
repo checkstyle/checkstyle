@@ -948,12 +948,13 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     * JAVADOC_TAG -&gt JAVADOC_TAG
-     *  |--SERIAL_LITERAL -&gt @serial
-     *  |--WS -&gt
-     *  |--LITERAL_EXCLUDE -&gt exclude
-     *  |--NEWLINE -&gt \n
-     *  `--WS -&gt
+     *   JAVADOC_TAG -> JAVADOC_TAG
+     *    |--SERIAL_LITERAL -> @serial
+     *    |--WS ->
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        |--TEXT -> serialized company name
+     *        |--NEWLINE -> \r\n
+     *        `--TEXT ->
      * }
      * </pre>
      *
