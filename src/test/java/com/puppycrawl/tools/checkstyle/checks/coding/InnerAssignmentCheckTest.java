@@ -40,9 +40,9 @@ public class InnerAssignmentCheckTest
         final String[] expected = {
             "22:15: " + getCheckMessage(MSG_KEY),
             "22:19: " + getCheckMessage(MSG_KEY),
-            "24:39: " + getCheckMessage(MSG_KEY),
-            "26:35: " + getCheckMessage(MSG_KEY),
-            "73:19: " + getCheckMessage(MSG_KEY),
+            "27:39: " + getCheckMessage(MSG_KEY),
+            "29:35: " + getCheckMessage(MSG_KEY),
+            "76:19: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInnerAssignment.java"), expected);
@@ -69,9 +69,9 @@ public class InnerAssignmentCheckTest
             "24:17: " + getCheckMessage(MSG_KEY),
             "24:31: " + getCheckMessage(MSG_KEY),
             "24:41: " + getCheckMessage(MSG_KEY),
-            "25:16: " + getCheckMessage(MSG_KEY),
-            "25:27: " + getCheckMessage(MSG_KEY),
-            "26:32: " + getCheckMessage(MSG_KEY),
+            "29:16: " + getCheckMessage(MSG_KEY),
+            "29:27: " + getCheckMessage(MSG_KEY),
+            "33:32: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInnerAssignmentDemoBug1195047Comment3.java"), expected);

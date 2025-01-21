@@ -70,6 +70,6 @@ public class InputInnerAssignmentMethod {
 
         String str1 = "";
         String str2 = "cd";
-        for (;;(str1 = "ab").concat(str2)) {} // violation
+        for (;;(str1 = "ab").concat(str2)) {} // violation, 'Inner assignments should be avoided'
     }
 }
