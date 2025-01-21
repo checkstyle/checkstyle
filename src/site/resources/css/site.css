@@ -77,7 +77,7 @@ section {
   position: relative;
 }
 
-div, p, td, table.bodyTable td, th, table.bodyTable th, li, pre, #breadcrumbs span, .sidebar-nav h5,
+div, p, td, table td, th, table th, li, pre, #breadcrumbs span, .sidebar-nav h5,
 .sidebar-nav li, #footer, div.tip b, .releaseDate, .breadcrumb {
   font-size: 15px;
 }
@@ -278,18 +278,18 @@ span.wrapper.inline {
     word-break: break-word;
   }
 
-  table.bodyTable tr {
+   table tr {
     display: block;
     margin-bottom: 1rem;
   }
 
-  table.bodyTable th,
-  table.bodyTable td {
+   table th,
+   table td {
     display: block;
     text-align: left;
   }
 
-  section[id="Properties"] .wrapper .bodyTable tr td:first-child {
+  section[id="Properties"] .wrapper table tr td:first-child {
     font-style: italic;
   }
 }
