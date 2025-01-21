@@ -161,8 +161,13 @@
           you must escape them like \(\). This is required by the regexp engine,
           otherwise it will think they are special instruction characters.
         </p>
+        <p id="Example3-code"> You can make sure that it appear only once. </p>
+        <source>
+// This code is copyrighted
+// (c) MyCompany
+        </source>
         <p id="Example3-config">
-          And to make sure it appears only once:
+          Then the check would be:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
@@ -174,8 +179,13 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example4-code"> You can also attach the useful and a meaningful messages to the check </p>
+        <source>
+// This code is copyrighted
+// (c) MyCompany
+        </source>
         <p id="Example4-config">
-          It can also be useful to attach a meaningful message to the check:
+          For that the check would be:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
@@ -300,7 +310,7 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example11-code">
+        <p id="Example11-raw">
           A more complex example. Note how the import and javadoc multilines are
           handled, there can be any number of them.
         </p>
@@ -334,7 +344,8 @@ import java.util.thing3;
         value=&quot;\A/{71}\n// checkstyle:\n// Checks Java source code for
         adherence to a set of rules\.\n// Copyright \(C\) \d\d\d\d  Oliver Burn\n
         // Last modification by \$Author.*\$\n/{71}\n\npackage [\w\.]*;\n\n
-        (import [\w\.]*;\n)*\n/\*\*\n( \*[^/]*\n)* \*/&quot;/&gt;
+        (import [\w\.]*;\n)*\n/\*\*\n( \*[^/]*\n)* \*
+        /&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -342,7 +353,7 @@ import java.util.thing3;
         <p>
           <b>More examples:</b>
         </p>
-        <p id="Example12-code">
+        <p id="Example12-raw">
           The next 2 examples deal with the following example Java source file:
         </p>
         <source>
@@ -470,7 +481,8 @@ public static final int A_SETPOINT = 1;
         and shall use it only in\n \*   accordance with the terms of the
         license agreement you entered into\n \*   with ACME\.&amp;lt;/I&amp;gt;\n
         \* &amp;lt;/P&amp;gt;\n \*\n \* &amp;#169; copyright \d\d\d\d ACME\n
-        \*\n \* @author .*)(\n\s\*.*)*/\n[\w|\s]*( class | interface )&quot;/&gt;
+        \*\n \* @author .*)(\n\s\*.*)*
+        /\n[\w|\s]*( class | interface )&quot;/&gt;
       &lt;property name=&quot;message&quot;
         value=&quot;Copyright in class/interface Javadoc&quot;/&gt;
       &lt;property name=&quot;duplicateLimit&quot; value=&quot;0&quot;/&gt;

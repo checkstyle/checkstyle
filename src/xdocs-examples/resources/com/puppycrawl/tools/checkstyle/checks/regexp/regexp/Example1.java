@@ -2,13 +2,16 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="Regexp">
-      <property name="format" value="// This code is copyrighted\n// \(c\) MyCompany"/>
+      <property name="format" value="// This code is copyrighted"/>
     </module>
   </module>
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
+
+public class Example1 {}
+
 // xdoc section -- start
 // This code is copyrighted
-// (c) MyCompany
 // xdoc section -- end
