@@ -90,6 +90,19 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * if you want to match a &lt; symbol you need to enter &amp;lt;.
  * The regular expression should be entered on one line.
  * </p>
+ *
+ * <p>
+ * <b>Note:</b> To search for parentheses () in a regular expression
+ * you must escape them like \(\). This is required by the regexp engine,
+ * otherwise it will think they are special instruction characters.
+ * </p>
+ *
+ * <p>
+ * <b>Note:</b> To search for things that mean something in XML, like
+ * &lt; you need to escape them like &amp;lt;. This is required so the
+ * XML parser does not act on them, but instead passes the correct
+ * character to the regexp engine.
+ * </p>
  * <ul>
  * <li>
  * Property {@code duplicateLimit} - Control whether to check for duplicates
