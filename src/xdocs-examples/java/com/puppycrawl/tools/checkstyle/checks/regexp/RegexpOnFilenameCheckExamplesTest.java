@@ -19,12 +19,25 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck.MSG_MATCH;
+
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
+import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class RegexpOnFilenameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -33,64 +46,147 @@ public class RegexpOnFilenameCheckExamplesTest extends AbstractExamplesModuleTes
 
     @Test
     public void testExample1() throws Exception {
+        final String configFilePath = getPath("Example1.java");
+        final String testExampleFilePath = getPath("Test Example1.xml");
         final String[] expected = {
-
+            "1: " + getCheckMessage(MSG_MATCH, "", "\\s"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        final Path path = Paths.get("src/xdocs-examples/resources/" + getPackageLocation() + "/");
+        final List<File> filesInFolder = Files.walk(path.toAbsolutePath())
+                .filter(Files::isRegularFile)
+                .map(Path::toFile)
+                .collect(Collectors.toList());
+
+        final TestInputConfiguration testInputConfiguration1 =
+                InlineConfigParser.parse(configFilePath);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration1.createConfiguration();
+
+        final Map<String, List<String>> violationsByFile = new HashMap<>();
+        violationsByFile.put(testExampleFilePath, Arrays.asList(expected));
+
+        verify(createChecker(parsedConfig),
+                filesInFolder.toArray(new File[0]),
+                violationsByFile);
     }
 
     @Test
     public void testExample2() throws Exception {
+        final String configFilePath = getPath("Example2.java");
+        final String testExampleFilePath1 = getPath("TestExample2.xml");
+        final String testExampleFilePath2 = getPath("TestExample4.xml");
         final String[] expected = {
+            "1: " + getCheckMessage(MSG_MATCH, "", "^TestExample\\d+\\.xml$"),
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        final Path path = Paths.get("src/xdocs-examples/resources/" + getPackageLocation() + "/");
+        final List<File> filesInFolder = Files.walk(path.toAbsolutePath())
+                .filter(Files::isRegularFile)
+                .map(Path::toFile)
+                .collect(Collectors.toList());
+
+        final TestInputConfiguration testInputConfiguration1 =
+                InlineConfigParser.parse(configFilePath);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration1.createConfiguration();
+
+        final Map<String, List<String>> violationsByFile = new HashMap<>();
+        violationsByFile.put(testExampleFilePath1, Arrays.asList(expected));
+        violationsByFile.put(testExampleFilePath2, Arrays.asList(expected));
+
+        verify(createChecker(parsedConfig),
+                filesInFolder.toArray(new File[0]),
+                violationsByFile);
     }
 
     @Test
     public void testExample3() throws Exception {
+        final String configFilePath = getPath("Example3.java");
+        final String testExampleFilePath = getPath("TestExample3.md");
         final String[] expected = {
-
+            "1: " + "No *.md files other then README.md",
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        final Path path = Paths.get("src/xdocs-examples/resources/" + getPackageLocation() + "/");
+        final List<File> filesInFolder = Files.walk(path.toAbsolutePath())
+                .filter(Files::isRegularFile)
+                .map(Path::toFile)
+                .collect(Collectors.toList());
+
+        final TestInputConfiguration testInputConfiguration1 =
+                InlineConfigParser.parse(configFilePath);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration1.createConfiguration();
+
+        final Map<String, List<String>> violationsByFile = new HashMap<>();
+        violationsByFile.put(testExampleFilePath, Arrays.asList(expected));
+
+        verify(createChecker(parsedConfig),
+                filesInFolder.toArray(new File[0]),
+                violationsByFile);
     }
 
     @Test
     public void testExample4() throws Exception {
+        final String configFilePath = getPath("Example4.java");
+        final String testExampleFilePath1 = getPath("Test Example1.xml");
+        final String testExampleFilePath2 = getPath("TestExample2.xml");
+        final String testExampleFilePath3 = getPath("TestExample4.xml");
+        final String testExampleFilePath4 = getPath("checkstyle.xml");
         final String[] expected = {
-
+            "1: " + "pattern mismatch",
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        final Path path = Paths.get("src/xdocs-examples/resources/" + getPackageLocation() + "/");
+        final List<File> filesInFolder = Files.walk(path.toAbsolutePath())
+                .filter(Files::isRegularFile)
+                .map(Path::toFile)
+                .collect(Collectors.toList());
+
+        final TestInputConfiguration testInputConfiguration1 =
+                InlineConfigParser.parse(configFilePath);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration1.createConfiguration();
+
+        final Map<String, List<String>> violationsByFile = new HashMap<>();
+        violationsByFile.put(testExampleFilePath1, Arrays.asList(expected));
+        violationsByFile.put(testExampleFilePath2, Arrays.asList(expected));
+        violationsByFile.put(testExampleFilePath3, Arrays.asList(expected));
+        violationsByFile.put(testExampleFilePath4, Arrays.asList(expected));
+
+        verify(createChecker(parsedConfig),
+                filesInFolder.toArray(new File[0]),
+                violationsByFile);
     }
 
     @Test
     public void testExample5() throws Exception {
+        final String configFilePath = getPath("Example5.java");
+        final String testExampleFilePath1 = getPath("Test Example1.xml");
+        final String testExampleFilePath2 = getPath("checkstyle.xml");
         final String[] expected = {
-
+            "1: " + "only filenames in camelcase is allowed",
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
-    }
+        final Path path = Paths.get("src/xdocs-examples/resources/" + getPackageLocation() + "/");
+        final List<File> filesInFolder = Files.walk(path.toAbsolutePath())
+                .filter(Files::isRegularFile)
+                .map(Path::toFile)
+                .collect(Collectors.toList());
 
-    @Test
-    public void testExample6() throws Exception {
-        final String[] expected = {
+        final TestInputConfiguration testInputConfiguration1 =
+                InlineConfigParser.parse(configFilePath);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration1.createConfiguration();
 
-        };
+        final Map<String, List<String>> violationsByFile = new HashMap<>();
+        violationsByFile.put(testExampleFilePath1, Arrays.asList(expected));
+        violationsByFile.put(testExampleFilePath2, Arrays.asList(expected));
 
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
-    }
-
-    @Test
-    public void testExample7() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example7.txt"), expected);
+        verify(createChecker(parsedConfig),
+                filesInFolder.toArray(new File[0]),
+                violationsByFile);
     }
 }
