@@ -19,6 +19,7 @@ public class Example2 {
   String yield = "yield";
   // violation above, 'Name 'yield' must match pattern'
 
+  String test$stuff = "test";
   record Record(Record r){} // violation, 'Name 'Record' must match pattern'
 
   record R(Record record){} // violation, 'Name 'record' must match pattern'

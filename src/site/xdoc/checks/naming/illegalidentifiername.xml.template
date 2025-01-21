@@ -47,8 +47,8 @@
           <param name="type" value="code"/>
         </macro>
         <p>
-          To configure the check to include "open" and "transitive" in the set of
-          illegal identifiers:
+          To configure the check to include some of JLS Keywords in the
+          set of illegal identifiers:
         </p>
         <p id="Example2-config">Configuration:</p>
         <macro name="example">
