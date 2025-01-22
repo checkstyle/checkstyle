@@ -7,7 +7,7 @@ tokens = BLOCK_COMMENT_BEGIN
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 
-/** // violation
+/** // violation 'IllegalToken'
  * Test for illegal tokens
  */
 public class InputIllegalTokensCheckBlockCommentBegin
