@@ -21,27 +21,19 @@
   <version position="right" />
 
   <poweredBy>
-    <logo name="GitHub" href="https://github.com/checkstyle/checkstyle">
+    <logo href="https://github.com/checkstyle/checkstyle">
       <image src="images/github_logo_social_coding_outlined.png" alt="GitHub"/>
     </logo>
-    <logo name="Twitter"
-          href="https://twitter.com/checkstyle_java/"
-          >
+    <logo href="https://twitter.com/checkstyle_java/">
       <image src="images/twitter_button.png" alt="Twitter"/>
     </logo>
-    <logo name="Stackoverflow"
-          href="https://stackoverflow.com/questions/tagged/checkstyle"
-          >
+    <logo href="https://stackoverflow.com/questions/tagged/checkstyle">
       <image src="images/stackoverflow.jpeg" alt="Stackoverflow"/>
     </logo>
-    <logo name="GoogleGroups"
-          href="https://groups.google.com/forum/#!forum/checkstyle"
-          >
+    <logo href="https://groups.google.com/forum/#!forum/checkstyle">
       <image src="images/groups.png" alt="GoogleGroups"/>
     </logo>
-    <logo name="JProfiler"
-          href="https://www.ej-technologies.com/products/jprofiler/overview.html"
-          >
+    <logo href="https://www.ej-technologies.com/products/jprofiler/overview.html">
       <image src="https://www.ej-technologies.com/images/product_banners/jprofiler_medium.png"
              alt="JProfiler"/>
     </logo>
