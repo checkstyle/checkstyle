@@ -94,11 +94,6 @@ img[src="images/anchor.png"] {
   max-width: unset;
 }
 
-a[class="builtBy"] {
-  font-size: 0;
-  margin-top: 20px;
-}
-
 table {
   text-align: left;
   border-spacing: 2px;
