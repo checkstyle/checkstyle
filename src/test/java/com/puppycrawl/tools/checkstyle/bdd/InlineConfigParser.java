@@ -1024,13 +1024,7 @@ public final class InlineConfigParser {
         }
     }
 
-    private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
-                            String inputFilePath,
-                            List<String> lines,
-                            int beginLineNo, String moduleName)
-            throws IOException, CheckstyleException {
-
-        // Read properties content
+    private static String readPropertiesContent(int beginLineNo, List<String> lines) {
         final StringBuilder stringBuilder = new StringBuilder(128);
         int lineNo = beginLineNo;
         String line = lines.get(lineNo);
@@ -1039,7 +1033,16 @@ public final class InlineConfigParser {
             lineNo++;
             line = lines.get(lineNo);
         }
-        final String propertyContent = stringBuilder.toString();
+        return stringBuilder.toString();
+    }
+
+    private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
+                            String inputFilePath,
+                            List<String> lines,
+                            int beginLineNo, String moduleName)
+            throws IOException, CheckstyleException {
+
+        final String propertyContent = readPropertiesContent(beginLineNo, lines);
 
         // Load properties
         final Properties properties = new Properties();
