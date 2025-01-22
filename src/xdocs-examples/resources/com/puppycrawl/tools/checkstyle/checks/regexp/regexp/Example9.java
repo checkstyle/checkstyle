@@ -2,13 +2,15 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="Regexp">
-      <property name="format" value="[ \t]+$"/>
+      <property name="format" value="(?i)debug"/>
       <property name="illegalPattern" value="true"/>
-      <property name="message" value="Trailing whitespace"/>
+      <property name="errorLimit" value="1000"/>
     </module>
   </module>
 </module>
 */
+
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
 // xdoc section -- start
 // xdoc section -- end
