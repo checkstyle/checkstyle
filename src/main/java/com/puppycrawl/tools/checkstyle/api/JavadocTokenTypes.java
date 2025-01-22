@@ -1362,13 +1362,14 @@ public final class JavadocTokenTypes {
      * <pre><code>{&#64;link String}</code></pre>
      * <b>Tree:</b>
      * <pre>
-     * <code> |--JAVADOC_INLINE_TAG[4x3] : [&#64;link String}]
-     *        |--JAVADOC_INLINE_TAG_START[4x3] : [{]
-     *        |--LINK_LITERAL[4x4] : [@link]
-     *        |--WS[4x9] : [ ]
-     *        |--REFERENCE[4x10] : [String]
-     *            |--CLASS[4x10] : [String]
-     *        |--JAVADOC_INLINE_TAG_END[4x16] : [}]
+     * <code>
+     *          JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *              |--JAVADOC_INLINE_TAG_START -> {
+     *              |--LINK_LITERAL -> @link
+     *              |--WS ->
+     *              |--REFERENCE -> REFERENCE
+     *                  `--PACKAGE_CLASS -> String
+     *              `--JAVADOC_INLINE_TAG_END -> }
      * </code>
      * </pre>
      *
