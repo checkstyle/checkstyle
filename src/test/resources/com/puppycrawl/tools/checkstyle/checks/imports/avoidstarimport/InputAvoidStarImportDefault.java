@@ -9,8 +9,8 @@ allowStaticMemberImports = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.imports.avoidstarimport;
 
-import java.io.*; // violation
-import java.lang.*; // violation
+import java.io.*; // violation Avoid star imports for classes, Please import classes individually
+import java.lang.*; // violation Avoid star imports for classes, Please import classes individually.
 import java.sql.Connection;
 import java.util.List;
 import java.util.List;
@@ -25,10 +25,10 @@ import javax.swing.ScrollPaneLayout;
 import javax.swing.BorderFactory;
 import static java.io.File.listRoots;
 
-import static javax.swing.WindowConstants.*; // violation
-import static javax.swing.WindowConstants.*; // violation
+import static javax.swing.WindowConstants.*; // violation Avoid star imports for classes, Please import classes individually
+import static javax.swing.WindowConstants.*; // violation Avoid star imports for classes, Please import classes individually
 import static java.io.File.createTempFile;
-import static java.io.File.*; // violation
+import static java.io.File.*; // violation Avoid star imports for classes, Please import classes individually
 
 import java.awt.Component;
 import java.awt.Graphics2D;
