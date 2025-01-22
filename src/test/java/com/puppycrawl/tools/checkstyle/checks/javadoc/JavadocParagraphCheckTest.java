@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_LINE_BEFORE;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_MISPLACED_INDENT;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_MISPLACED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_PRECEDED_BLOCK_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_REDUNDANT_PARAGRAPH;
@@ -103,6 +104,17 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocParagraphIncorrect4.java"), expected);
+    }
+
+    @Test
+    public void testIncorrectParaInd() throws Exception {
+        final String[] expected = {
+                "16:7: " + getCheckMessage(MSG_MISPLACED_INDENT),
+                "26:7: " + getCheckMessage(MSG_MISPLACED_INDENT),
+                "26:7: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ul"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocParagraphIndentation.java"), expected);
     }
 
     @Test
@@ -190,10 +202,14 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
             "19:4: " + getCheckMessage(MSG_LINE_BEFORE),
             "28:7: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
             "31:7: " + getCheckMessage(MSG_LINE_BEFORE),
-            "50:7: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ul"),
-            "65:8: " + getCheckMessage(MSG_LINE_BEFORE),
-            "76:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "table"),
-            "87:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "pre"),
+            "49:7: " + getCheckMessage(MSG_MISPLACED_INDENT),
+            "49:7: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ul"),
+            "66:8: " + getCheckMessage(MSG_MISPLACED_INDENT),
+            "66:8: " + getCheckMessage(MSG_LINE_BEFORE),
+            "79:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "table"),
+            "79:8: " + getCheckMessage(MSG_MISPLACED_INDENT),
+            "92:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "pre"),
+            "92:8: " + getCheckMessage(MSG_MISPLACED_INDENT),
         };
 
         verifyWithInlineConfigParser(
@@ -210,9 +226,13 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
             "35:8: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
             "36:6: " + getCheckMessage(MSG_TAG_AFTER),
             "38:6: " + getCheckMessage(MSG_TAG_AFTER),
-            "58:7: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ul"),
-            "73:7: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "h1"),
-            "85:7: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "h1"),
+            "48:7: " + getCheckMessage(MSG_MISPLACED_INDENT),
+            "59:7: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ul"),
+            "59:7: " + getCheckMessage(MSG_MISPLACED_INDENT),
+            "76:7: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "h1"),
+            "84:7: " + getCheckMessage(MSG_MISPLACED_INDENT),
+            "88:7: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "h1"),
+            "88:7: " + getCheckMessage(MSG_MISPLACED_INDENT),
         };
 
         verifyWithInlineConfigParser(

@@ -50,8 +50,9 @@ public class InputJavadocParagraphIncorrectOpenClosedTag {
     * </p>
     */
     int d;
+    // 1 violations 5 lines above:
+    //                            '<p> tag should not be succeeded by spaces before the first word'
 
-    // violation 4 lines below '<p> tag should not precede HTML block-tag '<ul>''
     /**
     * Some Summary.
     *
@@ -64,7 +65,9 @@ public class InputJavadocParagraphIncorrectOpenClosedTag {
     * </p>
     */
     int e;
-
+    // 2 violations 9 lines above:
+    //                            '<p> tag should not be succeeded by spaces before the first word'
+    //                            '<p> tag should not precede HTML block-tag '<ul>''
     /**
     * Some Summary.
     *
@@ -86,6 +89,10 @@ public class InputJavadocParagraphIncorrectOpenClosedTag {
     *     <h1>testing....</h1> // ok until #15762
     * </p>
     */
-    // violation 4 lines above '<p> tag should not precede HTML block-tag '<h1>''
+    // violation 8 lines above '<p> tag should not be succeeded by spaces before the first word'
+    // 2 violations 5 lines above:
+    //                            '<p> tag should not be succeeded by spaces before the first word'
+    //                            '<p> tag should not precede HTML block-tag '<h1>''
+
     int g;
 }

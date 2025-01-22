@@ -90,6 +90,9 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * {@code javadoc.paragraph.line.before}
  * </li>
  * <li>
+ * {@code javadoc.paragraph.misplaced.line}
+ * </li>
+ * <li>
  * {@code javadoc.paragraph.misplaced.tag}
  * </li>
  * <li>
@@ -140,6 +143,12 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * file.
      */
     public static final String MSG_MISPLACED_TAG = "javadoc.paragraph.misplaced.tag";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_MISPLACED_INDENT = "javadoc.paragraph.misplaced.line";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -233,8 +242,17 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
             if (!allowNewlineParagraph && isImmediatelyFollowedByNewLine(tag)) {
                 log(tag.getLineNumber(), tag.getColumnNumber(), MSG_MISPLACED_TAG);
             }
+
             if (isImmediatelyFollowedByText(tag)) {
                 log(tag.getLineNumber(), tag.getColumnNumber(), MSG_MISPLACED_TAG);
+            }
+
+            if(allowNewlineParagraph) {
+                int tagIndent = tag.getColumnNumber();
+                int nextLineIndent = getIndentationOfNext(tag);
+                if(tagIndent != nextLineIndent && nextLineIndent != -1) {
+                    log(tag.getLineNumber(), tag.getColumnNumber(), MSG_MISPLACED_INDENT);
+                }
             }
         }
     }
@@ -453,5 +471,54 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         }
 
         return nextSibling;
+    }
+
+    /**
+     * Calculates the indentation of the next Javadoc token of type TEXT relative to the given node.
+     * This method assumes the provided node has children and uses the first child as the parent node
+     * to find its subsequent children.
+     *
+     * @param node The current {@link DetailNode} whose next indentation level is to be calculated.
+     * @return The calculated indentation level of the next TEXT node, or -1 if no TEXT node is found.
+     */
+    private static int getIndentationOfNext(DetailNode node) {
+        final DetailNode parent = node.getChildren()[0];
+        final DetailNode[] children = parent.getChildren();
+        int indentation = -1;
+        boolean next = false;
+        for (int i = 0; i < children.length; i++) {
+            final DetailNode child = children[i];
+            if(child.getType()==JavadocTokenTypes.NEWLINE) {
+             next = true;
+            }
+            if(child.getType()==JavadocTokenTypes.TEXT && next) {
+                indentation = getIndent(parent,i);
+                break;
+            }
+        }
+        return indentation;
+    }
+
+    /**
+     * Calculates the column-based indentation of a specific child node in a parent's list of children.
+     * The indentation is determined based on the node's column number and the number of leading spaces
+     * in its text content.
+     *
+     * @param parent The parent {@link DetailNode} containing the list of children.
+     * @param i The index of the child node within the parent's children array.
+     * @return The total calculated indentation for the specified child node.
+     */
+    private static int getIndent(DetailNode parent, int i) {
+        final DetailNode[] children = parent.getChildren();
+        final DetailNode child = children[i];
+        int indent = child.getColumnNumber();
+        String text = child.getText();
+        int leadingSpaces = 0;
+        while (leadingSpaces < text.length()
+                && text.charAt(leadingSpaces) == ' ') {
+            leadingSpaces++;
+        }
+        indent += leadingSpaces;
+        return indent;
     }
 }
