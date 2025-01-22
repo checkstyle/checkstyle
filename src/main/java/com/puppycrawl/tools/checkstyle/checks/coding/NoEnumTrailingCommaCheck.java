@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  *
  * <p>
- *  The check demands that there should not be any comma after last constant in
+ * The check demands that there should not be any comma after last constant in
  *  enum definition.
  * </p>
  * <pre>

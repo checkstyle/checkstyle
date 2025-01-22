@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </div>
  *
  * <p>
- *     Rationale: When a permits clause is omitted from a sealed class,
+ * Rationale: When a permits clause is omitted from a sealed class,
  *     any class within the same compilation unit can extend it. This differs
  *     from other sealed classes where permitted subclasses are explicitly
  *     declared, making them readily visible to the reader. Without a permits

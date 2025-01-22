@@ -43,7 +43,6 @@ class Check {
      */
     int iamtoolazyyyyyyy = 45;
 
-    // violation 4 lines below '<p> tag should not precede HTML block-tag '<ul>''
     /**
      * Some summary.
      *
@@ -56,8 +55,10 @@ class Check {
      *</p>
      */
     public void foo() {}
+    // 2 violations 9 lines above:
+    //                            '<p> tag should not be succeeded by spaces before the first word'
+    //                            '<p> tag should not precede HTML block-tag '<ul>''
 
-    // violation 5 lines below '<p> tag should be preceded with an empty line.'
     /**
      * Some summary.
      *
@@ -68,8 +69,10 @@ class Check {
      * </b>
      */
     public void fooo() {}
+    // 2 violations 6 lines above:
+    //                            '<p> tag should be preceded with an empty line.'
+    //                            '<p> tag should not be succeeded by spaces before the first word'
 
-    // violation 4 lines below '<p> tag should not precede HTML block-tag '<table>''
     /**
      *  Some summary.
      *
@@ -79,8 +82,10 @@ class Check {
      * </p>
      */
     public void foooo() {}
+    // 2 violations 6 lines above:
+    //                            '<p> tag should not be succeeded by spaces before the first word'
+    //                            '<p> tag should not precede HTML block-tag '<table>''
 
-    // violation 4 lines below '<p> tag should not precede HTML block-tag '<pre>''
     /**
      * Some summary.
      *
@@ -90,4 +95,8 @@ class Check {
      * </p>
      */
     public void fooooo() {}
+    // 2 violations 6 lines above:
+    //                            '<p> tag should not be succeeded by spaces before the first word'
+    //                            '<p> tag should not precede HTML block-tag '<pre>''
+
 }

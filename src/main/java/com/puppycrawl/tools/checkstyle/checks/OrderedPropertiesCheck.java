@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </div>
  *
  * <p>
- *   Rationale: Sorted properties make it easy for people to find required properties by name
+ * Rationale: Sorted properties make it easy for people to find required properties by name
  *   in file. This makes it easier to merge. While there are no problems at runtime.
  *   This check is valuable only on files with string resources where order of lines
  *   does not matter at all, but this can be improved.

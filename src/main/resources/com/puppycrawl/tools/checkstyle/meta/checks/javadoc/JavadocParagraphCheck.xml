@@ -49,6 +49,7 @@
          <message-keys>
             <message-key key="javadoc.missed.html.close"/>
             <message-key key="javadoc.paragraph.line.before"/>
+            <message-key key="javadoc.paragraph.misplaced.line"/>
             <message-key key="javadoc.paragraph.misplaced.tag"/>
             <message-key key="javadoc.paragraph.preceded.block.tag"/>
             <message-key key="javadoc.paragraph.redundant.paragraph"/>
