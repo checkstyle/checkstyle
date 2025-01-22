@@ -1,3 +1,7 @@
+body, td, select, input, li {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
 h1 {
   text-transform: capitalize;
   font-size: x-large;
@@ -77,8 +81,14 @@ section {
   position: relative;
 }
 
-div, p, td, table td, th, table th, li, pre, #breadcrumbs span, .sidebar-nav h5,
-.sidebar-nav li, #footer, div.tip b, .releaseDate, .breadcrumb {
+div, p, td, table[class="table table-striped"] td, th, table[class="table table-striped"] th,
+li, pre, #breadcrumbs span, #footer, div.tip b, .releaseDate, .breadcrumb {
+  font-size: 17px;
+  line-height: 1.625;
+}
+
+.sidebar-nav h5,
+.sidebar-nav li {
   font-size: 15px;
 }
 
@@ -88,6 +98,10 @@ div, p, td, table td, th, table th, li, pre, #breadcrumbs span, .sidebar-nav h5,
 
 .sidebar-nav {
   padding: 8px 4px 0 12px;
+}
+
+.nav-list {
+  padding-left: 7px;
 }
 
 img[src="images/anchor.png"] {
