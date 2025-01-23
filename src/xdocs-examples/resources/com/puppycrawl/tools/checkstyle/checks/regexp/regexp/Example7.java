@@ -10,5 +10,9 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
+
+public class Example7 {}
+
 // xdoc section -- start
 // xdoc section -- end
