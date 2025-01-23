@@ -44,6 +44,12 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * read if you use tabs.
  * </li>
  * </ul>
+ *
+ * <p>
+ * When the {@code FileTabCharacter} check is used with the default configuration,
+ * only the first instance of a tab character is reported.
+ * </p>
+ *
  * <ul>
  * <li>
  * Property {@code eachLine} - Control whether to report on each line containing a tab,
