@@ -21,6 +21,10 @@
  when the commit messages get sent to a mailing list, they are almost impossible to
  read if you use tabs.
  &lt;/li&gt;
+ &lt;li&gt;
+ When the {@code FileTabCharacter} check is used with the default configuration,
+ only the first instance of a tab character is reported.
+ &lt;/li&gt;
  &lt;/ul&gt;</description>
          <properties>
             <property default-value="false" name="eachLine" type="boolean">
