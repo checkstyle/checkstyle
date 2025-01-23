@@ -59,6 +59,15 @@
         </div>
       </subsection>
 
+      <subsection name="Notes" id="Notes">
+      <p>
+        When using the <code>FileTabCharacter</code> check with the default configuration (i.e.,
+        only the first instance of a tab character is reported), if the first instance falls under
+        a suppression rule, the file will not be reported, even if it contains additional
+        violations outside the suppression scope.
+      </p>
+      </subsection>
+
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">
           To configure the check to report only the first instance in each file:
