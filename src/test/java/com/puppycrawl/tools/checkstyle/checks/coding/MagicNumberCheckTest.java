@@ -530,9 +530,14 @@ public class MagicNumberCheckTest
     public void testIgnoreFieldDeclaration4()
             throws Exception {
         final String[] expected = {
-            "25:22: " + getCheckMessage(MSG_KEY, "86400_000"),
             "29:27: " + getCheckMessage(MSG_KEY, "5"),
-            "30:28: " + getCheckMessage(MSG_KEY, "69"),
+            "36:26: " + getCheckMessage(MSG_KEY, "86400_000"),
+            "45:31: " + getCheckMessage(MSG_KEY, "5"),
+            "46:32: " + getCheckMessage(MSG_KEY, "69"),
+            "55:27: " + getCheckMessage(MSG_KEY, "5"),
+            "62:26: " + getCheckMessage(MSG_KEY, "86400_000"),
+            "71:31: " + getCheckMessage(MSG_KEY, "5"),
+            "72:32: " + getCheckMessage(MSG_KEY, "69"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputMagicNumberIgnoreFieldDeclaration4.java"), expected);

@@ -22,12 +22,55 @@ public class InputMagicNumberIgnoreFieldDeclaration4 {
     public int[] z = {4, 5};
 
     private static final Callable<Void> SLEEP_FOR_A_DAY = () -> {
-        Thread.sleep(86400_000);  // violation ''86400_000' is a magic number'
+        Thread.sleep(86400_000);
         return null;
     };
     private static final BiFunction<Integer, Integer, Integer> ADD_AND_SQUARE = (a, b) -> {
         int sum = a + b + 5; // violation ''5' is a magic number'
-        return sum * sum * 69; // violation ''69' is a magic number'
+        return sum * sum * 69;
+    };
+
+    private static final Callable<Void> SLEEP_FOR_A_DAY_EXP = new Callable<Void>() {
+        @Override
+        public Void call() throws InterruptedException {
+            Thread.sleep(86400_000); // violation ''86400_000' is a magic number'
+            return null;
+        }
+    };
+
+    private static final BiFunction<Integer, Integer, Integer>
+            ADD_AND_SQUARE_EXP = new BiFunction<Integer, Integer, Integer>() {
+        @Override
+        public Integer apply(Integer a, Integer b) {
+            int sum = a + b + 5; // violation ''5' is a magic number'
+            return sum * sum * 69; // violation ''69' is a magic number'
+        }
+    };
+
+    private final Callable<Void> SLEEP_FOR_A_DAY_NS = () -> {
+        Thread.sleep(86400_000);
+        return null;
+    };
+    private final BiFunction<Integer, Integer, Integer> ADD_AND_SQUARE_NS = (a, b) -> {
+        int sum = a + b + 5; // violation ''5' is a magic number'
+        return sum * sum * 69;
+    };
+
+    private final Callable<Void> SLEEP_FOR_A_DAY_EXP_NS = new Callable<Void>() {
+        @Override
+        public Void call() throws InterruptedException {
+            Thread.sleep(86400_000); // violation ''86400_000' is a magic number'
+            return null;
+        }
+    };
+
+    private final BiFunction<Integer, Integer, Integer>
+            ADD_AND_SQUARE_EXP_NS = new BiFunction<Integer, Integer, Integer>() {
+        @Override
+        public Integer apply(Integer a, Integer b) {
+            int sum = a + b + 5; // violation ''5' is a magic number'
+            return sum * sum * 69; // violation ''69' is a magic number'
+        }
     };
 
 }
