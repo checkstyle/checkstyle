@@ -54,6 +54,9 @@
     files="operatorwrap[\\/]Example1.java"/>
   <suppress id="discouragedRegexpInViolationMessage"
     files="operatorwrap[\\/]Example2.java"/>
+  <!-- it prints user regexp -->
+  <suppress id="discouragedRegexpInViolationMessage"
+            files="regexponfilename[\\/]Example[24].*"/>
 
   <suppress checks="CommentsIndentation"
     files="singlespaceseparator[\\/]Example2.java"/>
@@ -104,6 +107,12 @@
     files="suppresswithplaintextcommentfilter[\\/]Example9.java"/>
   <suppress checks="LineLength"
     files="linelength[\\/]Example\d+.*"/>
+  <!-- it prints user regexp -->
+  <suppress checks="LineLength"
+            files="regexponfilename[\\/]Example[2].java"/>
+  <!-- we need to show whole user defined message -->
+  <suppress checks="LineLength"
+            files="regexponfilename[\\/]Example[14].java"/>
 
   <!-- Example needs to exclude fully qualified name longer than 85 characters  -->
   <suppress checks="LineLength" files="classdataabstractioncoupling[\\/]Example11.java"/>
