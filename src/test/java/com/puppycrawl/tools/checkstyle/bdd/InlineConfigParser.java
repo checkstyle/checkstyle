@@ -994,33 +994,13 @@ public final class InlineConfigParser {
         return result;
     }
 
-    private static String extractModuleName(List<String> lines,
-                                            int lineNo, StringBuilder stringBuilder) {
-        int lineNum = lineNo;
-        String moduleName = null;
-
-        for (String line = lines.get(lineNum);
-            !line.isEmpty() && !"*/".equals(line);
-            ++lineNum, line = lines.get(lineNum)) {
-            if (moduleName == null && !line.isBlank()) {
-                moduleName = line.trim();
-            }
-            else {
-                stringBuilder.append(line).append('\n');
-            }
-        }
-        return moduleName;
-    }
-
-    private static Object createCheckInstance(String moduleName, String inputFilePath) {
+    private static Object createCheckInstance(String className) {
         try {
-            final String className = getFullyQualifiedClassName(inputFilePath, moduleName);
             final Class<?> checkClass = Class.forName(className);
             return checkClass.getDeclaredConstructor().newInstance();
         }
-        catch (ReflectiveOperationException
-               | CheckstyleException ex) {
-            throw new IllegalStateException("Unable to create check instance " + moduleName, ex);
+        catch (ReflectiveOperationException ex) {
+            throw new IllegalStateException("Unable to create check instance " + className, ex);
         }
     }
 
@@ -1044,11 +1024,11 @@ public final class InlineConfigParser {
 
         final String propertyContent = readPropertiesContent(beginLineNo, lines);
 
-        // Load properties
+        // loadProperties
         final Properties properties = new Properties();
         properties.load(new StringReader(propertyContent));
 
-        // Process properties
+        // processProperties
         for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
             final String key = entry.getKey().toString();
             final String value = entry.getValue().toString();
@@ -1066,10 +1046,12 @@ public final class InlineConfigParser {
             }
             else if (value.startsWith("(default)")) {
                 final String defaultValue = value.substring(value.indexOf(')') + 1);
-                final Object checkInstance = createCheckInstance(moduleName, inputFilePath);
+                final String fullyQualifiedModuleName =
+                        getFullyQualifiedClassName(inputFilePath, moduleName);
+                final Object checkInstance = createCheckInstance(fullyQualifiedModuleName);
 
                 defaultValidation(key, defaultValue, checkInstance,
-                        getFullyQualifiedClassName(inputFilePath, moduleName));
+                        fullyQualifiedModuleName);
 
                 if (NULL_STRING.equals(defaultValue)) {
                     inputConfigBuilder.addDefaultProperty(key, null);
