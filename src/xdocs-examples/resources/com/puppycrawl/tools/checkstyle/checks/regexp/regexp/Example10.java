@@ -10,7 +10,9 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
+
+public class Example10 {}
+
 // xdoc section -- start
-// Copyright (C) 2004 MyCompany
-// All rights reserved
 // xdoc section -- end

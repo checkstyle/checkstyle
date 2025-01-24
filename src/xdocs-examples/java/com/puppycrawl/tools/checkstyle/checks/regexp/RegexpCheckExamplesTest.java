@@ -19,16 +19,23 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/regexp/regexp";
+    }
+
+    @Test
+    public void testExample0() throws Exception {
+        final String[] expected = {
+
+        };
+
+        verifyWithInlineConfigParser(getPath("Example0.java"), expected);
     }
 
     @Test
@@ -37,7 +44,16 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+    }
+
+    @Test
+    public void testExample1v() throws Exception {
+        final String[] expected = {
+            "1: Required pattern '// This code is copyrighted\\.' missing in file.",
+        };
+
+        verifyWithInlineConfigParser(getPath("Example1v.java"), expected);
     }
 
     @Test
@@ -46,34 +62,34 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "19: Found duplicate pattern '// This code is copyrighted\\n// \\(c\\) MyCompany'."
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+                "1: Required pattern 'Copyright' missing in file.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-
+                "17: Line matches the illegal pattern 'System\\.out\\.println'.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 
     @Test
@@ -82,7 +98,7 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 
     @Test
@@ -91,60 +107,68 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 
     @Test
     public void testExample8() throws Exception {
         final String[] expected = {
-
+            "5: Line matches the illegal pattern '(?i)debug'.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example8.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }
 
     @Test
     public void testExample9() throws Exception {
         final String[] expected = {
-
+            "5: Line matches the illegal pattern '(?i)debug'.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example9.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
     }
 
     @Test
     public void testExample10() throws Exception {
+        final String fileWithConfig = getPath("Example10.java");
+        final String targetFile = getPath("Example10.properties");
         final String[] expected = {
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example10.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile, expected);
     }
 
     @Test
     public void testExample11() throws Exception {
+        final String fileWithConfig = getPath("Example11.java");
+        final String targetFile = getPath("Example11.properties");
         final String[] expected = {
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example11.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile, expected);
     }
 
     @Test
     public void testExample12() throws Exception {
+        final String fileWithConfig = getPath("Example12.java");
+        final String targetFile = getPath("Example12.properties");
         final String[] expected = {
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example12.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile, expected);
     }
 
     @Test
     public void testExample13() throws Exception {
+        final String fileWithConfig = getPath("Example13.java");
+        final String targetFile = getPath("Example13.properties");
         final String[] expected = {
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example13.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile, expected);
     }
 }
