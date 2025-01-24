@@ -9,8 +9,8 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
-
+// violation 11 lines above 'missing in file.'
 // xdoc section -- start
-// This code is copyrighted.
-public class Example1 {}
+/* violation on first line 'Required pattern missing in a file.' */
+public class Example1v {}
 // xdoc section -- end

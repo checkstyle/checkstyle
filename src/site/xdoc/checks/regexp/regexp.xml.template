@@ -54,6 +54,10 @@
           you want to match a &lt; symbol you need to enter &amp;lt;. The regular
           expression should be entered on one line.
         </p>
+        <p><b>Note:</b> To search for parentheses () in a regular expression
+          you must escape them like \(\). This is required by the regexp engine,
+          otherwise it will think they are special instruction characters.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="Properties">
@@ -66,82 +70,76 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
-            To configure the check:
+        <p id="Example1-config"> Default configuration does nothing: </p>
+          <macro name="example">
+            <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example0.java"/>
+            <param name="type" value="config"/>
+          </macro>
         </p>
-        <p>
-          The following examples are mainly copied from the other 3 checks
-          mentioned above, to show how the same results can be achieved using
-          this check in place of them.
-        </p>
-        <p>
-          <b>To use like Required Regexp check:</b>
-        </p>
-        <p>
+        <p id="Example1-config">
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
         </p>
-        <p id="Example1-code"> The statement. </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example1.java"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example1-config"> The check. </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example2-code"> Your statement may be multiline. </p>
+        <p id="Example1-code"> Example1: </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
-        <p id="Example2-config"> Then the check would be. </p>
+        <p id="Example1-code"> Example with violation: </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example1v.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example2-config">Your statement may be multiline.</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p><b>Note:</b> To search for parentheses () in a regular expression
-          you must escape them like \(\). This is required by the regexp engine,
-          otherwise it will think they are special instruction characters.
-        </p>
-        <p id="Example3-code"> You can make sure that it appear only once. </p>
+        <p id="Example2-code">Example2:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
-        <p id="Example3-config">
-          Then the check would be:
-        </p>
+
+        <p id="Example3-config">Configure Check to make sure that it appear only once:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example4-code">
-          You can also attach the useful and a meaningful messages to the check
-        </p>
+        <p id="Example3-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
-        <p id="Example4-config">
-          For that the check would be:
+
+        <p id="Example4-config">Instead of printing whole regexp that might be unnecessary for
+          user, you can substitute it to some static text:
         </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p>
-          <b>To use like illegal regexp check:</b>
-        </p>
+        <p id="Example4-code">Example with violation:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
         <p id="Example5-config">
           An example of how to configure the check to make sure there are no
           calls to <code>System.out.println</code>:

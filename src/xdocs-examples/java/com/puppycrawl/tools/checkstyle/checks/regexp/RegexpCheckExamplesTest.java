@@ -30,12 +30,30 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     }
 
     @Test
+    public void testExample0() throws Exception {
+        final String[] expected = {
+
+        };
+
+        verifyWithInlineConfigParser(getPath("Example0.java"), expected);
+    }
+
+    @Test
     public void testExample1() throws Exception {
         final String[] expected = {
 
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+    }
+
+    @Test
+    public void testExample1v() throws Exception {
+        final String[] expected = {
+            "1: Required pattern '// This code is copyrighted\\.' missing in file.",
+        };
+
+        verifyWithInlineConfigParser(getPath("Example1v.java"), expected);
     }
 
     @Test
@@ -50,7 +68,7 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "19: Found duplicate pattern '// This code is copyrighted\\n// \\(c\\) MyCompany'."
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -59,7 +77,7 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+                "1: Required pattern 'Copyright' missing in file.",
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
@@ -68,7 +86,7 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-
+                "17: Line matches the illegal pattern 'System\\.out\\.println'.",
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
