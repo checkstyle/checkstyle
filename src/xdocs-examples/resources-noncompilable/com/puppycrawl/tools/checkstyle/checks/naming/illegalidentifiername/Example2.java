@@ -18,7 +18,7 @@ public class Example2 {
   int record = 15; // violation, 'Name 'record' must match pattern'
   String yield = "yield";
   // violation above, 'Name 'yield' must match pattern'
-
+  String test$stuff = "test";
   record Record(Record r){} // violation, 'Name 'Record' must match pattern'
 
   record R(Record record){} // violation, 'Name 'record' must match pattern'
@@ -29,11 +29,9 @@ public class Example2 {
   // ok above, word 'Record' is not used as an identifier by itself
   Integer variable = 2;
   // ok above, word 'var' is not used as an identifier by itself
-
   int open = 4; // violation, 'Name 'open' must match pattern'
   Object transitive = "transitive";
   // violation above, 'Name 'transitive' must match pattern'
-
   int openInt = 4;
   // ok above, word 'open' is not used as an identifier by itself
   Object transitiveObject = "transitiveObject";
