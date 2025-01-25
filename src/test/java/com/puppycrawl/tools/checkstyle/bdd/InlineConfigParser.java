@@ -833,7 +833,7 @@ public final class InlineConfigParser {
             final Object checkInstance = createCheckInstance(fullyQualifiedModuleName);
             final Object actualDefault;
             final Class<?> propertyType;
-            if (Objects.equals(key, "tokens")) {
+            if ("tokens".equals(key)) {
                 final Method getter = checkInstance.getClass().getMethod("getDefaultTokens");
                 actualDefault = getter.invoke(checkInstance);
                 propertyType = actualDefault.getClass();
@@ -993,11 +993,10 @@ public final class InlineConfigParser {
         return result;
     }
 
-    private static Object createCheckInstance(String className) throws ReflectiveOperationException {
-
-            final Class<?> checkClass = Class.forName(className);
-            return checkClass.getDeclaredConstructor().newInstance();
-
+    private static Object createCheckInstance(String className) throws
+            ReflectiveOperationException {
+        final Class<?> checkClass = Class.forName(className);
+        return checkClass.getDeclaredConstructor().newInstance();
     }
 
     private static String readPropertiesContent(int beginLineNo, List<String> lines) {
