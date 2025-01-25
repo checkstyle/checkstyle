@@ -1,15 +1,15 @@
 /* // violation, 'Using ' \/\/ violation\\nIllegalToken\\ntokens = COMMENT_CONTENT\\n\\n\\n' is not allowed'
 IllegalToken
-tokens = BLOCK_COMMENT_BEGIN
+tokens = COMMENT_CONTENT
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 
-/** violation, 'Using '* \/\/ violation\\n * Test for illegal tokens\\n ' is not allowed'
- * Test for illegal tokens
- */
+//violation, 'Using '* \/\/ violation\\n * Test for illegal tokens\\n ' is not allowed'
+
+
 
 public class InputIllegalTokensCheckCommentsContent
 {
@@ -35,11 +35,11 @@ public class InputIllegalTokensCheckCommentsContent
     public void methodWithLabels() {
         label:
         {
-            anotherLabel: /** violation, 'Using ' some comment href // violation \\n' is not allowed' */
+            anotherLabel: // violation, 'Using ' some comment href // violation \\n' is not allowed'
             do {
                 continue anotherLabel;
             } while (false);
-            break label; /** violation, 'Using 'some a href \/\/ violation' is not allowed' */
+            break label; // violation, 'Using 'some a href \/\/ violation' is not allowed'
         }
     }
 }
