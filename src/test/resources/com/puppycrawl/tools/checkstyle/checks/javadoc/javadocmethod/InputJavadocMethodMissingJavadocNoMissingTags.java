@@ -19,7 +19,7 @@ public class InputJavadocMethodMissingJavadocNoMissingTags {
      * @param number to return
      * @throws ThreadDeath sometimes
      */
-    int missingReturn(int number) throws ThreadDeath { // ok
+    int missingReturn(int number) throws ThreadDeath {
         return number;
     }
 
@@ -29,7 +29,7 @@ public class InputJavadocMethodMissingJavadocNoMissingTags {
      * @return number
      * @throws ThreadDeath sometimes
      */
-    int missingParam(int number) throws ThreadDeath { // ok
+    int missingParam(int number) throws ThreadDeath {
         return number;
     }
 
@@ -39,7 +39,7 @@ public class InputJavadocMethodMissingJavadocNoMissingTags {
      * @param number to return
      * @return number
      */
-    int missingThrows(int number) throws ThreadDeath { // ok
+    int missingThrows(int number) throws ThreadDeath {
         return number;
     }
 
@@ -48,7 +48,7 @@ public class InputJavadocMethodMissingJavadocNoMissingTags {
      *
      * @param number to return
      * @throws java.util.NoSuchElementException sometimes
-     */   // ok
+     */
     int missingReturnButInheritDocPresent(int number) throws java.util.NoSuchElementException {
         return number;
     }
@@ -60,7 +60,7 @@ public class InputJavadocMethodMissingJavadocNoMissingTags {
      * @return
      * @throws java.util.NoSuchElementException sometimes
      */
-    private int missingReturnInTheMiddle(int number) { // ok
+    private int missingReturnInTheMiddle(int number) {
         return number;
     }
 
@@ -70,7 +70,7 @@ public class InputJavadocMethodMissingJavadocNoMissingTags {
      * @param number to return
      * @return
      */
-    private int missingReturnAtTheEnd(int number) { // ok
+    private int missingReturnAtTheEnd(int number) {
         return number;
     }
 
@@ -81,7 +81,7 @@ public class InputJavadocMethodMissingJavadocNoMissingTags {
      * @return
      *
      */
-    private int missingReturnAtTheEndFollowedByEmptyLine(int number) { // ok
+    private int missingReturnAtTheEndFollowedByEmptyLine(int number) {
         return number;
     }
 }
