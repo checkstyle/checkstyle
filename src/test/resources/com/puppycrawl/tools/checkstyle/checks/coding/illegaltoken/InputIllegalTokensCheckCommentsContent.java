@@ -1,4 +1,4 @@
-/* // violation
+/*
 IllegalToken
 tokens = COMMENT_CONTENT
 
@@ -7,9 +7,12 @@ tokens = COMMENT_CONTENT
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 
-/** // violation
+/**
+ * // violation 10 lines above 'is not allowed'
+ * // violation 2 lines above 'is not allowed'
  * Test for illegal tokens
  */
+
 public class InputIllegalTokensCheckCommentsContent
 {
     public void methodWithPreviouslyIllegalTokens()
@@ -23,7 +26,6 @@ public class InputIllegalTokensCheckCommentsContent
                 break;
         }
     }
-
     public native void nativeMethod();
 
     public void methodWithLiterals()
@@ -35,11 +37,11 @@ public class InputIllegalTokensCheckCommentsContent
     public void methodWithLabels() {
         label:
         {
-            anotherLabel: // some comment href // violation
+            anotherLabel: // some comment href // violation, 'is not allowed'
             do {
                 continue anotherLabel;
             } while (false);
-            break label; // some a href // violation
+            break label; // some a href // violation, 'is not allowed'
         }
     }
 }
