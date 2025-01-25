@@ -80,6 +80,12 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
     /** Two backslashes to not duplicate strings. */
     private static final String TWO_BACKSLASHES = "\\\\";
 
+    /** A pattern for two backslashes. */
+    private static final Pattern A_SPACE_PATTERN = Pattern.compile(" ");
+
+    /** A pattern for two backslashes. */
+    private static final Pattern TWO_BACKSLASHES_PATTERN = Pattern.compile(TWO_BACKSLASHES);
+
     /** A pattern to match a file with a Windows drive letter. */
     private static final Pattern WINDOWS_DRIVE_LETTER_PATTERN =
             Pattern.compile("\\A[A-Z]:", Pattern.CASE_INSENSITIVE);
@@ -237,7 +243,10 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
      * @return the rendered URI for the given file name
      */
     private static String renderFileNameUri(final String fileName) {
-        String normalized = fileName.replaceAll(TWO_BACKSLASHES, "/").replaceAll(" ", "%20");
+        String normalized =
+                A_SPACE_PATTERN
+                        .matcher(TWO_BACKSLASHES_PATTERN.matcher(fileName).replaceAll("/"))
+                        .replaceAll("%20");
         if (WINDOWS_DRIVE_LETTER_PATTERN.matcher(normalized).find()) {
             normalized = '/' + normalized;
         }
