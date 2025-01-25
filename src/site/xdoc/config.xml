@@ -762,9 +762,9 @@
 
       <p>
         You can use the severity property to control the output of the
-        plain formatter for the <a href="cmdline.html">command line
-        tool</a> and the <a href="anttask.html">ANT task</a>. The plain
-        formatter does not report violations with severity level
+        all formatters for the <a href="cmdline.html#f">command line
+        tool</a> and the <a href="anttask.html">ANT task</a>.
+        All output formatters does not report violations with severity level
         <code>ignore</code>, and notes violations with
         severity level <code>warning</code>. For
         example, according to the following configuration fragment, the

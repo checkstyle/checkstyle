@@ -15,14 +15,21 @@ public class InputInnerAssignmentDemoBug1195047Comment3 {
         boolean bb;
         int i;
 
-        if (bb = false) {} // violation
-        for (i = 0; bb = false; i = i + 1) {} // violation
-        while (bb = false) {} // violation
-        if ((bb = false)) {} // violation
-        for (int j = 0; (bb = false); j += 1) {} // violation
-        while ((bb = false)) {} // violation
-        i = (bb = false) ? (b = 2) : (b += 1); // 3 violations
-        i = (b += 1) + (b -= 1); // 2 violations
-        do {i += 1;} while (bb = false); // violation
+        if (bb = false) {} // violation, 'Inner assignments should be avoided'
+        for (i = 0; bb = false; i = i + 1) {} // violation, 'Inner assignments should be avoided'
+        while (bb = false) {} // violation, 'Inner assignments should be avoided'
+        if ((bb = false)) {} // violation, 'Inner assignments should be avoided'
+        for (int j = 0; (bb = false); j += 1) {} // violation, 'Inner assignments should be avoided'
+        while ((bb = false)) {} // violation, 'Inner assignments should be avoided'
+        i = (bb = false) ? (b = 2) : (b += 1);
+        // 3 violations above:
+        //    'Inner assignments should be avoided'
+        //    'Inner assignments should be avoided'
+        //    'Inner assignments should be avoided'
+        i = (b += 1) + (b -= 1);
+        // 2 violations above:
+        //    'Inner assignments should be avoided'
+        //    'Inner assignments should be avoided'
+        do {i += 1;} while (bb = false); // violation, 'Inner assignments should be avoided'
     }
 }

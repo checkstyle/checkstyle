@@ -18,30 +18,30 @@ import java.util.List;
 public class Example1 {
   void foo() throws IOException {
     int a, b;
-    a = b = 5; // violation
-    a = b += 5; // violation
+    a = b = 5; // violation, 'Inner assignments should be avoided'
+    a = b += 5; // violation, 'Inner assignments should be avoided'
 
     a = 5;
     b = 5;
     a = 5; b = 5;
 
     double myDouble;
-    double[] doubleArray = new double[] {myDouble = 4.5, 15.5}; // violation
-
+    double[] doubleArray = new double[] {myDouble = 4.5, 15.5};
+    // violation above, 'Inner assignments should be avoided'
     String nameOne;
     List<String> myList = new ArrayList<String>();
-    myList.add(nameOne = "tom"); // violation
+    myList.add(nameOne = "tom"); // violation, 'Inner assignments should be avoided'
 
     for (int k = 0; k < 10; k = k + 2) {
         // some code
     }
 
     boolean someVal;
-    if (someVal = true) { // violation
+    if (someVal = true) { // violation, 'Inner assignments should be avoided'
         // some code
     }
 
-    while (someVal = false) {} // violation
+    while (someVal = false) {} // violation, 'Inner assignments should be avoided'
 
     InputStream is = new FileInputStream("textFile.txt");
     while ((b = is.read()) != -1) { // OK, this is a common idiom
@@ -51,7 +51,7 @@ public class Example1 {
 
   boolean testMethod() {
     boolean val;
-    return val = true; // violation
+    return val = true; // violation, 'Inner assignments should be avoided'
   }
 }
 // xdoc section -- end
