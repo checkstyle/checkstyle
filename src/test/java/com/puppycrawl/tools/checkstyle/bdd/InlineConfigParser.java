@@ -666,17 +666,17 @@ public final class InlineConfigParser {
      * HardCoded Default value for key = format.
      *
      * @param key the property name.
-     * @param inputFilePath the path to the file.
+     * @param fullyQualifiedModuleName the fully quanlified module name.
      * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
      *      parser requires giant if/else
      */
     // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
     // -@cs[JavaNCSS] splitting this method is not reasonable.
     // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
-    private static String hardCodedDefaultForFormat(String key, String inputFilePath) {
+    private static String hardCodedDefaultForFormat(String key, String fullyQualifiedModuleName) {
         if (!"format".equals(key)) {
             throw new IllegalStateException("Unable to validate default value for property '"
-                    + key + "' in " + inputFilePath);
+                    + key + "' in " + fullyQualifiedModuleName);
         }
 
         final Map<String, String> patterns = new HashMap<>();
@@ -716,10 +716,10 @@ public final class InlineConfigParser {
         patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck",
             "^[A-Z]$");
 
-        final String pattern = patterns.get(inputFilePath);
+        final String pattern = patterns.get(fullyQualifiedModuleName);
         if (pattern == null) {
             throw new IllegalStateException("Unable to validate default value for property '"
-            + key + "' in " + inputFilePath);
+            + key + "' in " + fullyQualifiedModuleName);
         }
         return pattern;
     }
@@ -729,13 +729,14 @@ public final class InlineConfigParser {
      *
      * @param key the property name.
      * @param defaultValue the specified default value in the file.
-     * @param inputFilePath the path to the file.
+     * @param fullyQualifiedModuleName the fully quanlified module name.
      * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
      */
     // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
     // -@cs[JavaNCSS] splitting this method is not reasonable.
     // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
-    private static void hardCodedDefault(String key, String inputFilePath, String defaultValue) {
+    private static void hardCodedDefault(String key, String fullyQualifiedModuleName,
+                                         String defaultValue) {
         final Map<String, String> commonDefaults = new HashMap<>();
         commonDefaults.put("fileExtensions", "all files");
         commonDefaults.put("violateExecutionOnNonTightHtml", "false");
@@ -792,22 +793,22 @@ public final class InlineConfigParser {
         final String actualDefaultStr;
         if ("option".equals(key)
                 && ("com.puppycrawl.tools.checkstyle"
-                + ".checks.whitespace.ParenPadCheck").equals(inputFilePath)) {
+                + ".checks.whitespace.ParenPadCheck").equals(fullyQualifiedModuleName)) {
             actualDefaultStr = "nospace";
         }
         else if ("format".equals(key)) {
-            actualDefaultStr = hardCodedDefaultForFormat(key, inputFilePath);
+            actualDefaultStr = hardCodedDefaultForFormat(key, fullyQualifiedModuleName);
         }
-        else if (pathDefaults.containsKey(inputFilePath)
-                && pathDefaults.get(inputFilePath).containsKey(key)) {
-            actualDefaultStr = pathDefaults.get(inputFilePath).get(key);
+        else if (pathDefaults.containsKey(fullyQualifiedModuleName)
+                && pathDefaults.get(fullyQualifiedModuleName).containsKey(key)) {
+            actualDefaultStr = pathDefaults.get(fullyQualifiedModuleName).get(key);
         }
         else if (commonDefaults.containsKey(key)) {
             actualDefaultStr = commonDefaults.get(key);
         }
         else {
             throw new IllegalStateException("Unable to validate default value for property '"
-            + key + "' in " + inputFilePath);
+            + key + "' in " + fullyQualifiedModuleName);
         }
         isDefaultValues(defaultValue, actualDefaultStr, String.class);
     }
@@ -817,8 +818,7 @@ public final class InlineConfigParser {
      *
      * @param key the property name.
      * @param defaultValue the specified default value in the file.
-     * @param checkInstance the specific check instance.
-     * @param inputFilePath the path to the file.
+     * @param fullyQualifiedModuleName the fully quanlified module name.
      * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
      *      parser requires giant if/else
      */
@@ -828,8 +828,8 @@ public final class InlineConfigParser {
     // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
     private static void defaultValidation(String key,
                                            String defaultValue,
-                                           Object checkInstance,
-                                           String inputFilePath) {
+                                           String fullyQualifiedModuleName) {
+        final Object checkInstance = createCheckInstance(fullyQualifiedModuleName);
         try {
             final Object actualDefault;
             final Class<?> type;
@@ -855,14 +855,14 @@ public final class InlineConfigParser {
             if (!isDefaultValues(defaultValue, actualDefaultStr, type)) {
                 // For now, just log mismatch instead of throwing exception
                 throw new IllegalArgumentException("Default value mismatch for " + key
-                        + " in " + inputFilePath + ": specified '" + defaultValue
+                        + " in " + fullyQualifiedModuleName + ": specified '" + defaultValue
                         + "' but actually is '" + actualDefaultStr + "'");
             }
 
         }
         catch (ReflectiveOperationException ex) {
 
-            hardCodedDefault(key, inputFilePath, defaultValue);
+            hardCodedDefault(key, fullyQualifiedModuleName, defaultValue);
 
         }
     }
@@ -1024,11 +1024,8 @@ public final class InlineConfigParser {
 
         final String propertyContent = readPropertiesContent(beginLineNo, lines);
 
-        // loadProperties
-        final Properties properties = new Properties();
-        properties.load(new StringReader(propertyContent));
+        final Map<Object, Object> properties = loadProperties(propertyContent);
 
-        // processProperties
         for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
             final String key = entry.getKey().toString();
             final String value = entry.getValue().toString();
@@ -1048,9 +1045,8 @@ public final class InlineConfigParser {
                 final String defaultValue = value.substring(value.indexOf(')') + 1);
                 final String fullyQualifiedModuleName =
                         getFullyQualifiedClassName(inputFilePath, moduleName);
-                final Object checkInstance = createCheckInstance(fullyQualifiedModuleName);
 
-                defaultValidation(key, defaultValue, checkInstance,
+                defaultValidation(key, defaultValue,
                         fullyQualifiedModuleName);
 
                 if (NULL_STRING.equals(defaultValue)) {
@@ -1341,5 +1337,11 @@ public final class InlineConfigParser {
             throw new CheckstyleException(
                     "Violation message should be specified on line " + lineNum);
         }
+    }
+
+    private static Map<Object, Object> loadProperties(String propertyContent) throws IOException {
+        final Properties properties = new Properties();
+        properties.load(new StringReader(propertyContent));
+        return properties;
     }
 }
