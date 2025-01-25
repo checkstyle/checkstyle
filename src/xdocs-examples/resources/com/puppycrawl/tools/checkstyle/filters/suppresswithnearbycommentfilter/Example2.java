@@ -6,10 +6,13 @@
       <property name="checkFormat" value=".*"/>
       <property name="influenceFormat" value="0"/>
     </module>
+    <module name="ConstantName"/>
   </module>
 </module>
 */
-
+package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
 // xdoc section -- start
-public static final int lowerCaseConstant; // CHECKSTYLE IGNORE THIS LINE
+public class Example2 {
+  public static final int lowerCaseConstant = 1; // CHECKSTYLE IGNORE THIS LINE
+}
 // xdoc section -- end
