@@ -7,15 +7,20 @@
       <property name="messageFormat" value="$1"/>
       <property name="influenceFormat" value="-1"/>
     </module>
+    <module name="IllegalCatch"/>
   </module>
 </module>
 */
-
+package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
 // xdoc section -- start
-. . .
-catch (RuntimeException re) {
-// OK to catch RuntimeException here
+public class Example3 {
+  public void doStuff() {
+    try {
+      // blah blah blah
+    }
+    catch(RuntimeException re) {
+      // OK to catch RuntimeException here
+    }
+  }
 }
-catch (Throwable th) { ... }
-. . .
 // xdoc section -- end
