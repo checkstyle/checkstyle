@@ -56,7 +56,7 @@ interface Inter2
     static void staticMethod(int cParam) { // violation
     }
 
-    private void privateMethod(int dParam) { // violation
+    private void privateMethod(int dParam, int eParam) { // 2 violations
     }
 }
 
@@ -115,5 +115,17 @@ enum Enum12 {
     {
         int var = 0;
         var = 1;
+    }
+}
+
+class ExceptionCatch {
+    {
+        try {
+        } catch (IllegalArgumentException e) { // violation
+        }
+
+        try {
+        } catch (IllegalArgumentException | NullPointerException e) {
+        }
     }
 }
