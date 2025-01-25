@@ -51,13 +51,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">
@@ -66,13 +66,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example3-config">
@@ -83,13 +83,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example4-config">
@@ -100,13 +100,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example5-config">
@@ -114,13 +114,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example5-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -130,13 +130,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example6.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example6-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example6.java"/>
           <param name="type" value="code"/>
         </macro>
         <p>
@@ -154,13 +154,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example7.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example7.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example7-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example7.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example7.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example8-config">
@@ -169,13 +169,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example8.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example8.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example8-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example8.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example8.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
