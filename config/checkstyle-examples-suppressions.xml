@@ -58,6 +58,14 @@
   <suppress id="discouragedRegexpInViolationMessage"
             files="regexponfilename[\\/]Example[24].*"/>
 
+  <!-- it prints user regexp -->
+  <suppress id="discouragedRegexpInViolationMessage"
+            files="regexponfilename[\\/]Example[24].*"/>
+
+  <!-- Suppress discouraged regex messages for avoidstarimport examples -->
+  <suppress id="discouragedRegexpInViolationMessage"
+    files="avoidstarimport[\\/]Example[1-6].java"/>
+
   <suppress checks="CommentsIndentation"
     files="singlespaceseparator[\\/]Example2.java"/>
 
