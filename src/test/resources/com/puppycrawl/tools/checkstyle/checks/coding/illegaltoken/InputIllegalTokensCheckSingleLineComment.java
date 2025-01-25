@@ -35,11 +35,11 @@ public class InputIllegalTokensCheckSingleLineComment
     public void methodWithLabels() {
         label:
         {
-            anotherLabel: // violation
+            anotherLabel: // violation, 'Using '\/\/' is not allowed'
             do {
                 continue anotherLabel;
             } while (false);
-            break label; // violation
+            break label; // violation, 'Using '\/\/' is not allowed'
         }
     }
 }
