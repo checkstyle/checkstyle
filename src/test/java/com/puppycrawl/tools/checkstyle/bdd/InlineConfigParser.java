@@ -817,7 +817,7 @@ public final class InlineConfigParser {
      * Validate default value.
      *
      * @param key the property name.
-     * @param defaultValue the specified default value in the file.
+     * @param propertyDefaultValue the specified default value in the file.
      * @param fullyQualifiedModuleName the fully qualified module name.
      * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
      *      parser requires giant if/else
@@ -827,23 +827,23 @@ public final class InlineConfigParser {
     // -@cs[JavaNCSS] splitting this method is not reasonable.
     // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
     private static void defaultValidation(String key,
-                                           String defaultValue,
+                                           String propertyDefaultValue,
                                            String fullyQualifiedModuleName) {
-        final Object checkInstance = createCheckInstance(fullyQualifiedModuleName);
         try {
+            final Object checkInstance = createCheckInstance(fullyQualifiedModuleName);
             final Object actualDefault;
-            final Class<?> type;
+            final Class<?> propertyType;
             if (Objects.equals(key, "tokens")) {
                 final Method getter = checkInstance.getClass().getMethod("getDefaultTokens");
                 actualDefault = getter.invoke(checkInstance);
-                type = actualDefault.getClass();
+                propertyType = actualDefault.getClass();
             }
 
             else {
                 final Field field = checkInstance.getClass().getDeclaredField(key);
                 field.setAccessible(true);
                 actualDefault = field.get(checkInstance);
-                type = field.getType();
+                propertyType = field.getType();
             }
             final String actualDefaultStr;
             if (actualDefault == null) {
@@ -852,17 +852,16 @@ public final class InlineConfigParser {
             else {
                 actualDefaultStr = convertDefaultValueToString(actualDefault, key);
             }
-            if (!isDefaultValues(defaultValue, actualDefaultStr, type)) {
-                // For now, just log mismatch instead of throwing exception
+            if (!isDefaultValues(propertyDefaultValue, actualDefaultStr, propertyType)) {
                 throw new IllegalArgumentException("Default value mismatch for " + key
-                        + " in " + fullyQualifiedModuleName + ": specified '" + defaultValue
+                        + " in " + fullyQualifiedModuleName + ": specified '" + propertyDefaultValue
                         + "' but actually is '" + actualDefaultStr + "'");
             }
 
         }
         catch (ReflectiveOperationException ex) {
 
-            hardCodedDefault(key, fullyQualifiedModuleName, defaultValue);
+            hardCodedDefault(key, fullyQualifiedModuleName, propertyDefaultValue);
 
         }
     }
@@ -994,14 +993,11 @@ public final class InlineConfigParser {
         return result;
     }
 
-    private static Object createCheckInstance(String className) {
-        try {
+    private static Object createCheckInstance(String className) throws ReflectiveOperationException {
+
             final Class<?> checkClass = Class.forName(className);
             return checkClass.getDeclaredConstructor().newInstance();
-        }
-        catch (ReflectiveOperationException ex) {
-            throw new IllegalStateException("Unable to create check instance " + className, ex);
-        }
+
     }
 
     private static String readPropertiesContent(int beginLineNo, List<String> lines) {
@@ -1023,7 +1019,6 @@ public final class InlineConfigParser {
             throws IOException, CheckstyleException {
 
         final String propertyContent = readPropertiesContent(beginLineNo, lines);
-
         final Map<Object, Object> properties = loadProperties(propertyContent);
 
         for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
@@ -1046,8 +1041,7 @@ public final class InlineConfigParser {
                 final String fullyQualifiedModuleName =
                         getFullyQualifiedClassName(inputFilePath, moduleName);
 
-                defaultValidation(key, defaultValue,
-                        fullyQualifiedModuleName);
+                defaultValidation(key, defaultValue, fullyQualifiedModuleName);
 
                 if (NULL_STRING.equals(defaultValue)) {
                     inputConfigBuilder.addDefaultProperty(key, null);
@@ -1055,7 +1049,6 @@ public final class InlineConfigParser {
                 else {
                     inputConfigBuilder.addDefaultProperty(key, defaultValue);
                 }
-
             }
             else {
                 inputConfigBuilder.addNonDefaultProperty(key, value);
