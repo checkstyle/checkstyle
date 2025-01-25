@@ -666,7 +666,7 @@ public final class InlineConfigParser {
      * HardCoded Default value for key = format.
      *
      * @param key the property name.
-     * @param fullyQualifiedModuleName the fully quanlified module name.
+     * @param fullyQualifiedModuleName the fully qualified module name.
      * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
      *      parser requires giant if/else
      */
@@ -729,7 +729,7 @@ public final class InlineConfigParser {
      *
      * @param key the property name.
      * @param defaultValue the specified default value in the file.
-     * @param fullyQualifiedModuleName the fully quanlified module name.
+     * @param fullyQualifiedModuleName the fully qualified module name.
      * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
      */
     // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
@@ -818,7 +818,7 @@ public final class InlineConfigParser {
      *
      * @param key the property name.
      * @param defaultValue the specified default value in the file.
-     * @param fullyQualifiedModuleName the fully quanlified module name.
+     * @param fullyQualifiedModuleName the fully qualified module name.
      * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
      *      parser requires giant if/else
      */
