@@ -29,6 +29,6 @@ public class InputJavadocBlockTagLocationMultilineCodeBlock {
      * Default value is {&#64;code &#64;author me
      * </pre>
      */
-    public int field; // ok
+    public int field;
 
 }
