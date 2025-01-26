@@ -61,7 +61,11 @@
     <property name="lineRange" value="1"/>
     <property name="idPattern" value="lineLengthXml"/>
   </module>
-
+  <module name="SuppressWithNearbyTextFilter">
+    <property name="nearbyTextPattern" value="violation above 'Trailing whitespace'"/>
+    <property name="lineRange" value="-1"/>
+    <property name="checkPattern" value="RegexpSingleline"/>
+  </module>
   <!-- Headers -->
   <module name="Header">
     <property name="headerFile" value="${checkstyle.header.file}"/>

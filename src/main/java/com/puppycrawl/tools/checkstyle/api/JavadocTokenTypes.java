@@ -948,12 +948,13 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     * JAVADOC_TAG -&gt JAVADOC_TAG
-     *  |--SERIAL_LITERAL -&gt @serial
-     *  |--WS -&gt
-     *  |--LITERAL_EXCLUDE -&gt exclude
-     *  |--NEWLINE -&gt \n
-     *  `--WS -&gt
+     *   JAVADOC_TAG -> JAVADOC_TAG
+     *    |--SERIAL_LITERAL -> @serial
+     *    |--WS ->
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        |--TEXT -> serialized company name
+     *        |--NEWLINE -> \r\n
+     *        `--TEXT ->
      * }
      * </pre>
      *
@@ -1328,13 +1329,15 @@ public final class JavadocTokenTypes {
      * <pre>{@code &#64;param T The bar.}</pre>
      * <b>Tree</b>
      * <pre>{@code
-     *   |--JAVADOC_TAG[4x3] : [@param T The bar.]
-     *       |--PARAM_LITERAL[4x3] : [@param]
-     *       |--WS[4x9] : [ ]
-     *       |--PARAMETER_NAME[4x10] : [T]
-     *       |--WS[4x11] : [ ]
-     *       |--DESCRIPTION[4x12] : [The bar.]
-     *           |--TEXT[4x12] : [The bar.]
+     * JAVADOC_TAG -&gt JAVADOC_TAG
+     *  |--PARAM_LITERAL -&gt @param
+     *  |--WS -&gt
+     *  |--PARAMETER_NAME -&gt T
+     *  |--WS -&gt
+     *  `--DESCRIPTION -&gt DESCRIPTION
+     *      |--TEXT -&gt The bar.
+     *      |--NEWLINE -&gt \r\n
+     *      `--TEXT -&gt
      * }</pre>
      */
 
@@ -1362,14 +1365,15 @@ public final class JavadocTokenTypes {
      * <pre><code>{&#64;link String}</code></pre>
      * <b>Tree:</b>
      * <pre>
-     * <code> |--JAVADOC_INLINE_TAG[4x3] : [&#64;link String}]
-     *        |--JAVADOC_INLINE_TAG_START[4x3] : [{]
-     *        |--LINK_LITERAL[4x4] : [@link]
-     *        |--WS[4x9] : [ ]
-     *        |--REFERENCE[4x10] : [String]
-     *            |--CLASS[4x10] : [String]
-     *        |--JAVADOC_INLINE_TAG_END[4x16] : [}]
-     * </code>
+     * {@code
+     *  JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *      |--JAVADOC_INLINE_TAG_START -> {
+     *      |--LINK_LITERAL -> @link
+     *      |--WS ->
+     *      |--REFERENCE -> REFERENCE
+     *          `--PACKAGE_CLASS -> String
+     *      `--JAVADOC_INLINE_TAG_END -> }
+     * }
      * </pre>
      *
      * @noinspection HtmlTagCanBeJavadocTag

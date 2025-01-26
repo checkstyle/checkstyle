@@ -12,7 +12,11 @@
   <module name="SuppressionFilter">
     <property name="file" value="${checkstyle.examples-suppressions.file}"/>
   </module>
-
+  <module name="SuppressWithNearbyTextFilter">
+    <property name="nearbyTextPattern" value="violation above 'Trailing whitespace'"/>
+    <property name="lineRange" value="-1"/>
+    <property name="checkPattern" value="RegexpSingleline"/>
+  </module>
   <!-- Regexp -->
   <module name="RegexpOnFilename">
     <property name="id" value="exampleFileName"/>

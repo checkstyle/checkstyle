@@ -1,3 +1,7 @@
+body, td, select, input, li {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
 h1 {
   text-transform: capitalize;
   font-size: x-large;
@@ -23,6 +27,16 @@ h4 {
   background-color: #c0c0c0;
   color: #000000;
   border: ridge;
+}
+
+.container-fluid {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+section p {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 #bannerLeft img {
@@ -77,8 +91,14 @@ section {
   position: relative;
 }
 
-div, p, td, table td, th, table th, li, pre, #breadcrumbs span, .sidebar-nav h5,
-.sidebar-nav li, #footer, div.tip b, .releaseDate, .breadcrumb {
+div, p, td, table td, th, table th, li, pre, #breadcrumbs span,
+#footer, div.tip b, .releaseDate, .breadcrumb {
+  font-size: 17px;
+  line-height: 1.625;
+}
+
+.sidebar-nav h5,
+.sidebar-nav li {
   font-size: 15px;
 }
 
@@ -88,6 +108,10 @@ div, p, td, table td, th, table th, li, pre, #breadcrumbs span, .sidebar-nav h5,
 
 .sidebar-nav {
   padding: 8px 4px 0 12px;
+}
+
+.nav-list {
+  padding-left: 7px;
 }
 
 img[src="images/anchor.png"] {
@@ -138,7 +162,7 @@ code {
 }
 
 #bodyColumn {
-  margin-left: 297px;
+  margin-left: 286px;
 }
 
 #leftColumn {
@@ -243,8 +267,7 @@ span.wrapper.inline {
   }
 
   .breadcrumb {
-    padding: 5px;
-    padding-right: 10px;
+    padding: 5px 10px 5px 5px;
     display: flex;
     align-items: center;
     background-color: transparent;
@@ -259,8 +282,13 @@ span.wrapper.inline {
     box-shadow: 0 5px 10px -3px rgba(0,0,0,0.5);
   }
 
+  .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   #bodyColumn {
-    margin: 1.5em;
+    margin: 0.5em;
   }
 
   #bannerRight {
@@ -278,13 +306,13 @@ span.wrapper.inline {
     word-break: break-word;
   }
 
-   table tr {
+  table tr {
     display: block;
     margin-bottom: 1rem;
   }
 
-   table th,
-   table td {
+  table th,
+  table td {
     display: block;
     text-align: left;
   }
