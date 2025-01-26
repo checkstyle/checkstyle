@@ -6,6 +6,9 @@
 
 <suppressions>
 
+  <!-- don't validate generated files -->
+  <suppress id="lineLength" files="releasenotes.xml"/>
+
   <!-- Input files for NewlineAtEndOfFileCheckTest, intentional no new line at the end. -->
   <suppress checks="NewlineAtEndOfFile"
              files="[\\/]test[\\/].*[\\/]InputNewlineAtEndOfFile.*\.(java|txt)"/>
