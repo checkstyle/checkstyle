@@ -539,6 +539,8 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck");
         moduleMappings.put("MagicNumber",
                 "com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck");
+        moduleMappings.put("ClassDataAbstractionCoupling",
+                "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck");
 
         String fullyQualifiedClassName;
         if (moduleMappings.containsKey(moduleName)) {

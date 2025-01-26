@@ -16,7 +16,7 @@ public class InputJavadocMethod_1379666 {
     /**
      * @throws BadStringFormat some text
      */
-    public void ok() throws BadStringFormat { // ok
+    public void ok() throws BadStringFormat {
     }
 
 
@@ -24,25 +24,25 @@ public class InputJavadocMethod_1379666 {
      * Some comment.
      * @throws java.lang.Exception some text
      */
-    public void error1() // ok
+    public void error1()
         throws java.lang.Exception {
     }
 
     /**
      * @throws InputJavadocMethod_1379666.BadStringFormat some text
      */
-    public void error2() throws InputJavadocMethod_1379666.BadStringFormat { // ok
+    public void error2() throws InputJavadocMethod_1379666.BadStringFormat {
     }
 
     /**
      * Some exception class.
      */
-    public static class BadStringFormat extends Exception { // ok
+    public static class BadStringFormat extends Exception {
         /**
          * Some comment.
          * @param s string.
          */
-        BadStringFormat(String s) { // ok
+        BadStringFormat(String s) {
             super(s);
         }
     }

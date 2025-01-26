@@ -19,16 +19,23 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/regexp/regexp";
+    }
+
+    @Test
+    public void testExample0() throws Exception {
+        final String[] expected = {
+
+        };
+
+        verifyWithInlineConfigParser(getPath("Example0.java"), expected);
     }
 
     @Test
@@ -37,16 +44,16 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "1: Required pattern '// This code is copyrighted\\.' missing in file.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
@@ -55,70 +62,73 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+            "21: Found duplicate pattern '// This code is copyrighted\\n// \\(c\\) MyCompany'.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-
+            "1: Required pattern 'Copyright' missing in file.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-
+            "17: Line matches the illegal pattern 'System\\.out\\.println'.",
+            "20: Line matches the illegal pattern 'System\\.out\\.println'.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 
     @Test
     public void testExample7() throws Exception {
         final String[] expected = {
-
+            "18: Line matches the illegal pattern 'System\\.out\\.println'.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 
     @Test
     public void testExample8() throws Exception {
         final String[] expected = {
-
+            "17: Line matches the illegal pattern 'Trailing whitespace'.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example8.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }
 
     @Test
     public void testExample9() throws Exception {
         final String[] expected = {
-
+            "17: Line matches the illegal pattern '(?i)fix me\\.'.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example9.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
     }
 
     @Test
     public void testExample10() throws Exception {
         final String[] expected = {
-
+            "18: Line matches the illegal pattern"
+                + " 'The error limit has been exceeded, the check is aborting,"
+                + " there may be more unreported errors.(?i)fix me\\.'.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example10.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example10.java"), expected);
     }
 
     @Test
@@ -127,24 +137,6 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example11.txt"), expected);
-    }
-
-    @Test
-    public void testExample12() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example12.txt"), expected);
-    }
-
-    @Test
-    public void testExample13() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example13.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example11.java"), expected);
     }
 }
