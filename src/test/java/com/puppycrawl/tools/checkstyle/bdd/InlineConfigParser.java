@@ -727,7 +727,7 @@ public final class InlineConfigParser {
     /**
      * HardCoded Default value.
      *
-     * @param key the property name.
+     * @param propertyName the property name.
      * @param defaultValue the specified default value in the file.
      * @param fullyQualifiedModuleName the fully qualified module name.
      * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
@@ -735,7 +735,7 @@ public final class InlineConfigParser {
     // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
     // -@cs[JavaNCSS] splitting this method is not reasonable.
     // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
-    private static void hardCodedDefault(String key, String fullyQualifiedModuleName,
+    private static void hardCodedDefault(String propertyName, String fullyQualifiedModuleName,
                                          String defaultValue) {
         final Map<String, String> commonDefaults = new HashMap<>();
         commonDefaults.put("fileExtensions", "all files");
@@ -791,24 +791,24 @@ public final class InlineConfigParser {
                     + " THROWS_LITERAL, EXCEPTION_LITERAL, DEPRECATED_LITERAL"));
 
         final String actualDefaultStr;
-        if ("option".equals(key)
+        if ("option".equals(propertyName)
                 && ("com.puppycrawl.tools.checkstyle"
                 + ".checks.whitespace.ParenPadCheck").equals(fullyQualifiedModuleName)) {
             actualDefaultStr = "nospace";
         }
-        else if ("format".equals(key)) {
-            actualDefaultStr = hardCodedDefaultForFormat(key, fullyQualifiedModuleName);
+        else if ("format".equals(propertyName)) {
+            actualDefaultStr = hardCodedDefaultForFormat(propertyName, fullyQualifiedModuleName);
         }
         else if (pathDefaults.containsKey(fullyQualifiedModuleName)
-                && pathDefaults.get(fullyQualifiedModuleName).containsKey(key)) {
-            actualDefaultStr = pathDefaults.get(fullyQualifiedModuleName).get(key);
+                && pathDefaults.get(fullyQualifiedModuleName).containsKey(propertyName)) {
+            actualDefaultStr = pathDefaults.get(fullyQualifiedModuleName).get(propertyName);
         }
-        else if (commonDefaults.containsKey(key)) {
-            actualDefaultStr = commonDefaults.get(key);
+        else if (commonDefaults.containsKey(propertyName)) {
+            actualDefaultStr = commonDefaults.get(propertyName);
         }
         else {
             throw new IllegalStateException("Unable to validate default value for property '"
-            + key + "' in " + fullyQualifiedModuleName);
+            + propertyName + "' in " + fullyQualifiedModuleName);
         }
         isDefaultValues(defaultValue, actualDefaultStr, String.class);
     }
@@ -816,7 +816,7 @@ public final class InlineConfigParser {
     /**
      * Validate default value.
      *
-     * @param key the property name.
+     * @param propertyName the property name.
      * @param propertyDefaultValue the specified default value in the file.
      * @param fullyQualifiedModuleName the fully qualified module name.
      * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
@@ -826,21 +826,21 @@ public final class InlineConfigParser {
     // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
     // -@cs[JavaNCSS] splitting this method is not reasonable.
     // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
-    private static void defaultValidation(String key,
+    private static void defaultValidation(String propertyName,
                                            String propertyDefaultValue,
                                            String fullyQualifiedModuleName) {
         try {
             final Object checkInstance = createCheckInstance(fullyQualifiedModuleName);
             final Object actualDefault;
             final Class<?> propertyType;
-            if ("tokens".equals(key)) {
+            if ("tokens".equals(propertyName)) {
                 final Method getter = checkInstance.getClass().getMethod("getDefaultTokens");
                 actualDefault = getter.invoke(checkInstance);
                 propertyType = actualDefault.getClass();
             }
 
             else {
-                final Field field = checkInstance.getClass().getDeclaredField(key);
+                final Field field = checkInstance.getClass().getDeclaredField(propertyName);
                 field.setAccessible(true);
                 actualDefault = field.get(checkInstance);
                 propertyType = field.getType();
@@ -850,10 +850,10 @@ public final class InlineConfigParser {
                 actualDefaultStr = NULL_STRING;
             }
             else {
-                actualDefaultStr = convertDefaultValueToString(actualDefault, key);
+                actualDefaultStr = convertDefaultValueToString(actualDefault, propertyName);
             }
             if (!isDefaultValues(propertyDefaultValue, actualDefaultStr, propertyType)) {
-                throw new IllegalArgumentException("Default value mismatch for " + key
+                throw new IllegalArgumentException("Default value mismatch for " + propertyName
                         + " in " + fullyQualifiedModuleName + ": specified '" + propertyDefaultValue
                         + "' but actually is '" + actualDefaultStr + "'");
             }
@@ -861,7 +861,7 @@ public final class InlineConfigParser {
         }
         catch (ReflectiveOperationException ex) {
 
-            hardCodedDefault(key, fullyQualifiedModuleName, propertyDefaultValue);
+            hardCodedDefault(propertyName, fullyQualifiedModuleName, propertyDefaultValue);
 
         }
     }
@@ -874,7 +874,7 @@ public final class InlineConfigParser {
         return actualSet.containsAll(specifiedSet);
     }
 
-    private static String convertDefaultValueToString(Object value, String key) {
+    private static String convertDefaultValueToString(Object value, String propertyName) {
         final String defaultStr;
         if (value == null) {
             defaultStr = handleNullValue();
@@ -883,7 +883,7 @@ public final class InlineConfigParser {
             defaultStr = handleStringValue((String) value);
         }
         else if (value.getClass().isArray()) {
-            defaultStr = handleArrayValue(value, key);
+            defaultStr = handleArrayValue(value, propertyName);
         }
         else if (value instanceof BitSet) {
             defaultStr = handleBitSetValue((BitSet) value);
@@ -912,9 +912,9 @@ public final class InlineConfigParser {
         return str;
     }
 
-    private static String handleArrayValue(Object value, String key) {
+    private static String handleArrayValue(Object value, String propertyName) {
         String result = convertArrayValue(value);
-        if (Objects.equals(key, "tokens") && value instanceof int[]) {
+        if (Objects.equals(propertyName, "tokens") && value instanceof int[]) {
             final int[] arr = (int[]) value;
             final List<String> tokenNames = new ArrayList<>();
             for (int index : arr) {
