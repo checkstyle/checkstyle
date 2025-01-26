@@ -44,7 +44,9 @@
           </li>
           <li>
             update JavadocTokenTypes.java to new format of AST print.
-            Author: Ahil Ahmed, Devang Gupta, smita_1078, Aryan Rana, Velavan5, ElinaZoldnere, Palash Chitnavis, andrey Ivanov, souvikrajsingh, aboro-code, Harsh-Agrawal96, Praveen Yadahalli, malakelbanna
+            Author: Ahil Ahmed, Devang Gupta, smita_1078, Aryan Rana, Velavan5, ElinaZoldnere,
+            Palash Chitnavis, andrey Ivanov, souvikrajsingh, aboro-code, Harsh-Agrawal96,
+            Praveen Yadahalli, malakelbanna
             <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
           </li>
           <li>
