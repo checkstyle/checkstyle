@@ -29,6 +29,16 @@ h4 {
   border: ridge;
 }
 
+.container-fluid {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+section p {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 #bannerLeft img {
   float:left;
   position: relative;
@@ -152,7 +162,7 @@ code {
 }
 
 #bodyColumn {
-  margin-left: 297px;
+  margin-left: 286px;
 }
 
 #leftColumn {
@@ -257,8 +267,7 @@ span.wrapper.inline {
   }
 
   .breadcrumb {
-    padding: 5px;
-    padding-right: 10px;
+    padding: 5px 10px 5px 5px;
     display: flex;
     align-items: center;
     background-color: transparent;
@@ -273,8 +282,13 @@ span.wrapper.inline {
     box-shadow: 0 5px 10px -3px rgba(0,0,0,0.5);
   }
 
+  .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   #bodyColumn {
-    margin: 1.5em;
+    margin: 0.5em;
   }
 
   #bannerRight {
@@ -292,13 +306,13 @@ span.wrapper.inline {
     word-break: break-word;
   }
 
-   table tr {
+  table tr {
     display: block;
     margin-bottom: 1rem;
   }
 
-   table th,
-   table td {
+  table th,
+  table td {
     display: block;
     text-align: left;
   }
