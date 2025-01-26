@@ -133,7 +133,6 @@ code {
 }
 
 .prettyprint {
-  padding: 1em !important;
   overflow: auto;
   white-space: nowrap;
 }
