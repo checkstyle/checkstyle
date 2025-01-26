@@ -79,7 +79,6 @@ function setBodyColumnMargin() {
 
     // If in mobile view use margin as defined in site.css
     if (window.innerWidth < 823) {
-        bodyColumn.style.marginLeft = "1.5em";
         if (!document.querySelector("#hamburger")) {
             setCollapsableMenuButton();
         }
@@ -88,7 +87,7 @@ function setBodyColumnMargin() {
 
     // Else calculate margin based on left column width
     const leftColumnWidth = leftColumn.offsetWidth;
-    bodyColumn.style.marginLeft = `${leftColumnWidth + 27}px`;
+    bodyColumn.style.marginLeft = `${leftColumnWidth + 15}px`;
 }
 
 function setCollapsableMenuButton() {
