@@ -730,7 +730,7 @@ public final class InlineConfigParser {
      * HardCoded Default value.
      *
      * @param propertyName the property name.
-     * @param defaultValue the specified default value in the file.
+     * @param propertyDefaultValue the specified default value in the file.
      * @param fullyQualifiedModuleName the fully qualified module name.
      * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
      */
@@ -738,7 +738,7 @@ public final class InlineConfigParser {
     // -@cs[JavaNCSS] splitting this method is not reasonable.
     // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
     private static void hardCodedDefault(String propertyName, String fullyQualifiedModuleName,
-                                         String defaultValue) {
+                                         String propertyDefaultValue) {
         final Map<String, String> commonDefaults = new HashMap<>();
         commonDefaults.put("fileExtensions", "all files");
         commonDefaults.put("violateExecutionOnNonTightHtml", "false");
@@ -812,7 +812,7 @@ public final class InlineConfigParser {
             throw new IllegalStateException("Unable to validate default value for property '"
             + propertyName + "' in " + fullyQualifiedModuleName);
         }
-        isDefaultValues(defaultValue, actualDefaultStr, String.class);
+        isDefaultValues(propertyDefaultValue, actualDefaultStr, String.class);
     }
 
     /**
@@ -945,25 +945,25 @@ public final class InlineConfigParser {
     /**
      * Validate default value.
      *
-     * @param specifiedDefault the specified default value in the file.
+     * @param propertyDefaultValue the specified default value in the file.
      * @param actualDefault the actual default value
      * @param fieldType the data type of default value.
      * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
      *      parser requires giant if/else
      */
     // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
-    private static boolean isDefaultValues(final String specifiedDefault,
+    private static boolean isDefaultValues(final String propertyDefaultValue,
         final String actualDefault,
         final Class<?> fieldType) {
         boolean result;
 
-        if (NULL_STRING.equals(specifiedDefault)) {
+        if (NULL_STRING.equals(propertyDefaultValue)) {
             result = NULL_STRING.equals(actualDefault);
         }
         else if (NULL_STRING.equals(actualDefault)) {
-            result = NULL_STRING.equals(specifiedDefault)
-                || specifiedDefault.isEmpty()
-                || "null".equals(specifiedDefault);
+            result = NULL_STRING.equals(propertyDefaultValue)
+                || propertyDefaultValue.isEmpty()
+                || "null".equals(propertyDefaultValue);
         }
         else if (Number.class.isAssignableFrom(fieldType)
             || fieldType.equals(int.class)
@@ -971,7 +971,7 @@ public final class InlineConfigParser {
             || fieldType.equals(long.class)
             || fieldType.equals(float.class)) {
             try {
-                final BigDecimal specified = new BigDecimal(specifiedDefault);
+                final BigDecimal specified = new BigDecimal(propertyDefaultValue);
                 final BigDecimal actual = new BigDecimal(actualDefault);
                 result = specified.compareTo(actual) == 0;
             }
@@ -982,14 +982,14 @@ public final class InlineConfigParser {
         else if (fieldType.isArray()
             || Collection.class.isAssignableFrom(fieldType)
             || BitSet.class.isAssignableFrom(fieldType)) {
-            result = isCollectionValues(specifiedDefault, actualDefault);
+            result = isCollectionValues(propertyDefaultValue, actualDefault);
         }
         else {
             if (fieldType.isEnum() || fieldType.isLocalClass()) {
-                result = specifiedDefault.equalsIgnoreCase(actualDefault);
+                result = propertyDefaultValue.equalsIgnoreCase(actualDefault);
             }
             else {
-                result = specifiedDefault.equals(actualDefault);
+                result = propertyDefaultValue.equals(actualDefault);
             }
         }
         return result;
