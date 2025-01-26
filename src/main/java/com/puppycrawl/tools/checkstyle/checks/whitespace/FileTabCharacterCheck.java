@@ -43,6 +43,10 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * when the commit messages get sent to a mailing list, they are almost impossible to
  * read if you use tabs.
  * </li>
+ * <li>
+ * When the {@code FileTabCharacter} check is used with the default configuration,
+ * only the first instance of a tab character is reported.
+ * </li>
  * </ul>
  * <ul>
  * <li>
