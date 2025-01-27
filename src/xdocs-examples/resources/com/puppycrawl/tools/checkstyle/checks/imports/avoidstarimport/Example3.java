@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports.avoidstarimport;
 // xdoc section -- start
 import java.util.Scanner;
 import java.io.*;
-import static java.lang.Math.*;   // violation
+import static java.lang.Math.*; // violation, 'form of import should be avoided.'
 import java.util.*;
 import java.net.*;
 // xdoc section -- end
