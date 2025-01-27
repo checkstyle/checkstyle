@@ -217,7 +217,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck",
