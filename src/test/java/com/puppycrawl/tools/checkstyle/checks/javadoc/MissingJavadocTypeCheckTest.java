@@ -227,19 +227,28 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testExcludeScope() throws Exception {
+    public void testMissingJavadocTypeNoJavadoc3One() throws Exception {
         final String[] expected = {
             "37:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "49:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "62:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "73:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "85:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "97:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "109:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "121:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMissingJavadocTypeNoJavadoc3.java"),
+                getPath("InputMissingJavadocTypeNoJavadoc3One.java"),
+               expected);
+    }
+
+    @Test
+    public void testMissingJavadocTypeNoJavadoc3Two() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "26:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "38:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "50:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "62:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "74:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMissingJavadocTypeNoJavadoc3Two.java"),
                expected);
     }
 
