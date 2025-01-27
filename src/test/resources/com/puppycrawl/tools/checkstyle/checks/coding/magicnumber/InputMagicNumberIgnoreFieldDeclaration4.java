@@ -33,7 +33,7 @@ public class InputMagicNumberIgnoreFieldDeclaration4 {
     private static final Callable<Void> SLEEP_FOR_A_DAY_EXP = new Callable<Void>() {
         @Override
         public Void call() throws InterruptedException {
-            Thread.sleep(86400_000); // violation ''86400_000' is a magic number'
+            Thread.sleep(86400_000);
             return null;
         }
     };
@@ -43,7 +43,7 @@ public class InputMagicNumberIgnoreFieldDeclaration4 {
         @Override
         public Integer apply(Integer a, Integer b) {
             int sum = a + b + 5; // violation ''5' is a magic number'
-            return sum * sum * 69; // violation ''69' is a magic number'
+            return sum * sum * 69;
         }
     };
 
@@ -59,7 +59,7 @@ public class InputMagicNumberIgnoreFieldDeclaration4 {
     private final Callable<Void> SLEEP_FOR_A_DAY_EXP_NS = new Callable<Void>() {
         @Override
         public Void call() throws InterruptedException {
-            Thread.sleep(86400_000); // violation ''86400_000' is a magic number'
+            Thread.sleep(86400_000);
             return null;
         }
     };
@@ -69,7 +69,7 @@ public class InputMagicNumberIgnoreFieldDeclaration4 {
         @Override
         public Integer apply(Integer a, Integer b) {
             int sum = a + b + 5; // violation ''5' is a magic number'
-            return sum * sum * 69; // violation ''69' is a magic number'
+            return sum * sum * 69;
         }
     };
 

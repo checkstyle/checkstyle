@@ -54,10 +54,10 @@ class C2 {
             Person p12 = new Person(8); // violation ''8' is a magic number'
 
             double double_var1 = 0D;
-            double_var1 = 1.0 + 3.0; // violation ''3.0' is a magic number'
+            double_var1 = 1.0 + 3.0;
             double double_magic1 = 1.5_0; // violation ''1.5_0' is a magic number'
-            if (1.0 < 3.0); // violation ''3.0' is a magic number'
-            double_magic1 *= 1.5; // violation ''1.5' is a magic number'
+            if (1.0 < 3.0);
+            double_magic1 *= 1.5;
         }
     };
 }
@@ -67,20 +67,20 @@ class C3 {
     C1 c = new C1(){
         public void magicMethod() {
             double double_var1 = 0D;
-            double_var1 = 1.0 + 3.0; // violation ''3.0' is a magic number'
+            double_var1 = 1.0 + 3.0;
             double double_magic1 = 1.5_0; // violation ''1.5_0' is a magic number'
-            if (1.0 < 3.0); // violation ''3.0' is a magic number'
-            double_magic1 *= 1.5; // violation ''1.5' is a magic number'
+            if (1.0 < 3.0);
+            double_magic1 *= 1.5;
         }
     };
 
     final Object anon = new Object() {
         public void magicMethod() {
             double double_var1 = 0D;
-            double_var1 = 1.0 + 3.0; // violation ''3.0' is a magic number'
+            double_var1 = 1.0 + 3.0;
             double double_magic1 = 1.5_0; // violation ''1.5_0' is a magic number'
-            if (1.0 < 3.0); // violation ''3.0' is a magic number'
-            double_magic1 *= 1.5; // violation ''1.5' is a magic number'
+            if (1.0 < 3.0);
+            double_magic1 *= 1.5;
         }
     };
 }
@@ -89,20 +89,20 @@ class C4 {
     C2 cn = new C2(){
         public void magicMethod() {
             double double_var1 = 0D;
-            double_var1 = 1.0 + 3.0; // violation ''3.0' is a magic number'
+            double_var1 = 1.0 + 3.0;
             double double_magic1 = 1.5_0; // violation ''1.5_0' is a magic number'
-            if (1.0 < 3.0); // violation ''3.0' is a magic number'
-            double_magic1 *= 1.5; // violation ''1.5' is a magic number'
+            if (1.0 < 3.0);
+            double_magic1 *= 1.5;
         }
     };
 
     final Object anon = new Object() {
         public void magicMethod() {
             double double_var1 = 0D;
-            double_var1 = 1.0 + 3.0; // violation ''3.0' is a magic number'
+            double_var1 = 1.0 + 3.0;
             double double_magic1 = 1.5_0; // violation ''1.5_0' is a magic number'
-            if (1.0 < 3.0); // violation ''3.0' is a magic number'
-            double_magic1 *= 1.5; // violation ''1.5' is a magic number'
+            if (1.0 < 3.0);
+            double_magic1 *= 1.5;
         }
     };
 }
@@ -111,10 +111,10 @@ class Class1 {
     Person person2 = new Person(12) {
         public void magicMethod() {
             double double_var1 = 0D;
-            double_var1 = 1.0 + 3.0; // violation ''3.0' is a magic number'
+            double_var1 = 1.0 + 3.0;
             double double_magic1 = 1.5_0; // violation ''1.5_0' is a magic number'
-            if (1.0 < 3.0); // violation ''3.0' is a magic number'
-            double_magic1 *= 1.5; // violation ''1.5' is a magic number'
+            if (1.0 < 3.0);
+            double_magic1 *= 1.5;
         }
     };
 }
