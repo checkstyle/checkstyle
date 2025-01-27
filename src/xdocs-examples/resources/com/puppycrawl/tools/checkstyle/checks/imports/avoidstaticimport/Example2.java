@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport;
 // xdoc section -- start
 import static java.lang.Math.*;            // OK
 import static java.lang.System.out;        // OK
-import static java.lang.Integer.parseInt;  // violation
+import static java.lang.Integer.parseInt;  // violation, 'Using a static member import should be avoided.'
 import java.io.*;                          // OK
 import java.util.*;                        // OK
 // xdoc section -- end
