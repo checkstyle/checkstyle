@@ -962,19 +962,16 @@ public class JavadocMethodCheck extends AbstractCheck {
      * @return true is ExceptionInfo object have the same name
      */
     private static boolean isClassNamesSame(String class1, String class2) {
-        boolean result = false;
+        final boolean result;
         if (class1.equals(class2)) {
             result = true;
         }
         else {
-            final String separator = ".";
-            if (class1.contains(separator) || class2.contains(separator)) {
-                final String class1ShortName = class1
-                        .substring(class1.lastIndexOf('.') + 1);
-                final String class2ShortName = class2
-                        .substring(class2.lastIndexOf('.') + 1);
-                result = class1ShortName.equals(class2ShortName);
-            }
+            final String class1ShortName = class1
+                    .substring(class1.lastIndexOf('.') + 1);
+            final String class2ShortName = class2
+                    .substring(class2.lastIndexOf('.') + 1);
+            result = class1ShortName.equals(class2ShortName);
         }
         return result;
     }
