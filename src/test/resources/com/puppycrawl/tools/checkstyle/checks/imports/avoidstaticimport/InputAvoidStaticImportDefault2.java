@@ -23,13 +23,13 @@ import javax.swing.ScrollPaneLayout;
 import javax.swing.BorderFactory;
 import static java.io.File.listRoots;
 
-import static javax.swing.WindowConstants.*; // violation
+import static javax.swing.WindowConstants.*; // violation, 'Using a static member import should be avoided.'
 import static java.io.File.createTempFile;
 import static java.io.File.pathSeparator;
-import static java.lang.Math.E; // violation
-import static java.lang.Math.sqrt; // violation
-import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass; // violation
-import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.one; // violation
+import static java.lang.Math.E; // violation, 'Using a static member import should be avoided.'
+import static java.lang.Math.sqrt; // violation, 'Using a static member import should be avoided.'
+import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass; // violation, 'Using a static member import should be avoided.'
+import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.one; // violation, 'Using a static member import should be avoided.'
 
 import java.awt.Component;
 import java.awt.Graphics2D;

@@ -69,8 +69,8 @@
           Example:
         </p>
         <source>
-import static java.lang.Math.pow;          // violation
-import static java.lang.System.*;          // violation
+import static java.lang.Math.pow;          // violation, 'Using a static member import should be avoided.'
+import static java.lang.System.*;          // violation, 'Using a static member import should be avoided.'
 import java.io.File;                       // OK
 import java.util.*;                        // OK
         </source>
@@ -93,7 +93,7 @@ import java.util.*;                        // OK
         <source>
 import static java.lang.Math.*;            // OK
 import static java.lang.System.out;        // OK
-import static java.lang.Integer.parseInt;  // violation
+import static java.lang.Integer.parseInt;  // violation, 'Using a static member import should be avoided.'
 import java.io.*;                          // OK
 import java.util.*;                        // OK
         </source>
