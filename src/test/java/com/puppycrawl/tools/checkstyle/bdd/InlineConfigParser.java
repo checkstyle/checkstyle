@@ -825,7 +825,7 @@ public final class InlineConfigParser {
      * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
      *      parser requires giant if/else
      */
-    private static void defaultValidation(String propertyName,
+    private static void validateDefault(String propertyName,
                                            String propertyDefaultValue,
                                            String fullyQualifiedModuleName) {
         try {
@@ -846,7 +846,7 @@ public final class InlineConfigParser {
             final String actualDefaultAsString;
             actualDefaultAsString = convertDefaultValueToString(actualDefault, propertyName);
 
-            if (!isDefaultValues(propertyDefaultValue, actualDefaultAsString, propertyType)) {
+            if (!isDefaultValue(propertyDefaultValue, actualDefaultAsString, propertyType)) {
                 final String message = String.format(Locale.ROOT,
                         "Default value mismatch for %s in %s: specified '%s' but actually is '%s'",
                         propertyName, fullyQualifiedModuleName,
@@ -857,7 +857,7 @@ public final class InlineConfigParser {
         catch (ReflectiveOperationException ex) {
             final String actualDefaultAsString = hardCodedDefault(propertyName,
                     fullyQualifiedModuleName);
-            isDefaultValues(propertyDefaultValue, actualDefaultAsString, String.class);
+            isDefaultValue(propertyDefaultValue, actualDefaultAsString, String.class);
         }
     }
 
@@ -875,16 +875,16 @@ public final class InlineConfigParser {
             defaultValueAsString = NULL_STRING;
         }
         else if (value instanceof String) {
-            defaultValueAsString = handleStringValue((String) value);
+            defaultValueAsString = convertToStringValue((String) value);
         }
         else if (value.getClass().isArray()) {
-            defaultValueAsString = handleArrayValue(value, propertyName);
+            defaultValueAsString = convertToArrayValue(value, propertyName);
         }
         else if (value instanceof BitSet) {
-            defaultValueAsString = handleBitSetValue((BitSet) value);
+            defaultValueAsString = convertToBitSetValue((BitSet) value);
         }
         else if (value instanceof Collection<?>) {
-            defaultValueAsString = handleCollectionValue((Collection<?>) value);
+            defaultValueAsString = convertToCollectionValue((Collection<?>) value);
         }
         else {
             defaultValueAsString = String.valueOf(value);
@@ -892,7 +892,7 @@ public final class InlineConfigParser {
         return defaultValueAsString;
     }
 
-    private static String handleStringValue(String strValue) {
+    private static String convertToStringValue(String strValue) {
         final String str;
         if (strValue.startsWith("(") && strValue.endsWith(")")) {
             str = strValue.substring(1, strValue.length() - 1);
@@ -903,7 +903,7 @@ public final class InlineConfigParser {
         return str;
     }
 
-    private static String handleArrayValue(Object value, String propertyName) {
+    private static String convertToArrayValue(Object value, String propertyName) {
         String result = convertArrayValue(value);
         if (Objects.equals(propertyName, "tokens") && value instanceof int[]) {
             final int[] arr = (int[]) value;
@@ -916,7 +916,7 @@ public final class InlineConfigParser {
         return result;
     }
 
-    private static String handleBitSetValue(BitSet bitSet) {
+    private static String convertToBitSetValue(BitSet bitSet) {
         final List<String> tokenNames = new ArrayList<>();
         for (int index = bitSet.nextSetBit(0); index >= 0; index = bitSet.nextSetBit(index + 1)) {
             final String tokenName = TokenUtil.getTokenName(index);
@@ -927,7 +927,7 @@ public final class InlineConfigParser {
         return String.join(",", tokenNames);
     }
 
-    private static String handleCollectionValue(Collection<?> collection) {
+    private static String convertToCollectionValue(Collection<?> collection) {
         return collection.toString().replaceAll("[\\[\\]\\s]", "");
     }
 
@@ -941,7 +941,7 @@ public final class InlineConfigParser {
      *      parser requires giant if/else
      */
     // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
-    private static boolean isDefaultValues(final String propertyDefaultValue,
+    private static boolean isDefaultValue(final String propertyDefaultValue,
         final String actualDefault,
         final Class<?> fieldType) {
         boolean result;
@@ -1031,7 +1031,7 @@ public final class InlineConfigParser {
                 final String fullyQualifiedModuleName =
                         getFullyQualifiedClassName(inputFilePath, moduleName);
 
-                defaultValidation(key, defaultValue, fullyQualifiedModuleName);
+                validateDefault(key, defaultValue, fullyQualifiedModuleName);
 
                 if (NULL_STRING.equals(defaultValue)) {
                     inputConfigBuilder.addDefaultProperty(key, null);
