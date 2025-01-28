@@ -16,6 +16,11 @@
 
         var anchors = document.querySelectorAll("h1, h2");
         [].forEach.call(anchors, function (anchorItem) {
+            
+            if (anchorItem.closest("#bannerRight") ) {
+                return;
+            }
+
             var name = anchorItem.childNodes[0].textContent.replaceAll(" ", "_");
             var link = "" + url + "#" + name + "";
 
