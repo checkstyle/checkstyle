@@ -182,13 +182,25 @@ public class CyclomaticComplexityCheckTest
     public void testWhenExpressionSwitchAsSinglePoint() throws Exception {
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY, 5, 0),
-            "20:5: " + getCheckMessage(MSG_KEY, 4, 0),
-            "29:5: " + getCheckMessage(MSG_KEY, 5, 0),
-            "39:5: " + getCheckMessage(MSG_KEY, 5, 0),
+            "20:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "29:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "39:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
                         "InputCyclomaticComplexityWhenSwitchAsSinglePoint.java"), expected);
+    }
+
+    @Test
+    public void testSwitchBlockAsSingleDecisionPointWithNestedSwitch() throws Exception {
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "26:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "41:5: " + getCheckMessage(MSG_KEY, 2, 0),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputCyclomaticComplexitySwitchBlocks6.java"), expected);
     }
 
 }
