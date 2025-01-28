@@ -2,7 +2,7 @@
 JavadocMethod
 allowedAnnotations = (default)Override
 validateThrows = (default)false
-accessModifiers = (default)public, protected, package, private
+accessModifiers =
 allowMissingParamTags = (default)false
 allowMissingReturnTag = (default)false
 tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
@@ -12,7 +12,7 @@ tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-public class InputJavadocMethodPublicOnly // ignore - need javadoc
+public class InputJavadocMethodPublicOnly1One // ignore - need javadoc
 {
     private interface InnerInterface // ignore - when not relaxed about Javadoc
     {
@@ -54,42 +54,44 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
     public int aFreddo; // ignore
 
     // ignore - need Javadoc
-    private InputJavadocMethodPublicOnly(int aA)
+
+    private InputJavadocMethodPublicOnly1One(int aA)
     {
     }
 
     // ignore - need Javadoc when not relaxed
-    InputJavadocMethodPublicOnly(String aA)
+    InputJavadocMethodPublicOnly1One(String aA)
     {
     }
 
     // ignore - always need javadoc
-    protected InputJavadocMethodPublicOnly(Object aA)
+
+    protected InputJavadocMethodPublicOnly1One(Object aA)
     {
     }
 
     // ignore - always need javadoc
-    public InputJavadocMethodPublicOnly(Class<Object> aA)
+    public InputJavadocMethodPublicOnly1One(Class<Object> aA)
     {
     }
 
     /** Here should be an error, In scope */
-    private void method(int aA) // violation 'Expected @param tag for 'aA'.'
+    private void method(int aA)
     {
     }
 
     /** Here should be an error, In scope */
-    void method(Long aA) // violation 'Expected @param tag for 'aA'.'
+    void method(Long aA)
     {
     }
 
     /** Here should be an error, In scope */
-    protected void method(Class<Object> aA) // violation 'Expected @param tag for 'aA'.'
+    protected void method(Class<Object> aA)
     {
     }
 
     /** Here should be an error, In scope */
-    public void method(StringBuffer aA) // violation 'Expected @param tag for 'aA'.'
+    public void method(StringBuffer aA)
     {
     }
 
@@ -99,7 +101,7 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
        Writing a little documentation should not be worse than not
        writing any documentation at all.
      */
-    private void method(String aA) // violation 'Expected @param tag for 'aA'.'
+    private void method(String aA)
     {
     }
 
@@ -111,45 +113,4 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
 
     }
 
-    /** {@inheritDoc} */
-    public String toString()
-    {
-        return super.toString();
-    }
-
-    @Deprecated @Override
-    public int hashCode()
-    {
-        return super.hashCode();
-    }
-
-    public Thread anonymousClassInMethod() {
-        return new Thread() {
-            @Override
-            public void run() {
-                privateMethod(null, null);
-            }
-
-            /**
-             * Javadoc
-             */
-            private String privateMethod(String a, String b) {
-                return null;
-            }
-        };
-    }
-
-    private final Thread anonymousClassInField = new Thread() {
-        @Override
-        public void run() {
-            publicMethod(null, null);
-        }
-
-        /**
-         * Javadoc
-         */
-        public String publicMethod(String a, String b) {
-            return null;
-        }
-    };
 }
