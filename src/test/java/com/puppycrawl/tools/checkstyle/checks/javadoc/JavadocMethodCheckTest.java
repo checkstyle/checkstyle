@@ -119,91 +119,138 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testExtraThrows() throws Exception {
+    public void testExtraThrowsOne() throws Exception {
         final String[] expected = {
-            "54:56: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalStateException"),
-            "70:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
-            "83:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
-            "96:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+            "50:56: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalStateException"),
+            "66:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
+            "79:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
+            "92:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
                     "java.lang.IllegalArgumentException"),
-            "137:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "FileNotFoundException"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputJavadocMethodExtraThrows.java"), expected);
+                getPath("InputJavadocMethodExtraThrowsOne.java"), expected);
     }
 
     @Test
-    public void testIgnoreThrows() throws Exception {
+    public void testExtraThrowsTwo() throws Exception {
         final String[] expected = {
-            "40:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
-            "43:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalStateException"),
-            "60:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
-            "141:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
-            "198:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
+            "45:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "FileNotFoundException"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputJavadocMethodIgnoreThrows.java"), expected);
+                getPath("InputJavadocMethodExtraThrowsTwo.java"), expected);
     }
 
     @Test
-    public void testTags() throws Exception {
+    public void testIgnoreThrowsOne() throws Exception {
         final String[] expected = {
-            "30:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "unused"),
-            "37: " + getCheckMessage(MSG_RETURN_EXPECTED),
-            "46: " + getCheckMessage(MSG_RETURN_EXPECTED),
-            "53:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
-            "62:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
-            "68:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
-            "68:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "NullPointerException"),
-            "73:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
-            "81:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
-            "85:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "WrongParam"),
-            "87:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
-            "87:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aTwo"),
-            "93:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "Unneeded"),
-            "94: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
-            "103:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
-            "273:28: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IOException"),
-            "279:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "aParam"),
-            "322: " + getCheckMessage(MSG_RETURN_EXPECTED),
-            "322:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aParam"),
-            "361:5: " + getCheckMessage(MSG_INVALID_INHERIT_DOC),
-            "400:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
+            "34:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
+            "37:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalStateException"),
+            "54:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
         };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodIgnoreThrowsOne.java"), expected);
+    }
 
+    @Test
+    public void testIgnoreThrowsTwo() throws Exception {
+        final String[] expected = {
+            "51:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
+            "108:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodIgnoreThrowsTwo.java"), expected);
+    }
+
+    @Test
+    public void testTagsOne() throws Exception {
+        final String[] expected = {
+            "49:5: " + getCheckMessage(MSG_INVALID_INHERIT_DOC),
+            "88:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodTags.java"), expected);
     }
 
     @Test
-    public void testStrictJavadoc() throws Exception {
+    public void testTagsTwo() throws Exception {
+        final String[] expected = {
+            "27:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "unused"),
+            "34: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "43: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "50:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "59:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "65:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "65:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "NullPointerException"),
+            "70:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
+            "78:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
+            "82:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "WrongParam"),
+            "84:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
+            "84:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aTwo"),
+            "90:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "Unneeded"),
+            "91: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
+            "100:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
+
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodTags1One.java"), expected);
+    }
+
+    @Test
+    public void testTagsThree() throws Exception {
+        final String[] expected = {
+            "65:28: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IOException"),
+            "71:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "aParam"),
+            "114: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "114:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aParam"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodTags1Three.java"), expected);
+    }
+
+    @Test
+    public void testStrictJavadocOne() throws Exception {
         final String[] expected = {
             "77:29: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
             "82:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
             "87:41: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
             "92:37: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
-            "102:32: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputJavadocMethodPublicOnly.java"), expected);
+                getPath("InputJavadocMethodPublicOnlyOne.java"), expected);
     }
 
     @Test
-    public void testNoJavadoc() throws Exception {
+    public void testStrictJavadocTwo() throws Exception {
+        final String[] expected = {
+            "21:32: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodPublicOnlyTwo.java"), expected);
+    }
+
+    @Test
+    public void testNoJavadocOne() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputJavadocMethodPublicOnly1.java"), expected);
+                getPath("InputJavadocMethodPublicOnly1One.java"), expected);
+    }
+
+    @Test
+    public void testNoJavadocTwo() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodPublicOnly1Two.java"), expected);
     }
 
     // pre 1.4 relaxed mode is roughly equivalent with check=protected
     @Test
     public void testRelaxedJavadoc() throws Exception {
         final String[] expected = {
-            "87:41: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
-            "92:37: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
+            "47:41: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
+            "52:37: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputJavadocMethodProtectedScopeJavadoc.java"), expected);
+                getPath("InputJavadocMethodProtectedScopeJavadocTwo.java"), expected);
     }
 
     @Test
