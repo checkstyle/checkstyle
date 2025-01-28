@@ -777,7 +777,7 @@ public class JavadocMethodCheck extends AbstractCheck {
             final String arg1 = tag.getFirstArg();
             boolean found = removeMatchingParam(params, arg1);
 
-            if (arg1.startsWith(ELEMENT_START) && arg1.endsWith(ELEMENT_END)) {
+            if (arg1.endsWith(ELEMENT_END)) {
                 found = searchMatchingTypeParameter(typeParams,
                         arg1.substring(1, arg1.length() - 1));
             }
@@ -962,18 +962,11 @@ public class JavadocMethodCheck extends AbstractCheck {
      * @return true is ExceptionInfo object have the same name
      */
     private static boolean isClassNamesSame(String class1, String class2) {
-        final boolean result;
-        if (class1.equals(class2)) {
-            result = true;
-        }
-        else {
-            final String class1ShortName = class1
-                    .substring(class1.lastIndexOf('.') + 1);
-            final String class2ShortName = class2
-                    .substring(class2.lastIndexOf('.') + 1);
-            result = class1ShortName.equals(class2ShortName);
-        }
-        return result;
+        final String class1ShortName = class1
+                .substring(class1.lastIndexOf('.') + 1);
+        final String class2ShortName = class2
+                .substring(class2.lastIndexOf('.') + 1);
+        return class1ShortName.equals(class2ShortName);
     }
 
     /**
