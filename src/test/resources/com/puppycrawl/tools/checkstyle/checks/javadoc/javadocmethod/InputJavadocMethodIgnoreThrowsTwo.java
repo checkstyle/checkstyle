@@ -12,14 +12,13 @@ tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.function.Function;
 
+<<<<<<< Updated upstream:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodIgnoreThrows.java
 public class InputJavadocMethodIgnoreThrows {
 
     /**
@@ -111,6 +110,10 @@ public class InputJavadocMethodIgnoreThrows {
     }
 
     /**
+=======
+public class InputJavadocMethodIgnoreThrowsTwo {
+     /**
+>>>>>>> Stashed changes:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodIgnoreThrowsTwo.java
      * Try-with-resources should also be ignored if there is a catch block.
      *
      * @param input file to read
@@ -202,5 +205,4 @@ public class InputJavadocMethodIgnoreThrows {
             };
         }
     }
-
 }

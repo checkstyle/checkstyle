@@ -12,7 +12,7 @@ tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-public class InputJavadocMethodPublicOnly // ignore - need javadoc
+public class InputJavadocMethodPublicOnlyOne // ignore - need javadoc
 {
     private interface InnerInterface // ignore - when not relaxed about Javadoc
     {
@@ -54,22 +54,38 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
     public int aFreddo; // ignore
 
     // ignore - need Javadoc
+<<<<<<< Updated upstream:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnly.java
     private InputJavadocMethodPublicOnly(int aA)
+=======
+    private InputJavadocMethodPublicOnlyOne(int aA)
+>>>>>>> Stashed changes:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnlyOne.java
     {
     }
 
     // ignore - need Javadoc when not relaxed
+<<<<<<< Updated upstream:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnly.java
     InputJavadocMethodPublicOnly(String aA)
+=======
+    InputJavadocMethodPublicOnlyOne(String aA)
+>>>>>>> Stashed changes:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnlyOne.java
     {
     }
 
     // ignore - always need javadoc
+<<<<<<< Updated upstream:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnly.java
     protected InputJavadocMethodPublicOnly(Object aA)
+=======
+    protected InputJavadocMethodPublicOnlyOne(Object aA)
+>>>>>>> Stashed changes:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnlyOne.java
     {
     }
 
     // ignore - always need javadoc
+<<<<<<< Updated upstream:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnly.java
     public InputJavadocMethodPublicOnly(Class<Object> aA)
+=======
+    public InputJavadocMethodPublicOnlyOne(Class<Object> aA)
+>>>>>>> Stashed changes:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnlyOne.java
     {
     }
 
@@ -92,6 +108,7 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
     public void method(StringBuffer aA) // violation 'Expected @param tag for 'aA'.'
     {
     }
+<<<<<<< Updated upstream:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnly.java
 
 
     /**
@@ -152,4 +169,6 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
             return null;
         }
     };
+=======
+>>>>>>> Stashed changes:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnlyOne.java
 }
