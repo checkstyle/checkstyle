@@ -7,6 +7,8 @@
   </module>
 </module>
 */
-
+package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 // xdoc section -- start
+public class Example7 {
+}
 // xdoc section -- end
