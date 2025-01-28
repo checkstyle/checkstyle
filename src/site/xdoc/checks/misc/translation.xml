@@ -199,10 +199,13 @@ name=Nom
         <source>
 messages.properties: Key 'age' missing.
 messages.properties: Key 'name' missing.
+messages.properties: Key 'greeting' missing.
 messages_fr.properties: Key 'age' missing.
 messages_fr.properties: Key 'cancel' missing.
+messages_fr.properties: Key 'hello' missing.
 messages_ja.properties: Key 'cancel' missing.
 messages_ja.properties: Key 'name' missing.
+messages_ja.properties: Key 'hello' missing.
         </source>
       </subsection>
 
