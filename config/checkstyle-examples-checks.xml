@@ -6,6 +6,13 @@
 <module name="Checker">
   <property name="charset" value="UTF-8"/>
   <property name="haltOnException" value="false"/>
+  <module name="LineLength">
+    <property name="max" value="85"/>
+  </module>
+  <module name="Translation">
+    <property name="requiredTranslations" value="de, es, fi, fr, ja, pt, ru, tr, zh"/>
+  </module>
+
 
   <property name="cacheFile" value="target/cache_xdocs_examples"/>
 
@@ -98,9 +105,7 @@
   <module name="FileLength">
     <property name="max" value="60"/>
   </module>
-  <module name="LineLength">
-    <property name="max" value="85"/>
-  </module>
+
 
   <!-- Whitespace -->
   <module name="FileTabCharacter">

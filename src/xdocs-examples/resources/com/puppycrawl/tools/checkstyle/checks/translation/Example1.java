@@ -6,7 +6,8 @@
   </module>
 </module>
 */
-
+package com.puppycrawl.tools.checkstyle.checks.translation;
+/*
 // xdoc section -- start
 #messages.properties
 hello=Hello
@@ -16,3 +17,5 @@ cancel=Cancel
 hello=Hallo
 ok=OK
 // xdoc section -- end
+*/
+public class Example1 {}
