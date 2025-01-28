@@ -10,64 +10,30 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
-public class InputMissingJavadocTypePublicOnly2 // violation
+public class InputMissingJavadocTypePublicOnly2Two // violation
 {
-    private interface InnerInterface
-    {
-        String CONST = "InnerInterface"; // ignore - w.n.r.a.j
-        void method(); // ignore - when not relaxed about Javadoc
-
-        class InnerInnerClass
-        {
-            private int mData; // ignore - when not relaxed about Javadoc
-
-            private InnerInnerClass()
-            {
-                final Runnable r = new Runnable() {
-                    public void run() {};
-                };
-            }
-
-            void method2() // ignore - when not relaxed about Javadoc
-            {
-                final Runnable r = new Runnable() {
-                    public void run() {};
-                };
-            }
-        }
-    }
-
-    private class InnerClass
-    {
-        private int mDiff; // ignore - when not relaxed about Javadoc
-
-        void method() // ignore - when not relaxed about Javadoc
-        {
-        }
-    }
-
     private int mSize; // ignore - when not relaxed about Javadoc
     int mLen; // ignore - when not relaxed about Javadoc
     protected int mDeer; // ignore
     public int aFreddo; // ignore
 
     // ignore - need Javadoc
-    private InputMissingJavadocTypePublicOnly2(int aA)
+    private InputMissingJavadocTypePublicOnly2Two(int aA)
     {
     }
 
     // ignore - need Javadoc when not relaxed
-    InputMissingJavadocTypePublicOnly2(String aA)
+    InputMissingJavadocTypePublicOnly2Two(String aA)
     {
     }
 
     // ignore - always need javadoc
-    protected InputMissingJavadocTypePublicOnly2(Object aA)
+    protected InputMissingJavadocTypePublicOnly2Two(Object aA)
     {
     }
 
     // ignore - always need javadoc
-    public InputMissingJavadocTypePublicOnly2(Class<Object> aA)
+    public InputMissingJavadocTypePublicOnly2Two(Class<Object> aA)
     {
     }
 

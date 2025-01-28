@@ -15,6 +15,9 @@
   </module>
 </module>
 */
-
+package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 // xdoc section -- start
+public class Example1 {
+}
 // xdoc section -- end
+
