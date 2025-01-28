@@ -12,7 +12,7 @@ tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-public class InputJavadocMethodPublicOnly1 // ignore - need javadoc
+public class InputJavadocMethodPublicOnly1One // ignore - need javadoc
 {
     private interface InnerInterface // ignore - when not relaxed about Javadoc
     {
@@ -54,22 +54,38 @@ public class InputJavadocMethodPublicOnly1 // ignore - need javadoc
     public int aFreddo; // ignore
 
     // ignore - need Javadoc
+<<<<<<< Updated upstream:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnly1.java
     private InputJavadocMethodPublicOnly1(int aA)
+=======
+    private InputJavadocMethodPublicOnly1One(int aA)
+>>>>>>> Stashed changes:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnly1One.java
     {
     }
 
     // ignore - need Javadoc when not relaxed
+<<<<<<< Updated upstream:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnly1.java
     InputJavadocMethodPublicOnly1(String aA)
+=======
+    InputJavadocMethodPublicOnly1One(String aA)
+>>>>>>> Stashed changes:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnly1One.java
     {
     }
 
     // ignore - always need javadoc
+<<<<<<< Updated upstream:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnly1.java
     protected InputJavadocMethodPublicOnly1(Object aA)
+=======
+    protected InputJavadocMethodPublicOnly1One(Object aA)
+>>>>>>> Stashed changes:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnly1One.java
     {
     }
 
     // ignore - always need javadoc
+<<<<<<< Updated upstream:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnly1.java
     public InputJavadocMethodPublicOnly1(Class<Object> aA)
+=======
+    public InputJavadocMethodPublicOnly1One(Class<Object> aA)
+>>>>>>> Stashed changes:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnly1One.java
     {
     }
 
@@ -110,6 +126,7 @@ public class InputJavadocMethodPublicOnly1 // ignore - need javadoc
     {
 
     }
+<<<<<<< Updated upstream:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnly1.java
 
     /** {@inheritDoc} */
     public String toString()
@@ -152,4 +169,6 @@ public class InputJavadocMethodPublicOnly1 // ignore - need javadoc
             return null;
         }
     };
+=======
+>>>>>>> Stashed changes:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodPublicOnly1One.java
 }
