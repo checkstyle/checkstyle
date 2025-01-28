@@ -80,6 +80,9 @@ function setBodyColumnMargin() {
     if (window.innerWidth < 823 && !document.querySelector("#hamburger")) {
         setCollapsableMenuButton();
     }
+
+    const leftColumnWidth = leftColumn.offsetWidth;
+    bodyColumn.style.marginLeft = `${leftColumnWidth + 15}px`;
 }
 
 function setCollapsableMenuButton() {
