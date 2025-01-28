@@ -35,18 +35,27 @@ public class CovariantEqualsCheckTest
     }
 
     @Test
-    public void testDefault()
+    public void testDefaultone()
             throws Exception {
         final String[] expected = {
             "17:24: " + getCheckMessage(MSG_KEY),
             "36:20: " + getCheckMessage(MSG_KEY),
             "70:20: " + getCheckMessage(MSG_KEY),
             "84:28: " + getCheckMessage(MSG_KEY),
-            "140:20: " + getCheckMessage(MSG_KEY),
-            "144:9: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getPath("InputCovariantEquals.java"), expected);
+                getPath("InputCovariantEqualsone.java"), expected);
+    }
+
+    @Test
+    public void testDefaulttwo()
+            throws Exception {
+        final String[] expected = {
+            "41:20: " + getCheckMessage(MSG_KEY),
+            "45:9: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputCovariantEqualstwo.java"), expected);
     }
 
     @Test
