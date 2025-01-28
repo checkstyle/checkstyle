@@ -19,12 +19,19 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY_MISSING_TRANSLATION_FILE;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
+import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class TranslationCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -33,12 +40,28 @@ public class TranslationCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
+        final Map<String, List<String>> expected = new HashMap<>();
+        final String configFilePath = getPath("Example1.java");
 
+        final File[] processedFile = {
+            new File(getPath("messages.properties")),
+            new File(getPath("messages.translations"))
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        expected.put(getPath("messages.properties"), List.of("1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE, "messages_fr.properties")));
+        expected.put(getPath("messages.translations"), List.of("1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE, "messages_fr.translations")));
+
+        // Parse configuration
+        final TestInputConfiguration testInputConfiguration1 =
+                InlineConfigParser.parse(configFilePath);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration1.createConfiguration();
+
+        // Verify the results
+        verify(createChecker(parsedConfig), processedFile, expected);
     }
+
+
 
     @Test
     public void testExample2() throws Exception {
@@ -57,4 +80,5 @@ public class TranslationCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
         verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
     }
+
 }
