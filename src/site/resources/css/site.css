@@ -140,19 +140,16 @@ th {
   background-color: #ededed;
 }
 
-code {
-  white-space: normal;
-}
-
 .prettyprint {
-  padding: 1em !important;
+  padding: 0.5em !important;
   overflow: auto;
   white-space: nowrap;
 }
 
 .prettyprint code {
-  font-size: 15px;
+  font-size: 17px;
   text-wrap: nowrap;
+  line-height: 1.625;
 }
 
 .externalLink {
@@ -163,6 +160,7 @@ code {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin-bottom: 5px !important;
 }
 
 #bodyColumn h2, h2 {
