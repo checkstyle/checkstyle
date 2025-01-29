@@ -324,6 +324,46 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet"
     );
 
+    private static final Map<String, String> PATTERNS = new HashMap<>();
+
+    static {
+        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck",
+            "^[a-z][a-zA-Z0-9]*$");
+        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck",
+            "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$");
+        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck",
+            "^[a-z][a-zA-Z0-9]*$");
+        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck",
+            "^[A-Z][a-zA-Z0-9]*$");
+        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.RecordTypeParameterNameCheck",
+            "^[A-Z]$");
+        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.RecordComponentNameCheck",
+            "^[a-z][a-zA-Z0-9]*$");
+        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.PatternVariableNameCheck",
+            "^([a-z][a-zA-Z0-9]*|_)$");
+        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck",
+            "^[a-z][a-zA-Z0-9]*$");
+        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.MethodTypeParameterNameCheck",
+            "^[A-Z]$");
+        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck",
+            "^[a-z][a-zA-Z0-9]*$");
+        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck",
+            "^[a-z][a-zA-Z0-9]*$");
+        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck",
+            "^([a-z][a-zA-Z0-9]*|_)$");
+        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.LambdaParameterNameCheck",
+            "^([a-z][a-zA-Z0-9]*|_)$");
+        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming"
+                        + ".InterfaceTypeParameterNameCheck",
+                "^[A-Z]$");
+        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck",
+            "(?i)^(?!(record|yield|var|permits|sealed)$).+$");
+        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck",
+            "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$");
+        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck",
+            "^[A-Z]$");
+    }
+
     /** Stop instances being created. **/
     private InlineConfigParser() {
     }
@@ -627,7 +667,7 @@ public final class InlineConfigParser {
     }
 
     private static String convertArrayValue(Object value) {
-        final String result;
+        String result = NULL_STRING;
 
         if (value instanceof double[]) {
             final double[] arr = (double[]) value;
@@ -651,70 +691,21 @@ public final class InlineConfigParser {
         else if (value instanceof Object[]) {
             result = Arrays.toString((Object[]) value).replaceAll("[\\[\\]\\s]", "");
         }
-        else {
-            result = NULL_STRING;
-        }
         return result;
     }
 
     /**
      * HardCoded Default value for key = format.
      *
-     * @param key the property name.
      * @param fullyQualifiedModuleName the fully qualified module name.
      * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
      *      parser requires giant if/else
      */
-    // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
-    // -@cs[JavaNCSS] splitting this method is not reasonable.
-    // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
-    private static String hardCodedDefaultForFormat(String key, String fullyQualifiedModuleName) {
-        if (!"format".equals(key)) {
-            throw new IllegalStateException("Unable to validate default value for property '"
-                    + key + "' in " + fullyQualifiedModuleName);
-        }
-
-        final Map<String, String> patterns = new HashMap<>();
-        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck",
-            "^[a-z][a-zA-Z0-9]*$");
-        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck",
-            "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$");
-        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck",
-            "^[a-z][a-zA-Z0-9]*$");
-        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck",
-            "^[A-Z][a-zA-Z0-9]*$");
-        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.RecordTypeParameterNameCheck",
-            "^[A-Z]$");
-        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.RecordComponentNameCheck",
-            "^[a-z][a-zA-Z0-9]*$");
-        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.PatternVariableNameCheck",
-            "^([a-z][a-zA-Z0-9]*|_)$");
-        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck",
-            "^[a-z][a-zA-Z0-9]*$");
-        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.MethodTypeParameterNameCheck",
-            "^[A-Z]$");
-        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck",
-            "^[a-z][a-zA-Z0-9]*$");
-        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck",
-            "^[a-z][a-zA-Z0-9]*$");
-        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck",
-            "^([a-z][a-zA-Z0-9]*|_)$");
-        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.LambdaParameterNameCheck",
-            "^([a-z][a-zA-Z0-9]*|_)$");
-        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming"
-                        + ".InterfaceTypeParameterNameCheck",
-            "^[A-Z]$");
-        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck",
-            "(?i)^(?!(record|yield|var|permits|sealed)$).+$");
-        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck",
-            "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$");
-        patterns.put("com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck",
-            "^[A-Z]$");
-
-        final String pattern = patterns.get(fullyQualifiedModuleName);
+    private static String hardCodedDefaultForFormat(String fullyQualifiedModuleName) {
+        final String pattern = PATTERNS.get(fullyQualifiedModuleName);
         if (pattern == null) {
-            throw new IllegalStateException("Unable to validate default value for property '"
-            + key + "' in " + fullyQualifiedModuleName);
+            throw new IllegalStateException("Unable to validate default value for property in "
+                    + fullyQualifiedModuleName);
         }
         return pattern;
     }
@@ -790,8 +781,7 @@ public final class InlineConfigParser {
             actualDefaultAsString = "nospace";
         }
         else if ("format".equals(propertyName)) {
-            actualDefaultAsString = hardCodedDefaultForFormat(propertyName,
-                    fullyQualifiedModuleName);
+            actualDefaultAsString = hardCodedDefaultForFormat(fullyQualifiedModuleName);
         }
         else if (pathDefaults.containsKey(fullyQualifiedModuleName)
                 && pathDefaults.get(fullyQualifiedModuleName).containsKey(propertyName)) {
