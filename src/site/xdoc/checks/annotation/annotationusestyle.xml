@@ -133,9 +133,9 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-@SuppressWarnings(&quot;unchecked&quot;) // ok as it's in implied style
-@Deprecated // ok as it matches closingParens default property
-@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;}) // ok as it's in implied style
+@SuppressWarnings(&quot;unchecked&quot;) //as it's in implied style
+@Deprecated //as it matches closingParens default property
+@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;}) //as it's in implied style
 public class Example1
 {
 
@@ -170,7 +170,7 @@ class TestStyle1
         <p id="Example2-code">Example:</p>
         <source>
 @SuppressWarnings(&quot;unchecked&quot;) // violation 'Annotation style must be 'EXPANDED''
-@Deprecated // ok as closingParens property set to never
+@Deprecated //as closingParens property set to never
 // violation below 'Annotation style must be 'EXPANDED''
 @SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;})
 public class Example2
@@ -178,7 +178,7 @@ public class Example2
 
 }
 
-@SuppressWarnings(value={&quot;unchecked&quot;}) // ok as elementStyle set to expanded
+@SuppressWarnings(value={&quot;unchecked&quot;}) //as elementStyle set to expanded
 @Deprecated() // violation 'Annotation cannot have closing parenthesis'
 // violation below 'Annotation array values cannot contain trailing comma'
 @SomeArrays(value={&quot;unchecked&quot;,&quot;unused&quot;,})
@@ -204,9 +204,9 @@ class TestStyle2 {
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-@SuppressWarnings(&quot;unchecked&quot;) // ok as element style set to compact
+@SuppressWarnings(&quot;unchecked&quot;) //as element style set to compact
 @Deprecated // violation 'Annotation must have closing parenthesis'
-@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;}) // ok as it's in compact style
+@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;}) //as it's in compact style
 public class Example3
 {
 
@@ -214,7 +214,7 @@ public class Example3
 
 // violation below 'Annotation style must be 'COMPACT''
 @SuppressWarnings(value={&quot;unchecked&quot;})
-@Deprecated() // ok as closingParens set to always
+@Deprecated() //as closingParens set to always
 // violation below 'Annotation style must be 'COMPACT''
 @SomeArrays(value={&quot;unchecked&quot;,&quot;unused&quot;,})
 class TestStyle3 {
@@ -239,8 +239,8 @@ class TestStyle3 {
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-@SuppressWarnings(&quot;unchecked&quot;) // ok as element style set to 'ignore'
-@Deprecated // ok as 'closingParens' is set to 'ignore
+@SuppressWarnings(&quot;unchecked&quot;) //as element style set to 'ignore'
+@Deprecated //as 'closingParens' is set to 'ignore
 // violation below 'Annotation array values must contain trailing comma'
 @SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;})
 public class Example4
@@ -250,8 +250,8 @@ public class Example4
 
 // violation below 'Annotation array values must contain trailing comma'
 @SuppressWarnings(value={&quot;unchecked&quot;})
-@Deprecated() // ok as 'closingParens' is set to 'ignore
-// ok below as it has a trailing array comma
+@Deprecated() //as 'closingParens' is set to 'ignore
+//below as it has a trailing array comma
 @SomeArrays(value={&quot;unchecked&quot;,&quot;unused&quot;,})
 class TestStyle4 {
 

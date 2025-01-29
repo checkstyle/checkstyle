@@ -69,7 +69,7 @@ class InputUnusedLocalVariableSameNameLen1 {
         }
 
         void method() {
-            int a = 12; // ok, cross file detection not supported
+            int a = 12; //cross file detection not supported
             InputUnusedLocalVariable obj
                     = new com.puppycrawl.tools.checkstyle.checks.coding
                     .unusedlocalvariable.InputUnusedLocalVariable() {

@@ -15,7 +15,7 @@ public class InputFallThroughLabeledBreak {
             case 1:
                 switch (b) {
                     case 10:
-                        break top; // ok as terminates outer 'top' switch
+                        break top; //as terminates outer 'top' switch
                     default:
                         return 11;
                 }
@@ -26,13 +26,13 @@ public class InputFallThroughLabeledBreak {
             case 1:
                 inner1: inner2: switch (b) {
                     case 10:
-                        break outer; // ok as terminates outer 'outer' switch
+                        break outer; //as terminates outer 'outer' switch
                     default:
                         return 11;
                 }
             case 2:
                 inner: for (int i = 0;i < 3;i++) {
-                    // ok below as terminates outer 'outer2' switch
+                    //below as terminates outer 'outer2' switch
                     break outer2;
                 }
             case 3:
@@ -57,7 +57,7 @@ public class InputFallThroughLabeledBreak {
                 case 4:
                     switch (b) {
                         case 10:
-                            break outer; // ok as terminates outer 'outer' switch
+                            break outer; //as terminates outer 'outer' switch
                         default:
                             return 11;
                     }
@@ -90,7 +90,7 @@ public class InputFallThroughLabeledBreak {
                     {
                         switch (a) {
                             case 1:
-                                // ok below as terminates outer 'outer' switch
+                                //below as terminates outer 'outer' switch
                                 break outer;
 
                         }

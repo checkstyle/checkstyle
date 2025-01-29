@@ -13,7 +13,7 @@ public class InputRightCurlyCaseBlocksWithSwitchRuleAloneOrSingleline {
     public void testt0() {
         int mode = 0;
         switch (mode) {
-            case 1 -> {int x = 1;}   // ok, single line
+            case 1 -> {int x = 1;}   //single line
             case 2 -> {int x = 0;}
             case 3 -> System.out.println("x is 3");
         }
@@ -98,7 +98,7 @@ public class InputRightCurlyCaseBlocksWithSwitchRuleAloneOrSingleline {
         switch (mode) {
             case 0 -> throw new RuntimeException();
             case 1 -> x = 1;
-            case 2 -> {x = 1; }      // ok, single line
+            case 2 -> {x = 1; }      //single line
             case 3 -> {x = 5; } }   // violation '}' at column 31 should be alone on a line'
     }
 }

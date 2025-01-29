@@ -96,7 +96,7 @@ public class Example1 {
     int sum = var1 + var2;
   }
 
-  // ok, as it is less than 4 lines
+  //as it is less than 4 lines
   public Example1(int a)  {
     int var1 = 2;
     int sum = var1 + a;
@@ -150,14 +150,14 @@ public class Example1 {
         <source>
 public class Example2 {
 
-  // ok, CTOR_DEF is not in configured tokens
+  //CTOR_DEF is not in configured tokens
   public Example2()  {
     int var1 = 2;
     int var2 = 4;
     int sum = var1 + var2;
   }
 
-  // ok, CTOR_DEF is not in configured tokens
+  //CTOR_DEF is not in configured tokens
   public Example2(int a)  {
     int var1 = 2;
     int sum = var1 + a;
@@ -184,7 +184,7 @@ public class Example2 {
   }
 
   record MyBadRecord() {
-    // ok, COMPACT_CTOR_DEF is not in configured tokens
+    //COMPACT_CTOR_DEF is not in configured tokens
     public MyBadRecord {
 
       System.out.println(&quot;line3&quot;);
@@ -212,14 +212,14 @@ public class Example2 {
         <source>
 public class Example3 {
 
-  // ok, CTOR_DEF is not in configured tokens
+  //CTOR_DEF is not in configured tokens
   public Example3()  {
     int var1 = 2;
     int var2 = 4;
     int sum = var1 + var2;
   }
 
-  // ok, CTOR_DEF is not in configured tokens
+  //CTOR_DEF is not in configured tokens
   public Example3(int a)  {
     int var1 = 2;
     int sum = var1 + a;
@@ -245,7 +245,7 @@ public class Example3 {
   }
 
   record MyBadRecord() {
-    // ok, COMPACT_CTOR_DEF is not in configured tokens
+    //COMPACT_CTOR_DEF is not in configured tokens
     public MyBadRecord {
 
       System.out.println(&quot;line3&quot;);

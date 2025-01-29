@@ -20,7 +20,7 @@ public class InputSealedShouldHavePermitsListInnerClass {
 }
 
 class InputSealedShouldHavePermitsListInnerClassCorrected {
-    sealed class A permits B, C, F, G { } // ok, explicitly declared the permitted subclasses
+    sealed class A permits B, C, F, G { } //explicitly declared the permitted subclasses
     final class B extends A { }
     final class C extends A { }
     final class D { }    // this can't extend A

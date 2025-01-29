@@ -25,7 +25,7 @@ public class InputLeftCurlyCommentBeforeLeftCurly2 {
     private long[] countList;
 
     void method1() /* comment
-    comment */ { // ok until #11410
+    comment */ { //until #11410
     }
 
     void method2() /********
@@ -36,13 +36,13 @@ public class InputLeftCurlyCommentBeforeLeftCurly2 {
     }
 
     void method3() /*****
-    ********/ { } // ok until #11410
+    ********/ { } //until #11410
 
 
     InputLeftCurlyCommentBeforeLeftCurly2() /**************/ { }
 
     InputLeftCurlyCommentBeforeLeftCurly2(int data) /*
-     ****** comment *********/ { } // ok until #11410
+     ****** comment *********/ { } //until #11410
 }
 
 class Class {

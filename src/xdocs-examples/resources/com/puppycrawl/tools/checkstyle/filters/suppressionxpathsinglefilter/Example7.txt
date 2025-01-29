@@ -12,8 +12,8 @@
 */
 
 // xdoc section -- start
-abstract class FileOne { // OK
-  public void MyMethod() {} // OK
+abstract class FileOne {  
+  public void MyMethod() {}  
 }
 
 abstract class FileTwo { // violation of the AbstractClassName check,

@@ -74,7 +74,7 @@
 public class Example1 {
   String a = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
   String a1 = &quot;unchecked&quot;;
-  @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
+  @SuppressWarnings(&quot;unchecked&quot;) //duplicate strings are ignored in annotations
   public void myTest() {
     String a2 = &quot;StringContents&quot;;
     String a3 = &quot;DuoString&quot; + &quot;DuoString&quot;; // violation, &quot;DuoString&quot; occurs twice
@@ -99,12 +99,12 @@ public class Example1 {
         <p id="Example2-code">Example:</p>
         <source>
 public class Example2 {
-  String a = &quot;StringContents&quot;; // OK, two occurrences are allowed
+  String a = &quot;StringContents&quot;; //two occurrences are allowed
   String a1 = &quot;unchecked&quot;;
-  @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
+  @SuppressWarnings(&quot;unchecked&quot;) //duplicate strings are ignored in annotations
   public void myTest() {
     String a2 = &quot;StringContents&quot;;
-    String a3 = &quot;DuoString&quot; + &quot;DuoString&quot;; // OK, two occurrences are allowed
+    String a3 = &quot;DuoString&quot; + &quot;DuoString&quot;; //two occurrences are allowed
     String a4 = &quot;SingleString&quot;;
     String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, three occurrences are NOT allowed
   }
@@ -128,12 +128,12 @@ public class Example2 {
 public class Example3 {
   String a = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
   String a1 = &quot;unchecked&quot;;
-  @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
+  @SuppressWarnings(&quot;unchecked&quot;) //duplicate strings are ignored in annotations
   public void myTest() {
     String a2 = &quot;StringContents&quot;;
     String a3 = &quot;DuoString&quot; + &quot;DuoString&quot;; // violation, &quot;DuoString&quot; occurs twice
     String a4 = &quot;SingleString&quot;;
-    String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // OK, multiple occurrences of &quot;, &quot; are allowed
+    String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; //multiple occurrences of &quot;, &quot; are allowed
   }
 }
         </source>

@@ -48,7 +48,7 @@ public class InputIllegalIdentifierNameOpenTransitive {
             case WED -> Math.addExact(1, 1);
             case THU, SAT, FRI, SUN -> 0;
             default -> {
-                yield Math.addExact(2, 1); // ok, yield statement
+                yield Math.addExact(2, 1); //yield statement
             }
         };
     }
@@ -65,10 +65,10 @@ public class InputIllegalIdentifierNameOpenTransitive {
                                       // used as an identifier.
         }
 
-        String yieldString = "yieldString"; // ok, part of another word
+        String yieldString = "yieldString"; //part of another word
         record MyRecord() {
-        } // ok, part of another word
-        var variable = 2; // ok, part of another word
+        } //part of another word
+        var variable = 2; //part of another word
 
         String Transitive = "record"; // violation
         Transitive = Transitive.substring(record, 20);

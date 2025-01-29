@@ -21,7 +21,7 @@ public class InputRequireThisRecordsAndCompactCtors {
         }
 
         void method1() {
-            i = 3; // ok, 'i' is static
+            i = 3; //'i' is static
         }
 
         void method2(int i) {
@@ -41,7 +41,7 @@ public class InputRequireThisRecordsAndCompactCtors {
 
         <T> void method3()
         {
-            i = 3; // ok, 'i' is static
+            i = 3; //'i' is static
         }
 
         void method4() {
@@ -59,7 +59,7 @@ public class InputRequireThisRecordsAndCompactCtors {
         }
 
         void method1() {
-            i = 3; // ok, 'i' is static
+            i = 3; //'i' is static
         }
 
         void method2(int i) {
@@ -79,7 +79,7 @@ public class InputRequireThisRecordsAndCompactCtors {
 
         <T> void method3()
         {
-            i = 3; // ok, 'i' is static
+            i = 3; //'i' is static
         }
 
         void method4() {

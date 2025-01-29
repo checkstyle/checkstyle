@@ -51,8 +51,8 @@ public class InputTrailingComment {
     }
 
     private static class TimerEntry {
-        /* ok */ final String operation = null;
-        /* ok */ final long start = 0L;
+         final String operation = null;
+         final long start = 0L;
     }
 
     /**

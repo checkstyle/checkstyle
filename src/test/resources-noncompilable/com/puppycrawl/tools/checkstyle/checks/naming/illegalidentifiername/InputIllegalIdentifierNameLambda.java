@@ -37,10 +37,10 @@ public class InputIllegalIdentifierNameLambda {
             case MON, TUE -> Math.addExact(0, 1);
             case WED -> Math.addExact(1, 1);
             case THU, SAT, FRI, SUN -> 0;
-            case var -> 23; // ok, caught above in initialization
+            case var -> 23; //caught above in initialization
             default -> {
                 Function<String, String> f4 = var -> var; // violation
-                yield Math.addExact(2, 1); // ok, yield statement
+                yield Math.addExact(2, 1); //yield statement
             }
         };
     }

@@ -21,7 +21,7 @@ public class Example1 {
     int sum = var1 + var2;
   }
 
-  // ok, as it is less than 4 lines
+  //as it is less than 4 lines
   public Example1(int a)  {
     int var1 = 2;
     int sum = var1 + a;

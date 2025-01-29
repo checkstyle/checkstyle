@@ -36,7 +36,7 @@ public class InputMethodNameEqualClassName2 {
                         return 0;
                 }
 
-                //OK name - name of the outter class's ctor
+                //name - name of the outter class's ctor
         public int InputMethodNameEqualClassName2() { // violation
                         return 0;
                 }

@@ -14,7 +14,7 @@ public class Example1 {
 
   public void foo1() {
     int num;        // violation, distance = 4
-    final double PI;   // OK, final variables not checked
+    final double PI;   //final variables not checked
     System.out.println("Statement 1");
     System.out.println("Statement 2");
     System.out.println("Statement 3");
@@ -23,9 +23,9 @@ public class Example1 {
   }
 
   public void foo2() {
-    int a;          // OK, used in different scope
-    int b;          // OK, used in different scope
-    int count = 0;  // OK, used in different scope
+    int a;          //used in different scope
+    int b;          //used in different scope
+    int count = 0;  //used in different scope
 
     {
       System.out.println("Inside inner scope");

@@ -2,9 +2,9 @@ package org.checkstyle.suppressionxpathfilter.innertypelast;
 
 public class InputXpathInnerTypeLastTwo {
 
-    static {}; // OK
+    static {};  
 
-    public void innerMethod() {} // OK
+    public void innerMethod() {}  
 
     class Inner {
         class InnerInInner {}

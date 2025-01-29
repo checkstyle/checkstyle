@@ -39,7 +39,7 @@
         <source>
 class Example1 {
   protected void finalize() throws Throwable {
-    super.finalize(); // OK, calls super.finalize()
+    super.finalize(); //calls super.finalize()
   }
 }
 class InvalidExample {

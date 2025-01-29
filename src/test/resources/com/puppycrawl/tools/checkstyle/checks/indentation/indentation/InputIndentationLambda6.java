@@ -89,4 +89,4 @@ public class InputIndentationLambda6 { //indent:0 exp:0
                           Supplier<String> secondLambda); //indent:26 exp:26
     }  //indent:4 exp:4
 } //indent:0 exp:0
-// ok //indent:0 exp:0
+////indent:0 exp:0

@@ -19,7 +19,7 @@ public class Example1 {
    * Some description here.
    */
   private void testMethod1() {}
-  // ok below, @return tag automatically inserts a period after the text
+  //below, @return tag automatically inserts a period after the text
   /**
    * {@return {@code true} if this object
    * has been initialized, {@code false} otherwise}

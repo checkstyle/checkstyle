@@ -93,7 +93,7 @@ public class InputRightCurlyCaseBlocksInSwitchStatementAloneOrSingleline2 {
             mode++;
             {
 
-            } int y; // ok, the braces is not a first child of case
+            } int y; //the braces is not a first child of case
             case 3:
             {
 
@@ -111,7 +111,7 @@ public class InputRightCurlyCaseBlocksInSwitchStatementAloneOrSingleline2 {
             int z;
             {
 
-            } break; default: break; // ok, the braces is not a first child of case
+            } break; default: break; //the braces is not a first child of case
         }
     }
 }

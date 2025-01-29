@@ -39,17 +39,17 @@ public class InputMethodParamPadCheckRecordPattern {
         }
 
         boolean b = obj instanceof ColoredPoint
-                (Point p, String s); // ok, because allow line breaks
+                (Point p, String s); //because allow line breaks
 
         boolean c = obj instanceof ColoredPoint
-                (Point   // ok, because allow line breaks
-                         (int x, int y), // ok, because allow line breaks
+                (Point   //because allow line breaks
+                         (int x, int y), //because allow line breaks
                  String s);
 
         boolean cc = obj instanceof ColoredPoint
-                (  // ok, because allow line breaks
+                (  //because allow line breaks
                     Point
-                     ( // ok, because allow line breaks
+                     ( //because allow line breaks
                          int x, int y),
                  String s);
 

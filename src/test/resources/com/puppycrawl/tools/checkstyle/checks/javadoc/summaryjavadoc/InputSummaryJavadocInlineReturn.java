@@ -12,7 +12,7 @@ class InputSummaryJavadocInlineReturn {
     /**
      * {@return a zero, note that no period is ok as it is set by javadoc tool}
      */
-    private int returnFoo1() // ok
+    private int returnFoo1()  
     {
         return 0;
     }
@@ -20,7 +20,7 @@ class InputSummaryJavadocInlineReturn {
     /**
      * {@return a {@code 0}}
      */
-    private int returnFoo2() // ok
+    private int returnFoo2()  
     {
         return 0;
     }
@@ -28,7 +28,7 @@ class InputSummaryJavadocInlineReturn {
     /**
      * Text before the return tag. {@return a {@code 0}}
      */
-    private int returnFoo3() // ok, javadoc tool produces a warning
+    private int returnFoo3() //javadoc tool produces a warning
     {
         return 0;
     }
@@ -36,7 +36,7 @@ class InputSummaryJavadocInlineReturn {
     /**
      * {@return a {@code 0}} Text after the return tag.
      */
-    private int returnFoo4() // ok
+    private int returnFoo4()  
     {
         return 0;
     }
@@ -46,7 +46,7 @@ class InputSummaryJavadocInlineReturn {
      * there's more text on another line
      * and even more lines}
      */
-    private int returnMultiline() // ok
+    private int returnMultiline()  
     {
         return 0;
     }
@@ -56,7 +56,7 @@ class InputSummaryJavadocInlineReturn {
      * there's more text on another line<br>
      * and even more lines}
      */
-    private int returnMultiline2() // ok
+    private int returnMultiline2()  
     {
         return 0;
     }
@@ -64,7 +64,7 @@ class InputSummaryJavadocInlineReturn {
     /**
      * {@return nothing, this is a void method}
      */
-    private void voidMethod() // ok, javadoc tool produces an error
+    private void voidMethod() //javadoc tool produces an error
     {
     }
 
@@ -80,10 +80,10 @@ class InputSummaryJavadocInlineReturn {
     /**
      * {@return nothing, this is a field}
      */
-    private static final byte NOT_A_METHOD = 0; // ok, javadoc tool produces an error
+    private static final byte NOT_A_METHOD = 0; //javadoc tool produces an error
 
     /**
      * {@return nothing, this is a class}
      */
-    private class NotAMethod {} // ok, javadoc tool produces an error
+    private class NotAMethod {} //javadoc tool produces an error
 }

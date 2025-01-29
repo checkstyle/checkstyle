@@ -28,7 +28,7 @@ public class Example2 {
         if (x > 2) { return 2; }
         return 1;
     }
-    // ok below, because default non-void restriction is 2
+    //below, because default non-void restriction is 2
     final Predicate<Integer> lambdaA = i -> {
         if (i > 5) { return true; }
         return false;

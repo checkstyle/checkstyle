@@ -161,7 +161,7 @@ public class Example1 {
   private void bar() {
   }
 
-  public void testSingleLine() { bar(); } // OK, because singleline is allowed
+  public void testSingleLine() { bar(); } //because singleline is allowed
 }
         </source>
         <p id="Example2-config">
@@ -201,7 +201,7 @@ public class Example2 {
     try {
       bar();
     } catch (Exception e) {
-      // OK above because config is set to token METHOD_DEF and LITERAL_ELSE
+      //above because config is set to token METHOD_DEF and LITERAL_ELSE
       bar();
     }
 
@@ -246,10 +246,10 @@ class Example3 {
         int y = 1;
         break;
       case 2: {x = 1;}   // violation '}' at column 22 should be alone on a line'
-      case 3: int z = 0; {break;} // ok, the braces is not a first child of case
+      case 3: int z = 0; {break;} //the braces is not a first child of case
       default:
         x = 0;
-    } // ok, RightCurly is alone
+    } //RightCurly is alone
   }
 
   public void method01() {
@@ -303,7 +303,7 @@ public class Example4 {
 
     try {
       bar();
-    } catch (Exception e) { // OK because config did not set token LITERAL_TRY
+    } catch (Exception e) { //because config did not set token LITERAL_TRY
       bar();
     }
 
@@ -312,7 +312,7 @@ public class Example4 {
   private void bar() {
   }
 
-  public void violate() { bar(); } // OK , because singleline
+  public void violate() { bar(); } //, because singleline
 }
         </source>
         <p id="Example5-config">
@@ -342,8 +342,8 @@ class Example5 {
       case 1:
         int y = 1;
         break;
-      case 2: {x = 1;}   // ok, RightCurly is in single line
-      case 3: int z = 0; {break;} // ok, the braces is not a first child of case
+      case 2: {x = 1;}   //RightCurly is in single line
+      case 3: int z = 0; {break;} //the braces is not a first child of case
       default:
         x = 0;
     }
@@ -354,7 +354,7 @@ class Example5 {
     switch (mode) {
       case 1:
         int x = 5;
-    } // ok, RightCurly is on the same line as LeftCurly
+    } //RightCurly is on the same line as LeftCurly
   }
 
   public void method() {

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class InputMethodParamPadCheckConstructors extends ArrayList {
     public InputMethodParamPadCheckConstructors() {
-        super(); // ok, no whitespace
+        super(); //no whitespace
     }
 
     public InputMethodParamPadCheckConstructors(Object b) {
@@ -35,6 +35,6 @@ public class InputMethodParamPadCheckConstructors extends ArrayList {
     }
 
     public InputMethodParamPadCheckConstructors(String a, String b, Object c) {
-        this(a.length() + b.length()); // ok, no whitespace
+        this(a.length() + b.length()); //no whitespace
     }
 }

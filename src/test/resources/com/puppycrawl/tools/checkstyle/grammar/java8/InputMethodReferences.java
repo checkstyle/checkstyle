@@ -16,7 +16,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 
-public class InputMethodReferences<T> extends ParentClass // ok
+public class InputMethodReferences<T> extends ParentClass  
 {
 
     public void main(String[] args) {
