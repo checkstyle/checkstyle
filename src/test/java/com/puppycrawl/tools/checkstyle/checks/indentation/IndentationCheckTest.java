@@ -1351,6 +1351,25 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testYieldKeywordWithForceStrictCondition() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = {
+            "15:13: " + getCheckMessage(MSG_CHILD_ERROR, "block", 12, 16),
+            "16:13: " + getCheckMessage(MSG_ERROR, "yield", 12, 16),
+            "44:13: " + getCheckMessage(MSG_CHILD_ERROR, "block", 12, 16),
+            "45:13: " + getCheckMessage(MSG_ERROR, "yield", 12, 16),
+            "50:5: " + getCheckMessage(MSG_ERROR, "yield", 4, 16),
+            "71:15: " + getCheckMessage(MSG_ERROR, "yield", 14, 16),
+            "74:20: " + getCheckMessage(MSG_ERROR, "yield", 19, 16),
+            "77:9: " + getCheckMessage(MSG_ERROR, "yield", 8, 16),
+        };
+        verifyWarns(checkConfig,
+                getNonCompilablePath("InputIndentationYieldForceStrict.java"), expected);
+    }
+
+    @Test
     public void testChainedMethodCalling() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
