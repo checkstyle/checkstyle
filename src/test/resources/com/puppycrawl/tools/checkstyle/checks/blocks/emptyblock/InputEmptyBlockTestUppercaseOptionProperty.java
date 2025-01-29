@@ -23,7 +23,7 @@ public class InputEmptyBlockTestUppercaseOptionProperty {
         }
         switch (a) {
             default:
-            {   // ok as the block contains a comment
+            {   //as the block contains a comment
             }
         }
     }

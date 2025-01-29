@@ -12,7 +12,7 @@
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbytextfilter;
 // xdoc section -- start
 public class Example3 {
-  // ok, because violation message is matching suppress pattern
+  //because violation message is matching suppress pattern
   int a_really_long_variable_name = 10;
 }
 // xdoc section -- end

@@ -15,7 +15,7 @@ import java.util.function.Predicate;
 // xdoc section -- start
 public class Example3 {
     public Example3() {}
-    // ok below, because default void restriction is 1
+    //below, because default void restriction is 1
     public Example3(int i) { return; }
 
     public int signA(int x) {
@@ -29,7 +29,7 @@ public class Example3 {
         if (x > 2) { return 2; }
         return 1;
     }
-    // ok below, because non-void restriction is 2
+    //below, because non-void restriction is 2
     final Predicate<Integer> lambdaA = i -> {
         if (i > 5) { return true; }
         return false;
@@ -38,7 +38,7 @@ public class Example3 {
     final Predicate<Integer> lambdaB = i -> { return i > 5; };
 
     public void methodA(int x) {}
-    // ok below, because default void restriction is 1
+    //below, because default void restriction is 1
     public void methodB(int x) { return; }
 }
 // xdoc section -- end

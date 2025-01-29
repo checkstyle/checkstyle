@@ -16,15 +16,15 @@
 package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 
 // xdoc section -- start
-class Example4 { // OK, ignore checking the class name
-  int firstNum; // OK, abbreviation "N" is of allowed length 1
+class Example4 { //ignore checking the class name
+  int firstNum; //abbreviation "N" is of allowed length 1
   int secondNUm;
   int secondMYNum; // violation 'no more than '2' consecutive capital letters'
   int thirdNUM; // violation 'no more than '2' consecutive capital letters'
-  static int fourthNUM; // OK, variables with static modifier would be ignored
-  String firstCSV; // OK, CSV abbreviation is allowed
+  static int fourthNUM; //variables with static modifier would be ignored
+  String firstCSV; //CSV abbreviation is allowed
   String firstXML; // violation 'no more than '2' consecutive capital letters'
-  final int TOTAL = 5; // OK, final is ignored
-  static final int LIMIT = 10; // OK, static final is ignored
+  final int TOTAL = 5; //final is ignored
+  static final int LIMIT = 10; //static final is ignored
 }
 // xdoc section -- end

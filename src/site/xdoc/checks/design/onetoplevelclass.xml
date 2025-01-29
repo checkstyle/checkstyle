@@ -38,7 +38,7 @@
           An example of code with violations:
         </p>
         <source>
-public class Example1 { // OK, first top-level class
+public class Example1 { //first top-level class
   // methods
 }
 
@@ -50,7 +50,7 @@ class ViolationExample1 { // violation, &quot;has to reside in its own source fi
           An example of code without public top-level type:
         </p>
         <source>
-class Example2 { // OK, first top-level class
+class Example2 { //first top-level class
   // methods
 }
 
@@ -62,7 +62,7 @@ class ViolationExample2 { // violation, &quot;has to reside in its own source fi
           An example of code without violations:
         </p>
         <source>
-public class Example3 { // OK, only one top-level class
+public class Example3 { //only one top-level class
   // methods
 }
         </source>

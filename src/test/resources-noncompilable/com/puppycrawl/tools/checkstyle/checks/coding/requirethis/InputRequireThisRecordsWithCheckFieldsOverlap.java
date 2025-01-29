@@ -13,14 +13,14 @@ package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 public record InputRequireThisRecordsWithCheckFieldsOverlap(String a) {
     void method() {
         String a = "BUG";
-        a = a.substring(0, 1); // ok, field 'a' is final and cannot be changed
+        a = a.substring(0, 1); //field 'a' is final and cannot be changed
     }
 
     void method2() {
         String x = a; // violation 'Reference to instance variable 'a' needs "this.".'
-        String y = this.a; // ok, uses 'this'
-        String a = this.a; // ok, local variable assigned from field
-        a += a; // ok, local variable
+        String y = this.a; //uses 'this'
+        String a = this.a; //local variable assigned from field
+        a += a; //local variable
     }
 }
 class InputRequireThisRecordsWithCheckFieldsClass {
@@ -32,14 +32,14 @@ class InputRequireThisRecordsWithCheckFieldsClass {
 
     void method() {
         String a = "BUG";
-        a = a.substring(0, 1); // ok, field 'a' is final and cannot be changed
+        a = a.substring(0, 1); //field 'a' is final and cannot be changed
     }
 
     void method2() {
         String x = a; // violation 'Reference to instance variable 'a' needs "this.".'
-        String y = this.a; // ok, uses 'this'
-        String a = this.a; // ok, local variable assigned from field
-        a += a; // ok, local variable
+        String y = this.a; //uses 'this'
+        String a = this.a; //local variable assigned from field
+        a += a; //local variable
     }
 
     public String a() {

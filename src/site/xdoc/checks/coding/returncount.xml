@@ -112,7 +112,7 @@
         <source>
 public class Example1 {
     public Example1() {}
-    // ok below, because default void restriction is 1
+    //below, because default void restriction is 1
     public Example1(int i) { return; }
 
     public int signA(int x) {
@@ -126,7 +126,7 @@ public class Example1 {
         if (x &gt; 2) { return 2; }
         return 1;
     }
-    // ok below, because non-void restriction is 3
+    //below, because non-void restriction is 3
     final Predicate&lt;Integer&gt; lambdaA = i -&gt; {
         if (i &gt; 5) { return true; }
         return false;
@@ -135,7 +135,7 @@ public class Example1 {
     final Predicate&lt;Integer&gt; lambdaB = i -&gt; { return i &gt; 5; };
 
     public void methodA(int x) {}
-    // ok below, because default void restriction is 1
+    //below, because default void restriction is 1
     public void methodB(int x) { return; }
 }
         </source>
@@ -173,7 +173,7 @@ public class Example2 {
         if (x &gt; 2) { return 2; }
         return 1;
     }
-    // ok below, because default non-void restriction is 2
+    //below, because default non-void restriction is 2
     final Predicate&lt;Integer&gt; lambdaA = i -&gt; {
         if (i &gt; 5) { return true; }
         return false;
@@ -208,7 +208,7 @@ public class Example2 {
         <source>
 public class Example3 {
     public Example3() {}
-    // ok below, because default void restriction is 1
+    //below, because default void restriction is 1
     public Example3(int i) { return; }
 
     public int signA(int x) {
@@ -222,7 +222,7 @@ public class Example3 {
         if (x &gt; 2) { return 2; }
         return 1;
     }
-    // ok below, because non-void restriction is 2
+    //below, because non-void restriction is 2
     final Predicate&lt;Integer&gt; lambdaA = i -&gt; {
         if (i &gt; 5) { return true; }
         return false;
@@ -231,7 +231,7 @@ public class Example3 {
     final Predicate&lt;Integer&gt; lambdaB = i -&gt; { return i &gt; 5; };
 
     public void methodA(int x) {}
-    // ok below, because default void restriction is 1
+    //below, because default void restriction is 1
     public void methodB(int x) { return; }
 }
         </source>
@@ -256,7 +256,7 @@ public class Example3 {
         <source>
 public class Example4 {
     public Example4() {}
-    // ok below, because default void restriction is 1
+    //below, because default void restriction is 1
     public Example4(int i) { return; }
 
     public int signA(int x) {
@@ -270,7 +270,7 @@ public class Example4 {
         if (x &gt; 2) { return 2; }
         return 1;
     }
-    // ok below, because non-void restriction is 3
+    //below, because non-void restriction is 3
     final Predicate&lt;Integer&gt; lambdaA = i -&gt; {
         if (i &gt; 5) { return true; }
         return false;
@@ -279,7 +279,7 @@ public class Example4 {
     final Predicate&lt;Integer&gt; lambdaB = i -&gt; { return i &gt; 5; };
 
     public void methodA(int x) {}
-    // ok below, because default void restriction is 1
+    //below, because default void restriction is 1
     public void methodB(int x) { return; }
 }
         </source>
@@ -336,7 +336,7 @@ public class Example5 {
     final Predicate&lt;Integer&gt; lambdaB = i -&gt; { return i &gt; 5; };
 
     public void methodA(int x) {}
-    // ok below, because default void restriction is 1
+    //below, because default void restriction is 1
     public void methodB(int x) { return; }
 }
         </source>

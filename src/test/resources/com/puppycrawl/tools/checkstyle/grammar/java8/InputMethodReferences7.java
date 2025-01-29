@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 
-public class InputMethodReferences7 { // ok
+public class InputMethodReferences7 {  
     interface LambdaInt {
         <S, T> void m(S p1, T p2);
     }

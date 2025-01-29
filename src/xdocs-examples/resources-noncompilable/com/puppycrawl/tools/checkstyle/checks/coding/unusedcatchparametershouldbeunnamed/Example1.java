@@ -23,14 +23,14 @@ class Example1 {
 
     try {
       int x = 1 / 0;
-      // ok below, 'declared as unnamed parameter'
+      //below, 'declared as unnamed parameter'
     } catch (Exception _) {
       System.out.println("infinity");
     }
 
     try {
       int x = 1 / 0;
-      // ok below, ''exception' is used'
+      //below, ''exception' is used'
     } catch (Exception exception) {
       System.out.println("Got Exception - " +  exception.getMessage());
     }

@@ -15,16 +15,16 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.parameternumber;
 class Example2 extends ExternalService2 {
 
   @JsonCreator
-  // ok below, constructor is not in tokens to check
+  //below, constructor is not in tokens to check
   Example2(int a, int b, int c, int d,
            int e, int f, int g, int h) {}
 
-  // ok below, constructor is not in tokens to check
+  //below, constructor is not in tokens to check
   Example2(String a, String b, String c, String d,
            String e, String f, String g, String h) {}
 
   @Override
-  // ok below, less than 10 parameters (found 8)
+  //below, less than 10 parameters (found 8)
   public void processData(String a, String b, String c, String d,
                           String e, String f, String g, String h) {}
 
@@ -32,7 +32,7 @@ class Example2 extends ExternalService2 {
 
 class ExternalService2 {
 
-  // ok below, less than 10 parameters (found 8)
+  //below, less than 10 parameters (found 8)
   public void processData(String a, String b, String c, String d,
                           String e, String f, String g, String h) {}
 

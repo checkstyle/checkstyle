@@ -19,7 +19,7 @@ public class Example2 {
    * some doc
    * @since
    */
-  void testMethod1() {} // OK, as methods are not checked by default
+  void testMethod1() {} //as methods are not checked by default
 
   /** some doc */
   public void testMethod2() {}

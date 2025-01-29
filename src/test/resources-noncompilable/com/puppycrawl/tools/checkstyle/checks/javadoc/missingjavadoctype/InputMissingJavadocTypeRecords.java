@@ -27,7 +27,7 @@ public record InputMissingJavadocTypeRecords() { // violation
     }
 
     @NonNull1
-    record MyRecord3(int x) { // ok due to annotation
+    record MyRecord3(int x) { //due to annotation
         protected record MyRecord4(int y) { // violation
             private record MyRecord5(int z) { // violation
 

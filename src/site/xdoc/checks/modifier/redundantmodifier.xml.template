@@ -121,7 +121,7 @@ public enum EnumClass {
 
         <source>
 public class PublicClass {
-  public PublicClass() {} // OK
+  public PublicClass() {}  
 }
 
 class PackagePrivateClass {

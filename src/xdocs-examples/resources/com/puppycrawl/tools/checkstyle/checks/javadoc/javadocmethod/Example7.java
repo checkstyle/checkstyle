@@ -56,7 +56,7 @@ public class Example7 {
     try {
       int value = Integer.parseInt(s);
       if (value <= 0) {
-        throw new NumberFormatException(value + " is negative/zero"); // ok, try
+        throw new NumberFormatException(value + " is negative/zero"); //try
       }
       return value;
     } catch (NumberFormatException ex) {

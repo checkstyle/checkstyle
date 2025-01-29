@@ -19,7 +19,7 @@ public class Example3 {
       // blah blah blah
     }
     catch(RuntimeException re) {
-      // OK to catch RuntimeException here
+      //to catch RuntimeException here
     }
   }
 }

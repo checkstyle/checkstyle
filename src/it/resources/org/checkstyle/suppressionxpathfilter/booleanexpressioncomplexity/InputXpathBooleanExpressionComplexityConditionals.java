@@ -8,7 +8,7 @@ public class InputXpathBooleanExpressionComplexityConditionals {
 
         if (((a && (b & a)) || (b ^ a))) { // warn
             a = b;
-        } else if ((a || b) ^ (a && b)) { // OK
+        } else if ((a || b) ^ (a && b)) {  
             c = b;
         }
     }

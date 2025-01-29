@@ -53,7 +53,7 @@ public class InputJavadocMethodIgnoreThrows {
     private static void catchAndRethrow(Object o) {
         try {
             if (o == null) {
-                throw new IllegalArgumentException("null"); // ok, try
+                throw new IllegalArgumentException("null"); //try
             }
         } catch (IllegalArgumentException ex) {
             // violation below '.* @throws .* 'IllegalArgumentException'.'
@@ -70,7 +70,7 @@ public class InputJavadocMethodIgnoreThrows {
     private static void catchAndRethrowSame(Object o) {
         try {
             if (o == null) {
-                throw new IllegalArgumentException("null"); // ok, try
+                throw new IllegalArgumentException("null"); //try
             }
         } catch (IllegalArgumentException ex) {
             throw ex; // no violation
@@ -104,7 +104,7 @@ public class InputJavadocMethodIgnoreThrows {
     private static Function<String, String> getTruncateFunction(int maxLength) {
         return s -> {
             if (s == null) {
-                throw new IllegalArgumentException("Cannot truncate null"); // ok, inside lambda
+                throw new IllegalArgumentException("Cannot truncate null"); //inside lambda
             }
             return s.length() > maxLength ? s.substring(0, maxLength) : s;
         };
@@ -124,7 +124,7 @@ public class InputJavadocMethodIgnoreThrows {
                 throw new IllegalArgumentException("empty input"); // no violation
             }
             else {
-                throw new IOException(); // ok, exception was caught
+                throw new IOException(); //exception was caught
             }
         } catch (IOException e) {
             System.out.println("Error reading file");
@@ -151,7 +151,7 @@ public class InputJavadocMethodIgnoreThrows {
     void dfs(String str) {
         class DFS {
             void neverCalled() {
-                throw new IllegalStateException(""); // ok, inside local class
+                throw new IllegalStateException(""); //inside local class
             }
 
             void dfs(String str) {
@@ -174,7 +174,7 @@ public class InputJavadocMethodIgnoreThrows {
         return new Runnable() {
             @Override
             public void run() {
-                throw new UnsupportedOperationException(""); // ok, inside anon class
+                throw new UnsupportedOperationException(""); //inside anon class
             }
         };
     }
@@ -189,7 +189,7 @@ public class InputJavadocMethodIgnoreThrows {
         try {
             int value = Integer.parseInt(s);
             if (value <= 0) {
-                throw new NumberFormatException(value + " is negative/zero"); // ok, try
+                throw new NumberFormatException(value + " is negative/zero"); //try
             }
             return x -> value;
         } catch (NumberFormatException ex) {
@@ -198,7 +198,7 @@ public class InputJavadocMethodIgnoreThrows {
                 throw new IllegalArgumentException("Invalid number", ex);
             }
             return x -> {
-                throw new UnsupportedOperationException(""); // ok, inside lambda
+                throw new UnsupportedOperationException(""); //inside lambda
             };
         }
     }

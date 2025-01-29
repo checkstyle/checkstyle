@@ -22,11 +22,11 @@ package com.puppycrawl.tools.checkstyle.checks.suppresswarningsholder;
  */
 public class InputSuppressWarningsHolderTextBlocks {
     @SuppressWarnings({"membername"})
-    String STRING1 = "string"; //ok, suppressed
+    String STRING1 = "string"; //suppressed
 
     @SuppressWarnings({"membername"})
     String STRING2 = """
-            string"""; // ok, suppressed
+            string"""; //suppressed
 
     String STRING3 = "string"; // violation ''STRING3' must match pattern'
 
@@ -35,7 +35,7 @@ public class InputSuppressWarningsHolderTextBlocks {
     @SuppressWarnings({"""
             membername"""})
     String STRING5 = """
-            string"""; // ok, suppressed
+            string"""; //suppressed
 
     @SuppressWarnings({
         """
@@ -43,7 +43,7 @@ public class InputSuppressWarningsHolderTextBlocks {
         """
     })
     String STRING6 = """
-        string"""; // ok, suppressed
+        string"""; //suppressed
 
     @SuppressWarnings({
         """
@@ -51,7 +51,7 @@ public class InputSuppressWarningsHolderTextBlocks {
         """
     })
     String STRING7 = """
-        string"""; // ok, suppressed
+        string"""; //suppressed
 
     @SuppressWarnings({
         """

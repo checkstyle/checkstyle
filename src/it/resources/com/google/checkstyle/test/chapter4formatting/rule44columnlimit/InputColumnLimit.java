@@ -1,8 +1,8 @@
 package com.google.checkstyle.test.chapter4formatting.rule44columnlimit;
 
-// ok above, longer package statements are allowed
+//above, longer package statements are allowed
 
-// ok below, longer imports are allowed
+//below, longer imports are allowed
 import com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcoveragegooglesjavastylerule.PackageStatementTest;
 import java.io.IOException;
 
@@ -179,11 +179,11 @@ final class InputColumnLimit {
 
   // CHECKSTYLE.SUPPRESS: LineLength for +1 lines
   class LonggggggggggggggggggggggggggggClassssssssssssssssssssssssssNameeeeeeeeeeeeeeSoooooBoooooorrriinngggg1 {
-    // ok below, as it is suppressed.
+    //below, as it is suppressed.
     void longggggggggggggggggggggmethooooooooooooooooooooooddddddddddddddddddddddddddddddddddddddddddddddddddddddd(int x, int y) {}
     // CHECKSTYLE.SUPPRESS: LineLength for -1 lines
 
-    // ok below, as it is suppressed.
+    //below, as it is suppressed.
     int aaaarealllllllllllllllllyyyyyyyyyyylllllllloooooooooooooooonnnnnnnnnnnnnnnnnggggggggggvvvvvvaarriaaablleeeeeeeeeeee = 99;
     // CHECKSTYLE.SUPPRESS: LineLength for -1 lines
   }

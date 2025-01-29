@@ -5,7 +5,7 @@ import java.util.TreeSet;
 /*
  * Config: None as a helper class.
  */
-public class InputIllegalType implements InputIllegalTypeSuper { // ok helper class
+public class InputIllegalType implements InputIllegalTypeSuper { //helper class
     public abstract class AbstractClass {/*one more comment*/}
 
     static class SomeStaticClass {

@@ -9,8 +9,8 @@
 package com.puppycrawl.tools.checkstyle.checks.imports.redundantimport;
 
 // xdoc section -- start
-import static com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.Example1.*; // OK, static import
-import static java.lang.Integer.MAX_VALUE; // OK, static import
+import static com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.Example1.*; //static import
+import static java.lang.Integer.MAX_VALUE; //static import
 
 // violation below, 'Redundant import from the same package'
 import com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.Example1;

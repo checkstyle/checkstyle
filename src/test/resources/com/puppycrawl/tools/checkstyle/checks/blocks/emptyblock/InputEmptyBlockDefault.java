@@ -22,7 +22,7 @@ public class InputEmptyBlockDefault {
         }
         switch (a) {
             default:
-            {   // ok as the block contains a comment
+            {   //as the block contains a comment
             }
         }
     }
@@ -33,7 +33,7 @@ public class InputEmptyBlockDefault {
             case 2:a++;
             default:
                 switch (a) {
-                    default: {  // ok as the block contains a comment
+                    default: {  //as the block contains a comment
 
                     }
                 }
@@ -72,7 +72,7 @@ public class InputEmptyBlockDefault {
 
         switch (a-b) {
             case 1:
-            default: {      // ok as the block contains a comment
+            default: {      //as the block contains a comment
 
             } ;
             case 2: { }

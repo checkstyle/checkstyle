@@ -17,7 +17,7 @@ public class InputFallThroughSwitchRules {
             case 1 -> {
                 switch (b) {
                     case 10 -> {
-                        break top; // ok as terminates outer 'top' switch
+                        break top; //as terminates outer 'top' switch
                     }
                     default -> {
                         return 11;
@@ -36,7 +36,7 @@ public class InputFallThroughSwitchRules {
                 switch (b) {
                     case 10 -> throw new IllegalArgumentException("Invalid input");
                     default -> {
-                        break outer; // ok as terminates outer 'outer' switch
+                        break outer; //as terminates outer 'outer' switch
                     }
                 }
             }
@@ -51,7 +51,7 @@ public class InputFallThroughSwitchRules {
                 case 1 -> {
                     switch (b) {
                         case 10 -> {
-                            break loop; // ok as terminates outer 'loop'
+                            break loop; //as terminates outer 'loop'
                         }
                         default -> System.out.println("Default case");
                     }

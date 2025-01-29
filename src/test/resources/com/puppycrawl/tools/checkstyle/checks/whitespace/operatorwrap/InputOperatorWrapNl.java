@@ -21,7 +21,7 @@ class InputOperatorWrapNl
                 1 * // violation ''*' should be on a new line.'
                 2 * ""
                     .length();
-        int x3 = (2 * 1) * 0 * ( // ok, parens
+        int x3 = (2 * 1) * 0 * ( //parens
                 1 * 2) * 0;
     }
 

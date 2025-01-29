@@ -22,7 +22,7 @@ public class InputStringLiteralEqualityConcatenatedString {
 
         if (s == "a" + "b" + "c") { // violation
         }
-        if ((s += "asd") != p) { // ok, can't be detected as check in not type aware.
+        if ((s += "asd") != p) { //can't be detected as check in not type aware.
         }
 
         if ((s += "asd") == s + (p + "asd")) { // violation

@@ -6,10 +6,10 @@ public class InputXpathParameterNumberDefault {
                   int i, int j, int k) {
     }
 
-    public InputXpathParameterNumberDefault() { // ok
+    public InputXpathParameterNumberDefault() {  
     }
 
-    void myMethod2(int a, int b, int c, int d) { // ok
+    void myMethod2(int a, int b, int c, int d) {  
     }
 
 }

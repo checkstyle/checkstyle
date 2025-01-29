@@ -83,7 +83,7 @@ public class InputRightCurlyCaseBlocksWithSwitchExpressionAloneOrSingleline {
                  x = 1;
                  yield true;} case 3 -> {
                  x = 1;
-                 if (x == 1) {yield true;} // ok single line
+                 if (x == 1) {yield true;} //single line
                  yield false;
              }
              default -> throw new RuntimeException();

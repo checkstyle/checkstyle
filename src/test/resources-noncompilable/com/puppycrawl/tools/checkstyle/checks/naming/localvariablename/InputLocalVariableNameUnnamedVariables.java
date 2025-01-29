@@ -18,7 +18,7 @@ public class InputLocalVariableNameUnnamedVariables {
         q.add(1);
         q.add(2);
         for (Integer element : q) {
-            var _ = q.poll();   // ok, unnamed variable
+            var _ = q.poll();   //unnamed variable
             var _ = q.poll();
         }
     }

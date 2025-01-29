@@ -141,7 +141,7 @@ public class Example2 {
         </source>
         <p id="Example3-config">
           To configure a filter so that
-          <code>// OK to catch (Throwable|Exception|RuntimeException) here</code>
+          <code>//to catch (Throwable|Exception|RuntimeException) here</code>
           permits the current and previous line to avoid generating an IllegalCatch
           audit event:
         </p>
@@ -166,7 +166,7 @@ public class Example3 {
       // blah blah blah
     }
     catch(RuntimeException re) {
-      // OK to catch RuntimeException here
+      //to catch RuntimeException here
     }
   }
 }

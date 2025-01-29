@@ -21,8 +21,8 @@ class Example5 {
       case 1:
         int y = 1;
         break;
-      case 2: {x = 1;}   // ok, RightCurly is in single line
-      case 3: int z = 0; {break;} // ok, the braces is not a first child of case
+      case 2: {x = 1;}   //RightCurly is in single line
+      case 3: int z = 0; {break;} //the braces is not a first child of case
       default:
         x = 0;
     }
@@ -33,7 +33,7 @@ class Example5 {
     switch (mode) {
       case 1:
         int x = 5;
-    } // ok, RightCurly is on the same line as LeftCurly
+    } //RightCurly is on the same line as LeftCurly
   }
 
   public void method() {

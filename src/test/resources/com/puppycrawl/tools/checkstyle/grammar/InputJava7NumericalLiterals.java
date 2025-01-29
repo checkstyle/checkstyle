@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.grammar;
 /**
  * Input for Java 7 numerical literals.
  */
-public class InputJava7NumericalLiterals // ok
+public class InputJava7NumericalLiterals  
 {
     int i1 = 0b00011110;
     int i2 = 0B00011110;

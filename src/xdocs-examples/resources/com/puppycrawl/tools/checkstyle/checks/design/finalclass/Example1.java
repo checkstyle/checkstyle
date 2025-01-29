@@ -9,7 +9,7 @@
 package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
 
 // xdoc section -- start
-public class Example1 { // ok, since it has a public constructor
+public class Example1 { //since it has a public constructor
 
   final class A {
     private A() {
@@ -21,7 +21,7 @@ public class Example1 { // ok, since it has a public constructor
     }
   }
 
-  class C { // ok, since it has a public constructor
+  class C { //since it has a public constructor
     int field1;
     String field2;
 
@@ -36,7 +36,7 @@ public class Example1 { // ok, since it has a public constructor
     }
   }
 
-  class AnonymousInner { // ok, class has an anonymous inner class.
+  class AnonymousInner { //class has an anonymous inner class.
     public final AnonymousInner ONE
             = new AnonymousInner() {
             };

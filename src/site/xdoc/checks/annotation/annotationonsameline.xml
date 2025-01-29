@@ -111,7 +111,7 @@ class Example1 {
   public Example1() {
   }
 
-  @SuppressWarnings(&quot;unchecked&quot;) public void fun2() {  // OK
+  @SuppressWarnings(&quot;unchecked&quot;) public void fun2() {   
   }
 
   public void fun1() {
@@ -119,9 +119,9 @@ class Example1 {
 
 }
 
-@SuppressWarnings(&quot;unchecked&quot;) class Test1 extends Example1 {  // OK
+@SuppressWarnings(&quot;unchecked&quot;) class Test1 extends Example1 {   
 
-  @Deprecated public Test1() {  // OK
+  @Deprecated public Test1() {   
   }
 
   @Override // violation, &quot;should be on the same line with its target.&quot;
@@ -129,7 +129,7 @@ class Example1 {
   }
 
   @Before // violation, &quot;should be on the same line with its target.&quot;
-  @Override public void fun2() {  // OK
+  @Override public void fun2() {   
   }
 
   // violation below, &quot;should be on the same line with its target.&quot;
@@ -156,7 +156,7 @@ class Example1 {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-@Deprecated interface Foo {  // OK
+@Deprecated interface Foo {   
 
   void doSomething();
 
@@ -169,7 +169,7 @@ class Example2 implements Foo {
   public Example2() {
   }
 
-  @Override  // OK
+  @Override   
   public void doSomething() {
   }
 

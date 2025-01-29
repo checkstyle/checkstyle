@@ -24,12 +24,12 @@ public class InputMissingSwitchDefaultCaseLabelElements {
                 System.out.println("The rest (including null)");
         }
 
-        switch(o) { // ok, pattern totality enforced by compiler
+        switch(o) { //pattern totality enforced by compiler
             case Object o1:
                 System.out.println("object");
         }
 
-        switch(o) { // ok, pattern totality enforced by compiler
+        switch(o) { //pattern totality enforced by compiler
             case Object o1 && o1.toString().length() > 2:
                 System.out.println("object");
                 break;
