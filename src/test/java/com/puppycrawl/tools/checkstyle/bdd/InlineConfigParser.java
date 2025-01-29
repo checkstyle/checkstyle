@@ -704,8 +704,10 @@ public final class InlineConfigParser {
     private static String hardCodedDefaultForFormat(String fullyQualifiedModuleName) {
         final String pattern = PATTERNS.get(fullyQualifiedModuleName);
         if (pattern == null) {
-            throw new IllegalStateException("Unable to validate default value for property in "
-                    + fullyQualifiedModuleName);
+            final String message = String.format(Locale.ROOT,
+                    "Unable to validate default value for property in %s",
+                    fullyQualifiedModuleName);
+            throw new IllegalStateException(message);
         }
         return pattern;
     }
