@@ -5,6 +5,7 @@ body, td, select, input, li {
 h1 {
   text-transform: capitalize;
   font-size: x-large;
+  margin: 0px;
 }
 
 h2 {
