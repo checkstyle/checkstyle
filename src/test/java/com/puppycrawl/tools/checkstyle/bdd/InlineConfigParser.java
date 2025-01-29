@@ -629,22 +629,18 @@ public final class InlineConfigParser {
     private static String convertArrayValue(Object value) {
         final String result;
 
-        if (value instanceof int[]) {
-            result = Arrays.toString((int[]) value).replaceAll("[\\[\\]\\s]", "");
-        }
-        else if (value instanceof double[]) {
+        if (value instanceof double[]) {
             final double[] arr = (double[]) value;
-            final StringBuilder resBuilder = new StringBuilder(128);
-            for (int index = 0; index < arr.length; index++) {
-                if (index > 0) {
-                    resBuilder.append(',');
-                }
-                resBuilder.append(BigDecimal
-                        .valueOf(arr[index])
-                        .stripTrailingZeros()
-                        .toPlainString());
-            }
-            result = resBuilder.toString();
+            result = Arrays.stream(arr)
+                           .boxed()
+                           .map(number -> {
+                               return BigDecimal.valueOf(number).stripTrailingZeros()
+                                                .toPlainString();
+                           })
+                           .collect(Collectors.joining(","));
+        }
+        else if (value instanceof int[]) {
+            result = Arrays.toString((int[]) value).replaceAll("[\\[\\]\\s]", "");
         }
         else if (value instanceof boolean[]) {
             result = Arrays.toString((boolean[]) value).replaceAll("[\\[\\]\\s]", "");
@@ -656,9 +652,8 @@ public final class InlineConfigParser {
             result = Arrays.toString((Object[]) value).replaceAll("[\\[\\]\\s]", "");
         }
         else {
-            result = "";
+            result = NULL_STRING;
         }
-
         return result;
     }
 
