@@ -28,7 +28,7 @@ public class InputOneVariablePerDeclaration {
                   strings1;
 
   void method2() {
-    for (int i = 0, j = 0; i < 10; i++, j--) { // ok
+    for (int i = 0, j = 0; i < 10; i++, j--) {  
     }
 
     for (int i = 0; i < 4; i++) {}
@@ -62,7 +62,7 @@ public class InputOneVariablePerDeclaration {
                     strings1;
 
     void method2() {
-      for (int i = 0, j = 0; i < 10; i++, j--) { // ok
+      for (int i = 0, j = 0; i < 10; i++, j--) {  
       }
 
       for (int i = 0; i < 4; i++) {}
@@ -98,7 +98,7 @@ public class InputOneVariablePerDeclaration {
               // violation 2 lines above '.* incorrect indentation .*, expected .*: 10, 12, 14.'
 
               void method2() {
-                for (int i = 0, j = 0; i < 10; i++, j--) { // ok
+                for (int i = 0, j = 0; i < 10; i++, j--) {  
                 }
 
                 for (int i = 0; i < 4; i++) {}

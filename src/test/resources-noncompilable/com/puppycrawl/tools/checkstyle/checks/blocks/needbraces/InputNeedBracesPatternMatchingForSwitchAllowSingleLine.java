@@ -50,7 +50,7 @@ public class InputNeedBracesPatternMatchingForSwitchAllowSingleLine {
 
     void testSwitchRule(Object o) {
         switch (o) {
-            case Integer i when (i == 0) -> System.out.println("zero"); // ok, single line is true
+            case Integer i when (i == 0) -> System.out.println("zero"); //single line is true
 
             case String s when (s.equals("a")) ->  // violation
                 System.out.println("a");
@@ -75,7 +75,7 @@ public class InputNeedBracesPatternMatchingForSwitchAllowSingleLine {
                 System.out.println("zero");
                 yield i;
 
-            case String s when (s.equals("a")) : yield s.length();  // ok, single line is true
+            case String s when (s.equals("a")) : yield s.length();  //single line is true
 
             case Point(int x, int y ) when (x>=0 && y >=0) :  // violation
                 yield x + y;

@@ -20,9 +20,9 @@ class Example1 {
   void test() {
     // violation below, 'Unused lambda parameter 'x' should be unnamed'
     Function<Integer, Integer> f1 = (x) -> this.x + 1;
-    // ok below, parameter is unnamed
+    //below, parameter is unnamed
     Function<Integer, Integer> f2 = (_) -> this.x + 1;
-    // ok below, parameter is used
+    //below, parameter is used
     Function<Integer, Integer> f3 = (x) -> x + 1;
     // violation below, 'Unused lambda parameter 'y' should be unnamed'
     BiFunction<Integer, Integer, Integer> bf1 = (x, y) -> x + this.x;

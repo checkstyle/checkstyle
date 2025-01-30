@@ -1010,7 +1010,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      *     s1,
      *     s2,
      *     s3
-     *     // ok
+     *      
      * );
      * }
      * </p>

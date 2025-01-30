@@ -22,7 +22,7 @@ public class Example1 {
       throw new RuntimeException();
     } catch (RuntimeException ignore) {
       // no handling
-    } // ok, catch block has comment
+    } //catch block has comment
   }
 
   private void exampleMethod3 () {

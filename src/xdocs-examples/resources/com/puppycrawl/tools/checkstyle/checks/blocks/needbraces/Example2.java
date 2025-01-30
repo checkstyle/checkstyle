@@ -28,21 +28,21 @@ class Example2 {
         return false;
     for (int i = 0; i < 5; i++) {
       ++count;}
-    do // ok, because DO is not a target of validation
+    do //because DO is not a target of validation
         ++count;
     while (false);
     for (int j = 0; j < 10; j++);
-    // ok above, because FOR is not a target of validation
+    //above, because FOR is not a target of validation
     for(int i = 0; i < 10; value.charAt(12));
-    // ok above, because FOR is not a target of validation
+    //above, because FOR is not a target of validation
     while (counter < 10)
-        // ok above, because WHILE is not a target of validation
+        //above, because WHILE is not a target of validation
         ++count;
     while (value.charAt(12) < 5);
-    // ok above, because WHILE is not a target of validation
+    //above, because WHILE is not a target of validation
     switch (num) {
       case 1: counter++; break;
-      // ok above, because break in case blocks is not counted to allow compact view
+      //above, because break in case blocks is not counted to allow compact view
     }
     return true;
   }

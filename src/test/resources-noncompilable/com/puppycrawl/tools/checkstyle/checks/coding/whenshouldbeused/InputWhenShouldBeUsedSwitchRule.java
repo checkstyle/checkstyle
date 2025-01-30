@@ -41,7 +41,7 @@ public class InputWhenShouldBeUsedSwitchRule {
             default -> {}
         }
         switch (j) {
-            case String s -> {   // ok, not single if, there is else if
+            case String s -> {   //not single if, there is else if
                 if (s.isEmpty()) {
                     System.out.println("empty String");
                 } else if (!s.isEmpty())
@@ -60,7 +60,7 @@ public class InputWhenShouldBeUsedSwitchRule {
             default -> {}
         }
          switch (j) {
-            case String s -> // ok, not a single if there is another statement
+            case String s -> //not a single if there is another statement
             {
                 int y = get();
                 if (s.isEmpty() && y == 0) {
@@ -70,7 +70,7 @@ public class InputWhenShouldBeUsedSwitchRule {
             default -> {}
         }
          switch (j) {
-            case String s ->  {// ok, not a single if there is another statement
+            case String s ->  {//not a single if there is another statement
                 if (s.isEmpty()) {
                     System.out.println("empty String");
                 }

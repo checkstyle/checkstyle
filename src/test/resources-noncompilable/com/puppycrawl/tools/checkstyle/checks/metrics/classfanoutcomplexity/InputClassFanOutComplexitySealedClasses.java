@@ -25,7 +25,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 public class InputClassFanOutComplexitySealedClasses implements I, J {
 }
 
-// ok below, sealed classes don't rely on the permitted subclasses
+//below, sealed classes don't rely on the permitted subclasses
 sealed class A permits B { }
 
 // violation below, 'Class Fan-Out Complexity is 1 (max allowed is 0)'

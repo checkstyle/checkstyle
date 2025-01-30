@@ -18,7 +18,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 
-public final class InputAnnotationsOnArray { // ok
+public final class InputAnnotationsOnArray {  
 
     private String array1 @Nullable [];
     private @Nullable int array2 @Nullable [] @Nullable [];

@@ -46,7 +46,7 @@ public class Example5 {
     final Predicate<Integer> lambdaB = i -> { return i > 5; };
 
     public void methodA(int x) {}
-    // ok below, because default void restriction is 1
+    //below, because default void restriction is 1
     public void methodB(int x) { return; }
 }
 // xdoc section -- end

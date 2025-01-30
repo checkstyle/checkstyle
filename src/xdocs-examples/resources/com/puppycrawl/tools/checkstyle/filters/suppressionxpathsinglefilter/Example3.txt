@@ -15,7 +15,7 @@
 
 // xdoc section -- start
 public class FileOne {
-  public void MyMethod() {} // OK
+  public void MyMethod() {}  
 }
 public class FileTwo {
   public void MyMethod() {} // violation,  name 'MyMethod' must

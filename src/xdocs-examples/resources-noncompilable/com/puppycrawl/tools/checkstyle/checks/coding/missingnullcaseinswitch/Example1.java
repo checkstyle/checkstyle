@@ -34,7 +34,7 @@ public class Example1 {
   }
 
   void testPrimitives(int i) {
-    switch (i) {   // ok, this is a primitive type can't be null
+    switch (i) {   //this is a primitive type can't be null
       case 1 : {}
     }
   }

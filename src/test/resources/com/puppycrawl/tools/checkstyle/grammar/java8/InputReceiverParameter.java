@@ -12,7 +12,7 @@ applyToPrivate = (default)true
 package com.puppycrawl.tools.checkstyle.grammar.java8;
 
 
-public class InputReceiverParameter { // ok
+public class InputReceiverParameter {  
     public void m4(InputReceiverParameter this) {}
 
     private class Inner {

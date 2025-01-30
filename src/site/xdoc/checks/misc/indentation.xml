@@ -151,11 +151,11 @@ class Example1 {
         }
 
         if ((cond1 &amp;&amp; cond2)
-                || (cond3 &amp;&amp; cond4)          // ok, lineWrappingIndentation
-                || !(cond5 &amp;&amp; cond6)) {      // ok, lineWrappingIndentation
+                || (cond3 &amp;&amp; cond4)          //lineWrappingIndentation
+                || !(cond5 &amp;&amp; cond6)) {      //lineWrappingIndentation
             field.toUpperCase()
-                 .concat(&quot; TASK&quot;)             // ok, lineWrappingIndentation
-                 .chars().forEach(c -&gt; {      // ok, lineWrappingIndentation
+                 .concat(&quot; TASK&quot;)             //lineWrappingIndentation
+                 .chars().forEach(c -&gt; {      //lineWrappingIndentation
                      System.out.println((char) c);
                  });
         }
@@ -213,11 +213,11 @@ class Example2 {
         }
 
         if ((cond1 &amp;&amp; cond2)
-                || (cond3 &amp;&amp; cond4)           // ok, lineWrappingIndentation
-                || !(cond5 &amp;&amp; cond6)) {       // ok, lineWrappingIndentation
+                || (cond3 &amp;&amp; cond4)           //lineWrappingIndentation
+                || !(cond5 &amp;&amp; cond6)) {       //lineWrappingIndentation
             field.toUpperCase()
-                 .concat(&quot; TASK&quot;)             // ok, lineWrappingIndentation
-                 .chars().forEach(c -&gt; {      // ok, lineWrappingIndentation
+                 .concat(&quot; TASK&quot;)             //lineWrappingIndentation
+                 .chars().forEach(c -&gt; {      //lineWrappingIndentation
                      System.out.println((char) c);
                  });
         }
@@ -320,11 +320,11 @@ class Example4 {
         }
 
         if ((cond1 &amp;&amp; cond2)
-                || (cond3 &amp;&amp; cond4)          // ok, lineWrappingIndentation
-                || !(cond5 &amp;&amp; cond6)) {      // ok, lineWrappingIndentation
+                || (cond3 &amp;&amp; cond4)          //lineWrappingIndentation
+                || !(cond5 &amp;&amp; cond6)) {      //lineWrappingIndentation
             field.toUpperCase()
-                 .concat(&quot; TASK&quot;)            // ok, lineWrappingIndentation
-                 .chars().forEach(c -&gt; {     // ok, lineWrappingIndentation
+                 .concat(&quot; TASK&quot;)            //lineWrappingIndentation
+                 .chars().forEach(c -&gt; {     //lineWrappingIndentation
                      System.out.println((char) c);
                  });
         }

@@ -2,18 +2,18 @@ package com.puppycrawl.tools.checkstyle.grammar.antlr4;
 
 public class InputAntlr4AstRegressionSingleLineBlocks {
 
-    public void testMethod() {}; // ok
+    public void testMethod() {};  
 
     public void testMethod1() {
     }; // violation
 
-    public class TestClass {}; // ok
+    public class TestClass {};  
 
     public class TestClass1 {
     }; // violation
 
     public class TestClass2 {
-        public TestClass2() {}; // ok
+        public TestClass2() {};  
 
         public TestClass2(String someValue) {
         }; // violation
@@ -26,7 +26,7 @@ public class InputAntlr4AstRegressionSingleLineBlocks {
     public @interface TestAnnnotation5 {
         String someValue(); }; // violation
 
-    public @interface TestAnnotation6 {}; // ok
+    public @interface TestAnnotation6 {};  
 
     public @interface TestAnnotation7 {
         String someValue();
@@ -35,14 +35,14 @@ public class InputAntlr4AstRegressionSingleLineBlocks {
     public @interface TestAnnotation8 { String someValue();
     }; // violation
 
-    public @interface TestAnnotation9 { String someValue(); }; // ok
+    public @interface TestAnnotation9 { String someValue(); };  
 
-    enum TestEnum{}; // ok
+    enum TestEnum{};  
 
     enum TestEnum1{
         SOME_VALUE;}; // violation
 
-    enum TestEnum2 { SOME_VALUE; }; // ok
+    enum TestEnum2 { SOME_VALUE; };  
 
     enum TestEnum3{
         SOME_VALUE;

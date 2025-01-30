@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checker;
 public class InputCheckerTabCharacterCustomWidth {
   public int foo(int numOne, int numTwo) {
 
-    // ok, has no tabs
+    //has no tabs
     int sum = numOne + numTwo;
 
     // has a tab after  ';'

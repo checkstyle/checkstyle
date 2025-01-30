@@ -26,18 +26,18 @@
         </p>
         <source>
 String line;
-while ((line = bufferedReader.readLine()) != null) { // OK
+while ((line = bufferedReader.readLine()) != null) {  
   // process the line
 }
 
-for (;(line = bufferedReader.readLine()) != null;) { // OK
+for (;(line = bufferedReader.readLine()) != null;) {  
   // process the line
 }
 
 do {
   // process the line
 }
-while ((line = bufferedReader.readLine()) != null); // OK
+while ((line = bufferedReader.readLine()) != null);  
         </source>
 
         <p>
@@ -89,7 +89,7 @@ public class Example1 {
     while (someVal = false) {} // violation, 'Inner assignments should be avoided'
 
     InputStream is = new FileInputStream(&quot;textFile.txt&quot;);
-    while ((b = is.read()) != -1) { // OK, this is a common idiom
+    while ((b = is.read()) != -1) { //this is a common idiom
         // some code
     }
   }

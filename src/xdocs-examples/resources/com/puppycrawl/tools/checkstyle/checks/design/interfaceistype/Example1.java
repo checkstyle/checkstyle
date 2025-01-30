@@ -15,12 +15,12 @@ class Example1 {
     int a = 3;
   }
 
-  // ok below, because marker interfaces are allowed by default.
+  //below, because marker interfaces are allowed by default.
   interface Test2 {
 
   }
 
-  interface Test3 { // ok, because it has a method.
+  interface Test3 { //because it has a method.
     int a = 3;
     void test();
   }

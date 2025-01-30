@@ -43,7 +43,7 @@ public class InputFallThrough
                 return;
             }
             finally {
-            } // ok, either exception is thrown or
+            } //either exception is thrown or
             // we return from method before fallthrough can occur
         case 6:
             try (final Resource resource = new Resource()) {

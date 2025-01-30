@@ -23,7 +23,7 @@ class InputEmptyBlockCase
         }
         switch (a) {
             case 1:
-            {  // ok as the block contains a comment
+            {  //as the block contains a comment
             }
         }
     }

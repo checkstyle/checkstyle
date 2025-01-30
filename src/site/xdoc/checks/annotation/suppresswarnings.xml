@@ -154,10 +154,10 @@ class Example1 {
   // violation below 'The warning '' cannot be suppressed at this location'
   @SuppressWarnings(&quot;&quot;)
   final int num1 = 1;
-  // ok below as default format only checks for a blank or empty string
+  //below as default format only checks for a blank or empty string
   @SuppressWarnings(&quot;all&quot;)
   final int num2 = 2;
-  // ok below as default format only checks for a blank or empty string
+  //below as default format only checks for a blank or empty string
   @SuppressWarnings(&quot;unused&quot;)
   final int num3 = 3;
 
@@ -170,7 +170,7 @@ class Example1 {
   @SuppressWarnings(true?&quot;all&quot;:&quot;unused&quot;)
   void foo4(int param) {}
 }
-// ok below as default format only checks for a blank or empty string
+//below as default format only checks for a blank or empty string
 @SuppressWarnings(&quot;unchecked&quot;)
 class Test1 {}
         </source>
@@ -198,10 +198,10 @@ class Test1 {}
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-// ok below, since we are only checking for '^unchecked$|^unused$'
+//below, since we are only checking for '^unchecked$|^unused$'
 @SuppressWarnings(&quot;&quot;)
 class Example2 {
-  // ok below as VARIABLE_DEF is not configured in tokens to check
+  //below as VARIABLE_DEF is not configured in tokens to check
   @SuppressWarnings(&quot;&quot;)
   final int num1 = 1;
   @SuppressWarnings(&quot;all&quot;)
@@ -209,10 +209,10 @@ class Example2 {
   @SuppressWarnings(&quot;unused&quot;)
   final int num3 = 3;
 
-  // ok below as PARAMETER_DEF is not configured in tokens to check
+  //below as PARAMETER_DEF is not configured in tokens to check
   void foo1(@SuppressWarnings(&quot;unused&quot;) int param) {}
 
-  // ok below, since we are only checking for '^unchecked$|^unused$'
+  //below, since we are only checking for '^unchecked$|^unused$'
   @SuppressWarnings(&quot;all&quot;)
   void foo2(int param) {}
 

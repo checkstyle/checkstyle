@@ -22,7 +22,7 @@ public class InputMissingSwitchDefaultCheckSwitchExpressionUnderMethodCall {
         }
 
         return (
-                switch (value) { // ok, switch expression must be exhaustive
+                switch (value) { //switch expression must be exhaustive
                     case ONE -> Optional.of("One");
                     case TWO -> Optional.of("Two");
                 }
@@ -30,7 +30,7 @@ public class InputMissingSwitchDefaultCheckSwitchExpressionUnderMethodCall {
     }
 
     Optional<String> working(Case value) {
-        var x = switch (value) { // ok, switch expression must be exhaustive
+        var x = switch (value) { //switch expression must be exhaustive
             case ONE -> Optional.of("One");
             case TWO -> Optional.of("Two");
         };

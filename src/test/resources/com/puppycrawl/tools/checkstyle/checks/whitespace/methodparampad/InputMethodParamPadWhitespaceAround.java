@@ -15,7 +15,7 @@ public class InputMethodParamPadWhitespaceAround
 {
     protected InputMethodParamPadWhitespaceAround ( int i )
     {
-        this (); // ok, whitespace between 'this' and ()
+        this (); //whitespace between 'this' and ()
         toString ();
     }
     protected InputMethodParamPadWhitespaceAround ()

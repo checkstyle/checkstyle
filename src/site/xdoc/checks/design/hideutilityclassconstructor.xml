@@ -133,7 +133,7 @@ class Application1 {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-// ok below, skipped by annotation
+//below, skipped by annotation
 @java.lang.Deprecated
 class Example2 {
 
@@ -165,7 +165,7 @@ class UtilityClass2 {
 
   static float f;
 }
-// ok below, skipped by annotation
+//below, skipped by annotation
 @SpringBootApplication
 class Application2 {
 

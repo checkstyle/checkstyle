@@ -13,7 +13,7 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, PACKAGE_DEF, ENUM_CONSTANT_DEF, \
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
 public class InputAnnotationLocationRecordsAndCompactCtors {
-    @NonNull1 public record MyRecord1() { // ok, no param
+    @NonNull1 public record MyRecord1() { //no param
     }
 
     // violation below 'Annotation 'SuppressWarnings' should be alone on line.'

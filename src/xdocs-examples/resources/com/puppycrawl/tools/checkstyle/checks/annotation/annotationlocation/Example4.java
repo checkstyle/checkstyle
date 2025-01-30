@@ -21,7 +21,7 @@ import org.mockito.Mock;
 
 // xdoc section -- start
 class Example4 {
-  @NotNull private boolean field1; // ok, as 'tokens' property set to METHOD_DEF only
+  @NotNull private boolean field1; //as 'tokens' property set to METHOD_DEF only
   @Override public int hashCode() { return 1; }
   @NotNull
   private boolean field2;
