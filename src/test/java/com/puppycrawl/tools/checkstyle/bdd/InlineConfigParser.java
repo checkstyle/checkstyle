@@ -312,6 +312,50 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet"
     );
 
+    // This is a hack until https://github.com/checkstyle/checkstyle/issues/13845
+    private static final Map<String, String> MODULE_MAPPINGS = new HashMap<>();
+
+    static {
+        MODULE_MAPPINGS.put("IllegalCatch",
+                "com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck");
+        MODULE_MAPPINGS.put("MagicNumber",
+                "com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck");
+        MODULE_MAPPINGS.put("SummaryJavadoc",
+                "com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck");
+        MODULE_MAPPINGS.put("ClassDataAbstractionCoupling",
+                "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck");
+        MODULE_MAPPINGS.put("ConstantName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck");
+        MODULE_MAPPINGS.put("MemberName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck");
+        MODULE_MAPPINGS.put("MethodName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck");
+        MODULE_MAPPINGS.put("ParameterName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck");
+        MODULE_MAPPINGS.put("RegexpOnFilename",
+                "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck");
+        MODULE_MAPPINGS.put("RegexpSingleline",
+                "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck");
+        MODULE_MAPPINGS.put("RegexpSinglelineJava",
+                "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck");
+        MODULE_MAPPINGS.put("LineLength",
+                "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck");
+        MODULE_MAPPINGS.put("ParameterNumber",
+                "com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck");
+        MODULE_MAPPINGS.put("NoWhitespaceAfter",
+                "com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck");
+        MODULE_MAPPINGS.put("OrderedProperties",
+                "com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck");
+        MODULE_MAPPINGS.put("SuppressWarningsHolder",
+                "com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder");
+        MODULE_MAPPINGS.put("UniqueProperties",
+                "com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck");
+        MODULE_MAPPINGS.put("SuppressionXpathSingleFilter",
+                "com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter");
+        MODULE_MAPPINGS.put("SuppressWarningsFilter",
+                "com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter");
+    }
+
     /** Stop instances being created. **/
     private InlineConfigParser() {
     }
@@ -499,48 +543,9 @@ public final class InlineConfigParser {
 
     private static String getFullyQualifiedClassName(String filePath, String moduleName)
             throws CheckstyleException {
-        // This is a hack until https://github.com/checkstyle/checkstyle/issues/13845
-        final Map<String, String> moduleMappings = new HashMap<>();
-        moduleMappings.put("ParameterNumber",
-                "com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck");
-        moduleMappings.put("SuppressWarningsHolder",
-                "com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder");
-        moduleMappings.put("SuppressWarningsFilter",
-                "com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter");
-        moduleMappings.put("MemberName",
-                "com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck");
-        moduleMappings.put("ConstantName",
-                "com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck");
-        moduleMappings.put("NoWhitespaceAfter",
-                "com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck");
-        moduleMappings.put("SummaryJavadoc",
-                "com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck");
-        moduleMappings.put("LineLength",
-                "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck");
-        moduleMappings.put("ParameterName",
-                "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck");
-        moduleMappings.put("RegexpSinglelineJava",
-                "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck");
-        moduleMappings.put("MethodName",
-                "com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck");
-        moduleMappings.put("SuppressionXpathSingleFilter",
-                "com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter");
-        moduleMappings.put("IllegalCatch",
-                "com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck");
-        moduleMappings.put("OrderedProperties",
-                "com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck");
-        moduleMappings.put("UniqueProperties",
-                "com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck");
-        moduleMappings.put("RegexpSingleline",
-                "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck");
-        moduleMappings.put("MagicNumber",
-                "com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck");
-        moduleMappings.put("ClassDataAbstractionCoupling",
-                "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck");
-
         String fullyQualifiedClassName;
-        if (moduleMappings.containsKey(moduleName)) {
-            fullyQualifiedClassName = moduleMappings.get(moduleName);
+        if (MODULE_MAPPINGS.containsKey(moduleName)) {
+            fullyQualifiedClassName = MODULE_MAPPINGS.get(moduleName);
         }
         else if (moduleName.startsWith("com.")) {
             fullyQualifiedClassName = moduleName;
