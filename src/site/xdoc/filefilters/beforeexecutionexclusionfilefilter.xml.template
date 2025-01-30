@@ -43,8 +43,14 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filefilters/beforeexecutionexclusionfilefilter/Example1.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/filefilters/beforeexecutionexclusionfilefilter/Example1.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/filefilters/beforeexecutionexclusionfilefilter/Example1.java"/>
+          <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">
           To configure the filter to run only on required files for example that ends with "Remote"

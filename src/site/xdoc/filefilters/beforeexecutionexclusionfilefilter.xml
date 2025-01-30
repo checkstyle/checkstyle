@@ -60,6 +60,11 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+.../Example1.java
+.../module-info.java // file is excluded from the audit
+        </source>
         <p id="Example2-config">
           To configure the filter to run only on required files for example that ends with &quot;Remote&quot;
           or end with &quot;Client&quot; in names or named as &quot;Remote.java&quot; or &quot;Client.java&quot;
