@@ -156,6 +156,7 @@ public class CyclomaticComplexityCheck
     /** Specify the maximum threshold allowed. */
     private int max = DEFAULT_COMPLEXITY_VALUE;
 
+    private DetailAST outerSwitch;
     /**
      * Setter to control whether to treat the whole switch block as a single decision point.
      *
@@ -258,7 +259,13 @@ public class CyclomaticComplexityCheck
                 leaveMethodDef(ast);
                 break;
             default:
-                break;
+                leaveTokenHook(ast);
+        }
+    }
+
+    public void leaveTokenHook(DetailAST ast) {
+        if (ast == outerSwitch) {
+            outerSwitch = null;
         }
     }
 
@@ -270,7 +277,10 @@ public class CyclomaticComplexityCheck
      */
     private void visitTokenHook(DetailAST ast) {
         if (switchBlockAsSingleDecisionPoint) {
-            if (ast.getType() != TokenTypes.LITERAL_CASE) {
+            if (ast.getType() == TokenTypes.LITERAL_SWITCH && outerSwitch == null) {
+                outerSwitch = ast;
+            }
+            if (ast.getType() == TokenTypes.LITERAL_SWITCH || outerSwitch == null) {
                 incrementCurrentValue(BigInteger.ONE);
             }
         }
