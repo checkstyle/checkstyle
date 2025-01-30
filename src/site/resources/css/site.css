@@ -5,7 +5,6 @@ body, td, select, input, li {
 h1 {
   text-transform: capitalize;
   font-size: x-large;
-  margin: 0px;
 }
 
 h2 {
@@ -48,14 +47,17 @@ section p {
 
 }
 
-#bannerRight img {
-  transform: translateY(-12px);
+#bannerRight h1 {
+  margin: 0;
+}
+
+.container-fluid-top {
+  padding-top: 0 !important;
 }
 
 #banner {
   border-bottom: 1px solid #fff;
   background: url("../images/header-background.png") repeat-x scroll 0 0 transparent;
-  transform: translateY(-6px);
 }
 
 .dl-link {
