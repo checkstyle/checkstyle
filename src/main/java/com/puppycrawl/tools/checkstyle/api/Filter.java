@@ -30,7 +30,8 @@ public interface Filter {
      *
      * @param event the AuditEvent to filter.
      * @return true if the event is accepted.
+     * @throws CheckstyleException if there is an error.
      */
-    boolean accept(AuditEvent event);
+    boolean accept(AuditEvent event) throws CheckstyleException;
 
 }

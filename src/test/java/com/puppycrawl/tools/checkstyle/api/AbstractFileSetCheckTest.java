@@ -310,7 +310,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         }
 
         @Override
-        public void finishProcessing() {
+        public void finishProcessing() throws CheckstyleException {
             final String fileName = "fileName";
 
             log(1, MSG_KEY + finishProcessingCount);

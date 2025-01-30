@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.TreeWalkerTest;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
@@ -41,7 +42,7 @@ public class SuppressFilterElementTest {
     }
 
     @Test
-    public void testDecideDefault() {
+    public void testDecideDefault() throws CheckstyleException {
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         assertWithMessage(ev.getFileName())
                 .that(filter.accept(ev))
@@ -49,7 +50,7 @@ public class SuppressFilterElementTest {
     }
 
     @Test
-    public void testDecideViolation() {
+    public void testDecideViolation() throws CheckstyleException {
         final Violation violation =
             new Violation(1, 0, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
@@ -60,7 +61,7 @@ public class SuppressFilterElementTest {
     }
 
     @Test
-    public void testDecideByMessage() {
+    public void testDecideByMessage() throws CheckstyleException {
         final Violation violation =
             new Violation(1, 0, "", "", null, null, getClass(), "Test");
         final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
@@ -77,7 +78,7 @@ public class SuppressFilterElementTest {
     }
 
     @Test
-    public void testDecideByLine() {
+    public void testDecideByLine() throws CheckstyleException {
         final Violation violation =
             new Violation(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
@@ -100,7 +101,7 @@ public class SuppressFilterElementTest {
     }
 
     @Test
-    public void testDecideByColumn() {
+    public void testDecideByColumn() throws CheckstyleException {
         final Violation violation =
             new Violation(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
@@ -119,7 +120,7 @@ public class SuppressFilterElementTest {
     }
 
     @Test
-    public void testDecideByFileNameAndModuleMatchingFileNameNull() {
+    public void testDecideByFileNameAndModuleMatchingFileNameNull() throws CheckstyleException {
         final Violation message =
                 new Violation(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, null, message);
@@ -129,7 +130,7 @@ public class SuppressFilterElementTest {
     }
 
     @Test
-    public void testDecideByFileNameAndModuleMatchingMessageNull() {
+    public void testDecideByFileNameAndModuleMatchingMessageNull() throws CheckstyleException {
         final AuditEvent ev = new AuditEvent(this, "ATest.java", null);
         assertWithMessage("Filter should accept valid event")
                 .that(filter.accept(ev))
@@ -137,7 +138,7 @@ public class SuppressFilterElementTest {
     }
 
     @Test
-    public void testDecideByFileNameAndModuleMatchingModuleNull() {
+    public void testDecideByFileNameAndModuleMatchingModuleNull() throws CheckstyleException {
         final Violation violation =
                 new Violation(10, 10, "", "", null, "MyModule", getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
@@ -147,7 +148,7 @@ public class SuppressFilterElementTest {
     }
 
     @Test
-    public void testDecideByFileNameAndModuleMatchingModuleEqual() {
+    public void testDecideByFileNameAndModuleMatchingModuleEqual() throws CheckstyleException {
         final Violation violation =
                 new Violation(10, 10, "", "", null, "MyModule", getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
@@ -160,7 +161,7 @@ public class SuppressFilterElementTest {
     }
 
     @Test
-    public void testDecideByFileNameAndModuleMatchingModuleNotEqual() {
+    public void testDecideByFileNameAndModuleMatchingModuleNotEqual() throws CheckstyleException {
         final Violation message =
                 new Violation(10, 10, "", "", null, "TheirModule", getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
@@ -173,7 +174,7 @@ public class SuppressFilterElementTest {
     }
 
     @Test
-    public void testDecideByFileNameAndModuleMatchingRegExpNotMatch() {
+    public void testDecideByFileNameAndModuleMatchingRegExpNotMatch() throws CheckstyleException {
         final Violation message =
                 new Violation(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "T1est", message);
@@ -183,7 +184,7 @@ public class SuppressFilterElementTest {
     }
 
     @Test
-    public void testDecideByFileNameAndModuleMatchingRegExpMatch() {
+    public void testDecideByFileNameAndModuleMatchingRegExpMatch() throws CheckstyleException {
         final Violation message =
                 new Violation(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "TestSUFFIX", message);
@@ -195,7 +196,8 @@ public class SuppressFilterElementTest {
     }
 
     @Test
-    public void testDecideByFileNameAndModuleMatchingCheckRegExpNotMatch() {
+    public void testDecideByFileNameAndModuleMatchingCheckRegExpNotMatch()
+            throws CheckstyleException {
         final Violation message =
                 new Violation(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
@@ -207,7 +209,7 @@ public class SuppressFilterElementTest {
     }
 
     @Test
-    public void testDecideByFileNameAndModuleMatchingCheckRegExpMatch() {
+    public void testDecideByFileNameAndModuleMatchingCheckRegExpMatch() throws CheckstyleException {
         final Violation message =
                 new Violation(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
@@ -220,7 +222,7 @@ public class SuppressFilterElementTest {
     }
 
     @Test
-    public void testDecideByFileNameAndSourceNameCheckRegExpNotMatch() {
+    public void testDecideByFileNameAndSourceNameCheckRegExpNotMatch() throws CheckstyleException {
         final Violation message =
                 new Violation(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);

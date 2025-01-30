@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
 
@@ -69,7 +70,7 @@ public class SuppressWarningsFilter
     }
 
     @Override
-    public boolean accept(AuditEvent event) {
+    public boolean accept(AuditEvent event) throws CheckstyleException {
         return !SuppressWarningsHolder.isSuppressed(event);
     }
 

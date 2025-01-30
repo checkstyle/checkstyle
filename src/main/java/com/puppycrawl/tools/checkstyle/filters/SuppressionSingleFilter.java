@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 
 /**
@@ -202,7 +203,7 @@ public class SuppressionSingleFilter extends AbstractAutomaticBean implements Fi
     }
 
     @Override
-    public boolean accept(AuditEvent event) {
+    public boolean accept(AuditEvent event) throws CheckstyleException {
         return filter.accept(event);
     }
 

@@ -46,6 +46,7 @@ import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
@@ -283,6 +284,45 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
             propertyFiles,
             getPath("bad.properties"),
             expected);
+    }
+
+    @Test
+    public void testExceptionCheckExistenceOfDefaultTranslation() throws Exception {
+        // to make the coverage happy
+        final DemoMessageDispatcher dispatcher = new DemoMessageDispatcher();
+        final TranslationCheck check = new TranslationCheck();
+        check.setMessageDispatcher(dispatcher);
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
+        check.configure(checkConfig);
+
+        final TranslationCheck.ResourceBundle bundle = new TranslationCheck.ResourceBundle(
+                "^message", "InputTranslationCheckFireErrors.properties", ".java");
+
+        TestUtil.invokeMethod(check, "checkExistenceOfDefaultTranslation", bundle);
+
+        assertWithMessage("expected number of errors")
+            .that(dispatcher.errorsCount)
+            .isEqualTo(1);
+    }
+
+    @Test
+    public void testExceptionCheckExistenceOfRequiredTranslations() throws Exception {
+        // to make the coverage happy
+        final DemoMessageDispatcher dispatcher = new DemoMessageDispatcher();
+        final TranslationCheck check = new TranslationCheck();
+        check.setMessageDispatcher(dispatcher);
+        final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
+        checkConfig.addProperty("requiredTranslations", "de");
+        check.configure(checkConfig);
+
+        final TranslationCheck.ResourceBundle bundle = new TranslationCheck.ResourceBundle(
+                "^message", "path.org", ".java");
+
+        TestUtil.invokeMethod(check, "checkExistenceOfRequiredTranslations", bundle);
+
+        assertWithMessage("expected number of errors")
+            .that(dispatcher.errorsCount)
+            .isEqualTo(1);
     }
 
     @Test
@@ -628,6 +668,28 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
             .equals(XmlUtil.getNameAttributeOfNode(actual))
             && XmlUtil.getChildrenElements(expected).size() == XmlUtil
             .getChildrenElements(actual).size();
+    }
+
+    private static final class DemoMessageDispatcher implements MessageDispatcher {
+
+        private int errorsCount;
+
+        @Override
+        public void fireFileStarted(String fileName) {
+            // fireFileStarted
+        }
+
+        @Override
+        public void fireFileFinished(String fileName) {
+            // fireFileFinished
+        }
+
+        @Override
+        public void fireErrors(String fileName, SortedSet<Violation> errors)
+                throws CheckstyleException {
+            errorsCount++;
+            throw new CheckstyleException(fileName);
+        }
     }
 
     private static final class TestMessageDispatcher implements MessageDispatcher {

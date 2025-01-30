@@ -959,6 +959,7 @@
                     <exclude>com.puppycrawl.tools.checkstyle.meta.XmlMeta*</exclude>
                     <!-- OS specific utility providing class -->
                     <exclude>com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.Checker</exclude>
                   </excludes>
                   <limits>
                     <limit>

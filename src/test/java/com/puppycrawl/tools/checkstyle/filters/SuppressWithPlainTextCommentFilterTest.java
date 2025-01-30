@@ -27,7 +27,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacter
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_FILE_CONTAINS_TAB;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -330,7 +329,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testAcceptNullViolation() {
+    public void testAcceptNullViolation() throws CheckstyleException {
         final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
         final AuditEvent auditEvent = new AuditEvent(this);
         assertWithMessage("Filter should accept audit event")
@@ -525,7 +524,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testAcceptThrowsIllegalStateExceptionAsFileNotFound() {
+    public void testAcceptThrowsIllegalStateExceptionAsFileNotFound() throws CheckstyleException {
         final Violation message = new Violation(1, 1, 1, TokenTypes.CLASS_DEF,
             "messages.properties", "key", null, SeverityLevel.ERROR, null, getClass(), null);
         final String fileName = "nonexisting_file";
@@ -646,7 +645,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testFilterWithDirectory() throws IOException {
+    public void testFilterWithDirectory() throws Exception {
         final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
         final AuditEvent event = new AuditEvent(this, getPath(""), new Violation(1, 1,
                 "bundle", "key", null, SeverityLevel.ERROR, "moduleId", getClass(),

@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
@@ -103,7 +104,7 @@ public class SeverityMatchFilter
     }
 
     @Override
-    public boolean accept(AuditEvent event) {
+    public boolean accept(AuditEvent event) throws CheckstyleException {
         final boolean severityMatches = severity == event.getSeverityLevel();
         return acceptOnMatch == severityMatches;
     }

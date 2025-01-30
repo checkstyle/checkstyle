@@ -47,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
 import com.puppycrawl.tools.checkstyle.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.Violation;
@@ -315,7 +316,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     }
 
     @Override
-    public void finishProcessing() {
+    public void finishProcessing() throws CheckstyleException {
         final Set<ResourceBundle> bundles = groupFilesIntoBundles(filesToProcess, baseName);
         for (ResourceBundle currentBundle : bundles) {
             checkExistenceOfDefaultTranslation(currentBundle);
@@ -331,7 +332,14 @@ public class TranslationCheck extends AbstractFileSetCheck {
      */
     private void checkExistenceOfDefaultTranslation(ResourceBundle bundle) {
         getMissingFileName(bundle, null)
-            .ifPresent(fileName -> logMissingTranslation(bundle.getPath(), fileName));
+            .ifPresent(fileName -> {
+                try {
+                    logMissingTranslation(bundle.getPath(), fileName);
+                }
+                catch (CheckstyleException ignored) {
+                    log.warn("Unable to log Missing Translation");
+                }
+            });
     }
 
     /**
@@ -345,7 +353,14 @@ public class TranslationCheck extends AbstractFileSetCheck {
     private void checkExistenceOfRequiredTranslations(ResourceBundle bundle) {
         for (String languageCode : requiredTranslations) {
             getMissingFileName(bundle, languageCode)
-                .ifPresent(fileName -> logMissingTranslation(bundle.getPath(), fileName));
+                .ifPresent(fileName -> {
+                    try {
+                        logMissingTranslation(bundle.getPath(), fileName);
+                    }
+                    catch (CheckstyleException ignored) {
+                        log.warn("Unable to log Required Translation");
+                    }
+                });
         }
     }
 
@@ -392,8 +407,10 @@ public class TranslationCheck extends AbstractFileSetCheck {
      *
      * @param filePath file path.
      * @param fileName file name.
+     * @throws CheckstyleException if there is an error.
      */
-    private void logMissingTranslation(String filePath, String fileName) {
+    private void logMissingTranslation(String filePath, String fileName)
+            throws CheckstyleException {
         final MessageDispatcher dispatcher = getMessageDispatcher();
         dispatcher.fireFileStarted(filePath);
         log(1, MSG_KEY_MISSING_TRANSLATION_FILE, fileName);
@@ -505,8 +522,9 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * an audit event message is posted giving information which key misses in which file.
      *
      * @param bundle resource bundle.
+     * @throws CheckstyleException if there is an error.
      */
-    private void checkTranslationKeys(ResourceBundle bundle) {
+    private void checkTranslationKeys(ResourceBundle bundle) throws CheckstyleException {
         final Set<File> filesInBundle = bundle.getFiles();
         // build a map from files to the keys they contain
         final Set<String> allTranslationKeys = new HashSet<>();
@@ -525,9 +543,11 @@ public class TranslationCheck extends AbstractFileSetCheck {
      *
      * @param fileKeys a Map from translation files to their key sets.
      * @param keysThatMustExist the set of keys to compare with.
+     * @throws CheckstyleException if there is an error.
      */
     private void checkFilesForConsistencyRegardingTheirKeys(Map<File, Set<String>> fileKeys,
-                                                            Set<String> keysThatMustExist) {
+                                                            Set<String> keysThatMustExist)
+            throws CheckstyleException {
         for (Entry<File, Set<String>> fileKey : fileKeys.entrySet()) {
             final Set<String> currentFileKeys = fileKey.getValue();
             final Set<String> missingKeys = keysThatMustExist.stream()
@@ -551,8 +571,9 @@ public class TranslationCheck extends AbstractFileSetCheck {
      *
      * @param file translation file.
      * @return a Set object which holds the loaded keys.
+     * @throws CheckstyleException if there is an error.
      */
-    private Set<String> getTranslationKeys(File file) {
+    private Set<String> getTranslationKeys(File file) throws CheckstyleException {
         Set<String> keys = new HashSet<>();
         try (InputStream inStream = Files.newInputStream(file.toPath())) {
             final Properties translations = new Properties();
@@ -572,8 +593,9 @@ public class TranslationCheck extends AbstractFileSetCheck {
      *
      * @param exception the exception that occurred
      * @param file the file that could not be processed
+     * @throws CheckstyleException if there is an error.
      */
-    private void logException(Exception exception, File file) {
+    private void logException(Exception exception, File file) throws CheckstyleException {
         final String[] args;
         final String key;
         if (exception instanceof NoSuchFileException) {
@@ -599,7 +621,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     }
 
     /** Class which represents a resource bundle. */
-    private static final class ResourceBundle {
+    protected static final class ResourceBundle {
 
         /** Bundle base name. */
         private final String baseName;
@@ -617,7 +639,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
          * @param path common path of files which are included in the resource bundle.
          * @param extension common extension of files which are included in the resource bundle.
          */
-        private ResourceBundle(String baseName, String path, String extension) {
+        public ResourceBundle(String baseName, String path, String extension) {
             this.baseName = baseName;
             this.path = path;
             this.extension = extension;

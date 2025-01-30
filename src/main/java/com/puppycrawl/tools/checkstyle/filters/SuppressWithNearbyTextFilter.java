@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -191,7 +192,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
     }
 
     @Override
-    public boolean accept(AuditEvent event) {
+    public boolean accept(AuditEvent event) throws CheckstyleException {
         boolean accepted = true;
 
         if (event.getViolation() != null) {
@@ -223,9 +224,9 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
      *
      * @param fileName the name of the file.
      * @return {@link FileText} instance.
-     * @throws IllegalStateException if the file could not be read.
+     * @throws CheckstyleException if the file could not be read.
      */
-    private static FileText getFileText(String fileName) {
+    private static FileText getFileText(String fileName) throws CheckstyleException {
         final File file = new File(fileName);
         FileText result = null;
 
@@ -235,7 +236,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
                 result = new FileText(file, StandardCharsets.UTF_8.name());
             }
             catch (IOException ex) {
-                throw new IllegalStateException("Cannot read source file: " + fileName, ex);
+                throw new CheckstyleException("Cannot read source file: " + fileName, ex);
             }
         }
 

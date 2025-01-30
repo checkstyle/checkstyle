@@ -23,6 +23,7 @@ import java.util.Objects;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 
 /**
@@ -147,7 +148,7 @@ public class SuppressFilterElement
     }
 
     @Override
-    public boolean accept(AuditEvent event) {
+    public boolean accept(AuditEvent event) throws CheckstyleException {
         return !isFileNameAndModuleNameMatching(event)
                 || !isMessageNameMatching(event)
                 || !isLineAndColumnMatching(event);
