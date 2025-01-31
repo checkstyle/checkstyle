@@ -37,7 +37,7 @@ not already done so, please read through the following documentation provided by
   familiarizing yourself with the project. You can find the documentation at
   [https://checkstyle.org/](https://checkstyle.org/).
 - **Join the Checkstyle community.**
-  Join the Checkstyle group on [Gitter](https://gitter.im/checkstyle/checkstyle).
+  Join the Checkstyle community group on [Discord](https://discord.gg/FsUsYC2ura).
   This is a great place to ask questions and get to know the community.
   Join the Checkstyle group on [Google Groups](https://groups.google.com/forum/#!forum/checkstyle).
   This is another place to ask questions and get to know the community.
