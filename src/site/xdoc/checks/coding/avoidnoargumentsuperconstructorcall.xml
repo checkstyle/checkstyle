@@ -43,11 +43,11 @@ class Example1 extends SuperClass {
   }
 
   Example1(int arg) {
-    super(arg); // ok, explicit constructor invocation with argument
+    super(arg); //explicit constructor invocation with argument
   }
 
   Example1(long arg) {
-    // ok, no explicit constructor invocation
+    //no explicit constructor invocation
   }
 }
         </source>

@@ -16,8 +16,8 @@ import java.util.Random;
 public class Example2 {
   public static void main(String[] args) {
     int x = new Random().nextInt(100);
-    // OK
-    if (/* OK, this comment does not end the line */ x > 5) {}
+     
+    if (/*this comment does not end the line */ x > 5) {}
     int a = 5; // violation, line content before comment should match pattern "^\s*$"
     doSomething(
             "param1"

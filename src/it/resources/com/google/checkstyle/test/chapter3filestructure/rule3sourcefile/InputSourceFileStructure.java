@@ -71,14 +71,14 @@ class InputSourceFileStructure { // violation ''CLASS_DEF' should be separated f
     }
   }
 
-  class InnerClass2 { // ok
-    private InnerClass2() { // ok
+  class InnerClass2 {  
+    private InnerClass2() {  
       // empty
     }
   }
 
-  class InnerClass3 { // ok
-    public int compareTo(InputSourceFileStructure obj) { // ok
+  class InnerClass3 {  
+    public int compareTo(InputSourceFileStructure obj) {  
       int number = 0;
       return 0;
     }
@@ -86,20 +86,20 @@ class InputSourceFileStructure { // violation ''CLASS_DEF' should be separated f
 }
 
 // violation below 'Top-level class Class1 has to reside in its own source file.'
-class Class1 { // ok
-  private Class1() {} // ok
+class Class1 {  
+  private Class1() {}  
 }
 class Class2 {
   // 2 violations above:
   //  'Top-level class Class2 has to reside in its own source file.'
   //  'CLASS_DEF' should be separated from previous line.'
-  public int compareTo(InputSourceFileStructure obj) { // ok
+  public int compareTo(InputSourceFileStructure obj) {  
     int number = 0;
     return 0;
   }
   Class2 anon = // violation ''VARIABLE_DEF' should be separated from previous line.'
           new Class2() {
-            public int compareTo(InputSourceFileStructure obj) { // ok
+            public int compareTo(InputSourceFileStructure obj) {  
               int number = 0;
               return 0;
             }

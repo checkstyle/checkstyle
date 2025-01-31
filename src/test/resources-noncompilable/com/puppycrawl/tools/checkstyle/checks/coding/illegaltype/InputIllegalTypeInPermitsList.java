@@ -21,7 +21,7 @@ class D { }
 // violation below, 'Usage of type 'D' is not allowed.'
 public class InputIllegalTypeInPermitsList extends D {
 
-    sealed class D permits B, E { } // ok, We don't ban the instantiation of illegal types
+    sealed class D permits B, E { } //We don't ban the instantiation of illegal types
 
     // violation below, 'Usage of type 'D' is not allowed.'
     sealed class E extends D permits C { }

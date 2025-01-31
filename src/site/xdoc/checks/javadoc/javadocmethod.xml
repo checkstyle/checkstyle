@@ -221,14 +221,14 @@ public class Example2 {
   public int m1(int p1) { return p1; }
   // 1 violations above:
   //    '@return tag should be present'
-  // OK, No missing param tag violation
+  //No missing param tag violation
 
   /**
    * @param p1 The first number
    */
   @Deprecated
   private int m2(int p1) { return p1; }
-  // OK, only public methods are checked
+  //only public methods are checked
 
   /** */
   void m3(int p1) {}
@@ -257,8 +257,8 @@ public class Example3 {
 
   /** */
   public int m1(int p1) { return p1; }
-  // OK, No missing param tag violation
-  // OK, No missing @return tag violation
+  //No missing param tag violation
+  //No missing @return tag violation
   // only private, package are checked
 
   /**
@@ -266,7 +266,7 @@ public class Example3 {
    */
   @Deprecated
   private int m2(int p1) { return p1; }
-  // OK, No missing @return tag violation
+  //No missing @return tag violation
 
   /** */
   void m3(int p1) {}
@@ -296,14 +296,14 @@ public class Example4 {
   public int m1(int p1) { return p1; }
   // 1 violations above:
   //    'Expected @param tag for 'p1''
-  // OK, No missing @return tag violation
+  //No missing @return tag violation
 
   /**
    * @param p1 The first number
    */
   @Deprecated
   private int m2(int p1) { return p1; }
-  // OK, No missing @return tag violation
+  //No missing @return tag violation
 
   /** */
   void m3(int p1) {}
@@ -340,7 +340,7 @@ public class Example5 {
    */
   @Deprecated
   private int m2(int p1) { return p1; }
-  // OK, No missing @return tag violation
+  //No missing @return tag violation
 
   /** */
   void m3(int p1) {}
@@ -368,8 +368,8 @@ public class Example6 {
   // violation above, 'Expected @param tag for 'x''
   /** */
   public int m1(int p1) { return p1; }
-  // OK, No missing param tag violation
-  // OK, No missing @return tag violation
+  //No missing param tag violation
+  //No missing @return tag violation
   // only constructors are checked
 
   /**
@@ -377,7 +377,7 @@ public class Example6 {
    */
   @Deprecated
   private int m2(int p1) { return p1; }
-  // OK, No missing @return tag violation
+  //No missing @return tag violation
 
   /** */
   void m3(int p1) {}
@@ -440,7 +440,7 @@ public class Example7 {
     try {
       int value = Integer.parseInt(s);
       if (value &lt;= 0) {
-        throw new NumberFormatException(value + &quot; is negative/zero&quot;); // ok, try
+        throw new NumberFormatException(value + &quot; is negative/zero&quot;); //try
       }
       return value;
     } catch (NumberFormatException ex) {

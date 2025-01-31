@@ -22,7 +22,7 @@ class InputOperatorWrapEol
                 * 2; // violation ''*' should be on the previous line.'
 
         int x3 = ((2 * 1)
-                    ) * 0 * (1 * 2) * 0; // ok, parens
+                    ) * 0 * (1 * 2) * 0; //parens
     }
 
     public InputOperatorWrapEol() throws IOException {

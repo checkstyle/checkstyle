@@ -805,11 +805,11 @@
        <b>}</b> // this is OK, should be alone as next part of a multi-block statement is absent
     <b>}</b>); // this case is out of scope of RightCurly Check (see issue #5945)
 
-    if (a &#62; 0) { ... <b>}</b> // OK, single-line multi-block statement
-    if (a &#62; 0) { ... } else { ... <b>}</b> // OK, single-line multi-block statement
+    if (a &#62; 0) { ... <b>}</b> //single-line multi-block statement
+    if (a &#62; 0) { ... } else { ... <b>}</b> //single-line multi-block statement
     if (a &#62; 0) {
         ...
-    } else { ... <b>}</b> // OK, single-line multi-block statement
+    } else { ... <b>}</b> //single-line multi-block statement
                 </pre>
               </div>
             </td>

@@ -13,7 +13,7 @@ public record InputUnnecessarySemicolonAfterOuterTypeDeclarationRecords() {
 
     }
 
-    ; // ok, nested type declarations are ignored in this check
+    ; //nested type declarations are ignored in this check
 }; // violation 'Unnecessary semicolon'
 
 record OuterRecord() {

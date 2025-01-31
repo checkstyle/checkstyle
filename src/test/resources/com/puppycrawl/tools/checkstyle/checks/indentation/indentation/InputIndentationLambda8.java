@@ -23,4 +23,4 @@ public class InputIndentationLambda8 { //indent:0 exp:0
       Runnable r2 = () -> { x.run(); }; //indent:6 exp:6
    } //indent:3 exp:3
 } //indent:0 exp:0
-// ok //indent:0 exp:0
+////indent:0 exp:0

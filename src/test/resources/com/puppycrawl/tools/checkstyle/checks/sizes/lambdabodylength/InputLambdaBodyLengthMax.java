@@ -22,7 +22,7 @@ public class InputLambdaBodyLengthMax {
                 .concat("3")
             )
         );
-        list.forEach(item -> // ok, 3 lines
+        list.forEach(item -> //3 lines
             System.
                 out.
                 println(item)

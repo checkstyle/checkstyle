@@ -40,7 +40,7 @@ public class InputWhenShouldBeUsedSwitchExpression {
         };
 
         int d = switch (j) {
-            case String s: // ok, not a single if
+            case String s: //not a single if
                 if (s.isEmpty()) {
                     System.out.println("empty String");
                     yield 0;

@@ -14,7 +14,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.WildcardType;
 import java.util.List;
 
-public class InputMultiDimensionalArraysInGenerics { // ok
+public class InputMultiDimensionalArraysInGenerics {  
 
     @SuppressWarnings("unused")
     void withUpperBound(List<? extends int[][]> list) {}

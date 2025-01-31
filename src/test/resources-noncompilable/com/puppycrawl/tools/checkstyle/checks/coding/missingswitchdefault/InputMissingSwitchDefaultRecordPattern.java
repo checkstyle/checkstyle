@@ -24,7 +24,7 @@ public class InputMissingSwitchDefaultRecordPattern {
 
 
     void test1(Pair<I> p) {
-        switch (p) {   // ok , exhaustiveness check
+        switch (p) {   //, exhaustiveness check
             case Pair<I>(I i, C j) -> System.out.println("Pair (C|D, C)");
             case Pair<I>(I i, D j) -> System.out.println("Pair (C|D, D)");
         }

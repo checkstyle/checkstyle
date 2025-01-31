@@ -17,16 +17,16 @@ class Example1 {
   int field = 10;; // violation, 'Unnecessary semicolon'
 
   {
-    ; // ok, it is empty statement inside init block
+    ; //it is empty statement inside init block
   }
 
   static {
-    ; // ok, it is empty statement inside static init block
+    ; //it is empty statement inside static init block
   }
 
   void anotherMethod() {
-    ; // ok, it is empty statement
-    if (true) ; // ok, it is empty statement
+    ; //it is empty statement
+    if (true) ; //it is empty statement
   }
 }
 // xdoc section -- end

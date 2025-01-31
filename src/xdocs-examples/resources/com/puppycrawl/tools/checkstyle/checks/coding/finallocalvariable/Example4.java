@@ -22,7 +22,7 @@ class Example4
   }
   public static void main (String []args) {
     // violation above, 'Variable 'args' should be declared final'
-    // ok below, because validateEnhancedForLoopVariable is false by default
+    //below, because validateEnhancedForLoopVariable is false by default
     for (String i : args) {
       System.out.println(i);
     }

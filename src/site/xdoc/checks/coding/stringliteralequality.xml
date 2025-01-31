@@ -63,7 +63,7 @@ class Example1 {
     boolean flag1 = (status.equals(&quot;done&quot;));
     String name = &quot;X&quot;;
     if (name == getName()) {}
-    // OK, limitation that check cannot tell runtime type returned from method call
+    //limitation that check cannot tell runtime type returned from method call
   }
 }
         </source>

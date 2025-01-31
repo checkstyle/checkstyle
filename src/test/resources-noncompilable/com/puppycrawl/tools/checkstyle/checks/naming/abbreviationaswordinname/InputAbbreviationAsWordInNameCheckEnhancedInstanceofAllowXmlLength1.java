@@ -26,7 +26,7 @@ public class InputAbbreviationAsWordInNameCheckEnhancedInstanceofAllowXmlLength1
                 && (o2 instanceof Integer INTEGER)) {} // violation
 
         List<Integer> arrayList = new ArrayList<Integer>();
-        if (arrayList instanceof ArrayList<Integer> aXML) { // ok, allowed XML
+        if (arrayList instanceof ArrayList<Integer> aXML) { //allowed XML
             System.out.println("Blah");
         }
 

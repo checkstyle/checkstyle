@@ -17,8 +17,8 @@ public record InputRequireThisRecordAsTopLevel(int x, int y) {
         method1(); // violation 'Method call to 'method1' needs "this.".'
         method2(42); // violation 'Method call to 'method2' needs "this.".'
         method3(); // violation 'Method call to 'method3' needs "this.".'
-        int z = x + y + 2; // ok, 'this' cannot be used in COMPACT_CTOR_DEF
-        System.out.println(y + x); // ok, 'this' cannot be used in COMPACT_CTOR_DEF
+        int z = x + y + 2; //'this' cannot be used in COMPACT_CTOR_DEF
+        System.out.println(y + x); //'this' cannot be used in COMPACT_CTOR_DEF
     }
 
     InputRequireThisRecordAsTopLevel(int x) {

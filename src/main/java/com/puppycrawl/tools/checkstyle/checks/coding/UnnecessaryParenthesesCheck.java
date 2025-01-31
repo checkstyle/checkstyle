@@ -80,7 +80,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * boolean c = false, d = false;
  * if ((a &amp;&amp; b) || c) { // violation, unnecessary paren
  * }
- * if (a &amp;&amp; (b || c)) { // ok
+ * if (a &amp;&amp; (b || c)) {  
  * }
  * if ((a == b) &amp;&amp; c) { // violation, unnecessary paren
  * }
@@ -89,7 +89,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * }
  * int f = 0;
  * int g = 0;
- * if (!(f &gt;= g) // ok
+ * if (!(f &gt;= g)  
  *         &amp;&amp; (g &gt; f)) { // violation, unnecessary paren
  * }
  * if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren

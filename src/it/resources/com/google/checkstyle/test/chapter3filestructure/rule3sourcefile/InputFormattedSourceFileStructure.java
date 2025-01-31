@@ -75,14 +75,14 @@ class InputFormattedSourceFileStructure {
     }
   }
 
-  class InnerClass2 { // ok
-    private InnerClass2() { // ok
+  class InnerClass2 {  
+    private InnerClass2() {  
       // empty
     }
   }
 
-  class InnerClass3 { // ok
-    public int compareTo(InputSourceFileStructure obj) { // ok
+  class InnerClass3 {  
+    public int compareTo(InputSourceFileStructure obj) {  
       int number = 0;
       return 0;
     }
@@ -90,20 +90,20 @@ class InputFormattedSourceFileStructure {
 }
 
 // violation below 'Top-level class ExtraClass1 has to reside in its own source file.'
-class ExtraClass1 { // ok
-  private ExtraClass1() {} // ok
+class ExtraClass1 {  
+  private ExtraClass1() {}  
 }
 
 class ExtraClass2 {
   // violation above 'Top-level class ExtraClass2 has to reside in its own source file.'
-  public int compareTo(InputSourceFileStructure obj) { // ok
+  public int compareTo(InputSourceFileStructure obj) {  
     int number = 0;
     return 0;
   }
 
   Class2 anon =
       new Class2() {
-        public int compareTo(InputSourceFileStructure obj) { // ok
+        public int compareTo(InputSourceFileStructure obj) {  
           int number = 0;
           return 0;
         }

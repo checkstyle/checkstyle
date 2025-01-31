@@ -22,11 +22,11 @@ class Example3 {
   String o = "O";
   public boolean Example3() {
     if (obj.equals(num)) return true;
-    // ok above, because single line IF statement is allowed in config.
+    //above, because single line IF statement is allowed in config.
     if (true) {
       count = 2;
     } else
-        // ok above, because single line ELSE statement is allowed in config.
+        //above, because single line ELSE statement is allowed in config.
         return false;
     for (int i = 0; i < 5; i++) {
       ++count;}
@@ -34,17 +34,17 @@ class Example3 {
         ++count;
     while (false);
     for (int j = 0; j < 10; j++);
-    // ok above, because single line FOR statement is allowed in config.
+    //above, because single line FOR statement is allowed in config.
     for(int i = 0; i < 10; value.charAt(12));
-    // ok above, because single line FOR statement is allowed in config.
+    //above, because single line FOR statement is allowed in config.
     while (counter < 10)
         // violation above, ''while' construct must use '{}'s.'
         ++count;
     while (value.charAt(12) < 5);
-    // ok above, because single line FOR statement is allowed in config.
+    //above, because single line FOR statement is allowed in config.
     switch (num) {
       case 1: counter++; break;
-      // ok above, because break in case blocks is not counted to allow compact view
+      //above, because break in case blocks is not counted to allow compact view
     }
     return true;
   }

@@ -35,7 +35,7 @@ public class Example3 {
         A, B, C
   }
 
-  // ok below, 'strictfp' is not redundant before JDK 17
+  //below, 'strictfp' is not redundant before JDK 17
   public strictfp class Test { }
 
   AutoCloseable lock() {

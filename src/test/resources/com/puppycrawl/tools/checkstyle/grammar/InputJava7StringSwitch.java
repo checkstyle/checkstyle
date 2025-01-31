@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.grammar;
 /**
  * Input for Java 7 String in Switch.
  */
-public class InputJava7StringSwitch // ok
+public class InputJava7StringSwitch  
 {
     public static void main(String[] args) {
         String mystr = "value" + "2";

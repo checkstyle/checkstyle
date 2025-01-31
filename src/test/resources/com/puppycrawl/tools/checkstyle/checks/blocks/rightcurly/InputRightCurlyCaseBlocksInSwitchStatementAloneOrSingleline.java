@@ -87,14 +87,14 @@ public class InputRightCurlyCaseBlocksInSwitchStatementAloneOrSingleline {
     public static void test6() {
         int mode = 0;
         switch (mode) {
-            case 0: {int x = 1; break;}  // ok , single line
+            case 0: {int x = 1; break;}  //, single line
             default : break;
         }
     }
 
     public static void test7() {
         int mode = 0;
-        switch (mode) { case 0: {int x = 1;}     // ok, single line
+        switch (mode) { case 0: {int x = 1;}     //single line
             break; default : break; }
     }
 
@@ -103,7 +103,7 @@ public class InputRightCurlyCaseBlocksInSwitchStatementAloneOrSingleline {
         switch (mode) {
             case 0: int x = 1;
             case 1: x = 1; break;
-            case 2: {x = 1; break;} // ok, single line
+            case 2: {x = 1; break;} //single line
             default : x = 5;
         }
     }

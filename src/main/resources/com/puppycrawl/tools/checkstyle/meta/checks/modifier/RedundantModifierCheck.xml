@@ -104,7 +104,7 @@
 
  &lt;pre&gt;
  public class PublicClass {
-   public PublicClass() {} // OK
+   public PublicClass() {}  
  }
 
  class PackagePrivateClass {

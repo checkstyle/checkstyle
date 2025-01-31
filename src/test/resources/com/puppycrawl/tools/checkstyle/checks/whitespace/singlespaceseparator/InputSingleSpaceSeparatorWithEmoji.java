@@ -9,8 +9,8 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.singlespaceseparator;
 
 public class InputSingleSpaceSeparatorWithEmoji {
 
-    String s1 = "🧐😉           assa  "; // ok
-    String s2 = "🧐😉" + "          " + "assa  "; // ok
+    String s1 = "🧐😉           assa  ";  
+    String s2 = "🧐😉" + "          " + "assa  ";  
     String s3 =  "🧐" + "🎄 "; // violation 'Use a single space to separate non-whitespace characters'
     String s4
             =   "da🎄"; // violation 'Use a single space to separate non-whitespace characters'
@@ -20,7 +20,7 @@ public class InputSingleSpaceSeparatorWithEmoji {
       }
     }
 
-    /* ok */ /*🧐*/ String s = "🎄😉";
+     /*🧐*/ String s = "🎄😉";
     String /* 🧐  block comment ok */   st =  "🎄  assa";
     // violation above 'Use a single space to separate non-whitespace characters'
     String str = "🤩🎄";   // Multiple whitespaces before comment
@@ -29,9 +29,9 @@ public class InputSingleSpaceSeparatorWithEmoji {
      * ok
      */
     void foo2() {
-        /* ok */
+        
         String  s = "🧐  🧐"; // violation 'Use a single space to separate non-whitespace characters'
-    }  // ok
+    }   
 
     private  void foo3  (String     s) { // 3 violations
         if (s.substring(0).equals("da🎄")  )  { // 2 violations

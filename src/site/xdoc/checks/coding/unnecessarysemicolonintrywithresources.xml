@@ -57,7 +57,7 @@ class Example1 {
          ;) {} // violation, 'Unnecessary semicolon'
     try (Reader r6 = new PipedReader();
          Reader r7
-           = new PipedReader(); // ok, closing parenthesis is not on the same line
+           = new PipedReader(); //closing parenthesis is not on the same line
     ) {}
   }
 }

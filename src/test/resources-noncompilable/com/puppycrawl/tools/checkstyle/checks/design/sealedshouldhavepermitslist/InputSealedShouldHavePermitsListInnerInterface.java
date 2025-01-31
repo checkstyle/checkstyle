@@ -19,7 +19,7 @@ public class InputSealedShouldHavePermitsListInnerInterface {
 }
 
 class InputSealedShouldHavePermitsListInnerInterfaceCorrected {
-    sealed interface A permits B, C, F, R, E {} // ok, explicitly declared the permitted subclasses
+    sealed interface A permits B, C, F, R, E {} //explicitly declared the permitted subclasses
     final class B implements A { }
     final class C implements A { }
     final class D { }    // this can't implement A

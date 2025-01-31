@@ -21,18 +21,18 @@
  &lt;/p&gt;
  &lt;pre&gt;
  String line;
- while ((line = bufferedReader.readLine()) != null) { // OK
+ while ((line = bufferedReader.readLine()) != null) {  
    // process the line
  }
 
- for (;(line = bufferedReader.readLine()) != null;) { // OK
+ for (;(line = bufferedReader.readLine()) != null;) {  
    // process the line
  }
 
  do {
    // process the line
  }
- while ((line = bufferedReader.readLine()) != null); // OK
+ while ((line = bufferedReader.readLine()) != null);  
  &lt;/pre&gt;
 
  &lt;p&gt;

@@ -9,10 +9,10 @@
 */
 
 // xdoc section -- start
-@Annotation // ok
+@Annotation  
 class Class1 {}
 
-@MyClass.Annotation // ok
+@MyClass.Annotation  
 class Class2 {}
 
 @com.mycompany.MyClass.Annotation // violation, as this form is missed in config

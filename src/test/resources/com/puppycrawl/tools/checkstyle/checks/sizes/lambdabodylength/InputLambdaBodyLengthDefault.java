@@ -78,7 +78,7 @@ public class InputLambdaBodyLengthDefault {
                 + "10"
                 + "11"
             ;
-        Supplier<String> s2 = () -> // ok, 10 lines
+        Supplier<String> s2 = () -> //10 lines
             "1"
                 + "2"
                 + "3"
@@ -90,7 +90,7 @@ public class InputLambdaBodyLengthDefault {
                 + "9"
                 + "10"
             ;
-        list.forEach(item -> { // ok, 10 lines
+        list.forEach(item -> { //10 lines
             System.out.println(1);
             System.out.println(2);
             System.out.println(3);

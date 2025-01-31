@@ -34,11 +34,11 @@ class Example1 {
         }
 
         if ((cond1 && cond2)
-                || (cond3 && cond4)          // ok, lineWrappingIndentation
-                || !(cond5 && cond6)) {      // ok, lineWrappingIndentation
+                || (cond3 && cond4)          //lineWrappingIndentation
+                || !(cond5 && cond6)) {      //lineWrappingIndentation
             field.toUpperCase()
-                 .concat(" TASK")             // ok, lineWrappingIndentation
-                 .chars().forEach(c -> {      // ok, lineWrappingIndentation
+                 .concat(" TASK")             //lineWrappingIndentation
+                 .chars().forEach(c -> {      //lineWrappingIndentation
                      System.out.println((char) c);
                  });
         }

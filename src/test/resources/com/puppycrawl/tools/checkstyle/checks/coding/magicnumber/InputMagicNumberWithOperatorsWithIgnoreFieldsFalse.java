@@ -18,7 +18,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
 public class InputMagicNumberWithOperatorsWithIgnoreFieldsFalse {
 
-    public static final int BIT0 = 1 << 3; // ok, ignoreFieldDeclaration is true
+    public static final int BIT0 = 1 << 3; //ignoreFieldDeclaration is true
     public static final int BIT1 = 1 >> 3;
     public static final int BIT2 = 1 >>> 3;
     public static final int BIT3 = 1 | 3;
@@ -32,7 +32,7 @@ public class InputMagicNumberWithOperatorsWithIgnoreFieldsFalse {
     public static final int BIT11 = 1 > 3 ? 1 : 3;
     public static final int BIT12 = 1 % 3;
 
-    public static int bit0 = 1 << 3; // ok, ignoreFieldDeclaration is true
+    public static int bit0 = 1 << 3; //ignoreFieldDeclaration is true
     public static int bit1 = 1 >> 3;
     public static int bit2 = 1 >>> 3;
     public static int bit3 = 1 | 3;
@@ -42,7 +42,7 @@ public class InputMagicNumberWithOperatorsWithIgnoreFieldsFalse {
     public static int bit7 = ~3;
 
     void m1() {
-        final int BIT0 = 1 << 3; // ok, constant variable
+        final int BIT0 = 1 << 3; //constant variable
         final int BIT1 = 1 >> 3;
         final int BIT2 = 1 >>> 3;
         final int BIT3 = 1 | 3;

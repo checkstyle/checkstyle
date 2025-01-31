@@ -48,7 +48,7 @@ public class InputIllegalIdentifierName {
             case WED -> Math.addExact(1, 1);
             case THU, SAT, FRI, SUN -> 0;
             default -> {
-                yield Math.addExact(2, 1); // ok, yield statement
+                yield Math.addExact(2, 1); //yield statement
             }
         };
     }
@@ -64,9 +64,9 @@ public class InputIllegalIdentifierName {
                 (Record record) { // violation
         }
 
-        String yieldString = "yieldString"; // ok, part of another word
-        record MyRecord() {} // ok, part of another word
-        var variable = 2; // ok, part of another word
+        String yieldString = "yieldString"; //part of another word
+        record MyRecord() {} //part of another word
+        var variable = 2; //part of another word
 
         String recordString = "record";
         recordString = recordString.substring(record, 20);

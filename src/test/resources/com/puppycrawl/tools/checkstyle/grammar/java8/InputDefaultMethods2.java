@@ -11,7 +11,7 @@ applyToPrivate = (default)true
 
 package com.puppycrawl.tools.checkstyle.grammar.java8;
 
-public class InputDefaultMethods2 { // ok
+public class InputDefaultMethods2 {  
 
     public void doSomething(){
         int a = 5;

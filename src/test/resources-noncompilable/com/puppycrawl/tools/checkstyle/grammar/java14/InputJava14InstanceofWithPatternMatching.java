@@ -82,8 +82,8 @@ public class InputJava14InstanceofWithPatternMatching {
     public void t(Object o1, Object o2) {
         Object b;
         Object c;
-        if (!(o1 instanceof String s) && (o2 instanceof String s)) {} //ok
-        if (o1 instanceof String s || !(o2 instanceof String s)) {} //ok
+        if (!(o1 instanceof String s) && (o2 instanceof String s)) {}  
+        if (o1 instanceof String s || !(o2 instanceof String s)) {}  
         b = ((VoidPredicate) () -> o1 instanceof String s).get();
 
         List<Integer> arrayList = new ArrayList<Integer>();

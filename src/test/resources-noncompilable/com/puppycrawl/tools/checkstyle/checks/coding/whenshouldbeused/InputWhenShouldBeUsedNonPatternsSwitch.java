@@ -9,7 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.whenshouldbeused;
 public class InputWhenShouldBeUsedNonPatternsSwitch {
     void test(char c, int x) {
         switch (x) {
-            case 1  :   // ok, guard is allowed after patterns only
+            case 1  :   //guard is allowed after patterns only
                 if (x == 3) {
                 }
                 break;

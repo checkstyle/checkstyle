@@ -16,7 +16,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
 
-public class InputTypeUseAnnotationsOnQualifiedTypes { // ok
+public class InputTypeUseAnnotationsOnQualifiedTypes {  
     /* Causes parse failure */
     Rectangle2D.@Ann Double rect = null;
 

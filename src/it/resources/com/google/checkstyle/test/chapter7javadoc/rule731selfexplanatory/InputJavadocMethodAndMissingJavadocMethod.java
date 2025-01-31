@@ -47,12 +47,12 @@ public class InputJavadocMethodAndMissingJavadocMethod extends OverrideClasss {
     return "Fooooooooooooooo" + "ooooo" + "ooo";
   }
 
-  // ok, private method does not require javadoc
+  //private method does not require javadoc
   private String correct(String param) {
     return "Fooooooooooooooo" + "ooooo" + "ooo" + param;
   }
 
-  // ok, default scope method does not require javadoc
+  //default scope method does not require javadoc
   String defaultScope(int x) {
     return "Fooooooooooooooo" + "ooooo" + "ooo" + x;
   }
@@ -85,7 +85,7 @@ public class InputJavadocMethodAndMissingJavadocMethod extends OverrideClasss {
     foo3();
   }
 
-  // ok, private constructor does not require javadoc
+  //private constructor does not require javadoc
   private InputJavadocMethodAndMissingJavadocMethod(float x) {
     foo2();
     foo91();
@@ -93,7 +93,7 @@ public class InputJavadocMethodAndMissingJavadocMethod extends OverrideClasss {
     foo3();
   }
 
-  // ok, default scope constructor does not require javadoc
+  //default scope constructor does not require javadoc
   InputJavadocMethodAndMissingJavadocMethod(int a) {
     foo2();
     foo91();
@@ -106,7 +106,7 @@ public class InputJavadocMethodAndMissingJavadocMethod extends OverrideClasss {
     foo2();
   }
 
-  // ok, constructors smaller than 2 lines does not require javadoc
+  //constructors smaller than 2 lines does not require javadoc
   private InputJavadocMethodAndMissingJavadocMethod(float a, float b) {
     foo2();
   }

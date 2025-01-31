@@ -14,7 +14,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 
-public class InputMethodReferences2 // ok
+public class InputMethodReferences2  
 {
 
     public static void main(String[] args)

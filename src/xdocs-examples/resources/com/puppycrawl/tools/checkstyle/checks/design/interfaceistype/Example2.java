@@ -22,7 +22,7 @@ class Example2 {
 
   }
 
-  interface Test3 { // ok, because it has a method.
+  interface Test3 { //because it has a method.
     int a = 3;
     void test();
   }

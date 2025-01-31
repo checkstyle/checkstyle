@@ -25,7 +25,7 @@ import java.lang.Class;
 // violation ''//' has more than 1 empty lines before.'
 import java.lang.Integer;
 
-// ok, because no more than 1 empty lines before
+//because no more than 1 empty lines before
 import java.lang.Long;
 
 
@@ -63,7 +63,7 @@ import java.lang.Boolean;
 
 import java.lang.Byte;
 
-// ok, because no more than 1 empty lines before
+//because no more than 1 empty lines before
 /* something  */
 import java.lang.Short;
 
@@ -76,7 +76,7 @@ import java.lang.Number;
 import java.lang.Runnable; // violation ''import' has more than 1 empty lines before.'
 import java.lang.Thread;
 
-// ok, because no more than 1 empty lines before
+//because no more than 1 empty lines before
 
 
 // violation ''//' has more than 1 empty lines before.'
@@ -180,7 +180,7 @@ public class InputEmptyLineSeparatorWithComments {
 
     public static class Class2 { } // violation ''CLASS_DEF' has more than 1 empty lines before.'
 
-    // ok, because no more than 1 empty lines before
+    //because no more than 1 empty lines before
     public static class Class3 { }
 
 
@@ -190,7 +190,7 @@ public class InputEmptyLineSeparatorWithComments {
 
     // violation ''//' has more than 1 empty lines before.'
     public
-    // ok, because no more than 1 empty lines before
+    //because no more than 1 empty lines before
     static class Class5 { }
 
 
@@ -229,7 +229,7 @@ public class InputEmptyLineSeparatorWithComments {
         }
     }
 
-    // ok, because no more than 1 empty lines before
+    //because no more than 1 empty lines before
     public interface Interface1 { }
 
 
@@ -248,9 +248,9 @@ public class InputEmptyLineSeparatorWithComments {
     /* . */
     interface Interface4 { }
 
-    // ok, because no more than 1 empty lines before
+    //because no more than 1 empty lines before
 
-    // ok, because no more than 1 empty lines before
+    //because no more than 1 empty lines before
     // .
     // .
     // .
@@ -262,19 +262,19 @@ public class InputEmptyLineSeparatorWithComments {
         E1, E2
     }
 
-    // ok, because no more than 1 empty lines before
+    //because no more than 1 empty lines before
     public enum Enum2 { }
 
 
     // violation ''//' has more than 1 empty lines before.'
-    // ok, because no more than 1 empty lines before
+    //because no more than 1 empty lines before
 
-    // ok, because no more than 1 empty lines before
+    //because no more than 1 empty lines before
     public enum Enum3 { }
-    // ok, because no more than 1 empty lines before
+    //because no more than 1 empty lines before
 
     public enum Enum4 { }
-    // ok, because no more than 1 empty lines before
+    //because no more than 1 empty lines before
 
     public enum Enum5 { }
 
@@ -295,7 +295,7 @@ public class InputEmptyLineSeparatorWithComments {
         abs(2);
     }
 
-    // ok, because no more than 1 empty lines before
+    //because no more than 1 empty lines before
 
 
     // violation ''//' has more than 1 empty lines before.'
@@ -319,24 +319,24 @@ public class InputEmptyLineSeparatorWithComments {
         testNoViolationWithJavadoc = 1;
     }
 
-    // ok, because no more than 1 empty lines before
+    //because no more than 1 empty lines before
     /* . */ public InputEmptyLineSeparatorWithComments(int i) {
         testNoViolationWithJavadoc = 1;
     }
 
-    // ok, because no more than 1 empty lines before
-    // ok, because no more than 1 empty lines before
+    //because no more than 1 empty lines before
+    //because no more than 1 empty lines before
 
-    // ok, because no more than 1 empty lines before
+    //because no more than 1 empty lines before
     public InputEmptyLineSeparatorWithComments(int i, int j) {
         testNoViolationWithJavadoc = 1;
     }
 
 
     // violation ''//' has more than 1 empty lines before.'
-    // ok, because no more than 1 empty lines before
+    //because no more than 1 empty lines before
 
-    // ok, because no more than 1 empty lines before
+    //because no more than 1 empty lines before
 
 
 

@@ -23,7 +23,7 @@ class Example3 extends ExternalService3 {
            String e, String f, String g, String h) {}
 
   @Override
-  // ok below, overridden method is ignored
+  //below, overridden method is ignored
   public void processData(String a, String b, String c, String d,
                           String e, String f, String g, String h) {}
 

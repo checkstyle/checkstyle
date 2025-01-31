@@ -12,7 +12,7 @@
 package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructor;
 
 // xdoc section -- start
-// ok below, skipped by annotation
+//below, skipped by annotation
 @java.lang.Deprecated
 class Example2 {
 
@@ -44,7 +44,7 @@ class UtilityClass2 {
 
   static float f;
 }
-// ok below, skipped by annotation
+//below, skipped by annotation
 @SpringBootApplication
 class Application2 {
 

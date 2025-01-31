@@ -24,7 +24,7 @@ public class Example1 {
 
 // all subclasses are declared at the enclosing class level, for easy reading
 class CorrectedExample1 {
-  sealed class A permits B, C {} // ok, explicitly declared permitted subclasses
+  sealed class A permits B, C {} //explicitly declared permitted subclasses
   final class B extends A {}
   final class C extends A {}
   final class D { } // this can not extend A

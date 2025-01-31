@@ -18,12 +18,12 @@ public class InputAvoidEscapedUnicodeCharactersEscapedS {
     String value31 = "\u03bc\n not all escaped chars"; // violation
     String value4 = """
             \s\s\s\n
-            """; // ok, no unicode chars
+            """; //no unicode chars
     String value5 = """
-            \u03bc\s"""; // ok, same string as 'value2'
+            \u03bc\s"""; //same string as 'value2'
     String value6 = """
             \s\s\s\n not all escaped chars
-            """; // ok, no unicode chars // violation below
+            """; //no unicode chars // violation below
     String value7 = /* violation */"""
             \u03bc\s not all escaped chars
             """; // violation below

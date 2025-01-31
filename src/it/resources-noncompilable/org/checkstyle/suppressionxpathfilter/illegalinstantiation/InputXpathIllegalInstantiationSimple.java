@@ -3,9 +3,9 @@
 package org.checkstyle.suppressionxpathfilter.illegalinstantiation;
 
 public class InputXpathIllegalInstantiationSimple {
-    int b = 5; // ok
+    int b = 5;  
     public void test() {
         Boolean x = new Boolean(true); // warn
-        Integer e = new Integer(b); // ok
+        Integer e = new Integer(b);  
     }
 }

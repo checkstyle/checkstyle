@@ -24,19 +24,19 @@ public class Example2 {
   record R(Record record){} // violation, 'Name 'record' must match pattern'
 
   String yieldString = "yieldString";
-  // ok above, word 'yield' is not used as an identifier by itself
+  //above, word 'yield' is not used as an identifier by itself
   record MyRecord(){}
-  // ok above, word 'Record' is not used as an identifier by itself
+  //above, word 'Record' is not used as an identifier by itself
   Integer variable = 2;
-  // ok above, word 'var' is not used as an identifier by itself
+  //above, word 'var' is not used as an identifier by itself
 
   int open = 4; // violation, 'Name 'open' must match pattern'
   Object transitive = "transitive";
   // violation above, 'Name 'transitive' must match pattern'
 
   int openInt = 4;
-  // ok above, word 'open' is not used as an identifier by itself
+  //above, word 'open' is not used as an identifier by itself
   Object transitiveObject = "transitiveObject";
-  // ok above, word 'transitive' is not used as an identifier by itself
+  //above, word 'transitive' is not used as an identifier by itself
 }
 // xdoc section -- end

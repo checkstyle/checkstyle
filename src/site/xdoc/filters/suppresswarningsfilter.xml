@@ -56,11 +56,11 @@
         <source>
 public class Example1 {
   @SuppressWarnings(&quot;memberName&quot;)
-  int J; // ok only because there is annotation
+  int J; //only because there is annotation
   int JJ; // violation 'must match pattern'
 
   @SuppressWarnings({&quot;MemberName&quot;, &quot;NoWhitespaceAfter&quot;})
-  int [] ARRAY; // ok only because there is annotation for both Checks
+  int [] ARRAY; //only because there is annotation for both Checks
   int [] ARRAY2;
   // 2 violations above:
   //   ''int' is followed by whitespace'
@@ -96,7 +96,7 @@ package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
 public class Example2 {
   @SuppressWarnings(&quot;checkstyle:systemout&quot;)
   public static void foo() {
-    System.out.println(&quot;Debug info.&quot;); // ok, because there is annotation
+    System.out.println(&quot;Debug info.&quot;); //because there is annotation
   }
   public static void boo() {
     System.out.println(&quot;Some info.&quot;); // violation 'use SLF4J instead.'

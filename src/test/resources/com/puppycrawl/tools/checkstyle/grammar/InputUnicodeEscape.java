@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.grammar;
 /**
  * Input for unicode escapes.
  */
-public class InputUnicodeEscape // ok
+public class InputUnicodeEscape  
 {
     char a = '\u005cr';
     char b = '\u005cn';

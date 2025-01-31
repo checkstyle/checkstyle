@@ -16,14 +16,14 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 // xdoc section -- start
 public class Example3 {
 
-  // ok, CTOR_DEF is not in configured tokens
+  //CTOR_DEF is not in configured tokens
   public Example3()  {
     int var1 = 2;
     int var2 = 4;
     int sum = var1 + var2;
   }
 
-  // ok, CTOR_DEF is not in configured tokens
+  //CTOR_DEF is not in configured tokens
   public Example3(int a)  {
     int var1 = 2;
     int sum = var1 + a;
@@ -49,7 +49,7 @@ public class Example3 {
   }
 
   record MyBadRecord() {
-    // ok, COMPACT_CTOR_DEF is not in configured tokens
+    //COMPACT_CTOR_DEF is not in configured tokens
     public MyBadRecord {
 
       System.out.println("line3");

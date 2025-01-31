@@ -5,16 +5,16 @@ public class InputFormattedNoWhitespaceBeforeEmptyForLoop {
 
   /** some javadoc. */
   public static void foo() {
-    for (; ; ) { // ok
+    for (; ; ) {  
       break;
     }
-    for (int x = 0; ; ) { // ok
+    for (int x = 0; ; ) {  
       break;
     }
     for (int x = 0; ; ) {
       break;
     }
-    for (int x = 0; x < 10; ) { // ok
+    for (int x = 0; x < 10; ) {  
       break;
     }
     for (int x = 0; x < 10; ) {

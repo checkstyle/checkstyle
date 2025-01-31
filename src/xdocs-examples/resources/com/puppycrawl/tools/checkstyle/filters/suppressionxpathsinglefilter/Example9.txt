@@ -14,7 +14,7 @@
 // xdoc section -- start
 public class TestClass {
   public void testMethod() {
-    final int testVariable1 = 10; // OK
+    final int testVariable1 = 10;  
     final int testVariable2 = 10; // violation of the LocalFinalVariableName check,
                                   // name 'testVariable2' must match pattern '^[A-Z][A-Z0-9]*$'
   }

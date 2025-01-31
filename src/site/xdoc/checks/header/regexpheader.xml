@@ -78,7 +78,7 @@
         <p id="Example1-code">Example1:</p>
         <source>
 package com.puppycrawl.tools.checkstyle.checks.header.header;
-// OK, as by default there is not specific header defined to validate it presence
+//as by default there is not specific header defined to validate it presence
 public class Example1 { }
         </source>
 
@@ -162,7 +162,7 @@ public class Example3 { }
         </p>
         <source>
 package com.puppycrawl.tools.checkstyle.checks.header.regexpheader;
-//OK, as regex value matches all lines
+//as regex value matches all lines
 public class Example4 { }
         </source>
       </subsection>

@@ -18,10 +18,10 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 
 // xdoc section -- start
-// ok below, since we are only checking for '^unchecked$|^unused$'
+//below, since we are only checking for '^unchecked$|^unused$'
 @SuppressWarnings("")
 class Example2 {
-  // ok below as VARIABLE_DEF is not configured in tokens to check
+  //below as VARIABLE_DEF is not configured in tokens to check
   @SuppressWarnings("")
   final int num1 = 1;
   @SuppressWarnings("all")
@@ -29,10 +29,10 @@ class Example2 {
   @SuppressWarnings("unused")
   final int num3 = 3;
 
-  // ok below as PARAMETER_DEF is not configured in tokens to check
+  //below as PARAMETER_DEF is not configured in tokens to check
   void foo1(@SuppressWarnings("unused") int param) {}
 
-  // ok below, since we are only checking for '^unchecked$|^unused$'
+  //below, since we are only checking for '^unchecked$|^unused$'
   @SuppressWarnings("all")
   void foo2(int param) {}
 

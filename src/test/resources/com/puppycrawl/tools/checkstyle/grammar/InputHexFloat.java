@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.grammar;
 /**
  * Input for hex float and double test.
  */
-public class InputHexFloat // ok
+public class InputHexFloat  
 {
     double f1 = 0x.0P10;
     double f2 = 0x1.P-1;

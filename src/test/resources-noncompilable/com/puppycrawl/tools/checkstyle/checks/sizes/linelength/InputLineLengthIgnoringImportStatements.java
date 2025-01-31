@@ -27,7 +27,7 @@ public class InputLineLengthIgnoringImportStatements {
 
         String b = """
 import java.          security.          interfaces.    RSAMultiPrimePrivateCrtKey;
-            """; // ok above
+            """; //above
 
         // violation below 'longer than 75 characters (found 77)'
         return "This line is longer than 60 characters and should be logged";

@@ -10,7 +10,7 @@ public class InputXpathParameterAssignmentLambdas {
     void method() {
         int q = 12;
         SomeInterface obj = (d) -> {
-            SomeInterface b = (c) -> obj1.equals(this); // ok
+            SomeInterface b = (c) -> obj1.equals(this);  
             int c = 12;
             c++;
         };

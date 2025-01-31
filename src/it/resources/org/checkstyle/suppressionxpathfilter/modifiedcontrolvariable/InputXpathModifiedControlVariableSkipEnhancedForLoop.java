@@ -4,7 +4,7 @@ public class InputXpathModifiedControlVariableSkipEnhancedForLoop {
     public void test() {
         String[] strings = {"first", "second"};
         for(String s : strings) {
-            s += "a"; // ok
+            s += "a";  
         }
         for (int i = 0; i < 1; i++) {
             i++; // warn

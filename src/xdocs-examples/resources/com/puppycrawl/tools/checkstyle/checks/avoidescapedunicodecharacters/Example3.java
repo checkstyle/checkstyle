@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.avoidescapedunicodecharacters;
 
 // xdoc section -- start
 public class Example3 {
-  // OK, a normal String below
+  //a normal String below
   String unitAbbrev = "μs";
   // violation below
   String unitAbbrev1 = "\u03bcs";
@@ -20,7 +20,7 @@ public class Example3 {
   String unitAbbrev2 = "\u03bc\u03bc\u03bc";
   // violation below
   String unitAbbrev3 = "\u03bcs";
-  // ok, because there is trailing comment and allowByTailComment=true
+  //because there is trailing comment and allowByTailComment=true
   String unitAbbrev4 = "\u03bc\u03bcs"; // it is  μs
   public static int content() {
     char content = 'r';

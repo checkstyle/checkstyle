@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
 // xdoc section -- start
 @SuppressWarnings("unchecked") // violation 'Annotation style must be 'EXPANDED''
-@Deprecated // ok as closingParens property set to never
+@Deprecated //as closingParens property set to never
 // violation below 'Annotation style must be 'EXPANDED''
 @SomeArrays({"unchecked","unused"})
 public class Example2
@@ -22,7 +22,7 @@ public class Example2
 
 }
 
-@SuppressWarnings(value={"unchecked"}) // ok as elementStyle set to expanded
+@SuppressWarnings(value={"unchecked"}) //as elementStyle set to expanded
 @Deprecated() // violation 'Annotation cannot have closing parenthesis'
 // violation below 'Annotation array values cannot contain trailing comma'
 @SomeArrays(value={"unchecked","unused",})

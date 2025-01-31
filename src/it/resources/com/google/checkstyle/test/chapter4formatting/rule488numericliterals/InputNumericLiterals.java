@@ -4,13 +4,13 @@ class InputNumericLiterals {
   /** test. * */
   private final long ignore = 666l + 666L; // violation 'Should use uppercase 'L'.'
 
-  private String notWarn = "666l"; // ok
+  private String notWarn = "666l";  
 
   private long foo() {
     processUpperEll(66l); // violation 'Should use uppercase 'L'.'
-    processUpperEll(66L); // ok
+    processUpperEll(66L);  
     processUpperEll("s", 66l); // violation 'Should use uppercase 'L'.'
-    processUpperEll("s", 66L); // ok
+    processUpperEll("s", 66L);  
 
     return 666l + 666L; // violation 'Should use uppercase 'L'.'
   }
@@ -19,10 +19,10 @@ class InputNumericLiterals {
     long bad =
         (4 + 5 * 7 ^ 66l / 7 + 890) // violation 'Should use uppercase 'L'.'
             & (88l + 78 * 4); // violation 'Should use uppercase 'L'.'
-    long good = (4 + 5 * 7 ^ 66L / 7 + 890) & (88L + 78 * 4); // ok
+    long good = (4 + 5 * 7 ^ 66L / 7 + 890) & (88L + 78 * 4);  
     long[] array = {
       66l, // violation 'Should use uppercase 'L'.'
-      66L, // ok
+      66L,  
     };
   }
 
@@ -32,13 +32,13 @@ class InputNumericLiterals {
     /** test. * */
     private static final long IGNORE = 666l + 666L; // violation 'Should use uppercase 'L'.'
 
-    private static final String notWarn = "666l"; // ok
+    private static final String notWarn = "666l";  
 
     private long foo() {
       processUpperEll(66l); // violation 'Should use uppercase 'L'.'
-      processUpperEll(66L); // ok
+      processUpperEll(66L);  
       processUpperEll("s", 66l); // violation 'Should use uppercase 'L'.'
-      processUpperEll("s", 66L); // ok
+      processUpperEll("s", 66L);  
 
       return 666l + 666L; // violation 'Should use uppercase 'L'.'
     }
@@ -47,13 +47,13 @@ class InputNumericLiterals {
       long bad =
           (4 + 5 * 7 ^ 66l / 7 + 890) // violation 'Should use uppercase 'L'.'
               & (88l + 78 * 4); // violation 'Should use uppercase 'L'.'
-      long good = (4 + 5 * 7 ^ 66L / 7 + 890) & (88L + 78 * 4); // ok
+      long good = (4 + 5 * 7 ^ 66L / 7 + 890) & (88L + 78 * 4);  
     }
 
     private void processUpperEll(String s, long l) {
       long[] array = {
         66l, // violation 'Should use uppercase 'L'.'
-        66L, // ok
+        66L,  
       };
     }
 
@@ -63,13 +63,13 @@ class InputNumericLiterals {
             /** test. * */
             private final long ignore = 666l + 666L; // violation 'Should use uppercase 'L'.'
 
-            private String notWarn = "666l"; // ok
+            private String notWarn = "666l";  
 
             private long foo() {
               processUpperEll(66l); // violation 'Should use uppercase 'L'.'
-              processUpperEll(66L); // ok
+              processUpperEll(66L);  
               processUpperEll("s", 66l); // violation 'Should use uppercase 'L'.'
-              processUpperEll("s", 66L); // ok
+              processUpperEll("s", 66L);  
 
               return 666l + 666L; // violation 'Should use uppercase 'L'.'
             }
@@ -78,10 +78,10 @@ class InputNumericLiterals {
               long bad =
                   (4 + 5 * 7 ^ 66l / 7 + 890) // violation 'Should use uppercase 'L'.'
                       & (88l + 78 * 4); // violation 'Should use uppercase 'L'.'
-              long good = (4 + 5 * 7 ^ 66L / 7 + 890) & (88L + 78 * 4); // ok
+              long good = (4 + 5 * 7 ^ 66L / 7 + 890) & (88L + 78 * 4);  
               long[] array = {
                 66l, // violation 'Should use uppercase 'L'.'
-                66L, // ok
+                66L,  
               };
             }
 
@@ -94,10 +94,10 @@ class InputNumericLiterals {
 
   interface Long {
     public static final long IGNORE = 666l + 666L; // violation 'Should use uppercase 'L'.'
-    public static final String notWarn = "666l"; // ok
+    public static final String notWarn = "666l";  
     long bad =
         (4 + 5 * 7 ^ 66l / 7 + 890) // violation 'Should use uppercase 'L'.'
             & (88l + 78 * 4); // violation 'Should use uppercase 'L'.'
-    long good = (4 + 5 * 7 ^ 66L / 7 + 890) & (88L + 78 * 4); // ok
+    long good = (4 + 5 * 7 ^ 66L / 7 + 890) & (88L + 78 * 4);  
   }
 }

@@ -26,25 +26,25 @@ import java.util.Optional;
 public class InputWhitespaceAroundSwitchExpressions {
 
     Optional<String> someMethod(int arg) {
-        return Optional.ofNullable(switch (arg) { // ok - switch expression is skipped by design
+        return Optional.ofNullable(switch (arg) { //- switch expression is skipped by design
             default -> null;
         });
     }
 
     Optional<String> someMethod2(int a) {
-        return Optional.ofNullable(((switch (a) { // ok - switch expression is skipped by design
+        return Optional.ofNullable(((switch (a) { //- switch expression is skipped by design
             default -> null;
         })));
     }
 
     Object someMethod3(int a) {
-        return switch(a) { // ok - switch expression is skipped by design
+        return switch(a) { //- switch expression is skipped by design
             default -> null;
         };
     }
 
     Object someMethod3(String b) {
-        return (switch(b.trim()) { // ok - switch expression is skipped by design
+        return (switch(b.trim()) { //- switch expression is skipped by design
             default -> null;
         });
     }

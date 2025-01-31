@@ -11,8 +11,8 @@
 
 // xdoc section -- start
 public class FileOne {
-  public void MyMethod1() {} // OK
-  public void MyMethod2() {} // OK
+  public void MyMethod1() {}  
+  public void MyMethod2() {}  
   public void MyMethodA() {} // violation, name 'MyMethodA' must
                              // match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }

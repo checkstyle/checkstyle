@@ -48,7 +48,7 @@ public class InputJavadocParagraphIncorrectOpenClosedTag2 {
     * Some Summary.
     *
     * <p>
-    *   Some Javadoc. // ok until #15762
+    *   Some Javadoc. //until #15762
     * </p>
     */
     // violation 4 lines above '<p> tag should be placed immediately before the first word'
@@ -61,11 +61,11 @@ public class InputJavadocParagraphIncorrectOpenClosedTag2 {
     * Some Summary.
     *
     * <p>
-    *   <ul> // ok until #15762
-    *     <li>Item 1</li> // ok until #15762
-    *     <li>Item 2</li> // ok until #15762
-    *     <li>Item 3</li> // ok until #15762
-    *   </ul> // ok until #15762
+    *   <ul> //until #15762
+    *     <li>Item 1</li> //until #15762
+    *     <li>Item 2</li> //until #15762
+    *     <li>Item 3</li> //until #15762
+    *   </ul> //until #15762
     * </p>
     */
     int e;

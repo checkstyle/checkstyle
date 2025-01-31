@@ -55,7 +55,7 @@ public class InputXpathJavaNCSSOne {
         int a50 = 1;
     }
 
-    public void test2() { // ok, method does not exceed the 50 lines limit.
+    public void test2() { //method does not exceed the 50 lines limit.
         int a1 = 1;
         int a2 = 1;
         int a3 = 1;

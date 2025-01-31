@@ -28,7 +28,7 @@ class Example1 {
     }
   };
   List<Object> list = new ArrayList<>() {
-    // OK, as it is not double brace pattern
+    //as it is not double brace pattern
     private int field;
     {
       add(new Object());

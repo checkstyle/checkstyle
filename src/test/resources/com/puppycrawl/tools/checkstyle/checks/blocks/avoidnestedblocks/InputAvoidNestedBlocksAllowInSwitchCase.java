@@ -45,7 +45,7 @@ class InputAvoidNestedBlocksAllowInSwitchCase
                 }
                 break;
             case 2:
-                // ok if allowInSwitchCase is true, SLIST is complete case body
+                //if allowInSwitchCase is true, SLIST is complete case body
                 {
                     x = 1;
                     break;

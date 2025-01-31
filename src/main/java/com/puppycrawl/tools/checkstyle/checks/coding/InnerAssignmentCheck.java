@@ -46,18 +46,18 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <pre>
  * String line;
- * while ((line = bufferedReader.readLine()) != null) { // OK
+ * while ((line = bufferedReader.readLine()) != null) {  
  *   // process the line
  * }
  *
- * for (;(line = bufferedReader.readLine()) != null;) { // OK
+ * for (;(line = bufferedReader.readLine()) != null;) {  
  *   // process the line
  * }
  *
  * do {
  *   // process the line
  * }
- * while ((line = bufferedReader.readLine()) != null); // OK
+ * while ((line = bufferedReader.readLine()) != null);  
  * </pre>
  *
  * <p>

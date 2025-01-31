@@ -51,4 +51,4 @@ public record InputUnnecessarySemicolonAfterTypeMemberDeclarationRecords() {
         ; // no violation, it is empty statement
         if (true) ; // no violation, it is empty statement
     }
-}; // ok, this check does not apply to outer types
+}; //this check does not apply to outer types

@@ -6,5 +6,5 @@
 </module>
 */
 // xdoc section -- start
-Sample txt file. // ok, this file is not specified in the config.
+Sample txt file. //this file is not specified in the config.
 // xdoc section -- end

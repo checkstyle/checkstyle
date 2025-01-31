@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.design.interfaceistype;
  **/
 class InputInterfaceIsType
 {
-    // OK, has method, so is a type
+    //has method, so is a type
     interface OK
     {
         void method();

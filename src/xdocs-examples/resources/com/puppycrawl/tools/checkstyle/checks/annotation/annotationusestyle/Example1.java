@@ -13,9 +13,9 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 }
 
 // xdoc section -- start
-@SuppressWarnings("unchecked") // ok as it's in implied style
-@Deprecated // ok as it matches closingParens default property
-@SomeArrays({"unchecked","unused"}) // ok as it's in implied style
+@SuppressWarnings("unchecked") //as it's in implied style
+@Deprecated //as it matches closingParens default property
+@SomeArrays({"unchecked","unused"}) //as it's in implied style
 public class Example1
 {
 

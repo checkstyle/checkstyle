@@ -132,23 +132,23 @@ class EnumContainerLeft {
     HEARTS,
     SPADES,
     DIAMONDS
-  } // ok
+  }  
 }
 
 // violation below 'Top-level class WithArraysLeft has to reside in its own source file.'
-class WithArraysLeft { // ok
-  String[] s1 = {""}; // ok
-  String[] empty = {}; // ok
-  String[] s2 = { // ok
+class WithArraysLeft {  
+  String[] s1 = {""};  
+  String[] empty = {};  
+  String[] s2 = {  
     "foo", "foo",
   };
-  String[] s3 = { // ok
+  String[] s3 = {  
     "foo", "foo",
   };
-  String[] s4 = { // ok
+  String[] s4 = {  
     "foo", "foo",
   };
-  String[] s5 = {"foo", "foo"}; // ok
+  String[] s5 = {"foo", "foo"};  
 }
 
 // violation below 'Top-level class InputRightCurlyOther2 has to reside in its own source file.'
@@ -171,61 +171,61 @@ class InputRightCurlyOther2
             if (x > 0)
               { // violation ''{' at column 15 should be on the previous line.'
                 break;
-              } else if (x < 0) { // ok
+              } else if (x < 0) {  
 
               ;
             } // violation ''}' at column 13 should be on the same line as the next part.*'
             else
               { // violation ''{' at column 15 should be on the previous line.'
                 break;
-              } // ok
+              }  
             switch (a)
               { // violation ''{' at column 15 should be on the previous line.'
               case 0:
                 break;
               default:
                 break;
-              } // ok
+              }  
           } // violation ''}' at column 11 should be on the same line as the next part of .*'
           catch (Exception e)
           { // violation ''{' at column 11 should be on the previous line.'
             break;
-          } // ok
-        } // ok
+          }  
+        }  
 
       synchronized (this)
         { // violation ''{' at column 9 should be on the previous line.'
           do
           { // violation ''{' at column 11 should be on the previous line.'
             x = 2;
-          } while (x == 2); // ok
-        } // ok
+          } while (x == 2);  
+        }  
 
       this.wait(666); // Bizarre, but legal
 
       for (int k = 0; k < 1; k++)
         { // violation ''{' at column 9 should be on the previous line.'
           String innerBlockVariable = "";
-        } // ok
+        }  
 
       if (System.currentTimeMillis() > 1000) {
         return 1;
       } else {
         return 2;
       }
-    } // ok
+    }  
 
     static
     { // violation ''{' at column 5 should be on the previous line.'
       int x = 1;
-    } // ok
+    }  
 
     /** some javadoc. */
     public enum GreetingsEnum
     { // violation ''{' at column 5 should be on the previous line.'
       HELLO,
       GOODBYE
-    } // ok
+    }  
 
     void method2()
     { // violation ''{' at column 5 should be on the previous line.'
@@ -240,8 +240,8 @@ class InputRightCurlyOther2
 
       if (flag) { System.identityHashCode("some foo"); }
       // violation above ''{' at column 17 should have line break after.'
-    } // ok
-  } // ok
+    }  
+  }  
 
 /**
  * Test input for closing brace if that brace terminates a statement or the body of a constructor.
@@ -277,7 +277,7 @@ class FooInner
         { // violation ''{' at column 9 should be on the previous line.'
         }
     }
-  } // ok
+  }  
 
 // violation below 'Top-level class EnumContainer has to reside in its own source file.'
 class EnumContainer {
@@ -286,21 +286,21 @@ class EnumContainer {
     HEARTS,
     SPADES,
     DIAMONDS
-  } // ok
+  }  
 }
 
 // violation below 'Top-level class WithArrays has to reside in its own source file.'
 class WithArrays {
-  String[] test = {""}; // ok
-  String[] empty = {}; // ok
+  String[] test = {""};  
+  String[] empty = {};  
   String[] s1 = {
     "foo", "foo",
-  }; // ok
+  };  
   String[] s2 = {
     "foo", "foo",
-  }; // ok
+  };  
   String[] s3 = {
     "foo", "foo",
-  }; // ok
-  String[] s4 = {"foo", "foo"}; // ok
+  };  
+  String[] s4 = {"foo", "foo"};  
 }

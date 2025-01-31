@@ -11,6 +11,6 @@ applyToPrivate = (default)true
 
 package com.puppycrawl.tools.checkstyle.grammar;
 
-public class InputLineCommentAtTheEndOfFile // ok
+public class InputLineCommentAtTheEndOfFile  
 {
 } // EOF on this line

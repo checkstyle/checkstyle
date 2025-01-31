@@ -15,10 +15,10 @@ class Example1 {
   // violation below 'The warning '' cannot be suppressed at this location'
   @SuppressWarnings("")
   final int num1 = 1;
-  // ok below as default format only checks for a blank or empty string
+  //below as default format only checks for a blank or empty string
   @SuppressWarnings("all")
   final int num2 = 2;
-  // ok below as default format only checks for a blank or empty string
+  //below as default format only checks for a blank or empty string
   @SuppressWarnings("unused")
   final int num3 = 3;
 
@@ -31,7 +31,7 @@ class Example1 {
   @SuppressWarnings(true?"all":"unused")
   void foo4(int param) {}
 }
-// ok below as default format only checks for a blank or empty string
+//below as default format only checks for a blank or empty string
 @SuppressWarnings("unchecked")
 class Test1 {}
 // xdoc section -- end

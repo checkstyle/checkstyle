@@ -11,6 +11,6 @@
 
 // xdoc section -- start
 public interface TestClass {
-  public static final int CONSTANT1 = 1;  // OK
+  public static final int CONSTANT1 = 1;   
 }
 // xdoc section -- end

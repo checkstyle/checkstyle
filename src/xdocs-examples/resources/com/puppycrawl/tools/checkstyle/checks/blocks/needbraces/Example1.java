@@ -40,7 +40,7 @@ class Example1 {
     // violation above, ''while' construct must use '{}'s.'
     switch (num) {
       case 1: counter++; break;
-      // ok above, because break in case blocks is not counted to allow compact view
+      //above, because break in case blocks is not counted to allow compact view
     }
     return true;
   }

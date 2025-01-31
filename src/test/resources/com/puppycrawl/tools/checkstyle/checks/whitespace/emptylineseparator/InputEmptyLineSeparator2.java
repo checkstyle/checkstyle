@@ -10,20 +10,20 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; //ok: trailing comment
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; // trailing comment
 import java.io.Serializable; // violation ''import' should be separated from previous line.'
-import java.util.ArrayList; /*ok: trailing comment*/
+import java.util.ArrayList; /*trailing comment*/
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.Collections;
-/* ok: block comment after token*/
+/*block comment after token*/
 
 import java.io.PrintWriter;
-//ok: single-line comment after token
+// single-line comment after token
 
-import javax.swing.AbstractAction; /* ok: no trailing comment
+import javax.swing.AbstractAction; /*no trailing comment
 */
 
 import org.apache.commons.beanutils.locale.converters.ByteLocaleConverter;
@@ -130,14 +130,14 @@ class InputEmptyLineSeparator2 // violation ''CLASS_DEF' should be separated fro
 }
 
 class Class22{
-    public int compareTo(InputEmptyLineSeparator aObject) //ok
+    public int compareTo(InputEmptyLineSeparator aObject)  
     {
         int number = 0;
         return 0;
     }
 
     Class2 anon = new Class2(){
-        public int compareTo(InputEmptyLineSeparator aObject) //ok
+        public int compareTo(InputEmptyLineSeparator aObject)  
         {
             int number = 0;
             return 0;

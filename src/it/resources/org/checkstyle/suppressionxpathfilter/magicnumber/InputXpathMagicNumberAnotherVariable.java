@@ -8,7 +8,7 @@ public class InputXpathMagicNumberAnotherVariable {
             int a = 0;
             boolean someCondition = false;
             if (someCondition) {
-                a = 1; // ok
+                a = 1;  
             } else {
                 a = 20; // warn
             }

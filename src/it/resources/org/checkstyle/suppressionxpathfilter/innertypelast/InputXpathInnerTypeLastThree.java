@@ -2,7 +2,7 @@ package org.checkstyle.suppressionxpathfilter.innertypelast;
 
 public class InputXpathInnerTypeLastThree {
 
-    static {} // OK
+    static {}  
 
     interface Inner {
     }

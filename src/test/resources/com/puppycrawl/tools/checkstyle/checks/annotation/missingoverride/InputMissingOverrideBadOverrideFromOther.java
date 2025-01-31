@@ -89,5 +89,5 @@ enum Football2 implements IFoo2, IBar2 {
    * @param a desc {@inheritDoc}
    */
   /** some block comment */
-  void doubled() {} // ok because top javadoc has invalid position
+  void doubled() {} //because top javadoc has invalid position
 }

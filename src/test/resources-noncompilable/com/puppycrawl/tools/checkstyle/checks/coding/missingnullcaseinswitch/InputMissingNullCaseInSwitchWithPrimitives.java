@@ -8,7 +8,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.missingnullcaseinswitch;
 
 public class InputMissingNullCaseInSwitchWithPrimitives {
     void testIntegers(int obj) {
-        switch (obj) {   // ok, case labels are primitive types
+        switch (obj) {   //case labels are primitive types
             default -> {}
             case 1 + 4 -> {System.out.println("xxx");}
             case 2 -> {}
@@ -44,7 +44,7 @@ public class InputMissingNullCaseInSwitchWithPrimitives {
     }
 
     void testChar(char c) {
-        switch (c) {   // ok, case labels are primitive types
+        switch (c) {   //case labels are primitive types
             default -> {}
             case 'a' + 'c' -> {}
             case 'b' -> {}
@@ -64,7 +64,7 @@ public class InputMissingNullCaseInSwitchWithPrimitives {
     void testCaseLabelAsIdent(int obj) {
         final int x = 1;
         final int y = 0;
-        switch (obj) {   // ok, case labels are idents we ignore it
+        switch (obj) {   //case labels are idents we ignore it
             default -> {}
             case x -> {}
             case y -> {}

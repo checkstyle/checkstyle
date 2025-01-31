@@ -9,7 +9,7 @@ public class InputXpathExecutableStatementCountLambdas {
         str = str + "!";
     };
 
-    Consumer t = a -> a.toString().trim(); // ok
-    Function x1 = a -> a; // ok
-    Function y = a -> null; // ok
+    Consumer t = a -> a.toString().trim();  
+    Function x1 = a -> a;  
+    Function y = a -> null;  
 }

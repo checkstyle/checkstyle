@@ -56,7 +56,7 @@ class ExampleNoHashCode {
 
 class ExampleBothMethods1 {
   public int hashCode() { return 0; }
-  public boolean equals(Object o) { // ok, both methods exist
+  public boolean equals(Object o) { //both methods exist
     return false;
   }
   public boolean equals(String o) { return false; }
@@ -64,7 +64,7 @@ class ExampleBothMethods1 {
 
 class ExampleBothMethods2 {
   public int hashCode() { return 0; }
-  public boolean equals(java.lang.Object o) { // ok, both methods exist
+  public boolean equals(java.lang.Object o) { //both methods exist
     return false;
   }
 }

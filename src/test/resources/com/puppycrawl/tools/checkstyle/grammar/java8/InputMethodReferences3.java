@@ -12,7 +12,7 @@ applyToPrivate = (default)true
 package com.puppycrawl.tools.checkstyle.grammar.java8;
 import java.util.function.Supplier;
 
-public class InputMethodReferences3 // ok
+public class InputMethodReferences3  
 {
   public static class SomeClass {
     public static class Nested<V> {

@@ -12,7 +12,7 @@ applyToPrivate = (default)true
 package com.puppycrawl.tools.checkstyle.grammar.java8;
 
 
-public final class InputMethodReferences6 { // ok
+public final class InputMethodReferences6 {  
 
     public void testMethod() {
 

@@ -86,13 +86,13 @@
         </p>
         <source>
 import java.io.
-          IOException; // OK, dot is on the previous line
+          IOException; //dot is on the previous line
 
 class Example1 {
   String s;
 
   public void foo(int a,
-                    int b) { // OK, comma is on the previous line
+                    int b) { //comma is on the previous line
   }
 
   public void bar(int p
@@ -132,7 +132,7 @@ class Example2 {
     Arrays.sort(stringArray, String::
       compareToIgnoreCase);
     Arrays.sort(stringArray, String
-      ::compareTo); // OK, because it is on a new line
+      ::compareTo); //because it is on a new line
   }
 }
         </source>
@@ -162,11 +162,11 @@ class Example3 {
   void foo(int a,
                 int b) { // violation above '',' should be on a new line'
     int r
-      , t; // OK, because it is on a new line
+      , t; //because it is on a new line
   }
 
   void bar(int p
-                , int q) { // OK, because it is on a new line
+                , int q) { //because it is on a new line
   }
 }
         </source>

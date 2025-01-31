@@ -56,13 +56,13 @@ interface HashEq2 {
      * {@inheritDoc}
      */
     @Deprecated
-    public boolean equals(Object a); // ok, because javadoc has invalid position
+    public boolean equals(Object a); //because javadoc has invalid position
 
     @SuppressWarnings("")
     /**
      * {@inheritDoc}
      */
-    public HashEq2 clone(Object a); // ok, because javadoc has invalid position
+    public HashEq2 clone(Object a); //because javadoc has invalid position
 }
 
 enum enum3 {

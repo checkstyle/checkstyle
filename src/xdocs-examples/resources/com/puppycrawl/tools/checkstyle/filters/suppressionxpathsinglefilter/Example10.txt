@@ -13,7 +13,7 @@
 // xdoc section -- start
 public class TestClass {
   public void testMethod1()
-  { // OK
+  {  
   }
 
   public void testMethod2()

@@ -87,7 +87,7 @@ class Example1 {
         case 1:
           i++;
           /* block */ /* fallthru */ // comment
-        case 2: // ok, ReliefPattern is present in above line.
+        case 2: //ReliefPattern is present in above line.
           i++;
           break;
         case 3:

@@ -23,9 +23,9 @@ public class Example5 {
   }
 
   public void foo2() {
-    int a;          // OK, used in different scope
-    int b;          // OK, used in different scope
-    int count = 0;  // OK, used in different scope
+    int a;          //used in different scope
+    int b;          //used in different scope
+    int count = 0;  //used in different scope
 
     {
       System.out.println("Inside inner scope");

@@ -22,7 +22,7 @@ import org.mockito.Mock;
 class Example2 {
   @Nonnull
   private boolean field1;
-  @Override public int hashCode() { return 1; } // ok
+  @Override public int hashCode() { return 1; }  
   @Nonnull
   private boolean field2;
   @Override
@@ -30,8 +30,8 @@ class Example2 {
   @Mock
   DataLoader loader1;
   @SuppressWarnings("deprecation") DataLoader loader;
-  @SuppressWarnings("deprecation") public int foo() { return 1; } // ok
+  @SuppressWarnings("deprecation") public int foo() { return 1; }  
   @Nonnull @Mock DataLoader loader2;
-  // ok above as 'allowSamelineMultipleAnnotations' set to true
+  //above as 'allowSamelineMultipleAnnotations' set to true
 }
 // xdoc section -- end

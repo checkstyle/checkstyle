@@ -25,7 +25,7 @@ public class Example4 {
     try {
       int x = 1 / 0;
     }
-    catch (Exception _) { // ok, unnamed catch parameter, it is implicitly final
+    catch (Exception _) { //unnamed catch parameter, it is implicitly final
       System.out.println("infinity");
     }
     try {
@@ -44,7 +44,7 @@ public class Example4 {
     for (int number: l) { // violation, 'Parameter number should be final'
       System.out.println(number);
     }
-    // ok, unnamed enhanced for loop variable, it is implicitly final
+    //unnamed enhanced for loop variable, it is implicitly final
     for (int _: l) {
       x++;
     }

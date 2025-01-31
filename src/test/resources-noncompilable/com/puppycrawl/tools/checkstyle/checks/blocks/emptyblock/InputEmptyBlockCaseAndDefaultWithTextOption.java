@@ -70,10 +70,10 @@ public class InputEmptyBlockCaseAndDefaultWithTextOption {
             case Integer i: {
                 System.out.println("Integer");
             }
-            case String _: {  // ok, has text inside
+            case String _: {  //has text inside
                 // no code by default
             }
-            default: { // ok, has text inside
+            default: { //has text inside
                 // no code by default
             }
         }
@@ -82,10 +82,10 @@ public class InputEmptyBlockCaseAndDefaultWithTextOption {
             case Integer i -> {
                 System.out.println("Integer");
             }
-            case String s -> { // ok, has text inside
+            case String s -> { //has text inside
                 // no code by default
             }
-            default -> { // ok, has text inside
+            default -> { //has text inside
                 // no code by default
             }
         }

@@ -27,7 +27,7 @@ import org.w3c.dom.Node;
 /**
  * Input for Java 14 records.
  */
-public class InputJava14Records // ok
+public class InputJava14Records  
 {
     public static int getRecord() {
         return record;

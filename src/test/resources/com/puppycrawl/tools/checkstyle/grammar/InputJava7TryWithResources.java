@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.grammar;
 /**
  * Input for Java 7 try-with-resources.
  */
-public class InputJava7TryWithResources // ok
+public class InputJava7TryWithResources  
 {
     public static class MyResource implements AutoCloseable {
         @Override

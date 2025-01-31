@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.parameternumber;
 class Example4 extends ExternalService4 {
 
   @JsonCreator
-  // ok below, constructor annotated with JsonCreator annotation is ignored
+  //below, constructor annotated with JsonCreator annotation is ignored
   Example4(int a, int b, int c, int d,
            int e, int f, int g, int h) {}
 

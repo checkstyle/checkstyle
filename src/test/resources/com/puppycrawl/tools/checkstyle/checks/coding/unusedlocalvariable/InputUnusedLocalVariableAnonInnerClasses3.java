@@ -37,7 +37,7 @@ public class InputUnusedLocalVariableAnonInnerClasses3 {
                     Integer.valueOf(a + s);
                 }
 
-                m obj = new m() { // ok, anonymous instance field
+                m obj = new m() { //anonymous instance field
                     @Override
                     void method() {
                         Integer.valueOf(q);

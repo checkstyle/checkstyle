@@ -23,7 +23,7 @@ public class InputLambdaParameterNameUnnamed {
 
         System.out.println(
                 strings.stream().collect(Collectors.toMap(String::toUpperCase,
-                                   _ -> "NODATA"))); // ok, unnamed lambda parameter
+                                   _ -> "NODATA"))); //unnamed lambda parameter
 
         System.out.println(
                 strings.stream().collect(Collectors.toMap(String::toUpperCase,
@@ -37,7 +37,7 @@ public class InputLambdaParameterNameUnnamed {
                                    BAD_ -> "NODATA"))); // violation, 'Name 'BAD_' must match.*'
 
         switch (o) {
-            case Integer __ -> {} // ok, this is pattern variable not a lambda parameter
+            case Integer __ -> {} //this is pattern variable not a lambda parameter
             case String _ -> {}
             default -> {}
         }

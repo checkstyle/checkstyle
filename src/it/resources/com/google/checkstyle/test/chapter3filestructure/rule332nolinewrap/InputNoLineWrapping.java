@@ -2,15 +2,15 @@ package com.google.checkstyle.test.chapter3filestructure.rule332nolinewrap;
 
 import static java.math. // violation 'import statement should not be line-wrapped.'
         BigInteger.ONE;
-import static java.math.BigInteger.ZERO; // ok
+import static java.math.BigInteger.ZERO;  
 
-// ok, long imports are allowed
+//long imports are allowed
 import com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcoveragegooglesjavastylerule.PackageStatementTest;
-import com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck; // ok
-import java.util.concurrent.atomic.AtomicIntegerFieldUpdater; // ok
+import com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck;  
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;  
 import java.util.concurrent.atomic // violation 'import statement should not be line-wrapped.'
         .AtomicMarkableReference;
-import javax.accessibility.AccessibleAttributeSequence; // ok
+import javax.accessibility.AccessibleAttributeSequence;  
 import javax.accessibility. // violation 'import statement should not be line-wrapped.'
         AccessibleAttributeSequence;
 

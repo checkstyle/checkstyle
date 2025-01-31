@@ -121,7 +121,7 @@ public enum EnumClass {
 
         <source>
 public class PublicClass {
-  public PublicClass() {} // OK
+  public PublicClass() {}  
 }
 
 class PackagePrivateClass {
@@ -366,7 +366,7 @@ public class Example3 {
         A, B, C
   }
 
-  // ok below, 'strictfp' is not redundant before JDK 17
+  //below, 'strictfp' is not redundant before JDK 17
   public strictfp class Test { }
 
   AutoCloseable lock() {

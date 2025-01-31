@@ -58,9 +58,9 @@ class Example1 {
   void test() {
     // violation below, 'Unused lambda parameter 'x' should be unnamed'
     Function&lt;Integer, Integer&gt; f1 = (x) -&gt; this.x + 1;
-    // ok below, parameter is unnamed
+    //below, parameter is unnamed
     Function&lt;Integer, Integer&gt; f2 = (_) -&gt; this.x + 1;
-    // ok below, parameter is used
+    //below, parameter is used
     Function&lt;Integer, Integer&gt; f3 = (x) -&gt; x + 1;
     // violation below, 'Unused lambda parameter 'y' should be unnamed'
     BiFunction&lt;Integer, Integer, Integer&gt; bf1 = (x, y) -&gt; x + this.x;

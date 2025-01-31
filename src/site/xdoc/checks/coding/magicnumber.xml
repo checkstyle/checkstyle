@@ -411,10 +411,10 @@ public class Example5 {
   public void method2() {
     final TestClass testObject = new TestClass(62);
     // violation above, ''62' is a magic number.'
-    final int a = 3; // ok as waiver is ASSIGN
-    final int[] b = {4, 5}; // ok as waiver is ARRAY_INIT
-    final int c = -3; // ok as waiver is UNARY_MINUS
-    final int d = +4; // ok as waiver is UNARY_PLUS
+    final int a = 3; //as waiver is ASSIGN
+    final int[] b = {4, 5}; //as waiver is ARRAY_INIT
+    final int c = -3; //as waiver is UNARY_MINUS
+    final int d = +4; //as waiver is UNARY_PLUS
     final int e = method3(10, 20);
     // 2 violations above:
     //  ''10' is a magic number.'
@@ -423,13 +423,13 @@ public class Example5 {
     // 2 violations above:
     //  ''3' is a magic number.'
     //  ''4' is a magic number.'
-    final int g = 3 / 4; // ok as waiver is DIV
-    final int h = 3 + 4; // ok as waiver is PLUS
+    final int g = 3 / 4; //as waiver is DIV
+    final int h = 3 + 4; //as waiver is PLUS
     final int i = 3 - 4;
     // 2 violations above:
     //  ''3' is a magic number.'
     //  ''4' is a magic number.'
-    final int j = (int) 3.4; //ok as waiver is TYPECAST
+    final int j = (int) 3.4; //as waiver is TYPECAST
   }
   private int method3(int a, int b) {
     return a + b;

@@ -3,10 +3,10 @@
 package org.checkstyle.suppressionxpathfilter.illegalinstantiation;
 
 public class InputXpathIllegalInstantiationAnonymous {
-    int b = 5; // ok
+    int b = 5;  
      class Inner{
         public void test() {
-            Boolean x = new Boolean(true); // ok
+            Boolean x = new Boolean(true);  
             Integer e = new Integer(b); // warn
         }
      }

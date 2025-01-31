@@ -21,10 +21,10 @@ import java.util.regex.Pattern;
 public class InputLeftCurlyCommentBeforeLeftCurly {
 
     void method1 ()
-    /* violation not reported */ { } // ok until #11410
+    /* violation not reported */ { } //until #11410
 
     InputLeftCurlyCommentBeforeLeftCurly()
-    /* I am comment */ { // ok until #11410
+    /* I am comment */ { //until #11410
         System.out.println("Hello CheckStyle");
     }
 
@@ -37,12 +37,12 @@ public class InputLeftCurlyCommentBeforeLeftCurly {
         try {
             throw new IOException();
         } catch (IOException | NullPointerException | ArithmeticException ex)
-         /* warn */ { // ok until #11410
+         /* warn */ { //until #11410
         }
     }
 
     public void multipleBlock()
-    /*CheckStyle*/ /* Checkstyle*/ { // ok until #11410
+    /*CheckStyle*/ /* Checkstyle*/ { //until #11410
     }
 
     private class Node {
@@ -55,7 +55,7 @@ public class InputLeftCurlyCommentBeforeLeftCurly {
         }
 
         public Node(int value, Node next)
-        /*********** comment ****/ { // ok until #11410
+        /*********** comment ****/ { //until #11410
             this.value = value;
             this.next = next;
         }
@@ -70,7 +70,7 @@ public class InputLeftCurlyCommentBeforeLeftCurly {
 }
 
 class checks implements check
-        /* CheckStyle */ { // ok until #11410
+        /* CheckStyle */ { //until #11410
 
     public static Set<String> processJavadocTag() {
         final Set<String> references = new HashSet<>();
@@ -84,10 +84,10 @@ class checks implements check
 
     class C {
         void method1 ()
-            /* 😂🥳 */ { } // ok until #11410
+            /* 😂🥳 */ { } //until #11410
 
         void method2 ()
-        /* 🥳🥳🥳🥳 */ /* 🥳🥳🥳🥳🥳 */ { } // ok until #11410
+        /* 🥳🥳🥳🥳 */ /* 🥳🥳🥳🥳🥳 */ { } //until #11410
         }
 
     private void method() {
@@ -98,7 +98,7 @@ class checks implements check
         if (b.equals("s🧐d🧐a")) {
         }
 
-        while (b == "😂🥳") { /* ok */ }
+        while (b == "😂🥳") {  }
     }
 }
 

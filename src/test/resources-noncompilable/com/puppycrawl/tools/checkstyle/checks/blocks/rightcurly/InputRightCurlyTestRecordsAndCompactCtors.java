@@ -34,7 +34,7 @@ public class InputRightCurlyTestRecordsAndCompactCtors {
             System.out.print("ok"); } // violation ''}' at column 37 should have line break before'
     }
 
-    record MyTestRecord4() {} // ok, same line
+    record MyTestRecord4() {} //same line
 
     record MyTestRecord5() {
         static MyTestRecord mtr =

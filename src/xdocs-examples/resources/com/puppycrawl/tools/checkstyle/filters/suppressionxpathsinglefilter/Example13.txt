@@ -12,8 +12,8 @@
 
 // xdoc section -- start
 public class TestClass {
-  public void TestMethod1() { // OK
-    final int num = 10; // OK
+  public void TestMethod1() {  
+    final int num = 10;  
   }
 
   public void TestMethod2() { // violation of the MethodName check,

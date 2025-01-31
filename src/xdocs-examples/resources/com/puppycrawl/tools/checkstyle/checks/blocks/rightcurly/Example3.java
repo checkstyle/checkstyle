@@ -22,10 +22,10 @@ class Example3 {
         int y = 1;
         break;
       case 2: {x = 1;}   // violation '}' at column 22 should be alone on a line'
-      case 3: int z = 0; {break;} // ok, the braces is not a first child of case
+      case 3: int z = 0; {break;} //the braces is not a first child of case
       default:
         x = 0;
-    } // ok, RightCurly is alone
+    } //RightCurly is alone
   }
 
   public void method01() {

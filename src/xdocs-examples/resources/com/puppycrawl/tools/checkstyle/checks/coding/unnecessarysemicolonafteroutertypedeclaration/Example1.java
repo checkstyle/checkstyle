@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicolonaftero
 class Example1 {
   class Nested {
 
-  }; // OK, nested type declarations are ignored
+  }; //nested type declarations are ignored
 
 }; // violation 'Unnecessary semicolon'
 

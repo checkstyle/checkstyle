@@ -21,13 +21,13 @@ interface DataLoader {
 // xdoc section -- start
 class Example1 {
   @Nonnull
-  private boolean field1; // ok
-  @Override public int hashCode() { return 1; } // ok
-  @Nonnull // ok
+  private boolean field1;  
+  @Override public int hashCode() { return 1; }  
+  @Nonnull  
   private boolean field2;
-  @Override // ok
+  @Override  
   public boolean equals(Object obj) { return true; }
-  @Mock DataLoader loader1; // ok
+  @Mock DataLoader loader1;  
   @SuppressWarnings("deprecation") DataLoader loader2;
   // violation above, 'Annotation 'SuppressWarnings' should be alone on line'
   @SuppressWarnings("deprecation") public int foo() { return 1; }

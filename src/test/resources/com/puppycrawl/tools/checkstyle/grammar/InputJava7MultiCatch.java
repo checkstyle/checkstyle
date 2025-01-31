@@ -16,7 +16,7 @@ import java.io.*;
 /**
  * Input for Java 7 multi-catch.
  */
-public class InputJava7MultiCatch // ok
+public class InputJava7MultiCatch  
 {
     public static class CustomException extends Exception { }
     public static class AnotherCustomException extends RuntimeException { }

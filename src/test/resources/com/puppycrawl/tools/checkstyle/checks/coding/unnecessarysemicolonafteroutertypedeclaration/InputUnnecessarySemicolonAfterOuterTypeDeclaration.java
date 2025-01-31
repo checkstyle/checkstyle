@@ -11,19 +11,19 @@ public class InputUnnecessarySemicolonAfterOuterTypeDeclaration {
 
     enum innerEnum {
 
-    }; // OK, nested enum
+    }; //nested enum
 
     @interface innerAnnotation {
 
-    }; // OK, nested annotation
+    }; //nested annotation
 
     interface innerInterface {
 
-    }; // OK, nested interface
+    }; //nested interface
 
     class innerClass {
 
-    };  // OK, nested class
+    };  //nested class
 
 }; // violation 'Unnecessary semicolon'
 

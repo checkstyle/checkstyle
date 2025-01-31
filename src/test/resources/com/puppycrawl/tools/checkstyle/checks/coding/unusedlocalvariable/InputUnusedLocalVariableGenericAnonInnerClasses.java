@@ -20,8 +20,8 @@ public class InputUnusedLocalVariableGenericAnonInnerClasses {
     };
 
     testClass obj2 = new testClass() {
-        int l = 13; // ok, instance var
-        testClass obj2 = new testClass() { // ok, instance var
+        int l = 13; //instance var
+        testClass obj2 = new testClass() { //instance var
             void method() {
                 l += 1;
             }

@@ -6,7 +6,7 @@ public class InputXpathMultipleStringLiteralsIgnoreOccurrenceContext {
 
     @SuppressWarnings("unchecked")
     public void myTest() {
-       String a3 = "DoubleString"; // ok
+       String a3 = "DoubleString";  
        String a5 = "unchecked";
     }
 }

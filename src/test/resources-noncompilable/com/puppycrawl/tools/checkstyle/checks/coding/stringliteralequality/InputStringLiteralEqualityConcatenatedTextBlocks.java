@@ -32,7 +32,7 @@ public class InputStringLiteralEqualityConcatenatedTextBlocks {
                 c""") { // violation 3 lines above
         }
         if ((s += """
-                asd""") != p) { // ok, can't be detected as check in not type aware.
+                asd""") != p) { //can't be detected as check in not type aware.
         }
 
         if ((s += "asd") == s + (p + """

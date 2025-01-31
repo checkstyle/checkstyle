@@ -27,7 +27,7 @@ public class InputLeftCurlyWithEmoji {
         if (b.equals("s🧐d🧐a")) {
         }
 
-        while (b == "😂🥳") { /* ok */ }
+        while (b == "😂🥳") {  }
     }
 
     private void method2() {

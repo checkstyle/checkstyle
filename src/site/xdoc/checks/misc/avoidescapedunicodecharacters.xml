@@ -80,7 +80,7 @@
         </p>
         <source>
 public class Example1 {
-  // OK, perfectly clear even without a comment.
+  //perfectly clear even without a comment.
   String unitAbbrev = &quot;&#x3bc;s&quot;;
   // violation below, the reader has no idea what this is. 'should be avoided.'
   String unitAbbrev1 = &quot;\u03bcs&quot;;
@@ -115,7 +115,7 @@ public class Example1 {
         </p>
         <source>
 public class Example2 {
-  // OK, a normal String below
+  //a normal String below
   String unitAbbrev = &quot;&#x3bc;s&quot;;
   // violation below, &#x3bc;s is a printable character. 'should be avoided.'
   String unitAbbrev1 = &quot;\u03bcs&quot;;
@@ -127,7 +127,7 @@ public class Example2 {
   String unitAbbrev4 = &quot;\u03bc\u03bcs&quot;;
   public static int content() {
     char content = 'r';
-    // OK, non-printable control character.
+    //non-printable control character.
     return '\ufeff' + content;
   }
 }
@@ -150,7 +150,7 @@ public class Example2 {
         </p>
         <source>
 public class Example3 {
-  // OK, a normal String below
+  //a normal String below
   String unitAbbrev = &quot;&#x3bc;s&quot;;
   // violation below
   String unitAbbrev1 = &quot;\u03bcs&quot;;
@@ -158,7 +158,7 @@ public class Example3 {
   String unitAbbrev2 = &quot;\u03bc\u03bc\u03bc&quot;;
   // violation below
   String unitAbbrev3 = &quot;\u03bcs&quot;;
-  // ok, because there is trailing comment and allowByTailComment=true
+  //because there is trailing comment and allowByTailComment=true
   String unitAbbrev4 = &quot;\u03bc\u03bcs&quot;; // it is  &#x3bc;s
   public static int content() {
     char content = 'r';
@@ -183,11 +183,11 @@ public class Example3 {
         <p id="Example4-code">Example of using escapes if all characters in literal are escaped:</p>
         <source>
 public class Example4 {
-  // OK, a normal String below
+  //a normal String below
   String unitAbbrev = &quot;&#x3bc;s&quot;;
   // violation below, not all characters are escaped ('s'). 'should be avoided.'
   String unitAbbrev1 = &quot;\u03bcs&quot;;
-  // ok, because below are escape characters and allowIfAllCharacters = true.
+  //because below are escape characters and allowIfAllCharacters = true.
   String unitAbbrev2 = &quot;\u03bc\u03bc\u03bc&quot;;
   // violation below
   String unitAbbrev3 = &quot;\u03bcs&quot;; // it is  &#x3bc;s
@@ -195,7 +195,7 @@ public class Example4 {
   String unitAbbrev4 = &quot;\u03bc\u03bcs&quot;;
   public static int content() {
     char content = 'r';
-    // OK, all control characters are escaped below
+    //all control characters are escaped below
     return '\ufeff' + content;
   }
 }
@@ -216,7 +216,7 @@ public class Example4 {
         <p id="Example5-code">Example of using escapes for non-printable whitespace characters:</p>
         <source>
 public class Example5 {
-  // OK, a normal String below.
+  //a normal String below.
   String unitAbbrev = &quot;&#x3bc;s&quot;;
   // violation below, printable escape character. 'should be avoided.'
   String unitAbbrev1 = &quot;\u03bcs&quot;;
@@ -228,7 +228,7 @@ public class Example5 {
   String unitAbbrev4 = &quot;\u03bc\u03bcs&quot;;
   public static int content() {
     char content = 'r';
-    // OK, non-printable escape character below
+    //non-printable escape character below
     return '\ufeff' + content;
   }
 }

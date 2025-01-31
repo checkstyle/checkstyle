@@ -12,10 +12,10 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicoloninenum
 enum Normal {
     A,
     B,
-    ; // ok, enum body contains constructor
+    ; //enum body contains constructor
   Normal(){}
 }
 enum NoSemicolon {
-    A, B // ok, only enum constants without semicolon
+    A, B //only enum constants without semicolon
 }
 // xdoc section -- end

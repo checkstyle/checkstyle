@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputAntlr4AstRegressionAnnotationOnSameLine {
-    @Ann        // ok
+    @Ann         
     private List<String> names = new ArrayList<>();
 
     @Ann private List<String> names2 = new ArrayList<>();       // violation
@@ -25,7 +25,7 @@ public class InputAntlr4AstRegressionAnnotationOnSameLine {
     @Ann                                    // violation
     Integer x2;
 
-    @SuppressWarnings("deprecation") @Ann @Ann2 @Ann3 @Ann4 Integer x3;     // ok
+    @SuppressWarnings("deprecation") @Ann @Ann2 @Ann3 @Ann4 Integer x3;      
 
 }
 
