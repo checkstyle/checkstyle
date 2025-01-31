@@ -39,7 +39,9 @@ This project and everyone participating in it is governed by the
   [Issues Page](https://github.com/checkstyle/checkstyle/issues). We
   have a few issues labeled as
   https://github.com/checkstyle/checkstyle/labels/good%20first%20issue to
-  help you get started. Once you get your first PR merged, you can move on to
+  help you get started. Please watch [videos](https://www.youtube.com/playlist?list=PLHM9s_lN4X0hzOQ0sUmGdroxW0HfREAqj)
+  on how to setup local environment and send first fix.
+- Once you get your first PR merged, you can move on to
   https://github.com/checkstyle/checkstyle/labels/good%20second%20issue,
   https://github.com/checkstyle/checkstyle/labels/good%20third%20issue,
   and finally https://github.com/checkstyle/checkstyle/labels/good%20fourth%20issue
