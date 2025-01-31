@@ -6,6 +6,8 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.translation;
+/*
 // xdoc section -- start
 #messages.properties
 hello=Hello
@@ -19,3 +21,5 @@ age=年齢
 greeting=Bonjour
 name=Nom
 // xdoc section -- end
+ */
+public class Example3 {}
