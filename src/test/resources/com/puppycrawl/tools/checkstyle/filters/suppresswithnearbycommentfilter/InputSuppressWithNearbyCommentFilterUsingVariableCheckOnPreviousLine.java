@@ -62,7 +62,7 @@ public class InputSuppressWithNearbyCommentFilterUsingVariableCheckOnPreviousLin
     private int C3; // violation
 
     private int D1; // violation
-    private int D2; // filtered violation
+    private int D2; // filtered violation ''D2' must match pattern'
     // ALLOW MemberName ON PREVIOUS LINE
     private int D3; // violation
 

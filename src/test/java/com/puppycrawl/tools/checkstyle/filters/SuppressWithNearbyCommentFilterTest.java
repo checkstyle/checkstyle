@@ -545,10 +545,10 @@ public class SuppressWithNearbyCommentFilterTest
             "52:57: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "ID3", "^[a-z][a-zA-Z0-9]*$"),
-            "55:17: "
+            "56:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "DEF", "^[a-z][a-zA-Z0-9]*$"),
-            "58:17: "
+            "59:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "XYZ", "^[a-z][a-zA-Z0-9]*$"),
         };

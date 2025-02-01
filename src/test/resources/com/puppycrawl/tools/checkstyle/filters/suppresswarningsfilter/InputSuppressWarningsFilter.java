@@ -63,7 +63,7 @@ class InputSuppressWarningsFilter {
 
     // test "checkstyle:" prefix
     @SuppressWarnings("checkstyle:ConstantName")
-    private static final int m = 0; // filtered violation
+    private static final int m = 0; // filtered violation ''m' must match pattern'
     private static final int n = 0; // violation
 
     // test explicit warning alias

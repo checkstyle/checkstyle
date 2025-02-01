@@ -24,6 +24,6 @@ package com.puppycrawl.tools.checkstyle.filters.suppressioncommentfilter;
 public class InputSuppressionCommentFilterSuppressById6 {
 
     // CSOFF
-    int line_length = 100; // filtered violation
+    int line_length = 100; // filtered violation ''DEF' must match pattern'
     //CSON
 }

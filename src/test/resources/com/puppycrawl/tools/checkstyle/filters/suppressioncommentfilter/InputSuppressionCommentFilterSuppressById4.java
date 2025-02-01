@@ -51,7 +51,7 @@ public class InputSuppressionCommentFilterSuppressById4 {
     private long ID = 1; // violation
 
     // CSOFF ignore (allow DEF)
-    private int DEF = 2; // filtered violation
+    private int DEF = 2; // filtered violation ''DEF' must match pattern'
 
     // CSOFF ignore (allow xyz)
     private int XYZ = 3; // violation
