@@ -45,7 +45,7 @@ class InputSuppressionCommentFilter4
     private int I; // violation
 
     /* CHECKSTYLE:OFF */
-    private int J; // filtered violation
+    private int J; // filtered violation ''J' must match pattern'
     /* CHECKSTYLE:ON */
 
     private int K; // violation
@@ -115,8 +115,8 @@ class InputSuppressionCommentFilter4
     public void doit4() {
         try {
 
-        /* CHECKSTYLE:OFF */} catch(Exception e) {/* CHECKSTYLE:ON */ // filtered violation
-
+        /* CHECKSTYLE:OFF */} catch(Exception e) { // filtered violation 'Catching 'Exception''
+            // CHECKSTYLE:ON
         }
     }
 }

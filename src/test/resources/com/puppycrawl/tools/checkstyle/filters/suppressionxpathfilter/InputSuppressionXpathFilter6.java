@@ -15,5 +15,5 @@ package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
 
 public class InputSuppressionXpathFilter6 {
 
-    char a = '&'; // filtered violation
+    char a = '&'; // filtered violation 'illegal pattern'
 }

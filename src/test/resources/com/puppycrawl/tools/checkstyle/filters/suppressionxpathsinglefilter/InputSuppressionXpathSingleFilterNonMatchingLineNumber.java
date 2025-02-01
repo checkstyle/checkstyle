@@ -18,5 +18,5 @@ package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 public class InputSuppressionXpathSingleFilterNonMatchingLineNumber { // violation
 }
 
-class TestClass { // filtered violation
+class TestClass { // filtered violation 'Missing a Javadoc comment.'
 }

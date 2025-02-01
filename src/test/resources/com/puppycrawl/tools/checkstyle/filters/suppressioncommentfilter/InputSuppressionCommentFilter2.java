@@ -45,7 +45,7 @@ class InputSuppressionCommentFilter2
     private int I; // violation
 
     /* CHECKSTYLE:OFF */
-    private int J; // filtered violation
+    private int J; // filtered violation ''J' must match pattern'
     /* CHECKSTYLE:ON */
 
     private int K; // violation
@@ -72,7 +72,7 @@ class InputSuppressionCommentFilter2
     //CS_ON
 
     //CHECKSTYLE:OFF
-    private int T; // filtered violation
+    private int T; // filtered violation ''T' must match pattern'
     //CHECKSTYLE:ON
 
     //UNUSED OFF: aInt
@@ -93,14 +93,14 @@ class InputSuppressionCommentFilter2
                 while(true) {
                     try {
                         //CHECKSTYLE:OFF
-                    } catch(Exception e) { // filtered violation
+                    } catch(Exception e) { // filtered violation 'Catching 'Exception''
                        //CHECKSTYLE:ON
                     }
                 }
                 // code omitted
             }
             //CHECKSTYLE:OFF
-        } catch(Exception ex) { // filtered violation
+        } catch(Exception ex) { // filtered violation 'Catching 'Exception''
             //CHECKSTYLE:ON
         }
 
@@ -115,8 +115,8 @@ class InputSuppressionCommentFilter2
     public void doit4() {
         try {
 
-        /* CHECKSTYLE:OFF */} catch(Exception e) {/* CHECKSTYLE:ON */ // filtered violation
-
+        /* CHECKSTYLE:OFF */} catch(Exception e) { // filtered violation 'Catching 'Exception''
+            // CHECKSTYLE:ON
         }
     }
 }

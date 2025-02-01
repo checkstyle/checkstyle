@@ -107,7 +107,7 @@ class InputSuppressionCommentFilter7
         try{
             //IllegalCatchCheck OFF: Exception
         } catch(RuntimeException ex){ // violation
-        } catch(Exception ex){ // filtered violation
+        } catch(Exception ex){ // filtered violation 'Catching 'Exception''
             //IllegalCatchCheck ON: Exception
         }
     }

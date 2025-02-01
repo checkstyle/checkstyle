@@ -99,14 +99,14 @@ public class InputSuppressWithNearbyCommentFilterUsingVariableMessage {
                         // blah blah blah
                     } catch(Exception e) { // violation
                         // bad bad bad
-                    } catch (Throwable t) { // filtered violation
+                    } catch (Throwable t) { // filtered violation 'Catching 'Throwable''
                         // ALLOW CATCH Throwable BECAUSE I threw this together.
                     }
                 }
                 // blah blah blah
             }
             // blah blah blah
-        } catch(Exception ex) { // filtered violation
+        } catch(Exception ex) { // filtered violation 'Catching 'Exception''
             // ALLOW CATCH Exception BECAUSE I am an exceptional person.
         }
     }

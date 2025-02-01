@@ -14,19 +14,19 @@ package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
 
 public class InputSuppressionXpathFilterEscapeString {
 
-    String quoteChar = "\"escaped\""; // filtered violation
+    String quoteChar = "\"escaped\""; // filtered violation 'illegal pattern'
 
-    String lessChar = "<escaped"; // filtered violation
+    String lessChar = "<escaped"; // filtered violation 'illegal pattern'
 
-    String ampersandChar = "&escaped"; // filtered violation
+    String ampersandChar = "&escaped"; // filtered violation 'illegal pattern'
 
-    String greaterChar = ">escaped"; // filtered violation
+    String greaterChar = ">escaped"; // filtered violation 'illegal pattern'
 
-    String newLineChar = "escaped\n"; // filtered violation
+    String newLineChar = "escaped\n"; // filtered violation 'illegal pattern'
 
-    String specialChar = "escaped\r"; // filtered violation
+    String specialChar = "escaped\r"; // filtered violation 'illegal pattern'
 
-    String aposChar = "'escaped'"; // filtered violation
+    String aposChar = "'escaped'"; // filtered violation 'illegal pattern'
 
     String unicodeCharOne = "语言处理Char"; // violation
 
