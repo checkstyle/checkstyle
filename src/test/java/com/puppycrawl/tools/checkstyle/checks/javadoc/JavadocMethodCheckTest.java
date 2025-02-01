@@ -162,32 +162,49 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTags() throws Exception {
+    public void testTagsOne() throws Exception {
         final String[] expected = {
-            "30:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "unused"),
-            "37: " + getCheckMessage(MSG_RETURN_EXPECTED),
-            "46: " + getCheckMessage(MSG_RETURN_EXPECTED),
-            "53:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
-            "62:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
-            "68:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
-            "68:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "NullPointerException"),
-            "73:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
-            "81:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
-            "85:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "WrongParam"),
-            "87:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
-            "87:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aTwo"),
-            "93:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "Unneeded"),
-            "94: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
-            "103:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
-            "273:28: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IOException"),
-            "279:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "aParam"),
-            "322: " + getCheckMessage(MSG_RETURN_EXPECTED),
-            "322:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aParam"),
-            "361:5: " + getCheckMessage(MSG_INVALID_INHERIT_DOC),
-            "400:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
+            "49:5: " + getCheckMessage(MSG_INVALID_INHERIT_DOC),
+            "88:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodTags.java"), expected);
+    }
+
+    @Test
+    public void testTagsTwo() throws Exception {
+        final String[] expected = {
+            "27:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "unused"),
+            "34: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "43: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "50:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "59:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "65:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "65:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "NullPointerException"),
+            "70:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
+            "78:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
+            "82:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "WrongParam"),
+            "84:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
+            "84:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aTwo"),
+            "90:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "Unneeded"),
+            "91: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
+            "100:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
+
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodTags1One.java"), expected);
+    }
+
+    @Test
+    public void testTagsThree() throws Exception {
+        final String[] expected = {
+            "65:28: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IOException"),
+            "71:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "aParam"),
+            "114: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "114:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aParam"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodTags1Three.java"), expected);
     }
 
     @Test
