@@ -51,13 +51,13 @@ class InputSuppressionCommentFilter8
     private int K; // violation
 
     //CSOFF: MemberNameCheck|ConstantNameCheck
-    private int L; // filtered violation
-    private static final int m = 0; // filtered violation
+    private int L; // filtered violation ''L' must match pattern'
+    private static final int m = 0; // filtered violation ''m' must match pattern'
     /*
      * CSON: MemberNameCheck|ConstantNameCheck
      */
     private int M2;//CSOFF: ConstantNameCheck // violation
-    private static final int n = 0; // filtered violation
+    private static final int n = 0; // filtered violation ''n' must match pattern'
     //CSON: ConstantNameCheck
 
     //CS_OFF

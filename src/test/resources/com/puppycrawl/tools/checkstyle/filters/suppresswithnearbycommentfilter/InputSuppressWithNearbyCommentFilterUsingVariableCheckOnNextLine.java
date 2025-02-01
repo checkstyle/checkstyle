@@ -58,7 +58,7 @@ public class InputSuppressWithNearbyCommentFilterUsingVariableCheckOnNextLine {
 
     private int C1; // violation
     // ALLOW MemberName ON NEXT LINE
-    private int C2; // filtered violation
+    private int C2; // filtered violation ''C2' must match pattern'
     private int C3; // violation
 
     private int D1; // violation

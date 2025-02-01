@@ -61,14 +61,14 @@ class InputSuppressionCommentFilter5
     //CSON: ConstantNameCheck
 
     //CS_OFF
-    private int P; // filtered violation
+    private int P; // filtered violation ''P' must match pattern'
     //CS_ON
 
     private int Q; // violation
 
     //CS_OFF: ConstantNameCheck
-    private int R; // filtered violation
-    private static final int s = 0; // filtered violation
+    private int R; // filtered violation ''R' must match pattern'
+    private static final int s = 0; // filtered violation ''s' must match pattern'
     //CS_ON
 
     //CHECKSTYLE:OFF

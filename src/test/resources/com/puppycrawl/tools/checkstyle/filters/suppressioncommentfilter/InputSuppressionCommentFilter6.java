@@ -68,7 +68,7 @@ class InputSuppressionCommentFilter6
 
     //CS_OFF: ConstantNameCheck
     private int R; // violation
-    private static final int s = 0; // filtered violation
+    private static final int s = 0; // filtered violation ''s' must match pattern'
     //CS_ON
 
     //CHECKSTYLE:OFF

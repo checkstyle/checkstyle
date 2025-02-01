@@ -39,13 +39,13 @@ package com.puppycrawl.tools.checkstyle.filters.suppressioncommentfilter;
 public class InputSuppressionCommentFilterSuppressById2 {
 
     //CSOFF ignore (reason)
-    private int A1; // filtered violation
+    private int A1; // filtered violation ''A1' must match pattern'
 
     // @cs-: ignore (No NPE here)
     private static final int abc = 5; // violation
 
 
-    int line_length = 100; // filtered violation
+    int line_length = 100; // filtered violation ''line_length' must match pattern'
     //CSON ignore
 
     private long ID = 1; // violation
