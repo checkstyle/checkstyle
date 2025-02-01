@@ -521,6 +521,12 @@
           <artifactId>maven-shade-plugin</artifactId>
           <version>3.6.0</version>
         </plugin>
+        <!-- https://mvnrepository.com/artifact/org.codehaus.mojo/xml-maven-plugin -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>xml-maven-plugin</artifactId>
+          <version>1.0.1</version>
+        </plugin>
         <plugin>
           <groupId>org.pitest</groupId>
           <artifactId>pitest-maven</artifactId>
@@ -5227,6 +5233,7 @@
               <outputFormats>${pitest.plugin.output.formats}</outputFormats>
             </configuration>
           </plugin>
+
         </plugins>
       </build>
     </profile>
