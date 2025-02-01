@@ -499,24 +499,20 @@ public final class JavadocTokenTypes {
      * <p><b>Tree:</b></p>
      *
      * <pre>
-     * <code> |--JAVADOC_INLINE_TAG[1x0] :
-     *               [{&#64;link org.apache.utils.Lists.Comparator#compare(Object)}]
-     *        |--JAVADOC_INLINE_TAG_START[1x0] : [{]
-     *        |--LINK_LITERAL[1x1] : [@link]
-     *        |--WS[1x6] : [ ]
-     *        |--REFERENCE[1x7] : [org.apache.utils.Lists.Comparator#compare(Object)]
-     *            |--PACKAGE_CLASS[1x7] : [org.apache.utils]
-     *            |--DOT[1x23] : [.]
-     *            |--CLASS[1x24] : [Lists]
-     *            |--DOT[1x29] : [.]
-     *            |--CLASS[1x30] : [Comparator]
-     *            |--HASH[1x40] : [#]
-     *            |--MEMBER[1x41] : [compare]
-     *            |--PARAMETERS[1x48] : [(Object)]
-     *                |--LEFT_BRACE[1x48] : [(]
-     *                |--ARGUMENT[1x49] : [Object]
-     *                |--RIGHT_BRACE[1x55] : [)]
-     *        |--JAVADOC_INLINE_TAG_END[1x56] : [}]
+     * <code>
+     *   JAVADOC_INLINE_TAG -&gt; JAVADOC_INLINE_TAG
+     *    |--JAVADOC_INLINE_TAG_START -&gt; {
+     *    |--LINK_LITERAL -&gt; @link
+     *    |--WS -&gt;
+     *    |--REFERENCE -&gt; REFERENCE
+     *    |   |--PACKAGE_CLASS -&gt; org.apache.utils.Lists.Comparator
+     *    |   |--HASH -&gt; #
+     *    |   |--MEMBER -&gt; compare
+     *    |   `--PARAMETERS -&gt; PARAMETERS
+     *    |       |--LEFT_BRACE -&gt; (
+     *    |       |--ARGUMENT -&gt; Object
+     *    |       `--RIGHT_BRACE -&gt; )
+     *    `--JAVADOC_INLINE_TAG_END -&gt; }
      * </code>
      * </pre>
      *
