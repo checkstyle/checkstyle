@@ -30,6 +30,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
@@ -75,6 +76,19 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
 
     /** The placeholder for results. */
     private static final String RESULTS_PLACEHOLDER = "${results}";
+
+    /** Two backslashes to not duplicate strings. */
+    private static final String TWO_BACKSLASHES = "\\\\";
+
+    /** A pattern for two backslashes. */
+    private static final Pattern A_SPACE_PATTERN = Pattern.compile(" ");
+
+    /** A pattern for two backslashes. */
+    private static final Pattern TWO_BACKSLASHES_PATTERN = Pattern.compile(TWO_BACKSLASHES);
+
+    /** A pattern to match a file with a Windows drive letter. */
+    private static final Pattern WINDOWS_DRIVE_LETTER_PATTERN =
+            Pattern.compile("\\A[A-Z]:", Pattern.CASE_INSENSITIVE);
 
     /** Helper writer that allows easy encoding and printing. */
     private final PrintWriter writer;
@@ -174,7 +188,7 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
         if (event.getColumn() > 0) {
             results.add(resultLineColumn
                 .replace(SEVERITY_LEVEL_PLACEHOLDER, renderSeverityLevel(event.getSeverityLevel()))
-                .replace(URI_PLACEHOLDER, event.getFileName())
+                .replace(URI_PLACEHOLDER, renderFileNameUri(event.getFileName()))
                 .replace(COLUMN_PLACEHOLDER, Integer.toString(event.getColumn()))
                 .replace(LINE_PLACEHOLDER, Integer.toString(event.getLine()))
                 .replace(MESSAGE_PLACEHOLDER, escape(event.getMessage()))
@@ -184,7 +198,7 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
         else {
             results.add(resultLineOnly
                 .replace(SEVERITY_LEVEL_PLACEHOLDER, renderSeverityLevel(event.getSeverityLevel()))
-                .replace(URI_PLACEHOLDER, event.getFileName())
+                .replace(URI_PLACEHOLDER, renderFileNameUri(event.getFileName()))
                 .replace(LINE_PLACEHOLDER, Integer.toString(event.getLine()))
                 .replace(MESSAGE_PLACEHOLDER, escape(event.getMessage()))
                 .replace(RULE_ID_PLACEHOLDER, event.getViolation().getKey())
@@ -206,7 +220,7 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
         else {
             results.add(resultFileOnly
                 .replace(SEVERITY_LEVEL_PLACEHOLDER, renderSeverityLevel(event.getSeverityLevel()))
-                .replace(URI_PLACEHOLDER, event.getFileName())
+                .replace(URI_PLACEHOLDER, renderFileNameUri(event.getFileName()))
                 .replace(MESSAGE_PLACEHOLDER, escape(stringWriter.toString()))
             );
         }
@@ -220,6 +234,23 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
     @Override
     public void fileFinished(AuditEvent event) {
         // No need to implement this method in this class
+    }
+
+    /**
+     * Render the file name URI for the given file name.
+     *
+     * @param fileName the file name to render the URI for
+     * @return the rendered URI for the given file name
+     */
+    private static String renderFileNameUri(final String fileName) {
+        String normalized =
+                A_SPACE_PATTERN
+                        .matcher(TWO_BACKSLASHES_PATTERN.matcher(fileName).replaceAll("/"))
+                        .replaceAll("%20");
+        if (WINDOWS_DRIVE_LETTER_PATTERN.matcher(normalized).find()) {
+            normalized = '/' + normalized;
+        }
+        return "file:" + normalized;
     }
 
     /**
@@ -265,7 +296,7 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
                     sb.append("\\\"");
                     break;
                 case '\\':
-                    sb.append("\\\\");
+                    sb.append(TWO_BACKSLASHES);
                     break;
                 case '\b':
                     sb.append("\\b");
