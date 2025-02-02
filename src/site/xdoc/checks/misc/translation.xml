@@ -127,17 +127,25 @@ messages.properties: Key 'ok' missing.
 &lt;/module&gt;
         </source>
         <p id="Example1-code">
-          Example:
+          Example1:
+        </p>
+        <p id="Example1-messagesProperties">
+          Contents of messages.properties file:
         </p>
         <source>
-#messages.properties
 hello=Hello
 cancel=Cancel
-
-#messages.translations
+        </source>
+        <p id="Example1-messagesTranslations">
+          Contents of messages.translations file:
+        </p>
+        <source>
 hello=Hallo
 ok=OK
         </source>
+        <p id="Example1-validation">
+          Validation:
+        </p>
         <source>
 messages.properties: Properties file 'messages_fr.properties' is missing.
 messages.translations: Properties file 'messages_fr.translations' is missing.
@@ -155,17 +163,25 @@ messages.translations: Properties file 'messages_fr.translations' is missing.
 &lt;/module&gt;
         </source>
         <p id="Example2-code">
-          Example:
+          Example2:
+        </p>
+        <p id="ButtonLabels-properties">
+          Contents of ButtonLabels.properties file:
         </p>
         <source>
-#ButtonLabels.properties
 hello=Hello
 cancel=Cancel
-
-#ButtonLabels_fr.properties
+        </source>
+        <p id="ButtonLabels_fr-properties">
+          Contents of ButtonLabels_fr.properties file:
+        </p>
+        <source>
 hello=Bonjour
 name=Nom
         </source>
+        <p id="Example2-validation">
+          Validation:
+        </p>
         <source>
 ButtonLabels.properties: Key 'name' is missing.
 ButtonLabels_fr.properties: Key 'cancel' is missing.
@@ -181,28 +197,42 @@ ButtonLabels_fr.properties: Key 'cancel' is missing.
 &lt;/module&gt;
         </source>
         <p id="Example3-code">
-          Example:
+          Example3:
+        </p>
+        <p id="Example3-messagesProperties">
+Contents of messages.properties file:
         </p>
         <source>
-#messages.properties
 hello=Hello
 cancel=Cancel
-
-#messages_ja.properties
+        </source>
+        <p id="Example3-messages_jaProperties">
+          Contents of messages_ja.properties file:
+        </p>
+        <source>
 greeting=&#x3053;&#x3093;&#x306b;&#x3061;&#x306f;
 age=&#x5e74;&#x9f62;
-
-#messages_fr.properties
+        </source>
+        <p id="Example3-messages_frProperties">
+          Contents of messages_fr.properties file:
+        </p>
+        <source>
 greeting=Bonjour
 name=Nom
         </source>
+        <p id="Example3-validation">
+            Validation:
+        </p>
         <source>
 messages.properties: Key 'age' missing.
 messages.properties: Key 'name' missing.
+messages.properties: Key 'greeting' missing.
 messages_fr.properties: Key 'age' missing.
 messages_fr.properties: Key 'cancel' missing.
+messages_fr.properties: Key 'hello' missing.
 messages_ja.properties: Key 'cancel' missing.
 messages_ja.properties: Key 'name' missing.
+messages_ja.properties: Key 'hello' missing.
         </source>
       </subsection>
 

@@ -93,17 +93,29 @@ messages.properties: Key 'ok' missing.
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
-          Example:
+          Example1:
         </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1.txt"/>
-          <param name="type" value="code"/>
-        </macro>
+        <p id="Example1-messagesProperties">
+          Contents of messages.properties file:
+        </p>
+        <source>
+hello=Hello
+cancel=Cancel
+        </source>
+        <p id="Example1-messagesTranslations">
+          Contents of messages.translations file:
+        </p>
+        <source>
+hello=Hallo
+ok=OK
+        </source>
+        <p id="Example1-validation">
+          Validation:
+        </p>
         <source>
 messages.properties: Properties file 'messages_fr.properties' is missing.
 messages.translations: Properties file 'messages_fr.translations' is missing.
@@ -114,17 +126,29 @@ messages.translations: Properties file 'messages_fr.translations' is missing.
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">
-          Example:
+          Example2:
         </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example2.txt"/>
-          <param name="type" value="code"/>
-        </macro>
+        <p id="ButtonLabels-properties">
+          Contents of ButtonLabels.properties file:
+        </p>
+        <source>
+hello=Hello
+cancel=Cancel
+        </source>
+        <p id="ButtonLabels_fr-properties">
+          Contents of ButtonLabels_fr.properties file:
+        </p>
+        <source>
+hello=Bonjour
+name=Nom
+        </source>
+        <p id="Example2-validation">
+          Validation:
+        </p>
         <source>
 ButtonLabels.properties: Key 'name' is missing.
 ButtonLabels_fr.properties: Key 'cancel' is missing.
@@ -134,24 +158,46 @@ ButtonLabels_fr.properties: Key 'cancel' is missing.
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">
-          Example:
+          Example3:
         </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example3.txt"/>
-          <param name="type" value="code"/>
-        </macro>
+        <p id="Example3-messagesProperties">
+Contents of messages.properties file:
+        </p>
+        <source>
+hello=Hello
+cancel=Cancel
+        </source>
+        <p id="Example3-messages_jaProperties">
+          Contents of messages_ja.properties file:
+        </p>
+        <source>
+greeting=&#x3053;&#x3093;&#x306b;&#x3061;&#x306f;
+age=&#x5e74;&#x9f62;
+        </source>
+        <p id="Example3-messages_frProperties">
+          Contents of messages_fr.properties file:
+        </p>
+        <source>
+greeting=Bonjour
+name=Nom
+        </source>
+        <p id="Example3-validation">
+            Validation:
+        </p>
         <source>
 messages.properties: Key 'age' missing.
 messages.properties: Key 'name' missing.
+messages.properties: Key 'greeting' missing.
 messages_fr.properties: Key 'age' missing.
 messages_fr.properties: Key 'cancel' missing.
+messages_fr.properties: Key 'hello' missing.
 messages_ja.properties: Key 'cancel' missing.
 messages_ja.properties: Key 'name' missing.
+messages_ja.properties: Key 'hello' missing.
         </source>
       </subsection>
 
