@@ -7,6 +7,8 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.translation;
+/*
 // xdoc section -- start
 #ButtonLabels.properties
 hello=Hello
@@ -16,3 +18,5 @@ cancel=Cancel
 hello=Bonjour
 name=Nom
 // xdoc section -- end
+ */
+public class Example2 {}
