@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MemberNameCheckTest
     extends AbstractModuleTestSupport {
@@ -45,17 +46,38 @@ public class MemberNameCheckTest
     }
 
     @Test
-    public void testSpecified()
+    public void testSpecifiedOne()
             throws Exception {
 
         final String pattern = "^m[A-Z][a-zA-Z0-9]*$";
 
         final String[] expected = {
             "41:17: " + getCheckMessage(MSG_INVALID_PATTERN, "badMember", pattern),
-            "230:17: " + getCheckMessage(MSG_INVALID_PATTERN, "someMember", pattern),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMemberNameSimple.java"), expected);
+                getPath("InputMemberNameSimpleOne.java"), expected);
+    }
+
+    @Test
+    public void testSpecifiedTwo()
+            throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputMemberNameSimpleTwo.java"), expected);
+    }
+
+    @Test
+    public void testSpecifiedThree()
+            throws Exception {
+
+        final String pattern = "^m[A-Z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "50:17: " + getCheckMessage(MSG_INVALID_PATTERN, "someMember", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMemberNameSimpleThree.java"), expected);
     }
 
     @Test
