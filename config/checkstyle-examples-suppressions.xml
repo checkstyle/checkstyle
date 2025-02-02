@@ -6,6 +6,10 @@
 
 <suppressions>
 
+  <!-- private class used to show violation on it -->
+  <suppress id="exampleClassName"
+    files="regexp[\\/]Example4.java"/>
+  
   <!-- The files have no exampleClassName by design. -->
   <suppress id="exampleClassName"
     files="outertypefilename[\\/]Example3.java"/>
@@ -54,6 +58,13 @@
     files="operatorwrap[\\/]Example1.java"/>
   <suppress id="discouragedRegexpInViolationMessage"
     files="operatorwrap[\\/]Example2.java"/>
+  <!-- it prints user regexp -->
+  <suppress id="discouragedRegexpInViolationMessage"
+            files="regexponfilename[\\/]Example[24].*"/>
+
+  <!-- Suppress forbidden regex messages for avoidstarimport examples -->
+  <suppress id="forbiddenRegexpInViolationMessage"
+    files="avoidstarimport[\\/]Example[1-6].java"/>
 
   <suppress checks="CommentsIndentation"
     files="singlespaceseparator[\\/]Example2.java"/>
@@ -104,6 +115,12 @@
     files="suppresswithplaintextcommentfilter[\\/]Example9.java"/>
   <suppress checks="LineLength"
     files="linelength[\\/]Example\d+.*"/>
+  <!-- it prints user regexp -->
+  <suppress checks="LineLength"
+            files="regexponfilename[\\/]Example[2].java"/>
+  <!-- we need to show whole user defined message -->
+  <suppress checks="LineLength"
+            files="regexponfilename[\\/]Example[14].java"/>
 
   <!-- Example needs to exclude fully qualified name longer than 85 characters  -->
   <suppress checks="LineLength" files="classdataabstractioncoupling[\\/]Example11.java"/>

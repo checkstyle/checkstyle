@@ -51,8 +51,13 @@ window.addEventListener("load", function () {
 
 // for newer version of site.
 window.addEventListener("load", function () {
-    const bodyColumn = this.document.getElementById("bodyColumn");
+    const bodyColumn = document.getElementById("bodyColumn");
     bodyColumn.classList.remove("span10");
+
+    const externalLinks = document.querySelectorAll(".externalLink");
+    externalLinks.forEach((link) => {
+        link.setAttribute("target", "_blank");
+    });
 });
 
 window.addEventListener("scroll", function () {
@@ -72,18 +77,9 @@ function setBodyColumnMargin() {
         resetStyling();
     }
 
-    // If in mobile view use margin as defined in site.css
-    if (window.innerWidth < 823) {
-        bodyColumn.style.marginLeft = "1.5em";
-        if (!document.querySelector("#hamburger")) {
-            setCollapsableMenuButton();
-        }
-        return;
+    if (window.innerWidth < 823 && !document.querySelector("#hamburger")) {
+        setCollapsableMenuButton();
     }
-
-    // Else calculate margin based on left column width
-    const leftColumnWidth = leftColumn.offsetWidth;
-    bodyColumn.style.marginLeft = `${leftColumnWidth + 27}px`;
 }
 
 function setCollapsableMenuButton() {

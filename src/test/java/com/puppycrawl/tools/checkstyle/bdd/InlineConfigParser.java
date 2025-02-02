@@ -211,16 +211,12 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck",
@@ -245,8 +241,6 @@ public final class InlineConfigParser {
 
             "com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck",
-            "com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck",
-            "com.puppycrawl.tools.checkstyle.checks.imports.AvoidStaticImportCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc."
                     + "AbstractJavadocCheckTest$TokenIsNotInAcceptablesCheck",
@@ -535,6 +529,16 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter");
         moduleMappings.put("IllegalCatch",
                 "com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck");
+        moduleMappings.put("OrderedProperties",
+                "com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck");
+        moduleMappings.put("UniqueProperties",
+                "com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck");
+        moduleMappings.put("RegexpSingleline",
+                "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck");
+        moduleMappings.put("MagicNumber",
+                "com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck");
+        moduleMappings.put("ClassDataAbstractionCoupling",
+                "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck");
 
         String fullyQualifiedClassName;
         if (moduleMappings.containsKey(moduleName)) {

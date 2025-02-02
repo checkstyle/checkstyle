@@ -31,6 +31,13 @@
         </ul>
       </subsection>
 
+      <subsection name="Notes" id="Notes">
+        <p>
+          When the <code>FileTabCharacter</code> check is used with the default configuration,
+          only the first instance of a tab character is reported.
+        </p>
+      </subsection>
+
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <macro name="properties">

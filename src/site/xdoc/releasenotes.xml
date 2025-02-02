@@ -10,6 +10,87 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.21.2">
+      <div class="releaseDate">26.01.2025</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            `lineWrappingIndentation` falsely detects incorrect indentation for text blocks.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/15939">#15939</a>
+          </li>
+          <li>
+            `ignoreFieldDeclaration` property should have the highest priority in MagicNumberCheck.
+            Author: Anmol
+            <a href="https://github.com/checkstyle/checkstyle/issues/16101">#16101</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            dependency: bump org.apache.maven.plugins:maven-site-plugin from 3.12.1 to 3.21.0.
+            Author: Mauryan Kansara, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/16077">#16077</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: Amit Kumar Deohoria, Usman Shaikh, ElinaZoldnere, Anmol, Harsh-Agrawal96
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: smita_1078, Harsh-Agrawal96, aboro-code, Vignesh Mudhiraj
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: Ahil Ahmed, Devang Gupta, smita_1078, Aryan Rana, Velavan5, ElinaZoldnere,
+            Palash Chitnavis, andrey Ivanov, souvikrajsingh, aboro-code, Harsh-Agrawal96,
+            Praveen Yadahalli, malakelbanna
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            Issue #16077: Removed text under banner images in menu.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/16213">#16213</a>
+          </li>
+          <li>
+            Define violation messages for all violations.
+            Author: sumiyak96, smita_1078, Alka Kumari, Aryan Rana, ElinaZoldnere, Harsh-Agrawal96
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            Website: Open External Links in New Tabs for Better User Experience.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/16178">#16178</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: Broilzzz, Aryan Sankar, Vignesh Mudhiraj
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            use new nio jdk api instead of all api.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/16155">#16155</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Anmol
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Test to ensure website checks/filters are in alphabetical order at summary pages.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/16013">#16013</a>
+          </li>
+          <li>
+            Expandable menu for mobile website.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/8244">#8244</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.21.1">
       <div class="releaseDate">28.12.2024</div>
       <p>Bug fixes:</p>

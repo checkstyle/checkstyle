@@ -107,12 +107,15 @@
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;/&gt;
+    &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-private int [] array; // SUPPRESS CHECKSTYLE
+public class Example1 {
+  private int [] array; // SUPPRESS CHECKSTYLE NoWhitespaceAfter
+}
         </source>
         <p id="Example2-config">
           To configure a filter to suppress all audit events on any line
@@ -126,12 +129,15 @@ private int [] array; // SUPPRESS CHECKSTYLE
       &lt;property name=&quot;checkFormat&quot; value=&quot;.*&quot;/&gt;
       &lt;property name=&quot;influenceFormat&quot; value=&quot;0&quot;/&gt;
     &lt;/module&gt;
+    &lt;module name=&quot;ConstantName&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public static final int lowerCaseConstant; // CHECKSTYLE IGNORE THIS LINE
+public class Example2 {
+  public static final int lowerCaseConstant = 1; // CHECKSTYLE IGNORE THIS LINE
+}
         </source>
         <p id="Example3-config">
           To configure a filter so that
@@ -148,17 +154,22 @@ public static final int lowerCaseConstant; // CHECKSTYLE IGNORE THIS LINE
       &lt;property name=&quot;messageFormat&quot; value=&quot;$1&quot;/&gt;
       &lt;property name=&quot;influenceFormat&quot; value=&quot;-1&quot;/&gt;
     &lt;/module&gt;
+    &lt;module name=&quot;IllegalCatch&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-. . .
-catch (RuntimeException re) {
-// OK to catch RuntimeException here
+public class Example3 {
+  public void doStuff() {
+    try {
+      // blah blah blah
+    }
+    catch(RuntimeException re) {
+      // OK to catch RuntimeException here
+    }
+  }
 }
-catch (Throwable th) { ... }
-. . .
         </source>
         <p id="Example4-config">
           To configure a filter so that
@@ -175,16 +186,20 @@ catch (Throwable th) { ... }
       &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
       &lt;property name=&quot;influenceFormat&quot; value=&quot;$2&quot;/&gt;
     &lt;/module&gt;
+    &lt;module name=&quot;ConstantName&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-static final int lowerCaseConstant; // CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 3 LINES
-static final int lowerCaseConstant1;
-static final int lowerCaseConstant2;
-static final int lowerCaseConstant3;
-static final int lowerCaseConstant4; // will warn here
+public class Example4 {
+  // CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 4 LINES
+  static final int lowerCaseConstant1 = 1;
+  static final int lowerCaseConstant2 = 2;
+  static final int lowerCaseConstant3 = 3;
+  static final int lowerCaseConstant4 = 4;
+  static final int lowerCaseConstant5 = 5; // violation 'must match pattern'
+}
         </source>
         <p id="Example5-config">
           To configure a filter to avoid any audits on code like:
@@ -194,18 +209,19 @@ static final int lowerCaseConstant4; // will warn here
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
       &lt;property name=&quot;commentFormat&quot;
-        value=&quot;ALLOW (\\w+) ON PREVIOUS LINE&quot;/&gt;
-      &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+                value=&quot;ALLOW (\w+) ON PREVIOUS LINE&quot;/&gt;
       &lt;property name=&quot;influenceFormat&quot; value=&quot;-1&quot;/&gt;
     &lt;/module&gt;
+    &lt;module name=&quot;MemberName&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example5-code">Example:</p>
         <source>
-private int D2;
-// ALLOW MemberName ON PREVIOUS LINE
-. . .
+public class Example5 {
+  private int D2;
+  // ALLOW MemberName ON PREVIOUS LINE
+}
         </source>
 
         <p id="Example6-config">
@@ -217,16 +233,21 @@ private int D2;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
       &lt;property name=&quot;commentFormat&quot;
-        value=&quot;@cs\.suppress \[(\w+(\|\w+)*)\] \w[-\.'`,:;\w ]{14,}&quot;/&gt;
+                value=&quot;@cs\.suppress \[(\w+(\|\w+)*)\] \w[-\.'`,:;\w ]{13,}&quot;/&gt;
       &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
       &lt;property name=&quot;influenceFormat&quot; value=&quot;1&quot;/&gt;
     &lt;/module&gt;
+    &lt;module name=&quot;ConstantName&quot;/&gt;
+    &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example6-code">Example:</p>
         <source>
-public static final int [] array; // @cs.suppress [ConstantName|NoWhitespaceAfter] A comment here
+public class Example6 {
+  // @cs.suppress [ConstantName|NoWhitespaceAfter] A comment here
+  public static final int [] array = {};
+}
         </source>
         <p>
           It is possible to specify an ID of checks, so that it can be leveraged by the
@@ -255,10 +276,9 @@ public static final int [] array; // @cs.suppress [ConstantName|NoWhitespaceAfte
       &lt;property name=&quot;format&quot; value=&quot;^.*@Ignore\s*$&quot;/&gt;
       &lt;property name=&quot;message&quot; value=&quot;@Ignore should have a reason.&quot;/&gt;
     &lt;/module&gt;
-
     &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
       &lt;property name=&quot;id&quot; value=&quot;systemout&quot;/&gt;
-      &lt;property name=&quot;format&quot; value=&quot;^.*System\.(out|err).*$&quot;/&gt;
+      &lt;property name=&quot;format&quot; value=&quot;^.*System\.\(out|err\).*$&quot;/&gt;
       &lt;property name=&quot;message&quot; value=&quot;Don't use System.out/err, use SLF4J instead.&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
@@ -266,12 +286,15 @@ public static final int [] array; // @cs.suppress [ConstantName|NoWhitespaceAfte
         </source>
         <p id="Example7-code">Example:</p>
         <source>
-@Ignore // @cs-: ignore (test has not been implemented yet)
-@Test
-public void testMethod() { }
+public class Example7 {
+  @Ignore // @cs-: ignore (test has not been implemented yet)
+  @Test
+  public void testMethod() {}
 
-public static void foo() {
-  System.out.println(&quot;Debug info.&quot;); // @cs-: systemout (should not fail RegexpSinglelineJava)
+  public static void foo() {
+
+    System.out.println(&quot;Debug info.&quot;); // @cs-: systemout (should not fail)
+  }
 }
         </source>
         <p id="Example8-config">
@@ -286,6 +309,10 @@ public static void foo() {
       &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
       &lt;property name=&quot;influenceFormat&quot; value=&quot;$2&quot;/&gt;
     &lt;/module&gt;
+    &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;1&quot; /&gt;
+    &lt;/module&gt;
+    &lt;module name=&quot;MagicNumber&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -293,9 +320,9 @@ public static void foo() {
         <source>
 // @cs-: ClassDataAbstractionCoupling influence 2
 // @cs-: MagicNumber influence 4
-@Service // no violations from ClassDataAbstractionCoupling here
-@Transactional
-public class UserService {
+public class Example8 { // no violations from ClassDataAbstractionCoupling here
+  private Example1 foo = new Example1();
+  private Example2 bar = new Example2();
   private int value = 10022; // no violations from MagicNumber here
 }
         </source>

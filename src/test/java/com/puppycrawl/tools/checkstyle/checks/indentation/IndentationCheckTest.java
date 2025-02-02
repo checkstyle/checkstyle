@@ -1099,6 +1099,25 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testTextBlockLiteral() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = {
+            "18:1: " + getCheckMessage(MSG_ERROR, "\"\"\"", 0, 8),
+            "28:17: " + getCheckMessage(MSG_ERROR, "\"\"\"", 16, 12),
+            "44:1: " + getCheckMessage(MSG_ERROR, "\"\"\"", 0, 12),
+            "50:1: " + getCheckMessage(MSG_ERROR, "\"\"\"", 0, 12),
+            "55:9: " + getCheckMessage(MSG_ERROR, "\"\"\"", 8, 12),
+            "73:15: " + getCheckMessage(MSG_ERROR, "\"\"\"", 14, 12),
+        };
+        verify(checkConfig, getNonCompilablePath("InputIndentationTextBlock.java"),
+            expected);
+    }
+
+    @Test
     public void testValidNewKeywordWithForceStrictCondition() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1329,6 +1348,25 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                10, "4, 6, 19, 21, 25"),
         };
         verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testYieldKeywordWithForceStrictCondition() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = {
+            "15:13: " + getCheckMessage(MSG_CHILD_ERROR, "block", 12, 16),
+            "16:13: " + getCheckMessage(MSG_ERROR, "yield", 12, 16),
+            "44:13: " + getCheckMessage(MSG_CHILD_ERROR, "block", 12, 16),
+            "45:13: " + getCheckMessage(MSG_ERROR, "yield", 12, 16),
+            "50:5: " + getCheckMessage(MSG_ERROR, "yield", 4, 16),
+            "71:15: " + getCheckMessage(MSG_ERROR, "yield", 14, 16),
+            "74:20: " + getCheckMessage(MSG_ERROR, "yield", 19, 16),
+            "77:9: " + getCheckMessage(MSG_ERROR, "yield", 8, 16),
+        };
+        verifyWarns(checkConfig,
+                getNonCompilablePath("InputIndentationYieldForceStrict.java"), expected);
     }
 
     @Test

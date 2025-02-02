@@ -26,7 +26,7 @@ public class InputJavadocMethodNoJavadocOnlyPrivateScope //comment test
 
     /** @return wrong, in scope */ // violation 'Unused Javadoc tag.'
     public void foo5() {}
-    /** @return correct, out of scope */ // ok
+    /** @return correct, out of scope */
     protected void foo6() {}
     /** @return wrong, in scope */ // violation 'Unused Javadoc tag.'
     void foo7() {}
@@ -70,72 +70,3 @@ public class InputJavadocMethodNoJavadocOnlyPrivateScope //comment test
     }
 }
 
-class InputJavadocMethodNoJavadocOnlyPrivateScopePackage { // ignored
-    public int i1;
-    protected int i2;
-    int i3;
-    private int i4;
-
-    public void foo1() {}
-    protected void foo2() {}
-    void foo3() {}
-    private void foo4() {}
-
-    public class PublicInner { // ignored
-        public int i1;
-        protected int i2;
-        int i3;
-        private int i4;
-
-        public void foo1() {}
-        protected void foo2() {}
-        void foo3() {}
-        private void foo4() {}
-    }
-
-    protected class ProtectedInner { // ignored
-        public int i1;
-        protected int i2;
-        int i3;
-        private int i4;
-
-        public void foo1() {}
-        protected void foo2() {}
-        void foo3() {}
-        private void foo4() {}
-    }
-
-    class PackageInner { // ignored
-        public int i1;
-        protected int i2;
-        int i3;
-        private int i4;
-
-        public void foo1() {}
-        protected void foo2() {}
-        void foo3() {}
-        private void foo4() {}
-    }
-
-    private class PrivateInner { // ignored
-        public int i1;
-        protected int i2;
-        int i3;
-        private int i4;
-
-        public void foo1() {}
-        protected void foo2() {}
-        void foo3() {}
-        private void foo4() {}
-    }
-
-    class IgnoredName { // ignored
-        // ignore by name
-        private int logger;
-        // no warning, 'serialVersionUID' fields do not require Javadoc
-        private static final long serialVersionUID = 0;
-    }
-
-    /**/
-    void methodWithTwoStarComment() {}  // ignored
-}

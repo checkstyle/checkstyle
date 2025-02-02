@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.21.2-SNAPSHOT</version>
+  <version>10.21.3-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -377,7 +377,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.18.1</version>
+      <version>3.18.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -736,7 +736,7 @@
       <plugin>
         <groupId>org.gaul</groupId>
         <artifactId>modernizer-maven-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.1.0</version>
         <configuration>
           <javaVersion>${java.version}</javaVersion>
           <includeTestClasses>false</includeTestClasses>

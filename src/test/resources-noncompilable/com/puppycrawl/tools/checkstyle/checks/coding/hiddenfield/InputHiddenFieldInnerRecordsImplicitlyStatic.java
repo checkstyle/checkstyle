@@ -32,7 +32,7 @@ class Scratch {
             return Instant.now(clock).isBefore(expiresAt);
         }
 
-        public int anInt(int pointer) { // violation ''pointer' hides a field'
+        public int anInt(int pointer) { // violation, ''pointer' hides a field'
             return pointer;
         }
     }

@@ -87,8 +87,10 @@
           Example:
         </p>
         <source>
-int hoursInDay = 24; // SUPPRESS CHECKSTYLE because it is too obvious
-int daysInWeek = 7; // violation
+public class Example1 {
+  int hoursInDay = 24; // SUPPRESS CHECKSTYLE because it is too obvious
+  int daysInWeek = 7; // violation, &quot;'7' is a magic number.&quot;
+}
         </source>
         <p id="Example2-config">
           To configure the filter to suppress audit events on any line that contains
@@ -108,8 +110,10 @@ int daysInWeek = 7; // violation
           Example:
         </p>
         <source>
-int a = 42; // DO NOT CHECK THIS LINE
-int b = 43; // violation
+public class Example2 {
+  int a = 42; // DO NOT CHECK THIS LINE
+  int b = 43; // violation, &quot;'43' is a magic number.&quot;
+}
         </source>
         <p id="Example3-config">
            To configure the filter to suppress audit events whose check message contains
@@ -131,7 +135,10 @@ int b = 43; // violation
           Example:
         </p>
         <source>
-export FOO=BAR # ok, because violation message is matching suppress pattern
+public class Example3 {
+  // ok, because violation message is matching suppress pattern
+  int a_really_long_variable_name = 10;
+}
         </source>
         <p id="Example4-config">
           To configure the filter to suppress audit events only on a check whose id is
@@ -156,8 +163,11 @@ export FOO=BAR # ok, because violation message is matching suppress pattern
           Example:
         </p>
         <source>
-int a = 42; // SUPPRESS CHECKSTYLE because i want to
-static final int LONG_VAR_NAME_TO_TAKE_MORE_THAN_55_CHARS = 22; // LineLength violation
+public class Example4 {
+  int a = 42; // SUPPRESS CHECKSTYLE because I want to
+  static final int LONG_VAR_NAME_TO_TAKE_MORE_THAN_55_CHARS = 22;
+  // violation above 'Line is longer ...'
+}
         </source>
         <p id="Example5-config">
           To configure the filter to suppress audit events for the current and next 2 lines:
@@ -170,14 +180,15 @@ static final int LONG_VAR_NAME_TO_TAKE_MORE_THAN_55_CHARS = 22; // LineLength vi
   &lt;module name=&quot;UniqueProperties&quot;/&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example5-code">
+        <p id="Example5-raw">
           Example:
         </p>
         <source>
-key.one=41 # SUPPRESS CHECKSTYLE because I want to
-key.one=42 # ok
-key.one=43 # ok
-key.one=44 # violation
+key.one=41 # // SUPPRESS CHECKSTYLE because I want to
+key.one=42 # ok as within line range
+key.one=43 # ok as within line range
+key.two=44 # // violation 'Duplicated property 'key.two' (2 occurrence(s)).'
+key.two=45
         </source>
         <p id="Example6-config">
           To configure the filter to suppress audit events for the current and previous line:
@@ -190,14 +201,14 @@ key.one=44 # violation
   &lt;module name=&quot;UniqueProperties&quot;/&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example6-code">
+        <p id="Example6-raw">
           Example:
         </p>
         <source>
-key.one=41 # violation
-key.one=42 # ok
-key.one=43 # SUPPRESS CHECKSTYLE because I want to
-key.one=44 # violation
+key.one=41 # ok as within line range
+key.one=42 # SUPPRESS CHECKSTYLE because I want to
+key.two=43 # // violation 'Duplicated property 'key.two' (2 occurrence(s)).'
+key.two=44
         </source>
         <p id="Example7-config">
           To configure the filter with a more compact <code>nearbyTextPattern</code>
@@ -219,8 +230,10 @@ key.one=44 # violation
           Example:
         </p>
         <source>
-int a = 42; // -@cs[MagicNumber] We do not consider this number as magic for some reason.
-int b = 43; // violation
+public class Example7 {
+  int a = 42; // -@cs[MagicNumber] We do not consider this number as magic.
+  int b = 43; // violation &quot;'43' is a magic number.&quot;
+}
         </source>
         <p id="Example8-config">
           To configure the filter to accept variable <code>checkPattern</code>
@@ -243,11 +256,13 @@ int b = 43; // violation
           Example:
         </p>
         <source>
-int a = 42; // @cs-: MagicNumber for +3 lines
-int b = 43;
-int c = 44;
-int d = 45;
-int e = 46; // violation
+public class Example8 {
+  int a = 42; // @cs-: MagicNumber for +3 lines
+  int b = 43;
+  int c = 44;
+  int d = 45;
+  int e = 46; // violation &quot;'46' is a magic number.&quot;
+}
         </source>
         <p id="Example9-config">
           To configure the filter to suppress <code>LineLength</code>
@@ -261,7 +276,7 @@ int e = 46; // violation
       value=&quot;&amp;lt;a href=&amp;quot;[^&amp;quot;]+&amp;quot;&amp;gt;&quot;/&gt;
   &lt;/module&gt;
   &lt;module name=&quot;LineLength&quot;&gt;
-    &lt;property name=&quot;max&quot; value=&quot;90&quot;/&gt;
+    &lt;property name=&quot;max&quot; value=&quot;70&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -269,12 +284,13 @@ int e = 46; // violation
           Example:
         </p>
         <source>
-/**
-* Flag description.
-*
-* Disabled until &lt;a href=&quot;www.github.com/owner/repo/issue/9#comment&quot;&gt; // ok
-*/
-public static final boolean SOME_FLAG = false;
+public class Example9 {
+  /**
+   * Flag description.
+   * Disabled until &lt;a href=&quot;www.github.com/owner/repo/issue/9#comment&quot;&gt;
+   */
+  public static final boolean SOME_FLAG = false;
+}
         </source>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">

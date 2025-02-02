@@ -15,8 +15,8 @@ public class InputIllegalThrowsIgnoreMethodNames {
     public void method() throws NullPointerException
     { // no code
     }
-
-    public java.lang.Throwable methodOne() throws RuntimeException // violation
+    // violation below, 'Throwing 'RuntimeException' is not allowed'
+    public java.lang.Throwable methodOne() throws RuntimeException
     {
         return null;
     }
@@ -25,7 +25,7 @@ public class InputIllegalThrowsIgnoreMethodNames {
     {
     }
 
-    public void finalize() throws Throwable { // violation
+    public void finalize() throws Throwable { // violation, 'Throwable' is not allowed'
 
     }
 }

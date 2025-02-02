@@ -14,9 +14,14 @@
         const scriptElementSrc = scriptElement.attributes.src.textContent;
         const relativePath = scriptElementSrc.replace(/\/js\/anchors.js/, '');
 
-        var anchors = document.getElementsByTagName("h2");
+        var anchors = document.querySelectorAll("h1, h2");
         [].forEach.call(anchors, function (anchorItem) {
-            var name = anchorItem.childNodes[0].name;
+            
+            if (anchorItem.closest("#bannerRight") ) {
+                return;
+            }
+
+            var name = anchorItem.childNodes[0].textContent.replaceAll(" ", "_");
             var link = "" + url + "#" + name + "";
 
             var a = document.createElement("a");

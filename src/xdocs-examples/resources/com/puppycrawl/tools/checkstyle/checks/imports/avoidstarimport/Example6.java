@@ -15,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports.avoidstarimport;
 import java.util.Scanner;
 import java.io.*;
 import static java.lang.Math.*;
-import java.util.*;               // violation
+import java.util.*; // violation, 'Using the '.*' form of import should be avoided.'
 import java.net.*;
 // xdoc section -- end
 

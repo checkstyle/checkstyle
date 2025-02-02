@@ -107,26 +107,33 @@
   &lt;module name=&quot;RegexpOnFilename&quot;/&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example1-code">Example:</p>
+        <p id="Example1-code">Example1:</p>
         <source>
-src/xdocs/config_regexp.xml  //OK, contains no whitespace
-src/xdocs/&quot;config regexp&quot;.xml  //violation, contains whitespace
+.../checkstyle.xml
+.../Test Example1.xml // violation, 'File match folder pattern '' and file pattern '\s'.'
+.../TestExample2.xml
+.../TestExample3.md
+.../TestExample4.xml
         </source>
         <p id="Example2-config">
-          To configure the check to forbid 'gif' files in folders:
+          To configure the check to forbid 'xml' files in folders:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;RegexpOnFilename&quot;&gt;
-    &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.gif$&quot;/&gt;
+    &lt;property name=&quot;fileNamePattern&quot; value=&quot;^TestExample\d+\.xml$&quot;/&gt;
+    &lt;message key=&quot;regexp.filename.match&quot;
+      value=&quot;xml files should not match ''{1}''&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example2-code">Example:</p>
+        <p id="Example2-code">Example2:</p>
         <source>
-src/site/resources/images/favicon.png  //OK
-src/site/resources/images/logo.jpg  //OK
-src/site/resources/images/groups.gif  //violation, .gif images not allowed
+.../checkstyle.xml
+.../Test Example1.xml
+.../TestExample2.xml // violation, 'xml files should not match '^TestExample\d+\.xml$''
+.../TestExample3.md
+.../TestExample4.xml // violation, 'xml files should not match '^TestExample\d+\.xml$''
         </source>
         <p id="Example3-config">
           To configure the check to forbid 'md' files except 'README.md file' in folders,
@@ -139,15 +146,17 @@ src/site/resources/images/groups.gif  //violation, .gif images not allowed
     &lt;property name=&quot;fileExtensions&quot; value=&quot;md&quot;/&gt;
     &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
     &lt;message key=&quot;regexp.filename.mismatch&quot;
-      value=&quot;No '*.md' files other then 'README.md'&quot;/&gt;
+      value=&quot;No *.md files other than README.md&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example3-code">Example:</p>
+        <p id="Example3-code">Example3:</p>
         <source>
-src/site/resources/README.md  //OK
-src/site/resources/Logo.png  //OK
-src/site/resources/Text.md  //violation, .md files other than 'README.md' are not allowed
+.../checkstyle.xml
+.../Test Example1.xml
+.../TestExample2.xml
+.../TestExample3.md  // violation, 'No *.md files other than README.md'
+.../TestExample4.xml
         </source>
         <p id="Example4-config">
           To configure the check to only allow property and xml files to be located
@@ -156,65 +165,23 @@ src/site/resources/Text.md  //violation, .md files other than 'README.md' are no
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;RegexpOnFilename&quot;&gt;
-    &lt;property name=&quot;folderPattern&quot;
-      value=&quot;[\\/]src[\\/]\w+[\\/]resources[\\/]&quot;/&gt;
+    &lt;property name=&quot;fileNamePattern&quot; value=&quot;.*\.(properties|xml)$&quot;/&gt;
     &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;fileExtensions&quot; value=&quot;properties, xml&quot;/&gt;
+    &lt;message key=&quot;regexp.filename.mismatch&quot;
+      value=&quot;Only property and xml files to be located in the resource folder&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example4-code">Example:</p>
+        <p id="Example4-code">Example4:</p>
         <source>
-src/main/resources/sun_checks.xml  //OK
-src/main/resources/check_properties.properties  //OK
-src/main/resources/JavaClass.java  //violation, xml|property files are allowed in resource folder
+.../checkstyle.xml
+.../Test Example1.xml
+.../TestExample2.xml
+.../TestExample3.md  // violation, 'Only property and xml files to be located in the resource folder'
+.../TestExample4.xml
         </source>
         <p id="Example5-config">
-          To configure the check to only allow Java and XML files in your folders use the below.
-        </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;RegexpOnFilename&quot;&gt;
-    &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.(java|xml)$&quot;/&gt;
-    &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-        </source>
-        <p id="Example5-code">Example:</p>
-        <source>
-src/main/java/JavaClass.java  //OK
-src/main/MainClass.java  //OK
-src/main/java/java_xml.xml  //OK
-src/main/main_xml.xml  //OK
-src/main/java/image.png  //violation, folders should only contain java or xml files
-src/main/check_properties.properties  //violation, folders should only contain java or xml files
-        </source>
-        <p id="Example6-config">
-          To configure the check to only allow Java and XML files only in your source folder
-          and ignore any other folders:
-        </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;RegexpOnFilename&quot;&gt;
-    &lt;property name=&quot;folderPattern&quot; value=&quot;[\\/]src[\\/]&quot;/&gt;
-    &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.(java|xml)$&quot;/&gt;
-    &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-        </source>
-        <p id="Example6-code">Example:</p>
-        <source>
-src/SourceClass.java  //OK
-src/source_xml.xml  //OK
-src/image.png  //violation, only java and xml files are allowed in src folder
-src/main/main_properties.properties  //OK, this check only applies to src folder
-        </source>
-        <p>
-          <b>Note:</b> 'folderPattern' must be specified if checkstyle is analyzing more than
-          the normal source folder, like the 'bin' folder where class files can be located.
-        </p>
-        <p id="Example7-config">
-          To configure the check to only allow file names to be camel case:
+          To configure the check to only allow only camelcase
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
@@ -222,15 +189,18 @@ src/main/main_properties.properties  //OK, this check only applies to src folder
     &lt;property name=&quot;fileNamePattern&quot; value=&quot;^([A-Z][a-z0-9]+\.?)+$&quot;/&gt;
     &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
     &lt;property name=&quot;ignoreFileNameExtensions&quot; value=&quot;true&quot;/&gt;
+    &lt;message key=&quot;regexp.filename.mismatch&quot;
+      value=&quot;only filenames in camelcase is allowed&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example7-code">Example:</p>
+        <p id="Example5-code">Example5:</p>
         <source>
-src/main/java/JavaClass.java  //OK
-src/main/MainClass.java  //OK
-src/main/java/java_class.java  //violation, file names should be in Camel Case
-src/main/main_class.java  //violation, file names should be in Camel Case
+.../checkstyle.xml    // violation, 'only filenames in camelcase is allowed'
+.../Test Example1.xml // violation, 'only filenames in camelcase is allowed'
+.../TestExample2.xml
+.../TestExample3.md
+.../TestExample4.xml
         </source>
       </subsection>
 

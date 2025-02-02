@@ -15,11 +15,11 @@ public class Example2 {
   public void test1(int mode) {
     int x = 0;
     x = switch (mode) {
-      case 1 -> x = 1;  // violation
+      case 1 -> x = 1;  // violation, 'Inner assignments should be avoided'
       case 2 -> {
-        yield x = 2; // violation
+        yield x = 2; // violation, 'Inner assignments should be avoided'
       }
-      default -> x = 0; // violation
+      default -> x = 0; // violation, 'Inner assignments should be avoided'
     };
   }
   public void test2(int mode) {
@@ -36,7 +36,7 @@ public class Example2 {
     switch(mode) {
       case 1:
       case 2: {
-        x = y = 2; // violation
+        x = y = 2; // violation, 'Inner assignments should be avoided'
       }
       case 4:
       case 5:

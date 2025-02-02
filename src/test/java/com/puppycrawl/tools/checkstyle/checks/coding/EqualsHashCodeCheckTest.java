@@ -46,10 +46,10 @@ public class EqualsHashCodeCheckTest
     @Test
     public void testSemantic() throws Exception {
         final String[] expected = {
-            "96:13: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "37:13: " + getCheckMessage(MSG_KEY_HASHCODE),
         };
         verifyWithInlineConfigParser(
-                getPath("InputEqualsHashCodeSemantic.java"), expected);
+                getPath("InputEqualsHashCodeSemanticTwo.java"), expected);
     }
 
     @Test
@@ -77,13 +77,13 @@ public class EqualsHashCodeCheckTest
             "10:5: " + getCheckMessage(MSG_KEY_EQUALS)
         );
         final List<String> expectedSecondInputErrors = Collections.singletonList(
-            "96:13: " + getCheckMessage(MSG_KEY_HASHCODE)
+            "37:13: " + getCheckMessage(MSG_KEY_HASHCODE)
         );
         final List<String> expectedThirdInputErrors =
             Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
 
         final String firstInput = getPath("InputEqualsHashCodeNoEquals.java");
-        final String secondInput = getPath("InputEqualsHashCodeSemantic.java");
+        final String secondInput = getPath("InputEqualsHashCodeSemanticTwo.java");
         final String thirdInput = getPath("InputEqualsHashCode.java");
 
         final File[] inputs = {

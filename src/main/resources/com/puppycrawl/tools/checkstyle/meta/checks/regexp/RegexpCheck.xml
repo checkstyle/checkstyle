@@ -62,6 +62,19 @@
  the XML config file you must also take into account the XML rules. e.g.
  if you want to match a &amp;lt; symbol you need to enter &amp;amp;lt;.
  The regular expression should be entered on one line.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ &lt;b&gt;Note:&lt;/b&gt; To search for parentheses () in a regular expression
+ you must escape them like \(\). This is required by the regexp engine,
+ otherwise it will think they are special instruction characters.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ &lt;b&gt;Note:&lt;/b&gt; To search for things that mean something in XML, like
+ &amp;lt; you need to escape them like &amp;amp;lt;. This is required so the
+ XML parser does not act on them, but instead passes the correct
+ character to the regexp engine.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="0" name="duplicateLimit" type="int">
