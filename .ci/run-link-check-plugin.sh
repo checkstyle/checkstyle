@@ -16,7 +16,8 @@ OPTION=$1
 echo "------------ grep of linkcheck.html--BEGIN"
 LINKCHECK_ERRORS=$(grep -E "doesn't exist|externalLink" target/site/linkcheck.html \
   | grep -v 'Read timed out' | sed 's/<\/table><\/td><\/tr>//g' \
-  | sed 's/<td><i>//g' | sed 's/<\/i><\/td><\/tr>//g' | sed 's/<\/table><\/section>//g' || true)
+  | sed 's/<td><i>//g' | sed 's/<\/i><\/td><\/tr>//g' | sed 's/<\/table><\/section>//g' \
+  | sed 's/        <\/main>//g' || true)
 
 if [[ $OPTION == "--skip-external" ]]; then
   echo "Checking internal (checkstyle website) links only."
