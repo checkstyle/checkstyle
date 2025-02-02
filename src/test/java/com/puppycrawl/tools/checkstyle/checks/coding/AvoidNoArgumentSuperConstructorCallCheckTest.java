@@ -39,9 +39,9 @@ public class AvoidNoArgumentSuperConstructorCallCheckTest
     public void testDefault() throws Exception {
 
         final String[] expected = {
-            "12:9: " + getCheckMessage(MSG_CTOR),
-            "16:9: " + getCheckMessage(MSG_CTOR),
-            "20:9: " + getCheckMessage(MSG_CTOR),
+            "13:9: " + getCheckMessage(MSG_CTOR),
+            "18:9: " + getCheckMessage(MSG_CTOR),
+            "23:9: " + getCheckMessage(MSG_CTOR),
         };
 
         verifyWithInlineConfigParser(
