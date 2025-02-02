@@ -58,6 +58,7 @@ section p {
 #banner {
   border-bottom: 1px solid #fff;
   background: url("../images/header-background.png") repeat-x scroll 0 0 transparent;
+  height: 97px;
 }
 
 .dl-link {
