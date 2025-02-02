@@ -15,6 +15,18 @@
   </module>
 </module>
 */
-
+package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 // xdoc section -- start
+public class Example1 {
+  // Violation, 'MagicNumberCheck (without suppression)'
+  private static final int MULTIPLIER = 5;
+
+  public int calculate(int value) {
+    return value * MULTIPLIER; // Normally, 5 would trigger MagicNumberCheck
+  }
+
+  // Violation, 'JavadocStyleCheck (without suppression)'
+  void methodWithoutJavadoc() {
+  }
+}
 // xdoc section -- end
