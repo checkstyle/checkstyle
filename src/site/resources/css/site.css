@@ -169,11 +169,8 @@ code {
   margin: 3px 0;
 }
 
-#bodyColumn {
-  margin-left: 286px;
-}
-
 #leftColumn {
+  margin-right: 15px;
   min-width: 250px;
   width: fit-content;
 }
