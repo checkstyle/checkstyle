@@ -107,13 +107,13 @@
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
     &lt;property name=&quot;checks&quot; value=&quot;JavadocStyleCheck&quot;/&gt;
-    &lt;property name=&quot;files&quot; value=&quot;AbstractComplexityCheck.java&quot;/&gt;
-    &lt;property name=&quot;lines&quot; value=&quot;82,108-122&quot;/&gt;
+    &lt;property name=&quot;files&quot; value=&quot;Example1.java&quot;/&gt;
+    &lt;property name=&quot;lines&quot; value=&quot;1,5-100&quot;/&gt;
   &lt;/module&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
     &lt;property name=&quot;checks&quot; value=&quot;MagicNumberCheck&quot;/&gt;
-    &lt;property name=&quot;files&quot; value=&quot;JavadocStyleCheck.java&quot;/&gt;
-    &lt;property name=&quot;lines&quot; value=&quot;221&quot;/&gt;
+    &lt;property name=&quot;files&quot; value=&quot;Example1.java&quot;/&gt;
+    &lt;property name=&quot;lines&quot; value=&quot;1,5-100&quot;/&gt;
   &lt;/module&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
     &lt;property name=&quot;message&quot; value=&quot;Missing a Javadoc comment&quot;/&gt;
@@ -128,7 +128,7 @@
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
     &lt;property name=&quot;id&quot; value=&quot;stringEqual&quot;/&gt;
-    &lt;property name=&quot;files&quot; value=&quot;SomeTestCode.java&quot;/&gt;
+    &lt;property name=&quot;files&quot; value=&quot;Example2.java&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -137,9 +137,13 @@
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpSingleline&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;.*example.*&quot;/&gt;
+  &lt;/module&gt;
+
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
-    &lt;property name=&quot;files&quot; value=&quot;[/\\]\..+&quot;/&gt;
-    &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
+    &lt;property name=&quot;files&quot; value=&quot;Example3.java&quot;/&gt;
+    &lt;property name=&quot;checks&quot; value=&quot;RegexpSinglelineCheck&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -149,8 +153,8 @@
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
-    &lt;property name=&quot;files&quot; value=&quot;[/\\]target[/\\]&quot;/&gt;
-    &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
+    &lt;property name=&quot;files&quot; value=&quot;Example4.java&quot;/&gt;
+    &lt;property name=&quot;checks&quot; value=&quot;NoWhitespaceAfter&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -160,8 +164,8 @@
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
-    &lt;property name=&quot;files&quot; value=&quot;.+\.(?:jar|zip|war|class|tar|bin)$&quot;/&gt;
-    &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
+    &lt;property name=&quot;files&quot; value=&quot;Example5.java&quot;/&gt;
+    &lt;property name=&quot;checks&quot; value=&quot;MethodName&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -171,8 +175,8 @@
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
-    &lt;property name=&quot;files&quot; value=&quot;.+\.(?:png|gif|jpg|jpeg)$&quot;/&gt;
-    &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
+    &lt;property name=&quot;files&quot; value=&quot;Example6.java&quot;/&gt;
+    &lt;property name=&quot;checks&quot; value=&quot;ConstantName&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -182,9 +186,8 @@
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
-    &lt;property name=&quot;files&quot;
-      value=&quot;.+\.(?:txt|xml|csv|sh|thrift|html|sql|eot|ttf|woff|css|png)$&quot;/&gt;
-    &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
+    &lt;property name=&quot;files&quot; value=&quot;Example7.java&quot;/&gt;
+    &lt;property name=&quot;checks&quot; value=&quot;MemberName&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -194,8 +197,8 @@
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
-    &lt;property name=&quot;files&quot; value=&quot;com[\\/]mycompany[\\/]app[\\/]gen[\\/]&quot;/&gt;
-    &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
+    &lt;property name=&quot;files&quot; value=&quot;Example8.java&quot;/&gt;
+    &lt;property name=&quot;checks&quot; value=&quot;ParameterNumber&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -205,7 +208,7 @@
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
-    &lt;property name=&quot;files&quot; value=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
+    &lt;property name=&quot;files&quot; value=&quot;Example9.java&quot;/&gt;
     &lt;property name=&quot;checks&quot; value=&quot;FileLength&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -216,6 +219,7 @@
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
+    &lt;property name=&quot;files&quot; value=&quot;Example10.java&quot;/&gt;
     &lt;property name=&quot;message&quot; value=&quot;Name 'log' must match pattern&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
