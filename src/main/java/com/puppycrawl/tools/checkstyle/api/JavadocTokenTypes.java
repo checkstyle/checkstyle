@@ -1058,7 +1058,20 @@ public final class JavadocTokenTypes {
     public static final int START = JavadocParser.START;
 
     /**
-     * Slash html tag component: {@code '/'}.
+     * <pre>Slash html tag component: {@code '/'}</pre>
+     * <b>Tree:</b>
+     * <pre>{@code
+     *|--JAVADOC_INLINE_TAG --> JAVADOC_INLINE_TAG
+     *   |--JAVADOC_INLINE_TAG_START --> {
+     *   |--CODE_LITERAL --> @code
+     *   |--WS -->
+     *   |--TEXT --> '/'
+     *     `--JAVADOC_INLINE_TAG_END --> }
+     * }</pre>
+     *
+     * @see
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
+     * Oracle Docs</a>
      */
     public static final int SLASH = JavadocParser.SLASH;
 
