@@ -37,7 +37,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -666,7 +665,7 @@ public final class InlineConfigParser {
         moduleInputConfigBuilder.setModuleName(fullyQualifiedClassName);
     }
 
-    private static String convertArrayValue(Object value) {
+    private static String toStringConvertForArrayValue(Object value) {
         String result = NULL_STRING;
 
         if (value instanceof double[]) {
@@ -817,19 +816,24 @@ public final class InlineConfigParser {
             final Object checkInstance = createCheckInstance(fullyQualifiedModuleName);
             final Object actualDefault;
             final Class<?> propertyType;
+            final String actualDefaultAsString;
+
             if ("tokens".equals(propertyName)) {
                 final Method getter = checkInstance.getClass().getMethod("getDefaultTokens");
                 actualDefault = getter.invoke(checkInstance);
                 propertyType = actualDefault.getClass();
+                final int[] arr = (int[]) actualDefault;
+                actualDefaultAsString = Arrays.stream(arr)
+                                              .mapToObj(TokenUtil::getTokenName)
+                                              .collect(Collectors.joining(", "));
             }
             else {
                 final Field field = checkInstance.getClass().getDeclaredField(propertyName);
                 field.setAccessible(true);
                 actualDefault = field.get(checkInstance);
                 propertyType = field.getType();
+                actualDefaultAsString = convertDefaultValueToString(actualDefault);
             }
-            final String actualDefaultAsString;
-            actualDefaultAsString = convertDefaultValueToString(actualDefault, propertyName);
 
             if (!isDefaultValue(propertyDefaultValue, actualDefaultAsString, propertyType)) {
                 final String message = String.format(Locale.ROOT,
@@ -854,22 +858,22 @@ public final class InlineConfigParser {
         return actualSet.containsAll(specifiedSet);
     }
 
-    private static String convertDefaultValueToString(Object value, String propertyName) {
+    private static String convertDefaultValueToString(Object value) {
         final String defaultValueAsString;
         if (value == null) {
             defaultValueAsString = NULL_STRING;
         }
         else if (value instanceof String) {
-            defaultValueAsString = convertToStringValue((String) value);
+            defaultValueAsString = toSringForStringValue((String) value);
         }
         else if (value.getClass().isArray()) {
-            defaultValueAsString = convertToArrayValue(value, propertyName);
+            defaultValueAsString = toStringConvertForArrayValue(value);
         }
         else if (value instanceof BitSet) {
-            defaultValueAsString = convertToBitSetValue((BitSet) value);
+            defaultValueAsString = toSringForBitsetValue((BitSet) value);
         }
         else if (value instanceof Collection<?>) {
-            defaultValueAsString = convertToCollectionValue((Collection<?>) value);
+            defaultValueAsString = toSringForCollectionValue((Collection<?>) value);
         }
         else {
             defaultValueAsString = String.valueOf(value);
@@ -877,7 +881,7 @@ public final class InlineConfigParser {
         return defaultValueAsString;
     }
 
-    private static String convertToStringValue(String strValue) {
+    private static String toSringForStringValue(String strValue) {
         final String str;
         if (strValue.startsWith("(") && strValue.endsWith(")")) {
             str = strValue.substring(1, strValue.length() - 1);
@@ -888,31 +892,13 @@ public final class InlineConfigParser {
         return str;
     }
 
-    private static String convertToArrayValue(Object value, String propertyName) {
-        String result = convertArrayValue(value);
-        if (Objects.equals(propertyName, "tokens") && value instanceof int[]) {
-            final int[] arr = (int[]) value;
-            final List<String> tokenNames = new ArrayList<>();
-            for (int index : arr) {
-                tokenNames.add(TokenUtil.getTokenName(index));
-            }
-            result = String.join(", ", tokenNames);
-        }
-        return result;
+    private static String toSringForBitsetValue(BitSet bitSet) {
+        return bitSet.stream()
+                     .mapToObj(TokenUtil::getTokenName)
+                     .collect(Collectors.joining(","));
     }
 
-    private static String convertToBitSetValue(BitSet bitSet) {
-        final List<String> tokenNames = new ArrayList<>();
-        for (int index = bitSet.nextSetBit(0); index >= 0; index = bitSet.nextSetBit(index + 1)) {
-            final String tokenName = TokenUtil.getTokenName(index);
-            if (tokenName != null) {
-                tokenNames.add(tokenName);
-            }
-        }
-        return String.join(",", tokenNames);
-    }
-
-    private static String convertToCollectionValue(Collection<?> collection) {
+    private static String toSringForCollectionValue(Collection<?> collection) {
         return collection.toString().replaceAll("[\\[\\]\\s]", "");
     }
 
