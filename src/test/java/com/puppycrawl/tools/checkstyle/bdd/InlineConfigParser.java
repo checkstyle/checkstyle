@@ -861,16 +861,16 @@ public final class InlineConfigParser {
             defaultValueAsString = NULL_STRING;
         }
         else if (value instanceof String) {
-            defaultValueAsString = toSringForStringValue((String) value);
+            defaultValueAsString = toStringForStringValue((String) value);
         }
         else if (value.getClass().isArray()) {
             defaultValueAsString = toStringConvertForArrayValue(value);
         }
         else if (value instanceof BitSet) {
-            defaultValueAsString = toSringForBitsetValue((BitSet) value);
+            defaultValueAsString = toStringForBitSetValue((BitSet) value);
         }
         else if (value instanceof Collection<?>) {
-            defaultValueAsString = toSringForCollectionValue((Collection<?>) value);
+            defaultValueAsString = toStringForCollectionValue((Collection<?>) value);
         }
         else {
             defaultValueAsString = String.valueOf(value);
@@ -878,7 +878,7 @@ public final class InlineConfigParser {
         return defaultValueAsString;
     }
 
-    private static String toSringForStringValue(String strValue) {
+    private static String toStringForStringValue(String strValue) {
         final String str;
         if (strValue.startsWith("(") && strValue.endsWith(")")) {
             str = strValue.substring(1, strValue.length() - 1);
@@ -889,13 +889,13 @@ public final class InlineConfigParser {
         return str;
     }
 
-    private static String toSringForBitsetValue(BitSet bitSet) {
+    private static String toStringForBitSetValue(BitSet bitSet) {
         return bitSet.stream()
                      .mapToObj(TokenUtil::getTokenName)
                      .collect(Collectors.joining(","));
     }
 
-    private static String toSringForCollectionValue(Collection<?> collection) {
+    private static String toStringForCollectionValue(Collection<?> collection) {
         return collection.toString().replaceAll("[\\[\\]\\s]", "");
     }
 
