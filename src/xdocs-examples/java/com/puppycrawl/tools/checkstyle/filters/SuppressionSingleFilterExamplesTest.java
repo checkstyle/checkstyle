@@ -19,12 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -37,7 +35,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
@@ -46,7 +44,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
@@ -55,7 +53,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
@@ -64,7 +62,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
@@ -73,7 +71,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 
     @Test
@@ -82,7 +80,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 
     @Test
@@ -91,7 +89,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 
     @Test
@@ -100,7 +98,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example8.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }
 
     @Test
@@ -109,7 +107,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example9.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
     }
 
     @Test
@@ -118,6 +116,6 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example10.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example10.java"), expected);
     }
 }
