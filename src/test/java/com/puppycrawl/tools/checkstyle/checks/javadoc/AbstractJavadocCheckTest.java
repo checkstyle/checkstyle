@@ -598,6 +598,41 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                 getPath("InputAbstractJavadocNonTightHtmlTags3.java"), expected);
     }
 
+    @Test
+    public void testLeaveJavadocToken() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputAbstractJavadocLeaveToken.java"), expected);
+    }
+
+    public static class JavadocLeaveTokenCheck extends AbstractJavadocCheck {
+
+        private static int visitCount;
+        private static int leaveCount;
+
+        @Override
+        public int[] getDefaultJavadocTokens() {
+            return new int[] {JavadocTokenTypes.HTML_ELEMENT};
+        }
+
+        @Override
+        public void visitJavadocToken(DetailNode ast) {
+            visitCount++;
+        }
+
+        @Override
+        public void leaveJavadocToken(DetailNode ast) {
+            leaveCount++;
+        }
+
+        @Override
+        public void finishJavadocTree(DetailNode ast) {
+            if (visitCount != leaveCount) {
+                throw new IllegalStateException("mismatch in visitCount and leaveCount");
+            }
+        }
+    }
+
     public static class ParseJavadocOnlyCheck extends AbstractJavadocCheck {
 
         @Override
