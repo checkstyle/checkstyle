@@ -106,17 +106,19 @@
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
-    &lt;property name=&quot;checks&quot; value=&quot;JavadocStyleCheck&quot;/&gt;
     &lt;property name=&quot;files&quot; value=&quot;AbstractComplexityCheck.java&quot;/&gt;
     &lt;property name=&quot;lines&quot; value=&quot;82,108-122&quot;/&gt;
   &lt;/module&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
-    &lt;property name=&quot;checks&quot; value=&quot;MagicNumberCheck&quot;/&gt;
     &lt;property name=&quot;files&quot; value=&quot;JavadocStyleCheck.java&quot;/&gt;
     &lt;property name=&quot;lines&quot; value=&quot;221&quot;/&gt;
   &lt;/module&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
     &lt;property name=&quot;message&quot; value=&quot;Missing a Javadoc comment&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MissingJavadocMethod&quot;/&gt;
+    &lt;module name=&quot;MagicNumber&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -130,6 +132,9 @@
     &lt;property name=&quot;id&quot; value=&quot;stringEqual&quot;/&gt;
     &lt;property name=&quot;files&quot; value=&quot;SomeTestCode.java&quot;/&gt;
   &lt;/module&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;StringLiteralEquality&quot;/&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example3-config">
@@ -138,8 +143,13 @@
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
-    &lt;property name=&quot;files&quot; value=&quot;[/\\]\..+&quot;/&gt;
+    &lt;property name=&quot;files&quot; value=&quot;.*\.java&quot;/&gt;
     &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MagicNumber&quot;/&gt;
+    &lt;module name=&quot;VisibilityModifier&quot;/&gt;
+    &lt;module name=&quot;MissingJavadocMethod&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -149,8 +159,14 @@
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
-    &lt;property name=&quot;files&quot; value=&quot;[/\\]target[/\\]&quot;/&gt;
+    &lt;property name=&quot;files&quot; value=&quot;.*\.java&quot;/&gt;
     &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MethodName&quot;/&gt;
+    &lt;module name=&quot;NeedBraces&quot;/&gt;
+    &lt;module name=&quot;MagicNumber&quot;/&gt;
+    &lt;module name=&quot;MissingJavadocMethod&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -160,8 +176,15 @@
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
-    &lt;property name=&quot;files&quot; value=&quot;.+\.(?:jar|zip|war|class|tar|bin)$&quot;/&gt;
+    &lt;property name=&quot;files&quot; value=&quot;.*\.java&quot;/&gt;
     &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;NeedBraces&quot;/&gt;
+    &lt;module name=&quot;VisibilityModifier&quot;/&gt;
+    &lt;module name=&quot;JavadocTagContinuationIndentation&quot;/&gt;
+    &lt;module name=&quot;MagicNumber&quot;/&gt;
+    &lt;module name=&quot;MissingJavadocMethod&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -171,8 +194,14 @@
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
-    &lt;property name=&quot;files&quot; value=&quot;.+\.(?:png|gif|jpg|jpeg)$&quot;/&gt;
+    &lt;property name=&quot;files&quot; value=&quot;.*\.java&quot;/&gt;
     &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;StringLiteralEquality&quot;/&gt;
+    &lt;module name=&quot;MissingJavadocMethod&quot;/&gt;
+    &lt;module name=&quot;MagicNumber&quot;/&gt;
+    &lt;module name=&quot;JavadocTagContinuationIndentation&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -182,9 +211,12 @@
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
-    &lt;property name=&quot;files&quot;
-      value=&quot;.+\.(?:txt|xml|csv|sh|thrift|html|sql|eot|ttf|woff|css|png)$&quot;/&gt;
+    &lt;property name=&quot;files&quot; value=&quot;.*\.java&quot;/&gt;
     &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MagicNumber&quot;/&gt;
+    &lt;module name=&quot;MissingJavadocMethod&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -194,8 +226,13 @@
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
-    &lt;property name=&quot;files&quot; value=&quot;com[\\/]mycompany[\\/]app[\\/]gen[\\/]&quot;/&gt;
+    &lt;property name=&quot;files&quot; value=&quot;.*\.java&quot;/&gt;
     &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MagicNumber&quot;/&gt;
+    &lt;module name=&quot;MissingJavadocMethod&quot;/&gt;
+    &lt;module name=&quot;JavadocTagContinuationIndentation&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -205,9 +242,15 @@
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
-    &lt;property name=&quot;files&quot; value=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
-    &lt;property name=&quot;checks&quot; value=&quot;FileLength&quot;/&gt;
+    &lt;property name=&quot;files&quot; value=&quot;.*\.java&quot;/&gt;
+    &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
   &lt;/module&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MagicNumber&quot;/&gt;
+    &lt;module name=&quot;MissingJavadocMethod&quot;/&gt;
+    &lt;module name=&quot;JavadocTagContinuationIndentation&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;LineLength&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p id="Example10-config">
@@ -216,7 +259,13 @@
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
+    &lt;property name=&quot;files&quot; value=&quot;.*\.java&quot;/&gt;
     &lt;property name=&quot;message&quot; value=&quot;Name 'log' must match pattern&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MissingJavadocMethod&quot;/&gt;
+    &lt;module name=&quot;MagicNumber&quot;/&gt;
+    &lt;module name=&quot;JavadocTagContinuationIndentation&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>

@@ -207,6 +207,8 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck",
             "com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck",
@@ -251,7 +253,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.javadoc"
                     + ".JavadocTagContinuationIndentationCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck",
@@ -537,6 +538,15 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck");
         moduleMappings.put("ClassDataAbstractionCoupling",
                 "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck");
+        moduleMappings.put("StringLiteralEquality",
+                "com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck");
+        moduleMappings.put("VisibilityModifier",
+                "com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck");
+        moduleMappings.put("NeedBraces",
+                "com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck");
+        moduleMappings.put("JavadocTagContinuationIndentation",
+                "com.puppycrawl.tools.checkstyle.checks.javadoc"
+                    + ".JavadocTagContinuationIndentationCheck");
 
         String fullyQualifiedClassName;
         if (moduleMappings.containsKey(moduleName)) {
