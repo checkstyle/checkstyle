@@ -320,6 +320,7 @@ public final class InlineConfigParser {
     // This is a hack until https://github.com/checkstyle/checkstyle/issues/13845
     private static final Map<String, String> MODULE_MAPPINGS = new HashMap<>();
 
+    // -@cs[ExecutableStatementCount] Suppressing due to large module mappings
     static {
         MODULE_MAPPINGS.put("IllegalCatch",
                 "com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck");
@@ -377,6 +378,12 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck");
         MODULE_MAPPINGS.put("IllegalIdentifierName",
                 "com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck");
+        MODULE_MAPPINGS.put("FileLength",
+                "com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck");
+        MODULE_MAPPINGS.put("EqualsAvoidNull",
+                "com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck");
+        MODULE_MAPPINGS.put("JavadocStyle",
+                "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck");
     }
 
     /** Stop instances being created. **/
