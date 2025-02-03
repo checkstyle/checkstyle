@@ -29,6 +29,8 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.itsallcode.io.Capturable;
@@ -596,6 +598,73 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTags3.java"), expected);
+    }
+
+    @Test
+    public void testleaveJavadocTokenForMutationKilling() throws Exception {
+        final String[] expected = {
+            "11: " + getCheckMessage(JavadocLeaveTokenCheck.class,
+                    JavadocLeaveTokenCheck.MSG_KEY, 4),
+            "14: " + getCheckMessage(JavadocLeaveTokenCheck.class,
+                    JavadocLeaveTokenCheck.MSG_KEY, 4),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAbstractJavadocLeaveMutationKill.java"), expected);
+    }
+
+    public static class JavadocLeaveTokenCheck extends AbstractJavadocCheck {
+
+        public static final String MSG_KEY = "tag.continuation.indent";
+        private static final int OFFSET = 4;
+
+        @Override
+        public int[] getDefaultJavadocTokens() {
+            return new int[] {JavadocTokenTypes.DESCRIPTION, JavadocTokenTypes.HTML_ELEMENT};
+        }
+
+        @Override
+        public void visitJavadocToken(DetailNode ast) {
+            final List<DetailNode> textNodes = getAllNewlineNodes(ast);
+            for (DetailNode newlineNode : textNodes) {
+                final DetailNode textNode = JavadocUtil.getNextSibling(newlineNode);
+                if (textNode.getType() == JavadocTokenTypes.TEXT && isViolation(textNode)) {
+                    log(textNode.getLineNumber(), MSG_KEY, OFFSET);
+                }
+            }
+        }
+
+        private static boolean isViolation(DetailNode textNode) {
+            boolean result = false;
+            final String text = textNode.getText();
+            if (!CommonUtil.isBlank(text.substring(1, OFFSET + 1))) {
+                // first offset number of characters are not blank
+                result = true;
+            }
+            return result;
+        }
+
+        private static List<DetailNode> getAllNewlineNodes(DetailNode descriptionNode) {
+            final List<DetailNode> textNodes = new ArrayList<>();
+            DetailNode node = JavadocUtil.getFirstChild(descriptionNode);
+            while (JavadocUtil.getNextSibling(node) != null) {
+                if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+                    final DetailNode descriptionNodeChild = JavadocUtil.getFirstChild(node);
+                    textNodes.addAll(getAllNewlineNodes(descriptionNodeChild));
+                }
+                if (node.getType() == JavadocTokenTypes.LEADING_ASTERISK) {
+                    textNodes.add(node);
+                }
+                node = JavadocUtil.getNextSibling(node);
+            }
+            return textNodes;
+        }
+
+        @Override
+        public void leaveJavadocToken(DetailNode ast) {
+            if (ast.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+                log(ast.getLineNumber(), MSG_KEY, OFFSET);
+            }
+        }
     }
 
     public static class ParseJavadocOnlyCheck extends AbstractJavadocCheck {
