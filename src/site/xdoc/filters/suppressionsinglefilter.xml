@@ -105,20 +105,36 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
-  &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="checks" value="JavadocStyleCheck"/&gt;
-    &lt;property name="files" value="AbstractComplexityCheck.java"/&gt;
-    &lt;property name="lines" value="82,108-122"/&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocStyle"/&gt;
+    &lt;module name="MagicNumber"/&gt;
   &lt;/module&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="checks" value="MagicNumberCheck"/&gt;
-    &lt;property name="files" value="JavadocStyleCheck.java"/&gt;
-    &lt;property name="lines" value="221"/&gt;
+    &lt;property name="checks" value="JavadocStyle"/&gt;
+    &lt;property name="files" value="Example1.java"/&gt;
+    &lt;property name="lines" value="1,5-100"/&gt;
+  &lt;/module&gt;
+  &lt;module name="SuppressionSingleFilter"&gt;
+    &lt;property name="checks" value="MagicNumber"/&gt;
+    &lt;property name="files" value="Example1.java"/&gt;
+    &lt;property name="lines" value="1,5-100"/&gt;
   &lt;/module&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="message" value="Missing a Javadoc comment"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+
+  public void exampleMethod() {
+    int value = 100;
+    // filtered violation ''100' is a magic number'
+    System.out.println(value);
+  }
+}
 </code></pre></div>
         <p id="Example2-config">
           Suppress check by <a href="https://checkstyle.org/config.html#Id">module id</a>
@@ -126,99 +142,250 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
+  &lt;module name="EqualsAvoidNull"/&gt;
+  &lt;module name="JavadocMethod"/&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="id" value="stringEqual"/&gt;
-    &lt;property name="files" value="SomeTestCode.java"/&gt;
+    &lt;property name="files" value="Example2.java"/&gt;
+    &lt;property name="checks" value="EqualsAvoidNull, JavadocMethod"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+
+  public void checkStringEquality(String str1, String str2) {
+    // filtered violation ''.equals()' should be used for string comparison'
+    assert str1 == str2 ;
+  }
+}
 </code></pre></div>
         <p id="Example3-config">
           Suppress all checks for hidden files and folders:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
+  &lt;module name="RegexpSingleline"&gt;
+    &lt;property name="format" value=".*example.*"/&gt;
+  &lt;/module&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="files" value="[/\\]\..+"/&gt;
-    &lt;property name="checks" value=".*"/&gt;
+    &lt;property name="files" value="Example3.java"/&gt;
+    &lt;property name="checks" value="RegexpSinglelineCheck"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {
+
+  public void printExample() {
+    // filtered violation 'Line matches the illegal pattern 'example''
+    System.out.println(
+      "This is an example string."
+    );
+  }
+
+  public void noViolation() {
+    System.out.println(
+      "This string does not contain 'example'."
+    );
+  }
+
+}
 </code></pre></div>
         <p id="Example4-config">
           Suppress all checks for Maven-generated code:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
+  &lt;module name="NoWhitespaceAfter"/&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="files" value="[/\\]target[/\\]"/&gt;
-    &lt;property name="checks" value=".*"/&gt;
+    &lt;property name="files" value="Example4.java"/&gt;
+    &lt;property name="checks" value="NoWhitespaceAfter"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example4 {
+
+  // filtered violation 'WhiteSpace after ',''
+  public void exampleMethod(int a, int b) {
+    System.out.println(
+      "This is an example."
+    );
+  }
+
+  public void exampleMethod2() {
+    int x = 5 ; // filtered violation 'WhiteSpace before ';''
+  }
+
+  // No violation expected here
+  public void exampleMethod3() {
+    int x = 5;
+  }
+
+}
 </code></pre></div>
         <p id="Example5-config">
           Suppress all checks for archives, classes and other binary files:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
+  &lt;module name="MethodName"/&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="files" value=".+\.(?:jar|zip|war|class|tar|bin)$"/&gt;
-    &lt;property name="checks" value=".*"/&gt;
+    &lt;property name="files" value="Example5.java"/&gt;
+    &lt;property name="checks" value="MethodName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example5 {
+  // filtered violation 'Name 'example_Method' must match pattern'
+  public void example_Method() {
+    System.out.println("This method name is not in camelCase!");
+  }
+
+  // filtered violation Name 'Another_Method' must match pattern
+  public void Another_Method() {
+    System.out.println("Another non-camelCase method name");
+  }
+}
 </code></pre></div>
         <p id="Example6-config">
           Suppress all checks for image files:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
+  &lt;module name="ConstantName"/&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="files" value=".+\.(?:png|gif|jpg|jpeg)$"/&gt;
-    &lt;property name="checks" value=".*"/&gt;
+    &lt;property name="files" value="Example6.java"/&gt;
+    &lt;property name="checks" value="ConstantName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example6 {
+
+  // filtered violation 'Name 'myConstant' must match pattern'
+  private static final int myConstant = 42;
+
+}
 </code></pre></div>
         <p id="Example7-config">
           Suppress all checks for non-java files:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
+  &lt;module name="MemberName"/&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="files"
-      value=".+\.(?:txt|xml|csv|sh|thrift|html|sql|eot|ttf|woff|css|png)$"/&gt;
-    &lt;property name="checks" value=".*"/&gt;
+    &lt;property name="files" value="Example7.java"/&gt;
+    &lt;property name="checks" value="MemberName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example7 {
+
+  // filtered violation 'Name 'MyVariable' must match pattern'
+  private int MyVariable = 5;
+
+  // filtered violation 'Name 'PrintHello' must match pattern'
+  public void PrintHello() {
+    System.out.println("Hello");
+  }
+
+  public void printHello() {
+    System.out.println("Hello");
+  }
+}
 </code></pre></div>
         <p id="Example8-config">
           Suppress all checks in generated sources:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParameterNumber"&gt;
+      &lt;property name="max" value="5"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="files" value="com[\\/]mycompany[\\/]app[\\/]gen[\\/]"/&gt;
-    &lt;property name="checks" value=".*"/&gt;
+    &lt;property name="files" value="Example8.java"/&gt;
+    &lt;property name="checks" value="ParameterNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example8 {
+
+  // filtered violation 'more than 5 parameters'
+  public void exampleMethod(
+    int param1, int param2, int param3, int param4,
+    int param5
+  ) {
+    System.out.println("Too many parameters in this method");
+  }
+}
 </code></pre></div>
         <p id="Example9-config">
           Suppress FileLength check on integration tests in certain folder:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="FileLength"&gt;
+      &lt;property name="max" value="1"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="files" value="com[\\/]mycompany[\\/]app[\\/].*IT.java"/&gt;
+    &lt;property name="files" value="Example9.java"/&gt;
     &lt;property name="checks" value="FileLength"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p id="Example9-code">
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example9 {
+  //filtered violation 'File length is 19 lines (max allowed is 1)'
+}
 </code></pre></div>
         <p id="Example10-config">
           Suppress naming violations on variable named 'log' in all files:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
+  &lt;module name="MemberName"&gt;
+    &lt;property name="format" value="^[A-Z][a-zA-Z0-9]*$"/&gt;
+  &lt;/module&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
+    &lt;property name="files" value="Example10.java"/&gt;
     &lt;property name="message" value="Name 'log' must match pattern"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p id="Example10-code">
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example10 {
+
+  // filtered violation 'Name 'log' must match pattern'
+  private String log = "Some log message";
+
+}
 </code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">

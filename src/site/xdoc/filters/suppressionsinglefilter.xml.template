@@ -58,8 +58,15 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example1.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example1.java"/>
+          <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">
           Suppress check by <a href="https://checkstyle.org/config.html#Id">module id</a>
@@ -67,72 +74,135 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example2.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example2.java"/>
+          <param name="type" value="code"/>
         </macro>
         <p id="Example3-config">
           Suppress all checks for hidden files and folders:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example3.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example3.java"/>
+          <param name="type" value="code"/>
         </macro>
         <p id="Example4-config">
           Suppress all checks for Maven-generated code:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example4.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example4.java"/>
+          <param name="type" value="code"/>
         </macro>
         <p id="Example5-config">
           Suppress all checks for archives, classes and other binary files:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example5.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example5.java"/>
+          <param name="type" value="code"/>
         </macro>
         <p id="Example6-config">
           Suppress all checks for image files:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example6.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example6.java"/>
+          <param name="type" value="code"/>
         </macro>
         <p id="Example7-config">
           Suppress all checks for non-java files:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example7.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example7.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example7.java"/>
+          <param name="type" value="code"/>
         </macro>
         <p id="Example8-config">
           Suppress all checks in generated sources:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example8.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example8.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example8.java"/>
+          <param name="type" value="code"/>
         </macro>
         <p id="Example9-config">
           Suppress FileLength check on integration tests in certain folder:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example9.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example9.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example9-code">
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example9.java"/>
+          <param name="type" value="code"/>
         </macro>
         <p id="Example10-config">
           Suppress naming violations on variable named 'log' in all files:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example10.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example10.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example10-code">
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example10.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
