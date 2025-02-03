@@ -598,6 +598,43 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                 getPath("InputAbstractJavadocNonTightHtmlTags3.java"), expected);
     }
 
+    @Test
+    public void testLeaveJavadocToken() throws Exception {
+        final String[] expected = {
+            "11: " + getCheckMessage(JavadocLeaveTokenCheck.class,
+                    JavadocLeaveTokenCheck.MSG_KEY, 4),
+            "13: " + getCheckMessage(JavadocLeaveTokenCheck.class,
+                    JavadocLeaveTokenCheck.MSG_KEY, 4),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAbstractJavadocLeaveToken.java"), expected);
+    }
+
+    public static class JavadocLeaveTokenCheck extends AbstractJavadocCheck {
+
+        public static final String MSG_KEY = "tag.continuation.indent";
+        private static final int OFFSET = 4;
+
+        @Override
+        public int[] getDefaultJavadocTokens() {
+            return new int[] {JavadocTokenTypes.DESCRIPTION, JavadocTokenTypes.HTML_ELEMENT};
+        }
+
+        @Override
+        public void visitJavadocToken(DetailNode ast) {
+            if (ast.getType() == JavadocTokenTypes.DESCRIPTION) {
+                log(ast.getLineNumber(), MSG_KEY, OFFSET);
+            }
+        }
+
+        @Override
+        public void leaveJavadocToken(DetailNode ast) {
+            if (ast.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+                log(ast.getLineNumber(), MSG_KEY, OFFSET);
+            }
+        }
+    }
+
     public static class ParseJavadocOnlyCheck extends AbstractJavadocCheck {
 
         @Override
