@@ -65,14 +65,22 @@ public class FinalClassCheckTest
         final String[] expected = {
             "11:1: " + getCheckMessage(MSG_KEY, "InputFinalClass"),
             "19:4: " + getCheckMessage(MSG_KEY, "test4"),
-            "117:5: " + getCheckMessage(MSG_KEY, "someinnerClass"),
-            "124:5: " + getCheckMessage(MSG_KEY, "SomeClass"),
-            "130:5: " + getCheckMessage(MSG_KEY, "SomeClass"),
-            "151:1: " + getCheckMessage(MSG_KEY, "TestNewKeyword"),
-            "184:5: " + getCheckMessage(MSG_KEY, "NestedClass"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFinalClass.java"), expected);
+    }
+
+    @Test
+    public void testFinalClass2() throws Exception {
+        final String[] expected = {
+            "26:5: " + getCheckMessage(MSG_KEY, "someinnerClass"),
+            "33:5: " + getCheckMessage(MSG_KEY, "SomeClass"),
+            "39:5: " + getCheckMessage(MSG_KEY, "SomeClass"),
+            "60:1: " + getCheckMessage(MSG_KEY, "TestNewKeyword"),
+            "93:5: " + getCheckMessage(MSG_KEY, "NestedClass"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalClass2.java"), expected);
     }
 
     @Test
