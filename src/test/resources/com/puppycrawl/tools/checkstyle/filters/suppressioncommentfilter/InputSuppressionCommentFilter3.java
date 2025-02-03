@@ -72,7 +72,7 @@ class InputSuppressionCommentFilter3
     //CS_ON
 
     //CHECKSTYLE:OFF
-    private int T; // filtered violation
+    private int T; // filtered violation ''T' must match pattern'
     //CHECKSTYLE:ON
 
     //UNUSED OFF: aInt
@@ -93,14 +93,14 @@ class InputSuppressionCommentFilter3
                 while(true) {
                     try {
                         //CHECKSTYLE:OFF
-                    } catch(Exception e) { // filtered violation
+                    } catch(Exception e) { // filtered violation 'Catching 'Exception''
                        //CHECKSTYLE:ON
                     }
                 }
                 // code omitted
             }
             //CHECKSTYLE:OFF
-        } catch(Exception ex) { // filtered violation
+        } catch(Exception ex) { // filtered violation 'Catching 'Exception''
             //CHECKSTYLE:ON
         }
 

@@ -71,12 +71,12 @@ public class InputSuppressWithNearbyCommentFilterVariableCheckOnVariableNumberOf
 
     // violation below
     private int E3;    // ALLOW ConstantName UNTIL THIS LINE+2
-    private static final int e4 = 0; // filtered violation
-    private int E5; // filtered violation
+    private static final int e4 = 0; // filtered violation ''e4' must match pattern'
+    private int E5; // filtered violation ''E5' must match pattern'
     private static final int e6 = 0; // violation
-    private int E7; // filtered violation
+    private int E7; // filtered violation ''E7' must match pattern'
     private int E8;    /* ALLOW MemberName UNTIL THIS LINE-3 */
-    // filtered violation above
+    // filtered violation above  ''E8' must match pattern'
     private static final int e9 = 0; // violation
 
     // ALLOW Unused UNTIL THIS LINE+5

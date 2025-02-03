@@ -49,7 +49,8 @@ public class InputSuppressWithNearbyCommentFilterByCheck {
     // violation below
     private long ID = 1; // Suppression @cs-:
     /*
-        Suppression @cs-: ignore (reason)*/private long ID3 = 1; // filtered violation
+        Suppression @cs-: ignore (reason)*/private long ID3 = 1;
+        // filtered violation above ''ID3' must match pattern'
 
     // violation below
     private int DEF = 4; // @cs-: ignore (allow DEF)
