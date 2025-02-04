@@ -95,23 +95,23 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AnnotationOnSameLine&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationOnSameLine"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
 
-  // violation below, &quot;should be on the same line with its target.&quot;
-  @SuppressWarnings(&quot;deprecation&quot;)
+  // violation below, "should be on the same line with its target."
+  @SuppressWarnings("deprecation")
   public Example1() {
   }
 
-  @SuppressWarnings(&quot;unchecked&quot;) public void fun2() {  // OK
+  @SuppressWarnings("unchecked") public void fun2() {  // OK
   }
 
   public void fun1() {
@@ -119,43 +119,43 @@ class Example1 {
 
 }
 
-@SuppressWarnings(&quot;unchecked&quot;) class Test1 extends Example1 {  // OK
+@SuppressWarnings("unchecked") class Test1 extends Example1 {  // OK
 
   @Deprecated public Test1() {  // OK
   }
 
-  @Override // violation, &quot;should be on the same line with its target.&quot;
+  @Override // violation, "should be on the same line with its target."
   public void fun1() {
   }
 
-  @Before // violation, &quot;should be on the same line with its target.&quot;
+  @Before // violation, "should be on the same line with its target."
   @Override public void fun2() {  // OK
   }
 
-  // violation below, &quot;should be on the same line with its target.&quot;
-  @SuppressWarnings(&quot;deprecation&quot;)
+  // violation below, "should be on the same line with its target."
+  @SuppressWarnings("deprecation")
   @Before public void fun3() {
   }
 
 }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
           To configure the check to check for annotations applied on
           interfaces, variables and constructors:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AnnotationOnSameLine&quot;&gt;
-      &lt;property name=&quot;tokens&quot;
-                value=&quot;INTERFACE_DEF, VARIABLE_DEF, CTOR_DEF&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationOnSameLine"&gt;
+      &lt;property name="tokens"
+                value="INTERFACE_DEF, VARIABLE_DEF, CTOR_DEF"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 @Deprecated interface Foo {  // OK
 
   void doSomething();
@@ -164,8 +164,8 @@ class Example1 {
 
 class Example2 implements Foo {
 
-  // violation below, &quot;should be on the same line with its target.&quot;
-  @SuppressWarnings(&quot;deprecation&quot;)
+  // violation below, "should be on the same line with its target."
+  @SuppressWarnings("deprecation")
   public Example2() {
   }
 
@@ -173,12 +173,12 @@ class Example2 implements Foo {
   public void doSomething() {
   }
 
-  // violation below, &quot;should be on the same line with its target.&quot;
+  // violation below, "should be on the same line with its target."
   @Nullable
   String s;
 
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

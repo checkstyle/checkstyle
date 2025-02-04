@@ -18,15 +18,15 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;NoWhitespaceBeforeCaseDefaultColon&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NoWhitespaceBeforeCaseDefaultColon"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   void example() {
     switch(1) {
@@ -51,13 +51,13 @@ class Example1 {
     }
 
     switch(DayOfWeek.MONDAY) {
-      case MONDAY, FRIDAY, SUNDAY: System.out.println(&quot;  6&quot;); break;
+      case MONDAY, FRIDAY, SUNDAY: System.out.println("  6"); break;
       // violation below '':' is preceded with whitespace'
-      case TUESDAY               : System.out.println(&quot;  7&quot;); break;
+      case TUESDAY               : System.out.println("  7"); break;
     }
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

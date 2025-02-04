@@ -97,17 +97,17 @@
         <p id="Example1-config">
           Example of default Check configuration that do nothing.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;WriteTag&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="WriteTag"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
         Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * Some class
  */
@@ -123,24 +123,24 @@ public class Example1 {
   public void testMethod2() {}
 
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure Check to demand some special tag (for example <code>@since</code>)
           to be present on classes javadoc.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;WriteTag&quot;&gt;
-      &lt;property name=&quot;tag&quot; value=&quot;@since&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="WriteTag"&gt;
+      &lt;property name="tag" value="@since"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
         Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * Some class
  */
@@ -156,27 +156,27 @@ public class Example2 {
   public void testMethod2() {}
 
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           To configure Check to demand some special tag (for example <code>@since</code>)
           to be present on method javadocs also in addition to default tokens.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;WriteTag&quot;&gt;
-      &lt;property name=&quot;tokens&quot;
-                value=&quot;INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
-                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF&quot; /&gt;
-      &lt;property name=&quot;tag&quot; value=&quot;@since&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="WriteTag"&gt;
+      &lt;property name="tokens"
+                value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
+                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
+      &lt;property name="tag" value="@since"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">
         Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * Some class
  */
@@ -193,30 +193,30 @@ public class Example3 {
   public void testMethod2() {}
 
 }
-        </source>
+</code></pre></div>
         <p id="Example4-config">
           To configure Check to demand <code>@since</code> tag
           to be present with digital value on method javadocs also in addition to default tokens.
           Attention: it is required to set &quot;ignore&quot; in tagSeverity.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;WriteTag&quot;&gt;
-      &lt;property name=&quot;tokens&quot;
-                value=&quot;INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
-                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF&quot; /&gt;
-      &lt;property name=&quot;tag&quot; value=&quot;@since&quot;/&gt;
-      &lt;property name=&quot;tagFormat&quot; value=&quot;[1-9\.]&quot;/&gt;
-      &lt;property name=&quot;tagSeverity&quot; value=&quot;ignore&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="WriteTag"&gt;
+      &lt;property name="tokens"
+                value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
+                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
+      &lt;property name="tag" value="@since"/&gt;
+      &lt;property name="tagFormat" value="[1-9\.]"/&gt;
+      &lt;property name="tagSeverity" value="ignore"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">
         Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * Some class
  * @since 1.2
@@ -233,29 +233,29 @@ public class Example4 {
   public void testMethod2() {}
   // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
 }
-        </source>
+</code></pre></div>
         <p id="Example5-config">
           To configure Check to demand <code>@since</code> tag
           and in the same time print violation with specific severity on each presence of such tag.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;WriteTag&quot;&gt;
-      &lt;property name=&quot;tokens&quot;
-                value=&quot;INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
-                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF&quot; /&gt;
-      &lt;property name=&quot;tag&quot; value=&quot;@since&quot;/&gt;
-      &lt;property name=&quot;tagFormat&quot; value=&quot;[1-9\.]&quot;/&gt;
-      &lt;property name=&quot;tagSeverity&quot; value=&quot;error&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="WriteTag"&gt;
+      &lt;property name="tokens"
+                value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
+                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
+      &lt;property name="tag" value="@since"/&gt;
+      &lt;property name="tagFormat" value="[1-9\.]"/&gt;
+      &lt;property name="tagSeverity" value="error"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">
         Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation 3 lines below 'Javadoc tag @since=1.2'
 /**
  * Some class
@@ -273,7 +273,7 @@ public class Example5 {
   public void testMethod2() {}
   // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -54,17 +54,17 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;OneStatementPerLine&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OneStatementPerLine"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           The following examples will be flagged as a violation:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PipedOutputStream;
@@ -101,20 +101,20 @@ public class Example1 {
   }
 
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           An example of how to configure the check to treat resources
           in a try statement as statements to require them on their own line:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;OneStatementPerLine&quot;&gt;
-      &lt;property name=&quot;treatTryResourcesAsStatement&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OneStatementPerLine"&gt;
+      &lt;property name="treatTryResourcesAsStatement" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Note: resource declarations can contain variable definitions
           and variable references (from java9).
@@ -125,7 +125,7 @@ public class Example1 {
           there is no violation.
           The following examples will illustrate difference:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PipedOutputStream;
@@ -160,7 +160,7 @@ public class Example2 {
     }
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
