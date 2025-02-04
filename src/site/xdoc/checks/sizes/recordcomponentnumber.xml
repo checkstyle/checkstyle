@@ -50,17 +50,17 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RecordComponentNumber&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RecordComponentNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Java code example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1{
   public record MyRecord1(int x, int y, String str) {}
 
@@ -73,24 +73,24 @@ class Example1{
   private record MyRecord4(int x, int y,
                            String str, double d) {}
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check to allow 5 record components at all access modifier
           levels for record definitions:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RecordComponentNumber&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;5&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RecordComponentNumber"&gt;
+      &lt;property name="max" value="5"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Java code example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2{
   public record MyRecord1(int x, int y, String str) {}
 
@@ -103,29 +103,29 @@ class Example2{
   private record MyRecord4(int x, int y,
                            String str, double d) {}
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           To configure the check to allow 10 record components for a public record definition,
           but 3 for private record definitions:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RecordComponentNumber&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
-      &lt;property name=&quot;accessModifiers&quot; value=&quot;private&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RecordComponentNumber"&gt;
+      &lt;property name="max" value="3"/&gt;
+      &lt;property name="accessModifiers" value="private"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;RecordComponentNumber&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;5&quot;/&gt;
-      &lt;property name=&quot;accessModifiers&quot; value=&quot;public&quot;/&gt;
+    &lt;module name="RecordComponentNumber"&gt;
+      &lt;property name="max" value="5"/&gt;
+      &lt;property name="accessModifiers" value="public"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">
           Java code example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
   public record MyRecord1(int x, int y, String str) {}
 
@@ -138,7 +138,7 @@ class Example3 {
   private record MyRecord4(int x, int y, // violation, 4 components
                            String str, double d) {}
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
