@@ -4289,13 +4289,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocVariableCheck.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field excludeScope</message>
-    <lineContent>private Scope excludeScope;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocVariableCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field ignoreNamePattern</message>
     <lineContent>private Pattern ignoreNamePattern;</lineContent>
   </checkerFrameworkError>
