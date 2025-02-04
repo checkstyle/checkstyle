@@ -419,7 +419,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
      * null violation with {@link AbstractModuleTestSupport#verifyFilterWithInlineConfigParser}.
      */
     @Test
-    public void testAcceptNullViolation() {
+    public void testAcceptNullViolation() throws CheckstyleException {
         final SuppressWithNearbyTextFilter filter = new SuppressWithNearbyTextFilter();
         final AuditEvent auditEvent = new AuditEvent(this);
         assertWithMessage("Filter should accept audit event")
@@ -448,7 +448,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
             filter.accept(auditEvent);
             assertWithMessage(IllegalStateException.class.getSimpleName() + " is expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException | CheckstyleException ex) {
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
                 .isEqualTo("Cannot read source file: " + fileName);
@@ -474,7 +474,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
      * @throws IOException if an error occurs while formatting the path to the input file.
      */
     @Test
-    public void testFilterWithDirectory() throws IOException {
+    public void testFilterWithDirectory() throws IOException, CheckstyleException {
         final SuppressWithNearbyTextFilter filter = new SuppressWithNearbyTextFilter();
         final AuditEvent event = new AuditEvent(this, getPath(""), new Violation(1, 1,
                 "bundle", "key", null, SeverityLevel.ERROR, "moduleId", getClass(),
@@ -494,7 +494,8 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
      * @throws IOException if an error occurs while formatting the path to the input file.
      */
     @Test
-    public void testSuppressionsAreClearedEachRun() throws IOException {
+    public void testSuppressionsAreClearedEachRun()
+            throws IOException, CheckstyleException {
         final SuppressWithNearbyTextFilter filter = new SuppressWithNearbyTextFilter();
 
         final List<?> suppressions1 = getSuppressionsAfterExecution(filter,
@@ -519,7 +520,8 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
      * @throws IOException if an error occurs while formatting the path to the input file.
      */
     @Test
-    public void testCachedFileAbsolutePathHasChangedEachRun() throws IOException {
+    public void testCachedFileAbsolutePathHasChangedEachRun()
+            throws IOException, CheckstyleException {
         final SuppressWithNearbyTextFilter filter = new SuppressWithNearbyTextFilter();
 
         final String cachedFileAbsolutePath1 = getCachedFileAbsolutePathAfterExecution(filter,
@@ -538,7 +540,8 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
      * @return {@code Suppression} list.
      */
     private static List<?> getSuppressionsAfterExecution(SuppressWithNearbyTextFilter filter,
-                                                         String filename) {
+                                                         String filename)
+            throws CheckstyleException {
         final AuditEvent dummyEvent = buildDummyAuditEvent(filename);
         filter.accept(dummyEvent);
         return TestUtil.getInternalState(filter, "suppressions");
@@ -551,8 +554,9 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
      * @return {@code cachedFileAbsolutePath} value.
      */
     private static String getCachedFileAbsolutePathAfterExecution(SuppressWithNearbyTextFilter
-                                                                           filter,
-                                                                  String filename) {
+                                                                          filter,
+                                                                  String filename)
+            throws CheckstyleException {
         final AuditEvent dummyEvent = buildDummyAuditEvent(filename);
         filter.accept(dummyEvent);
         return TestUtil.getInternalState(filter, "cachedFileAbsolutePath");

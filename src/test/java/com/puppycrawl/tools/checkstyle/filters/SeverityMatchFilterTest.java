@@ -34,7 +34,7 @@ public class SeverityMatchFilterTest {
     private final SeverityMatchFilter filter = new SeverityMatchFilter();
 
     @Test
-    public void testDefault() {
+    public void testDefault() throws CheckstyleException {
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         assertWithMessage("no message")
             .that(filter.accept(ev))
@@ -57,7 +57,7 @@ public class SeverityMatchFilterTest {
     }
 
     @Test
-    public void testSeverity() {
+    public void testSeverity() throws CheckstyleException {
         filter.setSeverity(SeverityLevel.INFO);
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         // event with no message has severity level INFO
@@ -82,7 +82,7 @@ public class SeverityMatchFilterTest {
     }
 
     @Test
-    public void testAcceptOnMatch() {
+    public void testAcceptOnMatch() throws CheckstyleException {
         filter.setSeverity(SeverityLevel.INFO);
         filter.setAcceptOnMatch(false);
         final AuditEvent ev = new AuditEvent(this, "Test.java");

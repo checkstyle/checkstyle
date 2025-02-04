@@ -175,7 +175,7 @@ public class SuppressionFilter
     }
 
     @Override
-    public boolean accept(AuditEvent event) {
+    public boolean accept(AuditEvent event) throws CheckstyleException {
         return filters.accept(event);
     }
 

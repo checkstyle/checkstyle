@@ -80,7 +80,9 @@ public interface FileSetCheck
      * Called when all the files have been processed. This is the time to
      * perform any checks that need to be done across a set of files. In this
      * method, the implementation is responsible for the logging of violations.
+     *
+     * @throws CheckstyleException if there is an error.
      */
-    void finishProcessing();
+    void finishProcessing() throws CheckstyleException;
 
 }

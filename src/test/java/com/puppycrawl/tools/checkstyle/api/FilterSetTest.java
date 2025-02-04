@@ -77,7 +77,7 @@ public class FilterSetTest {
     }
 
     @Test
-    public void testAccept() {
+    public void testAccept() throws CheckstyleException {
         final FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new DummyFilter(true));
         assertWithMessage("invalid accept response")
@@ -86,7 +86,7 @@ public class FilterSetTest {
     }
 
     @Test
-    public void testNotAccept() {
+    public void testNotAccept() throws CheckstyleException {
         final FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new DummyFilter(false));
         assertWithMessage("invalid accept response")
@@ -95,7 +95,7 @@ public class FilterSetTest {
     }
 
     @Test
-    public void testNotAcceptEvenIfOneAccepts() {
+    public void testNotAcceptEvenIfOneAccepts() throws CheckstyleException {
         final FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new DummyFilter(true));
         filterSet.addFilter(new DummyFilter(false));

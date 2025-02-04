@@ -67,7 +67,7 @@ public class FilterSet
     }
 
     @Override
-    public boolean accept(AuditEvent event) {
+    public boolean accept(AuditEvent event) throws CheckstyleException {
         boolean result = true;
         for (Filter filter : filters) {
             if (!filter.accept(event)) {
