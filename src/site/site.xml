@@ -48,6 +48,17 @@
               src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script type="text/javascript" src="$relativePath/js/anchors.js"></script>
         <script type="text/javascript" src="$relativePath/js/google-analytics.js"></script>
+        <script type="text/javascript"
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script type="text/javascript"
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js">
+              </script>
+        <script type="text/javascript"
+              src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-xml.min.js">
+              </script>
+        <script type="text/javascript" src="$relativePath/js/syntax-highlighting.js"></script>
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
         <link rel="icon" href="$relativePath/images/favicon.png" type="image/x-icon" />
         <link rel="shortcut icon" href="$relativePath/images/favicon.ico" type="image/ico" />
       ]]>
