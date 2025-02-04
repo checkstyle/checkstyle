@@ -45,15 +45,15 @@
         <p id="Example1-config">
           To configure the check to accept 1 outer type per file:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;OuterTypeNumber&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OuterTypeNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation 2 lines above 'Outer types defined is 3 (max allowed is 1)'
 
 public class Example1 {
@@ -65,22 +65,22 @@ class Example {
 
 enum outer {
 }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
           To configure the check to accept 2 outer types per file:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;OuterTypeNumber&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OuterTypeNumber"&gt;
+      &lt;property name="max" value="3"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
 }
 
@@ -90,7 +90,7 @@ class Examples {
 
 enum outer1 {
 }
-        </source>
+</code></pre></div>
 
       </subsection>
 

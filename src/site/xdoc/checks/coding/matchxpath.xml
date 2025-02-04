@@ -107,21 +107,21 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
         <p id="Example1-config">
           The following example demonstrates validation of methods order, so that public methods
           should come before the private ones:</p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MatchXpath&quot;&gt;
-      &lt;property name=&quot;query&quot;
-           value=&quot;//METHOD_DEF[.//LITERAL_PRIVATE
-                  and following-sibling::METHOD_DEF[.//LITERAL_PUBLIC]]&quot;/&gt;
-      &lt;message key=&quot;matchxpath.match&quot;
-           value=&quot;Private methods must appear after public methods&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MatchXpath"&gt;
+      &lt;property name="query"
+           value="//METHOD_DEF[.//LITERAL_PRIVATE
+                  and following-sibling::METHOD_DEF[.//LITERAL_PUBLIC]]"/&gt;
+      &lt;message key="matchxpath.match"
+           value="Private methods must appear after public methods"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   public void method1() { }
   private void method2() { } // violation
@@ -130,76 +130,76 @@ public class Example1 {
   public void method5() { }
   private void method6() { }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">To violate if there are any parametrized constructors</p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MatchXpath&quot;&gt;
-      &lt;property name=&quot;query&quot;
-           value=&quot;//CTOR_DEF[count(./PARAMETERS/*) &gt; 0]&quot;/&gt;
-      &lt;message key=&quot;matchxpath.match&quot;
-           value=&quot;Parameterized constructors are not allowed&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MatchXpath"&gt;
+      &lt;property name="query"
+           value="//CTOR_DEF[count(./PARAMETERS/*) &gt; 0]"/&gt;
+      &lt;message key="matchxpath.match"
+           value="Parameterized constructors are not allowed"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   public Example2(Object c) { } // violation
   public Example2(int a, HashMap&lt;String, Integer&gt; b) { } // violation
   public Example2() { }
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">To violate if method name is 'test' or 'foo'</p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MatchXpath&quot;&gt;
-      &lt;property name=&quot;query&quot;
-           value=&quot;//METHOD_DEF[./IDENT[@text='test' or @text='foo']]&quot;/&gt;
-      &lt;message key=&quot;matchxpath.match&quot;
-           value=&quot;Method name should not be 'test' or 'foo'&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MatchXpath"&gt;
+      &lt;property name="query"
+           value="//METHOD_DEF[./IDENT[@text='test' or @text='foo']]"/&gt;
+      &lt;message key="matchxpath.match"
+           value="Method name should not be 'test' or 'foo'"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
   public void test() {} // violation
   public void getName() {}
   public void foo() {} // violation
   public void sayHello() {}
 }
-        </source>
+</code></pre></div>
         <p id="Example4-config">
           To violate if new instance creation was done without <b>var</b> type
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MatchXpath&quot;&gt;
-      &lt;property name=&quot;query&quot;
-           value=&quot;//VARIABLE_DEF[./ASSIGN/EXPR/LITERAL_NEW
-                  and not(./TYPE/IDENT[@text='var'])]&quot;/&gt;
-      &lt;message key=&quot;matchxpath.match&quot;
-           value=&quot;New instances should be created via 'var' keyword
-                  to avoid duplication of type reference in statement&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MatchXpath"&gt;
+      &lt;property name="query"
+           value="//VARIABLE_DEF[./ASSIGN/EXPR/LITERAL_NEW
+                  and not(./TYPE/IDENT[@text='var'])]"/&gt;
+      &lt;message key="matchxpath.match"
+           value="New instances should be created via 'var' keyword
+                  to avoid duplication of type reference in statement"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
   public void foo() {
     Object a = new Object(); // violation
     var b = new Object();
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

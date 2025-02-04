@@ -47,33 +47,33 @@
 
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">To use default module configuration:</p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-  &lt;module name=&quot;MemberName&quot;/&gt;
-  &lt;module name=&quot;ConstantName&quot;/&gt;
-  &lt;module name=&quot;ParameterNumber&quot;&gt;
-    &lt;property name=&quot;id&quot; value=&quot;ParamNumberId&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+  &lt;module name="MemberName"/&gt;
+  &lt;module name="ConstantName"/&gt;
+  &lt;module name="ParameterNumber"&gt;
+    &lt;property name="id" value="ParamNumberId"/&gt;
   &lt;/module&gt;
   &lt;module name=
-    &quot;NoWhitespaceAfter&quot;/&gt;
-  &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+    "NoWhitespaceAfter"/&gt;
+  &lt;module name="SuppressWarningsHolder"/&gt;
   &lt;/module&gt;
-  &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+  &lt;module name="SuppressWarningsFilter"/&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   private int K; // violation, 'Name 'K' must match pattern'
-  @SuppressWarnings({&quot;membername&quot;})
+  @SuppressWarnings({"membername"})
   private int J; // violation suppressed
 
   private static final int i = 0; // violation, 'Name 'i' must match pattern'
-  @SuppressWarnings(&quot;checkstyle:constantname&quot;)
+  @SuppressWarnings("checkstyle:constantname")
   private static final int m = 0; // violation suppressed
 
-  @SuppressWarnings(&quot;ParamNumberId&quot;)
+  @SuppressWarnings("ParamNumberId")
     public void needsLotsOfParameters1 (int a, // violation suppressed
      int b, int c, int d, int e, int f, int g, int h) {
      // ...
@@ -81,10 +81,10 @@ class Example1 {
 
   private int [] ARR; // violation ''int' is followed by whitespace'
   // violation above, 'Name 'ARR' must match pattern'
-  @SuppressWarnings(&quot;all&quot;)
+  @SuppressWarnings("all")
   private int [] ARRAY; // violations suppressed
 }
-        </source>
+</code></pre></div>
         <p>The general rule is that the argument of the <code>@SuppressWarnings</code> will be
           matched against class name of the check in any letter case. Adding <code>check</code>
           suffix is also accepted.
@@ -94,20 +94,20 @@ class Example1 {
           code will work if there was provided a <code>ParameterNumberCheck=paramnum</code> in
           the <code>aliasList</code>:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-  &lt;module name=&quot;ParameterNumber&quot;/&gt;
-  &lt;module name=&quot;SuppressWarningsHolder&quot;&gt;
-    &lt;property name=&quot;aliasList&quot; value=
-      &quot;com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+  &lt;module name="ParameterNumber"/&gt;
+  &lt;module name="SuppressWarningsHolder"&gt;
+    &lt;property name="aliasList" value=
+      "com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum"/&gt;
   &lt;/module&gt;
   &lt;/module&gt;
-  &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+  &lt;module name="SuppressWarningsFilter"/&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   // violation below, 'More than 7 parameters (found 8)'
   public void needsLotsOfParameters (int a,
@@ -115,14 +115,14 @@ class Example2 {
     // ...
   }
 
-  @SuppressWarnings(&quot;paramnum&quot;)
+  @SuppressWarnings("paramnum")
   public void needsLotsOfParameters1 (int a, // violation suppressed
     int b, int c, int d, int e, int f, int g, int h) {
     // ...
   }
 
 }
-        </source>
+</code></pre></div>
 
       </subsection>
 

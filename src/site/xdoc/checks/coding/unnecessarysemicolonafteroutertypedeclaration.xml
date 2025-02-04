@@ -69,17 +69,17 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;UnnecessarySemicolonAfterOuterTypeDeclaration&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnnecessarySemicolonAfterOuterTypeDeclaration"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   class Nested {
 
@@ -98,24 +98,24 @@ enum C {
 @interface D {
 
 }; // violation 'Unnecessary semicolon'
-        </source>
+</code></pre></div>
         <p id="Example2-config">
            To configure the check to detect unnecessary semicolon only after top level class
            definitions:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;UnnecessarySemicolonAfterOuterTypeDeclaration&quot;&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnnecessarySemicolonAfterOuterTypeDeclaration"&gt;
+      &lt;property name="tokens" value="CLASS_DEF"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   class Nested {
 
@@ -134,7 +134,7 @@ enum U {
 @interface V {
 
 };
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage"

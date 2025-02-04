@@ -106,15 +106,15 @@
 
       <subsection name="Examples" id="Examples">
         <p id="Example1-config"> To configure the check: </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RightCurly&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RightCurly"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
 
   public void test() {
@@ -163,25 +163,25 @@ public class Example1 {
 
   public void testSingleLine() { bar(); } // OK, because singleline is allowed
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check with policy <code>alone</code> for <code> else</code> and
           <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
           METHOD_DEF</a>
           tokens:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RightCurly&quot;&gt;
-      &lt;property name=&quot;option&quot; value=&quot;alone&quot;/&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_ELSE, METHOD_DEF&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RightCurly"&gt;
+      &lt;property name="option" value="alone"/&gt;
+      &lt;property name="tokens" value="LITERAL_ELSE, METHOD_DEF"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
 
   public void test() {
@@ -210,32 +210,32 @@ public class Example2 {
   private void bar() {
   }
 
-  public void violate() { Object bar = &quot;bar&quot;; }
+  public void violate() { Object bar = "bar"; }
   // violation above, 'should be alone on a line.'
 
   public void ok() {
     bar();
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           To configure the check with policy <code>alone</code> for
           <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">
           Switch</a>
           Statements and Switch Cases:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RightCurly&quot;&gt;
-      &lt;property name=&quot;option&quot; value=&quot;alone&quot;/&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH, LITERAL_CASE&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RightCurly"&gt;
+      &lt;property name="option" value="alone"/&gt;
+      &lt;property name="tokens" value="LITERAL_SWITCH, LITERAL_CASE"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
 
   public void method0() {
@@ -263,7 +263,7 @@ class Example3 {
     // violation above, 'should be alone on a line.'
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example4-config">
           To configure the check with policy <code>alone_or_singleline</code> for <code> if</code>
           and
@@ -271,18 +271,18 @@ class Example3 {
           METHOD_DEF</a>
           tokens:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RightCurly&quot;&gt;
-      &lt;property name=&quot;option&quot; value=&quot;alone_or_singleline&quot;/&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, METHOD_DEF&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RightCurly"&gt;
+      &lt;property name="option" value="alone_or_singleline"/&gt;
+      &lt;property name="tokens" value="LITERAL_IF, METHOD_DEF"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
 
   public void test() {
@@ -314,25 +314,25 @@ public class Example4 {
 
   public void violate() { bar(); } // OK , because singleline
 }
-        </source>
+</code></pre></div>
         <p id="Example5-config">
           To configure the check with policy <code>alone_or_singleline</code> for
           <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">
           Switch</a>
           Statements and Switch Cases:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RightCurly&quot;&gt;
-      &lt;property name=&quot;option&quot; value=&quot;alone_or_singleline&quot;/&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH, LITERAL_CASE&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RightCurly"&gt;
+      &lt;property name="option" value="alone_or_singleline"/&gt;
+      &lt;property name="tokens" value="LITERAL_SWITCH, LITERAL_CASE"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
 
   public void method0() {
@@ -366,7 +366,7 @@ class Example5 {
     // violation above, 'should be alone on a line.'
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
