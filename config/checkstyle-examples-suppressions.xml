@@ -53,6 +53,10 @@
   <!-- Check applies to resources-noncompilable files.  -->
   <suppress id="presenceOfCompilationComment" files="resources[\\/].*"/>
 
+  <!-- Suppress for a file that is part of a non-compilable example fileset -->
+  <suppress id="presenceOfCompilationComment"
+            files="beforeexecutionexclusionfilefilter[\\/]Example2.java"/>
+
   <!-- Without showing symbol, user can get confused which one we are referring to -->
   <suppress id="discouragedRegexpInViolationMessage"
     files="operatorwrap[\\/]Example1.java"/>

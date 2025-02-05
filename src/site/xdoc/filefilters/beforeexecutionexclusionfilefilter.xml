@@ -51,38 +51,124 @@
       </subsection>
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">
+          With the default configuration, no files are matched against the
+          <code>fileNamePattern</code>, so the filter does not affect the audit.
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+
+  &lt;module name=&quot;RegexpOnFilename&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+    &lt;property name=&quot;fileNamePattern&quot; value=&quot;^[A-Z][a-zA-Z0-9_]*\.java$&quot;/&gt;
+    &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
+    &lt;message key=&quot;regexp.filename.mismatch&quot;
+      value=&quot;File name must start with an uppercase and match ''{1}''.&quot;/&gt;
+  &lt;/module&gt;
+
+  &lt;module name=&quot;BeforeExecutionExclusionFileFilter&quot;/&gt;
+
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+.../Example1.java
+.../Example3.java
+.../Example4.java
+// violation below 'File name must start with an uppercase and match '^[A-Z][a-zA-Z0-9_]*\.java$.'
+.../test/generated_TestCase1.java
+// violation below 'File name must start with an uppercase and match '^[A-Z][a-zA-Z0-9_]*\.java$.'
+.../test/generated_StubBankingRemote.java
+.../test/MockPaymentRemote.java
+        </source>
+        <p id="Example2-config">
           To configure the filter to exclude all 'module-info.java' files:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
+
+  &lt;module name=&quot;RegexpOnFilename&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+    &lt;property name=&quot;fileNamePattern&quot; value=&quot;^[A-Z][a-zA-Z0-9_]*\.java$&quot;/&gt;
+    &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
+    &lt;message key=&quot;regexp.filename.mismatch&quot;
+      value=&quot;File name must start with an uppercase and match ''{1}''.&quot;/&gt;
+  &lt;/module&gt;
+
   &lt;module name=&quot;BeforeExecutionExclusionFileFilter&quot;&gt;
     &lt;property name=&quot;fileNamePattern&quot; value=&quot;module\-info\.java$&quot;/&gt;
   &lt;/module&gt;
+
 &lt;/module&gt;
         </source>
-        <p id="Example2-config">
+        <p id="Example2-code">Example:</p>
+        <source>
+.../Example2.java
+.../module-info.java // OK, as the file is excluded from the audit.
+        </source>
+        <p id="Example3-config">
           To configure the filter to run only on required files for example that ends with &quot;Remote&quot;
           or end with &quot;Client&quot; in names or named as &quot;Remote.java&quot; or &quot;Client.java&quot;
           use <a href="https://www.regular-expressions.info/lookaround.html">negative lookahead</a>:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
+
+  &lt;module name=&quot;RegexpOnFilename&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+    &lt;property name=&quot;fileNamePattern&quot; value=&quot;^[A-Z][a-zA-Z0-9_]*\.java$&quot;/&gt;
+    &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
+    &lt;message key=&quot;regexp.filename.mismatch&quot;
+      value=&quot;File name must start with an uppercase and match ''{1}''.&quot;/&gt;
+  &lt;/module&gt;
+
   &lt;module name=&quot;BeforeExecutionExclusionFileFilter&quot;&gt;
     &lt;property name=&quot;fileNamePattern&quot;
       value=&quot;^(?!.*(Remote\.java|Client\.java|[\\/]Remote\.java|[\\/]Client\.java)).*$&quot;/&gt;
   &lt;/module&gt;
+
 &lt;/module&gt;
         </source>
-        <p id="Example3-config">
+        <p id="Example3-code">Example:</p>
+        <source>
+.../Example1.java
+.../Example3.java
+.../Example4.java
+// OK below as only the files ending with 'Remote.java' or 'Client.java' are audited.
+.../test/generated_TestCase1.java
+// violation below 'File name must start with an uppercase and match '^[A-Z][a-zA-Z0-9_]*\.java$.'
+.../test/generated_StubBankingRemote.java
+.../test/MockPaymentRemote.java
+        </source>
+        <p id="Example4-config">
           To configure the filter to exclude all Test folder files:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
+
+  &lt;module name=&quot;RegexpOnFilename&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+    &lt;property name=&quot;fileNamePattern&quot; value=&quot;^[A-Z][a-zA-Z0-9_]*\.java$&quot;/&gt;
+    &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
+    &lt;message key=&quot;regexp.filename.mismatch&quot;
+      value=&quot;File name must start with an uppercase and match ''{1}''.&quot;/&gt;
+  &lt;/module&gt;
+
   &lt;module name=&quot;BeforeExecutionExclusionFileFilter&quot;&gt;
     &lt;property name=&quot;fileNamePattern&quot;
-      value=&quot;.*[\\/]src[\\/]test[\\/].*$&quot;/&gt;
+      value=&quot;.*[\\/]test[\\/].*$&quot;/&gt;
   &lt;/module&gt;
+
 &lt;/module&gt;
+        </source>
+        <p id="Example4-code">Example:</p>
+        <source>
+.../Example1.java
+.../Example3.java
+.../Example4.java
+// OK in the test folder as the whole 'test' folder is excluded from the audit.
+.../test/generated_TestCase1.java
+.../test/generated_StubBankingRemote.java
+.../test/MockPaymentRemote.java
         </source>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">

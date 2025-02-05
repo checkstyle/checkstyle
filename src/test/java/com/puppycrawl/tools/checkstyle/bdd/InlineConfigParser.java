@@ -533,6 +533,8 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck");
         moduleMappings.put("RegexpSingleline",
                 "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck");
+        moduleMappings.put("RegexpOnFilename",
+                "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck");
         moduleMappings.put("MagicNumber",
                 "com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck");
         moduleMappings.put("ClassDataAbstractionCoupling",
