@@ -905,36 +905,21 @@ public final class InlineConfigParser {
      * @param propertyDefaultValue the specified default value in the file.
      * @param actualDefault the actual default value
      * @param fieldType the data type of default value.
-     * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
-     *      parser requires giant if/else
      */
-    // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
     private static boolean isDefaultValue(final String propertyDefaultValue,
-        final String actualDefault,
-        final Class<?> fieldType) {
-        boolean result;
+                                          final String actualDefault,
+                                          final Class<?> fieldType) {
+        final boolean result;
 
-        if (NULL_STRING.equals(propertyDefaultValue)) {
-            result = NULL_STRING.equals(actualDefault);
-        }
-        else if (NULL_STRING.equals(actualDefault)) {
+        if (NULL_STRING.equals(actualDefault)) {
             result = NULL_STRING.equals(propertyDefaultValue)
                 || propertyDefaultValue.isEmpty()
                 || "null".equals(propertyDefaultValue);
         }
-        else if (Number.class.isAssignableFrom(fieldType)
-            || fieldType.equals(int.class)
-            || fieldType.equals(double.class)
-            || fieldType.equals(long.class)
-            || fieldType.equals(float.class)) {
-            try {
-                final BigDecimal specified = new BigDecimal(propertyDefaultValue);
-                final BigDecimal actual = new BigDecimal(actualDefault);
-                result = specified.compareTo(actual) == 0;
-            }
-            catch (NumberFormatException ex) {
-                result = false;
-            }
+        else if (isNumericType(fieldType)) {
+            final BigDecimal specified = new BigDecimal(propertyDefaultValue);
+            final BigDecimal actual = new BigDecimal(actualDefault);
+            result = specified.compareTo(actual) == 0;
         }
         else if (fieldType.isArray()
             || Collection.class.isAssignableFrom(fieldType)
@@ -1295,4 +1280,13 @@ public final class InlineConfigParser {
         properties.load(new StringReader(propertyContent));
         return properties;
     }
+
+    private static boolean isNumericType(Class<?> fieldType) {
+        return Number.class.isAssignableFrom(fieldType)
+                || fieldType.equals(int.class)
+                || fieldType.equals(double.class)
+                || fieldType.equals(long.class)
+                || fieldType.equals(float.class);
+    }
+
 }
