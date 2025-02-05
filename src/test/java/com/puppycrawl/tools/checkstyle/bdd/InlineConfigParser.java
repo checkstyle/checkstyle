@@ -121,6 +121,10 @@ public final class InlineConfigParser {
     private static final Pattern FILTERED_VIOLATION_BELOW_PATTERN = Pattern
             .compile(".*//\\s*filtered violation below\\s*(?:['\"](.*)['\"])?$");
 
+    /** A pattern to find the string: "// X filtered violations". */
+    private static final Pattern MULTIPLE_FILTERED_VIOLATIONS_PATTERN = Pattern
+            .compile(".*//\\s*(\\d+) filtered violations$");
+
     /** A pattern to find the string: "// violation X lines above". */
     private static final Pattern VIOLATION_SOME_LINES_ABOVE_PATTERN = Pattern
             .compile(".*//\\s*violation (\\d+) lines above\\s*(?:['\"](.*)['\"])?$");
@@ -901,6 +905,9 @@ public final class InlineConfigParser {
                 FILTERED_VIOLATION_ABOVE_PATTERN.matcher(line);
         final Matcher violationBelowMatcher =
                 FILTERED_VIOLATION_BELOW_PATTERN.matcher(line);
+        final Matcher multipleViolationsMatcher =
+                MULTIPLE_FILTERED_VIOLATIONS_PATTERN.matcher(line);
+
         if (violationMatcher.matches()) {
             final String violationMessage = violationMatcher.group(1);
             checkWhetherViolationSpecified(specifyViolationMessage, violationMessage, lineNo);
@@ -919,6 +926,13 @@ public final class InlineConfigParser {
             checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
                     violationLineNum);
             inputConfigBuilder.addFilteredViolation(violationLineNum, violationMessage);
+        }
+        else if (multipleViolationsMatcher.matches()) {
+            Collections
+                    .nCopies(Integer.parseInt(multipleViolationsMatcher.group(1)), lineNo)
+                    .forEach(actualLineNumber -> {
+                        inputConfigBuilder.addFilteredViolation(actualLineNumber, null);
+                    });
         }
     }
 
