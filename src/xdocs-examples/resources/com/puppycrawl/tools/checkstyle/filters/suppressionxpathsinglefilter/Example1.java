@@ -1,17 +1,22 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
+    <module name="MethodName"/>
     <module name="SuppressionXpathSingleFilter">
       <property name="files" value="File(One|Two)\.java"/>
       <property name="checks" value="MethodName"/>
-      <property name="query" value="(//CLASS_DEF[@text='FileOne']/OBJBLOCK/
-                METHOD_DEF[@text='MyMethod']/IDENT)|
-                (//CLASS_DEF[@text='FileTwo']/OBJBLOCK/METHOD_DEF[@text='MyMethod']/IDENT)"/>
+      <property name="query" value="(//CLASS_DEF[./IDENT[@text='FileOne']]
+                /OBJBLOCK/METHOD_DEF/IDENT[@text='MyMethod'])|
+                (//CLASS_DEF[./IDENT[@text='FileTwo']]/OBJBLOCK
+                /METHOD_DEF/IDENT[@text='MyMethod'])"/>
     </module>
   </module>
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
+
+/*
 // xdoc section -- start
 public class FileOne {
   public void MyMethod() {} // OK
@@ -26,3 +31,6 @@ public class FileThree {
                             // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
 // xdoc section -- end
+*/
+
+public class Example1 {}

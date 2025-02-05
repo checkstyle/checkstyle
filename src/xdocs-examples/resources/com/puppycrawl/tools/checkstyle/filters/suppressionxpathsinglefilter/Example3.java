@@ -13,12 +13,18 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
+
+/*
 // xdoc section -- start
 public class FileOne {
   public void MyMethod() {} // OK
 }
 public class FileTwo {
   public void MyMethod() {} // violation,  name 'MyMethod' must
-                            //match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+                            // match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
 // xdoc section -- end
+*/
+
+public class Example3 {}
