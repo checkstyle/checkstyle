@@ -1,6 +1,7 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
+    <module name="MethodName"/>
     <module name="SuppressionXpathSingleFilter">
       <property name="checks" value="MethodName"/>
       <property name="message" value="MyMethod[0-9]"/>
@@ -9,8 +10,10 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
+
 // xdoc section -- start
-public class FileOne {
+public class Example2 {
   public void MyMethod1() {} // OK
   public void MyMethod2() {} // OK
   public void MyMethodA() {} // violation, name 'MyMethodA' must

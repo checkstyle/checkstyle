@@ -1,17 +1,20 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
+    <module name="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
     <module name="SuppressionXpathSingleFilter">
       <property name="checks" value="LeftCurly"/>
-      <property name="query" value="//CLASS_DEF[@text='TestClass']/OBJBLOCK
-            /METHOD_DEF[@text='testMethod1']/SLIST"/>
+      <property name="query" value="//CLASS_DEF[./IDENT[@text='Example10']]/OBJBLOCK
+            /METHOD_DEF[./IDENT[@text='testMethod1']]/SLIST"/>
     </module>
   </module>
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
+
 // xdoc section -- start
-public class TestClass {
+public class Example10 {
   public void testMethod1()
   { // OK
   }
