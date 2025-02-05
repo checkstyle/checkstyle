@@ -362,6 +362,24 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter");
         MODULE_MAPPINGS.put("SuppressWarningsFilter",
                 "com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter");
+        MODULE_MAPPINGS.put("LeftCurly",
+                "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck");
+        MODULE_MAPPINGS.put("RequireThis",
+                "com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck");
+        MODULE_MAPPINGS.put("IllegalThrows",
+                "com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck");
+        MODULE_MAPPINGS.put("LocalFinalVariableName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck");
+        MODULE_MAPPINGS.put("PackageName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck");
+        MODULE_MAPPINGS.put("RedundantModifier",
+                "com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck");
+        MODULE_MAPPINGS.put("AbstractClassName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck");
+        MODULE_MAPPINGS.put("JavadocMethod",
+                "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck");
+        MODULE_MAPPINGS.put("IllegalIdentifierName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck");
     }
 
     /** Stop instances being created. **/
