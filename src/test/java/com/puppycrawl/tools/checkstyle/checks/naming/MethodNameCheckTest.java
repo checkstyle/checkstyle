@@ -47,16 +47,34 @@ public class MethodNameCheckTest
     }
 
     @Test
-    public void testDefault()
+    public void testDefaultOne()
+            throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputMethodNameSimpleOne.java"), expected);
+    }
+
+    @Test
+    public void testDefaultTwo()
             throws Exception {
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "144:10: " + getCheckMessage(MSG_INVALID_PATTERN, "ALL_UPPERCASE_METHOD", pattern),
+            "61:10: " + getCheckMessage(MSG_INVALID_PATTERN, "ALL_UPPERCASE_METHOD", pattern),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMethodNameSimple.java"), expected);
+                getPath("InputMethodNameSimpleTwo.java"), expected);
+    }
+
+    @Test
+    public void testDefaultThree()
+            throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputMethodNameSimpleThree.java"), expected);
     }
 
     @Test
