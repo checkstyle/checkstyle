@@ -25,7 +25,8 @@ tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 */
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 
-public class InputSuppressionXpathSingleFilterDecideByMessage { // filtered violation
+public class InputSuppressionXpathSingleFilterDecideByMessage {
+    // filtered violation above 'Missing a Javadoc comment.'
     private int countTokens() {
         double pi = 3.14; // violation
         return 123; // violation
