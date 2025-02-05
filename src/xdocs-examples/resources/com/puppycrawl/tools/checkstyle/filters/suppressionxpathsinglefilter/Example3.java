@@ -3,22 +3,20 @@
   <module name="TreeWalker">
     <module name="MethodName">
       <property name="id" value="MethodName1"/>
-      <property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/>
     </module>
     <module name="SuppressionXpathSingleFilter">
-      <property name="files" value="FileOne.java"/>
+      <property name="files" value="Example3\.java"/>
       <property name="id" value="MethodName1"/>
     </module>
   </module>
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
+
 // xdoc section -- start
-public class FileOne {
-  public void MyMethod() {} // OK
-}
-public class FileTwo {
-  public void MyMethod() {} // violation,  name 'MyMethod' must
-                            //match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+public class Example3 {
+  // filtered violation below 'Name 'MyMethod' must match pattern'
+  public void MyMethod() {}
 }
 // xdoc section -- end
