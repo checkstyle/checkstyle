@@ -98,7 +98,7 @@
         </p>
         <p>
           Target file for validation <code>Test.java</code>:
-          <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+          <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Test {
   int i = 0;
 }
@@ -107,7 +107,7 @@ class Test {
         <p>
           Example of execution for <code>checkstyle.xml</code>. Violation from Check of
           <code>common.xml</code> is expected, validation of field name is done by main code rules:
-          <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+          <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 $ java -Dcheckstyle.enableExternalDtdLoad=true -classpath checkstyle-XX.X-all.jar \
         com.puppycrawl.tools.checkstyle.Main -c checkstyle.xml Test.java
 Starting audit...
@@ -120,7 +120,7 @@ Checkstyle ends with 2 errors.
         <p>
           Example of execution for <code>checkstyle-test.xml</code>. Violation from Check of
           <code>common.xml</code> is expected, validation of field name is done by test code rules:
-          <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+          <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 $ java -Dcheckstyle.enableExternalDtdLoad=true -classpath checkstyle-XX.X-all.jar \
           com.puppycrawl.tools.checkstyle.Main -c checkstyle-test.xml Test.java
 Starting audit...
