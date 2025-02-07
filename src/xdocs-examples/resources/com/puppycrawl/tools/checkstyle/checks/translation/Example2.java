@@ -7,12 +7,12 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.translation;
 // xdoc section -- start
-#ButtonLabels.properties
-hello=Hello
-cancel=Cancel
-
-#ButtonLabels_fr.properties
-hello=Bonjour
-name=Nom
+/*
+--> Example2
+  |--> ButtonLabels.properties
+  |--> ButtonLabels_fr.properties
+*/
+public class Example2 {}
 // xdoc section -- end
