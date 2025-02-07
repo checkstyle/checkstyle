@@ -67,15 +67,15 @@ public class StringUtils // not final to allow subclassing
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;HideUtilityClassConstructor&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="HideUtilityClassConstructor"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation below, 'should not have a public or default constructor'
 @java.lang.Deprecated
 class Example1 {
@@ -115,24 +115,24 @@ class Application1 {
   public static void main(String[] args) {
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
           To configure the check to ignore classes annotated with <code>SpringBootApplication</code>
           or <code>java.lang.Deprecated</code>.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;HideUtilityClassConstructor&quot;&gt;
-      &lt;property name=&quot;ignoreAnnotatedBy&quot;
-        value=&quot;SpringBootApplication, java.lang.Deprecated&quot; /&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="HideUtilityClassConstructor"&gt;
+      &lt;property name="ignoreAnnotatedBy"
+        value="SpringBootApplication, java.lang.Deprecated" /&gt;
     &lt;/module&gt;
    &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // ok below, skipped by annotation
 @java.lang.Deprecated
 class Example2 {
@@ -172,7 +172,7 @@ class Application2 {
   public static void main(String[] args) {
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

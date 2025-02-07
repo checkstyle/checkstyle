@@ -140,15 +140,15 @@ public String getNameIfPresent() { ... }
           To configure the default check to allow one single parameterless annotation on the same
             line:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AnnotationLocation&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationLocation"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   @Nonnull
   private boolean field1; // ok
@@ -158,31 +158,31 @@ class Example1 {
   @Override // ok
   public boolean equals(Object obj) { return true; }
   @Mock DataLoader loader1; // ok
-  @SuppressWarnings(&quot;deprecation&quot;) DataLoader loader2;
+  @SuppressWarnings("deprecation") DataLoader loader2;
   // violation above, 'Annotation 'SuppressWarnings' should be alone on line'
-  @SuppressWarnings(&quot;deprecation&quot;) public int foo() { return 1; }
+  @SuppressWarnings("deprecation") public int foo() { return 1; }
   // violation above, 'Annotation 'SuppressWarnings' should be alone on line'
   @Nonnull @Mock DataLoader loader3;
   // violation above, 'Annotation 'Mock' should be alone on line'
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           Use the following configuration to allow multiple annotations on the same line:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AnnotationLocation&quot;&gt;
-      &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
-                value=&quot;false&quot;/&gt;
-      &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
-      &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationLocation"&gt;
+      &lt;property name="allowSamelineSingleParameterlessAnnotation"
+                value="false"/&gt;
+      &lt;property name="allowSamelineParameterizedAnnotation" value="false"/&gt;
+      &lt;property name="allowSamelineMultipleAnnotations" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   @Nonnull
   private boolean field1;
@@ -193,30 +193,30 @@ class Example2 {
   public boolean equals(Object obj) { return true; }
   @Mock
   DataLoader loader1;
-  @SuppressWarnings(&quot;deprecation&quot;) DataLoader loader;
-  @SuppressWarnings(&quot;deprecation&quot;) public int foo() { return 1; } // ok
+  @SuppressWarnings("deprecation") DataLoader loader;
+  @SuppressWarnings("deprecation") public int foo() { return 1; } // ok
   @Nonnull @Mock DataLoader loader2;
   // ok above as 'allowSamelineMultipleAnnotations' set to true
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           Use the following configuration to allow only one and only parameterized annotation
           on the same line:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AnnotationLocation&quot;&gt;
-      &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
-      &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
-                value=&quot;false&quot;/&gt;
-      &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationLocation"&gt;
+      &lt;property name="allowSamelineMultipleAnnotations" value="false"/&gt;
+      &lt;property name="allowSamelineSingleParameterlessAnnotation"
+                value="false"/&gt;
+      &lt;property name="allowSamelineParameterizedAnnotation" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
   // violation below, 'Annotation 'Nonnull' should be alone on line.'
   @Nonnull private boolean field1;
@@ -228,32 +228,32 @@ class Example3 {
   public boolean equals(Object obj) { return true; }
   @Mock
   DataLoader loader;
-  @SuppressWarnings(&quot;deprecation&quot;) DataLoader loader1;
-  @SuppressWarnings(&quot;deprecation&quot;) public int foo() { return 1; }
+  @SuppressWarnings("deprecation") DataLoader loader1;
+  @SuppressWarnings("deprecation") public int foo() { return 1; }
   // violation below, 'Annotation 'Nonnull' should be alone on line.'
   @Nonnull @Mock DataLoader loader2;
   // violation above, 'Annotation 'Mock' should be alone on line.'
 }
-        </source>
+</code></pre></div>
         <p id="Example4-config">
           Use the following configuration to only validate annotations on methods to allow one
           single parameterless annotation on the same line:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AnnotationLocation&quot;&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
-      &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
-      &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
-                value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationLocation"&gt;
+      &lt;property name="tokens" value="METHOD_DEF"/&gt;
+      &lt;property name="allowSamelineMultipleAnnotations" value="false"/&gt;
+      &lt;property name="allowSamelineSingleParameterlessAnnotation"
+                value="true"/&gt;
+      &lt;property name="allowSamelineParameterizedAnnotation" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
   @NotNull private boolean field1; // ok, as 'tokens' property set to METHOD_DEF only
   @Override public int hashCode() { return 1; }
@@ -263,12 +263,12 @@ class Example4 {
   public boolean equals(Object obj) { return true; }
   @Mock
   DataLoader loader1;
-  @SuppressWarnings(&quot;deprecation&quot;) DataLoader loader;
-  @SuppressWarnings(&quot;deprecation&quot;) public int foo() { return 1; }
+  @SuppressWarnings("deprecation") DataLoader loader;
+  @SuppressWarnings("deprecation") public int foo() { return 1; }
   // violation above, 'Annotation 'SuppressWarnings' should be alone on line.'
   @NotNull @Mock DataLoader loader2;
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

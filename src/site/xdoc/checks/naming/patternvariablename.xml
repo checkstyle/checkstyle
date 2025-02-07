@@ -40,15 +40,15 @@
           To configure the check:
         </p>
 
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;PatternVariableName&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="PatternVariableName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Code Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   void foo(Object o1){
     if (o1 instanceof String STRING) {} // violation
@@ -57,22 +57,22 @@ class Example1 {
     if (o1 instanceof Integer n) {}
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           An example of how to configure the check for names that have a lower case letter,
           followed by letters and digits, optionally separated by underscore:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;PatternVariableName&quot;&gt;
-        &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="PatternVariableName"&gt;
+        &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Code Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   void foo(Object o1){
     if (o1 instanceof String STRING) {} // violation
@@ -81,22 +81,22 @@ class Example2 {
     if (o1 instanceof Integer n) {}
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           An example of how to configure the check to that all variables have 3 or more
           chars in name:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;PatternVariableName&quot;&gt;
-        &lt;property name=&quot;format&quot; value=&quot;^[a-z][_a-zA-Z0-9]{2,}$&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="PatternVariableName"&gt;
+        &lt;property name="format" value="^[a-z][_a-zA-Z0-9]{2,}$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Code Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
   void foo(Object o1){
     if (o1 instanceof String STRING) {} // violation
@@ -105,40 +105,40 @@ class Example3 {
     if (o1 instanceof Integer n) {} // violation
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example4-config">
           An example of how to configure the check with different format for final and non-final
           pattern variables:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;PatternVariableName&quot;&gt;
-        &lt;property name=&quot;id&quot; value=&quot;FinalPatternVariableName&quot;/&gt;
-        &lt;property name=&quot;format&quot; value=&quot;^[A-Z][A-Z0-9]*$&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="PatternVariableName"&gt;
+        &lt;property name="id" value="FinalPatternVariableName"/&gt;
+        &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
     &lt;/module&gt;
 
-    &lt;module name=&quot;PatternVariableName&quot;&gt;
-        &lt;property name=&quot;id&quot; value=&quot;NonFinalPatternVariableName&quot;/&gt;
-        &lt;property name=&quot;format&quot; value=&quot;^([a-z][a-zA-Z0-9]*|_)$&quot;/&gt;
+    &lt;module name="PatternVariableName"&gt;
+        &lt;property name="id" value="NonFinalPatternVariableName"/&gt;
+        &lt;property name="format" value="^([a-z][a-zA-Z0-9]*|_)$"/&gt;
     &lt;/module&gt;
 
-    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-      &lt;property name=&quot;id&quot; value=&quot;FinalPatternVariableName&quot;/&gt;
-      &lt;property name=&quot;query&quot; value=&quot;//PATTERN_VARIABLE_DEF[
-            not(./MODIFIERS/FINAL)]/IDENT&quot;/&gt;
+    &lt;module name="SuppressionXpathSingleFilter"&gt;
+      &lt;property name="id" value="FinalPatternVariableName"/&gt;
+      &lt;property name="query" value="//PATTERN_VARIABLE_DEF[
+            not(./MODIFIERS/FINAL)]/IDENT"/&gt;
     &lt;/module&gt;
 
-    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-      &lt;property name=&quot;id&quot; value=&quot;NonFinalPatternVariableName&quot;/&gt;
-      &lt;property name=&quot;query&quot; value=&quot;//PATTERN_VARIABLE_DEF[
-            (./MODIFIERS/FINAL)]/IDENT&quot;/&gt;
+    &lt;module name="SuppressionXpathSingleFilter"&gt;
+      &lt;property name="id" value="NonFinalPatternVariableName"/&gt;
+      &lt;property name="query" value="//PATTERN_VARIABLE_DEF[
+            (./MODIFIERS/FINAL)]/IDENT"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Code Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
   void foo(Object o1){
     if (o1 instanceof String BAD) {} // violation
@@ -147,7 +147,7 @@ class Example4 {
     if (o1 instanceof final String bad) {} // violation
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

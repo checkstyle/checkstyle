@@ -53,30 +53,30 @@
           Checker to not report audit events with severity
           level <code>info</code>:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ParameterName&quot;&gt;
-      &lt;property name=&quot;severity&quot; value=&quot;info&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParameterName"&gt;
+      &lt;property name="severity" value="info"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;MethodName&quot;/&gt;
+    &lt;module name="MethodName"/&gt;
   &lt;/module&gt;
-  &lt;module name=&quot;SeverityMatchFilter&quot;&gt;
-    &lt;property name=&quot;severity&quot; value=&quot;info&quot;/&gt;
-    &lt;property name=&quot;acceptOnMatch&quot; value=&quot;false&quot;/&gt;
+  &lt;module name="SeverityMatchFilter"&gt;
+    &lt;property name="severity" value="info"/&gt;
+    &lt;property name="acceptOnMatch" value="false"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
             Example code:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   public void method1(int V1){} // ok, ParameterName's severity is info
 
   public void Method2(){} // violation, MethodName's severity is defaulted to error
 }
-        </source>
+</code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

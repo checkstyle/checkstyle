@@ -136,17 +136,17 @@ public boolean isSomething()
         <p id="Example1-config">
           To configure the default check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MissingJavadocMethod&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocMethod"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   public Example1() {} // violation, 'Missing a Javadoc comment'
   public void testMethod1() {} // violation, 'Missing a Javadoc comment'
@@ -157,30 +157,30 @@ public class Example1 {
 
   @Override
   public String toString() {
-    return &quot;Some string&quot;;
+    return "Some string";
   }
 
   private void testMethod3() {}
   protected void testMethod4() {}
   void testMethod5() {}
 }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
           To configure the check for <code>private</code>
           scope:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MissingJavadocMethod&quot;&gt;
-      &lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocMethod"&gt;
+      &lt;property name="scope" value="private"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   public Example2() {} // violation, 'Missing a Javadoc comment'
   public void testMethod1() {} // violation, 'Missing a Javadoc comment'
@@ -191,31 +191,31 @@ public class Example2 {
 
   @Override
   public String toString() {
-    return &quot;Some string&quot;;
+    return "Some string";
   }
 
   private void testMethod3() {} // violation, 'Missing a Javadoc comment'
   protected void testMethod4() {} // violation, 'Missing a Javadoc comment'
   void testMethod5() {} // violation, 'Missing a Javadoc comment'
 }
-        </source>
+</code></pre></div>
 
         <p id="Example3-config">
           To configure the check for methods which are in <code>private</code>,
           but not in <code>protected</code> scope:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MissingJavadocMethod&quot;&gt;
-      &lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
-      &lt;property name=&quot;excludeScope&quot; value=&quot;protected&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocMethod"&gt;
+      &lt;property name="scope" value="private"/&gt;
+      &lt;property name="excludeScope" value="protected"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
   public Example3() {} // violation, 'Missing a Javadoc comment'
   public void testMethod1() {} // violation, 'Missing a Javadoc comment'
@@ -226,29 +226,29 @@ public class Example3 {
 
   @Override
   public String toString() {
-    return &quot;Some string&quot;;
+    return "Some string";
   }
 
   private void testMethod3() {} // violation, 'Missing a Javadoc comment'
   protected void testMethod4() {}
   void testMethod5() {} // violation, 'Missing a Javadoc comment'
 }
-        </source>
+</code></pre></div>
 
         <p id="Example4-config">
           To configure the check for ignoring methods named <code>foo(),foo1(),foo2()</code>, etc.:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MissingJavadocMethod&quot;&gt;
-      &lt;property name=&quot;ignoreMethodNamesRegex&quot; value=&quot;^testMethod.*$&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocMethod"&gt;
+      &lt;property name="ignoreMethodNamesRegex" value="^testMethod.*$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
   public Example4() {} // violation, 'Missing a Javadoc comment'
   public void testMethod1() {}
@@ -259,29 +259,29 @@ public class Example4 {
 
   @Override
   public String toString() {
-    return &quot;Some string&quot;;
+    return "Some string";
   }
 
   private void testMethod3() {}
   protected void testMethod4() {}
   void testMethod5() {}
 }
-        </source>
+</code></pre></div>
 
         <p id="Example5-config">
           To configure the check for ignoring missing javadoc for accessor methods:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MissingJavadocMethod&quot;&gt;
-      &lt;property name=&quot;allowMissingPropertyJavadoc&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocMethod"&gt;
+      &lt;property name="allowMissingPropertyJavadoc" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example5 {
   public Example5() {} // violation, 'Missing a Javadoc comment'
   public void testMethod1() {} // violation, 'Missing a Javadoc comment'
@@ -292,29 +292,29 @@ public class Example5 {
 
   @Override
   public String toString() {
-    return &quot;Some string&quot;;
+    return "Some string";
   }
 
   private void testMethod3() {}
   protected void testMethod4() {}
   void testMethod5() {}
 }
-        </source>
+</code></pre></div>
 
         <p id="Example6-config">
           To configure the check with annotations that allow missed documentation:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MissingJavadocMethod&quot;&gt;
-      &lt;property name=&quot;allowedAnnotations&quot; value=&quot;Override,Deprecated&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocMethod"&gt;
+      &lt;property name="allowedAnnotations" value="Override,Deprecated"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example6-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example6 {
   public Example6() {} // violation, 'Missing a Javadoc comment'
   public void testMethod1() {} // violation, 'Missing a Javadoc comment'
@@ -325,14 +325,14 @@ public class Example6 {
 
   @Override
   public String toString() {
-    return &quot;Some string&quot;;
+    return "Some string";
   }
 
   private void testMethod3() {}
   protected void testMethod4() {}
   void testMethod5() {}
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
