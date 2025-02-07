@@ -152,21 +152,21 @@ public interface AddressFactory {
         <p id="Example1-config">
           Configuration:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;InterfaceMemberImpliedModifier&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="InterfaceMemberImpliedModifier"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Code:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public interface Example1 {
 
-  public static final String UNKNOWN = &quot;Unknown&quot;;
-  String OTHER = &quot;Other&quot;;
+  public static final String UNKNOWN = "Unknown";
+  String OTHER = "Other";
   // 3 violations above:
   //    'Implied modifier 'final' should be explicit'
   //    'Implied modifier 'public' should be explicit'
@@ -188,7 +188,7 @@ public interface Example1 {
     //    'Implied modifier 'public' should be explicit'
   }
 }
-        </source>
+</code></pre></div>
         <p>
           This example checks that all implicit modifiers on methods and fields are
           explicitly specified, but nested types do not need to be.
@@ -196,24 +196,24 @@ public interface Example1 {
         <p id="Example2-config">
           Configuration:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;InterfaceMemberImpliedModifier&quot;&gt;
-      &lt;property name=&quot;violateImpliedPublicNested&quot; value=&quot;false&quot;/&gt;
-      &lt;property name=&quot;violateImpliedStaticNested&quot; value=&quot;false&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="InterfaceMemberImpliedModifier"&gt;
+      &lt;property name="violateImpliedPublicNested" value="false"/&gt;
+      &lt;property name="violateImpliedStaticNested" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Code:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public interface Example2 {
 
-  public static final String UNKNOWN = &quot;Unknown&quot;;
-  String OTHER = &quot;Other&quot;;
+  public static final String UNKNOWN = "Unknown";
+  String OTHER = "Other";
   // 3 violations above:
   //    'Implied modifier 'final' should be explicit'
   //    'Implied modifier 'public' should be explicit'
@@ -235,7 +235,7 @@ public interface Example2 {
     //    'Implied modifier 'public' should be explicit'
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

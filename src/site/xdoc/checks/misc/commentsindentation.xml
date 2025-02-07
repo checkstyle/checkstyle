@@ -56,18 +56,18 @@
           To configure the Check
           where both single-line and block comments are checked for indentation violations:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;CommentsIndentation&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="CommentsIndentation"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
 
         <p id="Example1-code">
         Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   void testMethod() {
     /*
@@ -92,24 +92,24 @@ public class Example1 {
   }
   // violation 2 lines above  'Comment has incorrect indentation level 8'
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the Check to validate only single-line comments:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;CommentsIndentation&quot;&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;SINGLE_LINE_COMMENT&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="CommentsIndentation"&gt;
+      &lt;property name="tokens" value="SINGLE_LINE_COMMENT"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
 
         <p id="Example2-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   void testMethod() {
     /*
@@ -134,12 +134,12 @@ public class Example2 {
   }
   // violation 2 lines above  'Comment has incorrect indentation level 8'
 }
-        </source>
+</code></pre></div>
         <p>Please take a look at the following examples to understand how the check works:</p>
         <p id="Example3-code">
           Example #3: Comment is used as a single-line border to separate groups of methods.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
   /////////////////////////////// it is OK
 
@@ -151,7 +151,7 @@ public class Example3 {
   // violation 2 lines above 'Comment has incorrect indentation level 4'
   public void foo2() {}
 }
-        </source>
+</code></pre></div>
         <p id="Example4-code">
           Example #4: Single line block comment is placed within an empty code block.
           Note, if comment is placed at the end of the empty code block, we have Checkstyle's
@@ -160,7 +160,7 @@ public class Example3 {
           code block has indentation level that is lower than the indentation level of the closing
           right curly brace.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
   public void foo1() {
     // comment
@@ -174,7 +174,7 @@ public class Example4 {
  // It is not okay
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example5-code">Example #5: 'fallthrough' comments and Also similar
            comments  placed within an empty case block.Note, if comment is placed
            at the end of the empty case block,  we have Checkstyle limitations to
@@ -183,61 +183,61 @@ public class Example4 {
            within the empty case block has indentation level that is lower than the
            indentation level of the next case.
           token.</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example5 {
   void testMethod(String a) {
     switch(a) {
-      case &quot;1&quot;:
+      case "1":
         int j = 7;
         // it is OK
         break;
-      case &quot;3&quot;: // violation 2 lines below 'Comment has incorrect indentation level'
+      case "3": // violation 2 lines below 'Comment has incorrect indentation level'
         if (true) {}
             //It is not okay
         break;
       // fall through (it is OK)
-      case &quot;5&quot;:
+      case "5":
         // it is OK
-      case &quot;6&quot;:
+      case "6":
      // It is not okay
-      case &quot;7&quot;:
+      case "7":
        // violation 2 lines above 'Comment has incorrect indentation level 5'
       default:
     }
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example6-code">Example #6: Comment is placed within a distributed statement.</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example6 {
   void testMethod() {
     // violation 2 lines below 'Comment has incorrect indentation level 4'
-    String breaks = &quot;J&quot;
+    String breaks = "J"
     // It is not okay
-        + &quot;A&quot;
+        + "A"
         // it is OK
-        + &quot;V&quot;
-        + &quot;A&quot;
+        + "V"
+        + "A"
     // it is OK
     ;
 
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example7-code">
           Example #7: Single line block comment has previous and next statement.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example7 {
   void testMethod() {
-    String s1 = &quot;Clean code!&quot;;
+    String s1 = "Clean code!";
     s1.toString().toString().toString();
     // single-line
     // block
     // comment (it is OK)
     int a = 5;
 
-    String s2 = &quot;Code complete!&quot;;
+    String s2 = "Code complete!";
     s1.toString().toString().toString();
               // It is not okay1
          //It is not okay2
@@ -248,11 +248,11 @@ public class Example7 {
     // violation 4 lines above 'Comment has incorrect indentation level 7'
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example8-code">
           Example #8: Comment within the block tries to describe the next code block.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example8 {
   public void foo42() {
     int a = 5;
@@ -270,7 +270,7 @@ public class Example8 {
     } catch (Exception e) {  }
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
