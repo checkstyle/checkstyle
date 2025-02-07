@@ -145,7 +145,7 @@ public class MyClass {
 
           <tr>
             <td>
-              <div class="wrapper"><pre class="prettyprint"><code class="language-xml"><![CDATA[
+              <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
 CLASS_DEF -> CLASS_DEF [5:0]
 |--MODIFIERS -> MODIFIERS [5:0]
 |   `--LITERAL_PUBLIC -> public [5:0]
@@ -158,7 +158,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
               </code></pre></div>
             </td>
             <td>
-              <div class="wrapper"><pre class="prettyprint"><code class="language-xml"><![CDATA[
+              <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
 CLASS_DEF -> CLASS_DEF [5:0]
 |--MODIFIERS -> MODIFIERS [5:0]
 |   |--BLOCK_COMMENT_BEGIN -> /* [1:0]
