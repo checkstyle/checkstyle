@@ -74,15 +74,15 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;FinalLocalVariable&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="FinalLocalVariable"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1
 {
   static int foo(int x, int y) {
@@ -98,22 +98,22 @@ class Example1
     int result=foo(1,2); // violation, 'Variable 'result' should be declared final'
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check so that it checks local variables and
           parameters:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;FinalLocalVariable&quot;&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF,PARAMETER_DEF&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="FinalLocalVariable"&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2
 {
   static int foo(int x, int y) {
@@ -131,7 +131,7 @@ class Example2
     int result=foo(1,2); // violation, 'Variable 'result' should be declared final'
   }
 }
-        </source>
+</code></pre></div>
         <p>
           By default, this Check skip final validation on
           <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
@@ -145,18 +145,18 @@ class Example2
           An example of how to configure the check so that it also validates enhanced For Loop
           Variable is:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;FinalLocalVariable&quot;&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
-      &lt;property name=&quot;validateEnhancedForLoopVariable&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="FinalLocalVariable"&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+      &lt;property name="validateEnhancedForLoopVariable" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3
 {
   static int foo(int x, int y) {
@@ -172,23 +172,23 @@ class Example3
     int result=foo(1,2); // violation, 'Variable 'result' should be declared final'
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example4-config">
           An example of how to configure check on local variables and parameters
           but do not validate loop variables:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;FinalLocalVariable&quot;&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF,PARAMETER_DEF&quot;/&gt;
-      &lt;property name=&quot;validateEnhancedForLoopVariable&quot; value=&quot;false&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="FinalLocalVariable"&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/&gt;
+      &lt;property name="validateEnhancedForLoopVariable" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4
 {
   static int foo(int x, int y) {
@@ -206,7 +206,7 @@ class Example4
     int result=foo(1,2); // violation, 'Variable 'result' should be declared final'
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

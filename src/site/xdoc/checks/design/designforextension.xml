@@ -160,15 +160,15 @@ public abstract class Plant {
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;DesignForExtension&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="DesignForExtension"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public abstract class Example1 {
   private int bar;
 
@@ -201,26 +201,26 @@ public abstract class Example1 {
 
   @Override                   // violation
   public String toString() {
-    return &quot;&quot;;
+    return "";
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
           To configure the check to allow methods which have @Override annotations to be
           designed for extension.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;DesignForExtension&quot;&gt;
-      &lt;property name=&quot;ignoredAnnotations&quot; value=&quot;Override&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="DesignForExtension"&gt;
+      &lt;property name="ignoredAnnotations" value="Override"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public abstract class Example2 {
   private int bar;
 
@@ -253,26 +253,26 @@ public abstract class Example2 {
 
   @Override
   public String toString() {
-    return &quot;&quot;;
+    return "";
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example3-config">
           To configure the check to allow methods which contain a specified comment text pattern in
           their javadoc to be designed for extension.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;DesignForExtension&quot;&gt;
-      &lt;property name=&quot;requiredJavadocPhrase&quot; value=&quot;This implementation&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="DesignForExtension"&gt;
+      &lt;property name="requiredJavadocPhrase" value="This implementation"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public abstract class Example3 {
   private int bar;
 
@@ -305,27 +305,27 @@ public abstract class Example3 {
 
   @Override                    // violation
   public String toString() {
-    return &quot;&quot;;
+    return "";
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example4-config">
           To configure the check to allow methods which contain a specified comment text pattern in
           their javadoc which can span multiple lines to be designed for extension.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;DesignForExtension&quot;&gt;
-      &lt;property name=&quot;requiredJavadocPhrase&quot;
-        value=&quot;This[\s\S]*implementation&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="DesignForExtension"&gt;
+      &lt;property name="requiredJavadocPhrase"
+        value="This[\s\S]*implementation"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public abstract class Example4 {
   private int bar;
 
@@ -358,10 +358,10 @@ public abstract class Example4 {
 
   @Override                    // violation
   public String toString() {
-    return &quot;&quot;;
+    return "";
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -91,7 +91,7 @@
         <code>setFile(String)</code>.
       </p>
 
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.mycompany.listeners;
 
 import java.io.FileNotFoundException;
@@ -177,7 +177,7 @@ public class VerboseListener
         + " source: " + aEvt.getSourceName());
   }
 }
-      </source>
+      </code></pre></div>
 
       <p>
         A listener that filters error events could perform the filtering
@@ -205,17 +205,17 @@ public class VerboseListener
         in the configuration file:
       </p>
 
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name=&quot;com.mycompany.listeners.VerboseListener&quot;&gt;
   &lt;property name=&quot;file&quot; value=&quot;audit.txt&quot;/&gt;
 &lt;/module&gt;
-      </source>
+      </code></pre></div>
 
       <p>
         Here is a truncated example of audit output from a <code> VerboseListener</code>:
       </p>
 
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 Audit started.
 Started checking file 'CommonsLoggingListener.java'.
 Finished checking file 'CommonsLoggingListener.java'. Errors: 0
@@ -225,7 +225,7 @@ Started checking file 'VerboseListener.java'.
 Logging error - file: 'VerboseListener.java' line: 23 ...
 Finished checking file 'VerboseListener.java'. Errors: 1
 Audit finished. Total errors: 1
-      </source>
+      </code></pre></div>
     </section>
 
     <section name="Examples">
@@ -293,7 +293,7 @@ Audit finished. Total errors: 1
         in the current directory:
       </p>
 
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 # Set root logger level to INFO and its only appender to A1.
 log4j.rootLogger=INFO, A1
 
@@ -303,14 +303,14 @@ log4j.appender.A1=org.apache.log4j.ConsoleAppender
 # A1 uses PatternLayout.
 log4j.appender.A1.layout=org.apache.log4j.PatternLayout
 log4j.appender.A1.layout.ConversionPattern=%-5p %c %x- %m%n
-      </source>
+      </code></pre></div>
 
       <p>
         Running a Checkstyle audit with a <code>CommonsLoggingListener</code> yields this
         (abbreviated) output:
       </p>
 
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 INFO  com.puppycrawl...Checker  - Audit started.
 INFO  com.puppycrawl...Checker  - File "CommonsLoggingListener.java" started.
 INFO  com.puppycrawl...Checker  - File "CommonsLoggingListener.java" finished.
@@ -320,7 +320,7 @@ INFO  com.puppycrawl...Checker  - File "VerboseListener.java" started.
 ERROR com.puppycrawl...ParenPadCheck  - Line: 23 Column: 28 ...
 INFO  com.puppycrawl...Checker  - File "VerboseListener.java" finished.
 INFO  com.puppycrawl...Checker  - Audit finished.
-      </source>
+      </code></pre></div>
 
       <a name="MailLogger"/>
       <h4>MailLogger</h4>
@@ -350,12 +350,12 @@ INFO  com.puppycrawl...Checker  - Audit finished.
         directory:
       </p>
 
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 MailLogger.from=user@example.org
 MailLogger.failure.to=user@example.org
 MailLogger.success.to=user@example.org
 MailLogger.mailhost=localhost
-      </source>
+      </code></pre></div>
     </section>
 
     <section name="Huh? I can&#39;t figure it out!">

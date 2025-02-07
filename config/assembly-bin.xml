@@ -12,7 +12,9 @@
 
   <files>
     <file>
-      <source>${project.build.directory}/${project.name}-${project.version}-all.jar</source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      ${project.build.directory}/${project.name}-${project.version}-all.jar
+    </code></pre></div>
     </file>
   </files>
   <fileSets>
