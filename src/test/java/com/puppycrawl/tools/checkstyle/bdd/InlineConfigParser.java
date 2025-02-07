@@ -121,6 +121,18 @@ public final class InlineConfigParser {
     private static final Pattern FILTERED_VIOLATION_BELOW_PATTERN = Pattern
             .compile(".*//\\s*filtered violation below\\s*(?:['\"](.*)['\"])?$");
 
+    /** A pattern to find the string: "// filtered violation explanation". */
+    private static final Pattern FILTERED_VIOLATION_WITH_EXPLANATION_PATTERN = Pattern
+        .compile(".*//\\s*filtered violation\\s.+\\s(?:['\"](.*)['\"])?$");
+
+    /** A pattern to find the string: "// filtered violation above explanation". */
+    private static final Pattern FILTERED_VIOLATION_ABOVE_EXPLANATION_PATTERN = Pattern
+        .compile(".*//\\s*filtered violation above\\s.+\\s(?:['\"](.*)['\"])?$");
+
+    /** A pattern to find the string: "// filtered violation below explanation". */
+    private static final Pattern FILTERED_VIOLATION_BELOW_EXPLANATION_PATTERN = Pattern
+        .compile(".*//\\s*filtered violation below\\s.+\\s(?:['\"](.*)['\"])?$");
+
     /** A pattern to find the string: "// violation X lines above". */
     private static final Pattern VIOLATION_SOME_LINES_ABOVE_PATTERN = Pattern
             .compile(".*//\\s*violation (\\d+) lines above\\s*(?:['\"](.*)['\"])?$");
@@ -896,6 +908,12 @@ public final class InlineConfigParser {
                 FILTERED_VIOLATION_ABOVE_PATTERN.matcher(line);
         final Matcher violationBelowMatcher =
                 FILTERED_VIOLATION_BELOW_PATTERN.matcher(line);
+        final Matcher violationExplanationMatcher =
+                FILTERED_VIOLATION_WITH_EXPLANATION_PATTERN.matcher(line);
+        final Matcher violationAboveExplanationMatcher =
+                FILTERED_VIOLATION_ABOVE_EXPLANATION_PATTERN.matcher(line);
+        final Matcher violationBelowExplanationMatcher =
+                FILTERED_VIOLATION_BELOW_EXPLANATION_PATTERN.matcher(line);
         if (violationMatcher.matches()) {
             final String violationMessage = violationMatcher.group(1);
             checkWhetherViolationSpecified(specifyViolationMessage, violationMessage, lineNo);
@@ -910,6 +928,25 @@ public final class InlineConfigParser {
         }
         else if (violationBelowMatcher.matches()) {
             final String violationMessage = violationBelowMatcher.group(1);
+            final int violationLineNum = lineNo + 1;
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    violationLineNum);
+            inputConfigBuilder.addFilteredViolation(violationLineNum, violationMessage);
+        }
+        else if (violationExplanationMatcher.matches()) {
+            final String violationMessage = violationExplanationMatcher.group(1);
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage, lineNo);
+            inputConfigBuilder.addFilteredViolation(lineNo, violationMessage);
+        }
+        else if (violationAboveExplanationMatcher.matches()) {
+            final String violationMessage = violationAboveExplanationMatcher.group(1);
+            final int violationLineNum = lineNo - 1;
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    violationLineNum);
+            inputConfigBuilder.addFilteredViolation(violationLineNum, violationMessage);
+        }
+        else if (violationBelowExplanationMatcher.matches()) {
+            final String violationMessage = violationBelowExplanationMatcher.group(1);
             final int violationLineNum = lineNo + 1;
             checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
                     violationLineNum);
