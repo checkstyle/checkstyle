@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.apache.maven.doxia.macro.AbstractMacro;
@@ -58,6 +59,12 @@ public class ExampleMacro extends AbstractMacro {
 
     /** Eight whitespace characters. All example source tags are indented 8 spaces. */
     private static final String INDENTATION = "        ";
+
+    /** The pattern of xml code blocks. */
+    private static final Pattern XML_PATTERN = Pattern.compile(
+            "^\\s*(<!DOCTYPE\\s+.*?>|<\\?xml\\s+.*?>|<module\\s+.*?>)\\s*",
+            Pattern.DOTALL
+    );
 
     /** The path of the last file. */
     private String lastPath = "";
@@ -208,6 +215,6 @@ public class ExampleMacro extends AbstractMacro {
      * @return {@code true} if the snippet appears to be XML, otherwise {@code false}.
      */
     private static boolean isXml(String snippet) {
-        return snippet.trim().matches(".*<\\s*\\w.*>.*");
+        return XML_PATTERN.matcher(snippet.trim()).matches();
     }
 }
