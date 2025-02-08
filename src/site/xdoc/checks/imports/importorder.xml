@@ -114,17 +114,17 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ImportOrder&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportOrder"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.io.IOException;
 import java.net.URL;
 
@@ -138,7 +138,7 @@ import org.apache.http.conn.ClientConnectionManager;
 import java.util.Set; // violation, wrong order, 'java' should not come after 'org' imports
 import com.neurologic.http.HttpClient; // violation, wrong order, 'com' imports comes at top
 import com.neurologic.http.impl.ApacheHttpClient;
-        </source>
+</code></pre></div>
         <p>
           To configure the check so that it matches default Eclipse formatter configuration
           (tested on Kepler and Luna releases):
@@ -157,23 +157,23 @@ import com.neurologic.http.impl.ApacheHttpClient;
           <li>configuration below doesn't work in all 100% cases due to inconsistent behavior
               prior to Mars release, but covers most scenarios</li>
         </ul>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ImportOrder&quot;&gt;
-      &lt;property name=&quot;groups&quot; value=&quot;/^java\./,javax,org&quot;/&gt;
-      &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
-      &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportOrder"&gt;
+      &lt;property name="groups" value="/^java\./,javax,org"/&gt;
+      &lt;property name="ordered" value="true"/&gt;
+      &lt;property name="separated" value="true"/&gt;
+      &lt;property name="option" value="above"/&gt;
+      &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static java.lang.System.out;
 import static java.lang.Math; // violation, alphabetical case-sensitive ASCII order, 'M' &lt; 'S'
 import java.io.IOException;
@@ -186,7 +186,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager; // violation, groups should not be separated internally
 
 import org.apache.http.conn.ClientConnectionManager;
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           To configure the check so that it matches default Eclipse formatter configuration
           (tested on Mars release):
@@ -199,23 +199,23 @@ import org.apache.http.conn.ClientConnectionManager;
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
 
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ImportOrder&quot;&gt;
-      &lt;property name=&quot;groups&quot; value=&quot;/^java\./,javax,org,com&quot;/&gt;
-      &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
-      &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportOrder"&gt;
+      &lt;property name="groups" value="/^java\./,javax,org,com"/&gt;
+      &lt;property name="ordered" value="true"/&gt;
+      &lt;property name="separated" value="true"/&gt;
+      &lt;property name="option" value="above"/&gt;
+      &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static java.io.File.createTempFile;
 import static java.lang.Math.abs; // OK, alphabetical case-sensitive ASCII order, 'i' &lt; 'l'
 import java.lang.Math.sqrt; // OK, follows property 'Option' value 'above'
@@ -232,7 +232,7 @@ import org.linux.apache.server.SoapServer;
 
 import com.neurologic.http.HttpClient;
 import com.neurologic.http.impl.ApacheHttpClient;
-        </source>
+</code></pre></div>
         <p>
           To configure the check so that it matches default IntelliJ IDEA formatter
           configuration (tested on v2018.2):
@@ -257,27 +257,27 @@ import com.neurologic.http.impl.ApacheHttpClient;
           Note: &quot;separated&quot; option is disabled because IDEA default has blank line
           between &quot;java&quot; and static imports, and no blank line between &quot;javax&quot; and &quot;java&quot;.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ImportOrder&quot;&gt;
-      &lt;property name=&quot;groups&quot; value=&quot;*,javax,java&quot;/&gt;
-      &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;separated&quot; value=&quot;false&quot;/&gt;
-      &lt;property name=&quot;option&quot; value=&quot;bottom&quot;/&gt;
-      &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportOrder"&gt;
+      &lt;property name="groups" value="*,javax,java"/&gt;
+      &lt;property name="ordered" value="true"/&gt;
+      &lt;property name="separated" value="false"/&gt;
+      &lt;property name="option" value="bottom"/&gt;
+      &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-      &lt;property name=&quot;checks&quot; value=&quot;ImportOrder&quot;/&gt;
-      &lt;property name=&quot;message&quot; value=&quot;^'java\..*'.*&quot;/&gt;
+    &lt;module name="SuppressionXpathSingleFilter"&gt;
+      &lt;property name="checks" value="ImportOrder"/&gt;
+      &lt;property name="message" value="^'java\..*'.*"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import com.neurologic.http.impl.ApacheHttpClient;
 import static java.awt.Button.A;
 import javax.swing.JComponent;
@@ -287,7 +287,7 @@ import java.net.URL; // violation, extra separation in import group
 import java.security.KeyManagementException;
 import javax.swing.JComponent; // violation, wrong order, 'javax' should be above 'java' imports
 import com.neurologic.http.HttpClient; // violation, wrong order, 'com' imports should be at top
-        </source>
+</code></pre></div>
         <p id="Example5-config">
           To configure the check so that it matches default NetBeans formatter configuration
           (tested on v8):
@@ -297,26 +297,26 @@ import com.neurologic.http.HttpClient; // violation, wrong order, 'com' imports 
               group</li>
           <li>static imports are not separated, they will be sorted along with other imports</li>
         </ul>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ImportOrder&quot;&gt;
-      &lt;property name=&quot;option&quot; value=&quot;inflow&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportOrder"&gt;
+      &lt;property name="option" value="inflow"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static java.io.File.createTempFile;
 import java.lang.Math.sqrt;
 
 import javax.swing.JComponent; // violation 'Extra separation in import group'
 import static javax.windowConstants.*;
 // all static imports are processed like non static imports.
-        </source>
+</code></pre></div>
         <p>
           Group descriptions enclosed in slashes are interpreted as regular expressions.
           If multiple groups match, the one matching a longer
@@ -342,21 +342,21 @@ import static javax.windowConstants.*;
           To configure the Check allows static imports grouped to the <b>top</b> being sorted
           alphabetically:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ImportOrder&quot;&gt;
-      &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportOrder"&gt;
+      &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
+      &lt;property name="option" value="top"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
 
         <p id="Example6-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static java.lang.Math.PI;
 import static java.lang.Math.abs; // OK, alphabetical case-sensitive ASCII order, 'P' &lt; 'a'
 import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphabetical order
@@ -364,32 +364,32 @@ import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphab
 import java.util.Set; // violation, extra separation in import group
 import static java.lang.Math.abs; // violation, wrong order, all static imports comes at 'top'
 import org.abego.*;
-        </source>
+</code></pre></div>
 
         <p id="Example7-config">
           To configure the Check with groups of static imports:
         </p>
 
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ImportOrder&quot;&gt;
-      &lt;property name=&quot;staticGroups&quot; value=&quot;org,java&quot;/&gt;
-      &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportOrder"&gt;
+      &lt;property name="staticGroups" value="org,java"/&gt;
+      &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
+      &lt;property name="option" value="top"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example7-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static org.abego.treelayout.Configuration.AlignmentInLevel; // Group 1
 import static java.lang.Math.abs; // Group 2
 import static java.lang.String.format; // Group 2
-import static com.google.common.primitives.Doubles.BYTES; // Group &quot;everything else&quot;
-        </source>
+import static com.google.common.primitives.Doubles.BYTES; // Group "everything else"
+</code></pre></div>
 
         <p>
           The following example shows the idea of 'useContainerOrderingForStatic' option that is
@@ -414,44 +414,44 @@ import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
         <p id="Example8-config">
           Example for <code>useContainerOrderingForStatic=true</code>
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ImportOrder&quot;&gt;
-      &lt;property name=&quot;useContainerOrderingForStatic&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
-      &lt;property name=&quot;caseSensitive&quot; value=&quot;false&quot;/&gt;
-      &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportOrder"&gt;
+      &lt;property name="useContainerOrderingForStatic" value="true"/&gt;
+      &lt;property name="ordered" value="true"/&gt;
+      &lt;property name="option" value="top"/&gt;
+      &lt;property name="caseSensitive" value="false"/&gt;
+      &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example8-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static io.netty.handler.codec.http.HttpConstants.COLON;
 import static io.netty.handler.codec.http.HttpHeaders.addHeader;
 import static io.netty.handler.codec.http.HttpHeaders.setHeader;
 import static io.netty.handler.codec.http.HttpHeaders.Names.DATE;
-        </source>
+</code></pre></div>
         <p id="Example9-config">
           Example for <code>useContainerOrderingForStatic=false</code>
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ImportOrder&quot;&gt;
-      &lt;property name=&quot;useContainerOrderingForStatic&quot; value=&quot;false&quot;/&gt;
-      &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
-      &lt;property name=&quot;caseSensitive&quot; value=&quot;false&quot;/&gt;
-      &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportOrder"&gt;
+      &lt;property name="useContainerOrderingForStatic" value="false"/&gt;
+      &lt;property name="ordered" value="true"/&gt;
+      &lt;property name="option" value="top"/&gt;
+      &lt;property name="caseSensitive" value="false"/&gt;
+      &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example9-code">
           Example:
         </p>
@@ -469,51 +469,51 @@ public class Example9 { }
         <p id="Example10-config">
           Example for <code>separatedStaticGroups=true</code>
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ImportOrder&quot;&gt;
-      &lt;property name=&quot;staticGroups&quot; value=&quot;*,java,javax,org&quot;/&gt;
-      &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
-      &lt;property name=&quot;separatedStaticGroups&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportOrder"&gt;
+      &lt;property name="staticGroups" value="*,java,javax,org"/&gt;
+      &lt;property name="option" value="top"/&gt;
+      &lt;property name="separatedStaticGroups" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example10-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static java.lang.Math.PI;
 import static java.io.File.createTempFile;
 import static javax.swing.JComponent; // violation, should be separated from previous imports
 import static javax.WindowConstants.*;
 
 import java.net.URL;
-        </source>
+</code></pre></div>
         <p id="Example11-config">
           To configure the Check with groups of static imports when staticGroups=&quot;&quot;
           represents all imports as {@code everything else} group:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ImportOrder&quot;&gt;
-      &lt;property name=&quot;staticGroups&quot; value=&quot;&quot;/&gt;
-      &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportOrder"&gt;
+      &lt;property name="staticGroups" value=""/&gt;
+      &lt;property name="option" value="top"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example11-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static java.io.File.listRoots;
 import static javax.swing.WindowConstants.*;
 import static java.io.File.createTempFile;
 import static com.puppycrawl.tools.checkstyle;
-        </source>
+</code></pre></div>
         <p id="Example12-config">
           To configure the Check with groups of static imports when
           staticGroups=&quot;java, javax&quot; represents three groups i.e java*, javax*
@@ -521,25 +521,25 @@ import static com.puppycrawl.tools.checkstyle;
           should be in last group:
         </p>
 
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ImportOrder&quot;&gt;
-      &lt;property name=&quot;staticGroups&quot; value=&quot;java, javax&quot;/&gt;
-      &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportOrder"&gt;
+      &lt;property name="staticGroups" value="java, javax"/&gt;
+      &lt;property name="option" value="top"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example12-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static java.io.File.listRoots;
 import static javax.swing.WindowConstants.*;
 import static java.io.File.createTempFile; // violation, should be before javax
 import static com.puppycrawl.tools.checkstyle;
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -54,15 +54,15 @@
           To configure the check:
         </p>
 
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;LocalVariableName&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="LocalVariableName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Code Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   void MyMethod() {
     for (int var = 1; var &lt; 10; var++) {}
@@ -71,22 +71,22 @@ class Example1 {
     for (int var_1 = 0; var_1 &lt; 10; var_1++) {} // violation
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower
           case letter, followed by letters, digits, and underscores is:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;LocalVariableName&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="LocalVariableName"&gt;
+      &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Code Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   void MyMethod() {
     for (int var = 1; var &lt; 10; var++) {}
@@ -95,12 +95,12 @@ class Example2 {
     for (int var_1 = 0; var_1 &lt; 10; var_1++) {}
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example3-code">
           An example of one character variable name in initialization expression(like &quot;i&quot;)
           in FOR loop:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
   void myMethod () {
     for(int i = 1; i &lt; 10; i++) {}
@@ -110,25 +110,25 @@ class Example3 {
     for (Object O : list) {} // violation
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example4-config">
           An example of how to configure the check to allow one character variable name in
           <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
           initialization expressions</a> in FOR loop, where regexp allows 2 or more chars:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;LocalVariableName&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;^[a-z][_a-zA-Z0-9]+$&quot;/&gt;
-      &lt;property name=&quot;allowOneCharVarInForLoop&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="LocalVariableName"&gt;
+      &lt;property name="format" value="^[a-z][_a-zA-Z0-9]+$"/&gt;
+      &lt;property name="allowOneCharVarInForLoop" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Code Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
   void MyMethod() {
     int good = 1;
@@ -141,28 +141,28 @@ class Example4 {
     }
     List list = new ArrayList();
     for (Object o : list) {
-      String a = &quot;&quot;; // violation
+      String a = ""; // violation
     }
     for (Object O : list) {
-      String A = &quot;&quot;; // violation
+      String A = ""; // violation
     }
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example5-config">
         An example of how to configure the check to that all variables have 3 or more chars in name:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;LocalVariableName&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;^[a-z][_a-zA-Z0-9]{2,}$&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="LocalVariableName"&gt;
+      &lt;property name="format" value="^[a-z][_a-zA-Z0-9]{2,}$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">Code Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
   void MyMethod() {
     int goodName = 0;
@@ -172,7 +172,7 @@ class Example5 {
     }
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
