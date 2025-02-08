@@ -216,7 +216,9 @@ no-error-pmd)
   echo "CS_version: ${CS_POM_VERSION}"
   mvn -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  checkout_from "https://github.com/pmd/build-tools.git"
+  #  checkout_from "https://github.com/pmd/build-tools.git"
+  checkout_from "https://github.com/kkoutsilis/build-tools.git"
+  git checkout "update-checkstyle-javadocvariable"
   cd .ci-temp/build-tools/
   mvn -e --no-transfer-progress install
   cd ..
