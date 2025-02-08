@@ -62,109 +62,109 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MultipleStringLiterals&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MultipleStringLiterals"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  String a = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
-  String a1 = &quot;unchecked&quot;;
-  @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
+  String a = "StringContents"; // violation, "StringContents" occurs twice
+  String a1 = "unchecked";
+  @SuppressWarnings("unchecked") // OK, duplicate strings are ignored in annotations
   public void myTest() {
-    String a2 = &quot;StringContents&quot;;
-    String a3 = &quot;DuoString&quot; + &quot;DuoString&quot;; // violation, &quot;DuoString&quot; occurs twice
-    String a4 = &quot;SingleString&quot;;
-    String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, &quot;, &quot; occurs three times
+    String a2 = "StringContents";
+    String a3 = "DuoString" + "DuoString"; // violation, "DuoString" occurs twice
+    String a4 = "SingleString";
+    String a5 = ", " + ", " + ", "; // violation, ", " occurs three times
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check so that it allows two occurrences of each
           string:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
-      &lt;property name=&quot;allowedDuplicates&quot; value=&quot;2&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MultipleStringLiterals"&gt;
+      &lt;property name="allowedDuplicates" value="2"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
-  String a = &quot;StringContents&quot;; // OK, two occurrences are allowed
-  String a1 = &quot;unchecked&quot;;
-  @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
+  String a = "StringContents"; // OK, two occurrences are allowed
+  String a1 = "unchecked";
+  @SuppressWarnings("unchecked") // OK, duplicate strings are ignored in annotations
   public void myTest() {
-    String a2 = &quot;StringContents&quot;;
-    String a3 = &quot;DuoString&quot; + &quot;DuoString&quot;; // OK, two occurrences are allowed
-    String a4 = &quot;SingleString&quot;;
-    String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, three occurrences are NOT allowed
+    String a2 = "StringContents";
+    String a3 = "DuoString" + "DuoString"; // OK, two occurrences are allowed
+    String a4 = "SingleString";
+    String a5 = ", " + ", " + ", "; // violation, three occurrences are NOT allowed
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           To configure the check so that it ignores &quot;, &quot; and empty strings:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
-      &lt;property name=&quot;ignoreStringsRegexp&quot;
-        value='^((&quot;&quot;)|(&quot;, &quot;))$'/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MultipleStringLiterals"&gt;
+      &lt;property name="ignoreStringsRegexp"
+        value='^(("")|(", "))$'/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
-  String a = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
-  String a1 = &quot;unchecked&quot;;
-  @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
+  String a = "StringContents"; // violation, "StringContents" occurs twice
+  String a1 = "unchecked";
+  @SuppressWarnings("unchecked") // OK, duplicate strings are ignored in annotations
   public void myTest() {
-    String a2 = &quot;StringContents&quot;;
-    String a3 = &quot;DuoString&quot; + &quot;DuoString&quot;; // violation, &quot;DuoString&quot; occurs twice
-    String a4 = &quot;SingleString&quot;;
-    String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // OK, multiple occurrences of &quot;, &quot; are allowed
+    String a2 = "StringContents";
+    String a3 = "DuoString" + "DuoString"; // violation, "DuoString" occurs twice
+    String a4 = "SingleString";
+    String a5 = ", " + ", " + ", "; // OK, multiple occurrences of ", " are allowed
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example4-config">
           To configure the check so that it flags duplicate strings in all
           syntactical contexts, even in annotations like
           <code>@SuppressWarnings(&quot;unchecked&quot;)</code>:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
-      &lt;property name=&quot;ignoreOccurrenceContext&quot; value=&quot;&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MultipleStringLiterals"&gt;
+      &lt;property name="ignoreOccurrenceContext" value=""/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
-  String a = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
-  String a1 = &quot;unchecked&quot;; // // violation, &quot;unchecked&quot; occurs twice
-  @SuppressWarnings(&quot;unchecked&quot;)
+  String a = "StringContents"; // violation, "StringContents" occurs twice
+  String a1 = "unchecked"; // // violation, "unchecked" occurs twice
+  @SuppressWarnings("unchecked")
   public void myTest() {
-    String a2 = &quot;StringContents&quot;;
-    String a3 = &quot;DuoString&quot; + &quot;DuoString&quot;; // violation, &quot;DuoString&quot; occurs twice
-    String a4 = &quot;SingleString&quot;;
-    String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, &quot;, &quot; occurs three times
+    String a2 = "StringContents";
+    String a3 = "DuoString" + "DuoString"; // violation, "DuoString" occurs twice
+    String a4 = "SingleString";
+    String a5 = ", " + ", " + ", "; // violation, ", " occurs three times
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
