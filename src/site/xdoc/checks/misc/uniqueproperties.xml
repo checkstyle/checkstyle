@@ -47,48 +47,48 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;UniqueProperties&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="UniqueProperties"/&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-raw">
           Example: in foo.properties file
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 # // violation below 'Duplicated property 'key.one' (2 occurrence(s)).'
 key.one=44
 key.two=32
 key.one=54
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check to scan custom file extensions:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;UniqueProperties&quot;&gt;
-    &lt;property name=&quot;fileExtensions&quot; value=&quot;customProperties&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="UniqueProperties"&gt;
+    &lt;property name="fileExtensions" value="customProperties"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-raw">
           Example: in foo.customProperties file
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 # // violation below 'Duplicated property 'key.one' (2 occurrence(s)).'
 key.one=44
 key.two=32
 key.one=54
-        </source>
+</code></pre></div>
         <p id="Example3-raw">
           Example: in foo.properties file
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 # OK below, no duplication violation, as the file is not checked
 key.one=44
 key.two=32
 key.one=54
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

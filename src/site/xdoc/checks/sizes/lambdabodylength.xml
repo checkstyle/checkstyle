@@ -46,17 +46,17 @@
         <p id="Example1-config">
           To configure the check to accept lambda bodies with up to 10 lines:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;LambdaBodyLength&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="LambdaBodyLength"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
         Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   Runnable r = () -&gt; { // OK, length is 10
     System.out.println(2); // line 2 of lambda
@@ -80,35 +80,35 @@ class Example1 {
     System.out.println(10);
   }; // line 11
   Runnable r3 = () -&gt; // violation 'length is 11'
-    &quot;someString&quot;.concat(&quot;1&quot;) // line 1 of lambda
-                .concat(&quot;2&quot;)
-                .concat(&quot;3&quot;)
-                .concat(&quot;4&quot;)
-                .concat(&quot;5&quot;)
-                .concat(&quot;6&quot;)
-                .concat(&quot;7&quot;)
-                .concat(&quot;8&quot;)
-                .concat(&quot;9&quot;)
-                .concat(&quot;10&quot;)
-                .concat(&quot;11&quot;); // line 11
+    "someString".concat("1") // line 1 of lambda
+                .concat("2")
+                .concat("3")
+                .concat("4")
+                .concat("5")
+                .concat("6")
+                .concat("7")
+                .concat("8")
+                .concat("9")
+                .concat("10")
+                .concat("11"); // line 11
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check to accept lambda bodies with max 5 lines:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;LambdaBodyLength&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;5&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="LambdaBodyLength"&gt;
+      &lt;property name="max" value="5"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   Runnable r = () -&gt; { // OK, length is 5
     System.out.println(2);
@@ -123,14 +123,14 @@ class Example2 {
   };
 
   Runnable r3 = () -&gt; // violation 'length is 6'
-    &quot;someString&quot;.concat(&quot;1&quot;)
-                .concat(&quot;2&quot;)
-                .concat(&quot;3&quot;)
-                .concat(&quot;4&quot;)
-                .concat(&quot;5&quot;)
-                .concat(&quot;6&quot;);
+    "someString".concat("1")
+                .concat("2")
+                .concat("3")
+                .concat("4")
+                .concat("5")
+                .concat("6");
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

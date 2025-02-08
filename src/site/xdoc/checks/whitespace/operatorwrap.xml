@@ -174,21 +174,21 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;OperatorWrap&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OperatorWrap"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
          Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   void example() {
-    String s = &quot;Hello&quot; + // violation ''\+' should be on a new line'
-      &quot;World&quot;;
+    String s = "Hello" + // violation ''\+' should be on a new line'
+      "World";
 
     if (10 == // violation ''==' should be on a new line'
             20) {
@@ -205,27 +205,27 @@ class Example1 {
             + 10;
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check for assignment operators at the end of a line:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;OperatorWrap&quot;&gt;
-      &lt;property name=&quot;option&quot; value=&quot;eol&quot;/&gt;
-      &lt;property name=&quot;tokens&quot;
-                value=&quot;ASSIGN,DIV_ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OperatorWrap"&gt;
+      &lt;property name="option" value="eol"/&gt;
+      &lt;property name="tokens"
+                value="ASSIGN,DIV_ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,
                        MOD_ASSIGN,SR_ASSIGN,BSR_ASSIGN,SL_ASSIGN,
-                       BXOR_ASSIGN,BOR_ASSIGN,BAND_ASSIGN&quot;/&gt;
+                       BXOR_ASSIGN,BOR_ASSIGN,BAND_ASSIGN"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
          Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   void example() {
     int b
@@ -256,7 +256,7 @@ class Example2 {
             &lt;&lt;= 1; // violation ''&lt;&lt;=' should be on the previous line'
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
