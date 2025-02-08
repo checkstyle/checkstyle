@@ -1281,20 +1281,20 @@ public final class JavadocTokenTypes {
      *
      * <p><b>Tree for example:</b></p>
      * <pre>{@code
-     * JAVADOC[3x0]
-     *   |--NEWLINE[3x0] : [\n]
-     *   |--LEADING_ASTERISK[4x0] : [ *]
-     *   |--WS[4x2] : [ ]
-     *   |--JAVADOC_TAG[4x3] : [@param T The bar.\n ]
-     *       |--PARAM_LITERAL[4x3] : [@param]
-     *       |--WS[4x9] : [ ]
-     *       |--PARAMETER_NAME[4x10] : [T]
-     *       |--WS[4x11] : [ ]
-     *       |--DESCRIPTION[4x12] : [The bar.\n ]
-     *           |--TEXT[4x12] : [The bar.]
-     *           |--NEWLINE[4x20] : [\n]
-     *           |--TEXT[5x0] : [ ]
-     *   |--EOF[5x1] : [<EOF>]
+     * JAVADOC -> JAVADOC
+     *  |--NEWLINE -> \n
+     *  |--LEADING_ASTERISK ->  *
+     *  |--WS ->
+     *  |--JAVADOC_TAG -> JAVADOC_TAG
+     *  |   |--PARAM_LITERAL -> @param
+     *  |   |--WS ->
+     *  |   |--PARAMETER_NAME -> T
+     *  |   |--WS ->
+     *  |   `--DESCRIPTION -> DESCRIPTION
+     *  |       |--TEXT -> The bar.
+     *  |       |--NEWLINE -> \n
+     *  |       `--TEXT ->
+     *  `--EOF -> <EOF>
      * }</pre>
      */
     public static final int JAVADOC = JavadocParser.RULE_javadoc + RULE_TYPES_OFFSET;
