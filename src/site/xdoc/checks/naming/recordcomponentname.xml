@@ -37,15 +37,15 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RecordComponentName&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RecordComponentName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   record Rec1(int other) {}
 
@@ -53,22 +53,22 @@ class Example1 {
 
   record Rec3(double myNumber) {}
 }
-        </source>
+</code></pre></div>
         <p>
           An example of how to configure the check for names that are only letters in lowercase:
         </p>
         <p id="Example2-config">Configuration:</p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RecordComponentName&quot;&gt;
-        &lt;property name=&quot;format&quot; value=&quot;^[a-z]+$&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RecordComponentName"&gt;
+        &lt;property name="format" value="^[a-z]+$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   record Rec1(int other) {}
 
@@ -76,7 +76,7 @@ class Example2 {
 
   record Rec3(double myNumber) {} // violation, Name must match '^[a-z]+$'
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

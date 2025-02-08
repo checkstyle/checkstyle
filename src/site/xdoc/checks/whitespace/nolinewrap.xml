@@ -72,17 +72,17 @@
           To configure the check to force no line-wrapping
           in package and import statements (default values):
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;NoLineWrap&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NoLineWrap"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Examples of line-wrapped statements (bad case):
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl. // violation 'should not be line-wrapped'
   tools.checkstyle.checks.whitespace.nolinewrap;
 
@@ -91,11 +91,11 @@ import com.puppycrawl.tools. // violation 'should not be line-wrapped'
 
 import static java.math. // violation 'should not be line-wrapped'
   BigInteger.ZERO;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Examples:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle. // violation 'should not be line-wrapped'
   checks.whitespace.nolinewrap;
 
@@ -105,33 +105,33 @@ import java.lang. // violation 'should not be line-wrapped'
 
 import static java.math. // violation 'should not be line-wrapped'
   BigInteger.TEN;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nolinewrap;
 
 import java.lang. // violation 'should not be line-wrapped'
   Boolean;
 
 import static java.math.BigInteger.ONE;
-        </source>
+</code></pre></div>
         <p id="Example4-config">
           To configure the check to force no line-wrapping only
           in import statements:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;NoLineWrap&quot;&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;IMPORT&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NoLineWrap"&gt;
+      &lt;property name="tokens" value="IMPORT"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl. // OK, PACKAGE_DEF is not part of the tokens
   tools.checkstyle.checks.whitespace.nolinewrap;
 
@@ -141,24 +141,24 @@ import java.lang. // violation 'should not be line-wrapped'
 
 import static java.math. // OK, STATIC_IMPORT is not part of the tokens
   BigInteger.ZERO;
-        </source>
+</code></pre></div>
         <p id="Example5-config">
           To configure the check to force no line-wrapping only
           in class, method and constructor definitions:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;NoLineWrap&quot;&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF, METHOD_DEF, CTOR_DEF&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NoLineWrap"&gt;
+      &lt;property name="tokens" value="CLASS_DEF, METHOD_DEF, CTOR_DEF"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import static java.math.BigInteger.ZERO;
 
@@ -182,7 +182,7 @@ class // violation 'should not be line-wrapped'
     }
   }
 }
-        </source>
+</code></pre></div>
         <p>
           Examples of not line-wrapped statements (good case):
         </p>

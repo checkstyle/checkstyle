@@ -114,20 +114,20 @@ if ((condition1 &amp;&amp; condition2)
         <p id="Example1-config">
           To configure the default check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;Indentation&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Indentation"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example of Compliant code for default configuration
           (in comment name of property that controls indentations):
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-    String field = &quot;example&quot;;                  // basicOffset
+    String field = "example";                  // basicOffset
     int[] values = {                           // basicOffset
         10,
         20,
@@ -135,7 +135,7 @@ class Example1 {
     };
 
     void processValues() throws Exception {
-        handleValue(&quot;Test String&quot;, 42);          // basicOffset
+        handleValue("Test String", 42);          // basicOffset
     }
 
     void handleValue(String aFooString,
@@ -147,14 +147,14 @@ class Example1 {
         if (cond1
             || cond2) {
             field = field.toUpperCase()
-                .concat(&quot; TASK&quot;);
+                .concat(" TASK");
         }
 
         if ((cond1 &amp;&amp; cond2)
                 || (cond3 &amp;&amp; cond4)          // ok, lineWrappingIndentation
                 || !(cond5 &amp;&amp; cond6)) {      // ok, lineWrappingIndentation
             field.toUpperCase()
-                 .concat(&quot; TASK&quot;)             // ok, lineWrappingIndentation
+                 .concat(" TASK")             // ok, lineWrappingIndentation
                  .chars().forEach(c -&gt; {      // ok, lineWrappingIndentation
                      System.out.println((char) c);
                  });
@@ -163,33 +163,33 @@ class Example1 {
 
     void demonstrateSwitch() throws Exception {
         switch (field) {
-            case &quot;EXAMPLE&quot;: processValues();                        // caseIndent
-            case &quot;COMPLETED&quot;: handleValue(&quot;Completed Case&quot;, 456);   // caseIndent
+            case "EXAMPLE": processValues();                        // caseIndent
+            case "COMPLETED": handleValue("Completed Case", 456);   // caseIndent
         }
     }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check to enforce the indentation style recommended by
           Oracle:
         </p>
 
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;Indentation&quot;&gt;
-      &lt;property name=&quot;caseIndent&quot; value=&quot;0&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Indentation"&gt;
+      &lt;property name="caseIndent" value="0"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Example of Compliant code for default configuration
           (in comment name of property that controls indentation):
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-    String field = &quot;example&quot;;                  // basicOffset
+    String field = "example";                  // basicOffset
     int[] values = {                           // basicOffset
         10,
         20,
@@ -197,7 +197,7 @@ class Example2 {
     };
 
     void processValues() throws Exception {
-        handleValue(&quot;Test String&quot;, 42);          // basicOffset
+        handleValue("Test String", 42);          // basicOffset
     }
 
     void handleValue(String aFooString,
@@ -209,14 +209,14 @@ class Example2 {
         if (cond1
             || cond2) {
             field = field.toUpperCase()
-                .concat(&quot; TASK&quot;);
+                .concat(" TASK");
         }
 
         if ((cond1 &amp;&amp; cond2)
                 || (cond3 &amp;&amp; cond4)           // ok, lineWrappingIndentation
                 || !(cond5 &amp;&amp; cond6)) {       // ok, lineWrappingIndentation
             field.toUpperCase()
-                 .concat(&quot; TASK&quot;)             // ok, lineWrappingIndentation
+                 .concat(" TASK")             // ok, lineWrappingIndentation
                  .chars().forEach(c -&gt; {      // ok, lineWrappingIndentation
                      System.out.println((char) c);
                  });
@@ -225,31 +225,31 @@ class Example2 {
 
     void demonstrateSwitch() throws Exception {
         switch (field) {
-        case &quot;EXAMPLE&quot;: processValues();                            // caseIndent
-        case &quot;COMPLETED&quot;: handleValue(&quot;Completed Case&quot;, 456);       // caseIndent
+        case "EXAMPLE": processValues();                            // caseIndent
+        case "COMPLETED": handleValue("Completed Case", 456);       // caseIndent
         }
     }
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           To configure the Check to enforce strict condition in line-wrapping validation.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;Indentation&quot;&gt;
-      &lt;property name=&quot;forceStrictCondition&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Indentation"&gt;
+      &lt;property name="forceStrictCondition" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">
           Such config doesn't allow next cases
           even code is aligned further to the right for better reading:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
-    String field = &quot;example&quot;;                  // basicOffset
+    String field = "example";                  // basicOffset
     int[] values = {                           // basicOffset
         10,
         20,
@@ -257,11 +257,11 @@ class Example3 {
     };
 
     void processValues() throws Exception {
-        handleValue(&quot;Test String&quot;, 42);
+        handleValue("Test String", 42);
     }
 
     void handleValue(String aFooString,
-                     int aFooInt) {      // violation, &quot;incorrect indentation&quot;
+                     int aFooInt) {      // violation, "incorrect indentation"
 
         boolean cond1,cond2,cond3,cond4,cond5,cond6;
         cond1=cond2=cond3=cond4=cond5=cond6=false;
@@ -269,15 +269,15 @@ class Example3 {
         if (cond1
             || cond2) {
             field = field.toUpperCase()
-                .concat(&quot; TASK&quot;);
+                .concat(" TASK");
         }
 
         if ((cond1 &amp;&amp; cond2)
-                || (cond3 &amp;&amp; cond4)        // violation, &quot;incorrect indentation&quot;
-                || !(cond5 &amp;&amp; cond6)) {    // violation, &quot;incorrect indentation&quot;
+                || (cond3 &amp;&amp; cond4)        // violation, "incorrect indentation"
+                || !(cond5 &amp;&amp; cond6)) {    // violation, "incorrect indentation"
             field.toUpperCase()
-                 .concat(&quot; TASK&quot;)           // violation, &quot;incorrect indentation&quot;
-                 .chars().forEach(c -&gt; {    // violation, &quot;incorrect indentation&quot;
+                 .concat(" TASK")           // violation, "incorrect indentation"
+                 .chars().forEach(c -&gt; {    // violation, "incorrect indentation"
                      System.out.println((char) c);
                  });
         }
@@ -285,18 +285,18 @@ class Example3 {
 
     void demonstrateSwitch() throws Exception {
         switch (field) {
-            case &quot;EXAMPLE&quot;: processValues();                            // caseIndent
-            case &quot;COMPLETED&quot;: handleValue(&quot;Completed Case&quot;, 456);       // caseIndent
+            case "EXAMPLE": processValues();                            // caseIndent
+            case "COMPLETED": handleValue("Completed Case", 456);       // caseIndent
         }
     }
 }
-        </source>
+</code></pre></div>
         <p id="Example4-code">
           But if forceStrictCondition = false, this code is valid:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
-    String field = &quot;example&quot;;                   // basicOffset
+    String field = "example";                   // basicOffset
     int[] values = {                            // basicOffset
         10,
         20,
@@ -304,7 +304,7 @@ class Example4 {
     };
 
     void processValues() throws Exception {
-        handleValue(&quot;Test String&quot;, 42);
+        handleValue("Test String", 42);
     }
 
     void handleValue(String aFooString,
@@ -316,14 +316,14 @@ class Example4 {
         if (cond1
             || cond2) {
             field = field.toUpperCase()
-                .concat(&quot; TASK&quot;);
+                .concat(" TASK");
         }
 
         if ((cond1 &amp;&amp; cond2)
                 || (cond3 &amp;&amp; cond4)          // ok, lineWrappingIndentation
                 || !(cond5 &amp;&amp; cond6)) {      // ok, lineWrappingIndentation
             field.toUpperCase()
-                 .concat(&quot; TASK&quot;)            // ok, lineWrappingIndentation
+                 .concat(" TASK")            // ok, lineWrappingIndentation
                  .chars().forEach(c -&gt; {     // ok, lineWrappingIndentation
                      System.out.println((char) c);
                  });
@@ -332,12 +332,12 @@ class Example4 {
 
     void demonstrateSwitch() throws Exception {
         switch (field) {
-            case &quot;EXAMPLE&quot;: processValues();                            // caseIndent
-            case &quot;COMPLETED&quot;: handleValue(&quot;Completed Case&quot;, 456);       // caseIndent
+            case "EXAMPLE": processValues();                            // caseIndent
+            case "COMPLETED": handleValue("Completed Case", 456);       // caseIndent
         }
     }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

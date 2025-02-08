@@ -62,23 +62,23 @@
         <p id="Example1-config">
             To configure the check with default config:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;VariableDeclarationUsageDistance&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VariableDeclarationUsageDistance"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
 
   public void foo1() {
     int num;        // violation, distance = 4
     final double PI;   // OK, final variables not checked
-    System.out.println(&quot;Statement 1&quot;);
-    System.out.println(&quot;Statement 2&quot;);
-    System.out.println(&quot;Statement 3&quot;);
+    System.out.println("Statement 1");
+    System.out.println("Statement 2");
+    System.out.println("Statement 3");
     num = 1;
     PI = 3.14;
   }
@@ -89,14 +89,14 @@ public class Example1 {
     int count = 0;  // OK, used in different scope
 
     {
-      System.out.println(&quot;Inside inner scope&quot;);
+      System.out.println("Inside inner scope");
       a = 1;
       b = 2;
       count++;
     }
   }
 }
-        </source>
+</code></pre></div>
         <p>
           Check can detect a block of initialization methods. If a variable is used in
           such a block and there are no other statements after variable declaration,
@@ -138,25 +138,25 @@ cal.set(Calendar.MINUTE, minutes);
         <p id="Example2-config">
             To configure the check to set allowed distance:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
-      &lt;property name=&quot;allowedDistance&quot; value=&quot;4&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VariableDeclarationUsageDistance"&gt;
+      &lt;property name="allowedDistance" value="4"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
 
   public void foo1() {
     int num;        // OK, distance = 4
     final double PI;   // OK, final variables not checked
-    System.out.println(&quot;Statement 1&quot;);
-    System.out.println(&quot;Statement 2&quot;);
-    System.out.println(&quot;Statement 3&quot;);
+    System.out.println("Statement 1");
+    System.out.println("Statement 2");
+    System.out.println("Statement 3");
     num = 1;
     PI = 3.14;
   }
@@ -167,39 +167,39 @@ public class Example2 {
     int count = 0;  // OK, used in different scope
 
     {
-      System.out.println(&quot;Inside inner scope&quot;);
+      System.out.println("Inside inner scope");
       a = 1;
       b = 2;
       count++;
     }
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
             To configure the check to ignore certain variables:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
-      &lt;property name=&quot;ignoreVariablePattern&quot; value=&quot;^num$&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VariableDeclarationUsageDistance"&gt;
+      &lt;property name="ignoreVariablePattern" value="^num$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p>
             This configuration ignores variables named &quot;num&quot;.
         </p>
         <p id="Example3-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
 
   public void foo1() {
     int num;        // OK, variable ignored
     final double PI;   // OK, final variables not checked
-    System.out.println(&quot;Statement 1&quot;);
-    System.out.println(&quot;Statement 2&quot;);
-    System.out.println(&quot;Statement 3&quot;);
+    System.out.println("Statement 1");
+    System.out.println("Statement 2");
+    System.out.println("Statement 3");
     num = 1;
     PI = 3.14;
   }
@@ -210,36 +210,36 @@ public class Example3 {
     int count = 0;  // OK, used in different scope
 
     {
-      System.out.println(&quot;Inside inner scope&quot;);
+      System.out.println("Inside inner scope");
       a = 1;
       b = 2;
       count++;
     }
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example4-config">
             To configure the check to force validation between scopes:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
-      &lt;property name=&quot;validateBetweenScopes&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VariableDeclarationUsageDistance"&gt;
+      &lt;property name="validateBetweenScopes" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
 
   public void foo1() {
     int num;        // violation, distance = 4
     final double PI;   // OK, final variables not checked
-    System.out.println(&quot;Statement 1&quot;);
-    System.out.println(&quot;Statement 2&quot;);
-    System.out.println(&quot;Statement 3&quot;);
+    System.out.println("Statement 1");
+    System.out.println("Statement 2");
+    System.out.println("Statement 3");
     num = 1;
     PI = 3.14;
   }
@@ -250,36 +250,36 @@ public class Example4 {
     int count = 0;  // violation, distance = 4
 
     {
-      System.out.println(&quot;Inside inner scope&quot;);
+      System.out.println("Inside inner scope");
       a = 1;
       b = 2;
       count++;
     }
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example5-config">
             To configure the check to check final variables:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
-      &lt;property name=&quot;ignoreFinal&quot; value=&quot;false&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VariableDeclarationUsageDistance"&gt;
+      &lt;property name="ignoreFinal" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example5 {
 
   public void foo1() {
     int num;        // violation, distance = 4
     final double PI;   // violation, distance = 5
-    System.out.println(&quot;Statement 1&quot;);
-    System.out.println(&quot;Statement 2&quot;);
-    System.out.println(&quot;Statement 3&quot;);
+    System.out.println("Statement 1");
+    System.out.println("Statement 2");
+    System.out.println("Statement 3");
     num = 1;
     PI = 3.14;
   }
@@ -290,14 +290,14 @@ public class Example5 {
     int count = 0;  // OK, used in different scope
 
     {
-      System.out.println(&quot;Inside inner scope&quot;);
+      System.out.println("Inside inner scope");
       a = 1;
       b = 2;
       count++;
     }
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
