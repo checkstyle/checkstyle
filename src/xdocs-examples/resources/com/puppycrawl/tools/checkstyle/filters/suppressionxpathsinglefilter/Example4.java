@@ -1,0 +1,24 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck">
+      <property name="format"
+        value="^[A-Z]+(\.[A-Z]*)*$"/>
+    </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="checks" value="PackageName"/>
+      <property name="query" value="(//PACKAGE_DEF[.//IDENT[@text='suppressionxpathsinglefilter']])//IDENT[not(preceding::IDENT)]"/>
+    </module>
+  </module>
+</module>
+*/
+
+
+
+// xdoc section -- start
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
+// filtered violation above 'Name 'com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter'
+// must match pattern '\^\[A-Z\]\+(\\.\[A-Z\]\*)\*\$'.'
+
+public class Example4 {}
+// xdoc section -- end
