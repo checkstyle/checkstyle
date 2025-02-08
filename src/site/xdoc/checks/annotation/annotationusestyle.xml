@@ -124,139 +124,139 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AnnotationUseStyle&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationUseStyle"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
-@SuppressWarnings(&quot;unchecked&quot;) // ok as it's in implied style
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+@SuppressWarnings("unchecked") // ok as it's in implied style
 @Deprecated // ok as it matches closingParens default property
-@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;}) // ok as it's in implied style
+@SomeArrays({"unchecked","unused"}) // ok as it's in implied style
 public class Example1
 {
 
 }
 
 // violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
-@SuppressWarnings(value={&quot;unchecked&quot;})
+@SuppressWarnings(value={"unchecked"})
 @Deprecated() // violation 'Annotation cannot have closing parenthesis'
 // violation below 'Annotation array values cannot contain trailing comma'
-@SomeArrays(value={&quot;unchecked&quot;,&quot;unused&quot;,})
+@SomeArrays(value={"unchecked","unused",})
 class TestStyle1
 {
 
 }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
           To configure the check to enforce an <code>expanded</code> style,
           with a closing parenthesis and a trailing array comma set to <code>never</code>.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
-      &lt;property name=&quot;elementStyle&quot; value=&quot;expanded&quot;/&gt;
-      &lt;property name=&quot;closingParens&quot; value=&quot;never&quot;/&gt;
-      &lt;property name=&quot;trailingArrayComma&quot; value=&quot;never&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationUseStyle"&gt;
+      &lt;property name="elementStyle" value="expanded"/&gt;
+      &lt;property name="closingParens" value="never"/&gt;
+      &lt;property name="trailingArrayComma" value="never"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
-@SuppressWarnings(&quot;unchecked&quot;) // violation 'Annotation style must be 'EXPANDED''
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+@SuppressWarnings("unchecked") // violation 'Annotation style must be 'EXPANDED''
 @Deprecated // ok as closingParens property set to never
 // violation below 'Annotation style must be 'EXPANDED''
-@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;})
+@SomeArrays({"unchecked","unused"})
 public class Example2
 {
 
 }
 
-@SuppressWarnings(value={&quot;unchecked&quot;}) // ok as elementStyle set to expanded
+@SuppressWarnings(value={"unchecked"}) // ok as elementStyle set to expanded
 @Deprecated() // violation 'Annotation cannot have closing parenthesis'
 // violation below 'Annotation array values cannot contain trailing comma'
-@SomeArrays(value={&quot;unchecked&quot;,&quot;unused&quot;,})
+@SomeArrays(value={"unchecked","unused",})
 class TestStyle2 {
 
 }
-        </source>
+</code></pre></div>
 
         <p id="Example3-config">
           To configure the check to enforce an <code>expanded</code> style,
           with a closing parenthesis and a trailing array comma set to <code>never</code>.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
-      &lt;property name=&quot;elementStyle&quot; value=&quot;compact&quot;/&gt;
-      &lt;property name=&quot;closingParens&quot; value=&quot;always&quot;/&gt;
-      &lt;property name=&quot;trailingArrayComma&quot; value=&quot;ignore&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationUseStyle"&gt;
+      &lt;property name="elementStyle" value="compact"/&gt;
+      &lt;property name="closingParens" value="always"/&gt;
+      &lt;property name="trailingArrayComma" value="ignore"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example:</p>
-        <source>
-@SuppressWarnings(&quot;unchecked&quot;) // ok as element style set to compact
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+@SuppressWarnings("unchecked") // ok as element style set to compact
 @Deprecated // violation 'Annotation must have closing parenthesis'
-@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;}) // ok as it's in compact style
+@SomeArrays({"unchecked","unused"}) // ok as it's in compact style
 public class Example3
 {
 
 }
 
 // violation below 'Annotation style must be 'COMPACT''
-@SuppressWarnings(value={&quot;unchecked&quot;})
+@SuppressWarnings(value={"unchecked"})
 @Deprecated() // ok as closingParens set to always
 // violation below 'Annotation style must be 'COMPACT''
-@SomeArrays(value={&quot;unchecked&quot;,&quot;unused&quot;,})
+@SomeArrays(value={"unchecked","unused",})
 class TestStyle3 {
 
 }
-        </source>
+</code></pre></div>
 
         <p id="Example4-config">
           To configure the check to enforce a trailing array comma,
           with ignoring the elementStyle and a closing parenthesis.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
-      &lt;property name=&quot;elementStyle&quot; value=&quot;ignore&quot;/&gt;
-      &lt;property name=&quot;closingParens&quot; value=&quot;ignore&quot;/&gt;
-      &lt;property name=&quot;trailingArrayComma&quot; value=&quot;always&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationUseStyle"&gt;
+      &lt;property name="elementStyle" value="ignore"/&gt;
+      &lt;property name="closingParens" value="ignore"/&gt;
+      &lt;property name="trailingArrayComma" value="always"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example:</p>
-        <source>
-@SuppressWarnings(&quot;unchecked&quot;) // ok as element style set to 'ignore'
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+@SuppressWarnings("unchecked") // ok as element style set to 'ignore'
 @Deprecated // ok as 'closingParens' is set to 'ignore
 // violation below 'Annotation array values must contain trailing comma'
-@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;})
+@SomeArrays({"unchecked","unused"})
 public class Example4
 {
 
 }
 
 // violation below 'Annotation array values must contain trailing comma'
-@SuppressWarnings(value={&quot;unchecked&quot;})
+@SuppressWarnings(value={"unchecked"})
 @Deprecated() // ok as 'closingParens' is set to 'ignore
 // ok below as it has a trailing array comma
-@SomeArrays(value={&quot;unchecked&quot;,&quot;unused&quot;,})
+@SomeArrays(value={"unchecked","unused",})
 class TestStyle4 {
 
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

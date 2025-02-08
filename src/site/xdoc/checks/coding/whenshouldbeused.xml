@@ -36,17 +36,17 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;WhenShouldBeUsed&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="WhenShouldBeUsed"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example of violation:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
 
   void testNoGuard(Object o) {
@@ -54,7 +54,7 @@ public class Example1 {
       // violation below,  ''when' expression should be used*.'
       case String s -&gt; {
         if (s.isEmpty()) {
-          System.out.println(&quot;empty string&quot;);
+          System.out.println("empty string");
         }
       }
       default -&gt; {}
@@ -63,9 +63,9 @@ public class Example1 {
     switch (o) {
       // this example is ok, not a single if statement inside the case block
       case String s -&gt; {
-        System.out.println(&quot;String&quot;);
+        System.out.println("String");
         if (s.isEmpty()) {
-          System.out.println(&quot;but empty&quot;);
+          System.out.println("but empty");
         }
       }
       default -&gt; {}
@@ -75,14 +75,14 @@ public class Example1 {
   void testGuardedCaseLabel(Object o) {
     switch (o) {
       case String s when s.isEmpty() -&gt; {
-        System.out.println(&quot;empty string&quot;);
+        System.out.println("empty string");
       }
       default -&gt; {}
     }
   }
 
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -53,11 +53,11 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;JavadocPackage&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="JavadocPackage"/&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-structure">
           Directory structure with no package-info.java file in directory:<br/><br/>
           Example1.java
@@ -66,22 +66,22 @@
           The following violation is raised in default when
           package-info.java file is missing from directory.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.nonlegacy;
 /* violation on first line 'Missing package-info.java file' */
 public class Example1 { }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
           To configure the check with allowlegacy set to true:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;JavadocPackage&quot;&gt;
-    &lt;property name=&quot;allowLegacy&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="JavadocPackage"&gt;
+    &lt;property name="allowLegacy" value="true"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-structure">
           Directory structure with with package.html file in same directory:<br/><br/>
           Example2.java<br/><br/>
@@ -91,22 +91,22 @@ public class Example1 { }
           The legacy configuration (allowLegacy=true) allows the use of the legacy package.html
           file as an alternative to package-info.java removing violation
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.legacy;
 // OK as package.html file is present in directory
 public class Example2 { }
-        </source>
+</code></pre></div>
 
         <p id="Example3-config">
           To configure the check with allowlegacy set to true:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;JavadocPackage&quot;&gt;
-    &lt;property name=&quot;allowLegacy&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="JavadocPackage"&gt;
+    &lt;property name="allowLegacy" value="true"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-structure">
           Directory structure with both package-info.java and package.html
           file in same directory:<br/><br/>
@@ -119,11 +119,11 @@ public class Example2 { }
           in place of package-info.java but still enforces that only one file
           (either package-info.java or package.html) exists in a package.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.legacywithboth;
 /* violation on first line 'Legacy package.html file should be removed' */
 public class Example3 { }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
