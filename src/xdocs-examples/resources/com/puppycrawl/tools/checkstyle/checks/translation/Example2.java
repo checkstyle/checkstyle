@@ -8,11 +8,13 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.translation;
+
 // xdoc section -- start
-/*
---> Example2
-  |--> ButtonLabels.properties
-  |--> ButtonLabels_fr.properties
-*/
 public class Example2 {}
+/*
+(target folder structure):
+
+ButtonLabels.properties
+ButtonLabels_fr.properties
+*/
 // xdoc section -- end

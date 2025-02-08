@@ -7,12 +7,14 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.translation;
+
 // xdoc section -- start
-/*
---> Example3
-  |--> messages.properties
-  |--> messages_fr.properties
-  |--> messages_es.properties
-*/
 public class Example1 {}
+/*
+(target folder structure):
+
+messages.properties
+messages_fr.properties
+messages_es.properties
+*/
 // xdoc section -- end

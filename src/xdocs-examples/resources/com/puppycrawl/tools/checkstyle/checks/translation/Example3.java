@@ -8,11 +8,15 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.translation;
+
 // xdoc section -- start
-/*
---> Example1
-  |--> messages.properties
-  |--> messages.translations
-*/
 public class Example3 {}
+/*
+(target folder structure):
+(attention, no messages_fr.properties file)
+(attention, no messages_fr.translations file)
+
+messages.properties
+messages.translations
+*/
 // xdoc section -- end
