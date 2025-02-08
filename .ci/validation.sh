@@ -216,7 +216,10 @@ no-error-pmd)
   echo "CS_version: ${CS_POM_VERSION}"
   mvn -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  checkout_from "https://github.com/pmd/build-tools.git"
+  #  checkout_from "https://github.com/pmd/build-tools.git"
+  checkout_from "https://github.com/kkoutsilis/build-tools.git"
+  git ls-remote
+  git checkout "66ded33c74662cb3da612f3d34a5aefaa629b443"
   cd .ci-temp/build-tools/
   mvn -e --no-transfer-progress install
   cd ..
