@@ -443,49 +443,52 @@ public final class JavadocTokenTypes {
      */
     public static final int CODE_LITERAL = JavadocParser.CODE_LITERAL;
 
-    /**
-     * '@docRoot' literal in {&#64;docRoot} Javadoc inline tag.
-     *
-     * <p>Such Javadoc inline tag does not have any arguments and can have such child nodes:</p>
-     * <ul>
-     * <li>{@link #NEWLINE}</li>
-     * <li>{@link #WS}</li>
-     * </ul>
-     *
-     * <p><b>Example:</b></p>
-     * <pre><code>{&#64;docRoot}</code></pre>
-     * <b>Tree:</b>
-     * <pre>
-     * <code>  |--JAVADOC_INLINE_TAG[1x0] : [{&#64;docRoot}]
-     *            |--JAVADOC_INLINE_TAG_START[1x0] : [{]
-     *            |--DOC_ROOT_LITERAL[1x1] : [@docRoot]
-     *            |--JAVADOC_INLINE_TAG_END[2x0] : [}]
-     * </code>
-     * </pre>
-     *
-     * <p><b>Example:</b></p>
-     * <pre><code>{&#64;docRoot
-     * }</code></pre>
-     * <b>Tree:</b>
-     * <pre>
-     * <code>  |--JAVADOC_INLINE_TAG[1x0] : [{&#64;docRoot \n}]
-     *            |--JAVADOC_INLINE_TAG_START[1x0] : [{]
-     *            |--DOC_ROOT_LITERAL[1x1] : [@docRoot]
-     *            |--WS[1x9] : [ ]
-     *            |--NEWLINE[1x10] : [\n]
-     *            |--JAVADOC_INLINE_TAG_END[2x0] : [}]
-     * </code>
-     * </pre>
-     *
-     * @see
-     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDBACBF">
-     * Oracle Docs</a>
-     * @see #JAVADOC_INLINE_TAG
-     * @noinspection HtmlTagCanBeJavadocTag
-     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
-     *      replaced with Javadoc tag
-     */
-    public static final int DOC_ROOT_LITERAL = JavadocParser.DOC_ROOT_LITERAL;
+  /**
+   * '@docRoot' literal in {&#64;docRoot} Javadoc inline tag.
+   *
+   * <p>Such Javadoc inline tag does not have any arguments and can have such child nodes:</p>
+   * <ul>
+   * <li>{@link #NEWLINE}</li>
+   * <li>{@link #WS}</li>
+   * </ul>
+   *
+   * <p><b>Example:</b></p>
+   * <pre><code>{&#64;docRoot}</code></pre>
+   * <b>Tree:</b>
+   * <pre>
+   * <code>
+   * |--JAVADOC_INLINE_TAG -&gt; JAVADOC_INLINE_TAG
+   *      |--JAVADOC_INLINE_TAG_START -&gt; {
+   *      |--DOC_ROOT_LITERAL -&gt; @docRoot
+   *      `--JAVADOC_INLINE_TAG_END -&gt; }
+   * </code>
+   * </pre>
+   *
+   * <pre> Example :{&#64;docRoot
+   * } in a Javadoc comment.
+   *</code></pre>
+   * <b>Tree:</b>
+   * <pre>
+   * <code>
+   * |--JAVADOC_INLINE_TAG -&gt; JAVADOC_INLINE_TAG
+   *     |--JAVADOC_INLINE_TAG_START -&gt; {
+   *     |--DOC_ROOT_LITERAL -&gt; @docRoot
+   *     |--NEWLINE -&gt; \r\n
+   *     |--LEADING_ASTERISK -&gt;       *
+   *     |--WS -&gt;
+   *     `--JAVADOC_INLINE_TAG_END -&gt; }
+   * </code>
+   * </pre>
+   *
+   * @see
+   * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDBACBF">
+   * Oracle Docs</a>
+   * @see #JAVADOC_INLINE_TAG
+   * @noinspection HtmlTagCanBeJavadocTag
+   * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
+   *      replaced with Javadoc tag
+   */
+  public static final int DOC_ROOT_LITERAL = JavadocParser.DOC_ROOT_LITERAL;
 
     /**
      * '@link' literal in {&#64;link} Javadoc inline tag.
