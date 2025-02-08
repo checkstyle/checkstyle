@@ -52,17 +52,17 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;TodoComment&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TodoComment"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   int i;
   int x;
@@ -73,24 +73,24 @@ public class Example1 {
     i=i/x; // FIX :  handle x = 0 case
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check for comments that contain <code>TODO</code> and <code>FIXME</code>,
           case-insensitive:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;TodoComment&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;(?i)(TODO)|(FIXME)&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TodoComment"&gt;
+      &lt;property name="format" value="(?i)(TODO)|(FIXME)"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   int i;
   int x;
@@ -101,7 +101,7 @@ public class Example2 {
     i=i/x; // FIX :  handle x = 0 case
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -67,15 +67,15 @@
         <p id="Example1-config">
          To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MemberName&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MemberName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Code Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   public int num1;
   protected int num2;
@@ -94,7 +94,7 @@ class Example1 {
   private int NUM4; // violation
 
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with
           <code>&quot;m&quot;</code>, followed by an upper case letter, and then letters
@@ -102,19 +102,19 @@ class Example1 {
           and package-private member:
         </p>
 
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MemberName&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;^m[A-Z][a-zA-Z0-9]*$&quot;/&gt;
-      &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
-      &lt;property name=&quot;applyToPackage&quot; value=&quot;false&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MemberName"&gt;
+      &lt;property name="format" value="^m[A-Z][a-zA-Z0-9]*$"/&gt;
+      &lt;property name="applyToProtected" value="false"/&gt;
+      &lt;property name="applyToPackage" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Code Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   public int num1; // violation
 
@@ -123,23 +123,23 @@ class Example2 {
   private int num4; // violation
 
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           An example of how to suppress the check which is applied to
           public and private member:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MemberName&quot;&gt;
-      &lt;property name=&quot;applyToPublic&quot; value=&quot;false&quot;/&gt;
-      &lt;property name=&quot;applyToPrivate&quot; value=&quot;false&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MemberName"&gt;
+      &lt;property name="applyToPublic" value="false"/&gt;
+      &lt;property name="applyToPrivate" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Code Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
   public int NUM1;
   protected int NUM2; // violation
@@ -148,7 +148,7 @@ class Example3 {
 
   private int NUM4;
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

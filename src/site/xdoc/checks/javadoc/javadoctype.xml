@@ -134,15 +134,15 @@
         <p id="Example1-config">
           To configure the default check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavadocType&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocType"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example1:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * @author a
  * @version $Revision1$
@@ -177,22 +177,22 @@ public class Example1 {
   @Generated
   public class ClassG&lt;T&gt; {}
 }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
           To configure the check for <code>public</code> scope:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavadocType&quot;&gt;
-      &lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocType"&gt;
+      &lt;property name="scope" value="public"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example2:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * @author a
  * @version $Revision1$
@@ -227,22 +227,22 @@ public class Example2 {
   @Generated
   public class ClassG&lt;T&gt; {}
 }
-        </source>
+</code></pre></div>
 
         <p id="Example3-config">
           To configure the check for an <code>@author</code> tag:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavadocType&quot;&gt;
-      &lt;property name=&quot;authorFormat&quot; value=&quot;\S&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocType"&gt;
+      &lt;property name="authorFormat" value="\S"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example3:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * @author a
  * @version $Revision1$
@@ -277,22 +277,22 @@ public class Example3 {
   @Generated
   public class ClassG&lt;T&gt; {}
 }
-        </source>
+</code></pre></div>
 
         <p id="Example4-config">
           To configure the check for a CVS revision version tag:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavadocType&quot;&gt;
-      &lt;property name=&quot;versionFormat&quot; value=&quot;\$Revision.*\$&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocType"&gt;
+      &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example4:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * @author a
  * @version $Revision1$
@@ -327,23 +327,23 @@ public class Example4 {
   @Generated
   public class ClassG&lt;T&gt; {}
 }
-        </source>
+</code></pre></div>
 
         <p id="Example5-config">
           To configure the check for <code>private</code> classes only:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavadocType&quot;&gt;
-      &lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
-      &lt;property name=&quot;excludeScope&quot; value=&quot;package&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocType"&gt;
+      &lt;property name="scope" value="private"/&gt;
+      &lt;property name="excludeScope" value="package"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">Example5:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * @author a
  * @version $Revision1$
@@ -378,22 +378,22 @@ public class Example5 {
   @Generated
   public class ClassG&lt;T&gt; {}
 }
-        </source>
+</code></pre></div>
 
         <p id="Example6-config">
           To configure the check that allows missing <code>@param</code> tags:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavadocType&quot;&gt;
-      &lt;property name=&quot;allowMissingParamTags&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocType"&gt;
+      &lt;property name="allowMissingParamTags" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example6-code">Example6:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * @author a
  * @version $Revision1$
@@ -428,22 +428,22 @@ public class Example6 {
   @Generated
   public class ClassG&lt;T&gt; {}
 }
-        </source>
+</code></pre></div>
 
         <p id="Example7-config">
             To configure the check that allows unknown tags:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavadocType&quot;&gt;
-      &lt;property name=&quot;allowUnknownTags&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocType"&gt;
+      &lt;property name="allowUnknownTags" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example7-code">Example7:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * @author a
  * @version $Revision1$
@@ -478,25 +478,25 @@ public class Example7 {
   @Generated
   public class ClassG&lt;T&gt; {}
 }
-        </source>
+</code></pre></div>
 
         <p id="Example8-config">
           To configure a check that allows skipping validation at all
           for classes annotated with <code>@unknownTag</code>
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavadocType&quot;&gt;
-      &lt;property name=&quot;allowedAnnotations&quot; value=&quot;unknownTag&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocType"&gt;
+      &lt;property name="allowedAnnotations" value="unknownTag"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example8-code">
           Example8:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * @author a
  * @version $Revision1$
@@ -531,7 +531,7 @@ public class Example8 {
   @Generated // violation, 'Type Javadoc comment is missing @param &lt;T&gt; tag'
   public class ClassG&lt;T&gt; {}
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

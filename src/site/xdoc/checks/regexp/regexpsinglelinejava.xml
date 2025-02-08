@@ -80,339 +80,339 @@
         <p id="Example1-config">
           To configure the default check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RegexpSinglelineJava&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RegexpSinglelineJava"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example1:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
 
   private void testMethod1() {
     int debug = 0;
-    System.out.println(&quot;&quot;);
+    System.out.println("");
     System.out.
-    println(&quot;&quot;);
+    println("");
   }
 
   private void testMethod2() throws IOException {
-    FileReader in = new FileReader(&quot;path/to/input&quot;);
+    FileReader in = new FileReader("path/to/input");
     int ch = in.read();
     while(ch != -1) {
       System.out.print((char)ch);
       ch = in.read();
     }
 
-    FileWriter out = new FileWriter(&quot;path/to/output&quot;);
-    out.write(&quot;something&quot;);
+    FileWriter out = new FileWriter("path/to/output");
+    out.write("something");
   }
 
   public void testMethod3(){
     final Logger logger = Logger.getLogger(Example1.class.getName());
-    logger.info(&quot;first&quot;);
-    logger.info(&quot;second&quot;);
-    logger.info(&quot;third&quot;);
-    System.out.println(&quot;fourth&quot;);
-    logger.info(&quot;fifth&quot;);
+    logger.info("first");
+    logger.info("second");
+    logger.info("third");
+    System.out.println("fourth");
+    logger.info("fifth");
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check for calls to <code>System.out.println</code>, except in comments:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RegexpSinglelineJava"&gt;
       &lt;!-- . matches any character, so we need to
            escape it and use \. to match dots. --&gt;
-      &lt;property name=&quot;format&quot; value=&quot;System\.out\.println&quot;/&gt;
-      &lt;property name=&quot;ignoreComments&quot; value=&quot;true&quot;/&gt;
+      &lt;property name="format" value="System\.out\.println"/&gt;
+      &lt;property name="ignoreComments" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example2:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
 
   private void testMethod1() {
     int debug = 0;
-    System.out.println(&quot;&quot;); // violation, 'Line matches the illegal pattern'
+    System.out.println(""); // violation, 'Line matches the illegal pattern'
     System.out.
-    println(&quot;&quot;);
+    println("");
   }
 
   private void testMethod2() throws IOException {
-    FileReader in = new FileReader(&quot;path/to/input&quot;);
+    FileReader in = new FileReader("path/to/input");
     int ch = in.read();
     while(ch != -1) {
       System.out.print((char)ch);
       ch = in.read();
     }
 
-    FileWriter out = new FileWriter(&quot;path/to/output&quot;);
-    out.write(&quot;something&quot;);
+    FileWriter out = new FileWriter("path/to/output");
+    out.write("something");
   }
 
   public void testMethod3(){
     final Logger logger = Logger.getLogger(Example2.class.getName());
-    logger.info(&quot;first&quot;);
-    logger.info(&quot;second&quot;);
-    logger.info(&quot;third&quot;);
-    System.out.println(&quot;fourth&quot;); // violation, 'Line matches the illegal pattern'
-    logger.info(&quot;fifth&quot;);
+    logger.info("first");
+    logger.info("second");
+    logger.info("third");
+    System.out.println("fourth"); // violation, 'Line matches the illegal pattern'
+    logger.info("fifth");
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           To configure the check to find case-insensitive occurrences of
           &quot;debug&quot;:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;debug&quot;/&gt;
-      &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;ignoreComments&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RegexpSinglelineJava"&gt;
+      &lt;property name="format" value="debug"/&gt;
+      &lt;property name="ignoreCase" value="true"/&gt;
+      &lt;property name="ignoreComments" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example3:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
 
   private void testMethod1() {
     int debug = 0; // violation, 'Line matches the illegal pattern'
-    System.out.println(&quot;&quot;);
+    System.out.println("");
     System.out.
-    println(&quot;&quot;);
+    println("");
   }
 
   private void testMethod2() throws IOException {
-    FileReader in = new FileReader(&quot;path/to/input&quot;);
+    FileReader in = new FileReader("path/to/input");
     int ch = in.read();
     while(ch != -1) {
       System.out.print((char)ch);
       ch = in.read();
     }
 
-    FileWriter out = new FileWriter(&quot;path/to/output&quot;);
-    out.write(&quot;something&quot;);
+    FileWriter out = new FileWriter("path/to/output");
+    out.write("something");
   }
 
   public void testMethod3(){
     final Logger logger = Logger.getLogger(Example3.class.getName());
-    logger.info(&quot;first&quot;);
-    logger.info(&quot;second&quot;);
-    logger.info(&quot;third&quot;);
-    System.out.println(&quot;fourth&quot;);
-    logger.info(&quot;fifth&quot;);
+    logger.info("first");
+    logger.info("second");
+    logger.info("third");
+    System.out.println("fourth");
+    logger.info("fifth");
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example4-config">
           To configure the check to find occurrences of
           &quot;\.read(.*)|\.write(.*)&quot;
           and display &quot;IO found&quot; for each violation.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;\.read(.*)|\.write(.*)&quot;/&gt;
-      &lt;property name=&quot;message&quot; value=&quot;IO found&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RegexpSinglelineJava"&gt;
+      &lt;property name="format" value="\.read(.*)|\.write(.*)"/&gt;
+      &lt;property name="message" value="IO found"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example4:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
 
   private void testMethod1() {
     int debug = 0;
-    System.out.println(&quot;&quot;);
+    System.out.println("");
     System.out.
-    println(&quot;&quot;);
+    println("");
   }
 
   private void testMethod2() throws IOException {
-    FileReader in = new FileReader(&quot;path/to/input&quot;);
+    FileReader in = new FileReader("path/to/input");
     int ch = in.read(); // violation, 'IO found'
     while(ch != -1) {
       System.out.print((char)ch);
       ch = in.read(); // violation, 'IO found'
     }
 
-    FileWriter out = new FileWriter(&quot;path/to/output&quot;);
-    out.write(&quot;something&quot;); // violation, 'IO found'
+    FileWriter out = new FileWriter("path/to/output");
+    out.write("something"); // violation, 'IO found'
   }
 
   public void testMethod3(){
     final Logger logger = Logger.getLogger(Example3.class.getName());
-    logger.info(&quot;first&quot;);
-    logger.info(&quot;second&quot;);
-    logger.info(&quot;third&quot;);
-    System.out.println(&quot;fourth&quot;);
-    logger.info(&quot;fifth&quot;);
+    logger.info("first");
+    logger.info("second");
+    logger.info("third");
+    System.out.println("fourth");
+    logger.info("fifth");
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example5-config">
           To configure the check to find occurrences of
           &quot;\.log(.*)&quot;. We want to allow a maximum of 2 occurrences.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;\.info(.*)&quot;/&gt;
-      &lt;property name=&quot;maximum&quot; value=&quot;2&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RegexpSinglelineJava"&gt;
+      &lt;property name="format" value="\.info(.*)"/&gt;
+      &lt;property name="maximum" value="2"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">Example5:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
 
   private void testMethod1() {
     int debug = 0;
-    System.out.println(&quot;&quot;);
+    System.out.println("");
     System.out.
-    println(&quot;&quot;);
+    println("");
   }
 
   private void testMethod2() throws IOException {
-    FileReader in = new FileReader(&quot;path/to/input&quot;);
+    FileReader in = new FileReader("path/to/input");
     int ch = in.read();
     while(ch != -1) {
       System.out.print((char)ch);
       ch = in.read();
     }
 
-    FileWriter out = new FileWriter(&quot;path/to/output&quot;);
-    out.write(&quot;something&quot;);
+    FileWriter out = new FileWriter("path/to/output");
+    out.write("something");
   }
 
   public void testMethod3(){
     final Logger logger = Logger.getLogger(Example5.class.getName());
-    logger.info(&quot;first&quot;);
-    logger.info(&quot;second&quot;); // violation, 'Line matches the illegal pattern'
-    logger.info(&quot;third&quot;);  // violation, 'Line matches the illegal pattern'
-    System.out.println(&quot;fourth&quot;);
-    logger.info(&quot;fifth&quot;);  // violation, 'Line matches the illegal pattern'
+    logger.info("first");
+    logger.info("second"); // violation, 'Line matches the illegal pattern'
+    logger.info("third");  // violation, 'Line matches the illegal pattern'
+    System.out.println("fourth");
+    logger.info("fifth");  // violation, 'Line matches the illegal pattern'
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example6-config">
           To configure the check to find all occurrences of
           &quot;public&quot;. We want to ignore comments,
           display &quot;public member found&quot; for each violation
           and say if less than 1 occurrences.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;public&quot;/&gt;
-      &lt;property name=&quot;minimum&quot; value=&quot;1&quot;/&gt;
-      &lt;property name=&quot;message&quot; value=&quot;public member found&quot;/&gt;
-      &lt;property name=&quot;ignoreComments&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RegexpSinglelineJava"&gt;
+      &lt;property name="format" value="public"/&gt;
+      &lt;property name="minimum" value="1"/&gt;
+      &lt;property name="message" value="public member found"/&gt;
+      &lt;property name="ignoreComments" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example6-code">Example6:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example6 {
 
   private void testMethod1() {
     int debug = 0;
-    System.out.println(&quot;&quot;);
+    System.out.println("");
     System.out.
-    println(&quot;&quot;);
+    println("");
   }
 
   private void testMethod2() throws IOException {
-    FileReader in = new FileReader(&quot;path/to/input&quot;);
+    FileReader in = new FileReader("path/to/input");
     int ch = in.read();
     while(ch != -1) {
       System.out.print((char)ch);
       ch = in.read();
     }
 
-    FileWriter out = new FileWriter(&quot;path/to/output&quot;);
-    out.write(&quot;something&quot;);
+    FileWriter out = new FileWriter("path/to/output");
+    out.write("something");
   }
   // violation below, 'public member found'
   public void testMethod3(){
     final Logger logger = Logger.getLogger(Example1.class.getName());
-    logger.info(&quot;first&quot;);
-    logger.info(&quot;second&quot;);
-    logger.info(&quot;third&quot;);
-    System.out.println(&quot;fourth&quot;);
-    logger.info(&quot;fifth&quot;);
+    logger.info("first");
+    logger.info("second");
+    logger.info("third");
+    System.out.println("fourth");
+    logger.info("fifth");
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example7-config">
           To configure the check to find all occurrences of
           &quot;private&quot;. We want to ignore comments,
           display &quot;private member found&quot; for each violation
           and say if less than 2 occurrences.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;private&quot;/&gt;
-      &lt;property name=&quot;minimum&quot; value=&quot;2&quot;/&gt;
-      &lt;property name=&quot;message&quot; value=&quot;private member found&quot;/&gt;
-      &lt;property name=&quot;ignoreComments&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RegexpSinglelineJava"&gt;
+      &lt;property name="format" value="private"/&gt;
+      &lt;property name="minimum" value="2"/&gt;
+      &lt;property name="message" value="private member found"/&gt;
+      &lt;property name="ignoreComments" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example7-code">Example7:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example7 {
   // violation below, 'private member found'
   private void testMethod1() {
     int debug = 0;
-    System.out.println(&quot;&quot;);
+    System.out.println("");
     System.out.
-    println(&quot;&quot;);
+    println("");
   }
   // violation below, 'private member found'
   private void testMethod2() throws IOException {
-    FileReader in = new FileReader(&quot;path/to/input&quot;);
+    FileReader in = new FileReader("path/to/input");
     int ch = in.read();
     while(ch != -1) {
       System.out.print((char)ch);
       ch = in.read();
     }
 
-    FileWriter out = new FileWriter(&quot;path/to/output&quot;);
-    out.write(&quot;something&quot;);
+    FileWriter out = new FileWriter("path/to/output");
+    out.write("something");
   }
 
   public void testMethod3(){
     final Logger logger = Logger.getLogger(Example1.class.getName());
-    logger.info(&quot;first&quot;);
-    logger.info(&quot;second&quot;);
-    logger.info(&quot;third&quot;);
-    System.out.println(&quot;fourth&quot;);
-    logger.info(&quot;fifth&quot;);
+    logger.info("first");
+    logger.info("second");
+    logger.info("third");
+    System.out.println("fourth");
+    logger.info("fifth");
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -28,15 +28,15 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SuperFinalize&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuperFinalize"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   protected void finalize() throws Throwable {
     super.finalize(); // OK, calls super.finalize()
@@ -47,7 +47,7 @@ class InvalidExample {
   protected void finalize() throws Throwable {
   }
 }
-        </source>
+</code></pre></div>
 
       </subsection>
 
