@@ -61,34 +61,34 @@
           To configure the default check to validate that first sentence is not empty and first
           sentence is not missing:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SummaryJavadoc&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SummaryJavadoc"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code"> Example1: </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
 
   /**
    * {@inheritDoc}
    */
-  public String m1(){ return &quot;&quot;; }
+  public String m1(){ return ""; }
   // violation below, 'Summary javadoc is missing'
   /** */
-  public String m2(){ return &quot;&quot;; }
+  public String m2(){ return ""; }
 
   /**
    * {@summary  }
    */
-  public String m3(){ return &quot;&quot;; }
+  public String m3(){ return ""; }
   // violation 3 lines above 'Summary javadoc is missing'
   /**
    * {@summary &lt;p&gt; &lt;p/&gt;}
    */
-  public String m4() { return &quot;&quot;; }
+  public String m4() { return ""; }
   // violation 3 lines above 'Summary javadoc is missing'
   /**
    * {@summary &lt;p&gt;This is a javadoc with period.&lt;p/&gt;}
@@ -101,7 +101,7 @@ class Example1 {
   void m6() {}
 
   /**
-  * {@summary This is a java doc with period symbol&#x3002;}
+  * {@summary This is a java doc with period symbol。}
   */
   public void m7() {}
   // violation 3 lines above 'Summary of Javadoc is missing an ending period'
@@ -116,42 +116,42 @@ class Example1 {
   public void m8() {}
 
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To ensure that summary does not contain phrase like &quot;This method returns&quot;, use
           following config:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SummaryJavadoc&quot;&gt;
-      &lt;property name=&quot;forbiddenSummaryFragments&quot;
-        value=&quot;^This method returns.*&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SummaryJavadoc"&gt;
+      &lt;property name="forbiddenSummaryFragments"
+        value="^This method returns.*"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code"> Example2: </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
 
   /**
    * {@inheritDoc}
    */
-  public String m1(){ return &quot;&quot;; }
+  public String m1(){ return ""; }
   // violation below, 'Summary javadoc is missing'
   /** */
-  public String m2(){ return &quot;&quot;; }
+  public String m2(){ return ""; }
 
   /**
    * {@summary  }
    */
-  public String m3(){ return &quot;&quot;; }
+  public String m3(){ return ""; }
   // violation 3 lines above 'Summary javadoc is missing'
   /**
    * {@summary &lt;p&gt; &lt;p/&gt;}
    */
-  public String m4() { return &quot;&quot;; }
+  public String m4() { return ""; }
   // violation 3 lines above 'Summary javadoc is missing'
   /**
    * {@summary &lt;p&gt;This is a javadoc with period.&lt;p/&gt;}
@@ -164,7 +164,7 @@ class Example2 {
   void m6() {}
   // violation 4 lines above 'Forbidden summary fragment'
   /**
-  * {@summary This is a java doc with period symbol&#x3002;}
+  * {@summary This is a java doc with period symbol。}
   */
   public void m7() {}
   // violation 3 lines above 'Summary of Javadoc is missing an ending period'
@@ -179,40 +179,40 @@ class Example2 {
   public void m8() {}
 
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           To specify period symbol at the end of first javadoc sentence:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SummaryJavadoc&quot;&gt;
-      &lt;property name=&quot;period&quot; value=&quot;&#x3002;&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SummaryJavadoc"&gt;
+      &lt;property name="period" value="。"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code"> Example3: </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
 
   /**
    * {@inheritDoc}
    */
-  public String m1(){ return &quot;&quot;; }
+  public String m1(){ return ""; }
   // violation below, 'Summary javadoc is missing'
   /** */
-  public String m2(){ return &quot;&quot;; }
+  public String m2(){ return ""; }
 
   /**
    * {@summary  }
    */
-  public String m3(){ return &quot;&quot;; }
+  public String m3(){ return ""; }
   // violation 3 lines above 'Summary javadoc is missing'
   /**
    * {@summary &lt;p&gt; &lt;p/&gt;}
    */
-  public String m4() { return &quot;&quot;; }
+  public String m4() { return ""; }
   // violation 3 lines above 'Summary javadoc is missing'
   /**
    * {@summary &lt;p&gt;This is a javadoc with period.&lt;p/&gt;}
@@ -225,12 +225,12 @@ class Example3 {
   void m6() {}
   // violation 4 lines above 'First sentence of Javadoc is missing an ending period'
   /**
-  * {@summary This is a java doc without period&#x3002;}
+  * {@summary This is a java doc without period。}
   */
   public void m7() {}
 
   /**
-  * {@summary First sentence is normally the summary&#x3002;
+  * {@summary First sentence is normally the summary。
   * Use of html tags:
   * &lt;ul&gt;
   * &lt;li&gt;Item one.&lt;/li&gt;
@@ -240,7 +240,7 @@ class Example3 {
   public void m8() {}
   // violation 8 lines above 'Summary of Javadoc is missing an ending period'
 }
-        </source>
+</code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

@@ -46,15 +46,15 @@
         </p>
         <p>
           Common part <code>checkstyle-common.xml</code>:
-          <source>
+          <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name=&quot;FileLength&quot;&gt;
   &lt;property name=&quot;max&quot; value=&quot;1&quot;/&gt;
 &lt;/module&gt;
-          </source>
+          </code></pre></div>
         </p>
         <p>
           Main config <code>checkstyle.xml</code>:
-          <source>
+          <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;?xml version=&quot;1.0&quot;?&gt;
 &lt;!DOCTYPE module PUBLIC
           &quot;-//Checkstyle//DTD Checkstyle Configuration 1.3//EN&quot;
@@ -72,11 +72,11 @@
     &lt;/module&gt;
 
 &lt;/module&gt;
-          </source>
+          </code></pre></div>
         </p>
         <p>
           Test config <code>checkstyle-test.xml</code>:
-          <source>
+          <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;?xml version=&quot;1.0&quot;?&gt;
 &lt;!DOCTYPE module PUBLIC
           &quot;-//Checkstyle//DTD Checkstyle Configuration 1.3//EN&quot;
@@ -94,20 +94,20 @@
     &lt;/module&gt;
 
 &lt;/module&gt;
-          </source>
+          </code></pre></div>
         </p>
         <p>
           Target file for validation <code>Test.java</code>:
-          <source>
+          <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Test {
   int i = 0;
 }
-          </source>
+          </code></pre></div>
         </p>
         <p>
           Example of execution for <code>checkstyle.xml</code>. Violation from Check of
           <code>common.xml</code> is expected, validation of field name is done by main code rules:
-          <source>
+          <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 $ java -Dcheckstyle.enableExternalDtdLoad=true -classpath checkstyle-XX.X-all.jar \
         com.puppycrawl.tools.checkstyle.Main -c checkstyle.xml Test.java
 Starting audit...
@@ -115,12 +115,12 @@ Starting audit...
 [ERROR] Test.java:2:7: &apos;i&apos; must match pattern &apos;^[a-z][a-zA-Z]+$&apos;. [MemberName]
 Audit done.
 Checkstyle ends with 2 errors.
-          </source>
+          </code></pre></div>
         </p>
         <p>
           Example of execution for <code>checkstyle-test.xml</code>. Violation from Check of
           <code>common.xml</code> is expected, validation of field name is done by test code rules:
-          <source>
+          <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 $ java -Dcheckstyle.enableExternalDtdLoad=true -classpath checkstyle-XX.X-all.jar \
           com.puppycrawl.tools.checkstyle.Main -c checkstyle-test.xml Test.java
 Starting audit...
@@ -128,7 +128,7 @@ Starting audit...
 [ERROR] Test.java:2:7: &apos;i&apos; must match pattern &apos;_[a-z]&apos;. [MemberName]
 Audit done.
 Checkstyle ends with 2 errors.
-          </source>
+          </code></pre></div>
         </p>
         <p>
           Attention to Windows users: system properties should be wrapped with <code>"</code>.
@@ -142,11 +142,11 @@ Checkstyle ends with 2 errors.
         Checkstyle supports property expansion within property definitions, also
         known as property chaining. This feature allows you to define properties
         using other properties. For example:
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 checkstyle.dir=/home/user/checkstyle
 config.dir=configs
 checkstyle.suppressions.file=${checkstyle.dir}/${config.dir}/suppressions.xml
-        </source>
+        </code></pre></div>
         You can then use
         <code>${checkstyle.suppressions.file}</code> in your checkstyle configuration,
         which will resolve to
