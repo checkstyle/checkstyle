@@ -97,7 +97,7 @@ messages.properties: Key 'ok' missing.
         </macro>
         <p id="Example1-code">
           Example1
-          (code):
+          (target folder structure):
         </p>
         <macro name="example">
           <param name="path"
@@ -153,7 +153,7 @@ messages_es.properties: Key 'hello' missing.
         </macro>
         <p id="Example2-code">
           Example2
-          (code):
+          (target folder structure):
         </p>
         <macro name="example">
           <param name="path"
@@ -194,7 +194,7 @@ ButtonLabels_fr.properties: Key 'cancel' is missing.
         </macro>
         <p id="Example3-code">
           Example3
-          (code):
+          (target folder structure):
         </p>
         <macro name="example">
           <param name="path"

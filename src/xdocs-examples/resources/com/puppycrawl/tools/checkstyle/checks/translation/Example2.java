@@ -9,12 +9,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.translation;
 
-// xdoc section -- start
-public class Example2 {}
 /*
-(target folder structure):
-
+// xdoc section -- start
 ButtonLabels.properties
 ButtonLabels_fr.properties
-*/
 // xdoc section -- end
+*/
+public class Example2 {}

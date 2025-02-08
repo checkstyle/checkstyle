@@ -8,13 +8,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.translation;
 
-// xdoc section -- start
-public class Example1 {}
-/*
-(target folder structure):
 
+/*
+// xdoc section -- start
 messages.properties
 messages_fr.properties
 messages_es.properties
-*/
 // xdoc section -- end
+*/
+public class Example1 {}

@@ -9,14 +9,14 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.translation;
 
-// xdoc section -- start
-public class Example3 {}
+
 /*
-(target folder structure):
+// xdoc section -- start
 (attention, no messages_fr.properties file)
 (attention, no messages_fr.translations file)
 
 messages.properties
 messages.translations
-*/
 // xdoc section -- end
+*/
+public class Example3 {}
