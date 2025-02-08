@@ -55,15 +55,15 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;IllegalThrows&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalThrows"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   // violation below, 'Throwing 'RuntimeException' is not allowed'
   void f1() throws RuntimeException {}
@@ -73,25 +73,25 @@ public class Example1 {
   void f5() throws NullPointerException {}
   @Override
   public String toString() throws Error {
-    String str = &quot;&quot;;
+    String str = "";
     return str;
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check rejecting throws NullPointerException from methods:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;IllegalThrows&quot;&gt;
-      &lt;property name=&quot;illegalClassNames&quot; value=&quot;NullPointerException&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalThrows"&gt;
+      &lt;property name="illegalClassNames" value="NullPointerException"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   void f1() throws RuntimeException {}
   void f2() throws Exception {}
@@ -101,25 +101,25 @@ public class Example2 {
   void f5() throws NullPointerException {}
   @Override
   public String toString() throws Error {
-    String str = &quot;&quot;;
+    String str = "";
     return str;
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           To configure the check ignoring method named &quot;func1()&quot;:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;IllegalThrows&quot;&gt;
-      &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;f1&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalThrows"&gt;
+      &lt;property name="ignoredMethodNames" value="f1"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
   void f1() throws RuntimeException {}
   void f2() throws Exception {}
@@ -128,25 +128,25 @@ public class Example3 {
   void f5() throws NullPointerException {}
   @Override
   public String toString() throws Error {
-    String str = &quot;&quot;;
+    String str = "";
     return str;
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example4-config">
           To configure the check to warn on overridden methods:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;IllegalThrows&quot;&gt;
-      &lt;property name=&quot;ignoreOverriddenMethods&quot; value=&quot;false&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalThrows"&gt;
+      &lt;property name="ignoreOverriddenMethods" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
   // violation below, 'Throwing 'RuntimeException' is not allowed'
   void f1() throws RuntimeException {}
@@ -156,11 +156,11 @@ public class Example4 {
   void f5() throws NullPointerException {}
   @Override // violation below, 'Throwing 'Error' is not allowed'
   public String toString() throws Error {
-    String str = &quot;&quot;;
+    String str = "";
     return str;
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -51,17 +51,17 @@
         <p id="Example1-config">
           To configure the check to enforce Java style:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ArrayTypeStyle&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ArrayTypeStyle"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   int[] nums; // ok since default format checks for Java style
   String strings[]; // violation, 'Array brackets at illegal position'
@@ -74,23 +74,23 @@ public class Example1 {
     return null;
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check to enforce C style:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ArrayTypeStyle&quot;&gt;
-      &lt;property name=&quot;javaStyle&quot; value=&quot;false&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ArrayTypeStyle"&gt;
+      &lt;property name="javaStyle" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   int[] nums; // violation, 'Array brackets at illegal position'
   String strings[]; // OK as follows C style since 'javaStyle' set to false
@@ -103,7 +103,7 @@ public class Example2 {
     return null;
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -66,7 +66,7 @@
         Example of report that we expect (you can skip <code>-Duser.language=en
         -Duser.country=US</code> if your default locale is English):
 
-        <source><![CDATA[
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
 Check documentation: https://checkstyle.org/checks/whitespace/whitespacearound.html#WhitespaceAround
 
 /var/tmp $ javac Test.java
@@ -96,14 +96,14 @@ Audit done.
 
 Expected: violation on first line.
 /var/tmp/Test.java:1:28: error: '{' is not preceded with whitespace.
-        ]]></source>
+        ]]></code></pre></div>
       </p>
 
       <p>
         For Windows users, please use "type" command instead of "cat".
         Example of report that we expect:
 
-        <source><![CDATA[
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml"><![CDATA[
 Check documentation: https://checkstyle.org/checks/misc/indentation.html
 
 D:\>type config.xml
@@ -137,7 +137,7 @@ Audit done.
 Expected: A violation on line 5 and nowhere else.
 D:\Test.java:5: 'catch' child has incorrect indentation level 8,
 expected level should be 12. [Indentation]
-        ]]></source>
+        ]]></code></pre></div>
       </p>
       <p>
         More Examples:
@@ -173,7 +173,7 @@ expected level should be 12. [Indentation]
       <p>
         Example of Feature Request/Enhancement that we expect:
       </p>
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 Check documentation: https://checkstyle.org/checks/whitespace/whitespacearound.html#WhitespaceAround
 
 Describe the problem in detail:
@@ -194,7 +194,7 @@ public class Test { // Note
 Describe how the additional functionality will solve the problem:
 
 Additional context, screenshots or examples:
-      </source>
+      </code></pre></div>
       <p>
         More Examples:
         <a href="https://github.com/checkstyle/checkstyle/issues/3201#issue-155988267">
@@ -229,7 +229,7 @@ Additional context, screenshots or examples:
       <p>
         Example of Check/Module Request that we expect:
       </p>
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 Describe the problem in detail:
 
 /var/tmp $ cat config.xml
@@ -252,7 +252,7 @@ Describe how the new check will solve the problem. Mention the required properti
 and their behaviour.
 
 Additional context, screenshots or examples:
-      </source>
+      </code></pre></div>
     </section>
 
   </body>

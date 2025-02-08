@@ -47,21 +47,21 @@
         <p id="Example1-config">
           To configure the check to accept anonymous classes with up to 20 lines by default:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AnonInnerLength&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnonInnerLength"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example1:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   void testMethod() {
     Runnable shortAnonClass = new Runnable() {
       @Override
       public void run() {
-        System.out.println(&quot;Short anonymous class.&quot;);
+        System.out.println("Short anonymous class.");
       }
     };
     shortAnonClass.run();
@@ -69,36 +69,36 @@ class Example1 {
     Runnable longAnonClass = new Runnable() {
       @Override
       public void run() {
-        System.out.println(&quot;This is a lengthy anonymous class.&quot;);
-        System.out.println(&quot;It has too many lines of code.&quot;);
-        System.out.println(&quot;Exceeding the length limit.&quot;);
-        System.out.println(&quot;This would trigger the AnonInnerLength rule.&quot;);
+        System.out.println("This is a lengthy anonymous class.");
+        System.out.println("It has too many lines of code.");
+        System.out.println("Exceeding the length limit.");
+        System.out.println("This would trigger the AnonInnerLength rule.");
       }
     };
     longAnonClass.run();
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check to accept anonymous classes with up to 7 lines:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AnonInnerLength&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;7&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnonInnerLength"&gt;
+      &lt;property name="max" value="7"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example2:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   void testMethod() {
     Runnable shortAnonClass = new Runnable() {
       @Override
       public void run() {
-        System.out.println(&quot;Short anonymous class.&quot;);
+        System.out.println("Short anonymous class.");
       }
     };
     shortAnonClass.run();
@@ -106,16 +106,16 @@ class Example2 {
     Runnable longAnonClass = new Runnable() {
       @Override
       public void run() {
-        System.out.println(&quot;This is a lengthy anonymous class.&quot;);
-        System.out.println(&quot;It has too many lines of code.&quot;);
-        System.out.println(&quot;Exceeding the length limit.&quot;);
-        System.out.println(&quot;This would trigger the AnonInnerLength rule.&quot;);
+        System.out.println("This is a lengthy anonymous class.");
+        System.out.println("It has too many lines of code.");
+        System.out.println("Exceeding the length limit.");
+        System.out.println("This would trigger the AnonInnerLength rule.");
       }
     };
     longAnonClass.run();
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

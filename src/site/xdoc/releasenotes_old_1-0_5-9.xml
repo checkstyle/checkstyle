@@ -721,7 +721,7 @@
         TreeWalker module anymore. For example, the following Checkstyle
         4.4 configuration file:
       </p>
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;Header&quot;&gt;
@@ -729,17 +729,17 @@
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-      </source>
+      </code></pre></div>
 
       <p>becomes the following Checkstyle 5.0 configuration file:</p>
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;Header&quot;&gt;
     &lt;property name=&quot;headerFile&quot; value=&quot;${checkstyle.header.file}&quot;/&gt;
     &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-      </source>
+      </code></pre></div>
       <p>The following checks were removed since release 4.4:</p>
       <ul>
         <li>

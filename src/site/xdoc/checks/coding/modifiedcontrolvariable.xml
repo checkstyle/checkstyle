@@ -69,29 +69,29 @@ for (int a[]={0};a[0] &lt; 10;a[0]++) {
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ModifiedControlVariable&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ModifiedControlVariable"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   void InvalidExample() {
     for(int i=0;i &lt; 8;i++) {
       i++; // violation, control variable modified
     }
-    String args1[]={&quot;Coding&quot;, &quot;block&quot;};
+    String args1[]={"Coding", "block"};
     for (String arg: args1) {
       arg = arg.trim(); // violation, control variable modified
     }
   }
 }
-        </source>
+</code></pre></div>
         <p>
           By default, This Check validates
           <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
@@ -104,29 +104,29 @@ class Example1 {
         <p id="Example2-config">
           An example of how to configure the check so that it skips enhanced For Loop Variable is:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ModifiedControlVariable&quot;&gt;
-      &lt;property name=&quot;skipEnhancedForLoopVariable&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ModifiedControlVariable"&gt;
+      &lt;property name="skipEnhancedForLoopVariable" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   void InvalidExample() {
     for(int i=0;i &lt; 8;i++) {
       i++; // violation, control variable modified
     }
-    String args1[]={&quot;Coding&quot;, &quot;block&quot;};
+    String args1[]={"Coding", "block"};
     for (String arg: args1) {
       arg = arg.trim();
     }
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
