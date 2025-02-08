@@ -124,14 +124,18 @@ messages.properties: Key 'ok' missing.
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example1-raw">
+        <p id="Example1-code">
           Example1
-          (target folder content):
+          (code):
         </p>
         <source>
+(target folder structure):
+
 messages.properties
-messages_es.properties
 messages_fr.properties
+messages_es.properties
+*/
+public class Example1 {}
         </source>
         <p id="messages-raw">
 Contents of messages.properties file:
@@ -180,13 +184,17 @@ messages_es.properties: Key 'hello' missing.
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example2-raw">
+        <p id="Example2-code">
           Example2
-          (target folder content):
+          (code):
         </p>
         <source>
+(target folder structure):
+
 ButtonLabels.properties
 ButtonLabels_fr.properties
+*/
+public class Example2 {}
         </source>
         <p id="ButtonLabels-raw">
           Contents of ButtonLabels.properties file:
@@ -222,15 +230,19 @@ ButtonLabels_fr.properties: Key 'cancel' is missing.
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example3-raw">
+        <p id="Example3-code">
           Example3
-          (target folder content):
+          (code):
         </p>
-        <p>(attention, no messages_fr.properties file)<br/><br/></p>
-        <p>(attention, no messages_fr.translations file)</p>
         <source>
+(target folder structure):
+(attention, no messages_fr.properties file)
+(attention, no messages_fr.translations file)
+
 messages.properties
 messages.translations
+*/
+public class Example3 {}
         </source>
         <p id="messages-raw">
           Contents of messages.properties file:

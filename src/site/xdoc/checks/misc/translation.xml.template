@@ -95,15 +95,15 @@ messages.properties: Key 'ok' missing.
                  value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example1-raw">
+        <p id="Example1-code">
           Example1
-          (target folder content):
+          (code):
         </p>
-        <source>
-messages.properties
-messages_es.properties
-messages_fr.properties
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
         <p id="messages-raw">
 Contents of messages.properties file:
         </p>
@@ -151,14 +151,15 @@ messages_es.properties: Key 'hello' missing.
                  value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example2-raw">
+        <p id="Example2-code">
           Example2
-          (target folder content):
+          (code):
         </p>
-        <source>
-ButtonLabels.properties
-ButtonLabels_fr.properties
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
         <p id="ButtonLabels-raw">
           Contents of ButtonLabels.properties file:
         </p>
@@ -191,16 +192,15 @@ ButtonLabels_fr.properties: Key 'cancel' is missing.
                  value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example3-raw">
+        <p id="Example3-code">
           Example3
-          (target folder content):
+          (code):
         </p>
-        <p>(attention, no messages_fr.properties file)<br/></p>
-        <p>(attention, no messages_fr.translations file)</p>
-        <source>
-messages.properties
-messages.translations
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
         <p id="messages-raw">
           Contents of messages.properties file:
         </p>
