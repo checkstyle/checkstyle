@@ -6,7 +6,7 @@ ignoreCase = true
 minimum = (default)0
 maximum = (default)0
 matchAcrossLines = (default)false
-fileExtensions = (default)all files
+fileExtensions = (default)""
 
 
 */
