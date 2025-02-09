@@ -49,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public final class InlineConfigParser {
@@ -320,46 +321,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet"
     );
 
-    private static final Map<String, String> PATTERNS = new HashMap<>();
-
-    static {
-        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck",
-            "^[a-z][a-zA-Z0-9]*$");
-        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck",
-            "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$");
-        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck",
-            "^[a-z][a-zA-Z0-9]*$");
-        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck",
-            "^[A-Z][a-zA-Z0-9]*$");
-        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.RecordTypeParameterNameCheck",
-            "^[A-Z]$");
-        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.RecordComponentNameCheck",
-            "^[a-z][a-zA-Z0-9]*$");
-        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.PatternVariableNameCheck",
-            "^([a-z][a-zA-Z0-9]*|_)$");
-        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck",
-            "^[a-z][a-zA-Z0-9]*$");
-        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.MethodTypeParameterNameCheck",
-            "^[A-Z]$");
-        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck",
-            "^[a-z][a-zA-Z0-9]*$");
-        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck",
-            "^[a-z][a-zA-Z0-9]*$");
-        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck",
-            "^([a-z][a-zA-Z0-9]*|_)$");
-        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.LambdaParameterNameCheck",
-            "^([a-z][a-zA-Z0-9]*|_)$");
-        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming"
-                        + ".InterfaceTypeParameterNameCheck",
-                "^[A-Z]$");
-        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck",
-            "(?i)^(?!(record|yield|var|permits|sealed)$).+$");
-        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck",
-            "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$");
-        PATTERNS.put("com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck",
-            "^[A-Z]$");
-    }
-
     /** Stop instances being created. **/
     private InlineConfigParser() {
     }
@@ -529,7 +490,7 @@ public final class InlineConfigParser {
 
     private static void handleKeyValueConfig(TestInputConfiguration.Builder testInputConfigBuilder,
                                              String inputFilePath, List<String> lines)
-            throws CheckstyleException, IOException {
+            throws CheckstyleException, IOException, ReflectiveOperationException {
         int lineNo = 0;
         while (lineNo < lines.size()) {
             final ModuleInputConfiguration.Builder moduleInputConfigBuilder =
@@ -670,7 +631,8 @@ public final class InlineConfigParser {
             result = Arrays.stream(arr)
                            .boxed()
                            .map(number -> {
-                               return BigDecimal.valueOf(number).stripTrailingZeros()
+                               return BigDecimal.valueOf(number)
+                                                .stripTrailingZeros()
                                                 .toPlainString();
                            })
                            .collect(Collectors.joining(","));
@@ -691,159 +653,55 @@ public final class InlineConfigParser {
     }
 
     /**
-     * HardCoded Default value for key = format.
-     *
-     * @param fullyQualifiedModuleName the fully qualified module name.
-     * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
-     *      parser requires giant if/else
-     */
-    private static String hardCodedDefaultForFormat(String fullyQualifiedModuleName) {
-        final String pattern = PATTERNS.get(fullyQualifiedModuleName);
-        if (pattern == null) {
-            final String message = String.format(Locale.ROOT,
-                    "Unable to validate default value for property in %s",
-                    fullyQualifiedModuleName);
-            throw new IllegalStateException(message);
-        }
-        return pattern;
-    }
-
-    /**
-     * HardCoded Default value.
-     *
-     * @param propertyName the property name.
-     * @param fullyQualifiedModuleName the fully qualified module name.
-     * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
-     */
-    // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
-    // -@cs[JavaNCSS] splitting this method is not reasonable.
-    // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
-    private static String hardCodedDefault(String propertyName, String fullyQualifiedModuleName) {
-        final Map<String, String> commonDefaults = new HashMap<>();
-        commonDefaults.put("fileExtensions", "all files");
-        commonDefaults.put("violateExecutionOnNonTightHtml", "false");
-        commonDefaults.put("applyToPrivate", "true");
-        commonDefaults.put("applyToProtected", "true");
-        commonDefaults.put("applyToPublic", "true");
-        commonDefaults.put("applyToPackage", "true");
-
-        final Map<String, Map<String, String>> pathDefaults = new HashMap<>();
-
-        final String excludedClasses = "ArrayIndexOutOfBoundsException,"
-                + " ArrayList, Boolean, Byte,"
-                + " Character, Class, Collection, Deprecated, Deque, Double,"
-                + " DoubleStream, EnumSet, Exception,"
-                + " Float, FunctionalInterface, HashMap, HashSet,"
-                + " IllegalArgumentException, IllegalStateException,"
-                + " IndexOutOfBoundsException, IntStream, Integer,"
-                + " LinkedHashMap, LinkedHashSet, LinkedList, List,"
-                + " Long, LongStream, Map, NullPointerException,"
-                + " Object, Optional, OptionalDouble, OptionalInt,"
-                + " OptionalLong, Override, Queue, RuntimeException,"
-                + " SafeVarargs, SecurityException, Set, Short,"
-                + " SortedMap, SortedSet, Stream, String, StringBuffer,"
-                + " StringBuilder, SuppressWarnings, Throwable,"
-                + " TreeMap, TreeSet, UnsupportedOperationException,"
-                + " Void, boolean, byte, char, double,"
-                + " float, int, long, short, var, void";
-
-        pathDefaults.put("com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder",
-            Map.of("aliasList", ""));
-        pathDefaults.put("com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck",
-            Map.of("fileExtensions", ""));
-        pathDefaults.put("com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck",
-            Map.of("option", "nospace"));
-        pathDefaults.put("com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck",
-            Map.of("ignoreComments", "false"));
-        pathDefaults.put("com.puppycrawl.tools.checkstyle.checks"
-                        + ".metrics.ClassFanOutComplexityCheck",
-            Map.of("excludedClasses", excludedClasses,
-                  "max", "20",
-                  "excludeClassesRegexps", "^$",
-                  "excludedPackages", ""));
-        pathDefaults.put("com.puppycrawl.tools.checkstyle.checks"
-                        + ".metrics.ClassDataAbstractionCouplingCheck",
-            Map.of("excludedClasses", excludedClasses,
-                  "max", "7",
-                  "excludeClassesRegexps", "^$",
-                  "excludedPackages", ""));
-        pathDefaults.put("com.puppycrawl.tools.checkstyle.checks"
-                        + ".javadoc.NonEmptyAtclauseDescriptionCheck",
-            Map.of("javadocTokens", "PARAM_LITERAL, RETURN_LITERAL,"
-                    + " THROWS_LITERAL, EXCEPTION_LITERAL, DEPRECATED_LITERAL"));
-
-        final String actualDefaultAsString;
-        if ("option".equals(propertyName)
-                && ("com.puppycrawl.tools.checkstyle"
-                + ".checks.whitespace.ParenPadCheck").equals(fullyQualifiedModuleName)) {
-            actualDefaultAsString = "nospace";
-        }
-        else if ("format".equals(propertyName)) {
-            actualDefaultAsString = hardCodedDefaultForFormat(fullyQualifiedModuleName);
-        }
-        else if (pathDefaults.containsKey(fullyQualifiedModuleName)
-                && pathDefaults.get(fullyQualifiedModuleName).containsKey(propertyName)) {
-            actualDefaultAsString = pathDefaults.get(fullyQualifiedModuleName).get(propertyName);
-        }
-        else if (commonDefaults.containsKey(propertyName)) {
-            actualDefaultAsString = commonDefaults.get(propertyName);
-        }
-        else {
-            final String message = String.format(Locale.ROOT,
-                    "Unable to validate default value for property ' %s ' in %s",
-                    propertyName, fullyQualifiedModuleName);
-            throw new IllegalStateException(message);
-        }
-        return actualDefaultAsString;
-    }
-
-    /**
      * Validate default value.
      *
      * @param propertyName the property name.
      * @param propertyDefaultValue the specified default value in the file.
      * @param fullyQualifiedModuleName the fully qualified module name.
-     * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
-     *      parser requires giant if/else
      */
     private static void validateDefault(String propertyName,
                                            String propertyDefaultValue,
-                                           String fullyQualifiedModuleName) {
-        try {
-            final Object checkInstance = createCheckInstance(fullyQualifiedModuleName);
-            final Object actualDefault;
-            final Class<?> propertyType;
-            final String actualDefaultAsString;
+                                           String fullyQualifiedModuleName)
+            throws ReflectiveOperationException {
+        final Object checkInstance = createCheckInstance(fullyQualifiedModuleName);
+        final Object actualDefault;
+        final Class<?> propertyType;
+        final String actualDefaultAsString;
 
-            if ("tokens".equals(propertyName)) {
-                final Method getter = checkInstance.getClass().getMethod("getDefaultTokens");
-                actualDefault = getter.invoke(checkInstance);
-                propertyType = actualDefault.getClass();
-                final int[] arr = (int[]) actualDefault;
-                actualDefaultAsString = Arrays.stream(arr)
-                                              .mapToObj(TokenUtil::getTokenName)
-                                              .collect(Collectors.joining(", "));
+        if ("tokens".equals(propertyName)) {
+            final Method getter = checkInstance.getClass().getMethod("getDefaultTokens");
+            actualDefault = getter.invoke(checkInstance);
+            propertyType = actualDefault.getClass();
+            final int[] arr = (int[]) actualDefault;
+            actualDefaultAsString = Arrays.stream(arr)
+                                          .mapToObj(TokenUtil::getTokenName)
+                                          .collect(Collectors.joining(", "));
+        }
+        else if ("javadocTokens".equals(propertyName)) {
+            final Method getter = checkInstance.getClass().getMethod("getDefaultJavadocTokens");
+            actualDefault = getter.invoke(checkInstance);
+            propertyType = actualDefault.getClass();
+            final int[] arr = (int[]) actualDefault;
+            actualDefaultAsString = Arrays.stream(arr)
+                                          .mapToObj(JavadocUtil::getTokenName)
+                                          .collect(Collectors.joining(", "));
+        }
+        else {
+            actualDefault = getPropertyDefaultValue(checkInstance, propertyName);
+            if (actualDefault == null) {
+                propertyType = null;
             }
             else {
-                final Field field = checkInstance.getClass().getDeclaredField(propertyName);
-                field.setAccessible(true);
-                actualDefault = field.get(checkInstance);
-                propertyType = field.getType();
-                actualDefaultAsString = convertDefaultValueToString(actualDefault);
+                propertyType = actualDefault.getClass();
             }
-
-            if (!isDefaultValue(propertyDefaultValue, actualDefaultAsString, propertyType)) {
-                final String message = String.format(Locale.ROOT,
-                        "Default value mismatch for %s in %s: specified '%s' but actually is '%s'",
-                        propertyName, fullyQualifiedModuleName,
-                        propertyDefaultValue, actualDefaultAsString);
-                throw new IllegalArgumentException(message);
-            }
+            actualDefaultAsString = convertDefaultValueToString(actualDefault);
         }
-        catch (ReflectiveOperationException ex) {
-            final String actualDefaultAsString = hardCodedDefault(propertyName,
-                    fullyQualifiedModuleName);
-            isDefaultValue(propertyDefaultValue, actualDefaultAsString, String.class);
+        if (!isDefaultValue(propertyDefaultValue, actualDefaultAsString, propertyType)) {
+            final String message = String.format(Locale.ROOT,
+                    "Default value mismatch for %s in %s: specified '%s' but actually is '%s'",
+                    propertyName, fullyQualifiedModuleName,
+                    propertyDefaultValue, actualDefaultAsString);
+            throw new IllegalArgumentException(message);
         }
     }
 
@@ -912,9 +770,7 @@ public final class InlineConfigParser {
         final boolean result;
 
         if (NULL_STRING.equals(actualDefault)) {
-            result = NULL_STRING.equals(propertyDefaultValue)
-                || propertyDefaultValue.isEmpty()
-                || "null".equals(propertyDefaultValue);
+            result = isNull(propertyDefaultValue);
         }
         else if (isNumericType(fieldType)) {
             final BigDecimal specified = new BigDecimal(propertyDefaultValue);
@@ -926,13 +782,11 @@ public final class InlineConfigParser {
             || BitSet.class.isAssignableFrom(fieldType)) {
             result = isCollectionValues(propertyDefaultValue, actualDefault);
         }
+        else if (fieldType.isEnum() || fieldType.isLocalClass()) {
+            result = propertyDefaultValue.equalsIgnoreCase(actualDefault);
+        }
         else {
-            if (fieldType.isEnum() || fieldType.isLocalClass()) {
-                result = propertyDefaultValue.equalsIgnoreCase(actualDefault);
-            }
-            else {
-                result = propertyDefaultValue.equals(actualDefault);
-            }
+            result = propertyDefaultValue.equals(actualDefault);
         }
         return result;
     }
@@ -959,7 +813,7 @@ public final class InlineConfigParser {
                             String inputFilePath,
                             List<String> lines,
                             int beginLineNo, String moduleName)
-            throws IOException, CheckstyleException {
+            throws IOException, CheckstyleException, ReflectiveOperationException {
 
         final String propertyContent = readPropertiesContent(beginLineNo, lines);
         final Map<Object, Object> properties = loadProperties(propertyContent);
@@ -1289,4 +1143,29 @@ public final class InlineConfigParser {
                 || fieldType.equals(float.class);
     }
 
+    public static Object getPropertyDefaultValue(Object checkInstance,
+                                                 String propertyName)
+            throws IllegalAccessException {
+        Object result = null;
+        Class<?> currentClass = checkInstance.getClass();
+        while (currentClass != null) {
+            try {
+                final Field field = currentClass.getDeclaredField(propertyName);
+                field.setAccessible(true);
+                result = field.get(checkInstance);
+                break;
+            }
+            catch (NoSuchFieldException ex) {
+                currentClass = currentClass.getSuperclass();
+            }
+        }
+        return result;
+    }
+
+    private static boolean isNull(String propertyDefaultValue) {
+        return NULL_STRING.equals(propertyDefaultValue)
+                || propertyDefaultValue.isEmpty()
+                || "null".equals(propertyDefaultValue)
+                || "\"\"".equals(propertyDefaultValue);
+    }
 }
