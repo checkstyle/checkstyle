@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 public class InputFinalLocalVariableBreak {
 
     void foo1() throws Exception {
-        Exception e; // violation
+        Exception e; // violation, "Variable 'e' should be declared final"
         final int a = (int) Math.random();
         final int b = (int) Math.random();
 

@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 public class InputFinalLocalVariableCheckSwitchExpressions {
     void foo1() throws Exception {
 
-        Exception e; // violation
+        Exception e; // violation, "Variable 'e' should be declared final"
 
         final int a = (int) Math.random();
         final int b = (int) Math.random();
@@ -50,7 +50,7 @@ public class InputFinalLocalVariableCheckSwitchExpressions {
 
     void foo2() throws Exception {
 
-        Exception e; // violation
+        Exception e; // violation, "Variable 'e' should be declared final"
 
         final int a = (int) Math.random();
         final int b = (int) Math.random();
@@ -88,7 +88,7 @@ public class InputFinalLocalVariableCheckSwitchExpressions {
 
     void foo3() throws Exception {
 
-        Exception e; // violation
+        Exception e; // violation, "Variable 'e' should be declared final"
 
         final int a = (int) Math.random();
         final int b = (int) Math.random();
@@ -122,7 +122,7 @@ public class InputFinalLocalVariableCheckSwitchExpressions {
 
     void foo4() throws Exception {
 
-        Exception e; // violation
+        Exception e; // violation, "Variable 'e' should be declared final"
 
         final int a = (int) Math.random();
         final int b = (int) Math.random();

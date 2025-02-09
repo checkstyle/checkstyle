@@ -75,12 +75,12 @@ class test_12417222
 {
     private Object o_;
 
-    public void doSomething(Object _o) // violation
+    public void doSomething(Object _o) // violation, "Variable '_o' should be declared final"
     {
         System.identityHashCode(_o);
     }
 
-    public void doSomething2(Object _o1) // violation
+    public void doSomething2(Object _o1) // violation, "Variable '_o1' should be declared final"
     {
         o_ = _o1;
     }

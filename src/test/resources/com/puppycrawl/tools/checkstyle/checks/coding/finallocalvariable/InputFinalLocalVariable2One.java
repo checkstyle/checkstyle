@@ -49,7 +49,8 @@ public class InputFinalLocalVariable2One {
         };
     }
 
-    public void method(int aArg, final int aFinal, int aArg2) // violation
+    // violation below "Variable 'aArg' should be declared final"
+    public void method(int aArg, final int aFinal, int aArg2)
     {
         int z = 0;
 

@@ -21,9 +21,9 @@ public class InputFinalLocalVariableTwo {
 
         int l = 0;
         {
-            int weird = 0; // violation
-            int j = 0; // violation
-            int k = 0; // violation
+            int weird = 0; // violation, "Variable 'weird' should be declared final"
+            int j = 0; // violation, "Variable 'j' should be declared final"
+            int k = 0; // violation, "Variable 'k' should be declared final"
             {
                 l++;
             }
