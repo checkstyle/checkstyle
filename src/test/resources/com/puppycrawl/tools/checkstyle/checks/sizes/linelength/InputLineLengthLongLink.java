@@ -1,6 +1,6 @@
 /*
 LineLength
-fileExtensions = (default)all files
+fileExtensions = (default)""
 ignorePattern = ^ *\\* *([^ ]+|\\{@code .*|<a href="[^"]+">)$
 max = (default)80
 
