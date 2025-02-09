@@ -103,14 +103,14 @@ public class TranslationCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample3() throws Exception {
         final File[] propertyFiles = {
-            new File(getPath("messages.properties")),
-            new File(getPath("messages.translations")),
+            new File(getPath("messages_home.properties")),
+            new File(getPath("messages_home.translations")),
         };
         final String[] expectedMessages = {
             "1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
-                    "messages_fr.properties"),
+                    "messages_home_fr.properties"),
             "1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
-                    "messages_fr.translations"),
+                    "messages_home_fr.translations"),
         };
         final String configFile = getPath("Example3.java");
         final TestInputConfiguration testInputConfiguration =

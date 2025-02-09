@@ -12,8 +12,11 @@ package com.puppycrawl.tools.checkstyle.checks.translation;
 
 /*
 // xdoc section -- start
-messages.properties // violation 'messages_fr.properties' is missing
-messages.translations // violation 'messages_fr.translations' is missing
+(attention, no messages_home_fr.properties file)
+(attention, no messages_home_fr.translations file)
+
+messages_home.properties
+messages_home.translations
 // xdoc section -- end
 */
 public class Example3 {}

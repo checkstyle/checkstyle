@@ -223,22 +223,25 @@ ButtonLabels_fr.properties: Key 'cancel' is missing.
 &lt;/module&gt;
         </source>
         <p id="Example3-code">
-          Example3 no messages_fr.* files
+          Example3 no messages_home_fr.* files
           (target folder structure):
         </p>
         <source>
-messages.properties // violation 'messages_fr.properties' is missing
-messages.translations // violation 'messages_fr.translations' is missing
+(attention, no messages_home_fr.properties file)
+(attention, no messages_home_fr.translations file)
+
+messages_home.properties
+messages_home.translations
         </source>
-        <p id="messages1-raw">
-          Contents of messages.properties file:
+        <p id="messages_home-raw">
+          Contents of messages_home.properties file:
         </p>
         <source>
 hello=Hello
 cancel=Cancel
         </source>
-        <p id="messages2-raw">
-          Contents of messages.translations file:
+        <p id="messages_home-code">
+          Contents of messages_home.translations file:
         </p>
         <source>
 hello=Hallo
@@ -248,8 +251,8 @@ ok=OK
           Validation for Example3:
         </p>
         <source>
-messages.properties: Properties file 'messages_fr.properties' is missing.
-messages.translations: Properties file 'messages_fr.translations' is missing.
+messages_home.properties: Properties file 'messages_home_fr.properties' is missing.
+messages_home.translations: Properties file 'messages_home_fr.translations' is missing.
         </source>
       </subsection>
 

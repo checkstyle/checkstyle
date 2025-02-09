@@ -193,7 +193,7 @@ ButtonLabels_fr.properties: Key 'cancel' is missing.
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">
-          Example3 no messages_fr.* files
+          Example3 no messages_home_fr.* files
           (target folder structure):
         </p>
         <macro name="example">
@@ -201,28 +201,28 @@ ButtonLabels_fr.properties: Key 'cancel' is missing.
                  value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
-        <p id="messages-raw">
-          Contents of messages.properties file:
+        <p id="messages_home-raw">
+          Contents of messages_home.properties file:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/messages.properties"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/messages_home.properties"/>
           <param name="type" value="raw"/>
         </macro>
-        <p id="messages-raw">
-          Contents of messages.translations file:
+        <p id="messages_home-code">
+          Contents of messages_home.translations file:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/messages.translations"/>
-          <param name="type" value="raw"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/messages_home.translations"/>
+          <param name="type" value="code"/>
         </macro>
         <p id="Example3-validation">
           Validation for Example3:
         </p>
         <source>
-messages.properties: Properties file 'messages_fr.properties' is missing.
-messages.translations: Properties file 'messages_fr.translations' is missing.
+messages_home.properties: Properties file 'messages_home_fr.properties' is missing.
+messages_home.translations: Properties file 'messages_home_fr.translations' is missing.
         </source>
       </subsection>
 
