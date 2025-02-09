@@ -216,12 +216,17 @@ no-error-pmd)
   echo "CS_version: ${CS_POM_VERSION}"
   mvn -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  checkout_from "https://github.com/pmd/build-tools.git"
+  #  checkout_from "https://github.com/pmd/build-tools.git"
+  checkout_from "https://github.com/kkoutsilis/build-tools.git"
   cd .ci-temp/build-tools/
+  git ls-remote
+  git checkout "66ded33c74662cb3da612f3d34a5aefaa629b443"
   mvn -e --no-transfer-progress install
   cd ..
-  git clone https://github.com/pmd/pmd.git
+  git clone https://github.com/kkoutsilis/pmd.git
   cd pmd
+  git ls-remote
+  git checkout "fa6a862ac8278906d7bcf21852f6552d27a46a73"
   ./mvnw verify --show-version --errors --batch-mode --no-transfer-progress \
                 -DskipTests \
                 -Dmaven.javadoc.skip=true \

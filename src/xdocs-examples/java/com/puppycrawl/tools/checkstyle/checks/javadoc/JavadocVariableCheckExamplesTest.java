@@ -54,8 +54,8 @@ public class JavadocVariableCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "15:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "23:15: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "14:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "22:15: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
