@@ -12,7 +12,7 @@ public class InputFinalLocalVariableFive {
     class class5 {
         public void test1(){
             final boolean b = false;
-            int shouldBeFinal;    // violation
+            int shouldBeFinal; // violation, "Variable 'shouldBeFinal' should be declared final"
             if(b){
                 if(b){
                     shouldBeFinal = 1;
@@ -23,7 +23,7 @@ public class InputFinalLocalVariableFive {
         }
         public void test2() {
             final int b = 10;
-            int shouldBeFinal;        // violation
+            int shouldBeFinal; // violation, "Variable 'shouldBeFinal' should be declared final"
 
             switch (b) {
                 case 0:
@@ -55,10 +55,11 @@ public class InputFinalLocalVariableFive {
             }
         }
         public void test4() {
-            int shouldBeFinal;    // violation
+            int shouldBeFinal; // violation, "Variable 'shouldBeFinal' should be declared final"
             class Bar {
                 void bar () {
-                    int shouldBeFinal;    // violation
+                    // violation below "Variable 'shouldBeFinal' should be declared final"
+                    int shouldBeFinal;
                     final boolean b = false;
                     if (b) {
                         if (b) {
@@ -78,7 +79,8 @@ public class InputFinalLocalVariableFive {
         }
 
         public void test5() {
-            InputFinalLocalVariableFive table = new InputFinalLocalVariableFive(); // violation
+            // violation below "Variable 'table' should be declared final"
+            InputFinalLocalVariableFive table = new InputFinalLocalVariableFive();
             new Runnable() {
                 @Override
                 public void run() {
