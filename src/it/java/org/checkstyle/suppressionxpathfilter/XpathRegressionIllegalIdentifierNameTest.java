@@ -46,17 +46,17 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
         final DefaultConfiguration moduleConfig =
             createModuleConfig(IllegalIdentifierNameCheck.class);
 
-        final String format = "(?i)^(?!(record|yield|var|permits|sealed)$).+$";
+        final String format = "^(?!var$|.*\\$).+";
 
         final String[] expectedViolation = {
             "10:20: " + getCheckMessage(IllegalIdentifierNameCheck.class,
-                AbstractNameCheck.MSG_INVALID_PATTERN, "yield", format),
+                AbstractNameCheck.MSG_INVALID_PATTERN, "var", format),
             };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/RECORD_DEF"
                 + "[./IDENT[@text='InputXpathIllegalIdentifierNameOne'"
-                + "]]/RECORD_COMPONENTS/RECORD_COMPONENT_DEF/IDENT[@text='yield']"
+                + "]]/RECORD_COMPONENTS/RECORD_COMPONENT_DEF/IDENT[@text='var']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -71,18 +71,18 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
         final DefaultConfiguration moduleConfig =
             createModuleConfig(IllegalIdentifierNameCheck.class);
 
-        final String format = "(?i)^(?!(record|yield|var|permits|sealed)$).+$";
+        final String format = "^(?!var$|.*\\$).+";
 
         final String[] expectedViolation = {
             "9:17: " + getCheckMessage(IllegalIdentifierNameCheck.class,
-                AbstractNameCheck.MSG_INVALID_PATTERN, "yield", format),
+                AbstractNameCheck.MSG_INVALID_PATTERN, "te$t", format),
             };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathIllegalIdentifierNameTwo']"
                 + "]/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/PARAMETERS/PARAMETER_DEF"
-                + "/IDENT[@text='yield']"
+                + "/IDENT[@text='te$t']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

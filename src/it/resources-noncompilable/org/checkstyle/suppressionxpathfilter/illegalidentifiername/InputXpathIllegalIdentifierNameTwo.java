@@ -6,8 +6,8 @@ package org.checkstyle.suppressionxpathfilter.illegalidentifiername;
  * default
  */
 public class InputXpathIllegalIdentifierNameTwo {
-    int foo(int yield) { // warn
-        return switch (yield) {
+    int foo(int te$t) { // warn
+        return switch (te$t) {
             case 1 -> 2;
             case 2 -> 3;
             case 3 -> 4;
