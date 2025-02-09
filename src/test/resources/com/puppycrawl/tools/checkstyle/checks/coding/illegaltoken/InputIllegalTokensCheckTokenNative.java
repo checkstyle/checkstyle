@@ -24,7 +24,7 @@ public class InputIllegalTokensCheckTokenNative
         }
     }
 
-    public native void nativeMethod(); // violation
+    public native void nativeMethod(); // violation 'IllegalToken'
 
     public void methodWithLiterals()
     {

@@ -11,6 +11,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 
 // xdoc section -- start
 class Example2 {
-  native void InvalidExample(); // violation, 'Using 'native' is not allowed'
+  native void InvalidExample(); // violation 'IllegalToken', 'Using 'native' is not allowed'
 }
 // xdoc section -- end
