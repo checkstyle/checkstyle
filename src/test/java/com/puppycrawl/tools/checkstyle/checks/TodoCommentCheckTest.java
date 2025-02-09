@@ -45,15 +45,24 @@ public class TodoCommentCheckTest
     }
 
     @Test
-    public void testIt() throws Exception {
+    public void testItOne() throws Exception {
         final String[] expected = {
             "1:3: " + getCheckMessage(MSG_KEY, "FIXME:"),
-            "164:7: " + getCheckMessage(MSG_KEY, "FIXME:"),
-            "165:7: " + getCheckMessage(MSG_KEY, "FIXME:"),
-            "170:17: " + getCheckMessage(MSG_KEY, "FIXME:"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputTodoCommentSimple.java"), expected);
+                getPath("InputTodoCommentSimpleOne.java"), expected);
+    }
+
+    @Test
+    public void testItTwo() throws Exception {
+        final String[] expected = {
+            "1:3: " + getCheckMessage(MSG_KEY, "FIXME:"),
+            "68:7: " + getCheckMessage(MSG_KEY, "FIXME:"),
+            "69:7: " + getCheckMessage(MSG_KEY, "FIXME:"),
+            "74:17: " + getCheckMessage(MSG_KEY, "FIXME:"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputTodoCommentSimpleTwo.java"), expected);
     }
 
     @Test
