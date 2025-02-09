@@ -48,6 +48,18 @@
   <suppress id="exampleFileXmlConfigPresence"
             files="beforeexecutionexclusionfilefilter[\\/]test.*"/>
 
+    <!-- files used to demonstrate violations on xpath single filters -->
+  <suppress id="exampleFileName"
+            files="suppressionxpathsinglefilter[\\/]src.*"/>
+  <suppress id="exampleClassName"
+            files="suppressionxpathsinglefilter[\\/]src.*"/>
+  <suppress id="xdocStartComment"
+            files="suppressionxpathsinglefilter[\\/]src.*"/>
+  <suppress id="xdocEndComment"
+            files="suppressionxpathsinglefilter[\\/]src.*"/>
+  <suppress id="exampleFileXmlConfigPresence"
+            files="suppressionxpathsinglefilter[\\/]src.*"/>
+
   <!-- Check deals with tab characters. -->
   <suppress checks="FileTabCharacter|Indentation"
     files="filetabcharacter[\\/]Example\d+.java"/>
