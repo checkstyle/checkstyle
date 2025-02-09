@@ -456,24 +456,27 @@ public final class JavadocTokenTypes {
      * <pre><code>{&#64;docRoot}</code></pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>  |--JAVADOC_INLINE_TAG[1x0] : [{&#64;docRoot}]
-     *            |--JAVADOC_INLINE_TAG_START[1x0] : [{]
-     *            |--DOC_ROOT_LITERAL[1x1] : [@docRoot]
-     *            |--JAVADOC_INLINE_TAG_END[2x0] : [}]
+     * <code>
+     * |--JAVADOC_INLINE_TAG -&gt; JAVADOC_INLINE_TAG
+     *      |--JAVADOC_INLINE_TAG_START -&gt; {
+     *      |--DOC_ROOT_LITERAL -&gt; @docRoot
+     *      `--JAVADOC_INLINE_TAG_END -&gt; }
      * </code>
      * </pre>
      *
-     * <p><b>Example:</b></p>
-     * <pre><code>{&#64;docRoot
-     * }</code></pre>
+     * <pre><code>Example :{&#64;docRoot
+     * } in a Javadoc comment.
+     * </code></pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>  |--JAVADOC_INLINE_TAG[1x0] : [{&#64;docRoot \n}]
-     *            |--JAVADOC_INLINE_TAG_START[1x0] : [{]
-     *            |--DOC_ROOT_LITERAL[1x1] : [@docRoot]
-     *            |--WS[1x9] : [ ]
-     *            |--NEWLINE[1x10] : [\n]
-     *            |--JAVADOC_INLINE_TAG_END[2x0] : [}]
+     * <code>
+     *   |--JAVADOC_INLINE_TAG -&gt; JAVADOC_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -&gt; {
+     *     |--DOC_ROOT_LITERAL -&gt; @docRoot
+     *     |--NEWLINE -&gt; \r\n
+     *     |--LEADING_ASTERISK -&gt;       *
+     *     |--WS -&gt;
+     *     `--JAVADOC_INLINE_TAG_END -&gt; }
      * </code>
      * </pre>
      *
