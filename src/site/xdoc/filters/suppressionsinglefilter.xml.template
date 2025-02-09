@@ -58,7 +58,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-config">
@@ -67,7 +67,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-config">
@@ -75,7 +75,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-config">
@@ -83,7 +83,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example5-config">
@@ -91,7 +91,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example6-config">
@@ -99,7 +99,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example6.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example7-config">
@@ -107,7 +107,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example7.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example7.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example8-config">
@@ -115,7 +115,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example8.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example8.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example9-config">
@@ -123,7 +123,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example9.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example9.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example10-config">
@@ -131,7 +131,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example10.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example10.java"/>
           <param name="type" value="config"/>
         </macro>
       </subsection>
