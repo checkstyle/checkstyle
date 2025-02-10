@@ -43,6 +43,9 @@
              files=".*(Generated)?Java(doc)?TokenTypesTest\.java"/>
   <suppress checks="JavaNCSS" files=".*(Generated)?Java(doc)?TokenTypesTest\.java"/>
 
+  <!-- checks that has so many test cases -->
+  <suppress checks="JavaNCSS" files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]indentation[\\/]IndentationCheckTest.java"/>
+
   <!-- Till https://github.com/checkstyle/checkstyle/issues/1854 -->
   <suppress checks="TrailingComment"
        files="(InnerAssignmentCheck\.java|OperatorWrapCheck\.java|
