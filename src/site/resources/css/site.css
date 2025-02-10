@@ -140,10 +140,6 @@ th {
   background-color: #ededed;
 }
 
-code {
-  white-space: normal;
-}
-
 .prettyprint {
   padding: 1em !important;
   overflow: auto;
@@ -151,7 +147,7 @@ code {
 }
 
 .prettyprint code {
-  font-size: 15px;
+  font-size: 17px;
   text-wrap: nowrap;
 }
 
