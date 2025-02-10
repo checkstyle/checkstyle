@@ -79,22 +79,22 @@ public class IllegalTokenCheckTest
         final String[] expected = {
             "1:3: " + getCheckMessage(MSG_KEY,
                         JavadocUtil.escapeAllControlChars(
-                            " // violation\\n"
+                            " // violation, ''\\n"
                             + "IllegalToken\\n" + "tokens = COMMENT_CONTENT"
                             + lineSeparator
                             + lineSeparator
                             + lineSeparator)),
             "10:3: " + getCheckMessage(MSG_KEY,
                         JavadocUtil.escapeAllControlChars(
-                            "* // violation" + lineSeparator
+                            "* // violation, ''" + lineSeparator
                             + " * Test for illegal tokens"
                             + lineSeparator + " ")),
             "38:29: " + getCheckMessage(MSG_KEY,
                         JavadocUtil.escapeAllControlChars(
-                            " some comment href // violation" + lineSeparator)),
+                            " some comment href // violation, ''" + lineSeparator)),
             "42:28: " + getCheckMessage(MSG_KEY,
                         JavadocUtil.escapeAllControlChars(
-                            " some a href // violation" + lineSeparator)),
+                            " some a href // violation, ''" + lineSeparator)),
         };
         verifyWithInlineConfigParser(path, expected);
     }
