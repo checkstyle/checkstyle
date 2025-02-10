@@ -48,11 +48,11 @@ class Check {
      * Some summary.
      *
      *<p>
-     *  <ul> // ok until #15762
-     *    <p> // ok until #15762
+     *  <ul>
+     *    <p>
      *      <li>1</li> should NOT give violation as there is not empty line before
-     *    </p> // false-negative on this line & above until #15762
-     *  </ul> // ok until #15762
+     *    </p>
+     *  </ul>
      *</p>
      */
     public void foo() {}
@@ -74,8 +74,8 @@ class Check {
      *  Some summary.
      *
      * <p>
-     *  <table> // ok until #15762
-     *  </table> // ok until #15762
+     *  <table>
+     *  </table>
      * </p>
      */
     public void foooo() {}
@@ -85,8 +85,8 @@ class Check {
      * Some summary.
      *
      * <p>
-     *   <pre>testing...</pre> // ok until #15762
-     *   <pre>testing...</pre> // ok until #15762
+     *   <pre>testing...</pre>
+     *   <pre>testing...</pre>
      * </p>
      */
     public void fooooo() {}
