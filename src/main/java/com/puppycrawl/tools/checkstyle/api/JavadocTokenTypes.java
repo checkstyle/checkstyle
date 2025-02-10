@@ -1440,26 +1440,26 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     *   JAVADOC_TAG -&gt; JAVADOC_TAG
-     *        |--THROWS_LITERAL -&gt; @throws
-     *        |--WS -&gt;
-     *        |--CLASS_NAME -&gt; IOException
-     *        |--WS -&gt;
-     *        `--DESCRIPTION -&gt; DESCRIPTION
-     *            |--TEXT -&gt; if
-     *            |--HTML_ELEMENT -&gt; HTML_ELEMENT
-     *            |    `--HTML_TAG -&gt; HTML_TAG
-     *            |        |--HTML_ELEMENT_START -&gt; HTML_ELEMENT_START
-     *            |        |    |--START -&gt; &lt;
-     *            |        |    |--HTML_TAG_NAME -&gt; b
-     *            |        |    `--END -&gt; &gt;
-     *            |        |--TEXT -&gt; connection
-     *            |        `--HTML_ELEMENT_END -&gt; HTML_ELEMENT_END
-     *            |            |--START -&gt; -&lt;
-     *            |            |--SLASH -&gt; /
-     *            |            |--HTML_TAG_NAME -&gt; b
-     *            |            `--END -&gt; -&gt;
-     *            |--TEXT -&gt;  problems occur
+     *   --JAVADOC_TAG -> JAVADOC_TAG
+     *      |--THROWS_LITERAL -> @throws
+     *      |--WS ->
+     *      |--CLASS_NAME -> IOException
+     *      |--WS ->
+     *      `--DESCRIPTION -> DESCRIPTION
+     *          |--TEXT -> if
+     *          |--HTML_ELEMENT -> HTML_ELEMENT
+     *          |   `--HTML_TAG -> HTML_TAG
+     *          |       |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *          |       |   |--START -> <
+     *          |       |   |--HTML_TAG_NAME -> b
+     *          |       |   `--END -> >
+     *          |       |--TEXT -> connection
+     *          |       `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *          |           |--START -> <
+     *          |           |--SLASH -> /
+     *          |           |--HTML_TAG_NAME -> b
+     *          |           `--END -> >
+     *          |--TEXT ->  problems occur
      * }
      * </pre>
      */
