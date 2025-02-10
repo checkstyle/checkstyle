@@ -141,7 +141,7 @@ th {
 }
 
 .prettyprint {
-  padding: 1em !important;
+  padding: 0.1em 0.5em !important;
   overflow: auto;
   white-space: nowrap;
 }
@@ -149,6 +149,7 @@ th {
 .prettyprint code {
   font-size: 17px;
   text-wrap: nowrap;
+  line-height: 1.625;
 }
 
 .externalLink {
