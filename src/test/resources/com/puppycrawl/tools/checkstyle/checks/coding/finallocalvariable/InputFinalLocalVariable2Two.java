@@ -49,6 +49,15 @@ public class InputFinalLocalVariable2Two {
 interface Inter2
 {
     void method(int aParam);
+
+    default void defaultMethod(int bParam) { // violation
+    }
+
+    static void staticMethod(int cParam) { // violation
+    }
+
+    private void privateMethod(int dParam, int eParam) { // 2 violations
+    }
 }
 
 abstract class AbstractClass2
@@ -106,5 +115,17 @@ enum Enum12 {
     {
         int var = 0;
         var = 1;
+    }
+}
+
+class ExceptionCatch {
+    {
+        try {
+        } catch (IllegalArgumentException e) { // violation
+        }
+
+        try {
+        } catch (IllegalArgumentException | NullPointerException e) {
+        }
     }
 }
