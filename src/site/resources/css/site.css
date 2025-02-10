@@ -179,7 +179,8 @@ code {
 
 #leftColumn {
   min-width: 250px;
-  width: fit-content;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .releaseDate {
