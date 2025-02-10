@@ -216,12 +216,17 @@ no-error-pmd)
   echo "CS_version: ${CS_POM_VERSION}"
   mvn -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  checkout_from "https://github.com/pmd/build-tools.git"
+  #  checkout_from "https://github.com/pmd/build-tools.git"
+  checkout_from "https://github.com/kkoutsilis/build-tools.git"
   cd .ci-temp/build-tools/
+  git ls-remote
+  git checkout "66ded33c74662cb3da612f3d34a5aefaa629b443"
   mvn -e --no-transfer-progress install
   cd ..
-  git clone https://github.com/pmd/pmd.git
+  git clone https://github.com/kkoutsilis/pmd.git
   cd pmd
+  git ls-remote
+  git checkout "fa6a862ac8278906d7bcf21852f6552d27a46a73"
   ./mvnw verify --show-version --errors --batch-mode --no-transfer-progress \
                 -DskipTests \
                 -Dmaven.javadoc.skip=true \
@@ -279,8 +284,10 @@ no-error-xwiki)
   echo "version:${CS_POM_VERSION} antlr4:${ANTLR4_VERSION}"
   mvn -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  checkout_from "https://github.com/xwiki/xwiki-commons.git"
+  checkout_from "https://github.com/kkoutsilis/xwiki-commons"
   cd .ci-temp/xwiki-commons
+  git ls-remote
+  git checkout "00b68b71a34d184a1c3b42520bffafc61151ca32"
   # Build custom Checkstyle rules
   mvn -e --no-transfer-progress -f \
     xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
@@ -311,8 +318,10 @@ no-error-xwiki)
   cd ..
   removeFolderWithProtectedFiles xwiki-rendering
   cd ..
-  checkout_from https://github.com/xwiki/xwiki-platform.git
+  checkout_from https://github.com/kkoutsilis/xwiki-platform.git
   cd .ci-temp/xwiki-platform
+  git ls-remote
+  git checkout "0ed62d557c6d9fca0e3dea80e985ac0d90d7c851"
   # Validate xwiki-platform
   mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ..
