@@ -29,11 +29,14 @@ public class InputNestedForDepthCheckCustomMaxLevelTwo {
     for (i1 = 0; i1 < 10; i1++) {
       for (i2 = 0; i2 < 10; i2++) {
         for (i3 = 0; i3 < 10; i3++) {
-          for (i4 = 0; i4 < 10; i4++) { // violation
-            for (i5 = 0; i5 < 10; i5++) { // violation
+          for (i4 = 0; i4 < 10; i4++) {
+            // violation above 'Nested for depth is 3 (max allowed is 2)'
+            for (i5 = 0; i5 < 10; i5++) {
+              // violation above 'Nested for depth is 4 (max allowed is 2)'
               i += 1;
             }
-            for (int i5a = 0; i5a < 10; i5a++) { // violation
+            for (int i5a = 0; i5a < 10; i5a++) {
+              // violation above 'Nested for depth is 5 (max allowed is 2)'
                 i += 1;
               }
           }
