@@ -18,7 +18,7 @@ public class InputFinalLocalVariableCheckSwitchAssignment {
     };
 
     public InputFinalLocalVariableCheckSwitchAssignment() throws Exception {
-        int a = 0; // violation
+        int a = 0; // violation, "Variable 'a' should be declared final"
         final int b = 0;
         int c = 10;
         int d = 0;
@@ -41,9 +41,9 @@ public class InputFinalLocalVariableCheckSwitchAssignment {
     public void foo() throws Exception {
         final int a = 0;
 
-        int b = switch(a) { // violation
+        int b = switch(a) { // violation, "Variable 'b' should be declared final"
             case 0 -> {
-                int x = 5; // violation
+                int x = 5; // violation, "Variable 'x' should be declared final"
                 int y = 6;
                 if (a == 2) {
                     y = 7;
@@ -69,7 +69,7 @@ public class InputFinalLocalVariableCheckSwitchAssignment {
     }
 
     String statement1(int t) {
-        String res; // violation
+        String res; // violation, "Variable 'res' should be declared final"
 
         switch (t) {
             case 1 -> {
@@ -89,7 +89,7 @@ public class InputFinalLocalVariableCheckSwitchAssignment {
     }
 
     void switch_rules(MyEnum value) {
-        String res; // violation
+        String res; // violation, "Variable 'res' should be declared final"
         switch (value) {
             case a -> throw new RuntimeException();
             case b -> res = "2";

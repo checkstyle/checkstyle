@@ -54,7 +54,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
 
     void foo4() {
         final boolean some_condition = true;
-        int i; // violation
+        int i; // violation, "Variable 'i' should be declared final"
         if (some_condition) {
             if (true) {
             }
@@ -127,11 +127,12 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
 
     // Taken from findbugs
     public static String foo9(String filePath, String project) {
-        String path = new String(filePath); // violation
+        String path = new String(filePath); // violation, "Variable 'path' should be declared final"
         String commonPath;
         if (project != null) {
             commonPath = "";
-            String relativePath = ""; // violation
+            // violation below "Variable 'relativePath' should be declared final"
+            String relativePath = "";
             if (!relativePath.equals(path)) {
                 return relativePath;
             }
@@ -207,12 +208,12 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
         try {
 
             String className;
-            int kind; // violation
+            int kind; // violation, "Variable 'kind' should be declared final"
             boolean isParameterToInitMethodofAnonymousInnerClass = false;
             boolean isSyntheticMethod = false;
             if (o instanceof String || o instanceof Integer) {
 
-                String m; // violation
+                String m; // violation, "Variable 'm' should be declared final"
                 if (o instanceof String) {
                     m = (String) o;
                     isSyntheticMethod = m.equals("");
@@ -414,7 +415,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
       * signum is 1 if p and q are both nonnegative or both negative, and -1 otherwise.
       */
         final int signum = 1 | ((p ^ q) >> (Integer.SIZE - 1));
-        boolean increment; // violation
+        boolean increment; // violation, "Variable 'increment' should be declared final"
         switch (mode) {
             case 1:
                 String.CASE_INSENSITIVE_ORDER.equals(rem == 0);

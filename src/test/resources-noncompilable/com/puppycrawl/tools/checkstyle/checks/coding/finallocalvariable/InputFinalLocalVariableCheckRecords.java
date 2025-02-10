@@ -17,7 +17,7 @@ public record InputFinalLocalVariableCheckRecords(boolean t, boolean f) {
 
     record bad(int i) {
         public bad {
-            int b = 0; // violation
+            int b = 0; // violation, "Variable 'b' should be declared final"
         }
     }
 }

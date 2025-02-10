@@ -349,7 +349,7 @@ public class InputFinalLocalVariableFalsePositives {
 
     // openjdk8/src/share/classes/sun/text/normalizer/NormalizerBase.java
     private void foo14() {
-        int c, c2; // violation
+        int c, c2; // violation, "Variable 'c2' should be declared final"
         if (true) {
         }
         if (true) {
@@ -2192,7 +2192,7 @@ public class InputFinalLocalVariableFalsePositives {
 
     private void foo89() {
         final int a = 8;
-        String b; // violation
+        String b; // violation, "Variable 'b' should be declared final"
         switch (a) {
             case 8:
                 b = "b";

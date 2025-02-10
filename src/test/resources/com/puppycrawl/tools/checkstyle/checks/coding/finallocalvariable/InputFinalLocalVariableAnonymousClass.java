@@ -10,7 +10,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 public class InputFinalLocalVariableAnonymousClass {
     public void test() {
-        Object testSupport = new Object() { // violation
+        // violation below "Variable 'testSupport' should be declared final"
+        Object testSupport = new Object() {
             @Override
             public String toString() {
                 final String dc = new String();
