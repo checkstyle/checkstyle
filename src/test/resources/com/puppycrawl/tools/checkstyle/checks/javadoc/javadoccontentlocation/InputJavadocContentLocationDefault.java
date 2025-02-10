@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoccontentlocation;
 public interface InputJavadocContentLocationDefault {
 
     /**
-     * Text. // OK
+     * Text.
      */
     void ok();
 
@@ -37,38 +37,38 @@ public interface InputJavadocContentLocationDefault {
     void missingAsterisks();
 
     /**
-      Text. //OK
+      Text.
       More text.
      */
     void missingAsterisksWithText();
 
     /**
-      **** Extra asterisks. //OK
+      **** Extra asterisks.
       */
     void extraAsterisks();
 
     /**
-     * @implNote Does nothing. // OK
+     * @implNote Does nothing.
      **/
     void javadocTag();
 
     /**
-     * <p> // OK
+     * <p>
      * HTML paragraph.
      * </p>
      **/
     void htmlTag();
 
-    /** Single line. **/ // OK
+    /** Single line. **/
     void singleLine();
 
-    /***/ // OK
+    /***/
     void emptyJavadocComment();
 
-    /**/ // OK
+    /**/
     void emptyComment();
 
-    /* Not a javadoc comment. // OK
+    /* Not a javadoc comment.
     */
     void notJavadocComment();
 
