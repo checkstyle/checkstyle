@@ -92,15 +92,6 @@
 
   <mutation unstable="false">
     <sourceFile>XMLLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger</mutatedClass>
-    <mutatedMethod>writeFileOpeningTag</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/XMLLogger::encode with argument</description>
-    <lineContent>writer.println(&quot;&lt;file name=\&quot;&quot; + encode(fileName) + &quot;\&quot;&gt;&quot;);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>XMLLogger.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger$FileMessages</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
