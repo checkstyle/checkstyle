@@ -1717,7 +1717,44 @@ public final class JavadocTokenTypes {
     /** Img html tag. */
     public static final int IMG_TAG = JavadocParser.RULE_imgTag + RULE_TYPES_OFFSET;
 
-    /** Input html tag. */
+    /**
+     * Input html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code Type here: <input type="text" id="id" name="name"> }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   JAVADOC -> JAVADOC
+     *        |--NEWLINE -> \r\n
+     *        |--LEADING_ASTERISK ->  *
+     *        |--TEXT ->   Type here:
+     *        |--HTML_ELEMENT -> HTML_ELEMENT
+     *        |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *        |       `--INPUT_TAG -> INPUT_TAG
+     *        |           |--START -> <
+     *        |           |--INPUT_HTML_TAG_NAME -> input
+     *        |           |--WS ->
+     *        |           |--ATTRIBUTE -> ATTRIBUTE
+     *        |           |   |--HTML_TAG_NAME -> type
+     *        |           |   |--EQUALS -> =
+     *        |           |   `--ATTR_VALUE -> "text"
+     *        |           |--WS ->
+     *        |           |--ATTRIBUTE -> ATTRIBUTE
+     *        |           |   |--HTML_TAG_NAME -> id
+     *        |           |   |--EQUALS -> =
+     *        |           |   `--ATTR_VALUE -> "id"
+     *        |           |--WS ->
+     *        |           |--ATTRIBUTE -> ATTRIBUTE
+     *        |           |   |--HTML_TAG_NAME -> name
+     *        |           |   |--EQUALS -> =
+     *        |           |   `--ATTR_VALUE -> "name"
+     *        |           `--END -> >
+     *        |--NEWLINE -> \r\n
+     *        |--TEXT ->
+     * }
+     * </pre>
+     */
     public static final int INPUT_TAG = JavadocParser.RULE_inputTag + RULE_TYPES_OFFSET;
 
     /** Isindex html tag. */
