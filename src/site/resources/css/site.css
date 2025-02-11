@@ -163,6 +163,7 @@ code {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin-bottom: 5px !important;
 }
 
 #bodyColumn h2, h2 {
