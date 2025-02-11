@@ -370,6 +370,19 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
+    public void testFileOpenTag()
+            throws Exception {
+        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final AuditEvent ev = new AuditEvent(this, "Test&.java");
+        logger.fileFinished(ev);
+        logger.auditFinished(null);
+        verifyXml(getPath("ExpectedXMLLoggerSpecialName.xml"),
+                outStream, "<file name=" + "Test&amp;.java" + ">");
+
+    }
+
+    @Test
     public void testNullOutputStreamOptions() {
         try {
             final XMLLogger logger = new XMLLogger(outStream,
