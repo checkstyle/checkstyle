@@ -128,7 +128,7 @@
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="id" value="stringEqual"/&gt;
-    &lt;property name="files" value="SomeTestCode.java"/&gt;
+    &lt;property name="files" value="Example2.java"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -137,9 +137,12 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
+  &lt;module name="RegexpSingleline"&gt;
+    &lt;property name="format" value=".*example.*"/&gt;
+  &lt;/module&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="files" value="[/\\]\..+"/&gt;
-    &lt;property name="checks" value=".*"/&gt;
+    &lt;property name="files" value="Example3.java"/&gt;
+    &lt;property name="checks" value="RegexpSinglelineCheck"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -149,8 +152,8 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="files" value="[/\\]target[/\\]"/&gt;
-    &lt;property name="checks" value=".*"/&gt;
+    &lt;property name="files" value="Example4.java"/&gt;
+    &lt;property name="checks" value="NoWhiteSpaceAfter"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -160,8 +163,8 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="files" value=".+\.(?:jar|zip|war|class|tar|bin)$"/&gt;
-    &lt;property name="checks" value=".*"/&gt;
+    &lt;property name="files" value="Example5.java"/&gt;
+    &lt;property name="checks" value="MethodName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -171,8 +174,8 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="files" value=".+\.(?:png|gif|jpg|jpeg)$"/&gt;
-    &lt;property name="checks" value=".*"/&gt;
+    &lt;property name="files" value="Example6.java"/&gt;
+    &lt;property name="checks" value="ConstantName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -182,9 +185,8 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="files"
-      value=".+\.(?:txt|xml|csv|sh|thrift|html|sql|eot|ttf|woff|css|png)$"/&gt;
-    &lt;property name="checks" value=".*"/&gt;
+    &lt;property name="files" value="Example7.java"/&gt;
+    &lt;property name="checks" value="MemberName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -194,8 +196,8 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="files" value="com[\\/]mycompany[\\/]app[\\/]gen[\\/]"/&gt;
-    &lt;property name="checks" value=".*"/&gt;
+    &lt;property name="files" value="Example8.java"/&gt;
+    &lt;property name="checks" value="ParameterNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -205,7 +207,7 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="files" value="com[\\/]mycompany[\\/]app[\\/].*IT.java"/&gt;
+    &lt;property name="files" value="Example9.java"/&gt;
     &lt;property name="checks" value="FileLength"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -216,6 +218,7 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
+    &lt;property name="files" value="Example10.java"/&gt;
     &lt;property name="message" value="Name 'log' must match pattern"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
