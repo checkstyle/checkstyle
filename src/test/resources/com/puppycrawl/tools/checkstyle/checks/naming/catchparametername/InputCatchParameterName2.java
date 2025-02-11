@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.catchparametername;
 public class InputCatchParameterName2 {
     {
         try {
-        } catch (Exception e) { // violation
+        } catch (Exception e) { // violation, 'Name 'e' must match pattern'
         }
         try {
         } catch (Exception ex) {
@@ -28,7 +28,7 @@ public class InputCatchParameterName2 {
         } catch (Exception noWorries) {
         }
         try {
-        } catch (Throwable t) { // violation
+        } catch (Throwable t) { // violation, 'Name 't' must match pattern'
         }
         try {
             throw new InterruptedException("interruptedException");
