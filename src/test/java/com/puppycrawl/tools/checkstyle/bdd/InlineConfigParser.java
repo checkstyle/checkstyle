@@ -275,7 +275,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck",
             "com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck",
