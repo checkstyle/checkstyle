@@ -178,6 +178,8 @@ code {
 }
 
 #leftColumn {
+  position: relative;
+  top: -14px; 
   min-width: 250px;
   width: fit-content;
 }
