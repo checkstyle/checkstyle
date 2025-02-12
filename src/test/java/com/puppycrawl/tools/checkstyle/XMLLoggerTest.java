@@ -383,6 +383,14 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
+    public void testVerifyLogger()
+            throws Exception {
+        final String className = "InputXMLLogger.java";
+        final String xmlReport = "ExpectedXMLLoggerWithChecker.xml";
+        verifyWithInlineConfigParserAndXmlLogger(className, xmlReport);
+    }
+
+    @Test
     public void testNullOutputStreamOptions() {
         try {
             final XMLLogger logger = new XMLLogger(outStream,
