@@ -450,6 +450,1327 @@ java -D&lt;property&gt;=&lt;value&gt;  \
       </div>
     </section>
 
+<section name="Examples">
+  <h4>1. Using a <span class="no-transform">-c</span> Configuration File</h4>
+  <p><strong>Goal:</strong> Run Checkstyle using a specified configuration file.</p>
+
+  <p><strong>Configuration File (config.xml):</strong></p>
+  <div class="wrapper">
+    <pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+&lt;module name="Checker"&gt;
+    &lt;module name="TreeWalker"&gt;
+        &lt;module name="FallThrough"/&gt;
+    &lt;/module&gt;
+&lt;/module&gt;
+    </code></pre>
+  </div>
+
+  <p><strong>Test File (Test.java):</strong></p>
+  <div class="wrapper">
+    <pre class="prettyprint"><code class="language-java">
+/**
+ * This is a sample Test class demonstrating Checkstyle functionality.
+ *
+ * The method below contains a switch statement without breaks to trigger a
+ * "fall-through" violation.
+ */
+class Test {
+    /**
+     * Demonstrates a fall-through violation in a switch statement.
+     */
+    public void foo() {
+        int i = 0;
+        while (i >= 0) {
+            switch (i) {
+                case 1:
+                case 2:
+                    i++;
+                case 3:
+                    /*
+                     * Violation: Fall through from previous branch of the switch.
+                     * This intentional omission of a break statement triggers the violation.
+                     */
+                    i++;
+            }
+        }
+    }
+}
+    </code></pre>
+  </div>
+
+  <p><strong>Command:</strong></p>
+  <div class="wrapper">
+    <pre class="prettyprint"><code class="language-bash">
+$ java -jar checkstyle-10.21.1-all.jar -c config.xml Test.java
+    </code></pre>
+  </div>
+
+  <p><strong>Output:</strong></p>
+  <div class="wrapper">
+    <pre class="prettyprint"><code class="language-bash">
+Starting audit...
+[ERROR] Test.java:18:17: Fall through from previous branch of the switch statement. [FallThrough]
+Audit done.
+Checkstyle ends with 1 errors.
+</code></pre></div>
+
+  <h4>2. Specifying Output Format (<span class="no-transform">-f</span>)</h4>
+  <p><strong>Goal:</strong> Change the output format to XML or SARIF.</p>
+
+  <p><strong>Command:</strong></p>
+  <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+$ java -jar checkstyle-10.21.1-all.jar -c config.xml -f xml Test.java
+    </code></pre>
+  </div>
+
+  <p><strong>Test File (Test.java):</strong></p>
+  <div class="wrapper">
+    <pre class="prettyprint"><code class="language-java">
+/**
+ * This is a sample Test class demonstrating Checkstyle functionality.
+ *
+ * The method below contains a switch statement without a break statement,
+ * which is intended to trigger a fall-through violation.
+ */
+class Test {
+    /**
+     * Demonstrates a fall-through violation in a switch statement.
+     */
+    public void foo() {
+        int i = 0;
+        while (i >= 0) {
+            switch (i) {
+                case 1:
+                case 2:
+                    i++;
+                case 3: // Violation: Fall through from previous branch of the switch.
+                    i++;
+            }
+        }
+    }
+}
+    </code></pre>
+  </div>
+
+  <p><strong>Output:</strong></p>
+  <div class="wrapper">
+    <pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;checkstyle version="10.21.1"&gt;
+    &lt;file name="Test.java"&gt;
+        &lt;error line="18" column="17" severity="error"
+            message="Fall through from previous branch of switch statement"
+            source="com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck"/&gt;
+    &lt;/file&gt;
+&lt;/checkstyle&gt;
+Checkstyle ends with 1 errors.
+    </code></pre></div>
+
+<h4>3. Using a Properties File (<span class="no-transform">-p</span>)</h4>
+<p>
+<strong>Goal:</strong>
+Load custom properties into Checkstyle from a properties file to enforce a header check.
+</p>
+<p><strong>Properties File (checkstyle.properties):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-properties">
+checkstyle.header.file=file:header.txt
+checkstyle.header.charset=UTF-8
+  </code></pre>
+</div>
+
+<p><strong>Configuration File (config.xml):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+&lt;module name="Checker"&gt;
+    &lt;module name="Header"&gt;
+        &lt;property name="headerFile" value="${checkstyle.header.file}"/&gt;
+        &lt;property name="charset" value="UTF-8"/&gt;
+    &lt;/module&gt;
+    &lt;module name="TreeWalker"&gt;
+        &lt;module name="FallThrough"/&gt;
+    &lt;/module&gt;
+&lt;/module&gt;
+  </code></pre>
+</div>
+
+<p><strong>Header File (header.txt):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-text">
+/**
+ * This is the required header for all source files.
+ */
+  </code></pre>
+</div>
+
+<p><strong>Test File (Test.java):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-java">
+/**
+ * This is a sample Test class demonstrating Checkstyle functionality.
+ * Note: This file intentionally does not contain the required header.
+ */
+class Test {
+    /**
+     * Demonstrates the effect of custom properties.
+     */
+    public void bar() {
+        System.out.println("Configured with properties!");
+    }
+}
+  </code></pre>
+</div>
+
+<p><strong>Command:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+$ java -jar checkstyle-10.21.1-all.jar -c config.xml -p checkstyle.properties Test.java
+  </code></pre>
+</div>
+
+<p><strong>Output:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+Starting audit...
+[ERROR] Test.java:2: Line does not match expected header line of ' * This is
+the required header for all source files.'.[Header]
+Audit done.
+Checkstyle ends with 1 errors.
+  </code></pre>
+</div>
+
+<h4>4. Specifying an Output File (<span class="no-transform">-o</span>)</h4>
+<p><strong>Goal:</strong> Save Checkstyle results to a file.</p>
+
+<p><strong>Configuration File (config.xml):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+&lt;module name="Checker"&gt;
+    &lt;module name="TreeWalker"&gt;
+        &lt;module name="FallThrough"/&gt;
+    &lt;/module&gt;
+&lt;/module&gt;
+  </code></pre>
+</div>
+
+<p><strong>Test File (Test.java):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-java">
+/**
+ * This is a sample Test class demonstrating Checkstyle functionality.
+ */
+class Test {
+    /**
+     * Demonstrates a fall-through violation in a switch statement.
+     * This is a multi-line Javadoc comment describing the method.
+     */
+    public void foo() {
+        int i = 0;
+        while (i >= 0) {
+            switch (i) {
+                case 1:
+                case 2:
+                    i++;
+                case 3: // Violation: Fall through from previous branch.
+                    i++;
+            }
+        }
+    }
+}
+  </code></pre>
+</div>
+
+<p><strong>Command:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+$ java -jar checkstyle-10.21.1-all.jar -c config.xml -o results.txt Test.java
+  </code></pre>
+</div>
+
+<p><strong>Output (Content of results.txt):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+Starting audit...
+[ERROR] Test.java:16:17: Fall through from previous branch of the switch statement. [FallThrough]
+Audit done.
+  </code></pre>
+</div>
+
+<h4>5. Printing XPath Suppressions (<span class="no-transform">-s</span>)</h4>
+<p>
+<strong>Goal:</strong>
+Generate XPath suppressions for the violation at the specified line and column.
+</p>
+<p><strong>Command:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+$ java -jar checkstyle-10.21.1-all.jar -s 17:17 Test.java
+  </code></pre>
+</div>
+
+<p><strong>Test File (Test.java):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-java">
+/**
+ * This is a sample Test class demonstrating Checkstyle functionality.
+ *
+ * The method below demonstrates a fall-through violation in a switch statement.
+ */
+class Test {
+    /**
+     * Demonstrates a fall-through violation in a switch statement.
+     */
+    public void foo() {
+        int i = 0;
+        while (i >= 0) {
+            switch (i) {
+                case 1:
+                case 2:
+                    i++;
+                case 3: // Violation: Fall through from previous branch.
+                    i++;
+            }
+        }
+    }
+}
+  </code></pre>
+</div>
+
+<p><strong>Output (Full XPath Suppression Query):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Test']]/OBJBLOCK
+/./IDENT[@text='foo']]/SLIST/LITERAL_WHILE/SLIST/LITERAL_SWITCH
+/CASE_GROUP[./LITERAL_CASE/EXPR/NUM_INT[@text='3']]
+/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Test']]./IDENT[@text='foo']]
+/SLIST/LITERAL_WHILE/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_CASE
+  </code></pre>
+</div>
+
+<h4>6. Generating Suppressions XML (<span class="no-transform">-g</span>)</h4>
+<p><strong>Goal:</strong>
+Generate an XML file containing suppressions for all violations using
+the experimental XPath suppression filter.
+</p>
+
+<p><strong>Command:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+$ java -jar checkstyle-10.21.1-all.jar -c config.xml -g -o suppressions.xml Test.java
+  </code></pre>
+</div>
+
+<p><strong>Configuration File (config.xml):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+&lt;module name="Checker"&gt;
+    &lt;module name="TreeWalker"&gt;
+        &lt;module name="FallThrough"/&gt;
+    &lt;/module&gt;
+&lt;/module&gt;
+  </code></pre>
+</div>
+
+<p><strong>Test File (Test.java):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-java">
+/**
+ * This is a sample Test class demonstrating Checkstyle functionality.
+ *
+ * The method below demonstrates a fall-through violation in a switch statement.
+ */
+class Test {
+    /**
+     * Demonstrates a fall-through violation in a switch statement.
+     */
+    public void foo() {
+        int i = 0;
+        while (i >= 0) {
+            switch (i) {
+                case 1:
+                case 2:
+                    i++;
+                case 3: // Violation: Fall through from previous branch.
+                    i++;
+            }
+        }
+    }
+}
+  </code></pre>
+</div>
+
+<p><strong>Output (Content of suppressions.xml):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+&lt;suppressions&gt;
+&lt;suppress-xpath
+       files="Test.java"
+       checks="FallThroughCheck"
+       query="/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Test']]/OBJBLOCK
+       /METHOD_DEF[./IDENT[@text='foo']]/SLIST/LITERAL_WHILE/SLIST/LITERAL_SWITCH
+       /CASE_GROUP[./LITERAL_CASE/EXPR/NUM_INT[@text='3']]"/&gt;
+&lt;/suppressions&gt;
+  </code></pre>
+</div>
+
+<h4>7. Setting Tab Width (<span class="no-transform">-w</span>, --tabWidth)</h4>
+<p>
+<strong>Goal:</strong>
+Set the length of the tab character when using the <code>-s</code> option,
+and generate the suppression XPath query for the violation.</p>
+
+<p><strong>Command:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+$ java -jar checkstyle-10.21.1-all.jar -s 17:17 --tabWidth 4 Test.java
+  </code></pre>
+</div>
+
+<p><strong>Test File (Test.java):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-java">
+/**
+ * This is a sample Test class demonstrating Checkstyle functionality.
+ *
+ * The method below demonstrates a fall-through violation in a switch statement.
+ */
+class Test {
+    /**
+     * Demonstrates a fall-through violation in a switch statement.
+     */
+    public void foo() {
+        int i = 0;
+        while (i >= 0) {
+            switch (i) {
+                case 1:
+                case 2:
+                    i++;
+                case 3: // Violation: Fall through from previous branch.
+                    i++;
+            }
+        }
+    }
+}
+  </code></pre>
+</div>
+
+<p><strong>Output (Content of Suppression XPath Query):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Test']]/OBJBLOCK
+/METHOD_DEF[./IDENT[@text='foo']]/SLIST/LITERAL_WHILE/SLIST/LITERAL_SWITCH
+/CASE_GROUP[./LITERAL_CASE/EXPR/NUM_INT[@text='3']]/COMPILATION_UNIT
+/CLASS_DEF[./IDENT[@text='Test']]/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]
+/SLIST/LITERAL_WHILE/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_CASE
+  </code></pre>
+</div>
+
+<h4>8. Displaying Abstract Syntax Tree (<span class="no-transform">-t</span>, --tree)</h4>
+<p><strong>Goal:</strong>
+Display the Abstract Syntax Tree (AST) of a file without comments.</p>
+
+<p><strong>Command:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+$ java -jar checkstyle-10.21.1-all.jar -t Test.java
+  </code></pre>
+</div>
+
+<p><strong>Test File (Test.java):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-java">
+/**
+ * This is a sample Test class demonstrating Checkstyle functionality.
+ */
+class Test {
+    /**
+     * Demonstrates a fall-through violation in a switch statement.
+     */
+    public void foo() {
+        int i = 0;
+        while (i >= 0) {
+            switch (i) {
+                case 1:
+                case 2:
+                    i++;
+                case 3: // Violation: Fall through from previous branch.
+                    i++;
+            }
+        }
+    }
+}
+  </code></pre>
+</div>
+
+<p><strong>Output (Content of AST):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+COMPILATION_UNIT -> COMPILATION_UNIT [4:0]
+`--CLASS_DEF -> CLASS_DEF [4:0]
+    |--MODIFIERS -> MODIFIERS [4:0]
+    |--LITERAL_CLASS -> class [4:0]
+    |--IDENT -> Test [4:6]
+    `--OBJBLOCK -> OBJBLOCK [4:11]
+        |--LCURLY -> { [4:11]
+        |--METHOD_DEF -> METHOD_DEF [8:4]
+        |   |--MODIFIERS -> MODIFIERS [8:4]
+        |   |   `--LITERAL_PUBLIC -> public [8:4]
+        |   |--TYPE -> TYPE [8:11]
+        |   |   `--LITERAL_VOID -> void [8:11]
+        |   |--IDENT -> foo [8:16]
+        |   |--LPAREN -> ( [8:19]
+        |   |--PARAMETERS -> PARAMETERS [8:20]
+        |   |--RPAREN -> ) [8:20]
+        |   `--SLIST -> { [8:22]
+        |       |--VARIABLE_DEF -> VARIABLE_DEF [9:8]
+        |       |   |--MODIFIERS -> MODIFIERS [9:8]
+        |       |   |--TYPE -> TYPE [9:8]
+        |       |   |   `--LITERAL_INT -> int [9:8]
+        |       |   |--IDENT -> i [9:12]
+        |       |   `--ASSIGN -> = [9:14]
+        |       |       `--EXPR -> EXPR [9:16]
+        |       |           `--NUM_INT -> 0 [9:16]
+        |       |--SEMI -> ; [9:17]
+        |       |--LITERAL_WHILE -> while [10:8]
+        |       |   |--LPAREN -> ( [10:14]
+        |       |   |--EXPR -> EXPR [10:17]
+        |       |   |   `--GE -> >= [10:17]
+        |       |   |       |--IDENT -> i [10:15]
+        |       |   |       `--NUM_INT -> 0 [10:20]
+        |       |   |--RPAREN -> ) [10:21]
+        |       |   `--SLIST -> { [10:23]
+        |       |       |--LITERAL_SWITCH -> switch [11:12]
+        |       |       |   |--LPAREN -> ( [11:19]
+        |       |       |   |--EXPR -> EXPR [11:20]
+        |       |       |   |   `--IDENT -> i [11:20]
+        |       |       |   |--RPAREN -> ) [11:21]
+        |       |       |   |--LCURLY -> { [11:23]
+        |       |       |   |--CASE_GROUP -> CASE_GROUP [12:16]
+        |       |       |   |   |--LITERAL_CASE -> case [12:16]
+        |       |       |   |   |   |--EXPR -> EXPR [12:21]
+        |       |       |   |   |   |   `--NUM_INT -> 1 [12:21]
+        |       |       |   |   |   `--COLON -> : [12:22]
+        |       |       |   |   |--LITERAL_CASE -> case [13:16]
+        |       |       |   |   |   |--EXPR -> EXPR [13:21]
+        |       |       |   |   |   |   `--NUM_INT -> 2 [13:21]
+        |       |       |   |   |   `--COLON -> : [13:22]
+        |       |       |   |   `--SLIST -> SLIST [14:21]
+        |       |       |   |       |--EXPR -> EXPR [14:21]
+        |       |       |   |       |   `--POST_INC -> ++ [14:21]
+        |       |       |   |       |       `--IDENT -> i [14:20]
+        |       |       |   |       `--SEMI -> ; [14:23]
+        |       |       |   |--CASE_GROUP -> CASE_GROUP [15:16]
+        |       |       |   |   |--LITERAL_CASE -> case [15:16]
+        |       |       |   |   |   |--EXPR -> EXPR [15:21]
+        |       |       |   |   |   |   `--NUM_INT -> 3 [15:21]
+        |       |       |   |   |   `--COLON -> : [15:22]
+        |       |       |   |   `--SLIST -> SLIST [16:21]
+        |       |       |   |       |--EXPR -> EXPR [16:21]
+        |       |       |   |       |   `--POST_INC -> ++ [16:21]
+        |       |       |   |       |       `--IDENT -> i [16:20]
+        |       |       |   |       `--SEMI -> ; [16:23]
+        |       |       |   `--RCURLY -> } [17:12]
+        |       |       `--RCURLY -> } [18:8]
+        |       `--RCURLY -> } [19:4]
+        `--RCURLY -> } [20:0]
+  </code></pre>
+</div>
+
+<h4>
+9. Displaying AST with Comments (<span class="no-transform">-T</span>, --treeWithComments)
+</h4>
+<p><strong>Goal:</strong>
+Display the AST including comment nodes, but excluding Javadoc.
+</p>
+
+<p><strong>Command:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+$ java -jar checkstyle-10.18.1-all.jar --treeWithComments Test.java
+  </code></pre>
+</div>
+
+<p><strong>Test File (Test.java):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-java">
+/**
+ * This is a sample Test class demonstrating Checkstyle functionality.
+ */
+class Test {
+    /**
+     * Demonstrates a fall-through violation in a switch statement.
+     */
+    public void foo() {
+        int i = 0;
+        /* This block comment should appear in the AST output.
+           It spans multiple lines.
+        */
+        while (i >= 0) {
+            switch (i) {
+                case 1:
+                case 2:
+                    i++;
+                case 3: // Violation: Fall through from previous branch.
+                    i++;
+            }
+        }
+    }
+}
+  </code></pre>
+</div>
+
+<p><strong>Output (Full AST):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+COMPILATION_UNIT -> COMPILATION_UNIT [4:0]
+`--CLASS_DEF -> CLASS_DEF [4:0]
+    |--MODIFIERS -> MODIFIERS [4:0]
+    |--BLOCK_COMMENT_BEGIN -> /* [1:0]
+    |   |--COMMENT_CONTENT -> *\r\n * This is a sample Test class
+    demonstrating Checkstyle functionality.\r\n  [1:2]
+    |   `--BLOCK_COMMENT_END -> */ [3:1]
+    |--LITERAL_CLASS -> class [4:0]
+    |--IDENT -> Test [4:6]
+    `--OBJBLOCK -> OBJBLOCK [4:11]
+        |--LCURLY -> { [4:11]
+        |--METHOD_DEF -> METHOD_DEF [8:4]
+        |   |--MODIFIERS -> MODIFIERS [8:4]
+        |   |   |--BLOCK_COMMENT_BEGIN -> /* [5:4]
+        |   |   |   |--COMMENT_CONTENT -> *\r\n     * Demonstrates a fall-through
+        violation in a switch statement.\r\n      [5:6]
+        |   |   |   `--BLOCK_COMMENT_END -> */ [7:5]
+        |   |   `--LITERAL_PUBLIC -> public [8:4]
+        |   |--TYPE -> TYPE [8:11]
+        |   |   `--LITERAL_VOID -> void [8:11]
+        |   |--IDENT -> foo [8:16]
+        |   |--LPAREN -> ( [8:19]
+        |   |--PARAMETERS -> PARAMETERS [8:20]
+        |   |--RPAREN -> ) [8:20]
+        |   `--SLIST -> { [8:22]
+        |       |--VARIABLE_DEF -> VARIABLE_DEF [9:8]
+        |       |   |--MODIFIERS -> MODIFIERS [9:8]
+        |       |   |--TYPE -> TYPE [9:8]
+        |       |   |   `--LITERAL_INT -> int [9:8]
+        |       |   |--IDENT -> i [9:12]
+        |       |   `--ASSIGN -> = [9:14]
+        |       |       `--EXPR -> EXPR [9:16]
+        |       |           `--NUM_INT -> 0 [9:16]
+        |       |--SEMI -> ; [9:17]
+        |       |--BLOCK_COMMENT_BEGIN -> /* [10:8]
+        |       |   |--COMMENT_CONTENT ->  This block comment should
+        appear in the AST output.\r\n   It spans multiple lines.\r\n         [10:10]
+        |       |   `--BLOCK_COMMENT_END -> */ [12:8]
+        |       |--LITERAL_WHILE -> while [13:8]
+        |       |   |--LPAREN -> ( [13:14]
+        |       |   |--EXPR -> EXPR [13:17]
+        |       |   |   `--GE -> >= [13:17]
+        |       |   |       |--IDENT -> i [13:15]
+        |       |   |       `--NUM_INT -> 0 [13:20]
+        |       |   |--RPAREN -> ) [13:21]
+        |       |   `--SLIST -> { [13:23]
+        |       |       |--LITERAL_SWITCH -> switch [14:12]
+        |       |       |   |--LPAREN -> ( [14:19]
+        |       |       |   |--EXPR -> EXPR [14:20]
+        |       |       |   |   `--IDENT -> i [14:20]
+        |       |       |   |--RPAREN -> ) [14:21]
+        |       |       |   |--LCURLY -> { [14:23]
+        |       |       |   |--CASE_GROUP -> CASE_GROUP [15:16]
+        |       |       |   |   |--LITERAL_CASE -> case [15:16]
+        |       |       |   |   |   |--EXPR -> EXPR [15:21]
+        |       |       |   |   |   |   `--NUM_INT -> 1 [15:21]
+        |       |       |   |   |   `--COLON -> : [15:22]
+        |       |       |   |   |--LITERAL_CASE -> case [16:16]
+        |       |       |   |   |   |--EXPR -> EXPR [16:21]
+        |       |       |   |   |   |   `--NUM_INT -> 2 [16:21]
+        |       |       |   |   |   `--COLON -> : [16:22]
+        |       |       |   |   `--SLIST -> SLIST [17:21]
+        |       |       |   |       |--EXPR -> EXPR [17:21]
+        |       |       |   |       |   `--POST_INC -> ++ [17:21]
+        |       |       |   |       |       `--IDENT -> i [17:20]
+        |       |       |   |       `--SEMI -> ; [17:23]
+        |       |       |   |--CASE_GROUP -> CASE_GROUP [18:16]
+        |       |       |   |   |--LITERAL_CASE -> case [18:16]
+        |       |       |   |   |   |--EXPR -> EXPR [18:21]
+        |       |       |   |   |   |   `--NUM_INT -> 3 [18:21]
+        |       |       |   |   |   `--COLON -> : [18:22]
+        |       |       |   |   `--SLIST -> SLIST [19:21]
+        |       |       |   |       |--EXPR -> EXPR [19:21]
+        |       |       |   |       |   `--POST_INC -> ++ [19:21]
+        |       |       |   |       |       |--SINGLE_LINE_COMMENT -> // [18:24]
+        |       |       |   |       |       |   `--COMMENT_CONTENT ->  Violation: Fall through
+        from previous branch.\r\n [18:26]
+        |       |       |   |       |       `--IDENT -> i [19:20]
+        |       |       |   |       `--SEMI -> ; [19:23]
+        |       |       |   `--RCURLY -> } [20:12]
+        |       |       `--RCURLY -> } [21:8]
+        |       `--RCURLY -> } [22:4]
+        `--RCURLY -> } [23:0]
+  </code></pre>
+</div>
+
+<h4>
+10. Displaying AST with Javadoc (<span class="no-transform">-J</span>, --treeWithJavadoc)
+</h4>
+<p><strong>Goal:</strong>
+Display the AST including Javadoc comment nodes.
+</p>
+
+<p><strong>Command:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+$ java -jar checkstyle-10.21.1-all.jar --treeWithJavadoc Test.java
+  </code></pre>
+</div>
+
+<p><strong>Test File (Test.java):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-java">
+/**
+ * This is a sample Test class demonstrating Checkstyle functionality.
+ */
+class Test {
+    /**
+     * Demonstrates a fall-through violation in a switch statement.
+     * This is a multi-line Javadoc comment describing the method behavior.
+     *
+     * @param none
+     * @return void
+     */
+    public void foo() {
+        int i = 0;
+        while (i >= 0) {
+            switch (i) {
+                case 1:
+                case 2:
+                    i++;
+                case 3: // Violation: Fall through from previous branch.
+                    i++;
+            }
+        }
+    }
+}
+  </code></pre>
+</div>
+
+<p><strong>Output (Content of AST):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+COMPILATION_UNIT -> COMPILATION_UNIT [4:0]
+`--CLASS_DEF -> CLASS_DEF [4:0]
+    |--MODIFIERS -> MODIFIERS [4:0]
+    |--BLOCK_COMMENT_BEGIN -> /* [1:0]
+    |   |--COMMENT_CONTENT -> *\r\n * This is a sample Test
+                                      class demonstrating Checkstyle functionality.\r\n  [1:2]
+    |   |   `--JAVADOC -> JAVADOC [1:3]
+    |   |       |--NEWLINE -> \r\n [1:3]
+    |   |       |--LEADING_ASTERISK ->  * [2:0]
+    |   |       |--TEXT ->  This is a sample Test
+                            class demonstrating Checkstyle functionality. [2:2]
+    |   |       |--NEWLINE -> \r\n [2:70]
+    |   |       |--TEXT ->   [3:0]
+    |   |       `--EOF -> &lt;EOF&gt; [3:1]
+    |   `--BLOCK_COMMENT_END -> */ [3:1]
+    |--LITERAL_CLASS -> class [4:0]
+    |--IDENT -> Test [4:6]
+    `--OBJBLOCK -> OBJBLOCK [4:11]
+        |--LCURLY -> { [4:11]
+        |--METHOD_DEF -> METHOD_DEF [12:4]
+        |   |--MODIFIERS -> MODIFIERS [12:4]
+        |   |   |--BLOCK_COMMENT_BEGIN -> /* [5:4]
+        |   |   |   |--COMMENT_CONTENT -> *\r\n     * Demonstrates a
+               fall-through violation in a switch statement.\r\n
+               * This is a multi-line Javadoc comment describing the method behavior.\r\n
+               *\r\n
+               * @param none\r\n
+               * @return void\r\n      [5:6]
+        |   |   |   |   `--JAVADOC -> JAVADOC [5:7]
+        |   |   |   |       |--NEWLINE -> \r\n [5:7]
+        |   |   |   |       |--LEADING_ASTERISK ->      * [6:0]
+        |   |   |   |       |--TEXT ->  Demonstrates a fall-through
+        violation in a switch statement. [6:6]
+        |   |   |   |       |--NEWLINE -> \r\n [6:67]
+        |   |   |   |       |--LEADING_ASTERISK ->      * [7:0]
+        |   |   |   |       |--TEXT ->  This is a multi-line Javadoc
+        comment describing the method behavior. [7:6]
+        |   |   |   |       |--NEWLINE -> \r\n [7:75]
+        |   |   |   |       |--LEADING_ASTERISK ->      * [8:0]
+        |   |   |   |       |--NEWLINE -> \r\n [8:6]
+        |   |   |   |       |--LEADING_ASTERISK ->      * [9:0]
+        |   |   |   |       |--WS ->   [9:6]
+        |   |   |   |       |--JAVADOC_TAG -> JAVADOC_TAG [9:7]
+        |   |   |   |       |   |--PARAM_LITERAL -> @param [9:7]
+        |   |   |   |       |   |--WS ->   [9:13]
+        |   |   |   |       |   |--PARAMETER_NAME -> none [9:14]
+        |   |   |   |       |   `--NEWLINE -> \r\n [9:18]
+        |   |   |   |       |--LEADING_ASTERISK ->      * [10:0]
+        |   |   |   |       |--WS ->   [10:6]
+        |   |   |   |       |--JAVADOC_TAG -> JAVADOC_TAG [10:7]
+        |   |   |   |       |   |--RETURN_LITERAL -> @return [10:7]
+        |   |   |   |       |   |--WS ->   [10:14]
+        |   |   |   |       |   `--DESCRIPTION -> DESCRIPTION [10:15]
+        |   |   |   |       |       |--TEXT -> void [10:15]
+        |   |   |   |       |       |--NEWLINE -> \r\n [10:19]
+        |   |   |   |       |       `--TEXT ->       [11:0]
+        |   |   |   |       `--EOF -> &lt;EOF&gt; [11:5]
+        |   |   |   `--BLOCK_COMMENT_END -> */ [11:5]
+        |   |   `--LITERAL_PUBLIC -> public [12:4]
+        |   |--TYPE -> TYPE [12:11]
+        |   |   `--LITERAL_VOID -> void [12:11]
+        |   |--IDENT -> foo [12:16]
+        |   |--LPAREN -> ( [12:19]
+        |   |--PARAMETERS -> PARAMETERS [12:20]
+        |   |--RPAREN -> ) [12:20]
+        |   `--SLIST -> { [12:22]
+        |       |--VARIABLE_DEF -> VARIABLE_DEF [13:8]
+        |       |   |--MODIFIERS -> MODIFIERS [13:8]
+        |       |   |--TYPE -> TYPE [13:8]
+        |       |   |   `--LITERAL_INT -> int [13:8]
+        |       |   |--IDENT -> i [13:12]
+        |       |   `--ASSIGN -> = [13:14]
+        |       |       `--EXPR -> EXPR [13:16]
+        |       |           `--NUM_INT -> 0 [13:16]
+        |       |--SEMI -> ; [13:17]
+        |       |--LITERAL_WHILE -> while [14:8]
+        |       |   |--LPAREN -> ( [14:14]
+        |       |   |--EXPR -> EXPR [14:17]
+        |       |   |   `--GE -> >= [14:17]
+        |       |   |       |--IDENT -> i [14:15]
+        |       |   |       `--NUM_INT -> 0 [14:20]
+        |       |   |--RPAREN -> ) [14:21]
+        |       |   `--SLIST -> { [14:23]
+        |       |       |--LITERAL_SWITCH -> switch [15:12]
+        |       |       |   |--LPAREN -> ( [15:19]
+        |       |       |   |--EXPR -> EXPR [15:20]
+        |       |       |   |   `--IDENT -> i [15:20]
+        |       |       |   |--RPAREN -> ) [15:21]
+        |       |       |   |--LCURLY -> { [15:23]
+        |       |       |   |--CASE_GROUP -> CASE_GROUP [16:16]
+        |       |       |   |   |--LITERAL_CASE -> case [16:16]
+        |       |       |   |   |   |--EXPR -> EXPR [16:21]
+        |       |       |   |   |   |   `--NUM_INT -> 1 [16:21]
+        |       |       |   |   |   `--COLON -> : [16:22]
+        |       |       |   |   |--LITERAL_CASE -> case [17:16]
+        |       |       |   |   |   |--EXPR -> EXPR [17:21]
+        |       |       |   |   |   |   `--NUM_INT -> 2 [17:21]
+        |       |       |   |   |   `--COLON -> : [17:22]
+        |       |       |   |   `--SLIST -> SLIST [18:21]
+        |       |       |   |       |--EXPR -> EXPR [18:21]
+        |       |       |   |       |   `--POST_INC -> ++ [18:21]
+        |       |       |   |       |       `--IDENT -> i [18:20]
+        |       |       |   |       `--SEMI -> ; [18:23]
+        |       |       |   |--CASE_GROUP -> CASE_GROUP [19:16]
+        |       |       |   |   |--LITERAL_CASE -> case [19:16]
+        |       |       |   |   |   |--EXPR -> EXPR [19:21]
+        |       |       |   |   |   |   `--NUM_INT -> 3 [19:21]
+        |       |       |   |   |   `--COLON -> : [19:22]
+        |       |       |   |   `--SLIST -> SLIST [20:21]
+        |       |       |   |       |--EXPR -> EXPR [20:21]
+        |       |       |   |       |   `--POST_INC -> ++ [20:21]
+        |       |       |   |       |       |--SINGLE_LINE_COMMENT -> // [19:24]
+        |       |       |   |       |       |   `--COMMENT_CONTENT ->  Violation: Fall
+ through from previous branch.\r\n [19:26]
+        |       |       |   |       |       `--IDENT -> i [20:20]
+        |       |       |   |       `--SEMI -> ; [20:23]
+        |       |       |   `--RCURLY -> } [21:12]
+        |       |       `--RCURLY -> } [22:8]
+        |       `--RCURLY -> } [23:4]
+        `--RCURLY -> } [24:0]
+  </code></pre>
+</div>
+
+<h4>
+11. Printing Javadoc Parse Tree (<span class="no-transform">-j</span>, --javadocTree)
+</h4>
+<p><strong>Goal:</strong>
+Print the full parse tree of a Javadoc comment.
+</p>
+
+<p><strong>Test File (Javadoc.txt):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-java">
+/**
+ * This is a sample Javadoc comment.
+ * It spans multiple lines and includes tags.
+ * @param value Input value for processing.
+ * @return Processed result.
+ */
+  </code></pre>
+</div>
+
+<p><strong>Command:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+$ java -jar checkstyle-10.21.1-all.jar --javadocTree Javadoc.txt
+  </code></pre>
+</div>
+
+<p><strong>Output (Full AST):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+JAVADOC -> JAVADOC [0:0]
+|--TEXT -> /** [0:0]
+|--NEWLINE -> \r\n [0:3]
+|--LEADING_ASTERISK ->  * [1:0]
+|--TEXT ->  This is a sample Javadoc comment. [1:2]
+|--NEWLINE -> \r\n [1:36]
+|--LEADING_ASTERISK ->  * [2:0]
+|--TEXT ->  It spans multiple lines and includes tags. [2:2]
+|--NEWLINE -> \r\n [2:45]
+|--LEADING_ASTERISK ->  * [3:0]
+|--WS ->   [3:2]
+|--JAVADOC_TAG -> JAVADOC_TAG [3:3]
+|   |--PARAM_LITERAL -> @param [3:3]
+|   |--WS ->   [3:9]
+|   |--PARAMETER_NAME -> value [3:10]
+|   |--WS ->   [3:15]
+|   `--DESCRIPTION -> DESCRIPTION [3:16]
+|       |--TEXT -> Input value for processing. [3:16]
+|       `--NEWLINE -> \r\n [3:43]
+|--LEADING_ASTERISK ->  * [4:0]
+|--WS ->   [4:2]
+|--JAVADOC_TAG -> JAVADOC_TAG [4:3]
+|   |--RETURN_LITERAL -> @return [4:3]
+|   |--WS ->   [4:10]
+|   `--DESCRIPTION -> DESCRIPTION [4:11]
+|       |--TEXT -> Processed result. [4:11]
+|       |--NEWLINE -> \r\n [4:28]
+|       |--LEADING_ASTERISK ->  * [5:0]
+|       `--TEXT -> / [5:2]
+`--EOF -> &lt;EOF&gt; [5:3]
+  </code></pre>
+</div>
+
+<h4>
+12. Debugging CheckStyle (<span class="no-transform">-d</span>, --debug)
+</h4>
+<p><strong>Goal:</strong>
+Print detailed debug logs for troubleshooting.
+</p>
+
+<p><strong>Configuration File (config.xml):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+&lt;module name="Checker"&gt;
+    &lt;module name="TreeWalker"&gt;
+        &lt;module name="FallThrough"/&gt;
+    &lt;/module&gt;
+&lt;/module&gt;
+  </code></pre>
+</div>
+
+<p><strong>Command:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+$ java -jar checkstyle-10.21.1-all.jar --debug -c config.xml Test.java
+  </code></pre>
+</div>
+
+<p><strong>Test File (Test.java):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-java">
+/**
+ * This is a sample Test class demonstrating Checkstyle functionality.
+ */
+class Test {
+    /**
+     * Demonstrates a fall-through violation in a switch statement.
+     */
+    public void foo() {
+        int i = 0;
+        while (i >= 0) {
+            switch (i) {
+                case 1:
+                case 2:
+                    i++;
+                case 3: // Violation: Fall through from previous branch.
+                    i++;
+            }
+        }
+    }
+}
+  </code></pre>
+</div>
+
+<p><strong>Output:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+Feb 15, 2025 11:44:40 PM com.puppycrawl.tools.checkstyle.Main runCli
+FINE: Checkstyle debug logging enabled
+Feb 15, 2025 11:44:40 PM com.puppycrawl.tools.checkstyle.Main runCli
+FINE: Running Checkstyle with version: 10.21.1
+Starting audit...
+[ERROR] Test.java:15:17: Fall through from previous branch
+of the switch statement. [FallThrough]
+Audit done.
+Checkstyle ends with 1 errors.
+  </code></pre>
+</div>
+
+<h4>
+13. Excluding Specific Files/Directories (<span class="no-transform">-e</span>, --exclude)
+</h4>
+<p><strong>Goal:</strong>
+Exclude specific files or directories from Checkstyle validation.
+</p>
+
+<p><strong>Configuration File (config.xml):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+&lt;module name="Checker"&gt;
+    &lt;module name="TreeWalker"&gt;
+        &lt;module name="FallThrough"/&gt;
+    &lt;/module&gt;
+&lt;/module&gt;
+  </code></pre>
+</div>
+
+<p><strong>Command:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+$ java -jar checkstyle-10.18.1-all.jar -c config.xml --exclude src/test/java/Test.java src
+  </code></pre>
+</div>
+
+<p><strong>Test File (Test.java):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-java">
+/**
+ * This is a sample Test class demonstrating Checkstyle functionality.
+ *
+ * The method below demonstrates a fall-through violation in a switch statement.
+ */
+class Test {
+    /**
+     * Demonstrates a fall-through violation in a switch statement.
+     */
+    public void foo() {
+        int i = 0;
+        while (i >= 0) {
+            switch (i) {
+                case 1:
+                case 2:
+                    i++;
+                case 3: // Violation: Fall through from previous branch.
+                    i++;
+            }
+        }
+    }
+}
+  </code></pre>
+</div>
+
+<p><strong>Output:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+Starting audit...
+Skipping excluded file: src/test/java/Test.java
+Audit done.
+  </code></pre>
+</div>
+
+<h4>
+14. Excluding Files Using Regular Expressions
+(<span class="no-transform">-x</span>, --exclude-regexp)</h4>
+<p><strong>Goal:</strong>
+Exclude files or directories using a regular expression pattern.
+</p>
+
+<p><strong>Configuration File (config.xml):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+&lt;module name="Checker"&gt;
+    &lt;module name="TreeWalker"&gt;
+        &lt;module name="FallThrough"/&gt;
+    &lt;/module&gt;
+&lt;/module&gt;
+  </code></pre>
+</div>
+
+<p><strong>Command:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+$ java -jar checkstyle-10.21.1-all.jar -c config.xml --exclude-regexp ".*Test.*\.java" src
+  </code></pre>
+</div>
+
+<p><strong>Test File (Test.java):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-java">
+/**
+ * This is a sample Test class demonstrating Checkstyle functionality.
+ */
+class Test {
+    /**
+     * Demonstrates a fall-through violation in a switch statement.
+     */
+    public void foo() {
+        int i = 0;
+        while (i >= 0) {
+            switch (i) {
+                case 1:
+                case 2:
+                    i++;
+                case 3: // Violation: Fall through from previous branch.
+                    i++;
+            }
+        }
+    }
+}
+  </code></pre>
+</div>
+
+<p><strong>Output:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+Starting audit...
+Skipping excluded file: src/main/java/Test.java
+Audit done.
+  </code></pre>
+</div>
+
+<h4>
+15. Displaying Checkstyle Version (<span class="no-transform">-V</span>, --version)
+</h4>
+<p><strong>Goal:</strong> Print the Checkstyle version information.
+</p>
+
+<p><strong>Command:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+$ java -jar checkstyle-10.21.1-all.jar --version
+  </code></pre>
+</div>
+
+<p><strong>Output (Content of Version Info):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+Checkstyle 10.21.1
+  </code></pre>
+</div>
+
+<h4>
+16. Matching AST Branches (<span class="no-transform">-b</span>, --branch-matching-xpath)
+</h4>
+<p><strong>Goal:</strong>
+Show AST branches matching a given XPath query for the variable declaration of "x".
+</p>
+
+<p><strong>Test File (Test.java):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-java">
+/**
+ * This is a sample Test class demonstrating Checkstyle AST matching.
+ */
+class Test {
+    /**
+     * Demonstrates extraction of AST nodes for variable definitions.
+     */
+    void foo() {
+        int x = 10;
+    }
+}
+  </code></pre>
+</div>
+
+<p><strong>Command:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+$ java -jar checkstyle-10.21.1-all.jar --branch-matching-xpath "/COMPILATION_UNIT
+/CLASS_DEF/OBJBLOCK/METHOD_DEF/SLIST/VARIABLE_DEF[./IDENT[@text='x']]" Test.java
+  </code></pre>
+</div>
+
+<p><strong>Output (Full AST):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+COMPILATION_UNIT -> COMPILATION_UNIT [4:0]
+`--CLASS_DEF -> CLASS_DEF [4:0]
+    `--OBJBLOCK -> OBJBLOCK [4:11]
+        |--METHOD_DEF -> METHOD_DEF [8:4]
+        |   `--SLIST -> { [8:15]
+        |       |--VARIABLE_DEF -> VARIABLE_DEF [9:8]
+  </code></pre>
+</div>
+
+<h4>
+17. Displaying Help Message (<span class="no-transform">-h</span>, --help)
+</h4>
+<p><strong>Goal:</strong>
+Print usage instructions for the Checkstyle CLI.</p>
+
+<p><strong>Command:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+$ java -jar checkstyle-10.21.1-all.jar --help
+  </code></pre>
+</div>
+
+<p><strong>Output (Content of Help):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+Usage: checkstyle [-dEghjJtTV] [-b=&lt;xpath&gt;] [-c=&lt;configurationFile&gt;]
+                  [-f=&lt;format&gt;] [-o=&lt;outputPath&gt;] [-p=&lt;propertiesFile&gt;]
+                  [-s=&lt;suppressionLineColumnNumber&gt;] [-w=&lt;tabWidth&gt;]
+                  [-e=&lt;exclude&gt;]...[-x=&lt;excludeRegex&gt;]...
+                  &lt;files&gt;...
+Checkstyle verifies that the specified source code files adhere to the specified rules.
+By default, violations are reported to standard out in plain format.
+Checkstyle requires a configuration XML file that configures the checks to apply.
+      &lt;files&gt;...            One or more source files to verify
+  -b, --branch-matching-xpath=&lt;xpath&gt;
+                            Shows Abstract Syntax Tree(AST) branches that match given XPath query.
+  -c=&lt;configurationFile&gt;    Specifies the location of the file that defines the
+                              configuration modules.
+                              The location can either be a filesystem location, or a name
+                              passed to the ClassLoader.getResource() method.
+  -d, --debug               Prints all debug logging of CheckStyle utility.
+  -e, --exclude=&lt;exclude&gt;   Directory/file to exclude from Checkstyle.
+                              The path can be the full,absolute path,
+                              or relative to the current path. Multiple excludes are
+                              allowed.
+  -E, --executeIgnoredModules
+                            Allows ignored modules to be run.
+  -f=&lt;format&gt;               Specifies the output format. Valid values: xml, sarif, plain for
+                              XMLLogger, SarifLogger, and DefaultLogger respectively. Defaults to
+                              plain.
+  -g, --generate-xpath-suppression
+                            Generates to output a suppression xml to use to suppress all violations
+                              from user's config. Instead of printing every violation, all
+                              violations will be catched and single suppressions xml file will be
+                              printed out. Used only with -c option. Output location can be
+                              specified with -o option.
+  -h, --help                Show this help message and exit.
+  -j, --javadocTree         This option is used to print the Parse Tree of the Javadoc comment. The
+                              file has to contain only Javadoc comment content excluding '/**' and
+                              '*/' at the beginning and at the end respectively. It can only be
+                              used on a single file and cannot be combined with other options.
+  -J, --treeWithJavadoc     This option is used to display the Abstract Syntax Tree (AST) with
+                              Javadoc nodes of the specified file. It can only be used on a single
+                              file and cannot be combined with other options.
+  -o=&lt;outputPath&gt;           Sets the output file. Defaults to stdout.
+  -p=&lt;propertiesFile&gt;       Sets the property files to load.
+  -s=&lt;suppressionLineColumnNumber&gt;
+                            Prints xpath suppressions at the file's line and column position.
+                              Argument is the line and column number (separated by a : ) in the
+                              file that the suppression should be generated for. The option cannot
+                              be used with other options and requires exactly one file to run on to
+                              be specified. Note that the generated result will have few queries,
+                              joined by pipe(|). Together they will match all AST nodes on
+                              specified line and column. You need to choose only one and recheck
+                              that it works. Usage of all of them is also ok, but might result in
+                              undesirable matching and suppress other issues.
+  -t, --tree                This option is used to display the Abstract Syntax Tree (AST) without
+                              any comments of the specified file. It can only be used on a single
+                              file and cannot be combined with other options.
+  -T, --treeWithComments    This option is used to display the Abstract Syntax Tree (AST) with
+                              comment nodes excluding Javadoc of the specified file. It can only be
+                              used on a single file and cannot be combined with other options.
+  -V, --version             Print version information and exit.
+  -w, --tabWidth=&lt;tabWidth&gt; Sets the length of the tab character.
+                                  Used only with -s option. Default value is 8.
+  -x, --exclude-regexp=&lt;excludeRegex&gt;
+                            Directory/file pattern to exclude from Checkstyle. Multiple excludes
+                              are allowed.
+  </code></pre>
+</div>
+
+<h4>
+18. Executing Ignored Modules (<span class="no-transform">-E</span>, --executeIgnoredModules)
+</h4>
+<p><strong>Goal:</strong> Run Checkstyle even on modules that are normally ignored.
+</p>
+
+<p><strong>Configuration File (config.xml):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+&lt;module name="Checker"&gt;
+    &lt;!-- Normally, some modules might be ignored,
+    but for this example we only use FallThrough --&gt;
+    &lt;module name="TreeWalker"&gt;
+        &lt;module name="FallThrough"/&gt;
+    &lt;/module&gt;
+&lt;/module&gt;
+  </code></pre>
+</div>
+
+<p><strong>Command:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+$ java -jar checkstyle-10.21.1-all.jar -c config.xml --executeIgnoredModules Test.java
+  </code></pre>
+</div>
+
+<p><strong>Test File (Test.java):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-java">
+/**
+ * This is a sample Test class demonstrating Checkstyle functionality.
+ */
+class Test {
+    /**
+     * Demonstrates execution of modules that are normally ignored.
+     */
+    public void foo() {
+        int i = 0;
+        while (i >= 0) {
+            switch (i) {
+                case 1:
+                case 2:
+                    i++;
+                case 3: // Violation: Fall through from previous branch.
+                    i++;
+            }
+        }
+    }
+}
+  </code></pre>
+</div>
+
+<p><strong>Output (Content of Output):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+Starting audit...
+Audit done.
+  </code></pre>
+</div>
+</section>
+
     <section name="Run after compilation">
       <p>
         Download and compile:
