@@ -23,7 +23,11 @@ import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.function.BiPredicate;
 
@@ -33,6 +37,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
+import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
+import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 
 public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
@@ -260,5 +266,67 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
                     .that(actual.getNodeValue())
                     .isEqualTo(expected.getNodeValue());
         }
+    }
+
+    /**
+     * Verifies XML output using inline configuration parser and XML logger.
+     *
+     * @param filePath the path to the test file
+     * @param expectedXmlReportPath the path to the expected XML report
+     * @throws Exception if an error occurs
+     */
+    protected final void verifyWithInlineConfigParserAndXmlLogger(
+            String filePath, String expectedXmlReportPath) throws Exception {
+        final String configFilePath = getPath(filePath);
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parse(configFilePath);
+        final DefaultConfiguration parsedConfig = testInputConfiguration.createConfiguration();
+        final String basePath = new File(getPath("")).getAbsolutePath();
+
+        final Checker checker = createChecker(parsedConfig);
+        checker.setBasedir(basePath);
+
+        final ByteArrayOutputStream actualXmlOutput = new ByteArrayOutputStream();
+        final XMLLogger logger = new XMLLogger(actualXmlOutput,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE);
+        checker.addListener(logger);
+        final List<File> filesToCheck = Collections.singletonList(new File(configFilePath));
+        checker.process(filesToCheck);
+
+        verifyXml(getPath(expectedXmlReportPath), actualXmlOutput);
+    }
+
+    /**
+     * Verifies the XML output of Checkstyle using a given XML configuration and expected report.
+     * Loads the configuration, processes target files, and compares the output with the
+     * expected XML.
+     *
+     * @param inputFileWithConfig the path of class have xml configuration
+     * @param expectedXmlReportPath the path to the expected XML report
+     * @param targetFilePaths list of file paths to check
+     * @throws Exception if an error occurs
+     */
+    protected final void verifyWithInlineConfigParserAndXmlLogger(
+            String inputFileWithConfig, String expectedXmlReportPath,
+            List<String> targetFilePaths) throws Exception {
+        final String configFilePath = getPath(inputFileWithConfig);
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parse(configFilePath);
+        final DefaultConfiguration parsedConfig = testInputConfiguration.createConfiguration();
+        final String basePath = new File(getPath("")).getAbsolutePath();
+        final Checker checker = createChecker(parsedConfig);
+        checker.setBasedir(basePath);
+        final ByteArrayOutputStream actualXmlOutput = new ByteArrayOutputStream();
+        final XMLLogger logger = new XMLLogger(actualXmlOutput,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE);
+        checker.addListener(logger);
+
+        final List<File> filesToCheck = new ArrayList<>();
+        for (String path : targetFilePaths) {
+            filesToCheck.add(new File(getPath(path)));
+        }
+
+        checker.process(filesToCheck);
+        verifyXml(getPath(expectedXmlReportPath), actualXmlOutput);
     }
 }
