@@ -140,8 +140,6 @@ class Example3 {
       case GREEN:
         System.out.println("GREEN");
         break;
-      default:
-        System.out.println("Something else");
     }
     return switch (color) {
       case RED:
