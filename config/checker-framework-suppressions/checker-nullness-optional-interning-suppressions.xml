@@ -4159,20 +4159,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>while (curNode != root &amp;&amp; curNode.getNextSibling() == null) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
-    <specifier>not.interned</specifier>
-    <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>while (curNode != root &amp;&amp; curNode.getNextSibling() == null) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
-    <specifier>not.interned</specifier>
-    <message>attempting to use a non-@Interned comparison operand</message>
     <lineContent>} while (curNode != root);</lineContent>
   </checkerFrameworkError>
 
