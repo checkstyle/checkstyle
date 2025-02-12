@@ -647,7 +647,7 @@ public final class JavadocTokenTypes {
      * <pre><code>{&#64;value Integer#MAX_VALUE}</code></pre>
      * <b>Tree:</b>
      * <pre>
-     * <code> JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * {@code JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      *        |--JAVADOC_INLINE_TAG_START -> {
      *        |--VALUE_LITERAL -> @value
      *        |--WS ->
@@ -656,8 +656,7 @@ public final class JavadocTokenTypes {
      *        |   |--HASH -> #
      *        |   `--MEMBER -> MAX_VALUE
      *        `--JAVADOC_INLINE_TAG_END -> }
-     * </code>
-     * </pre>
+     * }</pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDCDHH">
