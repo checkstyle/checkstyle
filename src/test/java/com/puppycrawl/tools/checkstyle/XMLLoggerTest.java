@@ -383,6 +383,28 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
+    public void testFileRemovalFromLogger()
+            throws Exception {
+        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final AuditEvent fileStartedEvent = new AuditEvent(this, "Test.java");
+        logger.fileStarted(fileStartedEvent);
+
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "key", null, SeverityLevel.ERROR, null,
+                        getClass(), null);
+        final AuditEvent auditViolation = new AuditEvent(this, "Test.java", violation);
+        logger.addError(auditViolation);
+
+        final AuditEvent fileFinishedEvent = new AuditEvent(this, "Test.java");
+        logger.fileFinished(fileFinishedEvent);
+        logger.fileFinished(fileFinishedEvent);
+        logger.auditFinished(null);
+        verifyXml(getPath("ExpectedXMLLoggerDuplicatedFile.xml"), outStream);
+    }
+
+    @Test
     public void testNullOutputStreamOptions() {
         try {
             final XMLLogger logger = new XMLLogger(outStream,
