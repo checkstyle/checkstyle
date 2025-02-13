@@ -189,6 +189,9 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
+            case TokenTypes.METHOD_REF:
+                visitMethodRef(ast);
+                break;
             case TokenTypes.PACKAGE_DEF:
                 visitPackageDef(ast);
                 break;
@@ -219,6 +222,10 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
             default:
                 throw new IllegalArgumentException("Unknown type: " + ast);
         }
+    }
+
+    private void visitMethodRef(DetailAST ast) {
+    classesContexts.peek().visitMethodRef(ast);
     }
 
     @Override
@@ -487,6 +494,11 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
             return result;
         }
 
+        public void visitMethodRef(DetailAST ast) {
+            DetailAST lastChild = ast.getLastChild();
+            if (lastChild.getType() == TokenTypes.LITERAL_NEW) {
+                addReferencedClassName(ast.getFirstChild());
+            }
+        }
     }
-
 }
