@@ -391,8 +391,9 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testLambdaNew() throws Exception {
-        final String[] expected = {};
-        // no violation until #14787
+        final String[] expected = {
+            "28:1: " + getCheckMessage(MSG_KEY, 2, 0),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityLambdaNew.java"), expected);
     }
