@@ -52,6 +52,28 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         return "com/puppycrawl/tools/checkstyle/sariflogger";
     }
 
+    /**
+     * Executes the common logging steps for SARIF logging tests.
+     * This method helps avoid code duplication by performing a sequence of actions
+     * related to logging audit events.
+     * <p>
+     * It starts file auditing, adds an error, and completes the audit process.
+     * </p>
+     *
+     * @param instance  the current instance of {@code SarifLoggerTest}, used for context
+     * @param logger    the {@code SarifLogger} instance to log errors
+     * @param fileName  the name of the file being audited
+     * @param violation the {@code Violation} object containing error details
+     */
+    public final void executeLogger(
+        SarifLoggerTest instance, SarifLogger logger, String fileName, Violation violation) {
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
+        logger.fileStarted(ev);
+        logger.addError(ev);
+        logger.fileFinished(ev);
+        logger.auditFinished(null);
+    }
+
     @Test
     public void testEscape() {
         final String[][] encodings = {
@@ -86,12 +108,34 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
                 new Violation(1, 1,
                         "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
                         getClass(), "found an error");
-        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
-        logger.fileStarted(ev);
-        logger.addError(ev);
-        logger.fileFinished(ev);
-        logger.auditFinished(null);
+        executeLogger(this, logger, "Test.java", violation);
         verifyContent(getPath("ExpectedSarifLoggerSingleError.sarif"), outStream);
+    }
+
+    @Test
+    public void testAddErrorAtColumn1() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
+                        getClass(), "found an error\ntry again");
+        executeLogger(this, logger, "Test.java", violation);
+        verifyContent(getPath("ExpectedSarifLoggerSingleErrorColumn1.sarif"), outStream);
+    }
+
+    @Test
+    public void testAddErrorAtColumn0() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 0,
+                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
+                        getClass(), "found an error\nplease try again");
+        executeLogger(this, logger, "Test.java", violation);
+        verifyContent(getPath("ExpectedSarifLoggerSingleErrorColumn0.sarif"), outStream);
     }
 
     @Test
