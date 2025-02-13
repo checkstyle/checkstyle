@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.io.File;
 
-public class InputClassFanOutComplexityLambdaNew {
+public class InputClassFanOutComplexityLambdaNew { // violation 'Complexity is 1'
     public void testMethod(Map<String, List<String>> entry) {
         List<File> files = new ArrayList<>();
         String string = "";
