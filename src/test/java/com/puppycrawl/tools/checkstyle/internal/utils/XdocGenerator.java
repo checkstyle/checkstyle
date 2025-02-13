@@ -59,11 +59,11 @@ public final class XdocGenerator {
             final File tempFile = new File(temporaryFolder, outputFile.getName());
             tempFile.deleteOnExit();
             final XdocsTemplateSinkFactory sinkFactory = (XdocsTemplateSinkFactory)
-                    plexus.lookup(SinkFactory.ROLE, XDOCS_TEMPLATE_HINT);
+                    plexus.lookup(SinkFactory.class, XDOCS_TEMPLATE_HINT);
             final Sink sink = sinkFactory.createSink(tempFile.getParentFile(),
                     tempFile.getName(), String.valueOf(StandardCharsets.UTF_8));
             final XdocsTemplateParser parser = (XdocsTemplateParser)
-                    plexus.lookup(Parser.ROLE, XDOCS_TEMPLATE_HINT);
+                    plexus.lookup(Parser.class, XDOCS_TEMPLATE_HINT);
             try (Reader reader = ReaderFactory.newReader(inputFile,
                     String.valueOf(StandardCharsets.UTF_8))) {
                 parser.parse(reader, sink);
