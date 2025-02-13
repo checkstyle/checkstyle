@@ -279,8 +279,9 @@ no-error-xwiki)
   echo "version:${CS_POM_VERSION} antlr4:${ANTLR4_VERSION}"
   mvn -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  checkout_from "https://github.com/xwiki/xwiki-commons.git"
+  checkout_from "https://github.com/Anmol202005/xwiki-commons.git"
   cd .ci-temp/xwiki-commons
+  git checkout FanOut
   # Build custom Checkstyle rules
   mvn -e --no-transfer-progress -f \
     xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
