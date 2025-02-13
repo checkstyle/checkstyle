@@ -78,7 +78,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAddError() throws IOException {
+    public void testAddErrorOne() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
@@ -91,7 +91,24 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         logger.addError(ev);
         logger.fileFinished(ev);
         logger.auditFinished(null);
-        verifyContent(getPath("ExpectedSarifLoggerSingleError.sarif"), outStream);
+        verifyContent(getPath("ExpectedSarifLoggerSingleErrorOne.sarif"), outStream);
+    }
+
+    @Test
+    public void testAddErrorTwo() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
+                        getClass(), "found an error\ntry again");
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
+        logger.fileStarted(ev);
+        logger.addError(ev);
+        logger.fileFinished(ev);
+        logger.auditFinished(null);
+        verifyContent(getPath("ExpectedSarifLoggerSingleErrorTwo.sarif"), outStream);
     }
 
     @Test
