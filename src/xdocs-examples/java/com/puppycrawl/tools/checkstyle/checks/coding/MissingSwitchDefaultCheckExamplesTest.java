@@ -48,7 +48,9 @@ public class MissingSwitchDefaultCheckExamplesTest extends AbstractExamplesModul
 
     @Test
     public void testExample3() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+                "37:5: " + getCheckMessage(MissingSwitchDefaultCheck.MSG_KEY),
+        };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("Example3.java"), expected);
     }
