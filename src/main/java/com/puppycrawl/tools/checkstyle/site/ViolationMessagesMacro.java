@@ -22,17 +22,17 @@ package com.puppycrawl.tools.checkstyle.site;
 import java.util.Set;
 
 import org.apache.maven.doxia.macro.AbstractMacro;
-import org.apache.maven.doxia.macro.Macro;
 import org.apache.maven.doxia.macro.MacroExecutionException;
 import org.apache.maven.doxia.macro.MacroRequest;
 import org.apache.maven.doxia.module.xdoc.XdocSink;
 import org.apache.maven.doxia.sink.Sink;
-import org.codehaus.plexus.component.annotations.Component;
+
+import javax.inject.Named;
 
 /**
  * A macro that inserts a list of the violation messages.
  */
-@Component(role = Macro.class, hint = "violation-messages")
+@Named("violation-messages")
 public class ViolationMessagesMacro extends AbstractMacro {
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
