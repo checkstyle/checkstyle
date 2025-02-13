@@ -26,11 +26,14 @@ import org.apache.maven.doxia.sink.SinkFactory;
 import org.apache.maven.doxia.sink.impl.AbstractTextSinkFactory;
 import org.codehaus.plexus.component.annotations.Component;
 
+import javax.inject.Named;
+
 /**
  * Xdoc template implementation of the {@link SinkFactory}.
  * This module will be removed once
  * <a href="https://github.com/checkstyle/checkstyle/issues/13426">#13426</a> is resolved.
  */
+@Named("xdocs-template")
 @Component(role = SinkFactory.class, hint = "xdocs-template")
 public class XdocsTemplateSinkFactory extends AbstractTextSinkFactory {
 
