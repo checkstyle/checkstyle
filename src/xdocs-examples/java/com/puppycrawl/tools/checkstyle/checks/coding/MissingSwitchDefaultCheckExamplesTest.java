@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+/// ////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -33,7 +33,7 @@ public class MissingSwitchDefaultCheckExamplesTest extends AbstractExamplesModul
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "13:5: " + getCheckMessage(MissingSwitchDefaultCheck.MSG_KEY),
+                "13:5: " + getCheckMessage(MissingSwitchDefaultCheck.MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -48,7 +48,9 @@ public class MissingSwitchDefaultCheckExamplesTest extends AbstractExamplesModul
 
     @Test
     public void testExample3() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+                "37:5: " + getCheckMessage(MissingSwitchDefaultCheck.MSG_KEY),
+        };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("Example3.java"), expected);
     }

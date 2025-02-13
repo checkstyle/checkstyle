@@ -34,7 +34,7 @@ class Example3 {
   }
   enum Color {RED, GREEN, BLUE}
   static int showSwitchExpressionExhaustiveness(Color color) {
-    switch (color) {
+    switch (color) {    // violation 'switch without "default" clause'
       case RED:
         System.out.println("RED");
         break;
@@ -44,8 +44,6 @@ class Example3 {
       case GREEN:
         System.out.println("GREEN");
         break;
-      default:
-        System.out.println("Something else");
     }
     return switch (color) {
       case RED:
