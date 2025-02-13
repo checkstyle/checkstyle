@@ -95,6 +95,40 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAddErrorAtColumn1() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
+                        getClass(), "found an error\ntry again");
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
+        logger.fileStarted(ev);
+        logger.addError(ev);
+        logger.fileFinished(ev);
+        logger.auditFinished(null);
+        verifyContent(getPath("ExpectedSarifLoggerSingleErrorColumn1.sarif"), outStream);
+    }
+
+    @Test
+    public void testAddErrorAtColumn0() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 0,
+                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
+                        getClass(), "found an error\nplease try again");
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
+        logger.fileStarted(ev);
+        logger.addError(ev);
+        logger.fileFinished(ev);
+        logger.auditFinished(null);
+        verifyContent(getPath("ExpectedSarifLoggerSingleErrorColumn0.sarif"), outStream);
+    }
+
+    @Test
     public void testAddErrorWithWarningLevel() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
