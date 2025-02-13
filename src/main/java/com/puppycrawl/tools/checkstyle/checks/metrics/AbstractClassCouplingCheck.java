@@ -386,7 +386,13 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
          * @param ast NEW to process.
          */
         public void visitLiteralNew(DetailAST ast) {
-            addReferencedClassName(ast.getFirstChild());
+
+            if (ast.getParent().getType() == TokenTypes.METHOD_REF) {
+                addReferencedClassName(ast.getParent().getFirstChild());
+            }
+            else {
+                addReferencedClassName(ast);
+            }
         }
 
         /**
@@ -486,7 +492,5 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
             }
             return result;
         }
-
     }
-
 }
