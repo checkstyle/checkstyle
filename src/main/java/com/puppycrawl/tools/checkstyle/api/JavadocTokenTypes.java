@@ -1148,7 +1148,36 @@ public final class JavadocTokenTypes {
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /////////////////////// SINGLETON HTML TAGS  //////////////////////////////////////////////////
-    /** Area tag name. */
+    /**
+     * Area tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code &lt area shape="rect" &gt}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   JAVADOC -> JAVADOC
+     *        |--NEWLINE -> \n
+     *        |--LEADING_ASTERISK ->  *
+     *        |--TEXT ->  {
+     *        |--HTML_ELEMENT -> HTML_ELEMENT
+     *        |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *        |       `--AREA_TAG -> AREA_TAG
+     *        |           |--START -> <
+     *        |           |--AREA_HTML_TAG_NAME -> area
+     *        |           |--WS ->
+     *        |           |--ATTRIBUTE -> ATTRIBUTE
+     *        |           |   |--HTML_TAG_NAME -> shape
+     *        |           |   |--EQUALS -> =
+     *        |           |   `--ATTR_VALUE -> "rect"
+     *        |           `--END -> >
+     *        |--TEXT -> }
+     *        |--NEWLINE -> \n
+     *        |--TEXT ->
+     * }
+     * </pre>
+     */
+
     public static final int AREA_HTML_TAG_NAME = JavadocParser.AREA_HTML_TAG_NAME;
 
     /** Base tag name. */
