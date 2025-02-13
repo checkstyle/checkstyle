@@ -188,24 +188,72 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        switch (ast.getType()) {
+        processTokenType(ast.getType(), ast);
+    }
+
+    /**
+     * Processes a given token type and dispatches it to the appropriate handler method.
+     *
+     * @param tokenType The integer representation of the token type.
+     * @param ast The Abstract Syntax Tree (AST) node corresponding to the token.
+     */
+    private void processTokenType(int tokenType, DetailAST ast) {
+        if (isClassDefinition(tokenType)) {
+            visitClassDef(ast);
+        }
+        else if (isTypeReference(tokenType)) {
+            visitType(ast);
+        }
+        else {
+            processOtherTokenTypes(tokenType, ast);
+        }
+    }
+
+    /**
+     * Checks if the given token type represents a class definition.
+     *
+     * @param tokenType The token type to check.
+     * @return {@code true} if the token is a class, interface, annotation, enum, or record;
+     *         {@code false} otherwise.
+     */
+    private static boolean isClassDefinition(int tokenType) {
+        return tokenType == TokenTypes.CLASS_DEF
+               || tokenType == TokenTypes.INTERFACE_DEF
+               || tokenType == TokenTypes.ANNOTATION_DEF
+               || tokenType == TokenTypes.ENUM_DEF
+               || tokenType == TokenTypes.RECORD_DEF;
+    }
+
+    /**
+     * Checks if the given token type represents a type reference.
+     *
+     * @param tokenType The token type to check.
+     * @return {@code true} if the token is an extends clause, implements clause, or type;
+     *         {@code false} otherwise.
+     */
+    private static boolean isTypeReference(int tokenType) {
+        return tokenType == TokenTypes.EXTENDS_CLAUSE
+               || tokenType == TokenTypes.IMPLEMENTS_CLAUSE
+               || tokenType == TokenTypes.TYPE;
+    }
+
+    /**
+     * Processes token types that do not fall under class definitions or type references.
+     *
+     * @param tokenType The token type to process.
+     * @param ast The AST node corresponding to the token.
+     * @throws IllegalArgumentException if an unknown token type is encountered.
+     */
+    private void processOtherTokenTypes(int tokenType, DetailAST ast) {
+        switch (tokenType) {
+            case TokenTypes.METHOD_REF:
+                visitMethodRef(ast);
+                break;
             case TokenTypes.PACKAGE_DEF:
                 visitPackageDef(ast);
                 break;
             case TokenTypes.IMPORT:
                 registerImport(ast);
-                break;
-            case TokenTypes.CLASS_DEF:
-            case TokenTypes.INTERFACE_DEF:
-            case TokenTypes.ANNOTATION_DEF:
-            case TokenTypes.ENUM_DEF:
-            case TokenTypes.RECORD_DEF:
-                visitClassDef(ast);
-                break;
-            case TokenTypes.EXTENDS_CLAUSE:
-            case TokenTypes.IMPLEMENTS_CLAUSE:
-            case TokenTypes.TYPE:
-                visitType(ast);
                 break;
             case TokenTypes.LITERAL_NEW:
                 visitLiteralNew(ast);
@@ -219,6 +267,15 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
             default:
                 throw new IllegalArgumentException("Unknown type: " + ast);
         }
+    }
+
+    /**
+     * Visits METHOD_REF token for the current class context.
+     *
+     * @param ast METHOD_REF token.
+     */
+    private void visitMethodRef(DetailAST ast) {
+        classesContexts.peek().visitMethodRef(ast);
     }
 
     @Override
@@ -487,6 +544,16 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
             return result;
         }
 
+        /**
+         * Visits METHOD_REF.
+         *
+         * @param ast METHOD_REF to process.
+         */
+        public void visitMethodRef(DetailAST ast) {
+            final DetailAST lastChild = ast.getLastChild();
+            if (lastChild.getType() == TokenTypes.LITERAL_NEW) {
+                addReferencedClassName(ast.getFirstChild());
+            }
+        }
     }
-
 }
