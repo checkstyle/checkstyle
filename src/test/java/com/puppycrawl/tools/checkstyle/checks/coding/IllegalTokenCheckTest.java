@@ -21,13 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck.MSG_KEY;
 
-import java.nio.charset.StandardCharsets;
-
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 public class IllegalTokenCheckTest
     extends AbstractModuleTestSupport {
@@ -74,27 +70,18 @@ public class IllegalTokenCheckTest
             throws Exception {
 
         final String path = getPath("InputIllegalTokensCheckCommentsContent.java");
-        final String lineSeparator =
-                CheckUtil.getLineSeparatorForFile(path, StandardCharsets.UTF_8);
         final String[] expected = {
             "1:3: " + getCheckMessage(MSG_KEY,
-                        JavadocUtil.escapeAllControlChars(
-                            " // violation\\n"
-                            + "IllegalToken\\n" + "tokens = COMMENT_CONTENT"
-                            + lineSeparator
-                            + lineSeparator
-                            + lineSeparator)),
+                        "\\nIllegalToken\\ntokens = COMMENT_CONTENT\\n\\n\\n"),
             "10:3: " + getCheckMessage(MSG_KEY,
-                        JavadocUtil.escapeAllControlChars(
-                            "* // violation" + lineSeparator
-                            + " * Test for illegal tokens"
-                            + lineSeparator + " ")),
-            "38:29: " + getCheckMessage(MSG_KEY,
-                        JavadocUtil.escapeAllControlChars(
-                            " some comment href // violation" + lineSeparator)),
-            "42:28: " + getCheckMessage(MSG_KEY,
-                        JavadocUtil.escapeAllControlChars(
-                            " some a href // violation" + lineSeparator)),
+                        "*\\n * // violation 10"
+                            + " lines above 'is not allowed'\\n"
+                            + " * // violation 2 lines above 'is not allowed'\\n"
+                            + " * Test for illegal tokens\\n "),
+            "40:29: " + getCheckMessage(MSG_KEY,
+                        " some comment href // violation, 'is not allowed'\\n"),
+            "44:28: " + getCheckMessage(MSG_KEY,
+                        " some a href // violation, 'is not allowed'\\n"),
         };
         verifyWithInlineConfigParser(path, expected);
     }
