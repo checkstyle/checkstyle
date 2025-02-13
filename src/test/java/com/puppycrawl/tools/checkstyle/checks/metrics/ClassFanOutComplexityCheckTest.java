@@ -137,7 +137,6 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             new ClassFanOutComplexityCheck();
         final int[] actual = classFanOutComplexityCheckObj.getAcceptableTokens();
         final int[] expected = {
-            TokenTypes.METHOD_REF,
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
             TokenTypes.CLASS_DEF,

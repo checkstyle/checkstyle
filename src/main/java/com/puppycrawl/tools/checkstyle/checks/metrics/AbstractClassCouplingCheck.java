@@ -246,9 +246,6 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      */
     private void processOtherTokenTypes(int tokenType, DetailAST ast) {
         switch (tokenType) {
-            case TokenTypes.METHOD_REF:
-                visitMethodRef(ast);
-                break;
             case TokenTypes.PACKAGE_DEF:
                 visitPackageDef(ast);
                 break;
@@ -267,15 +264,6 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
             default:
                 throw new IllegalArgumentException("Unknown type: " + ast);
         }
-    }
-
-    /**
-     * Visits METHOD_REF token for the current class context.
-     *
-     * @param ast METHOD_REF token.
-     */
-    private void visitMethodRef(DetailAST ast) {
-        classesContexts.peek().visitMethodRef(ast);
     }
 
     @Override
@@ -443,7 +431,13 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
          * @param ast NEW to process.
          */
         public void visitLiteralNew(DetailAST ast) {
-            addReferencedClassName(ast.getFirstChild());
+
+            if (ast.getParent().getType() == TokenTypes.METHOD_REF) {
+                addReferencedClassName(ast.getParent().getFirstChild());
+            }
+            else {
+                addReferencedClassName(ast.getFirstChild());
+            }
         }
 
         /**
@@ -542,18 +536,6 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
                 }
             }
             return result;
-        }
-
-        /**
-         * Visits METHOD_REF.
-         *
-         * @param ast METHOD_REF to process.
-         */
-        public void visitMethodRef(DetailAST ast) {
-            final DetailAST lastChild = ast.getLastChild();
-            if (lastChild.getType() == TokenTypes.LITERAL_NEW) {
-                addReferencedClassName(ast.getFirstChild());
-            }
         }
     }
 }

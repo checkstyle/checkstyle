@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class InputClassDataAbstractionCoupling5 {
+public class InputClassDataAbstractionCoupling5 {  // violation
     public void method(String... filenames) {
         final List<File> files = Arrays.stream(filenames)
                 .map(File::new)

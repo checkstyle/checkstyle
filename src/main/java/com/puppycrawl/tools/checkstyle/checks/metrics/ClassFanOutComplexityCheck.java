@@ -112,7 +112,6 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
     @Override
     public int[] getRequiredTokens() {
         return new int[] {
-            TokenTypes.METHOD_REF,
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
             TokenTypes.CLASS_DEF,
