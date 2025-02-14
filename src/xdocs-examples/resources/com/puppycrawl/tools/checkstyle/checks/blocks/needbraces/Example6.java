@@ -21,7 +21,8 @@ class Example6 {
   private CustomCompletableFuture<Object> allowedFuture;
   Example6() {
     allowedFuture = new CustomCompletableFuture<>();
-    allowedFuture.addCallback(result -> assertEquals("Invalid response", // violation
+    // violation below ''->' construct must use '{}'s'
+    allowedFuture.addCallback(result -> assertEquals("Invalid response",
                     EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result),
             ex -> fail(ex.getMessage()));
     allowedFuture.addCustomCallback(() -> {

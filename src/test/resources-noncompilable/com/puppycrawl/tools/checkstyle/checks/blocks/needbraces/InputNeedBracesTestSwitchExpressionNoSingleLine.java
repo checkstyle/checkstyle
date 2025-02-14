@@ -13,50 +13,50 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 public class InputNeedBracesTestSwitchExpressionNoSingleLine {
     void howMany1(Nums k) {
         switch (k) {
-            case ONE: // violation
+            case ONE: // violation, 'case' construct must use '{}'s
                 System.out.println("case two");
-                MathOperation2 case5 = (a, b) -> // violation
+                MathOperation2 case5 = (a, b) -> // violation, '->' construct must use '{}'s
                     (a + b);
-            case TWO, THREE: // violation
+            case TWO, THREE: // violation, 'case' construct must use '{}'s
                 System.out.println("case two");
 
-            case FOUR: // violation
+            case FOUR: // violation, 'case' construct must use '{}'s
                 System.out.println("case three");
 
-            default: // violation
+            default: // violation, 'default' construct must use '{}'s
                 throw new IllegalStateException("Not a nums");
         }
     }
 
     void howMany2(Nums k) {
         switch (k) { // cannot have more than one statement without block
-            case ONE -> // violation
+            case ONE -> // violation, 'case' construct must use '{}'s
                 System.out.println("case one");
 
-            case TWO, THREE -> // violation
+            case TWO, THREE -> // violation, 'case' construct must use '{}'s
                 System.out.println("case two");
 
-            case FOUR -> // violation
+            case FOUR -> // violation, 'case' construct must use '{}'s
                 System.out.println("case three");
 
-            default -> // violation
+            default -> // violation, 'default' construct must use '{}'s
                 throw new IllegalStateException("Not a nums");
         }
     }
 
     int howMany3(Nums k) {
         return switch (k) {
-            case ONE: // violation
-                MathOperation2 case5 = (a, b) -> // violation
+            case ONE: // violation, 'case' construct must use '{}'s
+                MathOperation2 case5 = (a, b) -> // violation, '->' construct must use '{}'s
                     (a + b);
                 yield 3;
-            case TWO, THREE: // violation
+            case TWO, THREE: // violation, 'case' construct must use '{}'s
                 yield 5;
 
-            case FOUR: // violation
+            case FOUR: // violation, 'case' construct must use '{}'s
                 yield 9;
 
-            default: // violation
+            default: // violation, 'default' construct must use '{}'s
                 throw new IllegalStateException("Not a Nums");
         };
     }
@@ -70,23 +70,24 @@ public class InputNeedBracesTestSwitchExpressionNoSingleLine {
                 yield 4;
             }
             case TWO, THREE -> {
-                MathOperation2 case5 = (a, b) -> // violation
+                MathOperation2 case5 = (a, b) -> // violation, '->' construct must use '{}'s
                     (a + b);
                 yield 42;
             }
             case FOUR -> {
                 yield 99;
             }
-            default -> throw new IllegalStateException("Not a Nums"); // violation
+            // violation below ''default' construct must use '{}'s'
+            default -> throw new IllegalStateException("Not a Nums");
 
         };
     }
 
     int howMany5(Nums k) {
         return switch (k) {
-            case ONE -> 1; // violation
-            case TWO, THREE -> 3; // violation
-            case FOUR -> 4; // violation
+            case ONE -> 1; // violation, 'case' construct must use '{}'s
+            case TWO, THREE -> 3; // violation, 'case' construct must use '{}'s
+            case FOUR -> 4; // violation, 'case' construct must use '{}'s
             default -> {
                 throw new IllegalStateException("Not a Nums");
             }

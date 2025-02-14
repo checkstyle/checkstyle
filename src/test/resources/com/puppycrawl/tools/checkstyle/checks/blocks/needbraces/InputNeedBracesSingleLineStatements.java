@@ -29,13 +29,14 @@ public class InputNeedBracesSingleLineStatements
     }
 
     private int foo2() {
-        if (SomeClass.test(true) == true) // violation
+        if (SomeClass.test(true) == true) // violation, 'if' construct must use '{}'s
             return 4;
         return 0;
     }
 
     private int foo3() {
-        if (SomeClass.test(true) == true) if (true) return 4; // violation
+        // violation below ''if' construct must use '{}'s'
+        if (SomeClass.test(true) == true) if (true) return 4;
         return 0;
     }
 
@@ -44,7 +45,7 @@ public class InputNeedBracesSingleLineStatements
     }
 
     private void foo2(Object o) {
-        if (o != null) // violation
+        if (o != null) // violation, 'if' construct must use '{}'s
             this.notify();
     }
 
@@ -52,23 +53,23 @@ public class InputNeedBracesSingleLineStatements
         while (o != null) {
             this.notify();
         }
-        while (o != null) // violation
+        while (o != null) // violation, 'while' construct must use '{}'s
             this.notify();
         while (o != null) this.notify();
         do {
             this.notify();
         } while (o != null);
         do this.notify(); while (o != null);
-        do // violation
+        do // violation, 'do' construct must use '{}'s
             this.notify();
         while (o != null);
-        for (;;) // violation
+        for (;;) // violation, 'for' construct must use '{}'s
             break;
         for (;;) break;
         for (int i = 0; i < 10; i++) {
              this.notify();
         }
-        for (int i = 0; i < 10; i++) // violation
+        for (int i = 0; i < 10; i++) // violation, 'for' construct must use '{}'s
              this.notify();
         for (int i = 0; ; ) this.notify();
     }
@@ -97,11 +98,11 @@ public class InputNeedBracesSingleLineStatements
     }
 
     private int testMissingWarnings() {
-        if (true) // violation
+        if (true) // violation, 'if' construct must use '{}'s
             throw new RuntimeException();
         if (true) {
             return 1;
-        } else // violation
+        } else // violation, 'else' construct must use '{}'s
             return 2;
     }
 
@@ -113,14 +114,15 @@ public class InputNeedBracesSingleLineStatements
 
     private class StateInfo {
         public boolean isInitial() {
-            for (int locator: sourceLocators) if (locator != 0) return false; // violation
+            // violation below ''if' construct must use '{}'s'
+            for (int locator: sourceLocators) if (locator != 0) return false;
             return true;
         }
     }
 
     private void forEachLoop() {
         for (String s: new String[]{""}) break;
-        for (String s: new String[]{""}) // violation
+        for (String s: new String[]{""}) // violation, 'for' construct must use '{}'s
             break;
         for (;;)
         ;

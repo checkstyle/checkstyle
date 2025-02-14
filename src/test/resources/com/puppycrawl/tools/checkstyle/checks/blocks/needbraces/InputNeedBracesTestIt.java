@@ -27,7 +27,7 @@ class InputNeedBracesTestIt
         while (condition());
 
         // Invalid
-        do testDoWhile(); while (condition()); // violation
+        do testDoWhile(); while (condition()); // violation, 'do' construct must use '{}'s
     }
 
     /** Test while loops **/
@@ -39,11 +39,11 @@ class InputNeedBracesTestIt
         }
 
         // Invalid
-        while(condition()); // violation
-        while (condition()) // violation
+        while(condition()); // violation, 'while' construct must use '{}'s
+        while (condition()) // violation, 'while' construct must use '{}'s
             testWhile();
-        while (condition()) // violation
-            if (condition()) // violation
+        while (condition()) // violation, 'while' construct must use '{}'s
+            if (condition()) // violation, 'if' construct must use '{}'s
                 testWhile();
     }
 
@@ -56,12 +56,12 @@ class InputNeedBracesTestIt
         }
 
         // Invalid
-        for(int i = 1;i < 5;i++); // violation
-        for (int i = 1; i < 5; i++) // violation
+        for(int i = 1;i < 5;i++); // violation, 'for' construct must use '{}'s
+        for (int i = 1; i < 5; i++) // violation, 'for' construct must use '{}'s
             testFor();
-        for (int i = 1; i < 5; // violation
+        for (int i = 1; i < 5; // violation, 'for' construct must use '{}'s
              i++)
-            if (i > 2) // violation
+            if (i > 2) // violation, 'if' construct must use '{}'s
                 testFor();
     }
 
@@ -80,14 +80,14 @@ class InputNeedBracesTestIt
         }
 
         // Invalid
-        if (condition()); // violation
-        if (condition()) // violation
+        if (condition()); // violation, 'if' construct must use '{}'s
+        if (condition()) // violation, 'if' construct must use '{}'s
             testIf();
-        if (condition()) // violation
+        if (condition()) // violation, 'if' construct must use '{}'s
             testIf();
-        else // violation
+        else // violation, 'else' construct must use '{}'s
             testIf();
-        if (condition()) // violation
+        if (condition()) // violation, 'if' construct must use '{}'s
             testIf();
         else {
             testIf();
@@ -95,18 +95,18 @@ class InputNeedBracesTestIt
         if (condition()) {
             testIf();
         }
-        else // violation
+        else // violation, 'else' construct must use '{}'s
             testIf();
-        if (condition()) // violation
-            if (condition()) // violation
+        if (condition()) // violation, 'if' construct must use '{}'s
+            if (condition()) // violation, 'if' construct must use '{}'s
                 testIf();
 
-        if (condition()) // violation
-            while (condition()) testWhile(); // violation
-        if (condition()) // violation
-            do testDoWhile(); while (condition()); // violation
-        if (condition()) // violation
-            for (int i = 0; i < 1; i++) testFor(); // violation
+        if (condition()) // violation, 'if' construct must use '{}'s
+            while (condition()) testWhile(); // violation, 'while' construct must use '{}'s
+        if (condition()) // violation, 'if' construct must use '{}'s
+            do testDoWhile(); while (condition()); // violation, 'do' construct must use '{}'s
+        if (condition()) // violation, 'if' construct must use '{}'s
+            for (int i = 0; i < 1; i++) testFor(); // violation, 'for' construct must use '{}'s
         int a = 0;
         switch (a) {default: {}}
     }

@@ -16,64 +16,64 @@ public class InputNeedBracesLoopBodyFalse {
 
     {
         value = 0;
-        while(incrementValue() < 5);; // violation
+        while(incrementValue() < 5);; // violation, 'while' construct must use '{}'s
     }
 
     public void foo() {
-        while(incrementValue() < 5); // violation
+        while(incrementValue() < 5); // violation, 'while' construct must use '{}'s
     }
 
     public void foo2() {
-        for(int i = 0; i < 10; incrementValue()); // violation
-        for(int i = 0; incrementValue() < 8; i++); // violation
+        for(int i = 0; i < 10; incrementValue()); // violation, 'for' construct must use '{}'s
+        for(int i = 0; incrementValue() < 8; i++); // violation, 'for' construct must use '{}'s
     }
 
     public void foo3() {
-        while(incrementValue() // violation
+        while(incrementValue() // violation, 'while' construct must use '{}'s
             < 5);
     }
 
     public void foo4() {
-        while(incrementValue() < 5) // violation
+        while(incrementValue() < 5) // violation, 'while' construct must use '{}'s
             ;
     }
 
     public void foo5() {
-        while(incrementValue() // violation
+        while(incrementValue() // violation, 'while' construct must use '{}'s
             < 5)
             ;
     }
 
     public void foo6() {
-        while( // violation
+        while( // violation, 'while' construct must use '{}'s
             incrementValue() < 5
             );
     }
 
     public void foo7() {
-        while( // violation
+        while( // violation, 'while' construct must use '{}'s
             incrementValue() < 5);
     }
 
     public void foo8() {
-        for(int i = 0; incrementValue() < 8; i++); // violation
+        for(int i = 0; incrementValue() < 8; i++); // violation, 'for' construct must use '{}'s
     }
 
     public void foo9() {
-        for(int i = 0; // violation
+        for(int i = 0; // violation, 'for' construct must use '{}'s
             incrementValue() < 8;
             i++);
     }
 
     public void foo10() {
-        for( // violation
+        for( // violation, 'for' construct must use '{}'s
             int i = 0;
             incrementValue() < 8;
             i++);
     }
 
     public void foo11() {
-        for // violation
+        for // violation, 'for' construct must use '{}'s
             (
             int i = 0;
             incrementValue() < 8;
@@ -95,15 +95,15 @@ public class InputNeedBracesLoopBodyFalse {
     }
 
     public void foo15() {
-        while (true); // violation
+        while (true); // violation, 'while' construct must use '{}'s
     }
 
     public void foo16() {
-        for (;;); // violation
+        for (;;); // violation, 'for' construct must use '{}'s
     }
 
     public void foo17() {
-        if(true); // violation
+        if(true); // violation, 'if' construct must use '{}'s
     }
 
     public void foo18() {
@@ -114,7 +114,7 @@ public class InputNeedBracesLoopBodyFalse {
 
     @Override
     public String toString(){
-        while(fco.removeAssignedRole(this)); // violation
+        while(fco.removeAssignedRole(this)); // violation, 'while' construct must use '{}'s
         return "";
     }
 

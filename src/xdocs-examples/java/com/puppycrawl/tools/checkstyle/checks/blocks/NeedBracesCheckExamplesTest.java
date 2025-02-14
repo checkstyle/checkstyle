@@ -87,7 +87,7 @@ public class NeedBracesCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-            "24:38: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "25:38: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
         };
 
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
