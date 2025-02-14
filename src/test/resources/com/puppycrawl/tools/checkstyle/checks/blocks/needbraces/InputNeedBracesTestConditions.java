@@ -47,10 +47,10 @@ public class InputNeedBracesTestConditions
         case 3: {
             break;}
 
-        case 4: // violation
+        case 4: // violation, 'case' construct must use '{}'s
             break;
 
-        case 5:  System.lineSeparator(); // violation
+        case 5:  System.lineSeparator(); // violation, 'case' construct must use '{}'s
             break;
         }
 
@@ -62,7 +62,7 @@ public class InputNeedBracesTestConditions
         }
 
         switch(1) {
-        default: // violation
+        default: // violation, 'default' construct must use '{}'s
          break;
     }
 

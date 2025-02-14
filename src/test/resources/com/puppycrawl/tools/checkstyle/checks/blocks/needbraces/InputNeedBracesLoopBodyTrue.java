@@ -103,7 +103,7 @@ public class InputNeedBracesLoopBodyTrue {
     }
 
     public void foo17() {
-        if(true); // violation
+        if(true); // violation, 'if' construct must use '{}'s
     }
 
     public void foo18() {

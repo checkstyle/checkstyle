@@ -78,10 +78,10 @@ public class InputNeedBracesTestSingleLineCaseDefault
         int counter = 0;
         switch (num) {
             case 1: counter++; break;
-            case 2: // violation
+            case 2: // violation, 'case' construct must use '{}'s
                 counter += 2;
                 break;
-            case 3: // violation
+            case 3: // violation, 'case' construct must use '{}'s
                 counter += 3;
                 break;
             case 6: counter += 10; break;
@@ -128,9 +128,9 @@ public class InputNeedBracesTestSingleLineCaseDefault
     private void method(){
         if(false) {
             switch (0) {
-                case -1: // violation
+                case -1: // violation, 'case' construct must use '{}'s
                     return;
-                default: // violation
+                default: // violation, 'default' construct must use '{}'s
                     return;
             }
         }
