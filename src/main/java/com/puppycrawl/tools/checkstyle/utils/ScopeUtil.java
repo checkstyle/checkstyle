@@ -200,22 +200,21 @@ public final class ScopeUtil {
      * @return a {@code boolean} value
      */
     private static boolean isInBlockOf(DetailAST node, int tokenType) {
-        boolean returnValue = false;
+        DetailAST token = node.getParent();
+        boolean found = false;
 
-        // Loop up looking for a containing interface block
-        for (DetailAST token = node.getParent();
-             token != null && !returnValue;
-             token = token.getParent()) {
+        while (token != null && !found) {
             if (token.getType() == tokenType) {
-                returnValue = true;
+                found = true;
             }
             else if (token.getType() == TokenTypes.LITERAL_NEW
-                    || TokenUtil.isTypeDeclaration(token.getType())) {
+                   || TokenUtil.isTypeDeclaration(token.getType())) {
                 break;
             }
+            token = token.getParent();
         }
 
-        return returnValue;
+        return found;
     }
 
     /**
@@ -364,3 +363,4 @@ public final class ScopeUtil {
     }
 
 }
+
