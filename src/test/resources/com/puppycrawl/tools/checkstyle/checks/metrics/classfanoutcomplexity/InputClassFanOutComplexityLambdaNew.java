@@ -23,11 +23,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 import java.io.File;
+import java.util.Random;
 
-public class InputClassFanOutComplexityLambdaNew { // violation 'Complexity is 1'
+public class InputClassFanOutComplexityLambdaNew { // violation 'Complexity is 2'
     public void testMethod(Map<String, List<String>> entry) {
         List<File> files = new ArrayList<>();
         String string = "";
+        Random random = new Random();
         entry.values().stream()
                 .flatMap(List::stream)
                 .map(File::new)

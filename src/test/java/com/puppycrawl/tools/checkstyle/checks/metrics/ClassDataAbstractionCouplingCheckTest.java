@@ -198,7 +198,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     public void testNew() throws Exception {
 
         final String[] expected = {
-            "18:1: " + getCheckMessage(MSG_KEY, 1, 0, "[File]"),
+            "19:1: " + getCheckMessage(MSG_KEY, 2, 0, "[File, Random]"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputClassDataAbstractionCoupling5.java"), expected);
