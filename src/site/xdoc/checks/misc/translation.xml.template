@@ -18,30 +18,6 @@
           option is used.
         </div>
 
-        <p>
-          Consider the following properties file in the same directory:
-        </p>
-        <source>
-#messages.properties
-hello=Hello
-cancel=Cancel
-
-#messages_de.properties
-hell=Hallo
-ok=OK
-        </source>
-
-        <p>
-          The Translation check will find the typo in the German <code>hello</code>
-          key, the missing <code>ok</code> key in the default resource file and the
-          missing <code>cancel</code> key in the German resource file:
-        </p>
-        <source>
-messages_de.properties: Key 'hello' missing.
-messages_de.properties: Key 'cancel' missing.
-messages.properties: Key 'hell' missing.
-messages.properties: Key 'ok' missing.
-        </source>
       </subsection>
 
       <subsection name="Notes" id="Notes">
@@ -88,71 +64,133 @@ messages.properties: Key 'ok' missing.
           extensions will be considered as files that belong to different resource bundles.
         </p>
         <p id="Example1-config">
-          To configure the check to check only files which have '.properties' and '.translations'
-          extensions:
+          To configure the check to check existence of Japanese and French translations:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example1-code">
-          Example:
+        <p id="Example1-file">
+          Example1 (target folder structure):
+        </p>
+        <source>
+messages.properties
+messages_fr.properties
+messages_es.properties
+        </source>
+        <p id="messages-raw">
+Contents of messages.properties file:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1/messages.properties"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="messages_es-raw">
+          Contents of messages_es.properties file:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1/messages_es.properties"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="messages_fr-raw">
+          Contents of messages_fr.properties file:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1/messages_fr.properties"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example1-code">
+            Validation for Example1:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
-        <source>
-messages.properties: Properties file 'messages_fr.properties' is missing.
-messages.translations: Properties file 'messages_fr.translations' is missing.
-        </source>
         <p id="Example2-config">
           An example of how to configure the check to validate only bundles which base names
           start with &quot;ButtonLabels&quot;:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example2.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-file">
+          Example2 (target folder structure):
+        </p>
+        <source>
+ButtonLabels.properties
+ButtonLabels_fr.properties
+        </source>
+        <p id="ButtonLabels-raw">
+          Contents of ButtonLabels.properties file:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/ButtonLabels.properties"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="ButtonLabels_fr-raw">
+          Contents of ButtonLabels_fr.properties file:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/ButtonLabels_fr.properties"/>
+          <param name="type" value="raw"/>
         </macro>
         <p id="Example2-code">
-          Example:
+          Validation for Example2:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
-        <source>
-ButtonLabels.properties: Key 'name' is missing.
-ButtonLabels_fr.properties: Key 'cancel' is missing.
-        </source>
         <p id="Example3-config">
-          To configure the check to check existence of Japanese and French translations:
+          To configure the check to check only files which have '.properties' and '.translations'
+          extensions:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example3-code">
-          Example:
+        <p id="Example3-file">
+          Example3 no messages_home_fr.* files (target folder structure):
+        </p>
+        <source>
+messages_home.properties
+messages_home.translations
+        </source>
+        <p id="messages_home-raw">
+          Contents of messages_home.properties file:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/messages_home.properties"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="messages_home-code">
+          Contents of messages_home.translations file:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/messages_home.translations"/>
           <param name="type" value="code"/>
         </macro>
-        <source>
-messages.properties: Key 'age' missing.
-messages.properties: Key 'name' missing.
-messages_fr.properties: Key 'age' missing.
-messages_fr.properties: Key 'cancel' missing.
-messages_ja.properties: Key 'cancel' missing.
-messages_ja.properties: Key 'name' missing.
-        </source>
+        <p id="Example3-code">
+          Validation for Example3:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

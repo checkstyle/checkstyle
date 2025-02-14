@@ -18,30 +18,6 @@
           option is used.
         </div>
 
-        <p>
-          Consider the following properties file in the same directory:
-        </p>
-        <source>
-#messages.properties
-hello=Hello
-cancel=Cancel
-
-#messages_de.properties
-hell=Hallo
-ok=OK
-        </source>
-
-        <p>
-          The Translation check will find the typo in the German <code>hello</code>
-          key, the missing <code>ok</code> key in the default resource file and the
-          missing <code>cancel</code> key in the German resource file:
-        </p>
-        <source>
-messages_de.properties: Key 'hello' missing.
-messages_de.properties: Key 'cancel' missing.
-messages.properties: Key 'hell' missing.
-messages.properties: Key 'ok' missing.
-        </source>
       </subsection>
 
       <subsection name="Notes" id="Notes">
@@ -118,18 +94,18 @@ messages.properties: Key 'ok' missing.
           To configure the check to check only files which have '.properties' and '.translations'
           extensions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="Translation"&gt;
-    &lt;property name="fileExtensions" value="properties, translations"/&gt;
-    &lt;property name="requiredTranslations" value="fr"/&gt;
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;Translation&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;properties, translations&quot;/&gt;
+    &lt;property name=&quot;requiredTranslations&quot; value=&quot;fr&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </source>
         <p id="Example1-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <source>
 #messages.properties
 hello=Hello
 cancel=Cancel
@@ -137,7 +113,7 @@ cancel=Cancel
 #messages.translations
 hello=Hallo
 ok=OK
-</code></pre></div>
+        </source>
         <source>
 messages.properties: Properties file 'messages_fr.properties' is missing.
 messages.translations: Properties file 'messages_fr.translations' is missing.
@@ -146,18 +122,18 @@ messages.translations: Properties file 'messages_fr.translations' is missing.
           An example of how to configure the check to validate only bundles which base names
           start with &quot;ButtonLabels&quot;:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="Translation"&gt;
-    &lt;property name="baseName" value="^ButtonLabels.*$"/&gt;
-    &lt;property name="requiredTranslations" value="fr"/&gt;
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;Translation&quot;&gt;
+    &lt;property name=&quot;baseName&quot; value=&quot;^ButtonLabels.*$&quot;/&gt;
+    &lt;property name=&quot;requiredTranslations&quot; value=&quot;fr&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </source>
         <p id="Example2-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <source>
 #ButtonLabels.properties
 hello=Hello
 cancel=Cancel
@@ -165,7 +141,7 @@ cancel=Cancel
 #ButtonLabels_fr.properties
 hello=Bonjour
 name=Nom
-</code></pre></div>
+        </source>
         <source>
 ButtonLabels.properties: Key 'name' is missing.
 ButtonLabels_fr.properties: Key 'cancel' is missing.
@@ -173,29 +149,29 @@ ButtonLabels_fr.properties: Key 'cancel' is missing.
         <p id="Example3-config">
           To configure the check to check existence of Japanese and French translations:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="Translation"&gt;
-    &lt;property name="requiredTranslations" value="ja, fr"/&gt;
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;Translation&quot;&gt;
+    &lt;property name=&quot;requiredTranslations&quot; value=&quot;ja, fr&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </source>
         <p id="Example3-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <source>
 #messages.properties
 hello=Hello
 cancel=Cancel
 
 #messages_ja.properties
-greeting=こんにちは
-age=年齢
+greeting=&#x3053;&#x3093;&#x306b;&#x3061;&#x306f;
+age=&#x5e74;&#x9f62;
 
 #messages_fr.properties
 greeting=Bonjour
 name=Nom
-</code></pre></div>
+        </source>
         <source>
 messages.properties: Key 'age' missing.
 messages.properties: Key 'name' missing.
