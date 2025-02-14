@@ -143,7 +143,6 @@ th {
 .prettyprint {
   padding: 0.5em !important;
   overflow: auto;
-  white-space: nowrap;
 }
 
 .prettyprint code {
