@@ -450,6 +450,355 @@ java -D&lt;property&gt;=&lt;value&gt;  \
       </div>
     </section>
 
+        <section name="Examples">
+        <h3>1. Using a Configuration File (-c)</h3>
+        <p><strong>Goal:</strong> Run Checkstyle using a specified configuration file.</p>
+
+        <p><strong>Configuration File (config.xml):</strong></p>
+     <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+    &lt;?xml version="1.0"?&gt;
+    &lt;!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+    &lt;module name="Checker"&gt;
+        &lt;module name="TreeWalker"&gt;
+            &lt;module name="FallThrough"/&gt;
+        &lt;/module&gt;
+    &lt;/module&gt;
+    </code></pre></div>
+
+        <p><strong>Test File (Test.java):</strong></p>
+    <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+    class Test {
+        public void foo() {
+            int i = 0;
+            while (i >= 0) {
+                switch (i) {
+                      case 1:
+                      case 2:
+                          i++;
+                      case 3: // violation 'fall from previous branch of the switch'
+                          i++;
+                  }
+              }
+          }
+      }
+      </code></pre></div>
+
+      <p><strong>Command:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      $ java -jar checkstyle-10.18.1-all.jar -c config.xml Test.java
+      </code></pre></div>
+
+      <p><strong>Output:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      Starting audit...
+      [ERROR] Test.java:9:9: Fall through from previous branch of switch statement [FallThrough]
+      Audit done.
+      Checkstyle ends with 1 errors.
+      </code></pre></div>
+
+      <h3>2. Specifying Output Format (-f)</h3>
+      <p><strong>Goal:</strong> Change the output format to XML or SARIF.</p>
+
+      <p><strong>Command:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      $ java -jar checkstyle-10.18.1-all.jar -c config.xml -f xml Test.java
+      </code></pre></div>
+
+      <p><strong>Output:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    &lt;checkstyle version="10.18.1"&gt;
+        &lt;file name="Test.java"&gt;
+            &lt;error line="9" column="9" severity="error"
+                message="Fall through from previous branch of switch statement"
+                source="com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck"/&gt;
+        &lt;/file&gt;
+    &lt;/checkstyle&gt;
+    </code></pre></div>
+
+      <h3>3. Specifying a Properties File (-p)</h3>
+      <p><strong>Goal:</strong> Load custom properties into Checkstyle from a properties file.</p>
+
+      <p><strong>Properties File (checkstyle.properties):</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-properties">
+      checkstyle.header.file=header.txt
+      </code></pre></div>
+
+      <p><strong>Command:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      $ java -jar checkstyle-10.18.1-all.jar -c config.xml -p checkstyle.properties Test.java
+      </code></pre></div>
+
+      <p><strong>Output:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      Starting audit...
+      [ERROR] Test.java:1: File does not contain required header. [Header]
+      Audit done.
+      Checkstyle ends with 1 errors.
+      </code></pre></div>
+
+      <h3>4. Specifying an Output File (-o)</h3>
+      <p><strong>Goal:</strong> Save Checkstyle results to a file.</p>
+
+      <p><strong>Command:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      $ java -jar checkstyle-10.18.1-all.jar -c config.xml -o results.txt Test.java
+      </code></pre></div>
+
+      <p><strong>Output (inside results.txt):</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      Starting audit...
+      [ERROR] Test.java:9:9: Fall through from previous branch of switch statement [FallThrough]
+      Audit done.
+      Checkstyle ends with 1 errors.
+      </code></pre></div>
+
+      <h3>5. Printing XPath Suppressions (-s)</h3>
+      <p><strong>Goal:</strong> Generate XPath suppressions for a specific line and column.</p>
+
+      <p><strong>Command:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      $ java -jar checkstyle-10.18.1-all.jar -s 9:9 Test.java
+      </code></pre></div>
+
+      <p><strong>Output:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      Suppression XPath query: &lt;suppress xpath="//CASE_GROUP" files="Test.java"/&gt;
+      </code></pre></div>
+
+      <h3>6. Generating Suppressions XML (-g)</h3>
+      <p><strong>Goal:</strong> Generate an XML file containing suppressions for all violations.</p>
+
+      <p><strong>Command:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      $ java -jar checkstyle-10.18.1-all.jar -c config.xml -g -o suppressions.xml Test.java
+      </code></pre></div>
+
+      <p><strong>Output (inside suppressions.xml):</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    &lt;!DOCTYPE suppressions PUBLIC "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+        "https://checkstyle.org/dtds/suppressions_1_1.dtd"&gt;
+    &lt;suppressions&gt;
+        &lt;suppress files="Test.java" checks="FallThrough"/&gt;
+    &lt;/suppressions&gt;
+    </code></pre></div>
+
+      <h3>7. Setting Tab Width (-w, --tabWidth)</h3>
+      <p><strong>Goal:</strong> Set the length of the tab character when using the `-s` option.</p>
+
+      <p><strong>Command:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      $ java -jar checkstyle-10.18.1-all.jar -s 9:9 --tabWidth 4 Test.java
+      </code></pre></div>
+
+      <p><strong>Output:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      Suppression XPath query:
+      &lt;suppress xpath="//CASE_GROUP" files="Test.java"/&gt;
+    </code></pre></div>
+
+      <h3>8. Displaying Abstract Syntax Tree (-t, --tree)</h3>
+      <p><strong>Goal:</strong> Display the Abstract Syntax Tree (AST) without comments.</p>
+
+      <p><strong>Command:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      $ java -jar checkstyle-10.18.1-all.jar --tree Test.java
+      </code></pre></div>
+
+      <p><strong>Output:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      CLASS_DEF -> Test [1:0]
+       `--METHOD_DEF -> foo [2:2]
+           `--SLIST -> { [3:22]
+               |--VARIABLE_DEF -> int i [4:10]
+               |--WHILE -> while [5:10]
+               `--SWITCH -> switch [6:14]
+      </code></pre></div>
+
+      <h3>9. Displaying AST with Comments (-T, --treeWithComments)</h3>
+      <p><strong>Goal:</strong> Display the AST including comment nodes, but excluding Javadoc.</p>
+
+      <p><strong>Command:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      $ java -jar checkstyle-10.18.1-all.jar --treeWithComments Test.java
+      </code></pre></div>
+
+      <p><strong>Output:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      CLASS_DEF -> Test [1:0]
+       `--METHOD_DEF -> foo [2:2]
+           `--SLIST -> { [3:22]
+               |--VARIABLE_DEF -> int i [4:10]
+               |--WHILE -> while [5:10]
+               |--BLOCK_COMMENT_BEGIN -> /* [8:10]
+               |--BLOCK_COMMENT_END -> */ [8:49]
+               `--SWITCH -> switch [9:14]
+      </code></pre></div>
+
+      <h3>10. Displaying AST with Javadoc (-J, --treeWithJavadoc)</h3>
+      <p><strong>Goal:</strong> Display the AST including Javadoc comment nodes.</p>
+
+      <p><strong>Command:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      $ java -jar checkstyle-10.18.1-all.jar --treeWithJavadoc Test.java
+      </code></pre></div>
+
+      <p><strong>Output:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      CLASS_DEF -> Test [1:0]
+       `--METHOD_DEF -> foo [2:2]
+           `--JAVADOC_COMMENT -> /** [3:0]
+           |--JAVADOC_TAG -> @param [3:4]
+           `--SLIST -> { [4:22]
+      </code></pre></div>
+
+      <h3>11. Printing Javadoc Parse Tree (-j, --javadocTree)</h3>
+      <p><strong>Goal:</strong> Print the parse tree of a Javadoc comment.</p>
+
+      <p><strong>Test File (Javadoc.txt):</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+      /**
+       * This is a sample Javadoc comment.
+       * @param value input value
+       * @return processed value
+       */
+      </code></pre></div>
+
+      <p><strong>Command:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      $ java -jar checkstyle-10.18.1-all.jar --javadocTree Javadoc.txt
+      </code></pre></div>
+
+      <p><strong>Output:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      JAVADOC_COMMENT -> /**
+       |--JAVADOC_TAG -> @param
+       |--JAVADOC_TAG -> @return
+      </code></pre></div>
+
+      <h3>12. Debugging CheckStyle (-d, --debug)</h3>
+      <p><strong>Goal:</strong> Print detailed debug logs for troubleshooting.</p>
+
+      <p><strong>Command:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      $ java -jar checkstyle-10.18.1-all.jar --debug -c config.xml Test.java
+      </code></pre></div>
+
+      <p><strong>Output:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      DEBUG: Starting audit...
+      DEBUG: Checking file: Test.java
+      DEBUG: Applying rule: FallThroughCheck
+      [ERROR] Test.java:9:9: Fall through from previous branch of switch statement [FallThrough]
+      DEBUG: Audit complete.
+      Checkstyle ends with 1 errors.
+      </code></pre></div>
+
+      <h3>13. Excluding Specific Files or Directories (-e, --exclude)</h3>
+      <p>
+      <strong>Goal:</strong> Exclude specific files or directories from CheckStyle validation.
+      </p>
+
+      <p><strong>Command:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      $ java -jar checkstyle-10.18.1-all.jar -c config.xml --exclude src/test/java/Test.java src
+      </code></pre></div>
+
+      <p><strong>Output:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      Starting audit...
+      Skipping excluded file: src/test/java/Test.java
+      Audit done.
+      </code></pre></div>
+
+      <h3>14. Excluding Files Using Regular Expressions (-x, --exclude-regexp)</h3>
+      <p><strong>Goal:</strong> Exclude files or directories using a regular expression pattern.</p>
+
+      <p><strong>Command:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      $ java -jar checkstyle-10.18.1-all.jar -c config.xml --exclude-regexp ".*Test.*\\.java" src
+      </code></pre></div>
+
+      <p><strong>Output:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      Starting audit...
+      Skipping excluded file: src/main/java/TestFile.java
+      Audit done.
+      </code></pre></div>
+
+      <h3>15. Displaying Checkstyle Version (-V, --version)</h3>
+      <p><strong>Goal:</strong> Print the CheckStyle version information.</p>
+
+      <p><strong>Command:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      $ java -jar checkstyle-10.18.1-all.jar --version
+      </code></pre></div>
+
+      <p><strong>Output:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      Checkstyle 10.18.1
+      </code></pre></div>
+
+      <h3>16. Finding AST Nodes Matching XPath (-b, --branch-matching-xpath)</h3>
+      <p><strong>Goal:</strong> Show AST branches matching a given XPath query.</p>
+
+      <p><strong>Test.java:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+      class Test {
+          void foo() {
+              int x = 10;
+          }
+      }
+      </code></pre></div>
+
+      <p><strong>Command:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      $ java -jar checkstyle-10.18.1-all.jar --branch-matching-xpath "//VARIABLE_DEF" Test.java
+      </code></pre></div>
+
+      <p><strong>Output:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      Matching AST nodes:
+      |--VARIABLE_DEF -> int x
+      </code></pre></div>
+
+      <h3>17. Displaying Help Message (-h, --help)</h3>
+      <p><strong>Goal:</strong> Print usage instructions for CheckStyle CLI.</p>
+
+      <p><strong>Command:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      $ java -jar checkstyle-10.18.1-all.jar --help
+      </code></pre></div>
+
+      <p><strong>Output (Partial):</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      Usage: java -jar checkstyle-10.18.1-all.jar [OPTIONS]...
+      -c &lt;config&gt;      Specifies configuration file.
+      -f &lt;format&gt;      Sets output format (xml, plain, sarif).
+      -t               Displays AST tree.
+      -h, --help       Prints this message and exits.
+    </code></pre></div>
+
+      <h3>18. Executing Ignored Modules (-E, --executeIgnoredModules)</h3>
+      <p><strong>Goal:</strong> Run CheckStyle even on ignored modules.</p>
+
+      <p><strong>Command:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      $ java -jar checkstyle-10.18.1-all.jar -c config.xml --executeIgnoredModules Test.java
+      </code></pre></div>
+
+      <p><strong>Output:</strong></p>
+       <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
+      Starting audit...
+      [INFO] Executing ignored module: SomeIgnoredModule
+      Audit done.
+      </code></pre></div>
+
+    </section>
+
     <section name="Run after compilation">
       <p>
         Download and compile:
