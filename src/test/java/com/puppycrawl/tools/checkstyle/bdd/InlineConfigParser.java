@@ -214,7 +214,6 @@ public final class InlineConfigParser {
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
             "com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck",
             "com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck",
-            "com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck",
