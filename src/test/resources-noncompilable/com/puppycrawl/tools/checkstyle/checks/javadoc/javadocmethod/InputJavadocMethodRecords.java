@@ -21,14 +21,11 @@ public class InputJavadocMethodRecords
      * @param firstName     the user's first name
      * @param nickName      the user's nickname
      * @param fullName      the user's full name
-     * @param picture       the user's profile picture
-     * @param updatedAt     the last time that the profile was updated
      * @param email         the user's email address
      * @param emailVerified {@code true} if the email address has been verified
      */
     public record Inner(String subject, String firstName,
                         String nickName, String fullName,
-                        URI picture, Instant updatedAt,
                         String email, boolean emailVerified)
     {
         /**
@@ -38,8 +35,6 @@ public class InputJavadocMethodRecords
          * @param firstName     the user's first name
          * @param nickName      the user's nickname
          * @param fullName      the user's full name
-         * @param picture       the user's profile picture
-         * @param updatedAt     the last time that the profile was updated
          * @param email         the user's email address
          * @param emailVerified {@code true} if the email address has been verified
          * @throws IllegalArgumentException if any of the arguments is empty
