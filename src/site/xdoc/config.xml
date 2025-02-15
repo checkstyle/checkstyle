@@ -71,7 +71,7 @@
         Here is a fragment of a typical configuration document:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;JavadocPackage&quot;/&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
@@ -117,7 +117,7 @@
           Load a class directly according to a package-qualified <code>name</code>, such as loading
           class <code>com.puppycrawl.tools.checkstyle.TreeWalker</code> for element:
 
-          <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+          <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;com.puppycrawl.tools.checkstyle.TreeWalker&quot;/&gt;
           </code></pre></div>
 
@@ -128,7 +128,7 @@
           Load a class of a pre-specified package, such as loading class
           <code>com.puppycrawl.tools.checkstyle.checks.AvoidStarImport</code>
           for element
-          <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+          <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;AvoidStarImport&quot;/&gt;
           </code></pre></div>
 
@@ -150,7 +150,7 @@
           such as loading class
           <code>com.puppycrawl.tools.checkstyle.checks.ConstantNameCheck</code>
           for element
-          <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+          <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;ConstantName&quot;/&gt;
           </code></pre></div>
         </li>
@@ -176,7 +176,7 @@
         than <code>60</code> lines:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;MethodLength&quot;&gt;
   &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
 &lt;/module&gt;
@@ -193,7 +193,7 @@
         applies to <code>TreeWalker</code> and its submodules:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;JavadocPackage&quot;/&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
@@ -216,7 +216,7 @@
         property <code>checkstyle.header.file</code>:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;Header&quot;&gt;
   &lt;property name=&quot;headerFile&quot; value=&quot;${checkstyle.header.file}&quot;/&gt;
 &lt;/module&gt;
@@ -236,7 +236,7 @@
         command line property <code>checkstyle.javadoc.severity</code>:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;JavadocMethod&quot;&gt;
   &lt;property name=&quot;severity&quot;
     value=&quot;${checkstyle.javadoc.severity}&quot;
@@ -401,7 +401,7 @@
           Example:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;metadata name=&quot;com.myproject.cs-version&quot; value=&quot;4.4&quot;/&gt;
   &lt;metadata name=&quot;com.myproject.cs-version.desc&quot; value=&quot;legacy config&quot;/&gt;
@@ -417,7 +417,7 @@
           locale for all modules:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;property name=&quot;basedir&quot; value=&quot;src/checkstyle&quot;/&gt;
   &lt;property name=&quot;cacheFile&quot; value=&quot;target/cachefile&quot;/&gt;
@@ -435,7 +435,7 @@
           handles files with the <code>ISO-8859-5</code> charset:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;property name=&quot;charset&quot; value=&quot;ISO-8859-5&quot;/&gt;
   ...
@@ -447,7 +447,7 @@
           handles files with the <code>java, xml, properties</code> extensions:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml, properties&quot;/&gt;
   ...
@@ -459,7 +459,7 @@
           <code>Exception</code> and instead prints it as a violation:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;property name=&quot;haltOnException&quot; value=&quot;false&quot;/&gt;
   ...
@@ -471,14 +471,14 @@
           handles files with any extension:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;property name=&quot;fileExtensions&quot; value=&quot;null&quot;/&gt;
   ...
 &lt;/module&gt;
         </code></pre></div>
         <p>OR</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
   ...
@@ -563,7 +563,7 @@
           <code>TreeWalker</code> a <code>tabWidth</code> of <code>4</code>:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;property name=&quot;tabWidth&quot; value=&quot;4&quot;/&gt;
@@ -580,7 +580,7 @@
           To integrate Checkstyle with BEA Weblogic Workshop 8.1:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;property name=&quot;fileExtensions&quot; value=&quot;java,ejb,jpf&quot;/&gt;
@@ -594,7 +594,7 @@
           handles files with the <code>java</code> extension:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;TreeWalker&quot;&gt;
   &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
   ...
@@ -606,14 +606,14 @@
           handles files with any extension:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;TreeWalker&quot;&gt;
   &lt;property name=&quot;fileExtensions&quot; value=&quot;null&quot;/&gt;
   ...
 &lt;/module&gt;
         </code></pre></div>
         <p>OR</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;TreeWalker&quot;&gt;
   &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
   ...
@@ -630,7 +630,7 @@
           preventing execution from stopping on an exception and instead
           printing it as a violation:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;TreeWalker&quot;&gt;
    &lt;property name=&quot;skipFileOnJavaParseException&quot; value=&quot;true&quot;/&gt;
    ...
@@ -642,7 +642,7 @@
           preventing execution from stopping on an exception and does not
           print it as a violation:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;TreeWalker&quot;&gt;
    &lt;property name=&quot;skipFileOnJavaParseException&quot; value=&quot;true&quot;/&gt;
    &lt;property name=&quot;javaParseExceptionSeverity&quot; value=&quot;ignore&quot;/&gt;
@@ -702,7 +702,7 @@
         <code>MethodLength</code>:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;MethodLength&quot;/&gt;
       </code></pre></div>
 
@@ -721,7 +721,7 @@
         of lines of methods only:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;MethodLength&quot;&gt;
   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
 &lt;/module&gt;
@@ -735,7 +735,7 @@
         at most 60 lines, include the following in the <code>TreeWalker</code> configuration:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;MethodLength&quot;&gt;
   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
 &lt;/module&gt;
@@ -771,7 +771,7 @@
         plain formatter outputs warnings for translation violations:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;Translation&quot;&gt;
   &lt;property name=&quot;severity&quot; value=&quot;warning&quot;/&gt;
 &lt;/module&gt;
@@ -791,7 +791,7 @@
         This is only used to control the spacing when violations from modules are printed.
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;property name=&quot;tabWidth&quot; value=&quot;4&quot;/&gt;
 &lt;/module&gt;
@@ -810,7 +810,7 @@
         it is harder to differentiate one module's violations from the other.
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;DescendantToken&quot;&gt;
   &lt;property name=&quot;id&quot; value=&quot;stringEqual&quot;/&gt;
   &lt;property name=&quot;tokens&quot; value=&quot;EQUAL,NOT_EQUAL&quot;/&gt;
@@ -842,7 +842,7 @@
 
       <p>An example usage is:</p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;MemberName&quot;&gt;
   &lt;property name=&quot;format&quot; value=&quot;^m[a-zA-Z0-9]*$&quot;/&gt;
   &lt;message key=&quot;name.invalidPattern&quot;
@@ -923,7 +923,7 @@
         include the following module in the configuration file:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;com.mycompany.listeners.VerboseListener&quot;&gt;
   &lt;property name=&quot;file&quot; value=&quot;audit.txt&quot;/&gt;
 &lt;/module&gt;
@@ -967,7 +967,7 @@
         com.puppycrawl.tools.checkstyle.checks</code>:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;checkstyle-packages&gt;
   &lt;package name=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
     &lt;package name=&quot;checks&quot;/&gt;
@@ -993,7 +993,7 @@
         The XML file must be named exactly <code>checkstyle_packages.xml</code>:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 
 &lt;!DOCTYPE checkstyle-packages PUBLIC
@@ -1011,7 +1011,7 @@
         element in the configuration document:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;MethodLimit&quot;/&gt;
       </code></pre></div>
 
@@ -1042,7 +1042,7 @@
         configuration XML document:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;!DOCTYPE module PUBLIC
   &quot;-//Checkstyle//DTD Checkstyle Configuration 1.3//EN&quot;
   &quot;https://checkstyle.org/dtds/configuration_1_3.dtd&quot;&gt;

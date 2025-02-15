@@ -134,7 +134,7 @@
         <p id="Example1-config">
           To configure the default check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocType"/&gt;
@@ -142,7 +142,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example1:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 /**
  * @author a
  * @version $Revision1$
@@ -182,7 +182,7 @@ public class Example1 {
         <p id="Example2-config">
           To configure the check for <code>public</code> scope:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocType"&gt;
@@ -192,7 +192,7 @@ public class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example2:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 /**
  * @author a
  * @version $Revision1$
@@ -232,7 +232,7 @@ public class Example2 {
         <p id="Example3-config">
           To configure the check for an <code>@author</code> tag:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocType"&gt;
@@ -242,7 +242,7 @@ public class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example3:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 /**
  * @author a
  * @version $Revision1$
@@ -282,7 +282,7 @@ public class Example3 {
         <p id="Example4-config">
           To configure the check for a CVS revision version tag:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocType"&gt;
@@ -292,7 +292,7 @@ public class Example3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example4:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 /**
  * @author a
  * @version $Revision1$
@@ -332,7 +332,7 @@ public class Example4 {
         <p id="Example5-config">
           To configure the check for <code>private</code> classes only:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocType"&gt;
@@ -343,7 +343,7 @@ public class Example4 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example5-code">Example5:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 /**
  * @author a
  * @version $Revision1$
@@ -383,7 +383,7 @@ public class Example5 {
         <p id="Example6-config">
           To configure the check that allows missing <code>@param</code> tags:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocType"&gt;
@@ -393,7 +393,7 @@ public class Example5 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example6-code">Example6:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 /**
  * @author a
  * @version $Revision1$
@@ -433,7 +433,7 @@ public class Example6 {
         <p id="Example7-config">
             To configure the check that allows unknown tags:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocType"&gt;
@@ -443,7 +443,7 @@ public class Example6 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example7-code">Example7:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 /**
  * @author a
  * @version $Revision1$
@@ -484,7 +484,7 @@ public class Example7 {
           To configure a check that allows skipping validation at all
           for classes annotated with <code>@unknownTag</code>
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocType"&gt;
@@ -496,7 +496,7 @@ public class Example7 {
         <p id="Example8-code">
           Example8:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 /**
  * @author a
  * @version $Revision1$
