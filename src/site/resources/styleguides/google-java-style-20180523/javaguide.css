@@ -424,11 +424,6 @@ pre {
   overflow:auto;
 }
 
-pre.prettyprint {
-  padding:6px 10px !important;
-  border:1px solid #bbb !important;
-}
-
 code.bad, code.badcode {
   color: magenta;
 }

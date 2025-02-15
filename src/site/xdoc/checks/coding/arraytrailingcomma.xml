@@ -105,7 +105,7 @@ return new int[] {
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ArrayTrailingComma"/&gt;
@@ -115,7 +115,7 @@ return new int[] {
         <p id="Example1-code">
           Which results in the following violations:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 {
   int[] numbers = {1, 2, 3};
   boolean[] bools = {
@@ -152,7 +152,7 @@ public class Example1 {
 </code></pre></div>
 
         <p id="Example2-config">To configure check to always validate trailing comma:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ArrayTrailingComma"&gt;
@@ -162,7 +162,7 @@ public class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 {
   int[] numbers = {1, 2, 3}; // violation 'Array should contain trailing comma.'
   boolean[] bools = {

@@ -68,7 +68,7 @@
         <p id="Example1-config">
             To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
     &lt;module name="TreeWalker"&gt;
         &lt;module name="AvoidEscapedUnicodeCharacters"/&gt;
@@ -78,7 +78,7 @@
         <p id="Example1-code">
           Examples of using Unicode:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 {
   // OK, perfectly clear even without a comment.
   String unitAbbrev = "μs";
@@ -101,7 +101,7 @@ public class Example1 {
           An example of how to configure the check to allow using escapes
           for non-printable, control characters:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
@@ -113,7 +113,7 @@ public class Example1 {
         <p id="Example2-code">
           Example of using escapes for non-printable, control characters:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 {
   // OK, a normal String below
   String unitAbbrev = "μs";
@@ -136,7 +136,7 @@ public class Example2 {
           An example of how to configure the check to allow using escapes
           if trail comment is present:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
@@ -148,7 +148,7 @@ public class Example2 {
         <p id="Example3-code">
           Example of using escapes if trail comment is present:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example3 {
   // OK, a normal String below
   String unitAbbrev = "μs";
@@ -171,7 +171,7 @@ public class Example3 {
           An example of how to configure the check to allow if
           all characters in literal are escaped.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
@@ -181,7 +181,7 @@ public class Example3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example of using escapes if all characters in literal are escaped:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example4 {
   // OK, a normal String below
   String unitAbbrev = "μs";
@@ -204,7 +204,7 @@ public class Example4 {
           An example of how to configure the check to allow using escapes
           for non-printable whitespace characters:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
@@ -214,7 +214,7 @@ public class Example4 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example5-code">Example of using escapes for non-printable whitespace characters:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example5 {
   // OK, a normal String below.
   String unitAbbrev = "μs";
