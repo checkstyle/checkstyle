@@ -163,7 +163,7 @@ public int checkReturnTag(final int aTagIndex,
         <p id="Example1-config">
           To configure the default check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocMethod"/&gt;
@@ -171,7 +171,7 @@ public int checkReturnTag(final int aTagIndex,
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code"> Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 {
 
   /** */
@@ -200,7 +200,7 @@ public class Example1 {
           modifier, ignoring any missing param tags is:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocMethod"&gt;
@@ -211,7 +211,7 @@ public class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example: </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 {
 
   /** */
@@ -239,7 +239,7 @@ public class Example2 {
             To configure the check for methods which are in <code>private</code> and
           <code>package</code>, but not any other modifier:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocMethod"&gt;
@@ -249,7 +249,7 @@ public class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code"> Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example3 {
 
   /** */
@@ -276,7 +276,7 @@ public class Example3 {
         <p id="Example4-config">
               To configure the check to ignore any missing return tags:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocMethod"&gt;
@@ -286,7 +286,7 @@ public class Example3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code"> Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example4 {
 
   /** */
@@ -313,7 +313,7 @@ public class Example4 {
         <p id="Example5-config">
               To configure the check to ignore Methods with annotation <code>Deprecated</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocMethod"&gt;
@@ -323,7 +323,7 @@ public class Example4 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example5-code"> Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example5 {
 
   /** */
@@ -350,7 +350,7 @@ public class Example5 {
         <p id="Example6-config">
               To configure the check only for tokens which are Constructor Definitions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocMethod"&gt;
@@ -360,7 +360,7 @@ public class Example5 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example6-code"> Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example6 {
 
   /** */
@@ -388,7 +388,7 @@ public class Example6 {
         <p id="Example7-config">
           To configure the check to validate <code>throws</code> tags, you can use following config.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocMethod"&gt;
@@ -398,7 +398,7 @@ public class Example6 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example7-code"> Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example7 {
 
   /**
