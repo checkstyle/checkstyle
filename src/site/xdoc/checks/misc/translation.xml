@@ -93,21 +93,18 @@
         <p id="Example1-config">
           To configure the check to check existence of Japanese and French translations:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="Translation"&gt;
     &lt;property name="requiredTranslations" value="es, fr"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example1-file">Example1 (target folder structure):</p>
-        <source>
-messages.properties
-messages_fr.properties
-messages_es.properties
-        </source>
-        <p id="messages-raw">Contents of messages.properties file:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <p id="Example1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre><code class="language-java">
+#messages.properties
 hello=Hello
 cancel=Cancel
 </code></pre></div>
@@ -131,7 +128,7 @@ messages_es.properties  // violation 'Key 'cancel', 'name' and 'hello' missing.'
           An example of how to configure the check to validate only bundles which base names
           start with &quot;ButtonLabels&quot;:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="Translation"&gt;
     &lt;property name="baseName" value="^ButtonLabels.*$"/&gt;
@@ -139,6 +136,7 @@ messages_es.properties  // violation 'Key 'cancel', 'name' and 'hello' missing.'
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
+<<<<<<< HEAD
         <p id="Example2-file">Example2 (target folder structure):</p>
         <source>
 ButtonLabels.properties
@@ -146,6 +144,13 @@ ButtonLabels_fr.properties
         </source>
         <p id="ButtonLabels-raw">Contents of ButtonLabels.properties file:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+=======
+        <p id="Example2-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre><code class="language-java">
+#ButtonLabels.properties
+>>>>>>> eb1f7190b3 (Issue #16300: Move Syntax Highlighting to Site Generation Phase)
 hello=Hello
 cancel=Cancel
 </code></pre></div>
@@ -163,7 +168,7 @@ ButtonLabels_fr.properties  // violation 'Key 'cancel' is missing.'
           To configure the check to check only files which have '.properties' and '.translations'
           extensions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="Translation"&gt;
     &lt;property name="fileExtensions" value="properties"/&gt;
@@ -172,6 +177,7 @@ ButtonLabels_fr.properties  // violation 'Key 'cancel' is missing.'
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
+<<<<<<< HEAD
         <p id="Example3-file">Example3 no messages_home_fr.* files (target folder structure):</p>
         <source>
 messages_home.properties
@@ -179,6 +185,13 @@ messages_home.translations
         </source>
         <p id="messages_home-raw">Contents of messages_home.properties file:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+=======
+        <p id="Example3-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre><code class="language-java">
+#messages.properties
+>>>>>>> eb1f7190b3 (Issue #16300: Move Syntax Highlighting to Site Generation Phase)
 hello=Hello
 cancel=Cancel
 </code></pre></div>

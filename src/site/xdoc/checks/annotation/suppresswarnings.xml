@@ -139,7 +139,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressWarnings"/&gt;
@@ -147,7 +147,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 // violation below 'The warning '' cannot be suppressed at this location'
 @SuppressWarnings("")
 class Example1 {
@@ -180,7 +180,7 @@ class Test1 {}
           warnings cannot be suppressed on anything
           but variable and parameter declarations.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressWarnings"&gt;
@@ -197,7 +197,7 @@ class Test1 {}
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 // ok below, since we are only checking for '^unchecked$|^unused$'
 @SuppressWarnings("")
 class Example2 {

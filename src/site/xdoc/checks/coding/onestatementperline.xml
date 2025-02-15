@@ -54,7 +54,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="OneStatementPerLine"/&gt;
@@ -64,7 +64,7 @@
         <p id="Example1-code">
           The following examples will be flagged as a violation:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PipedOutputStream;
@@ -106,7 +106,7 @@ public class Example1 {
           An example of how to configure the check to treat resources
           in a try statement as statements to require them on their own line:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="OneStatementPerLine"&gt;
@@ -125,7 +125,7 @@ public class Example1 {
           there is no violation.
           The following examples will illustrate difference:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PipedOutputStream;

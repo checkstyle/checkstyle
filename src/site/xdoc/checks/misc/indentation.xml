@@ -114,7 +114,7 @@ if ((condition1 &amp;&amp; condition2)
         <p id="Example1-config">
           To configure the default check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Indentation"/&gt;
@@ -125,7 +125,7 @@ if ((condition1 &amp;&amp; condition2)
           Example of Compliant code for default configuration
           (in comment name of property that controls indentations):
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
     String field = "example";                  // basicOffset
     int[] values = {                           // basicOffset
@@ -174,7 +174,7 @@ class Example1 {
           Oracle:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Indentation"&gt;
@@ -187,7 +187,7 @@ class Example1 {
           Example of Compliant code for default configuration
           (in comment name of property that controls indentation):
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
     String field = "example";                  // basicOffset
     int[] values = {                           // basicOffset
@@ -234,7 +234,7 @@ class Example2 {
         <p id="Example3-config">
           To configure the Check to enforce strict condition in line-wrapping validation.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Indentation"&gt;
@@ -247,7 +247,7 @@ class Example2 {
           Such config doesn't allow next cases
           even code is aligned further to the right for better reading:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
     String field = "example";                  // basicOffset
     int[] values = {                           // basicOffset
@@ -294,7 +294,7 @@ class Example3 {
         <p id="Example4-code">
           But if forceStrictCondition = false, this code is valid:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example4 {
     String field = "example";                   // basicOffset
     int[] values = {                            // basicOffset
