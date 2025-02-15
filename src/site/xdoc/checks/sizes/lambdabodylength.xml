@@ -46,7 +46,7 @@
         <p id="Example1-config">
           To configure the check to accept lambda bodies with up to 10 lines:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LambdaBodyLength"/&gt;
@@ -56,7 +56,7 @@
         <p id="Example1-code">
         Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
   Runnable r = () -&gt; { // OK, length is 10
     System.out.println(2); // line 2 of lambda
@@ -96,7 +96,7 @@ class Example1 {
         <p id="Example2-config">
           To configure the check to accept lambda bodies with max 5 lines:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LambdaBodyLength"&gt;
@@ -108,7 +108,7 @@ class Example1 {
         <p id="Example2-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
   Runnable r = () -&gt; { // OK, length is 5
     System.out.println(2);

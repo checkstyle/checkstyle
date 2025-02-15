@@ -140,7 +140,7 @@ public String getNameIfPresent() { ... }
           To configure the default check to allow one single parameterless annotation on the same
             line:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AnnotationLocation"/&gt;
@@ -148,7 +148,7 @@ public String getNameIfPresent() { ... }
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
   @Nonnull
   private boolean field1; // ok
@@ -169,7 +169,7 @@ class Example1 {
         <p id="Example2-config">
           Use the following configuration to allow multiple annotations on the same line:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AnnotationLocation"&gt;
@@ -182,7 +182,7 @@ class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
   @Nonnull
   private boolean field1;
@@ -203,7 +203,7 @@ class Example2 {
           Use the following configuration to allow only one and only parameterized annotation
           on the same line:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AnnotationLocation"&gt;
@@ -216,7 +216,7 @@ class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
   // violation below, 'Annotation 'Nonnull' should be alone on line.'
   @Nonnull private boolean field1;
@@ -239,7 +239,7 @@ class Example3 {
           Use the following configuration to only validate annotations on methods to allow one
           single parameterless annotation on the same line:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AnnotationLocation"&gt;
@@ -253,7 +253,7 @@ class Example3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example4 {
   @NotNull private boolean field1; // ok, as 'tokens' property set to METHOD_DEF only
   @Override public int hashCode() { return 1; }
