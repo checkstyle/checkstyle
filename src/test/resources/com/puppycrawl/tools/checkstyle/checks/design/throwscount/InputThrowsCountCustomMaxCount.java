@@ -32,7 +32,8 @@ public class InputThrowsCountCustomMaxCount {
     {
     }
 
-    void method5() throws Exception, AWTException, Throwable, SQLException, // violation
+    // violation below 'Throws count is 6 (max allowed is 5)'
+    void method5() throws Exception, AWTException, Throwable, SQLException,
             FileNotFoundException, EOFException
     {
     }
