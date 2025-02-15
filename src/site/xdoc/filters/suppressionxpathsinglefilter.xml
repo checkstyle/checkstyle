@@ -90,7 +90,7 @@
           for all methods with name MyMethod
           inside Example1 and Example3 files:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"/&gt;
@@ -106,7 +106,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Code example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 {
   public void MyMethod() {}
   // filtered violation above 'Name 'MyMethod' must match pattern'
@@ -115,7 +115,7 @@ public class Example1 {
         <p id="Example2-config">
           To suppress MethodName check for method names matched pattern 'MyMethod[0-9]':
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"/&gt;
@@ -127,7 +127,7 @@ public class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 {
   // filtered violation below 'Name 'MyMethod1' must match pattern'
   public void MyMethod1() {}
@@ -140,7 +140,7 @@ public class Example2 {
         <p id="Example3-config">
           To suppress checks being specified by id property:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"&gt;
@@ -154,7 +154,7 @@ public class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Code example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example3 {
   // filtered violation below 'Name 'MyMethod' must match pattern'
   public void MyMethod() {}
@@ -163,7 +163,7 @@ public class Example3 {
         <p id="Example4-config">
           To suppress checks for all package definitions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="PackageName"&gt;
@@ -180,7 +180,7 @@ public class Example3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Code example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 // filtered violation above 'must match pattern'
 
@@ -189,7 +189,7 @@ public class Example4 {}
         <p id="Example5-config">
           To suppress RedundantModifier check for interface definitions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RedundantModifier"/&gt;
@@ -201,7 +201,7 @@ public class Example4 {}
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example5-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public interface Example5 {
   public int CONSTANT1 = 1; // filtered violation 'Redundant 'public' modifier.'
 }
@@ -209,7 +209,7 @@ public interface Example5 {
         <p id="Example6-config">
           To suppress checks in the Example6 file by non-query:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MagicNumber"/&gt;
@@ -221,7 +221,7 @@ public interface Example5 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example6-code">Code example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example6 {
   private int field = 177; // filtered violation ''177' is a magic number.'
 }
@@ -230,7 +230,7 @@ public class Example6 {
           Suppress checks for elements which are either class definitions,
           or method definitions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AbstractClassName"/&gt;
@@ -246,7 +246,7 @@ public class Example6 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example7-code">Code example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 // filtered violation below 'Name 'Example7' must match pattern'
 abstract class Example7 {
   public void MyMethod() {}
@@ -262,7 +262,7 @@ abstract class AnotherClass {
         <p id="Example8-config">
           Suppress checks for MyMethod1 or MyMethod2 methods:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"/&gt;
@@ -275,7 +275,7 @@ abstract class AnotherClass {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example8-code">Code example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example8 {
   // filtered violation below 'Name 'MyMethod1' must match pattern'
   public void MyMethod1() {}
@@ -289,7 +289,7 @@ class Example8 {
           Suppress checks for variable testVariable1 inside
           testMethod method inside Example9 class:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LocalFinalVariableName"&gt;
@@ -305,7 +305,7 @@ class Example8 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example9-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example9 {
   public void testMethod() {
     // filtered violation below 'Name 'testVariable1' must match pattern'
@@ -320,7 +320,7 @@ public class Example9 {
           will be suppressed for methods with name testMethod1 inside
           Example10 file.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LeftCurly"/&gt;
@@ -333,7 +333,7 @@ public class Example9 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example10-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example10 {
   public void testMethod1()
   { // filtered violation ''{' at column 3 should be on the previous line.'
@@ -348,7 +348,7 @@ public class Example10 {
           The following example demonstrates how to suppress
           RequireThis violations for variable age inside changeAge method.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RequireThis"&gt;
@@ -363,7 +363,7 @@ public class Example10 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example11-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example11 {
   private int age = 23;
   private int number = 100;
@@ -386,7 +386,7 @@ public class Example11 {
           <code>METHOD_DEF</code> and name <i>throwsMethod</i>. Please read more about xpath axes at
           <a href="https://www.w3schools.com/xml/xpath_axes.asp">W3Schools Xpath Axes</a>.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalThrows"/&gt;
@@ -399,7 +399,7 @@ public class Example11 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example12-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example12 {
   // filtered violation below 'Throwing 'RuntimeException' is not allowed.'
   public void throwsMethod() throws RuntimeException {
@@ -417,7 +417,7 @@ public class Example12 {
           Please read more about xpath syntax at
           <a href="https://www.w3schools.com/xml/xpath_syntax.asp">W3Schools Xpath Syntax</a>.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LocalFinalVariableName"&gt;
@@ -435,7 +435,7 @@ public class Example12 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example13-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example13 {
   // filtered violation below 'Name 'TestMethod1' must match pattern'
   public void TestMethod1() {
@@ -456,7 +456,7 @@ public class Example13 {
           Please find more information at:
           <a href="https://github.com/spring-io/spring-javaformat">spring-javaformat</a>
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalIdentifierName"&gt;
@@ -479,7 +479,7 @@ public class Example13 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example14-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 .../src/myApplication.java // violation, Name 'myApplication' must match pattern.
 .../src/myApplicationTests.java // filtered violation 'must match pattern'
 .../src/test/java/insidePackage.java // filtered violation 'must match pattern'

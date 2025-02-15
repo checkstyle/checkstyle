@@ -506,7 +506,6 @@ globbing
 GMetrics
 gnupg
 google
-googleapis
 googleblog
 googlecloudplatform
 googleecommon
@@ -719,11 +718,9 @@ jpg
 jprofiler
 jq
 jqno
-jquery
 jre
 JScroll
 Jscs
-jsdelivr
 jsecurity
 Jsf
 jshiell
@@ -924,6 +921,7 @@ NODESET
 noembed
 noenumtrailingcomma
 nofinalizer
+nohighlight
 noinspection
 noinspectionreason
 nojavadoc
@@ -1278,7 +1276,6 @@ STT
 Studman
 Styleable
 styleguide
-stylesheet
 subdir
 subelements
 subext
@@ -1438,6 +1435,7 @@ VK
 Vladislav
 Vladlis
 vm
+vmatchive
 vnd
 vscode
 Vtl
