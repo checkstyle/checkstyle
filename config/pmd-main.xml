@@ -66,20 +66,4 @@
                         //MethodDeclaration[@Name='processFiltered']"/>
     </properties>
   </rule>
-  <rule ref="category/java/multithreading.xml/AvoidSynchronizedStatement" >
-    <properties>
-      <!-- until https://github.com/checkstyle/checkstyle/issues/15821 -->
-      <property name="violationSuppressXPath"
-         value="//ClassDeclaration[@SimpleName='DefaultLogger']
-                        //MethodDeclaration[@Name='addException']
-                    | //ClassDeclaration[@SimpleName='MetadataGeneratorLogger']
-                        //MethodDeclaration[@Name='addException']
-                    | //ClassDeclaration[@SimpleName='XMLLogger']
-                        //MethodDeclaration[@Name='fileFinished']
-                    | //ClassDeclaration[@SimpleName='XMLLogger']
-                        //MethodDeclaration[@Name='addError']
-                    | //ClassDeclaration[@SimpleName='XMLLogger']
-                        //MethodDeclaration[@Name='addException']"/>
-    </properties>
-  </rule>
 </ruleset>

@@ -172,13 +172,11 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
 
     @Override
     public void addException(AuditEvent event, Throwable throwable) {
-        synchronized (errorWriter) {
-            final LocalizedMessage exceptionMessage = new LocalizedMessage(
-                    Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.class,
-                    ADD_EXCEPTION_MESSAGE, event.getFileName());
-            errorWriter.println(exceptionMessage.getMessage());
-            throwable.printStackTrace(errorWriter);
-        }
+        final LocalizedMessage exceptionMessage = new LocalizedMessage(
+                Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.class,
+                ADD_EXCEPTION_MESSAGE, event.getFileName());
+        errorWriter.println(exceptionMessage.getMessage());
+        throwable.printStackTrace(errorWriter);
     }
 
     @Override
