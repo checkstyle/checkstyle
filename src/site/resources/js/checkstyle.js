@@ -58,20 +58,6 @@ window.addEventListener("load", function () {
     externalLinks.forEach((link) => {
         link.setAttribute("target", "_blank");
     });
-
-    const codeBlocks = document.querySelectorAll(".prettyprint code");
-    codeBlocks.forEach((block) => {
-        const code = block.innerText.split("\n");
-        if (code.length > 1) {
-            if (code[0].trim() === "") {
-                code.shift();
-            }
-            if (code[code.length -1].trim() === "") {
-                code.pop();
-            }
-            block.innerText = code.join("\n");
-        }
-    });
 });
 
 window.addEventListener("scroll", function () {
@@ -147,6 +133,14 @@ function resetStyling() {
     document.querySelector("#hamburger").remove();
     document.querySelector(".xright").lastChild.remove();
 }
+
+window.addEventListener("load", function () {
+    document.querySelectorAll('span.pln').forEach(span => {
+        if (!span.textContent.trim()) {
+            span.remove(); // Remove empty <span class="pln">
+        }
+    });
+});
 
 window.addEventListener("load", setBodyColumnMargin);
 window.addEventListener("resize", setBodyColumnMargin);

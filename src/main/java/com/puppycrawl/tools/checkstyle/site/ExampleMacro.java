@@ -190,7 +190,7 @@ public class ExampleMacro extends AbstractMacro {
         else {
             languageClass = "language-java";
         }
-        sink.rawText("<pre class=\"prettyprint\"><code class=\"" + languageClass + "\">" + NEWLINE);
+        sink.rawText("<pre><code class=\"" + languageClass + "\">" + NEWLINE);
         sink.rawText(escapeHtml(snippet).trim() + NEWLINE);
         sink.rawText("</code></pre>");
         sink.rawText("</div>");
