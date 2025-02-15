@@ -16,7 +16,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-public class InputModifierOrderTypeAnnotations extends MyClass {
+public class InputModifierOrderTypeAnnotationsOne extends MyClass {
 
     // Simple type definitions with type annotations
     private @TypeAnnotation String hello = "Hello, World!";
@@ -46,15 +46,6 @@ public class InputModifierOrderTypeAnnotations extends MyClass {
         Object myObject = new Object();
         //myObject.new @TypeAnnotation Nested();
     }
-
-    // Type casts
-    public void foo3() {
-        String myString = (@TypeAnnotation String) new Object();
-
-    }
-
-    // Type annotations with method arguments
-    private void foo4(final @TypeAnnotation String parameterName) { }
 
     // Inheritance
     class MySerializableClass<T> implements @TypeAnnotation Serializable {  }
@@ -113,15 +104,7 @@ class MyClass {
     @ConstructorAnnotation public MyClass(String name) {}
 }
 
-enum MyEnum {
-    @TypeAnnotation A;
-}
 
-interface IInterfacable {
-    default @TypeAnnotation String foo() {
-        return null;
-    }
-}
 
 @Target({
     ElementType.FIELD, ElementType.LOCAL_VARIABLE, ElementType.PARAMETER,
