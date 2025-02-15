@@ -19,23 +19,21 @@ window.addEventListener("load", function () {
 
 window.addEventListener("load", function () {
     const currentUrl = window.location.href;
-
     if (currentUrl.endsWith("/checks/") || currentUrl.endsWith("/checks/index.html")) {
         window.location.replace("../checks.html");
     }
-    else if (document.title.startsWith("checkstyle – Redirecting to checks/")) {
+    else if (document.title.startsWith("Redirecting to checks/")) {
         const urlObj = new URL(currentUrl);
         const pathSegments = urlObj.pathname.split("/");
         const configHtmlFile = pathSegments[pathSegments.length - 1];
         const checkType = /config_([a-z]+).html/.exec(configHtmlFile)[1];
         const checkName = urlObj.hash.substring(1).toLowerCase();
-
-        if (checkName) {
+        if (checkName !== null) {
             if (checkType !== "filters" && checkType !== "filefilters") {
                 window.location.replace(`./checks/${checkType}/${checkName}.html`);
             }
             else {
-                window.location.replace(`./${checkType}/${checkName}.html`);
+                window.location.replace(`./checks/${checkType}/${checkName}.html#${checkName}`);
             }
         }
         else {
