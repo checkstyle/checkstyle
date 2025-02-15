@@ -428,22 +428,108 @@ public class JavadocMethodCheck extends AbstractCheck {
                     && !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);
 
                 // COMPACT_CTOR_DEF has no parameters
-                if (ast.getType() != TokenTypes.COMPACT_CTOR_DEF) {
+                if (ast.getType() == TokenTypes.COMPACT_CTOR_DEF) {
+                    checkRecordParamTags(tags, ast, reportExpectedTags);
+                }
+                else {
                     checkParamTags(tags, ast, reportExpectedTags);
                 }
                 final List<ExceptionInfo> throwed =
-                    combineExceptionInfo(getThrows(ast), getThrowed(ast));
+                        combineExceptionInfo(getThrows(ast), getThrowed(ast));
                 checkThrowsTags(tags, throwed, reportExpectedTags);
                 if (CheckUtil.isNonVoidMethod(ast)) {
                     checkReturnTag(tags, ast.getLineNo(), reportExpectedTags);
                 }
+            }
+        }
+        tags.stream().filter(javadocTag -> !javadocTag.isSeeOrInheritDocTag())
+            .forEach(javadocTag -> log(javadocTag.getLineNo(), MSG_UNUSED_TAG_GENERAL));
+    }
 
+    /**
+     * Checks if all record components in a compact constructor have
+     * corresponding {@code @param} tags.
+     * Reports missing or extra {@code @param} tags in the Javadoc.
+     *
+     * @param tags the list of Javadoc tags
+     * @param compactDef the compact constructor AST node
+     * @param reportExpectedTags whether to report missing {@code @param} tags
+     */
+    private void checkRecordParamTags(final List<JavadocTag> tags,
+        final DetailAST compactDef, boolean reportExpectedTags) {
+
+        final DetailAST recordDef = getRecordDef(compactDef);
+        final List<DetailAST> recordComponents = getRecordComponents(recordDef);
+
+        final ListIterator<JavadocTag> tagIt = tags.listIterator();
+        while (tagIt.hasNext()) {
+            final JavadocTag tag = tagIt.next();
+            if (!tag.isParamTag()) {
+                continue;
+            }
+            tagIt.remove();
+
+            final String paramName = tag.getFirstArg();
+            boolean found = false;
+            final Iterator<DetailAST> componentIt = recordComponents.iterator();
+            while (!found && componentIt.hasNext()) {
+                final DetailAST component = componentIt.next();
+                final DetailAST ident = component.findFirstToken(TokenTypes.IDENT);
+                if (ident != null && paramName.equals(ident.getText())) {
+                    componentIt.remove();
+                    found = true;
+                }
             }
 
-            // Dump out all unused tags
-            tags.stream().filter(javadocTag -> !javadocTag.isSeeOrInheritDocTag())
-                .forEach(javadocTag -> log(javadocTag.getLineNo(), MSG_UNUSED_TAG_GENERAL));
+            if (!found) {
+                log(tag.getLineNo(), tag.getColumnNo(), MSG_UNUSED_TAG,
+                    JavadocTagInfo.PARAM.getText(), paramName);
+            }
         }
+
+        if (!allowMissingParamTags && reportExpectedTags) {
+            for (DetailAST recordComponent : recordComponents) {
+                log(compactDef, MSG_EXPECTED_TAG,
+                        JavadocTagInfo.PARAM.getText(),
+                        recordComponent.findFirstToken(TokenTypes.IDENT).getText());
+            }
+        }
+    }
+
+    /**
+     * Retrieves the list of record components from a given record definition.
+     *
+     * @param recordDef the AST node representing the record definition
+     * @return a list of AST nodes representing the record components
+     */
+    private static List<DetailAST> getRecordComponents(final DetailAST recordDef) {
+        final List<DetailAST> components = new ArrayList<>();
+        final DetailAST recordDecl = recordDef.findFirstToken(TokenTypes.RECORD_COMPONENTS);
+
+        if (recordDecl != null) {
+            DetailAST child = recordDecl.getFirstChild();
+            while (child != null) {
+                if (child.getType() == TokenTypes.RECORD_COMPONENT_DEF) {
+                    components.add(child);
+                }
+                child = child.getNextSibling();
+            }
+        }
+        return components;
+    }
+
+    /**
+     * Finds the nearest ancestor record definition node for the given AST node.
+     *
+     * @param ast the AST node to start searching from
+     * @return the nearest {@code RECORD_DEF} AST node, or {@code null} if not found
+     */
+    private static DetailAST getRecordDef(DetailAST ast) {
+        DetailAST current = ast;
+        while (current != null && current.getType() != TokenTypes.RECORD_DEF) {
+            current = current.getParent();
+        }
+        return current;
     }
 
     /**
@@ -785,7 +871,7 @@ public class JavadocMethodCheck extends AbstractCheck {
             // Handle extra JavadocTag
             if (!found) {
                 log(tag.getLineNo(), tag.getColumnNo(), MSG_UNUSED_TAG,
-                        "@param", arg1);
+                        JavadocTagInfo.PARAM.getText(), arg1);
             }
         }
 
