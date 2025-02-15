@@ -128,12 +128,20 @@ public class ModifierOrderCheckTest
     }
 
     @Test
-    public void testSkipTypeAnnotations() throws Exception {
+    public void testSkipTypeAnnotationsOne() throws Exception {
         final String[] expected = {
-            "110:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
+            "101:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputModifierOrderTypeAnnotations.java"),
+                getPath("InputModifierOrderTypeAnnotationsOne.java"),
+            expected);
+    }
+
+    @Test
+    public void testSkipTypeAnnotationsTwo() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputModifierOrderTypeAnnotationsTwo.java"),
             expected);
     }
 
