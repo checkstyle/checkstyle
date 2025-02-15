@@ -108,7 +108,7 @@
           To configure the check to produce a violation on a switch statement
           with no default case:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -123,7 +123,7 @@
         <p id="Example1-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
   void testMethod1() {
     int x = 1;
@@ -192,7 +192,7 @@ class Example1 {
         <p id="Example2-config">
           To configure the check to produce a violation on a switch with too many cases:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -207,7 +207,7 @@ class Example1 {
         <p id="Example2-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
   void testMethod1() {
     int x = 1;
@@ -277,7 +277,7 @@ class Example2 {
           To configure the check to produce a violation on a switch that is
           nested in another switch:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -292,7 +292,7 @@ class Example2 {
         <p id="Example3-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
   void testMethod1() {
     int x = 1;
@@ -362,7 +362,7 @@ class Example3 {
           To configure the check to produce a violation on a
           condition in <code>for</code> which performs no check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -376,7 +376,7 @@ class Example3 {
         <p id="Example4-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example4 {
   void testMethod1() {
     for (int i = 0; i != 10; i++) {
@@ -408,7 +408,7 @@ class Example4 {
           <code>for</code> performs no setup (where a <code>while</code>
           statement could be used instead):
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -422,7 +422,7 @@ class Example4 {
         <p id="Example5-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example5 {
   void testMethod1() {
     for (int i = 0; i != 10; i++) {
@@ -453,7 +453,7 @@ class Example5 {
           To configure the check to produce a violation on a return statement
           from within a catch or finally block:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -467,7 +467,7 @@ class Example5 {
         <p id="Example6-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example6 {
   void testMethod1() {
     try {}
@@ -510,7 +510,7 @@ class Example6 {
           To configure the check to produce a violation on a try statement
           within a catch or finally block:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -524,7 +524,7 @@ class Example6 {
         <p id="Example7-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example7 {
   void testMethod1() {
     try {}
@@ -567,7 +567,7 @@ class Example7 {
           To configure the check to produce a violation on a method with
           too many local variables:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -582,7 +582,7 @@ class Example7 {
         <p id="Example8-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example8 {
   void testMethod1() {
     int var1 = 1;
@@ -619,7 +619,7 @@ class Example8 {
           To configure the check to produce a violation on a method
           with too many returns:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -633,7 +633,7 @@ class Example8 {
         <p id="Example9-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example9 {
   void testMethod1() {
     int var1 = 1;
@@ -670,7 +670,7 @@ class Example9 {
           To configure the check to produce a violation on a method
           which throws too many exceptions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -684,7 +684,7 @@ class Example9 {
         <p id="Example10-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example10 {
   void testMethod1() throws ArithmeticException {
       // ...
@@ -700,7 +700,7 @@ class Example10 {
           To configure the check to produce a violation on a method
           with too many expressions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -714,7 +714,7 @@ class Example10 {
         <p id="Example11-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example11 {
   void testMethod1() {
     int x = 1;
@@ -732,7 +732,7 @@ class Example11 {
         <p id="Example12-config">
           To configure the check to produce a violation on an empty statement:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -749,7 +749,7 @@ class Example11 {
         <p id="Example12-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example12 {
   void testMethod1 () {
     System.out.println("Hello");
@@ -764,7 +764,7 @@ class Example12 {
           To configure the check to produce a violation on a class or interface
           with too many fields:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -779,7 +779,7 @@ class Example12 {
         <p id="Example13-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example13 {
   private int field1;
 
@@ -806,7 +806,7 @@ interface Test2 {
           To configure the check to produce a violation on
           comparing <code>this</code> with <code>null</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -822,7 +822,7 @@ interface Test2 {
         <p id="Example14-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example14 {
   void testMethod1() {
     // violation below, 'Total count of 2 exceeds maximum count 1'
@@ -849,7 +849,7 @@ class Example14 {
           To configure the check to produce a violation on a <code>String</code>
           literal equality check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -864,7 +864,7 @@ class Example14 {
         <p id="Example15-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example15 {
   void testMethod1() {
     String str = "abc";
@@ -882,7 +882,7 @@ class Example15 {
           To configure the check to produce a violation on an assert statement
           that may have side effects:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -899,7 +899,7 @@ class Example15 {
         <p id="Example16-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example16 {
   void testMethod1() {
     int a = 5;
