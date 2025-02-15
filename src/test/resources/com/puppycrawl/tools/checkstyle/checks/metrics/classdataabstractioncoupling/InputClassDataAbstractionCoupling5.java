@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class InputClassDataAbstractionCoupling5 {  // violation
+public class InputClassDataAbstractionCoupling5 {  // violation, 'Coupling is 2'
     public void method(String... filenames) {
         Random random = new Random();
         final List<File> files = Arrays.stream(filenames)
