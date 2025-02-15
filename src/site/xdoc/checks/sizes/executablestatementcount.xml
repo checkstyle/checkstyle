@@ -72,7 +72,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ExecutableStatementCount"/&gt;
@@ -80,7 +80,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example1:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
 
   Example1() {
@@ -99,7 +99,7 @@ class Example1 {
         <p id="Example2-config">
           To configure the check with a threshold of 2 for constructor:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ExecutableStatementCount"&gt;
@@ -110,7 +110,7 @@ class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example2:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
 
   Example2() { // violation, 'Executable statement count is 3 (max allowed is 2)'
@@ -129,7 +129,7 @@ class Example2 {
         <p id="Example3-config">
           To configure the check with a threshold of 2 for method definitions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ExecutableStatementCount"&gt;
@@ -140,7 +140,7 @@ class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example3:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
 
   Example3() {

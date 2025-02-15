@@ -432,7 +432,7 @@ pre {
   overflow: auto;
 }
 
-pre.prettyprint {
+pre.hljs {
   padding: 6px 10px !important;
   border: 1px solid #bbb !important;
 }

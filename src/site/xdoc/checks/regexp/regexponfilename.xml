@@ -102,13 +102,13 @@
         <p id="Example1-config">
           To configure the check to report file names that contain a space:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpOnFilename"/&gt;
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example1:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 .../checkstyle.xml
 .../Test Example1.xml // violation, 'File match folder pattern '' and file pattern '\s'.'
 .../TestExample2.xml
@@ -118,7 +118,7 @@
         <p id="Example2-config">
           To configure the check to forbid 'xml' files in folders:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpOnFilename"&gt;
     &lt;property name="fileNamePattern" value="^TestExample\d+\.xml$"/&gt;
@@ -128,7 +128,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example2:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 .../checkstyle.xml
 .../Test Example1.xml
 .../TestExample2.xml // violation, 'xml files should not match '^TestExample\d+\.xml$''
@@ -139,7 +139,7 @@
           To configure the check to forbid 'md' files except 'README.md file' in folders,
           with custom message:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpOnFilename"&gt;
     &lt;property name="fileNamePattern" value="README"/&gt;
@@ -151,7 +151,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example3:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 .../checkstyle.xml
 .../Test Example1.xml
 .../TestExample2.xml
@@ -162,7 +162,7 @@
           To configure the check to only allow property and xml files to be located
           in the resource folder:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpOnFilename"&gt;
     &lt;property name="fileNamePattern" value=".*\.(properties|xml)$"/&gt;
@@ -173,7 +173,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example4:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 .../checkstyle.xml
 .../Test Example1.xml
 .../TestExample2.xml
@@ -183,7 +183,7 @@
         <p id="Example5-config">
           To configure the check to only allow only camelcase
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpOnFilename"&gt;
     &lt;property name="fileNamePattern" value="^([A-Z][a-z0-9]+\.?)+$"/&gt;
@@ -195,7 +195,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example5-code">Example5:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 .../checkstyle.xml    // violation, 'only filenames in camelcase is allowed'
 .../Test Example1.xml // violation, 'only filenames in camelcase is allowed'
 .../TestExample2.xml

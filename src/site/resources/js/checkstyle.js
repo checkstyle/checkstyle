@@ -59,17 +59,20 @@ window.addEventListener("load", function () {
         link.setAttribute("target", "_blank");
     });
 
-    const codeBlocks = document.querySelectorAll(".prettyprint code");
+    const codeBlocks = document.querySelectorAll(".hljs code");
     codeBlocks.forEach((block) => {
         const code = block.innerText.split("\n");
         if (code.length > 1) {
-            if (code[0].trim() === "") {
+            // Remove leading empty lines
+            while (code.length > 0 && code[0].trim() === "") {
                 code.shift();
             }
-            if (code[code.length -1].trim() === "") {
+            // Remove trailing empty lines
+            while (code.length > 0 && code[code.length - 1].trim() === "") {
                 code.pop();
             }
-            block.innerText = code.join("\n");
+            // Join lines with a single newline
+            block.innerText = code.join("\n").trim();
         }
     });
 });
