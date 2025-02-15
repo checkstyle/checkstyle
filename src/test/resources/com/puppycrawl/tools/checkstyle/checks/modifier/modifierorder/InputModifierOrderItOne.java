@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.modifier.modifierorder;
  * - use of 'public' in interface definition
  * @author lkuehne
  */
-strictfp final class InputModifierOrderIt // violation ''final'.*out of order.*JLS suggestions.'
+strictfp final class InputModifierOrderItOne // violation ''final'.*out of order.*JLS suggestions.'
 {
 
     /** Illegal order of modifiers for variables */
@@ -82,19 +82,7 @@ strictfp final class InputModifierOrderIt // violation ''final'.*out of order.*J
     }
 }
 
-/** Holder for redundant 'final' check. */
-final class RedundantFinalClass
-{
-    /** redundant 'final' modifier */
-    public final void finalMethod()
-    {
-    }
 
-    /** OK */
-    public void method()
-    {
-    }
-}
 
 /** Holder for redundant modifiers of inner implementation */
 abstract interface InnerImplementation
@@ -126,36 +114,4 @@ abstract interface InnerImplementation
 }
 
 @interface MyAnnotation4 {
-}
-
-class SafeVarargsUsage {
-    @Deprecated
-    @SafeVarargs
-    private final void foo(int... k) {}
-
-    @Deprecated
-    @SafeVarargs
-    @SuppressWarnings("")
-    private final void foo1(Object... obj) {}
-}
-
-enum TestEnum {
-    ;
-
-    public void method() {
-    }
-}
-
-/** holder for interface specific modifier check. */
-interface InputDefaultPublicModifier
-{
-    /** correct order */
-    default strictfp void a()
-    {
-    }
-
-    /** wrong order */
-    strictfp default void b() // violation ''default' modifier out of order .*JLS suggestions.'
-    {
-    }
 }
