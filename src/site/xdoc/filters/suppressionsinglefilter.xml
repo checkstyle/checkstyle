@@ -103,7 +103,7 @@
           and <code>'Missing a Javadoc comment'</code> violations
           for all lines and files:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="checks" value="JavadocStyleCheck"/&gt;
@@ -124,7 +124,7 @@
           Suppress check by <a href="https://checkstyle.org/config.html#Id">module id</a>
           when config have two instances on the same check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="id" value="stringEqual"/&gt;
@@ -135,7 +135,7 @@
         <p id="Example3-config">
           Suppress all checks for hidden files and folders:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="files" value="[/\\]\..+"/&gt;
@@ -146,7 +146,7 @@
         <p id="Example4-config">
           Suppress all checks for Maven-generated code:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="files" value="[/\\]target[/\\]"/&gt;
@@ -157,7 +157,7 @@
         <p id="Example5-config">
           Suppress all checks for archives, classes and other binary files:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="files" value=".+\.(?:jar|zip|war|class|tar|bin)$"/&gt;
@@ -168,7 +168,7 @@
         <p id="Example6-config">
           Suppress all checks for image files:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="files" value=".+\.(?:png|gif|jpg|jpeg)$"/&gt;
@@ -179,7 +179,7 @@
         <p id="Example7-config">
           Suppress all checks for non-java files:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="files"
@@ -191,7 +191,7 @@
         <p id="Example8-config">
           Suppress all checks in generated sources:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="files" value="com[\\/]mycompany[\\/]app[\\/]gen[\\/]"/&gt;
@@ -202,7 +202,7 @@
         <p id="Example9-config">
           Suppress FileLength check on integration tests in certain folder:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="files" value="com[\\/]mycompany[\\/]app[\\/].*IT.java"/&gt;
@@ -213,7 +213,7 @@
         <p id="Example10-config">
           Suppress naming violations on variable named 'log' in all files:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="message" value="Name 'log' must match pattern"/&gt;

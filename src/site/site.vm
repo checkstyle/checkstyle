@@ -1,0 +1,24 @@
+#* @vmatchive *#
+#parse( "header.vm" )
+<div id="contentBox" class="container-fluid">
+  <div class="row">
+    <div id="leftColumn" class="col-md-2">
+      #parse( "menu.vm" )
+    </div>
+    <div id="bodyColumn" class="col-md-10 $bodyColumnClass">
+      #if ( $bodyContent )
+        $bodyContent.replaceAll(
+          '<pre>(<code[ >](?!.*class="nohighlight nocode"))', 
+          '<pre class="' + $sourceStyle + '">$1'
+        ).replace(
+          'class="bodyTable"', 
+          'class="table table-striped"'
+        ).replace(
+          'class="bodyTable bodyTableBorder"', 
+          'class="table table-bordered table-striped"'
+        )
+      #end
+    </div>
+  </div>
+</div>
+#parse( "footer.vm" )

@@ -69,7 +69,7 @@
         <p id="Example1-config">
           To configure the default check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocVariable"/&gt;
@@ -80,7 +80,7 @@
           By default, this setting will report a violation if
           there is no javadoc for any scope member.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 {
   private int a; // violation
 
@@ -100,7 +100,7 @@ public class Example1 {
           scope:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocVariable"&gt;
@@ -113,7 +113,7 @@ public class Example1 {
           This setting will report a violation if there
           is no javadoc for <code>public</code> member.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 {
   private int a;
 
@@ -132,7 +132,7 @@ public class Example2 {
           <code>protected</code> scope:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocVariable"&gt;
@@ -147,7 +147,7 @@ public class Example2 {
           javadoc for <code>private</code> member and
           ignores <code>protected</code> member.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example3 {
   private int a; // violation
 
@@ -165,7 +165,7 @@ public class Example3 {
           <code>logger</code>:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocVariable"&gt;
@@ -179,7 +179,7 @@ public class Example3 {
           javadoc for any scope member and ignores members with
           name <code>log</code> or <code>logger</code>.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example4 {
   private int a; // violation
 

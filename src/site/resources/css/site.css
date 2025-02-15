@@ -140,13 +140,13 @@ th {
   background-color: #ededed;
 }
 
-.prettyprint {
+.hljs {
   padding: 0.5em !important;
   overflow: auto;
   white-space: nowrap;
 }
 
-.prettyprint code {
+.hljs code {
   font-size: 17px;
   text-wrap: nowrap;
   line-height: 1.625;

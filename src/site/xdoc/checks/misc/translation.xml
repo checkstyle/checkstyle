@@ -118,7 +118,7 @@ messages.properties: Key 'ok' missing.
           To configure the check to check only files which have '.properties' and '.translations'
           extensions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="Translation"&gt;
     &lt;property name="fileExtensions" value="properties, translations"/&gt;
@@ -129,7 +129,7 @@ messages.properties: Key 'ok' missing.
         <p id="Example1-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 #messages.properties
 hello=Hello
 cancel=Cancel
@@ -146,7 +146,7 @@ messages.translations: Properties file 'messages_fr.translations' is missing.
           An example of how to configure the check to validate only bundles which base names
           start with &quot;ButtonLabels&quot;:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="Translation"&gt;
     &lt;property name="baseName" value="^ButtonLabels.*$"/&gt;
@@ -157,7 +157,7 @@ messages.translations: Properties file 'messages_fr.translations' is missing.
         <p id="Example2-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 #ButtonLabels.properties
 hello=Hello
 cancel=Cancel
@@ -173,7 +173,7 @@ ButtonLabels_fr.properties: Key 'cancel' is missing.
         <p id="Example3-config">
           To configure the check to check existence of Japanese and French translations:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="Translation"&gt;
     &lt;property name="requiredTranslations" value="ja, fr"/&gt;
@@ -183,7 +183,7 @@ ButtonLabels_fr.properties: Key 'cancel' is missing.
         <p id="Example3-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 #messages.properties
 hello=Hello
 cancel=Cancel

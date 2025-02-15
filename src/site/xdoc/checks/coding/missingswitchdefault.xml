@@ -49,7 +49,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MissingSwitchDefault"/&gt;
@@ -59,7 +59,7 @@
         <p id="Example1-code">
           Example of violation:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
   void Example1(int i) {
     switch (i) { // violation, 'switch without "default" clause'
@@ -74,7 +74,7 @@ class Example1 {
         <p id="Example2-code">
           Example of correct code:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
   Example2(int i){
     switch (i) {
@@ -103,7 +103,7 @@ class Example2 {
         <p id="Example3-code">
           Example of correct code which does not require default labels:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 sealed interface S permits A, B, C {}
 final class A implements S {}
 final class B implements S {}
