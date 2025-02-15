@@ -54,6 +54,7 @@ public final class TestInputConfiguration {
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck",
+            "com.puppycrawl.tools.checkstyle.checks.TranslationCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck",
             "com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheckTest$ViolationFileSetCheck",
