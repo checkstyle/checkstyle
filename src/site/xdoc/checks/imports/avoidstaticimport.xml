@@ -58,7 +58,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AvoidStaticImport"/&gt;
@@ -68,7 +68,7 @@
         <p id="Example1-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 import static java.lang.Math.pow;          // violation, 'Using a static member import should be avoided.'
 import static java.lang.System.*;          // violation, 'Using a static member import should be avoided.'
 import java.io.File;                       // OK
@@ -78,7 +78,7 @@ import java.util.*;                        // OK
           To configure the check so that the <code>java.lang.System.out</code>
           member and all members from <code>java.lang.Math</code> are allowed:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AvoidStaticImport"&gt;
@@ -90,7 +90,7 @@ import java.util.*;                        // OK
         <p id="Example2-code">
          Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 import static java.lang.Math.*;            // OK
 import static java.lang.System.out;        // OK
 import static java.lang.Integer.parseInt;  // violation, 'Using a static member import should be avoided.'

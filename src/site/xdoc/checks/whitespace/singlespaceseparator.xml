@@ -65,7 +65,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
           To configure the check:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SingleSpaceSeparator"/&gt;
@@ -73,7 +73,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
   int foo()   { // violation 'Use a single space'
     return  1; // violation 'Use a single space'
@@ -88,7 +88,7 @@ class Example1 {
           To configure the check so that it validates comments:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SingleSpaceSeparator"&gt;
@@ -98,7 +98,7 @@ class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
   // violation below 'Use a single space'
   void fun1() {}  // 2 whitespaces before the comment starts
