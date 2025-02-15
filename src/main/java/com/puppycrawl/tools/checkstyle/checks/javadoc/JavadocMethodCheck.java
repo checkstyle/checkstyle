@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -419,7 +420,7 @@ public class JavadocMethodCheck extends AbstractCheck {
             }
             else {
                 final Iterator<JavadocTag> it = tags.iterator();
-                // Check for inheritDoc
+
                 boolean hasInheritDocTag = false;
                 while (!hasInheritDocTag && it.hasNext()) {
                     hasInheritDocTag = it.next().isInheritDocTag();
@@ -427,8 +428,10 @@ public class JavadocMethodCheck extends AbstractCheck {
                 final boolean reportExpectedTags = !hasInheritDocTag
                     && !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);
 
-                // COMPACT_CTOR_DEF has no parameters
-                if (ast.getType() != TokenTypes.COMPACT_CTOR_DEF) {
+                if (ast.getType() == TokenTypes.COMPACT_CTOR_DEF) {
+                    checkRecordParamTags(tags, ast, reportExpectedTags);
+                }
+                else {
                     checkParamTags(tags, ast, reportExpectedTags);
                 }
                 final List<ExceptionInfo> throwed =
@@ -437,13 +440,44 @@ public class JavadocMethodCheck extends AbstractCheck {
                 if (CheckUtil.isNonVoidMethod(ast)) {
                     checkReturnTag(tags, ast.getLineNo(), reportExpectedTags);
                 }
-
             }
-
-            // Dump out all unused tags
-            tags.stream().filter(javadocTag -> !javadocTag.isSeeOrInheritDocTag())
-                .forEach(javadocTag -> log(javadocTag.getLineNo(), MSG_UNUSED_TAG_GENERAL));
         }
+        tags.stream().filter(javadocTag -> !javadocTag.isSeeOrInheritDocTag())
+            .forEach(javadocTag -> log(javadocTag.getLineNo(), MSG_UNUSED_TAG_GENERAL));
+    }
+
+    /**
+     * Retrieves the list of record components from a given record definition.
+     *
+     * @param recordDef the AST node representing the record definition
+     * @return a list of AST nodes representing the record components
+     */
+    private static List<DetailAST> getRecordComponents(final DetailAST recordDef) {
+        final List<DetailAST> components = new ArrayList<>();
+        final DetailAST recordDecl = recordDef.findFirstToken(TokenTypes.RECORD_COMPONENTS);
+
+        DetailAST child = recordDecl.getFirstChild();
+        while (child != null) {
+            if (child.getType() == TokenTypes.RECORD_COMPONENT_DEF) {
+                components.add(child.findFirstToken(TokenTypes.IDENT));
+            }
+            child = child.getNextSibling();
+        }
+        return components;
+    }
+
+    /**
+     * Finds the nearest ancestor record definition node for the given AST node.
+     *
+     * @param ast the AST node to start searching from
+     * @return the nearest {@code RECORD_DEF} AST node, or {@code null} if not found
+     */
+    private static DetailAST getRecordDef(DetailAST ast) {
+        DetailAST current = ast;
+        while (current.getType() != TokenTypes.RECORD_DEF) {
+            current = current.getParent();
+        }
+        return current;
     }
 
     /**
@@ -747,20 +781,21 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Checks a set of tags for matching parameters.
+     * Checks if all record components in a compact constructor have
+     * corresponding {@code @param} tags.
+     * Reports missing or extra {@code @param} tags in the Javadoc.
      *
-     * @param tags the tags to check
-     * @param parent the node which takes the parameters
-     * @param reportExpectedTags whether we should report if do not find
-     *            expected tag
+     * @param tags the list of Javadoc tags
+     * @param compactDef the compact constructor AST node
+     * @param reportExpectedTags whether to report missing {@code @param} tags
      */
-    private void checkParamTags(final List<JavadocTag> tags,
-            final DetailAST parent, boolean reportExpectedTags) {
-        final List<DetailAST> params = getParameters(parent);
-        final List<DetailAST> typeParams = CheckUtil
-                .getTypeParameters(parent);
+    private void checkRecordParamTags(final List<JavadocTag> tags,
+        final DetailAST compactDef, boolean reportExpectedTags) {
 
-        // Loop over the tags, checking to see they exist in the params.
+        final DetailAST parent = getRecordDef(compactDef);
+        final List<DetailAST> params = getRecordComponents(parent);
+        final Set<DetailAST> missingParams = new HashSet<>(params);
+
         final ListIterator<JavadocTag> tagIt = tags.listIterator();
         while (tagIt.hasNext()) {
             final JavadocTag tag = tagIt.next();
@@ -772,24 +807,63 @@ public class JavadocMethodCheck extends AbstractCheck {
             tagIt.remove();
 
             final String arg1 = tag.getFirstArg();
-            boolean found = removeMatchingParam(params, arg1);
+            final boolean found = checkParamMatch(params, arg1, missingParams);
+
+            if (!found) {
+                log(tag.getLineNo(), tag.getColumnNo(), MSG_UNUSED_TAG,
+                        JavadocTagInfo.PARAM.getText(), arg1);
+            }
+        }
+
+        if (!allowMissingParamTags && reportExpectedTags) {
+            for (DetailAST param : missingParams) {
+                log(compactDef, MSG_EXPECTED_TAG,
+                    JavadocTagInfo.PARAM.getText(), param.getText());
+            }
+        }
+    }
+
+    /**
+     * Checks a set of tags for matching parameters.
+     *
+     * @param tags the tags to check
+     * @param parent the node which takes the parameters
+     * @param reportExpectedTags whether we should report if do not find
+     *            expected tag
+     */
+    private void checkParamTags(final List<JavadocTag> tags,
+            final DetailAST parent, boolean reportExpectedTags) {
+        final List<DetailAST> params = getParameters(parent);
+        final Set<DetailAST> missingParams = new HashSet<>(params);
+        final List<DetailAST> typeParams = CheckUtil
+                .getTypeParameters(parent);
+
+        final ListIterator<JavadocTag> tagIt = tags.listIterator();
+        while (tagIt.hasNext()) {
+            final JavadocTag tag = tagIt.next();
+
+            if (!tag.isParamTag()) {
+                continue;
+            }
+
+            tagIt.remove();
+
+            final String arg1 = tag.getFirstArg();
+            boolean found = checkParamMatch(params, arg1, missingParams);
 
             if (arg1.endsWith(ELEMENT_END)) {
                 found = searchMatchingTypeParameter(typeParams,
                         arg1.substring(1, arg1.length() - 1));
             }
 
-            // Handle extra JavadocTag
             if (!found) {
                 log(tag.getLineNo(), tag.getColumnNo(), MSG_UNUSED_TAG,
-                        "@param", arg1);
+                        JavadocTagInfo.PARAM.getText(), arg1);
             }
         }
 
-        // Now dump out all type parameters/parameters without tags :- unless
-        // the user has chosen to suppress these problems
         if (!allowMissingParamTags && reportExpectedTags) {
-            for (DetailAST param : params) {
+            for (DetailAST param : missingParams) {
                 log(param, MSG_EXPECTED_TAG,
                     JavadocTagInfo.PARAM.getText(), param.getText());
             }
@@ -834,16 +908,16 @@ public class JavadocMethodCheck extends AbstractCheck {
      *
      * @param params collection of DetailAST parameters
      * @param paramName name of parameter
+     * @param missingParams collection of missing parameters
      * @return true if parameter found and removed
      */
-    private static boolean removeMatchingParam(Iterable<DetailAST> params, String paramName) {
+    private static boolean checkParamMatch(Iterable<DetailAST> params, String paramName,
+                                           Set<DetailAST> missingParams) {
         boolean found = false;
-        final Iterator<DetailAST> paramIt = params.iterator();
-        while (paramIt.hasNext()) {
-            final DetailAST param = paramIt.next();
+        for (DetailAST param : params) {
             if (param.getText().equals(paramName)) {
                 found = true;
-                paramIt.remove();
+                missingParams.remove(param);
                 break;
             }
         }
