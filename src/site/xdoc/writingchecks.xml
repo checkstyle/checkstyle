@@ -119,7 +119,7 @@
         providing the java file.
       </p>
       <p>For example, take this MyClass.java file:</p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
+      <div class="wrapper"><pre><code class="language-java"><![CDATA[
 /**
  * My <b>class</b>.
  * @see AbstractClass
@@ -145,7 +145,7 @@ public class MyClass {
 
           <tr>
             <td>
-              <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
+              <div class="wrapper"><pre><code class="language-java"><![CDATA[
 CLASS_DEF -> CLASS_DEF [5:0]
 |--MODIFIERS -> MODIFIERS [5:0]
 |   `--LITERAL_PUBLIC -> public [5:0]
@@ -158,7 +158,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
               </code></pre></div>
             </td>
             <td>
-              <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
+              <div class="wrapper"><pre><code class="language-java"><![CDATA[
 CLASS_DEF -> CLASS_DEF [5:0]
 |--MODIFIERS -> MODIFIERS [5:0]
 |   |--BLOCK_COMMENT_BEGIN -> /* [1:0]
@@ -190,7 +190,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
         Run the gui with the command:
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
           java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gui.Main
         </code></pre></div>
       </div>
@@ -344,7 +344,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
         Check implementation:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+      <div class="wrapper"><pre><code class="language-java">
 package com.mycompany.checks;
 import com.puppycrawl.tools.checkstyle.api.*;
 
@@ -515,7 +515,7 @@ public class MethodLimitCheck extends AbstractCheck
         to the Check:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+      <div class="wrapper"><pre><code class="language-java">
 public class MethodLimitCheck extends AbstractCheck
 {
   // code from above omitted for brevity
@@ -599,7 +599,7 @@ public class MethodLimitCheck extends AbstractCheck
         Your configuration file <code>config.xml</code> should look something like this:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;?xml version=&quot;1.0&quot;?&gt;
 &lt;!DOCTYPE module PUBLIC
     &quot;-//Checkstyle//DTD Checkstyle Configuration 1.3//EN&quot;
@@ -629,7 +629,7 @@ public class MethodLimitCheck extends AbstractCheck
 
       <p>For Linux/Unix OS:</p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
           java -classpath mycompanychecks.jar:checkstyle-${projectVersion}-all.jar \
           &#xa0;&#xa0;&#xa0;&#xa0;com.puppycrawl.tools.checkstyle.Main -c config.xml myproject
         </code></pre></div>
@@ -637,7 +637,7 @@ public class MethodLimitCheck extends AbstractCheck
 
       <p>For Windows OS:</p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
           java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar ^
           &#xa0;&#xa0;&#xa0;&#xa0;com.puppycrawl.tools.checkstyle.Main -c config.xml myproject
         </code></pre></div>
@@ -743,7 +743,7 @@ public class MethodLimitCheck extends AbstractCheck
         of files exceeds a certain limit. Here is a FileSetCheck that does just that:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+      <div class="wrapper"><pre><code class="language-java">
 package com.mycompany.checks;
 import java.io.File;
 import java.util.List;
