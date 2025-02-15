@@ -214,12 +214,9 @@ public final class InlineConfigParser {
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
             "com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck",
             "com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck",
-            "com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck",
@@ -276,7 +273,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck",
             "com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck",
@@ -324,6 +320,7 @@ public final class InlineConfigParser {
     // This is a hack until https://github.com/checkstyle/checkstyle/issues/13845
     private static final Map<String, String> MODULE_MAPPINGS = new HashMap<>();
 
+    // -@cs[ExecutableStatementCount] Suppressing due to large module mappings
     static {
         MODULE_MAPPINGS.put("IllegalCatch",
                 "com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck");
@@ -363,6 +360,30 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter");
         MODULE_MAPPINGS.put("SuppressWarningsFilter",
                 "com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter");
+        MODULE_MAPPINGS.put("LeftCurly",
+                "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck");
+        MODULE_MAPPINGS.put("RequireThis",
+                "com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck");
+        MODULE_MAPPINGS.put("IllegalThrows",
+                "com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck");
+        MODULE_MAPPINGS.put("LocalFinalVariableName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck");
+        MODULE_MAPPINGS.put("PackageName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck");
+        MODULE_MAPPINGS.put("RedundantModifier",
+                "com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck");
+        MODULE_MAPPINGS.put("AbstractClassName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck");
+        MODULE_MAPPINGS.put("JavadocMethod",
+                "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck");
+        MODULE_MAPPINGS.put("IllegalIdentifierName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck");
+        MODULE_MAPPINGS.put("FileLength",
+                "com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck");
+        MODULE_MAPPINGS.put("EqualsAvoidNull",
+                "com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck");
+        MODULE_MAPPINGS.put("JavadocStyle",
+                "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck");
     }
 
     /** Stop instances being created. **/

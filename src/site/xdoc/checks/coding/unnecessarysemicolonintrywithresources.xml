@@ -39,17 +39,17 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;UnnecessarySemicolonInTryWithResources&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnnecessarySemicolonInTryWithResources"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example of violations
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   void method() throws IOException {
     try (Reader r1 = new PipedReader();) {} // violation, 'Unnecessary semicolon'
@@ -61,24 +61,24 @@ class Example1 {
     ) {}
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check to detect unnecessary semicolon
           if closing parenthesis is not on the same line
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;UnnecessarySemicolonInTryWithResources&quot;&gt;
-      &lt;property name=&quot;allowWhenNoBraceAfterSemicolon&quot; value=&quot;false&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnnecessarySemicolonInTryWithResources"&gt;
+      &lt;property name="allowWhenNoBraceAfterSemicolon" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Example of exclusion
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   void method() throws IOException {
     try (Reader r1 = new PipedReader();) {} // violation, 'Unnecessary semicolon'
@@ -90,7 +90,7 @@ class Example2 {
     ) {}
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage"

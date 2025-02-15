@@ -105,17 +105,17 @@ return new int[] {
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ArrayTrailingComma&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ArrayTrailingComma"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Which results in the following violations:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   int[] numbers = {1, 2, 3};
   boolean[] bools = {
@@ -136,7 +136,7 @@ public class Example1 {
   };
 
   String[] letters = {
-    &quot;a&quot;, &quot;b&quot;, &quot;c&quot;};
+    "a", "b", "c"};
 
   int[] a1 = new int[]{
     1,
@@ -149,20 +149,20 @@ public class Example1 {
     2
   ,};
 }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">To configure check to always validate trailing comma:</p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ArrayTrailingComma&quot;&gt;
-        &lt;property name=&quot;alwaysDemandTrailingComma&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ArrayTrailingComma"&gt;
+        &lt;property name="alwaysDemandTrailingComma" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   int[] numbers = {1, 2, 3}; // violation 'Array should contain trailing comma.'
   boolean[] bools = {
@@ -183,7 +183,7 @@ public class Example2 {
   };
 
   String[] letters = {
-    &quot;a&quot;, &quot;b&quot;, &quot;c&quot;}; // violation 'Array should contain trailing comma.'
+    "a", "b", "c"}; // violation 'Array should contain trailing comma.'
 
   int[] a1 = new int[]{
     1,
@@ -196,7 +196,7 @@ public class Example2 {
     2
     ,};
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

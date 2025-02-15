@@ -41,17 +41,17 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;TypecastParenPad&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TypecastParenPad"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   float f1 = 3.14f;
 
@@ -65,24 +65,24 @@ class Example1 {
 
   float f4 = ( float) d; // violation 'followed by whitespace'
 }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
           To configure the check to require spaces:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;TypecastParenPad&quot;&gt;
-      &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TypecastParenPad"&gt;
+      &lt;property name="option" value="space"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   double d1 = 3.14;
 
@@ -96,7 +96,7 @@ class Example2 {
 
   int y = ( int) d2; // violation 'not preceded with whitespace'
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -67,57 +67,57 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ParameterName&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParameterName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Code Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   void method1(int v1) {}
   void method2(int V2) {} // violation
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters, digits, and underscores:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ParameterName&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;^[a-z][_a-zA-Z0-9]+$&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParameterName"&gt;
+      &lt;property name="format" value="^[a-z][_a-zA-Z0-9]+$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Code Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   void method1(int v1) {}
   void method2(int v_2) {}
   void method3(int V3) {} // violation
 }
-        </source>
+</code></pre></div>
 
         <p id="Example3-config">
             An example of how to configure the check to skip methods with Override annotation from
             validation:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ParameterName&quot;&gt;
-      &lt;property name=&quot;ignoreOverridden&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParameterName"&gt;
+      &lt;property name="ignoreOverridden" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Code Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
   void method1(int v1) {}
   void method2(int V2) {} // violation
@@ -126,60 +126,60 @@ class Example3 {
     return true;
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example4-config">
           An example of how to configure the check for names that begin with
           a lower case letter, followed by letters and digits is:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ParameterName&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-zA-Z0-9]+$&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParameterName"&gt;
+      &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Code Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
   void method1(int v1) {}
   void method2(int v_2) {} // violation
   void method3(int V3) {} // violation
 }
-        </source>
+</code></pre></div>
         <p id="Example5-config">
           The following configuration checks that the parameters always start with two
           lowercase characters and, in addition, that public method parameters cannot be one
           character long:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ParameterName&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;^[a-z]([a-z0-9][a-zA-Z0-9]*)?$&quot;/&gt;
-      &lt;property name=&quot;accessModifiers&quot; value=&quot;protected, package, private&quot;/&gt;
-      &lt;message key=&quot;name.invalidPattern&quot;
-        value=&quot;Parameter name ''{0}'' must match pattern ''{1}''&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParameterName"&gt;
+      &lt;property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/&gt;
+      &lt;property name="accessModifiers" value="protected, package, private"/&gt;
+      &lt;message key="name.invalidPattern"
+        value="Parameter name ''{0}'' must match pattern ''{1}''"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;ParameterName&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-z0-9][a-zA-Z0-9]*$&quot;/&gt;
-      &lt;property name=&quot;accessModifiers&quot; value=&quot;public&quot;/&gt;
-      &lt;message key=&quot;name.invalidPattern&quot;
-        value=&quot;Parameter name ''{0}'' must match pattern ''{1}''&quot;/&gt;
+    &lt;module name="ParameterName"&gt;
+      &lt;property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/&gt;
+      &lt;property name="accessModifiers" value="public"/&gt;
+      &lt;message key="name.invalidPattern"
+        value="Parameter name ''{0}'' must match pattern ''{1}''"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">Code Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
   void fn1(int v1) {}
-  protected void fn2(int V2) {} // violation &quot;Parameter name 'V2' must match pattern&quot;
+  protected void fn2(int V2) {} // violation "Parameter name 'V2' must match pattern"
   private void fn3(int a) {}
-  public void fn4(int b) {} // violation &quot;Parameter name 'b' must match pattern&quot;
+  public void fn4(int b) {} // violation "Parameter name 'b' must match pattern"
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

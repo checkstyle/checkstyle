@@ -48,15 +48,15 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;UncommentedMain&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UncommentedMain"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   // violation below, 'Uncommented main method found'
   public static void main(String... args){}
@@ -82,22 +82,22 @@ record MyRecord1() {
 record MyRecord2() {
   //public void main(){}
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check to allow the <code>main</code> method for all classes
           with &quot;Main&quot; name:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;UncommentedMain&quot;&gt;
-      &lt;property name=&quot;excludedClasses&quot; value=&quot;\.Main$&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UncommentedMain"&gt;
+      &lt;property name="excludedClasses" value="\.Main$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   // violation below, 'Uncommented main method found'
   public static void main(String... args){}
@@ -123,7 +123,7 @@ record MyRecord1() {
 record MyRecord2() {
   //public void main(){}
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

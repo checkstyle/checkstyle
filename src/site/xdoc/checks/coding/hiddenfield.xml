@@ -135,15 +135,15 @@ class PageBuilder {
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;HiddenField&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="HiddenField"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
 
   private String field;
@@ -165,23 +165,23 @@ class Example1 {
     abstract int method(String field); // violation, ''field' hides a field'
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
           To configure the check so that it checks local variables but not
           parameters:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;HiddenField&quot;&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="HiddenField"&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
 
   private String field;
@@ -203,23 +203,23 @@ class Example2 {
     abstract int method(String field); // OK, because PARAMETER_DEF not configured
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example3-config">
           To configure the check so that it ignores the variables and parameters named
           &quot;test&quot;:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;HiddenField&quot;&gt;
-      &lt;property name=&quot;ignoreFormat&quot; value=&quot;^testField&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="HiddenField"&gt;
+      &lt;property name="ignoreFormat" value="^testField"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
 
   private String field;
@@ -241,22 +241,22 @@ class Example3 {
     abstract int method(String field); // violation, ''field' hides a field'
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example4-config">
           To configure the check so that it ignores constructor parameters:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;HiddenField&quot;&gt;
-      &lt;property name=&quot;ignoreConstructorParameter&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="HiddenField"&gt;
+      &lt;property name="ignoreConstructorParameter" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
 
   private String field;
@@ -278,23 +278,23 @@ class Example4 {
     abstract int method(String field); // violation, ''field' hides a field'
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example5-config">
           To configure the check so that it ignores the parameter of setter
           methods:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;HiddenField&quot;&gt;
-      &lt;property name=&quot;ignoreSetter&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="HiddenField"&gt;
+      &lt;property name="ignoreSetter" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
 
   private String field;
@@ -316,25 +316,25 @@ class Example5 {
     abstract int method(String field); // violation, ''field' hides a field'
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example6-config">
           To configure the check so that it ignores the parameter of setter
           methods recognizing setter as returning either <code>void</code> or
           a class in which it is declared:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;HiddenField&quot;&gt;
-      &lt;property name=&quot;ignoreSetter&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;setterCanReturnItsClass&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="HiddenField"&gt;
+      &lt;property name="ignoreSetter" value="true"/&gt;
+      &lt;property name="setterCanReturnItsClass" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example6-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example6 {
 
   private String field;
@@ -356,21 +356,21 @@ class Example6 {
     abstract int method(String field); // violation, ''field' hides a field'
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example7-config">
           To configure the check so that it ignores parameters of abstract methods:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;HiddenField&quot;&gt;
-      &lt;property name=&quot;ignoreAbstractMethods&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="HiddenField"&gt;
+      &lt;property name="ignoreAbstractMethods" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example7-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example7 {
 
   private String field;
@@ -393,7 +393,7 @@ class Example7 {
     abstract int method(String field); // OK, because ignoreAbstractMethods is true
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

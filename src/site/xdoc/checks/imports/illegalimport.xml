@@ -64,17 +64,17 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;IllegalImport&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalImport"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
             The following example shows class with no illegal imports
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.io.*;
 import java.lang.ArithmeticException;
 import java.sql.Connection;
@@ -85,21 +85,21 @@ import java.util.Date;
 import sun.applet.*; // violation, 'Illegal import'
 
 public class Example1 {}
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
           To configure the check so that it rejects packages <code>java.io.*</code>
           and <code>java.sql.*</code>:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;IllegalImport&quot;&gt;
-      &lt;property name=&quot;illegalPkgs&quot; value=&quot;java.io, java.sql&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalImport"&gt;
+      &lt;property name="illegalPkgs" value="java.io, java.sql"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           The following example shows class with two illegal imports
         </p>
@@ -107,7 +107,7 @@ public class Example1 {}
           <li><b>java.io.*</b>, illegalPkgs property contains this package</li>
           <li><b>java.sql.Connection</b> is inside java.sql package</li>
         </ul>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.io.*; // violation, 'Illegal import'
 import java.lang.ArithmeticException;
 import java.sql.Connection; // violation, 'Illegal import'
@@ -118,22 +118,22 @@ import java.util.Date;
 import sun.applet.*;
 
 public class Example2 {}
-        </source>
+</code></pre></div>
 
         <p id="Example3-config">
           To configure the check so that it rejects classes <code>java.util.Date</code> and
           <code>java.sql.Connection</code>:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;IllegalImport&quot;&gt;
-      &lt;property name=&quot;illegalClasses&quot;
-        value=&quot;java.util.Date, java.sql.Connection&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalImport"&gt;
+      &lt;property name="illegalClasses"
+        value="java.util.Date, java.sql.Connection"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">
           The following example shows class with two illegal imports
         </p>
@@ -141,7 +141,7 @@ public class Example2 {}
           <li><b>java.sql.Connection</b>, illegalClasses property contains this class</li>
           <li><b>java.util.Date</b>, illegalClasses property contains this class</li>
         </ul>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.io.*;
 import java.lang.ArithmeticException;
 import java.sql.Connection; // violation, 'Illegal import'
@@ -152,22 +152,22 @@ import java.util.Date; // violation, 'Illegal import'
 import sun.applet.*; // violation, 'Illegal import'
 
 public class Example3 {}
-        </source>
+</code></pre></div>
 
         <p id="Example4-config">
           To configure the check so that it rejects packages not satisfying to regular
           expression <code>java\.util</code>:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;IllegalImport&quot;&gt;
-      &lt;property name=&quot;regexp&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;illegalPkgs&quot; value=&quot;java\.util&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalImport"&gt;
+      &lt;property name="regexp" value="true"/&gt;
+      &lt;property name="illegalPkgs" value="java\.util"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p>
           The following example shows class with four illegal imports
         </p>
@@ -180,7 +180,7 @@ public class Example3 {}
         <p id="Example4-code">
           All four imports match &quot;java\.util&quot; regular expression
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.io.*;
 import java.lang.ArithmeticException;
 import java.sql.Connection;
@@ -191,24 +191,24 @@ import java.util.Date; // violation, 'Illegal import'
 import sun.applet.*;
 
 public class Example4 {}
-        </source>
+</code></pre></div>
 
         <p id="Example5-config">
           To configure the check so that it rejects class names not satisfying to regular
           expression <code>^java\.util\.(List|Arrays)</code> and
           <code>^java\.sql\.Connection</code>:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;IllegalImport&quot;&gt;
-      &lt;property name=&quot;regexp&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;illegalClasses&quot;
-        value=&quot;^java\.util\.(List|Arrays), ^java\.sql\.Connection&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalImport"&gt;
+      &lt;property name="regexp" value="true"/&gt;
+      &lt;property name="illegalClasses"
+        value="^java\.util\.(List|Arrays), ^java\.sql\.Connection"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">
           The following example shows class with three illegal imports
         </p>
@@ -217,7 +217,7 @@ public class Example4 {}
           <li><b>java.util.List</b> matches &quot;^java\.util\.(List|Arrays)&quot; regular expression</li>
           <li><b>java.util.Arrays</b> matches &quot;^java\.util\.(List|Arrays)&quot; regular expression</li>
         </ul>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.io.*;
 import java.lang.ArithmeticException;
 import java.sql.Connection; // violation, 'Illegal import'
@@ -228,7 +228,7 @@ import java.util.Date;
 import sun.applet.*; // violation, 'Illegal import'
 
 public class Example5 {}
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

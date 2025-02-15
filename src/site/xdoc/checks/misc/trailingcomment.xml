@@ -103,18 +103,18 @@ d = e / f;        // Another comment for this line
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;TrailingComment&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TrailingComment"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
 
         <p id="Example1-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   public static void main(String[] args) {
     int x = 10;
@@ -122,7 +122,7 @@ public class Example1 {
     if (/* OK */ x &gt; 5) {}
     int a = 5; // violation
     doSomething(
-            &quot;param1&quot;
+            "param1"
     ); // OK, by default such trailing of method/code-block ending is allowed
 
   }
@@ -130,104 +130,104 @@ public class Example1 {
   private static void doSomething(String param) {
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
           To configure the check to enforce only comment on a line:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;TrailingComment&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;^\s*$&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TrailingComment"&gt;
+      &lt;property name="format" value="^\s*$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
 
         <p id="Example2-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   public static void main(String[] args) {
     int x = new Random().nextInt(100);
     // OK
     if (/* OK, this comment does not end the line */ x &gt; 5) {}
-    int a = 5; // violation, line content before comment should match pattern &quot;^\s*$&quot;
+    int a = 5; // violation, line content before comment should match pattern "^\s*$"
     doSomething(
-            &quot;param1&quot;
-    ); // violation, line content before comment should match pattern &quot;^\s*$&quot;
+            "param1"
+    ); // violation, line content before comment should match pattern "^\s*$"
   }
 
   private static void doSomething(String param) {
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example3-config">
           To configure check so that trailing comment with exact comments like
           &quot;SUPPRESS CHECKSTYLE&quot;, &quot;NOPMD&quot;, &quot;NOSONAR&quot;
           are suppressed:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;TrailingComment&quot;/&gt;
-    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-      &lt;property name=&quot;checks&quot; value=&quot;TrailingCommentCheck&quot;/&gt;
-      &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TrailingComment"/&gt;
+    &lt;module name="SuppressionXpathSingleFilter"&gt;
+      &lt;property name="checks" value="TrailingCommentCheck"/&gt;
+      &lt;property name="query" value="//SINGLE_LINE_COMMENT
         [./COMMENT_CONTENT[@text=' NOSONAR\n' or @text=' NOPMD\n'
-        or @text=' SUPPRESS CHECKSTYLE\n']]&quot;/&gt;
+        or @text=' SUPPRESS CHECKSTYLE\n']]"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
 
         <p id="Example3-code">
           Example for trailing comments check to suppress specific trailing comment:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
   int a; // SUPPRESS CHECKSTYLE
   int b; // NOPMD
   int c; // NOSONAR
   int d; // violation, not suppressed
 }
-        </source>
+</code></pre></div>
 
         <p id="Example4-config">
           To configure check so that trailing comment starting with &quot;SUPPRESS CHECKSTYLE&quot;,
           &quot;NOPMD&quot;, &quot;NOSONAR&quot; are suppressed:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;TrailingComment&quot;/&gt;
-    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-      &lt;property name=&quot;checks&quot; value=&quot;TrailingCommentCheck&quot;/&gt;
-      &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
-        [./COMMENT_CONTENT[starts-with(@text, ' NOPMD')]]&quot;/&gt;
-      &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
-        [./COMMENT_CONTENT[starts-with(@text, ' SUPPRESS CHECKSTYLE')]]&quot;/&gt;
-      &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
-        [./COMMENT_CONTENT[starts-with(@text, ' NOSONAR')]]&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TrailingComment"/&gt;
+    &lt;module name="SuppressionXpathSingleFilter"&gt;
+      &lt;property name="checks" value="TrailingCommentCheck"/&gt;
+      &lt;property name="query" value="//SINGLE_LINE_COMMENT
+        [./COMMENT_CONTENT[starts-with(@text, ' NOPMD')]]"/&gt;
+      &lt;property name="query" value="//SINGLE_LINE_COMMENT
+        [./COMMENT_CONTENT[starts-with(@text, ' SUPPRESS CHECKSTYLE')]]"/&gt;
+      &lt;property name="query" value="//SINGLE_LINE_COMMENT
+        [./COMMENT_CONTENT[starts-with(@text, ' NOSONAR')]]"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
 
         <p id="Example4-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
-  int a; // SUPPRESS CHECKSTYLE - OK, comment starts with &quot; SUPPRESS CHECKSTYLE&quot;
-  int b; // NOPMD - OK, comment starts with &quot; NOPMD&quot;
-  int c; // NOSONAR - OK, comment starts with &quot; NOSONAR&quot;
+  int a; // SUPPRESS CHECKSTYLE - OK, comment starts with " SUPPRESS CHECKSTYLE"
+  int b; // NOPMD - OK, comment starts with " NOPMD"
+  int c; // NOSONAR - OK, comment starts with " NOSONAR"
   int d; // violation, not suppressed
 }
-        </source>
+</code></pre></div>
 
       </subsection>
 

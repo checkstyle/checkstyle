@@ -114,18 +114,18 @@
           between a comment containing <code>CHECKSTYLE:OFF</code> and a comment containing
           <code>CHECKSTYLE:ON</code>:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SuppressionCommentFilter&quot;/&gt;
-    &lt;module name=&quot;MemberName&quot;/&gt;
-    &lt;module name=&quot;ConstantName&quot;/&gt;
-    &lt;module name=&quot;IllegalCatch&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionCommentFilter"/&gt;
+    &lt;module name="MemberName"/&gt;
+    &lt;module name="ConstantName"/&gt;
+    &lt;module name="IllegalCatch"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1
 {
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
@@ -155,28 +155,28 @@ class Example1
     //CHECKSTYLE:ON
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure a filter so that <code>// stop constant
           check</code> and <code>// resume constant check</code> marks
           legitimate constant names:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
-      &lt;property name=&quot;offCommentFormat&quot; value=&quot;stop constant check&quot;/&gt;
-      &lt;property name=&quot;onCommentFormat&quot; value=&quot;resume constant check&quot;/&gt;
-      &lt;property name=&quot;checkFormat&quot; value=&quot;ConstantNameCheck&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionCommentFilter"&gt;
+      &lt;property name="offCommentFormat" value="stop constant check"/&gt;
+      &lt;property name="onCommentFormat" value="resume constant check"/&gt;
+      &lt;property name="checkFormat" value="ConstantNameCheck"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;MemberName&quot;/&gt;
-    &lt;module name=&quot;ConstantName&quot;/&gt;
-    &lt;module name=&quot;IllegalCatch&quot;/&gt;
+    &lt;module name="MemberName"/&gt;
+    &lt;module name="ConstantName"/&gt;
+    &lt;module name="IllegalCatch"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2
 {
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
@@ -206,30 +206,30 @@ class Example2
     //resume constant check
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           To configure a filter so that <code>UNUSED OFF:<i>var</i></code>
           and <code>UNUSED ON: <i>var</i></code> marks a
           variable or parameter known not to be used by the code by
           matching the variable name in the message through a specified message in messageFormat:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
-      &lt;property name=&quot;offCommentFormat&quot; value=&quot;ILLEGAL OFF\: (\w+)&quot;/&gt;
-      &lt;property name=&quot;onCommentFormat&quot; value=&quot;ILLEGAL ON\: (\w+)&quot;/&gt;
-      &lt;property name=&quot;checkFormat&quot; value=&quot;IllegalCatch&quot;/&gt;
-      &lt;property name=&quot;messageFormat&quot; value=&quot;^Catching '$1' is not allowed.$&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionCommentFilter"&gt;
+      &lt;property name="offCommentFormat" value="ILLEGAL OFF\: (\w+)"/&gt;
+      &lt;property name="onCommentFormat" value="ILLEGAL ON\: (\w+)"/&gt;
+      &lt;property name="checkFormat" value="IllegalCatch"/&gt;
+      &lt;property name="messageFormat" value="^Catching '$1' is not allowed.$"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;MemberName&quot;/&gt;
-    &lt;module name=&quot;ConstantName&quot;/&gt;
-    &lt;module name=&quot;IllegalCatch&quot;/&gt;
+    &lt;module name="MemberName"/&gt;
+    &lt;module name="ConstantName"/&gt;
+    &lt;module name="IllegalCatch"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3
 {
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
@@ -260,28 +260,28 @@ class Example3
     //ILLEGAL ON: Exception
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example4-config">
           To configure a filter so that name of suppressed check mentioned
           in comment <code>CSOFF: <i>regexp</i></code>
           and <code>CSON: <i>regexp</i></code> mark a matching check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
-      &lt;property name=&quot;offCommentFormat&quot; value=&quot;CSOFF\: ([\w\|]+)&quot;/&gt;
-      &lt;property name=&quot;onCommentFormat&quot; value=&quot;CSON\: ([\w\|]+)&quot;/&gt;
-      &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionCommentFilter"&gt;
+      &lt;property name="offCommentFormat" value="CSOFF\: ([\w\|]+)"/&gt;
+      &lt;property name="onCommentFormat" value="CSON\: ([\w\|]+)"/&gt;
+      &lt;property name="checkFormat" value="$1"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;MemberName&quot;/&gt;
-    &lt;module name=&quot;ConstantName&quot;/&gt;
-    &lt;module name=&quot;IllegalCatch&quot;/&gt;
+    &lt;module name="MemberName"/&gt;
+    &lt;module name="ConstantName"/&gt;
+    &lt;module name="IllegalCatch"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4
 {
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
@@ -311,28 +311,28 @@ class Example4
     //CSON: IllegalCatch
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example5-config">
           To configure a filter to suppress all audit events between a comment
           containing <code>CHECKSTYLE_OFF: ALMOST_ALL</code> and a comment containing
           <code>CHECKSTYLE_OFF: ALMOST_ALL</code> except for the <em>ConstantName</em> check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
-      &lt;property name=&quot;offCommentFormat&quot; value=&quot;CHECKSTYLE_OFF: ALMOST_ALL&quot;/&gt;
-      &lt;property name=&quot;onCommentFormat&quot; value=&quot;CHECKSTYLE_ON: ALMOST_ALL&quot;/&gt;
-      &lt;property name=&quot;checkFormat&quot; value=&quot;^((?!(ConstantName)).)*$&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionCommentFilter"&gt;
+      &lt;property name="offCommentFormat" value="CHECKSTYLE_OFF: ALMOST_ALL"/&gt;
+      &lt;property name="onCommentFormat" value="CHECKSTYLE_ON: ALMOST_ALL"/&gt;
+      &lt;property name="checkFormat" value="^((?!(ConstantName)).)*$"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;MemberName&quot;/&gt;
-    &lt;module name=&quot;ConstantName&quot;/&gt;
-    &lt;module name=&quot;IllegalCatch&quot;/&gt;
+    &lt;module name="MemberName"/&gt;
+    &lt;module name="ConstantName"/&gt;
+    &lt;module name="IllegalCatch"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5
 {
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
@@ -363,7 +363,7 @@ class Example5
     //CHECKSTYLE_ON: ALMOST_ALL
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example6-config">
           It is possible to specify an ID of checks, so that it can be leveraged by the
           SuppressionCommentFilter to skip validations. The following examples show how to skip
@@ -373,28 +373,28 @@ class Example5
           to the ID written in the offCommentFormat and onCommentFormat. Config for such a
           case is written below:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
-      &lt;property name=&quot;offCommentFormat&quot; value=&quot;CSOFF (\w+)&quot;/&gt;
-      &lt;property name=&quot;onCommentFormat&quot; value=&quot;CSON (\w+)&quot;/&gt;
-      &lt;property name=&quot;idFormat&quot; value=&quot;$1&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionCommentFilter"&gt;
+      &lt;property name="offCommentFormat" value="CSOFF (\w+)"/&gt;
+      &lt;property name="onCommentFormat" value="CSON (\w+)"/&gt;
+      &lt;property name="idFormat" value="$1"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;MemberName&quot;&gt;
-    &lt;property name=&quot;id&quot; value=&quot;MemberID&quot;/&gt;
+    &lt;module name="MemberName"&gt;
+    &lt;property name="id" value="MemberID"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;ConstantName&quot;&gt;
-      &lt;property name=&quot;id&quot; value=&quot;ConstantID&quot;/&gt;
+    &lt;module name="ConstantName"&gt;
+      &lt;property name="id" value="ConstantID"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;IllegalCatch&quot;&gt;
-      &lt;property name=&quot;id&quot; value=&quot;IllegalID&quot;/&gt;
+    &lt;module name="IllegalCatch"&gt;
+      &lt;property name="id" value="IllegalID"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example6-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example6
 {
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
@@ -424,26 +424,26 @@ class Example6
     //CSON IllegalID
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example7-config">
           Example of how to configure the check to suppress checks by name defined in comment.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
-      &lt;property name=&quot;offCommentFormat&quot; value=&quot;csoff (\w+)&quot;/&gt;
-      &lt;property name=&quot;onCommentFormat&quot; value=&quot;cson (\w+)&quot;/&gt;
-      &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionCommentFilter"&gt;
+      &lt;property name="offCommentFormat" value="csoff (\w+)"/&gt;
+      &lt;property name="onCommentFormat" value="cson (\w+)"/&gt;
+      &lt;property name="checkFormat" value="$1"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;MemberName&quot;/&gt;
-    &lt;module name=&quot;ConstantName&quot;/&gt;
-    &lt;module name=&quot;IllegalCatch&quot;/&gt;
+    &lt;module name="MemberName"/&gt;
+    &lt;module name="ConstantName"/&gt;
+    &lt;module name="IllegalCatch"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example7-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example7
 {
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
@@ -474,25 +474,25 @@ class Example7
   //cson IllegalCatch
 
 }
-        </source>
+</code></pre></div>
         <p id="Example8-config">
           Example depicting use of checkC and checkCPP style comments
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
-      &lt;property name=&quot;checkC&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;checkCPP&quot; value=&quot;false&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionCommentFilter"&gt;
+      &lt;property name="checkC" value="true"/&gt;
+      &lt;property name="checkCPP" value="false"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;MemberName&quot;/&gt;
-    &lt;module name=&quot;ConstantName&quot;/&gt;
-    &lt;module name=&quot;IllegalCatch&quot;/&gt;
+    &lt;module name="MemberName"/&gt;
+    &lt;module name="ConstantName"/&gt;
+    &lt;module name="IllegalCatch"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example8-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example8
 {
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
@@ -522,7 +522,7 @@ class Example8
     //CHECKSTYLE:ON
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

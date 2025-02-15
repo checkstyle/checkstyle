@@ -106,15 +106,15 @@
 
       <subsection name="Examples" id="Examples">
         <p id="Example1-config"> To configure the check: </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;EmptyBlock&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyBlock"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   private void emptyLoop() {
     for (int i = 0; i &lt; 10; i++) { // violation 'Must have at least one statement'
@@ -127,23 +127,23 @@ public class Example1 {
     }
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check for the <code>text</code>
           policy and only <code> try</code> blocks:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;EmptyBlock&quot;&gt;
-      &lt;property name=&quot;option&quot; value=&quot;text&quot;/&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyBlock"&gt;
+      &lt;property name="option" value="text"/&gt;
+      &lt;property name="tokens" value="LITERAL_TRY"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   private void emptyLoop() {
     for (int i = 0; i &lt; 10; i++) {
@@ -157,21 +157,21 @@ public class Example2 {
     }
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           To configure the check for case and default in switch block:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;EmptyBlock&quot;&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CASE,LITERAL_DEFAULT&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyBlock"&gt;
+      &lt;property name="tokens" value="LITERAL_CASE,LITERAL_DEFAULT"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
 
   private void testBadSwitchStatement(int a) {
@@ -215,7 +215,7 @@ public class Example3 {
 
   void someMethod() { }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

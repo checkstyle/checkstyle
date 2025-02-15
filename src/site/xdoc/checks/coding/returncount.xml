@@ -97,19 +97,19 @@
           return statements per method (ignoring the <code>equals()</code>
           method):
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ReturnCount&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ReturnCount"&gt;
+      &lt;property name="max" value="3"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
             Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
     public Example1() {}
     // ok below, because default void restriction is 1
@@ -138,25 +138,25 @@ public class Example1 {
     // ok below, because default void restriction is 1
     public void methodB(int x) { return; }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
           To configure the check so that it doesn't allow any
           return statements per void method:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ReturnCount&quot;&gt;
-      &lt;property name=&quot;maxForVoid&quot; value=&quot;0&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ReturnCount"&gt;
+      &lt;property name="maxForVoid" value="0"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
             Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
     public Example2() {}
     // violation below, 'max allowed for void methods/constructors/lambdas is 0'
@@ -185,27 +185,27 @@ public class Example2 {
     // violation below, 'max allowed for void methods/constructors/lambdas is 0'
     public void methodB(int x) { return; }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example3-config">
           To configure the check so that it doesn't allow more than 2
           return statements per method (ignoring the <code>equals()</code>
           method) and more than 1 return statements per void method:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ReturnCount&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
-      &lt;property name=&quot;maxForVoid&quot; value=&quot;1&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ReturnCount"&gt;
+      &lt;property name="max" value="2"/&gt;
+      &lt;property name="maxForVoid" value="1"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">
             Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
     public Example3() {}
     // ok below, because default void restriction is 1
@@ -234,26 +234,26 @@ public class Example3 {
     // ok below, because default void restriction is 1
     public void methodB(int x) { return; }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example4-config">
           To configure the check so that it doesn't allow more than three
           return statements per method for all methods:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ReturnCount&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
-      &lt;property name=&quot;format&quot; value=&quot;^$&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ReturnCount"&gt;
+      &lt;property name="max" value="3"/&gt;
+      &lt;property name="format" value="^$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">
             Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
     public Example4() {}
     // ok below, because default void restriction is 1
@@ -282,35 +282,35 @@ public class Example4 {
     // ok below, because default void restriction is 1
     public void methodB(int x) { return; }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example5-config">
           To configure the check so that it doesn't allow any return statements
           in constructors, more than one return statement in all lambda
           expressions and more than two return statements in methods:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ReturnCount&quot;&gt;
-      &lt;property name=&quot;maxForVoid&quot; value=&quot;0&quot;/&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ReturnCount"&gt;
+      &lt;property name="maxForVoid" value="0"/&gt;
+      &lt;property name="tokens" value="CTOR_DEF"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;ReturnCount&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;1&quot;/&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;LAMBDA&quot;/&gt;
+    &lt;module name="ReturnCount"&gt;
+      &lt;property name="max" value="1"/&gt;
+      &lt;property name="tokens" value="LAMBDA"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;ReturnCount&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+    &lt;module name="ReturnCount"&gt;
+      &lt;property name="max" value="2"/&gt;
+      &lt;property name="tokens" value="METHOD_DEF"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">
             Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example5 {
     public Example5() {}
     // violation below, 'max allowed for void methods/constructors/lambdas is 0'
@@ -339,7 +339,7 @@ public class Example5 {
     // ok below, because default void restriction is 1
     public void methodB(int x) { return; }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -37,36 +37,36 @@ if (&quot;something&quot;.equals(x))
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;StringLiteralEquality&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="StringLiteralEquality"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Examples of violations:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   String getName(){
-    return &quot;Y&quot;;
+    return "Y";
   }
   void InvalidExample(){
-    String status = &quot;pending&quot;;
+    String status = "pending";
     // violation below, 'Literal Strings should be compared using equals(), not '==''
-    if (status == &quot;done&quot;) {}
+    if (status == "done") {}
     // violation below, 'Literal Strings should be compared using equals(), not '!=''
-    while (status != &quot;done&quot;) {}
+    while (status != "done") {}
     // violation below, 'Literal Strings should be compared using equals(), not '==''
-    boolean flag = (status == &quot;done&quot;);
-    boolean flag1 = (status.equals(&quot;done&quot;));
-    String name = &quot;X&quot;;
+    boolean flag = (status == "done");
+    boolean flag1 = (status.equals("done"));
+    String name = "X";
     if (name == getName()) {}
     // OK, limitation that check cannot tell runtime type returned from method call
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

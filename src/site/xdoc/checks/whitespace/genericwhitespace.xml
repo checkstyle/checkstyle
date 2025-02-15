@@ -38,17 +38,17 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;GenericWhitespace&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="GenericWhitespace"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Examples with correct spacing:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   List&lt;String&gt; l;
   public &lt;T&gt; void foo() {}
@@ -57,20 +57,20 @@ class Example1 {
   HashSet&lt;Integer&gt; set;
   record License&lt;T&gt;() {}
 }
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Examples with incorrect spacing:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-  List &lt;String&gt; l; // violation, &quot;&lt;&quot; followed by whitespace
-  public&lt;T&gt; void foo() {} // violation, &quot;&lt;&quot; not preceded with whitespace
-  List a = new ArrayList&lt;&gt; (); // violation, &quot;&gt;&quot; followed by whitespace
-  Map&lt;Integer, String&gt;m; // violation, &quot;&gt;&quot; not followed by whitespace
-  HashSet&lt;Integer &gt; set; // violation, &quot;&gt;&quot; preceded with whitespace
-  record License&lt;T&gt; () {} // violation, &quot;&gt;&quot; followed by whitespace
+  List &lt;String&gt; l; // violation, "&lt;" followed by whitespace
+  public&lt;T&gt; void foo() {} // violation, "&lt;" not preceded with whitespace
+  List a = new ArrayList&lt;&gt; (); // violation, "&gt;" followed by whitespace
+  Map&lt;Integer, String&gt;m; // violation, "&gt;" not followed by whitespace
+  HashSet&lt;Integer &gt; set; // violation, "&gt;" preceded with whitespace
+  record License&lt;T&gt; () {} // violation, "&gt;" followed by whitespace
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

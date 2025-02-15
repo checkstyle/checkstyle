@@ -1148,7 +1148,36 @@ public final class JavadocTokenTypes {
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /////////////////////// SINGLETON HTML TAGS  //////////////////////////////////////////////////
-    /** Area tag name. */
+    /**
+     * Area tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code &lt area shape="rect" &gt}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   JAVADOC -> JAVADOC
+     *        |--NEWLINE -> \n
+     *        |--LEADING_ASTERISK ->  *
+     *        |--TEXT ->
+     *        |--HTML_ELEMENT -> HTML_ELEMENT
+     *        |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *        |       `--AREA_TAG -> AREA_TAG
+     *        |           |--START -> <
+     *        |           |--AREA_HTML_TAG_NAME -> area
+     *        |           |--WS ->
+     *        |           |--ATTRIBUTE -> ATTRIBUTE
+     *        |           |   |--HTML_TAG_NAME -> shape
+     *        |           |   |--EQUALS -> =
+     *        |           |   `--ATTR_VALUE -> "rect"
+     *        |           `--END -> >
+     *        |--TEXT ->
+     *        |--NEWLINE -> \n
+     *        |--TEXT ->
+     * }
+     * </pre>
+     */
+
     public static final int AREA_HTML_TAG_NAME = JavadocParser.AREA_HTML_TAG_NAME;
 
     /** Base tag name. */
@@ -1440,26 +1469,26 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     *   JAVADOC_TAG -&gt; JAVADOC_TAG
-     *        |--THROWS_LITERAL -&gt; @throws
-     *        |--WS -&gt;
-     *        |--CLASS_NAME -&gt; IOException
-     *        |--WS -&gt;
-     *        `--DESCRIPTION -&gt; DESCRIPTION
-     *            |--TEXT -&gt; if
-     *            |--HTML_ELEMENT -&gt; HTML_ELEMENT
-     *            |    `--HTML_TAG -&gt; HTML_TAG
-     *            |        |--HTML_ELEMENT_START -&gt; HTML_ELEMENT_START
-     *            |        |    |--START -&gt; &lt;
-     *            |        |    |--HTML_TAG_NAME -&gt; b
-     *            |        |    `--END -&gt; &gt;
-     *            |        |--TEXT -&gt; connection
-     *            |        `--HTML_ELEMENT_END -&gt; HTML_ELEMENT_END
-     *            |            |--START -&gt; -&lt;
-     *            |            |--SLASH -&gt; /
-     *            |            |--HTML_TAG_NAME -&gt; b
-     *            |            `--END -&gt; -&gt;
-     *            |--TEXT -&gt;  problems occur
+     *   --JAVADOC_TAG -> JAVADOC_TAG
+     *      |--THROWS_LITERAL -> @throws
+     *      |--WS ->
+     *      |--CLASS_NAME -> IOException
+     *      |--WS ->
+     *      `--DESCRIPTION -> DESCRIPTION
+     *          |--TEXT -> if
+     *          |--HTML_ELEMENT -> HTML_ELEMENT
+     *          |   `--HTML_TAG -> HTML_TAG
+     *          |       |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *          |       |   |--START -> <
+     *          |       |   |--HTML_TAG_NAME -> b
+     *          |       |   `--END -> >
+     *          |       |--TEXT -> connection
+     *          |       `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *          |           |--START -> <
+     *          |           |--SLASH -> /
+     *          |           |--HTML_TAG_NAME -> b
+     *          |           `--END -> >
+     *          |--TEXT ->  problems occur
      * }
      * </pre>
      */
@@ -1693,7 +1722,35 @@ public final class JavadocTokenTypes {
     public static final int EMPTY_TAG = JavadocParser.RULE_emptyTag
             + RULE_TYPES_OFFSET;
 
-    /** Area html tag. */
+    /**
+     * Area html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code &lt area shape="rect" &gt}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   JAVADOC -> JAVADOC
+     *        |--NEWLINE -> \n
+     *        |--LEADING_ASTERISK ->  *
+     *        |--TEXT ->
+     *        |--HTML_ELEMENT -> HTML_ELEMENT
+     *        |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *        |       `--AREA_TAG -> AREA_TAG
+     *        |           |--START -> <
+     *        |           |--AREA_HTML_TAG_NAME -> area
+     *        |           |--WS ->
+     *        |           |--ATTRIBUTE -> ATTRIBUTE
+     *        |           |   |--HTML_TAG_NAME -> shape
+     *        |           |   |--EQUALS -> =
+     *        |           |   `--ATTR_VALUE -> "rect"
+     *        |           `--END -> >
+     *        |--TEXT ->
+     *        |--NEWLINE -> \n
+     *        |--TEXT ->
+     * }
+     * </pre>
+     */
     public static final int AREA_TAG = JavadocParser.RULE_areaTag + RULE_TYPES_OFFSET;
 
     /** Base html tag. */
@@ -1717,7 +1774,44 @@ public final class JavadocTokenTypes {
     /** Img html tag. */
     public static final int IMG_TAG = JavadocParser.RULE_imgTag + RULE_TYPES_OFFSET;
 
-    /** Input html tag. */
+    /**
+     * Input html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code Type here: <input type="text" id="id" name="name"> }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   JAVADOC -> JAVADOC
+     *        |--NEWLINE -> \r\n
+     *        |--LEADING_ASTERISK ->  *
+     *        |--TEXT ->   Type here:
+     *        |--HTML_ELEMENT -> HTML_ELEMENT
+     *        |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *        |       `--INPUT_TAG -> INPUT_TAG
+     *        |           |--START -> <
+     *        |           |--INPUT_HTML_TAG_NAME -> input
+     *        |           |--WS ->
+     *        |           |--ATTRIBUTE -> ATTRIBUTE
+     *        |           |   |--HTML_TAG_NAME -> type
+     *        |           |   |--EQUALS -> =
+     *        |           |   `--ATTR_VALUE -> "text"
+     *        |           |--WS ->
+     *        |           |--ATTRIBUTE -> ATTRIBUTE
+     *        |           |   |--HTML_TAG_NAME -> id
+     *        |           |   |--EQUALS -> =
+     *        |           |   `--ATTR_VALUE -> "id"
+     *        |           |--WS ->
+     *        |           |--ATTRIBUTE -> ATTRIBUTE
+     *        |           |   |--HTML_TAG_NAME -> name
+     *        |           |   |--EQUALS -> =
+     *        |           |   `--ATTR_VALUE -> "name"
+     *        |           `--END -> >
+     *        |--NEWLINE -> \r\n
+     *        |--TEXT ->
+     * }
+     * </pre>
+     */
     public static final int INPUT_TAG = JavadocParser.RULE_inputTag + RULE_TYPES_OFFSET;
 
     /** Isindex html tag. */

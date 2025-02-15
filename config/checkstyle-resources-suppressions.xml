@@ -173,7 +173,7 @@
   <suppress checks="FileTabCharacter"
     files="[\\/]InputLineLengthSimple1\.java"/>
   <suppress checks="FileTabCharacter"
-    files="[\\/]InputTodoCommentSimple\.java"/>
+    files="[\\/]InputTodoCommentSimpleTwo\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputWhitespaceAroundSimple\.java"/>
   <suppress checks="FileTabCharacter"
@@ -276,8 +276,6 @@
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharacters2\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharacters3\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]todocomment[\\/]InputTodoCommentSimple\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]indentation[\\/]indentation[\\/]InputIndentationInvalidMethodIndent\.java"/>
   <suppress checks="FileLength"
@@ -626,8 +624,6 @@
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]modifier[\\/]redundantmodifier[\\/]InputRedundantModifierIt\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]modifier[\\/]modifierorder[\\/]InputModifierOrderTypeAnnotations\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]modifier[\\/]modifierorder[\\/]InputModifierOrderIt\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]metrics[\\/]cyclomaticcomplexity[\\/]InputCyclomaticComplexity\.java"/>
   <suppress checks="FileLength"

@@ -62,31 +62,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </div>
  *
  * <p>
- * Consider the following properties file in the same directory:
- * </p>
- * <pre>
- * #messages.properties
- * hello=Hello
- * cancel=Cancel
- *
- * #messages_de.properties
- * hell=Hallo
- * ok=OK
- * </pre>
- *
- * <p>
- * The Translation check will find the typo in the German {@code hello} key,
- * the missing {@code ok} key in the default resource file and the missing
- * {@code cancel} key in the German resource file:
- * </p>
- * <pre>
- * messages_de.properties: Key 'hello' missing.
- * messages_de.properties: Key 'cancel' missing.
- * messages.properties: Key 'hell' missing.
- * messages.properties: Key 'ok' missing.
- * </pre>
- *
- * <p>
  * Language code for the property {@code requiredTranslations} is composed of
  * the lowercase, two-letter codes as defined by
  * <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a>.

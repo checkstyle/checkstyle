@@ -185,16 +185,16 @@
           To configure the default check:
         </p>
 
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavadocStyle&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocStyle"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
 
         <p id="Example1-code">Example1:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * Some description here
  */
@@ -241,22 +241,22 @@ public class Example1 {
     // violation 3 lines above 'Incomplete HTML tag found'
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
           To configure the check for <code>public</code> scope:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavadocStyle&quot;&gt;
-    &lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocStyle"&gt;
+    &lt;property name="scope" value="public"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example2:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * Some description here
  */
@@ -303,25 +303,25 @@ public class Example2 {
 
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example3-config">
           To configure the check for javadoc which is in <code>private</code>, but not in
           <code>package</code> scope:
         </p>
 
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavadocStyle&quot;&gt;
-    &lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
-    &lt;property name=&quot;excludeScope&quot; value=&quot;package&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocStyle"&gt;
+    &lt;property name="scope" value="private"/&gt;
+    &lt;property name="excludeScope" value="package"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example3:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * Some description here
  */
@@ -368,23 +368,23 @@ public class Example3 {
     // violation 3 lines above 'Incomplete HTML tag'
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example4-config">
           To configure the check to turn off first sentence checking:
         </p>
 
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavadocStyle&quot;&gt;
-    &lt;property name=&quot;checkFirstSentence&quot; value=&quot;false&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocStyle"&gt;
+    &lt;property name="checkFirstSentence" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example4:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * Some description here
  */
@@ -431,23 +431,23 @@ public class Example4 {
     // violation 3 lines above 'Incomplete HTML tag'
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example5-config">
           To configure the check to turn off validation of incomplete html tags:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavadocStyle&quot;&gt;
-    &lt;property name=&quot;checkHtml&quot; value=&quot;false&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocStyle"&gt;
+    &lt;property name="checkHtml" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
 
         <p id="Example5-code">Example5:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * Some description here
  */
@@ -494,23 +494,23 @@ public class Example5 {
 
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example6-config">
           To configure the check for only class definitions:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavadocStyle&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocStyle"&gt;
+    &lt;property name="tokens" value="CLASS_DEF"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
 
         <p id="Example6-code">Example6:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * Some description here
  */
@@ -557,7 +557,7 @@ public class Example6 {
 
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

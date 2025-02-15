@@ -42,31 +42,31 @@
       </subsection>
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">Example of suppression by name of Check in annotation:</p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SuppressWarningsHolder&quot; /&gt;
-    &lt;module name=&quot;MemberName&quot; /&gt;
-    &lt;module name=&quot;NoWhitespaceAfter&quot; /&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressWarningsHolder" /&gt;
+    &lt;module name="MemberName" /&gt;
+    &lt;module name="NoWhitespaceAfter" /&gt;
   &lt;/module&gt;
-  &lt;module name=&quot;SuppressWarningsFilter&quot; /&gt;
+  &lt;module name="SuppressWarningsFilter" /&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Java code:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  @SuppressWarnings(&quot;memberName&quot;)
+  @SuppressWarnings("memberName")
   int J; // ok only because there is annotation
   int JJ; // violation 'must match pattern'
 
-  @SuppressWarnings({&quot;MemberName&quot;, &quot;NoWhitespaceAfter&quot;})
+  @SuppressWarnings({"MemberName", "NoWhitespaceAfter"})
   int [] ARRAY; // ok only because there is annotation for both Checks
   int [] ARRAY2;
   // 2 violations above:
   //   ''int' is followed by whitespace'
   //   'must match pattern'
 }
-        </source>
+</code></pre></div>
         <p>
           It is possible to specify an ID of checks, so that it can be leveraged by the
           SuppressWarningsFilter to skip validations. The following examples show how to skip
@@ -75,34 +75,34 @@ public class Example1 {
           you want to suppress.
         </p>
         <p id="Example2-config">Example of suppression by prefix &quot;checkstyle:&quot;:</p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SuppressWarningsHolder&quot; /&gt;
-    &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-      &lt;property name=&quot;id&quot; value=&quot;systemout&quot;/&gt;
-      &lt;property name=&quot;format&quot; value=&quot;^.*System\.(out|err).*$&quot;/&gt;
-      &lt;property name=&quot;message&quot;
-        value=&quot;Don't use System.out/err, use SLF4J instead.&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressWarningsHolder" /&gt;
+    &lt;module name="RegexpSinglelineJava"&gt;
+      &lt;property name="id" value="systemout"/&gt;
+      &lt;property name="format" value="^.*System\.(out|err).*$"/&gt;
+      &lt;property name="message"
+        value="Don't use System.out/err, use SLF4J instead."/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
-  &lt;module name=&quot;SuppressWarningsFilter&quot; /&gt;
+  &lt;module name="SuppressWarningsFilter" /&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Java code:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
 
 public class Example2 {
-  @SuppressWarnings(&quot;checkstyle:systemout&quot;)
+  @SuppressWarnings("checkstyle:systemout")
   public static void foo() {
-    System.out.println(&quot;Debug info.&quot;); // ok, because there is annotation
+    System.out.println("Debug info."); // ok, because there is annotation
   }
   public static void boo() {
-    System.out.println(&quot;Some info.&quot;); // violation 'use SLF4J instead.'
+    System.out.println("Some info."); // violation 'use SLF4J instead.'
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

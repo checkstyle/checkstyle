@@ -74,15 +74,15 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MissingDeprecated&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingDeprecated"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   @Deprecated
   public static final int MY_CONST = 13; // ok
@@ -106,23 +106,23 @@ class Example1 {
   @Deprecated
   public static final int CONST = 12; // ok
 }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
           To configure the check such that it prints violation
           messages if tight HTML rules are not obeyed
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MissingDeprecated&quot;&gt;
-      &lt;property name=&quot;violateExecutionOnNonTightHtml&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingDeprecated"&gt;
+      &lt;property name="violateExecutionOnNonTightHtml" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   @Deprecated
   public static final int MY_CONST = 13; // ok
@@ -146,7 +146,7 @@ class Example2 {
   @Deprecated
   public static final int CONST = 12;
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -75,53 +75,53 @@
         <p id="Example1-config">
           To configure the default check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavadocBlockTagLocation&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocBlockTagLocation"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * Escaped tag &amp;#64;version (OK)
  * Plain text with {@code @see} (OK)
  * A @custom tag (OK)
  *
  */
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check to verify tags from
           <a href="https://openjdk.org/jeps/8068562">JEP 8068562</a> only:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavadocBlockTagLocation&quot;&gt;
-      &lt;property name=&quot;tags&quot; value=&quot;apiNote, implSpec, implNote&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocBlockTagLocation"&gt;
+      &lt;property name="tags" value="apiNote, implSpec, implNote"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           To configure the check to verify all default tags and some custom tags in addition:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavadocBlockTagLocation&quot;&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocBlockTagLocation"&gt;
       &lt;!-- default tags --&gt;
-      &lt;property name=&quot;tags&quot; value=&quot;author, deprecated, exception, hidden&quot;/&gt;
-      &lt;property name=&quot;tags&quot; value=&quot;param, provides, return, see, serial&quot;/&gt;
-      &lt;property name=&quot;tags&quot; value=&quot;serialData, serialField, since, throws&quot;/&gt;
-      &lt;property name=&quot;tags&quot; value=&quot;uses, version&quot;/&gt;
+      &lt;property name="tags" value="author, deprecated, exception, hidden"/&gt;
+      &lt;property name="tags" value="param, provides, return, see, serial"/&gt;
+      &lt;property name="tags" value="serialData, serialField, since, throws"/&gt;
+      &lt;property name="tags" value="uses, version"/&gt;
       &lt;!-- additional tags used in the project --&gt;
-      &lt;property name=&quot;tags&quot; value=&quot;noinspection&quot;/&gt;
+      &lt;property name="tags" value="noinspection"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

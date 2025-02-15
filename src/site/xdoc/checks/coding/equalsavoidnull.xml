@@ -51,60 +51,60 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;EqualsAvoidNull&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EqualsAvoidNull"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
          Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   public void foo() {
     String nullString = null;
 
     // violation below 'String literal expressions should be on the left side'
-    nullString.equals(&quot;My_Sweet_String&quot;);
-    &quot;My_Sweet_String&quot;.equals(nullString);
+    nullString.equals("My_Sweet_String");
+    "My_Sweet_String".equals(nullString);
     // violation below 'String literal expressions should be on the left side'
-    nullString.equalsIgnoreCase(&quot;My_Sweet_String&quot;);
-    &quot;My_Sweet_String&quot;.equalsIgnoreCase(nullString);
+    nullString.equalsIgnoreCase("My_Sweet_String");
+    "My_Sweet_String".equalsIgnoreCase(nullString);
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
          To configure the check to allow ignoreEqualsIgnoreCase:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;EqualsAvoidNull&quot;&gt;
-      &lt;property name=&quot;ignoreEqualsIgnoreCase&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EqualsAvoidNull"&gt;
+      &lt;property name="ignoreEqualsIgnoreCase" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
          Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   public void foo() {
     String nullString = null;
 
     // violation below 'String literal expressions should be on the left side'
-    nullString.equals(&quot;My_Sweet_String&quot;);
-    &quot;My_Sweet_String&quot;.equals(nullString);
+    nullString.equals("My_Sweet_String");
+    "My_Sweet_String".equals(nullString);
 
-    nullString.equalsIgnoreCase(&quot;My_Sweet_String&quot;);
-    &quot;My_Sweet_String&quot;.equalsIgnoreCase(nullString);
+    nullString.equalsIgnoreCase("My_Sweet_String");
+    "My_Sweet_String".equalsIgnoreCase(nullString);
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

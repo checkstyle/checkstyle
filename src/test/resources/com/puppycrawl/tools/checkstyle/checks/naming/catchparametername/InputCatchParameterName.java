@@ -22,7 +22,7 @@ public class InputCatchParameterName {
         } catch (Exception exception) {
         }
         try {
-        } catch (Exception exception1) { // violation
+        } catch (Exception exception1) { // violation, 'Name 'exception1' must match pattern'
         }
         try {
         } catch (Exception noWorries) {
@@ -32,25 +32,25 @@ public class InputCatchParameterName {
         }
         try {
             throw new InterruptedException("interruptedException");
-        } catch (InterruptedException ie) { // violation
+        } catch (InterruptedException ie) { // violation, 'Name 'ie' must match pattern'
         }
         try {
-        } catch (Exception iException) { // violation
+        } catch (Exception iException) { // violation, 'Name 'iException' must match pattern'
         }
         try {
-        } catch (Exception ok) { // violation
+        } catch (Exception ok) { // violation, 'Name 'ok' must match pattern'
             // appropriate to take no action here
         }
         try {
-        } catch (Exception e1) { // violation
+        } catch (Exception e1) { // violation, 'Name 'e1' must match pattern'
             try {
-            } catch (Exception e2) { // violation
+            } catch (Exception e2) { // violation, 'Name 'e2' must match pattern'
             }
         }
         try {
-        } catch (Throwable t1) { // violation
+        } catch (Throwable t1) { // violation, 'Name 't1' must match pattern'
             try {
-            } catch (Throwable t2) { // violation
+            } catch (Throwable t2) { // violation, 'Name 't2' must match pattern'
             }
         }
     }

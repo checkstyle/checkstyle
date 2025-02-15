@@ -110,15 +110,15 @@
           To configure the check:
         </p>
         <p id="Example1-config">Configuration:</p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;IllegalIdentifierName&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalIdentifierName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   Integer var = 4; // violation, 'Name 'var' must match pattern'
   int record = 15;
@@ -144,7 +144,7 @@ public class Example1 {
   Object transitiveObject = &quot;transitiveObject&quot;;
 
 }
-        </source>
+</code></pre></div>
         <p>
           To configure the check to include some of JLS Keywords in the
           set of illegal identifiers (See <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-3.html#jls-3.9">
@@ -160,13 +160,13 @@ public class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   Integer var = 4; // violation, 'Name 'var' must match pattern'
   int record = 15; // violation, 'Name 'record' must match pattern'
-  String yield = &quot;yield&quot;;
+  String yield = "yield";
   // violation above, 'Name 'yield' must match pattern'
   String test$stuff = &quot;test&quot;; // violation, 'must match pattern'
   String when = &quot;today&quot;; // violation, 'Name 'when' must match pattern'
@@ -174,21 +174,21 @@ public class Example2 {
 
   record R(Record record){} // violation, 'Name 'record' must match pattern'
 
-  String yieldString = &quot;yieldString&quot;;
+  String yieldString = "yieldString";
   // ok above, word 'yield' is not used as an identifier by itself
   record MyRecord(){}
   // ok above, word 'Record' is not used as an identifier by itself
   Integer variable = 2;
   // ok above, word 'var' is not used as an identifier by itself
   int open = 4; // violation, 'Name 'open' must match pattern'
-  Object transitive = &quot;transitive&quot;;
+  Object transitive = "transitive";
   // violation above, 'Name 'transitive' must match pattern'
   int openInt = 4;
   // ok above, word 'open' is not used as an identifier by itself
-  Object transitiveObject = &quot;transitiveObject&quot;;
+  Object transitiveObject = "transitiveObject";
   // ok above, word 'transitive' is not used as an identifier by itself
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
