@@ -40,7 +40,7 @@ public class UnnecessarySemicolonInTryWithResourcesCheckTest extends AbstractMod
 
         final String[] expected = {
             "17:42: " + getCheckMessage(MSG_SEMI),
-            "18:72: " + getCheckMessage(MSG_SEMI),
+            "19:72: " + getCheckMessage(MSG_SEMI),
         };
 
         verifyWithInlineConfigParser(
