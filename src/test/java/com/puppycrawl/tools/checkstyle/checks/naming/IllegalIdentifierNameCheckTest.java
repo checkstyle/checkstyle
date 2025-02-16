@@ -74,22 +74,13 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIllegalIdentifierNameDefault() throws Exception {
 
-        final String format = "(?i)^(?!(record|yield|var|permits|sealed)$).+$";
+        final String format = "^(?!var$|.*\\$).+";
 
         final String[] expected = {
-            "21:25: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "22:24: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "28:13: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "30:21: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "45:9: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
             "57:13: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
-            "59:13: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "61:16: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "63:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Record", format),
-            "64:25: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "74:37: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "74:52: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "74:69: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "59:13: " + getCheckMessage(MSG_INVALID_PATTERN, "$amt", format),
+            "74:52: " + getCheckMessage(MSG_INVALID_PATTERN, "yield$text", format),
+            "74:74: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputIllegalIdentifierName.java"), expected);
@@ -142,14 +133,13 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIllegalIdentifierNameLambda() throws Exception {
-        final String format = "(?i)^(?!(record|yield|var|permits|sealed)$).+$";
+        final String format = "^(?!var$|.*\\$).+";
 
         final String[] expected = {
-            "19:39: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "19:39: " + getCheckMessage(MSG_INVALID_PATTERN, "param$", format),
             "20:40: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
             "32:9: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
-            "35:9: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "42:47: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "42:47: " + getCheckMessage(MSG_INVALID_PATTERN, "te$t", format),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputIllegalIdentifierNameLambda.java"), expected);
@@ -166,16 +156,11 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIllegalIdentifierNameRecordPattern() throws Exception {
-        final String format = "(?i)^(?!(record|yield|var|permits|sealed)$).+$";
+        final String format = "^(?!var$|.*\\$).+";
 
         final String[] expected = {
             "16:36: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
-            "17:47: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "17:59: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "17:74: " + getCheckMessage(MSG_INVALID_PATTERN, "sealed", format),
-            "26:28: " + getCheckMessage(MSG_INVALID_PATTERN, "permits", format),
-            "26:41: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "30:39: " + getCheckMessage(MSG_INVALID_PATTERN, "permits", format),
+            "23:39: " + getCheckMessage(MSG_INVALID_PATTERN, "permit$", format),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputIllegalIdentifierNameRecordPattern.java"), expected);

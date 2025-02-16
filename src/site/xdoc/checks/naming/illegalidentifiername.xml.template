@@ -47,8 +47,9 @@
           <param name="type" value="code"/>
         </macro>
         <p>
-          To configure the check to include "open" and "transitive" in the set of
-          illegal identifiers:
+          To configure the check to include some of JLS Keywords in the
+          set of illegal identifiers (See <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-3.html#jls-3.9">
+          Java Language Specification </a>for the full list of JLS keywords):
         </p>
         <p id="Example2-config">Configuration:</p>
         <macro name="example">
