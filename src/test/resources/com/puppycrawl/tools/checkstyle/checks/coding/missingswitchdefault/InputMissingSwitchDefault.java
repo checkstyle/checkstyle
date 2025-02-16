@@ -20,7 +20,7 @@ public class InputMissingSwitchDefault {
 class bad_test {
     public void foo() {
         int i = 1;
-        switch (i) { // violation
+        switch (i) { // violation 'switch without "default" clause'
             case 1: i++; break;
             case 2: i--; break;
         }
@@ -32,7 +32,7 @@ class bad_test {
             case 1: i++; break;
             case 2: i--; break;
             default:
-                switch (i++) { // violation
+                switch (i++) { // violation 'switch without "default" clause'
                     case 2: i++; break;
                     case 3: i--; break;
             }
@@ -43,14 +43,14 @@ class bad_test {
         int i = 1, j = 2;
         switch(i) {
             case 1:
-                switch (j) { // violation
+                switch (j) { // violation 'switch without "default" clause'
                     case 2: break;
                     case 3: break;
             }
             default: break;
         }
 
-        switch(i) { // violation
+        switch(i) { // violation 'switch without "default" clause'
 
         }
     }
