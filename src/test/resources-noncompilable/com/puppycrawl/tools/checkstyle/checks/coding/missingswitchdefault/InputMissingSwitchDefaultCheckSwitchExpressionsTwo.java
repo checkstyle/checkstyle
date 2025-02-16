@@ -11,7 +11,7 @@ public class InputMissingSwitchDefaultCheckSwitchExpressionsTwo {
     enum Nums {ONE, TWO, THREE}
 
     int howMany1(Nums k) {
-        switch (k) { // violation
+        switch (k) { // violation 'switch without "default" clause'
             case ONE:
                 System.out.println("One!");
             case TWO:
@@ -23,7 +23,7 @@ public class InputMissingSwitchDefaultCheckSwitchExpressionsTwo {
     }
 
     int howMany2(Nums k) {
-        switch (k) { // violation
+        switch (k) { // violation 'switch without "default" clause'
             case ONE -> System.out.println("One!");
             case TWO -> System.out.println("Two!");
             case THREE -> System.out.println("Three!");
