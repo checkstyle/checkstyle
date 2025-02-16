@@ -5,7 +5,7 @@ max = 30
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber; // ok
+package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber;
 
 /**
  * Contains simple mistakes:
