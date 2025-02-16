@@ -686,8 +686,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]sizes[\\/]executablestatementcount[\\/]InputExecutableStatementCountMaxZero.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]sizes[\\/]parameternumber[\\/]InputParameterNumberSimple3.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]emptyforiteratorpad[\\/]InputEmptyForIteratorPad2.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]emptyforiteratorpad[\\/]InputEmptyForIteratorPadToCheckTrimFunctionInOptionProperty.java"/>
