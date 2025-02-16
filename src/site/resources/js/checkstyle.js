@@ -22,18 +22,18 @@ window.addEventListener("load", function () {
     if (currentUrl.endsWith("/checks/") || currentUrl.endsWith("/checks/index.html")) {
         window.location.replace("../checks.html");
     }
-    else if (document.title.startsWith("Redirecting to checks/")) {
+    else if (document.title.startsWith("Redirecting to checks")) {
         const urlObj = new URL(currentUrl);
         const pathSegments = urlObj.pathname.split("/");
         const configHtmlFile = pathSegments[pathSegments.length - 1];
         const checkType = /config_([a-z]+).html/.exec(configHtmlFile)[1];
         const checkName = urlObj.hash.substring(1).toLowerCase();
-        if (checkName !== null) {
+        if (checkName) {
             if (checkType !== "filters" && checkType !== "filefilters") {
                 window.location.replace(`./checks/${checkType}/${checkName}.html`);
             }
             else {
-                window.location.replace(`./checks/${checkType}/${checkName}.html#${checkName}`);
+                window.location.replace(`./${checkType}/${checkName}.html`);
             }
         }
         else {
