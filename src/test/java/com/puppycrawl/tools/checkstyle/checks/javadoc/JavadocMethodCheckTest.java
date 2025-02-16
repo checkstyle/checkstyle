@@ -576,4 +576,14 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputJavadocMethodRecords.java"), expected);
     }
+
+    @Test
+    public void testJavadocMethodRecords2() throws Exception {
+        final String[] expected = {
+            "37:12: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "lastName"),
+            "52:12: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "lastName"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavadocMethodRecords2.java"), expected);
+    }
 }
