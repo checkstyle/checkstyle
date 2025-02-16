@@ -23,7 +23,7 @@ window.addEventListener("load", function () {
     if (currentUrl.endsWith("/checks/") || currentUrl.endsWith("/checks/index.html")) {
         window.location.replace("../checks.html");
     }
-    else if (document.title.startsWith("checkstyle – Redirecting to checks/")) {
+    else if (document.title.startsWith("Redirecting to checks")) {
         const urlObj = new URL(currentUrl);
         const pathSegments = urlObj.pathname.split("/");
         const configHtmlFile = pathSegments[pathSegments.length - 1];
