@@ -586,4 +586,11 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputJavadocMethodRecords2.java"), expected);
     }
+
+    @Test
+    public void testJavadocMethodRecords3() throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavadocMethodRecords3.java"), expected);
+    }
 }
