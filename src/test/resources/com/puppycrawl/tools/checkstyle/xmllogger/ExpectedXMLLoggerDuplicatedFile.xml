@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<checkstyle version="null">
+<file name="Test.java">
+<error column="1" line="1" message="key" severity="error" source="com.puppycrawl.tools.checkstyle.XMLLoggerTest"/>
+</file>
+<file name="Test.java">
+</file>
+</checkstyle>
