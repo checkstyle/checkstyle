@@ -1681,7 +1681,7 @@
           </execution>
         </executions>
         <configuration>
-          <!-- until #16077 -->
+          <!-- until #16242 -->
           <skip>true</skip>
           <catalogHandling>strict</catalogHandling>
           <!-- We need to exclude some files, so the default configuration is not suitable. -->
