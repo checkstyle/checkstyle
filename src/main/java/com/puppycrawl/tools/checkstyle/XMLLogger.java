@@ -60,9 +60,6 @@ public class XMLLogger
     /** Close output stream in auditFinished. */
     private final boolean closeStream;
 
-    /** The writer lock object. */
-    private final Object writerLock = new Object();
-
     /** Holds all messages for the given file. */
     private final Map<String, FileMessages> fileMessages =
             new ConcurrentHashMap<>();
@@ -137,13 +134,8 @@ public class XMLLogger
     @Override
     public void fileFinished(AuditEvent event) {
         final String fileName = event.getFileName();
-        final FileMessages messages = fileMessages.get(fileName);
-
-        synchronized (writerLock) {
-            writeFileMessages(fileName, messages);
-        }
-
-        fileMessages.remove(fileName);
+        final FileMessages messages = fileMessages.remove(fileName);
+        writeFileMessages(fileName, messages);
     }
 
     /**
@@ -186,9 +178,7 @@ public class XMLLogger
         if (event.getSeverityLevel() != SeverityLevel.IGNORE) {
             final String fileName = event.getFileName();
             if (fileName == null || !fileMessages.containsKey(fileName)) {
-                synchronized (writerLock) {
-                    writeFileError(event);
-                }
+                writeFileError(event);
             }
             else {
                 final FileMessages messages = fileMessages.get(fileName);
@@ -227,9 +217,7 @@ public class XMLLogger
     public void addException(AuditEvent event, Throwable throwable) {
         final String fileName = event.getFileName();
         if (fileName == null || !fileMessages.containsKey(fileName)) {
-            synchronized (writerLock) {
-                writeException(throwable);
-            }
+            writeException(throwable);
         }
         else {
             final FileMessages messages = fileMessages.get(fileName);
@@ -351,10 +339,10 @@ public class XMLLogger
     private static final class FileMessages {
 
         /** The file error events. */
-        private final List<AuditEvent> errors = Collections.synchronizedList(new ArrayList<>());
+        private final List<AuditEvent> errors = new ArrayList<>();
 
         /** The file exceptions. */
-        private final List<Throwable> exceptions = Collections.synchronizedList(new ArrayList<>());
+        private final List<Throwable> exceptions = new ArrayList<>();
 
         /**
          * Returns the file error events.
