@@ -1566,8 +1566,36 @@ public final class JavadocTokenTypes {
     public static final int P_TAG_START = JavadocParser.RULE_pTagStart + RULE_TYPES_OFFSET;
     /** End paragraph tag. */
     public static final int P_TAG_END = JavadocParser.RULE_pTagEnd + RULE_TYPES_OFFSET;
-    /** List item html tag: {@code <li></li>}. */
 
+    /**
+     * List item html tag
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <tr></tr>}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   JAVADOC -&gt; JAVADOC
+     *     |--NEWLINE -&gt; \n
+     *     |--LEADING_ASTERISK -&gt;  *
+     *     |--TEXT -&gt;
+     *     |--HTML_ELEMENT -&gt; HTML_ELEMENT
+     *     |   `--LI -&gt; LI
+     *     |       |--LI_TAG_START -&gt; LI_TAG_START
+     *     |       |   |--START -&gt; &lt;
+     *     |       |   |--LI_HTML_TAG_NAME -&gt; li
+     *     |       |   `--END -&gt; &gt;
+     *     |       |--TEXT -&gt; Test
+     *     |       `--LI_TAG_END -&gt; LI_TAG_END
+     *     |           |--START -&gt; &lt;
+     *     |           |--SLASH -&gt; /
+     *     |           |--LI_HTML_TAG_NAME -&gt; li
+     *     |           `--END -&gt; &gt;
+     *     |--NEWLINE -&gt; \n
+     *     |--TEXT -&gt;
+     * }
+     * </pre>
+     */
     public static final int LI = JavadocParser.RULE_li + RULE_TYPES_OFFSET;
     /** Start list item tag. */
     public static final int LI_TAG_START = JavadocParser.RULE_liTagStart + RULE_TYPES_OFFSET;
