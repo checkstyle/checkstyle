@@ -55,7 +55,7 @@ public class InputJavadocMethodRecordsAndCompactCtors {
          * @param properties some value
          * @throws java.lang.IllegalStateException when argument is wrong
          */
-        // violation 3 lines above 'Unused Javadoc tag.'
+        // violation 3 lines above 'Unused @param tag'
         public MySecondRecord {
             // here is NPE possible
             if (props.charAt(0) == 0) {
@@ -73,7 +73,8 @@ public class InputJavadocMethodRecordsAndCompactCtors {
          * @param properties some value
          * @throws java.lang.IllegalStateException when argument is wrong
          */
-        // violation 3 lines above 'Unused Javadoc tag.'
+        // violation 3 lines above 'Unused @param tag '
+        // violation below 'Expected @param tag for 'myString'.'
         public MyThirdRecord {
             // here is NPE possible
             if (myString.charAt(0) == 0) {
