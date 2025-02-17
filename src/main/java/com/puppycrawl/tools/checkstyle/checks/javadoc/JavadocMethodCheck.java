@@ -428,7 +428,10 @@ public class JavadocMethodCheck extends AbstractCheck {
                     && !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);
 
                 // COMPACT_CTOR_DEF has no parameters
-                if (ast.getType() != TokenTypes.COMPACT_CTOR_DEF) {
+                if (ast.getType() == TokenTypes.COMPACT_CTOR_DEF) {
+                    checkRecordParamTags(tags, ast, reportExpectedTags);
+                }
+                else {
                     checkParamTags(tags, ast, reportExpectedTags);
                 }
                 final List<ExceptionInfo> throwed =
@@ -437,13 +440,44 @@ public class JavadocMethodCheck extends AbstractCheck {
                 if (CheckUtil.isNonVoidMethod(ast)) {
                     checkReturnTag(tags, ast.getLineNo(), reportExpectedTags);
                 }
-
             }
-
-            // Dump out all unused tags
-            tags.stream().filter(javadocTag -> !javadocTag.isSeeOrInheritDocTag())
-                .forEach(javadocTag -> log(javadocTag.getLineNo(), MSG_UNUSED_TAG_GENERAL));
         }
+        tags.stream().filter(javadocTag -> !javadocTag.isSeeOrInheritDocTag())
+            .forEach(javadocTag -> log(javadocTag.getLineNo(), MSG_UNUSED_TAG_GENERAL));
+    }
+
+    /**
+     * Retrieves the list of record components from a given record definition.
+     *
+     * @param recordDef the AST node representing the record definition
+     * @return a list of AST nodes representing the record components
+     */
+    private static List<DetailAST> getRecordComponents(final DetailAST recordDef) {
+        final List<DetailAST> components = new ArrayList<>();
+        final DetailAST recordDecl = recordDef.findFirstToken(TokenTypes.RECORD_COMPONENTS);
+
+        DetailAST child = recordDecl.getFirstChild();
+        while (child != null) {
+            if (child.getType() == TokenTypes.RECORD_COMPONENT_DEF) {
+                components.add(child.findFirstToken(TokenTypes.IDENT));
+            }
+            child = child.getNextSibling();
+        }
+        return components;
+    }
+
+    /**
+     * Finds the nearest ancestor record definition node for the given AST node.
+     *
+     * @param ast the AST node to start searching from
+     * @return the nearest {@code RECORD_DEF} AST node, or {@code null} if not found
+     */
+    private static DetailAST getRecordDef(DetailAST ast) {
+        DetailAST current = ast;
+        while (current.getType() != TokenTypes.RECORD_DEF) {
+            current = current.getParent();
+        }
+        return current;
     }
 
     /**
@@ -747,6 +781,49 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     /**
+     * Checks if all record components in a compact constructor have
+     * corresponding {@code @param} tags.
+     * Reports missing or extra {@code @param} tags in the Javadoc.
+     *
+     * @param tags the list of Javadoc tags
+     * @param compactDef the compact constructor AST node
+     * @param reportExpectedTags whether to report missing {@code @param} tags
+     */
+    private void checkRecordParamTags(final List<JavadocTag> tags,
+        final DetailAST compactDef, boolean reportExpectedTags) {
+
+        final DetailAST parent = getRecordDef(compactDef);
+        final List<DetailAST> params = getRecordComponents(parent);
+
+        // Loop over the tags, checking to see they exist in the params.
+        final ListIterator<JavadocTag> tagIt = tags.listIterator();
+        while (tagIt.hasNext()) {
+            final JavadocTag tag = tagIt.next();
+
+            if (!tag.isParamTag()) {
+                continue;
+            }
+
+            tagIt.remove();
+
+            final String arg1 = tag.getFirstArg();
+            final boolean found = removeMatchingParam(params, arg1);
+
+            if (!found) {
+                log(tag.getLineNo(), tag.getColumnNo(), MSG_UNUSED_TAG,
+                        JavadocTagInfo.PARAM.getText(), arg1);
+            }
+        }
+
+        if (!allowMissingParamTags && reportExpectedTags) {
+            for (DetailAST param : params) {
+                log(compactDef, MSG_EXPECTED_TAG,
+                    JavadocTagInfo.PARAM.getText(), param.getText());
+            }
+        }
+    }
+
+    /**
      * Checks a set of tags for matching parameters.
      *
      * @param tags the tags to check
@@ -782,7 +859,7 @@ public class JavadocMethodCheck extends AbstractCheck {
             // Handle extra JavadocTag
             if (!found) {
                 log(tag.getLineNo(), tag.getColumnNo(), MSG_UNUSED_TAG,
-                        "@param", arg1);
+                        JavadocTagInfo.PARAM.getText(), arg1);
             }
         }
 
