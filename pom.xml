@@ -822,8 +822,6 @@
           <compilerArgs>
             <arg>-Xpkginfo:always</arg>
           </compilerArgs>
-            <source>16</source>
-            <target>16</target>
         </configuration>
       </plugin>
 

@@ -435,7 +435,7 @@ public class JavadocMethodCheck extends AbstractCheck {
                     checkParamTags(tags, ast, reportExpectedTags);
                 }
                 final List<ExceptionInfo> throwed =
-                        combineExceptionInfo(getThrows(ast), getThrowed(ast));
+                    combineExceptionInfo(getThrows(ast), getThrowed(ast));
                 checkThrowsTags(tags, throwed, reportExpectedTags);
                 if (CheckUtil.isNonVoidMethod(ast)) {
                     checkReturnTag(tags, ast.getLineNo(), reportExpectedTags);
