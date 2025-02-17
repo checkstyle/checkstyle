@@ -686,12 +686,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]sizes[\\/]executablestatementcount[\\/]InputExecutableStatementCountMaxZero.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]sizes[\\/]outertypenumber[\\/]InputOuterTypeNumberEmptyInner.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]sizes[\\/]outertypenumber[\\/]InputOuterTypeNumberSimple1.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]sizes[\\/]parameternumber[\\/]InputParameterNumberSimple3.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]emptyforiteratorpad[\\/]InputEmptyForIteratorPad2.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]emptyforiteratorpad[\\/]InputEmptyForIteratorPadToCheckTrimFunctionInOptionProperty.java"/>
@@ -1231,10 +1225,6 @@
             files="filters[\\/]suppressionxpathsinglefilter[\\/]InputSuppressionXpathSingleFilterNullViolation.java"/>
   <suppress id="UnnecessaryOkComment"
             files="filters[\\/]suppresswithnearbycommentfilter[\\/]InputSuppressWithNearbyCommentFilterByCheckAndInfluence.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="javaastvisitor[\\/]InputJavaAstVisitorNoStackOverflowOnDeepStringConcat.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="utils[\\/]annotationutil[\\/]InputAnnotationUtil2.java"/>
   <suppress id="UnnecessaryOkComment"
             files="utils[\\/]checkutil[\\/]InputCheckUtil4.java"/>
   <suppress id="UnnecessaryOkComment"
