@@ -11,7 +11,7 @@ public class InputMissingSwitchDefaultCheckSwitchExpressions {
     enum Nums {ONE, TWO, THREE}
 
     int howMany1(Nums k) {
-        switch (k) { // violation
+        switch (k) { // violation 'switch without "default" clause'
             case ONE:
             case TWO:
             case THREE:
