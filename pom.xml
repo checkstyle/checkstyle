@@ -223,7 +223,7 @@
     <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
     <java.version>11</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
-    <pitest.plugin.version>1.18.1</pitest.plugin.version>
+    <pitest.plugin.version>1.18.2</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
