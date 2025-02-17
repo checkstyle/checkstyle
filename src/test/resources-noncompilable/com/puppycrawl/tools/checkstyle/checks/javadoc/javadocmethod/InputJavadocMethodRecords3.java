@@ -1,6 +1,6 @@
 /*
 JavadocMethod
-allowedAnnotations = (default)Override
+allowedAnnotations = Deprecated
 validateThrows = true
 accessModifiers = (default)public, protected, package, private
 allowMissingParamTags = (default)false
@@ -21,7 +21,7 @@ public class InputJavadocMethodRecords3
      * @param email         the user's email address
      * @param emailVerified {@code true} if the email address has been verified
      */
-    @Override
+    @Deprecated
     public record Inner(String subject, String firstName,
                         String nickName, String fullName,
                         String email, boolean emailVerified)
@@ -30,7 +30,7 @@ public class InputJavadocMethodRecords3
          * Creates a new UserInfo instance.
          *
          */
-        @Override
+        @Deprecated
         public Inner
         {
         }
