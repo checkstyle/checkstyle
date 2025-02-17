@@ -1,19 +1,18 @@
 @echo off
 
 ::----------------------------------------------------------------------
-:: IntelliJ IDEA inspections for checkstyle.
+:: IntelliJ IDEA code formatting for checkstyle.
 ::
 :: Example:
-:: SET IDEA_PATH=C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2017.2.1\bin\idea.bat
-:: .ci\idea-inspection.bat
+:: SET IDEA_PATH=C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2017.2.1\bin
+:: .ci\idea-format.bat
 ::----------------------------------------------------------------------
 
 SET PROJECT_DIR=%CD%\
-SET INSPECTIONS_PATH=%CD%\config\intellij-idea-inspections.xml
-SET RESULTS_DIR=%CD%\target\inspection-results
+SET FORMAT_PATH=%CD%\config\intellij-idea-code-style.xml
+SET RESULTS_DIR=%CD%\target\format-results
 SET NOISE_LVL=v1
 SET IDEA_LOCATION=
-SET IDEA_PROPERTIES=%CD%\config\intellij-idea-inspections.properties
 
 ::Check IDEA_PATH env variable
 IF DEFINED IDEA_PATH (
@@ -27,28 +26,22 @@ echo IDEA_PATH variable not found or invalid.
 
 ::Try to search in path
 FOR /f "delims=" %%i IN ('where idea.bat 2^>nul') DO (
-    SET "IDEA_LOCATION=%%i"
-    echo Found IDEA in PATH: %%i
-    goto found_in_path
+    SET "IDEA_LOCATION=%%~dpi"
+    echo Found IDEA in PATH, using directory: %IDEA_LOCATION%
+    goto run
 )
 echo IntelliJ IDEA was not found in path.
 exit /b 1
-
-:found_in_path
-echo Found IDEA in PATH: %IDEA_LOCATION%
 
 :run
 IF NOT EXIST "%RESULTS_DIR%" mkdir "%RESULTS_DIR%"
 IF EXIST "%RESULTS_DIR%" del /s /q "%RESULTS_DIR%\*.*"
 
-IF NOT EXIST ".idea\scopes" mkdir ".idea\scopes"
-copy "config\intellij-idea-inspection-scope.xml" ".idea\scopes"
-
 ::Execute compilation of Checkstyle to generate all source files
 call mvn -e compile
 
-::Launch inspections
-echo Running IDEA inspections from: %IDEA_LOCATION%
-call "%IDEA_LOCATION%" inspect "%PROJECT_DIR%" "%INSPECTIONS_PATH%" "%RESULTS_DIR%" -%NOISE_LVL%
+::Launch formatting
+echo Running IDEA code formatting with settings from: %FORMAT_PATH%
+call "%IDEA_LOCATION%format.bat" -settings "%FORMAT_PATH%" "%PROJECT_DIR%"
 
-echo Inspection completed.
+echo Formatting completed.
