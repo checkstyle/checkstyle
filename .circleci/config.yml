@@ -2,6 +2,41 @@ version: 2.1
 
 jobs:
 
+  run-formatter:
+    docker:
+      - image: checkstyle/idea-docker:jdk11-idea2022.3.3
+
+    steps:
+      - checkout
+      - run:
+          name: Print versions
+          command: |
+            echo "Maven version:"
+            mvn --version
+            echo "Java version:"
+            java --version
+            echo "IDEA version:"
+            echo $IDEA_VERSION
+      - run:
+          name: Run code formatter
+          command: |
+            # Run the formatter
+            ./.ci/idea-format.sh
+          no_output_timeout: 15m
+          working_directory: ~/project
+      - run:
+          name: Run checkstyle verification
+          command: |
+            # Make the script executable
+            chmod +x ./.ci/run-checkstyle.sh
+            # Run checkstyle
+            ./.ci/run-checkstyle.sh
+          working_directory: ~/project
+      - store_artifacts:
+          path: /home/circleci/project/target/format-results
+      - store_artifacts:
+          path: /home/circleci/project/target/checkstyle-results
+
   run-inspections:
     docker:
       - image: checkstyle/idea-docker:jdk11-idea2022.3.3
@@ -248,6 +283,7 @@ workflows:
   idea:
     jobs:
       - run-inspections
+      - run-formatter
 
   git-validation:
     jobs:
