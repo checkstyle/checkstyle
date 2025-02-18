@@ -1560,7 +1560,35 @@ public final class JavadocTokenTypes {
             + RULE_TYPES_OFFSET;
 
     /////////////////////// HTML TAGS WITH OPTIONAL END TAG /////////////////////////////////////
-    /** Paragraph html tag: {@code <p></p>}. */
+    /**
+     * Paragraph html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <p>Sample text</p>}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   `--JAVADOC -> JAVADOC
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--HTML_ELEMENT -> HTML_ELEMENT
+     *       |   `--PARAGRAPH -> PARAGRAPH
+     *       |       |--P_TAG_START -> P_TAG_START
+     *       |       |   |--START -> <
+     *       |       |   |--P_HTML_TAG_NAME -> p
+     *       |       |   `--END -> >
+     *       |       |--TEXT -> Sample text
+     *       |       `--P_TAG_END -> P_TAG_END
+     *       |           |--START -> <
+     *       |           |--SLASH -> /
+     *       |           |--P_HTML_TAG_NAME -> p
+     *       |           `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--TEXT ->
+     * }
+     * </pre>
+     */
     public static final int PARAGRAPH = JavadocParser.RULE_paragraph + RULE_TYPES_OFFSET;
     /** Start paragraph tag. */
     public static final int P_TAG_START = JavadocParser.RULE_pTagStart + RULE_TYPES_OFFSET;
