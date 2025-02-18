@@ -12,7 +12,7 @@ ignoreComments = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
-public class InputRegexpCheckStopEarly { // ok
+public class InputRegexpCheckStopEarly {
     // a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a
     // a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a
     // a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a
