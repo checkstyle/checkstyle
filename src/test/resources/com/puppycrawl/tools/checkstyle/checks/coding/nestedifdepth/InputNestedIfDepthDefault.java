@@ -23,7 +23,7 @@ public class InputNestedIfDepthDefault
         // nesting == 2
         if (true) {
             if (true) {
-                if (true) { // violation
+                if (true) { // violation 'Nested if-else depth is 2 (max allowed is 1)'
                 }
             }
         }
@@ -49,7 +49,7 @@ public class InputNestedIfDepthDefault
         // nesting == 2
         if (true) {
             if (true) {
-                if (true) { // violation
+                if (true) { // violation 'Nested if-else depth is 2 (max allowed is 1)'
                 } else {
                 }
             } else {
@@ -74,7 +74,7 @@ public class InputNestedIfDepthDefault
         // nesting == 2
         if (true) {
             if (true) {
-                if (true) { // violation
+                if (true) { // violation 'Nested if-else depth is 2 (max allowed is 1)'
                 } else {
                 }
             } else
