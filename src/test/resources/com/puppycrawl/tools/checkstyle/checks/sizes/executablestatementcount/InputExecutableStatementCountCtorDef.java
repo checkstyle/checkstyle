@@ -31,5 +31,5 @@ public class InputExecutableStatementCountCtorDef {
     }
 
     /** Empty constructor */
-    public InputExecutableStatementCountCtorDef(String someString) {} // ok
+    public InputExecutableStatementCountCtorDef(String someString) {}
 }
