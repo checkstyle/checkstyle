@@ -14,7 +14,8 @@ public class InputNestedIfDepthInsideCaseBody {
             case ColoredPoint(int x, int y, String z) when (x >= 2) -> {
                 if (x >= 2) {
                     if (y >= 2) {
-                        if (z.equals("red")) { // violation
+                        // violation below 'Nested if-else depth is 2 (max allowed is 1)'
+                        if (z.equals("red")) {
 
                         }
                     }
