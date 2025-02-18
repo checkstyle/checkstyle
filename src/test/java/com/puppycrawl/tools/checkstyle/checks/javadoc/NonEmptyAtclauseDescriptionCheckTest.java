@@ -129,4 +129,10 @@ public class NonEmptyAtclauseDescriptionCheckTest
         verify(checkerConfig,
                 getPath("InputNonEmptyAtclauseDescriptionDifferentCharset.java"), expected);
     }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputNonEmptyAtclauseDescriptionThree.java"), expected);
+    }
 }
