@@ -10,32 +10,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
-import java.net.URI;
 
 class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/header/regexpheader";
-    }
-
-
-    /**
-     * Test of setHeader method, of class MultiFileRegexpHeaderCheck.
-     */
-    @Test
-    public void testSetHeaderNotSupport() {
-        final MultiFileRegexpHeaderCheck instance = new MultiFileRegexpHeaderCheck();
-        assertThrows(UnsupportedOperationException.class, () -> instance.setHeader(""));
-    }
-
-    /**
-     * Test of setHeaderFile method, of class MultiFileRegexpHeaderCheck.
-     */
-    @Test
-    public void testSetHeaderUriNotSupport() {
-        final MultiFileRegexpHeaderCheck instance = new MultiFileRegexpHeaderCheck();
-        assertThrows(UnsupportedOperationException.class, () -> instance.setHeaderFile(URI.create("file://test")));
     }
 
     /**
@@ -75,13 +55,13 @@ class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputRegexpHeaderDefaultConfig.java"), expected);
     }
 
-
     @Test
     public void testRegexpHeader() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MultiFileRegexpHeaderCheck.class);
         checkConfig.addProperty("headerFiles", getPath("InputRegexpHeader.header"));
-        final String[] expected = {"3: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Created: 2002"),};
+        final String[] expected = {"3: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Created: 2002")};
         verify(checkConfig, getPath("InputRegexpHeaderIgnore.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputRegexpHeaderIgnore.java"), expected);
     }
 
     @Test

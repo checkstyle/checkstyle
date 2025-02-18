@@ -20,7 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.header;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -35,12 +36,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @StatelessCheck
-public class MultiFileRegexpHeaderCheck extends AbstractHeaderCheck {
+public class MultiFileRegexpHeaderCheck extends AbstractFileSetCheck implements ExternalResourceHolder {
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -66,17 +69,6 @@ public class MultiFileRegexpHeaderCheck extends AbstractHeaderCheck {
 
     private final List<HeaderFileMetadata> headerFilesMetadata = new ArrayList<>();
 
-
-    @Override
-    public void setHeaderFile(URI uri) throws CheckstyleException {
-        throw new UnsupportedOperationException("Single header is not supported, use RegexpHeaderCheck instead");
-    }
-
-    @Override
-    public void setHeader(String header) {
-        throw new UnsupportedOperationException("Single header is not supported, use RegexpHeaderCheck instead");
-    }
-
     public void setHeaderFiles(String headerFiles) {
         if (CommonUtil.isBlank(headerFiles)) {
             throw new IllegalArgumentException("headerFiles cannot be null or empty");
@@ -85,6 +77,17 @@ public class MultiFileRegexpHeaderCheck extends AbstractHeaderCheck {
         for (String headerFile : files) {
             headerFilesMetadata.add(HeaderFileMetadata.of(headerFile));
         }
+    }
+
+    @Override
+    public Set<String> getExternalResourceLocations() {
+        if (headerFilesMetadata.isEmpty()) {
+            return Set.of();
+        }
+        return headerFilesMetadata.stream()
+                                                       .map(HeaderFileMetadata::getHeaderFile)
+                                                       .map(URI::toString)
+                                                       .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     @Override
@@ -103,7 +106,6 @@ public class MultiFileRegexpHeaderCheck extends AbstractHeaderCheck {
         }
     }
 
-    // Log the line error, the line content
     private void logFirstMismatch(FileText fileText) {
         for (HeaderFileMetadata metadata : headerFilesMetadata) {
             // If the file header has less than patterns, then return the first line that does not match
@@ -159,11 +161,6 @@ public class MultiFileRegexpHeaderCheck extends AbstractHeaderCheck {
         }
 
         return VALID_LINE_HEADER_CHECKER;
-    }
-
-    @Override
-    protected void postProcessHeaderLines() {
-        // Do nothing
     }
 
 
