@@ -470,14 +470,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]writetag[\\/]InputWriteTagSeverity.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]regexp[\\/]regexp[\\/]InputRegexpCheckB3.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]regexp[\\/]regexp[\\/]InputRegexpCheckB4.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]regexp[\\/]regexp[\\/]InputRegexpCheckEmptyLine2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]regexp[\\/]regexp[\\/]InputRegexpCheckStopEarly.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]regexp[\\/]regexp[\\/]InputRegexpSemantic.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]regexp[\\/]regexp[\\/]InputRegexpSemantic.java"/>
