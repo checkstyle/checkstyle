@@ -29,9 +29,9 @@ public class InputExecutableStatementCountLambdas {
         };
         Consumer d = (s) -> { // violation
             String str = s.toString();
-            Consumer t = a -> a.toString().trim(); // ok
-            Function x1 = a -> a; // ok
-            Function y = a -> null; // ok
+            Consumer t = a -> a.toString().trim();
+            Function x1 = a -> a;
+            Function y = a -> null;
         };
     };
 }
