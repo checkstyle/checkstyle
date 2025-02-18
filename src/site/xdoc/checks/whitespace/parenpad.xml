@@ -155,17 +155,17 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ParenPad&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParenPad"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   int n;
 
@@ -189,26 +189,26 @@ class Example1 {
     }
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check to require spaces for the parentheses of
           constructor, method, and super constructor calls:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ParenPad&quot;&gt;
-      &lt;property name=&quot;tokens&quot;
-                value=&quot;LITERAL_FOR, LITERAL_CATCH, SUPER_CTOR_CALL&quot;/&gt;
-      &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParenPad"&gt;
+      &lt;property name="tokens"
+                value="LITERAL_FOR, LITERAL_CATCH, SUPER_CTOR_CALL"/&gt;
+      &lt;property name="option" value="space"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   int x;
 
@@ -239,7 +239,7 @@ class Example2 {
     }
   }
 }
-        </source>
+</code></pre></div>
         <p>
           The following cases are not checked:
         </p>

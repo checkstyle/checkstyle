@@ -24,7 +24,7 @@ package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 
 public class InputSuppressionXpathSingleFilterComplexQuery {
     private int countTokens() {
-        double pi = 3.14; // filtered violation
+        double pi = 3.14; // filtered violation ''3.14' is a magic number.'
         return 123; // violation
     }
 

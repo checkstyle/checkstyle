@@ -19,15 +19,15 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MissingCtor&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingCtor"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   private int a;
   Example1(int a) {
@@ -37,7 +37,7 @@ public class Example1 {
 class ExampleDefaultCtor {
   private String s;
   ExampleDefaultCtor() {
-    s = &quot;foobar&quot;;
+    s = "foobar";
   }
 }
 class InvalidExample { // violation, 'Class should define a constructor'
@@ -46,7 +46,7 @@ class InvalidExample { // violation, 'Class should define a constructor'
 abstract class AbstractExample {
   public abstract void test();
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

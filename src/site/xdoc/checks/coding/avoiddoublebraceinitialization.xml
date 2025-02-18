@@ -35,17 +35,17 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AvoidDoubleBraceInitialization&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidDoubleBraceInitialization"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Which results in the following violations:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   // violation below 'Avoid double brace initialization.'
   List&lt;Integer&gt; list1 = new ArrayList&lt;&gt;() {
@@ -58,7 +58,7 @@ class Example1 {
         ;
     // comments and semicolons are ignored
     {
-      add(&quot;foo&quot;);
+      add("foo");
     }
   };
   List&lt;Object&gt; list = new ArrayList&lt;&gt;() {
@@ -69,7 +69,7 @@ class Example1 {
     }
   };
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

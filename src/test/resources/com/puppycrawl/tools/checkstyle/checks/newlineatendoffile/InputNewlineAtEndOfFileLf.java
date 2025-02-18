@@ -1,7 +1,7 @@
 /*
 NewlineAtEndOfFile
 lineSeparator = LF
-fileExtensions = (default)all files
+fileExtensions = (default)""
 
 
 */

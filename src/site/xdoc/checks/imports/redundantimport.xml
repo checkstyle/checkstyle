@@ -33,28 +33,28 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RedundantImport&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RedundantImport"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
             Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.Example1.*; // OK, static import
 import static java.lang.Integer.MAX_VALUE; // OK, static import
 
 // violation below, 'Redundant import from the same package'
 import com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.Example1;
-import java.lang.String; // violation, &quot;Redundant import from the java.lang package&quot;
+import java.lang.String; // violation, "Redundant import from the java.lang package"
 import java.util.Scanner;
 import java.util.Scanner; // violation 'Duplicate import to line 18 - java.util.Scanner'
 
 public class Example1{ }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

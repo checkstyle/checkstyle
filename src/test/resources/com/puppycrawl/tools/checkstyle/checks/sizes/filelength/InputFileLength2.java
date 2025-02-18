@@ -1,7 +1,7 @@
 /*
 FileLength
 max = 225
-fileExtensions = (default)all files
+fileExtensions = (default)""
 
 
 */

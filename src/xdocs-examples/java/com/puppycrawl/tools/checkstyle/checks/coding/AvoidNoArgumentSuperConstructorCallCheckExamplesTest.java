@@ -35,7 +35,7 @@ public class AvoidNoArgumentSuperConstructorCallCheckExamplesTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "17:5: " + getCheckMessage(MSG_CTOR),
+            "18:5: " + getCheckMessage(MSG_CTOR),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);

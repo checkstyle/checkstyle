@@ -60,15 +60,15 @@
         <p id="Example1-config">
           To configure the check to accept lines up to 80 characters long:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;LineLength&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="LineLength"/&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example1:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
@@ -81,27 +81,27 @@ class Example1 {
   //violation 3 lines above 'Line is longer than 80 characters'
   void testMethod(String str) {
     str = MSG_KEY;
-    System.out.println(&quot;This is a short line.&quot;);
+    System.out.println("This is a short line.");
     // violation below, 'Line is longer than 80 characters'
-    System.out.println(&quot;This line is long and exceeds the default limit of 80 characters.&quot;);
+    System.out.println("This line is long and exceeds the default limit of 80 characters.");
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
           To configure the check to accept lines up to 120 characters long:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;LineLength&quot;&gt;
-    &lt;property name=&quot;max&quot; value=&quot;120&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="LineLength"&gt;
+    &lt;property name="max" value="120"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Example2:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
@@ -114,28 +114,28 @@ class Example2 {
 
   void testMethod(String str) {
     str = MSG_KEY;
-    System.out.println(&quot;This is a short line.&quot;);
+    System.out.println("This is a short line.");
 
-    System.out.println(&quot;This line is long and exceeds the default limit of 80 characters.&quot;);
+    System.out.println("This line is long and exceeds the default limit of 80 characters.");
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example3-config">
           To configure the check to ignore lines that begin with <code>&quot; * &quot;</code>code,
           followed by just one word, such as within a Javadoc comment:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;LineLength&quot;&gt;
-    &lt;property name=&quot;ignorePattern&quot; value=&quot;^ *\* *[^ ]+$&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="LineLength"&gt;
+    &lt;property name="ignorePattern" value="^ *\* *[^ ]+$"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">
           Example3:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 // violation below, 'Line is longer than 80 characters'
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
@@ -148,28 +148,28 @@ class Example3 {
 
   void testMethod(String str) {
     str = MSG_KEY;
-    System.out.println(&quot;This is a short line.&quot;);
+    System.out.println("This is a short line.");
     // violation below, 'Line is longer than 80 characters'
-    System.out.println(&quot;This line is long and exceeds the default limit of 80 characters.&quot;);
+    System.out.println("This line is long and exceeds the default limit of 80 characters.");
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example4-config">
           To configure the check to only validate xml and property files and ignore other
           extensions:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;LineLength&quot;&gt;
-    &lt;property name=&quot;fileExtensions&quot; value=&quot;xml, properties&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="LineLength"&gt;
+    &lt;property name="fileExtensions" value="xml, properties"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">
           Example4:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
@@ -182,29 +182,29 @@ class Example4 {
 
   void testMethod(String str) {
     str = MSG_KEY;
-    System.out.println(&quot;This is a short line.&quot;);
+    System.out.println("This is a short line.");
 
-    System.out.println(&quot;This line is long and exceeds the default limit of 80 characters.&quot;);
+    System.out.println("This line is long and exceeds the default limit of 80 characters.");
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example5-config">
           To configure check to validate <code>import</code> statements:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;LineLength&quot;&gt;
-    &lt;property name=&quot;ignorePattern&quot;
-              value=&quot;^(import) &quot;/&gt;
-    &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="LineLength"&gt;
+    &lt;property name="ignorePattern"
+              value="^(import) "/&gt;
+    &lt;property name="max" value="60"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 // violation above, 'Line is longer than 60 characters'
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
@@ -217,12 +217,12 @@ class Example5 {
   // violation 3 lines above 'Line is longer'
   void testMethod(String str) {
     str = MSG_KEY;
-    System.out.println(&quot;This is a short line.&quot;);
+    System.out.println("This is a short line.");
     // violation below, 'Line is longer than 60 characters'
-    System.out.println(&quot;This line is long and exceeds the default limit of 80 characters.&quot;);
+    System.out.println("This line is long and exceeds the default limit of 80 characters.");
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Notes" id="Notes">

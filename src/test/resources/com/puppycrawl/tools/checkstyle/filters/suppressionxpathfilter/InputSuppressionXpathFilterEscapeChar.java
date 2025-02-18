@@ -18,9 +18,9 @@ public class InputSuppressionXpathFilterEscapeChar {
 
     char b = '\"'; // violation
 
-    char c = '\''; // filtered violation
+    char c = '\''; // filtered violation 'illegal pattern'
 
-    char d = '<'; // filtered violation
+    char d = '<'; // filtered violation 'illegal pattern'
 
-    char e = '>'; // filtered violation
+    char e = '>'; // filtered violation 'illegal pattern'
 }

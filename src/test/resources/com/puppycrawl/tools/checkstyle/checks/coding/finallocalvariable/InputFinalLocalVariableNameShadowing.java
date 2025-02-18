@@ -9,7 +9,7 @@ tokens = PARAMETER_DEF,VARIABLE_DEF
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 class InputFinalLocalVariableNameShadowing {
-    public void foo(String text) { // violation
+    public void foo(String text) { // violation, "Variable 'text' should be declared final"
         System.identityHashCode(text);
 
         class Bar {
@@ -22,7 +22,7 @@ class InputFinalLocalVariableNameShadowing {
 
 class Foo2 {
     public void foo() {
-        int x; // violation
+        int x; // violation, "Variable 'x' should be declared final"
         class Bar {
             void bar () {
                 int x = 1;

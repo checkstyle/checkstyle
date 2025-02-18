@@ -58,45 +58,45 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AvoidStaticImport&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidStaticImport"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static java.lang.Math.pow;          // violation, 'Using a static member import should be avoided.'
 import static java.lang.System.*;          // violation, 'Using a static member import should be avoided.'
 import java.io.File;                       // OK
 import java.util.*;                        // OK
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check so that the <code>java.lang.System.out</code>
           member and all members from <code>java.lang.Math</code> are allowed:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AvoidStaticImport&quot;&gt;
-      &lt;property name=&quot;excludes&quot; value=&quot;java.lang.System.out,java.lang.Math.*&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidStaticImport"&gt;
+      &lt;property name="excludes" value="java.lang.System.out,java.lang.Math.*"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
          Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static java.lang.Math.*;            // OK
 import static java.lang.System.out;        // OK
 import static java.lang.Integer.parseInt;  // violation, 'Using a static member import should be avoided.'
 import java.io.*;                          // OK
 import java.util.*;                        // OK
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

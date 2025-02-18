@@ -22,24 +22,25 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AvoidNoArgumentSuperConstructorCall&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidNoArgumentSuperConstructorCall"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example of violations
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class SuperClass {
   public SuperClass() {}
   public SuperClass(int arg) {}
 }
 class Example1 extends SuperClass {
   Example1() {
-    super(); // violation
+    //violation below,'Unnecessary call to superclass constructor with no arguments.'
+    super();
   }
 
   Example1(int arg) {
@@ -50,7 +51,7 @@ class Example1 extends SuperClass {
     // ok, no explicit constructor invocation
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

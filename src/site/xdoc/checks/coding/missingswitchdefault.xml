@@ -49,32 +49,43 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MissingSwitchDefault&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingSwitchDefault"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example of violation:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   void Example1(int i) {
-    switch (i) { // violation, 'switch without &quot;default&quot; clause'
+    switch (i) { // violation, 'switch without "default" clause'
       case 1:
         break;
       case 2:
         break;
     }
   }
+  enum Status {ACTIVE, DISABLED}
+  void testEnum(Status status) {
+    switch (status) { // violation, 'switch without "default" clause'
+      case ACTIVE:
+        System.out.println(0);
+        break;
+      case DISABLED:
+        System.out.println(1);
+        break;
+    }
+  }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Example of correct code:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   Example2(int i){
     switch (i) {
@@ -85,25 +96,25 @@ class Example2 {
       default:
         break;
     }
-    Object obj = &quot;example&quot;;
+    Object obj = "example";
     switch (obj) {
       case String s: // type pattern
         System.out.println(s);
         break;
       case Integer j: // type pattern
-        System.out.println(&quot;Integer&quot;);
+        System.out.println("Integer");
         break;
       default:    // will not compile without default label
-        System.out.println(&quot;Unknown type&quot;);
+        System.out.println("Unknown type");
         break;
     }
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example3-code">
           Example of correct code which does not require default labels:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 sealed interface S permits A, B, C {}
 final class A implements S {}
 final class B implements S {}
@@ -112,36 +123,36 @@ class Example3 {
   static void showSealedCompleteness(S s) {
     switch (s) {
       case A a:
-        System.out.println(&quot;A&quot;);
+        System.out.println("A");
         break;
       case B b:
-        System.out.println(&quot;B&quot;);
+        System.out.println("B");
         break;
       case C c:
-        System.out.println(&quot;C&quot;);
+        System.out.println("C");
         break;
     }
   }
   static void showTotality(String s) {
     switch (s) {
       case Object o: // total type pattern
-        System.out.println(&quot;o!&quot;);
+        System.out.println("o!");
     }
   }
   enum Color {RED, GREEN, BLUE}
   static int showSwitchExpressionExhaustiveness(Color color) {
     switch (color) {
       case RED:
-        System.out.println(&quot;RED&quot;);
+        System.out.println("RED");
         break;
       case BLUE:
-        System.out.println(&quot;BLUE&quot;);
+        System.out.println("BLUE");
         break;
       case GREEN:
-        System.out.println(&quot;GREEN&quot;);
+        System.out.println("GREEN");
         break;
       default:
-        System.out.println(&quot;Something else&quot;);
+        System.out.println("Something else");
     }
     return switch (color) {
       case RED:
@@ -153,7 +164,7 @@ class Example3 {
     };
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

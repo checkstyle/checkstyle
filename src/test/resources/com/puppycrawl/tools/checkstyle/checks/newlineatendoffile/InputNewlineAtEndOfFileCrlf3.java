@@ -1,7 +1,7 @@
 /*
 NewlineAtEndOfFile
 lineSeparator = crlf
-fileExtensions = (default)all files
+fileExtensions = (default)""
 
 
 */

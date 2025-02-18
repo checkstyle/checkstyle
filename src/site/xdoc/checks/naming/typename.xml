@@ -99,71 +99,71 @@
           To configure the check:
         </p>
 
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;TypeName&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TypeName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Code Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   public interface FirstName {}
   protected class SecondName {}
   enum Third_Name {} // violation
   private class FourthName_ {} // violation
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters, digits, and underscores. Also, suppress the check from being
           applied to protected and private type:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;TypeName&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
-      &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
-      &lt;property name=&quot;applyToPrivate&quot; value=&quot;false&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TypeName"&gt;
+      &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+      &lt;property name="applyToProtected" value="false"/&gt;
+      &lt;property name="applyToPrivate" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Code Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {   // violation
   public interface firstName {}
   public class SecondName {} // violation
   protected class ThirdName {}
   private class FourthName {}
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           The following configuration element ensures that
           interface names begin with <code>&quot;I_&quot;</code>, followed by
           letters and digits:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;TypeName&quot;&gt;
-      &lt;property name=&quot;format&quot;
-        value=&quot;^I_[a-zA-Z0-9]*$&quot;/&gt;
-      &lt;property name=&quot;tokens&quot;
-        value=&quot;INTERFACE_DEF&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TypeName"&gt;
+      &lt;property name="format"
+        value="^I_[a-zA-Z0-9]*$"/&gt;
+      &lt;property name="tokens"
+        value="INTERFACE_DEF"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Code Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
   public interface I_firstName {}
   interface SecondName {} // violation
 }
-        </source>
+</code></pre></div>
 
       </subsection>
 

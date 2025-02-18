@@ -23,6 +23,7 @@ public class InputThrowsCountMethodWithAnnotation extends ParentClass {
 }
 
 class ParentClass {
-    public void method() throws AWTException, SQLException, // violation
+    // violation below 'Throws count is 5 (max allowed is 4)'
+    public void method() throws AWTException, SQLException,
     FileNotFoundException, EOFException, FileAlreadyExistsException {}
 }

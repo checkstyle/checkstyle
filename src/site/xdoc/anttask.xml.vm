@@ -45,10 +45,10 @@
         <code>taskdef</code> declaration:
       </p>
 
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;taskdef resource=&quot;com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties&quot;
          classpath=&quot;/path/to/checkstyle-${projectVersion}-all.jar&quot;/&gt;
-      </source>
+      </code></pre></div>
 
       <p>
         Or, assuming that Checkstyle is in the global classpath (not
@@ -56,10 +56,10 @@
         declaration:
       </p>
 
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;taskdef
   resource=&quot;com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties&quot;/&gt;
-      </source>
+      </code></pre></div>
 
       <p>
         Or if you use Ant 1.6 and later and assuming that Checkstyle
@@ -70,7 +70,7 @@
         for more details).  For example:
       </p>
 
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;project name="foo" ...
          xmlns:cs="antlib:com.puppycrawl.tools.checkstyle.ant"&gt;
 ...
@@ -79,7 +79,7 @@
   &lt;/cs:checkstyle&gt;
 ...
 &lt;/project&gt;
-      </source>
+      </code></pre></div>
 
     </section>
 
@@ -346,9 +346,9 @@
         </b>
       </p>
 
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;checkstyle config=&quot;docs/sun_checks.xml&quot; file=&quot;Check.java&quot;/&gt;
-      </source>
+      </code></pre></div>
 
       <p>
         <b>
@@ -356,21 +356,21 @@
           and an expanded property value
         </b>
       </p>
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;checkstyle config=&quot;/path/to/site/sun_checks.xml&quot;&gt;
   &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
 
   &lt;!-- Location of cache-file. Something that is project specific --&gt;
   &lt;property key=&quot;checkstyle.cache.file&quot; file=&quot;target/cachefile&quot;/&gt;
 &lt;/checkstyle&gt;
-      </source>
+      </code></pre></div>
 
       <p>
         <b>
           Run checkstyle on a previously defined source path.
         </b>
       </p>
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;!-- Somewhere in your config --&gt;
 &lt;path id="project.sourcepath"&gt;
   &lt;fileset dir="src"
@@ -383,7 +383,7 @@
   &lt;!-- Refer to a previously defined source path --&gt;
   &lt;path refid="project.sourcepath" /&gt;
 &lt;/checkstyle&gt;
-      </source>
+      </code></pre></div>
 
       <p>
         <b>
@@ -391,14 +391,14 @@
           output in plain format, and files in XML &amp; SARIF format
         </b>
       </p>
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;checkstyle config=&quot;docs/sun_checks.xml&quot;&gt;
   &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
   &lt;formatter type=&quot;plain&quot;/&gt;
   &lt;formatter type=&quot;xml&quot; toFile=&quot;build/checkstyle_errors.xml&quot;/&gt;
   &lt;formatter type=&quot;sarif&quot; toFile=&quot;build/checkstyle_errors.sarif&quot;/&gt;
 &lt;/checkstyle&gt;
-      </source>
+      </code></pre></div>
 
       <p>
         <b>
@@ -407,11 +407,11 @@
           names file
         </b>
       </p>
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;checkstyle config=&quot;docs/sun_checks.xml&quot;
             packageNamesFile=&quot;myPackageNames.xml&quot;
             file=&quot;Check.java&quot;/&gt;
-      </source>
+      </code></pre></div>
 
       <p>
         <b>
@@ -419,7 +419,7 @@
           style violations are detected
         </b>
       </p>
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;target name=&quot;checkstyle&quot;
         description=&quot;Generates a report of code convention violations.&quot;>
 
@@ -450,7 +450,7 @@
         files=&quot;checkstyle_report.html&quot;/&gt;
 
 &lt;/target&gt;
-      </source>
+      </code></pre></div>
 
       <p>
         <b>

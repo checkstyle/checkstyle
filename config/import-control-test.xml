@@ -52,6 +52,9 @@
     <file name="InlineConfigParser">
       <!-- Use reflection to count violation messages in a check. -->
       <allow class="java.lang.reflect.Modifier" />
+      <!-- Use reflection to validate default in a check. -->
+      <allow class="java.lang.reflect.Field" />
+      <allow class="java.lang.reflect.Method" />
     </file>
   </subpackage>
 

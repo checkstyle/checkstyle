@@ -115,13 +115,13 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ClassDataAbstractionCoupling&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ClassDataAbstractionCoupling"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
 
         <p>
           Example:
@@ -129,7 +129,7 @@
         <p id="Example1-code">
           The check passes without violations in the following:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   private Set&lt;Object&gt; set = new HashSet&lt;&gt;(); // Ignored by default
   private Map&lt;Object,Object&gt; map = new HashMap&lt;&gt;(); // Ignored by default
@@ -138,19 +138,19 @@ public class Example1 {
   private Instant instant = Instant.now(); // Counted 1
   private LocalTime localTime = LocalTime.now(); // Counted 2
 }
-        </source>
+</code></pre></div>
 
         <p id="Example2-code">
           The check results in a violation in the following:
         </p>
-        <source>
-// violation below, &quot;Class Data Abstraction Coupling is 8 (max allowed is 7).&quot;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation below, "Class Data Abstraction Coupling is 8 (max allowed is 7)."
 public class Example2 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
 
   AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
-  BigInteger bigInteger = new BigInteger(&quot;0&quot;);
+  BigInteger bigInteger = new BigInteger("0");
   Example1 example1 = new Example1();
   Example3 example3 = new Example3();
   Example4 example4 = new Example4();
@@ -158,20 +158,20 @@ public class Example2 {
   Example6 example6 = new Example6();
   Example7 example7 = new Example7(); // Counted 8
 }
-        </source>
+</code></pre></div>
 
         <p id="Example3-config">
           To configure the check with a threshold of 2:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ClassDataAbstractionCoupling"&gt;
+      &lt;property name="max" value="2"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
 
         <p>
           Example:
@@ -179,42 +179,42 @@ public class Example2 {
         <p id="Example3-code">
           The check passes without violations in the following:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
   Instant instant = Instant.now(); // Counted 1
   LocalTime localTime = LocalTime.now(); // Counted 2
 }
-        </source>
+</code></pre></div>
 
         <p id="Example4-code">
           The check results in a violation in the following:
         </p>
-        <source>
-// violation below, &quot;Class Data Abstraction Coupling is 3 (max allowed is 2).&quot;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation below, "Class Data Abstraction Coupling is 3 (max allowed is 2)."
 public class Example4 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
   AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
-  BigInteger bigInteger = new BigInteger(&quot;0&quot;);
-  BigDecimal bigDecimal = new BigDecimal(&quot;0&quot;); // Counted 3
+  BigInteger bigInteger = new BigInteger("0");
+  BigDecimal bigDecimal = new BigDecimal("0"); // Counted 3
 }
-        </source>
+</code></pre></div>
 
         <p id="Example5-config">
           To configure the check with three excluded classes <code>HashMap</code>,
           <code>HashSet</code> and <code>Example1</code>:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
-      &lt;property name=&quot;excludedClasses&quot; value=&quot;HashMap, HashSet, Example1&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ClassDataAbstractionCoupling"&gt;
+      &lt;property name="excludedClasses" value="HashMap, HashSet, Example1"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
 
         <p>
           Example:
@@ -222,33 +222,33 @@ public class Example4 {
         <p id="Example5-code">
           The check passes without violations in the following:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example5 {
   Set set = new HashSet(); // Ignored 1
   Map map = new HashMap(); // Ignored 2
   Example1 example1 = new Example1(); // Ignore 3
 
   AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
-  BigInteger bigInteger = new BigInteger(&quot;0&quot;);
+  BigInteger bigInteger = new BigInteger("0");
   Example2 example2 = new Example2();
   Example3 example3 = new Example3();
   Example4 example4 = new Example4();
   Example6 example6 = new Example6();
   Example7 example7 = new Example7(); // Counted 7
 }
-        </source>
+</code></pre></div>
 
         <p id="Example6-code">
           The check results in a violation in the following:
         </p>
-        <source>
-// violation below, &quot;Class Data Abstraction Coupling is 8 (max allowed is 7).&quot;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation below, "Class Data Abstraction Coupling is 8 (max allowed is 7)."
 public class Example6 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
 
   AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
-  BigInteger bigInteger = new BigInteger(&quot;0&quot;);
+  BigInteger bigInteger = new BigInteger("0");
   Example2 example2 = new Example2();
   Example3 example3 = new Example3();
   Example4 example4 = new Example4();
@@ -256,21 +256,21 @@ public class Example6 {
   Example7 example7 = new Example7();
   Example8 example8 = new Example8(); // Counted 8
 }
-        </source>
+</code></pre></div>
 
         <p id="Example7-config">
           To configure the check to exclude classes with a regular expression
           <code>.*Reader$</code>:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
-      &lt;property name=&quot;excludeClassesRegexps&quot; value=&quot;.*Reader$&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ClassDataAbstractionCoupling"&gt;
+      &lt;property name="excludeClassesRegexps" value=".*Reader$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
 
         <p>
           Example:
@@ -278,13 +278,13 @@ public class Example6 {
         <p id="Example7-code">
           The check passes without violations in the following:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example7 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
 
   AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
-  BigInteger bigInteger = new BigInteger(&quot;0&quot;);
+  BigInteger bigInteger = new BigInteger("0");
   Example1 example1 = new Example1();
   Example2 example2 = new Example2();
   Example3 example3 = new Example3();
@@ -294,41 +294,41 @@ public class Example7 {
   // Ignored using module excludeClassesRegexps property
   BufferedReader bufferedReader = new BufferedReader(new PipedReader());
 }
-        </source>
+</code></pre></div>
 
         <p id="Example8-code">
           The check results in a violation in the following:
         </p>
-        <source>
-// violation below, &quot;Class Data Abstraction Coupling is 8 (max allowed is 7).&quot;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation below, "Class Data Abstraction Coupling is 8 (max allowed is 7)."
 public class Example8 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
 
   AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
-  BigInteger bigInteger = new BigInteger(&quot;0&quot;);
-  BigDecimal bigDecimal = new BigDecimal(&quot;0&quot;);
+  BigInteger bigInteger = new BigInteger("0");
+  BigDecimal bigDecimal = new BigDecimal("0");
   MathContext mathContext = new MathContext(0);
   ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(new byte[1]);
   CharArrayWriter charArrayWriter = new CharArrayWriter();
   StringWriter stringWriter = new StringWriter();
-  File file = new File(&quot;path&quot;); // Counted 8
+  File file = new File("path"); // Counted 8
 }
-        </source>
+</code></pre></div>
 
         <p id="Example9-config">
           To configure the check with an excluded package <code>java.io</code>:
         </p>
 
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
-      &lt;property name=&quot;excludedPackages&quot; value=&quot;java.io&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ClassDataAbstractionCoupling"&gt;
+      &lt;property name="excludedPackages" value="java.io"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
 
         <p>
           Example:
@@ -336,7 +336,7 @@ public class Example8 {
         <p id="Example9-code">
           The check passes without violations in the following:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.io.BufferedReader;
 
 public class Example9 {
@@ -344,8 +344,8 @@ public class Example9 {
   Map map = new HashMap(); // Ignored by default
 
   AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
-  BigInteger bigInteger = new BigInteger(&quot;0&quot;);
-  BigDecimal bigDecimal = new BigDecimal(&quot;0&quot;);
+  BigInteger bigInteger = new BigInteger("0");
+  BigDecimal bigDecimal = new BigDecimal("0");
   MathContext mathContext = new MathContext(0); // Counted 4
 
   // Ignored using module excludedPackages property
@@ -354,12 +354,12 @@ public class Example9 {
   PipedReader pipedReader = new PipedReader();
   BufferedReader bufferedReader = new BufferedReader(pipedReader);
 }
-        </source>
+</code></pre></div>
 
         <p id="Example10-code">
           The check results in a violation in the following:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.Example2;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.Example3;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.Example4;
@@ -378,14 +378,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
-// violation below, &quot;Class Data Abstraction Coupling is 8 (max allowed is 7).&quot;
+// violation below, "Class Data Abstraction Coupling is 8 (max allowed is 7)."
 class Example10 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
 
   AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
-  BigInteger bigInteger = new BigInteger(&quot;0&quot;);
-  BigDecimal bigDecimal = new BigDecimal(&quot;0&quot;);
+  BigInteger bigInteger = new BigInteger("0");
+  BigDecimal bigDecimal = new BigDecimal("0");
   MathContext mathContext = new MathContext(0);
   Example2 example3 = new Example2();
   Example3 example4 = new Example3();
@@ -398,7 +398,7 @@ class Example10 {
   BufferedReader bufferedReader = new BufferedReader(pipedReader);
   CharArrayWriter charArrayWriter = new CharArrayWriter();
 }
-        </source>
+</code></pre></div>
 
         <p>
           Override property <code>excludedPackages</code> to mark some packages as excluded.
@@ -431,19 +431,19 @@ class Example10 {
           even if it was listed in the <code>excludedPackages</code> parameter. For example,
           assuming the config is
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
-      &lt;property name=&quot;excludedPackages&quot; value=&quot;com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ClassDataAbstractionCoupling"&gt;
+      &lt;property name="excludedPackages" value="com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example11-code">
           And the file <code>a.b.Foo.java</code> is:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.Example7;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.Example8;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.Example9;
@@ -472,7 +472,7 @@ class Example11 {
     }
   }
 }
-        </source>
+</code></pre></div>
         <p>
           The <code>bar</code> member will not be counted,
           since the <code>a.b</code> added to the <code>excludedPackages</code>.

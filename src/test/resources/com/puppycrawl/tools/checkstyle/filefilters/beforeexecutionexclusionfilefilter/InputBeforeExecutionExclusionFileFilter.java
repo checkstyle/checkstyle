@@ -14,6 +14,6 @@ package com.puppycrawl.tools.checkstyle.filefilters.beforeexecutionexclusionfile
 
 public class InputBeforeExecutionExclusionFileFilter {
     void foo() {
-        int i = 0; // filtered violation
+        int i = 0; // filtered violation ''i' should be declared final.'
     }
 }

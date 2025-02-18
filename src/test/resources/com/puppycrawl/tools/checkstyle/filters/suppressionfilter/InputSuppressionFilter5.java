@@ -16,5 +16,6 @@ applyToPrivate = (default)true
 package com.puppycrawl.tools.checkstyle.filters.suppressionfilter;
 
 public class InputSuppressionFilter5 {
-    public final static int different_name_than_suppression = 1; // filtered violation
+    public final static int different_name_than_suppression = 1;
+    // filtered violation above ''different_name_than_suppression' must match pattern'
 }

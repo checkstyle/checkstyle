@@ -47,6 +47,10 @@ section p {
 
 }
 
+#bannerLeft h1 {
+  margin: 0;
+}
+
 #bannerRight h1 {
   margin: 0;
 }
@@ -136,19 +140,17 @@ th {
   background-color: #ededed;
 }
 
-code {
-  white-space: normal;
-}
-
 .prettyprint {
-  padding: 1em !important;
+  padding: 0.5em !important;
   overflow: auto;
   white-space: nowrap;
+  margin-left: 0 !important;
 }
 
 .prettyprint code {
-  font-size: 15px;
+  font-size: 17px;
   text-wrap: nowrap;
+  line-height: 1.625;
 }
 
 .externalLink {
@@ -159,6 +161,7 @@ code {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin-bottom: 5px !important;
 }
 
 #bodyColumn h2, h2 {
@@ -175,7 +178,8 @@ code {
 
 #leftColumn {
   min-width: 250px;
-  width: fit-content;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .releaseDate {

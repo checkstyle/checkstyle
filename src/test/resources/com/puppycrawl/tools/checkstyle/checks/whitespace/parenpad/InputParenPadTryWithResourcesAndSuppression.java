@@ -20,6 +20,6 @@ class InputParenPadTryWithResourcesAndSuppression {
         try (AutoCloseable a = null; AutoCloseable b = null) {} // ok
         try (AutoCloseable a = null; AutoCloseable b = null; ) {} // ok
         try (AutoCloseable a = null; AutoCloseable b = null; ) {} // ok
-        try ( AutoCloseable a = null) {} // filtered violation
+        try ( AutoCloseable a = null) {} // filtered violation ''(' is followed by whitespace.'
     }
 }

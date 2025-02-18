@@ -289,9 +289,9 @@ public class SuppressionXpathSingleFilterTest
     public void testDecideByMessage() throws Exception {
         final String[] expected = {
             "28:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
-            "30:21: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "3.14"),
-            "31:16: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "123"),
-            "35:28: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "123"),
+            "31:21: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "3.14"),
+            "32:16: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "123"),
+            "36:28: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "123"),
         };
 
         final String[] suppressed = {

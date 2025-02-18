@@ -94,16 +94,16 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     public void testSingleLineStatements() throws Exception {
         final String[] expected = {
             "32:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "38:43: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "47:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "55:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
-            "62:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
-            "65:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "71:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "100:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "104:11: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
-            "116:47: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "123:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "39:43: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "48:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "56:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "63:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
+            "66:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "72:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "101:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "105:11: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
+            "118:47: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "125:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNeedBracesSingleLineStatements.java"), expected);
@@ -114,8 +114,8 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "16:29: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
             "19:22: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
-            "24:60: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
-            "25:27: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "25:60: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "26:27: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNeedBracesTestSingleLineLambda.java"), expected);
@@ -124,12 +124,12 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDoNotAllowSingleLineLambda() throws Exception {
         final String[] expected = {
-            "14:28: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
-            "15:29: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
-            "16:29: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
-            "19:22: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
-            "24:60: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
-            "25:27: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "15:28: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "17:29: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "18:29: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "21:22: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "27:60: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "28:27: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNeedBracesTestNotAllowSingleLineLambda.java"), expected);
@@ -245,10 +245,10 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "56:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "59:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
             "73:47: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
-            "80:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
-            "87:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "81:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
             "88:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "89:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "90:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputNeedBracesTestSwitchExpressionNoSingleLine.java"),
@@ -284,20 +284,20 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "17:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "21:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "25:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "28:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
-            "53:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "26:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "29:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
             "55:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "58:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "61:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
-            "74:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "78:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "80:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "83:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
-            "88:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "89:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "90:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "96:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "57:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "61:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "64:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "77:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "82:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "85:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "88:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "94:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "96:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "98:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "104:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputNeedBracesPatternMatchingForSwitch.java"),
@@ -309,15 +309,15 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "17:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "21:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "25:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "28:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
-            "55:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "58:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "61:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
-            "74:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "80:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "83:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
-            "90:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "26:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "29:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "56:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "60:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "63:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "76:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "83:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "86:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "94:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
@@ -334,11 +334,11 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "50:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "51:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
             "56:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "58:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
-            "62:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "59:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
             "63:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "65:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "66:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "67:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "68:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputNeedBracesSwitchExpressionAndLambda.java"),
@@ -350,7 +350,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "27:24: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
             "46:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "53:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "54:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(

@@ -14,7 +14,8 @@ class SuperClass {
 }
 class Example1 extends SuperClass {
   Example1() {
-    super(); // violation
+    //violation below,'Unnecessary call to superclass constructor with no arguments.'
+    super();
   }
 
   Example1(int arg) {

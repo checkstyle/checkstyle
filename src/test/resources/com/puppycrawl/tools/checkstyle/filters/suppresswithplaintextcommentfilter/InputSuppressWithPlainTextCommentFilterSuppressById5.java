@@ -14,7 +14,7 @@ message = (default)
 ignoreCase = (default)false
 minimum = (default)0
 maximum = (default)0
-fileExtensions = (default)all files
+fileExtensions = (default)(null)
 
 
 com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck
@@ -33,8 +33,8 @@ public class InputSuppressWithPlainTextCommentFilterSuppressById5 { // violation
     private int A1; // filtered violation 'illegal pattern'
 
     // @cs-: ignore (reason)
-	private static final int a1 = 5; // filtered violation
-    // violation above
+	private static final int a1 = 5; // filtered violation 'illegal pattern'
+    // violation above 'Line contains a tab character.'
     int a2 = 100; // filtered violation 'illegal pattern'
     //CSON ignore
 

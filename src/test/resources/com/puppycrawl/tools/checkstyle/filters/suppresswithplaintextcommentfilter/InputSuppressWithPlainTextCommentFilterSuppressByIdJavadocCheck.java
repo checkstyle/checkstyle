@@ -25,18 +25,18 @@ public class InputSuppressWithPlainTextCommentFilterSuppressByIdJavadocCheck {
     // CHECKSTYLE:OFF
 
     /** missing return **/
-    int method3() { // filtered violation
+    int method3() { // filtered violation '@return tag should be present and have description.'
         return 3;
     }
 
-    /** @param unused asd **/ // filtered violation
+    /** @param unused asd **/ // filtered violation 'Unused @param tag for 'unused'.'
     void method2() {
     }
 
     /**
      * Missing param tag.
      */
-    void method3(int a) { // filtered violation
+    void method3(int a) { // filtered violation 'Expected @param tag for 'a'.'
     }
     // CHECKSTYLE:ON
 

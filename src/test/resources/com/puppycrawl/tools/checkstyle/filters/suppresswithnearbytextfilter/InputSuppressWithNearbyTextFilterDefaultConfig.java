@@ -7,7 +7,7 @@ idPattern = (default)(null)
 lineRange = (default)0
 
 com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck
-fileExtensions = (default)all files
+fileExtensions = (default)(null)
 ignorePattern = (default)^(package|import) .*
 max = 90
 

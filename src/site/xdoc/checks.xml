@@ -1432,14 +1432,6 @@
           </tr>
           <tr>
             <td>
-              <a href="checks/design/visibilitymodifier.html#VisibilityModifier">
-                VisibilityModifier
-              </a>
-            </td>
-            <td>Checks visibility of class members.</td>
-          </tr>
-          <tr>
-            <td>
               <a href="checks/coding/whenshouldbeused.html#WhenShouldBeUsed">
                 WhenShouldBeUsed
               </a>

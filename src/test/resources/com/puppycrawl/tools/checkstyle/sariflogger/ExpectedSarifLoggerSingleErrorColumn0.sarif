@@ -1,0 +1,43 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "downloadUri": "https://github.com/checkstyle/checkstyle/releases/",
+          "fullName": "Checkstyle",
+          "informationUri": "https://checkstyle.org/",
+          "language": "en",
+          "name": "Checkstyle",
+          "organization": "Checkstyle",
+          "rules": [
+          ],
+          "semanticVersion": "null",
+          "version": "null"
+        }
+      },
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Test.java"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "found an error\nplease try again"
+          },
+          "ruleId": "ruleId"
+        }
+      ]
+    }
+  ]
+}

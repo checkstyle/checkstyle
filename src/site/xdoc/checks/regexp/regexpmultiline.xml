@@ -87,144 +87,144 @@
         <p id="Example1-config">
         To run the check with its default configuration (no matches will be):
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;RegexpMultiline&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpMultiline"/&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
         Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   void testMethod1() {
 
-    System.out.print(&quot;Example&quot;);
+    System.out.print("Example");
 
-    System.err.println(&quot;Example&quot;);
+    System.err.println("Example");
     System
-    .out.print(&quot;Example&quot;);
+    .out.print("Example");
     System
-    .err.println(&quot;Example&quot;);
+    .err.println("Example");
     System.
-    out.print(&quot;Example&quot;);
+    out.print("Example");
     System.
-    err.println(&quot;Example&quot;);
+    err.println("Example");
   }
 
   void testMethod2() {
 
-    System.out.println(&quot;Test #1: this is a test string&quot;);
+    System.out.println("Test #1: this is a test string");
 
-    System.out.println(&quot;TeSt #2: This is a test string&quot;);
+    System.out.println("TeSt #2: This is a test string");
 
-    System.out.println(&quot;TEST #3: This is a test string&quot;);
+    System.out.println("TEST #3: This is a test string");
     int i = 5;
 
-    System.out.println(&quot;Value of i: &quot; + i);
+    System.out.println("Value of i: " + i);
 
-    System.out.println(&quot;Test #4: This is a test string&quot;);
+    System.out.println("Test #4: This is a test string");
 
-    System.out.println(&quot;TEst #5: This is a test string&quot;);
+    System.out.println("TEst #5: This is a test string");
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check to find calls to print to the console:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;RegexpMultiline&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;System\.(out)|(err)\.print(ln)?\(&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpMultiline"&gt;
+    &lt;property name="format" value="System\.(out)|(err)\.print(ln)?\("/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   void testMethod1() {
     // violation below, 'Line matches the illegal pattern'
-    System.out.print(&quot;Example&quot;);
+    System.out.print("Example");
     // violation below, 'Line matches the illegal pattern'
-    System.err.println(&quot;Example&quot;);
+    System.err.println("Example");
     System
-      .out.print(&quot;Example&quot;);
+      .out.print("Example");
     System
-      .err.println(&quot;Example&quot;); // violation, 'Line matches the illegal pattern'
+      .err.println("Example"); // violation, 'Line matches the illegal pattern'
     System.
-      out.print(&quot;Example&quot;);
+      out.print("Example");
     System.
-      err.println(&quot;Example&quot;); // violation, 'Line matches the illegal pattern'
+      err.println("Example"); // violation, 'Line matches the illegal pattern'
   }
 
   void testMethod2() {
     // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;Test #1: this is a test string&quot;);
+    System.out.println("Test #1: this is a test string");
     // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;TeSt #2: This is a test string&quot;);
+    System.out.println("TeSt #2: This is a test string");
     // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;TEST #3: This is a test string&quot;);
+    System.out.println("TEST #3: This is a test string");
     int i = 5;
     // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;Value of i: &quot; + i);
+    System.out.println("Value of i: " + i);
     // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;Test #4: This is a test string&quot;);
+    System.out.println("Test #4: This is a test string");
     // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;TEst #5: This is a test string&quot;);
+    System.out.println("TEst #5: This is a test string");
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           To configure the check to match text that spans multiple lines,
           like normal code in a Java file:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;RegexpMultiline&quot;&gt;
-    &lt;property name=&quot;matchAcrossLines&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;format&quot; value=&quot;System\.out.*?print\(&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpMultiline"&gt;
+    &lt;property name="matchAcrossLines" value="true"/&gt;
+    &lt;property name="format" value="System\.out.*?print\("/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
   void testMethod1() {
     // violation below, 'Line matches the illegal pattern'
-    System.out.print(&quot;Example&quot;);
+    System.out.print("Example");
 
-    System.err.println(&quot;Example&quot;);
+    System.err.println("Example");
     System
-    .out.print(&quot;Example&quot;);
+    .out.print("Example");
     System
-    .err.println(&quot;Example&quot;);
+    .err.println("Example");
     System.
-    out.print(&quot;Example&quot;);
+    out.print("Example");
     System.
-    err.println(&quot;Example&quot;);
+    err.println("Example");
   }
 
   void testMethod2() {
 
-    System.out.println(&quot;Test #1: this is a test string&quot;);
+    System.out.println("Test #1: this is a test string");
 
-    System.out.println(&quot;TeSt #2: This is a test string&quot;);
+    System.out.println("TeSt #2: This is a test string");
 
-    System.out.println(&quot;TEST #3: This is a test string&quot;);
+    System.out.println("TEST #3: This is a test string");
     int i = 5;
 
-    System.out.println(&quot;Value of i: &quot; + i);
+    System.out.println("Value of i: " + i);
 
-    System.out.println(&quot;Test #4: This is a test string&quot;);
+    System.out.println("Test #4: This is a test string");
 
-    System.out.println(&quot;TEst #5: This is a test string&quot;);
+    System.out.println("TEst #5: This is a test string");
   }
 }
-        </source>
+</code></pre></div>
         <p>
           Note: Beware of the greedy regular expression used in the above example.
           <code>.*</code> will match as much as possible and not produce multiple violations in
@@ -236,123 +236,123 @@ class Example3 {
         <p id="Example4-config">
         To configure the check to match a maximum of three test strings:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;RegexpMultiline&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;Test #[0-9]+:[A-Za-z ]+&quot;/&gt;
-    &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;maximum&quot; value=&quot;3&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpMultiline"&gt;
+    &lt;property name="format" value="Test #[0-9]+:[A-Za-z ]+"/&gt;
+    &lt;property name="ignoreCase" value="true"/&gt;
+    &lt;property name="maximum" value="3"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
   void testMethod1() {
 
-    System.out.print(&quot;Example&quot;);
+    System.out.print("Example");
 
-    System.err.println(&quot;Example&quot;);
+    System.err.println("Example");
     System
-    .out.print(&quot;Example&quot;);
+    .out.print("Example");
     System
-    .err.println(&quot;Example&quot;);
+    .err.println("Example");
     System.
-    out.print(&quot;Example&quot;);
+    out.print("Example");
     System.
-    err.println(&quot;Example&quot;);
+    err.println("Example");
   }
 
   void testMethod2() {
 
-    System.out.println(&quot;Test #1: this is a test string&quot;);
+    System.out.println("Test #1: this is a test string");
 
-    System.out.println(&quot;TeSt #2: This is a test string&quot;);
+    System.out.println("TeSt #2: This is a test string");
 
-    System.out.println(&quot;TEST #3: This is a test string&quot;);
+    System.out.println("TEST #3: This is a test string");
     int i = 5;
 
-    System.out.println(&quot;Value of i: &quot; + i);
+    System.out.println("Value of i: " + i);
     // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;Test #4: This is a test string&quot;);
+    System.out.println("Test #4: This is a test string");
     // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;TEst #5: This is a test string&quot;);
+    System.out.println("TEst #5: This is a test string");
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example5-config">
         To configure the check to match a minimum of two test strings:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;RegexpMultiline&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;Test #[0-9]+:[A-Za-z ]+&quot;/&gt;
-    &lt;property name=&quot;minimum&quot; value=&quot;2&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpMultiline"&gt;
+    &lt;property name="format" value="Test #[0-9]+:[A-Za-z ]+"/&gt;
+    &lt;property name="minimum" value="2"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
   void testMethod1() {
 
-    System.out.print(&quot;Example&quot;);
+    System.out.print("Example");
 
-    System.err.println(&quot;Example&quot;);
+    System.err.println("Example");
     System
-    .out.print(&quot;Example&quot;);
+    .out.print("Example");
     System
-    .err.println(&quot;Example&quot;);
+    .err.println("Example");
     System.
-    out.print(&quot;Example&quot;);
+    out.print("Example");
     System.
-    err.println(&quot;Example&quot;);
+    err.println("Example");
   }
 
   void testMethod2() {
     // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;Test #1: this is a test string&quot;);
+    System.out.println("Test #1: this is a test string");
 
-    System.out.println(&quot;TEST #2: This is a test string&quot;);
+    System.out.println("TEST #2: This is a test string");
 
-    System.out.println(&quot;TEST #3: This is a test string&quot;);
+    System.out.println("TEST #3: This is a test string");
     int i = 5;
 
-    System.out.println(&quot;Value of i: &quot; + i);
+    System.out.println("Value of i: " + i);
     // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;Test #3: This is a test string&quot;);
+    System.out.println("Test #3: This is a test string");
     // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;Test #4: This is a test string&quot;);
+    System.out.println("Test #4: This is a test string");
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example6-config">
           To configure the check to restrict an empty file:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;RegexpMultiline&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;^\s*$&quot; /&gt;
-      &lt;property name=&quot;matchAcrossLines&quot; value=&quot;true&quot; /&gt;
-      &lt;property name=&quot;message&quot; value=&quot;Empty file is not allowed&quot; /&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpMultiline"&gt;
+      &lt;property name="format" value="^\s*$" /&gt;
+      &lt;property name="matchAcrossLines" value="true" /&gt;
+      &lt;property name="message" value="Empty file is not allowed" /&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example6-code">
           Example of violation from the above config:
         </p>
 
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /var/tmp$ cat -n Test.java
 1
 2
 3
 4
-        </source>
+</code></pre></div>
         <p>Result:</p>
         <source>
 /var/tmp/Test.java // violation, a file must not be empty.

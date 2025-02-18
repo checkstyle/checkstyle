@@ -155,15 +155,15 @@
 
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">To configure the check:</p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AbbreviationAsWordInName&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AbbreviationAsWordInName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 extends SuperClass { // OK, camel case
   int CURRENT_COUNTER; // violation 'no more than '4' consecutive capital letters'
   static int GLOBAL_COUNTER; // OK, static is ignored
@@ -182,24 +182,24 @@ class Example1 extends SuperClass { // OK, camel case
     GLOBAL_COUNTER++; // OK, only definitions are checked
   }
 }
-        </source>
+</code></pre></div>
         <p>
           To configure to include static variables and
           methods tagged with <code>@Override</code> annotation.
         </p>
         <p id="Example2-config">Configuration:</p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
-      &lt;property name=&quot;ignoreStatic&quot; value=&quot;false&quot;/&gt;
-      &lt;property name=&quot;ignoreOverriddenMethods&quot; value=&quot;false&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AbbreviationAsWordInName"&gt;
+      &lt;property name="ignoreStatic" value="false"/&gt;
+      &lt;property name="ignoreOverriddenMethods" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 extends SuperClass { // OK, camel case
   int CURRENT_COUNTER; // violation 'no more than '4' consecutive capital letters'
   // violation below 'no more than '4' consecutive capital letters'
@@ -219,7 +219,7 @@ class Example2 extends SuperClass { // OK, camel case
     GLOBAL_COUNTER++; // OK, only definitions are checked
   }
 }
-        </source>
+</code></pre></div>
         <p>
           To configure to check all variables and identifiers
           (including ones with the static modifier) and enforce
@@ -227,20 +227,20 @@ class Example2 extends SuperClass { // OK, camel case
           words like 'XML' and 'URL'.
         </p>
         <p id="Example3-config">Configuration:</p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
-      &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;0&quot;/&gt;
-      &lt;property name=&quot;allowedAbbreviations&quot; value=&quot;XML,URL,O&quot;/&gt;
-      &lt;property name=&quot;ignoreStatic&quot; value=&quot;false&quot;/&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF,CLASS_DEF&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AbbreviationAsWordInName"&gt;
+      &lt;property name="allowedAbbreviationLength" value="0"/&gt;
+      &lt;property name="allowedAbbreviations" value="XML,URL,O"/&gt;
+      &lt;property name="ignoreStatic" value="false"/&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF,CLASS_DEF"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
   int firstNum;
   int secondNUM; // violation 'no more than '1' consecutive capital letters'
@@ -254,29 +254,29 @@ class Example3 {
   void OAuth2() {} // OK, O abbreviation is allowed
   void OAUth2() {}
 }
-        </source>
+</code></pre></div>
         <p>
           To configure to check variables, excluding fields with
           the static modifier, and allow abbreviations up to 2
           consecutive capital letters ignoring the longer word 'CSV'.
         </p>
         <p id="Example4-config">Configuration:</p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
-      &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;1&quot;/&gt;
-      &lt;property name=&quot;allowedAbbreviations&quot; value=&quot;CSV&quot;/&gt;
-      &lt;property name=&quot;ignoreStatic&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AbbreviationAsWordInName"&gt;
+      &lt;property name="allowedAbbreviationLength" value="1"/&gt;
+      &lt;property name="allowedAbbreviations" value="CSV"/&gt;
+      &lt;property name="ignoreStatic" value="true"/&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 { // OK, ignore checking the class name
-  int firstNum; // OK, abbreviation &quot;N&quot; is of allowed length 1
+  int firstNum; // OK, abbreviation "N" is of allowed length 1
   int secondNUm;
   int secondMYNum; // violation 'no more than '2' consecutive capital letters'
   int thirdNUM; // violation 'no more than '2' consecutive capital letters'
@@ -286,27 +286,27 @@ class Example4 { // OK, ignore checking the class name
   final int TOTAL = 5; // OK, final is ignored
   static final int LIMIT = 10; // OK, static final is ignored
 }
-        </source>
+</code></pre></div>
         <p>
           To configure to check variables, enforcing no abbreviations
           except for variables that are both static and final.
         </p>
         <p id="Example5-config">Configuration:</p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
-      &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;0&quot;/&gt;
-      &lt;property name=&quot;ignoreFinal&quot; value=&quot;false&quot;/&gt;
-      &lt;property name=&quot;ignoreStatic&quot; value=&quot;false&quot;/&gt;
-      &lt;property name=&quot;ignoreStaticFinal&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AbbreviationAsWordInName"&gt;
+      &lt;property name="allowedAbbreviationLength" value="0"/&gt;
+      &lt;property name="ignoreFinal" value="false"/&gt;
+      &lt;property name="ignoreStatic" value="false"/&gt;
+      &lt;property name="ignoreStaticFinal" value="true"/&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
   int counterXYZ = 1; // violation 'no more than '1' consecutive capital letters'
   // violation below 'no more than '1' consecutive capital letters'
@@ -314,27 +314,27 @@ class Example5 {
   static int nextID = 3; // violation 'no more than '1' consecutive capital letters'
   static final int MAX_ALLOWED = 4; // OK, ignored
 }
-        </source>
+</code></pre></div>
         <p>
           To configure to check variables, enforcing no abbreviations
           and ignoring static (but non-final) variables only.
         </p>
         <p id="Example6-config">Configuration:</p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
-      &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;0&quot;/&gt;
-      &lt;property name=&quot;ignoreFinal&quot; value=&quot;false&quot;/&gt;
-      &lt;property name=&quot;ignoreStatic&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;ignoreStaticFinal&quot; value=&quot;false&quot;/&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AbbreviationAsWordInName"&gt;
+      &lt;property name="allowedAbbreviationLength" value="0"/&gt;
+      &lt;property name="ignoreFinal" value="false"/&gt;
+      &lt;property name="ignoreStatic" value="true"/&gt;
+      &lt;property name="ignoreStaticFinal" value="false"/&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example6-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example6 {
   int counterXYZ = 1; // violation 'no more than '1' consecutive capital letters'
   // violation below 'no more than '1' consecutive capital letters'
@@ -343,32 +343,32 @@ class Example6 {
   // violation below 'no more than '1' consecutive capital letters'
   static final int MAX_ALLOWED = 4;
 }
-        </source>
+</code></pre></div>
         <p>
           To configure to check variables, enforce
           no abbreviations (essentially camel case) except for
           words like 'ALLOWED'.
         </p>
         <p id="Example7-config">Configuration:</p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
-      &lt;property name=&quot;allowedAbbreviations&quot; value=&quot;ALLOWED&quot;/&gt;
-      &lt;property name=&quot;ignoreStaticFinal&quot; value=&quot;false&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AbbreviationAsWordInName"&gt;
+      &lt;property name="allowedAbbreviations" value="ALLOWED"/&gt;
+      &lt;property name="ignoreStaticFinal" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example7-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example7 {
   int counterXYZ = 1;
   final int customerID = 2;
   static int nextID = 3;
   static final int MAX_ALLOWED = 4; // OK, abbreviation is allowed
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

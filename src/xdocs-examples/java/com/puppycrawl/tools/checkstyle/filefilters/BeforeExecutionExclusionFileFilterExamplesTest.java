@@ -19,12 +19,23 @@
 
 package com.puppycrawl.tools.checkstyle.filefilters;
 
-import org.junit.jupiter.api.Disabled;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
+import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class BeforeExecutionExclusionFileFilterExamplesTest
         extends AbstractExamplesModuleTestSupport {
     @Override
@@ -34,28 +45,86 @@ public class BeforeExecutionExclusionFileFilterExamplesTest
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
+        final Map<String, List<String>> expected = new HashMap<>();
+        final List<String> messages =
+                List.of("1: File name must start with an uppercase.");
+        expected.put(getNonCompilablePath("test/generated_StubBankRemote.java"), messages);
+        expected.put(getNonCompilablePath("test/generated_TestCase1.java"), messages);
+        expected.put(getNonCompilablePath("module-info.java"), messages);
 
-        };
+        final Path path = Paths.get("src/xdocs-examples/resources-noncompilable/"
+                + getPackageLocation() + "/");
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        final String fileWithConfig = getNonCompilablePath("Example1.java");
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parse(fileWithConfig);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration.createConfiguration();
+
+        verify(createChecker(parsedConfig), getFilesInFolder(path), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
-        final String[] expected = {
+        final Map<String, List<String>> expected = new HashMap<>();
+        final List<String> messages =
+                List.of("1: File name must start with an uppercase.");
+        expected.put(getNonCompilablePath("test/generated_StubBankRemote.java"), messages);
+        expected.put(getNonCompilablePath("test/generated_TestCase1.java"), messages);
 
-        };
+        final Path path = Paths.get("src/xdocs-examples/resources-noncompilable/"
+                + getPackageLocation() + "/");
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        final String fileWithConfig = getNonCompilablePath("Example2.java");
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parse(fileWithConfig);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration.createConfiguration();
+
+        verify(createChecker(parsedConfig), getFilesInFolder(path), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
-        final String[] expected = {
+        final Map<String, List<String>> expected = new HashMap<>();
+        final List<String> messages =
+                List.of("1: File name must start with an uppercase.");
+        expected.put(getNonCompilablePath("test/generated_StubBankRemote.java"), messages);
 
-        };
+        final Path path = Paths.get("src/xdocs-examples/resources-noncompilable/"
+                + getPackageLocation() + "/");
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        final String fileWithConfig = getNonCompilablePath("Example3.java");
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parse(fileWithConfig);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration.createConfiguration();
+
+        verify(createChecker(parsedConfig), getFilesInFolder(path), expected);
     }
+
+    @Test
+    public void testExample4() throws Exception {
+        final Map<String, List<String>> expected = new HashMap<>();
+
+        final Path path = Paths.get("src/xdocs-examples/resources-noncompilable/"
+                + getPackageLocation() + "/");
+
+        final String fileWithConfig = getNonCompilablePath("Example4.java");
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parse(fileWithConfig);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration.createConfiguration();
+
+        verify(createChecker(parsedConfig), getFilesInFolder(path), expected);
+    }
+
+    private static File[] getFilesInFolder(Path path) throws IOException {
+        try (Stream<Path> stream = Files.walk(path.toAbsolutePath())) {
+            return stream.filter(Files::isRegularFile)
+                    .map(Path::toFile)
+                    .toArray(File[]::new);
+        }
+    }
+
 }

@@ -68,171 +68,171 @@
         <p id="Example1-config">
             To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-    &lt;module name=&quot;TreeWalker&quot;&gt;
-        &lt;module name=&quot;AvoidEscapedUnicodeCharacters&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+    &lt;module name="TreeWalker"&gt;
+        &lt;module name="AvoidEscapedUnicodeCharacters"/&gt;
     &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Examples of using Unicode:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   // OK, perfectly clear even without a comment.
-  String unitAbbrev = &quot;&#x3bc;s&quot;;
+  String unitAbbrev = "μs";
   // violation below, the reader has no idea what this is. 'should be avoided.'
-  String unitAbbrev1 = &quot;\u03bcs&quot;;
+  String unitAbbrev1 = "\u03bcs";
   // violation below
-  String unitAbbrev2 = &quot;\u03bc\u03bc\u03bc&quot;;
+  String unitAbbrev2 = "\u03bc\u03bc\u03bc";
   // violation below
-  String unitAbbrev3 = &quot;\u03bcs&quot;; // it is  &#x3bc;s
+  String unitAbbrev3 = "\u03bcs"; // it is  μs
   // violation below
-  String unitAbbrev4 = &quot;\u03bc\u03bcs&quot;;
+  String unitAbbrev4 = "\u03bc\u03bcs";
   public static int content() {
     char content = 'r';
     // violation below
     return '\ufeff' + content;
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           An example of how to configure the check to allow using escapes
           for non-printable, control characters:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AvoidEscapedUnicodeCharacters&quot;&gt;
-      &lt;property name=&quot;allowEscapesForControlCharacters&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
+      &lt;property name="allowEscapesForControlCharacters" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Example of using escapes for non-printable, control characters:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   // OK, a normal String below
-  String unitAbbrev = &quot;&#x3bc;s&quot;;
-  // violation below, &#x3bc;s is a printable character. 'should be avoided.'
-  String unitAbbrev1 = &quot;\u03bcs&quot;;
+  String unitAbbrev = "μs";
+  // violation below, μs is a printable character. 'should be avoided.'
+  String unitAbbrev1 = "\u03bcs";
   // violation below
-  String unitAbbrev2 = &quot;\u03bc\u03bc\u03bc&quot;;
+  String unitAbbrev2 = "\u03bc\u03bc\u03bc";
   // violation below
-  String unitAbbrev3 = &quot;\u03bcs&quot;;
+  String unitAbbrev3 = "\u03bcs";
   // violation below
-  String unitAbbrev4 = &quot;\u03bc\u03bcs&quot;;
+  String unitAbbrev4 = "\u03bc\u03bcs";
   public static int content() {
     char content = 'r';
     // OK, non-printable control character.
     return '\ufeff' + content;
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           An example of how to configure the check to allow using escapes
           if trail comment is present:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AvoidEscapedUnicodeCharacters&quot;&gt;
-      &lt;property name=&quot;allowByTailComment&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
+      &lt;property name="allowByTailComment" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">
           Example of using escapes if trail comment is present:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
   // OK, a normal String below
-  String unitAbbrev = &quot;&#x3bc;s&quot;;
+  String unitAbbrev = "μs";
   // violation below
-  String unitAbbrev1 = &quot;\u03bcs&quot;;
+  String unitAbbrev1 = "\u03bcs";
   // violation below
-  String unitAbbrev2 = &quot;\u03bc\u03bc\u03bc&quot;;
+  String unitAbbrev2 = "\u03bc\u03bc\u03bc";
   // violation below
-  String unitAbbrev3 = &quot;\u03bcs&quot;;
+  String unitAbbrev3 = "\u03bcs";
   // ok, because there is trailing comment and allowByTailComment=true
-  String unitAbbrev4 = &quot;\u03bc\u03bcs&quot;; // it is  &#x3bc;s
+  String unitAbbrev4 = "\u03bc\u03bcs"; // it is  μs
   public static int content() {
     char content = 'r';
     // violation below
     return '\ufeff' + content;
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example4-config">
           An example of how to configure the check to allow if
           all characters in literal are escaped.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AvoidEscapedUnicodeCharacters&quot;&gt;
-      &lt;property name=&quot;allowIfAllCharactersEscaped&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
+      &lt;property name="allowIfAllCharactersEscaped" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example of using escapes if all characters in literal are escaped:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
   // OK, a normal String below
-  String unitAbbrev = &quot;&#x3bc;s&quot;;
+  String unitAbbrev = "μs";
   // violation below, not all characters are escaped ('s'). 'should be avoided.'
-  String unitAbbrev1 = &quot;\u03bcs&quot;;
+  String unitAbbrev1 = "\u03bcs";
   // ok, because below are escape characters and allowIfAllCharacters = true.
-  String unitAbbrev2 = &quot;\u03bc\u03bc\u03bc&quot;;
+  String unitAbbrev2 = "\u03bc\u03bc\u03bc";
   // violation below
-  String unitAbbrev3 = &quot;\u03bcs&quot;; // it is  &#x3bc;s
+  String unitAbbrev3 = "\u03bcs"; // it is  μs
   // violation below, not all characters are escaped ('s'). 'should be avoided.'
-  String unitAbbrev4 = &quot;\u03bc\u03bcs&quot;;
+  String unitAbbrev4 = "\u03bc\u03bcs";
   public static int content() {
     char content = 'r';
     // OK, all control characters are escaped below
     return '\ufeff' + content;
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example5-config">
           An example of how to configure the check to allow using escapes
           for non-printable whitespace characters:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;AvoidEscapedUnicodeCharacters&quot;&gt;
-      &lt;property name=&quot;allowNonPrintableEscapes&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
+      &lt;property name="allowNonPrintableEscapes" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">Example of using escapes for non-printable whitespace characters:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example5 {
   // OK, a normal String below.
-  String unitAbbrev = &quot;&#x3bc;s&quot;;
+  String unitAbbrev = "μs";
   // violation below, printable escape character. 'should be avoided.'
-  String unitAbbrev1 = &quot;\u03bcs&quot;;
+  String unitAbbrev1 = "\u03bcs";
   // violation below, printable escape character. 'should be avoided.'
-  String unitAbbrev2 = &quot;\u03bc\u03bc\u03bc&quot;;
+  String unitAbbrev2 = "\u03bc\u03bc\u03bc";
   // violation below
-  String unitAbbrev3 = &quot;\u03bcs&quot;; // it is &#x3bc;s
+  String unitAbbrev3 = "\u03bcs"; // it is μs
   // violation below
-  String unitAbbrev4 = &quot;\u03bc\u03bcs&quot;;
+  String unitAbbrev4 = "\u03bc\u03bcs";
   public static int content() {
     char content = 'r';
     // OK, non-printable escape character below
     return '\ufeff' + content;
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

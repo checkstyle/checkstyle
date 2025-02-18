@@ -17,7 +17,7 @@ import java.io.*;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputParameterNumberSimple3 // ok
+final class InputParameterNumberSimple3
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->        <-

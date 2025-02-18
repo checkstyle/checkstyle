@@ -40,10 +40,10 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
     public void testThrowsCountDefault() throws Exception {
 
         final String[] expected = {
-            "25:20: " + getCheckMessage(MSG_KEY, 5, 4),
-            "30:20: " + getCheckMessage(MSG_KEY, 5, 4),
-            "35:20: " + getCheckMessage(MSG_KEY, 6, 4),
-            "63:43: " + getCheckMessage(MSG_KEY, 5, 4),
+            "26:20: " + getCheckMessage(MSG_KEY, 5, 4),
+            "32:20: " + getCheckMessage(MSG_KEY, 5, 4),
+            "38:20: " + getCheckMessage(MSG_KEY, 6, 4),
+            "66:43: " + getCheckMessage(MSG_KEY, 5, 4),
         };
 
         verifyWithInlineConfigParser(
@@ -54,7 +54,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
     public void testThrowsCountCustomMaxCount() throws Exception {
 
         final String[] expected = {
-            "35:20: " + getCheckMessage(MSG_KEY, 6, 5),
+            "36:20: " + getCheckMessage(MSG_KEY, 6, 5),
         };
 
         verifyWithInlineConfigParser(
@@ -98,11 +98,11 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testThrowsCountNotIgnorePrivateMethods() throws Exception {
         final String[] expected = {
-            "25:20: " + getCheckMessage(MSG_KEY, 5, 4),
-            "30:20: " + getCheckMessage(MSG_KEY, 5, 4),
-            "35:20: " + getCheckMessage(MSG_KEY, 6, 4),
-            "43:28: " + getCheckMessage(MSG_KEY, 5, 4),
-            "63:43: " + getCheckMessage(MSG_KEY, 5, 4),
+            "26:20: " + getCheckMessage(MSG_KEY, 5, 4),
+            "32:20: " + getCheckMessage(MSG_KEY, 5, 4),
+            "38:20: " + getCheckMessage(MSG_KEY, 6, 4),
+            "47:28: " + getCheckMessage(MSG_KEY, 5, 4),
+            "67:43: " + getCheckMessage(MSG_KEY, 5, 4),
         };
         verifyWithInlineConfigParser(
                 getPath("InputThrowsCountNotIgnorePrivateMethods.java"), expected);
@@ -111,7 +111,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testThrowsCountMethodWithAnnotation() throws Exception {
         final String[] expected = {
-            "26:26: " + getCheckMessage(MSG_KEY, 5, 4),
+            "27:26: " + getCheckMessage(MSG_KEY, 5, 4),
         };
         verifyWithInlineConfigParser(
                 getPath("InputThrowsCountMethodWithAnnotation.java"), expected);
