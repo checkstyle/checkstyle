@@ -9,9 +9,9 @@ tokens = (default)CTOR_DEF, METHOD_DEF, INSTANCE_INIT, STATIC_INIT, COMPACT_CTOR
 package com.puppycrawl.tools.checkstyle.checks.sizes.executablestatementcount;
 
 public class InputExecutableStatementCountDefaultConfig {
-    public void foo() { // ok
+    public void foo() {
         while (true) {
-            Runnable runnable = new Runnable() { // ok
+            Runnable runnable = new Runnable() {
                 public void run() {
                     while (true) {
                     }
@@ -22,7 +22,7 @@ public class InputExecutableStatementCountDefaultConfig {
         }
     }
 
-    public void bar() { // ok
+    public void bar() {
         if (System.currentTimeMillis() == 0) {
             if (System.currentTimeMillis() == 0 && System.currentTimeMillis() == 0) {
             }
@@ -32,14 +32,14 @@ public class InputExecutableStatementCountDefaultConfig {
         }
     }
 
-    public void simpleElseIf() { // ok
+    public void simpleElseIf() {
         if (System.currentTimeMillis() == 0) {
         } else if (System.currentTimeMillis() == 0) {
         } else {
         }
     }
 
-    public void stupidElseIf() { // ok
+    public void stupidElseIf() {
         if (System.currentTimeMillis() == 0) {
         } else {
             if (System.currentTimeMillis() == 0) {
@@ -53,7 +53,7 @@ public class InputExecutableStatementCountDefaultConfig {
         }
     }
 
-    public InputExecutableStatementCountDefaultConfig() // ok
+    public InputExecutableStatementCountDefaultConfig()
     {
         int i = 1;
         if (System.currentTimeMillis() == 0) {
@@ -63,7 +63,7 @@ public class InputExecutableStatementCountDefaultConfig {
     }
 
     // STATIC_INIT
-    static { // ok
+    static {
         int i = 1;
         if (System.currentTimeMillis() == 0) {
         } else if (System.currentTimeMillis() == 0) {
@@ -72,7 +72,7 @@ public class InputExecutableStatementCountDefaultConfig {
     }
 
     // INSTANCE_INIT
-    { // ok
+    {
         int i = 1;
         if (System.currentTimeMillis() == 0) {
         } else if (System.currentTimeMillis() == 0) {
@@ -81,10 +81,10 @@ public class InputExecutableStatementCountDefaultConfig {
     }
 
     /** Inner */
-    public InputExecutableStatementCountDefaultConfig(int aParam) // ok
+    public InputExecutableStatementCountDefaultConfig(int aParam)
     {
         Runnable runnable = new Runnable() {
-            public void run() {// ok
+            public void run() {
                 while (true) {
                 }
             }
@@ -93,9 +93,9 @@ public class InputExecutableStatementCountDefaultConfig {
     }
 
     /** Empty constructor */
-    public InputExecutableStatementCountDefaultConfig(String someString) {} // ok
+    public InputExecutableStatementCountDefaultConfig(String someString) {}
 
-    static Runnable r1 = () -> { // ok
+    static Runnable r1 = () -> {
         String.valueOf("Hello world one!");
     };
 }
