@@ -221,7 +221,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck",
@@ -234,8 +233,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding"
                     + ".UnnecessarySemicolonAfterTypeMemberDeclarationCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding"
-                    + ".UnnecessarySemicolonInTryWithResourcesCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding"
                     + ".UnusedCatchParameterShouldBeUnnamedCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck",
@@ -243,7 +240,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck",
 
-            "com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc."
@@ -320,6 +316,7 @@ public final class InlineConfigParser {
     // This is a hack until https://github.com/checkstyle/checkstyle/issues/13845
     private static final Map<String, String> MODULE_MAPPINGS = new HashMap<>();
 
+    // -@cs[ExecutableStatementCount] Suppressing due to large module mappings
     static {
         MODULE_MAPPINGS.put("IllegalCatch",
                 "com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck");
@@ -377,6 +374,12 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck");
         MODULE_MAPPINGS.put("IllegalIdentifierName",
                 "com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck");
+        MODULE_MAPPINGS.put("FileLength",
+                "com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck");
+        MODULE_MAPPINGS.put("EqualsAvoidNull",
+                "com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck");
+        MODULE_MAPPINGS.put("JavadocStyle",
+                "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck");
     }
 
     /** Stop instances being created. **/

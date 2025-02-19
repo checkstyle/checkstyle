@@ -21,7 +21,7 @@ public class InputSeparatorWrapWithEmoji {
     }
 
     public void test2(String
-                          /* 👌🏻👌🏻 */    ...parameters) { // ok
+                          /* 👌🏻👌🏻 */    ...parameters) {
         String s = "ffffooooString";
         /* 🧐🥳 */ s.
             isEmpty(); // violation above ''.' should be on a new line'
@@ -30,7 +30,7 @@ public class InputSeparatorWrapWithEmoji {
         } catch (Exception e) {}
 
         test1("1"
-            /*🧐 sda 🥳 */   ,s); // ok
+            /*🧐 sda 🥳 */   ,s);
 
     }
     void goodCase() {

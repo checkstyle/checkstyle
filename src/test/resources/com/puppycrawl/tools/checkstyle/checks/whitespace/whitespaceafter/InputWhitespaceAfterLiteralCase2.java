@@ -12,7 +12,7 @@ public class InputWhitespaceAfterLiteralCase2 {
         switch(args[0]) {
             case"123": // violation ''case' is not followed by whitespace'
                 return;
-            case "1": // OK
+            case "1":
                 return;
             default:
                 return;

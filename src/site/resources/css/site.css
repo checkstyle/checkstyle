@@ -144,6 +144,7 @@ th {
   padding: 0.5em !important;
   overflow: auto;
   white-space: nowrap;
+  margin-left: 0 !important;
 }
 
 .prettyprint code {

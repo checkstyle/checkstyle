@@ -1086,7 +1086,39 @@ public final class JavadocTokenTypes {
     public static final int ATTR_VALUE = JavadocParser.ATTR_VALUE;
 
     /////////////////////// HTML TAGS WITH OPTIONAL END TAG /////////////////////////////////////
-    /** Paragraph tag name. */
+
+    /**
+     * Paragraph tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <p>Paragraph Tag.</p>}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *  JAVADOC -&gt; JAVADOC
+     *     |--NEWLINE -&gt; \r\n
+     *     |--LEADING_ASTERISK -&gt;      *
+     *     |--TEXT -&gt;
+     *     |--HTML_ELEMENT -&gt; HTML_ELEMENT
+     *         `--PARAGRAPH -&gt; PARAGRAPH
+     *             |--P_TAG_START -&gt; P_TAG_START
+     *             |   |--START -&gt; &lt;
+     *             |   |--P_HTML_TAG_NAME -&gt; p
+     *             |   `--END -&gt; &gt;
+     *             |--TEXT -&gt; Paragraph Tag.
+     *             `--P_TAG_END -&gt; P_TAG_END
+     *                 |--START -&gt; &lt;
+     *                 |--SLASH -&gt; /
+     *                 |--P_HTML_TAG_NAME -&gt; p
+     *                 `--END -&gt; &gt;
+     * }
+     * </pre>
+     *
+     * @see
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
+     * Comments are written in HTML</a>
+     * @see #P_HTML_TAG_NAME
+     */
     public static final int P_HTML_TAG_NAME = JavadocParser.P_HTML_TAG_NAME;
 
     /** List item tag name. */
@@ -1528,14 +1560,91 @@ public final class JavadocTokenTypes {
             + RULE_TYPES_OFFSET;
 
     /////////////////////// HTML TAGS WITH OPTIONAL END TAG /////////////////////////////////////
-    /** Paragraph html tag: {@code <p></p>}. */
+    /**
+     * Paragraph html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <p>Sample text</p>}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   `--JAVADOC -> JAVADOC
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--HTML_ELEMENT -> HTML_ELEMENT
+     *       |   `--PARAGRAPH -> PARAGRAPH
+     *       |       |--P_TAG_START -> P_TAG_START
+     *       |       |   |--START -> <
+     *       |       |   |--P_HTML_TAG_NAME -> p
+     *       |       |   `--END -> >
+     *       |       |--TEXT -> Sample text
+     *       |       `--P_TAG_END -> P_TAG_END
+     *       |           |--START -> <
+     *       |           |--SLASH -> /
+     *       |           |--P_HTML_TAG_NAME -> p
+     *       |           `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--TEXT ->
+     * }
+     * </pre>
+     */
     public static final int PARAGRAPH = JavadocParser.RULE_paragraph + RULE_TYPES_OFFSET;
     /** Start paragraph tag. */
     public static final int P_TAG_START = JavadocParser.RULE_pTagStart + RULE_TYPES_OFFSET;
     /** End paragraph tag. */
     public static final int P_TAG_END = JavadocParser.RULE_pTagEnd + RULE_TYPES_OFFSET;
-    /** List item html tag: {@code <li></li>}. */
 
+    /**
+     * List items html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <ul>
+     *      <li>Item 1</li>
+     * </ul>
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   --JAVADOC -> JAVADOC
+     *     |--NEWLINE -> \n
+     *     |--LEADING_ASTERISK ->  *
+     *     |--TEXT ->
+     *     |--HTML_ELEMENT -> HTML_ELEMENT
+     *     |   `--HTML_TAG -> HTML_TAG
+     *     |       |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *     |       |   |--START -> <
+     *     |       |   |--HTML_TAG_NAME -> ul
+     *     |       |   `--END -> >
+     *     |       |--NEWLINE -> \n
+     *     |       |--LEADING_ASTERISK ->  *
+     *     |       |--TEXT ->
+     *     |       |--HTML_ELEMENT -> HTML_ELEMENT
+     *     |       |   `--LI -> LI
+     *     |       |       |--LI_TAG_START -> LI_TAG_START
+     *     |       |       |   |--START -> <
+     *     |       |       |   |--LI_HTML_TAG_NAME -> li
+     *     |       |       |   `--END -> >
+     *     |       |       |--TEXT -> Item 1
+     *     |       |       `--LI_TAG_END -> LI_TAG_END
+     *     |       |           |--START -> <
+     *     |       |           |--SLASH -> /
+     *     |       |           |--LI_HTML_TAG_NAME -> li
+     *     |       |           `--END -> >
+     *     |       |--NEWLINE -> \n
+     *     |       |--LEADING_ASTERISK ->  *
+     *     |       |--TEXT ->
+     *     |       `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *     |           |--START -> <
+     *     |           |--SLASH -> /
+     *     |           |--HTML_TAG_NAME -> ul
+     *     |           `--END -> >
+     *     |--NEWLINE -> \n
+     *     |--TEXT ->
+     * }
+     * </pre>
+     */
     public static final int LI = JavadocParser.RULE_li + RULE_TYPES_OFFSET;
     /** Start list item tag. */
     public static final int LI_TAG_START = JavadocParser.RULE_liTagStart + RULE_TYPES_OFFSET;

@@ -12,14 +12,14 @@ import java.io.InputStream;
 
 public class InputWhitespaceAfterLiteralTry {
     public static void main(String[] args) throws IOException {
-        try (InputStream ignored = System.in) {} // OK
+        try (InputStream ignored = System.in) {}
 
-        try // OK
+        try
             (InputStream ignored = System.in) {}
 
         try(InputStream ignored = System.in) {} // violation ''try' is not followed by whitespace'
 
-        try {}catch (Exception e){} // OK
+        try {}catch (Exception e){}
 
         try{}catch (Exception e){} // violation ''try' is not followed by whitespace'
     }
