@@ -58,24 +58,6 @@ window.addEventListener("load", function () {
     externalLinks.forEach((link) => {
         link.setAttribute("target", "_blank");
     });
-
-    const codeBlocks = document.querySelectorAll(".prettyprint code");
-    codeBlocks.forEach((block) => {
-        const code = block.innerText.split("\n");
-        if (code.length > 1) {
-            if (code[0].trim() === "") {
-                code.shift();
-            }
-            if (code[code.length -1].trim() === "") {
-                code.pop();
-            }
-            const pre = block.closest("pre.prettyprint");
-            if (pre) {
-            pre.classList.remove("prettyprinted");
-            }
-            block.innerText = code.join("\n");
-        }
-    });
     prettyPrint();
 });
 
@@ -151,6 +133,51 @@ function resetStyling() {
     document.querySelector("#bodyColumn").style.removeProperty("position");
     document.querySelector("#hamburger").remove();
     document.querySelector(".xright").lastChild.remove();
+}
+
+window.addEventListener("load", function () {
+    document.querySelectorAll("pre code").forEach(codeBlock => {
+      trimLeadingWhitespace(codeBlock);
+      trimTrailingWhitespace(codeBlock);
+    });
+});
+
+function trimLeadingWhitespace(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      node.textContent = node.textContent.replace(/^\s+/, '');
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      while (
+        node.firstChild &&
+        node.firstChild.nodeType === Node.TEXT_NODE &&
+        node.firstChild.textContent.trim() === ""
+      ) {
+        node.removeChild(node.firstChild);
+      }
+      // Recursively trim the first child
+      if (node.firstChild) {
+        trimLeadingWhitespace(node.firstChild);
+      }
+    }
+}
+
+function trimTrailingWhitespace(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      // Remove all whitespace at the end of the text node
+      node.textContent = node.textContent.replace(/\s+$/, '');
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      // Remove any trailing child nodes that are empty (whitespace only)
+      while (
+        node.lastChild &&
+        node.lastChild.nodeType === Node.TEXT_NODE &&
+        node.lastChild.textContent.trim() === ""
+      ) {
+        node.removeChild(node.lastChild);
+      }
+      // Recursively trim the last child, if it exists
+      if (node.lastChild) {
+        trimTrailingWhitespace(node.lastChild);
+      }
+    }
 }
 
 window.addEventListener("load", setBodyColumnMargin);
