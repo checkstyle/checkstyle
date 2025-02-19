@@ -18,5 +18,5 @@ package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 /**
  * This is javadoc.
  */
-public class InputSuppressionXpathSingleFilterNullViolation { // ok
+public class InputSuppressionXpathSingleFilterNullViolation {
 }
