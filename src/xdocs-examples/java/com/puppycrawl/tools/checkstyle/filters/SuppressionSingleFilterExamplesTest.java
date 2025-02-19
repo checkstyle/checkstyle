@@ -37,7 +37,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example1.txt"), expected);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example2.txt"), expected);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example3.txt"), expected);
     }
 
     @Test
@@ -64,7 +64,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example4.txt"), expected);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example5.txt"), expected);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example6.txt"), expected);
     }
 
     @Test
@@ -91,7 +91,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.txt"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example7.txt"), expected);
     }
 
     @Test
@@ -100,7 +100,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example8.txt"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example8.txt"), expected);
     }
 
     @Test
@@ -109,7 +109,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example9.txt"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example9.txt"), expected);
     }
 
     @Test
@@ -118,6 +118,6 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example10.txt"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example10.txt"), expected);
     }
 }
