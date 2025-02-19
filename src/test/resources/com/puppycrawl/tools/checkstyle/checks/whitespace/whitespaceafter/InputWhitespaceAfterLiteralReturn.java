@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 public class InputWhitespaceAfterLiteralReturn {
 
     String testOne() {
-        return ("a" + "b"); // OK
+        return ("a" + "b");
     }
 
     String testTwo() {
@@ -30,6 +30,6 @@ public class InputWhitespaceAfterLiteralReturn {
     }
 
     void testSix() {
-        return ; // OK
+        return ;
     }
 }
