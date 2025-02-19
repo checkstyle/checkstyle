@@ -68,9 +68,7 @@
           files="[\\/]packageobjectfactory[\\/]zoo[\\/]FooCheck.java"/>
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/13213 -->
-
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]unnecessarysemicolonaftertypememberdeclaration[\\/]InputUnnecessarySemicolonAfterTypeMemberDeclarationNullAst.java"/>
+  
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]missingjavadocmethod[\\/]InputMissingJavadocMethodAllowedAnnotations.java"/>
   <suppress id="UnnecessaryOkComment"
