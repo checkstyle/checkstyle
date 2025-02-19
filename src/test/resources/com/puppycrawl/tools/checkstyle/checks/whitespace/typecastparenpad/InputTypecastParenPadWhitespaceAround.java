@@ -7,7 +7,7 @@ option = SPACE
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.typecastparenpad;
 
-class InputTypecastParenPadWhitespaceAround // ok
+class InputTypecastParenPadWhitespaceAround
 {
     protected InputTypecastParenPadWhitespaceAround ( int i )
     {
