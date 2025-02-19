@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -380,6 +381,25 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         verifyXml(getPath("ExpectedXMLLoggerSpecialName.xml"),
                 outStream, "<file name=" + "Test&amp;.java" + ">");
 
+    }
+
+    @Test
+    public void testVerifyLogger()
+            throws Exception {
+        final String inputFileWithConfig = "InputXMLLogger.java";
+        final String xmlReport = "ExpectedXMLLoggerWithChecker.xml";
+        verifyWithInlineConfigParserAndXmlLogger(inputFileWithConfig, xmlReport);
+    }
+
+    @Test
+    public void testVerifyLoggerWithMultipleInput()
+            throws Exception {
+        final String inputFileWithConfig = "InputXMLLogger.java";
+        final String expectedXmlReport = "ExpectedXMLLoggerDuplicatedFile.xml";
+        verifyWithInlineConfigParserAndXmlLogger(
+                inputFileWithConfig,
+                expectedXmlReport,
+                List.of(inputFileWithConfig, inputFileWithConfig));
     }
 
     @Test
