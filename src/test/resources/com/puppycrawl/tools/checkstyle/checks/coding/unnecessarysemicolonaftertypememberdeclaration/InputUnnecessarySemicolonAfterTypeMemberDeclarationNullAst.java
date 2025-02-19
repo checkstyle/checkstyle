@@ -19,7 +19,7 @@ public class InputUnnecessarySemicolonAfterTypeMemberDeclarationNullAst {
                 }
                 class Local2 {
                     int j = k;
-                }; // ok
+                };
                 class Local3 {
                     int l = 15;; //violation
                 }
