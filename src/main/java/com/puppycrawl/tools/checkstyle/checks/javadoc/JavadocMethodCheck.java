@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -420,7 +419,7 @@ public class JavadocMethodCheck extends AbstractCheck {
             }
             else {
                 final Iterator<JavadocTag> it = tags.iterator();
-
+                // Check for inheritDoc
                 boolean hasInheritDocTag = false;
                 while (!hasInheritDocTag && it.hasNext()) {
                     hasInheritDocTag = it.next().isInheritDocTag();
@@ -428,6 +427,7 @@ public class JavadocMethodCheck extends AbstractCheck {
                 final boolean reportExpectedTags = !hasInheritDocTag
                     && !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);
 
+                // COMPACT_CTOR_DEF has no parameters
                 if (ast.getType() == TokenTypes.COMPACT_CTOR_DEF) {
                     checkRecordParamTags(tags, ast, reportExpectedTags);
                 }
@@ -657,14 +657,17 @@ public class JavadocMethodCheck extends AbstractCheck {
      */
     private static List<ExceptionInfo> getThrowed(DetailAST methodAst) {
         final List<ExceptionInfo> returnValue = new ArrayList<>();
-        final List<DetailAST> throwLiterals = findTokensInAstByType(methodAst,
-                TokenTypes.LITERAL_THROW);
-        for (DetailAST throwAst : throwLiterals) {
-            if (!isInIgnoreBlock(methodAst, throwAst)) {
-                final DetailAST newAst = throwAst.getFirstChild().getFirstChild();
-                if (newAst.getType() == TokenTypes.LITERAL_NEW) {
-                    final DetailAST child = newAst.getFirstChild();
-                    returnValue.add(getExceptionInfo(child));
+        final DetailAST blockAst = methodAst.findFirstToken(TokenTypes.SLIST);
+        if (blockAst != null) {
+            final List<DetailAST> throwLiterals = findTokensInAstByType(blockAst,
+                    TokenTypes.LITERAL_THROW);
+            for (DetailAST throwAst : throwLiterals) {
+                if (!isInIgnoreBlock(blockAst, throwAst)) {
+                    final DetailAST newAst = throwAst.getFirstChild().getFirstChild();
+                    if (newAst.getType() == TokenTypes.LITERAL_NEW) {
+                        final DetailAST child = newAst.getFirstChild();
+                        returnValue.add(getExceptionInfo(child));
+                    }
                 }
             }
         }
@@ -769,7 +772,7 @@ public class JavadocMethodCheck extends AbstractCheck {
                 continue;
             }
             // backtrack to parent if last child, stopping at root
-            while (curNode.getNextSibling() == null) {
+            while (curNode != root && curNode.getNextSibling() == null) {
                 curNode = curNode.getParent();
             }
             // explore siblings if not root
@@ -794,7 +797,6 @@ public class JavadocMethodCheck extends AbstractCheck {
 
         final DetailAST parent = getRecordDef(compactDef);
         final List<DetailAST> params = getRecordComponents(parent);
-        final Set<DetailAST> missingParams = new HashSet<>(params);
 
         final ListIterator<JavadocTag> tagIt = tags.listIterator();
         while (tagIt.hasNext()) {
@@ -807,7 +809,7 @@ public class JavadocMethodCheck extends AbstractCheck {
             tagIt.remove();
 
             final String arg1 = tag.getFirstArg();
-            final boolean found = checkParamMatch(params, arg1, missingParams);
+            final boolean found = removeMatchingParam(params, arg1);
 
             if (!found) {
                 log(tag.getLineNo(), tag.getColumnNo(), MSG_UNUSED_TAG,
@@ -816,7 +818,7 @@ public class JavadocMethodCheck extends AbstractCheck {
         }
 
         if (!allowMissingParamTags && reportExpectedTags) {
-            for (DetailAST param : missingParams) {
+            for (DetailAST param : params) {
                 log(compactDef, MSG_EXPECTED_TAG,
                     JavadocTagInfo.PARAM.getText(), param.getText());
             }
@@ -834,10 +836,10 @@ public class JavadocMethodCheck extends AbstractCheck {
     private void checkParamTags(final List<JavadocTag> tags,
             final DetailAST parent, boolean reportExpectedTags) {
         final List<DetailAST> params = getParameters(parent);
-        final Set<DetailAST> missingParams = new HashSet<>(params);
         final List<DetailAST> typeParams = CheckUtil
                 .getTypeParameters(parent);
 
+        // Loop over the tags, checking to see they exist in the params.
         final ListIterator<JavadocTag> tagIt = tags.listIterator();
         while (tagIt.hasNext()) {
             final JavadocTag tag = tagIt.next();
@@ -849,21 +851,24 @@ public class JavadocMethodCheck extends AbstractCheck {
             tagIt.remove();
 
             final String arg1 = tag.getFirstArg();
-            boolean found = checkParamMatch(params, arg1, missingParams);
+            boolean found = removeMatchingParam(params, arg1);
 
             if (arg1.endsWith(ELEMENT_END)) {
                 found = searchMatchingTypeParameter(typeParams,
                         arg1.substring(1, arg1.length() - 1));
             }
 
+            // Handle extra JavadocTag
             if (!found) {
                 log(tag.getLineNo(), tag.getColumnNo(), MSG_UNUSED_TAG,
                         JavadocTagInfo.PARAM.getText(), arg1);
             }
         }
 
+        // Now dump out all type parameters/parameters without tags :- unless
+        // the user has chosen to suppress these problems
         if (!allowMissingParamTags && reportExpectedTags) {
-            for (DetailAST param : missingParams) {
+            for (DetailAST param : params) {
                 log(param, MSG_EXPECTED_TAG,
                     JavadocTagInfo.PARAM.getText(), param.getText());
             }
@@ -908,16 +913,16 @@ public class JavadocMethodCheck extends AbstractCheck {
      *
      * @param params collection of DetailAST parameters
      * @param paramName name of parameter
-     * @param missingParams collection of missing parameters
      * @return true if parameter found and removed
      */
-    private static boolean checkParamMatch(Iterable<DetailAST> params, String paramName,
-                                           Set<DetailAST> missingParams) {
+    private static boolean removeMatchingParam(Iterable<DetailAST> params, String paramName) {
         boolean found = false;
-        for (DetailAST param : params) {
+        final Iterator<DetailAST> paramIt = params.iterator();
+        while (paramIt.hasNext()) {
+            final DetailAST param = paramIt.next();
             if (param.getText().equals(paramName)) {
                 found = true;
-                missingParams.remove(param);
+                paramIt.remove();
                 break;
             }
         }
