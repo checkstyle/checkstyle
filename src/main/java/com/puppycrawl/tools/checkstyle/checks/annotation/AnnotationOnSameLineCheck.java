@@ -135,26 +135,13 @@ public class AnnotationOnSameLineCheck extends AbstractCheck {
                     annotationNode != null;
                     annotationNode = annotationNode.getNextSibling()) {
                 if (annotationNode.getType() == TokenTypes.ANNOTATION
-                        && !TokenUtil.areOnSameLine(annotationNode, getNextNode(annotationNode))) {
+                        && !TokenUtil.areOnSameLine(annotationNode,
+                        modifiersNode.getNextSibling())) {
                     log(annotationNode, MSG_KEY_ANNOTATION_ON_SAME_LINE,
                           getAnnotationName(annotationNode));
                 }
             }
         }
-    }
-
-    /**
-     * Finds next node of ast tree.
-     *
-     * @param node current node
-     * @return node that is next to given
-     */
-    private static DetailAST getNextNode(DetailAST node) {
-        DetailAST nextNode = node.getNextSibling();
-        if (nextNode == null) {
-            nextNode = node.getParent().getNextSibling();
-        }
-        return nextNode;
     }
 
     /**
