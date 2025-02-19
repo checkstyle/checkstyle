@@ -22,7 +22,8 @@ bin
 checkstyle.iml
 checkstyle.ipr
 checkstyle.iws
-.idea
+.idea/*
+!.idea/icon.png
 
 # Vscode project files
 .vscode
