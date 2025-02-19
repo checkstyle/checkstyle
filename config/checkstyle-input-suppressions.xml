@@ -1010,8 +1010,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorWithEmoji.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="filters[\\/]suppressionxpathsinglefilter[\\/]InputSuppressionXpathSingleFilterNullViolation.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="filters[\\/]suppresswithnearbycommentfilter[\\/]InputSuppressWithNearbyCommentFilterByCheckAndInfluence.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocType1.java"/>
