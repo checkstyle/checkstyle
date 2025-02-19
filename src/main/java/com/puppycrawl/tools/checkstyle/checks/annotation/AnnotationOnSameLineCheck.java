@@ -144,17 +144,14 @@ public class AnnotationOnSameLineCheck extends AbstractCheck {
     }
 
     /**
-     * Finds next node of ast tree.
+     * Finds the identifier node associated with the declaration
+     * that contains the given node.
      *
      * @param node current node
      * @return node that is next to given
      */
     private static DetailAST getNextNode(DetailAST node) {
-        DetailAST nextNode = node.getNextSibling();
-        if (nextNode == null) {
-            nextNode = node.getParent().getNextSibling();
-        }
-        return nextNode;
+        return node.getParent().getParent().findFirstToken(TokenTypes.IDENT);
     }
 
     /**
