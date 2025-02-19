@@ -10,7 +10,7 @@ import java.util.function.Function;
 
 public class InputWhitespaceAfterLambdaExpressions {
 
-    static Runnable r1 = () -> { // ok
+    static Runnable r1 = () -> {
         String.valueOf("Hello world one!");
     };
 
@@ -18,7 +18,7 @@ public class InputWhitespaceAfterLambdaExpressions {
 
     Runnable r3 = () ->{String.valueOf("");}; // violation ''->' is not followed by whitespace'
 
-    static Runnable r4 = () -> // ok
+    static Runnable r4 = () ->
     {
         String.valueOf("Hello world one!");
     };

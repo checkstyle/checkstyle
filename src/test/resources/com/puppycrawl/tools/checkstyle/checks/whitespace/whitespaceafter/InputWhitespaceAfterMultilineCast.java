@@ -13,6 +13,6 @@ public class InputWhitespaceAfterMultilineCast {
         obj = (java.lang.
                 Object)obj; // violation ''typecast' is not followed by whitespace'
         obj = (java.lang.
-                Object) obj; // ok
+                Object) obj;
     }
 }

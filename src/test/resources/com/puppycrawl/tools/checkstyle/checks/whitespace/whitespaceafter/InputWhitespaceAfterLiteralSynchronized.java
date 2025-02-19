@@ -19,7 +19,7 @@ public class InputWhitespaceAfterLiteralSynchronized {
     }
 
     public void check2() {
-        synchronized (this) { // ok
+        synchronized (this) {
         }
         try {
         }
