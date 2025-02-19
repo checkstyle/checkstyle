@@ -1066,12 +1066,6 @@
   <suppress id="UnnecessaryOkComment"
             files="filters[\\/]suppresswithnearbycommentfilter[\\/]InputSuppressWithNearbyCommentFilterByCheckAndInfluence.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="utils[\\/]checkutil[\\/]InputCheckUtil4.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="utils[\\/]checkutil[\\/]InputCheckUtilPackage.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="utils[\\/]checkutil[\\/]package-info.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocType1.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocType3.java"/>
@@ -1079,6 +1073,4 @@
             files="checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparator.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparator2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="utils[\\/]checkutil[\\/]InputCheckUtil7.java"/>
 </suppressions>
