@@ -671,6 +671,40 @@ public class Example7 extends TreeSet {
 
 }
 </code></pre></div>
+        <p id="Example8-config">
+          To configure the check so that it adds a type to the default illegal class names:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalType" /&gt;
+    &lt;module name="IllegalType"&gt;
+      &lt;property name="illegalClassNames" value="var"/&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+      &lt;property name="id" value="IllegalTypeVarAsField"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example8 {
+  public void var() {
+    // violation below 'Usage of type 'var' is not allowed'
+    var message = "Hello, World!";
+
+    // violation below 'Usage of type 'var' is not allowed'
+    var count = 42;
+
+    String regularString = "This is fine";
+
+    // violation below 'Usage of type 'var' is not allowed'
+    for (var i = 0; i &lt; 10; i++) {
+      System.out.println(i);
+    }
+  }
+}
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
