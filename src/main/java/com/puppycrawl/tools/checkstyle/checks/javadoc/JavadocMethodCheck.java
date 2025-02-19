@@ -657,17 +657,14 @@ public class JavadocMethodCheck extends AbstractCheck {
      */
     private static List<ExceptionInfo> getThrowed(DetailAST methodAst) {
         final List<ExceptionInfo> returnValue = new ArrayList<>();
-        final DetailAST blockAst = methodAst.findFirstToken(TokenTypes.SLIST);
-        if (blockAst != null) {
-            final List<DetailAST> throwLiterals = findTokensInAstByType(blockAst,
+        final List<DetailAST> throwLiterals = findTokensInAstByType(methodAst,
                     TokenTypes.LITERAL_THROW);
-            for (DetailAST throwAst : throwLiterals) {
-                if (!isInIgnoreBlock(blockAst, throwAst)) {
-                    final DetailAST newAst = throwAst.getFirstChild().getFirstChild();
-                    if (newAst.getType() == TokenTypes.LITERAL_NEW) {
-                        final DetailAST child = newAst.getFirstChild();
-                        returnValue.add(getExceptionInfo(child));
-                    }
+        for (DetailAST throwAst : throwLiterals) {
+            if (!isInIgnoreBlock(methodAst, throwAst)) {
+                final DetailAST newAst = throwAst.getFirstChild().getFirstChild();
+                if (newAst.getType() == TokenTypes.LITERAL_NEW) {
+                    final DetailAST child = newAst.getFirstChild();
+                    returnValue.add(getExceptionInfo(child));
                 }
             }
         }
@@ -772,7 +769,7 @@ public class JavadocMethodCheck extends AbstractCheck {
                 continue;
             }
             // backtrack to parent if last child, stopping at root
-            while (curNode != root && curNode.getNextSibling() == null) {
+            while (curNode.getNextSibling() == null) {
                 curNode = curNode.getParent();
             }
             // explore siblings if not root
