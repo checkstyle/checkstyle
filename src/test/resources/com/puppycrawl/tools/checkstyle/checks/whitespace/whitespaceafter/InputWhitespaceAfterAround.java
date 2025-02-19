@@ -9,7 +9,7 @@ tokens = (default)COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_WHILE
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 
 @SuppressWarnings({"this", "that"})
-public class InputWhitespaceAfterAround // ok
+public class InputWhitespaceAfterAround
 {
     protected InputWhitespaceAfterAround ( int i )
     {

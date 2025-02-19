@@ -21,14 +21,14 @@ public class InputWhitespaceAfterVarargs {
     public <T> void anoMeth(List<T>...args) { // violation ''...' is not followed by whitespace'
     }
 
-    public static String multipleArguments(int l, String format, Object ... args) { // ok
+    public static String multipleArguments(int l, String format, Object ... args) {
         return format;
     }
 
     private void noWtSpcBefore(boolean ...args) { // violation ''...' is not followed by whitespace'
     }
 
-    testInterface<Integer> obj = (Integer... i) -> { // ok
+    testInterface<Integer> obj = (Integer... i) -> {
     };
 }
 
