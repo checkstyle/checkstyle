@@ -44,15 +44,8 @@
       <!-- Will be added to every generated page -->
       <![CDATA[
         <script type="text/javascript" src="$relativePath/js/checkstyle.js"></script>
-        <script type="text/javascript"
-              src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script type="text/javascript" src="$relativePath/js/anchors.js"></script>
         <script type="text/javascript" src="$relativePath/js/google-analytics.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
-        <script type="text/javascript"
-              src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-        <script type="text/javascript" src="$relativePath/js/copy-clipboard.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
         <link rel="icon" href="$relativePath/images/favicon.png" type="image/x-icon" />
         <link rel="shortcut icon" href="$relativePath/images/favicon.ico" type="image/ico" />
       ]]>
