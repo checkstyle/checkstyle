@@ -151,11 +151,7 @@ public class AnnotationOnSameLineCheck extends AbstractCheck {
      * @return node that is next to given
      */
     private static DetailAST getNextNode(DetailAST node) {
-        DetailAST nextNode = node.getParent().findFirstToken(TokenTypes.IDENT);
-        if (nextNode == null) {
-            nextNode = node.getNextSibling();
-        }
-        return nextNode;
+        return node.getNextSibling();
     }
 
     /**
