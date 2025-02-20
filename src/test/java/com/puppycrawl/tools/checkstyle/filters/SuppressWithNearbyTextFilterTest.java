@@ -23,11 +23,15 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -44,6 +48,9 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport {
 
     private static final String REGEXP_SINGLELINE_CHECK_FORMAT = "this should not appear";
+
+    @TempDir
+    public File temporaryFolder;
 
     @Override
     protected String getPackageLocation() {
@@ -411,6 +418,43 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
                 .isEqualTo("unable to parse line range"
                         + " from 'SUPPRESS CHECKSTYLE LineLengthCheck' using a!b");
         }
+    }
+
+    /**
+     * Calls the filter twice and removes input file in between to ensure that
+     * the cached file is not read twice.
+     * We cannot use {@link AbstractModuleTestSupport#verifyFilterWithInlineConfigParser}
+     * because removing the file between filters to check caching makes the execution order
+     * unpredictable due to the use of a HashSet in FilterSet.
+     */
+    @Test
+    public void testCachingExecution() throws Exception {
+        final SuppressWithNearbyTextFilter suppressFilter = new SuppressWithNearbyTextFilter();
+        final String inputPath =
+                getPath("InputSuppressWithNearbyTextFilterDefaultConfig.java");
+        final File tempFile = new File(temporaryFolder,
+                "InputSuppressWithNearbyTextFilterDefaultConfig.java");
+        Files.copy(new File(inputPath).toPath(), tempFile.toPath(),
+                StandardCopyOption.REPLACE_EXISTING);
+
+        final AuditEvent auditEvent1 = new AuditEvent(
+                tempFile.getPath(), tempFile.getPath(),
+                new Violation(1, null, null, null, null,
+                        Object.class, null)
+        );
+        suppressFilter.accept(auditEvent1);
+        final boolean deleted = tempFile.delete();
+        assertWithMessage("Temporary file should be deleted.")
+                .that(deleted).isTrue();
+        final AuditEvent auditEvent2 = new AuditEvent(
+                tempFile.getPath(), tempFile.getPath(),
+                new Violation(2, null, null, null, null,
+                        Object.class, null)
+        );
+        suppressFilter.accept(auditEvent2);
+
+        assertWithMessage("Cache should handle missing file.")
+                .that(tempFile.exists()).isFalse();
     }
 
     /**
