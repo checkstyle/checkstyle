@@ -5,4 +5,4 @@ validateComments = (default)false
 
 */
 
-/* Comment only */ // ok
+/* Comment only */
