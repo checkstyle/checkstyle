@@ -35,15 +35,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.mockito.MockedConstruction;
@@ -792,6 +795,81 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                         + getNonCompilablePath("InputTreeWalkerSkipParsingException.java") + "."));
 
         verify(checker, files, expectedViolation);
+    }
+
+    @Test
+    public void testThenComparingWithMethodReference() {
+        final List<TestCheck> checks = Arrays.asList(
+                new TestCheck("check2"),
+                new TestCheck("check1"),
+                new TestCheck("check3")
+        );
+
+        checks.sort(Comparator
+                .comparing(TestCheck::getPriority)
+                .thenComparing(TestCheck::getCustomIdWrapper));
+
+        Assertions.assertEquals("check1", checks.get(0).getId(),
+                "First element should be 'check1'");
+        Assertions.assertEquals("check2", checks.get(1).getId(),
+                "Second element should be 'check2'");
+        Assertions.assertEquals("check3", checks.get(2).getId(),
+                "Third element should be 'check3'");
+    }
+
+    public static class TestCheck extends AbstractCheck {
+        private final String customId;
+        private final int priority;
+
+        public TestCheck(String id) {
+            this.customId = id;
+            this.priority = 1;
+        }
+
+        /**
+        * Retrieves the custom ID for this check.
+        * @return the custom ID of this check.
+        */
+        public String getCustomId() {
+            return customId;
+        }
+
+        /**
+        * Wrapper method to return the ID safely.
+        * Since getId() in AbstractCheck is final, this avoids overriding it.
+        * @return the ID from AbstractCheck or an empty string if unavailable.
+        */
+        public String getCustomIdWrapper() {
+            return Objects.requireNonNullElse(customId, "");
+        }
+
+        /**
+        * Returns the priority level of this check.
+        * @return the priority level.
+        */
+        public int getPriority() {
+            return priority;
+        }
+
+        @Override
+        public int[] getDefaultTokens() {
+            return new int[0];
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return new int[0];
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return new int[0];
+        }
+
+        @Override
+        public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST ast) {
+            // No-op
+        }
     }
 
     public static class BadJavaDocCheck extends AbstractCheck {
