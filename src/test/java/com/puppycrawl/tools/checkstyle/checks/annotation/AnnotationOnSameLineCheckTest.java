@@ -167,6 +167,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "18:3: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
             "21:3: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
+            "24:3: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAnnotationOnSameLine.java"), expected);

@@ -15,11 +15,14 @@ import java.lang.annotation.Target;
 
 public
 class InputAnnotationOnSameLine {
-  @Ann public   // violation, "Annotation 'Ann' should be on the same line with its target."
+  @Ann public   // violation, 'Annotation 'Ann' should be on the same line with its target.'
   @Ann2 class E {}
 
-  @Ann private  // violation, "Annotation 'Ann' should be on the same line with its target."
+  @Ann private  // violation, 'Annotation 'Ann' should be on the same line with its target.'
   @Ann2 class A {}
+
+  @Ann public int // violation, 'Annotation 'Ann' should be on the same line with its target.'
+          field2;
 
   @Target({TYPE_USE}) @interface Ann {}
   @Target({TYPE_USE}) @interface Ann2 {}
