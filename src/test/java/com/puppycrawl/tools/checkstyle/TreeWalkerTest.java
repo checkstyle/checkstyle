@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -43,7 +44,9 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.mockito.MockedConstruction;
@@ -792,6 +795,31 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                         + getNonCompilablePath("InputTreeWalkerSkipParsingException.java") + "."));
 
         verify(checker, files, expectedViolation);
+    }
+
+    @Test
+    public void testTreeWalkerCheckSortingById() {
+        final AbstractCheck check1 = new ConstantNameCheck();
+        check1.setId("zebra");
+
+        final AbstractCheck check2 = new ConstantNameCheck();
+        check2.setId("apple");
+
+        final AbstractCheck check3 = new ConstantNameCheck();
+        check3.setId("mango");
+
+        final List<AbstractCheck> checks = new ArrayList<>(List.of(check1, check2, check3));
+
+        checks.sort(Comparator.comparing(AbstractCheck::getId));
+
+        final List<String> actualOrder = checks.stream()
+                .map(AbstractCheck::getId)
+                .collect(Collectors.toList());
+
+        final List<String> expectedOrder = List.of("apple", "mango", "zebra");
+
+        Assertions.assertEquals(expectedOrder, actualOrder,
+            "Checks should be sorted alphabetically by ID using getId()");
     }
 
     public static class BadJavaDocCheck extends AbstractCheck {
