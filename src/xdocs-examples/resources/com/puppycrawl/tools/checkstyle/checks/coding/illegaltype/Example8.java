@@ -2,13 +2,9 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="IllegalType">
-      <property name="illegalClassNames" value="java.util.Optional"/>
+      <property name="illegalClassNames" value="var"/>
       <property name="tokens" value="VARIABLE_DEF"/>
-      <property name="id" value="IllegalTypeOptionalAsField"/>
-    </module>
-    <module name="SuppressionXpathSingleFilter">
-      <property name="query" value="//METHOD_DEF//*"/>
-      <property name="id" value="IllegalTypeOptionalAsField"/>
+      <property name="id" value="IllegalTypeVarAsField"/>
     </module>
   </module>
 </module>
@@ -27,7 +23,7 @@ import java.util.function.Consumer;
 import java.util.List;
 
 // xdoc section -- start
-public class Example7 extends TreeSet {
+public class Example8 extends TreeSet {
 
   public <T extends java.util.HashSet> void method() {
 
@@ -81,6 +77,7 @@ public class Example7 extends TreeSet {
   final Consumer<Foo> consumer = Foo<Boolean>::foo;
 
   public void var() {
+    // violation below 'Usage of type 'var' is not allowed'
     var message = "Hello, World!";
   }
 }
