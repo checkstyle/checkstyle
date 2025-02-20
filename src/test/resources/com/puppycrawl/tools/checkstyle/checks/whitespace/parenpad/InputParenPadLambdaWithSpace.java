@@ -13,9 +13,9 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 class InputParenPadLambdaWithSpace {
     {
-        java.util.function.Consumer a = ( o ) -> { o.toString( ); }; // ok
+        java.util.function.Consumer a = ( o ) -> { o.toString( ); };
 
-        java.util.function.Consumer b = o -> { o.toString(); }; // ok
+        java.util.function.Consumer b = o -> { o.toString(); };
 
         java.util.function.Consumer c = (o) -> { o.toString(); }; // 2 violations
 
@@ -27,7 +27,7 @@ class InputParenPadLambdaWithSpace {
 
         java.util.stream.Stream.of().forEach( (Object o) -> o.toString() ); // 2 violations
 
-        java.util.stream.Stream.of().forEach( o -> o.toString() ); // ok
+        java.util.stream.Stream.of().forEach( o -> o.toString() );
     }
 
     void someMethod(String param) { // 2 violations
