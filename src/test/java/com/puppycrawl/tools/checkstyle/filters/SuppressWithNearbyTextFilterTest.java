@@ -23,10 +23,14 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
+import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -35,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
@@ -44,6 +49,9 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport {
 
     private static final String REGEXP_SINGLELINE_CHECK_FORMAT = "this should not appear";
+
+    @TempDir
+    public File temporaryFolder;
 
     @Override
     protected String getPackageLocation() {
@@ -411,6 +419,19 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
                 .isEqualTo("unable to parse line range"
                         + " from 'SUPPRESS CHECKSTYLE LineLengthCheck' using a!b");
         }
+    }
+
+    @Test
+    public void testCachedAlreadyExecuted() throws Exception {
+        final String[] violationMessages = {
+                "18:18: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
+                "20:19: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
+
+        };
+        final String originalInputPath = getPath("InputSuppressWithNearbyTextRemoveFilter.java");
+        final File tempInputFile = new File(temporaryFolder, "InputSuppressWithNearbyTextRemoveFilter.java");
+        Files.copy(new File(originalInputPath).toPath(), tempInputFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        verifyWithInlineXmlConfig(tempInputFile.getPath(), violationMessages);
     }
 
     /**
