@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -32,7 +32,7 @@ public class FilterSet
     implements Filter {
 
     /** Filter set. */
-    private final Set<Filter> filters = new HashSet<>();
+    private final Set<Filter> filters = new LinkedHashSet<>();
 
     /**
      * Adds a Filter to the set.
