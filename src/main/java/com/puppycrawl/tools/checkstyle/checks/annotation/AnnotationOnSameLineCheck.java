@@ -135,7 +135,7 @@ public class AnnotationOnSameLineCheck extends AbstractCheck {
                     annotationNode != null;
                     annotationNode = annotationNode.getNextSibling()) {
                 if (annotationNode.getType() == TokenTypes.ANNOTATION
-                        && !TokenUtil.areOnSameLine(annotationNode, getNextNode(annotationNode))) {
+                        && !TokenUtil.areOnSameLine(annotationNode, getNextNode(modifiersNode))) {
                     log(annotationNode, MSG_KEY_ANNOTATION_ON_SAME_LINE,
                           getAnnotationName(annotationNode));
                 }
@@ -151,7 +151,11 @@ public class AnnotationOnSameLineCheck extends AbstractCheck {
      * @return node that is next to given
      */
     private static DetailAST getNextNode(DetailAST node) {
-        return node.getParent().getParent().findFirstToken(TokenTypes.IDENT);
+        DetailAST nextNode = node.getParent().findFirstToken(TokenTypes.IDENT);
+        if (nextNode == null) {
+            nextNode = node.getParent().findFirstToken(TokenTypes.WILDCARD_TYPE);
+        }
+        return nextNode;
     }
 
     /**

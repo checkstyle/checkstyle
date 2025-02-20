@@ -12,6 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationonsameline;
 import static java.lang.annotation.ElementType.TYPE_USE;
 
 import java.lang.annotation.Target;
+import java.util.List;
 
 public
 class InputAnnotationOnSameLine {
@@ -21,9 +22,16 @@ class InputAnnotationOnSameLine {
   @Ann private  // violation, 'Annotation 'Ann' should be on the same line with its target.'
   @Ann2 class A {}
 
-  @Ann public int // violation, 'Annotation 'Ann' should be on the same line with its target.'
-          field2;
+    public void wildcardCase() {
+        List<@Ann ?> list;
+    }
+
+    public String typeCastCase() {
+        Object s = new String();
+        return (@Ann String) s;
+    }
 
   @Target({TYPE_USE}) @interface Ann {}
   @Target({TYPE_USE}) @interface Ann2 {}
+
 }
