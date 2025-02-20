@@ -153,7 +153,7 @@ public class AnnotationOnSameLineCheck extends AbstractCheck {
     private static DetailAST getNextNode(DetailAST node) {
         DetailAST nextNode = node.getParent().findFirstToken(TokenTypes.IDENT);
         if (nextNode == null) {
-            nextNode = node.getParent().findFirstToken(TokenTypes.WILDCARD_TYPE);
+            nextNode = node.getNextSibling();
         }
         return nextNode;
     }

@@ -31,7 +31,15 @@ class InputAnnotationOnSameLine {
         return (@Ann String) s;
     }
 
+    public void wildcardCase1() {
+        List<@Ann // violation, 'Annotation 'Ann' should be on the same line with its target.'
+                ?> list;
+    }
+
+    int[][][] i = new @Ann3(integer = 1) int[0][][];
+
   @Target({TYPE_USE}) @interface Ann {}
   @Target({TYPE_USE}) @interface Ann2 {}
+  @Target({TYPE_USE}) @interface Ann3 { int integer();}
 
 }
