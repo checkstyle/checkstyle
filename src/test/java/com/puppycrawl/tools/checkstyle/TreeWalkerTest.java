@@ -62,6 +62,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck;
 import com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
@@ -792,6 +793,29 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                         + getNonCompilablePath("InputTreeWalkerSkipParsingException.java") + "."));
 
         verify(checker, files, expectedViolation);
+    }
+
+    /**
+     * Verifies that TreeWalker sorting works correctly using AbstractCheck::getId.
+     * Multiple checks are configured with unique IDs to ensure all are executed and
+     * violations are reported in a sorted order.
+     */
+    @Test
+    public void testCheckSortingByIdWithVerify() throws Exception {
+        final String[] expected = {
+            "26:30: " + getCheckMessage(ConstantNameCheck.class, "name.invalidPattern",
+                "someConstant", "^[A-Z][a-zA-Z0-9]*$"),
+
+            "29:31: " + getCheckMessage(ParameterNameCheck.class, "name.invalidPattern",
+                "BADparam", "^[a-z][a-zA-Z0-9]*$"),
+
+            "36:9: " + getCheckMessage(IllegalCatchCheck.class, "illegal.catch", "Exception"),
+
+            "36:9: " + getCheckMessage(WhitespaceAfterCheck.class, "ws.notFollowed", "catch"),
+        };
+
+        final String path = getPath("InputTreeWalkerSorting.java");
+        verifyWithInlineXmlConfig(path, expected);
     }
 
     public static class BadJavaDocCheck extends AbstractCheck {
