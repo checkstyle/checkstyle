@@ -24,18 +24,18 @@ class InputWriteTagSeverity
     /**
      * @todo Add a constructor comment
      */
-    public InputWriteTagSeverity() // ok
+    public InputWriteTagSeverity()
     {
     }
 
-    public void method() // ok
+    public void method()
     {
     }
 
     /**
      * @todo Add a comment
      */
-    public void anotherMethod() // ok
+    public void anotherMethod()
     {
     }
 }
