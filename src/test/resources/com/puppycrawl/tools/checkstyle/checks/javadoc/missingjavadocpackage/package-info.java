@@ -11,4 +11,4 @@ MissingJavadocPackage
 @Deprecated
 
 
-package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage; // ok
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage;
