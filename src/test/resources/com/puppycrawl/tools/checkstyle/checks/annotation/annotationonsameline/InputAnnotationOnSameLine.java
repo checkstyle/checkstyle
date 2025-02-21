@@ -14,14 +14,12 @@ import static java.lang.annotation.ElementType.TYPE_USE;
 import java.lang.annotation.Target;
 import java.util.List;
 
-public
-class InputAnnotationOnSameLine {
-  @Ann public   // violation, 'Annotation 'Ann' should be on the same line with its target.'
-  @Ann2 class E {}
+public class InputAnnotationOnSameLine {
+    @Ann public   // violation, 'Annotation 'Ann' should be on the same line with its target.'
+    @Ann2 class E {}
 
-  @Ann private  // violation, 'Annotation 'Ann' should be on the same line with its target.'
-  @Ann2 class A {}
-
+    @Ann private  // violation, 'Annotation 'Ann' should be on the same line with its target.'
+    @Ann2 class A {}
     public void wildcardCase() {
         List<@Ann ?> list;
     }
@@ -38,8 +36,8 @@ class InputAnnotationOnSameLine {
 
     int[][][] i = new @Ann3(integer = 1) int[0][][];
 
-  @Target({TYPE_USE}) @interface Ann {}
-  @Target({TYPE_USE}) @interface Ann2 {}
-  @Target({TYPE_USE}) @interface Ann3 { int integer();}
+    @Target({TYPE_USE}) @interface Ann {}
+    @Target({TYPE_USE}) @interface Ann2 {}
+    @Target({TYPE_USE}) @interface Ann3 { int integer();}
 
 }

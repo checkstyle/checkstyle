@@ -165,11 +165,24 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAnnotationOnSameLine() throws Exception {
         final String[] expected = {
-            "19:3: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
-            "22:3: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
-            "35:14: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
+            "18:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
+            "21:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
+            "33:14: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAnnotationOnSameLine.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationOnSameLine2() throws Exception {
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
+            "20:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
+            "23:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
+            "26:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputAnnotationOnSameLine.java"),
+            expected);
     }
 }
