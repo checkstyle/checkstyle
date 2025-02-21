@@ -17,11 +17,11 @@ public class InputNoWhitespaceAfterTestAssignment {
     void some() {
         Object oo = new Object[4];
         Object[] oo2 = new Object[4];
-        this.o = ((Object[]) oo)[1]; // ok
-        this.o = ((java.lang.Object[]) oo)[1]; // ok
+        this.o = ((Object[]) oo)[1];
+        this.o = ((java.lang.Object[]) oo)[1];
         this.o = oo2[1];
-        QualifiedAssignment.o1 = ((Object[]) oo)[1]; // ok
-        QualifiedAssignment.o1 = ((java.lang.Object[]) oo)[1]; // ok
+        QualifiedAssignment.o1 = ((Object[]) oo)[1];
+        QualifiedAssignment.o1 = ((java.lang.Object[]) oo)[1];
         QualifiedAssignment.o1 = oo2[1];
         QualifiedAssignment qa1 = null;
         QualifiedAssignment[] qa2 = null;

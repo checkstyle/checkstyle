@@ -26,9 +26,9 @@ class InputNoWhitespaceAfterTestAllowLineBreaks
         int b= 1; // Ignore 1
         b=1; // Ignore 1
         b+=1; // Ignore 1
-        b -=- 1 + (+ b); // ok
+        b -=- 1 + (+ b);
         b = b ++ + b --; // Ignore 1
-        b = ++ b - -- b; // ok
+        b = ++ b - -- b;
     }
 
     /** method **/
@@ -84,11 +84,11 @@ class InputNoWhitespaceAfterTestAllowLineBreaks
     /** test casts **/
     private void testCasts()
     {
-        Object o = (Object) new Object(); // ok
+        Object o = (Object) new Object();
         o = (Object)o;
-        o = ( Object ) o; // ok
-        o = (Object) // ok
-            o; // ok
+        o = ( Object ) o;
+        o = (Object)
+            o;
     }
 
     /** test questions **/
@@ -108,8 +108,8 @@ class InputNoWhitespaceAfterTestAllowLineBreaks
     private void boolTest()
     {
         boolean a = true;
-        boolean x = ! a; // ok
-        int z = ~1 + ~ 2; // ok
+        boolean x = ! a;
+        int z = ~1 + ~ 2;
     }
 
     /** division test **/
@@ -140,10 +140,10 @@ class InputNoWhitespaceAfterTestAllowLineBreaks
     /** assert statement test */
     public void assertTest()
     {
-        // OK
+
         assert true;
 
-        // OK
+
         assert true : "Whups";
 
         // evil colons, should be OK
@@ -238,7 +238,7 @@ class SpecialCasesInForLoopAllowLineBreaks
     }
 
     int[] getSomeInts() {
-        int i = (int) ( 2 / 3 ); // ok
+        int i = (int) ( 2 / 3 );
         return null;
     }
 
@@ -286,14 +286,14 @@ class SpecialCasesInForLoopAllowLineBreaks
 
     public static void testNoWhitespaceBeforeEllipses(String ... args) {
     }
-    @ interface BAD{} // ok
-    @   interface BAD2{} // ok
-    @ // ok
+    @ interface BAD{}
+    @   interface BAD2{}
+    @
     interface BAD3{}
     @interface Ok{}
 
     static {
-        int[]err = new int [50]; // ok
+        int[]err = new int [50];
     }
 
     Object foo() {
@@ -305,5 +305,5 @@ class SpecialCasesInForLoopAllowLineBreaks
         variable;
 
     int someStuff8
-    []; // ok
+    [];
 }
