@@ -24,7 +24,9 @@ public class InputAnnotationOnSameLineCheckPublicMethodAndVariable {
         return (int) x;
     }
 
-    // violation below, "Annotation 'Annotation' should be on the same line with its target."
+    // 2 violations 3 lines below:
+    //    'Annotation 'Annotation2' should be on the same line with its target.'
+    //    'Annotation 'Annotation' should be on the same line with its target.'
     @Annotation2 @Annotation
     public int field;
 
