@@ -26,6 +26,14 @@ public class InputAnnotationOnSameLine {
     @Ann final  // violation, 'Annotation 'Ann' should be on the same line with its target.'
     @Ann2 class C extends B {}
 
+    @Ann public @Ann2 class Egood {}
+
+    @Ann private @Ann2 class Agood {}
+
+    @Ann sealed @Ann2 class Bgood permits C {}
+
+    @Ann final @Ann2 class Cgood extends B {}
+
     @Target({TYPE_USE}) @interface Ann {}
     @Target({TYPE_USE}) @interface Ann2 {}
 }
