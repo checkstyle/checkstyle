@@ -650,10 +650,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]parenpad[\\/]InputParenPadWithSpaceAndDisabledLambda.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorCommentsWithEmoji.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorCommentsWithEmoji.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="filters[\\/]suppresswithnearbycommentfilter[\\/]InputSuppressWithNearbyCommentFilterByCheckAndInfluence.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocType1.java"/>
