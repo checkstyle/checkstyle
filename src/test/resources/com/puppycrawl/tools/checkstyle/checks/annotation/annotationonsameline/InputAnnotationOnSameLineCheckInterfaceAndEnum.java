@@ -57,7 +57,7 @@ public @Ann     // violation, "Annotation 'Ann' should be on the same line with 
                 @Ann2 Integer) x;
     }
 
-    public <T> T getXAs() {
+    public <@Ann T> T getXAs() {
         return (T) x;
     }
 }
