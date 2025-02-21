@@ -15,6 +15,6 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 /* ok
  */
 
-public class InputEmptyLineSeparatorBlockCommentSeparatedFromPackage // ok
+public class InputEmptyLineSeparatorBlockCommentSeparatedFromPackage
 {
 }

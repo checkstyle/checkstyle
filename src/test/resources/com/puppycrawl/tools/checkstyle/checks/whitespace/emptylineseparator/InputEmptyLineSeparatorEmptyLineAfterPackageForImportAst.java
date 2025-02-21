@@ -8,7 +8,8 @@ tokens = IMPORT
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; // ok
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
+
 /**
  * ok, no violation.
  *
