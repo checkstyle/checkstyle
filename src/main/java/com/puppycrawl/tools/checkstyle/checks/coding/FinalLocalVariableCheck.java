@@ -219,6 +219,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     // expressions to separate methods, but that will not increase readability.
     @Override
     public void visitToken(DetailAST ast) {
+
         switch (ast.getType()) {
             case TokenTypes.OBJBLOCK:
             case TokenTypes.METHOD_DEF:
@@ -240,7 +241,6 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                         && ast.findFirstToken(TokenTypes.MODIFIERS)
                             .findFirstToken(TokenTypes.FINAL) == null
                         && !isInAbstractOrNativeMethod(ast)
-                        && !ScopeUtil.isInInterfaceBlock(ast)
                         && !isMultipleTypeCatch(ast)
                         && !CheckUtil.isReceiverParameter(ast)) {
                     insertParameter(ast);

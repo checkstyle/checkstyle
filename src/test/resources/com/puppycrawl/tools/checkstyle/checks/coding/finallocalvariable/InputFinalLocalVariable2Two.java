@@ -48,7 +48,7 @@ public class InputFinalLocalVariable2Two {
 
 interface Inter2
 {
-    void method(int aParam);
+    void method(int aParam); // violation, "Variable 'aParam' should be declared final"
 }
 
 abstract class AbstractClass2
