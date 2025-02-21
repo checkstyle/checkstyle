@@ -12,6 +12,6 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 public class InputNoWhitespaceAfterTestNpe
 {
     private int[] getSome() {
-        return new int[4]; // ok
+        return new int[4];
     }
 }
