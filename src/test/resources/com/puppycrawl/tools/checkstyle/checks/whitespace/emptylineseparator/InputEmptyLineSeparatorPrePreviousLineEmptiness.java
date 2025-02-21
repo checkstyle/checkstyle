@@ -1,6 +1,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 
-public class InputEmptyLineSeparatorPrePreviousLineEmptiness { // ok
+public class InputEmptyLineSeparatorPrePreviousLineEmptiness {
 
 }
