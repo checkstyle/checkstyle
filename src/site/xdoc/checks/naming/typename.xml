@@ -99,7 +99,7 @@
           To configure the check:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="TypeName"/&gt;
@@ -107,7 +107,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
   public interface FirstName {}
   protected class SecondName {}
@@ -120,7 +120,7 @@ class Example1 {
           followed by letters, digits, and underscores. Also, suppress the check from being
           applied to protected and private type:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="TypeName"&gt;
@@ -132,7 +132,7 @@ class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {   // violation
   public interface firstName {}
   public class SecondName {} // violation
@@ -145,7 +145,7 @@ class Example2 {   // violation
           interface names begin with <code>&quot;I_&quot;</code>, followed by
           letters and digits:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="TypeName"&gt;
@@ -158,7 +158,7 @@ class Example2 {   // violation
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
   public interface I_firstName {}
   interface SecondName {} // violation

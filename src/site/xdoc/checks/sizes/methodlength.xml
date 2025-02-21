@@ -76,7 +76,7 @@
           To configure the check so that it accepts at most 4
           lines:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodLength"&gt;
@@ -86,7 +86,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 {
 
   // violation below, 'Method Example1 length is 5 lines (max allowed is 4)'
@@ -136,7 +136,7 @@ public class Example1 {
           To configure the check so that it accepts methods with at most 4
           lines:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodLength"&gt;
@@ -147,7 +147,7 @@ public class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 {
 
   // ok, CTOR_DEF is not in configured tokens
@@ -197,7 +197,7 @@ public class Example2 {
           To configure the check so that it accepts methods with at most 4
           lines, not counting empty lines and comments:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodLength"&gt;
@@ -209,7 +209,7 @@ public class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example3 {
 
   // ok, CTOR_DEF is not in configured tokens

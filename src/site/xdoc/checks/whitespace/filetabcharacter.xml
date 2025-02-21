@@ -70,13 +70,13 @@
         <p id="Example1-config">
           To configure the check to report only the first instance in each file:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="FileTabCharacter"/&gt;
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example - Test.java:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
   int a; // violation 'File contains tab characters'
 
@@ -86,7 +86,7 @@ class Example1 {
 }
 </code></pre></div>
         <p id="Example2-config">To configure the check to report each instance in each file:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="FileTabCharacter"&gt;
     &lt;property name="eachLine" value="true"/&gt;
@@ -94,7 +94,7 @@ class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example - Test.java:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
   int a; // violation 'contains a tab character'
 
@@ -106,7 +106,7 @@ class Example2 {
         <p id="Example3-config">
           To configure the check to report instances on only certain file types:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="FileTabCharacter"&gt;
     &lt;property name="fileExtensions" value="java, xml"/&gt;
@@ -114,7 +114,7 @@ class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example - Test.java:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
   int a; // violation 'File contains tab characters'
 
@@ -124,7 +124,7 @@ class Example3 {
 }
 </code></pre></div>
         <p id="Example4-code">Example - Test.xml:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
 &lt;UserAccount&gt;
   &lt;FirstName&gt;John&lt;/FirstName&gt; // violation 'File contains tab characters'
@@ -132,7 +132,7 @@ class Example3 {
 &lt;/UserAccount&gt;
 </code></pre></div>
         <p id="Example5-code">Example - Test.html:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 &lt;head&gt;
   &lt;title&gt;Page Title&lt;/title&gt; &lt;!-- OK, no check performed on html file extension --&gt;
 &lt;/head&gt;                       &lt;!-- not specified in check config --&gt;

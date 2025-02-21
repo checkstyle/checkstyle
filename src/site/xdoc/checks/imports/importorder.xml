@@ -114,7 +114,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"/&gt;
@@ -124,7 +124,7 @@
         <p id="Example1-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 import java.io.IOException;
 import java.net.URL;
 
@@ -157,7 +157,7 @@ import com.neurologic.http.impl.ApacheHttpClient;
           <li>configuration below doesn't work in all 100% cases due to inconsistent behavior
               prior to Mars release, but covers most scenarios</li>
         </ul>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -173,7 +173,7 @@ import com.neurologic.http.impl.ApacheHttpClient;
         <p id="Example2-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 import static java.lang.System.out;
 import static java.lang.Math; // violation, alphabetical case-sensitive ASCII order, 'M' &lt; 'S'
 import java.io.IOException;
@@ -199,7 +199,7 @@ import org.apache.http.conn.ClientConnectionManager;
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -215,7 +215,7 @@ import org.apache.http.conn.ClientConnectionManager;
         <p id="Example3-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 import static java.io.File.createTempFile;
 import static java.lang.Math.abs; // OK, alphabetical case-sensitive ASCII order, 'i' &lt; 'l'
 import java.lang.Math.sqrt; // OK, follows property 'Option' value 'above'
@@ -257,7 +257,7 @@ import com.neurologic.http.impl.ApacheHttpClient;
           Note: &quot;separated&quot; option is disabled because IDEA default has blank line
           between &quot;java&quot; and static imports, and no blank line between &quot;javax&quot; and &quot;java&quot;.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -277,7 +277,7 @@ import com.neurologic.http.impl.ApacheHttpClient;
         <p id="Example4-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 import com.neurologic.http.impl.ApacheHttpClient;
 import static java.awt.Button.A;
 import javax.swing.JComponent;
@@ -297,7 +297,7 @@ import com.neurologic.http.HttpClient; // violation, wrong order, 'com' imports 
               group</li>
           <li>static imports are not separated, they will be sorted along with other imports</li>
         </ul>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -309,7 +309,7 @@ import com.neurologic.http.HttpClient; // violation, wrong order, 'com' imports 
         <p id="Example5-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 import static java.io.File.createTempFile;
 import java.lang.Math.sqrt;
 
@@ -342,7 +342,7 @@ import static javax.windowConstants.*;
           To configure the Check allows static imports grouped to the <b>top</b> being sorted
           alphabetically:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -356,7 +356,7 @@ import static javax.windowConstants.*;
         <p id="Example6-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 import static java.lang.Math.PI;
 import static java.lang.Math.abs; // OK, alphabetical case-sensitive ASCII order, 'P' &lt; 'a'
 import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphabetical order
@@ -370,7 +370,7 @@ import org.abego.*;
           To configure the Check with groups of static imports:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -384,7 +384,7 @@ import org.abego.*;
         <p id="Example7-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 import static org.abego.treelayout.Configuration.AlignmentInLevel; // Group 1
 import static java.lang.Math.abs; // Group 2
 import static java.lang.String.format; // Group 2
@@ -414,7 +414,7 @@ import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
         <p id="Example8-config">
           Example for <code>useContainerOrderingForStatic=true</code>
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -430,7 +430,7 @@ import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
         <p id="Example8-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 import static io.netty.handler.codec.http.HttpConstants.COLON;
 import static io.netty.handler.codec.http.HttpHeaders.addHeader;
 import static io.netty.handler.codec.http.HttpHeaders.setHeader;
@@ -439,7 +439,7 @@ import static io.netty.handler.codec.http.HttpHeaders.Names.DATE;
         <p id="Example9-config">
           Example for <code>useContainerOrderingForStatic=false</code>
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -469,7 +469,7 @@ public class Example9 { }
         <p id="Example10-config">
           Example for <code>separatedStaticGroups=true</code>
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -483,7 +483,7 @@ public class Example9 { }
         <p id="Example10-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 import static java.lang.Math.PI;
 import static java.io.File.createTempFile;
 import static javax.swing.JComponent; // violation, should be separated from previous imports
@@ -495,7 +495,7 @@ import java.net.URL;
           To configure the Check with groups of static imports when staticGroups=&quot;&quot;
           represents all imports as {@code everything else} group:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -508,7 +508,7 @@ import java.net.URL;
         <p id="Example11-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 import static java.io.File.listRoots;
 import static javax.swing.WindowConstants.*;
 import static java.io.File.createTempFile;
@@ -521,7 +521,7 @@ import static com.puppycrawl.tools.checkstyle;
           should be in last group:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -534,7 +534,7 @@ import static com.puppycrawl.tools.checkstyle;
         <p id="Example12-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 import static java.io.File.listRoots;
 import static javax.swing.WindowConstants.*;
 import static java.io.File.createTempFile; // violation, should be before javax
