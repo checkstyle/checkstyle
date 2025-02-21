@@ -36,15 +36,15 @@ public class InputNoWhitespaceAfterNewTypeStructure {
 
     void goodMethod() {
         Slot slot = new Slot();
-        slot.ci[5] = 10; // ok
-        slot.ci = new int[6]; // ok
-        double[] cZ = {1.1, 1.2}; // ok
-        final double   dnZ = slot.sin2Phi               * cZ[1]; // ok
+        slot.ci[5] = 10;
+        slot.ci = new int[6];
+        double[] cZ = {1.1, 1.2};
+        final double   dnZ = slot.sin2Phi               * cZ[1];
 
         final Ef ef = new Ef();
         final Transformer transformer =
-            ef.forward ? ef.transformers[ef.transformers.length - 1] // ok
-                    : ef.transformers[0]; // ok
+            ef.forward ? ef.transformers[ef.transformers.length - 1]
+                    : ef.transformers[0];
 
     }
 
@@ -72,7 +72,7 @@ public class InputNoWhitespaceAfterNewTypeStructure {
                         [] ; // violation
     }
 
-    void varargLong(@I String @L [] @K [] @J ... vararg2) { } // ok
+    void varargLong(@I String @L [] @K [] @J ... vararg2) { }
     @SuppressWarnings("unused")
     void withUpperBound(List<? extends int[][]> list) {}
 
@@ -139,7 +139,7 @@ public class InputNoWhitespaceAfterNewTypeStructure {
 
         void method6() {
             if (getXorData().length == 5
-                    && this.getXorData()[1] != IntData.class // ok
+                    && this.getXorData()[1] != IntData.class
                     || this.getXorData()[5] != IntData.class) {
                 System.out.println(getXorData().length);
             }
@@ -148,9 +148,9 @@ public class InputNoWhitespaceAfterNewTypeStructure {
     }
     protected TreeSet<byte []> sortedPrefixes = createTreeSet(); // violation
 
-    TreeSet<byte[]> createTreeSet() { // ok
+    TreeSet<byte[]> createTreeSet() {
         return null;
-    } // ok
+    }
 
     public Object newInstance(Object[] objects){
             // Run constructor
@@ -178,7 +178,7 @@ public class InputNoWhitespaceAfterNewTypeStructure {
     private ClassRepository getGenericInfo() {
         return null;
     }
-    String[] c, d[]; // ok
+    String[] c, d[];
     String [] e, f []; // 2 violations
 
     public enum Stooge {
@@ -229,7 +229,7 @@ public class InputNoWhitespaceAfterNewTypeStructure {
           }
 
         public void set4(P p) {
-              synchronized(this) { // ok
+              synchronized(this) {
                   p.x = get()[0];
               }
           }
