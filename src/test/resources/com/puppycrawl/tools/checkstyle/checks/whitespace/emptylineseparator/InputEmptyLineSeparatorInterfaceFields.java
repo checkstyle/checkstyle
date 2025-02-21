@@ -13,9 +13,9 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 
 public interface InputEmptyLineSeparatorInterfaceFields {
-    int a = 45; // ok
+    int a = 45;
 
-    int b = 45; // ok
+    int b = 45;
 
 
     int c = 45; // violation ''VARIABLE_DEF' has more than 1 empty lines before.'
@@ -26,9 +26,9 @@ public interface InputEmptyLineSeparatorInterfaceFields {
 }
 
 @interface Ann {
-    int a = 45; // ok
+    int a = 45;
 
-    int b = 45; // ok
+    int b = 45;
 
 
     int c = 45; // violation ''VARIABLE_DEF' has more than 1 empty lines before.'

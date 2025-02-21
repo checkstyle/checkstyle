@@ -44,7 +44,7 @@ public class InputEmptyLineSeparatorPreviousLineEmptiness {
         return value * MULTIPLICATOR + 1;
     }
 
-    void foo2() { // ok
+    void foo2() {
     }
 
 
