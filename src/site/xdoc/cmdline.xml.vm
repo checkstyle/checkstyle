@@ -28,7 +28,7 @@
     <section name="Command line usage">
       <p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 java -D&lt;property&gt;=&lt;value&gt;  \
      com.puppycrawl.tools.checkstyle.Main \
      -c &lt;configurationFile&gt; \
@@ -419,7 +419,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         An example of run would be:
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
           java -jar checkstyle-${projectVersion}-all.jar -c /sun_checks.xml MyClass.java
           java -jar checkstyle-${projectVersion}-all.jar -c /google_checks.xml MyClass.java
         </code></pre></div>
@@ -443,7 +443,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         An example of run would be (path to java file is optional):
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
           java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gui.Main \
           &#xa0;&#xa0;&#xa0;&#xa0;MyClass.java
         </code></pre></div>
@@ -455,7 +455,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         Download and compile:
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
           git clone https://github.com/checkstyle/checkstyle.git
           cd checkstyle
           mvn clean compile
@@ -465,7 +465,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         Run validation with arguments:
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
           mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.Main" \
           &#xa0;&#xa0;&#xa0;&#xa0;-Dexec.args="-c /sun_checks.xml src/main/java"
         </code></pre></div>
@@ -474,7 +474,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         Run UI application for file :
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
           mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.gui.Main" -Dexec.args=\
           &#xa0;&#xa0;&#xa0;&#xa0;"src/main/java/com/puppycrawl/tools/checkstyle/Checker.java"
         </code></pre></div>
@@ -483,7 +483,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         Build all jars, and launch CLI from new build:
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
           mvn clean package -Passembly,no-validations
           java -jar target/checkstyle-X.X-SNAPSHOT-all.jar -c /sun_checks.xml MyClass.java
         </code></pre></div>
@@ -514,7 +514,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         </b>
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
           java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml Check.java
         </code></pre></div>
       </div>
@@ -526,7 +526,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         </b>
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
           java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml src/
         </code></pre></div>
       </div>
@@ -539,7 +539,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         </b>
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
           java -Dcheckstyle.cache.file=target/cachefile com.puppycrawl.tools.checkstyle.Main \
           &#xa0;&#xa0;&#xa0;&#xa0;-c /sun_checks.xml Check.java
         </code></pre></div>
@@ -553,7 +553,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         </b>
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
           java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml \
           &#xa0;&#xa0;&#xa0;&#xa0;-p myCheckstyle.properties Check.java
         </code></pre></div>
@@ -567,7 +567,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         </b>
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
           java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml -f xml \
           &#xa0;&#xa0;&#xa0;&#xa0;-o build/checkstyle_errors.xml Check.java
         </code></pre></div>
@@ -580,7 +580,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         </b>
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
           java -classpath MyCustom.jar;checkstyle-${projectVersion}-all.jar \
           &#xa0;&#xa0;&#xa0;&#xa0;com.puppycrawl.tools.checkstyle.Main -c config.xml Check.java
         </code></pre></div>
