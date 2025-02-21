@@ -30,9 +30,9 @@ public class InputAnnotationOnSameLine {
 
     @Ann private @Ann2 class Agood {}
 
-    @Ann sealed @Ann2 class Bgood permits C {}
+    @Ann sealed @Ann2 class Bgood permits Cgood {}
 
-    @Ann final @Ann2 class Cgood extends B {}
+    @Ann final @Ann2 class Cgood extends Bgood {}
 
     @Target({TYPE_USE}) @interface Ann {}
     @Target({TYPE_USE}) @interface Ann2 {}
