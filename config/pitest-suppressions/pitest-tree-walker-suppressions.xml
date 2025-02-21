@@ -28,15 +28,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>JavadocDetailNodeParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser</mutatedClass>
-    <mutatedMethod>getMissedHtmlTag</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/Deque::pop</description>
-    <lineContent>htmlTagNameStart = stack.pop();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>SuppressionsStringPrinter.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.SuppressionsStringPrinter</mutatedClass>
     <mutatedMethod>printSuppressions</mutatedMethod>
