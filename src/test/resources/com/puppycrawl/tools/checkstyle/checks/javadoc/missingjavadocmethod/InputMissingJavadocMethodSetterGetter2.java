@@ -17,12 +17,12 @@ public class InputMissingJavadocMethodSetterGetter2
 {
     private int mNumber;
 
-    public void setNumber(final int number) // ok
+    public void setNumber(final int number)
     {
         mNumber = number;
     }
 
-    public int getNumber() // ok
+    public int getNumber()
     {
         return mNumber;
     }
@@ -58,7 +58,7 @@ public class InputMissingJavadocMethodSetterGetter2
         return 666;
     }
 
-    public boolean isSomething() // ok
+    public boolean isSomething()
     {
         return false;
     }
