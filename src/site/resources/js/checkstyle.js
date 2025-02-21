@@ -69,9 +69,14 @@ window.addEventListener("load", function () {
             if (code[code.length -1].trim() === "") {
                 code.pop();
             }
+            const pre = block.closest("pre.prettyprint");
+            if (pre) {
+            pre.classList.remove("prettyprinted");
+            }
             block.innerText = code.join("\n");
         }
     });
+    prettyPrint();
 });
 
 window.addEventListener("scroll", function () {
