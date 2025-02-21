@@ -22,7 +22,7 @@ public class InputNoWhitespaceAfterWithEmoji {
 
         /* 👉🏻😆*/ char  []c2= "🤩🎄".toCharArray(); // violation ''char' is followed by whitespace.'
         }
-        return "😅🧐 dsad "; // ok
+        return "😅🧐 dsad ";
     }
     public String foo2() {
         String str = (@ MyAnnotation String) "🤩dsa😂adsad"; // 2 violations
