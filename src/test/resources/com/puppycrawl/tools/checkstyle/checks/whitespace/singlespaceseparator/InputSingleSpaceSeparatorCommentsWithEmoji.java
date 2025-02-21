@@ -33,9 +33,9 @@ public class InputSingleSpaceSeparatorCommentsWithEmoji {
         String s = "🧐  🧐";
     }  // violation 'Use a single space to separate non-whitespace characters'
 
-    private void foo3 (String s) {  // ok
+    private void foo3 (String s) {
         // violation above 'Use a single space to separate non-whitespace characters'
-        if (s.substring(0).equals("da🎄")) {  // ok
+        if (s.substring(0).equals("da🎄")) {
             // violation above 'Use a single space to separate non-whitespace characters'
             /*🧐 🧐 🧐*/  /* comment */ if ("🧐".isEmpty()){
             //  violation above 'Use a single space to separate non-whitespace characters'
