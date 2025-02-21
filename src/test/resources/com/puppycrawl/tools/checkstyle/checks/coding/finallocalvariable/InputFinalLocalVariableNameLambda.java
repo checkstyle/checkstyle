@@ -14,6 +14,9 @@ import java.math.BigDecimal;
 public class InputFinalLocalVariableNameLambda {
     private interface Lambda {
         public Object op(AugmentedOrder a, AugmentedOrder b);
+        // 2 violations above:
+        //    "Variable 'a' should be declared final"
+        //    "Variable 'b' should be declared final"
     }
     private static class AugmentedOrder {
         public BigDecimal reduce(final BigDecimal zero, final Lambda l) {
