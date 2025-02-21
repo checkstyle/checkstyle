@@ -10,7 +10,7 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; // ok
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 
 public class InputEmptyLineSeparatorFormerException
 {
