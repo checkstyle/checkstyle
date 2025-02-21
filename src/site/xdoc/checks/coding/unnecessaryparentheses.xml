@@ -276,7 +276,7 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="UnnecessaryParentheses"/&gt;
@@ -286,7 +286,7 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
         <p id="Example1-code">
           Which results in the following violations:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
 
   public int square(int a, int b) {
@@ -340,7 +340,7 @@ class Example1 {
           <code> '|' </code>, bitwise AND <code> '&amp;' </code>, bitwise exclusive OR
           <code> '^' </code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="UnnecessaryParentheses"&gt;
@@ -350,7 +350,7 @@ class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
 
   void method() {
@@ -382,7 +382,7 @@ class Example2 {
           To configure the check to detect unnecessary parentheses around conditional expressions
           <code> '?' </code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="UnnecessaryParentheses"&gt;
@@ -392,7 +392,7 @@ class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
 
   void method() {
