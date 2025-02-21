@@ -441,7 +441,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference stack.peek()</message>
-    <lineContent>if (stack.peek().getText().equals(token.getText())) {</lineContent>
+    <lineContent>&amp;&amp; stack.peek().getText().equals(token.getText())) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
