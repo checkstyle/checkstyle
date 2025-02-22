@@ -219,6 +219,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     // expressions to separate methods, but that will not increase readability.
     @Override
     public void visitToken(DetailAST ast) {
+
         switch (ast.getType()) {
             case TokenTypes.OBJBLOCK:
             case TokenTypes.METHOD_DEF:
@@ -239,8 +240,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 if (!isInLambda(ast)
                         && ast.findFirstToken(TokenTypes.MODIFIERS)
                             .findFirstToken(TokenTypes.FINAL) == null
-                        && !isInAbstractOrNativeMethod(ast)
-                        && !ScopeUtil.isInInterfaceBlock(ast)
+                        && !isInMethodWithoutBody(ast)
                         && !isMultipleTypeCatch(ast)
                         && !CheckUtil.isReceiverParameter(ast)) {
                     insertParameter(ast);
@@ -678,24 +678,14 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Determines whether an AST is a descendant of an abstract or native method.
+     * Checks if a parameter is within a method that has no implementation body.
      *
-     * @param ast the AST to check.
-     * @return true if ast is a descendant of an abstract or native method.
+     * @param ast the AST node to check
+     * @return true if the parameter is in a method without a body
      */
-    private static boolean isInAbstractOrNativeMethod(DetailAST ast) {
-        boolean abstractOrNative = false;
-        DetailAST currentAst = ast;
-        while (currentAst != null && !abstractOrNative) {
-            if (currentAst.getType() == TokenTypes.METHOD_DEF) {
-                final DetailAST modifiers =
-                    currentAst.findFirstToken(TokenTypes.MODIFIERS);
-                abstractOrNative = modifiers.findFirstToken(TokenTypes.ABSTRACT) != null
-                        || modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) != null;
-            }
-            currentAst = currentAst.getParent();
-        }
-        return abstractOrNative;
+    private static boolean isInMethodWithoutBody(DetailAST ast) {
+        final DetailAST parent = ast.getParent().getParent();
+        return parent.findFirstToken(TokenTypes.SLIST) == null;
     }
 
     /**
