@@ -35,10 +35,10 @@ public class InputAnnotationOnSameLineRecordsAndCompactCtors {
     @SuppressWarnings("deprecation")
     public record MyRecord5() {
         record MyInnerRecord() {
-            @NonNull1 @SuppressWarnings("Annotation")
-            // 2 violations above:
+            // 2 violations 3 lines below:
             //    "Annotation 'NonNull1' should be on the same line with its target."
             //    "Annotation 'SuppressWarnings' should be on the same line with its target."
+            @NonNull1 @SuppressWarnings("Annotation")
             public MyInnerRecord {
             }
         }

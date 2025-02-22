@@ -15,10 +15,12 @@ import java.lang.annotation.Target;
 import java.util.List;
 
 public class InputAnnotationOnSameLine {
-    @Ann public   // violation, 'Annotation 'Ann' should be on the same line with its target.'
+    // violation below, "Annotation 'Ann' should be on the same line with its target."
+    @Ann public
     @Ann2 class E {}
 
-    @Ann private  // violation, 'Annotation 'Ann' should be on the same line with its target.'
+    // violation below, "Annotation 'Ann' should be on the same line with its target."
+    @Ann private
     @Ann2 class A {}
     public void wildcardCase() {
         List<@Ann ?> list;
@@ -30,9 +32,21 @@ public class InputAnnotationOnSameLine {
     }
 
     public void wildcardCase1() {
-        List<@Ann // violation, 'Annotation 'Ann' should be on the same line with its target.'
+        // violation below, 'Annotation 'Ann' should be on the same line with its target.'
+        List<@Ann
                 ?> list;
     }
+
+    // 2 violations 3 lines below:
+    //    "Annotation 'Deprecated' should be on the same line with its target."
+    //    "Annotation 'SuppressWarnings' should be on the same line with its target."
+    @Deprecated @SuppressWarnings("unchecked")
+    public void proceed(int parameter1,  int parameter2,  int parameter3,
+                        int parameter4,  int parameter5) { }
+
+    @Deprecated @SuppressWarnings("unchecked") public void proceedGood(int parameter1,
+                                                      int parameter2, int parameter3,
+                                                      int parameter4,  int parameter5) { }
 
     int[][][] i = new @Ann3(integer = 1) int[0][][];
 

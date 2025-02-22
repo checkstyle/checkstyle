@@ -14,16 +14,20 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.TYPE_USE;
 
 public class InputAnnotationOnSameLine {
-    @Ann public   // violation, 'Annotation 'Ann' should be on the same line with its target.'
+    // violation below, 'Annotation 'Ann' should be on the same line with its target.'
+    @Ann public
     @Ann2 class E {}
 
-    @Ann private  // violation, 'Annotation 'Ann' should be on the same line with its target.'
+    // violation below, 'Annotation 'Ann' should be on the same line with its target.'
+    @Ann private
     @Ann2 class A {}
 
-    @Ann sealed  // violation, 'Annotation 'Ann' should be on the same line with its target.'
+    // violation below, 'Annotation 'Ann' should be on the same line with its target.'
+    @Ann sealed
     @Ann2 class B permits C {}
 
-    @Ann final  // violation, 'Annotation 'Ann' should be on the same line with its target.'
+    // violation below, 'Annotation 'Ann' should be on the same line with its target.'
+    @Ann final
     @Ann2 class C extends B {}
 
     @Ann public @Ann2 class Egood {}
