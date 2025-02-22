@@ -685,8 +685,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private static boolean isInMethodWithoutBody(DetailAST ast) {
         final DetailAST parent = ast.getParent().getParent();
-        return parent.getType() == TokenTypes.METHOD_DEF
-                && parent.findFirstToken(TokenTypes.SLIST) == null;
+        return parent.findFirstToken(TokenTypes.SLIST) == null;
     }
 
     /**
