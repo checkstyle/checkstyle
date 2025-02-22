@@ -69,7 +69,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LocalFinalVariableName"&gt;
@@ -79,7 +79,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1{
   void MyMethod() {
     try {
@@ -96,7 +96,7 @@ class Example1{
           An example of how to configure the check for names that are only upper case letters and
           digits is:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LocalFinalVariableName"&gt;
@@ -106,7 +106,7 @@ class Example1{
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
   void MyMethod() {
     try {
@@ -123,7 +123,7 @@ class Example2 {
           An example of how to configure the check for names of local final parameters and
           resources in try statements (without checks on variables):
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LocalFinalVariableName"&gt;
@@ -134,7 +134,7 @@ class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
   void MyMethod() {
     try(Scanner scanner = new Scanner(System.in)) { // violation
