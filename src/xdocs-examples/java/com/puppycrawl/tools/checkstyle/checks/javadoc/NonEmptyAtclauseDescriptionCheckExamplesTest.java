@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDes
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NonEmptyAtclauseDescriptionCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
