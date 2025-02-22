@@ -225,7 +225,7 @@ public class FinalLocalVariableCheckTest
     public void testLambda()
             throws Exception {
         final String[] expected = {
-            "40:16: " + getCheckMessage(MSG_KEY, "result"),
+            "43:16: " + getCheckMessage(MSG_KEY, "result"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableNameLambda.java"),
