@@ -435,4 +435,15 @@ public class FinalLocalVariableCheckTest
                 getNonCompilablePath("InputFinalLocalVariableValidateUnnamedVariablesFalse.java"),
             expected);
     }
+
+    @Test
+    public void test1() throws Exception {
+        final String[] expected = {
+            "12:33: " + getCheckMessage(MSG_KEY, "param"),
+            "13:20: " + getCheckMessage(MSG_KEY, "local"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputFinalLocalVariableInterface.java"),
+            expected);
+    }
 }
