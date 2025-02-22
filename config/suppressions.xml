@@ -62,6 +62,8 @@
   <suppress checks="MethodCount" files="[\\/]RequireThisCheck.java$"/>
   <!-- Apart from complex logic, there is a nested class which contains many methods.  -->
   <suppress checks="MethodCount" files="[\\/]UnusedLocalVariableCheck.java"/>
+  <!-- Bunch of utility methods to check location of local variable.  -->
+  <suppress checks="MethodCount" files="[\\/]FinalLocalVariableCheck.java"/>
   <!-- Utility class is combination of a lot of different methods .  -->
   <suppress checks="MethodCount" files="[\\/]SiteUtil.java"/>
   <!-- parse method needs catching Exceptions to print context of execution -->

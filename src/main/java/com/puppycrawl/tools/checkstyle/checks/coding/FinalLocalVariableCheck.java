@@ -240,7 +240,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                         && ast.findFirstToken(TokenTypes.MODIFIERS)
                             .findFirstToken(TokenTypes.FINAL) == null
                         && !isInAbstractOrNativeMethod(ast)
-                        && !ScopeUtil.isInInterfaceBlock(ast)
+                        && (!ScopeUtil.isInInterfaceBlock(ast)
+                                || isStaticDefaultOrPrivateMethod(ast))
                         && !isMultipleTypeCatch(ast)
                         && !CheckUtil.isReceiverParameter(ast)) {
                     insertParameter(ast);
@@ -747,6 +748,28 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private static boolean isLoopAst(int ast) {
         return LOOP_TYPES.get(ast);
+    }
+
+    /**
+     * Check if given parameter definition is for a static, default or private method.
+     *
+     * @param parameterDefAst parameter definition
+     * @return true if it is for a static, default or private method, false otherwise
+     */
+    public static boolean isStaticDefaultOrPrivateMethod(DetailAST parameterDefAst) {
+        boolean staticDefaultOrPrivate = false;
+        DetailAST currentAst = parameterDefAst;
+        while (currentAst != null && !staticDefaultOrPrivate) {
+            if (currentAst.getType() == TokenTypes.METHOD_DEF) {
+                final DetailAST modifiers =
+                    currentAst.findFirstToken(TokenTypes.MODIFIERS);
+                staticDefaultOrPrivate = modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null
+                    || modifiers.findFirstToken(TokenTypes.LITERAL_DEFAULT) != null
+                    || modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
+            }
+            currentAst = currentAst.getParent();
+        }
+        return staticDefaultOrPrivate;
     }
 
     /**
