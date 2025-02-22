@@ -46,7 +46,7 @@ public class InputJavadocParagraphIncorrectOpenClosedTag {
     * Some Summary.
     *
     * <p>
-    *   Some Javadoc. // ok until #15762
+    *   Some Javadoc.
     * </p>
     */
     int d;
