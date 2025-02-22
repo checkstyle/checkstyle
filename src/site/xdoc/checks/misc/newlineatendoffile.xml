@@ -92,20 +92,20 @@ StaticMethodCandidateCheck.name = Static Method Candidate
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="NewlineAtEndOfFile"/&gt;
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Correct Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 { // ⤶
 // ⤶
 } // ⤶ // ok, file ends with a new line.
 </code></pre></div>
 
         <p id="Example2-code">Violation Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 { // ⤶
 // ⤶
 } // no ⤶ below it is violation
@@ -114,7 +114,7 @@ public class Example2 { // ⤶
         <p id="Example3-config">
           To configure the check to always use Unix-style line separators:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="NewlineAtEndOfFile"&gt;
     &lt;property name="lineSeparator" value="lf"/&gt;
@@ -122,7 +122,7 @@ public class Example2 { // ⤶
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example3 { // ⤶
 } // ␍⤶  it is violation as line ending is different from expected
 </code></pre></div>
@@ -130,7 +130,7 @@ public class Example3 { // ⤶
         <p id="Example4-config">
           To configure the check to work only on Java, XML and Cpp files:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="NewlineAtEndOfFile"&gt;
     &lt;property name="fileExtensions" value="java, xml, cpp"/&gt;
@@ -138,21 +138,21 @@ public class Example3 { // ⤶
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Cpp file <code>Example4.cpp</code>:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 int main() { // ⤶
     return 0;// ⤶
 } // no ⤶ below it is violation
 </code></pre></div>
 
         <p id="Example5-code">Java file <code>Example5.java</code>:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example5 { // ⤶
 // ⤶
 } // no ⤶ below it is violation
 </code></pre></div>
 
         <p id="Example6-code">Text file <code>Example6.txt</code>:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 Sample txt file. // ok, this file is not specified in the config.
 </code></pre></div>
       </subsection>
