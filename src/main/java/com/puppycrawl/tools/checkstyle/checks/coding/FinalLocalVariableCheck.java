@@ -242,7 +242,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                             .findFirstToken(TokenTypes.FINAL) == null
                         && !isInAbstractOrNativeMethod(ast)
                         && !isMultipleTypeCatch(ast)
-                        && !CheckUtil.isReceiverParameter(ast)) {
+                        && !CheckUtil.isReceiverParameter(ast)
+                        && !(ast.getParent().getParent().getType() == TokenTypes.METHOD_DEF
+                        && ast.getParent().getParent().findFirstToken(TokenTypes.SLIST) == null)) {
                     insertParameter(ast);
                 }
                 break;
