@@ -145,7 +145,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="VisibilityModifier"/&gt;
@@ -153,7 +153,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example with default values:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
   private int myPrivateField1;
 
@@ -196,7 +196,7 @@ class Example1 {
         <p id="Example2-config">
           To configure the check so that it allows package visible members:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="VisibilityModifier"&gt;
@@ -206,7 +206,7 @@ class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example of allowed package visible members:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
   private int myPrivateField1;
 
@@ -249,7 +249,7 @@ class Example2 {
         <p id="Example3-config">
           To configure the check so that it allows protected visible members:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="VisibilityModifier"&gt;
@@ -259,7 +259,7 @@ class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example of allowed protected visible members:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
   private int myPrivateField1;
 
@@ -303,7 +303,7 @@ class Example3 {
         <p id="Example4-config">
           To configure the check so that it allows no public members:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="VisibilityModifier"&gt;
@@ -313,7 +313,7 @@ class Example3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example of not allowed public members:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example4 {
   private int myPrivateField1;
 
@@ -359,7 +359,7 @@ class Example4 {
           To configure the Check so that it allows public immutable fields
           (mostly for immutable classes):
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="VisibilityModifier"&gt;
@@ -371,7 +371,7 @@ class Example4 {
         <p id="Example5-code">
           Example of allowed public immutable fields:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example5 {
   private int myPrivateField1;
 
@@ -413,7 +413,7 @@ class Example5 {
         <p id="Example6-config">
           To configure the Check in order to allow user specified immutable class names:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="VisibilityModifier"&gt;
@@ -428,7 +428,7 @@ class Example5 {
         <p id="Example6-code">
           Example of allowed public immutable fields:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example6 {
   private int myPrivateField1;
 
@@ -472,7 +472,7 @@ class Example6 {
           generic type parameters are immutable. If at least one generic type parameter is mutable,
           there will be a violation.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="VisibilityModifier"&gt;
@@ -487,7 +487,7 @@ class Example6 {
         <p id="Example7-code">
           Example of how the check works:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example7 {
   private int myPrivateField1;
 
@@ -529,7 +529,7 @@ class Example7 {
         <p id="Example8-config">
           To configure the Check passing fields annotated with @java.lang.Deprecated:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="VisibilityModifier"&gt;
@@ -542,7 +542,7 @@ class Example7 {
         <p id="Example8-code">
           Example of allowed field:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example8 {
   private int myPrivateField1;
 
@@ -586,7 +586,7 @@ class Example8 {
           To configure the Check passing fields annotated with @org.junit.Rule,
           @org.junit.ClassRule and @com.google.common.annotations.VisibleForTesting annotations:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="VisibilityModifier"/&gt;
@@ -596,7 +596,7 @@ class Example8 {
         <p id="Example9-code">
           Example of allowed fields:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example9 {
   private int myPrivateField1;
 
@@ -638,7 +638,7 @@ class Example9 {
         <p id="Example10-config">
           To configure the Check passing fields annotated with short annotation name:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="VisibilityModifier"&gt;
@@ -650,7 +650,7 @@ class Example9 {
         <p id="Example10-code">
           Example of allowed fields:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example10 {
   private int myPrivateField1;
 
@@ -696,7 +696,7 @@ class Example10 {
         <p id="Example11-config">
            1) To configure the check to use only 'allowPublicImmutableFields' option:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="VisibilityModifier"&gt;
@@ -708,7 +708,7 @@ class Example10 {
         <p id="Example11-code">
           Code example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example11 {
   public final int someIntValue = 0; // violation 'must be private'
 
@@ -724,7 +724,7 @@ class Example11 {
         <p id="Example12-config">
           2) To configure the check to use only 'allowPublicFinalFields' option:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="VisibilityModifier"&gt;
@@ -736,7 +736,7 @@ class Example11 {
         <p id="Example12-code">
           Code example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example12 {
   public final int someIntValue = 0;
 

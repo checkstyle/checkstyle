@@ -155,7 +155,7 @@
 
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">To configure the check:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AbbreviationAsWordInName"/&gt;
@@ -163,7 +163,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 extends SuperClass { // OK, camel case
   int CURRENT_COUNTER; // violation 'no more than '4' consecutive capital letters'
   static int GLOBAL_COUNTER; // OK, static is ignored
@@ -188,7 +188,7 @@ class Example1 extends SuperClass { // OK, camel case
           methods tagged with <code>@Override</code> annotation.
         </p>
         <p id="Example2-config">Configuration:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AbbreviationAsWordInName"&gt;
@@ -199,7 +199,7 @@ class Example1 extends SuperClass { // OK, camel case
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 extends SuperClass { // OK, camel case
   int CURRENT_COUNTER; // violation 'no more than '4' consecutive capital letters'
   // violation below 'no more than '4' consecutive capital letters'
@@ -227,7 +227,7 @@ class Example2 extends SuperClass { // OK, camel case
           words like 'XML' and 'URL'.
         </p>
         <p id="Example3-config">Configuration:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AbbreviationAsWordInName"&gt;
@@ -240,7 +240,7 @@ class Example2 extends SuperClass { // OK, camel case
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
   int firstNum;
   int secondNUM; // violation 'no more than '1' consecutive capital letters'
@@ -261,7 +261,7 @@ class Example3 {
           consecutive capital letters ignoring the longer word 'CSV'.
         </p>
         <p id="Example4-config">Configuration:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AbbreviationAsWordInName"&gt;
@@ -274,7 +274,7 @@ class Example3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example4 { // OK, ignore checking the class name
   int firstNum; // OK, abbreviation "N" is of allowed length 1
   int secondNUm;
@@ -292,7 +292,7 @@ class Example4 { // OK, ignore checking the class name
           except for variables that are both static and final.
         </p>
         <p id="Example5-config">Configuration:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AbbreviationAsWordInName"&gt;
@@ -306,7 +306,7 @@ class Example4 { // OK, ignore checking the class name
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example5-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example5 {
   int counterXYZ = 1; // violation 'no more than '1' consecutive capital letters'
   // violation below 'no more than '1' consecutive capital letters'
@@ -320,7 +320,7 @@ class Example5 {
           and ignoring static (but non-final) variables only.
         </p>
         <p id="Example6-config">Configuration:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AbbreviationAsWordInName"&gt;
@@ -334,7 +334,7 @@ class Example5 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example6-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example6 {
   int counterXYZ = 1; // violation 'no more than '1' consecutive capital letters'
   // violation below 'no more than '1' consecutive capital letters'
@@ -350,7 +350,7 @@ class Example6 {
           words like 'ALLOWED'.
         </p>
         <p id="Example7-config">Configuration:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AbbreviationAsWordInName"&gt;
@@ -361,7 +361,7 @@ class Example6 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example7-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example7 {
   int counterXYZ = 1;
   final int customerID = 2;
