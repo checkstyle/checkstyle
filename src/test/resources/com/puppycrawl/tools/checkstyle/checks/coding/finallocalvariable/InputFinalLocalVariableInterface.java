@@ -13,5 +13,6 @@ public class InputFinalLocalVariableInterface {
             String local = ""; // violation, "Variable 'local' should be declared final"
             System.out.println(param);
         }
+        void method(int aParam);
     }
 }
