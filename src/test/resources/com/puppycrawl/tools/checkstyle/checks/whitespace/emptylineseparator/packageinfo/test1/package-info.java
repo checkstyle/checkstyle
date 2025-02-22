@@ -10,7 +10,7 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
 
 */
 
-/*OK: for test allowing to place annotation before PACKAGE_DEF.*/ // ok
+/*OK: for test allowing to place annotation before PACKAGE_DEF.*/
 @Deprecated
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.test1;
 
