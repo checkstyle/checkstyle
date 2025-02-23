@@ -153,8 +153,6 @@ cdata
 cde
 cdfd
 Cdi
-cdn
-cdnjs
 Cfg
 Cfml
 Cfoo
@@ -206,7 +204,6 @@ clazz
 clemens
 Clickable
 Cloneable
-cloudflare
 clss
 cmdline
 cmp
@@ -279,6 +276,7 @@ Dcheckstyle
 dcm
 Dconfig
 Dconnection
+ddd
 Ddry
 declarationorder
 declaredwhenneeded
@@ -507,7 +505,6 @@ globbing
 GMetrics
 gnupg
 google
-googleapis
 googleblog
 googlecloudplatform
 googleecommon
@@ -720,11 +717,9 @@ jpg
 jprofiler
 jq
 jqno
-jquery
 jre
 JScroll
 Jscs
-jsdelivr
 jsecurity
 Jsf
 jshiell
@@ -1284,7 +1279,6 @@ STT
 Studman
 Styleable
 styleguide
-stylesheet
 subdir
 subelements
 subext
@@ -1556,4 +1550,5 @@ yyyy
 Yzz
 zf
 zh
+zm
 ZSH
