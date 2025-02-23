@@ -60,7 +60,7 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_MISSING),
         };
-        verify(checkConfig, getPath("InputHeader.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputHeader.java"), expected);
     }
 
     @Test
