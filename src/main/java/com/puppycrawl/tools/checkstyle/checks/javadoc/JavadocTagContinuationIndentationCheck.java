@@ -108,7 +108,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
 
     @Override
     public int[] getDefaultJavadocTokens() {
-        return new int[] {JavadocTokenTypes.DESCRIPTION };
+        return new int[] {JavadocTokenTypes.DESCRIPTION, JavadocTokenTypes.SEE_LITERAL };
     }
 
     @Override
@@ -119,7 +119,8 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     @Override
     public void visitJavadocToken(DetailNode ast) {
         if (!isInlineDescription(ast)) {
-            final List<DetailNode> textNodes = getAllNewlineNodes(ast);
+            final DetailNode node = getValidNode(ast);
+            final List<DetailNode> textNodes = getAllNewlineNodes(node);
             for (DetailNode newlineNode : textNodes) {
                 final DetailNode textNode = JavadocUtil.getNextSibling(newlineNode);
                 if (textNode.getType() == JavadocTokenTypes.TEXT && isViolation(textNode)) {
@@ -127,6 +128,23 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
                 }
             }
         }
+    }
+
+    /**
+     * Based on the fact that when no reference is provided to {@code @see} tag,
+     *     Parser does not place `DESCRIPTION` token in AST. To overcome this,
+     *     {@code JAVADOC_TAG} node could be used to reach the text description.
+     *
+     * @param ast the node to check
+     * @return {@code JAVADOC_TAG} node if reference node does not exist in {@code @see} tag
+     *     any other node returned would be discarded in the caller's function.
+     */
+    private static DetailNode getValidNode(DetailNode ast) {
+        DetailNode result = ast;
+        if (ast.getType() == JavadocTokenTypes.SEE_LITERAL) {
+            result = ast.getParent();
+        }
+        return result;
     }
 
     /**
