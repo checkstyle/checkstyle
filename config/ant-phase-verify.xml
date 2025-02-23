@@ -172,6 +172,7 @@
           <exclude name="**/InputTreeWalkerSkipParsingException2.java"/>
           <exclude name="**/InputTreeWalkerSkipParsingExceptionConfigSeverityDefault.java"/>
           <exclude name="**/InputTreeWalkerSkipParsingExceptionConfigSeverityIgnore.java"/>
+          <exclude name="**/InputJavadocStyleTrailingSpace.java"/>
         </fileset>
       </path>
       <formatter type="plain"/>
