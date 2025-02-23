@@ -31,7 +31,8 @@ public class InputMethodLengthComments {
 
     }
 
-    public DetailClass visit(DetailClass ast) { // violation
+    // violation below 'Method visit length is 8 lines (max allowed is 7)'
+    public DetailClass visit(DetailClass ast) {
         final DetailClass openingBrace = ast.find(Tokens.ZERO);
         DetailClass closingBrace = null;
 

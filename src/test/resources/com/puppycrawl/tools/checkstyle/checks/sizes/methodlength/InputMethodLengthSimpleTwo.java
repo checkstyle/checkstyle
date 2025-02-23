@@ -13,7 +13,8 @@ import java.io.*;
 final class InputMethodLengthSimpleTwo
 {
     /** method that is 20 lines long **/
-    private void longMethod() // violation
+    // violation below 'Method longMethod length is 20 lines (max allowed is 19)'
+    private void longMethod()
     {
         // a line
         // a line
