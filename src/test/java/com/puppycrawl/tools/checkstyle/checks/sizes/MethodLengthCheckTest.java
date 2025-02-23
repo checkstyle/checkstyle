@@ -70,7 +70,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testItTwo() throws Exception {
         final String[] expected = {
-            "16:5: " + getCheckMessage(MSG_KEY, 20, 19, "longMethod"),
+            "17:5: " + getCheckMessage(MSG_KEY, 20, 19, "longMethod"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputMethodLengthSimpleTwo.java"), expected);
@@ -86,7 +86,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithComments() throws Exception {
         final String[] expected = {
-            "34:5: " + getCheckMessage(MSG_KEY, 8, 7, "visit"),
+            "35:5: " + getCheckMessage(MSG_KEY, 8, 7, "visit"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputMethodLengthComments.java"), expected);
@@ -142,11 +142,11 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
         final int max = 2;
 
         final String[] expected = {
-            "25:9: " + getCheckMessage(MSG_KEY, 6, max, "MyTestRecord2"),
-            "34:9: " + getCheckMessage(MSG_KEY, 5, max, "foo"),
-            "42:9: " + getCheckMessage(MSG_KEY, 7, max, "MyTestRecord4"),
-            "63:9: " + getCheckMessage(MSG_KEY, 15, max, "m"),
-            "66:17: " + getCheckMessage(MSG_KEY, 8, max, "R76"),
+            "26:9: " + getCheckMessage(MSG_KEY, 6, max, "MyTestRecord2"),
+            "35:9: " + getCheckMessage(MSG_KEY, 5, max, "foo"),
+            "44:9: " + getCheckMessage(MSG_KEY, 7, max, "MyTestRecord4"),
+            "65:9: " + getCheckMessage(MSG_KEY, 15, max, "m"),
+            "68:17: " + getCheckMessage(MSG_KEY, 8, max, "R76"),
         };
 
         verifyWithInlineConfigParser(
