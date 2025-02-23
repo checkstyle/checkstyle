@@ -56,7 +56,7 @@
           To configure the Check
           where both single-line and block comments are checked for indentation violations:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="CommentsIndentation"/&gt;
@@ -67,7 +67,7 @@
         <p id="Example1-code">
         Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 {
   void testMethod() {
     /*
@@ -96,7 +96,7 @@ public class Example1 {
         <p id="Example2-config">
           To configure the Check to validate only single-line comments:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="CommentsIndentation"&gt;
@@ -109,7 +109,7 @@ public class Example1 {
         <p id="Example2-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 {
   void testMethod() {
     /*
@@ -139,7 +139,7 @@ public class Example2 {
         <p id="Example3-code">
           Example #3: Comment is used as a single-line border to separate groups of methods.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example3 {
   /////////////////////////////// it is OK
 
@@ -160,7 +160,7 @@ public class Example3 {
           code block has indentation level that is lower than the indentation level of the closing
           right curly brace.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example4 {
   public void foo1() {
     // comment
@@ -183,7 +183,7 @@ public class Example4 {
            within the empty case block has indentation level that is lower than the
            indentation level of the next case.
           token.</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example5 {
   void testMethod(String a) {
     switch(a) {
@@ -208,7 +208,7 @@ public class Example5 {
 }
 </code></pre></div>
         <p id="Example6-code">Example #6: Comment is placed within a distributed statement.</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example6 {
   void testMethod() {
     // violation 2 lines below 'Comment has incorrect indentation level 4'
@@ -227,7 +227,7 @@ public class Example6 {
         <p id="Example7-code">
           Example #7: Single line block comment has previous and next statement.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example7 {
   void testMethod() {
     String s1 = "Clean code!";
@@ -252,7 +252,7 @@ public class Example7 {
         <p id="Example8-code">
           Example #8: Comment within the block tries to describe the next code block.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example8 {
   public void foo42() {
     int a = 5;

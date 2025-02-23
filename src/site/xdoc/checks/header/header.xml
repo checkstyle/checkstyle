@@ -81,13 +81,13 @@
           Default values of properties are used.
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="Header"/&gt;
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example1:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.header.header;
 // OK, as by default there is not specific header defined to validate it presence
 public class Example1 { }
@@ -100,7 +100,7 @@ public class Example1 { }
           copyright dates or other content that slightly different in some files:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="Header"&gt;
     &lt;property name="headerFile" value="${config.folder}/java.header"/&gt;
@@ -110,7 +110,7 @@ public class Example1 { }
 &lt;/module&gt;
 </code></pre></div>
         <p id="java-raw">content of &quot;java.header&quot; file:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 20XX-20XX the original author or authors.
@@ -131,7 +131,7 @@ public class Example1 { }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 </code></pre></div>
         <p id="Example2-code">Example2:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.header.header;
 /* violation on first line 'Line does not match expected header line of' */
 // because headerFile is bigger then target java file
@@ -141,7 +141,7 @@ public class Example2 { }
         <p id="Example3-config">
           Without the need for an external header file:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="Header"&gt;
     &lt;property name="header"
@@ -150,7 +150,7 @@ public class Example2 { }
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example3:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.header.header;
 /* violation on first line 'Line does not match expected header' */
 public class Example3 { }
@@ -159,7 +159,7 @@ public class Example3 { }
         <p id="Example4-config">
           In case target file is less in size than header file:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="Header"&gt;
     &lt;property name="headerFile" value="${config.folder}/java.header"/&gt;
@@ -169,7 +169,7 @@ public class Example3 { }
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.header.header;
 /* violation on first line 'Missing a header - not enough lines in file' */
 // because content defined in 'headerFile' is bigger then target java file
