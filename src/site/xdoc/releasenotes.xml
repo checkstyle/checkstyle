@@ -69,7 +69,8 @@
           </li>
           <li>
             update JavadocTokenTypes.java to new format of AST print.
-            Author: Priyambada Roul, Huthaifa, Ziad Ahmed, Zhila Shariat, vishakha-mali, MohamedMetwalli5, Maximpaxim, Oyster-zx
+            Author: Priyambada Roul, Huthaifa, Ziad Ahmed, Zhila Shariat, vishakha-mali,
+            MohamedMetwalli5, Maximpaxim, Oyster-zx
             <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
           </li>
           <li>
@@ -84,7 +85,8 @@
           </li>
           <li>
             Enforce file size on Java inputs.
-            Author: Amit Kumar Deohoria, Ziad Ahmed, smita_1078, ahmedyoussefg, Aryan Sankar, Harsh-Agrawal96
+            Author: Amit Kumar Deohoria, Ziad Ahmed, smita_1078, ahmedyoussefg, Aryan Sankar,
+            Harsh-Agrawal96
             <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
           </li>
           <li>
