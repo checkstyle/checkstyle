@@ -46,6 +46,7 @@
         <script type="text/javascript" src="$relativePath/js/checkstyle.js"></script>
         <script type="text/javascript" src="$relativePath/js/anchors.js"></script>
         <script type="text/javascript" src="$relativePath/js/google-analytics.js"></script>
+        <script type="text/javascript" src="$relativePath/js/copy-clipboard.js"></script>
         <link rel="icon" href="$relativePath/images/favicon.png" type="image/x-icon" />
         <link rel="shortcut icon" href="$relativePath/images/favicon.ico" type="image/ico" />
       ]]>

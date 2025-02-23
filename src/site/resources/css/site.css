@@ -164,6 +164,55 @@ th {
   font-size: 14px;
 }
 
+.wrapper {
+  overflow-x: auto;
+  margin: 1em 0;
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+}
+
+pre {
+  overflow-x: auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background: #f5f5f5;
+  position: relative;
+  white-space: pre;
+  flex: 1;
+  position: relative;
+}
+
+.copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+  border: 1px solid rgba(204, 204, 204, 0.8);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  z-index: 5;
+  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.copy-button:hover {
+  background-color: rgba(245, 245, 245, 0.9);
+  border-color: rgba(153, 153, 153, 0.8);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.copy-button svg {
+  pointer-events: none;
+  display: block;
+}
+
 .externalLink {
   background: url("../images/external.png") right center no-repeat !important;
 }
@@ -344,3 +393,5 @@ span.wrapper.inline {
     font-style: italic;
   }
 }
+
+
