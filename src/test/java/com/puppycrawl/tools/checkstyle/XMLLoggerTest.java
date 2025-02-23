@@ -137,6 +137,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             .isEqualTo(1);
 
         verifyXml(getPath("ExpectedXMLLoggerEmpty.xml"), outStream);
+        verifyWithInlineConfigParserAndXmlLogger(getPath("InputXMLLogger.java"), getPath("ExpectedXMLLoggerEmpty.xml"));
     }
 
     @Test
@@ -152,6 +153,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
 
         outStream.close();
         verifyXml(getPath("ExpectedXMLLoggerEmpty.xml"), outStream);
+        verifyWithInlineConfigParserAndXmlLogger(getPath("InputXMLLogger.java"), getPath("ExpectedXMLLoggerEmpty.xml"));
     }
 
     @Test
@@ -164,6 +166,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         logger.fileFinished(ev);
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLogger.xml"), outStream);
+        verifyWithInlineConfigParserAndXmlLogger(getPath("InputXMLLogger.java"), getPath("ExpectedXMLLogger.xml"));
     }
 
     @Test
@@ -175,7 +178,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         logger.fileFinished(ev);
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLogger.xml"), outStream);
+        verifyWithInlineConfigParserAndXmlLogger(getPath("InputXMLLogger.java"), getPath("ExpectedXMLLogger.xml"));
     }
+
 
     @Test
     public void testAddError() throws Exception {
@@ -191,6 +196,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         logger.fileFinished(ev);
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerError.xml"), outStream, violation.getViolation());
+        verifyWithInlineConfigParserAndXmlLogger(getPath("InputXMLLogger.java"), getPath("ExpectedXMLLoggerError.xml"));
     }
 
     @Test
@@ -206,6 +212,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerErrorNullFileName.xml"), outStream,
                 violation.getViolation());
+        verifyWithInlineConfigParserAndXmlLogger(getPath("InputXMLLogger.java"), getPath("ExpectedXMLLoggerErrorNullFileName.xml"));
     }
 
     @Test
@@ -221,6 +228,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerErrorModuleId.xml"), outStream,
                 violation.getViolation());
+        verifyWithInlineConfigParserAndXmlLogger(getPath("InputXMLLogger.java"), getPath("ExpectedXMLLoggerErrorModuleId.xml"));
     }
 
     @Test
@@ -238,6 +246,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerErrorZeroColumn.xml"), outStream,
                 violation.getViolation());
+        verifyWithInlineConfigParserAndXmlLogger(getPath("InputXMLLogger.java"), getPath("ExpectedXMLLoggerErrorModuleId.xml"));
     }
 
     @Test
@@ -252,6 +261,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         logger.addError(ev);
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerEmpty.xml"), outStream);
+        verifyWithInlineConfigParserAndXmlLogger(getPath("InputXMLLogger.java"), getPath("ExpectedXMLLoggerErro.xml"));
     }
 
     @Test
@@ -269,6 +279,10 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         assertWithMessage("Invalid close count")
             .that(outStream.getCloseCount())
             .isEqualTo(1);
+        verifyWithInlineConfigParserAndXmlLogger(
+            getPath("InputXMLLogger.java"),
+            getPath("ExpectedXMLLoggerException.xml")
+        );
     }
 
     @Test
@@ -286,6 +300,10 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         assertWithMessage("Invalid close count")
             .that(outStream.getCloseCount())
             .isEqualTo(1);
+        verifyWithInlineConfigParserAndXmlLogger(
+            getPath("InputXMLLogger.java"),
+            getPath("ExpectedXMLLoggerExceptionNullFileName.xml")
+        );
     }
 
     @Test
@@ -309,6 +327,11 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         assertWithMessage("Invalid close count")
             .that(outStream.getCloseCount())
             .isEqualTo(1);
+
+        verifyWithInlineConfigParserAndXmlLogger(
+            getPath("InputXMLLogger.java"),
+            getPath("ExpectedXMLLoggerException2.xml")
+        );
     }
 
     @Test
@@ -328,6 +351,10 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         assertWithMessage("Invalid close count")
             .that(outStream.getCloseCount())
             .isEqualTo(1);
+        verifyWithInlineConfigParserAndXmlLogger(
+            getPath("InputXMLLogger.java"),
+            getPath("ExpectedXMLLoggerException3.xml")
+        );
     }
 
     @Test
@@ -349,6 +376,10 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         assertWithMessage("Invalid close count")
             .that(outStream.getCloseCount())
             .isEqualTo(1);
+        verifyWithInlineConfigParserAndXmlLogger(
+            getPath("InputXMLLogger.java"),
+            getPath("ExpectedXMLLoggerException2.xml")
+        );
     }
 
     @Test
@@ -368,6 +399,10 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         logger.fileFinished(errorEvent);
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerError.xml"), outStream, violation.getViolation());
+        verifyWithInlineConfigParserAndXmlLogger(
+            getPath("InputXMLLogger.java"),
+            getPath("ExpectedXMLLoggerException3.xml")
+        );
     }
 
     @Test
@@ -389,6 +424,10 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         final String inputFileWithConfig = "InputXMLLogger.java";
         final String xmlReport = "ExpectedXMLLoggerWithChecker.xml";
         verifyWithInlineConfigParserAndXmlLogger(inputFileWithConfig, xmlReport);
+        verifyWithInlineConfigParserAndXmlLogger(
+            getPath("InputXMLLogger.java"),
+            getPath("ExpectedXMLLoggerSpecialName.xml")
+        );
     }
 
     @Test
@@ -400,6 +439,10 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
                 inputFileWithConfig,
                 expectedXmlReport,
                 List.of(inputFileWithConfig, inputFileWithConfig));
+        verifyWithInlineConfigParserAndXmlLogger(
+            getPath("InputXMLLogger.java"),
+            getPath("ExpectedXMLLoggerDuplicatedFile.xml")
+        );
     }
 
     @Test
@@ -418,6 +461,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
                 .that(exception.getMessage())
                 .isEqualTo("Parameter outputStreamOptions can not be null");
         }
+
     }
 
     @Test
