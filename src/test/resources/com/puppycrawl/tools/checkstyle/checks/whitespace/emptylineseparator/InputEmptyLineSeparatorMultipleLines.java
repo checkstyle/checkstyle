@@ -11,9 +11,9 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace
-.emptylineseparator; // ok
+.emptylineseparator; // some comment
 
-import java.util.function.Supplier; // ok
+import java.util.function.Supplier;
 
 public class InputEmptyLineSeparatorMultipleLines {
 }
