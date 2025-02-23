@@ -28,7 +28,7 @@ import static java.io.File.listRoots;
 import static javax.swing.WindowConstants.*;
 import static javax.swing.WindowConstants.*;
 import static java.io.File.createTempFile;
-import org.junit.jupiter.api.*; // violation
+import org.junit.jupiter.api.*; // violation 'Illegal import'
 
 import java.awt.Component;
 import java.awt.Graphics2D;

@@ -100,6 +100,8 @@
     files="[\\/]InputRegexpTrailingComment10\.java"/>
   <suppress id="noTrailingWhitespace"
     files="[\\/]InputRegexpSinglelineJavaTrailingComment10\.java"/>
+  <suppress id="noTrailingWhitespace"
+            files="[\\/]javadocstyle[\\/]InputJavadocStyleTrailingSpace\.java"/>
   
   <!-- Input file contains trailing whitespace to kill pitest mutation -->
   <suppress id="noTrailingWhitespace" 
