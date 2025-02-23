@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 
-public class InputParenPadLeftRightAndNoSpace3 // ok
+public class InputParenPadLeftRightAndNoSpace3
 {
     class ParenPadNoSpace  {
         ParenPadNoSpace() {

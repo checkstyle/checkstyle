@@ -14,11 +14,11 @@ import java.util.function.Consumer;
 
 public class InputParenPadCheckEmoji {
     void emojiFamilyRunner1(Consumer<String> testRunner, String text) {
-        testRunner.accept("👩‍👩‍👧‍👧 " + text); // ok
+        testRunner.accept("👩‍👩‍👧‍👧 " + text);
     }
 
     void emojiFamilyWithSkinToneModifierRunner1(Consumer<String> testRunner, String text) {
-        testRunner.accept("👩🏻‍👩🏽‍👧🏾‍👦🏿 " + text); // ok
+        testRunner.accept("👩🏻‍👩🏽‍👧🏾‍👦🏿 " + text);
     }
 
     void emojiFamilyRunner2(Consumer<String> testRunner, String text) {

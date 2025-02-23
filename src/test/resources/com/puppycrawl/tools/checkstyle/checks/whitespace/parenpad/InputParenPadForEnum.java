@@ -18,7 +18,7 @@ public class InputParenPadForEnum extends RuntimeException {
         NO_SUCH_ROOM_EXISTS
     }
 
-    public InputParenPadForEnum(String description, ErrorType type) { // ok
-        super(description); // ok
+    public InputParenPadForEnum(String description, ErrorType type) {
+        super(description);
     }
 }
