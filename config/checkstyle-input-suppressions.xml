@@ -72,12 +72,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]regexp[\\/]regexponfilename[\\/]InputRegexpOnFilenameSemantic.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]emptyforiteratorpad[\\/]InputEmptyForIteratorPad2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]emptyforiteratorpad[\\/]InputEmptyForIteratorPadToCheckTrimFunctionInOptionProperty.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]emptyforiteratorpad[\\/]InputEmptyForIteratorPadToCheckUppercaseFunctionInOptionProperty.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]parenpad[\\/]InputParenPadCheckEmoji.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]parenpad[\\/]InputParenPadCheckEmoji.java"/>
