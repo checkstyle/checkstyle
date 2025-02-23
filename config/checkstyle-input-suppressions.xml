@@ -183,6 +183,4 @@
             files="checks[\\/]whitespace[\\/]parenpad[\\/]InputParenPadWithSpaceAndDisabledLambda.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]parenpad[\\/]InputParenPadWithSpaceAndDisabledLambda.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="filters[\\/]suppresswithnearbycommentfilter[\\/]InputSuppressWithNearbyCommentFilterByCheckAndInfluence.java"/>
 </suppressions>
