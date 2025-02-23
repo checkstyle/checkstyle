@@ -204,6 +204,7 @@ public final class ScopeUtil {
         boolean found = false;
 
         while (!found) {
+
             if (token == null) {
                 found = false;
                 break;
