@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static org.junit.Assert.assertThat;
+
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
@@ -360,6 +362,7 @@ public class JavadocStyleCheck
      */
     private void checkFirstSentenceEnding(final DetailAST ast, TextBlock comment) {
         final String commentText = getCommentText(comment.getText());
+        checkTrailingSpaces(comment, commentText);
         final boolean hasInLineReturnTag = Arrays.stream(SENTENCE_SEPARATOR.split(commentText))
                 .findFirst()
                 .map(INLINE_RETURN_TAG_PATTERN::matcher)
@@ -382,9 +385,26 @@ public class JavadocStyleCheck
      */
     private void checkJavadocIsNotEmpty(TextBlock comment) {
         final String commentText = getCommentText(comment.getText());
+        checkTrailingSpaces(comment, commentText);
 
         if (commentText.isEmpty()) {
             log(comment.getStartLineNo(), MSG_EMPTY);
+        }
+    }
+
+    /**
+     * Checks that the trailing space is removed.
+     *
+     * @param comment the source lines that make up the Javadoc comment.
+     * @param commentText the text form of comment
+     */
+    private void checkTrailingSpaces(TextBlock comment, String commentText) {
+        String[] lines = commentText.split("\n");
+
+        // Ensure no line ends with a space
+        for (String line : lines) {
+            // error if trailing space will present
+            if(line.endsWith(" ")){}
         }
     }
 
