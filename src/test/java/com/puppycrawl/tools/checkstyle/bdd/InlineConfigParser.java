@@ -292,7 +292,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.LambdaBodyLengthCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.OuterTypeNumberCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck",
