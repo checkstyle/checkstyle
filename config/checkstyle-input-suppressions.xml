@@ -70,8 +70,6 @@
   <!-- until https://github.com/checkstyle/checkstyle/issues/13213 -->
 
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]regexp[\\/]regexponfilename[\\/]InputRegexpOnFilenameSemantic.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]parenpad[\\/]InputParenPadCheckEmoji.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]parenpad[\\/]InputParenPadCheckEmoji.java"/>
