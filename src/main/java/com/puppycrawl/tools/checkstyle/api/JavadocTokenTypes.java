@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParser;
  * Syntax Tree for the javadoc grammar.
  *
  * @see <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
- * javadoc - The Java API Documentation Generator</a>
+ *     javadoc - The Java API Documentation Generator</a>
  */
 public final class JavadocTokenTypes {
 
@@ -52,7 +52,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCDBGG">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int RETURN_LITERAL = JavadocParser.RETURN_LITERAL;
@@ -75,7 +75,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#deprecated">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int DEPRECATED_LITERAL = JavadocParser.DEPRECATED_LITERAL;
@@ -98,7 +98,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHGJGD">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int SINCE_LITERAL = JavadocParser.SINCE_LITERAL;
@@ -122,7 +122,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDJBFDB">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int SERIAL_DATA_LITERAL = JavadocParser.SERIAL_DATA_LITERAL;
@@ -154,7 +154,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGHIDG">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int SERIAL_FIELD_LITERAL = JavadocParser.SERIAL_FIELD_LITERAL;
@@ -183,7 +183,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHJECF">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int PARAM_LITERAL = JavadocParser.PARAM_LITERAL;
@@ -212,7 +212,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDIEDI">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int SEE_LITERAL = JavadocParser.SEE_LITERAL;
@@ -246,7 +246,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int SERIAL_LITERAL = JavadocParser.SERIAL_LITERAL;
@@ -269,7 +269,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCHBAE">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int VERSION_LITERAL = JavadocParser.VERSION_LITERAL;
@@ -294,7 +294,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCEAHH">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int EXCEPTION_LITERAL = JavadocParser.EXCEPTION_LITERAL;
@@ -319,7 +319,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCHAHD">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int THROWS_LITERAL = JavadocParser.THROWS_LITERAL;
@@ -343,7 +343,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCBAHA">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int AUTHOR_LITERAL = JavadocParser.AUTHOR_LITERAL;
@@ -435,7 +435,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDFHHBB">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
      * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
@@ -482,7 +482,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDBACBF">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
      * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
@@ -521,7 +521,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDIECH">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
      * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
@@ -550,7 +550,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGJCHC">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
      * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
@@ -591,7 +591,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGBICD">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
      * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
@@ -625,7 +625,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCFJDG">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
      * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
@@ -661,7 +661,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDCDHH">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
      * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
@@ -933,7 +933,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHJECF">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #PARAM_LITERAL
      */
     public static final int PARAMETER_NAME = JavadocParser.PARAMETER_NAME;
@@ -959,7 +959,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #SERIAL_LITERAL
      */
     public static final int LITERAL_EXCLUDE = JavadocParser.LITERAL_EXCLUDE;
@@ -984,7 +984,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #SERIAL_LITERAL
      */
     public static final int LITERAL_INCLUDE = JavadocParser.LITERAL_INCLUDE;
@@ -1012,7 +1012,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #SERIAL_FIELD_LITERAL
      */
     public static final int FIELD_NAME = JavadocParser.FIELD_NAME;
@@ -1039,7 +1039,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #SERIAL_FIELD_LITERAL
      */
     public static final int FIELD_TYPE = JavadocParser.FIELD_TYPE;
@@ -1116,7 +1116,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
-     * Comments are written in HTML</a>
+     *     Comments are written in HTML</a>
      * @see #P_HTML_TAG_NAME
      */
     public static final int P_HTML_TAG_NAME = JavadocParser.P_HTML_TAG_NAME;
