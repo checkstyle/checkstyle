@@ -11,7 +11,7 @@ tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
-public class InputParenPadNoStackoverflowError { // ok
+public class InputParenPadNoStackoverflowError {
   private String str = ""
       +""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""
       +""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""
@@ -43,5 +43,5 @@ public class InputParenPadNoStackoverflowError { // ok
       +""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""
       +""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""
       +""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""
-      ; // ok
+      ;
 }

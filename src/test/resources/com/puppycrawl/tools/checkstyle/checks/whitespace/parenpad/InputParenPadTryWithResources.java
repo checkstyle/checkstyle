@@ -13,10 +13,10 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 class InputParenPadTryWithResources {
     private void tryWithResources() throws Exception {
-        try (AutoCloseable a = null) {} // ok
-        try (AutoCloseable a = null; AutoCloseable b = null) {} // ok
-        try (AutoCloseable a = null; AutoCloseable b = null; ) {} // ok
-        try (AutoCloseable a = null; AutoCloseable b = null; ) {} // ok
+        try (AutoCloseable a = null) {}
+        try (AutoCloseable a = null; AutoCloseable b = null) {}
+        try (AutoCloseable a = null; AutoCloseable b = null; ) {}
+        try (AutoCloseable a = null; AutoCloseable b = null; ) {}
         try (AutoCloseable a = null ) {} // violation
         try (AutoCloseable a = null; AutoCloseable b = null ) {} // violation
         try ( AutoCloseable a = null) {} // violation

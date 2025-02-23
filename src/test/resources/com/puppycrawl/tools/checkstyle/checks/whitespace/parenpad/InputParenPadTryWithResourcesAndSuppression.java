@@ -16,10 +16,10 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 class InputParenPadTryWithResourcesAndSuppression {
     private void tryWithResources() throws Exception {
-        try (AutoCloseable a = null) {} // ok
-        try (AutoCloseable a = null; AutoCloseable b = null) {} // ok
-        try (AutoCloseable a = null; AutoCloseable b = null; ) {} // ok
-        try (AutoCloseable a = null; AutoCloseable b = null; ) {} // ok
+        try (AutoCloseable a = null) {}
+        try (AutoCloseable a = null; AutoCloseable b = null) {}
+        try (AutoCloseable a = null; AutoCloseable b = null; ) {}
+        try (AutoCloseable a = null; AutoCloseable b = null; ) {}
         try ( AutoCloseable a = null) {} // filtered violation ''(' is followed by whitespace.'
     }
 }
