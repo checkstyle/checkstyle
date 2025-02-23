@@ -73,7 +73,7 @@ public final class SuppressionsStringPrinter {
             throw new IllegalStateException(exceptionMsg);
         }
 
-        final FileText fileText = new FileText(file.getAbsoluteFile(),
+        final FileText fileText = new FileText(file,
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
         final DetailAST detailAST =
                 JavaParser.parseFileText(fileText, JavaParser.Options.WITH_COMMENTS);
