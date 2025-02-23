@@ -85,7 +85,7 @@
         <p id="Example1-config">
           To configure the default check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RequireThis"/&gt;
@@ -93,7 +93,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
   int field1,field2,field3;
 
@@ -120,7 +120,7 @@ class Example1 {
         <p id="Example4-config">
             To configure the check demand methods and fields to have 'this.'
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RequireThis"&gt;
@@ -130,7 +130,7 @@ class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example4 {
   int field1,field2,field3;
 
@@ -153,7 +153,7 @@ class Example4 {
         <p id="Example2-config">
           To configure the check demand fields only to have 'this.'
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RequireThis"&gt;
@@ -164,7 +164,7 @@ class Example4 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
   int field1,field2,field3;
 
@@ -187,7 +187,7 @@ class Example2 {
         <p id="Example3-config">
             To configure the check demand methods only to have 'this.'
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RequireThis"&gt;
@@ -198,7 +198,7 @@ class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
   int field1,field2,field3;
 
@@ -226,7 +226,7 @@ class Example3 {
           1) If you arrange 'this' in your code on your own, the check will not raise violation for
           variables which use 'this' to reference a class field, for example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example5 {
   int field1,field2;
 
@@ -245,7 +245,7 @@ class Example5 {
           2) If method parameter is returned from the method, the check will not raise violation for
              returned variable/parameter, for example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example6 {
   String prefix;
 

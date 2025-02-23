@@ -58,7 +58,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="OrderedProperties"/&gt;
 &lt;/module&gt;
@@ -66,7 +66,7 @@
         <p id="Example1-raw">
           Example properties file:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 A=65
 a=97
 key=107 than nothing
