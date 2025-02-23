@@ -177,6 +177,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         verifyXml(getPath("ExpectedXMLLogger.xml"), outStream);
     }
 
+
     @Test
     public void testAddError() throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
@@ -380,7 +381,6 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerSpecialName.xml"),
                 outStream, "<file name=" + "Test&amp;.java" + ">");
-
     }
 
     @Test
@@ -389,6 +389,10 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         final String inputFileWithConfig = "InputXMLLogger.java";
         final String xmlReport = "ExpectedXMLLoggerWithChecker.xml";
         verifyWithInlineConfigParserAndXmlLogger(inputFileWithConfig, xmlReport);
+        verifyWithInlineConfigParserAndXmlLogger(
+                inputFileWithConfig,
+                xmlReport
+        );
     }
 
     @Test
@@ -418,6 +422,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
                 .that(exception.getMessage())
                 .isEqualTo("Parameter outputStreamOptions can not be null");
         }
+
     }
 
     @Test
