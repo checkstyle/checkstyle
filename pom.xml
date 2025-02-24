@@ -228,7 +228,7 @@
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
     <pitest.plugin.threads>4</pitest.plugin.threads>
-    <pitest.junit5.plugin.version>1.2.1</pitest.junit5.plugin.version>
+    <pitest.junit5.plugin.version>1.2.2</pitest.junit5.plugin.version>
     <pitest.accelerator.junit5.plugin.version>1.0.6</pitest.accelerator.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
     <junit.version>5.11.4</junit.version>
