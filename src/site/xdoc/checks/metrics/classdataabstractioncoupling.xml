@@ -115,7 +115,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassDataAbstractionCoupling"/&gt;
@@ -129,7 +129,7 @@
         <p id="Example1-code">
           The check passes without violations in the following:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 {
   private Set&lt;Object&gt; set = new HashSet&lt;&gt;(); // Ignored by default
   private Map&lt;Object,Object&gt; map = new HashMap&lt;&gt;(); // Ignored by default
@@ -143,7 +143,7 @@ public class Example1 {
         <p id="Example2-code">
           The check results in a violation in the following:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 // violation below, "Class Data Abstraction Coupling is 8 (max allowed is 7)."
 public class Example2 {
   Set set = new HashSet(); // Ignored by default
@@ -163,7 +163,7 @@ public class Example2 {
         <p id="Example3-config">
           To configure the check with a threshold of 2:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassDataAbstractionCoupling"&gt;
@@ -179,7 +179,7 @@ public class Example2 {
         <p id="Example3-code">
           The check passes without violations in the following:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example3 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
@@ -191,7 +191,7 @@ public class Example3 {
         <p id="Example4-code">
           The check results in a violation in the following:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 // violation below, "Class Data Abstraction Coupling is 3 (max allowed is 2)."
 public class Example4 {
   Set set = new HashSet(); // Ignored by default
@@ -206,7 +206,7 @@ public class Example4 {
           To configure the check with three excluded classes <code>HashMap</code>,
           <code>HashSet</code> and <code>Example1</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassDataAbstractionCoupling"&gt;
@@ -222,7 +222,7 @@ public class Example4 {
         <p id="Example5-code">
           The check passes without violations in the following:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example5 {
   Set set = new HashSet(); // Ignored 1
   Map map = new HashMap(); // Ignored 2
@@ -241,7 +241,7 @@ public class Example5 {
         <p id="Example6-code">
           The check results in a violation in the following:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 // violation below, "Class Data Abstraction Coupling is 8 (max allowed is 7)."
 public class Example6 {
   Set set = new HashSet(); // Ignored by default
@@ -262,7 +262,7 @@ public class Example6 {
           To configure the check to exclude classes with a regular expression
           <code>.*Reader$</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassDataAbstractionCoupling"&gt;
@@ -278,7 +278,7 @@ public class Example6 {
         <p id="Example7-code">
           The check passes without violations in the following:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example7 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
@@ -299,7 +299,7 @@ public class Example7 {
         <p id="Example8-code">
           The check results in a violation in the following:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 // violation below, "Class Data Abstraction Coupling is 8 (max allowed is 7)."
 public class Example8 {
   Set set = new HashSet(); // Ignored by default
@@ -320,7 +320,7 @@ public class Example8 {
           To configure the check with an excluded package <code>java.io</code>:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassDataAbstractionCoupling"&gt;
@@ -336,7 +336,7 @@ public class Example8 {
         <p id="Example9-code">
           The check passes without violations in the following:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 import java.io.BufferedReader;
 
 public class Example9 {
@@ -359,7 +359,7 @@ public class Example9 {
         <p id="Example10-code">
           The check results in a violation in the following:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.Example2;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.Example3;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.Example4;
@@ -431,7 +431,7 @@ class Example10 {
           even if it was listed in the <code>excludedPackages</code> parameter. For example,
           assuming the config is
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassDataAbstractionCoupling"&gt;
@@ -443,7 +443,7 @@ class Example10 {
         <p id="Example11-code">
           And the file <code>a.b.Foo.java</code> is:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.Example7;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.Example8;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.Example9;
