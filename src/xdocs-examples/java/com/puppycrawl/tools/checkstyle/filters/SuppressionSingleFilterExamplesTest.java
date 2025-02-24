@@ -35,7 +35,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
@@ -53,7 +53,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
@@ -62,7 +62,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 
     @Test
@@ -80,7 +80,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 
     @Test
@@ -89,7 +89,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example8.java"), expected);
     }
 
     @Test
@@ -107,7 +107,7 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example9.java"), expected);
     }
 
     @Test
@@ -116,6 +116,6 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example10.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example10.java"), expected);
     }
 }
