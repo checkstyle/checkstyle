@@ -225,7 +225,7 @@ public class FinalLocalVariableCheckTest
     public void testLambda()
             throws Exception {
         final String[] expected = {
-            "40:16: " + getCheckMessage(MSG_KEY, "result"),
+            "43:16: " + getCheckMessage(MSG_KEY, "result"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableNameLambda.java"),
@@ -433,6 +433,20 @@ public class FinalLocalVariableCheckTest
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputFinalLocalVariableValidateUnnamedVariablesFalse.java"),
+            expected);
+    }
+
+    @Test
+    public void test1() throws Exception {
+        final String[] expected = {
+            "13:34: " + getCheckMessage(MSG_KEY, "param"),
+            "14:20: " + getCheckMessage(MSG_KEY, "local"),
+            "20:32: " + getCheckMessage(MSG_KEY, "aParam"),
+            "23:40: " + getCheckMessage(MSG_KEY, "num"),
+            "28:42: " + getCheckMessage(MSG_KEY, "e"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputFinalLocalVariableInterface.java"),
             expected);
     }
 }
