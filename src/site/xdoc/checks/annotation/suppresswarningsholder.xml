@@ -47,7 +47,7 @@
 
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">To use default module configuration:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
   &lt;module name="MemberName"/&gt;
@@ -63,7 +63,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
   private int K; // violation, 'Name 'K' must match pattern'
   @SuppressWarnings({"membername"})
@@ -94,7 +94,7 @@ class Example1 {
           code will work if there was provided a <code>ParameterNumberCheck=paramnum</code> in
           the <code>aliasList</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
   &lt;module name="ParameterNumber"/&gt;
@@ -107,7 +107,7 @@ class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
   // violation below, 'More than 7 parameters (found 8)'
   public void needsLotsOfParameters (int a,
