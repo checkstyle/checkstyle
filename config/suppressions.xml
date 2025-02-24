@@ -48,6 +48,10 @@
        files="(InnerAssignmentCheck\.java|OperatorWrapCheck\.java|
               |AbbreviationAsWordInNameCheckTest\.java)"/>
 
+  <!-- A method in which trailing space needed for testcase -->
+  <suppress checks="TrailingComment"
+       files="[\\/]src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocstyle[\\/]InputJavadocStyleTrailingSpace.java"/>
+
   <!-- Fixing these cases will decrease code readability -->
   <suppress checks="MultipleStringLiterals" files="JavadocStyleCheck\.java|XMLLogger\.java"/>
 

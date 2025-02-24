@@ -144,6 +144,15 @@ public class JavadocStyleCheckTest
     }
 
     @Test
+    public void testJavadocStyleTrailingSpace()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleTrailingSpace.java"), expected);
+    }
+
+    @Test
     public void testJavadocStyleFirstSentenceOne() throws Exception {
         final String[] expected = {
             "24: " + getCheckMessage(MSG_NO_PERIOD),
