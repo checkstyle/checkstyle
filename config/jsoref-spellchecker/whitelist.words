@@ -280,6 +280,7 @@ Dcheckstyle
 dcm
 Dconfig
 Dconnection
+ddd
 Ddry
 declarationorder
 declaredwhenneeded
@@ -1556,4 +1557,5 @@ yyyy
 Yzz
 zf
 zh
+zm
 ZSH
