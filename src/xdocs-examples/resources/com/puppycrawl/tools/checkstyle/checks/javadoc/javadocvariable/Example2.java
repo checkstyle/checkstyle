@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="JavadocVariable">
-      <property name="scope" value="public"/>
+      <property name="accessModifiers" value="public"/>
     </module>
   </module>
 </module>
@@ -18,7 +18,7 @@ public class Example2 {
    */
   private int b;
   protected int c;
-  public int d; // violation
+  public int d; // violation, 'Missing a Javadoc comment'
   /*package*/ int e;
 }
 // xdoc section -- end

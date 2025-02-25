@@ -1,10 +1,8 @@
 /*
 JavadocVariable
-scope = (default)private
-excludeScope = (default)null
+accessModifiers = (default)private
 ignoreNamePattern = (default)null
 tokens = (default)ENUM_CONSTANT_DEF
-
 
 */
 
@@ -20,20 +18,20 @@ class InputJavadocVariableInner
     class InnerInner2
     {
         // Ignore
-        public int fData; // violation
+        public int fData; // violation, 'Missing a Javadoc comment'
     }
 
     // Ignore - 2 violations
     interface InnerInterface2
     {
         // Ignore - should be all upper case
-        String data = "zxzc"; // violation
+        String data = "zxzc"; // violation, 'Missing a Javadoc comment'
 
         // Ignore
         class InnerInterfaceInnerClass
         {
             // Ignore - need Javadoc and made private
-            public int rData; // violation
+            public int rData; // violation, 'Missing a Javadoc comment'
 
             /** needs to be made private unless allowProtected. */
             protected int protectedVariable;

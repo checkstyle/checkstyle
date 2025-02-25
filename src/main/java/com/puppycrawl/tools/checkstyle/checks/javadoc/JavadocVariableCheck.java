@@ -19,16 +19,19 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
  * <div>
@@ -36,20 +39,15 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </div>
  * <ul>
  * <li>
- * Property {@code excludeScope} - Specify the visibility scope where Javadoc
- * comments are not checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code null}.
+ * Property {@code accessModifiers} - Access modifiers of methods where parameters are
+ * checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]}.
+ * Default value is {@code public, protected, package, private}.
  * </li>
  * <li>
  * Property {@code ignoreNamePattern} - Specify the regexp to define variable names to ignore.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code private}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -84,35 +82,28 @@ public class JavadocVariableCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+
     public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
-
-    /** Specify the visibility scope where Javadoc comments are checked. */
-    private Scope scope = Scope.PRIVATE;
-
-    /** Specify the visibility scope where Javadoc comments are not checked. */
-    private Scope excludeScope;
+    /** Access modifiers of methods where parameters are checked. */
+    private AccessModifierOption[] accessModifiers = {
+        AccessModifierOption.PUBLIC,
+        AccessModifierOption.PROTECTED,
+        AccessModifierOption.PACKAGE,
+        AccessModifierOption.PRIVATE,
+    };
 
     /** Specify the regexp to define variable names to ignore. */
     private Pattern ignoreNamePattern;
 
     /**
-     * Setter to specify the visibility scope where Javadoc comments are checked.
+     * Setter to access modifiers of methods where parameters are checked.
      *
-     * @param scope a scope.
-     * @since 3.0
+     * @param accessModifiers access modifiers of methods which should be checked.
+     * @since 10.22.0
      */
-    public void setScope(Scope scope) {
-        this.scope = scope;
-    }
-
-    /**
-     * Setter to specify the visibility scope where Javadoc comments are not checked.
-     *
-     * @param excludeScope a scope.
-     * @since 3.4
-     */
-    public void setExcludeScope(Scope excludeScope) {
-        this.excludeScope = excludeScope;
+    public void setAccessModifiers(AccessModifierOption... accessModifiers) {
+        this.accessModifiers =
+            UnmodifiableCollectionUtil.copyOfArray(accessModifiers, accessModifiers.length);
     }
 
     /**
@@ -177,6 +168,17 @@ public class JavadocVariableCheck
     }
 
     /**
+     * Checks whether a method has the correct access modifier to be checked.
+     *
+     * @param accessModifier the access modifier of the method.
+     * @return whether the method matches the expected access modifier.
+     */
+    private boolean matchAccessModifiers(final AccessModifierOption accessModifier) {
+        return Arrays.stream(accessModifiers)
+            .anyMatch(modifier -> modifier == accessModifier);
+    }
+
+    /**
      * Whether we should check this node.
      *
      * @param ast a given node.
@@ -185,14 +187,15 @@ public class JavadocVariableCheck
     private boolean shouldCheck(final DetailAST ast) {
         boolean result = false;
         if (!ScopeUtil.isInCodeBlock(ast) && !isIgnored(ast)) {
-            final Scope customScope = ScopeUtil.getScope(ast);
-            final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
-            result = customScope.isIn(scope) && surroundingScope.isIn(scope)
-                && (excludeScope == null
-                    || !customScope.isIn(excludeScope)
-                    || !surroundingScope.isIn(excludeScope));
+            try {
+                final AccessModifierOption accessModifier =
+                    CheckUtil.getAccessModifierFromModifiersToken(ast);
+                result = matchAccessModifiers(accessModifier);
+            }
+            catch (IllegalArgumentException ex) {
+                result = false;
+            }
         }
         return result;
     }
-
 }

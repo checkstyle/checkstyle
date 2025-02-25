@@ -1,20 +1,18 @@
 /*
 JavadocVariable
-scope = (default)private
-excludeScope = (default)null
+accessModifiers = (default)private
 ignoreNamePattern = (default)null
 tokens = (default)ENUM_CONSTANT_DEF
-
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
 public class InputJavadocVariableOnPublicInnerClassFields {
-    public int i1; // violation
-    protected int i2; // violation
-    int i3; // violation
-    private int i4; // violation
+    public int i1; // violation, 'Missing a Javadoc comment'
+    protected int i2; // violation, 'Missing a Javadoc comment'
+    int i3; // violation, 'Missing a Javadoc comment'
+    private int i4; // violation, 'Missing a Javadoc comment'
 
     public void foo1() {}
     protected void foo2() {}
@@ -22,10 +20,10 @@ public class InputJavadocVariableOnPublicInnerClassFields {
     private void foo4() {}
 
     public class PublicInner {
-        public int i1; // violation
-        protected int i2; // violation
-        int i3; // violation
-        private int i4; // violation
+        public int i1; // violation, 'Missing a Javadoc comment'
+        protected int i2; // violation, 'Missing a Javadoc comment'
+        int i3; // violation, 'Missing a Javadoc comment'
+        private int i4; // violation, 'Missing a Javadoc comment'
 
         public void foo1() {}
         protected void foo2() {}
@@ -34,10 +32,10 @@ public class InputJavadocVariableOnPublicInnerClassFields {
     }
 
     protected class ProtectedInner {
-        public int i1; // violation
-        protected int i2; // violation
-        int i3; // violation
-        private int i4; // violation
+        public int i1; // violation, 'Missing a Javadoc comment'
+        protected int i2; // violation, 'Missing a Javadoc comment'
+        int i3; // violation, 'Missing a Javadoc comment'
+        private int i4; // violation, 'Missing a Javadoc comment'
 
         public void foo1() {}
         protected void foo2() {}
@@ -46,10 +44,10 @@ public class InputJavadocVariableOnPublicInnerClassFields {
     }
 
     class PackageInner {
-        public int i1; // violation
-        protected int i2; // violation
-        int i3; // violation
-        private int i4; // violation
+        public int i1; // violation, 'Missing a Javadoc comment'
+        protected int i2; // violation, 'Missing a Javadoc comment'
+        int i3; // violation, 'Missing a Javadoc comment'
+        private int i4; // violation, 'Missing a Javadoc comment'
 
         public void foo1() {}
         protected void foo2() {}
@@ -58,10 +56,10 @@ public class InputJavadocVariableOnPublicInnerClassFields {
     }
 
     private class PrivateInner {
-        public int i1; // violation
-        protected int i2; // violation
-        int i3; // violation
-        private int i4; // violation
+        public int i1; // violation, 'Missing a Javadoc comment'
+        protected int i2; // violation, 'Missing a Javadoc comment'
+        int i3; // violation, 'Missing a Javadoc comment'
+        private int i4; // violation, 'Missing a Javadoc comment'
 
         public void foo1() {}
         protected void foo2() {}
@@ -71,7 +69,7 @@ public class InputJavadocVariableOnPublicInnerClassFields {
 
     class IgnoredName {
 
-        private int logger; // violation
+        private int logger; // violation, 'Missing a Javadoc comment'
         // no warning, 'serialVersionUID' fields do not require Javadoc
         private static final long serialVersionUID = 0;
     }
