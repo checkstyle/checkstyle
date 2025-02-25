@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -73,6 +74,17 @@ public final class JavadocUtil {
 
     /** Tab pattern. */
     private static final Pattern TAB = Pattern.compile("\t");
+    /** Import pattern. */
+    private static final Pattern IMPORT = Pattern.compile(
+            "^([a-z_$][a-z\\d_$]*(\\.[a-z_$][a-z\\d_$]*)*(\\.\\*)?)(#(.*))?.*",
+            Pattern.CASE_INSENSITIVE
+    );
+
+    /** Method pattern. */
+    private static final Pattern METHOD = Pattern.compile(
+            "^([a-z_$][a-z\\d_$]*)(\\([^)]*\\))?$",
+            Pattern.CASE_INSENSITIVE
+    );
 
     // initialise the constants
     static {
@@ -118,16 +130,119 @@ public final class JavadocUtil {
             // Lines are one-indexed, so need an off-by-one correction.
             final int line = textBlock.getStartLineNo() + tag.getPosition().getLine() - 1;
 
-            if (JavadocTagInfo.isValidName(tag.getName())) {
-                validTags.add(
-                    new JavadocTag(line, col, tag.getName(), tag.getValue()));
+            if (JavadocTagInfo.isValidName(tag.getName()) && isValidImportTag(tag, tagType)) {
+                validTags.add(new JavadocTag(line, col, tag.getName(), tag.getValue()));
             }
             else {
                 invalidTags.add(new InvalidJavadocTag(line, col, tag.getName()));
             }
+
         }
 
         return new JavadocTags(validTags, invalidTags);
+    }
+
+    /**
+     * Checks if a given tag is valid import based on its Javadoc type.
+     *
+     * @param tag        the tag to validate
+     * @param javadocTag the type of the Javadoc tag
+     * @return {@code true} if the tag is valid, otherwise {@code false}
+     */
+    public static boolean isValidImportTag(TagInfo tag, JavadocTagType javadocTag) {
+        boolean isValid = true;
+        if (canHaveImport(tag)) {
+            if (javadocTag == JavadocTagType.BLOCK) {
+                isValid = !isInlineImportTag(tag);
+            }
+            isValid = isValid && bestTryToMatchReference(tag.getValue());
+        }
+        return isValid;
+    }
+
+    /**
+     * Checks if a given tag is valid to consider as import based on its Javadoc type.
+     *
+     * @param tag        the tag to validate
+     * @return {@code true} if the tag can contain import
+     */
+    public static boolean canHaveImport(TagInfo tag) {
+        return tag.getName().equals(JavadocTagInfo.LINK.getName())
+                || tag.getName().equals(JavadocTagInfo.SEE.getName())
+                || tag.getName().equals(JavadocTagInfo.LINKPLAIN.getName())
+                || tag.getName().equals(JavadocTagInfo.VALUE.getName())
+                || tag.getName().equals(JavadocTagInfo.THROWS.getName())
+                || tag.getName().equals(JavadocTagInfo.EXCEPTION.getName());
+    }
+
+    /**
+     *  Check if the tag  is inline tag that may contain import.
+     *
+     * @param tag extracted tag from comment
+     * @return true if it is one of the inline imports like {@link java.util.List}
+     * */
+    public static boolean isInlineImportTag(TagInfo tag) {
+        return tag.getName().equals(JavadocTagInfo.LINK.getName())
+                || tag.getName().equals(JavadocTagInfo.LINKPLAIN.getName())
+                || tag.getName().equals(JavadocTagInfo.VALUE.getName());
+    }
+
+    /**
+     * Validates if a string is a valid import declaration.
+     *
+     * @param input the string to validate
+     * @return true if the input is a valid import declaration, false otherwise
+     */
+    public static boolean bestTryToMatchReference(String input) {
+        final boolean isValid;
+        if (input.contains("::")) {
+            isValid = false;
+        }
+        else {
+            final String importString = extractImportPart(input);
+            final Matcher matcher = IMPORT.matcher(importString);
+
+            if (matcher.matches()) {
+                final int methodIndex = 5;
+                final String methodPart = matcher.group(methodIndex);
+                isValid = methodPart == null || METHOD.matcher(methodPart).matches();
+            }
+            else {
+                isValid = false;
+            }
+
+        }
+        return isValid;
+    }
+
+    /**
+     * Extracts the import part from an input string, handling spaces in method arguments.
+     *
+     * @param input the input string
+     * @return the extracted import part
+     */
+    private static String extractImportPart(String input) {
+        int parenthesesCount = 0;
+        int firstSpaceOutsideParens = -1;
+        String result = input;
+
+        for (int index = 0; index < input.length(); index++) {
+            final char currentCharacter = input.charAt(index);
+            if (currentCharacter == '(') {
+                parenthesesCount++;
+            }
+            else if (currentCharacter == ')') {
+                parenthesesCount--;
+            }
+            else if (currentCharacter == ' ' && parenthesesCount == 0) {
+                firstSpaceOutsideParens = index;
+                break;
+            }
+        }
+        if (firstSpaceOutsideParens != -1) {
+            result = input.substring(0, firstSpaceOutsideParens);
+        }
+        return result;
     }
 
     /**

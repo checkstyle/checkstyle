@@ -298,6 +298,13 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/JavadocUtil.java</fileName>
+    <specifier>group.count.unknown</specifier>
+    <message>unable to verify non-literal groups parameter.</message>
+    <lineContent>final String methodPart = matcher.group(methodIndex);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
     <specifier>group.count</specifier>
     <message>invalid groups parameter 1. Only 0 groups are guaranteed to exist for javadocArgMatcher.</message>

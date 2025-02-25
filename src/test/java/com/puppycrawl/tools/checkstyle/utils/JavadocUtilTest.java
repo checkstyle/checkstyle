@@ -67,6 +67,134 @@ public class JavadocUtilTest {
         assertWithMessage("Invalid valid tags size")
             .that(allTags.getValidTags())
             .hasSize(1);
+        final JavadocTag seeTag = allTags.getValidTags().get(0);
+        assertWithMessage("Invalid tag name")
+                .that(seeTag.getTagName())
+                .isEqualTo(JavadocTagInfo.SEE.getName());
+    }
+
+    @Test
+    public void testBlockTagLink() {
+        final String[] text = {
+            "/** @link elsewhere ",
+            " */",
+        };
+        final Comment comment = new Comment(text, 1, 2, text[1].length());
+        final JavadocTags blockTags =
+                JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.BLOCK);
+        assertWithMessage("Invalid valid tags size")
+                .that(blockTags.getInvalidTags())
+                .hasSize(1);
+    }
+
+    @Test
+    public void testInvalidImportTag() {
+        final String[] text = {
+            "/** @param 1java.util.Map#get",
+            " */",
+        };
+        final Comment comment = new Comment(text, 1, 2, text[1].length());
+        final JavadocTags blockTags =
+                JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.BLOCK);
+        assertWithMessage("Invalid valid tags size")
+                .that(blockTags.getValidTags())
+                .hasSize(1);
+    }
+
+    @Test
+    public void testInlineLinkImport() {
+        final String[] text = {
+            "/** {@link List#add} ",
+            " * {@link List::size }",
+            " * {@link java.util.Map#get(Object)}",
+            " * {@link java.util.Map#get Object}",
+            " * {@link java.util.List#123invalid}",
+            " * {@link java.util.List#add( int x )}",
+            " * {@link java.util.List#add( int x , int y )}",
+            " */",
+        };
+        final Comment comment = new Comment(text, 1, 3, text[1].length());
+        final JavadocTags inlineTags =
+                JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.INLINE);
+        assertWithMessage("Invalid valid tags size")
+                .that(inlineTags.getInvalidTags())
+                .hasSize(2);
+    }
+
+    @Test
+    public void testBlockImports() {
+        final String[] text = {
+            "/** @exception ArithmeticException ",
+            " * @throws Exception#new ",
+            " * @throws Exception::new ",
+            " */",
+        };
+        final Comment comment = new Comment(text, 1, 3, text[1].length());
+        final JavadocTags inlineTags =
+                JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.BLOCK);
+        assertWithMessage("Invalid valid tags size")
+                .that(inlineTags.getInvalidTags())
+                .hasSize(1);
+        final JavadocTag exception = inlineTags.getValidTags().get(0);
+        assertWithMessage("Invalid tag name")
+                .that(exception.getTagName())
+                .isEqualTo(JavadocTagInfo.EXCEPTION.getName());
+
+    }
+
+    @Test
+    public void testInvalidImport() {
+        final String[] text = {
+            "/** {@link 1java.util.List} ",
+            " * {@link java.util.List# }",
+            " * {@exception ArithmeticException::new }",
+            "* {@see java.time.Duration::ofSeconds(long)} ",
+            " */",
+        };
+        final Comment comment = new Comment(text, 1, 3, text[1].length());
+        final JavadocTags inlineTags =
+                JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.INLINE);
+        assertWithMessage("Invalid valid tags size")
+                .that(inlineTags.getInvalidTags())
+                .hasSize(4);
+        final InvalidJavadocTag exception = inlineTags.getInvalidTags().get(2);
+        assertWithMessage("Invalid tag name")
+                .that(exception.getName())
+                .isEqualTo(JavadocTagInfo.EXCEPTION.getName());
+        final InvalidJavadocTag see = inlineTags.getInvalidTags().get(3);
+        assertWithMessage("Invalid tag name")
+                .that(see.getName())
+                .isEqualTo(JavadocTagInfo.SEE.getName());
+    }
+
+    @Test
+    public void testLinkImportInline() {
+        final String[] text = {
+            "/** {@linkplain java.util.List} ",
+            " * {@value java.time.Duration#ZERO}",
+            " */",
+        };
+        final Comment comment = new Comment(text, 1, 2, text[1].length());
+        final JavadocTags inlineTags =
+                JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.INLINE);
+        assertWithMessage("Invalid valid tags size")
+                .that(inlineTags.getInvalidTags())
+                .hasSize(0);
+    }
+
+    @Test
+    public void testLinkImportBlockTag() {
+        final String[] text = {
+            "/** @linkplain java.util.List ",
+            " * @value java.time.Duration#ZERO",
+            " */",
+        };
+        final Comment comment = new Comment(text, 1, 3, text[1].length());
+        final JavadocTags inlineTags =
+                JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.BLOCK);
+        assertWithMessage("Invalid valid tags size")
+                .that(inlineTags.getInvalidTags())
+                .hasSize(2);
     }
 
     @Test
@@ -179,6 +307,7 @@ public class JavadocUtilTest {
             "/** @fake block",
             " * {@bogus inline}",
             " * {@link List valid}",
+
         };
         final Comment comment = new Comment(text, 1, 3, text[2].length());
         final JavadocTags allTags =
