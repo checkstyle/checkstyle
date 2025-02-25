@@ -1079,6 +1079,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/UnusedImportsCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
+    <lineContent>referenceString = content.substring(0, referenceIndex);</lineContent>
+    <details>
+      found   : int
+      required: @LTEqLengthOf(&quot;content&quot;) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/AbstractExpressionHandler.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter index of String.charAt.</message>
