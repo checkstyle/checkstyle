@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -35,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -344,11 +346,21 @@ public class UnusedImportsCheck extends AbstractCheck {
      */
     private static Set<String> collectReferencesFromJavadoc(TextBlock textBlock) {
         final List<JavadocTag> tags = new ArrayList<>();
-        // gather all the inline tags, like @link
+        // gather all the inline tags, like @link  remove any invalidLink
         // INLINE tags inside BLOCKs get hidden when using ALL
-        tags.addAll(getValidTags(textBlock, JavadocUtil.JavadocTagType.INLINE));
-        // gather all the block-level tags, like @throws and @see
-        tags.addAll(getValidTags(textBlock, JavadocUtil.JavadocTagType.BLOCK));
+        tags.addAll(
+                getValidTags(textBlock, JavadocUtil.JavadocTagType.INLINE)
+                        .stream()
+                        .filter(UnusedImportsCheck::isValidMethodLinkTag)
+                        .collect(Collectors.toList())
+        );
+        // gather all the block tags, like @throws and @see exclude @link notValid
+        tags.addAll(
+                getValidTags(textBlock, JavadocUtil.JavadocTagType.BLOCK)
+                        .stream()
+                        .filter(tag -> !tag.getTagName().equals(JavadocTagInfo.LINK.getName()))
+                        .collect(Collectors.toList())
+        );
 
         final Set<String> references = new HashSet<>();
 
@@ -421,6 +433,19 @@ public class UnusedImportsCheck extends AbstractCheck {
             topLevelType = type.substring(0, dotIndex);
         }
         return topLevelType;
+    }
+
+    /**
+     * Returns valid link method tag in a javadoc {@link JavadocTagInfo#isValidOn}.
+     *
+     * @param tag tag to check from extracted tage
+     * @return boolean is valid
+     */
+    private static boolean isValidMethodLinkTag(JavadocTag tag) {
+        final boolean isLinkTag = JavadocTagInfo.LINK.getName().equals(tag.getTagName());
+        final boolean containsLinkTagColon = tag.getFirstArg().contains("::");
+
+        return !(isLinkTag && containsLinkTagColon);
     }
 
     /**
