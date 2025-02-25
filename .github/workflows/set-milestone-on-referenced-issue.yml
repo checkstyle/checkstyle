@@ -34,10 +34,11 @@ jobs:
       - name: Set milestone on issue
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_COMMITS: ${{ inputs.commits }}
         run: |
-          if [ -z "${{inputs.commits}}" ]; then
+          if [[ -z "${{GITHUB_COMMITS}}" ]]; then
             COMMITS='${{ toJSON(github.event.commits) }}'
           else
-            COMMITS="${{inputs.commits}}"
+            COMMITS="${{GITHUB_COMMITS}}"
           fi
           ./.ci/set-milestone-on-referenced-issue.sh "$COMMITS"
