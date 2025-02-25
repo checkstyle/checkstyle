@@ -162,9 +162,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void InputUnusedLocalVariable4() throws Exception {
-        verifyWithInlineConfigParser(
-                getPath("InputUnusedLocalVariable4.java")
-        );
+        verifyWithInlineConfigParser(getPath("InputUnusedLocalVariable4.java"));
     }
 
     @Test
