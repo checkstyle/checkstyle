@@ -17,15 +17,15 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; //
 
 
 
-import java.lang.Object; // ok
+import java.lang.Object;
 
-import java.lang.Class; // ok
+import java.lang.Class;
 
 
-// ok
+
 import java.lang.Integer;
 
-// ok
+
 import java.lang.Long;
 
 
@@ -57,13 +57,13 @@ import java.lang.String;
 import java.lang.Object;
 
 
-// ok
+
 // .
 import java.lang.Boolean;
-// ok
+
 import java.lang.Byte;
 
-// ok
+
 /* javadoc */
 import java.lang.Short;
 
@@ -76,10 +76,10 @@ import java.lang.Number;
 import java.lang.Runnable;
 import java.lang.Thread;
 
-// ok
 
 
-// ok
+
+
 import java.lang.StringBuilder;
 
 
@@ -93,7 +93,7 @@ public class InputEmptyLineSeparatorWithComments2 {
 
     public int testViolationWithoutComment = 1;
 
-    public int testNoViolationWithoutComment = 2; // ok
+    public int testNoViolationWithoutComment = 2;
 
 
     // Should have violation
@@ -130,10 +130,10 @@ public class InputEmptyLineSeparatorWithComments2 {
 
 
     public void testViolationWithoutComment() {
-    } // ok
+    }
 
     public void testNoViolationWithoutComment() {
-    } // ok
+    }
 
 
     // Should be ok
@@ -175,26 +175,26 @@ public class InputEmptyLineSeparatorWithComments2 {
     public void testNoViolationWithJavadoc() {
     }
 
-    public static class Class1 { } // ok
+    public static class Class1 { }
 
 
-    public static class Class2 { } // ok
+    public static class Class2 { }
 
-    // ok
+
     public static class Class3 { }
 
 
-    // ok
+
     public static class Class4 { }
 
 
-    // ok
+
     public
-    // ok
+
     static class Class5 { }
 
 
-    // ok
+
     public
     /* javadoc  */
     static class Class6 { }
@@ -225,17 +225,17 @@ public class InputEmptyLineSeparatorWithComments2 {
      */
     public static class Class10 {
         {
-            // ok
+
         }
     }
 
-    // ok
+
     public interface Interface1 { }
 
 
-    // ok
+
     public interface Interface2 { }
-    // ok
+    // some comment
     public // violation ''INTERFACE_DEF' should be separated from previous line.'
     // .
     interface Interface3 { }
@@ -247,57 +247,57 @@ public class InputEmptyLineSeparatorWithComments2 {
     /* . */
     interface Interface4 { }
 
-    // ok
 
-    // ok
+
+
     // .
     // .
     // .
     interface Interface5 { }
 
 
-    // ok
+
     public enum Enum1 {
         E1, E2
     }
 
-    // ok
+
     public enum Enum2 { }
 
 
-    // ok
-    // ok
 
-    // ok
+
+
+
     public enum Enum3 { }
-    // ok
+
 
     public enum Enum4 { }
-    // ok
+
 
     public enum Enum5 { }
 
 
-    // ok
+
 
     public
 
 
-    // ok
+
     static
 
     enum Enum6 { }
 
 
-    // ok
+
     static {
         abs(2);
     }
 
-    // ok
 
 
-    // ok
+
+
     {
        abs(1);
     }
@@ -306,41 +306,41 @@ public class InputEmptyLineSeparatorWithComments2 {
     { }
 
 
-    // ok
+
     {
         int i = 1;
     }
 
 
-    // ok
+
     // .
     /* . */ public InputEmptyLineSeparatorWithComments2() {
         testNoViolationWithJavadoc = 1;
     }
 
-    // ok
+
     /* . */ public InputEmptyLineSeparatorWithComments2(int i) {
         testNoViolationWithJavadoc = 1;
     }
 
-    // ok
-    // ok
 
-    // ok
+
+
+
     public InputEmptyLineSeparatorWithComments2(int i, int j) {
         testNoViolationWithJavadoc = 1;
     }
 
 
-    // ok
-    // ok
-
-    // ok
 
 
 
 
-    // ok
+
+
+
+
+
     public InputEmptyLineSeparatorWithComments2(int i, int j, int k) {
         testNoViolationWithJavadoc = 1;
     }

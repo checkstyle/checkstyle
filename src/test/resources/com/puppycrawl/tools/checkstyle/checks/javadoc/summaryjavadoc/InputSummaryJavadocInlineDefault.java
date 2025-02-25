@@ -17,7 +17,7 @@ class InputSummaryJavadocInlineDefault {
     /**
      * {@summary A simple correct Javadoc.}
      */
-    void foo1() {} // ok
+    void foo1() {}
     /**
      * {@summary This code is wrong }
      */ // violation above 'Summary .* missing an ending period.'
@@ -35,7 +35,7 @@ class InputSummaryJavadocInlineDefault {
     /**
      * {@summary <p>This code is right.</p>}
      */
-    void foo8(){} // ok
+    void foo8(){}
     /**
      * {@summary As of , replaced by {@link #setBounds(int,int,int,int)}}
      */ // violation above 'Summary .* missing an ending period.'
@@ -46,12 +46,12 @@ class InputSummaryJavadocInlineDefault {
     void foo12() throws Exception {}
 
     /** {@summary An especially short bit of Javadoc.} */
-    void foo13() {} // ok
+    void foo13() {}
 
     /**
      * {@summary Some Javadoc.}
      */
-    public static final byte NUL = 0; // ok
+    public static final byte NUL = 0;
     /**
      * {@summary <a href="mailto:vlad@htmlbook.ru"/>}
      */ // violation above 'Summary javadoc is missing.'
@@ -64,32 +64,32 @@ class InputSummaryJavadocInlineDefault {
         /**
          * {@summary Some java@doc.}
          */
-        public static final byte NUL_2 = 0; // ok
+        public static final byte NUL_2 = 0;
 
         /**
          * {@summary This method
          * returns some javadoc. Some javadoc.}
          */
-        boolean emulated() {return false;} // ok
+        boolean emulated() {return false;}
 
         /**
          * {@summary @return the
          * customer ID some javadoc.}
          */
-        int geId() {return 666;} // ok
+        int geId() {return 666;}
 
         /**
          * {@summary from {@link #setBounds(int,int,int,int)}.}
          */
-        void foo3() {} // ok
+        void foo3() {}
 
         /** {@summary  An especially short bit of Javadoc.} */
-        void foo5() {} // ok
+        void foo5() {}
 
         /**
          * {@summary An especially short bit of Javadoc.}
          */
-        void foo6() {} // ok
+        void foo6() {}
     }
 
     /**
@@ -101,17 +101,17 @@ class InputSummaryJavadocInlineDefault {
         /**
          * Some Javadoc.
          */
-        public static final byte NUL = 0; // ok
+        public static final byte NUL = 0;
 
         /**
          * Some Javadoc.
          */
-        void emulated(String s) {} // ok
+        void emulated(String s) {}
 
         /**
          * from {@link #setBounds(int,int,int,int)}.
          */
-        void foo3() {} // ok
+        void foo3() {}
         /**
          * {@summary {}@throws Exception if a problem occurs}
          */ // violation above 'Summary .* missing an ending period.'
@@ -130,7 +130,7 @@ class InputSummaryJavadocInlineDefault {
         /**
          * {@summary {@code see} .}
          */
-        void foo10() {} // ok
+        void foo10() {}
     };
     /**
      * {@summary M m m m {@inheritDoc}}
@@ -138,17 +138,17 @@ class InputSummaryJavadocInlineDefault {
     void foo14() {}
 
     /**{@summary @summary .} */
-    int foo15() {return 0;} // ok
+    int foo15() {return 0;}
 
     /**
      * {@summary @author Akash Mondal.}
      */
-    void foo16(){} // ok
+    void foo16(){}
 
     /**
      * {@summary {@input Javadoc}.}
      */
-    void foo17(){} // ok
+    void foo17(){}
     /**
      * {@summary}
      */ // violation above 'Summary javadoc is missing.'
@@ -160,7 +160,7 @@ class InputSummaryJavadocInlineDefault {
     /**
      * {@summary Javadoc {@code code} correct.}
      */
-    void foo23(){} // ok
+    void foo23(){}
 
     /**
      * {@summary first doesn't have period
@@ -170,7 +170,7 @@ class InputSummaryJavadocInlineDefault {
      * <li>Period here.</li>
      * </ul>}
      */
-    private void invalidInlineJavadocTwo() // ok
+    private void invalidInlineJavadocTwo()
     {
     }
 

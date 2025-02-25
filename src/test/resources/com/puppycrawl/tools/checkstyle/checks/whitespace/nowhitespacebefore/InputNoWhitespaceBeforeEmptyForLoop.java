@@ -11,16 +11,16 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebefore;
 public class InputNoWhitespaceBeforeEmptyForLoop {
 
     public static void f() {
-        for (; ; ) { // OK
+        for (; ; ) {
             break;
         }
-        for (int x = 0; ; ) { // OK
+        for (int x = 0; ; ) {
             break;
         }
         for (int x = 0 ; ; ) { // violation
             break;
         }
-        for (int x = 0; x < 10; ) { // OK
+        for (int x = 0; x < 10; ) {
             break;
         }
         for (int x = 0; x < 10 ; ) { // violation

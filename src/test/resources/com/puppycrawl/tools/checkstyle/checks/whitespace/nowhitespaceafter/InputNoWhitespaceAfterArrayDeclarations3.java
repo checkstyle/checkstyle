@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 
 public class InputNoWhitespaceAfterArrayDeclarations3
 {
-    public void testWithAnnotationInMiddle1(final char @AnnotationAfterTest [] a) {} // ok
+    public void testWithAnnotationInMiddle1(final char @AnnotationAfterTest [] a) {}
     public void testWithAnnotationInMiddle2(final char@AnnotationAfterTest [] a) {}//Correct
     public void testWithAnnotationInMiddle3(final char @AnnotationAfterTest[] a) {}//Correct
     public void testWithAnnotationInMiddle4(final char@AnnotationAfterTest[]a) {}//Correct

@@ -46,7 +46,7 @@ public class InputJavadocParagraphIncorrectOpenClosedTag {
     * Some Summary.
     *
     * <p>
-    *   Some Javadoc. // ok until #15762
+    *   Some Javadoc.
     * </p>
     */
     int d;
@@ -56,11 +56,11 @@ public class InputJavadocParagraphIncorrectOpenClosedTag {
     * Some Summary.
     *
     * <p>
-    *   <ul> // ok until #15762
-    *     <li>Item 1</li> // ok until #15762
-    *     <li>Item 2</li> // ok until #15762
-    *     <li>Item 3</li> // ok until #15762
-    *   </ul> // ok until #15762
+    *   <ul>
+    *     <li>Item 1</li>
+    *     <li>Item 2</li>
+    *     <li>Item 3</li>
+    *   </ul>
     * </p>
     */
     int e;
@@ -79,11 +79,11 @@ public class InputJavadocParagraphIncorrectOpenClosedTag {
     * Some Summary.
     *
     * <p>
-    *     <b>testing....</b> // ok until #15762
+    *     <b>testing....</b>
     * </p>
     *
     * <p>
-    *     <h1>testing....</h1> // ok until #15762
+    *     <h1>testing....</h1>
     * </p>
     */
     // violation 4 lines above '<p> tag should not precede HTML block-tag '<h1>''

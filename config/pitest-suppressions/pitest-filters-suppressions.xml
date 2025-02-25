@@ -109,24 +109,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>SuppressWithNearbyTextFilter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyTextFilter</mutatedClass>
-    <mutatedMethod>accept</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/String::equals</description>
-    <lineContent>if (!cachedFileAbsolutePath.equals(eventFileTextAbsolutePath)) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SuppressWithNearbyTextFilter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyTextFilter</mutatedClass>
-    <mutatedMethod>accept</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (!cachedFileAbsolutePath.equals(eventFileTextAbsolutePath)) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter$Suppression</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
