@@ -289,7 +289,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.LambdaBodyLengthCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.OuterTypeNumberCheck",
