@@ -278,6 +278,15 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void InputUnusedLocalVariable4() throws Exception {
+        final String[] expected = {
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariable4.java"),
+                expected);
+    }
+
+    @Test
     public void testUnusedLocalVarNestedClasses6() throws Exception {
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
