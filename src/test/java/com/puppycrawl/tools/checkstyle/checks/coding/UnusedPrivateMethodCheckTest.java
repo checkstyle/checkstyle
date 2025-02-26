@@ -39,7 +39,7 @@ public class UnusedPrivateMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void UnusedLocalMethodChain() throws Exception {
         verifyWithInlineConfigParser(getPath("UnusedLocalMethodChain.java"), new String[]{
-                "7:18: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused"),
+                "16:18: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused"),
         });
     }
 
