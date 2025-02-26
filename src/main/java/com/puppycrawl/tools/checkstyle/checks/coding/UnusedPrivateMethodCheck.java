@@ -28,6 +28,8 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
@@ -166,6 +168,8 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
      * Keeps tracks of the methods declared in file.
      */
     private final Deque<MethodDesc> methods = new ArrayDeque<>();
+    private final Collection<String> callsText = new ArrayList<>();
+    private final Deque<MethodDesc> calls = new ArrayDeque<>();
 
     /**
      * Keeps track of all the type declarations present in the file.
@@ -250,23 +254,31 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
+        // call all methods
+        // call all calls
+        // check if calls = 0
         if (ast.getType() == TokenTypes.METHOD_DEF) {
             methods.push(new MethodDesc(
                     ast.findFirstToken(TokenTypes.IDENT).getText(),
                     ast.findFirstToken(TokenTypes.TYPE),
                     findScopeOfMethod(ast)));
         }
+//        if (ast.getType() == TokenTypes.IDENT) {
+        try {
+            final String text = ast.findFirstToken(TokenTypes.IDENT).getText();
+            callsText.add(text);
+        } catch (Exception e) {
+        }
+//        }
     }
 
     @Override
     public void leaveToken(DetailAST ast) {
         if (TokenUtil.isOfType(ast, SCOPES)) {
             logViolations(ast, methods);
-        } else if (ast.getType() == TokenTypes.COMPILATION_UNIT) {
-            leaveCompilationUnit();
-        } else if (isNonLocalTypeDeclaration(ast)) {
-            depth--;
-            typeDeclarations.pop();
+            logViolations(ast, calls);
+            // check if callsText contains each methods then its called
+            System.out.println(callsText);
         }
     }
 
