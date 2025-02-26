@@ -46,9 +46,9 @@ public class UnusedPrivateMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void UnusedLocalMethodMulti() throws Exception {
         verifyWithInlineConfigParser(getPath("UnusedLocalMethodMulti.java"), new String[]{
-                "7:18: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused1"),
-                "7:18: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused2"),
-                "7:18: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused3"),
+                "15:18: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused1"),
+                "18:18: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused2"),
+                "21:18: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused3"),
         });
     }
 
