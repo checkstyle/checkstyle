@@ -1,6 +1,5 @@
 /*
 UnusedLocalVariable
-allowUnnamedVariables = false
 
 */
 
