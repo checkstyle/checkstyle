@@ -251,7 +251,10 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.METHOD_DEF) {
-            visitMethodDefToken(ast);
+            methods.push(new MethodDesc(
+                    ast.findFirstToken(TokenTypes.IDENT).getText(),
+                    ast.findFirstToken(TokenTypes.TYPE),
+                    findScopeOfMethod(ast)));
         }
     }
 
@@ -289,8 +292,11 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
      * @param varDefAst varDefAst
      */
     private void visitMethodDefToken(DetailAST varDefAst) {
-        addLocalMethods(varDefAst, methods);
-        addInstanceOrClassVar(varDefAst);
+        methods.push(
+                new MethodDesc(
+                        varDefAst.findFirstToken(TokenTypes.IDENT).getText(),
+                        varDefAst.findFirstToken(TokenTypes.TYPE),
+                        findScopeOfMethod(varDefAst)));
     }
 
     /**
@@ -314,29 +320,6 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
                 && !TokenUtil.isOfType(parent, UNACCEPTABLE_PARENT_OF_IDENT)) {
             checkIdentifierAst(identAst, variablesStack);
         }
-    }
-
-    /**
-     * Visit the non-local type declaration token.
-     *
-     * @param typeDeclAst type declaration ast
-     */
-    private void visitNonLocalTypeDeclarationToken(DetailAST typeDeclAst) {
-        final String qualifiedName = getQualifiedTypeDeclarationName(typeDeclAst);
-        final TypeDeclDesc currTypeDecl = new TypeDeclDesc(qualifiedName, depth, typeDeclAst);
-        depth++;
-        typeDeclarations.push(currTypeDecl);
-        typeDeclAstToTypeDeclDesc.put(typeDeclAst, currTypeDecl);
-    }
-
-    /**
-     * Visit the local anon inner class.
-     *
-     * @param literalNewAst literalNewAst
-     */
-    private void visitLocalAnonInnerClass(DetailAST literalNewAst) {
-        anonInnerAstToTypeDeclDesc.put(literalNewAst, typeDeclarations.peek());
-        anonInnerClassHolders.add(getBlockContainingLocalAnonInnerClass(literalNewAst));
     }
 
     /**
@@ -399,56 +382,6 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
     private static boolean isNonLocalTypeDeclaration(DetailAST typeDeclAst) {
         return TokenUtil.isTypeDeclaration(typeDeclAst.getType())
                 && typeDeclAst.getParent().getType() != TokenTypes.SLIST;
-    }
-
-    /**
-     * Get the block containing local anon inner class.
-     *
-     * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
-     * @return the block containing local anon inner class
-     */
-    private static DetailAST getBlockContainingLocalAnonInnerClass(DetailAST literalNewAst) {
-        DetailAST currentAst = literalNewAst;
-        DetailAST result = null;
-        DetailAST topMostLambdaAst = null;
-        while (currentAst != null && !TokenUtil.isOfType(currentAst,
-                ANONYMOUS_CLASS_PARENT_TOKENS)) {
-            if (currentAst.getType() == TokenTypes.LAMBDA) {
-                topMostLambdaAst = currentAst;
-            }
-            currentAst = currentAst.getParent();
-            result = currentAst;
-        }
-
-        if (currentAst == null) {
-            result = topMostLambdaAst;
-        }
-        return result;
-    }
-
-    /**
-     * Add local methods to the {@code variablesStack} stack.
-     * Also adds the instance methods defined in a local anonymous inner class.
-     *
-     * @param varDefAst      ast node of type {@link TokenTypes#METHOD_DEF}
-     * @param variablesStack stack of all the relevant methods in the scope
-     */
-    private static void addLocalMethods(DetailAST varDefAst, Deque<MethodDesc> variablesStack) {
-        final DetailAST parentAst = varDefAst.getParent();
-        final DetailAST grandParent = parentAst.getParent();
-        final boolean isInstanceVarInInnerClass =
-                grandParent.getType() == TokenTypes.LITERAL_NEW
-                        || grandParent.getType() == TokenTypes.CLASS_DEF;
-        if (isInstanceVarInInnerClass
-                || parentAst.getType() != TokenTypes.OBJBLOCK) {
-            final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
-            final MethodDesc desc = new MethodDesc(ident.getText(),
-                    varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfMethod(varDefAst));
-            if (isInstanceVarInInnerClass) {
-                desc.registerAsInstOrClassVar();
-            }
-            variablesStack.push(desc);
-        }
     }
 
     /**
@@ -694,7 +627,11 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
         if (type == TokenTypes.DOT) {
             visitDotToken(ast, variablesStack);
         } else if (type == TokenTypes.METHOD_DEF) {
-            addLocalMethods(ast, variablesStack);
+            variablesStack.push(
+                    new MethodDesc(
+                            ast.findFirstToken(TokenTypes.IDENT).getText(),
+                            ast.findFirstToken(TokenTypes.TYPE),
+                            findScopeOfMethod(ast)));
         } else if (type == TokenTypes.IDENT) {
             visitIdentToken(ast, variablesStack);
         } else if (isInsideLocalAnonInnerClass(ast)) {
