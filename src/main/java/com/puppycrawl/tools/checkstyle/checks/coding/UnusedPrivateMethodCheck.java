@@ -80,7 +80,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * @since 9.3
  */
 @FileStatefulCheck
-public class UnusedPrivateMethod extends AbstractCheck {
+public class UnusedPrivateMethodCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

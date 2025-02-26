@@ -38,7 +38,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck.MSG_UNUSED_LOCAL_VARIABLE;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck.MSG_UNUSED_NAMED_LOCAL_VARIABLE;
 
-public class UnusedPrivateMethodTest extends AbstractModuleTestSupport {
+public class UnusedPrivateMethodCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
