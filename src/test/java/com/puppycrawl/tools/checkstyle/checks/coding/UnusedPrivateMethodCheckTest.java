@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+/// ////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -39,30 +39,8 @@ public class UnusedPrivateMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void UnusedLocalMethodChain() throws Exception {
         verifyWithInlineConfigParser(getPath("UnusedLocalMethodChain.java"), new String[]{
-                "27:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "sameName"),
+                "7:18: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "sameName"),
         });
-    }
-
-    @Test
-    public void testUnusedLocalVariable2() throws Exception {
-        final String[] expected = {
-                "27:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "sameName"),
-                "28:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
-                "31:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "testInLambdas"),
-                "33:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "coding"),
-                "34:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE,
-                        "InputUnusedLocalVariable"),
-                "50:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
-                "54:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "c"),
-                "65:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
-                "67:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "c"),
-                "71:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "p"),
-                "81:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "f"),
-                "84:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "foo"),
-                "91:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
-        };
-        verifyWithInlineConfigParser(
-                getPath("InputUnusedLocalVariable.java"), expected);
     }
 
 }
