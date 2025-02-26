@@ -40,17 +40,17 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;UnusedCatchParameterShouldBeUnnamed&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnusedCatchParameterShouldBeUnnamed"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
 
   void test() {
@@ -59,26 +59,26 @@ class Example1 {
       int x = 1 / 0;
       // violation below, 'Unused catch parameter 'exception' should be unnamed'
     } catch (Exception exception) {
-      System.out.println(&quot;infinity&quot;);
+      System.out.println("infinity");
     }
 
     try {
       int x = 1 / 0;
       // ok below, 'declared as unnamed parameter'
     } catch (Exception _) {
-      System.out.println(&quot;infinity&quot;);
+      System.out.println("infinity");
     }
 
     try {
       int x = 1 / 0;
       // ok below, ''exception' is used'
     } catch (Exception exception) {
-      System.out.println(&quot;Got Exception - &quot; +  exception.getMessage());
+      System.out.println("Got Exception - " +  exception.getMessage());
     }
 
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

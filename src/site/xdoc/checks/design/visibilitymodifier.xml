@@ -145,15 +145,15 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;VisibilityModifier&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VisibilityModifier"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example with default values:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   private int myPrivateField1;
 
@@ -190,23 +190,23 @@ class Example1 {
   String shortCustomAnnotated;
 
   @com.google.common.annotations.VisibleForTesting
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check so that it allows package visible members:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;VisibilityModifier&quot;&gt;
-      &lt;property name=&quot;packageAllowed&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VisibilityModifier"&gt;
+      &lt;property name="packageAllowed" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example of allowed package visible members:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   private int myPrivateField1;
 
@@ -243,23 +243,23 @@ class Example2 {
   String shortCustomAnnotated;
 
   @com.google.common.annotations.VisibleForTesting
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           To configure the check so that it allows protected visible members:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;VisibilityModifier&quot;&gt;
-      &lt;property name=&quot;protectedAllowed&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VisibilityModifier"&gt;
+      &lt;property name="protectedAllowed" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example of allowed protected visible members:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
   private int myPrivateField1;
 
@@ -297,23 +297,23 @@ class Example3 {
   String shortCustomAnnotated;
 
   @com.google.common.annotations.VisibleForTesting
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
-        </source>
+</code></pre></div>
         <p id="Example4-config">
           To configure the check so that it allows no public members:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;VisibilityModifier&quot;&gt;
-      &lt;property name=&quot;publicMemberPattern&quot; value=&quot;^$&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VisibilityModifier"&gt;
+      &lt;property name="publicMemberPattern" value="^$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example of not allowed public members:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
   private int myPrivateField1;
 
@@ -352,26 +352,26 @@ class Example4 {
   String shortCustomAnnotated;
 
   @com.google.common.annotations.VisibleForTesting
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
-        </source>
+</code></pre></div>
         <p id="Example5-config">
           To configure the Check so that it allows public immutable fields
           (mostly for immutable classes):
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;VisibilityModifier&quot;&gt;
-      &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VisibilityModifier"&gt;
+      &lt;property name="allowPublicImmutableFields" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">
           Example of allowed public immutable fields:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
   private int myPrivateField1;
 
@@ -407,28 +407,28 @@ class Example5 {
   String shortCustomAnnotated;
 
   @com.google.common.annotations.VisibleForTesting
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
-        </source>
+</code></pre></div>
         <p id="Example6-config">
           To configure the Check in order to allow user specified immutable class names:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;VisibilityModifier&quot;&gt;
-      &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;immutableClassCanonicalNames&quot;
-                value=&quot;com.google.common.collect.ImmutableSet,
-                       java.lang.String&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VisibilityModifier"&gt;
+      &lt;property name="allowPublicImmutableFields" value="true"/&gt;
+      &lt;property name="immutableClassCanonicalNames"
+                value="com.google.common.collect.ImmutableSet,
+                       java.lang.String"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example6-code">
           Example of allowed public immutable fields:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example6 {
   private int myPrivateField1;
 
@@ -464,30 +464,30 @@ class Example6 {
   String shortCustomAnnotated;
 
   @com.google.common.annotations.VisibleForTesting
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
-        </source>
+</code></pre></div>
         <p id="Example7-config">
           Note, if allowPublicImmutableFields is set to true, the check will also check whether
           generic type parameters are immutable. If at least one generic type parameter is mutable,
           there will be a violation.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;VisibilityModifier&quot;&gt;
-      &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;immutableClassCanonicalNames&quot;
-                value=&quot;com.google.common.collect.ImmutableSet,
-                       java.lang.String, com.google.common.collect.ImmutableMap&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VisibilityModifier"&gt;
+      &lt;property name="allowPublicImmutableFields" value="true"/&gt;
+      &lt;property name="immutableClassCanonicalNames"
+                value="com.google.common.collect.ImmutableSet,
+                       java.lang.String, com.google.common.collect.ImmutableMap"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example7-code">
           Example of how the check works:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example7 {
   private int myPrivateField1;
 
@@ -523,26 +523,26 @@ class Example7 {
   String shortCustomAnnotated;
 
   @com.google.common.annotations.VisibleForTesting
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
-        </source>
+</code></pre></div>
         <p id="Example8-config">
           To configure the Check passing fields annotated with @java.lang.Deprecated:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;VisibilityModifier&quot;&gt;
-      &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot;
-                value=&quot;java.lang.Deprecated&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VisibilityModifier"&gt;
+      &lt;property name="ignoreAnnotationCanonicalNames"
+                value="java.lang.Deprecated"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example8-code">
           Example of allowed field:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example8 {
   private int myPrivateField1;
 
@@ -578,25 +578,25 @@ class Example8 {
 
   @com.google.common.annotations.VisibleForTesting
   // violation below, annotation not configured 'must be private'
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
-        </source>
+</code></pre></div>
 
         <p id="Example9-config">
           To configure the Check passing fields annotated with @org.junit.Rule,
           @org.junit.ClassRule and @com.google.common.annotations.VisibleForTesting annotations:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;VisibilityModifier&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VisibilityModifier"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example9-code">
           Example of allowed fields:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example9 {
   private int myPrivateField1;
 
@@ -632,25 +632,25 @@ class Example9 {
   String shortCustomAnnotated;
 
   @com.google.common.annotations.VisibleForTesting
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
-        </source>
+</code></pre></div>
         <p id="Example10-config">
           To configure the Check passing fields annotated with short annotation name:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;VisibilityModifier&quot;&gt;
-      &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot; value=&quot;Deprecated&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VisibilityModifier"&gt;
+      &lt;property name="ignoreAnnotationCanonicalNames" value="Deprecated"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example10-code">
           Example of allowed fields:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example10 {
   private int myPrivateField1;
 
@@ -686,9 +686,9 @@ class Example10 {
 
   @com.google.common.annotations.VisibleForTesting
   // violation below, annotation not configured 'must be private'
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
-        </source>
+</code></pre></div>
         <p>
           To understand the difference between allowPublicImmutableFields and
           allowPublicFinalFields options, please, study the following examples.
@@ -696,59 +696,59 @@ class Example10 {
         <p id="Example11-config">
            1) To configure the check to use only 'allowPublicImmutableFields' option:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;VisibilityModifier&quot;&gt;
-      &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VisibilityModifier"&gt;
+      &lt;property name="allowPublicImmutableFields" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example11-code">
           Code example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example11 {
   public final int someIntValue = 0; // violation 'must be private'
 
   public final ImmutableSet&lt;String&gt; includes = null; // violation 'must be private'
 
-  public final java.lang.String notes = &quot;&quot;; // violation 'must be private'
+  public final java.lang.String notes = ""; // violation 'must be private'
 
   public final BigDecimal value = null; // violation 'must be private'
 
   public final List list = null; // violation 'must be private'
 }
-        </source>
+</code></pre></div>
         <p id="Example12-config">
           2) To configure the check to use only 'allowPublicFinalFields' option:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;VisibilityModifier&quot;&gt;
-      &lt;property name=&quot;allowPublicFinalFields&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VisibilityModifier"&gt;
+      &lt;property name="allowPublicFinalFields" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example12-code">
           Code example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example12 {
   public final int someIntValue = 0;
 
   public final ImmutableSet&lt;String&gt; includes = null;
 
-  public final java.lang.String notes = &quot;&quot;;
+  public final java.lang.String notes = "";
 
   public final BigDecimal value = null;
 
   public final List list = null;
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

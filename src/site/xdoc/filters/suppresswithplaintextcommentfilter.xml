@@ -104,17 +104,17 @@
           <code>// CHECKSTYLE:ON</code> (the default comments).
           Checker is configured to check only properties files using UniqueProperties check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;properties&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;property name="fileExtensions" value="properties"/&gt;
 
-  &lt;module name=&quot;UniqueProperties&quot;/&gt;
-  &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;/&gt;
+  &lt;module name="UniqueProperties"/&gt;
+  &lt;module name="SuppressWithPlainTextCommentFilter"/&gt;
 
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-raw">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 # // CHECKSTYLE:OFF
 # suppressed violation below
 keyB=value1
@@ -123,28 +123,28 @@ keyB=value2
 # // violation below 'Duplicated property 'keyC' (2 occurrence(s)).'
 keyC=value4
 keyC=value5
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure a filter to suppress audit events between a comment
           containing <code>STOP CHECK</code> and a comment
           containing <code>RESUME CHECK</code>.
           Checker is configured to check only properties files using UniqueProperties check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;properties&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;property name="fileExtensions" value="properties"/&gt;
 
-  &lt;module name=&quot;UniqueProperties&quot;/&gt;
+  &lt;module name="UniqueProperties"/&gt;
 
-  &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
-    &lt;property name=&quot;offCommentFormat&quot; value=&quot;STOP CHECK&quot;/&gt;
-    &lt;property name=&quot;onCommentFormat&quot; value=&quot;RESUME CHECK&quot;/&gt;
+  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+    &lt;property name="offCommentFormat" value="STOP CHECK"/&gt;
+    &lt;property name="onCommentFormat" value="RESUME CHECK"/&gt;
   &lt;/module&gt;
 
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-raw">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 # STOP CHECK
 # suppressed violation below
 keyB=value1
@@ -153,7 +153,7 @@ keyB=value2
 # // violation below 'Duplicated property 'keyC' (2 occurrence(s)).'
 keyC=value4
 keyC=value5
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           To configure a filter to suppress UniqueProperties check audit events between a comment
           containing <code>STOP UNIQUE CHECK</code> and a comment containing
@@ -161,23 +161,23 @@ keyC=value5
           Checker is configured to check only properties files using both UniqueProperties check
           and OrderedProperties check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;properties&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;property name="fileExtensions" value="properties"/&gt;
 
-  &lt;module name=&quot;OrderedProperties&quot;/&gt;
-  &lt;module name=&quot;UniqueProperties&quot;/&gt;
+  &lt;module name="OrderedProperties"/&gt;
+  &lt;module name="UniqueProperties"/&gt;
 
-  &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
-    &lt;property name=&quot;offCommentFormat&quot; value=&quot;STOP UNIQUE CHECK&quot;/&gt;
-    &lt;property name=&quot;onCommentFormat&quot; value=&quot;RESUME UNIQUE CHECK&quot;/&gt;
-    &lt;property name=&quot;checkFormat&quot; value=&quot;UniquePropertiesCheck&quot;/&gt;
+  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+    &lt;property name="offCommentFormat" value="STOP UNIQUE CHECK"/&gt;
+    &lt;property name="onCommentFormat" value="RESUME UNIQUE CHECK"/&gt;
+    &lt;property name="checkFormat" value="UniquePropertiesCheck"/&gt;
   &lt;/module&gt;
 
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-raw">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 # STOP UNIQUE CHECK
 # (OrderedProperties check is still enabled)
 # suppressed violation below
@@ -189,51 +189,51 @@ keyA=value3
 # // violation below 'Duplicated property 'keyC' (2 occurrence(s)).'
 keyC=value4
 keyC=value5
-        </source>
+</code></pre></div>
         <p id="Example4-config">
           To configure a filter to suppress audit events for the check mentioned in the comment
           <code>CSOFF: <i>regexp</i></code> and <code>CSON: <i>regexp</i></code>.
           Checker is configured to check only XML files using RegexpSingleline check to detect
           disallowed 'code' values for the 'type' parameter:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;xml&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;property name="fileExtensions" value="xml"/&gt;
 
-  &lt;module name=&quot;RegexpSingleline&quot;&gt;
-    &lt;property name=&quot;format&quot;
-        value=&quot;param\s+name=&amp;quot;type&amp;quot;\s+value=&amp;quot;code&amp;quot;&quot;/&gt;
-    &lt;property name=&quot;message&quot;
-        value=&quot;Type code is not allowed. Use type raw instead.&quot;/&gt;
+  &lt;module name="RegexpSingleline"&gt;
+    &lt;property name="format"
+        value="param\s+name=&amp;quot;type&amp;quot;\s+value=&amp;quot;code&amp;quot;"/&gt;
+    &lt;property name="message"
+        value="Type code is not allowed. Use type raw instead."/&gt;
   &lt;/module&gt;
 
-  &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
-    &lt;property name=&quot;offCommentFormat&quot; value=&quot;CSOFF\: ([\w\|]+)&quot;/&gt;
-    &lt;property name=&quot;onCommentFormat&quot; value=&quot;CSON\: ([\w\|]+)&quot;/&gt;
-    &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+    &lt;property name="offCommentFormat" value="CSOFF\: ([\w\|]+)"/&gt;
+    &lt;property name="onCommentFormat" value="CSON\: ([\w\|]+)"/&gt;
+    &lt;property name="checkFormat" value="$1"/&gt;
   &lt;/module&gt;
 
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-raw">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;project&gt;
   &lt;p&gt;Examples:&lt;/p&gt;
 &lt;!-- CSOFF: RegexpSinglelineCheck --&gt;
-  &lt;macro name=&quot;example&quot;&gt;
-    &lt;param name=&quot;path&quot; value=&quot;Example3.java&quot;/&gt;
+  &lt;macro name="example"&gt;
+    &lt;param name="path" value="Example3.java"/&gt;
     &lt;!-- suppressed violation below  --&gt;
-    &lt;param name=&quot;type&quot; value=&quot;code&quot;/&gt;
+    &lt;param name="type" value="code"/&gt;
   &lt;/macro&gt;
 &lt;!-- CSON: RegexpSinglelineCheck --&gt;
-  &lt;macro name=&quot;example&quot;&gt;
-    &lt;param name=&quot;path&quot; value=&quot;Example4.sql&quot;/&gt;
-    &lt;param name=&quot;type&quot; value=&quot;code&quot;/&gt;
+  &lt;macro name="example"&gt;
+    &lt;param name="path" value="Example4.sql"/&gt;
+    &lt;param name="type" value="code"/&gt;
     &lt;!-- // violation above 'Type code is not allowed. Use type raw instead'
     --&gt;
   &lt;/macro&gt;
 &lt;/project&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-config">
           To configure a filter to suppress all audit events between a comment
           containing <code>CSOFF: ALMOST_ALL</code> and a comment containing
@@ -242,45 +242,45 @@ keyC=value5
           Checker is configured to check only XML files using RegexpSingleline check to detect
           disallowed 'code' values for the 'type' parameter:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;xml&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;property name="fileExtensions" value="xml"/&gt;
 
-  &lt;module name=&quot;RegexpSingleline&quot;&gt;
-    &lt;property name=&quot;format&quot;
-        value=&quot;param\s+name=&amp;quot;type&amp;quot;\s+value=&amp;quot;code&amp;quot;&quot;/&gt;
-    &lt;property name=&quot;message&quot;
-        value=&quot;Type code is not allowed. Use type raw instead.&quot;/&gt;
+  &lt;module name="RegexpSingleline"&gt;
+    &lt;property name="format"
+        value="param\s+name=&amp;quot;type&amp;quot;\s+value=&amp;quot;code&amp;quot;"/&gt;
+    &lt;property name="message"
+        value="Type code is not allowed. Use type raw instead."/&gt;
   &lt;/module&gt;
 
-  &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
-    &lt;property name=&quot;offCommentFormat&quot; value=&quot;CSOFF\: ALMOST_ALL&quot;/&gt;
-    &lt;property name=&quot;onCommentFormat&quot; value=&quot;CSON\: ALMOST_ALL&quot;/&gt;
-    &lt;property name=&quot;checkFormat&quot; value=&quot;^((?!(RegexpSinglelineCheck)).)*$&quot;/&gt;
+  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+    &lt;property name="offCommentFormat" value="CSOFF\: ALMOST_ALL"/&gt;
+    &lt;property name="onCommentFormat" value="CSON\: ALMOST_ALL"/&gt;
+    &lt;property name="checkFormat" value="^((?!(RegexpSinglelineCheck)).)*$"/&gt;
   &lt;/module&gt;
 
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-raw">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;project&gt;
   &lt;p&gt;Examples:&lt;/p&gt;
 &lt;!-- CSOFF: ALMOST_ALL --&gt;
-  &lt;macro name=&quot;example&quot;&gt;
-    &lt;param name=&quot;path&quot; value=&quot;Example3.sql&quot;/&gt;
-    &lt;param name=&quot;type&quot; value=&quot;code&quot;/&gt;
+  &lt;macro name="example"&gt;
+    &lt;param name="path" value="Example3.sql"/&gt;
+    &lt;param name="type" value="code"/&gt;
     &lt;!-- // violation above 'Type code is not allowed. Use type raw instead'
     (The RegexpSingleline check is explicitly excluded from suppressions.) --&gt;
   &lt;/macro&gt;
 &lt;!-- CSON: ALMOST_ALL --&gt;
-  &lt;macro name=&quot;example&quot;&gt;
-    &lt;param name=&quot;path&quot; value=&quot;Example4.sql&quot;/&gt;
-    &lt;param name=&quot;type&quot; value=&quot;code&quot;/&gt;
+  &lt;macro name="example"&gt;
+    &lt;param name="path" value="Example4.sql"/&gt;
+    &lt;param name="type" value="code"/&gt;
     &lt;!-- // violation above 'Type code is not allowed. Use type raw instead'
     --&gt;
   &lt;/macro&gt;
 &lt;/project&gt;
-        </source>
+</code></pre></div>
         <p id="Example6-config">
           To configure a filter to suppress audit events <b>that match a
           specific message in the messageFormat</b> (allowing suppression not only by the
@@ -290,51 +290,51 @@ keyC=value5
           Checker is configured to check only XML files using RegexpSingleline check to detect
           disallowed 'code' and 'config' values for the 'type' parameter:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;xml&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;property name="fileExtensions" value="xml"/&gt;
 
-  &lt;module name=&quot;RegexpSingleline&quot;&gt;
-    &lt;property name=&quot;format&quot;
-        value=&quot;param\s+name=&amp;quot;type&amp;quot;\s+value=&amp;quot;code&amp;quot;&quot;/&gt;
-    &lt;property name=&quot;message&quot;
-        value=&quot;Type code is not allowed. Use type raw instead.&quot;/&gt;
+  &lt;module name="RegexpSingleline"&gt;
+    &lt;property name="format"
+        value="param\s+name=&amp;quot;type&amp;quot;\s+value=&amp;quot;code&amp;quot;"/&gt;
+    &lt;property name="message"
+        value="Type code is not allowed. Use type raw instead."/&gt;
   &lt;/module&gt;
 
-  &lt;module name=&quot;RegexpSingleline&quot;&gt;
-    &lt;property name=&quot;format&quot;
-        value=&quot;param\s+name=&amp;quot;type&amp;quot;\s+value=&amp;quot;config&amp;quot;&quot;/&gt;
-    &lt;property name=&quot;message&quot; value=&quot;Type config is not allowed in this file.&quot;/&gt;
+  &lt;module name="RegexpSingleline"&gt;
+    &lt;property name="format"
+        value="param\s+name=&amp;quot;type&amp;quot;\s+value=&amp;quot;config&amp;quot;"/&gt;
+    &lt;property name="message" value="Type config is not allowed in this file."/&gt;
   &lt;/module&gt;
 
-  &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
-    &lt;property name=&quot;offCommentFormat&quot; value=&quot;CSOFF&quot;/&gt;
-    &lt;property name=&quot;onCommentFormat&quot; value=&quot;CSON&quot;/&gt;
-    &lt;property name=&quot;checkFormat&quot; value=&quot;RegexpSinglelineCheck&quot;/&gt;
-    &lt;property name=&quot;messageFormat&quot;
-        value=&quot;^Type code is not allowed. Use type raw instead.$&quot;/&gt;
+  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+    &lt;property name="offCommentFormat" value="CSOFF"/&gt;
+    &lt;property name="onCommentFormat" value="CSON"/&gt;
+    &lt;property name="checkFormat" value="RegexpSinglelineCheck"/&gt;
+    &lt;property name="messageFormat"
+        value="^Type code is not allowed. Use type raw instead.$"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example6-raw">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;project&gt;
   &lt;p&gt;Examples:&lt;/p&gt;
 &lt;!-- CSOFF --&gt;
-  &lt;macro name=&quot;example&quot;&gt;
-    &lt;param name=&quot;path&quot; value=&quot;Example3.java&quot;/&gt;
-    &lt;param name=&quot;type&quot; value=&quot;config&quot;/&gt;
+  &lt;macro name="example"&gt;
+    &lt;param name="path" value="Example3.java"/&gt;
+    &lt;param name="type" value="config"/&gt;
     &lt;!-- // violation above 'Type config is not allowed in this file'
     (Audit events with this message are not suppressed.) --&gt;
   &lt;/macro&gt;
-  &lt;macro name=&quot;example&quot;&gt;
-    &lt;param name=&quot;path&quot; value=&quot;Example4.java&quot;/&gt;
+  &lt;macro name="example"&gt;
+    &lt;param name="path" value="Example4.java"/&gt;
     &lt;!-- suppressed violation below  --&gt;
-    &lt;param name=&quot;type&quot; value=&quot;code&quot;/&gt;
+    &lt;param name="type" value="code"/&gt;
 &lt;!-- CSON --&gt;
   &lt;/macro&gt;
 &lt;/project&gt;
-        </source>
+</code></pre></div>
         <p>
           It is possible to specify the ID of checks, which can be used by the
           SuppressWithPlainTextCommentFilter to suppress audit events.
@@ -350,81 +350,81 @@ keyC=value5
           Checker is configured to check only XML files using RegexpSingleline check to detect
           disallowed 'code' and 'config' values for the 'type' parameter:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;xml&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;property name="fileExtensions" value="xml"/&gt;
 
-  &lt;module name=&quot;RegexpSingleline&quot;&gt;
-    &lt;property name=&quot;id&quot; value=&quot;typeCode&quot;/&gt;
-    &lt;property name=&quot;format&quot;
-        value=&quot;param\s+name=&amp;quot;type&amp;quot;\s+value=&amp;quot;code&amp;quot;&quot;/&gt;
-    &lt;property name=&quot;message&quot;
-        value=&quot;Type code is not allowed. Use type raw instead.&quot;/&gt;
+  &lt;module name="RegexpSingleline"&gt;
+    &lt;property name="id" value="typeCode"/&gt;
+    &lt;property name="format"
+        value="param\s+name=&amp;quot;type&amp;quot;\s+value=&amp;quot;code&amp;quot;"/&gt;
+    &lt;property name="message"
+        value="Type code is not allowed. Use type raw instead."/&gt;
   &lt;/module&gt;
 
-  &lt;module name=&quot;RegexpSingleline&quot;&gt;
-    &lt;property name=&quot;id&quot; value=&quot;typeConfig&quot;/&gt;
-    &lt;property name=&quot;format&quot;
-        value=&quot;param\s+name=&amp;quot;type&amp;quot;\s+value=&amp;quot;config&amp;quot;&quot;/&gt;
-    &lt;property name=&quot;message&quot; value=&quot;Type config is not allowed in this file.&quot;/&gt;
+  &lt;module name="RegexpSingleline"&gt;
+    &lt;property name="id" value="typeConfig"/&gt;
+    &lt;property name="format"
+        value="param\s+name=&amp;quot;type&amp;quot;\s+value=&amp;quot;config&amp;quot;"/&gt;
+    &lt;property name="message" value="Type config is not allowed in this file."/&gt;
   &lt;/module&gt;
 
-  &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
-    &lt;property name=&quot;offCommentFormat&quot; value=&quot;CSOFF (\w+) \(([\w\s]+)\)&quot;/&gt;
-    &lt;property name=&quot;onCommentFormat&quot; value=&quot;CSON (\w+)&quot;/&gt;
-    &lt;property name=&quot;idFormat&quot; value=&quot;$1&quot;/&gt;
+  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+    &lt;property name="offCommentFormat" value="CSOFF (\w+) \(([\w\s]+)\)"/&gt;
+    &lt;property name="onCommentFormat" value="CSON (\w+)"/&gt;
+    &lt;property name="idFormat" value="$1"/&gt;
   &lt;/module&gt;
 
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example7-raw">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;project&gt;
   &lt;p&gt;Examples:&lt;/p&gt;
 &lt;!-- CSOFF typeCode (OK to use examples of type code here) --&gt;
-  &lt;macro name=&quot;example&quot;&gt;
-    &lt;param name=&quot;path&quot; value=&quot;Example3.java&quot;/&gt;
-    &lt;param name=&quot;type&quot; value=&quot;config&quot;/&gt;
+  &lt;macro name="example"&gt;
+    &lt;param name="path" value="Example3.java"/&gt;
+    &lt;param name="type" value="config"/&gt;
     &lt;!-- // violation above 'Type config is not allowed in this file'
-    (Audit events from the check with id &quot;typeConfig&quot; are not suppressed) --&gt;
+    (Audit events from the check with id "typeConfig" are not suppressed) --&gt;
   &lt;/macro&gt;
-  &lt;macro name=&quot;example&quot;&gt;
-    &lt;param name=&quot;path&quot; value=&quot;Example4.sql&quot;/&gt;
+  &lt;macro name="example"&gt;
+    &lt;param name="path" value="Example4.sql"/&gt;
     &lt;!-- suppressed violation below  --&gt;
-    &lt;param name=&quot;type&quot; value=&quot;code&quot;/&gt;
+    &lt;param name="type" value="code"/&gt;
 &lt;!-- CSON typeCode --&gt;
   &lt;/macro&gt;
 &lt;/project&gt;
-        </source>
+</code></pre></div>
         <p id="Example8-config">
           Example of how to configure the check to suppress more than one check.
           Checker is configured to check only SQL files using RegexpSingleline check to detect
           usage of JOIN operations and LineLength check to detect lines exceeding 60
           characters:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;sql&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;property name="fileExtensions" value="sql"/&gt;
 
-  &lt;module name=&quot;RegexpSingleline&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;^.*JOIN\s.+\s(ON|USING)$&quot;/&gt;
-    &lt;property name=&quot;message&quot; value=&quot;Don't use JOIN, use sub-select instead.&quot;/&gt;
+  &lt;module name="RegexpSingleline"&gt;
+    &lt;property name="format" value="^.*JOIN\s.+\s(ON|USING)$"/&gt;
+    &lt;property name="message" value="Don't use JOIN, use sub-select instead."/&gt;
   &lt;/module&gt;
 
-  &lt;module name=&quot;LineLength&quot;&gt;
-    &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
+  &lt;module name="LineLength"&gt;
+    &lt;property name="max" value="60"/&gt;
   &lt;/module&gt;
 
-  &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
-    &lt;property name=&quot;offCommentFormat&quot; value=&quot;CSOFF\: ([\w\|]+)&quot;/&gt;
-    &lt;property name=&quot;onCommentFormat&quot; value=&quot;CSON\: ([\w\|]+)&quot;/&gt;
-    &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+    &lt;property name="offCommentFormat" value="CSOFF\: ([\w\|]+)"/&gt;
+    &lt;property name="onCommentFormat" value="CSON\: ([\w\|]+)"/&gt;
+    &lt;property name="checkFormat" value="$1"/&gt;
   &lt;/module&gt;
 
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example8-raw">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 -- CSOFF: RegexpSinglelineCheck
 -- CSOFF: LineLengthCheck
 SELECT name, job_name
@@ -433,7 +433,7 @@ FROM users AS u
 JOIN jobs AS j ON u.job_id = j.id
 -- suppressed violation below (LineLengthCheck)
 WHERE u.registration_date &gt;= '2023-01-01' AND u.status = 'active';
-        </source>
+</code></pre></div>
         <p id="Example9-config">
           This check is not limited to comments. It can match any symbols in the given file
           as <code>offCommentFormat</code> and <code>onCommentFormat</code> for suppression.
@@ -442,34 +442,34 @@ WHERE u.registration_date &gt;= '2023-01-01' AND u.status = 'active';
           Checker is configured to use LineLength check to detect lines exceeding the maximum
           length of 100 characters:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;LineLength&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;100&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="LineLength"&gt;
+      &lt;property name="max" value="100"/&gt;
   &lt;/module&gt;
 
-  &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
-    &lt;property name=&quot;offCommentFormat&quot; value='=\s+&quot;&quot;&quot;'/&gt;
-    &lt;property name=&quot;onCommentFormat&quot; value='^\s+&quot;&quot;&quot;;'/&gt;
+  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+    &lt;property name="offCommentFormat" value='=\s+"""'/&gt;
+    &lt;property name="onCommentFormat" value='^\s+""";'/&gt;
   &lt;/module&gt;
 
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example9-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example9 {
 
   // suppressed violation below, opening/closing quotes are 'offCommentFormat' and 'onCommentFormat'
-  static final String LOCATION_CSV_SAMPLE = &quot;&quot;&quot;
+  static final String LOCATION_CSV_SAMPLE = """
           locationId,label,regionId,regionLabel,vendorId,vendorLabel,address,address2,city,stateProvinceCode,zipCode,countryCode,latitude,longitude
           ST001,Station 001,ZONE1,Zone 1,CP1,Competitor 1,123 Street,Unit 2,Houston,TX,77033,US,29.761496813335178,-95.53049214204984
           ST002,Station 002,ZONE2,,CP2,,668 Street,Unit 23,San Jose,CA,95191,US,37.35102477242508,-121.9209934020318
-          &quot;&quot;&quot;;
+          """;
 
   // violation below, 'Line is longer than 100 characters (found 183).'
-  static final String SINGLE_LINE_SAMPLE = &quot;locationId,label,regionId,regionLabel,vendorId,vendorLabel,address,address2,city,stateProvinceCode,zipCode,countryCode,latitude,longitude&quot;;
+  static final String SINGLE_LINE_SAMPLE = "locationId,label,regionId,regionLabel,vendorId,vendorLabel,address,address2,city,stateProvinceCode,zipCode,countryCode,latitude,longitude";
 }
-        </source>
+</code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

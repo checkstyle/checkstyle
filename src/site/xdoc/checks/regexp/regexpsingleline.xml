@@ -80,11 +80,11 @@
         <p id="Example1-config">
         To configure the default check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;RegexpSingleline&quot; /&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpSingleline" /&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p>
         This configuration does not match to anything,
         so we do not provide any code example for it
@@ -94,19 +94,19 @@
         To configure the check to find occurrences of 'System.exit('
         with some <i>slack</i> of allowing only one occurrence per file:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;RegexpSingleline&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;System.exit\(&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpSingleline"&gt;
+    &lt;property name="format" value="System.exit\("/&gt;
     &lt;!-- next line not required as 0 is the default --&gt;
-    &lt;property name=&quot;minimum&quot; value=&quot;0&quot;/&gt;
-    &lt;property name=&quot;maximum&quot; value=&quot;1&quot;/&gt;
+    &lt;property name="minimum" value="0"/&gt;
+    &lt;property name="maximum" value="1"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
 
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   void myFunction() {
     try {
@@ -118,9 +118,9 @@ public class Example2 {
 
   void doSomething(){}
 }
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example with violation:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
   void myFunction() {
     try {
@@ -133,86 +133,86 @@ public class Example3 {
 
   void doSomething(){}
 }
-        </source>
+</code></pre></div>
         <p id="Example4-config">
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;RegexpSingleline&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;^[ ]*\* This file is copyrighted&quot;/&gt;
-    &lt;property name=&quot;minimum&quot; value=&quot;1&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpSingleline"&gt;
+    &lt;property name="format" value="^[ ]*\* This file is copyrighted"/&gt;
+    &lt;property name="minimum" value="1"/&gt;
     &lt;!--  Need to specify a maximum, so 10 times is more than enough. --&gt;
-    &lt;property name=&quot;maximum&quot; value=&quot;10&quot;/&gt;
+    &lt;property name="maximum" value="10"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
 * This file is copyrighted under CC.
 */
 public class Example4 {}
-        </source>
+</code></pre></div>
         <p id="Example5-config">
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;RegexpSingleline&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;^[ ]*\* This file is copyrighted&quot;/&gt;
-    &lt;property name=&quot;minimum&quot; value=&quot;1&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpSingleline"&gt;
+    &lt;property name="format" value="^[ ]*\* This file is copyrighted"/&gt;
+    &lt;property name="minimum" value="1"/&gt;
     &lt;!--  Need to specify a maximum, so 10 times is more than enough. --&gt;
-    &lt;property name=&quot;maximum&quot; value=&quot;10&quot;/&gt;
-    &lt;property name=&quot;message&quot;
-              value=&quot;File must contain copyright statement&quot;/&gt;
+    &lt;property name="maximum" value="10"/&gt;
+    &lt;property name="message"
+              value="File must contain copyright statement"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">Example with violation:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
 /* violation on first line 'File must contain copyright statement' */
 /**
  * MyClass as a configuration example.
  */
 public class Example5 {}
-        </source>
+</code></pre></div>
         <p id="Example6-config">
           An example of how to configure the check to make sure sql files contains the term
           'license'.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;RegexpSingleline&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;license&quot;/&gt;
-      &lt;property name=&quot;minimum&quot; value=&quot;1&quot;/&gt;
-      &lt;property name=&quot;maximum&quot; value=&quot;9999&quot;/&gt;
-      &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpSingleline"&gt;
+      &lt;property name="format" value="license"/&gt;
+      &lt;property name="minimum" value="1"/&gt;
+      &lt;property name="maximum" value="9999"/&gt;
+      &lt;property name="ignoreCase" value="true"/&gt;
       &lt;!--  Configure a message to be shown on violation of the Check. --&gt;
-      &lt;property name=&quot;message&quot;
-                value=&quot;File must contain at least one occurrence of 'license' term&quot;/&gt;
+      &lt;property name="message"
+                value="File must contain at least one occurrence of 'license' term"/&gt;
       &lt;!--  Perform the Check only on files with SQL extension. --&gt;
-      &lt;property name=&quot;fileExtensions&quot; value=&quot;sql&quot;/&gt;
+      &lt;property name="fileExtensions" value="sql"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example6-raw">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /*
  AP 2.0 License. // Ok, Check ignores the case of the term.
 */
 CREATE DATABASE MyDB;
-        </source>
+</code></pre></div>
         <p id="Example7-raw">Example with violation:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /* // violation, file doesn't contain the term.
  Example sql file.
 */
 CREATE DATABASE MyDB;
-        </source>
+</code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

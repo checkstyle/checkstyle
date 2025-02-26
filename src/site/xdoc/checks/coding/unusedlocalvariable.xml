@@ -43,18 +43,18 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;UnusedLocalVariable&quot;&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnusedLocalVariable"&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   {
     int k = 12; // violation, assign and update but never use 'k'
@@ -83,7 +83,7 @@ class Example1 {
     String s; // violation, unused named local variable 's'
     while ((s = reader.readLine()) != null) {}
     try (BufferedReader reader1 = // ok, 'reader1' is a resource
-                 new BufferedReader(new FileReader(&quot;abc.txt&quot;))) {}
+                 new BufferedReader(new FileReader("abc.txt"))) {}
     try {
     } catch (Exception e) { }  // ok, 'e' is an exception parameter
   }
@@ -97,27 +97,27 @@ class Example1 {
 
   void lambdas() {
     Predicate&lt;String&gt; obj = (String str) -&gt; true; // ok, 'str' is a lambda parameter
-    obj.test(&quot;Test&quot;);
+    obj.test("Test");
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
            To configure the check to violate variables named with a single underscore
            if they are not used:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;UnusedLocalVariable&quot;&gt;
-        &lt;property name=&quot;allowUnnamedVariables&quot; value=&quot;false&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnusedLocalVariable"&gt;
+        &lt;property name="allowUnnamedVariables" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   {
     int k = 12; // violation, assign and update but never use 'k'
@@ -146,7 +146,7 @@ class Example1 {
     String s; // violation, unused local variable 's'
     while ((s = reader.readLine()) != null) {}
     try (BufferedReader reader1 = // ok, 'reader1' is a resource
-                 new BufferedReader(new FileReader(&quot;abc.txt&quot;))) {}
+                 new BufferedReader(new FileReader("abc.txt"))) {}
     try {
     } catch (Exception e) { }  // ok, 'e' is an exception parameter
   }
@@ -160,10 +160,10 @@ class Example1 {
 
   void lambdas() {
     Predicate&lt;String&gt; obj = (String str) -&gt; true; // ok, 'str' is a lambda parameter
-    obj.test(&quot;Test&quot;);
+    obj.test("Test");
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

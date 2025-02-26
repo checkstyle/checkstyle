@@ -2,7 +2,7 @@
 RegexpSingleline
 format = (default)$.
 message = not expected
-fileExtensions = (default)all files
+fileExtensions = (default)""
 
 
 */

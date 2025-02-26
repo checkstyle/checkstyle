@@ -72,17 +72,17 @@
           To configure the default check that will check <code>@param</code>,
           <code>@deprecated</code>,<code>@throws</code>,<code>@return</code>:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;NonEmptyAtclauseDescription&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NonEmptyAtclauseDescription"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
         Example1:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
 
   /**
@@ -101,24 +101,24 @@ class Example1 {
     // violation 6 lines above 'At-clause should have a non-empty description'
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check to validate <code>@param</code>,
           <code>@throws</code> tags:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;NonEmptyAtclauseDescription&quot;&gt;
-      &lt;property name=&quot;javadocTokens&quot; value=&quot;PARAM_LITERAL,THROWS_LITERAL&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NonEmptyAtclauseDescription"&gt;
+      &lt;property name="javadocTokens" value="PARAM_LITERAL,THROWS_LITERAL"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
         Example2:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
 
   /**
@@ -137,7 +137,7 @@ class Example2 {
     // @return ignored as not mentioned in javadocTokens
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

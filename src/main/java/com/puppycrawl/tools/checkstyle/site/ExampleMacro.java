@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.apache.maven.doxia.macro.AbstractMacro;
@@ -33,7 +34,6 @@ import org.apache.maven.doxia.macro.Macro;
 import org.apache.maven.doxia.macro.MacroExecutionException;
 import org.apache.maven.doxia.macro.MacroRequest;
 import org.apache.maven.doxia.sink.Sink;
-import org.apache.maven.doxia.sink.impl.SinkEventAttributeSet;
 import org.codehaus.plexus.component.annotations.Component;
 
 /**
@@ -59,6 +59,12 @@ public class ExampleMacro extends AbstractMacro {
 
     /** Eight whitespace characters. All example source tags are indented 8 spaces. */
     private static final String INDENTATION = "        ";
+
+    /** The pattern of xml code blocks. */
+    private static final Pattern XML_PATTERN = Pattern.compile(
+            "^\\s*(<!DOCTYPE\\s+.*?>|<\\?xml\\s+.*?>|<module\\s+.*?>)\\s*",
+            Pattern.DOTALL
+    );
 
     /** The path of the last file. */
     private String lastPath = "";
@@ -168,16 +174,47 @@ public class ExampleMacro extends AbstractMacro {
     }
 
     /**
-     * Write the given snippet to the file inside a source block.
+     * Writes the given snippet inside a formatted source block.
      *
      * @param sink the sink to write to.
      * @param snippet the snippet to write.
      */
     private static void writeSnippet(Sink sink, String snippet) {
-        sink.verbatim(SinkEventAttributeSet.BOXED);
-        final String text = NEWLINE
-                + String.join(NEWLINE, snippet.stripTrailing(), INDENTATION);
-        sink.text(text);
-        sink.verbatim_();
+        sink.rawText("<div class=\"wrapper\">");
+        final boolean isXml = isXml(snippet);
+
+        final String languageClass;
+        if (isXml) {
+            languageClass = "language-xml";
+        }
+        else {
+            languageClass = "language-java";
+        }
+        sink.rawText("<pre class=\"prettyprint\"><code class=\"" + languageClass + "\">" + NEWLINE);
+        sink.rawText(escapeHtml(snippet).trim() + NEWLINE);
+        sink.rawText("</code></pre>");
+        sink.rawText("</div>");
+    }
+
+    /**
+     * Escapes HTML special characters in the snippet.
+     *
+     * @param snippet the snippet to escape.
+     * @return the escaped snippet.
+     */
+    private static String escapeHtml(String snippet) {
+        return snippet.replace("&", "&amp;")
+                .replace("<", "&lt;")
+                .replace(">", "&gt;");
+    }
+
+    /**
+     * Determines if the given snippet is likely an XML fragment.
+     *
+     * @param snippet the code snippet to analyze.
+     * @return {@code true} if the snippet appears to be XML, otherwise {@code false}.
+     */
+    private static boolean isXml(String snippet) {
+        return XML_PATTERN.matcher(snippet.trim()).matches();
     }
 }

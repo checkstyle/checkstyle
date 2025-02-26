@@ -58,22 +58,22 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;OrderedProperties&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="OrderedProperties"/&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-raw">
           Example properties file:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 A=65
 a=97
 key=107 than nothing
 key.sub=k is 107 and dot is 46
 key.png=value
 # // violation above 'Property key 'key.png' is not in the right order with previous property 'key.sub''
-        </source>
+</code></pre></div>
         <p>
           We check order of key's only. Here we would like to use a Locale independent
           order mechanism and binary order. The order is case-insensitive and ascending.

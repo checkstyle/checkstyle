@@ -36,7 +36,7 @@
         (ignoring leading asterisks, white space, and leading separator <code>/**</code>).
       </p>
       <p>For example, here is java file:</p>
-      <source><![CDATA[
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
 /**
  * My <b>class</b>.
  *
@@ -65,21 +65,21 @@ public class MyClass {
     return value * 2;
   }
 }
-      ]]></source>
+      ]]></code></pre></div>
       <p>Javadoc content for the MyClass will be:</p>
-      <source><![CDATA[
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
     My <b>class</b>.
 
     @see Annotation
-      ]]></source>
+      ]]></code></pre></div>
       <p>Javadoc content for the MyClass.method will be:</p>
-      <source><![CDATA[
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
     Doubles the value.
     The long and detailed explanation what the method does.
 
     @param value for doubling.
     @return double value.
-      ]]></source>
+      ]]></code></pre></div>
       <p>
       Attention that java comment starts with <code>/*</code>, following with Identifier of
       comment type. Javadoc Identifier is <code>*</code>. All symbols after Javadoc
@@ -221,7 +221,7 @@ public class MyClass {
       checkstyle jar file with the <b>-J</b> argument, providing a java file.
       </p>
       <p>For example, here is MyClass.java file:</p>
-      <source><![CDATA[
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
 /**
  * My <b>class</b>.
  * @see AbstractClass
@@ -229,15 +229,15 @@ public class MyClass {
 public class MyClass {
 
 }
-      ]]></source>
+      ]]></code></pre></div>
       <p>Command:</p>
       <div class="wrap-content">
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
           java -jar checkstyle-X.XX-all.jar -J MyClass.java
-        </source>
+        </code></pre></div>
       </div>
       <p>Output:</p>
-      <source><![CDATA[
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
 CLASS_DEF -> CLASS_DEF [5:0]
 |--MODIFIERS -> MODIFIERS [5:0]
 |   |--BLOCK_COMMENT_BEGIN -> /* [1:0]
@@ -277,7 +277,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
 `--OBJBLOCK -> OBJBLOCK [5:21]
     |--LCURLY -> { [5:21]
     `--RCURLY -> } [7:0]
-      ]]></source>
+      ]]></code></pre></div>
       <p>
         In most cases while developing Javadoc Checks, you need to only parse the tree of the exact
         Javadoc comment. To do that just copy Javadoc comment to a separate file and remove
@@ -285,19 +285,19 @@ CLASS_DEF -> CLASS_DEF [5:0]
         <b>-j</b> argument.
       </p>
       <p>MyJavadocComment.javadoc file:</p>
-      <source><![CDATA[
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
  * My <b>class</b>.
  * @see AbstractClass
-      ]]></source>
+      ]]></code></pre></div>
       <p>Command:</p>
       <div class="wrap-content">
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
           java -jar checkstyle-X.XX-all.jar \
           &#xa0;&#xa0;&#xa0;&#xa0;-j MyJavadocComment.javadoc
-        </source>
+        </code></pre></div>
       </div>
       <p>Output:</p>
-      <source><![CDATA[
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
 JAVADOC -> JAVADOC [0:0]
 |--LEADING_ASTERISK ->  * [0:0]
 |--TEXT ->  My  [0:2]
@@ -323,7 +323,7 @@ JAVADOC -> JAVADOC [0:0]
 |   `--REFERENCE -> REFERENCE [1:8]
 |       `--CLASS -> AbstractClass [1:8]
 `--EOF -> <EOF> [1:21]
-      ]]></source>
+      ]]></code></pre></div>
     </section>
 
     <section name="Access Java AST from Javadoc Check">
@@ -347,7 +347,7 @@ JAVADOC -> JAVADOC [0:0]
       <p>
         Example:
       </p>
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class MyCheck extends AbstractJavadocCheck {
 
     @Override
@@ -373,7 +373,7 @@ class MyCheck extends AbstractJavadocCheck {
         }
     }
 }
-      </source>
+      </code></pre></div>
     </section>
 
     <section name="HTML Code In Javadoc Comments">
@@ -415,11 +415,11 @@ class MyCheck extends AbstractJavadocCheck {
         Always follow <a href="#Tight-HTML_rules">Tight-HTML rules</a> to make the
         Checkstyle javadoc parser create nested ASTs, even though tags are unknown.
 
-        <source><![CDATA[
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml"><![CDATA[
 <audio><source src="horse.ogg" type="audio/ogg"/></audio>
-        ]]></source>
+        ]]></code></pre></div>
 
-        <source><![CDATA[
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
 JAVADOC -> JAVADOC [0:0]
 |--HTML_ELEMENT -> HTML_ELEMENT [0:0]
 |   `--HTML_TAG -> HTML_TAG [0:0]
@@ -449,21 +449,23 @@ JAVADOC -> JAVADOC [0:0]
 |           |--HTML_TAG_NAME -> audio [0:53]
 |           `--END -> > [0:58]
 `--EOF -> <EOF> [0:59]
-        ]]></source>
+        ]]></code></pre></div>
       </p>
 
       <p>
         This is an example of parsing an unknown tag that doesn't have a matching end tag (for
         example, HTML5 tag &lt;audio&gt;): <br/>
         Input:
-        <source>&lt;audio&gt;test</source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        &lt;audio&gt;test
+        </code></pre></div>
         Output:
       </p>
       <div class="wrap-content">
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
           [ERROR:0] Javadoc comment at column 1 has parse error. Missed HTML close tag 'audio'.
           Sometimes it means that close tag missed for one of previous tags.
-        </source>
+        </code></pre></div>
       </div>
       <p>
         As you see, the Javadoc parser prints an error and doesn't build the AST if an unknown
@@ -480,13 +482,13 @@ JAVADOC -> JAVADOC [0:0]
         Example:
         <br/>
         Input:
-        <source><![CDATA[
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml"><![CDATA[
 <acronym title="as soon as possible">ASAP</acronym>
 ]]>
-        </source>
+        </code></pre></div>
         <br/>
         Output:
-        <source><![CDATA[
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
 JAVADOC -> JAVADOC [0:0]
 |--HTML_ELEMENT -> HTML_ELEMENT [0:0]
 |   `--HTML_TAG -> HTML_TAG [0:0]
@@ -507,7 +509,7 @@ JAVADOC -> JAVADOC [0:0]
 |           `--END -> > [0:51]
 `--EOF -> <EOF> [0:52]
 ]]>
-        </source>
+        </code></pre></div>
       </p>
 
       <p>More examples:</p>
@@ -529,24 +531,24 @@ JAVADOC -> JAVADOC [0:0]
 
           <tr>
             <td>
-              <source><![CDATA[
+              <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
 <p> First
 <p> Second
 ]]>
-              </source>
+              </code></pre></div>
             </td>
             <td>
-              <source><![CDATA[
+              <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
 <p> First </p>
 <p> Second </p>
 ]]>
-              </source>
+              </code></pre></div>
             </td>
           </tr>
 
           <tr>
             <td>
-              <source><![CDATA[
+              <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
 JAVADOC -> JAVADOC [0:0]
 |--HTML_ELEMENT -> HTML_ELEMENT [0:0]
 |   `--P_TAG_START -> P_TAG_START [0:0]
@@ -563,10 +565,10 @@ JAVADOC -> JAVADOC [0:0]
 |--TEXT ->  Second [1:3]
 `--EOF -> <EOF> [1:10]
 ]]>
-              </source>
+              </code></pre></div>
             </td>
             <td>
-              <source><![CDATA[
+              <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
 JAVADOC -> JAVADOC [0:0]
 |--HTML_ELEMENT -> HTML_ELEMENT [0:0]
 |   `--PARAGRAPH -> PARAGRAPH [0:0]
@@ -595,7 +597,7 @@ JAVADOC -> JAVADOC [0:0]
 |           `--END -> > [1:14]
 `--EOF -> <EOF> [1:15]
 ]]>
-              </source>
+              </code></pre></div>
             </td>
           </tr>
         </table>
@@ -616,7 +618,7 @@ JAVADOC -> JAVADOC [0:0]
         Input:
       </p>
 
-      <source><![CDATA[
+      <div class="wrapper"><pre class="prettyprint"><code class="language-text"><![CDATA[
 /**
   * <body>
   * <p> This class is only meant for testing. </p>
@@ -649,7 +651,7 @@ JAVADOC -> JAVADOC [0:0]
      private int field4;
 }
 ]]>
-      </source>
+      </code></pre></div>
 
       <p>
         Output with <tt>violateExecutionOnNonTightHtml</tt> set to false:
@@ -659,7 +661,7 @@ JAVADOC -> JAVADOC [0:0]
         <table>
           <tr>
             <td>
-              <source><![CDATA[
+              <div class="wrapper"><pre class="prettyprint"><code class="language-xml"><![CDATA[
 <!DOCTYPE module PUBLIC
           "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
           "https://checkstyle.org/dtds/configuration_1_3.dtd">
@@ -670,16 +672,16 @@ JAVADOC -> JAVADOC [0:0]
     </module>
   </module>
 </module>
-              ]]></source>
+              ]]></code></pre></div>
             </td>
 
             <td>
-              <source><![CDATA[
+              <div class="wrapper"><pre class="prettyprint"><code class="language-xml"><![CDATA[
 Starting audit...
 [ERROR] Test.java:11: Redundant <p> tag. [JavadocParagraph]
 Audit done.
 Checkstyle ends with 1 errors.
-              ]]></source>
+              ]]></code></pre></div>
             </td>
           </tr>
         </table>
@@ -693,7 +695,7 @@ Checkstyle ends with 1 errors.
         <table>
           <tr>
             <td>
-              <source><![CDATA[
+              <div class="wrapper"><pre class="prettyprint"><code class="language-xml"><![CDATA[
 <!DOCTYPE module PUBLIC
           "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
           "https://checkstyle.org/dtds/configuration_1_3.dtd">
@@ -704,11 +706,11 @@ Checkstyle ends with 1 errors.
     </module>
   </module>
 </module>
-              ]]></source>
+              ]]></code></pre></div>
             </td>
 
             <td>
-              <source><![CDATA[
+              <div class="wrapper"><pre class="prettyprint"><code class="language-xml"><![CDATA[
 Starting audit...
 [ERROR] Test.java:4: Unclosed HTML tag found: p [JavadocParagraph]
 [ERROR] Test.java:11: Redundant <p> tag. [JavadocParagraph]
@@ -717,7 +719,7 @@ Starting audit...
 [ERROR] Test.java:23: Unclosed HTML tag found: p [JavadocParagraph]
 Audit done.
 Checkstyle ends with 5 errors.
-              ]]></source>
+              ]]></code></pre></div>
             </td>
           </tr>
         </table>
@@ -730,9 +732,9 @@ Checkstyle ends with 5 errors.
        use
       </p>
       <div class="wrap-content">
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
           java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gui.Main
-        </source>
+        </code></pre></div>
       </div>
       <p>
        and choose "JAVA WITH JAVADOC MODE" in dropdown list in bottom of frame.

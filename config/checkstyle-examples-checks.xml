@@ -107,6 +107,11 @@
     <property name="eachLine" value="false"/>
   </module>
 
+  <!-- Exclude from audit as non-parsable -->
+  <module name="BeforeExecutionExclusionFileFilter">
+    <property name="fileNamePattern" value="module\-info\.java$"/>
+  </module>
+
   <module name="TreeWalker">
 
     <module name="PackageDeclaration"/>

@@ -223,7 +223,7 @@
     <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
     <java.version>11</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
-    <pitest.plugin.version>1.17.4</pitest.plugin.version>
+    <pitest.plugin.version>1.18.2</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
@@ -286,7 +286,7 @@
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
-      <version>1.10.0</version>
+      <version>1.10.1</version>
       <exclusions>
         <exclusion>
           <groupId>commons-logging</groupId>
@@ -345,7 +345,7 @@
     <dependency>
       <groupId>com.tngtech.archunit</groupId>
       <artifactId>archunit-junit5</artifactId>
-      <version>1.3.0</version>
+      <version>1.4.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -377,7 +377,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.18.2</version>
+      <version>3.19.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -1681,7 +1681,7 @@
           </execution>
         </executions>
         <configuration>
-          <!-- until #16077 -->
+          <!-- until #16242 -->
           <skip>true</skip>
           <catalogHandling>strict</catalogHandling>
           <!-- We need to exclude some files, so the default configuration is not suitable. -->

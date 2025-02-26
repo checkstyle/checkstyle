@@ -86,137 +86,137 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavaNCSS&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavaNCSS"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example1:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
 
 class Example1 {
 
   public void testMethod1() {
-    System.out.println(&quot;m-1:Line 1&quot;);
-    System.out.println(&quot;m-1:Line 2&quot;);
-    System.out.println(&quot;m-1:Line 3&quot;);
-    System.out.println(&quot;m-1:Line 4&quot;);
-    System.out.println(&quot;m-1:Line 5&quot;);
+    System.out.println("m-1:Line 1");
+    System.out.println("m-1:Line 2");
+    System.out.println("m-1:Line 3");
+    System.out.println("m-1:Line 4");
+    System.out.println("m-1:Line 5");
   }
 
   public void testMethod2() {
-    System.out.println(&quot;m-2:Line 1&quot;);
-    System.out.println(&quot;m-2:Line 2&quot;);
-    System.out.println(&quot;m-2:Line 3&quot;);
+    System.out.println("m-2:Line 1");
+    System.out.println("m-2:Line 2");
+    System.out.println("m-2:Line 3");
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check with 4 allowed non commented lines for a method:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavaNCSS&quot;&gt;
-      &lt;property name=&quot;methodMaximum&quot; value=&quot;4&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavaNCSS"&gt;
+      &lt;property name="methodMaximum" value="4"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Example2:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
 
 class Example2 {
   // violation below, 'NCSS for this method is 6 (max allowed is 4)'
   public void testMethod1() {
-    System.out.println(&quot;m-1:Line 1&quot;);
-    System.out.println(&quot;m-1:Line 2&quot;);
-    System.out.println(&quot;m-1:Line 3&quot;);
-    System.out.println(&quot;m-1:Line 4&quot;);
-    System.out.println(&quot;m-1:Line 5&quot;);
+    System.out.println("m-1:Line 1");
+    System.out.println("m-1:Line 2");
+    System.out.println("m-1:Line 3");
+    System.out.println("m-1:Line 4");
+    System.out.println("m-1:Line 5");
   }
 
   public void testMethod2() {
-    System.out.println(&quot;m-2:Line 1&quot;);
-    System.out.println(&quot;m-2:Line 2&quot;);
-    System.out.println(&quot;m-2:Line 3&quot;);
+    System.out.println("m-2:Line 1");
+    System.out.println("m-2:Line 2");
+    System.out.println("m-2:Line 3");
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           To configure the check to set limit of non commented lines in class to 10:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavaNCSS&quot;&gt;
-      &lt;property name=&quot;classMaximum&quot; value=&quot;10&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavaNCSS"&gt;
+      &lt;property name="classMaximum" value="10"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example3:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
 
 class Example3 {
   // violation above, 'NCSS for this class is 11 (max allowed is 10)'
   public void testMethod1() {
-    System.out.println(&quot;m-1:Line 1&quot;);
-    System.out.println(&quot;m-1:Line 2&quot;);
-    System.out.println(&quot;m-1:Line 3&quot;);
-    System.out.println(&quot;m-1:Line 4&quot;);
-    System.out.println(&quot;m-1:Line 5&quot;);
+    System.out.println("m-1:Line 1");
+    System.out.println("m-1:Line 2");
+    System.out.println("m-1:Line 3");
+    System.out.println("m-1:Line 4");
+    System.out.println("m-1:Line 5");
   }
 
   public void testMethod2() {
-    System.out.println(&quot;m-2:Line 1&quot;);
-    System.out.println(&quot;m-2:Line 2&quot;);
-    System.out.println(&quot;m-2:Line 3&quot;);
+    System.out.println("m-2:Line 1");
+    System.out.println("m-2:Line 2");
+    System.out.println("m-2:Line 3");
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example4-config">
           To configure the check to set limit of non commented lines in file to 10:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavaNCSS&quot;&gt;
-      &lt;property name=&quot;fileMaximum&quot; value=&quot;10&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavaNCSS"&gt;
+      &lt;property name="fileMaximum" value="10"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example4:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
 // violation above, 'NCSS for this file is 12 (max allowed is 10)'
 class Example4 {
 
   public void testMethod1() {
-    System.out.println(&quot;m-1:Line 1&quot;);
-    System.out.println(&quot;m-1:Line 2&quot;);
-    System.out.println(&quot;m-1:Line 3&quot;);
-    System.out.println(&quot;m-1:Line 4&quot;);
-    System.out.println(&quot;m-1:Line 5&quot;);
+    System.out.println("m-1:Line 1");
+    System.out.println("m-1:Line 2");
+    System.out.println("m-1:Line 3");
+    System.out.println("m-1:Line 4");
+    System.out.println("m-1:Line 5");
   }
 
   public void testMethod2() {
-    System.out.println(&quot;m-2:Line 1&quot;);
-    System.out.println(&quot;m-2:Line 2&quot;);
-    System.out.println(&quot;m-2:Line 3&quot;);
+    System.out.println("m-2:Line 1");
+    System.out.println("m-2:Line 2");
+    System.out.println("m-2:Line 3");
   }
 }
-        </source>
+</code></pre></div>
 
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">

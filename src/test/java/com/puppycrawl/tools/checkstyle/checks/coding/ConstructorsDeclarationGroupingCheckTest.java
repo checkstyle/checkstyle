@@ -42,13 +42,22 @@ public class ConstructorsDeclarationGroupingCheckTest extends AbstractModuleTest
             "59:9: " + getCheckMessage(MSG_KEY, 39),
             "63:5: " + getCheckMessage(MSG_KEY, 19),
             "66:5: " + getCheckMessage(MSG_KEY, 19),
-            "85:7: " + getCheckMessage(MSG_KEY, 81),
-            "90:7: " + getCheckMessage(MSG_KEY, 81),
-            "93:7: " + getCheckMessage(MSG_KEY, 81),
-            "97:5: " + getCheckMessage(MSG_KEY, 19),
         };
         verifyWithInlineConfigParser(
                 getPath("InputConstructorsDeclarationGrouping.java"), expected);
+    }
+
+    @Test
+    public void testConstructorsDeclarationGroupingInner() throws Exception {
+        final String[] expected = {
+            "29:9: " + getCheckMessage(MSG_KEY, 25),
+            "34:9: " + getCheckMessage(MSG_KEY, 25),
+            "37:9: " + getCheckMessage(MSG_KEY, 25),
+            "41:5: " + getCheckMessage(MSG_KEY, 11),
+
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputConstructorsDeclarationGroupingInner.java"), expected);
     }
 
     @Test

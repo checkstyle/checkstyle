@@ -129,17 +129,17 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;NPathComplexity&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NPathComplexity"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public abstract class Example1 {
   final int a = 0;
   int b = 0;
@@ -189,23 +189,23 @@ public abstract class Example1 {
   public abstract String buzz();
   public abstract void print(String str);
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check with a threshold of 100:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;NPathComplexity&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;100&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NPathComplexity"&gt;
+      &lt;property name="max" value="100"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public abstract class Example2 {
   public void foo() { // violation, NPath complexity is 128 (max allowed is 100)
     int a,b,t,m,n;
@@ -235,7 +235,7 @@ public abstract class Example2 {
   public abstract String baz();
   public abstract void print(String str);
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

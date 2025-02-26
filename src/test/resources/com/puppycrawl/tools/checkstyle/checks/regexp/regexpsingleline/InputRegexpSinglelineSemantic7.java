@@ -5,7 +5,7 @@ message = (default)
 ignoreCase = (default)false
 minimum = (default)0
 maximum = 1
-fileExtensions = (default)all files
+fileExtensions = (default)""
 
 
 */

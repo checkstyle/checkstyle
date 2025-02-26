@@ -16,5 +16,5 @@ package com.puppycrawl.tools.checkstyle.filters.suppressionfilter;
 
 public class InputSuppressionFilter7 {
 
-    public final static int bad_name = 1; // filtered violation
+    public final static int bad_name = 1; // filtered violation ''bad_name' must match pattern'
 }

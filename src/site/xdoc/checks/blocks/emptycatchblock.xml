@@ -55,15 +55,15 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;EmptyCatchBlock&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyCatchBlock"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Such empty blocks would be both suppressed:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   private void exampleMethod1() {
     try {
@@ -95,23 +95,23 @@ public class Example1 {
     }
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
           To configure the check to suppress empty catch block if exception's variable name is
           <code>expected</code> or <code>ignore</code> or there's any comment inside:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
-      &lt;property name=&quot;exceptionVariableName&quot; value=&quot;expected|ignore&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyCatchBlock"&gt;
+      &lt;property name="exceptionVariableName" value="expected|ignore"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Such empty blocks would be both suppressed:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   private void exampleMethod1() {
     try {
@@ -143,23 +143,23 @@ public class Example2 {
     }
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example3-config">
           To configure the check to suppress empty catch block if single-line comment inside
            is &quot;This is expected&quot;:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
-      &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyCatchBlock"&gt;
+      &lt;property name="commentFormat" value="This is expected"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Such empty blocks would be both suppressed:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
   private void exampleMethod1() {
     try {
@@ -191,23 +191,23 @@ public class Example3 {
     }
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example4-config">
           To configure the check to suppress empty catch block if single-line comment inside
           is &quot;This is expected&quot;:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
-      &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyCatchBlock"&gt;
+      &lt;property name="commentFormat" value="This is expected"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Such empty blocks would be both suppressed:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
   private void exampleMethod1() {
     try {
@@ -254,23 +254,23 @@ public class Example4 {
     }
   }
 }
-        </source>
+</code></pre></div>
 
         <p id="Example5-config">
           To configure the check to suppress empty catch block if
           exception's variable name is &quot;myException&quot;:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
-      &lt;property name=&quot;exceptionVariableName&quot; value=&quot;myException&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyCatchBlock"&gt;
+      &lt;property name="exceptionVariableName" value="myException"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">Such empty blocks would be both suppressed:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example5 {
   private void exampleMethod1() {
     try {
@@ -286,7 +286,7 @@ public class Example5 {
     }
   }
 }
-        </source>
+</code></pre></div>
 
       </subsection>
 

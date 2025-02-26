@@ -74,17 +74,17 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SeparatorWrap&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SeparatorWrap"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.io.
           IOException; // OK, dot is on the previous line
 
@@ -102,30 +102,30 @@ class Example1 {
     }
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check for
           <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
             METHOD_REF</a> at new line:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SeparatorWrap&quot;&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;METHOD_REF&quot;/&gt;
-      &lt;property name=&quot;option&quot; value=&quot;nl&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SeparatorWrap"&gt;
+      &lt;property name="tokens" value="METHOD_REF"/&gt;
+      &lt;property name="option" value="nl"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.util.Arrays;
 
 class Example2 {
-  String[] stringArray = {&quot;foo&quot;, &quot;bar&quot;};
+  String[] stringArray = {"foo", "bar"};
 
   void fun() {
     // violation below ''::' should be on a new line'
@@ -135,24 +135,24 @@ class Example2 {
       ::compareTo); // OK, because it is on a new line
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           To configure the check for comma at the new line:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SeparatorWrap&quot;&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;COMMA&quot;/&gt;
-      &lt;property name=&quot;option&quot; value=&quot;nl&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SeparatorWrap"&gt;
+      &lt;property name="tokens" value="COMMA"/&gt;
+      &lt;property name="option" value="nl"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
   String s;
 
@@ -169,7 +169,7 @@ class Example3 {
                 , int q) { // OK, because it is on a new line
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -26,18 +26,18 @@
         3. Clone your forked repository to your computer:
       </p>
       <div class="wrap-content">
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
             git clone git@github.com:your_user_name/checkstyle.git
-        </source>
+        </code></pre></div>
       </div>
       <p>
         4. Before opening project in IDE, build the project in your terminal to download<br/>
         all needed artifacts. From the repository root folder, run:
       </p>
       <div class="wrap-content">
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
             mvn install
-        </source>
+        </code></pre></div>
       </div>
     </section>
 
@@ -61,34 +61,34 @@
         naming it "upstream":
       </p>
       <div class="wrap-content">
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
           git remote add upstream https://github.com/checkstyle/checkstyle
-        </source>
+        </code></pre></div>
       </div>
       <p>
            2) Create a branch for a new check:
       </p>
       <div class="wrap-content">
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
           git checkout -b my-new-check
-        </source>
+        </code></pre></div>
       </div>
       <p>
            3) Commit changes to my-new-check branch:
       </p>
       <div class="wrap-content">
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
           git add .
           git commit -m "commit message"
-        </source>
+        </code></pre></div>
       </div>
       <p>
            4) Push branch to GitHub, to allow your mentor to review your code:
       </p>
       <div class="wrap-content">
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
           git push origin my-new-check
-        </source>
+        </code></pre></div>
       </div>
       <p>
            5) Repeat steps 3-4 till development is complete<br/>
@@ -97,50 +97,52 @@
            our <a href="https://github.com/checkstyle/checkstyle/wiki/PR-rules">wiki</a>.
       </p>
       <div class="wrap-content">
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
           git rebase -i master
           git push --force origin my-new-check
-        </source>
+        </code></pre></div>
       </div>
       <p>
            6) Update current branch and local master by pulling changes that were done<br/>
            by other contributors:
       </p>
       <div class="wrap-content">
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
           git checkout master
           git pull upstream master
           git push origin master
-        </source>
+        </code></pre></div>
       </div>
       <p>
            7) Rebase your branch on your updated master:
       </p>
       <div class="wrap-content">
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
           git checkout my-new-check
           git rebase master
-        </source>
+        </code></pre></div>
       </div>
       <p>
            8) In the process of the rebase, it may discover conflicts.<br/>
            In that case it will stop and allow you to fix the conflicts.<br/>
            After fixing conflicts, use
       </p>
-      <source>git add .</source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-text">
+        git add .
+      </code></pre></div>
       <p> to update the index with those contents, and then just run:</p>
       <div class="wrap-content">
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
           git rebase --continue
-        </source>
+        </code></pre></div>
       </div>
       <p>
            9) Push branch to GitHub (with all your final changes and actual code of Checkstyle):
       </p>
       <div class="wrap-content">
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
           git push --force origin my-new-check
-        </source>
+        </code></pre></div>
       </div>
       <p>
          10) Only after all content is finished and testing is done - send a

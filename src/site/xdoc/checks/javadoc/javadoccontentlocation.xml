@@ -97,18 +97,18 @@ public void method();
           To configure the default check to validate that the Javadoc content starts from the
           second line:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavadocContentLocation&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocContentLocation"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">
           This setting produces a violation for each multi-line comment
           starting on the same line as the initial asterisks:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
 
   // violation below 'Javadoc content should start from the next line.'
@@ -126,25 +126,25 @@ class Example1 {
   private int field3;
 
 }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
           To ensure that Javadoc content starts from the first line:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;JavadocContentLocation&quot;&gt;
-      &lt;property name=&quot;location&quot; value=&quot;first_line&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocContentLocation"&gt;
+      &lt;property name="location" value="first_line"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">
           This setting produces a violation for each comment not
           starting on the same line as the initial asterisks:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
 
   /** This comment is OK because it starts on the first line.
@@ -162,7 +162,7 @@ class Example2 {
   private int field3;
 
 }
-        </source>
+</code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

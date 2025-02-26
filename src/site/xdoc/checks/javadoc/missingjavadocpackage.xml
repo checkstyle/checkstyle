@@ -30,28 +30,28 @@
         <p id="javadoc-package-info-config">
             To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MissingJavadocPackage&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocPackage"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="javadoc-package-info-code">Example1 of package-info.java:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * Provides API classes
  */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.javadoc;
-        </source>
+</code></pre></div>
         <p id="nojavadoc-package-info-code">Example2 of package-info.java:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /*
  * Block comment is not a javadoc
  */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.nojavadoc;
 // violation above 'Missing javadoc for package-info.java file'
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

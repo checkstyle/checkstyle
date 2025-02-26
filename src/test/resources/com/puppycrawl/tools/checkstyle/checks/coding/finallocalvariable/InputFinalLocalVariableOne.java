@@ -15,7 +15,8 @@ public class InputFinalLocalVariableOne {
     static
     {
         int i, j = 0; // 2 violations
-        Runnable runnable = new Runnable() // violation
+        // violation below "Variable 'runnable' should be declared final"
+        Runnable runnable = new Runnable()
         {
             public void run()
             {
@@ -25,27 +26,27 @@ public class InputFinalLocalVariableOne {
     /** constructor */
     public InputFinalLocalVariableOne()
     {
-        int i = 0; // violation
+        int i = 0; // violation, "Variable 'i' should be declared final"
         // final variable
         final int j = 2;
 
-        int z; // violation
+        int z; // violation, "Variable 'z' should be declared final"
 
-        Object obj = new Object(); // violation
+        Object obj = new Object(); // violation, "Variable 'obj' should be declared final"
 
         int k = 0;
 
-        String x = obj.toString(); // violation
+        String x = obj.toString(); // violation, "Variable 'x' should be declared final"
 
         k++;
 
         k = 2;
-
-        Runnable runnable = new Runnable() // violation
+        // violation below "Variable 'runnable' should be declared final"
+        Runnable runnable = new Runnable()
         {
             public void run()
             {
-                int q = 0; // violation
+                int q = 0; // violation, "Variable 'q' should be declared final"
             }
         };
     }
@@ -61,17 +62,17 @@ public class InputFinalLocalVariableOne {
 
     public void aMethod()
     {
-        int i = 0; // violation
+        int i = 0; // violation, "Variable 'i' should be declared final"
 
         final int j = 2;
 
-        int z; // violation
+        int z; // violation, "Variable 'z' should be declared final"
 
-        Object obj = new Object(); // violation
+        Object obj = new Object(); // violation, "Variable 'obj' should be declared final"
 
         int k = 0;
 
-        String x = obj.toString(); // violation
+        String x = obj.toString(); // violation, "Variable 'x' should be declared final"
 
         k++;
 
@@ -79,8 +80,9 @@ public class InputFinalLocalVariableOne {
         {
             public Inner()
             {
-                int w = 0; // violation
-                Runnable runnable = new Runnable() // violation
+                int w = 0; // violation, "Variable 'w' should be declared final"
+                // violation below  "Variable 'runnable' should be declared final"
+                Runnable runnable = new Runnable()
                 {
                     public void run()
                     {

@@ -76,17 +76,17 @@
           To configure the check so that it accepts at most 4
           lines:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MethodLength&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;4&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodLength"&gt;
+      &lt;property name="max" value="4"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
 
   // violation below, 'Method Example1 length is 5 lines (max allowed is 4)'
@@ -112,42 +112,42 @@ public class Example1 {
 
   public void secondMethod() {
     // comments are counted by default
-    System.out.println(&quot;line 3&quot;);
+    System.out.println("line 3");
   }
 
   // violation below, 'Method thirdMethod length is 5 lines (max allowed is 4)'
   public void thirdMethod() {
 
     // empty line above is counted by default,just like this comment
-    System.out.println(&quot;line 4&quot;);
+    System.out.println("line 4");
   }
 
   record MyBadRecord() {
     // violation below, 'Method MyBadRecord length is 5 lines (max allowed is 4)'
     public MyBadRecord {
 
-      System.out.println(&quot;line3&quot;);
-      System.out.println(&quot;line4&quot;);
+      System.out.println("line3");
+      System.out.println("line4");
     }
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check so that it accepts methods with at most 4
           lines:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MethodLength&quot;&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
-      &lt;property name=&quot;max&quot; value=&quot;4&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodLength"&gt;
+      &lt;property name="tokens" value="METHOD_DEF"/&gt;
+      &lt;property name="max" value="4"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
 
   // ok, CTOR_DEF is not in configured tokens
@@ -173,43 +173,43 @@ public class Example2 {
 
   public void secondMethod() {
     // comments are counted by default
-    System.out.println(&quot;line 3&quot;);
+    System.out.println("line 3");
   }
 
   // violation below, 'Method thirdMethod length is 5 lines (max allowed is 4)'
   public void thirdMethod() {
 
     // empty line above is counted by default,just like this comment
-    System.out.println(&quot;line 4&quot;);
+    System.out.println("line 4");
   }
 
   record MyBadRecord() {
     // ok, COMPACT_CTOR_DEF is not in configured tokens
     public MyBadRecord {
 
-      System.out.println(&quot;line3&quot;);
-      System.out.println(&quot;line4&quot;);
+      System.out.println("line3");
+      System.out.println("line4");
     }
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           To configure the check so that it accepts methods with at most 4
           lines, not counting empty lines and comments:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MethodLength&quot;&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
-      &lt;property name=&quot;max&quot; value=&quot;4&quot;/&gt;
-      &lt;property name=&quot;countEmpty&quot; value=&quot;false&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodLength"&gt;
+      &lt;property name="tokens" value="METHOD_DEF"/&gt;
+      &lt;property name="max" value="4"/&gt;
+      &lt;property name="countEmpty" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
 
   // ok, CTOR_DEF is not in configured tokens
@@ -235,25 +235,25 @@ public class Example3 {
 
   public void secondMethod() {
     // countEmpty property is false,so this line doesn't count
-    System.out.println(&quot;line 3&quot;);
+    System.out.println("line 3");
   }
 
   public void thirdMethod() {
 
     // countEmpty property is false,so this line and the line above don't count
-    System.out.println(&quot;line 4&quot;);
+    System.out.println("line 4");
   }
 
   record MyBadRecord() {
     // ok, COMPACT_CTOR_DEF is not in configured tokens
     public MyBadRecord {
 
-      System.out.println(&quot;line3&quot;);
-      System.out.println(&quot;line4&quot;);
+      System.out.println("line3");
+      System.out.println("line4");
     }
   }
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

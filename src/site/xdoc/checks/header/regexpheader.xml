@@ -70,32 +70,32 @@
             To configure the check such that no violations arise.
             Default values of properties are used.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;RegexpHeader&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpHeader"/&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example1:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.header.header;
 // OK, as by default there is not specific header defined to validate it presence
 public class Example1 { }
-        </source>
+</code></pre></div>
 
         <p id="Example2-config">
           To configure the check to use header file <code>&quot;java.header&quot;</code> and
           <code>10</code> and <code>13</code> multi-lines:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;RegexpHeader&quot;&gt;
-    &lt;property name=&quot;headerFile&quot; value=&quot;${config.folder}/java.header&quot;/&gt;
-    &lt;property name=&quot;multiLines&quot; value=&quot;10, 13&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpHeader"&gt;
+    &lt;property name="headerFile" value="${config.folder}/java.header"/&gt;
+    &lt;property name="multiLines" value="10, 13"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="java-raw">content of &quot;java.header&quot; file:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 20XX-20XX the original author or authors.
@@ -114,57 +114,57 @@ public class Example1 { }
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example2:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.header.header;
 /* violation on first line 'Line does not match expected header line of' */
 // because headerFile is bigger then target java file
 public class Example2 { }
-        </source>
+</code></pre></div>
 
         <p id="Example3-config">
           To configure the check to verify that each file starts with the
           header
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;RegexpHeader&quot;&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpHeader"&gt;
     &lt;property
-      name=&quot;header&quot;
-      value=&quot;^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$
-      \n^// All rights reserved$&quot;/&gt;
+      name="header"
+      value="^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$
+      \n^// All rights reserved$"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example3:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.header.regexpheader;
 /* violation on first line 'Line does not match expected header line' */
 public class Example3 { }
-        </source>
+</code></pre></div>
 
         <p id="Example4-config">
           For regex containing <code>&quot;.*&quot;</code>
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;RegexpHeader&quot;&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpHeader"&gt;
     &lt;property
-      name=&quot;header&quot;
-      value=&quot;^.*&quot;/&gt;
+      name="header"
+      value="^.*"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">
           <code>&quot;.*&quot;</code> will match all lines and
           expect no violation. For example -
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.header.regexpheader;
 //OK, as regex value matches all lines
 public class Example4 { }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -15,5 +15,6 @@ tokens = CLASS_DEF
 */
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 
-public class InputSuppressionXpathSingleFilterNoQuery { // filtered violation
+public class InputSuppressionXpathSingleFilterNoQuery {
+    // filtered violation above 'Missing a Javadoc comment.'
 }

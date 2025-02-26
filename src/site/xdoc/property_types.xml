@@ -95,14 +95,14 @@
         is equivalent to a set of comma separated integers. For example, the
         following:
       </p>
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;property name=&quot;tokens&quot; value=&quot;0.42,0.666&quot;/&gt;
-      </source>
+      </code></pre></div>
       <p>can instead be expressed as:</p>
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;property name=&quot;tokens&quot; value=&quot;0.42&quot;/&gt;
 &lt;property name=&quot;tokens&quot; value=&quot;0.666&quot;/&gt;
-      </source>
+      </code></pre></div>
     </section>
 
     <section name="float" >
@@ -142,14 +142,14 @@
         is equivalent to a set of comma separated integers. For example, the
         following:
       </p>
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;property name=&quot;tokens&quot; value=&quot;42,666&quot;/&gt;
-      </source>
+      </code></pre></div>
       <p>can instead be expressed as:</p>
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;property name=&quot;tokens&quot; value=&quot;42&quot;/&gt;
 &lt;property name=&quot;tokens&quot; value=&quot;666&quot;/&gt;
-      </source>
+      </code></pre></div>
     </section>
 
     <section name="long">
@@ -218,11 +218,11 @@
             <td>
               Require that there is some text in the block. For example:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
     catch (Exception ex) {
         // This is a bad coding practice
     }
-                </pre>
+                </code></pre>
               </div>
             </td>
           </tr>
@@ -231,11 +231,11 @@
             <td>
               Require that there is a statement in the block. For example:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
     finally {
         lock.release();
     }
-                </pre>
+                </code></pre>
               </div>
             </td>
           </tr>
@@ -261,7 +261,8 @@
             <td>
               Example:
               <div class="wrapper">
-                <pre>@Deprecated()</pre>
+                <pre><code class="language-java">@Deprecated()
+                </code></pre>
               </div>
             </td>
           </tr>
@@ -271,7 +272,8 @@
             <td>
               Example:
               <div class="wrapper">
-                <pre>@Deprecated</pre>
+                <pre><code class="language-java">@Deprecated
+                </code></pre>
               </div>
             </td>
           </tr>
@@ -307,11 +309,13 @@
               in other languages.
               Example:
               <div class="wrapper">
-                <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>
+                <pre><code class="language-java">@SuppressWarnings(value={"unchecked","unused",})
+                </code></pre>
               </div>
               Example of violation:
               <div class="wrapper">
-                <pre>@SuppressWarnings({"unchecked","unused",})</pre>
+                <pre><code class="language-java">@SuppressWarnings({"unchecked","unused",})
+                </code></pre>
               </div>
             </td>
           </tr>
@@ -324,17 +328,17 @@
               values.
               Example:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
                 @SuppressWarnings({"unchecked","unused",})
                 @SuppressWarnings("unchecked")
-                </pre>
+                </code></pre>
               </div>
               Example of violation:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
                 @SuppressWarnings(value = {"unchecked","unused",})
                 @SuppressWarnings(value = "unchecked")
-                </pre>
+                </code></pre>
               </div>
             </td>
           </tr>
@@ -347,17 +351,17 @@
               array does not need to be placed in an array initializer.
               Example:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
               @SuppressWarnings("unchecked")
               @MyAnnotation(someArray = "some value")
-                </pre>
+                </code></pre>
               </div>
               Example of violation:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
               @SuppressWarnings({"unchecked"})
               @MyAnnotation(someArray = {"some value"})
-                </pre>
+                </code></pre>
               </div>
             </td>
           </tr>
@@ -400,12 +404,12 @@
                 The blank line between groups is driven by the property 'separatedStaticGroups'.
                 For example:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
     import static a.b.C.*;
     import static x.y.Z.*;
 
     import a.b.D;
-    import x.y.Z;</pre>
+    import x.y.Z;</code></pre>
               </div>
             </td>
           </tr>
@@ -414,12 +418,12 @@
             <td><code>above</code></td>
             <td>All static imports are above the local group. For example:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
     import static a.b.C.*;
     import a.b.D;
 
     import static x.y.Z.*;
-    import x.y.Z;</pre>
+    import x.y.Z;</code></pre>
               </div>
             </td>
           </tr>
@@ -429,12 +433,12 @@
             <td>All static imports are processed like non static
                 imports. For example:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
     import static a.b.C.*;
     import a.b.D;
 
     import x.y.Z;
-    import static x.y.Z.*;</pre>
+    import static x.y.Z.*;</code></pre>
               </div>
             </td>
           </tr>
@@ -443,12 +447,12 @@
             <td><code>under</code></td>
             <td>All static imports are under the local group. For example:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
     import a.b.D;
     import static a.b.C.*;
 
     import x.y.Z;
-    import static x.y.Z.*;</pre>
+    import static x.y.Z.*;</code></pre>
               </div>
             </td>
           </tr>
@@ -460,12 +464,12 @@
                 The blank line between groups is driven by the property 'separatedStaticGroups'.
                 For example:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
     import a.b.D;
     import x.y.Z;
 
     import static a.b.C.*;
-    import static x.y.Z.*;</pre>
+    import static x.y.Z.*;</code></pre>
               </div>
             </td>
           </tr>
@@ -493,12 +497,12 @@
               as <code>/**</code>.
               Example:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
             &#47;** Summary text.
               * More details.
               *&#47;
             public void method();
-                </pre>
+                </code></pre>
               </div>
               This style is also known as "scala" style.
             </td>
@@ -511,13 +515,13 @@
               after <code>/**</code>.
               Example:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
               &#47;**
               * Summary text.
               * More details.
               *&#47;
               public void method();
-                </pre>
+                </code></pre>
               </div>
               This style is common to java projects.
             </td>
@@ -546,10 +550,10 @@
             <td>
               The brace must always be on the end of the line. For example:#
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
     if (condition) {
         ...
-                </pre>
+                </code></pre>
               </div>
             </td>
           </tr>
@@ -559,11 +563,11 @@
             <td>
               The brace must always be on a new line. For example:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
     if (condition)
     {
         ...
-                </pre>
+                </code></pre>
               </div>
             </td>
           </tr>
@@ -576,20 +580,20 @@
               <code>nlow</code> is a mnemonic for "new line on wrap".
               For the example above Checkstyle will enforce:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
     if (condition) {
         ...
-                </pre>
+                </code></pre>
               </div>
               But for a statement spanning multiple lines, Checkstyle will
               enforce:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
     if (condition1 &amp;&amp; condition2 &amp;&amp;
         condition3 &amp;&amp; condition4)
     {
         ...
-                </pre>
+                </code></pre>
               </div>
             </td>
           </tr>
@@ -680,14 +684,14 @@
         times which is equivalent to a set of comma separated patterns.
         For example, the following:
       </p>
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;property name=&quot;patterns&quot; value=&quot;^prefix*$, ^*suffix$&quot;/&gt;
-      </source>
+      </code></pre></div>
       <p>can instead be expressed as:</p>
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;property name=&quot;patterns&quot; value=&quot;^prefix*&quot;/&gt;
 &lt;property name=&quot;patterns&quot; value=&quot;^*suffix$&quot;/&gt;
-      </source>
+      </code></pre></div>
     </section>
 
     <section name="RightCurlyOption">
@@ -711,14 +715,14 @@
             <td>
               The brace must be alone on the line. For example:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
     try {
         ...
     <b>}</b>
     finally {
         ...
     <b>}</b>
-                </pre>
+                </code></pre>
               </div>
             </td>
           </tr>
@@ -730,7 +734,7 @@
                     single-line format of block is allowed.
                     For example:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
     // Brace is alone on the line
     try {
         ...
@@ -741,7 +745,7 @@
 
     // Single-line format of block
     public long getId() { return id; <b>}</b>
-                </pre>
+                </code></pre>
               </div>
             </td>
           </tr>
@@ -758,7 +762,7 @@
               <p>Examples:</p>
 
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
     public long getId() {return id;<b>}</b> // this is OK, it is single-line
 
     // try-catch-finally blocks
@@ -810,7 +814,7 @@
     if (a &#62; 0) {
         ...
     } else { ... <b>}</b> // OK, single-line multi-block statement
-                </pre>
+                </code></pre>
               </div>
             </td>
           </tr>
@@ -945,14 +949,14 @@
         is equivalent to a set of comma separated strings. For example, the
         following:
       </p>
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;property name=&quot;tokens&quot; value=&quot;DIV_ASSIGN, PLUS_ASSIGN&quot;/&gt;
-      </source>
+      </code></pre></div>
       <p>can instead be expressed as:</p>
-      <source>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;property name=&quot;tokens&quot; value=&quot;DIV_ASSIGN&quot;/&gt;
 &lt;property name=&quot;tokens&quot; value=&quot;PLUS_ASSIGN&quot;/&gt;
-      </source>
+      </code></pre></div>
     </section>
 
     <section name="TrailingArrayCommaOption">
@@ -973,7 +977,8 @@
             <td>
               Example:
               <div class="wrapper">
-                <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>
+                <pre><code class="language-java">@SuppressWarnings(value={"unchecked","unused",})
+                </code></pre>
               </div>
             </td>
           </tr>
@@ -983,7 +988,8 @@
             <td>
               Example:
               <div class="wrapper">
-                <pre>@SuppressWarnings(value={"unchecked","unused"})</pre>
+                <pre><code class="language-java">@SuppressWarnings(value={"unchecked","unused"})
+                </code></pre>
               </div>
             </td>
           </tr>
@@ -1028,10 +1034,10 @@
             <td>
               The token must be on a new line. For example:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
     someVariable = aBigVariableNameToMakeThings + "this may work"
                    + lookVeryInteresting;
-                </pre>
+                </code></pre>
               </div>
             </td>
           </tr>
@@ -1040,10 +1046,10 @@
             <td>
               The token must be at the end of the line. For example:
               <div class="wrapper">
-                <pre>
+                <pre><code class="language-java">
     someVariable = aBigVariableNameToMakeThings + "this may work" +
                    lookVeryInteresting;
-                </pre>
+                </code></pre>
               </div>
             </td>
           </tr>

@@ -87,12 +87,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                     WriteTagCheck.class
     );
 
-    // Checks that allowed to have no XPath IT Regression Testing
-    // till https://github.com/checkstyle/checkstyle/issues/6207
-    private static final Set<String> MISSING_CHECK_NAMES = Set.of(
-            "DescendantToken"
-    );
-
     // Modules that will never have xpath support ever because they not report violations
     private static final Set<String> NO_VIOLATION_MODULES = Set.of(
             "SuppressWarningsHolder"
@@ -192,11 +186,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                         .contains(check);
 
                 assertWithMessage(
-                            "Check '" + check + "' is now tested. Please update the todo list in"
-                                + " XpathRegressionTest.MISSING_CHECK_NAMES")
-                        .that(MISSING_CHECK_NAMES.contains(check))
-                        .isFalse();
-                assertWithMessage(
                             "Check '" + check + "' is now compatible with SuppressionXpathFilter."
                                 + " Please update the todo list in"
                                 + " XpathRegressionTest.INCOMPATIBLE_CHECK_NAMES")
@@ -211,7 +200,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         allChecks.removeAll(INCOMPATIBLE_JAVADOC_CHECK_NAMES);
         allChecks.removeAll(INCOMPATIBLE_CHECK_NAMES);
         allChecks.removeAll(Set.of("Regexp", "RegexpSinglelineJava", "NoCodeInFile"));
-        allChecks.removeAll(MISSING_CHECK_NAMES);
         allChecks.removeAll(NO_VIOLATION_MODULES);
         allChecks.removeAll(compatibleChecks);
         allChecks.removeAll(INTERNAL_MODULES);

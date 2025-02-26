@@ -66,15 +66,15 @@
       </subsection>
       <subsection name="Examples" id="Examples">
         <p id="Example1-config"> To configure the check:</p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MissingOverride&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingOverride"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 extends ParentClass1 {
 
   /** {@inheritDoc} */
@@ -100,23 +100,23 @@ class Example1 extends ParentClass1 {
 
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure the check for the <code>javaFiveCompatibility</code>
           mode:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MissingOverride&quot;&gt;
-      &lt;property name=&quot;javaFiveCompatibility&quot;
-                value=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingOverride"&gt;
+      &lt;property name="javaFiveCompatibility"
+                value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   /** {@inheritDoc} */
   public boolean equals(Object o) { // violation, 'include @java.lang.Override'
@@ -151,7 +151,7 @@ class E {
     }
   };
 }
-        </source>
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

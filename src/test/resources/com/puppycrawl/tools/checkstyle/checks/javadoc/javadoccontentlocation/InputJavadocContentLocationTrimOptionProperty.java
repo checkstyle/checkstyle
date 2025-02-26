@@ -14,7 +14,7 @@ public interface InputJavadocContentLocationTrimOptionProperty {
      */
     void violation();
 
-    /** Text. // OK
+    /** Text.
      */
     void ok();
     // violation below 'Javadoc content should start from the same line as /\*\*.'

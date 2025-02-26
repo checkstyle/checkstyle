@@ -17,6 +17,10 @@ on:
       java-source-url:
         description: 'url to java source'
         required: true
+      compile:
+        description: 'compile java by javac'
+        required: true
+        default: 'false'
 
 concurrency:
   group: ${{ github.run_id }}
@@ -62,6 +66,11 @@ jobs:
             echo ""
             echo "Content of Test.java:"
             cat -n Test.java
+            echo ""
+            if [[ "${{ inputs.compile }}" == "true" ]]; then
+              echo "javac Test.java:"
+              javac Test.java
+            fi
             echo ""
             JAR_NAME=$(find . -name "*-all.jar")
             echo "Executing: java -jar ""$JAR_NAME"" -c config.xml Test.java"

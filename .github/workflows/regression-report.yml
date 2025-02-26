@@ -20,7 +20,7 @@ env:
   DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/test-configs/main/extractor/src/main/resources/list-of-projects.yml"
   BASE_TEST_CONFIGS_URL: "https://raw.githubusercontent.com/checkstyle/test-configs/main"
   EXTRACTOR_VERSION: 2024-10-08
-  DIFF_TOOL_VERSION: "1.0-SNAPSHOT-all"
+  DIFF_TOOL_VERSION: "1.0-2025-01-30"
   PATCH_DIFF_TOOL_VERSION: "0.1-SNAPSHOT"
   CACHE_KEY: "regression-report-${{ github.sha }}-${{ github.event.comment.id }}"
   GENERATED_CONFIGS_PATH: generated_configs
@@ -393,7 +393,7 @@ jobs:
             cp "$DIFF_PROJECTS_LINK" .ci-temp/projects.yml
           fi
 
-      - name: Download URL-based Config and Project File
+      - name: Download URL-based Config and Project File + Extra Files
         id: download_files
         if: needs.handle_existing_config_bundle.result == 'success'
           || needs.handle_configs_in_pr_description.result == 'success'
@@ -418,9 +418,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p .ci-temp
+
           if ! ./.ci/diff-report.sh download-files; then
             ./.ci/append-to-github-output.sh "failed" "true"
             exit 1
+          fi
+
+          if [ -n "$DIFF_CONFIG_LINK" ]; then
+            FIXED_LINK="${DIFF_CONFIG_LINK//\/refs\/heads/}"
+            CONFIG_FOLDER_URL="${FIXED_LINK%/*}"
+            # Download directly to .ci-temp
+            curl --fail-with-body -SLo ".ci-temp/java.header" \
+              "${CONFIG_FOLDER_URL}/java.header" || true
           fi
 
       - name: Cache config files
@@ -428,6 +437,7 @@ jobs:
         with:
           path: |
             .ci-temp/*.xml
+            .ci-temp/*.header
             .ci-temp/projects.yml
             .ci-temp/projects.properties
           key: ${{ env.CACHE_KEY }}-config-files
@@ -451,6 +461,7 @@ jobs:
         with:
           path: |
             .ci-temp/*.xml
+            .ci-temp/*.header
             .ci-temp/projects.yml
             .ci-temp/projects.properties
           key: ${{ env.CACHE_KEY }}-config-files
@@ -466,7 +477,7 @@ jobs:
         with:
           repository: "checkstyle/test-configs"
           tag: "diff-java-tool-${{ env.DIFF_TOOL_VERSION }}"
-          fileName: "diff-java-tool-${{ env.DIFF_TOOL_VERSION }}.jar"
+          fileName: "diff-java-tool-${{ env.DIFF_TOOL_VERSION }}-all.jar"
           out-file-path: ".ci-temp"
 
       - name: Download patch-diff-report-tool JAR
@@ -565,27 +576,48 @@ jobs:
           fi
 
           # Paths to the JAR files
-          DIFFTOOL_JAR="diff-java-tool-${{ env.DIFF_TOOL_VERSION }}.jar"
+          DIFFTOOL_JAR="diff-java-tool-${{ env.DIFF_TOOL_VERSION }}-all.jar"
           PATCH_DIFF_TOOL_JAR="patch-diff-report-tool-\
           ${{ env.PATCH_DIFF_TOOL_VERSION }}-jar-with-dependencies.jar"
+
+          CONFIG_DIR="${{ github.workspace }}/.ci-temp/config"
+          EXTRA_MVN_OPTIONS="-Dcheckstyle.failsOnError=false -Dconfig.folder=${CONFIG_DIR}"
 
           # Run DiffTool with appropriate arguments
           if [ -f "$NEW_MODULE_CONFIG" ]; then
             echo "Generating report for new module"
-            java -jar "$DIFFTOOL_JAR" -r "$REPO" -p "$PR_BRANCH" -pc "$NEW_MODULE_CONFIG" \
-              -m single -l "$PROJECTS_FILE" -xm "-Dcheckstyle.failsOnError=false" \
-              --allowExcludes --diffToolJarPath "$PATCH_DIFF_TOOL_JAR"
+            java -jar "$DIFFTOOL_JAR" \
+              -r "$REPO" \
+              -p "$PR_BRANCH" \
+              -pc "$NEW_MODULE_CONFIG" \
+              -m single \
+              -l "$PROJECTS_FILE" \
+              -xm "$EXTRA_MVN_OPTIONS" \
+              --allowExcludes \
+              --diffToolJarPath "$PATCH_DIFF_TOOL_JAR"
           elif [ -f "$PATCH_CONFIG" ]; then
             echo "Generating report with patch config"
-            java -jar "$DIFFTOOL_JAR" -r "$REPO" -b "$BASE_BRANCH" \
-              -p "$PR_BRANCH" -bc "$DIFF_CONFIG" \
-              -pc "$PATCH_CONFIG" -l "$PROJECTS_FILE" -xm "-Dcheckstyle.failsOnError=false" \
-              --allowExcludes --diffToolJarPath "$PATCH_DIFF_TOOL_JAR"
+            java -jar "$DIFFTOOL_JAR" \
+              -r "$REPO" \
+              -b "$BASE_BRANCH" \
+              -p "$PR_BRANCH" \
+              -bc "$DIFF_CONFIG" \
+              -pc "$PATCH_CONFIG" \
+              -l "$PROJECTS_FILE" \
+              -xm "$EXTRA_MVN_OPTIONS" \
+              --allowExcludes \
+              --diffToolJarPath "$PATCH_DIFF_TOOL_JAR"
           else
             echo "Generating standard diff report"
-            java -jar "$DIFFTOOL_JAR" -r "$REPO" -b "$BASE_BRANCH" -p "$PR_BRANCH" \
-              -c "$DIFF_CONFIG" -l "$PROJECTS_FILE" -xm "-Dcheckstyle.failsOnError=false" \
-              --allowExcludes --diffToolJarPath "$PATCH_DIFF_TOOL_JAR"
+            java -jar "$DIFFTOOL_JAR" \
+              -r "$REPO" \
+              -b "$BASE_BRANCH" \
+              -p "$PR_BRANCH" \
+              -c "$DIFF_CONFIG" \
+              -l "$PROJECTS_FILE" \
+              -xm "$EXTRA_MVN_OPTIONS" \
+              --allowExcludes \
+              --diffToolJarPath "$PATCH_DIFF_TOOL_JAR"
           fi
 
       - name: Copy Report to AWS S3 Bucket

@@ -103,63 +103,63 @@
           To configure a filter to suppress audit events for <i>check</i>
           on any line with a comment <code>SUPPRESS CHECKSTYLE <i>check</i></code>:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;/&gt;
-    &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressWithNearbyCommentFilter"/&gt;
+    &lt;module name="NoWhitespaceAfter"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example1-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   private int [] array; // SUPPRESS CHECKSTYLE NoWhitespaceAfter
 }
-        </source>
+</code></pre></div>
         <p id="Example2-config">
           To configure a filter to suppress all audit events on any line
           containing the comment <code>CHECKSTYLE IGNORE THIS LINE</code>:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
-      &lt;property name=&quot;commentFormat&quot; value=&quot;CHECKSTYLE IGNORE THIS LINE&quot;/&gt;
-      &lt;property name=&quot;checkFormat&quot; value=&quot;.*&quot;/&gt;
-      &lt;property name=&quot;influenceFormat&quot; value=&quot;0&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressWithNearbyCommentFilter"&gt;
+      &lt;property name="commentFormat" value="CHECKSTYLE IGNORE THIS LINE"/&gt;
+      &lt;property name="checkFormat" value=".*"/&gt;
+      &lt;property name="influenceFormat" value="0"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;ConstantName&quot;/&gt;
+    &lt;module name="ConstantName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example2-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   public static final int lowerCaseConstant = 1; // CHECKSTYLE IGNORE THIS LINE
 }
-        </source>
+</code></pre></div>
         <p id="Example3-config">
           To configure a filter so that
           <code>// OK to catch (Throwable|Exception|RuntimeException) here</code>
           permits the current and previous line to avoid generating an IllegalCatch
           audit event:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
-      &lt;property name=&quot;commentFormat&quot; value=&quot;OK to catch (\w+) here&quot;/&gt;
-      &lt;property name=&quot;checkFormat&quot; value=&quot;IllegalCatchCheck&quot;/&gt;
-      &lt;property name=&quot;messageFormat&quot; value=&quot;$1&quot;/&gt;
-      &lt;property name=&quot;influenceFormat&quot; value=&quot;-1&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressWithNearbyCommentFilter"&gt;
+      &lt;property name="commentFormat" value="OK to catch (\w+) here"/&gt;
+      &lt;property name="checkFormat" value="IllegalCatchCheck"/&gt;
+      &lt;property name="messageFormat" value="$1"/&gt;
+      &lt;property name="influenceFormat" value="-1"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;IllegalCatch&quot;/&gt;
+    &lt;module name="IllegalCatch"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example3-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
   public void doStuff() {
     try {
@@ -170,28 +170,28 @@ public class Example3 {
     }
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example4-config">
           To configure a filter so that
           <code>CHECKSTYLE IGNORE <i>check</i> FOR NEXT<i>var</i> LINES</code>
           avoids triggering any audits for the given check for
           the current line and the next <i>var</i> lines (for a total of <i>var</i>+1 lines):
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
-      &lt;property name=&quot;commentFormat&quot;
-          value=&quot;CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES&quot;/&gt;
-      &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
-      &lt;property name=&quot;influenceFormat&quot; value=&quot;$2&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressWithNearbyCommentFilter"&gt;
+      &lt;property name="commentFormat"
+          value="CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES"/&gt;
+      &lt;property name="checkFormat" value="$1"/&gt;
+      &lt;property name="influenceFormat" value="$2"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;ConstantName&quot;/&gt;
+    &lt;module name="ConstantName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example4-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
   // CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 4 LINES
   static final int lowerCaseConstant1 = 1;
@@ -200,55 +200,55 @@ public class Example4 {
   static final int lowerCaseConstant4 = 4;
   static final int lowerCaseConstant5 = 5; // violation 'must match pattern'
 }
-        </source>
+</code></pre></div>
         <p id="Example5-config">
           To configure a filter to avoid any audits on code like:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
-      &lt;property name=&quot;commentFormat&quot;
-                value=&quot;ALLOW (\w+) ON PREVIOUS LINE&quot;/&gt;
-      &lt;property name=&quot;influenceFormat&quot; value=&quot;-1&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressWithNearbyCommentFilter"&gt;
+      &lt;property name="commentFormat"
+                value="ALLOW (\w+) ON PREVIOUS LINE"/&gt;
+      &lt;property name="influenceFormat" value="-1"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;MemberName&quot;/&gt;
+    &lt;module name="MemberName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example5-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example5 {
   private int D2;
   // ALLOW MemberName ON PREVIOUS LINE
 }
-        </source>
+</code></pre></div>
 
         <p id="Example6-config">
           To configure a filter to allow suppress one or more Checks
           (separated by &quot;|&quot;) and demand comment no less than 14 symbols:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
-      &lt;property name=&quot;commentFormat&quot;
-                value=&quot;@cs\.suppress \[(\w+(\|\w+)*)\] \w[-\.'`,:;\w ]{13,}&quot;/&gt;
-      &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
-      &lt;property name=&quot;influenceFormat&quot; value=&quot;1&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressWithNearbyCommentFilter"&gt;
+      &lt;property name="commentFormat"
+                value="@cs\.suppress \[(\w+(\|\w+)*)\] \w[-\.'`,:;\w ]{13,}"/&gt;
+      &lt;property name="checkFormat" value="$1"/&gt;
+      &lt;property name="influenceFormat" value="1"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;ConstantName&quot;/&gt;
-    &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
+    &lt;module name="ConstantName"/&gt;
+    &lt;module name="NoWhitespaceAfter"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example6-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example6 {
   // @cs.suppress [ConstantName|NoWhitespaceAfter] A comment here
   public static final int [] array = {};
 }
-        </source>
+</code></pre></div>
         <p>
           It is possible to specify an ID of checks, so that it can be leveraged by the
           SuppressWithNearbyCommentFilter to skip validations. The following examples
@@ -262,30 +262,30 @@ public class Example6 {
           is set to '$1' points that ID of the checks is in the first group of
           commentFormat regular expressions):
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
-      &lt;property name=&quot;commentFormat&quot;
-        value=&quot;@cs\.suppress \[(\w+(\|\w+)*)\] \w[-\.'`,:;\w ]{14,}&quot;/&gt;
-      &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
-      &lt;property name=&quot;influenceFormat&quot; value=&quot;1&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressWithNearbyCommentFilter"&gt;
+      &lt;property name="commentFormat"
+        value="@cs\.suppress \[(\w+(\|\w+)*)\] \w[-\.'`,:;\w ]{14,}"/&gt;
+      &lt;property name="checkFormat" value="$1"/&gt;
+      &lt;property name="influenceFormat" value="1"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-      &lt;property name=&quot;id&quot; value=&quot;ignore&quot;/&gt;
-      &lt;property name=&quot;format&quot; value=&quot;^.*@Ignore\s*$&quot;/&gt;
-      &lt;property name=&quot;message&quot; value=&quot;@Ignore should have a reason.&quot;/&gt;
+    &lt;module name="RegexpSinglelineJava"&gt;
+      &lt;property name="id" value="ignore"/&gt;
+      &lt;property name="format" value="^.*@Ignore\s*$"/&gt;
+      &lt;property name="message" value="@Ignore should have a reason."/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-      &lt;property name=&quot;id&quot; value=&quot;systemout&quot;/&gt;
-      &lt;property name=&quot;format&quot; value=&quot;^.*System\.\(out|err\).*$&quot;/&gt;
-      &lt;property name=&quot;message&quot; value=&quot;Don't use System.out/err, use SLF4J instead.&quot;/&gt;
+    &lt;module name="RegexpSinglelineJava"&gt;
+      &lt;property name="id" value="systemout"/&gt;
+      &lt;property name="format" value="^.*System\.\(out|err\).*$"/&gt;
+      &lt;property name="message" value="Don't use System.out/err, use SLF4J instead."/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example7-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example7 {
   @Ignore // @cs-: ignore (test has not been implemented yet)
   @Test
@@ -293,31 +293,31 @@ public class Example7 {
 
   public static void foo() {
 
-    System.out.println(&quot;Debug info.&quot;); // @cs-: systemout (should not fail)
+    System.out.println("Debug info."); // @cs-: systemout (should not fail)
   }
 }
-        </source>
+</code></pre></div>
         <p id="Example8-config">
           Example of how to configure the check to suppress more than one checks.
           The influence format is specified in the second regexp group.
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
-      &lt;property name=&quot;commentFormat&quot; value=&quot;@cs-\: ([\w\|]+) influence (\d+)&quot;/&gt;
-      &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
-      &lt;property name=&quot;influenceFormat&quot; value=&quot;$2&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressWithNearbyCommentFilter"&gt;
+      &lt;property name="commentFormat" value="@cs-\: ([\w\|]+) influence (\d+)"/&gt;
+      &lt;property name="checkFormat" value="$1"/&gt;
+      &lt;property name="influenceFormat" value="$2"/&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;1&quot; /&gt;
+    &lt;module name="ClassDataAbstractionCoupling"&gt;
+      &lt;property name="max" value="1" /&gt;
     &lt;/module&gt;
-    &lt;module name=&quot;MagicNumber&quot;/&gt;
+    &lt;module name="MagicNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
+</code></pre></div>
         <p id="Example8-code">Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // @cs-: ClassDataAbstractionCoupling influence 2
 // @cs-: MagicNumber influence 4
 public class Example8 { // no violations from ClassDataAbstractionCoupling here
@@ -325,7 +325,7 @@ public class Example8 { // no violations from ClassDataAbstractionCoupling here
   private Example2 bar = new Example2();
   private int value = 10022; // no violations from MagicNumber here
 }
-        </source>
+</code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

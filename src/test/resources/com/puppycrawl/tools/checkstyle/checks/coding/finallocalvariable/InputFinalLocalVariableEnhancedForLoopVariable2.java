@@ -20,14 +20,15 @@ public class InputFinalLocalVariableEnhancedForLoopVariable2 {
     public void method2()
     {
         final int[] squares = {0, 1, 4, 9, 16, 25};
-        int x; // violation
+        int x; // violation, "Variable 'x' should be declared final"
         for (final int i : squares) {
         }
 
     }
-
-    public java.util.List<String> method3(java.util.List<String> snippets) { // violation
-        java.util.List<String> filteredSnippets = new java.util.ArrayList<>(); // violation
+    // violation below "Variable 'snippets' should be declared final"
+    public java.util.List<String> method3(java.util.List<String> snippets) {
+        // violation below "Variable 'filteredSnippets' should be declared final"
+        java.util.List<String> filteredSnippets = new java.util.ArrayList<>();
         for (String snippet : snippets) {
             filteredSnippets.add(snippet);
         }
@@ -46,7 +47,7 @@ public class InputFinalLocalVariableEnhancedForLoopVariable2 {
         for(Object a : list) {
         }
 
-        Object a; // violation
+        Object a; // violation, "Variable 'a' should be declared final"
         if (list.isEmpty())
         {
             a = new String("empty");

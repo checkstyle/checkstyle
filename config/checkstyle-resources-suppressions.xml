@@ -173,7 +173,7 @@
   <suppress checks="FileTabCharacter"
     files="[\\/]InputLineLengthSimple1\.java"/>
   <suppress checks="FileTabCharacter"
-    files="[\\/]InputTodoCommentSimple\.java"/>
+    files="[\\/]InputTodoCommentSimpleTwo\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputWhitespaceAroundSimple\.java"/>
   <suppress checks="FileTabCharacter"
@@ -276,8 +276,6 @@
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharacters2\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharacters3\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]todocomment[\\/]InputTodoCommentSimple\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]indentation[\\/]indentation[\\/]InputIndentationInvalidMethodIndent\.java"/>
   <suppress checks="FileLength"
@@ -483,8 +481,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNull\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]constructorsdeclarationgrouping[\\/]InputConstructorsDeclarationGrouping\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]nofinalizer[\\/]InputNoFinalizerFallThrough\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]defaultcomeslast[\\/]InputDefaultComesLast\.java"/>
@@ -615,8 +611,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]design[\\/]designforextension[\\/]InputDesignForExtensionOverridableMethods\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]design[\\/]finalclass[\\/]InputFinalClass\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]finalparameters[\\/]InputFinalParameters4\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]finalparameters[\\/]InputFinalParameters2\.java"/>
@@ -628,10 +622,6 @@
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]finalparameters[\\/]InputFinalParameters\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]modifier[\\/]redundantmodifier[\\/]InputRedundantModifierIt\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]modifier[\\/]modifierorder[\\/]InputModifierOrderTypeAnnotations\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]modifier[\\/]modifierorder[\\/]InputModifierOrderIt\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]metrics[\\/]cyclomaticcomplexity[\\/]InputCyclomaticComplexity\.java"/>
   <suppress checks="FileLength"
@@ -651,15 +641,11 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]naming[\\/]catchparametername[\\/]InputCatchParameterNameSimple\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]naming[\\/]membername[\\/]InputMemberNameSimple\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]naming[\\/]localvariablename[\\/]InputLocalVariableName\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]naming[\\/]staticvariablename[\\/]InputStaticVariableName2\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]naming[\\/]staticvariablename[\\/]InputStaticVariableName1\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]naming[\\/]methodname[\\/]InputMethodNameSimple\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]naming[\\/]localfinalvariablename[\\/]InputLocalFinalVariableName\.java"/>
   <suppress checks="FileLength"
