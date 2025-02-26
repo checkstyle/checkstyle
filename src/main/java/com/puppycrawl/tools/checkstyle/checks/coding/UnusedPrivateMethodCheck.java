@@ -263,22 +263,20 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
                     ast.findFirstToken(TokenTypes.TYPE),
                     findScopeOfMethod(ast)));
         }
-//        if (ast.getType() == TokenTypes.IDENT) {
         try {
-            final String text = ast.findFirstToken(TokenTypes.IDENT).getText();
-            callsText.add(text);
-        } catch (Exception e) {
+            callsText.add(ast.getText());
+        } catch (Exception ignored) {
         }
-//        }
     }
 
     @Override
-    public void leaveToken(DetailAST ast) {
-        if (TokenUtil.isOfType(ast, SCOPES)) {
-            logViolations(ast, methods);
-            logViolations(ast, calls);
-            // check if callsText contains each methods then its called
-            System.out.println(callsText);
+    public void finishTree(DetailAST ast) {
+        Deque<MethodDesc> filteredMethods = methods.stream()
+                .filter(method -> Collections.frequency(callsText, method.getName()) == 1)
+                .collect(Collectors.toCollection(ArrayDeque::new));
+        while (!filteredMethods.isEmpty()) {
+            final MethodDesc variableDesc = filteredMethods.pop();
+            log(variableDesc.getTypeAst(), MSG_UNUSED_LOCAL_METHOD, variableDesc.getName());
         }
     }
 
@@ -296,19 +294,6 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
                 checkIdentifierAst(identifier, variablesStack);
             }
         }
-    }
-
-    /**
-     * Visit ast of type {@link TokenTypes#METHOD_DEF}.
-     *
-     * @param varDefAst varDefAst
-     */
-    private void visitMethodDefToken(DetailAST varDefAst) {
-        methods.push(
-                new MethodDesc(
-                        varDefAst.findFirstToken(TokenTypes.IDENT).getText(),
-                        varDefAst.findFirstToken(TokenTypes.TYPE),
-                        findScopeOfMethod(varDefAst)));
     }
 
     /**
@@ -355,22 +340,6 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
             }
         }
         return result;
-    }
-
-    /**
-     * Traverse {@code variablesStack} stack and log the violations.
-     *
-     * @param scopeAst       ast node of type {@link UnusedPrivateMethodCheck#SCOPES}
-     * @param variablesStack stack of all the relevant methods in the scope
-     */
-    private void logViolations(DetailAST scopeAst, Deque<MethodDesc> variablesStack) {
-        while (!variablesStack.isEmpty() && variablesStack.peek().getScope() == scopeAst) {
-            final MethodDesc variableDesc = variablesStack.pop();
-            if (!variableDesc.isUsed()
-                    && !variableDesc.isInstVarOrClassVar()) {
-                log(variableDesc.getTypeAst(), MSG_UNUSED_LOCAL_METHOD, variableDesc.getName());
-            }
-        }
     }
 
     /**
@@ -619,7 +588,13 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
             customVisitToken(currNode, variablesStack);
             DetailAST toVisit = currNode.getFirstChild();
             while (currNode != ast && toVisit == null) {
-                logViolations(currNode, variablesStack);
+                while (!variablesStack.isEmpty() && variablesStack.peek().getScope() == currNode) {
+                    final MethodDesc variableDesc = variablesStack.pop();
+                    if (!variableDesc.isUsed()
+                            && !variableDesc.isInstVarOrClassVar()) {
+                        log(variableDesc.getTypeAst(), MSG_UNUSED_LOCAL_METHOD, variableDesc.getName());
+                    }
+                }
                 toVisit = currNode.getNextSibling();
                 currNode = currNode.getParent();
             }
