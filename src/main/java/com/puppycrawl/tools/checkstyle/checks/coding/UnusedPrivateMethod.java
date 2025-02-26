@@ -40,7 +40,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @FileStatefulCheck
-public class UnusedPrivateMethodCheck extends AbstractCheck {
+public class UnusedPrivateMethod extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -150,7 +150,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
     private final Map<DetailAST, TypeDeclDesc> anonInnerAstToTypeDeclDesc = new HashMap<>();
 
     /**
-     * Set of tokens of type {@link UnusedPrivateMethodCheck#ANONYMOUS_CLASS_PARENT_TOKENS}
+     * Set of tokens of type {@link unusedprivatemethod#ANONYMOUS_CLASS_PARENT_TOKENS}
      * and {@link TokenTypes#LAMBDA} in some cases.
      */
     private final Set<DetailAST> anonInnerClassHolders = new HashSet<>();
@@ -378,7 +378,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
     /**
      * Traverse {@code variablesStack} stack and log the violations.
      *
-     * @param scopeAst ast node of type {@link UnusedPrivateMethodCheck#SCOPES}
+     * @param scopeAst ast node of type {@link unusedprivatemethod#SCOPES}
      * @param variablesStack stack of all the relevant variables in the scope
      */
     private void logViolations(DetailAST scopeAst, Deque<VariableDesc> variablesStack) {
@@ -705,7 +705,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Visit all ast nodes under {@link UnusedPrivateMethodCheck#anonInnerClassHolders} once
+     * Visit all ast nodes under {@link unusedprivatemethod#anonInnerClassHolders} once
      * again.
      *
      * @param ast ast
@@ -729,7 +729,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Leave all ast nodes under {@link UnusedPrivateMethodCheck#anonInnerClassHolders} once
+     * Leave all ast nodes under {@link unusedprivatemethod#anonInnerClassHolders} once
      * again.
      *
      * @param ast ast

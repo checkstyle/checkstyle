@@ -38,11 +38,11 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck.MSG_UNUSED_LOCAL_VARIABLE;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck.MSG_UNUSED_NAMED_LOCAL_VARIABLE;
 
-public class UnusedPrivateMethodCheckTest extends AbstractModuleTestSupport {
+public class UnusedPrivateMethodTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/coding/UnusedPrivateMethodCheck";
+        return "com/puppycrawl/tools/checkstyle/checks/coding/unusedprivatemethod";
     }
 
     @Test
