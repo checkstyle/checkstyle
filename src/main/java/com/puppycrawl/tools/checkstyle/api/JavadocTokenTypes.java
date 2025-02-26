@@ -1705,6 +1705,47 @@ public final class JavadocTokenTypes {
     public static final int BODY_TAG_START = JavadocParser.RULE_bodyTagStart + RULE_TYPES_OFFSET;
     /** End body tag. */
     public static final int BODY_TAG_END = JavadocParser.RULE_bodyTagEnd + RULE_TYPES_OFFSET;
+    /**
+     * Body html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <body></body>}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   JAVADOC -> JAVADOC
+     *        |--TEXT -> /**
+     *        |--NEWLINE -> \n
+     *        |--LEADING_ASTERISK ->  *
+     *        |--TEXT ->
+     *        |--HTML_ELEMENT -> HTML_ELEMENT
+     *        |    `--BODY -> BODY
+     *        |         |--BODY_TAG_START -> BODY_TAG_START
+     *        |         |    |--START -> <
+     *        |         |    |--BODY_HTML_TAG_NAME -> body
+     *        |         |    `--END -> >
+     *        |         |--NEWLINE -> \n
+     *        |         |--LEADING_ASTERISK ->  *
+     *        |         |--TEXT ->  This is inside the body tag.
+     *        |         |--NEWLINE -> \n
+     *        |         |--LEADING_ASTERISK ->  *
+     *        |         |--TEXT ->
+     *        |         `--BODY_TAG_END -> BODY_TAG_END
+     *        |             |--START -> <
+     *        |             |--SLASH -> /
+     *        |             |--BODY_HTML_TAG_NAME -> body
+     *        |             `--END -> >
+     *          |--NEWLINE -> \n
+     *          |--LEADING_ASTERISK ->  *
+     *          |--TEXT -> /
+     *          |--NEWLINE -> \n
+     *          |--TEXT -> public class Test {
+     *          |--NEWLINE -> \n
+     *          |--TEXT -> }
+     *          |--NEWLINE -> \n
+     * }
+     * </pre>
+     */
 
     /** Colgroup html tag. */
     public static final int COLGROUP = JavadocParser.RULE_colgroup + RULE_TYPES_OFFSET;
