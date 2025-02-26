@@ -8,8 +8,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Checks that a local method is declared and/or assigned, but not used.
@@ -25,7 +25,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
     /**
      * Keeps track of the methods declared in the file.
      */
-    private final Set<String> declaredMethods = new HashSet<>();
+    private final Map<String, DetailAST> declaredMethods = new HashMap<>();
 
     /**
      * Keeps track of the method calls in the file.
@@ -59,7 +59,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.METHOD_DEF) {
-            declaredMethods.add(ast.findFirstToken(TokenTypes.IDENT).getText());
+            declaredMethods.put(ast.findFirstToken(TokenTypes.IDENT).getText(), ast);
         } else if (ast.getType() == TokenTypes.IDENT) {
             methodCalls.add(ast.getText());
         }
@@ -67,9 +67,12 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
 
     @Override
     public void finishTree(DetailAST ast) {
-        for (String methodName : declaredMethods) {
+        for (String methodName : declaredMethods.keySet()) {
             if (Collections.frequency(methodCalls, methodName) == 1) {
-                log(ast, MSG_UNUSED_LOCAL_METHOD, methodName);
+                final DetailAST ast1 = declaredMethods.get(methodName);
+                log(ast1, MSG_UNUSED_LOCAL_METHOD, methodName);
+//                log(ast1.getLineNo(), MSG_UNUSED_LOCAL_METHOD, methodName);
+//                log(ast1.getLineNo(), ast1.getColumnNo(), MSG_UNUSED_LOCAL_METHOD, methodName);
             }
         }
     }
