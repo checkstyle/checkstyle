@@ -39,46 +39,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * <div>
- * Checks that a local variable is declared and/or assigned, but not used.
- * Doesn't support
- * <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30">
- * pattern variables yet</a>.
- * Doesn't check
- * <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.12.3">
- * array components</a> as array
- * components are classified as different kind of variables by
- * <a href="https://docs.oracle.com/javase/specs/jls/se17/html/index.html">JLS</a>.
- * </div>
- * <ul>
- * <li>
- * Property {@code allowUnnamedVariables} - Allow variables named with a single underscore
- * (known as <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
- * unnamed variables</a> in Java 21+).
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code unused.local.var}
- * </li>
- * <li>
- * {@code unused.named.local.var}
- * </li>
- * </ul>
- *
- * @since 9.3
- */
 @FileStatefulCheck
 public class UnusedPrivateMethodCheck extends AbstractCheck {
 
