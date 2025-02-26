@@ -53,7 +53,7 @@ import java.util.stream.Collectors;
  * </div>
  * <ul>
  * <li>
- * Property {@code allowUnnamedVariables} - Allow methods named with a single underscore
+ * Property {@code allowUnnamedMethods} - Allow methods named with a single underscore
  * (known as <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
  * unnamed methods</a> in Java 21+).
  * Type is {@code boolean}.
@@ -165,7 +165,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
     /**
      * Keeps tracks of the methods declared in file.
      */
-    private final Deque<VariableDesc> methods = new ArrayDeque<>();
+    private final Deque<MethodDesc> methods = new ArrayDeque<>();
 
     /**
      * Keeps track of all the type declarations present in the file.
@@ -284,7 +284,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
      * @param dotAst         dotAst
      * @param variablesStack stack of all the relevant methods in the scope
      */
-    private static void visitDotToken(DetailAST dotAst, Deque<VariableDesc> variablesStack) {
+    private static void visitDotToken(DetailAST dotAst, Deque<MethodDesc> variablesStack) {
         if (dotAst.getParent().getType() != TokenTypes.LITERAL_NEW
                 && shouldCheckIdentTokenNestedUnderDot(dotAst)) {
             final DetailAST identifier = dotAst.findFirstToken(TokenTypes.IDENT);
@@ -300,7 +300,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
      * @param varDefAst varDefAst
      */
     private void visitMethodDefToken(DetailAST varDefAst) {
-        addLocalVariables(varDefAst, methods);
+        addLocalMethods(varDefAst, methods);
         addInstanceOrClassVar(varDefAst);
     }
 
@@ -310,7 +310,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
      * @param identAst       identAst
      * @param variablesStack stack of all the relevant methods in the scope
      */
-    private static void visitIdentToken(DetailAST identAst, Deque<VariableDesc> variablesStack) {
+    private static void visitIdentToken(DetailAST identAst, Deque<MethodDesc> variablesStack) {
         final DetailAST parent = identAst.getParent();
         final boolean isMethodReferenceMethodName = parent.getType() == TokenTypes.METHOD_REF
                 && parent.getFirstChild() != identAst;
@@ -379,9 +379,9 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
      * @param scopeAst       ast node of type {@link UnusedPrivateMethodCheck#SCOPES}
      * @param variablesStack stack of all the relevant methods in the scope
      */
-    private void logViolations(DetailAST scopeAst, Deque<VariableDesc> variablesStack) {
+    private void logViolations(DetailAST scopeAst, Deque<MethodDesc> variablesStack) {
         while (!variablesStack.isEmpty() && variablesStack.peek().getScope() == scopeAst) {
-            final VariableDesc variableDesc = variablesStack.pop();
+            final MethodDesc variableDesc = variablesStack.pop();
             if (!variableDesc.isUsed()
                     && !variableDesc.isInstVarOrClassVar()) {
                 log(variableDesc.getTypeAst(), MSG_UNUSED_LOCAL_METHOD, variableDesc.getName());
@@ -444,7 +444,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
      * @param varDefAst      ast node of type {@link TokenTypes#METHOD_DEF}
      * @param variablesStack stack of all the relevant methods in the scope
      */
-    private static void addLocalVariables(DetailAST varDefAst, Deque<VariableDesc> variablesStack) {
+    private static void addLocalMethods(DetailAST varDefAst, Deque<MethodDesc> variablesStack) {
         final DetailAST parentAst = varDefAst.getParent();
         final DetailAST grandParent = parentAst.getParent();
         final boolean isInstanceVarInInnerClass =
@@ -453,8 +453,8 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
         if (isInstanceVarInInnerClass
                 || parentAst.getType() != TokenTypes.OBJBLOCK) {
             final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
-            final VariableDesc desc = new VariableDesc(ident.getText(),
-                    varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));
+            final MethodDesc desc = new MethodDesc(ident.getText(),
+                    varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfMethod(varDefAst));
             if (isInstanceVarInInnerClass) {
                 desc.registerAsInstOrClassVar();
             }
@@ -471,9 +471,9 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
     private void addInstanceOrClassVar(DetailAST varDefAst) {
         final DetailAST parentAst = varDefAst.getParent();
         if (isNonLocalTypeDeclaration(parentAst.getParent())
-                && !isPrivateInstanceVariable(varDefAst)) {
+                && !isPrivateInstanceMethod(varDefAst)) {
             final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
-            final VariableDesc desc = new VariableDesc(ident.getText());
+            final MethodDesc desc = new MethodDesc(ident.getText());
             typeDeclAstToTypeDeclDesc.get(parentAst.getParent()).addInstOrClassVar(desc);
         }
     }
@@ -484,7 +484,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
      * @param varDefAst ast node of type {@link TokenTypes#METHOD_DEF}
      * @return true if instance method or class method have private access modifier
      */
-    private static boolean isPrivateInstanceVariable(DetailAST varDefAst) {
+    private static boolean isPrivateInstanceMethod(DetailAST varDefAst) {
         final AccessModifierOption varAccessModifier =
                 CheckUtil.getAccessModifierFromModifiersToken(varDefAst);
         return varAccessModifier == AccessModifierOption.PRIVATE;
@@ -529,11 +529,11 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
      * @param variablesStack stack of all the relevant methods in the scope
      * @param literalNewAst  ast node of type {@link TokenTypes#LITERAL_NEW}
      */
-    private void modifyVariablesStack(TypeDeclDesc obtainedClass,
-                                      Deque<VariableDesc> variablesStack,
+    private void modifyMethodsStack(TypeDeclDesc obtainedClass,
+                                    Deque<MethodDesc> variablesStack,
                                       DetailAST literalNewAst) {
         if (obtainedClass != null) {
-            final Deque<VariableDesc> instAndClassVarDeque = typeDeclAstToTypeDeclDesc
+            final Deque<MethodDesc> instAndClassVarDeque = typeDeclAstToTypeDeclDesc
                     .get(obtainedClass.getTypeDeclAst())
                     .getUpdatedCopyOfVarStack(literalNewAst);
             instAndClassVarDeque.forEach(variablesStack::push);
@@ -679,7 +679,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
      * @param variablesStack stack of all the relevant methods in the scope
      */
     private void iterateOverBlockContainingLocalAnonInnerClass(
-            DetailAST ast, Deque<VariableDesc> variablesStack) {
+            DetailAST ast, Deque<MethodDesc> variablesStack) {
         DetailAST currNode = ast;
         while (currNode != null) {
             customVisitToken(currNode, variablesStack);
@@ -700,17 +700,17 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
      * @param ast            ast
      * @param variablesStack stack of all the relevant methods in the scope
      */
-    private void customVisitToken(DetailAST ast, Deque<VariableDesc> variablesStack) {
+    private void customVisitToken(DetailAST ast, Deque<MethodDesc> variablesStack) {
         final int type = ast.getType();
         if (type == TokenTypes.DOT) {
             visitDotToken(ast, variablesStack);
         } else if (type == TokenTypes.METHOD_DEF) {
-            addLocalVariables(ast, variablesStack);
+            addLocalMethods(ast, variablesStack);
         } else if (type == TokenTypes.IDENT) {
             visitIdentToken(ast, variablesStack);
         } else if (isInsideLocalAnonInnerClass(ast)) {
             final TypeDeclDesc obtainedClass = getSuperClassOfAnonInnerClass(ast);
-            modifyVariablesStack(obtainedClass, variablesStack, ast);
+            modifyMethodsStack(obtainedClass, variablesStack, ast);
         }
     }
 
@@ -736,8 +736,8 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
      * @param identAst       ast of type {@link TokenTypes#IDENT}
      * @param variablesStack stack of all the relevant methods in the scope
      */
-    private static void checkIdentifierAst(DetailAST identAst, Deque<VariableDesc> variablesStack) {
-        for (VariableDesc variableDesc : variablesStack) {
+    private static void checkIdentifierAst(DetailAST identAst, Deque<MethodDesc> variablesStack) {
+        for (MethodDesc variableDesc : variablesStack) {
             if (identAst.getText().equals(variableDesc.getName())
                     && !isLeftHandSideValue(identAst)) {
                 variableDesc.registerAsUsed();
@@ -752,7 +752,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
      * @param variableDef ast of type {@link TokenTypes#METHOD_DEF}
      * @return scope of variableDef
      */
-    private static DetailAST findScopeOfVariable(DetailAST variableDef) {
+    private static DetailAST findScopeOfMethod(DetailAST variableDef) {
         final DetailAST result;
         final DetailAST parentAst = variableDef.getParent();
         if (TokenUtil.isOfType(parentAst, TokenTypes.SLIST, TokenTypes.OBJBLOCK)) {
@@ -792,7 +792,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
         final DetailAST grandParent = parent.getParent();
         return TokenUtil.isOfType(parent, INCREMENT_AND_DECREMENT_TOKENS)
                 && TokenUtil.isOfType(grandParent, TokenTypes.EXPR)
-                && !isIncrementOrDecrementVariableUsed(grandParent);
+                && !isIncrementOrDecrementMethodUsed(grandParent);
     }
 
     /**
@@ -803,7 +803,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
      * @param exprAst ast of type {@link TokenTypes#EXPR}
      * @return true if method nested in exprAst is used
      */
-    private static boolean isIncrementOrDecrementVariableUsed(DetailAST exprAst) {
+    private static boolean isIncrementOrDecrementMethodUsed(DetailAST exprAst) {
         return TokenUtil.isOfType(exprAst.getParent(), INCREMENT_DECREMENT_VARIABLE_USAGE_TYPES)
                 && exprAst.getParent().getParent().getType() != TokenTypes.FOR_ITERATOR;
     }
@@ -811,7 +811,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
     /**
      * Maintains information about the method.
      */
-    private static final class VariableDesc {
+    private static final class MethodDesc {
 
         /**
          * The name of the method.
@@ -841,7 +841,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
         private boolean used;
 
         /**
-         * Create a new VariableDesc instance.
+         * Create a new MethodDesc instance.
          *
          * @param name    name of the method
          * @param typeAst ast of type {@link TokenTypes#TYPE}
@@ -849,30 +849,30 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
          *                {@link TokenTypes#LITERAL_FOR} or {@link TokenTypes#OBJBLOCK}
          *                which is enclosing the method
          */
-        private VariableDesc(String name, DetailAST typeAst, DetailAST scope) {
+        private MethodDesc(String name, DetailAST typeAst, DetailAST scope) {
             this.name = name;
             this.typeAst = typeAst;
             this.scope = scope;
         }
 
         /**
-         * Create a new VariableDesc instance.
+         * Create a new MethodDesc instance.
          *
          * @param name name of the method
          */
-        private VariableDesc(String name) {
+        private MethodDesc(String name) {
             this(name, null, null);
         }
 
         /**
-         * Create a new VariableDesc instance.
+         * Create a new MethodDesc instance.
          *
          * @param name  name of the method
          * @param scope ast of type {@link TokenTypes#SLIST} or
          *              {@link TokenTypes#LITERAL_FOR} or {@link TokenTypes#OBJBLOCK}
          *              which is enclosing the method
          */
-        private VariableDesc(String name, DetailAST scope) {
+        private MethodDesc(String name, DetailAST scope) {
             this(name, null, scope);
         }
 
@@ -965,7 +965,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
         /**
          * A stack of type declaration's instance and static methods.
          */
-        private final Deque<VariableDesc> instanceAndClassVarStack;
+        private final Deque<MethodDesc> instanceAndClassVarStack;
 
         /**
          * Create a new TypeDeclDesc instance.
@@ -1016,11 +1016,11 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
          * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
          * @return copy of methods in instanceAndClassVar stack with updated scope.
          */
-        public Deque<VariableDesc> getUpdatedCopyOfVarStack(DetailAST literalNewAst) {
+        public Deque<MethodDesc> getUpdatedCopyOfVarStack(DetailAST literalNewAst) {
             final DetailAST updatedScope = literalNewAst;
-            final Deque<VariableDesc> instAndClassVarDeque = new ArrayDeque<>();
+            final Deque<MethodDesc> instAndClassVarDeque = new ArrayDeque<>();
             instanceAndClassVarStack.forEach(instVar -> {
-                final VariableDesc variableDesc = new VariableDesc(instVar.getName(),
+                final MethodDesc variableDesc = new MethodDesc(instVar.getName(),
                         updatedScope);
                 variableDesc.registerAsInstOrClassVar();
                 instAndClassVarDeque.push(variableDesc);
@@ -1033,7 +1033,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
          *
          * @param variableDesc method to be added
          */
-        public void addInstOrClassVar(VariableDesc variableDesc) {
+        public void addInstOrClassVar(MethodDesc variableDesc) {
             instanceAndClassVarStack.push(variableDesc);
         }
     }
