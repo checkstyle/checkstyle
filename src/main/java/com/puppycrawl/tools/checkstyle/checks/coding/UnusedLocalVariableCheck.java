@@ -19,6 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+
 import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.Deque;
@@ -30,14 +38,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
@@ -736,7 +736,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             customVisitToken(currNode, variablesStack);
             DetailAST toVisit = currNode.getFirstChild();
             while (currNode != ast && toVisit == null) {
-                customLeaveToken(currNode, variablesStack);
+                logViolations(currNode, variablesStack);
                 toVisit = currNode.getNextSibling();
                 currNode = currNode.getParent();
             }
@@ -766,17 +766,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             final TypeDeclDesc obtainedClass = getSuperClassOfAnonInnerClass(ast);
             modifyVariablesStack(obtainedClass, variablesStack, ast);
         }
-    }
-
-    /**
-     * Leave all ast nodes under {@link UnusedLocalVariableCheck#anonInnerClassHolders} once
-     * again.
-     *
-     * @param ast ast
-     * @param variablesStack stack of all the relevant variables in the scope
-     */
-    private void customLeaveToken(DetailAST ast, Deque<VariableDesc> variablesStack) {
-        logViolations(ast, variablesStack);
     }
 
     /**
