@@ -250,19 +250,8 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final int type = ast.getType();
-        if (type == TokenTypes.DOT) {
-            visitDotToken(ast, methods);
-        } else if (type == TokenTypes.METHOD_DEF) {
+        if (ast.getType() == TokenTypes.METHOD_DEF) {
             visitMethodDefToken(ast);
-        } else if (type == TokenTypes.IDENT) {
-            visitIdentToken(ast, methods);
-        } else if (isInsideLocalAnonInnerClass(ast)) {
-            visitLocalAnonInnerClass(ast);
-        } else if (isNonLocalTypeDeclaration(ast)) {
-            visitNonLocalTypeDeclarationToken(ast);
-        } else if (type == TokenTypes.PACKAGE_DEF) {
-            packageName = CheckUtil.extractQualifiedName(ast.getFirstChild().getNextSibling());
         }
     }
 
