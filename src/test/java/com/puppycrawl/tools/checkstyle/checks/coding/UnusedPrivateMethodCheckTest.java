@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import org.junit.jupiter.api.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck.MSG_UNUSED_LOCAL_VARIABLE;
+import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedPrivateMethodCheck.MSG_UNUSED_LOCAL_METHOD;
 
 public class UnusedPrivateMethodCheckTest extends AbstractModuleTestSupport {
 
@@ -39,7 +39,7 @@ public class UnusedPrivateMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void UnusedLocalMethodChain() throws Exception {
         verifyWithInlineConfigParser(getPath("UnusedLocalMethodChain.java"), new String[]{
-                "7:18: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "sameName"),
+                "7:18: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "sameName"),
         });
     }
 

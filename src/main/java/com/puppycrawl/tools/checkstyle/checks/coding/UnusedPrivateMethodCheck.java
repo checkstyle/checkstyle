@@ -65,6 +65,8 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 @FileStatefulCheck
 public class UnusedPrivateMethodCheck extends AbstractCheck {
 
+    public static final String MSG_UNUSED_LOCAL_METHOD = "unused.local.var";
+
     @Override
     public int[] getDefaultTokens() {
         return new int[0];
