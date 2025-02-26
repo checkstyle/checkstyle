@@ -19,14 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
-
 import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.Deque;
@@ -39,6 +31,54 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+
+/**
+ * <div>
+ * Checks that a local variable is declared and/or assigned, but not used.
+ * Doesn't support
+ * <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30">
+ * pattern variables yet</a>.
+ * Doesn't check
+ * <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.12.3">
+ * array components</a> as array
+ * components are classified as different kind of variables by
+ * <a href="https://docs.oracle.com/javase/specs/jls/se17/html/index.html">JLS</a>.
+ * </div>
+ * <ul>
+ * <li>
+ * Property {@code allowUnnamedVariables} - Allow variables named with a single underscore
+ * (known as <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
+ * unnamed variables</a> in Java 21+).
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * </ul>
+ *
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ *
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code unused.local.var}
+ * </li>
+ * <li>
+ * {@code unused.named.local.var}
+ * </li>
+ * </ul>
+ *
+ * @since 9.3
+ */
 @FileStatefulCheck
 public class UnusedPrivateMethod extends AbstractCheck {
 
@@ -58,54 +98,54 @@ public class UnusedPrivateMethod extends AbstractCheck {
      * An array of increment and decrement tokens.
      */
     private static final int[] INCREMENT_AND_DECREMENT_TOKENS = {
-        TokenTypes.POST_INC,
-        TokenTypes.POST_DEC,
-        TokenTypes.INC,
-        TokenTypes.DEC,
+            TokenTypes.POST_INC,
+            TokenTypes.POST_DEC,
+            TokenTypes.INC,
+            TokenTypes.DEC,
     };
 
     /**
      * An array of scope tokens.
      */
     private static final int[] SCOPES = {
-        TokenTypes.SLIST,
-        TokenTypes.LITERAL_FOR,
-        TokenTypes.OBJBLOCK,
+            TokenTypes.SLIST,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.OBJBLOCK,
     };
 
     /**
      * An array of unacceptable children of ast of type {@link TokenTypes#DOT}.
      */
     private static final int[] UNACCEPTABLE_CHILD_OF_DOT = {
-        TokenTypes.DOT,
-        TokenTypes.METHOD_CALL,
-        TokenTypes.LITERAL_NEW,
-        TokenTypes.LITERAL_SUPER,
-        TokenTypes.LITERAL_CLASS,
-        TokenTypes.LITERAL_THIS,
+            TokenTypes.DOT,
+            TokenTypes.METHOD_CALL,
+            TokenTypes.LITERAL_NEW,
+            TokenTypes.LITERAL_SUPER,
+            TokenTypes.LITERAL_CLASS,
+            TokenTypes.LITERAL_THIS,
     };
 
     /**
      * An array of unacceptable parent of ast of type {@link TokenTypes#IDENT}.
      */
     private static final int[] UNACCEPTABLE_PARENT_OF_IDENT = {
-        TokenTypes.VARIABLE_DEF,
-        TokenTypes.DOT,
-        TokenTypes.LITERAL_NEW,
-        TokenTypes.PATTERN_VARIABLE_DEF,
-        TokenTypes.METHOD_CALL,
-        TokenTypes.TYPE,
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.DOT,
+            TokenTypes.LITERAL_NEW,
+            TokenTypes.PATTERN_VARIABLE_DEF,
+            TokenTypes.METHOD_CALL,
+            TokenTypes.TYPE,
     };
 
     /**
      * An array of blocks in which local anon inner classes can exist.
      */
     private static final int[] ANONYMOUS_CLASS_PARENT_TOKENS = {
-        TokenTypes.METHOD_DEF,
-        TokenTypes.CTOR_DEF,
-        TokenTypes.STATIC_INIT,
-        TokenTypes.INSTANCE_INIT,
-        TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.COMPACT_CTOR_DEF,
     };
 
     /**
@@ -117,10 +157,10 @@ public class UnusedPrivateMethod extends AbstractCheck {
      * switch expression are considered to be used
      */
     private static final int[] INCREMENT_DECREMENT_VARIABLE_USAGE_TYPES = {
-        TokenTypes.ELIST,
-        TokenTypes.INDEX_OP,
-        TokenTypes.ASSIGN,
-        TokenTypes.LITERAL_SWITCH,
+            TokenTypes.ELIST,
+            TokenTypes.INDEX_OP,
+            TokenTypes.ASSIGN,
+            TokenTypes.LITERAL_SWITCH,
     };
 
     /** Package separator. */
@@ -150,7 +190,7 @@ public class UnusedPrivateMethod extends AbstractCheck {
     private final Map<DetailAST, TypeDeclDesc> anonInnerAstToTypeDeclDesc = new HashMap<>();
 
     /**
-     * Set of tokens of type {@link unusedprivatemethod#ANONYMOUS_CLASS_PARENT_TOKENS}
+     * Set of tokens of type {@link UnusedLocalVariableCheck#ANONYMOUS_CLASS_PARENT_TOKENS}
      * and {@link TokenTypes#LAMBDA} in some cases.
      */
     private final Set<DetailAST> anonInnerClassHolders = new HashSet<>();
@@ -187,26 +227,26 @@ public class UnusedPrivateMethod extends AbstractCheck {
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
-            TokenTypes.DOT,
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.IDENT,
-            TokenTypes.SLIST,
-            TokenTypes.LITERAL_FOR,
-            TokenTypes.OBJBLOCK,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.ANNOTATION_DEF,
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.LITERAL_NEW,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.STATIC_INIT,
-            TokenTypes.INSTANCE_INIT,
-            TokenTypes.COMPILATION_UNIT,
-            TokenTypes.LAMBDA,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.RECORD_DEF,
-            TokenTypes.COMPACT_CTOR_DEF,
+                TokenTypes.DOT,
+                TokenTypes.VARIABLE_DEF,
+                TokenTypes.IDENT,
+                TokenTypes.SLIST,
+                TokenTypes.LITERAL_FOR,
+                TokenTypes.OBJBLOCK,
+                TokenTypes.CLASS_DEF,
+                TokenTypes.INTERFACE_DEF,
+                TokenTypes.ANNOTATION_DEF,
+                TokenTypes.PACKAGE_DEF,
+                TokenTypes.LITERAL_NEW,
+                TokenTypes.METHOD_DEF,
+                TokenTypes.CTOR_DEF,
+                TokenTypes.STATIC_INIT,
+                TokenTypes.INSTANCE_INIT,
+                TokenTypes.COMPILATION_UNIT,
+                TokenTypes.LAMBDA,
+                TokenTypes.ENUM_DEF,
+                TokenTypes.RECORD_DEF,
+                TokenTypes.COMPACT_CTOR_DEF,
         };
     }
 
@@ -308,7 +348,7 @@ public class UnusedPrivateMethod extends AbstractCheck {
                 && parent.getLastChild().getType() == TokenTypes.LITERAL_NEW;
         final boolean isNestedClassInitialization =
                 TokenUtil.isOfType(identAst.getNextSibling(), TokenTypes.LITERAL_NEW)
-                && parent.getType() == TokenTypes.DOT;
+                        && parent.getType() == TokenTypes.DOT;
 
         if (isNestedClassInitialization || !isMethodReferenceMethodName
                 && !isConstructorReference
@@ -378,7 +418,7 @@ public class UnusedPrivateMethod extends AbstractCheck {
     /**
      * Traverse {@code variablesStack} stack and log the violations.
      *
-     * @param scopeAst ast node of type {@link unusedprivatemethod#SCOPES}
+     * @param scopeAst ast node of type {@link UnusedLocalVariableCheck#SCOPES}
      * @param variablesStack stack of all the relevant variables in the scope
      */
     private void logViolations(DetailAST scopeAst, Deque<VariableDesc> variablesStack) {
@@ -457,7 +497,7 @@ public class UnusedPrivateMethod extends AbstractCheck {
         final DetailAST grandParent = parentAst.getParent();
         final boolean isInstanceVarInInnerClass =
                 grandParent.getType() == TokenTypes.LITERAL_NEW
-                || grandParent.getType() == TokenTypes.CLASS_DEF;
+                        || grandParent.getType() == TokenTypes.CLASS_DEF;
         if (isInstanceVarInInnerClass
                 || parentAst.getType() != TokenTypes.OBJBLOCK) {
             final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
@@ -510,11 +550,11 @@ public class UnusedPrivateMethod extends AbstractCheck {
         if (packageName != null && shortNameOfClass.startsWith(packageName)) {
             final Optional<TypeDeclDesc> classWithCompletePackageName =
                     typeDeclAstToTypeDeclDesc.values()
-                    .stream()
-                    .filter(typeDeclDesc -> {
-                        return typeDeclDesc.getQualifiedName().equals(shortNameOfClass);
-                    })
-                    .findFirst();
+                            .stream()
+                            .filter(typeDeclDesc -> {
+                                return typeDeclDesc.getQualifiedName().equals(shortNameOfClass);
+                            })
+                            .findFirst();
             if (classWithCompletePackageName.isPresent()) {
                 obtainedClass = classWithCompletePackageName.orElseThrow();
             }
@@ -539,8 +579,8 @@ public class UnusedPrivateMethod extends AbstractCheck {
      * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
      */
     private void modifyVariablesStack(TypeDeclDesc obtainedClass,
-            Deque<VariableDesc> variablesStack,
-            DetailAST literalNewAst) {
+                                      Deque<VariableDesc> variablesStack,
+                                      DetailAST literalNewAst) {
         if (obtainedClass != null) {
             final Deque<VariableDesc> instAndClassVarDeque = typeDeclAstToTypeDeclDesc
                     .get(obtainedClass.getTypeDeclAst())
@@ -592,7 +632,7 @@ public class UnusedPrivateMethod extends AbstractCheck {
      * @return the nearest class
      */
     private static TypeDeclDesc getClosestMatchingTypeDeclaration(String outerTypeDeclName,
-            List<TypeDeclDesc> typeDeclWithSameName) {
+                                                                  List<TypeDeclDesc> typeDeclWithSameName) {
         return Collections.min(typeDeclWithSameName, (first, second) -> {
             return calculateTypeDeclarationDistance(outerTypeDeclName, first, second);
         });
@@ -651,12 +691,12 @@ public class UnusedPrivateMethod extends AbstractCheck {
                 .min(typeDeclarationToBeMatchedLength, pattern.length());
         final boolean shouldCountBeUpdatedAtLastCharacter =
                 typeDeclarationToBeMatchedLength > minLength
-                && candidate.charAt(minLength) == PACKAGE_SEPARATOR.charAt(0);
+                        && candidate.charAt(minLength) == PACKAGE_SEPARATOR.charAt(0);
 
         int result = 0;
         for (int idx = 0;
              idx < minLength
-                && pattern.charAt(idx) == candidate.charAt(idx);
+                     && pattern.charAt(idx) == candidate.charAt(idx);
              idx++) {
 
             if (shouldCountBeUpdatedAtLastCharacter
@@ -680,7 +720,7 @@ public class UnusedPrivateMethod extends AbstractCheck {
             outerClassQualifiedName = typeDeclarations.peek().getQualifiedName();
         }
         return CheckUtil
-            .getQualifiedTypeDeclarationName(packageName, outerClassQualifiedName, className);
+                .getQualifiedTypeDeclarationName(packageName, outerClassQualifiedName, className);
     }
 
     /**
@@ -705,7 +745,7 @@ public class UnusedPrivateMethod extends AbstractCheck {
     }
 
     /**
-     * Visit all ast nodes under {@link unusedprivatemethod#anonInnerClassHolders} once
+     * Visit all ast nodes under {@link UnusedLocalVariableCheck#anonInnerClassHolders} once
      * again.
      *
      * @param ast ast
@@ -729,7 +769,7 @@ public class UnusedPrivateMethod extends AbstractCheck {
     }
 
     /**
-     * Leave all ast nodes under {@link unusedprivatemethod#anonInnerClassHolders} once
+     * Leave all ast nodes under {@link UnusedLocalVariableCheck#anonInnerClassHolders} once
      * again.
      *
      * @param ast ast
@@ -1001,7 +1041,7 @@ public class UnusedPrivateMethod extends AbstractCheck {
          * @param typeDeclAst type declaration ast node
          */
         private TypeDeclDesc(String qualifiedName, int depth,
-                DetailAST typeDeclAst) {
+                             DetailAST typeDeclAst) {
             this.qualifiedName = qualifiedName;
             this.depth = depth;
             this.typeDeclAst = typeDeclAst;
