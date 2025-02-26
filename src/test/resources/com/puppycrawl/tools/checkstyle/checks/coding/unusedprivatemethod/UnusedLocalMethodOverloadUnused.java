@@ -10,8 +10,8 @@ public class UnusedLocalMethodOverloadUnused {
     public UnusedLocalMethodOverloadUnused() {
         used("1");
     }
-    public void used(String s) {
+    private void used(String s) {
     }
-    public void used(Integer s) {
+    private void used(Integer s) {
     }
 }

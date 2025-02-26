@@ -6,12 +6,10 @@ allowUnnamedVariables = false
 
 package com.puppycrawl.tools.checkstyle.checks.coding.unusedprivatemethod;
 
-public class UnusedLocalMethod2 {
-    public UnusedLocalMethod2() {
+public class UnusedLocalMethodNoUnused {
+    public UnusedLocalMethodNoUnused() {
         used();
     }
     private void used() {
-    }
-    private void unused() {
     }
 }

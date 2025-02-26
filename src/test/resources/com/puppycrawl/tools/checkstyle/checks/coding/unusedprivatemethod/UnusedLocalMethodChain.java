@@ -10,9 +10,9 @@ public class UnusedLocalMethodChain {
     public UnusedLocalMethodChain() {
         used();
     }
-    public void used() {
+    private void used() {
         used2();
     }
-    public void used2() {
+    private void used2() {
     }
 }
