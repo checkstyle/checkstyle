@@ -1,5 +1,5 @@
 /*
-UnusedPrivateMethodCheck
+UnusedPrivateMethod
 allowUnnamedVariables = false
 
 */

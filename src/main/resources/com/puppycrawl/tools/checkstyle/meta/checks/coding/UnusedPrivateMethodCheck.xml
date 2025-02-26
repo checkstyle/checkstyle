@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnusedPrivateMethodCheck"
+             name="UnusedPrivateMethod"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that a local variable is declared and/or assigned, but not used.
+ Doesn't support
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30"&gt;
+ pattern variables yet&lt;/a&gt;.
+ Doesn't check
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.12.3"&gt;
+ array components&lt;/a&gt; as array
+ components are classified as different kind of variables by
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se17/html/index.html"&gt;&lt;/a&gt;.
+ &lt;/div&gt;</description>
+         <properties>
+            <property default-value="true" name="allowUnnamedVariables" type="boolean">
+               <description>Allow variables named with a single underscore
+ (known as &lt;a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html"&gt;
+ unnamed variables&lt;/a&gt; in Java 21+).</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="unused.local.var"/>
+            <message-key key="unused.named.local.var"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
