@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+/// ////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+/// ////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -28,6 +28,8 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
@@ -41,21 +43,21 @@ import java.util.stream.Collectors;
 
 /**
  * <div>
- * Checks that a local variable is declared and/or assigned, but not used.
+ * Checks that a local method is declared and/or assigned, but not used.
  * Doesn't support
  * <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30">
- * pattern variables yet</a>.
+ * pattern methods yet</a>.
  * Doesn't check
  * <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.12.3">
  * array components</a> as array
- * components are classified as different kind of variables by
+ * components are classified as different kind of methods by
  * <a href="https://docs.oracle.com/javase/specs/jls/se17/html/index.html">JLS</a>.
  * </div>
  * <ul>
  * <li>
- * Property {@code allowUnnamedVariables} - Allow variables named with a single underscore
+ * Property {@code allowUnnamedMethods} - Allow methods named with a single underscore
  * (known as <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
- * unnamed variables</a> in Java 21+).
+ * unnamed methods</a> in Java 21+).
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
@@ -80,96 +82,94 @@ import java.util.stream.Collectors;
  * @since 9.3
  */
 @FileStatefulCheck
-public class UnusedLocalVariableCheck extends AbstractCheck {
+public class UnusedPrivateMethodCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_UNUSED_LOCAL_VARIABLE = "unused.local.var";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_UNUSED_NAMED_LOCAL_VARIABLE = "unused.named.local.var";
+    public static final String MSG_UNUSED_LOCAL_METHOD = "unused.local.method";
 
     /**
      * An array of increment and decrement tokens.
      */
     private static final int[] INCREMENT_AND_DECREMENT_TOKENS = {
-        TokenTypes.POST_INC,
-        TokenTypes.POST_DEC,
-        TokenTypes.INC,
-        TokenTypes.DEC,
+            TokenTypes.POST_INC,
+            TokenTypes.POST_DEC,
+            TokenTypes.INC,
+            TokenTypes.DEC,
     };
 
     /**
      * An array of scope tokens.
      */
     private static final int[] SCOPES = {
-        TokenTypes.SLIST,
-        TokenTypes.LITERAL_FOR,
-        TokenTypes.OBJBLOCK,
+            TokenTypes.SLIST,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.OBJBLOCK,
     };
 
     /**
      * An array of unacceptable children of ast of type {@link TokenTypes#DOT}.
      */
     private static final int[] UNACCEPTABLE_CHILD_OF_DOT = {
-        TokenTypes.DOT,
-        TokenTypes.METHOD_CALL,
-        TokenTypes.LITERAL_NEW,
-        TokenTypes.LITERAL_SUPER,
-        TokenTypes.LITERAL_CLASS,
-        TokenTypes.LITERAL_THIS,
+            TokenTypes.DOT,
+            TokenTypes.METHOD_CALL,
+            TokenTypes.LITERAL_NEW,
+            TokenTypes.LITERAL_SUPER,
+            TokenTypes.LITERAL_CLASS,
+            TokenTypes.LITERAL_THIS,
     };
 
     /**
      * An array of unacceptable parent of ast of type {@link TokenTypes#IDENT}.
      */
     private static final int[] UNACCEPTABLE_PARENT_OF_IDENT = {
-        TokenTypes.VARIABLE_DEF,
-        TokenTypes.DOT,
-        TokenTypes.LITERAL_NEW,
-        TokenTypes.PATTERN_VARIABLE_DEF,
-        TokenTypes.METHOD_CALL,
-        TokenTypes.TYPE,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.DOT,
+            TokenTypes.LITERAL_NEW,
+            TokenTypes.PATTERN_VARIABLE_DEF,
+            TokenTypes.METHOD_CALL,
+            TokenTypes.TYPE,
     };
 
     /**
      * An array of blocks in which local anon inner classes can exist.
      */
     private static final int[] ANONYMOUS_CLASS_PARENT_TOKENS = {
-        TokenTypes.METHOD_DEF,
-        TokenTypes.CTOR_DEF,
-        TokenTypes.STATIC_INIT,
-        TokenTypes.INSTANCE_INIT,
-        TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.COMPACT_CTOR_DEF,
     };
 
     /**
-     * An array of token types that indicate a variable is being used within
+     * An array of token types that indicate a method is being used within
      * an expression involving increment or decrement operators, or within a switch statement.
      * When a token of one of these types is the parent of an expression, it indicates that the
-     * variable associated with the increment or decrement operation is being used.
-     * Ex:- TokenTypes.LITERAL_SWITCH: Indicates a switch statement. Variables used within the
+     * method associated with the increment or decrement operation is being used.
+     * Ex:- TokenTypes.LITERAL_SWITCH: Indicates a switch statement. Methods used within the
      * switch expression are considered to be used
      */
     private static final int[] INCREMENT_DECREMENT_VARIABLE_USAGE_TYPES = {
-        TokenTypes.ELIST,
-        TokenTypes.INDEX_OP,
-        TokenTypes.ASSIGN,
-        TokenTypes.LITERAL_SWITCH,
+            TokenTypes.ELIST,
+            TokenTypes.INDEX_OP,
+            TokenTypes.ASSIGN,
+            TokenTypes.LITERAL_SWITCH,
     };
 
-    /** Package separator. */
+    /**
+     * Package separator.
+     */
     private static final String PACKAGE_SEPARATOR = ".";
 
     /**
-     * Keeps tracks of the variables declared in file.
+     * Keeps tracks of the methods declared in file.
      */
-    private final Deque<VariableDesc> variables = new ArrayDeque<>();
+    private final Deque<MethodDesc> methods = new ArrayDeque<>();
+    private final Collection<String> callsText = new ArrayList<>();
+    private final Deque<MethodDesc> calls = new ArrayDeque<>();
 
     /**
      * Keeps track of all the type declarations present in the file.
@@ -190,17 +190,10 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private final Map<DetailAST, TypeDeclDesc> anonInnerAstToTypeDeclDesc = new HashMap<>();
 
     /**
-     * Set of tokens of type {@link UnusedLocalVariableCheck#ANONYMOUS_CLASS_PARENT_TOKENS}
+     * Set of tokens of type {@link UnusedPrivateMethodCheck#ANONYMOUS_CLASS_PARENT_TOKENS}
      * and {@link TokenTypes#LAMBDA} in some cases.
      */
     private final Set<DetailAST> anonInnerClassHolders = new HashSet<>();
-
-    /**
-     * Allow variables named with a single underscore
-     * (known as  <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
-     *  unnamed variables</a> in Java 21+).
-     */
-    private boolean allowUnnamedVariables = true;
 
     /**
      * Name of the package.
@@ -212,41 +205,29 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private int depth;
 
-    /**
-     * Setter to allow variables named with a single underscore
-     * (known as <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
-     * unnamed variables</a> in Java 21+).
-     *
-     * @param allowUnnamedVariables true or false.
-     * @since 10.18.0
-     */
-    public void setAllowUnnamedVariables(boolean allowUnnamedVariables) {
-        this.allowUnnamedVariables = allowUnnamedVariables;
-    }
-
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.DOT,
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.IDENT,
-            TokenTypes.SLIST,
-            TokenTypes.LITERAL_FOR,
-            TokenTypes.OBJBLOCK,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.ANNOTATION_DEF,
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.LITERAL_NEW,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.STATIC_INIT,
-            TokenTypes.INSTANCE_INIT,
-            TokenTypes.COMPILATION_UNIT,
-            TokenTypes.LAMBDA,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.RECORD_DEF,
-            TokenTypes.COMPACT_CTOR_DEF,
+        return new int[]{
+                TokenTypes.DOT,
+                TokenTypes.METHOD_DEF,
+                TokenTypes.IDENT,
+                TokenTypes.SLIST,
+                TokenTypes.LITERAL_FOR,
+                TokenTypes.OBJBLOCK,
+                TokenTypes.CLASS_DEF,
+                TokenTypes.INTERFACE_DEF,
+                TokenTypes.ANNOTATION_DEF,
+                TokenTypes.PACKAGE_DEF,
+                TokenTypes.LITERAL_NEW,
+                TokenTypes.METHOD_DEF,
+                TokenTypes.CTOR_DEF,
+                TokenTypes.STATIC_INIT,
+                TokenTypes.INSTANCE_INIT,
+                TokenTypes.COMPILATION_UNIT,
+                TokenTypes.LAMBDA,
+                TokenTypes.ENUM_DEF,
+                TokenTypes.RECORD_DEF,
+                TokenTypes.COMPACT_CTOR_DEF,
         };
     }
 
@@ -262,7 +243,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST root) {
-        variables.clear();
+        methods.clear();
         typeDeclarations.clear();
         typeDeclAstToTypeDeclDesc.clear();
         anonInnerAstToTypeDeclDesc.clear();
@@ -273,48 +254,36 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final int type = ast.getType();
-        if (type == TokenTypes.DOT) {
-            visitDotToken(ast, variables);
+        if (ast.getType() == TokenTypes.METHOD_DEF) {
+            methods.push(new MethodDesc(
+                    ast.findFirstToken(TokenTypes.IDENT).getText(),
+                    ast.findFirstToken(TokenTypes.TYPE),
+                    findScopeOfMethod(ast)));
         }
-        else if (type == TokenTypes.VARIABLE_DEF && !skipUnnamedVariables(ast)) {
-            visitVariableDefToken(ast);
-        }
-        else if (type == TokenTypes.IDENT) {
-            visitIdentToken(ast, variables);
-        }
-        else if (isInsideLocalAnonInnerClass(ast)) {
-            visitLocalAnonInnerClass(ast);
-        }
-        else if (isNonLocalTypeDeclaration(ast)) {
-            visitNonLocalTypeDeclarationToken(ast);
-        }
-        else if (type == TokenTypes.PACKAGE_DEF) {
-            packageName = CheckUtil.extractQualifiedName(ast.getFirstChild().getNextSibling());
+        try {
+            callsText.add(ast.getText());
+        } catch (Exception ignored) {
         }
     }
 
     @Override
-    public void leaveToken(DetailAST ast) {
-        if (TokenUtil.isOfType(ast, SCOPES)) {
-            logViolations(ast, variables);
-        }
-        else if (ast.getType() == TokenTypes.COMPILATION_UNIT) {
-            leaveCompilationUnit();
-        }
-        else if (isNonLocalTypeDeclaration(ast)) {
-            depth--;
-            typeDeclarations.pop();
+    public void finishTree(DetailAST ast) {
+        Deque<MethodDesc> filteredMethods = methods.stream()
+                .filter(method -> Collections.frequency(callsText, method.getName()) == 1)
+                .collect(Collectors.toCollection(ArrayDeque::new));
+        while (!filteredMethods.isEmpty()) {
+            final MethodDesc variableDesc = filteredMethods.pop();
+            log(variableDesc.getTypeAst(), MSG_UNUSED_LOCAL_METHOD, variableDesc.getName());
         }
     }
 
     /**
      * Visit ast of type {@link TokenTypes#DOT}.
      *
-     * @param dotAst dotAst
-     * @param variablesStack stack of all the relevant variables in the scope
+     * @param dotAst         dotAst
+     * @param variablesStack stack of all the relevant methods in the scope
      */
-    private static void visitDotToken(DetailAST dotAst, Deque<VariableDesc> variablesStack) {
+    private static void visitDotToken(DetailAST dotAst, Deque<MethodDesc> variablesStack) {
         if (dotAst.getParent().getType() != TokenTypes.LITERAL_NEW
                 && shouldCheckIdentTokenNestedUnderDot(dotAst)) {
             final DetailAST identifier = dotAst.findFirstToken(TokenTypes.IDENT);
@@ -325,22 +294,12 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Visit ast of type {@link TokenTypes#VARIABLE_DEF}.
-     *
-     * @param varDefAst varDefAst
-     */
-    private void visitVariableDefToken(DetailAST varDefAst) {
-        addLocalVariables(varDefAst, variables);
-        addInstanceOrClassVar(varDefAst);
-    }
-
-    /**
      * Visit ast of type {@link TokenTypes#IDENT}.
      *
-     * @param identAst identAst
-     * @param variablesStack stack of all the relevant variables in the scope
+     * @param identAst       identAst
+     * @param variablesStack stack of all the relevant methods in the scope
      */
-    private static void visitIdentToken(DetailAST identAst, Deque<VariableDesc> variablesStack) {
+    private static void visitIdentToken(DetailAST identAst, Deque<MethodDesc> variablesStack) {
         final DetailAST parent = identAst.getParent();
         final boolean isMethodReferenceMethodName = parent.getType() == TokenTypes.METHOD_REF
                 && parent.getFirstChild() != identAst;
@@ -348,7 +307,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
                 && parent.getLastChild().getType() == TokenTypes.LITERAL_NEW;
         final boolean isNestedClassInitialization =
                 TokenUtil.isOfType(identAst.getNextSibling(), TokenTypes.LITERAL_NEW)
-                && parent.getType() == TokenTypes.DOT;
+                        && parent.getType() == TokenTypes.DOT;
 
         if (isNestedClassInitialization || !isMethodReferenceMethodName
                 && !isConstructorReference
@@ -358,46 +317,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Visit the non-local type declaration token.
-     *
-     * @param typeDeclAst type declaration ast
-     */
-    private void visitNonLocalTypeDeclarationToken(DetailAST typeDeclAst) {
-        final String qualifiedName = getQualifiedTypeDeclarationName(typeDeclAst);
-        final TypeDeclDesc currTypeDecl = new TypeDeclDesc(qualifiedName, depth, typeDeclAst);
-        depth++;
-        typeDeclarations.push(currTypeDecl);
-        typeDeclAstToTypeDeclDesc.put(typeDeclAst, currTypeDecl);
-    }
-
-    /**
-     * Visit the local anon inner class.
-     *
-     * @param literalNewAst literalNewAst
-     */
-    private void visitLocalAnonInnerClass(DetailAST literalNewAst) {
-        anonInnerAstToTypeDeclDesc.put(literalNewAst, typeDeclarations.peek());
-        anonInnerClassHolders.add(getBlockContainingLocalAnonInnerClass(literalNewAst));
-    }
-
-    /**
-     * Check for skip current {@link TokenTypes#VARIABLE_DEF}
-     * due to <b>allowUnnamedVariable</b> option.
-     *
-     * @param varDefAst varDefAst variable to check
-     * @return true if the current variable should be skipped.
-     */
-    private boolean skipUnnamedVariables(DetailAST varDefAst) {
-        final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
-        return allowUnnamedVariables && "_".equals(ident.getText());
-    }
-
-    /**
      * Whether ast node of type {@link TokenTypes#LITERAL_NEW} is a part of a local
      * anonymous inner class.
      *
      * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
-     * @return true if variableDefAst is an instance variable in local anonymous inner class
+     * @return true if variableDefAst is an instance method in local anonymous inner class
      */
     private static boolean isInsideLocalAnonInnerClass(DetailAST literalNewAst) {
         boolean result = false;
@@ -416,32 +340,10 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Traverse {@code variablesStack} stack and log the violations.
-     *
-     * @param scopeAst ast node of type {@link UnusedLocalVariableCheck#SCOPES}
-     * @param variablesStack stack of all the relevant variables in the scope
-     */
-    private void logViolations(DetailAST scopeAst, Deque<VariableDesc> variablesStack) {
-        while (!variablesStack.isEmpty() && variablesStack.peek().getScope() == scopeAst) {
-            final VariableDesc variableDesc = variablesStack.pop();
-            if (!variableDesc.isUsed()
-                    && !variableDesc.isInstVarOrClassVar()) {
-                final DetailAST typeAst = variableDesc.getTypeAst();
-                if (allowUnnamedVariables) {
-                    log(typeAst, MSG_UNUSED_NAMED_LOCAL_VARIABLE, variableDesc.getName());
-                }
-                else {
-                    log(typeAst, MSG_UNUSED_LOCAL_VARIABLE, variableDesc.getName());
-                }
-            }
-        }
-    }
-
-    /**
      * We process all the blocks containing local anonymous inner classes
      * separately after processing all the other nodes. This is being done
-     * due to the fact the instance variables of local anon inner classes can
-     * cast a shadow on local variables.
+     * due to the fact the instance methods of local anon inner classes can
+     * cast a shadow on local methods.
      */
     private void leaveCompilationUnit() {
         anonInnerClassHolders.forEach(holder -> {
@@ -461,78 +363,28 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Get the block containing local anon inner class.
-     *
-     * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
-     * @return the block containing local anon inner class
-     */
-    private static DetailAST getBlockContainingLocalAnonInnerClass(DetailAST literalNewAst) {
-        DetailAST currentAst = literalNewAst;
-        DetailAST result = null;
-        DetailAST topMostLambdaAst = null;
-        while (currentAst != null && !TokenUtil.isOfType(currentAst,
-                ANONYMOUS_CLASS_PARENT_TOKENS)) {
-            if (currentAst.getType() == TokenTypes.LAMBDA) {
-                topMostLambdaAst = currentAst;
-            }
-            currentAst = currentAst.getParent();
-            result = currentAst;
-        }
-
-        if (currentAst == null) {
-            result = topMostLambdaAst;
-        }
-        return result;
-    }
-
-    /**
-     * Add local variables to the {@code variablesStack} stack.
-     * Also adds the instance variables defined in a local anonymous inner class.
-     *
-     * @param varDefAst ast node of type {@link TokenTypes#VARIABLE_DEF}
-     * @param variablesStack stack of all the relevant variables in the scope
-     */
-    private static void addLocalVariables(DetailAST varDefAst, Deque<VariableDesc> variablesStack) {
-        final DetailAST parentAst = varDefAst.getParent();
-        final DetailAST grandParent = parentAst.getParent();
-        final boolean isInstanceVarInInnerClass =
-                grandParent.getType() == TokenTypes.LITERAL_NEW
-                || grandParent.getType() == TokenTypes.CLASS_DEF;
-        if (isInstanceVarInInnerClass
-                || parentAst.getType() != TokenTypes.OBJBLOCK) {
-            final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
-            final VariableDesc desc = new VariableDesc(ident.getText(),
-                    varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));
-            if (isInstanceVarInInnerClass) {
-                desc.registerAsInstOrClassVar();
-            }
-            variablesStack.push(desc);
-        }
-    }
-
-    /**
-     * Add instance variables and class variables to the
+     * Add instance methods and class methods to the
      * {@link TypeDeclDesc#instanceAndClassVarStack}.
      *
-     * @param varDefAst ast node of type {@link TokenTypes#VARIABLE_DEF}
+     * @param varDefAst ast node of type {@link TokenTypes#METHOD_DEF}
      */
     private void addInstanceOrClassVar(DetailAST varDefAst) {
         final DetailAST parentAst = varDefAst.getParent();
         if (isNonLocalTypeDeclaration(parentAst.getParent())
-                && !isPrivateInstanceVariable(varDefAst)) {
+                && !isPrivateInstanceMethod(varDefAst)) {
             final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
-            final VariableDesc desc = new VariableDesc(ident.getText());
+            final MethodDesc desc = new MethodDesc(ident.getText());
             typeDeclAstToTypeDeclDesc.get(parentAst.getParent()).addInstOrClassVar(desc);
         }
     }
 
     /**
-     * Whether instance variable or class variable have private access modifier.
+     * Whether instance method or class method have private access modifier.
      *
-     * @param varDefAst ast node of type {@link TokenTypes#VARIABLE_DEF}
-     * @return true if instance variable or class variable have private access modifier
+     * @param varDefAst ast node of type {@link TokenTypes#METHOD_DEF}
+     * @return true if instance method or class method have private access modifier
      */
-    private static boolean isPrivateInstanceVariable(DetailAST varDefAst) {
+    private static boolean isPrivateInstanceMethod(DetailAST varDefAst) {
         final AccessModifierOption varAccessModifier =
                 CheckUtil.getAccessModifierFromModifiersToken(varDefAst);
         return varAccessModifier == AccessModifierOption.PRIVATE;
@@ -550,16 +402,15 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         if (packageName != null && shortNameOfClass.startsWith(packageName)) {
             final Optional<TypeDeclDesc> classWithCompletePackageName =
                     typeDeclAstToTypeDeclDesc.values()
-                    .stream()
-                    .filter(typeDeclDesc -> {
-                        return typeDeclDesc.getQualifiedName().equals(shortNameOfClass);
-                    })
-                    .findFirst();
+                            .stream()
+                            .filter(typeDeclDesc -> {
+                                return typeDeclDesc.getQualifiedName().equals(shortNameOfClass);
+                            })
+                            .findFirst();
             if (classWithCompletePackageName.isPresent()) {
                 obtainedClass = classWithCompletePackageName.orElseThrow();
             }
-        }
-        else {
+        } else {
             final List<TypeDeclDesc> typeDeclWithSameName = typeDeclWithSameName(shortNameOfClass);
             if (!typeDeclWithSameName.isEmpty()) {
                 obtainedClass = getClosestMatchingTypeDeclaration(
@@ -571,18 +422,18 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Add non-private instance and class variables of the super class of the anonymous class
-     * to the variables stack.
+     * Add non-private instance and class methods of the super class of the anonymous class
+     * to the methods stack.
      *
-     * @param obtainedClass super class of the anon inner class
-     * @param variablesStack stack of all the relevant variables in the scope
-     * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
+     * @param obtainedClass  super class of the anon inner class
+     * @param variablesStack stack of all the relevant methods in the scope
+     * @param literalNewAst  ast node of type {@link TokenTypes#LITERAL_NEW}
      */
-    private void modifyVariablesStack(TypeDeclDesc obtainedClass,
-            Deque<VariableDesc> variablesStack,
-            DetailAST literalNewAst) {
+    private void modifyMethodsStack(TypeDeclDesc obtainedClass,
+                                    Deque<MethodDesc> variablesStack,
+                                      DetailAST literalNewAst) {
         if (obtainedClass != null) {
-            final Deque<VariableDesc> instAndClassVarDeque = typeDeclAstToTypeDeclDesc
+            final Deque<MethodDesc> instAndClassVarDeque = typeDeclAstToTypeDeclDesc
                     .get(obtainedClass.getTypeDeclAst())
                     .getUpdatedCopyOfVarStack(literalNewAst);
             instAndClassVarDeque.forEach(variablesStack::push);
@@ -607,16 +458,15 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * Whether the qualified name of {@code typeDeclDesc} matches the super class name.
      *
      * @param superClassName name of the super class
-     * @param typeDeclDesc type declaration description
+     * @param typeDeclDesc   type declaration description
      * @return {@code true} if the qualified name of {@code typeDeclDesc}
-     *         matches the super class name
+     * matches the super class name
      */
     private boolean hasSameNameAsSuperClass(String superClassName, TypeDeclDesc typeDeclDesc) {
         final boolean result;
         if (packageName == null && typeDeclDesc.getDepth() == 0) {
             result = typeDeclDesc.getQualifiedName().equals(superClassName);
-        }
-        else {
+        } else {
             result = typeDeclDesc.getQualifiedName()
                     .endsWith(PACKAGE_SEPARATOR + superClassName);
         }
@@ -627,12 +477,12 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * For all type declarations with the same name as the superclass, gets the nearest type
      * declaration.
      *
-     * @param outerTypeDeclName outer type declaration of anonymous inner class
+     * @param outerTypeDeclName    outer type declaration of anonymous inner class
      * @param typeDeclWithSameName typeDeclarations which have the same name as the super class
      * @return the nearest class
      */
     private static TypeDeclDesc getClosestMatchingTypeDeclaration(String outerTypeDeclName,
-            List<TypeDeclDesc> typeDeclWithSameName) {
+                                                                  List<TypeDeclDesc> typeDeclWithSameName) {
         return Collections.min(typeDeclWithSameName, (first, second) -> {
             return calculateTypeDeclarationDistance(outerTypeDeclName, first, second);
         });
@@ -643,8 +493,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * difference between them is zero, then their depth is compared to obtain the result.
      *
      * @param outerTypeName outer type declaration of anonymous inner class
-     * @param firstType first input type declaration
-     * @param secondType second input type declaration
+     * @param firstType     first input type declaration
+     * @param secondType    second input type declaration
      * @return difference between type declaration name matching count
      */
     private static int calculateTypeDeclarationDistance(String outerTypeName,
@@ -659,8 +509,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         final int distance;
         if (matchDistance == 0) {
             distance = Integer.compare(firstType.getDepth(), secondType.getDepth());
-        }
-        else {
+        } else {
             distance = matchDistance;
         }
 
@@ -680,7 +529,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * inheritance where nested classes cannot be extended.
      * </p>
      *
-     * @param pattern type declaration to match against
+     * @param pattern   type declaration to match against
      * @param candidate type declaration to be matched
      * @return the type declaration matching count
      */
@@ -691,12 +540,12 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
                 .min(typeDeclarationToBeMatchedLength, pattern.length());
         final boolean shouldCountBeUpdatedAtLastCharacter =
                 typeDeclarationToBeMatchedLength > minLength
-                && candidate.charAt(minLength) == PACKAGE_SEPARATOR.charAt(0);
+                        && candidate.charAt(minLength) == PACKAGE_SEPARATOR.charAt(0);
 
         int result = 0;
         for (int idx = 0;
              idx < minLength
-                && pattern.charAt(idx) == candidate.charAt(idx);
+                     && pattern.charAt(idx) == candidate.charAt(idx);
              idx++) {
 
             if (shouldCountBeUpdatedAtLastCharacter
@@ -720,23 +569,29 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             outerClassQualifiedName = typeDeclarations.peek().getQualifiedName();
         }
         return CheckUtil
-            .getQualifiedTypeDeclarationName(packageName, outerClassQualifiedName, className);
+                .getQualifiedTypeDeclarationName(packageName, outerClassQualifiedName, className);
     }
 
     /**
      * Iterate over all the ast nodes present under {@code ast}.
      *
-     * @param ast ast
-     * @param variablesStack stack of all the relevant variables in the scope
+     * @param ast            ast
+     * @param variablesStack stack of all the relevant methods in the scope
      */
     private void iterateOverBlockContainingLocalAnonInnerClass(
-            DetailAST ast, Deque<VariableDesc> variablesStack) {
+            DetailAST ast, Deque<MethodDesc> variablesStack) {
         DetailAST currNode = ast;
         while (currNode != null) {
             customVisitToken(currNode, variablesStack);
             DetailAST toVisit = currNode.getFirstChild();
             while (currNode != ast && toVisit == null) {
-                logViolations(currNode, variablesStack);
+                while (!variablesStack.isEmpty() && variablesStack.peek().getScope() == currNode) {
+                    final MethodDesc variableDesc = variablesStack.pop();
+                    if (!variableDesc.isUsed()
+                            && !variableDesc.isInstVarOrClassVar()) {
+                        log(variableDesc.getTypeAst(), MSG_UNUSED_LOCAL_METHOD, variableDesc.getName());
+                    }
+                }
                 toVisit = currNode.getNextSibling();
                 currNode = currNode.getParent();
             }
@@ -745,26 +600,27 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Visit all ast nodes under {@link UnusedLocalVariableCheck#anonInnerClassHolders} once
+     * Visit all ast nodes under {@link UnusedPrivateMethodCheck#anonInnerClassHolders} once
      * again.
      *
-     * @param ast ast
-     * @param variablesStack stack of all the relevant variables in the scope
+     * @param ast            ast
+     * @param variablesStack stack of all the relevant methods in the scope
      */
-    private void customVisitToken(DetailAST ast, Deque<VariableDesc> variablesStack) {
+    private void customVisitToken(DetailAST ast, Deque<MethodDesc> variablesStack) {
         final int type = ast.getType();
         if (type == TokenTypes.DOT) {
             visitDotToken(ast, variablesStack);
-        }
-        else if (type == TokenTypes.VARIABLE_DEF) {
-            addLocalVariables(ast, variablesStack);
-        }
-        else if (type == TokenTypes.IDENT) {
+        } else if (type == TokenTypes.METHOD_DEF) {
+            variablesStack.push(
+                    new MethodDesc(
+                            ast.findFirstToken(TokenTypes.IDENT).getText(),
+                            ast.findFirstToken(TokenTypes.TYPE),
+                            findScopeOfMethod(ast)));
+        } else if (type == TokenTypes.IDENT) {
             visitIdentToken(ast, variablesStack);
-        }
-        else if (isInsideLocalAnonInnerClass(ast)) {
+        } else if (isInsideLocalAnonInnerClass(ast)) {
             final TypeDeclDesc obtainedClass = getSuperClassOfAnonInnerClass(ast);
-            modifyVariablesStack(obtainedClass, variablesStack, ast);
+            modifyMethodsStack(obtainedClass, variablesStack, ast);
         }
     }
 
@@ -787,11 +643,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     /**
      * Checks the identifier ast.
      *
-     * @param identAst ast of type {@link TokenTypes#IDENT}
-     * @param variablesStack stack of all the relevant variables in the scope
+     * @param identAst       ast of type {@link TokenTypes#IDENT}
+     * @param variablesStack stack of all the relevant methods in the scope
      */
-    private static void checkIdentifierAst(DetailAST identAst, Deque<VariableDesc> variablesStack) {
-        for (VariableDesc variableDesc : variablesStack) {
+    private static void checkIdentifierAst(DetailAST identAst, Deque<MethodDesc> variablesStack) {
+        for (MethodDesc variableDesc : variablesStack) {
             if (identAst.getText().equals(variableDesc.getName())
                     && !isLeftHandSideValue(identAst)) {
                 variableDesc.registerAsUsed();
@@ -801,18 +657,17 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Find the scope of variable.
+     * Find the scope of method.
      *
-     * @param variableDef ast of type {@link TokenTypes#VARIABLE_DEF}
+     * @param variableDef ast of type {@link TokenTypes#METHOD_DEF}
      * @return scope of variableDef
      */
-    private static DetailAST findScopeOfVariable(DetailAST variableDef) {
+    private static DetailAST findScopeOfMethod(DetailAST variableDef) {
         final DetailAST result;
         final DetailAST parentAst = variableDef.getParent();
         if (TokenUtil.isOfType(parentAst, TokenTypes.SLIST, TokenTypes.OBJBLOCK)) {
             result = parentAst;
-        }
-        else {
+        } else {
             result = parentAst.getParent();
         }
         return result;
@@ -840,36 +695,36 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      *
      * @param identAst ast of type {@link TokenTypes#IDENT}
      * @return true if identAst is used as an operand of stand-alone
-     *         increment or decrement
+     * increment or decrement
      */
     private static boolean isStandAloneIncrementOrDecrement(DetailAST identAst) {
         final DetailAST parent = identAst.getParent();
         final DetailAST grandParent = parent.getParent();
         return TokenUtil.isOfType(parent, INCREMENT_AND_DECREMENT_TOKENS)
                 && TokenUtil.isOfType(grandParent, TokenTypes.EXPR)
-                && !isIncrementOrDecrementVariableUsed(grandParent);
+                && !isIncrementOrDecrementMethodUsed(grandParent);
     }
 
     /**
-     * A variable with increment or decrement operator is considered used if it
+     * A method with increment or decrement operator is considered used if it
      * is used as an argument or as an array index or for assigning value
-     * to a variable.
+     * to a method.
      *
      * @param exprAst ast of type {@link TokenTypes#EXPR}
-     * @return true if variable nested in exprAst is used
+     * @return true if method nested in exprAst is used
      */
-    private static boolean isIncrementOrDecrementVariableUsed(DetailAST exprAst) {
+    private static boolean isIncrementOrDecrementMethodUsed(DetailAST exprAst) {
         return TokenUtil.isOfType(exprAst.getParent(), INCREMENT_DECREMENT_VARIABLE_USAGE_TYPES)
                 && exprAst.getParent().getParent().getType() != TokenTypes.FOR_ITERATOR;
     }
 
     /**
-     * Maintains information about the variable.
+     * Maintains information about the method.
      */
-    private static final class VariableDesc {
+    private static final class MethodDesc {
 
         /**
-         * The name of the variable.
+         * The name of the method.
          */
         private final String name;
 
@@ -879,62 +734,62 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         private final DetailAST typeAst;
 
         /**
-         * The scope of variable is determined by the ast of type
+         * The scope of method is determined by the ast of type
          * {@link TokenTypes#SLIST} or {@link TokenTypes#LITERAL_FOR}
-         * or {@link TokenTypes#OBJBLOCK} which is enclosing the variable.
+         * or {@link TokenTypes#OBJBLOCK} which is enclosing the method.
          */
         private final DetailAST scope;
 
         /**
-         * Is an instance variable or a class variable.
+         * Is an instance method or a class method.
          */
         private boolean instVarOrClassVar;
 
         /**
-         * Is the variable used.
+         * Is the method used.
          */
         private boolean used;
 
         /**
-         * Create a new VariableDesc instance.
+         * Create a new MethodDesc instance.
          *
-         * @param name name of the variable
+         * @param name    name of the method
          * @param typeAst ast of type {@link TokenTypes#TYPE}
-         * @param scope ast of type {@link TokenTypes#SLIST} or
-         *              {@link TokenTypes#LITERAL_FOR} or {@link TokenTypes#OBJBLOCK}
-         *              which is enclosing the variable
+         * @param scope   ast of type {@link TokenTypes#SLIST} or
+         *                {@link TokenTypes#LITERAL_FOR} or {@link TokenTypes#OBJBLOCK}
+         *                which is enclosing the method
          */
-        private VariableDesc(String name, DetailAST typeAst, DetailAST scope) {
+        private MethodDesc(String name, DetailAST typeAst, DetailAST scope) {
             this.name = name;
             this.typeAst = typeAst;
             this.scope = scope;
         }
 
         /**
-         * Create a new VariableDesc instance.
+         * Create a new MethodDesc instance.
          *
-         * @param name name of the variable
+         * @param name name of the method
          */
-        private VariableDesc(String name) {
+        private MethodDesc(String name) {
             this(name, null, null);
         }
 
         /**
-         * Create a new VariableDesc instance.
+         * Create a new MethodDesc instance.
          *
-         * @param name name of the variable
+         * @param name  name of the method
          * @param scope ast of type {@link TokenTypes#SLIST} or
          *              {@link TokenTypes#LITERAL_FOR} or {@link TokenTypes#OBJBLOCK}
-         *              which is enclosing the variable
+         *              which is enclosing the method
          */
-        private VariableDesc(String name, DetailAST scope) {
+        private MethodDesc(String name, DetailAST scope) {
             this(name, null, scope);
         }
 
         /**
-         * Get the name of variable.
+         * Get the name of method.
          *
-         * @return name of variable
+         * @return name of method
          */
         public String getName() {
             return name;
@@ -952,42 +807,42 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         /**
          * Get ast of type {@link TokenTypes#SLIST}
          * or {@link TokenTypes#LITERAL_FOR} or {@link TokenTypes#OBJBLOCK}
-         * which is enclosing the variable i.e. its scope.
+         * which is enclosing the method i.e. its scope.
          *
-         * @return the scope associated with the variable
+         * @return the scope associated with the method
          */
         public DetailAST getScope() {
             return scope;
         }
 
         /**
-         * Register the variable as used.
+         * Register the method as used.
          */
         public void registerAsUsed() {
             used = true;
         }
 
         /**
-         * Register the variable as an instance variable or
-         * class variable.
+         * Register the method as an instance method or
+         * class method.
          */
         public void registerAsInstOrClassVar() {
             instVarOrClassVar = true;
         }
 
         /**
-         * Is the variable used or not.
+         * Is the method used or not.
          *
-         * @return true if variable is used
+         * @return true if method is used
          */
         public boolean isUsed() {
             return used;
         }
 
         /**
-         * Is an instance variable or a class variable.
+         * Is an instance method or a class method.
          *
-         * @return true if is an instance variable or a class variable
+         * @return true if is an instance method or a class method
          */
         public boolean isInstVarOrClassVar() {
             return instVarOrClassVar;
@@ -1018,19 +873,19 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         private final DetailAST typeDeclAst;
 
         /**
-         * A stack of type declaration's instance and static variables.
+         * A stack of type declaration's instance and static methods.
          */
-        private final Deque<VariableDesc> instanceAndClassVarStack;
+        private final Deque<MethodDesc> instanceAndClassVarStack;
 
         /**
          * Create a new TypeDeclDesc instance.
          *
          * @param qualifiedName qualified name
-         * @param depth depth of nesting
-         * @param typeDeclAst type declaration ast node
+         * @param depth         depth of nesting
+         * @param typeDeclAst   type declaration ast node
          */
         private TypeDeclDesc(String qualifiedName, int depth,
-                DetailAST typeDeclAst) {
+                             DetailAST typeDeclAst) {
             this.qualifiedName = qualifiedName;
             this.depth = depth;
             this.typeDeclAst = typeDeclAst;
@@ -1066,16 +921,16 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         }
 
         /**
-         * Get the copy of variables in instanceAndClassVar stack with updated scope.
+         * Get the copy of methods in instanceAndClassVar stack with updated scope.
          *
          * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
-         * @return copy of variables in instanceAndClassVar stack with updated scope.
+         * @return copy of methods in instanceAndClassVar stack with updated scope.
          */
-        public Deque<VariableDesc> getUpdatedCopyOfVarStack(DetailAST literalNewAst) {
+        public Deque<MethodDesc> getUpdatedCopyOfVarStack(DetailAST literalNewAst) {
             final DetailAST updatedScope = literalNewAst;
-            final Deque<VariableDesc> instAndClassVarDeque = new ArrayDeque<>();
+            final Deque<MethodDesc> instAndClassVarDeque = new ArrayDeque<>();
             instanceAndClassVarStack.forEach(instVar -> {
-                final VariableDesc variableDesc = new VariableDesc(instVar.getName(),
+                final MethodDesc variableDesc = new MethodDesc(instVar.getName(),
                         updatedScope);
                 variableDesc.registerAsInstOrClassVar();
                 instAndClassVarDeque.push(variableDesc);
@@ -1084,11 +939,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         }
 
         /**
-         * Add an instance variable or class variable to the stack.
+         * Add an instance method or class method to the stack.
          *
-         * @param variableDesc variable to be added
+         * @param variableDesc method to be added
          */
-        public void addInstOrClassVar(VariableDesc variableDesc) {
+        public void addInstOrClassVar(MethodDesc variableDesc) {
             instanceAndClassVarStack.push(variableDesc);
         }
     }
