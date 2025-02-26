@@ -44,7 +44,7 @@ cd /home/project-web/checkstyle
 
 echo "Extracting previous release version"
 PREVIOUS_RELEASE_VERSION_SPAN=$(grep "projectVersion" htdocs/index.html)
-REGEX="|<\/span>Version: (.*)<\/li>"
+REGEX="Version: (.*)<"
 [[ $PREVIOUS_RELEASE_VERSION_SPAN =~ $REGEX ]]
 PREV_RELEASE="${BASH_REMATCH[1]}"
 echo "PREVIOUS RELEASE version:""$PREV_RELEASE"
