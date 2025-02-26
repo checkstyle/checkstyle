@@ -123,7 +123,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
      * An array of unacceptable parent of ast of type {@link TokenTypes#IDENT}.
      */
     private static final int[] UNACCEPTABLE_PARENT_OF_IDENT = {
-            TokenTypes.VARIABLE_DEF,
+            TokenTypes.METHOD_DEF,
             TokenTypes.DOT,
             TokenTypes.LITERAL_NEW,
             TokenTypes.PATTERN_VARIABLE_DEF,
@@ -192,13 +192,6 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
     private final Set<DetailAST> anonInnerClassHolders = new HashSet<>();
 
     /**
-     * Allow methods named with a single underscore
-     * (known as  <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
-     * unnamed methods</a> in Java 21+).
-     */
-    private boolean allowUnnamedVariables = true;
-
-    /**
      * Name of the package.
      */
     private String packageName;
@@ -208,23 +201,11 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
      */
     private int depth;
 
-    /**
-     * Setter to allow methods named with a single underscore
-     * (known as <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
-     * unnamed methods</a> in Java 21+).
-     *
-     * @param allowUnnamedVariables true or false.
-     * @since 10.18.0
-     */
-    public void setAllowUnnamedVariables(boolean allowUnnamedVariables) {
-        this.allowUnnamedVariables = allowUnnamedVariables;
-    }
-
     @Override
     public int[] getDefaultTokens() {
         return new int[]{
                 TokenTypes.DOT,
-                TokenTypes.VARIABLE_DEF,
+                TokenTypes.METHOD_DEF,
                 TokenTypes.IDENT,
                 TokenTypes.SLIST,
                 TokenTypes.LITERAL_FOR,
@@ -314,7 +295,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Visit ast of type {@link TokenTypes#VARIABLE_DEF}.
+     * Visit ast of type {@link TokenTypes#METHOD_DEF}.
      *
      * @param varDefAst varDefAst
      */
@@ -460,7 +441,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
      * Add local methods to the {@code variablesStack} stack.
      * Also adds the instance methods defined in a local anonymous inner class.
      *
-     * @param varDefAst      ast node of type {@link TokenTypes#VARIABLE_DEF}
+     * @param varDefAst      ast node of type {@link TokenTypes#METHOD_DEF}
      * @param variablesStack stack of all the relevant methods in the scope
      */
     private static void addLocalVariables(DetailAST varDefAst, Deque<VariableDesc> variablesStack) {
@@ -485,7 +466,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
      * Add instance methods and class methods to the
      * {@link TypeDeclDesc#instanceAndClassVarStack}.
      *
-     * @param varDefAst ast node of type {@link TokenTypes#VARIABLE_DEF}
+     * @param varDefAst ast node of type {@link TokenTypes#METHOD_DEF}
      */
     private void addInstanceOrClassVar(DetailAST varDefAst) {
         final DetailAST parentAst = varDefAst.getParent();
@@ -500,7 +481,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
     /**
      * Whether instance method or class method have private access modifier.
      *
-     * @param varDefAst ast node of type {@link TokenTypes#VARIABLE_DEF}
+     * @param varDefAst ast node of type {@link TokenTypes#METHOD_DEF}
      * @return true if instance method or class method have private access modifier
      */
     private static boolean isPrivateInstanceVariable(DetailAST varDefAst) {
@@ -723,7 +704,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
         final int type = ast.getType();
         if (type == TokenTypes.DOT) {
             visitDotToken(ast, variablesStack);
-        } else if (type == TokenTypes.VARIABLE_DEF) {
+        } else if (type == TokenTypes.METHOD_DEF) {
             addLocalVariables(ast, variablesStack);
         } else if (type == TokenTypes.IDENT) {
             visitIdentToken(ast, variablesStack);
@@ -768,7 +749,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
     /**
      * Find the scope of method.
      *
-     * @param variableDef ast of type {@link TokenTypes#VARIABLE_DEF}
+     * @param variableDef ast of type {@link TokenTypes#METHOD_DEF}
      * @return scope of variableDef
      */
     private static DetailAST findScopeOfVariable(DetailAST variableDef) {
