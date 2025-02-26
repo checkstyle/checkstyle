@@ -272,7 +272,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
         final int type = ast.getType();
         if (type == TokenTypes.DOT) {
             visitDotToken(ast, variables);
-        } else if (type == TokenTypes.VARIABLE_DEF && !skipUnnamedVariables(ast)) {
+        } else if (type == TokenTypes.METHOD_DEF) {
             visitVariableDefToken(ast);
         } else if (type == TokenTypes.IDENT) {
             visitIdentToken(ast, variables);
@@ -367,18 +367,6 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
     private void visitLocalAnonInnerClass(DetailAST literalNewAst) {
         anonInnerAstToTypeDeclDesc.put(literalNewAst, typeDeclarations.peek());
         anonInnerClassHolders.add(getBlockContainingLocalAnonInnerClass(literalNewAst));
-    }
-
-    /**
-     * Check for skip current {@link TokenTypes#VARIABLE_DEF}
-     * due to <b>allowUnnamedVariable</b> option.
-     *
-     * @param varDefAst varDefAst variable to check
-     * @return true if the current variable should be skipped.
-     */
-    private boolean skipUnnamedVariables(DetailAST varDefAst) {
-        final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
-        return allowUnnamedVariables && "_".equals(ident.getText());
     }
 
     /**
