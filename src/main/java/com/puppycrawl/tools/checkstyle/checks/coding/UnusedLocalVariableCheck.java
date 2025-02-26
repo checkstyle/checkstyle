@@ -866,7 +866,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     /**
      * Maintains information about the variable.
      */
-    private static final class VariableDesc {
+    static final class VariableDesc {
 
         /**
          * The name of the variable.
@@ -1000,7 +1000,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * or {@link TokenTypes#ENUM_DEF} or {@link TokenTypes#ANNOTATION_DEF}
      * or {@link TokenTypes#RECORD_DEF} is considered as a type declaration.
      */
-    private static final class TypeDeclDesc {
+    static final class TypeDeclDesc {
 
         /**
          * Complete type declaration name with package name and outer type declaration name.
