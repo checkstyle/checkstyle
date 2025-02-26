@@ -254,9 +254,6 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        // call all methods
-        // call all calls
-        // check if calls = 0
         if (ast.getType() == TokenTypes.METHOD_DEF) {
             methods.push(new MethodDesc(
                     ast.findFirstToken(TokenTypes.IDENT).getText(),
