@@ -59,7 +59,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.METHOD_DEF) {
+        if (ast.getType() == TokenTypes.METHOD_DEF && ast.getFirstChild().getText().equals("private")) {
             methods.put(ast.findFirstToken(TokenTypes.IDENT).getText(), ast);
         } else if (ast.getType() == TokenTypes.IDENT) {
             identifications.add(ast.getText());
