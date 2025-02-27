@@ -540,9 +540,9 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         final List<Integer> expectedViolationLines = testInputViolations.stream()
                 .map(TestInputViolation::getLineNo)
                 .collect(Collectors.toUnmodifiableList());
-//        assertWithMessage("Violation lines for %s differ.", file)
-//                .that(actualViolationLines)
-//                .isEqualTo(expectedViolationLines);
+        assertWithMessage("Violation lines for %s differ.", file)
+                .that(actualViolationLines)
+                .isEqualTo(expectedViolationLines);
         for (int index = 0; index < actualViolations.size(); index++) {
             assertWithMessage("Actual and expected violations differ.")
                     .that(actualViolations.get(index))
