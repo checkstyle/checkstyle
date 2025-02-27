@@ -33,25 +33,22 @@ public class UnusedPrivateMethodCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void UnusedLocalMethodNoUnused() throws Exception {
-//        verifyWithInlineConfigParser(getPath("UnusedLocalMethodNoUnused.java"));
+        verifyWithInlineConfigParser(getPath("UnusedLocalMethodNoUnused.java"));
     }
 
     @Test
     public void UnusedLocalMethodChain() throws Exception {
         verifyWithInlineConfigParser(getPath("UnusedLocalMethodChain.java"), new String[]{
-                "5",
+                "15:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused"),
         });
-//        verifyWithInlineConfigParser(getPath("UnusedLocalMethodChain.java"), new String[]{
-//                "15:18: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused"),
-//        });
     }
 
     @Test
     public void UnusedLocalMethodMulti() throws Exception {
         verifyWithInlineConfigParser(getPath("UnusedLocalMethodMulti.java"), new String[]{
-                "15:18: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused1"),
-                "18:18: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused2"),
-                "21:18: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused3"),
+                "15:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused1"),
+                "18:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused2"),
+                "21:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused3"),
         });
     }
 

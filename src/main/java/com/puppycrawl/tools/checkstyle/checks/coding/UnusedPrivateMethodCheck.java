@@ -7,9 +7,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
+import static java.util.Collections.frequency;
 
 /**
  * Checks that a local method is declared and/or assigned, but not used.
@@ -25,12 +26,12 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
     /**
      * Keeps track of the methods declared in the file.
      */
-    private final Map<String, DetailAST> declaredMethods = new HashMap<>();
+    private final Map<String, DetailAST> methods = new HashMap<>();
 
     /**
      * Keeps track of the method calls in the file.
      */
-    private final Collection<String> methodCalls = new ArrayList<>();
+    private final Collection<String> identifications = new ArrayList<>();
 
     @Override
     public int[] getDefaultTokens() {
@@ -52,24 +53,24 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST root) {
-        declaredMethods.clear();
-        methodCalls.clear();
+        methods.clear();
+        identifications.clear();
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.METHOD_DEF) {
-            declaredMethods.put(ast.findFirstToken(TokenTypes.IDENT).getText(), ast);
+            methods.put(ast.findFirstToken(TokenTypes.IDENT).getText(), ast);
         } else if (ast.getType() == TokenTypes.IDENT) {
-            methodCalls.add(ast.getText());
+            identifications.add(ast.getText());
         }
     }
 
     @Override
     public void finishTree(DetailAST ast) {
-        for (String methodName : declaredMethods.keySet()) {
-            if (Collections.frequency(methodCalls, methodName) == 1) {
-                final DetailAST ast1 = declaredMethods.get(methodName);
+        for (String methodName : methods.keySet()) {
+            if (frequency(identifications, methodName) == 1) {
+                final DetailAST ast1 = methods.get(methodName);
                 log(ast1, MSG_UNUSED_LOCAL_METHOD, methodName);
 //                log(ast1.getLineNo(), MSG_UNUSED_LOCAL_METHOD, methodName);
 //                log(ast1.getLineNo(), ast1.getColumnNo(), MSG_UNUSED_LOCAL_METHOD, methodName);
