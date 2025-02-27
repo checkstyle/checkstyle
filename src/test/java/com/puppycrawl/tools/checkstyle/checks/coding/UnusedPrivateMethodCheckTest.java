@@ -32,14 +32,23 @@ public class UnusedPrivateMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void UnusedLocalMethodNoUnused() throws Exception {
-        verifyWithInlineConfigParser(getPath("UnusedLocalMethodNoUnused.java"));
+    public void UnusedLocalMethod() throws Exception {
+        verifyWithInlineConfigParser(getPath("UnusedLocalMethod.java"), new String[]{
+                "15:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused"),
+        });
     }
 
     @Test
     public void UnusedLocalMethodChain() throws Exception {
         verifyWithInlineConfigParser(getPath("UnusedLocalMethodChain.java"), new String[]{
                 "15:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused"),
+        });
+    }
+
+    @Test
+    public void UnusedLocalMethodChainUnused() throws Exception {
+        verifyWithInlineConfigParser(getPath("UnusedLocalMethodChainUnused.java"), new String[]{
+                "19:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused2"),
         });
     }
 
@@ -51,5 +60,41 @@ public class UnusedPrivateMethodCheckTest extends AbstractModuleTestSupport {
                 "21:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused3"),
         });
     }
+
+    @Test
+    public void UnusedLocalMethodNoUnused() throws Exception {
+        verifyWithInlineConfigParser(getPath("UnusedLocalMethodNoUnused.java"), new String[]{
+                "15:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused"),
+        });
+    }
+
+    @Test
+    public void UnusedLocalMethodNoUnusedIgnoreProtected() throws Exception {
+        verifyWithInlineConfigParser(getPath("UnusedLocalMethodNoUnusedIgnoreProtected.java"), new String[]{
+                "15:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused"),
+        });
+    }
+
+    @Test
+    public void UnusedLocalMethodNoUnusedIgnorePublic() throws Exception {
+        verifyWithInlineConfigParser(getPath("UnusedLocalMethodNoUnusedIgnorePublic.java"), new String[]{
+                "15:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused"),
+        });
+    }
+
+    @Test
+    public void UnusedLocalMethodOverload() throws Exception {
+        verifyWithInlineConfigParser(getPath("UnusedLocalMethodOverload.java"), new String[]{
+                "15:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused"),
+        });
+    }
+
+    @Test
+    public void UnusedLocalMethodOverloadUnused() throws Exception {
+        verifyWithInlineConfigParser(getPath("UnusedLocalMethodOverloadUnused.java"), new String[]{
+                "15:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused"),
+        });
+    }
+
 
 }
