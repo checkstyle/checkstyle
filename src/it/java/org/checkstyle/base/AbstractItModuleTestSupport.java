@@ -19,17 +19,7 @@
 
 package org.checkstyle.base;
 
-import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
-import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.TreeWalker;
-import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
-import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
-import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -52,7 +42,17 @@ import java.util.Properties;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static com.google.common.truth.Truth.assertWithMessage;
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
+import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
+import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public abstract class AbstractItModuleTestSupport extends AbstractPathTestSupport {
 
@@ -121,7 +121,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      *         or config.
      */
     protected static Configuration getModuleConfig(Configuration masterConfig, String moduleName,
-            String moduleId) {
+                                                   String moduleId) {
         final Configuration result;
         final List<Configuration> configs = getModuleConfigs(masterConfig, moduleName);
         if (configs.size() == 1) {
@@ -135,8 +135,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         }
         else {
             result = configs.stream().filter(conf -> isSameModuleId(conf, moduleId))
-            .findFirst()
-            .orElseThrow(() -> new IllegalStateException("problem with module config"));
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalStateException("problem with module config"));
         }
 
         return result;
@@ -169,7 +169,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @throws CheckstyleException if there is an error with the config.
      */
     protected static List<Configuration> getModuleConfigsByIds(Configuration masterConfig,
-            String... moduleIds) throws CheckstyleException {
+                                                               String... moduleIds) throws CheckstyleException {
         final List<Configuration> result = new ArrayList<>();
         for (Configuration currentConfig : masterConfig.getChildren()) {
             if ("TreeWalker".equals(currentConfig.getName())) {
@@ -238,7 +238,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @return {@link Configuration} instance for the given module name.
      */
     private static List<Configuration> getModuleConfigs(Configuration masterConfig,
-            String moduleName) {
+                                                        String moduleName) {
         final List<Configuration> result = new ArrayList<>();
         for (Configuration currentConfig : masterConfig.getChildren()) {
             if ("TreeWalker".equals(currentConfig.getName())) {
@@ -279,7 +279,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @throws Exception if an exception occurs during checker configuration.
      */
     protected final Checker createChecker(Configuration moduleConfig,
-                                 ModuleCreationOption moduleCreationOption)
+                                          ModuleCreationOption moduleCreationOption)
             throws Exception {
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -387,7 +387,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @throws Exception if exception occurs during verification process.
      */
     protected final void verify(Configuration config, String fileName, String[] expected,
-            Integer... warnsExpected) throws Exception {
+                                Integer... warnsExpected) throws Exception {
         verify(createChecker(config),
                 new File[] {new File(fileName)},
                 fileName, expected, warnsExpected);
@@ -405,10 +405,10 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @throws Exception if exception occurs during verification process.
      */
     protected final void verify(Checker checker,
-            File[] processedFiles,
-            String messageFileName,
-            String[] expected,
-            Integer... warnsExpected)
+                                File[] processedFiles,
+                                String messageFileName,
+                                String[] expected,
+                                Integer... warnsExpected)
             throws Exception {
         stream.flush();
         stream.reset();
@@ -420,17 +420,17 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
         // process each of the lines
         try (ByteArrayInputStream inputStream =
-                new ByteArrayInputStream(stream.toByteArray());
-            LineNumberReader lnr = new LineNumberReader(
-                new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+                     new ByteArrayInputStream(stream.toByteArray());
+             LineNumberReader lnr = new LineNumberReader(
+                     new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             int previousLineNumber = 0;
             for (int index = 0; index < expected.length; index++) {
                 final String expectedResult = messageFileName + ":" + expected[index];
                 final String actual = lnr.readLine();
                 assertWithMessage("Error message at position %s of 'expected' does "
                         + "not match actual message", index)
-                    .that(actual)
-                    .isEqualTo(expectedResult);
+                        .that(actual)
+                        .isEqualTo(expectedResult);
 
                 String parseInt = removeDeviceFromPathOnWindows(actual);
                 parseInt = parseInt.substring(parseInt.indexOf(':') + 1);
@@ -439,18 +439,18 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
                 assertWithMessage(
                         "input file is expected to have a warning comment on line number %s",
                         lineNumber)
-                    .that(previousLineNumber == lineNumber
-                            || theWarnings.remove((Integer) lineNumber))
-                    .isTrue();
+                        .that(previousLineNumber == lineNumber
+                                || theWarnings.remove((Integer) lineNumber))
+                        .isTrue();
                 previousLineNumber = lineNumber;
             }
 
             assertWithMessage("unexpected output: %s", lnr.readLine())
-                .that(errs)
-                .isEqualTo(expected.length);
+                    .that(errs)
+                    .isEqualTo(expected.length);
             assertWithMessage("unexpected warnings %s", theWarnings)
-                .that(theWarnings)
-                .isEmpty();
+                    .that(theWarnings)
+                    .isEmpty();
         }
 
         checker.destroy();
@@ -465,7 +465,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      */
     protected void verifyWithItConfig(Configuration config, String filePath) throws Exception {
         final List<TestInputViolation> violations =
-            InlineConfigParser.getViolationsFromInputFile(filePath);
+                InlineConfigParser.getViolationsFromInputFile(filePath);
         final List<String> actualViolations = getActualViolationsForFile(config, filePath);
 
         verifyViolations(filePath, violations, actualViolations);
@@ -480,7 +480,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @throws Exception if exception occurs during verification process.
      */
     private List<String> getActualViolationsForFile(Configuration config,
-          String file) throws Exception {
+                                                    String file) throws Exception {
         stream.flush();
         stream.reset();
         final List<File> files = Collections.singletonList(new File(file));
@@ -532,7 +532,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @param actualViolations for a file
      */
     private static void verifyViolations(String file, List<TestInputViolation> testInputViolations,
-          List<String> actualViolations) {
+                                         List<String> actualViolations) {
         final List<Integer> actualViolationLines = actualViolations.stream()
                 .map(violation -> violation.substring(0, violation.indexOf(':')))
                 .map(Integer::valueOf)
@@ -561,7 +561,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @throws IOException if there is a problem loading the property file.
      */
     protected static String getCheckMessage(Class<? extends AbstractViolationReporter> aClass,
-            String messageKey, Object... arguments) throws IOException {
+                                            String messageKey, Object... arguments) throws IOException {
         final Properties pr = new Properties();
         pr.load(aClass.getResourceAsStream("messages.properties"));
         final MessageFormat formatter = new MessageFormat(pr.getProperty(messageKey),
@@ -578,7 +578,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @return The message of the check with the arguments applied.
      */
     protected static String getCheckMessage(Map<String, String> messages, String messageKey,
-            Object... arguments) {
+                                            Object... arguments) {
         String checkMessage = null;
         for (Map.Entry<String, String> entry : messages.entrySet()) {
             if (messageKey.equals(entry.getKey())) {
