@@ -170,6 +170,20 @@ List list; //No violation here
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example7.java"/>
           <param name="type" value="code"/>
         </macro>
+        <p id="Example8-config">
+          To configure the check so that it violates usage of var:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example8.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example8.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
