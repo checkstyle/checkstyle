@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
+import static com.puppycrawl.tools.checkstyle.api.Scope.PRIVATE;
 import static java.util.Collections.frequency;
 
 /**
@@ -59,10 +61,19 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.METHOD_DEF && ast.getFirstChild().getText().equals("private")) {
-            methods.put(ast.findFirstToken(TokenTypes.IDENT).getText(), ast);
+        try {
+            if (ast.getType() == TokenTypes.METHOD_DEF) {
+                final DetailAST firstChild = ast.getFirstChild().getFirstChild();
+                if (Objects.nonNull(firstChild) && firstChild.getText().equals(PRIVATE.getName())) {
+                    methods.put(ast.findFirstToken(TokenTypes.IDENT).getText(), ast);
+                } else if (Objects.isNull(firstChild)) {
+                    methods.put(ast.findFirstToken(TokenTypes.IDENT).getText(), ast);
+                }
         } else if (ast.getType() == TokenTypes.IDENT) {
             identifications.add(ast.getText());
+        }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
