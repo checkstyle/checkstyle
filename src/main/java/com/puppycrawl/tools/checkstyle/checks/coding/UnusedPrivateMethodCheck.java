@@ -12,6 +12,7 @@ import java.util.Map;
 
 import static com.puppycrawl.tools.checkstyle.api.Scope.PRIVATE;
 import static java.util.Collections.frequency;
+import static java.util.Objects.nonNull;
 
 /**
  * Checks that a local method is declared and/or assigned, but not used.
@@ -61,6 +62,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.METHOD_DEF
+                && nonNull(ast.getFirstChild().getFirstChild())
                 && ast.getFirstChild().getFirstChild().getText().equals(PRIVATE.getName())) {
             methods.put(ast.findFirstToken(TokenTypes.IDENT).getText(), ast);
         } else if (ast.getType() == TokenTypes.IDENT) {

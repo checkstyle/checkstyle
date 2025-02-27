@@ -68,13 +68,10 @@ public class UnusedPrivateMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void UnusedLocalMethodNoUnusedIgnoreProtected() throws Exception {
-        verifyWithInlineConfigParser(getPath("UnusedLocalMethodNoUnusedIgnoreProtected.java"));
-    }
-
-    @Test
-    public void UnusedLocalMethodNoUnusedIgnorePublic() throws Exception {
-        verifyWithInlineConfigParser(getPath("UnusedLocalMethodNoUnusedIgnorePublic.java"));
+    public void UnusedLocalMethodOnlyOnPrivateMethodScope() throws Exception {
+        verifyWithInlineConfigParser(getPath("UnusedLocalMethodOnlyOnPrivateMethodScope.java"), new String[]{
+                "14:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unusedPrivate"),
+        });
     }
 
     @Test

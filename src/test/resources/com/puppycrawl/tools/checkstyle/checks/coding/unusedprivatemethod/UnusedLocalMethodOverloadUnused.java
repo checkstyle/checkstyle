@@ -12,6 +12,6 @@ public class UnusedLocalMethodOverloadUnused {
     private void used(String s) {
     }
 
-    private void used(Integer s) {
+    private void used(Integer s) { // violation, "Unused local method 'used'"
     }
 }
