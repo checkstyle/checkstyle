@@ -70,10 +70,7 @@ public class UnusedPrivateMethodCheck extends AbstractCheck {
     public void finishTree(DetailAST ast) {
         for (String methodName : methods.keySet()) {
             if (frequency(identifications, methodName) == 1) {
-                final DetailAST ast1 = methods.get(methodName);
-                log(ast1, MSG_UNUSED_LOCAL_METHOD, methodName);
-//                log(ast1.getLineNo(), MSG_UNUSED_LOCAL_METHOD, methodName);
-//                log(ast1.getLineNo(), ast1.getColumnNo(), MSG_UNUSED_LOCAL_METHOD, methodName);
+                log(methods.get(methodName), MSG_UNUSED_LOCAL_METHOD, methodName);
             }
         }
     }
