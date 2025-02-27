@@ -19,7 +19,17 @@
 
 package org.checkstyle.base;
 
-import static com.google.common.truth.Truth.assertWithMessage;
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
+import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
+import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -42,17 +52,7 @@ import java.util.Properties;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
-import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.TreeWalker;
-import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
-import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
-import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 public abstract class AbstractItModuleTestSupport extends AbstractPathTestSupport {
 
