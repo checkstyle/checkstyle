@@ -78,17 +78,8 @@ public class UnusedPrivateMethodCheckTest extends AbstractModuleTestSupport {
     @Disabled
     public void UnusedLocalMethodOverload() throws Exception {
         verifyWithInlineConfigParser(getPath("UnusedLocalMethodOverload.java"), new String[]{
-                "15:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused"),
+                "23:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused"),
         });
     }
-
-    @Test
-    @Disabled
-    public void UnusedLocalMethodOverloadUnused() throws Exception {
-        verifyWithInlineConfigParser(getPath("UnusedLocalMethodOverloadUnused.java"), new String[]{
-                "15:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused"),
-        });
-    }
-
 
 }
