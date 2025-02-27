@@ -135,5 +135,34 @@ function resetStyling() {
     document.querySelector(".xright").lastChild.remove();
 }
 
+window.addEventListener("load", function () {
+    document.querySelectorAll('pre code').forEach(block => {
+        const nodes = Array.from(block.childNodes);
+
+        // Remove leading empty nodes
+        while (nodes.length > 0 && isNodeEmpty(nodes[0])) {
+            nodes.shift();
+        }
+
+        // Remove trailing empty nodes
+        while (nodes.length > 0 && isNodeEmpty(nodes[nodes.length - 1])) {
+            nodes.pop();
+        }
+
+        block.innerHTML = '';
+        nodes.forEach(node => block.appendChild(node.cloneNode(true)));
+    });
+});
+
+function isNodeEmpty(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+        return node.textContent.trim() === '';
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+        return node.textContent.trim() === ''
+            && !node.querySelector(':not(span)');
+    }
+    return false;
+}
+
 window.addEventListener("load", setBodyColumnMargin);
 window.addEventListener("resize", setBodyColumnMargin);
