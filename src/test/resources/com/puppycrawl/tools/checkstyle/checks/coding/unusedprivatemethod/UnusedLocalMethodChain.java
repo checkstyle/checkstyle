@@ -12,6 +12,6 @@ public class UnusedLocalMethodChain {
     private void used2() {
     }
 
-    private void unused() {
+    private void unused() { // violation, "Unused local method 'unused'"
     }
 }
