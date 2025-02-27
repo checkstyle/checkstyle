@@ -19,17 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
-import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
-import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
-import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
-import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -49,7 +39,17 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-import static com.google.common.truth.Truth.assertWithMessage;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
+import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
+import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
+import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
+import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
 public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport {
 
@@ -255,7 +255,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final DefaultConfiguration parsedConfig =
                 testInputConfiguration.createConfiguration();
         final List<String> actualViolations = getActualViolationsForFile(parsedConfig, filePath);
-//        verifyViolations(filePath, testInputConfiguration.getViolations(), actualViolations); fixme
+//        verifyViolations(filePath, testInputConfiguration.getViolations(), actualViolations);
         assertWithMessage("Violations for %s differ.", filePath)
             .that(actualViolations)
             .containsExactlyElementsIn(expected);
