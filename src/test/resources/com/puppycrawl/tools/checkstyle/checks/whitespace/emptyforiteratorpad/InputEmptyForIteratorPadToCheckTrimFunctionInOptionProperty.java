@@ -21,7 +21,7 @@ class InputEmptyForIteratorPadToCheckTrimFunctionInOptionProperty {
             i++;
         }
 
-        for (int i = 0; i < 1; ) { // ok
+        for (int i = 0; i < 1; ) {
             i++;
         }
     }

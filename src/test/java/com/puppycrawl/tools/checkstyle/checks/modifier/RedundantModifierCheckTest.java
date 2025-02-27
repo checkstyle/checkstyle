@@ -52,7 +52,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testIt() throws Exception {
+    public void testItOne() throws Exception {
         final String[] expected = {
             "57:12: " + getCheckMessage(MSG_KEY, "static"),
             "60:9: " + getCheckMessage(MSG_KEY, "public"),
@@ -63,14 +63,22 @@ public class RedundantModifierCheckTest
             "82:13: " + getCheckMessage(MSG_KEY, "final"),
             "91:12: " + getCheckMessage(MSG_KEY, "final"),
             "102:1: " + getCheckMessage(MSG_KEY, "abstract"),
-            "119:5: " + getCheckMessage(MSG_KEY, "public"),
-            "120:5: " + getCheckMessage(MSG_KEY, "final"),
-            "121:5: " + getCheckMessage(MSG_KEY, "static"),
-            "123:5: " + getCheckMessage(MSG_KEY, "public"),
-            "124:5: " + getCheckMessage(MSG_KEY, "abstract"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputRedundantModifierIt.java"), expected);
+                getPath("InputRedundantModifierItOne.java"), expected);
+    }
+
+    @Test
+    public void testItTwo() throws Exception {
+        final String[] expected = {
+            "22:5: " + getCheckMessage(MSG_KEY, "public"),
+            "23:5: " + getCheckMessage(MSG_KEY, "final"),
+            "24:5: " + getCheckMessage(MSG_KEY, "static"),
+            "26:5: " + getCheckMessage(MSG_KEY, "public"),
+            "27:5: " + getCheckMessage(MSG_KEY, "abstract"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRedundantModifierItTwo.java"), expected);
     }
 
     @Test

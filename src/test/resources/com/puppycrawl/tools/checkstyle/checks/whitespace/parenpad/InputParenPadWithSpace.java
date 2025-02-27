@@ -11,7 +11,7 @@ tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
-public class InputParenPadWithSpace // ok
+public class InputParenPadWithSpace
 {
     protected InputParenPadWithSpace ( int i )
     {

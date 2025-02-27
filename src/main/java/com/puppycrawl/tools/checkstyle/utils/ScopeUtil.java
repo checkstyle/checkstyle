@@ -199,7 +199,7 @@ public final class ScopeUtil {
      * @param tokenType type of token.
      * @return a {@code boolean} value
      */
-    private static boolean isInBlockOf(DetailAST node, int tokenType) {
+    public static boolean isInBlockOf(DetailAST node, int tokenType) {
         boolean returnValue = false;
 
         // Loop up looking for a containing interface block

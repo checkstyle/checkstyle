@@ -30,7 +30,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "Test.java"
+                  "uri": "file:Test.java"
                 }
               }
             }

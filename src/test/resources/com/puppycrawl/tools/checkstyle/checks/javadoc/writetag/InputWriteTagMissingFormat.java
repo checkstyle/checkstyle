@@ -22,18 +22,18 @@ class InputWriteTagMissingFormat {
     /**
      * @todo Add a constructor comment
      */
-    public InputWriteTagMissingFormat() // ok
+    public InputWriteTagMissingFormat()
     {
     }
 
-    public void method() // ok
+    public void method()
     {
     }
 
     /**
      * @todo Add a comment
      */
-    public void anotherMethod() // ok
+    public void anotherMethod()
     {
     }
 }

@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
  * - use of 'public' in interface definition
  * @author lkuehne
  */
-strictfp final class InputRedundantModifierIt // illegal order of modifiers for class
+strictfp final class InputRedundantModifierItOne // illegal order of modifiers for class
 {
 
     /** Illegal order of modifiers for variables */
@@ -112,52 +112,8 @@ abstract interface InnerImplementation // violation
 
     void method();
 }
-
-/** Holder for redundant modifiers of annotation fields/variables */
-@interface Annotation
-{
-    public String s1 = ""; // violation
-    final String s2 = ""; // violation
-    static String s3 = ""; // violation
-    String s4 = "";
-    public String blah(); // violation
-    abstract String blah2(); // violation
-}
-
 @interface MyAnnotation2 {
 }
 
 @interface MyAnnotation4 {
-}
-
-class SafeVarargsUsage {
-    @Deprecated
-    @SafeVarargs
-    private final void foo(int... k) {}
-
-    @Deprecated
-    @SafeVarargs
-    @SuppressWarnings("")
-    private final void foo1(Object... obj) {}
-}
-
-enum TestEnum {
-    ;
-
-    public void method() {
-    }
-}
-
-/** holder for interface specific modifier check. */
-interface InputDefaultPublicModifier
-{
-    /** correct order */
-    default strictfp void a()
-    {
-    }
-
-    /** wrong order */
-    strictfp default void b()
-    {
-    }
 }

@@ -12,7 +12,7 @@ ignoreComments = true
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsinglelinejava;
 
-public class InputRegexpSinglelineJavaTrailingComment7 { // ok
+public class InputRegexpSinglelineJavaTrailingComment7 {
     int i; // don't use trailing comments :)
     // it fine to have comment w/o any statement
     /* good c-style comment. */

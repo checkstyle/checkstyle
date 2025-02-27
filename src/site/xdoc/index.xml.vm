@@ -535,6 +535,13 @@
                   configuration could be seen at jdee-checkstyle.el</a></td>
             </tr>
             <tr>
+              <td><a href="https://neovim.io/">Neovim</a></td>
+              <td>Mathias Fußenegger</td>
+              <td><a href="https://github.com/mfussenegger/nvim-lint">nvim-lint</a></td>
+              <td>An asynchronous linter plugin for Neovim complementary to the built-in Language
+                  Server Protocol support.</td>
+            </tr>
+            <tr>
               <td><a href="https://code.visualstudio.com/">Visual Studio Code</a></td>
               <td>Sheng Chen</td>
               <td><a href="https://marketplace.visualstudio.com/items?itemName=shengchen.vscode-checkstyle">

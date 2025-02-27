@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <div>
@@ -270,7 +271,7 @@ public class CyclomaticComplexityCheck
      */
     private void visitTokenHook(DetailAST ast) {
         if (switchBlockAsSingleDecisionPoint) {
-            if (ast.getType() != TokenTypes.LITERAL_CASE) {
+            if (!ScopeUtil.isInBlockOf(ast, TokenTypes.LITERAL_SWITCH)) {
                 incrementCurrentValue(BigInteger.ONE);
             }
         }

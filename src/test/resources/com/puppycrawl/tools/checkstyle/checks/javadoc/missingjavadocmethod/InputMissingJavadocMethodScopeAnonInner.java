@@ -30,8 +30,8 @@ public class InputMissingJavadocMethodScopeAnonInner
     /**
      * anon inner in member variable initialization.
      */
-    private Runnable mRunnable = new Runnable() { // ok
-        public void run() // ok
+    private Runnable mRunnable = new Runnable() {
+        public void run()
         {
             System.identityHashCode("running");
         }
@@ -40,11 +40,11 @@ public class InputMissingJavadocMethodScopeAnonInner
     /**
      * anon inner in constructor.
      */
-    InputMissingJavadocMethodScopeAnonInner() // ok
+    InputMissingJavadocMethodScopeAnonInner()
     {
         mButton.addMouseListener( new MouseAdapter()
         {
-            public void mouseClicked( MouseEvent aEv ) // ok
+            public void mouseClicked( MouseEvent aEv )
             {
                 System.identityHashCode("click");
             }
@@ -54,11 +54,11 @@ public class InputMissingJavadocMethodScopeAnonInner
     /**
      * anon inner in method
      */
-    public void addInputAnonInner() // ok
+    public void addInputAnonInner()
     {
         mButton.addMouseListener( new MouseAdapter()
         {
-            public void mouseClicked( MouseEvent aEv ) // ok
+            public void mouseClicked( MouseEvent aEv )
             {
                 System.identityHashCode("click");
             }

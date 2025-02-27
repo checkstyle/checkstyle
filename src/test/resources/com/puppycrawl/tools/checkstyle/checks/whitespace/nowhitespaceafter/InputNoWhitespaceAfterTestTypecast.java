@@ -26,9 +26,9 @@ class InputNoWhitespaceAfterTestTypecast
         int b= 1; // Ignore 1
         b=1; // Ignore 1
         b+=1; // Ignore 1
-        b -=- 1 + (+ b); // ok
+        b -=- 1 + (+ b);
         b = b ++ + b --; // Ignore 1
-        b = ++ b - -- b; // ok
+        b = ++ b - -- b;
     }
 
     /** method **/
@@ -85,10 +85,10 @@ class InputNoWhitespaceAfterTestTypecast
     private void testCasts()
     {
         Object o = (Object) new Object(); // violation
-        o = (Object)o; // ok
+        o = (Object)o;
         o = ( Object ) o; // violation
         o = (Object)
-            o; // ok
+            o;
     }
 
     /** test questions **/
@@ -108,8 +108,8 @@ class InputNoWhitespaceAfterTestTypecast
     private void boolTest()
     {
         boolean a = true;
-        boolean x = ! a; // ok
-        int z = ~1 + ~ 2; // ok
+        boolean x = ! a;
+        int z = ~1 + ~ 2;
     }
 
     /** division test **/
@@ -126,24 +126,24 @@ class InputNoWhitespaceAfterTestTypecast
     }
 
     /** @return dot test **/
-    private java .lang.  String dotTest() // ok
+    private java .lang.  String dotTest()
     {
         Object o = new java.lang.Object();
-        o. // ok
+        o.
             toString();
         o
             .toString();
-        o . toString(); // ok
+        o . toString();
         return o.toString();
     }
 
     /** assert statement test */
     public void assertTest()
     {
-        // OK
+
         assert true;
 
-        // OK
+
         assert true : "Whups";
 
         // evil colons, should be OK
@@ -261,7 +261,7 @@ class SpecialCasesInForLoopTestTypecast
                 }
             }};
         runs[0]
-. // ok
+.
  run()
 ;
     }
@@ -286,14 +286,14 @@ class SpecialCasesInForLoopTestTypecast
 
     public static void testNoWhitespaceBeforeEllipses(String ... args) {
     }
-    @ interface BAD{} // ok
-    @   interface BAD2{} // ok
-    @ // ok
+    @ interface BAD{}
+    @   interface BAD2{}
+    @
     interface BAD3{}
     @interface Ok{}
 
     static {
-        int[]err = new int [50]; // ok
+        int[]err = new int [50];
     }
 
     Object foo() {
@@ -305,5 +305,5 @@ class SpecialCasesInForLoopTestTypecast
         variable;
 
     int someStuff8
-    []; // ok
+    [];
 }
