@@ -30,7 +30,7 @@ public class InputSuperCloneInnerAndWithArguments
 
 class NoSuperClone
 {
-    public Object clone() // violation
+    public Object clone() // violation "Method 'clone' should call 'super.clone'"
     {
         return null;
     }
@@ -38,7 +38,7 @@ class NoSuperClone
 
 class InnerClone
 {
-    public Object clone() // violation
+    public Object clone() // violation "Method 'clone' should call 'super.clone'"
     {
         class Inner
         {
@@ -63,7 +63,8 @@ class CloneWithTypeArguments<T> extends CloneWithTypeArgumentsAndNoSuper<T>
 
 class CloneWithTypeArgumentsAndNoSuper<T>
 {
-    public CloneWithTypeArgumentsAndNoSuper<T> clone() // violation
+    // violation below "Method 'clone' should call 'super.clone'"
+    public CloneWithTypeArgumentsAndNoSuper<T> clone()
             throws CloneNotSupportedException
     {
         return null;
