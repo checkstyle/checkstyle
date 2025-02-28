@@ -200,7 +200,7 @@ public class IllegalImportCheck
         }
         final String importText = imp.getText();
         if (isIllegalImport(importText)) {
-            log(ast, MSG_KEY, importText);
+            log(ast, MSG_KEY, importText, "Illegal import - " + importText);
         }
     }
 
