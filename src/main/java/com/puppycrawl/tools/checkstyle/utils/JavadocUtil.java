@@ -118,7 +118,7 @@ public final class JavadocUtil {
             // Lines are one-indexed, so need an off-by-one correction.
             final int line = textBlock.getStartLineNo() + tag.getPosition().getLine() - 1;
 
-            if (JavadocTagInfo.isValidName(tag.getName())) {
+            if (JavadocTagInfo.isValidName(tag.getName()) && isValidTag(tag, tagType)) {
                 validTags.add(
                     new JavadocTag(line, col, tag.getName(), tag.getValue()));
             }
@@ -128,6 +128,21 @@ public final class JavadocUtil {
         }
 
         return new JavadocTags(validTags, invalidTags);
+    }
+
+    /**
+     * Checks if a given tag is valid based on its Javadoc type.
+     *
+     * @param tag        the tag to validate
+     * @param javadocTag the type of the Javadoc tag
+     * @return {@code true} if the tag is valid, otherwise {@code false}
+     */
+    public static boolean isValidTag(TagInfo tag, JavadocTagType javadocTag) {
+        boolean isValid = true;
+        if (javadocTag == JavadocTagType.BLOCK) {
+            isValid = !tag.getName().equals(JavadocTagInfo.LINK.getName());
+        }
+        return isValid && !tag.getValue().contains("::");
     }
 
     /**
