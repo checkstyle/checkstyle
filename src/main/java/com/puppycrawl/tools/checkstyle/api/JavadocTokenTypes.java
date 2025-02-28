@@ -1796,7 +1796,55 @@ public final class JavadocTokenTypes {
      */
     public static final int BODY_TAG_END = JavadocParser.RULE_bodyTagEnd + RULE_TYPES_OFFSET;
 
-    /** Colgroup html tag. */
+    /**
+     * Colgroup html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <colgroup>
+     *   <embed>
+     * </colgroup>
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   JAVADOC -> JAVADOC
+     *        |--NEWLINE -> \n
+     *        |--LEADING_ASTERISK ->  *
+     *        |--TEXT ->
+     *        |--HTML_ELEMENT -> HTML_ELEMENT
+     *        |    `--COLGROUP -> COLGROUP
+     *        |         |--COLGROUP_TAG_START -> COLGROUP_TAG_START
+     *        |         |    |--START -> <
+     *        |         |    |--COLGROUP_HTML_TAG_NAME -> colgroup
+     *        |         |    `--END -> >
+     *        |         |--NEWLINE -> \n
+     *        |         |--LEADING_ASTERISK ->  *
+     *        |         |--TEXT ->
+     *        |         |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *        |         |   `--EMBED_TAG -> EMBED_TAG
+     *        |         |       |--START -> <
+     *        |         |       |--EMBED_HTML_TAG_NAME -> embed
+     *        |         |       `--END -> >
+     *        |         |--NEWLINE -> \n
+     *        |         |--LEADING_ASTERISK ->  *
+     *        |         |--TEXT ->
+     *        |         `--COLGROUP_TAG_END -> COLGROUP_TAG_END
+     *        |           |--START -> <
+     *        |           |--SLASH -> /
+     *        |           |--COLGROUP_HTML_TAG_NAME -> colgroup
+     *        |           `--END -> >
+     *        |--NEWLINE -> \n
+     *        |--LEADING_ASTERISK ->  *
+     *        |--TEXT -> /
+     *        |--NEWLINE -> \n
+     *        |--TEXT -> public class Test {
+     *        |--NEWLINE -> \n
+     *        |--TEXT -> }
+     *        |--NEWLINE -> \n
+     * }
+     * </pre>
+     */
     public static final int COLGROUP = JavadocParser.RULE_colgroup + RULE_TYPES_OFFSET;
     /** Start colgroup tag. */
     public static final int COLGROUP_TAG_START = JavadocParser.RULE_colgroupTagStart
