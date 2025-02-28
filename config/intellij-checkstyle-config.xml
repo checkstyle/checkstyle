@@ -19,9 +19,6 @@
       </value>
     </option>
   </JavaCodeStyleSettings>
-  <JetCodeStyleSettings>
-    <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
-  </JetCodeStyleSettings>
   <codeStyleSettings language="Cookie">
     <indentOptions>
       <option name="USE_TAB_CHARACTER" value="false" />
@@ -70,8 +67,5 @@
       <option name="CONTINUATION_INDENT_SIZE" value="4" />
       <option name="KEEP_INDENTS_ON_EMPTY_LINES" value="true" />
     </indentOptions>
-  </codeStyleSettings>
-  <codeStyleSettings language="kotlin">
-    <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
   </codeStyleSettings>
 </code_scheme>

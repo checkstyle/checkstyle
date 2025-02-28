@@ -331,6 +331,7 @@ Dorekit
 Dorg
 DOTALL
 doubletag
+DOWHILE
 downloader
 doxia
 Dpi
@@ -759,9 +760,10 @@ keyname
 keyscan
 konstantinos
 Kordas
-Kotlin
+kotlin
 lambdabodylength
 lambdaparametername
+LBRACE
 LBRACK
 lcurly
 Leanback
@@ -1121,6 +1123,7 @@ qwe
 qwerty
 rawtypes
 rb
+RBRACE
 rbrack
 rcurly
 rdiachenko
