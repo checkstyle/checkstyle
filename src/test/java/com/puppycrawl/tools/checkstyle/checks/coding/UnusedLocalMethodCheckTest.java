@@ -23,9 +23,9 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedPrivateMethodCheck.MSG_UNUSED_LOCAL_METHOD;
+import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalMethodCheck.MSG_UNUSED_LOCAL_METHOD;
 
-public class UnusedPrivateMethodCheckTest extends AbstractModuleTestSupport {
+public class UnusedLocalMethodCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {

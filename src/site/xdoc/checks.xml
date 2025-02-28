@@ -1412,8 +1412,8 @@
           </tr>
           <tr>
             <td>
-              <a href="checks/coding/unusedlocalvariable.html#UnusedPrivateMethod">
-                UnusedPrivateMethod
+              <a href="checks/coding/unusedlocalvariable.html#UnusedLocalMethod">
+                UnusedLocalMethod
               </a>
             </td>
             <td>Checks that a local method is declared, but not used.</td>

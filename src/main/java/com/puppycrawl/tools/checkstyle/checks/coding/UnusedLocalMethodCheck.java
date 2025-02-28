@@ -18,7 +18,7 @@ import static java.util.Objects.nonNull;
  * Checks that a local method is declared and/or assigned, but not used.
  */
 @FileStatefulCheck
-public class UnusedPrivateMethodCheck extends AbstractCheck {
+public class UnusedLocalMethodCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties" file.
