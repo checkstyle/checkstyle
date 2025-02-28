@@ -1797,7 +1797,7 @@ public final class JavadocTokenTypes {
     public static final int BODY_TAG_END = JavadocParser.RULE_bodyTagEnd + RULE_TYPES_OFFSET;
 
     /**
-     * Colgroup html tag..
+     * Colgroup html tag
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
