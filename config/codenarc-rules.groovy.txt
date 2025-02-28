@@ -456,7 +456,7 @@ ruleset {
     UnusedMethodParameter
     UnusedObject
     UnusedPrivateField
-    UnusedPrivateMethod
-    UnusedPrivateMethodParameter
+    UnusedLocalMethod
+    UnusedLocalMethodParameter
     UnusedVariable
 }
