@@ -11,7 +11,7 @@ interface InputSuperClonePlainAndSubclasses {
 }
 
 class A {
-  public Object clone() { // violation
+  public Object clone() { // violation "Method 'clone' should call 'super.clone'"
       return null;
   }
 }
@@ -44,8 +44,8 @@ class C extends B {
 }
 
 class D extends B {
-
-  public Object clone() throws CloneNotSupportedException { // violation
+  // violation below "Method 'clone' should call 'super.clone'"
+  public Object clone() throws CloneNotSupportedException {
     super.clone(null, null);
     return null;
   }
