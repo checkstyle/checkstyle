@@ -706,7 +706,7 @@ public class GeneratedJavaTokenTypesTest {
             .isEqualTo(206);
         assertWithMessage(message)
             .that(JavaLanguageLexer.LITERAL_YIELD)
-            .isEqualTo(207);
+                .isEqualTo(207);
         assertWithMessage(message)
             .that(JavaLanguageLexer.SWITCH_RULE)
             .isEqualTo(208);
