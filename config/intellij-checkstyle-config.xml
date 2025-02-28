@@ -19,11 +19,6 @@
       </value>
     </option>
   </JavaCodeStyleSettings>
-  <codeStyleSettings language="Cookie">
-    <indentOptions>
-      <option name="USE_TAB_CHARACTER" value="false" />
-    </indentOptions>
-  </codeStyleSettings>
   <codeStyleSettings language="JAVA">
     <option name="RIGHT_MARGIN" value="100" />
     <option name="KEEP_BLANK_LINES_IN_DECLARATIONS" value="1" />
@@ -66,6 +61,7 @@
     <indentOptions>
       <option name="CONTINUATION_INDENT_SIZE" value="4" />
       <option name="KEEP_INDENTS_ON_EMPTY_LINES" value="true" />
+      <option name="USE_TAB_CHARACTER" value="false" />
     </indentOptions>
   </codeStyleSettings>
 </code_scheme>
