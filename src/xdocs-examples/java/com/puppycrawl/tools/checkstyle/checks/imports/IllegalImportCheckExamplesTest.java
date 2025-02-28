@@ -33,7 +33,8 @@ public class IllegalImportCheckExamplesTest extends AbstractExamplesModuleTestSu
     public void testExample1() throws Exception {
         final String[] expected = {
             "20:1: " + getCheckMessage(
-                    IllegalImportCheck.MSG_KEY, "sun.applet.*"),
+                    IllegalImportCheck.MSG_KEY, "sun.applet.*",
+                    "Illegal import - sun.applet.*"),
         };
 
         verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
@@ -43,9 +44,11 @@ public class IllegalImportCheckExamplesTest extends AbstractExamplesModuleTestSu
     public void testExample2() throws Exception {
         final String[] expected = {
             "15:1: " + getCheckMessage(
-                    IllegalImportCheck.MSG_KEY, "java.io.*"),
+                    IllegalImportCheck.MSG_KEY, "java.io.*",
+                    "Illegal import - java.io.*"),
             "17:1: " + getCheckMessage(
-                    IllegalImportCheck.MSG_KEY, "java.sql.Connection"),
+                    IllegalImportCheck.MSG_KEY, "java.sql.Connection",
+                    "Illegal import - java.sql.Connection"),
         };
 
         verifyWithInlineConfigParser(getNonCompilablePath("Example2.java"), expected);
@@ -55,11 +58,14 @@ public class IllegalImportCheckExamplesTest extends AbstractExamplesModuleTestSu
     public void testExample3() throws Exception {
         final String[] expected = {
             "18:1: " + getCheckMessage(
-                    IllegalImportCheck.MSG_KEY, "java.sql.Connection"),
+                    IllegalImportCheck.MSG_KEY, "java.sql.Connection",
+                    "Illegal import - java.sql.Connection"),
             "22:1: " + getCheckMessage(
-                    IllegalImportCheck.MSG_KEY, "java.util.Date"),
+                    IllegalImportCheck.MSG_KEY, "java.util.Date",
+                    "Illegal import - java.util.Date"),
             "23:1: " + getCheckMessage(
-                    IllegalImportCheck.MSG_KEY, "sun.applet.*"),
+                    IllegalImportCheck.MSG_KEY, "sun.applet.*",
+                    "Illegal import - sun.applet.*"),
         };
 
         verifyWithInlineConfigParser(getNonCompilablePath("Example3.java"), expected);
@@ -69,13 +75,17 @@ public class IllegalImportCheckExamplesTest extends AbstractExamplesModuleTestSu
     public void testExample4() throws Exception {
         final String[] expected = {
             "19:1: " + getCheckMessage(
-                    IllegalImportCheck.MSG_KEY, "java.util.List"),
+                    IllegalImportCheck.MSG_KEY, "java.util.List",
+                    "Illegal import - java.util.List"),
             "20:1: " + getCheckMessage(
-                    IllegalImportCheck.MSG_KEY, "java.util.Enumeration"),
+                    IllegalImportCheck.MSG_KEY, "java.util.Enumeration",
+                    "Illegal import - java.util.Enumeration"),
             "21:1: " + getCheckMessage(
-                    IllegalImportCheck.MSG_KEY, "java.util.Arrays"),
+                    IllegalImportCheck.MSG_KEY, "java.util.Arrays",
+                    "Illegal import - java.util.Arrays"),
             "22:1: " + getCheckMessage(
-                    IllegalImportCheck.MSG_KEY, "java.util.Date"),
+                    IllegalImportCheck.MSG_KEY, "java.util.Date",
+                    "Illegal import - java.util.Date"),
         };
 
         verifyWithInlineConfigParser(getNonCompilablePath("Example4.java"), expected);
@@ -85,13 +95,17 @@ public class IllegalImportCheckExamplesTest extends AbstractExamplesModuleTestSu
     public void testExample5() throws Exception {
         final String[] expected = {
             "19:1: " + getCheckMessage(
-                    IllegalImportCheck.MSG_KEY, "java.sql.Connection"),
+                    IllegalImportCheck.MSG_KEY, "java.sql.Connection",
+                    "Illegal import - java.sql.Connection"),
             "20:1: " + getCheckMessage(
-                    IllegalImportCheck.MSG_KEY, "java.util.List"),
+                    IllegalImportCheck.MSG_KEY, "java.util.List",
+                    "Illegal import - java.util.List"),
             "22:1: " + getCheckMessage(
-                    IllegalImportCheck.MSG_KEY, "java.util.Arrays"),
+                    IllegalImportCheck.MSG_KEY, "java.util.Arrays",
+                    "Illegal import - java.util.Arrays"),
             "24:1: " + getCheckMessage(
-                    IllegalImportCheck.MSG_KEY, "sun.applet.*"),
+                    IllegalImportCheck.MSG_KEY, "sun.applet.*",
+                    "Illegal import - sun.applet.*"),
         };
 
         verifyWithInlineConfigParser(getNonCompilablePath("Example5.java"), expected);
