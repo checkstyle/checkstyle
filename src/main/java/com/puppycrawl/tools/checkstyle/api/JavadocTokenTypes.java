@@ -1837,11 +1837,6 @@ public final class JavadocTokenTypes {
      *        |--NEWLINE -> \n
      *        |--LEADING_ASTERISK ->  *
      *        |--TEXT -> /
-     *        |--NEWLINE -> \n
-     *        |--TEXT -> public class Test {
-     *        |--NEWLINE -> \n
-     *        |--TEXT -> }
-     *        |--NEWLINE -> \n
      * }
      * </pre>
      */
