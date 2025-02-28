@@ -594,7 +594,7 @@
           </tr>
           <tr>
             <td>
-              <a href="unusedlocalvariable.html#UnusedPrivateMethod">
+              <a href="unusedlocalmethod.html#UnusedPrivateMethod">
                 UnusedPrivateMethod
               </a>
             </td>
