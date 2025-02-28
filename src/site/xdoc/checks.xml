@@ -1411,6 +1411,14 @@
             <td>Checks that a local variable is declared and/or assigned, but not used.</td>
           </tr>
           <tr>
+            <td>
+              <a href="checks/coding/unusedlocalvariable.html#UnusedLocalMethod">
+                UnusedLocalMethod
+              </a>
+            </td>
+            <td>Checks that a local method is declared, but not used.</td>
+          </tr>
+          <tr>
             <td><a href="checks/misc/upperell.html#UpperEll">UpperEll</a></td>
             <td>Checks that long constants are defined with an upper ell.</td>
           </tr>
