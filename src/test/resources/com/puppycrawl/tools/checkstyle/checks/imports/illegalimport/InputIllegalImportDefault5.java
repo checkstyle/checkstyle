@@ -34,7 +34,7 @@ import java.awt.Component;
 import java.awt.Graphics2D;
 import java.awt.HeadlessException;
 import java.awt.Label;
-import java.util.Date; // violation 'java.util.Dat'
+import java.util.Date; // violation 'Illegal import - java.util.Date'
 import java.util.Calendar; // violation 'Illegal import - java.util.Calendar'
 import java.util.BitSet; // violation 'Illegal import - java.util.BitSet'
 
