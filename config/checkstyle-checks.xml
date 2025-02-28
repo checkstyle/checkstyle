@@ -603,6 +603,7 @@
       <property name="severity" value="ignore"/>
     </module>
     <module name="UnusedLocalVariable"/>
+    <module name="UnusedLocalMethod"/>
     <module name="VariableDeclarationUsageDistance"/>
     <module name="WhenShouldBeUsed">
       <!--
