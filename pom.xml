@@ -3414,6 +3414,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedPrivateMethodCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoArrayTrailingCommaCheck*</param>
