@@ -3449,6 +3449,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalMethodCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoArrayTrailingCommaCheckTest</param>
@@ -4761,6 +4762,7 @@
                 <param>com.puppycrawl.tools.checkstyle.api.*</param>
                 <!-- 1% mutation in FullIdent -->
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalMethodCheckTest</param>
                 <!-- 1% mutation in CheckUtil -->
                 <param>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheckTest</param>
@@ -4975,6 +4977,9 @@
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalMethodCheckTest
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheckTest
