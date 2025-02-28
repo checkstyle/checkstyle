@@ -57,13 +57,13 @@ public class InputMagicNumberIntegersOnly1 {
             ;
 
         int int_magic1 = 3_000; // violation '3_000' is a magic number
-        double double_magic1 = 1.5_0; // violation '1.5_0' is a magic number
+        double double_magic1 = 1.5_0;
         int int_magic2 = (3 + 4); // 2 violation '3' and '4' are magic numbers
 
         int_array = new int[3]; // violation '3' is a magic number
 
         int_magic1 += 3; // violation '3' is a magic number
-        double_magic1 *= 1.5; // violation '1.5' is a magic number
+        double_magic1 *= 1.5;
 
         for (int j = 3; j < 5; j += 3) { // 3 violation '3', '5' and '3' are magic numbers
             int_magic1++;
@@ -73,14 +73,14 @@ public class InputMagicNumberIntegersOnly1 {
             int_magic1 = int_magic1 + 3; // violation '3' is a magic number
         }
 
-        int octalVar0 = 00; // violation '00' is a magic number
+        int octalVar0 = 00;
         int octalVar8 = 010; // violation '010' is a magic number
         int octalVar9 = 011; // violation '011' is a magic number
 
         long longOctalVar8 = 0_10L; // violation '0_10L' is a magic number
         long longOctalVar9 = 011l; // violation '011l' is a magic number
 
-        int hexVar0 = 0x0; // violation '0x0' is a magic number
+        int hexVar0 = 0x0;
         int hexVar16 = 0x10; // violation '0x10' is a magic number
         int hexVar17 = 0X011; // violation '0X011' is a magic number
         long longHexVar0 = 0x0L;

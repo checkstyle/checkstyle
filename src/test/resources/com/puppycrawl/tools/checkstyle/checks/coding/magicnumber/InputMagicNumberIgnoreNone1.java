@@ -40,15 +40,16 @@ public class InputMagicNumberIgnoreNone1 {
         final double DOUBLE_CONST2 = 1.5d;
         final double DOUBLE_CONST3 = 1.5;
 
-        int int_var1 = 1 + 2; // violations ''1' and '2' are magic numbers'
+        int int_var1 = 1; // violation ''1' is a magic number'
         int int_var2 = (2); // violation ''2' is a magic number'
         long long_var1 = 0L; // violation ''0L' is a magic number'
         long long_var2 = 0l; // violation ''0l' is a magic number'
-        double double_var1 = 1.0 + 2.0; // violations ''1.0' and '2.0' are magic numbers'
+        double double_var1 = 0D; // violation ''0D' is a magic number'
         double double_var2 = 0d; // violation ''0d' is a magic number'
 
         int[] int_array = new int[2]; // violation ''2' is a magic number'
 
+        int_var1 = 1 + 2; // 2 violations ''1' and '2' are magic numbers
         int_var1 += 1; // violation ''1' is a magic number'
         double_var1 = 1.0 + 2.0; // 2 violation '1.0' and '2.0' are magic numbers
 

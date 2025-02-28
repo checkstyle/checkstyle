@@ -27,7 +27,7 @@ public class InputMagicNumberIgnoreSome2 {
      */
     public static final int CONST_PLUS_THREE = +3;
     public static final int CONST_MINUS_TWO = -2;
-    private int mPlusThree = +3; // violation '3' is a magic number
+    private int mPlusThree = +3;
     private int mMinusTwo = -2; // violation '-2' is a magic number
     private double mPlusDecimal = +3.5; // violation '3.5' is a magic number
     private double mMinusDecimal = -2.5; // violation '2.5' is a magic number

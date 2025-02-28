@@ -35,21 +35,21 @@ public class InputMagicNumberIgnoreSome1 {
         final double DOUBLE_CONST3 = 1.5;
 
         // ignore by default
-        int int_var1 = 1; // violation '1' is a magic number
-        int int_var2 = (2); // violation '2' is a magic number
-        long long_var1 = 0L; // violation '0L' is a magic number
-        long long_var2 = 0l; // violation '0l' is a magic number
-        double double_var1 = 0D; // violation '0D' is a magic number
-        double double_var2 = 0d; // violation '0d' is a magic number
+        int int_var1 = 1;
+        int int_var2 = (2); // violation ''2' is a magic number'
+        long long_var1 = 0L;
+        long long_var2 = 0l;
+        double double_var1 = 0D;
+        double double_var2 = 0d;
 
-        int[] int_array = new int[2]; // violation '2' is a magic number
+        int[] int_array = new int[2]; // violation ''2' is a magic number'
 
         int_var1 = 1 + 2; // violation '1' and '2' are magic numbers
         int_var1 += 1;
         double_var1 = 1.0 + 2.0; // violation '1.0' and '2.0' are magic numbers
 
         for (int i = 0; i < 2; i++)
-            ; // violation '2' and '0' is a magic number
+            ; // violation '0' and '2' are magic numbers
 
         if (1 < 2)
             ; // violation '1' and '2' are magic numbers
@@ -59,15 +59,15 @@ public class InputMagicNumberIgnoreSome1 {
 
         // magic numbers
         int int_magic1 = 3_000;
-        double double_magic1 = 1.5_0; // violation '1.5_0' is a magic number
+        double double_magic1 = 1.5_0; // violation ''1.5_0' is a magic number'
         int int_magic2 = (3 + 4); // violation '3' and '4' are magic numbers
 
-        int_array = new int[3]; // violation '3' is a magic number
+        int_array = new int[3];
 
-        int_magic1 += 3; // violation '3' is a magic number
-        double_magic1 *= 1.5; // violation '1.5' is a magic number
+        int_magic1 += 3;
+        double_magic1 *= 1.5; // violation ''1.5' is a magic number'
 
-        for (int j = 3; j < 5; j += 3) { // violation '3', '5' and '3' are magic numbers
+        for (int j = 3; j < 5; j += 3) { // violation '3' and '5' are magic numbers
             int_magic1++;
         }
 
@@ -75,18 +75,18 @@ public class InputMagicNumberIgnoreSome1 {
             int_magic1 = int_magic1 + 3;
         }
 
-        int octalVar0 = 00; // violation '00' is a magic number
-        int octalVar8 = 010; // violation '010' is a magic number
+        int octalVar0 = 00;
+        int octalVar8 = 010;
         int octalVar9 = 011; // violation '011' is a magic number
 
-        long longOctalVar8 = 0_10L; // violation '0_10L' is a magic number
+        long longOctalVar8 = 0_10L;
         long longOctalVar9 = 011l; // violation '011l' is a magic number
 
-        int hexVar0 = 0x0; // violation '0x0' is a magic number
-        int hexVar16 = 0x10; // violation '0x10' is a magic number
+        int hexVar0 = 0x0;
+        int hexVar16 = 0x10;
         int hexVar17 = 0X011; // violation '0X011' is a magic number
-        long longHexVar0 = 0x0L; // violation '0x0L' is a magic number
-        long longHexVar16 = 0x10L; // violation '0x10L' is a magic number
+        long longHexVar0 = 0x0L;
+        long longHexVar16 = 0x10L;
         long longHexVar17 = 0X11l; // violation '0X11l' is a magic number
     }
 }
@@ -98,6 +98,6 @@ interface Blah2IgnoreSome1 {
 
 class ArrayMagicTestIgnoreSome1 {
     private static final int[] NONMAGIC = { 3 };
-    private int[] magic = { 3 }; // violation '3' is a magic number
+    private int[] magic = { 3 };
     private static final int[][] NONMAGIC2 = { { 1 }, { 2 }, { 3 } };
 }

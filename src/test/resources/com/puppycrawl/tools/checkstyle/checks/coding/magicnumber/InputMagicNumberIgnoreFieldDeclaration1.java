@@ -65,7 +65,7 @@ public class InputMagicNumberIgnoreFieldDeclaration1 {
         int_magic1 += 3; // violation ''3' is a magic number'
         double_magic1 *= 1.5; // violation ''1.5' is a magic number'
 
-        for (int j = 3; j < 5; j += 3) { // violations ''3', '5', and '3' are magic numbers'
+        for (int j = 3; j < 5; j += 3) { // 3 violations ''3', '5', and '3' are magic numbers'
             int_magic1++;
         }
 
@@ -96,6 +96,6 @@ interface Blah2IgnoreFieldDeclaration1 {
 
 class ArrayMagicTestIgnoreFieldDeclaration1 {
     private static final int[] NONMAGIC = { 3 };
-    private int[] magic = { 3 }; // violation ''3' is a magic number'
+    private int[] magic = { 3 };
     private static final int[][] NONMAGIC2 = { { 1 }, { 2 }, { 3 } };
 }
