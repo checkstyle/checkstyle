@@ -22,33 +22,31 @@ class InputMagicNumberIgnoreHashCodeMethod3 {
         return 31;
     }
 
-
     public int hashCode(int val) {
-        return 42; // violation
+        return 42; // violation '42' is a magic number
     }
 
-
     public int hashcode() {
-        return 13; // violation
+        return 13; // violation '13' is a magic number
     }
 
     static {
-        int x=21; // violation
+        int x = 21; // violation '21' is a magic number
     }
 
     {
-        int y=37; // violation
+        int y = 37; // violation '37' is a magic number
     }
 
     public InputMagicNumberIgnoreHashCodeMethod3() {
-        int z=101; // violation
+        int z = 101; // violation '101' is a magic number
     }
 
     @InputMagicNumberIntMethodAnnotation(42)
     public void another() {
     }
 
-    @InputMagicNumberIntMethodAnnotation(value=43)
+    @InputMagicNumberIntMethodAnnotation(value = 43)
     public void another2() {
     }
 
@@ -56,36 +54,40 @@ class InputMagicNumberIgnoreHashCodeMethod3 {
     public void anotherNegative() {
     }
 
-    @InputMagicNumberIntMethodAnnotation(value=-45)
+    @InputMagicNumberIntMethodAnnotation(value = -45)
     public void anotherNegative2() {
     }
 }
 
 class TestMethodCallIgnoreHashCodeMethod3 {
 
-        public TestMethodCallIgnoreHashCodeMethod3(int x){
+    public TestMethodCallIgnoreHashCodeMethod3(int x) {
 
     }
 
-        public void method2() {
-        final TestMethodCallIgnoreHashCodeMethod3 dummyObject =
-                new TestMethodCallIgnoreHashCodeMethod3(62);
-        }
+    public void method2() {
+        final TestMethodCallIgnoreHashCodeMethod3 dummyObject = new TestMethodCallIgnoreHashCodeMethod3(62);
+    }
 }
 
 class BinaryIgnoreHashCodeMethod3 {
-    int intValue = 0b101; // violation
+    int intValue = 0b101; // violation '0b101' is a magic number
     long l = 0b1010000101000101101000010100010110100001010001011010000101000101L; // violation
+                                                                                  // '0b1010000101000101101000010100010110100001010001011010000101000101L'
+                                                                                  // is a magic number
 }
-@interface AnnotationWithDefaultValueIgnoreHashCodeMethod3{
+
+@interface AnnotationWithDefaultValueIgnoreHashCodeMethod3 {
     int value() default 101;
-    int[] ar() default {102};
+
+    int[] ar() default { 102 };
 }
+
 class AIgnoreHashCodeMethod3 {
     {
         switch (Blah2IgnoreHashCodeMethod1.LOW) {
-        default:
-            int b = 122; // violation
+            default:
+                int b = 122; // violation '122' is a magic number
         }
     }
 }

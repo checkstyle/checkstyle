@@ -15,11 +15,11 @@ import java.util.function.BiFunction;
 public class InputMagicNumberIgnoreFieldDeclaration4 {
     public final int radius = 10;
     public final double area = 22 / 7.0 * radius * radius;
-    public final int a[] = {4, 5};
+    public final int a[] = { 4, 5 };
 
     public int x = 10;
     public int y = 10 * 20;
-    public int[] z = {4, 5};
+    public int[] z = { 4, 5 };
 
     private static final Callable<Void> SLEEP_FOR_A_DAY = () -> {
         Thread.sleep(86400_000);
@@ -38,8 +38,7 @@ public class InputMagicNumberIgnoreFieldDeclaration4 {
         }
     };
 
-    private static final BiFunction<Integer, Integer, Integer>
-            ADD_AND_SQUARE_EXP = new BiFunction<Integer, Integer, Integer>() {
+    private static final BiFunction<Integer, Integer, Integer> ADD_AND_SQUARE_EXP = new BiFunction<Integer, Integer, Integer>() {
         @Override
         public Integer apply(Integer a, Integer b) {
             int sum = a + b + 5; // violation ''5' is a magic number'
@@ -64,8 +63,7 @@ public class InputMagicNumberIgnoreFieldDeclaration4 {
         }
     };
 
-    private final BiFunction<Integer, Integer, Integer>
-            ADD_AND_SQUARE_EXP_NS = new BiFunction<Integer, Integer, Integer>() {
+    private final BiFunction<Integer, Integer, Integer> ADD_AND_SQUARE_EXP_NS = new BiFunction<Integer, Integer, Integer>() {
         @Override
         public Integer apply(Integer a, Integer b) {
             int sum = a + b + 5; // violation ''5' is a magic number'
