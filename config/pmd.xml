@@ -12,7 +12,7 @@
     <!-- The PMD mistakes the AbstractViolationReporter::log() as a debug log. -->
     <exclude name="GuardLogStatement"/>
     <!-- too much false-positives from 6.18.0 -->
-    <exclude name="UnusedPrivateMethod"/>
+    <exclude name="UnusedLocalMethod"/>
     <!-- until https://github.com/pmd/pmd/issues/5514 -->
     <exclude name="ExhaustiveSwitchHasDefault"/>
   </rule>
