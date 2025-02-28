@@ -102,8 +102,8 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
 
         final Set<String> metaFiles;
         try (Stream<Path> fileStream = Files.walk(
-                Path.of(System.getProperty("user.dir") + "/src/main/resources/com/puppycrawl"
-                        + "/tools/checkstyle/meta"))) {
+                Path.of(System.getProperty("user.dir")
+                        + "/src/main/resources/com/puppycrawl/tools/checkstyle/meta"))) {
             metaFiles = fileStream
                     .filter(Files::isRegularFile)
                     .filter(path -> !path.toString().endsWith(".properties"))
