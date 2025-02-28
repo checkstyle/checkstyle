@@ -12,12 +12,12 @@ package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 import java.io.*;
 import java.lang.*;
 import java.sql.Connection;
-import java.util.List; // violation
-import java.util.List; // violation
+import java.util.List; // violation 'Illegal import - java.util.List'
+import java.util.List; // violation 'Illegal import - java.util.List'
 import java.lang.ArithmeticException;
 import org.junit.jupiter.api.*;
 import java.util.Enumeration;
-import java.util.Arrays; // violation
+import java.util.Arrays; // violation 'Illegal import - java.util.Arrays'
 
 import javax.swing.JToolBar;
 import javax.swing.JToggleButton;
