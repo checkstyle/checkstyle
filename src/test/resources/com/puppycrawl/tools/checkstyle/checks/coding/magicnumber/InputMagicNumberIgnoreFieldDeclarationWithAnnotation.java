@@ -15,12 +15,12 @@ tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
-@InputMagicNumberIntMethodAnnotation(3) // violation
+@InputMagicNumberIntMethodAnnotation(3) // violation ''3' is a magic number'
 public class InputMagicNumberIgnoreFieldDeclarationWithAnnotation {
     public void createEvents(Double d, String s) {
-        if ((d != null)  && (s != null && s.equalsIgnoreCase("Fiit"))) {
-            double anotherDouble = d / 60; // violation
-            if (anotherDouble >= 20) { // violation
+        if ((d != null) && (s != null && s.equalsIgnoreCase("Fiit"))) {
+            double anotherDouble = d / 60; // violation ''60' is a magic number'
+            if (anotherDouble >= 20) { // violation ''20' is a magic number'
                 // do something
             }
         }
