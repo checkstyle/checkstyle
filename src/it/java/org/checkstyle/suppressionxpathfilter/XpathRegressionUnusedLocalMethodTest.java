@@ -24,11 +24,10 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalMethodCheck;
 
 public class XpathRegressionUnusedLocalMethodTest extends AbstractXpathTestSupport {
-    private final String checkName = UnusedLocalMethodCheck.class.getSimpleName();
 
     @Override
     protected String getCheckName() {
-        return checkName;
+        return UnusedLocalMethodCheck.class.getSimpleName();
     }
 
     @Test
