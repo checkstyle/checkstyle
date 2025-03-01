@@ -499,13 +499,15 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         // temporarily hosted in test folder
         checkstyleModulesNames.removeAll(INTERNAL_MODULES);
         checkstyleModulesNames.stream()
-            .filter(moduleName -> !modulesNamesWhichHaveXdocs.contains(moduleName))
-            .forEach(moduleName -> {
-                final String missingModuleMessage = String.format(Locale.ROOT,
-                    "Module %s does not have xdoc documentation.",
-                    moduleName);
-                assertWithMessage(missingModuleMessage).fail();
-            });
+                .filter(moduleName -> !modulesNamesWhichHaveXdocs.contains(moduleName))
+                .forEach(moduleName -> {
+                    assertWithMessage(
+                            String.format(
+                                    Locale.ROOT,
+                                    "Module %s does not have xdoc documentation.",
+                                    moduleName)
+                    ).fail();
+                });
     }
 
     @Test

@@ -584,6 +584,16 @@
           </tr>
           <tr>
             <td>
+              <a href="unusedlocalmethod.html#UnusedLocalMethod">
+                UnusedLocalMethod
+              </a>
+            </td>
+            <td>
+              Checks that a local method is declared, but not used.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="unusedlocalvariable.html#UnusedLocalVariable">
                 UnusedLocalVariable
               </a>
