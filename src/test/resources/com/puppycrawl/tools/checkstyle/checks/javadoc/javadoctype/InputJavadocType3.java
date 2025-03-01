@@ -23,7 +23,7 @@ public class InputJavadocType3 {
 
     /**
     *
-    * @link <T>
+    * {@link <T>}
     */
     protected class InnerPublic2<T> // violation 'missing @param <T> tag.'
     {

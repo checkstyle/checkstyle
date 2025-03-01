@@ -70,6 +70,35 @@ public class JavadocUtilTest {
     }
 
     @Test
+    public void testBlockTagLink() {
+        final String[] text = {
+            "/** @link elsewhere ",
+            " */",
+        };
+        final Comment comment = new Comment(text, 1, 2, text[1].length());
+        final JavadocTags blockTags =
+                JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.BLOCK);
+        assertWithMessage("Invalid valid tags size")
+                .that(blockTags.getInvalidTags())
+                .hasSize(1);
+    }
+
+    @Test
+    public void testInlineLinkTagMethod() {
+        final String[] text = {
+            "/** {@link List#add} ",
+            " * {@link List::size }",
+            " */",
+        };
+        final Comment comment = new Comment(text, 1, 3, text[1].length());
+        final JavadocTags inlineTags =
+                JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.INLINE);
+        assertWithMessage("Invalid valid tags size")
+                .that(inlineTags.getInvalidTags())
+                .hasSize(1);
+    }
+
+    @Test
     public void testTagType() {
         final String[] text = {
             "/** @see block",
@@ -179,6 +208,7 @@ public class JavadocUtilTest {
             "/** @fake block",
             " * {@bogus inline}",
             " * {@link List valid}",
+
         };
         final Comment comment = new Comment(text, 1, 3, text[2].length());
         final JavadocTags allTags =
