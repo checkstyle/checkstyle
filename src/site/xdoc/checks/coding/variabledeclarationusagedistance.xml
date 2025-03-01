@@ -62,7 +62,7 @@
         <p id="Example1-config">
             To configure the check with default config:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="VariableDeclarationUsageDistance"/&gt;
@@ -70,7 +70,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 {
 
   public void foo1() {
@@ -138,7 +138,7 @@ cal.set(Calendar.MINUTE, minutes);
         <p id="Example2-config">
             To configure the check to set allowed distance:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="VariableDeclarationUsageDistance"&gt;
@@ -148,7 +148,7 @@ cal.set(Calendar.MINUTE, minutes);
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 {
 
   public void foo1() {
@@ -178,7 +178,7 @@ public class Example2 {
         <p id="Example3-config">
             To configure the check to ignore certain variables:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="VariableDeclarationUsageDistance"&gt;
@@ -191,7 +191,7 @@ public class Example2 {
             This configuration ignores variables named &quot;num&quot;.
         </p>
         <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example3 {
 
   public void foo1() {
@@ -221,7 +221,7 @@ public class Example3 {
         <p id="Example4-config">
             To configure the check to force validation between scopes:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="VariableDeclarationUsageDistance"&gt;
@@ -231,7 +231,7 @@ public class Example3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example4 {
 
   public void foo1() {
@@ -261,7 +261,7 @@ public class Example4 {
         <p id="Example5-config">
             To configure the check to check final variables:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="VariableDeclarationUsageDistance"&gt;
@@ -271,7 +271,7 @@ public class Example4 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example5-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example5 {
 
   public void foo1() {

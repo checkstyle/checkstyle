@@ -80,7 +80,7 @@
         <p id="Example1-config">
         To configure the default check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpSingleline" /&gt;
 &lt;/module&gt;
@@ -94,7 +94,7 @@
         To configure the check to find occurrences of 'System.exit('
         with some <i>slack</i> of allowing only one occurrence per file:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpSingleline"&gt;
     &lt;property name="format" value="System.exit\("/&gt;
@@ -106,7 +106,7 @@
 </code></pre></div>
 
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 {
   void myFunction() {
     try {
@@ -120,7 +120,7 @@ public class Example2 {
 }
 </code></pre></div>
         <p id="Example3-code">Example with violation:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example3 {
   void myFunction() {
     try {
@@ -138,7 +138,7 @@ public class Example3 {
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpSingleline"&gt;
     &lt;property name="format" value="^[ ]*\* This file is copyrighted"/&gt;
@@ -149,7 +149,7 @@ public class Example3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 /**
 * This file is copyrighted under CC.
 */
@@ -159,7 +159,7 @@ public class Example4 {}
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpSingleline"&gt;
     &lt;property name="format" value="^[ ]*\* This file is copyrighted"/&gt;
@@ -172,7 +172,7 @@ public class Example4 {}
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example5-code">Example with violation:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
 /* violation on first line 'File must contain copyright statement' */
 /**
@@ -184,7 +184,7 @@ public class Example5 {}
           An example of how to configure the check to make sure sql files contains the term
           'license'.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpSingleline"&gt;
       &lt;property name="format" value="license"/&gt;
@@ -200,14 +200,14 @@ public class Example5 {}
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example6-raw">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 /*
  AP 2.0 License. // Ok, Check ignores the case of the term.
 */
 CREATE DATABASE MyDB;
 </code></pre></div>
         <p id="Example7-raw">Example with violation:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 /* // violation, file doesn't contain the term.
  Example sql file.
 */

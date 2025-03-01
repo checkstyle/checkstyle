@@ -37,7 +37,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassTypeParameterName"/&gt;
@@ -45,7 +45,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
   class MyClass1&lt;T&gt; {}
   class MyClass2&lt;t&gt; {}        // violation
@@ -57,7 +57,7 @@ class Example1 {
         <p id="Example2-config">
           To configure the check for names that are uppercase word:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassTypeParameterName"&gt;
@@ -67,7 +67,7 @@ class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
   class MyClass1&lt;T&gt; {}        // violation
   class MyClass2&lt;t&gt; {}        // violation
@@ -80,7 +80,7 @@ class Example2 {
           To configure the check for names that are camel case word with T as suffix
           (<a href="../../styleguides/google-java-style-20220203/javaguide.html#s5.2.8-type-variable-names">Google Style</a>):
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassTypeParameterName"&gt;
@@ -90,7 +90,7 @@ class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
   class MyClass1&lt;T&gt; {}
   class MyClass2&lt;t&gt; {}        // violation

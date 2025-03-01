@@ -97,7 +97,7 @@
         <p id="Example1-config">
           Example of default Check configuration that do nothing.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="WriteTag"/&gt;
@@ -107,7 +107,7 @@
         <p id="Example1-code">
         Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 /**
  * Some class
  */
@@ -128,7 +128,7 @@ public class Example1 {
           To configure Check to demand some special tag (for example <code>@since</code>)
           to be present on classes javadoc.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="WriteTag"&gt;
@@ -140,7 +140,7 @@ public class Example1 {
         <p id="Example2-code">
         Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 /**
  * Some class
  */
@@ -161,7 +161,7 @@ public class Example2 {
           To configure Check to demand some special tag (for example <code>@since</code>)
           to be present on method javadocs also in addition to default tokens.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="WriteTag"&gt;
@@ -176,7 +176,7 @@ public class Example2 {
         <p id="Example3-code">
         Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 /**
  * Some class
  */
@@ -199,7 +199,7 @@ public class Example3 {
           to be present with digital value on method javadocs also in addition to default tokens.
           Attention: it is required to set &quot;ignore&quot; in tagSeverity.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="WriteTag"&gt;
@@ -216,7 +216,7 @@ public class Example3 {
         <p id="Example4-code">
         Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 /**
  * Some class
  * @since 1.2
@@ -238,7 +238,7 @@ public class Example4 {
           To configure Check to demand <code>@since</code> tag
           and in the same time print violation with specific severity on each presence of such tag.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="WriteTag"&gt;
@@ -255,7 +255,7 @@ public class Example4 {
         <p id="Example5-code">
         Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 // violation 3 lines below 'Javadoc tag @since=1.2'
 /**
  * Some class

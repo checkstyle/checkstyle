@@ -80,7 +80,7 @@
 
       <subsection name="Examples" id="Examples">
         <p id="Example1-config"> To configure the check: </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NeedBraces"/&gt;
@@ -88,7 +88,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
   String obj = new String();
   String value = new String();
@@ -130,7 +130,7 @@ class Example1 {
           To configure the check for <code>if</code> and
           <code> else</code> blocks:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NeedBraces"&gt;
@@ -140,7 +140,7 @@ class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
   String obj = new String();
   String value = new String();
@@ -182,7 +182,7 @@ class Example2 {
           To configure the check to allow single-line statements
           (<code>if, while, do-while, for</code>) without braces:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NeedBraces"&gt;
@@ -194,7 +194,7 @@ class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
   String obj = new String();
   String value = new String();
@@ -236,7 +236,7 @@ class Example3 {
           To configure the check to allow <code>case, default</code> single-line statements
           without braces:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NeedBraces"&gt;
@@ -249,7 +249,7 @@ class Example3 {
         <p id="Example4-code">
         Next statements won't be violated by check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example4 {
   String obj = new String();
   String value = new String();
@@ -291,7 +291,7 @@ class Example4 {
         <p id="Example5-config">
           To configure the check to allow loops (<code>while, for</code>) with empty bodies:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NeedBraces"&gt;
@@ -302,7 +302,7 @@ class Example4 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example5-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example5 {
   String obj = new String();
   String value = new String();
@@ -343,7 +343,7 @@ class Example5 {
         <p id="Example6-config">
           To configure the check to lambdas:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NeedBraces"&gt;
@@ -354,7 +354,7 @@ class Example5 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example6-code">Results in following:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example6 {
   enum HttpMethod {GET, OPTIONS}
   Object result = new Object();

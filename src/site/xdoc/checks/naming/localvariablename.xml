@@ -54,7 +54,7 @@
           To configure the check:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LocalVariableName"/&gt;
@@ -62,7 +62,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
   void MyMethod() {
     for (int var = 1; var &lt; 10; var++) {}
@@ -76,7 +76,7 @@ class Example1 {
           An example of how to configure the check for names that begin with a lower
           case letter, followed by letters, digits, and underscores is:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LocalVariableName"&gt;
@@ -86,7 +86,7 @@ class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
   void MyMethod() {
     for (int var = 1; var &lt; 10; var++) {}
@@ -100,7 +100,7 @@ class Example2 {
           An example of one character variable name in initialization expression(like &quot;i&quot;)
           in FOR loop:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
   void myMethod () {
     for(int i = 1; i &lt; 10; i++) {}
@@ -117,7 +117,7 @@ class Example3 {
           <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
           initialization expressions</a> in FOR loop, where regexp allows 2 or more chars:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LocalVariableName"&gt;
@@ -128,7 +128,7 @@ class Example3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example4 {
   void MyMethod() {
     int good = 1;
@@ -152,7 +152,7 @@ class Example4 {
         <p id="Example5-config">
         An example of how to configure the check to that all variables have 3 or more chars in name:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LocalVariableName"&gt;
@@ -162,7 +162,7 @@ class Example4 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example5-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example5 {
   void MyMethod() {
     int goodName = 0;

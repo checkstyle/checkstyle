@@ -72,7 +72,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ParameterNumber"/&gt;
@@ -80,7 +80,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 extends ExternalService1 {
 
   @JsonCreator
@@ -110,7 +110,7 @@ class ExternalService1 {
         <p id="Example2-config">
           To configure the check to allow 10 parameters for a method:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ParameterNumber"&gt;
@@ -121,7 +121,7 @@ class ExternalService1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 extends ExternalService2 {
 
   @JsonCreator
@@ -157,7 +157,7 @@ class ExternalService2 {
           3-rd party library.
           In this case developer has no control over number of parameters.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ParameterNumber"&gt;
@@ -167,7 +167,7 @@ class ExternalService2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 extends ExternalService3 {
 
   @JsonCreator
@@ -198,7 +198,7 @@ class ExternalService3 {
           To configure the check to ignore methods and constructors annotated with
           <code>JsonCreator</code> annotation:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ParameterNumber"&gt;
@@ -208,7 +208,7 @@ class ExternalService3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example4 extends ExternalService4 {
 
   @JsonCreator

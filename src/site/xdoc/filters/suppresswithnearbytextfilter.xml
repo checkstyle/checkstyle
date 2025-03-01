@@ -75,7 +75,7 @@
         <p id="Example1-config">
           To configure the filter to suppress audit events on the same line:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressWithNearbyTextFilter"/&gt;
   &lt;module name="TreeWalker"&gt;
@@ -86,7 +86,7 @@
         <p id="Example1-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 {
   int hoursInDay = 24; // SUPPRESS CHECKSTYLE because it is too obvious
   int daysInWeek = 7; // violation, "'7' is a magic number."
@@ -96,7 +96,7 @@ public class Example1 {
           To configure the filter to suppress audit events on any line that contains
           <code>DO NOT CHECK THIS LINE</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressWithNearbyTextFilter"&gt;
     &lt;property name="nearbyTextPattern" value="DO NOT CHECK THIS LINE"/&gt;
@@ -109,7 +109,7 @@ public class Example1 {
         <p id="Example2-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 {
   int a = 42; // DO NOT CHECK THIS LINE
   int b = 43; // violation, "'43' is a magic number."
@@ -120,7 +120,7 @@ public class Example2 {
             the word <code>Line</code>. In this case, <code>LineLengthCheck</code>'s violation
             message contains it:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressWithNearbyTextFilter"&gt;
     &lt;property name="messagePattern" value=".*Line.*"/&gt;
@@ -134,7 +134,7 @@ public class Example2 {
         <p id="Example3-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example3 {
   // ok, because violation message is matching suppress pattern
   int a_really_long_variable_name = 10;
@@ -144,7 +144,7 @@ public class Example3 {
           To configure the filter to suppress audit events only on a check whose id is
           <code>ignoreMe</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressWithNearbyTextFilter"&gt;
     &lt;property name="idPattern" value="ignoreMe"/&gt;
@@ -162,7 +162,7 @@ public class Example3 {
         <p id="Example4-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example4 {
   int a = 42; // SUPPRESS CHECKSTYLE because I want to
   static final int LONG_VAR_NAME_TO_TAKE_MORE_THAN_55_CHARS = 22;
@@ -172,7 +172,7 @@ public class Example4 {
         <p id="Example5-config">
           To configure the filter to suppress audit events for the current and next 2 lines:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressWithNearbyTextFilter"&gt;
     &lt;property name="lineRange" value="2"/&gt;
@@ -183,7 +183,7 @@ public class Example4 {
         <p id="Example5-raw">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 key.one=41 # // SUPPRESS CHECKSTYLE because I want to
 key.one=42 # ok as within line range
 key.one=43 # ok as within line range
@@ -193,7 +193,7 @@ key.two=45
         <p id="Example6-config">
           To configure the filter to suppress audit events for the current and previous line:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressWithNearbyTextFilter"&gt;
     &lt;property name="lineRange" value="-1"/&gt;
@@ -204,7 +204,7 @@ key.two=45
         <p id="Example6-raw">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 key.one=41 # ok as within line range
 key.one=42 # SUPPRESS CHECKSTYLE because I want to
 key.two=43 # // violation 'Duplicated property 'key.two' (2 occurrence(s)).'
@@ -214,7 +214,7 @@ key.two=44
           To configure the filter with a more compact <code>nearbyTextPattern</code>
           to accept variable <code>checkPattern</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressWithNearbyTextFilter"&gt;
     &lt;property name="nearbyTextPattern"
@@ -229,7 +229,7 @@ key.two=44
         <p id="Example7-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example7 {
   int a = 42; // -@cs[MagicNumber] We do not consider this number as magic.
   int b = 43; // violation "'43' is a magic number."
@@ -239,7 +239,7 @@ public class Example7 {
           To configure the filter to accept variable <code>checkPattern</code>
           and <code>lineRange</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressWithNearbyTextFilter"&gt;
     &lt;property name="nearbyTextPattern"
@@ -255,7 +255,7 @@ public class Example7 {
         <p id="Example8-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example8 {
   int a = 42; // @cs-: MagicNumber for +3 lines
   int b = 43;
@@ -268,7 +268,7 @@ public class Example8 {
           To configure the filter to suppress <code>LineLength</code>
           violations for lines containing a URL:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressWithNearbyTextFilter"&gt;
     &lt;property name="checkPattern" value="LineLength"/&gt;
@@ -283,7 +283,7 @@ public class Example8 {
         <p id="Example9-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example9 {
   /**
    * Flag description.

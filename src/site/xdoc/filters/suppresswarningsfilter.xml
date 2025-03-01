@@ -42,7 +42,7 @@
       </subsection>
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">Example of suppression by name of Check in annotation:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressWarningsHolder" /&gt;
@@ -53,7 +53,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Java code:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 {
   @SuppressWarnings("memberName")
   int J; // ok only because there is annotation
@@ -75,7 +75,7 @@ public class Example1 {
           you want to suppress.
         </p>
         <p id="Example2-config">Example of suppression by prefix &quot;checkstyle:&quot;:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressWarningsHolder" /&gt;
@@ -90,7 +90,7 @@ public class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Java code:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
 
 public class Example2 {

@@ -97,7 +97,7 @@ public void method();
           To configure the default check to validate that the Javadoc content starts from the
           second line:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocContentLocation"/&gt;
@@ -108,7 +108,7 @@ public void method();
           This setting produces a violation for each multi-line comment
           starting on the same line as the initial asterisks:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
 
   // violation below 'Javadoc content should start from the next line.'
@@ -131,7 +131,7 @@ class Example1 {
         <p id="Example2-config">
           To ensure that Javadoc content starts from the first line:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocContentLocation"&gt;
@@ -144,7 +144,7 @@ class Example1 {
           This setting produces a violation for each comment not
           starting on the same line as the initial asterisks:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
 
   /** This comment is OK because it starts on the first line.

@@ -67,7 +67,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ParameterName"/&gt;
@@ -75,7 +75,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
   void method1(int v1) {}
   void method2(int V2) {} // violation
@@ -85,7 +85,7 @@ class Example1 {
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters, digits, and underscores:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ParameterName"&gt;
@@ -95,7 +95,7 @@ class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
   void method1(int v1) {}
   void method2(int v_2) {}
@@ -107,7 +107,7 @@ class Example2 {
             An example of how to configure the check to skip methods with Override annotation from
             validation:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ParameterName"&gt;
@@ -117,7 +117,7 @@ class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
   void method1(int v1) {}
   void method2(int V2) {} // violation
@@ -131,7 +131,7 @@ class Example3 {
           An example of how to configure the check for names that begin with
           a lower case letter, followed by letters and digits is:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ParameterName"&gt;
@@ -141,7 +141,7 @@ class Example3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example4 {
   void method1(int v1) {}
   void method2(int v_2) {} // violation
@@ -153,7 +153,7 @@ class Example4 {
           lowercase characters and, in addition, that public method parameters cannot be one
           character long:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ParameterName"&gt;
@@ -172,7 +172,7 @@ class Example4 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example5-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example5 {
   void fn1(int v1) {}
   protected void fn2(int V2) {} // violation "Parameter name 'V2' must match pattern"

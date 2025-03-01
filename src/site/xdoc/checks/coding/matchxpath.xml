@@ -107,7 +107,7 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
         <p id="Example1-config">
           The following example demonstrates validation of methods order, so that public methods
           should come before the private ones:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MatchXpath"&gt;
@@ -121,7 +121,7 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 {
   public void method1() { }
   private void method2() { } // violation
@@ -132,7 +132,7 @@ public class Example1 {
 }
 </code></pre></div>
         <p id="Example2-config">To violate if there are any parametrized constructors</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MatchXpath"&gt;
@@ -145,7 +145,7 @@ public class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 {
   public Example2(Object c) { } // violation
   public Example2(int a, HashMap&lt;String, Integer&gt; b) { } // violation
@@ -153,7 +153,7 @@ public class Example2 {
 }
 </code></pre></div>
         <p id="Example3-config">To violate if method name is 'test' or 'foo'</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MatchXpath"&gt;
@@ -166,7 +166,7 @@ public class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example3 {
   public void test() {} // violation
   public void getName() {}
@@ -177,7 +177,7 @@ public class Example3 {
         <p id="Example4-config">
           To violate if new instance creation was done without <b>var</b> type
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MatchXpath"&gt;
@@ -192,7 +192,7 @@ public class Example3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example4 {
   public void foo() {
     Object a = new Object(); // violation

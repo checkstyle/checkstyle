@@ -58,7 +58,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SingleLineJavadoc"/&gt;
@@ -68,7 +68,7 @@
         <p id="Example1-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 {
   /** @see Math */ // violation, 'Javadoc comment should be multi-line'
   public int foo() {
@@ -105,7 +105,7 @@ public class Example1 {
         <p id="Example2-config">
           To configure the check with a list of ignored block tags:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SingleLineJavadoc"&gt;
@@ -117,7 +117,7 @@ public class Example1 {
         <p id="Example2-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 {
   /** @see Math */
   public int foo() {
@@ -154,7 +154,7 @@ public class Example2 {
         <p id="Example3-config">
           To configure the check to not ignore inline tags:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SingleLineJavadoc"&gt;
@@ -166,7 +166,7 @@ public class Example2 {
         <p id="Example3-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example3 {
   /** @see Math */ // violation, 'Javadoc comment should be multi-line'
   public int foo() {
@@ -203,7 +203,7 @@ public class Example3 {
         <p id="Example4-config">
           To configure the check to report violations for Tight-HTML Rules:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SingleLineJavadoc"&gt;
@@ -215,7 +215,7 @@ public class Example3 {
         <p id="Example4-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example4 {
   /** @see Math */ // violation, 'Javadoc comment should be multi-line'
   public int foo() {

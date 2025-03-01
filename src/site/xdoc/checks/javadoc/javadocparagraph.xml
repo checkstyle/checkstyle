@@ -74,7 +74,7 @@
         <p id="Example1-config">
           To configure the default check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocParagraph"/&gt;
@@ -83,7 +83,7 @@
 </code></pre></div>
         <p id="Example1-code">By default, the check will report a violation if there is
           no empty line before or whitespace after the &lt;p&gt; tag: </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 // violation 5 lines below '&lt;p&gt; tag should be preceded with an empty line'
 /**
  * No tag
@@ -144,7 +144,7 @@ public class Example1 {
         <p id="Example2-config">
           To not allow newlines and spaces immediately after the &lt;p&gt; tag:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocParagraph"&gt;
@@ -157,7 +157,7 @@ public class Example1 {
           In case of <code>allowNewlineParagraph</code> set to <code>false</code>
           the following example will have violations:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 // violation 5 lines below '&lt;p&gt; tag should be preceded with an empty line'
 /**
  * No tag

@@ -124,7 +124,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AnnotationUseStyle"/&gt;
@@ -132,7 +132,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 @SuppressWarnings("unchecked") // ok as it's in implied style
 @Deprecated // ok as it matches closingParens default property
 @SomeArrays({"unchecked","unused"}) // ok as it's in implied style
@@ -156,7 +156,7 @@ class TestStyle1
           To configure the check to enforce an <code>expanded</code> style,
           with a closing parenthesis and a trailing array comma set to <code>never</code>.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AnnotationUseStyle"&gt;
@@ -168,7 +168,7 @@ class TestStyle1
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 @SuppressWarnings("unchecked") // violation 'Annotation style must be 'EXPANDED''
 @Deprecated // ok as closingParens property set to never
 // violation below 'Annotation style must be 'EXPANDED''
@@ -191,7 +191,7 @@ class TestStyle2 {
           To configure the check to enforce an <code>expanded</code> style,
           with a closing parenthesis and a trailing array comma set to <code>never</code>.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AnnotationUseStyle"&gt;
@@ -203,7 +203,7 @@ class TestStyle2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 @SuppressWarnings("unchecked") // ok as element style set to compact
 @Deprecated // violation 'Annotation must have closing parenthesis'
 @SomeArrays({"unchecked","unused"}) // ok as it's in compact style
@@ -226,7 +226,7 @@ class TestStyle3 {
           To configure the check to enforce a trailing array comma,
           with ignoring the elementStyle and a closing parenthesis.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AnnotationUseStyle"&gt;
@@ -238,7 +238,7 @@ class TestStyle3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 @SuppressWarnings("unchecked") // ok as element style set to 'ignore'
 @Deprecated // ok as 'closingParens' is set to 'ignore
 // violation below 'Annotation array values must contain trailing comma'

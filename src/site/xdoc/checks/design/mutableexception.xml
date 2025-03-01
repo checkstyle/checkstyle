@@ -65,7 +65,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MutableException"/&gt;
@@ -73,7 +73,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 extends Exception {
   private int code; // OK, class name doesn't match with default pattern
 
@@ -113,7 +113,7 @@ class FirstBadException extends java.lang.Exception {
           To configure the check so that it checks for class name that ends
           with 'Exception':
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MutableException"&gt;
@@ -123,7 +123,7 @@ class FirstBadException extends java.lang.Exception {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 extends Exception {
   private int code; // OK, class name doesn't match with given pattern
 
@@ -163,7 +163,7 @@ class SecondBadException extends java.lang.Exception {
           To configure the check so that it checks for type name that is used in
           'extends' and ends with 'Throwable':
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MutableException"&gt;
@@ -173,7 +173,7 @@ class SecondBadException extends java.lang.Exception {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 extends Exception {
   private int code; // OK, extended class name doesn't match with given pattern
 

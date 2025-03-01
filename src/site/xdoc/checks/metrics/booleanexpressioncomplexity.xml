@@ -90,7 +90,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="BooleanExpressionComplexity"/&gt;
@@ -98,7 +98,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1
 {
   public static void main(String ... args)
@@ -122,7 +122,7 @@ public class Example1
           To configure the check with 5 allowed operation in boolean
           expression:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="BooleanExpressionComplexity"&gt;
@@ -132,7 +132,7 @@ public class Example1
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2
 {
   public static void main(String ... args)
@@ -155,7 +155,7 @@ public class Example2
           To configure the check to ignore <code>&amp;</code> and
           <code>|</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="BooleanExpressionComplexity"&gt;
@@ -165,7 +165,7 @@ public class Example2
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example3
 {
   public static void main(String ... args)

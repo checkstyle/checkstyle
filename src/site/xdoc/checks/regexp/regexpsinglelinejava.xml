@@ -80,7 +80,7 @@
         <p id="Example1-config">
           To configure the default check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RegexpSinglelineJava"/&gt;
@@ -88,7 +88,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example1:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
 
   private void testMethod1() {
@@ -123,7 +123,7 @@ class Example1 {
         <p id="Example2-config">
           To configure the check for calls to <code>System.out.println</code>, except in comments:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RegexpSinglelineJava"&gt;
@@ -136,7 +136,7 @@ class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example2:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
 
   private void testMethod1() {
@@ -172,7 +172,7 @@ class Example2 {
           To configure the check to find case-insensitive occurrences of
           &quot;debug&quot;:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RegexpSinglelineJava"&gt;
@@ -184,7 +184,7 @@ class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example3:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
 
   private void testMethod1() {
@@ -221,7 +221,7 @@ class Example3 {
           &quot;\.read(.*)|\.write(.*)&quot;
           and display &quot;IO found&quot; for each violation.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RegexpSinglelineJava"&gt;
@@ -232,7 +232,7 @@ class Example3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example4:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example4 {
 
   private void testMethod1() {
@@ -268,7 +268,7 @@ class Example4 {
           To configure the check to find occurrences of
           &quot;\.log(.*)&quot;. We want to allow a maximum of 2 occurrences.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RegexpSinglelineJava"&gt;
@@ -279,7 +279,7 @@ class Example4 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example5-code">Example5:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example5 {
 
   private void testMethod1() {
@@ -317,7 +317,7 @@ class Example5 {
           display &quot;public member found&quot; for each violation
           and say if less than 1 occurrences.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RegexpSinglelineJava"&gt;
@@ -330,7 +330,7 @@ class Example5 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example6-code">Example6:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example6 {
 
   private void testMethod1() {
@@ -368,7 +368,7 @@ class Example6 {
           display &quot;private member found&quot; for each violation
           and say if less than 2 occurrences.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RegexpSinglelineJava"&gt;
@@ -381,7 +381,7 @@ class Example6 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example7-code">Example7:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example7 {
   // violation below, 'private member found'
   private void testMethod1() {

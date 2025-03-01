@@ -103,7 +103,7 @@ d = e / f;        // Another comment for this line
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="TrailingComment"/&gt;
@@ -114,7 +114,7 @@ d = e / f;        // Another comment for this line
         <p id="Example1-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 {
   public static void main(String[] args) {
     int x = 10;
@@ -135,7 +135,7 @@ public class Example1 {
         <p id="Example2-config">
           To configure the check to enforce only comment on a line:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="TrailingComment"&gt;
@@ -148,7 +148,7 @@ public class Example1 {
         <p id="Example2-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 {
   public static void main(String[] args) {
     int x = new Random().nextInt(100);
@@ -170,7 +170,7 @@ public class Example2 {
           &quot;SUPPRESS CHECKSTYLE&quot;, &quot;NOPMD&quot;, &quot;NOSONAR&quot;
           are suppressed:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="TrailingComment"/&gt;
@@ -187,7 +187,7 @@ public class Example2 {
         <p id="Example3-code">
           Example for trailing comments check to suppress specific trailing comment:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example3 {
   int a; // SUPPRESS CHECKSTYLE
   int b; // NOPMD
@@ -200,7 +200,7 @@ public class Example3 {
           To configure check so that trailing comment starting with &quot;SUPPRESS CHECKSTYLE&quot;,
           &quot;NOPMD&quot;, &quot;NOSONAR&quot; are suppressed:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="TrailingComment"/&gt;
@@ -220,7 +220,7 @@ public class Example3 {
         <p id="Example4-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example4 {
   int a; // SUPPRESS CHECKSTYLE - OK, comment starts with " SUPPRESS CHECKSTYLE"
   int b; // NOPMD - OK, comment starts with " NOPMD"

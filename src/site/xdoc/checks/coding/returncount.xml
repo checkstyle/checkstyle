@@ -97,7 +97,7 @@
           return statements per method (ignoring the <code>equals()</code>
           method):
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ReturnCount"&gt;
@@ -109,7 +109,7 @@
         <p id="Example1-code">
             Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 {
     public Example1() {}
     // ok below, because default void restriction is 1
@@ -144,7 +144,7 @@ public class Example1 {
           To configure the check so that it doesn't allow any
           return statements per void method:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ReturnCount"&gt;
@@ -156,7 +156,7 @@ public class Example1 {
         <p id="Example2-code">
             Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 {
     public Example2() {}
     // violation below, 'max allowed for void methods/constructors/lambdas is 0'
@@ -192,7 +192,7 @@ public class Example2 {
           return statements per method (ignoring the <code>equals()</code>
           method) and more than 1 return statements per void method:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ReturnCount"&gt;
@@ -205,7 +205,7 @@ public class Example2 {
         <p id="Example3-code">
             Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example3 {
     public Example3() {}
     // ok below, because default void restriction is 1
@@ -240,7 +240,7 @@ public class Example3 {
           To configure the check so that it doesn't allow more than three
           return statements per method for all methods:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ReturnCount"&gt;
@@ -253,7 +253,7 @@ public class Example3 {
         <p id="Example4-code">
             Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example4 {
     public Example4() {}
     // ok below, because default void restriction is 1
@@ -289,7 +289,7 @@ public class Example4 {
           in constructors, more than one return statement in all lambda
           expressions and more than two return statements in methods:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ReturnCount"&gt;
@@ -310,7 +310,7 @@ public class Example4 {
         <p id="Example5-code">
             Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example5 {
     public Example5() {}
     // violation below, 'max allowed for void methods/constructors/lambdas is 0'

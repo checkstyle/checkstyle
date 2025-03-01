@@ -95,11 +95,11 @@
         is equivalent to a set of comma separated integers. For example, the
         following:
       </p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;property name=&quot;tokens&quot; value=&quot;0.42,0.666&quot;/&gt;
       </code></pre></div>
       <p>can instead be expressed as:</p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;property name=&quot;tokens&quot; value=&quot;0.42&quot;/&gt;
 &lt;property name=&quot;tokens&quot; value=&quot;0.666&quot;/&gt;
       </code></pre></div>
@@ -142,11 +142,11 @@
         is equivalent to a set of comma separated integers. For example, the
         following:
       </p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;property name=&quot;tokens&quot; value=&quot;42,666&quot;/&gt;
       </code></pre></div>
       <p>can instead be expressed as:</p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;property name=&quot;tokens&quot; value=&quot;42&quot;/&gt;
 &lt;property name=&quot;tokens&quot; value=&quot;666&quot;/&gt;
       </code></pre></div>
@@ -684,11 +684,11 @@
         times which is equivalent to a set of comma separated patterns.
         For example, the following:
       </p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;property name=&quot;patterns&quot; value=&quot;^prefix*$, ^*suffix$&quot;/&gt;
       </code></pre></div>
       <p>can instead be expressed as:</p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;property name=&quot;patterns&quot; value=&quot;^prefix*&quot;/&gt;
 &lt;property name=&quot;patterns&quot; value=&quot;^*suffix$&quot;/&gt;
       </code></pre></div>
@@ -949,11 +949,11 @@
         is equivalent to a set of comma separated strings. For example, the
         following:
       </p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;property name=&quot;tokens&quot; value=&quot;DIV_ASSIGN, PLUS_ASSIGN&quot;/&gt;
       </code></pre></div>
       <p>can instead be expressed as:</p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;property name=&quot;tokens&quot; value=&quot;DIV_ASSIGN&quot;/&gt;
 &lt;property name=&quot;tokens&quot; value=&quot;PLUS_ASSIGN&quot;/&gt;
       </code></pre></div>

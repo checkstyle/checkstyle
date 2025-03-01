@@ -68,7 +68,7 @@
         <p id="Example1-config">
           To configure check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ThrowsCount"/&gt;
@@ -78,7 +78,7 @@
         <p id="Example1-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 {
   // violation below, 'Throws count is 5 (max allowed is 4)'
   public void myFunction() throws CloneNotSupportedException,
@@ -109,7 +109,7 @@ public class Example1 {
           To configure the check so that it doesn't allow more than two throws
           per method:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ThrowsCount"&gt;
@@ -121,7 +121,7 @@ public class Example1 {
         <p id="Example2-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 {
   // violation below, 'Throws count is 5 (max allowed is 2)'
   public void myFunction() throws CloneNotSupportedException,
@@ -151,7 +151,7 @@ public class Example2 {
         <p id="Example3-config">
           To configure the check so that it doesn't skip private methods:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ThrowsCount"&gt;
@@ -163,7 +163,7 @@ public class Example2 {
         <p id="Example3-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example3 {
   // violation below, 'Throws count is 5 (max allowed is 4)'
   public void myFunction() throws CloneNotSupportedException,

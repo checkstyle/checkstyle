@@ -110,7 +110,7 @@
           To configure the check:
         </p>
         <p id="Example1-config">Configuration:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalIdentifierName"/&gt;
@@ -118,7 +118,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 {
   Integer var = 4; // violation, 'Name 'var' must match pattern'
   int record = 15; // violation, 'Name 'record' must match pattern'
@@ -151,7 +151,7 @@ public class Example1 {
           illegal identifiers:
         </p>
         <p id="Example2-config">Configuration:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalIdentifierName"&gt;
@@ -162,7 +162,7 @@ public class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 {
   Integer var = 4; // violation, 'Name 'var' must match pattern'
   int record = 15; // violation, 'Name 'record' must match pattern'

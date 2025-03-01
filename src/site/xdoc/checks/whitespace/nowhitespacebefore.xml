@@ -87,7 +87,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NoWhitespaceBefore"/&gt;
@@ -95,7 +95,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
   int foo = 5;
   void example() {
@@ -125,7 +125,7 @@ class Example1 {
         <p id="Example2-config">
             To configure the check to allow linebreaks before default tokens:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NoWhitespaceBefore"&gt;
@@ -135,7 +135,7 @@ class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
   int[][] array = { { 1, 2 }
                   , { 3, 4 } };
@@ -154,7 +154,7 @@ class Example2 {
         <p id="Example3-config">
         To Configure the check to restrict the use of whitespace before METHOD_REF and DOT tokens:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NoWhitespaceBefore"&gt;
@@ -164,7 +164,7 @@ class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
   void example() {
     Lists.charactersOf("foo").listIterator()
@@ -179,7 +179,7 @@ class Example3 {
         <p id="Example4-config">
            To configure the check to allow linebreak before METHOD_REF and DOT tokens:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NoWhitespaceBefore"&gt;
@@ -190,7 +190,7 @@ class Example3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example4 {
   void example() {
     Lists .charactersOf("foo") // violation ''.' is preceded with whitespace'

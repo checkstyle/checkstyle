@@ -135,7 +135,7 @@ class PageBuilder {
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="HiddenField"/&gt;
@@ -143,7 +143,7 @@ class PageBuilder {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
 
   private String field;
@@ -171,7 +171,7 @@ class Example1 {
           To configure the check so that it checks local variables but not
           parameters:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="HiddenField"&gt;
@@ -181,7 +181,7 @@ class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
 
   private String field;
@@ -209,7 +209,7 @@ class Example2 {
           To configure the check so that it ignores the variables and parameters named
           &quot;test&quot;:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="HiddenField"&gt;
@@ -219,7 +219,7 @@ class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
 
   private String field;
@@ -246,7 +246,7 @@ class Example3 {
         <p id="Example4-config">
           To configure the check so that it ignores constructor parameters:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="HiddenField"&gt;
@@ -256,7 +256,7 @@ class Example3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example4 {
 
   private String field;
@@ -284,7 +284,7 @@ class Example4 {
           To configure the check so that it ignores the parameter of setter
           methods:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="HiddenField"&gt;
@@ -294,7 +294,7 @@ class Example4 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example5-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example5 {
 
   private String field;
@@ -323,7 +323,7 @@ class Example5 {
           methods recognizing setter as returning either <code>void</code> or
           a class in which it is declared:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="HiddenField"&gt;
@@ -334,7 +334,7 @@ class Example5 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example6-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example6 {
 
   private String field;
@@ -360,7 +360,7 @@ class Example6 {
         <p id="Example7-config">
           To configure the check so that it ignores parameters of abstract methods:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="HiddenField"&gt;
@@ -370,7 +370,7 @@ class Example6 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example7-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example7 {
 
   private String field;

@@ -123,7 +123,7 @@
 
       <subsection name="Examples" id="Examples">
         <p id="Example0-config"> Default configuration does nothing: </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"/&gt;
@@ -134,7 +134,7 @@
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;
@@ -144,12 +144,12 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code"> Example1: </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 // This code is copyrighted.
 public class Example1 {}
 </code></pre></div>
         <p id="Example2-code">Example2 with violation:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 /* violation on first line 'Required pattern missing in a file.' */
 /*
  * Some Copyright
@@ -157,7 +157,7 @@ public class Example1 {}
 public class Example2 {}
 </code></pre></div>
         <p id="Example3-config"> Your statement may be multiline. </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;
@@ -168,13 +168,13 @@ public class Example2 {}
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example3:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 // This code is copyrighted
 // (c) MyCompany
 public class Example3 {}
 </code></pre></div>
         <p id="Example4-config">Configure Check to make sure that it appear only once:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;
@@ -186,7 +186,7 @@ public class Example3 {}
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example4:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 // This code is copyrighted
 // (c) MyCompany
 public class Example4 {}
@@ -199,7 +199,7 @@ class Example41 {}
         <p id="Example5-config">Instead of printing whole regexp that might be unnecessary for
           user, you can substitute it to some static text:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;
@@ -211,7 +211,7 @@ class Example41 {}
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example5-code">Example5 with violation:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 /*
  * violation on first line 'Required pattern 'Copyright' missing in file.'
 */
@@ -221,7 +221,7 @@ public class Example5 {}
         <p id="Example6-config">
           Configure the check to make sure there are no calls to <code>System.out.println</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;
@@ -232,7 +232,7 @@ public class Example5 {}
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example6-code">Example6:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example6 {
   private void foo() {
     System.out.println(""); // violation, 'Line matches the illegal pattern'
@@ -244,7 +244,7 @@ public class Example6 {
 }
 </code></pre></div>
         <p id="Example7-config">Configure to ignore comments:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;
@@ -256,7 +256,7 @@ public class Example6 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example7-code">Example7:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example7 {
   private void foo() {
     System.out.println(""); // violation, 'Line matches the illegal pattern'
@@ -270,7 +270,7 @@ public class Example7 {
         <p id="Example8-config">
           Configure the check to find trailing whitespace at the end of a line:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;
@@ -282,7 +282,7 @@ public class Example7 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example8-code">Example8:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example8 {
   private void foo() { 
     // violation above 'Trailing whitespace'
@@ -292,7 +292,7 @@ public class Example8 {
         <p id="Example9-config">
           Configure the check to find case-insensitive occurrences of &quot;debug&quot;:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;
@@ -307,7 +307,7 @@ public class Example8 {
           tells the regexp engine to ignore the case.
         </p>
         <p id="Example9-code">Example9:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example9 {
   private void foo() {
     // fix me.
@@ -320,7 +320,7 @@ public class Example9 {
           When the limit is reached the check aborts with a message
           reporting that the limit has been reached.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;
@@ -332,7 +332,7 @@ public class Example9 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example10-code">Example10:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example10 {
   private void foo() {
     // fix me.
@@ -348,7 +348,7 @@ public class Example10 {
           To configure the check to verify that each file has the
           multiline header where year could be any digits.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;
@@ -360,7 +360,7 @@ public class Example10 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example11-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 // Copyright (C) 2004 MyCompany
 // All rights reserved
 public class Example11 {}

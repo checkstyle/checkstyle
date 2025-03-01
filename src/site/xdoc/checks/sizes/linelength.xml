@@ -60,7 +60,7 @@
         <p id="Example1-config">
           To configure the check to accept lines up to 80 characters long:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="LineLength"/&gt;
 &lt;/module&gt;
@@ -68,7 +68,7 @@
         <p id="Example1-code">
           Example1:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
@@ -91,7 +91,7 @@ class Example1 {
         <p id="Example2-config">
           To configure the check to accept lines up to 120 characters long:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="LineLength"&gt;
     &lt;property name="max" value="120"/&gt;
@@ -101,7 +101,7 @@ class Example1 {
         <p id="Example2-code">
           Example2:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
@@ -125,7 +125,7 @@ class Example2 {
           To configure the check to ignore lines that begin with <code>&quot; * &quot;</code>code,
           followed by just one word, such as within a Javadoc comment:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="LineLength"&gt;
     &lt;property name="ignorePattern" value="^ *\* *[^ ]+$"/&gt;
@@ -135,7 +135,7 @@ class Example2 {
         <p id="Example3-code">
           Example3:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 // violation below, 'Line is longer than 80 characters'
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
@@ -159,7 +159,7 @@ class Example3 {
           To configure the check to only validate xml and property files and ignore other
           extensions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="LineLength"&gt;
     &lt;property name="fileExtensions" value="xml, properties"/&gt;
@@ -169,7 +169,7 @@ class Example3 {
         <p id="Example4-code">
           Example4:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
@@ -192,7 +192,7 @@ class Example4 {
         <p id="Example5-config">
           To configure check to validate <code>import</code> statements:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="LineLength"&gt;
     &lt;property name="ignorePattern"
@@ -204,7 +204,7 @@ class Example4 {
         <p id="Example5-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 // violation above, 'Line is longer than 60 characters'
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;

@@ -40,7 +40,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RequireEmptyLineBeforeBlockTagGroup"/&gt;
@@ -51,7 +51,7 @@
           The check will report a violation if there is no blank line before the
           block tag, like in the example below.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
   /**
    * ValidMethod's javadoc.

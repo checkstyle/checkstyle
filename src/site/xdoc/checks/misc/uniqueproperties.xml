@@ -47,7 +47,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="UniqueProperties"/&gt;
 &lt;/module&gt;
@@ -55,7 +55,7 @@
         <p id="Example1-raw">
           Example: in foo.properties file
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 # // violation below 'Duplicated property 'key.one' (2 occurrence(s)).'
 key.one=44
 key.two=32
@@ -64,7 +64,7 @@ key.one=54
         <p id="Example2-config">
           To configure the check to scan custom file extensions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="UniqueProperties"&gt;
     &lt;property name="fileExtensions" value="customProperties"/&gt;
@@ -74,7 +74,7 @@ key.one=54
         <p id="Example2-raw">
           Example: in foo.customProperties file
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 # // violation below 'Duplicated property 'key.one' (2 occurrence(s)).'
 key.one=44
 key.two=32
@@ -83,7 +83,7 @@ key.one=54
         <p id="Example3-raw">
           Example: in foo.properties file
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 # OK below, no duplication violation, as the file is not checked
 key.one=44
 key.two=32

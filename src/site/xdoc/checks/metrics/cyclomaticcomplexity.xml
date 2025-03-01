@@ -137,7 +137,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="CyclomaticComplexity"/&gt;
@@ -147,7 +147,7 @@
         <p id="Example1-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
   int a, b, c, d, e, n;
 
@@ -208,7 +208,7 @@ class Example1 {
         <p id="Example2-config">
           To configure the check with a threshold of 4 and check only for while and do-while loops:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="CyclomaticComplexity"&gt;
@@ -221,7 +221,7 @@ class Example1 {
         <p id="Example2-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
   int a, b, c, d, e, n;
   // violation below, 'Cyclomatic Complexity is 5 (max allowed is 4)'
@@ -282,7 +282,7 @@ class Example2 {
         <p id="Example3-config">
           To configure the check to consider switch-case block as one decision point.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="CyclomaticComplexity"&gt;
@@ -294,7 +294,7 @@ class Example2 {
         <p id="Example3-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
   int a, b, c, d, e, n;
 
