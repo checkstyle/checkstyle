@@ -1715,7 +1715,7 @@ public final class JavadocTokenTypes {
      * <pre>
      * {@code
      *   JAVADOC -> JAVADOC
-     *        |--TEXT -> /**
+     *    |--TEXT -> /**
      *        |--NEWLINE -> \n
      *        |--LEADING_ASTERISK ->  *
      *        |--TEXT ->
@@ -1796,7 +1796,70 @@ public final class JavadocTokenTypes {
      */
     public static final int BODY_TAG_END = JavadocParser.RULE_bodyTagEnd + RULE_TYPES_OFFSET;
 
-    /** Colgroup html tag. */
+    /**
+     * Colgroup html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <colgroup>
+     *     <col />
+     *     <col span="2" class="batman" />
+     * </colgroup>
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   --JAVADOC -> JAVADOC
+     *       |--NEWLINE -> \n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--HTML_ELEMENT -> HTML_ELEMENT
+     *       |   `--COLGROUP -> COLGROUP
+     *       |       |--COLGROUP_TAG_START -> COLGROUP_TAG_START
+     *       |       |   |--START -> <
+     *       |       |   |--COLGROUP_HTML_TAG_NAME -> colgroup
+     *       |       |   |   `--END -> >
+     *       |       |--NEWLINE -> \n
+     *       |       |--LEADING_ASTERISK ->  *
+     *       |       |--TEXT ->
+     *       |       |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *       |       |   `--COL_TAG -> COL_TAG
+     *       |       |       |--START -> <
+     *       |       |       |--COL_HTML_TAG_NAME -> col
+     *       |       |       |--WS ->
+     *       |       |       `--SLASH_END -> />
+     *       |       |--NEWLINE -> \n
+     *       |       |--LEADING_ASTERISK ->  *
+     *       |       |--TEXT ->
+     *       |       |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *       |       |   `--COL_TAG -> COL_TAG
+     *       |       |       |--START -> <
+     *       |       |       |--COL_HTML_TAG_NAME -> col
+     *       |       |       |--WS ->
+     *       |       |       |--ATTRIBUTE -> ATTRIBUTE
+     *       |       |       |   |--HTML_TAG_NAME -> span
+     *       |       |       |   |--EQUALS -> =
+     *       |       |       |   `--ATTR_VALUE -> "2"
+     *       |       |       |--WS ->
+     *       |       |       |--ATTRIBUTE -> ATTRIBUTE
+     *       |       |       |   |--HTML_TAG_NAME -> class
+     *       |       |       |   |--EQUALS -> =
+     *       |       |       |   `--ATTR_VALUE -> "batman"
+     *       |       |       |--WS ->
+     *       |       |       `--SLASH_END -> />
+     *       |       |--NEWLINE -> \n
+     *       |       |--LEADING_ASTERISK ->  *
+     *       |       |--TEXT ->
+     *       |       `--COLGROUP_TAG_END -> COLGROUP_TAG_END
+     *       |       |       |--START -> <
+     *       |       |       |--SLASH -> /
+     *       |       |       |--COLGROUP_HTML_TAG_NAME -> colgroup
+     *       |       |       `--END -> >
+     *       |--NEWLINE -> \n
+     *       |--TEXT ->
+     * }
+     * </pre>
+     */
     public static final int COLGROUP = JavadocParser.RULE_colgroup + RULE_TYPES_OFFSET;
     /** Start colgroup tag. */
     public static final int COLGROUP_TAG_START = JavadocParser.RULE_colgroupTagStart
