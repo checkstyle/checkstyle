@@ -123,7 +123,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
         createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputRegexpHeaderDefaultConfig.java"), expected);
+         verifyWithInlineConfigParser(getPath("InputRegexpHeaderDefaultConfig.java"), expected);
     }
 
     @Test
