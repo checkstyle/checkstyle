@@ -162,7 +162,7 @@ public final class Main {
      * @return a version string based on the package implementation version
      */
     private static String getVersionString() {
-        return "Checkstyle version: " + Main.class.getPackage().getImplementationVersion();
+        return "Checkstyle version: " + Main.class;
     }
 
     /**
