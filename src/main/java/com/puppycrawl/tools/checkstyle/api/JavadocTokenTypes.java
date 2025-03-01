@@ -1715,7 +1715,7 @@ public final class JavadocTokenTypes {
      * <pre>
      * {@code
      *   JAVADOC -> JAVADOC
-     *    |--TEXT -> /**
+     *        |--TEXT -> /**
      *        |--NEWLINE -> \n
      *        |--LEADING_ASTERISK ->  *
      *        |--TEXT ->
