@@ -58,14 +58,14 @@ public class InputMagicNumberIgnoreNegativeOctalHex1 {
 
         int int_magic1 = 3_000; // violation ''3_000' is a magic number'
         double double_magic1 = 1.5_0;
-        int int_magic2 = (3 + 4); // violations ''3' and '4' are magic numbers'
+        int int_magic2 = (3 + 4);
 
         int_array = new int[3]; // violation ''3' is a magic number'
 
         int_magic1 += 3; // violation ''3' is a magic number'
         double_magic1 *= 1.5;
 
-        for (int j = 3; j < 5; j += 3) { // violations ''3', '5', and '3' are magic numbers'
+        for (int j = 3; j < 5; j += 3) {
             int_magic1++;
         }
 

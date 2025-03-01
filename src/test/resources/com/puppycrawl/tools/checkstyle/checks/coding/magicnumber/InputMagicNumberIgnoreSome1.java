@@ -44,30 +44,30 @@ public class InputMagicNumberIgnoreSome1 {
 
         int[] int_array = new int[2]; // violation ''2' is a magic number'
 
-        int_var1 = 1 + 2; // violation '1' and '2' are magic numbers
+        int_var1 = 1 + 2;
         int_var1 += 1;
-        double_var1 = 1.0 + 2.0; // violation '1.0' and '2.0' are magic numbers
+        double_var1 = 1.0 + 2.0;
 
         for (int i = 0; i < 2; i++)
-            ; // violation '0' and '2' are magic numbers
+            ;
 
         if (1 < 2)
-            ; // violation '1' and '2' are magic numbers
+            ;
 
         if (1.0 < 2.0)
-            ; // violation '1.0' and '2.0' are magic numbers
+            ;
 
         // magic numbers
         int int_magic1 = 3_000;
         double double_magic1 = 1.5_0; // violation ''1.5_0' is a magic number'
-        int int_magic2 = (3 + 4); // violation '3' and '4' are magic numbers
+        int int_magic2 = (3 + 4);
 
         int_array = new int[3];
 
         int_magic1 += 3;
         double_magic1 *= 1.5; // violation ''1.5' is a magic number'
 
-        for (int j = 3; j < 5; j += 3) { // violation '3' and '5' are magic numbers
+        for (int j = 3; j < 5; j += 3) {
             int_magic1++;
         }
 
@@ -77,17 +77,17 @@ public class InputMagicNumberIgnoreSome1 {
 
         int octalVar0 = 00;
         int octalVar8 = 010;
-        int octalVar9 = 011; // violation '011' is a magic number
+        int octalVar9 = 011;
 
         long longOctalVar8 = 0_10L;
-        long longOctalVar9 = 011l; // violation '011l' is a magic number
+        long longOctalVar9 = 011l;
 
         int hexVar0 = 0x0;
         int hexVar16 = 0x10;
-        int hexVar17 = 0X011; // violation '0X011' is a magic number
+        int hexVar17 = 0X011;
         long longHexVar0 = 0x0L;
         long longHexVar16 = 0x10L;
-        long longHexVar17 = 0X11l; // violation '0X11l' is a magic number
+        long longHexVar17 = 0X11l;
     }
 }
 

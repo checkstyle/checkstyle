@@ -18,6 +18,5 @@ package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
 @interface InputMagicNumberAnnotationElement {
     int value() default 10; // violation ''10' is a magic number'
-
-    int[] value2() default { 11 }; // violation ''11' is a magic number'
+    int[] value2() default {11}; // violation ''11' is a magic number'
 }

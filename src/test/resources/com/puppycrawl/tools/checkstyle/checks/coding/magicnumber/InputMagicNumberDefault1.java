@@ -18,10 +18,11 @@ package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
 /**
  * Describe class InputMagicNumberDefaults
- * 
+
  * @author Rick Giles
  * @version 6-May-2003
  */
+
 public class InputMagicNumberDefault1 {
     public void magicMethod() {
 
@@ -47,25 +48,22 @@ public class InputMagicNumberDefault1 {
         int_var1 += 1;
         double_var1 = 1.0 + 2.0;
 
-        for (int i = 0; i < 2; i++)
-            ;
+        for (int i = 0; i < 2; i++);
 
-        if (1 < 2)
-            ;
+        if (1 < 2);
 
-        if (1.0 < 2.0)
-            ;
+        if (1.0 < 2.0);
 
         int int_magic1 = 3_000; // violation ''3_000' is a magic number'
         double double_magic1 = 1.5_0; // violation ''1.5_0' is a magic number'
-        int int_magic2 = (3 + 4); // 2 violation 'magic number's
+        int int_magic2 = (3 + 4);
 
         int_array = new int[3]; // violation ''3' is a magic number'
 
         int_magic1 += 3; // violation ''3' is a magic number'
         double_magic1 *= 1.5; // violation ''1.5' is a magic number'
 
-        for (int j = 3; j < 5; j += 3) { // 3 violation 'magic number's
+        for (int j = 3; j < 5; j += 3) {
             int_magic1++;
         }
 

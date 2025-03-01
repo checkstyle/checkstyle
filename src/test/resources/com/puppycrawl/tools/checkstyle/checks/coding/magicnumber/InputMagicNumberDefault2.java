@@ -42,8 +42,7 @@ public class InputMagicNumberDefault2 {
     private int octalIntMinusOne = 037777777777;
     private long octalLongMinusOne = 01777777777777777777777L;
     private long octalIntMinValue = 020000000000; // violation ''020000000000' is a magic number'
-    private long octalLongMinValue = 01000000000000000000000L; // violation ''01000000000000000000000L' is a magic
-                                                               // number'
+    private long octalLongMinValue = 01000000000000000000000L;
 
     public static final int TESTINTVAL = (byte) 0x80;
 

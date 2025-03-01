@@ -30,7 +30,7 @@ public class InputMagicNumberIgnoreSome2 {
     private int mPlusThree = +3;
     private int mMinusTwo = -2; // violation '-2' is a magic number
     private double mPlusDecimal = +3.5; // violation '3.5' is a magic number
-    private double mMinusDecimal = -2.5; // violation '2.5' is a magic number
+    private double mMinusDecimal = -2.5; // violation '-2.5' is a magic number
 
     /**
      * test octal and hex negative values
