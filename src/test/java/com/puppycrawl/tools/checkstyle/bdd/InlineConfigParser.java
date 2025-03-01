@@ -49,6 +49,9 @@ import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper;
+import com.puppycrawl.tools.checkstyle.meta.ModuleDetails;
+import com.puppycrawl.tools.checkstyle.meta.ModulePropertyDetails;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -825,6 +828,32 @@ public final class InlineConfigParser {
         return stringBuilder.toString();
     }
 
+    /**
+     * Loops through all properties of a module and checks if all properties are specified in the input file.
+     * 
+     * @param inputConfigBuilder input configuration builder
+     * @param inputFilePath path of the input file
+     * @param moduleName name of the module for which properties are to be validated
+     * @throws Exception if any property is not specified in the input file
+     */
+    private static void validateAllProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
+                                                       String inputFilePath, String moduleName)
+            throws CheckstyleException {
+        final String fullyQualifiedModuleName = getFullyQualifiedClassName(inputFilePath, moduleName);
+        final ModuleDetails moduleDetails = JavadocMetadataScraper.getModuleDetailsStore().get(fullyQualifiedModuleName);
+        if (moduleDetails == null) {
+            throw new CheckstyleException("Module details not found for " + fullyQualifiedModuleName);
+        }
+
+        final Map<String, String> allProperties = inputConfigBuilder.build().getAllProperties();
+        for (ModulePropertyDetails property : moduleDetails.getProperties()) {
+            final String propertyName = property.getName();
+            if (!allProperties.containsKey(propertyName)) {
+                throw new CheckstyleException("Property " + propertyName + " is not specified in the input file for module " + fullyQualifiedModuleName);
+            }
+        }
+    }
+
     private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
                             String inputFilePath,
                             List<String> lines,
@@ -867,6 +896,7 @@ public final class InlineConfigParser {
                 inputConfigBuilder.addNonDefaultProperty(key, value);
             }
         }
+        validateAllProperties(inputConfigBuilder, inputFilePath, moduleName);
     }
 
     private static void setProperties(String inputFilePath, Configuration module,
@@ -896,6 +926,7 @@ public final class InlineConfigParser {
             final String value = entry.getValue();
             moduleInputConfigBuilder.addModuleMessage(key, value);
         }
+        validateAllProperties(moduleInputConfigBuilder, inputFilePath, module.getName());
     }
 
     private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
