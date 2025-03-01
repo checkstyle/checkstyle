@@ -1615,7 +1615,7 @@
         <li>Some clarifications on scope property of javadoc checks added
         (rfe 1009201)</li>
 
-        <li>UnusedPrivateMethod check now can be configured to ignore
+        <li>UnusedLocalMethod check now can be configured to ignore
         serialization-related methods (readObject(), writeObject(),
         readResolve() and writeReplace()) (rfe 1036387)</li>
 
@@ -1741,7 +1741,7 @@
 
       <ul>
 
-        <li>False alarms from UnusedPrivateMethodCheck for anonymous inner
+        <li>False alarms from UnusedLocalMethodCheck for anonymous inner
         class parameter.  (bug 950548).</li>
 
         <li>Fixed bug in handling imports in RequireThis(bug 952508)</li>
@@ -1928,7 +1928,7 @@
         <li>JavadocStyleCheck throws StringIndexOutOfBoundsException
         when open tag character, &lt;, is the last character on a line.</li>
 
-        <li>UnusedPrivateMethod false positive (ternary call).
+        <li>UnusedLocalMethod false positive (ternary call).
         (bug 880954)</li>
 
         <li>Cast causes MagicNumberCheck error.
@@ -2158,7 +2158,7 @@
         super.finalize().</li>
 
         <li>Added usage checks OneMethodPrivateFieldCheck, UnusedLocalVariableCheck,
-        UnusedParameterCheck, UnusedPrivateFieldCheck, UnusedPrivateMethodCheck.</li>
+        UnusedParameterCheck, UnusedPrivateFieldCheck, UnusedLocalMethodCheck.</li>
 
         <li>Added filters for audit events (partially fulfills request 559103).
         A SuppressionFilter denies events according to a suppressions file (request 756416).</li>
