@@ -1509,18 +1509,20 @@ public final class JavadocTokenTypes {
      *      `--DESCRIPTION -> DESCRIPTION
      *          |--TEXT -> if
      *          |--HTML_ELEMENT -> HTML_ELEMENT
-     *          |   `--HTML_TAG -> HTML_TAG
-     *          |       |--HTML_ELEMENT_START -> HTML_ELEMENT_START
-     *          |       |   |--START -> <
-     *          |       |   |--HTML_TAG_NAME -> b
-     *          |       |   `--END -> >
-     *          |       |--TEXT -> connection
-     *          |       `--HTML_ELEMENT_END -> HTML_ELEMENT_END
-     *          |           |--START -> <
-     *          |           |--SLASH -> /
-     *          |           |--HTML_TAG_NAME -> b
-     *          |           `--END -> >
+     *              `--HTML_TAG -> HTML_TAG
+     *                  |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *                      |--START -> <
+     *                      |--HTML_TAG_NAME -> b
+     *                      `--END -> >
+     *                  |--TEXT -> connection
+     *                  `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *                      |--START -> <
+     *                      |--SLASH -> /
+     *                      |--HTML_TAG_NAME -> b
+     *                      `--END -> >
      *          |--TEXT ->  problems occur
+     *          |--NEWLINE -> \r\n
+     *          `--TEXT ->
      * }
      * </pre>
      */
