@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>UnusedLocalMethod</title>
+  </head>
+  <body>
+    <section name="UnusedLocalMethod">
+      <p>Since Checkstyle 9.3</p>
+      <subsection name="Description" id="Description">
+        <div>Checks that a local method is declared but not used, except for overloaded ones.</div>
+      </subsection>
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnusedLocalVariable"&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+    {
+        int k = 12; // violation, assign and update but never use 'k'
+        k++;
+    }
+
+    int a;
+
+    Example1(int a) { // ok, as 'a' is a constructor parameter not a local variable
+        this.a = 12;
+    }
+
+    void method(int b) {
+        int[] arr = {1, 2, 3};  // violation, unused named local variable 'arr'
+        int[] anotherArr = {1}; // ok, 'anotherArr' is accessed
+        anotherArr[0] = 4;
+    }
+
+    String convertValue(String newValue) {
+        String s = newValue.toLowerCase(); // violation, unused named local variable 's'
+        String _ = newValue.toLowerCase(); // ok, '_' is unnamed variable
+        return newValue.toLowerCase();
+    }
+
+    void read() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String s; // violation, unused named local variable 's'
+        while ((s = reader.readLine()) != null) {
+        }
+        try (BufferedReader reader1 = // ok, 'reader1' is a resource
+                 new BufferedReader(new FileReader("abc.txt"))) {
+        }
+        try {
+        } catch (Exception e) {
+        }  // ok, 'e' is an exception parameter
+    }
+
+    void loops() {
+        int j = 12;
+        for (int i = 0; j &lt; 11; i++)  // violation, unused named local variable 'i'
+            for (int p = 0; j &lt; 11; p++) p /= 2;    // ok, 'p' is used
+        for (Integer _ : new int[0]) {
+        } // ok, '_' is unnamed variable
+    }
+
+    void lambdas() {
+        Predicate&lt;String&gt; obj = (String str) -&gt; true; // ok, 'str' is a lambda parameter
+        obj.test("Test");
+    }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedLocalMethod">
+                Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unused.local.method%22">
+              unused.local.method
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
