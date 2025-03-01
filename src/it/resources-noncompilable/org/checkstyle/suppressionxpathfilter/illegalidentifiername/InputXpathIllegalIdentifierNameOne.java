@@ -7,6 +7,6 @@ package org.checkstyle.suppressionxpathfilter.illegalidentifiername;
  */
 public record InputXpathIllegalIdentifierNameOne
         (String string,
-            String yield, // warn
+            String var, // warn
             String otherString){
 }
