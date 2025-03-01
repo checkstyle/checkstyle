@@ -18,3 +18,7 @@ ij_java_else_on_new_line = true
 # https://stackoverflow.com/questions/3348816/intellij-never-use-wildcard-imports
 ij_java_names_count_to_use_import_on_demand = 999
 ij_java_class_count_to_use_import_on_demand = 999
+
+[**xdocs-examples**.java]
+ij_continuation_indent_size = 4
+indent_size = 2
