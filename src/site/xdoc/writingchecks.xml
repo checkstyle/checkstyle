@@ -670,6 +670,11 @@ public class MethodLimitCheck extends AbstractCheck
         <li>
           Code has to be compilable by <code>javac</code> to get valid violations.
           If it is not, you can get hard to understand parse errors.
+          <ul>
+            <li>
+              This includes code relying on compile-time preprocessors (i.e. Lombok
+            </li>
+          </ul>
         </li>
         <li>
           Java
