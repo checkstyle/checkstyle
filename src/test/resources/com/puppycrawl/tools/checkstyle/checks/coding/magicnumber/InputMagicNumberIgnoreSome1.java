@@ -35,35 +35,35 @@ public class InputMagicNumberIgnoreSome1 {
 
         //ignore by default
         int int_var1 = 1;
-        int int_var2 = (2); // violation
+        int int_var2 = (2); // violation ''2' is a magic number'
         long long_var1 = 0L;
         long long_var2 = 0l;
         double double_var1 = 0D;
         double double_var2 = 0d;
 
-        int[] int_array = new int[2]; // violation
+        int[] int_array = new int[2]; // violation ''2' is a magic number'
 
-        int_var1 = 1 + 2; // violation
+        int_var1 = 1 + 2; // violation ''2' is a magic number'
         int_var1 += 1;
-        double_var1 = 1.0 + 2.0; // violation
+        double_var1 = 1.0 + 2.0; // violation ''2.0' is a magic number'
 
-        for (int i = 0; i < 2; i++); // violation
+        for (int i = 0; i < 2; i++); // violation ''2' is a magic number'
 
-        if (1 < 2); // violation
+        if (1 < 2); // violation ''2' is a magic number'
 
-        if (1.0 < 2.0); // violation
+        if (1.0 < 2.0); // violation ''2.0' is a magic number'
 
         //magic numbers
         int int_magic1 = 3_000;
-        double double_magic1 = 1.5_0; // violation
-        int int_magic2 = (3 + 4); // violation
+        double double_magic1 = 1.5_0; // violation ''1.5_0' is a magic number'
+        int int_magic2 = (3 + 4); // violation ''4' is a magic number'
 
         int_array = new int[3];
 
         int_magic1 += 3;
-        double_magic1 *= 1.5; // violation
+        double_magic1 *= 1.5; // violation ''1.5' is a magic number'
 
-        for (int j = 3; j < 5; j += 3) { // violation
+        for (int j = 3; j < 5; j += 3) { // violation ''3' is a magic number'
             int_magic1++;
         }
 
@@ -74,18 +74,18 @@ public class InputMagicNumberIgnoreSome1 {
 
         int octalVar0 = 00;
         int octalVar8 = 010;
-        int octalVar9 = 011; // violation
+        int octalVar9 = 011; // violation ''011' is a magic number'
 
         long longOctalVar8 = 0_10L;
-        long longOctalVar9 = 011l; // violation
+        long longOctalVar9 = 011l; // violation ''011l' is a magic number'
 
 
         int hexVar0 = 0x0;
         int hexVar16 = 0x10;
-        int hexVar17 = 0X011;  // violation
+        int hexVar17 = 0X011;  // violation ''0X011' is a magic number'
         long longHexVar0 = 0x0L;
         long longHexVar16 = 0x10L;
-        long longHexVar17 = 0X11l; // violation
+        long longHexVar17 = 0X11l; // violation ''0X11l' is a magic number'
     }
 }
 

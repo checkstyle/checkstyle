@@ -18,35 +18,35 @@ package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
 public class InputMagicNumberIgnoreNone2 {
     /** test long hex */
-    long l = 0xffffffffL; // violation
+    long l = 0xffffffffL; // violation ''0xffffffffL' is a magic number'
 
     /**
      * test signed values
      */
     public static final int CONST_PLUS_THREE = +3;
     public static final int CONST_MINUS_TWO = -2;
-    private int mPlusThree = +3; // violation
-    private int mMinusTwo = -2; // violation
-    private double mPlusDecimal = +3.5; // violation
-    private double mMinusDecimal = -2.5; // violation
+    private int mPlusThree = +3; // violation ''3' is a magic number'
+    private int mMinusTwo = -2; // violation ''-2' is a magic number'
+    private double mPlusDecimal = +3.5; // violation ''3.5' is a magic number'
+    private double mMinusDecimal = -2.5; // violation ''-2.5' is a magic number'
 
     /**
      * test octal and hex negative values
      */
-    private int hexIntMinusOne = 0xffffffff; // violation
-    private long hexLongMinusOne = 0xffffffffffffffffL; // violation
-    private long hexIntMinValue = 0x80000000; // violation
-    private long hexLongMinValue = 0x8000000000000000L; // violation
-    private int octalIntMinusOne = 037777777777;  // violation
-    private long octalLongMinusOne = 01777777777777777777777L;  // violation
-    private long octalIntMinValue = 020000000000;  // violation
-    private long octalLongMinValue = 01000000000000000000000L; // violation
+    private int hexIntMinusOne = 0xffffffff; // violation ''0xffffffff' is a magic number'
+    private long hexLongMinusOne = 0xffffffffffffffffL; // violation ''0xffffffffffffffffL' is a magic number'
+    private long hexIntMinValue = 0x80000000; // violation ''0x80000000' is a magic number'
+    private long hexLongMinValue = 0x8000000000000000L; // violation ''0x8000000000000000L' is a magic number'
+    private int octalIntMinusOne = 037777777777;  // violation ''037777777777' is a magic number'
+    private long octalLongMinusOne = 01777777777777777777777L;  // violation ''01777777777777777777777L' is a magic number'
+    private long octalIntMinValue = 020000000000;  // violation ''020000000000' is a magic number'
+    private long octalLongMinValue = 01000000000000000000000L; // violation ''01000000000000000000000L' is a magic number'
     public static final int TESTINTVAL = (byte) 0x80;
 
     public static final java.util.List MYLIST = new java.util.ArrayList() {
         public int size() {
 
-            return 378; // violation
+            return 378; // violation ''378' is a magic number'
         }
     };
 
