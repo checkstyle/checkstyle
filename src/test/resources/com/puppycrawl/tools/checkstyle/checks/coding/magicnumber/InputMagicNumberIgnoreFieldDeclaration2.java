@@ -48,7 +48,7 @@ public class InputMagicNumberIgnoreFieldDeclaration2 {
     public static final java.util.List MYLIST = new java.util.ArrayList() {
         public int size() {
 
-            return 378; // violation
+            return 378; // violation ''378' is a magic number
         }
     };
 
