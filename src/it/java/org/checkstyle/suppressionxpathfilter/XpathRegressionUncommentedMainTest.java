@@ -30,12 +30,12 @@ import com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
 
 public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport {
 
-    private final Class<UncommentedMainCheck> clazz =
+    private static final Class<UncommentedMainCheck> CLAZZ =
             UncommentedMainCheck.class;
 
     @Override
     protected String getCheckName() {
-        return clazz.getSimpleName();
+        return CLAZZ.getSimpleName();
     }
 
     @Test
