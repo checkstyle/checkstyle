@@ -30,12 +30,12 @@ import com.puppycrawl.tools.checkstyle.checks.coding.ConstructorsDeclarationGrou
 
 public class XpathRegressionConstructorsDeclarationGroupingTest extends AbstractXpathTestSupport {
 
-    private final Class<ConstructorsDeclarationGroupingCheck> clazz =
+    private static final Class<ConstructorsDeclarationGroupingCheck> CLAZZ =
             ConstructorsDeclarationGroupingCheck.class;
 
     @Override
     protected String getCheckName() {
-        return clazz.getSimpleName();
+        return CLAZZ.getSimpleName();
     }
 
     @Test
@@ -43,10 +43,10 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
         final File fileToProcess = new File(
                 getPath("InputXpathConstructorsDeclarationGroupingClass.java"));
 
-        final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "10:5: " + getCheckMessage(clazz,
+            "10:5: " + getCheckMessage(CLAZZ,
                     ConstructorsDeclarationGroupingCheck.MSG_KEY, 6),
         };
 
@@ -75,10 +75,10 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
         final File fileToProcess = new File(
                 getPath("InputXpathConstructorsDeclarationGroupingEnum.java"));
 
-        final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "12:5: " + getCheckMessage(clazz,
+            "12:5: " + getCheckMessage(CLAZZ,
                     ConstructorsDeclarationGroupingCheck.MSG_KEY, 8),
         };
 
@@ -108,10 +108,10 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
         final File fileToProcess = new File(
                 getNonCompilablePath("InputXpathConstructorsDeclarationGroupingRecords.java"));
 
-        final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "14:5: " + getCheckMessage(clazz,
+            "14:5: " + getCheckMessage(CLAZZ,
                     ConstructorsDeclarationGroupingCheck.MSG_KEY, 8),
         };
 
