@@ -8,17 +8,18 @@
  Checks that a variable has a Javadoc comment. Ignores {@code serialVersionUID} fields.
  &lt;/div&gt;</description>
          <properties>
-            <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
-               <description>Specify the visibility scope where Javadoc
- comments are not checked.</description>
+            <property default-value="public, protected, package, private"
+                      name="accessModifiers"
+                      type="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]">
+               <description>Specify the set of access modifiers used to determine which
+ fields should be checked. This includes both explicitly declared modifiers and implicit ones,
+ such as package-private for fields without an explicit modifier.
+ It also accounts for special cases where fields have implicit modifiers,
+ such as &lt;code&gt;public static final&lt;/code&gt; for interface fields and &lt;code&gt;public static&lt;/code&gt;
+ for enum constants. Only fields matching the specified modifiers will be analyzed.</description>
             </property>
             <property name="ignoreNamePattern" type="java.util.regex.Pattern">
                <description>Specify the regexp to define variable names to ignore.</description>
-            </property>
-            <property default-value="private"
-                      name="scope"
-                      type="com.puppycrawl.tools.checkstyle.api.Scope">
-               <description>Specify the visibility scope where Javadoc comments are checked.</description>
             </property>
             <property default-value="ENUM_CONSTANT_DEF"
                       name="tokens"

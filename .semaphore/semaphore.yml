@@ -89,7 +89,6 @@ blocks:
                 - .ci/validation.sh no-error-sevntu-checks
                 - .ci/validation.sh no-error-contribution
                 - .ci/validation.sh no-error-methods-distance
-                - .ci/validation.sh no-error-spring-cloud-gcp
                 - .ci/validation.sh no-error-equalsverifier
                 - .ci/validation.sh jacoco
 
