@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck;
 
 public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
 
-    private final Class<ModifierOrderCheck> clazz = ModifierOrderCheck.class;
+    private static Class<ModifierOrderCheck> clazz = ModifierOrderCheck.class;
 
     @Override
     protected String getCheckName() {

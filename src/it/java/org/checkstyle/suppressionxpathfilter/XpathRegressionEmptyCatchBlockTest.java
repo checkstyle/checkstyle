@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck;
 
 public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport {
 
-    private final Class<EmptyCatchBlockCheck> clazz =
+    private static Class<EmptyCatchBlockCheck> clazz =
         EmptyCatchBlockCheck.class;
 
     @Override

@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck;
 
 public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport {
 
-    private final Class<EqualsAvoidNullCheck> clazz = EqualsAvoidNullCheck.class;
+    private static Class<EqualsAvoidNullCheck> clazz = EqualsAvoidNullCheck.class;
 
     @Override
     protected String getCheckName() {

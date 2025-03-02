@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationO
 
 public class XpathRegressionOverloadMethodsDeclarationOrderTest extends AbstractXpathTestSupport {
 
-    private final Class<OverloadMethodsDeclarationOrderCheck> clazz =
+    private static Class<OverloadMethodsDeclarationOrderCheck> clazz =
             OverloadMethodsDeclarationOrderCheck.class;
 
     @Override

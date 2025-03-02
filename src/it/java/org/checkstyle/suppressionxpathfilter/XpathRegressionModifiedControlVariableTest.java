@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck;
 
 public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTestSupport {
-    private final Class<ModifiedControlVariableCheck> checkClass =
+    private static Class<ModifiedControlVariableCheck> checkClass =
             ModifiedControlVariableCheck.class;
 
     @Override
