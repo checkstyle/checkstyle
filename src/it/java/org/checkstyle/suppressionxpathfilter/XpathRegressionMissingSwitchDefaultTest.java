@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheck;
 
 public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSupport {
 
-    private final Class<MissingSwitchDefaultCheck> clss = MissingSwitchDefaultCheck.class;
+    private static Class<MissingSwitchDefaultCheck> clss = MissingSwitchDefaultCheck.class;
 
     @Override
     protected String getCheckName() {

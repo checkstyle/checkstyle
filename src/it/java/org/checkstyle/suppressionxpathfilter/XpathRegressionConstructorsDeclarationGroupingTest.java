@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.ConstructorsDeclarationGrou
 
 public class XpathRegressionConstructorsDeclarationGroupingTest extends AbstractXpathTestSupport {
 
-    private final Class<ConstructorsDeclarationGroupingCheck> clazz =
+    private static Class<ConstructorsDeclarationGroupingCheck> clazz =
             ConstructorsDeclarationGroupingCheck.class;
 
     @Override

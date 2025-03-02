@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.AvoidDoubleBraceInitializat
 
 public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractXpathTestSupport {
 
-    private final Class<AvoidDoubleBraceInitializationCheck> clazz =
+    private static Class<AvoidDoubleBraceInitializationCheck> clazz =
         AvoidDoubleBraceInitializationCheck.class;
 
     @Override
