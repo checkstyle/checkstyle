@@ -9,4 +9,32 @@
     <description>removed conditional - replaced equality check with true</description>
     <lineContent>token != null &amp;&amp; !returnValue;</lineContent>
   </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocUtil.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.JavadocUtil</mutatedClass>
+    <mutatedMethod>getJavadocTags</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>final boolean isInlineTags = tagType == JavadocTagType.ALL</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocUtil.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.JavadocUtil</mutatedClass>
+    <mutatedMethod>getJavadocTags</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>final boolean isInlineTags = tagType == JavadocTagType.ALL</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocUtil.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.JavadocUtil</mutatedClass>
+    <mutatedMethod>getJavadocTags</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (isInlineTags) {</lineContent>
+  </mutation>
+
 </suppressedMutations>
