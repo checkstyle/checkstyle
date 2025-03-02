@@ -30,12 +30,12 @@ import com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck;
 
 public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport {
 
-    private final Class<EmptyCatchBlockCheck> clazz =
+    private static final Class<EmptyCatchBlockCheck> CLAZZ =
         EmptyCatchBlockCheck.class;
 
     @Override
     protected String getCheckName() {
-        return clazz.getSimpleName();
+        return CLAZZ.getSimpleName();
     }
 
     @Test
@@ -43,10 +43,10 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
         final File fileToProcess = new File(
             getPath("InputXpathEmptyCatchBlockOne.java"));
 
-        final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "8:38: " + getCheckMessage(clazz, EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
+            "8:38: " + getCheckMessage(CLAZZ, EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -64,10 +64,10 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
         final File fileToProcess = new File(
             getPath("InputXpathEmptyCatchBlockTwo.java"));
 
-        final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "8:47: " + getCheckMessage(clazz, EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
+            "8:47: " + getCheckMessage(CLAZZ, EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
