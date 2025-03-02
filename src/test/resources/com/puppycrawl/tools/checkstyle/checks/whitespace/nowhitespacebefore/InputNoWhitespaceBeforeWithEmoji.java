@@ -12,11 +12,11 @@ public class InputNoWhitespaceBeforeWithEmoji {
     private String[] _mVar0 = {
         "😃😉🙈" ,  // violation
         "😃 😉 🙈" ,  // violation
-        "😃 😉 🙈",  // ok
-        "😃😉🙈"  // ok
+        "😃 😉 🙈",
+        "😃😉🙈"
     };
-    private String _mVar1 = "😃😉🙈"; // ok
-    private String _mVar2 = "😃 😉 🙈"; // ok
+    private String _mVar1 = "😃😉🙈";
+    private String _mVar2 = "😃 😉 🙈";
     private String _mVar3 = "😃 😉 🙈" ; // violation
     private String _mVar4 = "a b c" ; // violation
 }

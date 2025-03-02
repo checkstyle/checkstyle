@@ -14,13 +14,13 @@ public class InputSummaryJavadocInlineForbidden {
     /**
      * {@summary A simple correct Javadoc.}
      */
-    void foo1() { // ok
+    void foo1() {
     }
 
     /**
      * {@summary This code {@input Javadoc} is right.}
      */
-    void foo3() { // ok
+    void foo3() {
     }
     /**
      * {@summary This code is wrong }
@@ -53,7 +53,7 @@ public class InputSummaryJavadocInlineForbidden {
         /**
          * {@summary Some java@doc.}
          */
-        public static final byte NUL_2 = 0; // ok
+        public static final byte NUL_2 = 0;
         // violation 2 lines below 'Forbidden summary fragment.'
         /**
          * {@summary @return the
@@ -67,7 +67,7 @@ public class InputSummaryJavadocInlineForbidden {
          * {@summary As of JDK 1.1, replaced by {@link #setBounds(int, int, int, int)}.}
          */
         void foo3() {
-        } // ok
+        }
 
     }
 
@@ -86,7 +86,7 @@ public class InputSummaryJavadocInlineForbidden {
                 /**
                  * {@summary {@code see}.}
                  */
-                void foo10() { // ok
+                void foo10() {
                 }
             };
     // violation 2 lines below 'Summary .* missing an ending period.'
@@ -123,7 +123,7 @@ public class InputSummaryJavadocInlineForbidden {
      * @param a some parameter.
      * @return This method returns a, this statement is allowed in return.
      */
-    public int validInlineJavadocReturn(int a) // ok
+    public int validInlineJavadocReturn(int a)
     {
         return a;
     }

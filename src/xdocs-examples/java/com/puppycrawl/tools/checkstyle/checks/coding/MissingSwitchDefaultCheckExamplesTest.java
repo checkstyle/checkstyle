@@ -34,6 +34,7 @@ public class MissingSwitchDefaultCheckExamplesTest extends AbstractExamplesModul
     public void testExample1() throws Exception {
         final String[] expected = {
             "13:5: " + getCheckMessage(MissingSwitchDefaultCheck.MSG_KEY),
+            "22:5: " + getCheckMessage(MissingSwitchDefaultCheck.MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);

@@ -98,9 +98,7 @@ public class MetadataGeneratorLogger extends AbstractAutomaticBean implements Au
 
     @Override
     public void addException(AuditEvent event, Throwable throwable) {
-        synchronized (errorWriter) {
-            throwable.printStackTrace(errorWriter);
-        }
+        throwable.printStackTrace(errorWriter);
     }
 
     @Override

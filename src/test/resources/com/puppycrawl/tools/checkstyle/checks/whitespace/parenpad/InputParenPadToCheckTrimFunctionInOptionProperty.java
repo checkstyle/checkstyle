@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 public class InputParenPadToCheckTrimFunctionInOptionProperty {
 
-    public InputParenPadToCheckTrimFunctionInOptionProperty ( int i ) // ok
+    public InputParenPadToCheckTrimFunctionInOptionProperty ( int i )
     {
         this ();
         toString ();
@@ -26,7 +26,7 @@ public class InputParenPadToCheckTrimFunctionInOptionProperty {
     public void enhancedFor ()
     {
         int[] i = new int[2];
-        for ( int j: i ) { // ok
+        for ( int j: i ) {
             System.identityHashCode ( j );
         }
     }

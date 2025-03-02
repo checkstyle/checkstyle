@@ -457,13 +457,14 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "29:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
             "43:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
                     "java.lang.IllegalArgumentException"),
-            "55: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
+            "55:12: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "properties"),
             "63:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
-            "73: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
-            "81:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
-            "91:12: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "properties"),
-            "96:35: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "myInt"),
-            "101:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
+            "73:12: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "properties"),
+            "78:9: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "myString"),
+            "82:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
+            "92:12: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "properties"),
+            "97:35: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "myInt"),
+            "102:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputJavadocMethodRecordsAndCompactCtors.java"), expected);
@@ -567,5 +568,29 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethod3.java"), expected);
+    }
+
+    @Test
+    public void testJavadocMethodRecords() throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavadocMethodRecords.java"), expected);
+    }
+
+    @Test
+    public void testJavadocMethodRecords2() throws Exception {
+        final String[] expected = {
+            "37:12: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "lastName"),
+            "52:12: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "lastName"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavadocMethodRecords2.java"), expected);
+    }
+
+    @Test
+    public void testJavadocMethodRecords3() throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavadocMethodRecords3.java"), expected);
     }
 }

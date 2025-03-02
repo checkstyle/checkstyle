@@ -10,6 +10,139 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.21.3">
+      <div class="releaseDate">23.02.2025</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            The SarifLogger creates invalid JSON on Windows with unescaped paths.
+            Author: Kai Moschcau, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/16127">#16127</a>
+          </li>
+          <li>
+            False Negative of ClassFanOutCheck with &quot;new&quot; Keyword.
+            Author: Anmol
+            <a href="https://github.com/checkstyle/checkstyle/issues/14787">#14787</a>
+          </li>
+          <li>
+            JavadocMethod: false positive on compact constructors for nested record classes.
+            Author: Anmol
+            <a href="https://github.com/checkstyle/checkstyle/issues/15683">#15683</a>
+          </li>
+          <li>
+            `yield` fails Indentation check in switch expressions.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/15967">#15967</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: MohamedMetwalli5, vishakha-mali, Maximpaxim, Tahanima Chowdhury
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+          <li>
+            Clarification: no violation for preceding whitespaces for paragraph tag content.
+            Author: Anmol
+            <a href="https://github.com/checkstyle/checkstyle/issues/15762">#15762</a>
+          </li>
+          <li>
+            Cover pitest survivals with tests.
+            Author: Ziad Ahmed, Harsh-Agrawal96
+            <a href="https://github.com/checkstyle/checkstyle/issues/14019">#14019</a>
+          </li>
+          <li>
+            Provide examples of commands and examples of output for most CLI parameters..
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/16294">#16294</a>
+          </li>
+          <li>
+            Link redirection is not working for VariableDeclarationUsageDistance.
+            Author: pranavbavdhankar
+            <a href="https://github.com/checkstyle/checkstyle/issues/16290">#16290</a>
+          </li>
+          <li>
+            Define violation messages for all violations.
+            Author: Ziad Ahmed, Usman Shaikh, andrey Ivanov, Oyster-zx, aboro-code, sreekarsai193
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: Priyambada Roul, Huthaifa, Ziad Ahmed, Zhila Shariat, vishakha-mali,
+            MohamedMetwalli5, Maximpaxim, Oyster-zx
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            Resolve Pitest Suppression in Pitest-Javadoc Profile.
+            Author: ahmedyoussefg, Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/13999">#13999</a>
+          </li>
+          <li>
+            AvoidSynchronizedStatement reported usage of synchronized.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/15821">#15821</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: Amit Kumar Deohoria, Ziad Ahmed, smita_1078, ahmedyoussefg, Aryan Sankar,
+            Harsh-Agrawal96
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: Broilzzz, ahmedyoussefg, ElinaZoldnere, aboro-code
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            Update doc for MissingSwitchDefault.
+            Author: Huthaifa
+            <a href="https://github.com/checkstyle/checkstyle/issues/16262">#16262</a>
+          </li>
+          <li>
+            Inprove website rendering.
+            Author: Mauryan Kansara, Harsh-Agrawal96, ZaeemSheikh
+            <a href="https://github.com/checkstyle/checkstyle/issues/16243">#16243</a>
+          </li>
+          <li>
+            UI Overlap Issue in Checkstyle Documentation Sidebar.
+            Author: ZaeemSheikh
+            <a href="https://github.com/checkstyle/checkstyle/issues/16291">#16291</a>
+          </li>
+          <li>
+            Source code syntax highlights in web pages.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/16073">#16073</a>
+          </li>
+          <li>
+            put validation for &quot;(default)&quot; in Inputs.
+            Author: Anmol
+            <a href="https://github.com/checkstyle/checkstyle/issues/15983">#15983</a>
+          </li>
+          <li>
+            Add support of filtered violation messages to BDD Inputs.
+            Author: Harsh-Agrawal96
+            <a href="https://github.com/checkstyle/checkstyle/issues/15534">#15534</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Mostafahassen1
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Workflow `regression-report.yml` should support of config bundles with extra
+            configuration files (Header check).
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/16121">#16121</a>
+          </li>
+          <li>
+            FileTabCharacter: update  doc to mention  that only first violation is reported for
+            default configuration.
+            Author: ElinaZoldnere
+            <a href="https://github.com/checkstyle/checkstyle/issues/16225">#16225</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.21.2">
       <div class="releaseDate">26.01.2025</div>
       <p>Bug fixes:</p>

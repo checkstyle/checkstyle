@@ -1,10 +1,12 @@
 /*
-ModifierOrder
-
+RedundantModifier
+tokens = (default)METHOD_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, INTERFACE_DEF, \
+         CTOR_DEF, CLASS_DEF, ENUM_DEF, RESOURCE
+jdkVersion = 11
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.modifier.modifierorder;
+package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
 /**
  * Test case for Modifier checks:
@@ -12,17 +14,17 @@ package com.puppycrawl.tools.checkstyle.checks.modifier.modifierorder;
  * - use of 'public' in interface definition
  * @author lkuehne
  */
-strictfp final class InputModifierOrderIt // violation ''final'.*out of order.*JLS suggestions.'
+strictfp final class InputRedundantModifierItOne // illegal order of modifiers for class
 {
 
     /** Illegal order of modifiers for variables */
-    static private boolean sModifierOrderVar = false; // violation ''private'.*JLS suggestions.'
+    static private boolean sModifierOrderVar = false;
 
     /**
      * Illegal order of modifiers for methods. Make sure that the
      * first and last modifier from the JLS sequence is used.
      */
-    strictfp private void doStuff() // violation ''private' modifier.*order.*JLS suggestions.'
+    strictfp private void doStuff()
     {
     }
 
@@ -33,12 +35,12 @@ strictfp final class InputModifierOrderIt // violation ''final'.*out of order.*J
 
     /** Illegal order of annotation - must come first */
     private @MyAnnotation2 void someMethod2()
-    { // violation above ''@MyAnnotation2' annotation modifier.*precede non-annotation modifiers.'
+    {
     }
 
     /** Annotation in middle of other modifiers otherwise in correct order */
     private @MyAnnotation2 strictfp void someMethod3()
-    { // violation above ''@MyAnnotation2' annotation modifier.*precede non-annotation modifiers.'
+    {
     }
 
     /** Correct order */
@@ -48,36 +50,36 @@ strictfp final class InputModifierOrderIt // violation ''final'.*out of order.*J
 
     /** Annotation in middle of other modifiers otherwise in correct order */
     @MyAnnotation2 private static @MyAnnotation4 strictfp void someMethod5()
-    { // violation above ''@MyAnnotation4' annotation modifier.*precede non-annotation modifiers.'
+    {
     }
 
     /** holder for redundant 'public' modifier check. */
-    public static interface InputRedundantPublicModifier
+    public static interface InputRedundantPublicModifier // violation
     {
         /** redundant 'public' modifier */
-        public void a();
+        public void a(); // violation
 
         /** all OK */
         void b();
 
         /** redundant abstract modifier */
-        abstract void c();
+        abstract void c(); // violation
 
         /** redundant 'public' modifier */
-        public float PI_PUBLIC = (float) 3.14;
+        public float PI_PUBLIC = (float) 3.14; // violation
 
         /** redundant 'abstract' modifier (field can not be abstract) */
 //        abstract float PI_ABSTRACT = (float) 3.14;
 
         /** redundant 'final' modifier */
-        final float PI_FINAL = (float) 3.14;
+        final float PI_FINAL = (float) 3.14; // violation
 
         /** all OK */
         float PI_OK = (float) 3.14;
     }
 
     /** redundant 'final' modifier */
-    private final void method()
+    private final void method() // violation
     {
     }
 }
@@ -86,7 +88,7 @@ strictfp final class InputModifierOrderIt // violation ''final'.*out of order.*J
 final class RedundantFinalClass
 {
     /** redundant 'final' modifier */
-    public final void finalMethod()
+    public final void finalMethod() // violation
     {
     }
 
@@ -97,7 +99,7 @@ final class RedundantFinalClass
 }
 
 /** Holder for redundant modifiers of inner implementation */
-abstract interface InnerImplementation
+abstract interface InnerImplementation // violation
 {
     InnerImplementation inner =
             new InnerImplementation()
@@ -110,52 +112,8 @@ abstract interface InnerImplementation
 
     void method();
 }
-
-/** Holder for redundant modifiers of annotation fields/variables */
-@interface Annotation
-{
-    public String s1 = "";
-    final String s2 = "";
-    static String s3 = "";
-    String s4 = "";
-    public String blah();
-    abstract String blah2();
-}
-
 @interface MyAnnotation2 {
 }
 
 @interface MyAnnotation4 {
-}
-
-class SafeVarargsUsage {
-    @Deprecated
-    @SafeVarargs
-    private final void foo(int... k) {}
-
-    @Deprecated
-    @SafeVarargs
-    @SuppressWarnings("")
-    private final void foo1(Object... obj) {}
-}
-
-enum TestEnum {
-    ;
-
-    public void method() {
-    }
-}
-
-/** holder for interface specific modifier check. */
-interface InputDefaultPublicModifier
-{
-    /** correct order */
-    default strictfp void a()
-    {
-    }
-
-    /** wrong order */
-    strictfp default void b() // violation ''default' modifier out of order .*JLS suggestions.'
-    {
-    }
 }

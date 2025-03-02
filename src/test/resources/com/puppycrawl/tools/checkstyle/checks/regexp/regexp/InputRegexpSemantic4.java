@@ -20,7 +20,7 @@ import java.io.File;
  * Test case for detecting simple semantic violations.
  * @author Lars Kühne
  **/
-class InputRegexpSemantic4 // ok
+class InputRegexpSemantic4
 {
     /* Boolean instantiation in a static initializer */
     static {
@@ -212,7 +212,7 @@ class InputRegexpSemantic4 // ok
 
     synchronized void foo() {
         synchronized (this) {} // not OK
-        synchronized (Class.class) { // OK
+        synchronized (Class.class) {
             synchronized (new Object()) {
                 // not OK if checking statements
             }

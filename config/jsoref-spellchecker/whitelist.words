@@ -356,6 +356,7 @@ EBNF
 ecj
 eclemma
 eclipsecommunityawards
+Edad
 edb
 ededed
 edef
@@ -380,6 +381,7 @@ emptystatement
 emptytag
 Emtpy
 endline
+enegger
 ENMI
 ent
 enum
@@ -735,6 +737,7 @@ jsoref
 jsp
 JSplit
 jsr
+JSSOR
 JTable
 JText
 JToggle
@@ -824,6 +827,7 @@ methodparampad
 methodsandconstructorsannotations
 methodtypeparametername
 MEZk
+mfussenegger
 Micha
 microsoft
 minimalistic
@@ -893,6 +897,7 @@ ncss
 needbraces
 NEGS
 Nejmeh
+neovim
 NEQ
 nestedfordepth
 nestedifdepth
@@ -959,6 +964,7 @@ npathcomplexity
 npe
 npm
 nrmancuso
+ntokens
 NTU
 nullcase
 NULLCHECK
@@ -966,6 +972,7 @@ nullness
 numberperline
 numericliterals
 nutsandbolts
+nvim
 nvuillam
 OAuth
 objblock
@@ -1178,6 +1185,7 @@ Ruslan
 rw
 rx
 sabaka
+Saludo
 Sameline
 sariflogger
 sarifweb
@@ -1230,6 +1238,7 @@ solr
 someinner
 somename
 someoneelse
+someuser
 sonarcloud
 sonarqube
 sonarsource

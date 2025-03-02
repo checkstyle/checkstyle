@@ -85,11 +85,11 @@ class InputNoWhitespaceAfterTestDefault
     /** test casts **/
     private void testCasts()
     {
-        Object o = (Object) new Object(); // ok
+        Object o = (Object) new Object();
         o = (Object)o;
-        o = ( Object ) o; // ok
-        o = (Object) // ok
-            o; // ok
+        o = ( Object ) o;
+        o = (Object)
+            o;
     }
 
     /** test questions **/
@@ -141,10 +141,10 @@ class InputNoWhitespaceAfterTestDefault
     /** assert statement test */
     public void assertTest()
     {
-        // OK
+
         assert true;
 
-        // OK
+
         assert true : "Whups";
 
         // evil colons, should be OK
@@ -239,7 +239,7 @@ class SpecialCasesInForLoop
     }
 
     int[] getSomeInts() {
-        int i = (int) ( 2 / 3 ); // ok
+        int i = (int) ( 2 / 3 );
         return null;
     }
 

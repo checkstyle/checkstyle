@@ -17,5 +17,16 @@ class Example1 {
         break;
     }
   }
+  enum Status {ACTIVE, DISABLED}
+  void testEnum(Status status) {
+    switch (status) { // violation, 'switch without "default" clause'
+      case ACTIVE:
+        System.out.println(0);
+        break;
+      case DISABLED:
+        System.out.println(1);
+        break;
+    }
+  }
 }
 // xdoc section -- end

@@ -36,7 +36,7 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSkipIfLastAndSharedWithCase() throws Exception {
+    public void testSkipIfLastAndSharedWithCaseOne() throws Exception {
         final String[] expected = {
             "23:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
             "31:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
@@ -45,16 +45,26 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
             "63:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
             "83:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
             "95:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
-            "104:13: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputDefaultComesLastSkipIfLastAndSharedWithCase.java"),
+                getPath("InputDefaultComesLastSkipIfLastAndSharedWithCaseOne.java"),
                 expected);
     }
 
     @Test
-    public void testDefault() throws Exception {
+    public void testSkipIfLastAndSharedWithCaseTwo() throws Exception {
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputDefaultComesLastSkipIfLastAndSharedWithCaseTwo.java"),
+                expected);
+    }
+
+    @Test
+    public void testDefaultOne() throws Exception {
         final String[] expected = {
             "31:9: " + getCheckMessage(MSG_KEY),
             "38:24: " + getCheckMessage(MSG_KEY),
@@ -68,11 +78,20 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
             "91:13: " + getCheckMessage(MSG_KEY),
             "102:13: " + getCheckMessage(MSG_KEY),
             "112:13: " + getCheckMessage(MSG_KEY),
-            "120:13: " + getCheckMessage(MSG_KEY),
-            "131:13: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getPath("InputDefaultComesLast.java"),
+                getPath("InputDefaultComesLastOne.java"),
+               expected);
+    }
+
+    @Test
+    public void testDefaultTwo() throws Exception {
+        final String[] expected = {
+            "15:13: " + getCheckMessage(MSG_KEY),
+            "26:13: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputDefaultComesLastTwo.java"),
                expected);
     }
 

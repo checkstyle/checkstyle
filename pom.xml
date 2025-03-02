@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.21.3-SNAPSHOT</version>
+  <version>10.21.4-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -208,9 +208,9 @@
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.13.2</antlr4.version>
     <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
-    <maven.spotbugs.plugin.version>4.8.6.6</maven.spotbugs.plugin.version>
+    <maven.spotbugs.plugin.version>4.9.1.0</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.26.0</maven.pmd.plugin.version>
-    <pmd.version>7.9.0</pmd.version>
+    <pmd.version>7.10.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.12</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
     <saxon.version>12.5</saxon.version>
@@ -220,15 +220,15 @@
       10.4
     </maven.sevntu-checkstyle-check.checkstyle.version>
     <maven.versions.plugin.version>2.17.1</maven.versions.plugin.version>
-    <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
+    <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
     <java.version>11</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
-    <pitest.plugin.version>1.18.1</pitest.plugin.version>
+    <pitest.plugin.version>1.18.2</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
     <pitest.plugin.threads>4</pitest.plugin.threads>
-    <pitest.junit5.plugin.version>1.2.1</pitest.junit5.plugin.version>
+    <pitest.junit5.plugin.version>1.2.2</pitest.junit5.plugin.version>
     <pitest.accelerator.junit5.plugin.version>1.0.6</pitest.accelerator.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
     <junit.version>5.11.4</junit.version>
@@ -286,7 +286,7 @@
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
-      <version>1.10.0</version>
+      <version>1.10.1</version>
       <exclusions>
         <exclusion>
           <groupId>commons-logging</groupId>
@@ -377,7 +377,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.19</version>
+      <version>3.19.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -401,7 +401,7 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
-      <version>2.0.16</version>
+      <version>2.0.17</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -762,7 +762,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>
-        <version>3.4.0</version>
+        <version>3.4.1</version>
       </plugin>
 
       <plugin>
@@ -828,7 +828,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-install-plugin</artifactId>
-        <version>3.1.3</version>
+        <version>3.1.4</version>
       </plugin>
 
       <plugin>
@@ -860,7 +860,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
-        <version>3.1.3</version>
+        <version>3.1.4</version>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -1681,7 +1681,7 @@
           </execution>
         </executions>
         <configuration>
-          <!-- until #16077 -->
+          <!-- until #16242 -->
           <skip>true</skip>
           <catalogHandling>strict</catalogHandling>
           <!-- We need to exclude some files, so the default configuration is not suitable. -->
@@ -1928,7 +1928,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>3.8.0</version>
+        <version>3.9.0</version>
       </plugin>
 
       <plugin>

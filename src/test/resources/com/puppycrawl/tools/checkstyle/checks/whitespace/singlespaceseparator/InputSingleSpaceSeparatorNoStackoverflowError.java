@@ -7,7 +7,7 @@ validateComments = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.singlespaceseparator;
 
-public class InputSingleSpaceSeparatorNoStackoverflowError { // ok
+public class InputSingleSpaceSeparatorNoStackoverflowError {
   private String str = ""
       +""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""
       +""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""
@@ -39,5 +39,5 @@ public class InputSingleSpaceSeparatorNoStackoverflowError { // ok
       +""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""
       +""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""
       +""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""
-      ; // ok
+      ;
 }

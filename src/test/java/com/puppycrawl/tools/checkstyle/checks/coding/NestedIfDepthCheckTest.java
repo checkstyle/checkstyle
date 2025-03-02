@@ -62,7 +62,7 @@ public class NestedIfDepthCheckTest extends AbstractModuleTestSupport {
     public void testInsideCaseBody() throws Exception {
 
         final String[] expected = {
-            "17:25: " + getCheckMessage(MSG_KEY, 2, 1),
+            "18:25: " + getCheckMessage(MSG_KEY, 2, 1),
         };
 
         verifyWithInlineConfigParser(

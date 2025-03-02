@@ -18,22 +18,22 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
  * @doubletag second text
  * @emptytag
  */
-public class InputWriteTagRegularExpression { // ok
+public class InputWriteTagRegularExpression {
     /**
      * @todo Add a constructor comment
      */
-    public InputWriteTagRegularExpression() // ok
+    public InputWriteTagRegularExpression()
     {
     }
 
-    public void method() // ok
+    public void method()
     {
     }
 
     /**
      * @todo Add a comment
      */
-    public void anotherMethod() // ok
+    public void anotherMethod()
     {
     }
 }

@@ -73,5 +73,8 @@ public class Example3 extends TreeSet {
 
   final Consumer<Foo> consumer = Foo<Boolean>::foo;
 
+  public void var() {
+    var message = "Hello, World!";
+  }
 }
 // xdoc section -- end

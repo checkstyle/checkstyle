@@ -18,7 +18,7 @@ public class InputAnnotationUtil2 {
     public static final String UNCHECKED = "unchecked";
 
     public static void test() {
-        @SuppressWarnings(value = UNCHECKED) // ok
+        @SuppressWarnings(value = UNCHECKED)
         final List<String> dummyOne = (List<String>) new ArrayList();
     }
 }

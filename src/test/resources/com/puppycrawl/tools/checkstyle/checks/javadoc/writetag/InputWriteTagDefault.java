@@ -21,18 +21,18 @@ public class InputWriteTagDefault {
     /**
      * @todo Add a constructor comment
      */
-    public InputWriteTagDefault() // ok
+    public InputWriteTagDefault()
     {
     }
 
-    public void method() // ok
+    public void method()
     {
     }
 
     /**
      * @todo Add a comment
      */
-    public void anotherMethod() // ok
+    public void anotherMethod()
     {
     }
 }

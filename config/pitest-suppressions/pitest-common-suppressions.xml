@@ -12,15 +12,6 @@
   <mutation unstable="false">
     <sourceFile>SarifLogger.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.SarifLogger</mutatedClass>
-    <mutatedMethod>addError</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/SarifLogger::escape with argument</description>
-    <lineContent>.replace(MESSAGE_PLACEHOLDER, escape(event.getMessage()))</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SarifLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.SarifLogger</mutatedClass>
     <mutatedMethod>auditFinished</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/lang/Package::getImplementationVersion</description>
@@ -48,24 +39,6 @@
   <mutation unstable="false">
     <sourceFile>XMLLogger.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger</mutatedClass>
-    <mutatedMethod>fileFinished</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/Map::remove</description>
-    <lineContent>fileMessages.remove(fileName);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>XMLLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger</mutatedClass>
-    <mutatedMethod>fileFinished</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Map::remove with argument</description>
-    <lineContent>fileMessages.remove(fileName);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>XMLLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger</mutatedClass>
     <mutatedMethod>writeFileError</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
     <description>replaced call to com/puppycrawl/tools/checkstyle/XMLLogger::encode with argument</description>
@@ -88,23 +61,5 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
     <description>replaced call to com/puppycrawl/tools/checkstyle/XMLLogger::encode with argument</description>
     <lineContent>writer.print(encode(event.getSourceName()));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>XMLLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger$FileMessages</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Collections::synchronizedList with argument</description>
-    <lineContent>private final List&lt;AuditEvent&gt; errors = Collections.synchronizedList(new ArrayList&lt;&gt;());</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>XMLLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger$FileMessages</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Collections::synchronizedList with argument</description>
-    <lineContent>private final List&lt;Throwable&gt; exceptions = Collections.synchronizedList(new ArrayList&lt;&gt;());</lineContent>
   </mutation>
 </suppressedMutations>

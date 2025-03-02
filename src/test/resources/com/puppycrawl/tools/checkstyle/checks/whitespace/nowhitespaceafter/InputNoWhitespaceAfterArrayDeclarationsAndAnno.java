@@ -24,12 +24,12 @@ import java.util.Map;
 }
 public class InputNoWhitespaceAfterArrayDeclarationsAndAnno {
 
-    @NonNull int @NonNull[] @NonNull[] field1; // ok
-    @NonNull int @NonNull [] @NonNull [] field2; // ok
-    int[] array[] = new int[2][2]; // ok
-    int array2[][][] = new int[3][3][3]; // ok
+    @NonNull int @NonNull[] @NonNull[] field1;
+    @NonNull int @NonNull [] @NonNull [] field2;
+    int[] array[] = new int[2][2];
+    int array2[][][] = new int[3][3][3];
 
-    public void foo(final char @NonNull [] param) {} // ok
+    public void foo(final char @NonNull [] param) {}
 
     public void m1(@NonNull String @NonNull ... vararg) {
     }

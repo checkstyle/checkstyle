@@ -25,7 +25,7 @@ public class InputMissingJavadocMethodNoJavadoc3 //comment test
     private int i4;
 
     public void foo1() {} // violation
-    protected void foo2() {} // ok
+    protected void foo2() {}
     void foo3() {} // violation
     private void foo4() {} // violation
 
@@ -36,7 +36,7 @@ public class InputMissingJavadocMethodNoJavadoc3 //comment test
         private int i4;
 
         public void foo1() {}
-        protected void foo2() {} // ok
+        protected void foo2() {}
         void foo3() {}
         private void foo4() {}
     }
@@ -48,7 +48,7 @@ public class InputMissingJavadocMethodNoJavadoc3 //comment test
         private int i4;
 
         public void foo1() {} // violation
-        protected void foo2() {} // ok
+        protected void foo2() {}
         void foo3() {} // violation
         private void foo4() {} // violation
     }
@@ -60,7 +60,7 @@ public class InputMissingJavadocMethodNoJavadoc3 //comment test
         private int i4;
 
         public void foo1() {} // violation
-        protected void foo2() {} // ok
+        protected void foo2() {}
         void foo3() {} // violation
         private void foo4() {} // violation
     }
@@ -73,7 +73,7 @@ class PackageClass3 {
     private int i4;
 
     public void foo1() {} // violation
-    protected void foo2() {} // ok
+    protected void foo2() {}
     void foo3() {} // violation
     private void foo4() {} // violation
 
@@ -84,7 +84,7 @@ class PackageClass3 {
         private int i4;
 
         public void foo1() {} // violation
-        protected void foo2() {} // ok
+        protected void foo2() {}
         void foo3() {} // violation
         private void foo4() {} // violation
     }
@@ -96,7 +96,7 @@ class PackageClass3 {
         private int i4;
 
         public void foo1() {} // violation
-        protected void foo2() {} // ok
+        protected void foo2() {}
         void foo3() {} // violation
         private void foo4() {} // violation
     }
@@ -108,7 +108,7 @@ class PackageClass3 {
         private int i4;
 
         public void foo1() {} // violation
-        protected void foo2() {} // ok
+        protected void foo2() {}
         void foo3() {} // violation
         private void foo4() {} // violation
     }
@@ -120,7 +120,7 @@ class PackageClass3 {
         private int i4;
 
         public void foo1() {} // violation
-        protected void foo2() {} // ok
+        protected void foo2() {}
         void foo3() {} // violation
         private void foo4() {} // violation
     }

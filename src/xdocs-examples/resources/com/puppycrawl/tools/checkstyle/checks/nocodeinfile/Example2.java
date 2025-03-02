@@ -6,7 +6,7 @@
 </module>
 */
 
-// violation 8 lines above
+// violation 8 lines above 'The file does not contain any code'
 
 // xdoc section -- start
 /* the violation is on first line of file */

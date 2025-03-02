@@ -10,13 +10,13 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.singlespaceseparator;
 public class InputSingleSpaceSeparatorCommentsWithEmoji {
 
 
-    String s1 = "🧐😉           assa  "; // ok
-    String s2 = "🧐😉" + "          " + "assa  "; // ok
-    String s3 = "🧐" + "🎄 "; // ok
+    String s1 = "🧐😉           assa  ";
+    String s2 = "🧐😉" + "          " + "assa  ";
+    String s3 = "🧐" + "🎄 ";
     String s4
-        = "da🎄"; // ok
+        = "da🎄";
     private void foo(String s) {
-        if (s.equals("🤩🎄") ){ // ok
+        if (s.equals("🤩🎄") ){
             foo(s);
         }
     }
@@ -33,11 +33,11 @@ public class InputSingleSpaceSeparatorCommentsWithEmoji {
         String s = "🧐  🧐";
     }  // violation 'Use a single space to separate non-whitespace characters'
 
-    private void foo3 (String s) {  // ok
+    private void foo3 (String s) {  // some comment
         // violation above 'Use a single space to separate non-whitespace characters'
-        if (s.substring(0).equals("da🎄")) {  // ok
+        if (s.substring(0).equals("da🎄")) {  // some comment
             // violation above 'Use a single space to separate non-whitespace characters'
-            /*🧐 🧐 🧐*/  /* comment */ if ("🧐".isEmpty()){ // ok
+            /*🧐 🧐 🧐*/  /* comment */ if ("🧐".isEmpty()){
             //  violation above 'Use a single space to separate non-whitespace characters'
             }
         }

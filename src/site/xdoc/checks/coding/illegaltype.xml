@@ -242,6 +242,9 @@ public class Example1 extends TreeSet {
 
   final Consumer&lt;Foo&gt; consumer = Foo&lt;Boolean&gt;::foo;
 
+  public void var() {
+    var message = "Hello, World!";
+  }
 }
 </code></pre></div>
         <p id="Example2-config">
@@ -311,6 +314,9 @@ public class Example2 extends TreeSet {
 
   final Consumer&lt;Foo&gt; consumer = Foo&lt;Boolean&gt;::foo;
 
+  public void var() {
+    var message = "Hello, World!";
+  }
 }
 </code></pre></div>
         <p id="Example3-config">
@@ -381,6 +387,9 @@ public class Example3 extends TreeSet {
 
   final Consumer&lt;Foo&gt; consumer = Foo&lt;Boolean&gt;::foo;
 
+  public void var() {
+    var message = "Hello, World!";
+  }
 }
 </code></pre></div>
         <p id="Example4-config">
@@ -452,6 +461,9 @@ public class Example4 extends TreeSet {
 
   final Consumer&lt;Foo&gt; consumer = Foo&lt;Boolean&gt;::foo;
 
+  public void var() {
+    var message = "Hello, World!";
+  }
 }
 </code></pre></div>
         <p id="Example5-config">
@@ -524,6 +536,9 @@ public class Example5 extends TreeSet {
 
   final Consumer&lt;Foo&gt; consumer = Foo&lt;Boolean&gt;::foo;
 
+  public void var() {
+    var message = "Hello, World!";
+  }
 }
 </code></pre></div>
         <p id="Example6-config">
@@ -594,6 +609,10 @@ public class Example6 extends TreeSet {
   // violation below 'Usage of type 'Foo' is not allowed'
   final Consumer&lt;Foo&gt; consumer = Foo&lt;Boolean&gt;::foo;
   // violation above 'Usage of type 'Boolean' is not allowed'
+
+  public void var() {
+    var message = "Hello, World!";
+  }
 }
 </code></pre></div>
         <p id="Example7-config">
@@ -669,6 +688,83 @@ public class Example7 extends TreeSet {
 
   final Consumer&lt;Foo&gt; consumer = Foo&lt;Boolean&gt;::foo;
 
+  public void var() {
+    var message = "Hello, World!";
+  }
+}
+</code></pre></div>
+        <p id="Example8-config">
+          To configure the check so that it violates usage of var:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalType"&gt;
+      &lt;property name="illegalClassNames" value="var"/&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+      &lt;property name="id" value="IllegalTypeVarAsField"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example8 extends TreeSet {
+
+  public &lt;T extends java.util.HashSet&gt; void method() {
+
+    LinkedHashMap&lt;Integer, String&gt; lhmap = new LinkedHashMap&lt;Integer, String&gt;();
+
+    TreeMap&lt;Integer, String&gt; treemap = new TreeMap&lt;Integer, String&gt;();
+    java.lang.IllegalArgumentException illegalex;
+
+    java.util.TreeSet treeset;
+  }
+
+  public &lt;T extends java.util.HashSet&gt; void typeParam(T t) {}
+
+  public HashMap&lt;String, String&gt; function1() {
+    return null;
+  }
+
+  private HashMap&lt;String, String&gt; function2() {
+    return null;
+  }
+
+  protected HashMap&lt;Integer, String&gt; function3() {
+    return null;
+  }
+
+  public &lt;T extends Boolean, U extends Serializable&gt; void typeParam(T a) {}
+
+  public &lt;T extends java.util.Optional&gt; void method(T t) {
+    Optional&lt;T&gt; i;
+  }
+
+  abstract class A {
+
+    public abstract Set&lt;Boolean&gt; shortName(Set&lt;? super Boolean&gt; a);
+
+  }
+
+  class B extends Gitter {}
+  class C extends Github {}
+  // violation below 'Usage of type 'Optional' is not allowed'
+  public Optional&lt;String&gt; field2;
+  protected String field3;
+  Optional&lt;String&gt; field4; // violation, 'Usage of type 'Optional' is not allowed'
+
+  private void method(List&lt;Foo&gt; list, Boolean value) {}
+
+  void foo() {
+    Optional&lt;String&gt; i;
+  }
+
+  final Consumer&lt;Foo&gt; consumer = Foo&lt;Boolean&gt;::foo;
+
+  public void var() {
+    var message = "Hello, World!";
+  } // violation above 'Usage of type 'var' is not allowed'
 }
 </code></pre></div>
       </subsection>

@@ -47,7 +47,7 @@ public class ModifierOrderCheckTest
     }
 
     @Test
-    public void testIt() throws Exception {
+    public void testItOne() throws Exception {
         final String[] expected = {
             "15:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "final"),
             "19:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
@@ -55,10 +55,20 @@ public class ModifierOrderCheckTest
             "35:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation2"),
             "40:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation2"),
             "50:35: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation4"),
-            "158:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "default"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputModifierOrderIt.java"), expected);
+                getPath("InputModifierOrderItOne.java"), expected);
+    }
+
+    @Test
+    public void testItTwo() throws Exception {
+        final String[] expected = {
+
+            "15:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "final"),
+            "57:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "default"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputModifierOrderItTwo.java"), expected);
     }
 
     @Test
@@ -118,12 +128,20 @@ public class ModifierOrderCheckTest
     }
 
     @Test
-    public void testSkipTypeAnnotations() throws Exception {
+    public void testSkipTypeAnnotationsOne() throws Exception {
         final String[] expected = {
-            "110:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
+            "101:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputModifierOrderTypeAnnotations.java"),
+                getPath("InputModifierOrderTypeAnnotationsOne.java"),
+            expected);
+    }
+
+    @Test
+    public void testSkipTypeAnnotationsTwo() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputModifierOrderTypeAnnotationsTwo.java"),
             expected);
     }
 

@@ -130,14 +130,14 @@ class InputEmptyLineSeparator // violation ''CLASS_DEF' should be separated from
 }
 
 class Class2{
-    public int compareTo(InputEmptyLineSeparator aObject) //ok
+    public int compareTo(InputEmptyLineSeparator aObject)
     {
         int number = 0;
         return 0;
     }
 
     Class2 anon = new Class2(){
-        public int compareTo(InputEmptyLineSeparator aObject) //ok
+        public int compareTo(InputEmptyLineSeparator aObject)
         {
             int number = 0;
             return 0;

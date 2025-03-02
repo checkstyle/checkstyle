@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class InputEmptyLineSeparatorNewMethodDef {
     private static final int MULTIPLICATOR;
 
-    void processOne() { // ok
+    void processOne() {
 
         int a;
 

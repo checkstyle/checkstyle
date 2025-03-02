@@ -21,7 +21,7 @@ enum A {
 
     private final String str; // violation ''VARIABLE_DEF' has more than 1 empty lines before.'
 
-    private String otherString; // ok
+    private String otherString;
 
 
     private String thirdString; // violation ''VARIABLE_DEF' has more than 1 empty lines before.'

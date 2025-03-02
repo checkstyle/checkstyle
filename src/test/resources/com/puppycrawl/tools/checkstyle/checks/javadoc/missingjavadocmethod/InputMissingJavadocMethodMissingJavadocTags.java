@@ -16,7 +16,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 /* Config:
  * scope = "private"
  */
-public class InputMissingJavadocMethodMissingJavadocTags { // ok
+public class InputMissingJavadocMethodMissingJavadocTags {
     /**
      * Missing return.
      *
