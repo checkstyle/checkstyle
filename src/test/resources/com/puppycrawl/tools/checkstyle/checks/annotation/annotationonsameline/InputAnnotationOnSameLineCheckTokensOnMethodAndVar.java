@@ -24,7 +24,9 @@ public class InputAnnotationOnSameLineCheckTokensOnMethodAndVar {
         return (int) x;
     }
 
-    // violation below, "Annotation 'Annotation3' should be on the same line with its target."
+    // 2 violations 3 lines below:
+    //    'Annotation 'Annotation4' should be on the same line with its target.'
+    //    'Annotation 'Annotation3' should be on the same line with its target.'
     @Annotation4 @Annotation3
     public int field;
 
