@@ -279,6 +279,7 @@ Dcheckstyle
 dcm
 Dconfig
 Dconnection
+ddd
 Ddry
 declarationorder
 declaredwhenneeded
@@ -1108,6 +1109,7 @@ puppycrawl
 pw
 pwd
 px
+pxx
 py
 qa
 qalab
@@ -1555,4 +1557,5 @@ yyyy
 Yzz
 zf
 zh
+zm
 ZSH
