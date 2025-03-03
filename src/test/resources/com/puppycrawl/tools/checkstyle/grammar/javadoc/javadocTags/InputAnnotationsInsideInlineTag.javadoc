@@ -1,0 +1,12 @@
+ * Some comment describing stuff:
+ *
+ * {@snippet :
+ *     import jakarta.persistence.Converter;
+ *     @Converter
+ *     public static class SomeSpecificClassConverter extends SomeBaseConverter {
+ *         // Some stuff here
+ * }
+ * {@code @code int x;}
+ * {@snippet :
+ *    @author int x;
+ *  }

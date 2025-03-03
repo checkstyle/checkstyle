@@ -80,6 +80,8 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
             } else if (previousTokenType != WS && previousTokenType != LEADING_ASTERISK) {
                   isJavadocTagAvailable = false;
             }
+
+            isJavadocTagAvailable = isJavadocTagAvailable && insideJavadocInlineTag == 0;
       }
 
       public void skipCurrentTokenConsuming() {
