@@ -47,16 +47,15 @@ public class InputMagicNumberIgnoreFieldDeclaration2 {
 
     public static final java.util.List MYLIST = new java.util.ArrayList() {
         public int size() {
-
-            return 378; // violation
+            return 378;
+            // violation ''378' is a magic number'
         }
     };
 
     public final double SpecialSum = 2 + 1e10, SpecialDifference = 4 - java.lang.Math.PI;
     public final Integer DefaultInit = new Integer(27);
     public final int SpecsPerDay = 24 * 60 * 60, SpecialRatio = 4 / 3;
-    public final javax.swing.border.Border StdBorder =
-            javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3);
+    public final javax.swing.border.Border StdBorder = javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3);
 
     enum MyEnum2IgnoreFieldDeclaration2 {
         A_7(3),

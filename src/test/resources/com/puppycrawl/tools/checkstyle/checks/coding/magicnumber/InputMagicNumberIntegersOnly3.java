@@ -19,36 +19,34 @@ package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 class InputMagicNumberIntegersOnly3 {
 
     public int hashCode() {
-        return 31; // violation
+        return 31; // violation '31' is a magic number
     }
-
 
     public int hashCode(int val) {
-        return 42; // violation
+        return 42; // violation '42' is a magic number
     }
 
-
     public int hashcode() {
-        return 13; // violation
+        return 13; // violation '13' is a magic number
     }
 
     static {
-        int x=21; // violation
+        int x = 21; // violation '21' is a magic number
     }
 
     {
-        int y=37; // violation
+        int y = 37; // violation '37' is a magic number
     }
 
     public InputMagicNumberIntegersOnly3() {
-        int z=101; // violation
+        int z = 101; // violation '101' is a magic number
     }
 
     @InputMagicNumberIntMethodAnnotation(42)
     public void another() {
     }
 
-    @InputMagicNumberIntMethodAnnotation(value=43)
+    @InputMagicNumberIntMethodAnnotation(value = 43)
     public void another2() {
     }
 
@@ -56,35 +54,40 @@ class InputMagicNumberIntegersOnly3 {
     public void anotherNegative() {
     }
 
-    @InputMagicNumberIntMethodAnnotation(value=-45)
+    @InputMagicNumberIntMethodAnnotation(value = -45)
     public void anotherNegative2() {
     }
 }
 
 class TestMethodCallIntegersOnly3 {
 
-        public TestMethodCallIntegersOnly3(int x){
+    public TestMethodCallIntegersOnly3(int x) {
 
     }
 
-        public void method2() {
+    public void method2() {
         final TestMethodCallIntegersOnly3 dummyObject = new TestMethodCallIntegersOnly3(62);
-        }
+    }
 }
 
 class BinaryIntegersOnly3 {
-    int intValue = 0b101; // violation
+    int intValue = 0b101; // violation '0b101' is a magic number
     long l = 0b1010000101000101101000010100010110100001010001011010000101000101L; // violation
+                                                                                  // '0b1010000101000101101000010100010110100001010001011010000101000101L'
+                                                                                  // is a magic number
 }
+
 @interface AnnotationWithDefaultValueIntegersOnly3 {
     int value() default 101;
-    int[] ar() default {102};
+
+    int[] ar() default { 102 };
 }
+
 class AIntegersOnly3 {
     {
         switch (Blah2IntegersOnly1.LOW) {
-        default:
-            int b = 122; // violation
+            default:
+                int b = 122; // violation '122' is a magic number
         }
     }
 }

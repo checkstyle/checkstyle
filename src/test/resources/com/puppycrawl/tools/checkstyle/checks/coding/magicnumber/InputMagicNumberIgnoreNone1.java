@@ -24,6 +24,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
 /**
  * Describe class InputMagicNumber
+ * 
  * @author Rick Giles
  * @version 6-May-2003
  */
@@ -39,71 +40,65 @@ public class InputMagicNumberIgnoreNone1 {
         final double DOUBLE_CONST2 = 1.5d;
         final double DOUBLE_CONST3 = 1.5;
 
+        int int_var1 = 1; // violation ''1' is a magic number'
+        int int_var2 = (2); // violation ''2' is a magic number'
+        long long_var1 = 0L; // violation ''0L' is a magic number'
+        long long_var2 = 0l; // violation ''0l' is a magic number'
+        double double_var1 = 0D; // violation ''0D' is a magic number'
+        double double_var2 = 0d; // violation ''0d' is a magic number'
 
-        int int_var1 = 1; // violation
-        int int_var2 = (2); // violation
-        long long_var1 = 0L; // violation
-        long long_var2 = 0l; // violation
-        double double_var1 = 0D; // violation
-        double double_var2 = 0d; // violation
+        int[] int_array = new int[2]; // violation ''2' is a magic number'
 
-        int[] int_array = new int[2]; // violation
+        int_var1 = 1 + 2;
+        int_var1 += 1; // violation ''1' is a magic number'
+        double_var1 = 1.0 + 2.0;
 
-        int_var1 = 1 + 2; // 2 violations
-        int_var1 += 1;  // violation
-        double_var1 = 1.0 + 2.0; // 2 violations
+        for (int i = 0; i < 2; i++);
 
-        for (int i = 0; i < 2; i++); // 2 violations
+        if (1 < 2);
 
-        if (1 < 2); // 2 violations
+        if (1.0 < 2.0);
 
-        if (1.0 < 2.0); // 2 violations
+        int int_magic1 = 3_000; // violation ''3_000' is a magic number'
+        double double_magic1 = 1.5_0; // violation ''1.5_0' is a magic number'
+        int int_magic2 = (3 + 4);
 
+        int_array = new int[3]; // violation ''3' is a magic number'
 
-        int int_magic1 = 3_000; // violation
-        double double_magic1 = 1.5_0; // violation
-        int int_magic2 = (3 + 4); // 2 violations
+        int_magic1 += 3; // violation ''3' is a magic number'
+        double_magic1 *= 1.5; // violation ''1.5' is a magic number'
 
-        int_array = new int[3]; // violation
-
-        int_magic1 += 3; // violation
-        double_magic1 *= 1.5; // violation
-
-        for (int j = 3; j < 5; j += 3) { // 3 violations
+        for (int j = 3; j < 5; j += 3) {
             int_magic1++;
         }
 
-        if (int_magic1 < 3) { // violation
-            int_magic1 = int_magic1 + 3; // violation
+        if (int_magic1 < 3) { // violation ''3' is a magic number'
+            int_magic1 = int_magic1 + 3; // violation ''3' is a magic number'
         }
 
+        int octalVar0 = 00;
+        int octalVar8 = 010;
+        int octalVar9 = 011;
 
-        int octalVar0 = 00;  // violation
-        int octalVar8 = 010; // violation
-        int octalVar9 = 011; // violation
+        long longOctalVar8 = 0_10L;
+        long longOctalVar9 = 011l;
 
-        long longOctalVar8 = 0_10L; // violation
-        long longOctalVar9 = 011l; // violation
-
-
-        int hexVar0 = 0x0; // violation
-        int hexVar16 = 0x10; // violation
-        int hexVar17 = 0X011;  // violation
-        long longHexVar0 = 0x0L; // violation
-        long longHexVar16 = 0x10L; // violation
-        long longHexVar17 = 0X11l; // violation
+        int hexVar0 = 0x0;
+        int hexVar16 = 0x10;
+        int hexVar17 = 0X011;
+        long longHexVar0 = 0x0L;
+        long longHexVar16 = 0x10L;
+        long longHexVar17 = 0X11l;
     }
 }
 
-interface Blah2IgnoreNone1
-{
-  int LOW = 5;
-  int HIGH = 78;
+interface Blah2IgnoreNone1 {
+    int LOW = 5;
+    int HIGH = 78;
 }
 
-class ArrayMagicTestIgnoreNone1
-{
-    private static final int[] NONMAGIC = {3};
-    private int[] magic = {3}; // violation
-    private static final int[][] NONMAGIC2 = {{1}, {2}, {3}};
+class ArrayMagicTestIgnoreNone1 {
+    private static final int[] NONMAGIC = { 3 };
+    private int[] magic = { 3 };
+    private static final int[][] NONMAGIC2 = { { 1 }, { 2 }, { 3 } };
 }
