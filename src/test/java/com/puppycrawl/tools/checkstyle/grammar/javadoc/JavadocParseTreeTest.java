@@ -412,4 +412,10 @@ public class JavadocParseTreeTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getPath("expectedDosLineEndingAsNewlineMultiline.txt"),
                 getPath("InputDosLineEndingAsNewlineMultiline.javadoc"));
     }
+
+    @Test
+    public void testAnnotationsInsideInlineTag() throws Exception {
+        verifyJavadocTree(getDocPath("expectedAnnotationsInsideInlineTagAst.txt"),
+                getDocPath("InputAnnotationsInsideInlineTag.javadoc"));
+    }
 }
