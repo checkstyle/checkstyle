@@ -23,11 +23,11 @@ public class Example2 {
   private boolean boolField2 = true;
   private boolean boolField3;
 
-  private Object objField1 = null; // violation
+  private Object objField1 = null; // violation 'Explicit Initialization'
   private Object objField2 = new Object();
   private Object objField3;
 
-  private int arrField1[] = null; // violation
+  private int arrField1[] = null; // violation 'Explicit Initialization'
   private int arrField2[] = new int[10];
   private int arrField3[];
 }
