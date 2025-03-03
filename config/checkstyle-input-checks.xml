@@ -31,5 +31,25 @@
       <message key="illegal.regexp"
                value="'// ok' comments should have an explanation, or they are unnecessary."/>
     </module>
-  </module>
+
+    <!-- Ensure IntelliJ Auto-Formatting Compliance -->
+    <module name="MethodParamPad">
+      <property name="option" value="nospace"/>
+    </module>
+
+    <module name="WhitespaceAround">
+      <property name="tokens" value="ASSIGN, PLUS, MINUS, STAR, DIV, MOD, SR, BSR, SL, BXOR, BOR, BAND, LAND, LOR"/>
+    </module>
+
+    <module name="NoWhitespaceBefore">
+      <property name="tokens" value="DOT"/>
+    </module>
+
+    <module name="NoWhitespaceAfter">
+      <property name="tokens" value="ARRAY_INIT, AT, BNOR, DEC, INC, LNOT, UNARY_MINUS, UNARY_PLUS"/>
+    </module>
+
+    <module name="SeparatorWrap">
+      <property name="option" value="eol"/>
+    </module>
 </module>
