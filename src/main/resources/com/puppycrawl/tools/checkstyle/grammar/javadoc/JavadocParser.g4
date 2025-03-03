@@ -1179,10 +1179,12 @@ javadocInlineTag:
             CODE_LITERAL (WS | NEWLINE | LEADING_ASTERISK | text)*
             | DOC_ROOT_LITERAL (WS | NEWLINE | LEADING_ASTERISK)*
             | INHERIT_DOC_LITERAL (WS | NEWLINE | LEADING_ASTERISK)*
-            | LINK_LITERAL (WS | NEWLINE | LEADING_ASTERISK)+ reference (WS | NEWLINE)*
-                ((WS | NEWLINE) description)?
-            | LINKPLAIN_LITERAL (WS | NEWLINE | LEADING_ASTERISK)+ reference (WS | NEWLINE)*
-                ((WS | NEWLINE) description)?
+            | LINK_LITERAL (WS | NEWLINE | LEADING_ASTERISK)+ reference
+                    (WS | NEWLINE)* ((WS | NEWLINE) description)?
+            | LINK_LITERAL (WS | NEWLINE | LEADING_ASTERISK)* ((WS | NEWLINE) description)?
+            | LINKPLAIN_LITERAL (WS | NEWLINE | LEADING_ASTERISK)+ reference
+                    (WS | NEWLINE)* ((WS | NEWLINE) description)?
+            | LINKPLAIN_LITERAL (WS | NEWLINE | LEADING_ASTERISK)* ((WS | NEWLINE) description)?
             | LITERAL_LITERAL (WS | NEWLINE | LEADING_ASTERISK | text)*
             | VALUE_LITERAL (WS | NEWLINE | LEADING_ASTERISK)* ((WS | NEWLINE) reference)?
             | CUSTOM_NAME (WS | NEWLINE | LEADING_ASTERISK)* ((WS | NEWLINE) description)?
