@@ -24,6 +24,8 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsCla
 
 import java.util.List;
 
+import com.puppycrawl.tools.checkstyle.Definitions;
+import com.puppycrawl.tools.checkstyle.LocalizedMessage;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
@@ -285,9 +287,10 @@ public class JavadocUtilTest {
             assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
+            LocalizedMessage expectedMessage = getUnknownTokenIdMessage(30073);
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
-                .isEqualTo("Unknown javadoc token id. Given id: 30073");
+                .isEqualTo(expectedMessage.getMessage());
         }
     }
 
@@ -298,9 +301,10 @@ public class JavadocUtilTest {
             assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
+            LocalizedMessage expectedMessage = getUnknownTokenIdMessage(110);
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
-                .isEqualTo("Unknown javadoc token id. Given id: 110");
+                .isEqualTo(expectedMessage.getMessage());
         }
     }
 
@@ -311,9 +315,10 @@ public class JavadocUtilTest {
             assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
+            LocalizedMessage expectedMessage = getUnknownTokenIdMessage(10095);
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
-                .isEqualTo("Unknown javadoc token id. Given id: 10095");
+                .isEqualTo(expectedMessage.getMessage());
         }
     }
 
@@ -324,9 +329,10 @@ public class JavadocUtilTest {
             assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
+            LocalizedMessage expectedMessage = getUnknownTokenNameMessage("");
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
-                .isEqualTo("Unknown javadoc token name. Given name ");
+                .isEqualTo(expectedMessage.getMessage());
         }
     }
 
@@ -437,6 +443,24 @@ public class JavadocUtilTest {
         assertWithMessage(message + " tag name")
             .that(actual.getTagName())
             .isEqualTo(expected.getTagName());
+    }
+
+    private static LocalizedMessage getUnknownTokenIdMessage(Object... arguments) {
+        return new LocalizedMessage(
+            Definitions.CHECKSTYLE_BUNDLE,
+            JavadocUtil.class,
+            "util.javadoc.unknownTokenId",
+            arguments
+        );
+    }
+
+    private static LocalizedMessage getUnknownTokenNameMessage(Object... arguments) {
+        return new LocalizedMessage(
+            Definitions.CHECKSTYLE_BUNDLE,
+            JavadocUtil.class,
+            "util.javadoc.unknownTokenName",
+            arguments
+        );
     }
 
 }
