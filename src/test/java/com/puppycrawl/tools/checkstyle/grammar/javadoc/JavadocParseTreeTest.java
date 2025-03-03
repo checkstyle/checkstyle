@@ -424,4 +424,10 @@ public class JavadocParseTreeTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getDocPath("expectedSeeTagOptionalWhitespaceAfterHtmlTag.txt"),
                 getDocPath("InputSeeTagOptionalWhitespaceAfterHtmlTag.javadoc"));
     }
+
+    @Test
+    public void testEmptyReferenceInLink() throws Exception {
+        verifyJavadocTree(getDocPath("expectedEmptyReferenceInLinkAst.txt"),
+                getDocPath("InputEmptyReferenceInLink.javadoc"));
+    }
 }
