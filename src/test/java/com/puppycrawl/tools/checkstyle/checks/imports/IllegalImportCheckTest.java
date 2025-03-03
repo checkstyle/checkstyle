@@ -114,12 +114,18 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "16:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "19:1: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
-            "20:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
-            "37:1: " + getCheckMessage(MSG_KEY, "java.util.Date"),
-            "38:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
-            "39:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
+            "16:1: " + getCheckMessage(MSG_KEY, "java.util.List",
+                    "Illegal import - java.util.List"),
+            "19:1: " + getCheckMessage(MSG_KEY, "java.util.Enumeration",
+                    "Illegal import - java.util.Enumeration"),
+            "20:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays",
+                    "Illegal import - java.util.Arrays"),
+            "37:1: " + getCheckMessage(MSG_KEY, "java.util.Date",
+                    "Illegal import - java.util.Date"),
+            "38:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar",
+                    "Illegal import - java.util.Calendar"),
+            "39:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet",
+                    "Illegal import - java.util.BitSet"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalImportDefault5.java"), expected);
