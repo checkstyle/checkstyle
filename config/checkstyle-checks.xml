@@ -17,25 +17,44 @@
             value="In our config we should use all Checks that Checkstyle has"/>
 
   <property name="cacheFile" value="${checkstyle.cache.file}"/>
-
   <property name="severity" value="error"/>
-
   <property name="fileExtensions" value="java, properties, xml, vm, g, g4, dtd"/>
 
   <!-- BeforeExecutionFileFilters is required for sources that are based on java9 -->
   <module name="BeforeExecutionExclusionFileFilter">
-    <property name="fileNamePattern" value="module\-info\.java$" />
+    <property name="fileNamePattern" value="module\-info\.java$"/>
   </module>
 
   <!-- Filters -->
   <module name="SeverityMatchFilter">
-    <!-- report all violations except ignore -->
     <property name="severity" value="ignore"/>
     <property name="acceptOnMatch" value="false"/>
   </module>
   <module name="SuppressionFilter">
     <property name="file" value="${checkstyle.suppressions.file}"/>
   </module>
+
+  <!-- Ensure IntelliJ Auto-Formatting Compliance -->
+  <module name="MethodParamPad">
+    <property name="option" value="nospace"/>
+  </module>
+
+  <module name="WhitespaceAround">
+    <property name="tokens" value="ASSIGN, PLUS, MINUS, STAR, DIV, MOD, SR, BSR, SL, BXOR, BOR, BAND, LAND, LOR"/>
+  </module>
+
+  <module name="NoWhitespaceBefore">
+    <property name="tokens" value="DOT"/>
+  </module>
+
+  <module name="NoWhitespaceAfter">
+    <property name="tokens" value="ARRAY_INIT, AT, BNOR, DEC, INC, LNOT, UNARY_MINUS, UNARY_PLUS"/>
+  </module>
+
+  <module name="SeparatorWrap">
+    <property name="option" value="eol"/>
+  </module>
+
   <!-- Tone down the checking for test code -->
   <module name="SuppressionSingleFilter">
     <property name="checks" value="JavadocPackage"/>
@@ -48,10 +67,6 @@
   </module>
   <module name="SuppressWarningsFilter"/>
   <module name="SuppressWithPlainTextCommentFilter">
-    <!--
-      Use suppressions.xml for suppressions, this is only example.
-      checkFormat will prevent suppression comments from being valid.
-    -->
     <property name="checkFormat" value="IGNORETHIS"/>
     <property name="offCommentFormat" value="CSOFF\: .*"/>
     <property name="onCommentFormat" value="CSON\: .*"/>
@@ -66,6 +81,7 @@
     <property name="lineRange" value="-1"/>
     <property name="checkPattern" value="RegexpSingleline"/>
   </module>
+
   <!-- Headers -->
   <module name="Header">
     <property name="headerFile" value="${checkstyle.header.file}"/>
@@ -81,25 +97,7 @@
   <!-- Javadoc Comments -->
   <module name="JavadocPackage">
     <property name="allowLegacy" value="false"/>
-  </module>
 
-  <!-- Miscellaneous -->
-  <module name="NewlineAtEndOfFile"/>
-  <module name="Translation">
-    <property name="requiredTranslations" value="de, es, fi, fr, ja, pt, ru, tr, zh"/>
-  </module>
-  <module name="UniqueProperties"/>
-  <module name="OrderedProperties" />
-
-  <!-- Regexp -->
-  <module name="RegexpMultiline">
-    <property name="id" value="regexpMultilineDefault"/>
-  </module>
-  <module name="RegexpMultiline">
-    <property name="id" value="noIndentationConfigExamples"/>
-    <property name="format" value="&lt;source&gt;\r?\n\s+"/>
-    <property name="fileExtensions" value="xml"/>
-    <property name="message" value="Content of source tag should not be Indented"/>
   </module>
   <module name="RegexpMultiline">
     <property name="id" value="noConsecutiveLines"/>
