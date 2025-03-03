@@ -75,11 +75,11 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
             previousToPreviousTokenType = previousTokenType;
             previousTokenType = token.getType();
 
-            if (previousTokenType == NEWLINE) {
-                  isJavadocTagAvailable = true;
-            } else if (previousTokenType != WS && previousTokenType != LEADING_ASTERISK) {
-                  isJavadocTagAvailable = false;
-            }
+            isJavadocTagAvailable =
+                (previousTokenType == NEWLINE
+                    || previousTokenType == WS
+                    || previousTokenType == LEADING_ASTERISK)
+                    && insideJavadocInlineTag == 0;
       }
 
       public void skipCurrentTokenConsuming() {
