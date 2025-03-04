@@ -36,7 +36,7 @@ import java.awt.HeadlessException; // violation 'Illegal import'
 import java.awt.Label; // violation 'Illegal import'
 import java.util.Date; // violation 'Illegal import'
 import java.util.Calendar; // violation 'Illegal import'
-import java.util.BitSet; // violation 'Illegal import'
+import java.util.BitSet;  // violation 'Illegal import'
 
 class InputIllegalImportDefault7
 {
