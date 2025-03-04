@@ -9,13 +9,13 @@ regexp = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
-import java.io.*; // violation
+import java.io.*; // violation 'Illegal import'
 import java.lang.*;
 import java.sql.Connection;
 import java.util.List;
 import java.util.List;
 import java.lang.ArithmeticException;
-import org.junit.jupiter.api.*; // violation
+import org.junit.jupiter.api.*; // violation 'Illegal import'
 import java.util.Enumeration;
 import java.util.Arrays;
 
