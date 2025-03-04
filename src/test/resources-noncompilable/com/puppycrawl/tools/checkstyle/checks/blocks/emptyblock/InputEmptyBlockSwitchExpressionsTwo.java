@@ -6,6 +6,7 @@ tokens = LITERAL_DEFAULT, LITERAL_CASE, LITERAL_SWITCH
 
 */
 
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.block.emptyblocks;
 
 public class InputEmptyBlockSwitchExpressionsTwo {
