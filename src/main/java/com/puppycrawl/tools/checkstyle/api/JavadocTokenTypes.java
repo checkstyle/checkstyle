@@ -1905,7 +1905,41 @@ public final class JavadocTokenTypes {
     public static final int OPTION_TAG_END = JavadocParser.RULE_optionTagEnd
             + RULE_TYPES_OFFSET;
 
-    /** Table body html tag. */
+    /**
+     * Table body html tag.
+     * <p><b>Example:</b></p>
+     * <pre>{@code <table><tbody></tbody></table>}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {JAVADOC -> JAVADOC
+     *      |--NEWLINE -> \r\n
+     *      |--TEXT -> /**
+     *      |--HTML_ELEMENT -> HTML_ELEMENT
+     *      |   `--HTML_TAG -> HTML_TAG
+     *      |       |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *      |       |   |--START -> <
+     *      |       |   |--HTML_TAG_NAME -> table
+     *      |       |   `--END -> >
+     *      |       |--HTML_ELEMENT -> HTML_ELEMENT
+     *      |       |   `--TBODY -> TBODY
+     *      |       |       |--TBODY_TAG_START -> TBODY_TAG_START
+     *      |       |       |   |--START -> <
+     *      |       |       |   |--TBODY_HTML_TAG_NAME -> tbody
+     *      |       |       |   `--END -> >
+     *      |       |       `--TBODY_TAG_END -> TBODY_TAG_END
+     *      |       |           |--START -> <
+     *      |       |           |--SLASH -> /
+     *      |       |           |--TBODY_HTML_TAG_NAME -> tbody
+     *      |       |           `--END -> >
+     *      |       `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *      |           |--START -> <
+     *      |           |--SLASH -> /
+     *      |           |--HTML_TAG_NAME -> table
+     *      |           `--END -> >
+     *      |--NEWLINE -> \r\n
+     * }
+     * </pre>
+     */
     public static final int TBODY = JavadocParser.RULE_tbody + RULE_TYPES_OFFSET;
     /** Start table body tag. */
     public static final int TBODY_TAG_START = JavadocParser.RULE_tbodyTagStart + RULE_TYPES_OFFSET;
