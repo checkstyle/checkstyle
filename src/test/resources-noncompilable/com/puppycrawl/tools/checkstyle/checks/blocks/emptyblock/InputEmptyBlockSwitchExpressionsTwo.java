@@ -30,4 +30,5 @@ public class InputEmptyBlockSwitchExpressionsTwo {
         }
     }
 }
+
 enum Nums {ONE, TWO, THREE, FOUR}
