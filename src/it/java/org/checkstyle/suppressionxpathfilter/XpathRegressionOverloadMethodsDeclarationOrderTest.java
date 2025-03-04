@@ -30,12 +30,12 @@ import com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationO
 
 public class XpathRegressionOverloadMethodsDeclarationOrderTest extends AbstractXpathTestSupport {
 
-    private final Class<OverloadMethodsDeclarationOrderCheck> clazz =
+    private static final Class<OverloadMethodsDeclarationOrderCheck> CLAZZ =
             OverloadMethodsDeclarationOrderCheck.class;
 
     @Override
     protected String getCheckName() {
-        return clazz.getSimpleName();
+        return CLAZZ.getSimpleName();
     }
 
     @Test
@@ -43,10 +43,10 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
         final File fileToProcess = new File(
                 getPath("InputXpathOverloadMethodsDeclarationOrderDefault.java"));
 
-        final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "14:5: " + getCheckMessage(clazz,
+            "14:5: " + getCheckMessage(CLAZZ,
                         OverloadMethodsDeclarationOrderCheck.MSG_KEY, "5"),
         };
 
@@ -71,10 +71,10 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
         final File fileToProcess = new File(
                 getPath("InputXpathOverloadMethodsDeclarationOrderAnonymous.java"));
 
-        final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "30:9: " + getCheckMessage(clazz,
+            "30:9: " + getCheckMessage(CLAZZ,
                     OverloadMethodsDeclarationOrderCheck.MSG_KEY, "21"),
         };
 
