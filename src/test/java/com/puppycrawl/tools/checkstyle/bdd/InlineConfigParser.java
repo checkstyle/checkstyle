@@ -227,6 +227,7 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.SuperCloneCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding"
                     + ".UnnecessarySemicolonAfterTypeMemberDeclarationCheck",
