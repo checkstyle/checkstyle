@@ -49,7 +49,7 @@ public class SuperCloneCheckTest
         final String[] expected = {
             "33:19: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
             "41:19: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
-            "66:48: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
+            "67:48: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputSuperCloneInnerAndWithArguments.java"), expected);
