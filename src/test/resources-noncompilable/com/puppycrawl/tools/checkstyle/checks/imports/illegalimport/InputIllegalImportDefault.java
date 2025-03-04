@@ -14,7 +14,7 @@ import java.io.*;
 import sun.misc.*;
 import javax.swing.BorderFactory;
 import static java.io.File.listRoots;
-import sun.reflect.*; // violation
+import sun.reflect.*; // violation 'Illegal import'
 
 import java.awt.Component;
 
