@@ -214,7 +214,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         logger.auditStarted(null);
         final Violation violation =
             new Violation(1, 1,
-                "messages.properties", "key", null, SeverityLevel.ERROR, "module",
+                "messages.properties", "key", null, SeverityLevel.ERROR, ">",
                     getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
         logger.addError(ev);
