@@ -1842,7 +1842,8 @@ public final class JavadocTokenTypes {
     public static final int OPTION_TAG_END = JavadocParser.RULE_optionTagEnd
             + RULE_TYPES_OFFSET;
 
-    /** Table body html tag.
+    /**
+     * Table body html tag.
      *
      * <p><b>Example:</b></p>
      * <pre>{@code <table><tbody></tbody></table>}</pre>
@@ -1873,7 +1874,7 @@ public final class JavadocTokenTypes {
      *      |           |--SLASH -> /
      *      |           |--HTML_TAG_NAME -> table
      *      |           `--END -> >
-     *      `--EOF -> <EOF>
+     *      |--NEWLINE -> \r\n
      * }
      * </pre>
      */
