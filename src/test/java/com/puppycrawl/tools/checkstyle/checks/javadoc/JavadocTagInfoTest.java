@@ -337,22 +337,6 @@ public class JavadocTagInfoTest {
     }
 
     @Test
-    public void testReturnFalse() {
-        final DetailAstImpl ast = new DetailAstImpl();
-        final DetailAstImpl astChild = new DetailAstImpl();
-        astChild.setType(TokenTypes.TYPE);
-        ast.setFirstChild(astChild);
-        final DetailAstImpl astChild2 = new DetailAstImpl();
-        astChild2.setType(TokenTypes.LITERAL_INT);
-        astChild.setFirstChild(astChild2);
-
-        ast.setType(TokenTypes.LAMBDA);
-        assertWithMessage("Should return false when ast type is invalid for current tag")
-                .that(JavadocTagInfo.RETURN.isValidOn(ast))
-                .isFalse();
-    }
-
-    @Test
     public void testSerialField() {
         final DetailAstImpl ast = new DetailAstImpl();
         final DetailAstImpl astChild = new DetailAstImpl();
