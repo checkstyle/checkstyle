@@ -9,7 +9,7 @@ regexp = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
-import java.io.*; // violation
+import java.io.*; // violation 'Illegal import'
 import java.lang.*;
 import java.sql.Connection;
 import java.util.List;
@@ -23,11 +23,11 @@ import javax.swing.JToolBar;
 import javax.swing.JToggleButton;
 import javax.swing.ScrollPaneLayout;
 import javax.swing.BorderFactory;
-import static java.io.File.listRoots; // violation
+import static java.io.File.listRoots; // violation 'Illegal import'
 
 import static javax.swing.WindowConstants.*;
 import static javax.swing.WindowConstants.*;
-import static java.io.File.createTempFile; // violation
+import static java.io.File.createTempFile; // violation 'Illegal import'
 import org.junit.jupiter.api.*;
 
 import java.awt.Component;
