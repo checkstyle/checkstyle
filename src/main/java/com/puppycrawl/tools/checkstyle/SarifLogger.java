@@ -356,7 +356,7 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
                 throw new IOException("Cannot find the resource " + name);
             }
             final byte[] buffer = new byte[BUFFER_SIZE];
-            int length = inputStream.read(buffer);
+            int length = 0;
             while (length != -1) {
                 result.write(buffer, 0, length);
                 length = inputStream.read(buffer);
