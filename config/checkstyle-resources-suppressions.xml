@@ -739,8 +739,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]blocks[\\/]needbraces[\\/]InputNeedBracesTestSwitchExpression\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]blocks[\\/]emptyblock[\\/]InputEmptyBlockSwitchExpressions\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]metrics[\\/]cyclomaticcomplexity[\\/]InputCyclomaticComplexityRecords\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]metrics[\\/]javancss[\\/]InputJavaNCSSRecordsAndCompactCtors\.java"/>
