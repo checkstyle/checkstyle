@@ -23,7 +23,8 @@ public class InputIllegalTypeNewArrayStructure {
     void method(int x) {
         int numberOfTests = x + 9;
         if (x > 7) {
-            HashMap<String, KeyValue>[] kvMaps = new HashMap[numberOfTests]; // violation
+            HashMap<String, KeyValue>[] kvMaps = new HashMap[numberOfTests];
+            // violation above, 'Usage of type 'HashMap' is not allowed'
         }
     }
 
