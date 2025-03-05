@@ -26,11 +26,11 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>excludeScope</td>
-              <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="../../property_types.html#Scope">Scope</a></td>
-              <td><code>null</code></td>
-              <td>3.4</td>
+              <td>accessModifiers</td>
+              <td>Specify the set of access modifiers used to determine which fields should be checked. This includes both explicitly declared modifiers and implicit ones, such as package-private for fields without an explicit modifier. It also accounts for special cases where fields have implicit modifiers, such as <code>public static final</code> for interface fields and <code>public static</code> for enum constants. Only fields matching the specified modifiers will be analyzed.</td>
+              <td><a href="../../property_types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
+              <td><code>public, protected, package, private</code></td>
+              <td>10.22.0</td>
             </tr>
             <tr>
               <td>ignoreNamePattern</td>
@@ -38,13 +38,6 @@
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>5.8</td>
-            </tr>
-            <tr>
-              <td>scope</td>
-              <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="../../property_types.html#Scope">Scope</a></td>
-              <td><code>private</code></td>
-              <td>3.0</td>
             </tr>
             <tr>
               <td>tokens</td>
@@ -78,40 +71,40 @@
 </code></pre></div>
         <p id="Example1-code">
           By default, this setting will report a violation if
-          there is no javadoc for any scope member.
+          there is no javadoc for a field with any access modifier.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  private int a; // violation
+  private int a; // violation, 'Missing a Javadoc comment'
 
   /**
    * Some description here
    */
   private int b;
-  protected int c; // violation
-  public int d; // violation
-  /*package*/ int e; // violation
+  protected int c; // violation, 'Missing a Javadoc comment'
+  public int d; // violation, 'Missing a Javadoc comment'
+  /*package*/ int e; // violation, 'Missing a Javadoc comment'
 
 }
 </code></pre></div>
 
         <p id="Example2-config">
-          To configure the check for <code>public</code>
-          scope:
+          To configure the check <code>public</code>
+          access modifier:
         </p>
 
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocVariable"&gt;
-      &lt;property name="scope" value="public"/&gt;
+      &lt;property name="accessModifiers" value="public"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">
           This setting will report a violation if there
-          is no javadoc for <code>public</code> member.
+          is no javadoc for <code>public</code> field.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
@@ -122,34 +115,32 @@ public class Example2 {
    */
   private int b;
   protected int c;
-  public int d; // violation
+  public int d; // violation, 'Missing a Javadoc comment'
   /*package*/ int e;
 }
 </code></pre></div>
 
         <p id="Example3-config">
-          To configure the check for members which are in <code>private</code>, but not in
-          <code>protected</code> scope:
+          To configure the check for fields which are in <code>private</code> or
+          <code>package</code> access modifier:
         </p>
 
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocVariable"&gt;
-      &lt;property name="scope" value="private"/&gt;
-      &lt;property name="excludeScope" value="protected"/&gt;
+      &lt;property name="accessModifiers" value="private,package"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">
           This setting will report a violation if there is no
-          javadoc for <code>private</code> member and
-          ignores <code>protected</code> member.
+          javadoc for <code>private</code>  or <code>package</code> field.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
-  private int a; // violation
+  private int a; // violation, 'Missing a Javadoc comment'
 
   /**
    * Some description here
@@ -157,11 +148,11 @@ public class Example3 {
   private int b;
   protected int c;
   public int d;
-  /*package*/ int e; // violation
+  /*package*/ int e; // violation, 'Missing a Javadoc comment'
 }
 </code></pre></div>
         <p id="Example4-config">
-          To ignore absence of Javadoc comments for variables with names <code>log</code> or
+          To ignore absence of Javadoc comments for fields with names <code>log</code> or
           <code>logger</code>:
         </p>
 
@@ -176,20 +167,56 @@ public class Example3 {
 </code></pre></div>
         <p id="Example4-code">
           This setting will report a violation if there is no
-          javadoc for any scope member and ignores members with
+          javadoc for any scope field and ignores fields with
           name <code>log</code> or <code>logger</code>.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
-  private int a; // violation
+  private int a; // violation, 'Missing a Javadoc comment'
 
   /**
    * Some description here
   */
   private int b;
-  protected int c; // violation
-  public int d; // violation
-  /*package*/ int e; // violation
+  protected int c; // violation, 'Missing a Javadoc comment'
+  public int d; // violation, 'Missing a Javadoc comment'
+  /*package*/ int e; // violation, 'Missing a Javadoc comment'
+}
+</code></pre></div>
+
+        <p id="Example5-code">
+          This check will not report a violation for local and
+           anonymous inner classes with any configuration.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example5 {
+  public int variablePublic; // violation, 'Missing a Javadoc comment'
+  protected int variableProtected; // violation, 'Missing a Javadoc comment'
+  int variablePackage; // violation, 'Missing a Javadoc comment'
+  private int variablePrivate; // violation, 'Missing a Javadoc comment'
+
+  public void testMethodInnerClass() {
+
+    // This check ignores local classes.
+    class InnerClass {
+      public int innerClassVariablePublic;
+      protected int innerClassVariableProtected;
+      int innerClassVariablePackage;
+      private int innerClassVariablePrivate;
+    }
+
+    // This check ignores anonymous inner classes.
+    Runnable runnable = new Runnable() {
+      public int innerClassVariablePublic;
+      protected int innerClassVariableProtected;
+      int innerClassVariablePackage;
+      private int innerClassVariablePrivate;
+      public void run()
+        {
+          System.identityHashCode("running");
+        }
+    };
+  }
 }
 </code></pre></div>
       </subsection>
