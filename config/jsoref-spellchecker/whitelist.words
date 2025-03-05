@@ -975,7 +975,7 @@ nrmancuso
 ntokens
 NTU
 nullcase
-NULLCHECK
+nullcheck
 nullness
 numberperline
 numericliterals
@@ -1417,6 +1417,7 @@ uninterned
 uniq
 uniqueproperties
 Unitless
+unnecessarynullcheckwithinstanceof
 unnecessaryparentheses
 unnecessarysemicolonafteroutertypedeclaration
 unnecessarysemicolonaftertypememberdeclaration
