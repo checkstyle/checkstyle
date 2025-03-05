@@ -44,9 +44,9 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     public void testValidateAbstractClassNamesSetToTrue() throws Exception {
         final String[] expected = {
             "27:38: " + getCheckMessage(MSG_KEY, "AbstractClass"),
-            "44:5: " + getCheckMessage(MSG_KEY, "AbstractClass"),
-            "46:37: " + getCheckMessage(MSG_KEY, "AbstractClass"),
-            "50:12: " + getCheckMessage(MSG_KEY, "AbstractClass"),
+            "45:5: " + getCheckMessage(MSG_KEY, "AbstractClass"),
+            "48:37: " + getCheckMessage(MSG_KEY, "AbstractClass"),
+            "53:12: " + getCheckMessage(MSG_KEY, "AbstractClass"),
         };
 
         verifyWithInlineConfigParser(
@@ -65,9 +65,9 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     public void testDefaults() throws Exception {
         final String[] expected = {
             "34:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
-            "35:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
-            "60:14: " + getCheckMessage(MSG_KEY, "HashMap"),
-            "62:5: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "36:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "62:14: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "64:5: " + getCheckMessage(MSG_KEY, "HashMap"),
         };
 
         verifyWithInlineConfigParser(
@@ -79,9 +79,9 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "34:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
-            "35:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
-            "60:14: " + getCheckMessage(MSG_KEY, "HashMap"),
-            "62:5: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "36:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "61:14: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "63:5: " + getCheckMessage(MSG_KEY, "HashMap"),
         };
 
         verifyWithInlineConfigParser(
@@ -97,8 +97,8 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
                     + "InputIllegalType.AbstractClass"),
             "34:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "43:36: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
-            "60:14: " + getCheckMessage(MSG_KEY, "HashMap"),
-            "62:5: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "61:14: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "63:5: " + getCheckMessage(MSG_KEY, "HashMap"),
         };
 
         verifyWithInlineConfigParser(
@@ -126,10 +126,10 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "26:13: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks.coding.illegaltype."
                     + "InputIllegalType.AbstractClass"),
-            "34:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
-            "35:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
-            "60:14: " + getCheckMessage(MSG_KEY, "HashMap"),
-            "62:5: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "35:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "36:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "61:14: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "63:5: " + getCheckMessage(MSG_KEY, "HashMap"),
         };
 
         verifyWithInlineConfigParser(
@@ -151,13 +151,13 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     public void testSameFileNameGeneral() throws Exception {
         final String[] expected = {
             "25:5: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregCal"),
-            "29:43: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregCal"),
-            "31:23: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregCal"),
-            "39:9: " + getCheckMessage(MSG_KEY, "List"),
-            "40:9: " + getCheckMessage(MSG_KEY, "java.io.File"),
-            "42:5: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "43:13: " + getCheckMessage(MSG_KEY, "ArrayList"),
-            "44:13: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "30:43: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregCal"),
+            "33:23: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregCal"),
+            "42:9: " + getCheckMessage(MSG_KEY, "List"),
+            "43:9: " + getCheckMessage(MSG_KEY, "java.io.File"),
+            "45:5: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "47:13: " + getCheckMessage(MSG_KEY, "ArrayList"),
+            "48:13: " + getCheckMessage(MSG_KEY, "Boolean"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeTestSameFileNameGeneral.java"), expected);
@@ -170,8 +170,8 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "22:12: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
             "24:12: " + getCheckMessage(MSG_KEY, "Boolean[]"),
             "25:9: " + getCheckMessage(MSG_KEY, "Boolean[]"),
-            "29:12: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
-            "30:9: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
+            "31:12: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
+            "34:9: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeArrays.java"), expected);
@@ -184,7 +184,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "24:12: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
             "26:12: " + getCheckMessage(MSG_KEY, "Boolean"),
             "35:12: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
-            "36:9: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
+            "37:9: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeTestPlainAndArraysTypes.java"), expected);
@@ -196,20 +196,20 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "28:16: " + getCheckMessage(MSG_KEY, "Boolean"),
             "29:31: " + getCheckMessage(MSG_KEY, "Boolean"),
             "29:40: " + getCheckMessage(MSG_KEY, "Foo"),
-            "32:18: " + getCheckMessage(MSG_KEY, "Boolean"),
-            "33:24: " + getCheckMessage(MSG_KEY, "Foo"),
-            "33:44: " + getCheckMessage(MSG_KEY, "Boolean"),
-            "36:23: " + getCheckMessage(MSG_KEY, "Boolean"),
-            "36:42: " + getCheckMessage(MSG_KEY, "Serializable"),
-            "38:54: " + getCheckMessage(MSG_KEY, "Boolean"),
-            "40:25: " + getCheckMessage(MSG_KEY, "Boolean"),
-            "40:60: " + getCheckMessage(MSG_KEY, "Boolean"),
-            "42:26: " + getCheckMessage(MSG_KEY, "Foo"),
-            "42:30: " + getCheckMessage(MSG_KEY, "Boolean"),
-            "46:26: " + getCheckMessage(MSG_KEY, "Foo"),
-            "46:38: " + getCheckMessage(MSG_KEY, "Boolean"),
-            "55:20: " + getCheckMessage(MSG_KEY, "Boolean"),
-            "68:28: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "35:18: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "36:24: " + getCheckMessage(MSG_KEY, "Foo"),
+            "36:44: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "42:23: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "42:42: " + getCheckMessage(MSG_KEY, "Serializable"),
+            "47:54: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "50:25: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "50:60: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "55:26: " + getCheckMessage(MSG_KEY, "Foo"),
+            "55:30: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "62:26: " + getCheckMessage(MSG_KEY, "Foo"),
+            "62:38: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "74:20: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "87:28: " + getCheckMessage(MSG_KEY, "Boolean"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeTestGenerics.java"), expected);
@@ -260,11 +260,11 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "22:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
             "25:13: " + getCheckMessage(MSG_KEY, "java.util.AbstractList"),
-            "32:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
-            "33:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
-            "39:15: " + getCheckMessage(MSG_KEY, "java.util.AbstractList"),
-            "41:25: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
-            "49:15: " + getCheckMessage(MSG_KEY, "AbstractClass"),
+            "33:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "35:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "42:15: " + getCheckMessage(MSG_KEY, "java.util.AbstractList"),
+            "45:25: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "54:15: " + getCheckMessage(MSG_KEY, "AbstractClass"),
         };
 
         verifyWithInlineConfigParser(
@@ -287,7 +287,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("illegalClassNames", "java.util.TreeSet");
         final String[] expected = {
             "21:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
-            "22:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "23:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
         };
 
         verify(createChecker(checkConfig), new File[] {
@@ -315,12 +315,12 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     public void testIllegalTypeRecordsAndCompactCtors() throws Exception {
         final String[] expected = {
             "27:14: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
-            "31:52: " + getCheckMessage(MSG_KEY, "Cloneable"),
-            "32:16: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
-            "35:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
-            "39:38: " + getCheckMessage(MSG_KEY, "TreeSet"),
-            "40:18: " + getCheckMessage(MSG_KEY, "HashMap"),
-            "48:13: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
+            "32:52: " + getCheckMessage(MSG_KEY, "Cloneable"),
+            "34:16: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
+            "38:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "43:38: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "45:18: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "54:13: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
         };
 
         verifyWithInlineConfigParser(
