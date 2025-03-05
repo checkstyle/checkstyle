@@ -42,7 +42,7 @@ public class InputIllegalTypeRecordsWithMemberModifiersDefault
     }
 
     public record IdentifiersPair2(
-        HashSet x, // violation
+        HashSet x, // violation, 'Usage of type HashSet is not allowed'.
         String identifier
     )
     {
@@ -50,7 +50,7 @@ public class InputIllegalTypeRecordsWithMemberModifiersDefault
     }
 
     public class IdentifiersPairEquivalent2 {
-        private final HashSet x; // violation
+        private final HashSet x; // violation, 'Usage of type HashSet is not allowed'.
         private final String identifier;
 
         public IdentifiersPairEquivalent2(Set x, String identifier) {
