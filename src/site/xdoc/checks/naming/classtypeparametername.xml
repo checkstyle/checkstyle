@@ -48,10 +48,10 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   class MyClass1&lt;T&gt; {}
-  class MyClass2&lt;t&gt; {}        // violation
-  class MyClass3&lt;abc&gt; {}      // violation
-  class MyClass4&lt;LISTENER&gt; {} // violation
-  class MyClass5&lt;RequestT&gt; {} // violation
+  class MyClass2&lt;t&gt; {}        // violation,  Name 't' must match pattern '^[A-Z]$'
+  class MyClass3&lt;abc&gt; {}      // violation, Name 'abc' must match pattern '^[A-Z]$'
+  class MyClass4&lt;LISTENER&gt; {} // violation, Name 'LISTENER' must match pattern '^[A-Z]$'
+  class MyClass5&lt;RequestT&gt; {} // violation, Name 'RequestT' must match pattern '^[A-Z]$'
 }
 </code></pre></div>
         <p id="Example2-config">
@@ -69,11 +69,11 @@ class Example1 {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-  class MyClass1&lt;T&gt; {}        // violation
-  class MyClass2&lt;t&gt; {}        // violation
-  class MyClass3&lt;abc&gt; {}      // violation
+  class MyClass1&lt;T&gt; {}        // violation, Name 'T' must match pattern '^[A-Z]{2,}$'
+  class MyClass2&lt;t&gt; {}        // violation, Name 't' must match pattern '^[A-Z]{2,}$'
+  class MyClass3&lt;abc&gt; {}      // violation, Name 'abc' must match pattern '^[A-Z]{2,}$'
   class MyClass4&lt;LISTENER&gt; {}
-  class MyClass5&lt;RequestT&gt; {} // violation
+  class MyClass5&lt;RequestT&gt; {} // violation, Name 'RequestT' must match pattern '^[A-Z]{2,}$'
 }
 </code></pre></div>
         <p id="Example3-config">
@@ -93,9 +93,9 @@ class Example2 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
   class MyClass1&lt;T&gt; {}
-  class MyClass2&lt;t&gt; {}        // violation
-  class MyClass3&lt;abc&gt; {}      // violation
-  class MyClass4&lt;LISTENER&gt; {} // violation
+  class MyClass2&lt;t&gt; {}        // violation, Name 't' must match pattern '(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)'
+  class MyClass3&lt;abc&gt; {}      // violation, Name 'abc' must match pattern '(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)'
+  class MyClass4&lt;LISTENER&gt; {} // violation, Name 'LISTENER' must match pattern '(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)'
   class MyClass5&lt;RequestT&gt; {}
 }
 </code></pre></div>
