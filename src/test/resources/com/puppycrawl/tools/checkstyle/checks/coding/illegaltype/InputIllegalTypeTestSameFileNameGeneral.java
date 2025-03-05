@@ -22,13 +22,16 @@ import com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalTyp
 
 public class InputIllegalTypeTestSameFileNameGeneral
 {
-    InputIllegalTypeGregCal cal = AnObject.getInstance(); // violation
+    InputIllegalTypeGregCal cal = AnObject.getInstance();
+    // violation above, 'Usage of type 'InputIllegalTypeGregCal' is not allowed'
     java.util.Date date = null;
     SubCal subCalendar = null;
 
-    private static class AnObject extends InputIllegalTypeGregCal { // violation
+    private static class AnObject extends InputIllegalTypeGregCal {
+        // violation above, 'Usage of type 'InputIllegalTypeGregCal' is not allowed'
 
-        public static InputIllegalTypeGregCal getInstance() // violation
+        public static InputIllegalTypeGregCal getInstance()
+        // violation above, 'Usage of type 'InputIllegalTypeGregCal' is not allowed'
         {
             return null;
         }
@@ -36,12 +39,13 @@ public class InputIllegalTypeTestSameFileNameGeneral
     }
 
     private void foo() {
-        List l; // violation
-        java.io.File file = null; // violation
+        List l; // violation, 'Usage of type List is not allowed'.
+        java.io.File file = null; // violation, 'Usage of type java.io.File is not allowed'.
     }
-    java.util.List<Integer> list = new ArrayList<>(); // violation
-    private ArrayList<String> values; // violation
-    private Boolean d; // violation
+    java.util.List<Integer> list = new ArrayList<>();
+    // violation above, 'Usage of type 'java.util.List' is not allowed'
+    private ArrayList<String> values; // violation, 'Usage of type ArrayList is not allowed'.
+    private Boolean d; // violation, 'Usage of type Boolean is not allowed'.
     private Boolean[] d1;
     private Boolean[][] d2;
 }
