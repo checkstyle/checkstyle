@@ -21,5 +21,5 @@ import org.antlr.v4.runtime.*;
 
 public class InputIllegalTypeTestStarImports
 {
-    List<Integer> l = new LinkedList<>(); // violation
+    List<Integer> l = new LinkedList<>(); // violation, 'Usage of type List is not allowed'.
 }

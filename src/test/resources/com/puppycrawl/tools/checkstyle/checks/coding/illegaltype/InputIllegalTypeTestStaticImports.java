@@ -23,7 +23,8 @@ public class InputIllegalTypeTestStaticImports
      private boolean foo(String s) {
          return true;
      }
-     SomeStaticClass staticClass; // violation
+     SomeStaticClass staticClass; // violation, 'Usage of type SomeStaticClass is not allowed'.
      private static SomeStaticClass foo1() { return null;}
-     private static void foo2(SomeStaticClass s) {} // violation
+     private static void foo2(SomeStaticClass s) {}
+     // violation above, 'Usage of type 'SomeStaticClass' is not allowed'
 }
