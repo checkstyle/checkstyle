@@ -12,12 +12,12 @@ package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 import java.io.*;
 import java.lang.*;
 import java.sql.Connection;
-import java.util.List; // violation
-import java.util.List; // violation
+import java.util.List; // violation 'Illegal import'
+import java.util.List; // violation 'Illegal import'
 import java.lang.ArithmeticException;
 import org.junit.jupiter.api.*;
-import java.util.Enumeration; // violation
-import java.util.Arrays; // violation
+import java.util.Enumeration; // violation 'Illegal import'
+import java.util.Arrays; // violation 'Illegal import'
 
 import javax.swing.JToolBar;
 import javax.swing.JToggleButton;
@@ -30,13 +30,13 @@ import static javax.swing.WindowConstants.*;
 import static java.io.File.createTempFile;
 import org.junit.jupiter.api.*;
 
-import java.awt.Component; // violation
-import java.awt.Graphics2D; // violation
-import java.awt.HeadlessException; // violation
-import java.awt.Label; // violation
-import java.util.Date; // violation
-import java.util.Calendar; // violation
-import java.util.BitSet; // violation
+import java.awt.Component; // violation 'Illegal import'
+import java.awt.Graphics2D; // violation 'Illegal import'
+import java.awt.HeadlessException; // violation 'Illegal import'
+import java.awt.Label; // violation 'Illegal import'
+import java.util.Date; // violation 'Illegal import'
+import java.util.Calendar; // violation 'Illegal import'
+import java.util.BitSet;  // violation 'Illegal import'
 
 class InputIllegalImportDefault7
 {
