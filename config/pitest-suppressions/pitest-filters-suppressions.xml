@@ -110,6 +110,60 @@
 
   <mutation unstable="false">
     <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to java/util/ArrayList::&lt;init&gt;</description>
+    <lineContent>private List&lt;Suppression&gt; fileNameSuppressions = new ArrayList&lt;&gt;();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable fileNameSuppressions</description>
+    <lineContent>private List&lt;Suppression&gt; fileNameSuppressions = new ArrayList&lt;&gt;();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter</mutatedClass>
+    <mutatedMethod>accept</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/AuditEvent::getFileName</description>
+    <lineContent>if (suppressedFileName.equals(event.getFileName())) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter</mutatedClass>
+    <mutatedMethod>accept</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::equals</description>
+    <lineContent>if (suppressedFileName.equals(event.getFileName())) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter</mutatedClass>
+    <mutatedMethod>accept</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (suppressedFileName.equals(event.getFileName())) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter</mutatedClass>
+    <mutatedMethod>accept</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable suppressedFileName</description>
+    <lineContent>suppressedFileName = event.getFileName();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter$Suppression</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
