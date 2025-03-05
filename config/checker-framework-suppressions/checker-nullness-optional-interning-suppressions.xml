@@ -4682,6 +4682,18 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoWhitespaceAfterCheck.java</fileName>
+     <specifier>prefer.map.and.orelse</specifier>
+     <message>It is better style to use map and orElse.</message>
+     <lineContent>else if (objectArrayType.isPresent()) {</lineContent>
+     <details>
+       Consider changing to:
+       typeLastNode.map(ENCLOSINGCLASS::orElseThrow).orElse(parent.getFirstChild())
+     </details>
+   </checkerFrameworkError>
+
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ParenPadCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
