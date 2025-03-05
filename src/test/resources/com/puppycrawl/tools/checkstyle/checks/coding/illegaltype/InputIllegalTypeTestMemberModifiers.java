@@ -19,26 +19,26 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 import java.util.TreeSet;
 
 public class InputIllegalTypeTestMemberModifiers {
-    private AbstractClass a = null; // violation
+    private AbstractClass a = null; // violation, 'Usage of type AbstractClass is not allowed'.
     private NotAnAbstractClass b = null; /*another comment*/
 
-    private java.util.AbstractList c = null; // violation
+    private java.util.AbstractList c = null; // violation, 'Usage of type java.util.AbstractList is not allowed'.
     private java.util.List d = null;
 
     private abstract class AbstractClass {/*one more comment*/}
 
     private class NotAnAbstractClass {}
 
-    private java.util.TreeSet<Object> table1() { return null; } // violation
-    private TreeSet<Object> table2() { return null; } // violation
+    private java.util.TreeSet<Object> table1() { return null; } // violation, 'Usage of type java.util.TreeSet is not allowed'.
+    private TreeSet<Object> table2() { return null; } // violation, 'Usage of type TreeSet is not allowed'.
     static class SomeStaticClass {
 
     }
 
     //WARNING if memberModifiers is set and contains TokenTypes.LITERAL_PROTECTED
-    protected java.util.AbstractList c1 = null; // violation
+    protected java.util.AbstractList c1 = null; // violation, 'Usage of type java.util.AbstractList is not allowed'.
     //NO WARNING if memberModifiers is set and does not contain TokenTypes.LITERAL_PUBLIC
-    public final static java.util.TreeSet<Object> table3() { return null; } // violation
+    public final static java.util.TreeSet<Object> table3() { return null; } // violation, 'Usage of type java.util.TreeSet is not allowed'.
 
     java.util.TreeSet<Object> table4() { java.util.TreeSet<Object> treeSet = null; return null; }
 
@@ -46,7 +46,7 @@ public class InputIllegalTypeTestMemberModifiers {
         java.util.TreeSet<Object> treeSet = null;
     }
     //WARNING if memberModifiers is set and contains TokenTypes.LITERAL_PROTECTED
-    protected AbstractClass a1 = null; // violation
+    protected AbstractClass a1 = null; // violation, 'Usage of type AbstractClass is not allowed'.
     public AbstractClass a2 = null;
 
     //NO WARNING if memberModifiers is set and does not contain TokenTypes.LITERAL_PUBLIC
