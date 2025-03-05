@@ -9,7 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.classtypeparametername;
 
 import java.io.Serializable;
 
-public class InputClassTypeParameterName1<t> // violation
+public class InputClassTypeParameterName1<t> // violation, Name 't' must match pattern '^foo$'
 {
     public <TT> void foo() { }
 
@@ -37,7 +37,7 @@ class Other1 <foo extends Serializable & Cloneable> {
     }
 }
 
-class MoreOther1 <T extends Cloneable> { // violation
+class MoreOther1 <T extends Cloneable> { // violation, Name 'T' must match pattern '^foo$'
 
     <E extends T> void getMore() {
         new Other() {
