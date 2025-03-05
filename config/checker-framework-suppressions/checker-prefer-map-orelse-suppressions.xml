@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedErrors>
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoWhitespaceAfterCheck.java</fileName>
+    <specifier>prefer.map.and.orelse</specifier>
+    <message>It is better style to use map and orElse.</message>
+    <lineContent>else if (objectArrayType.isPresent()) {</lineContent>
+  </checkerFrameworkError>
+</suppressedErrors>
