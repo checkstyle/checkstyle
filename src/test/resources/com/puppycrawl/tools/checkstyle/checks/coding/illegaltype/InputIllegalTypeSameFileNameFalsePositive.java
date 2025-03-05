@@ -25,7 +25,7 @@ public class InputIllegalTypeSameFileNameFalsePositive
 {
     InputIllegalTypeGregCal cal = AnObject.getInstance();
     Date date = null;
-    SubCal subCalendar = null; // violation
+    SubCal subCalendar = null; // violation, 'Usage of type SubCal is not allowed'.
 
     private static class AnObject extends InputIllegalTypeGregCal {
 
@@ -40,7 +40,8 @@ public class InputIllegalTypeSameFileNameFalsePositive
         List l;
         java.io.File file = null;
     }
-    java.util.List<Integer> list = new ArrayList<>(); // violation
+    java.util.List<Integer> list = new ArrayList<>();
+    // violation above, 'Usage of type 'java.util.List' is not allowed'
     private ArrayList<String> values;
     private Boolean d;
     private Boolean[] d1;
