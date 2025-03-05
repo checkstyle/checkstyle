@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryNullCheckWithInstanceOfCheck"
+             name="UnnecessaryNullCheckWithInstanceOf"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks for unnecessary null checks when used in conjunction with the instanceof operator.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ The instanceof operator inherently returns false when the left operand is null,
+ making explicit null checks redundant in boolean expressions with instanceof.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="unnecessary.nullcheck.with.instanceof"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
