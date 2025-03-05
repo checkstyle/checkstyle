@@ -18,8 +18,8 @@ public class InputIllegalTypeTestClearDataBetweenFiles implements InputIllegalTy
 
     private class NotAnAbstractClass {}
 
-    private java.util.TreeSet table1() { return null; } // violation
-    private TreeSet table2() { return null; } // violation
+    private java.util.TreeSet table1() { return null; } // violation, 'Usage of type java.util.TreeSet is not allowed'.
+    private TreeSet table2() { return null; } // violation, 'Usage of type TreeSet is not allowed'.
     static class SomeStaticClass {
 
     }

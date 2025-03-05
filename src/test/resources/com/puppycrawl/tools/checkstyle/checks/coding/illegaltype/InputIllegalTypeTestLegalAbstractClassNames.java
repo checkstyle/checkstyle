@@ -23,16 +23,16 @@ public class InputIllegalTypeTestLegalAbstractClassNames implements InputIllegal
     private AbstractClass a = null;
     private NotAnAbstractClass b = null; /*another comment*/
 
-    private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalType.AbstractClass
-        c = null; // violation above
+    private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalType.AbstractClass // violation, 'Usage of type com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalType.AbstractClass is not allowed'.
+        c = null;
     private java.util.List d = null;
 
     private abstract class AbstractClass {/*one more comment*/}
 
     private class NotAnAbstractClass {}
 
-    private java.util.TreeSet table1() { return null; } // violation
-    private TreeSet table2() { return null; } // violation
+    private java.util.TreeSet table1() { return null; } // violation, 'Usage of type java.util.TreeSet is not allowed'.
+    private TreeSet table2() { return null; } // violation, 'Usage of type TreeSet is not allowed'.
     static class SomeStaticClass {
 
     }
@@ -57,9 +57,9 @@ public class InputIllegalTypeTestLegalAbstractClassNames implements InputIllegal
 }
 
 interface InputIllegalTypeSuperTestLegalAbstractClassNames {
-    void foo(HashMap<?, ?> buffer); // violation
+    void foo(HashMap<?, ?> buffer); // violation, 'Usage of type HashMap is not allowed'.
 
-    HashMap<?, ?> foo(); // violation
+    HashMap<?, ?> foo(); // violation, 'Usage of type HashMap is not allowed'.
 
     Object bar();
 }

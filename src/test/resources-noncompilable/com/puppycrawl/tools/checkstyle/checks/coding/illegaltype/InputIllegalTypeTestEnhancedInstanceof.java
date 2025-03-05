@@ -26,21 +26,21 @@ import java.util.AbstractMap;
 
 public class InputIllegalTypeTestEnhancedInstanceof {
     public void InputIllegalTypeEnhancedInstanceof(Map<Integer, Integer> lmm) {
-        LinkedHashMap<Integer, Integer> lhm // violation
+        LinkedHashMap<Integer, Integer> lhm // violation, 'Usage of type LinkedHashMap is not allowed'.
                 = new LinkedHashMap<Integer, Integer>();
 
-        if (lmm instanceof LinkedHashMap<Integer, Integer> linkedHashMap) { // violation
+        if (lmm instanceof LinkedHashMap<Integer, Integer> linkedHashMap) { // violation, 'Usage of type LinkedHashMap is not allowed'.
             System.out.println(linkedHashMap);
         } else if (lmm instanceof AbstractMap<Integer, Integer> map) {
             System.out.println(map);
-        } else if (lmm instanceof HashMap<Integer, Integer> hashMap) { // violation
+        } else if (lmm instanceof HashMap<Integer, Integer> hashMap) { // violation, 'Usage of type HashMap is not allowed'.
             System.out.println(hashMap);
         }
     }
 
-    public void InputIllegalTypeEnhancedInstanceof(TreeSet treeSet) { // violation
+    public void InputIllegalTypeEnhancedInstanceof(TreeSet treeSet) { // violation, 'Usage of type TreeSet is not allowed'.
         Object set = new Object();
-        if (set instanceof TreeSet t) { // violation
+        if (set instanceof TreeSet t) { // violation, 'Usage of type TreeSet is not allowed'.
             System.out.println(t);
         }
     }

@@ -31,8 +31,8 @@ public class InputIllegalTypeEmptyStringMemberModifiers implements InputIllegalT
 
     private class NotAnAbstractClass {}
 
-    private java.util.TreeSet table1() { return null; } // violation
-    private TreeSet table2() { return null; } // violation
+    private java.util.TreeSet table1() { return null; } // violation, 'Usage of type java.util.TreeSet is not allowed'.
+    private TreeSet table2() { return null; } // violation, 'Usage of type TreeSet is not allowed'.
     static class SomeStaticClass {
 
     }
@@ -57,9 +57,9 @@ public class InputIllegalTypeEmptyStringMemberModifiers implements InputIllegalT
 }
 
 interface InputIllegalTypeSuperEmptyStringMemberModifiers {
-    void foo(HashMap<?, ?> buffer); // violation
+    void foo(HashMap<?, ?> buffer); // violation, 'Usage of type TreeSet is not allowed'.
 
-    HashMap<?, ?> foo(); // violation
+    HashMap<?, ?> foo(); // violation, 'Usage of type TreeSet is not allowed'.
 
     Object bar();
 }
