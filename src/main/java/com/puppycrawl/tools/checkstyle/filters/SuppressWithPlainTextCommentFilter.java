@@ -127,6 +127,12 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     /** Default check format to suppress. By default, the filter suppress all checks. */
     private static final String DEFAULT_CHECK_FORMAT = ".*";
 
+    /** File name that was suppressed. By default, Its empty. */
+    private String suppressedFileName = "";
+
+    /** List of suppressions from the file. By default, Its null. */
+    private List<Suppression> fileNameSuppressions = new ArrayList<>();
+
     /** Specify comment pattern to trigger filter to begin suppression. */
     private Pattern offCommentFormat = CommonUtil.createPattern(DEFAULT_OFF_FORMAT);
 
@@ -199,11 +205,17 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     public boolean accept(AuditEvent event) {
         boolean accepted = true;
         if (event.getViolation() != null) {
-            final FileText fileText = getFileText(event.getFileName());
-            if (fileText != null) {
-                final List<Suppression> suppressions = getSuppressions(fileText);
-                accepted = getNearestSuppression(suppressions, event) == null;
+            if (!suppressedFileName.equals(event.getFileName())) {
+                final FileText fileText = getFileText(event.getFileName());
+                suppressedFileName = event.getFileName();
+                if (fileText != null) {
+                    fileNameSuppressions = getSuppressions(fileText);
+                }
+                else {
+                    fileNameSuppressions = new ArrayList<>();
+                }
             }
+            accepted = getNearestSuppression(fileNameSuppressions, event) == null;
         }
         return accepted;
     }
