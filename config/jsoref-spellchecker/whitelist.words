@@ -1390,6 +1390,7 @@ uninterned
 uniq
 uniqueproperties
 Unitless
+unnecessarynullcheckwithinstanceof
 unnecessaryparentheses
 unnecessarysemicolonafteroutertypedeclaration
 unnecessarysemicolonaftertypememberdeclaration
