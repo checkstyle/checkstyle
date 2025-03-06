@@ -1222,23 +1222,23 @@ public final class JavadocTokenTypes {
      * Br tag name.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code text before break &lt br &gt text after break}</pre>
+     * <pre>{@code text before break < br > text after break}</pre>
      * <b>Tree:</b>
      * <pre>
      * {@code
-     *   JAVADOC -&gt; JAVADOC
-     *        |--NEWLINE -&gt; \r\n
-     *        |--LEADING_ASTERISK -&gt;  *
-     *        |--TEXT -&gt;  text before break
-     *        |--HTML_ELEMENT -&gt; HTML_ELEMENT
-     *        |   `--SINGLETON_ELEMENT -&gt; SINGLETON_ELEMENT
-     *        |       `--BR_TAG -&gt; BR_TAG
-     *        |           |--START -&gt; -&lt;
-     *        |           |--BR_HTML_TAG_NAME -&gt; br
-     *        |           `--END -&gt; &gt;
-     *        |--TEXT -&gt;  text after break
-     *        |--NEWLINE -&gt; \r\n
-     *        |--TEXT -&gt;
+     *   JAVADOC ->; JAVADOC
+     *        |--NEWLINE ->; \r\n
+     *        |--LEADING_ASTERISK ->;  *
+     *        |--TEXT ->;  text before break
+     *        |--HTML_ELEMENT ->; HTML_ELEMENT
+     *        |   `--SINGLETON_ELEMENT ->; SINGLETON_ELEMENT
+     *        |       `--BR_TAG ->; BR_TAG
+     *        |           |--START ->; -<;
+     *        |           |--BR_HTML_TAG_NAME ->; br
+     *        |           `--END ->; >;
+     *        |--TEXT ->;  text after break
+     *        |--NEWLINE ->; \r\n
+     *        |--TEXT ->;
      * }
      * </pre>
      */

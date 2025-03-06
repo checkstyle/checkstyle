@@ -19,15 +19,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>SarifLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.SarifLogger</mutatedClass>
-    <mutatedMethod>readResource</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/io/InputStream::read</description>
-    <lineContent>int length = inputStream.read(buffer);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>XMLLogger.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger</mutatedClass>
     <mutatedMethod>auditStarted</mutatedMethod>
@@ -43,15 +34,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
     <description>replaced call to com/puppycrawl/tools/checkstyle/XMLLogger::encode with argument</description>
     <lineContent>+ encode(event.getMessage())</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>XMLLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger</mutatedClass>
-    <mutatedMethod>writeFileError</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/XMLLogger::encode with argument</description>
-    <lineContent>writer.print(encode(event.getModuleId()));</lineContent>
   </mutation>
 
   <mutation unstable="false">
