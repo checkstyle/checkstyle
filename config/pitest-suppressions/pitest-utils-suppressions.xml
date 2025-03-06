@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
-
   <mutation unstable="false">
     <sourceFile>ScopeUtil.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ScopeUtil</mutatedClass>
