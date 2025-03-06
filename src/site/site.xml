@@ -179,7 +179,9 @@
                 href="checks/coding/unusedcatchparametershouldbeunnamed.html"/>
           <item name="UnusedLambdaParameterShouldBeUnnamed"
                 href="checks/coding/unusedlambdaparametershouldbeunnamed.html"/>
+            <item name="UnusedLocalMethod" href="checks/coding/unusedlocalmethod.html"/>
           <item name="UnusedLocalVariable" href="checks/coding/unusedlocalvariable.html"/>
+          <item name="InlineVariable" href="checks/coding/inlinevariable.html"/>
           <item name="VariableDeclarationUsageDistance"
                 href="checks/coding/variabledeclarationusagedistance.html"/>
           <item name="WhenShouldBeUsed"
