@@ -20,7 +20,7 @@
 package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -48,15 +48,13 @@ public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest extends Abstr
             "5:13: " + getCheckMessage(UnnecessaryNullCheckWithInstanceOfCheck.class,
                     UnnecessaryNullCheckWithInstanceOfCheck.MSG_UNNECESSARY_NULLCHECK),
         };
-        final List<String> expectedXpathQueries = Collections.singletonList(
-            "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputXpathUnnecessaryNullCheckWithInstanceOf']]"
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathUnnecessaryNullCheckWithInstanceOf']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodWithUnnecessaryNullCheck1']]"
                 + "/SLIST/LITERAL_IF/EXPR/LAND/NOT_EQUAL/IDENT[@text='obj']"
         );
 
-        runVerifications(moduleConfig, fileToProcess, expected,
-                expectedXpathQueries);
+        runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
     }
 }
 
