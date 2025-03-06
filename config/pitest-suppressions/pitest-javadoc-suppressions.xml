@@ -65,15 +65,6 @@
 
   <mutation unstable="false">
     <sourceFile>JavadocTagInfo.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo$11</mutatedClass>
-    <mutatedMethod>isValidOn</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>return astType == TokenTypes.METHOD_DEF</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>JavadocTagInfo.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo$14</mutatedClass>
     <mutatedMethod>isValidOn</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
@@ -97,14 +88,5 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
     <description>removed conditional - replaced equality check with true</description>
     <lineContent>return astType == TokenTypes.VARIABLE_DEF</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TagParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
-    <mutatedMethod>skipHtmlComment</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser::findChar with argument</description>
-    <lineContent>toPoint = findChar(text, &apos;&gt;&apos;, getNextPoint(text, toPoint));</lineContent>
   </mutation>
 </suppressedMutations>

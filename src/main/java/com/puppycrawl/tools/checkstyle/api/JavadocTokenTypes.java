@@ -740,17 +740,17 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     * JAVADOC_TAG -&gt JAVADOC_TAG
-     *  |--SEE_LITERAL -&gt @see
-     *  |--WS -&gt
-     *  |--REFERENCE -&gt REFERENCE
-     *      |--PACKAGE_CLASS -&gt org.apache.utils.Lists.Comparator
-     *      |--HASH -&gt #
-     *      |--MEMBER -&gt compare
-     *      `--PARAMETERS -&gt PARAMETERS
-     *          |--LEFT_BRACE -&gt (
-     *          |--ARGUMENT -&gt Object
-     *          `--RIGHT_BRACE -&gt )
+     * JAVADOC_TAG -> JAVADOC_TAG
+     *  |--SEE_LITERAL -> @see
+     *  |--WS ->
+     *  |--REFERENCE -> REFERENCE
+     *      |--PACKAGE_CLASS -> org.apache.utils.Lists.Comparator
+     *      |--HASH -> #
+     *      |--MEMBER -> compare
+     *      `--PARAMETERS -> PARAMETERS
+     *          |--LEFT_BRACE -> (
+     *          |--ARGUMENT -> Object
+     *          `--RIGHT_BRACE -> )
      * }
      * </pre>
      */
@@ -1796,7 +1796,70 @@ public final class JavadocTokenTypes {
      */
     public static final int BODY_TAG_END = JavadocParser.RULE_bodyTagEnd + RULE_TYPES_OFFSET;
 
-    /** Colgroup html tag. */
+    /**
+     * Colgroup html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <colgroup>
+     *     <col />
+     *     <col span="2" class="batman" />
+     * </colgroup>
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   --JAVADOC -> JAVADOC
+     *       |--NEWLINE -> \n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--HTML_ELEMENT -> HTML_ELEMENT
+     *       |   `--COLGROUP -> COLGROUP
+     *       |       |--COLGROUP_TAG_START -> COLGROUP_TAG_START
+     *       |       |   |--START -> <
+     *       |       |   |--COLGROUP_HTML_TAG_NAME -> colgroup
+     *       |       |   |   `--END -> >
+     *       |       |--NEWLINE -> \n
+     *       |       |--LEADING_ASTERISK ->  *
+     *       |       |--TEXT ->
+     *       |       |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *       |       |   `--COL_TAG -> COL_TAG
+     *       |       |       |--START -> <
+     *       |       |       |--COL_HTML_TAG_NAME -> col
+     *       |       |       |--WS ->
+     *       |       |       `--SLASH_END -> />
+     *       |       |--NEWLINE -> \n
+     *       |       |--LEADING_ASTERISK ->  *
+     *       |       |--TEXT ->
+     *       |       |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *       |       |   `--COL_TAG -> COL_TAG
+     *       |       |       |--START -> <
+     *       |       |       |--COL_HTML_TAG_NAME -> col
+     *       |       |       |--WS ->
+     *       |       |       |--ATTRIBUTE -> ATTRIBUTE
+     *       |       |       |   |--HTML_TAG_NAME -> span
+     *       |       |       |   |--EQUALS -> =
+     *       |       |       |   `--ATTR_VALUE -> "2"
+     *       |       |       |--WS ->
+     *       |       |       |--ATTRIBUTE -> ATTRIBUTE
+     *       |       |       |   |--HTML_TAG_NAME -> class
+     *       |       |       |   |--EQUALS -> =
+     *       |       |       |   `--ATTR_VALUE -> "batman"
+     *       |       |       |--WS ->
+     *       |       |       `--SLASH_END -> />
+     *       |       |--NEWLINE -> \n
+     *       |       |--LEADING_ASTERISK ->  *
+     *       |       |--TEXT ->
+     *       |       `--COLGROUP_TAG_END -> COLGROUP_TAG_END
+     *       |       |       |--START -> <
+     *       |       |       |--SLASH -> /
+     *       |       |       |--COLGROUP_HTML_TAG_NAME -> colgroup
+     *       |       |       `--END -> >
+     *       |--NEWLINE -> \n
+     *       |--TEXT ->
+     * }
+     * </pre>
+     */
     public static final int COLGROUP = JavadocParser.RULE_colgroup + RULE_TYPES_OFFSET;
     /** Start colgroup tag. */
     public static final int COLGROUP_TAG_START = JavadocParser.RULE_colgroupTagStart
@@ -1842,7 +1905,42 @@ public final class JavadocTokenTypes {
     public static final int OPTION_TAG_END = JavadocParser.RULE_optionTagEnd
             + RULE_TYPES_OFFSET;
 
-    /** Table body html tag. */
+    /**
+     * Table body html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <table><tbody></tbody></table>}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {JAVADOC -&gt; JAVADOC
+     *      |--NEWLINE -&gt; \r\n
+     *      |--TEXT -&gt; /**
+     *      |--HTML_ELEMENT -&gt; HTML_ELEMENT
+     *      |   `--HTML_TAG -&gt; HTML_TAG
+     *      |       |--HTML_ELEMENT_START -&gt; HTML_ELEMENT_START
+     *      |       |   |--START -&gt; &lt;
+     *      |       |   |--HTML_TAG_NAME -&gt; table
+     *      |       |   `--END -&gt; &gt;
+     *      |       |--HTML_ELEMENT -&gt; HTML_ELEMENT
+     *      |       |   `--TBODY -&gt; TBODY
+     *      |       |       |--TBODY_TAG_START -&gt; TBODY_TAG_START
+     *      |       |       |   |--START -&gt; &lt;
+     *      |       |       |   |--TBODY_HTML_TAG_NAME -&gt; tbody
+     *      |       |       |   `--END -&gt; &gt;
+     *      |       |       `--TBODY_TAG_END -&gt; TBODY_TAG_END
+     *      |       |           |--START -&gt; &lt;
+     *      |       |           |--SLASH -&gt; /
+     *      |       |           |--TBODY_HTML_TAG_NAME -&gt; tbody
+     *      |       |           `--END -&gt; &gt;
+     *      |       `--HTML_ELEMENT_END -&gt; HTML_ELEMENT_END
+     *      |           |--START -&gt; &lt;
+     *      |           |--SLASH -&gt; /
+     *      |           |--HTML_TAG_NAME -&gt; table
+     *      |           `--END -&gt; &gt;
+     *      |--NEWLINE -&gt; \r\n
+     * }
+     * </pre>
+     */
     public static final int TBODY = JavadocParser.RULE_tbody + RULE_TYPES_OFFSET;
     /** Start table body tag. */
     public static final int TBODY_TAG_START = JavadocParser.RULE_tbodyTagStart + RULE_TYPES_OFFSET;

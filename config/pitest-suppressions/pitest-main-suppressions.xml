@@ -3,15 +3,6 @@
   <mutation unstable="false">
     <sourceFile>Main.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
-    <mutatedMethod>getVersionString</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/Package::getImplementationVersion</description>
-    <lineContent>return &quot;Checkstyle version: &quot; + Main.class.getPackage().getImplementationVersion();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>Main.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
     <mutatedMethod>runCheckstyle</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to com/puppycrawl/tools/checkstyle/Main::getOutputStreamOptions</description>
