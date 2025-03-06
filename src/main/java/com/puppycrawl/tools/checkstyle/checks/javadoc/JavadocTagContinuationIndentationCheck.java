@@ -108,7 +108,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
 
     @Override
     public int[] getDefaultJavadocTokens() {
-        return new int[] {JavadocTokenTypes.DESCRIPTION };
+        return new int[] {JavadocTokenTypes.DESCRIPTION, JavadocTokenTypes.SEE_LITERAL };
     }
 
     @Override
@@ -119,14 +119,33 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     @Override
     public void visitJavadocToken(DetailNode ast) {
         if (!isInlineDescription(ast)) {
-            final List<DetailNode> textNodes = getAllNewlineNodes(ast);
-            for (DetailNode newlineNode : textNodes) {
-                final DetailNode textNode = JavadocUtil.getNextSibling(newlineNode);
-                if (textNode.getType() == JavadocTokenTypes.TEXT && isViolation(textNode)) {
-                    log(textNode.getLineNumber(), MSG_KEY, offset);
+            final DetailNode node = getValidNode(ast);
+            if (node.getType() != JavadocTokenTypes.SEE_LITERAL) {
+                final List<DetailNode> textNodes = getAllNewlineNodes(node);
+                for (DetailNode newlineNode : textNodes) {
+                    final DetailNode textNode = JavadocUtil.getNextSibling(newlineNode);
+                    if (textNode.getType() == JavadocTokenTypes.TEXT && isViolation(textNode)) {
+                        log(textNode.getLineNumber(), MSG_KEY, offset);
+                    }
                 }
             }
         }
+    }
+
+    /**
+     * Checks if a {@code reference} exists in {@code see} JavadocTag.
+     *
+     * @param ast the node to check
+     * @return {@code JAVADOC_TAG} node if Reference does not exist in AST, any other node
+     *     returned would be discarded in the caller's function.
+     */
+    private static DetailNode getValidNode(DetailNode ast) {
+        DetailNode result = ast;
+        if (ast.getType() == JavadocTokenTypes.SEE_LITERAL
+                && JavadocUtil.getNextSibling(ast, JavadocTokenTypes.REFERENCE) == null) {
+            result = ast.getParent();
+        }
+        return result;
     }
 
     /**
