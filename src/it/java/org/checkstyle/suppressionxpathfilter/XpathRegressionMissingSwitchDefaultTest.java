@@ -31,11 +31,11 @@ import com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheck;
 
 public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSupport {
 
-    private final Class<MissingSwitchDefaultCheck> clss = MissingSwitchDefaultCheck.class;
+    private static final Class<MissingSwitchDefaultCheck> CLAZZ = MissingSwitchDefaultCheck.class;
 
     @Override
     protected String getCheckName() {
-        return clss.getSimpleName();
+        return CLAZZ.getSimpleName();
     }
 
     @Test
@@ -43,9 +43,9 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
         final File fileToProcess =
                 new File(getPath("InputXpathMissingSwitchDefaultSimple.java"));
 
-        final DefaultConfiguration moduleConfig = createModuleConfig(clss);
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
         final String[] expectedViolation = {
-            "6:9: " + getCheckMessage(clss, MissingSwitchDefaultCheck.MSG_KEY),
+            "6:9: " + getCheckMessage(CLAZZ, MissingSwitchDefaultCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -63,10 +63,10 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
         final File fileToProcess =
                 new File(getPath("InputXpathMissingSwitchDefaultNested.java"));
 
-        final DefaultConfiguration moduleConfig = createModuleConfig(clss);
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "12:17: " + getCheckMessage(clss, MissingSwitchDefaultCheck.MSG_KEY),
+            "12:17: " + getCheckMessage(CLAZZ, MissingSwitchDefaultCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
