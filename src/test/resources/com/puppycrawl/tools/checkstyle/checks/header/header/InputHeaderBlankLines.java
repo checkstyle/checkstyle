@@ -1,3 +1,13 @@
+/*
+com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck
+charset = (default)""
+fileExtensions = (default)""
+header = (default)(null)
+headerFile = (file)InputHeaderjava.blank-lines.header
+multiLines = (default)
+ignoreLines = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+
+*/
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 
