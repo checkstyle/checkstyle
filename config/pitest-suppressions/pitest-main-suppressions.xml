@@ -11,15 +11,6 @@
 
   <mutation unstable="false">
     <sourceFile>Main.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
-    <mutatedMethod>runCli</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/Package::getImplementationVersion</description>
-    <lineContent>+ Main.class.getPackage().getImplementationVersion());</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>Main.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
     <mutatedMethod>getExclusions</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>

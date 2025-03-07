@@ -121,7 +121,7 @@ public final class Main {
         try {
             final ParseResult parseResult = commandLine.parseArgs(args);
             if (parseResult.isVersionHelpRequested()) {
-                System.out.println(getVersionString());
+                System.out.println("Checkstyle version: " + getVersionString());
             }
             else if (parseResult.isUsageHelpRequested()) {
                 commandLine.usage(System.out);
@@ -162,7 +162,7 @@ public final class Main {
      * @return a version string based on the package implementation version
      */
     private static String getVersionString() {
-        return "Checkstyle version: " + Main.class.getPackage().getImplementationVersion();
+        return Main.class.getPackage().getImplementationVersion();
     }
 
     /**
@@ -331,7 +331,7 @@ public final class Main {
             if (LOG.isDebugEnabled()) {
                 LOG.debug("Checkstyle debug logging enabled");
                 LOG.debug("Running Checkstyle with version: "
-                        + Main.class.getPackage().getImplementationVersion());
+                        + getVersionString());
             }
 
             // run Checker
