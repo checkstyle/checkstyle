@@ -67,6 +67,10 @@ public class JavadocUtilTest {
         assertWithMessage("Invalid valid tags size")
             .that(allTags.getValidTags())
             .hasSize(1);
+        final JavadocTag seeTag = allTags.getValidTags().get(0);
+        assertWithMessage("Invalid tag name")
+                .that(seeTag.getTagName())
+                .isEqualTo(JavadocTagInfo.SEE.getName());
     }
 
     @Test
@@ -179,6 +183,7 @@ public class JavadocUtilTest {
             "/** @fake block",
             " * {@bogus inline}",
             " * {@link List valid}",
+
         };
         final Comment comment = new Comment(text, 1, 3, text[2].length());
         final JavadocTags allTags =

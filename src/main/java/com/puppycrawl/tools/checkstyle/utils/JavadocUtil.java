@@ -119,12 +119,12 @@ public final class JavadocUtil {
             final int line = textBlock.getStartLineNo() + tag.getPosition().getLine() - 1;
 
             if (JavadocTagInfo.isValidName(tag.getName())) {
-                validTags.add(
-                    new JavadocTag(line, col, tag.getName(), tag.getValue()));
+                validTags.add(new JavadocTag(line, col, tag.getName(), tag.getValue()));
             }
             else {
                 invalidTags.add(new InvalidJavadocTag(line, col, tag.getName()));
             }
+
         }
 
         return new JavadocTags(validTags, invalidTags);
