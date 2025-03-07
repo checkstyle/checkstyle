@@ -1084,6 +1084,18 @@ public final class JavadocTokenTypes {
 
     /**
      * Attribute value html tag component.
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>
+     * {@code
+     *  JAVADOC -> JAVADOC
+     *   |--NEWLINE -> \r\n
+     *   |--LEADING_ASTERISK ->  *
+     *   |--TEXT ->  Attribute value html tag component.
+     *   |--NEWLINE -> \r\n
+     *   |--TEXT ->
+     * }
+     * </pre>
      */
     public static final int ATTR_VALUE = JavadocParser.ATTR_VALUE;
 
