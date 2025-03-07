@@ -54,32 +54,22 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testStaticHeader() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.header"));
-        checkConfig.addProperty("ignoreLines", "");
         final String[] expected = {
             "1: " + getCheckMessage(MSG_MISSING),
         };
-        verify(checkConfig, getPath("InputHeader.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputHeader.java"), expected);
     }
 
     @Test
     public void testNoHeader() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-
-        createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputHeaderRegexp.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputHeaderRegexp.java"), expected);
     }
 
     @Test
     public void testWhitespaceHeader() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("header", "\n    \n");
-
-        createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputHeaderRegexp.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputHeaderRegexp.java"), expected);
     }
 
     @Test
@@ -163,24 +153,18 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNotMatch() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.header"));
-        checkConfig.addProperty("ignoreLines", "");
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_MISMATCH,
+            "12: " + getCheckMessage(MSG_MISMATCH,
                     "// checkstyle: Checks Java source code and other text files for adherence to a"
                         + " set of rules."),
         };
-        verify(checkConfig, getPath("InputHeaderjava2.header"), expected);
+        verifyWithInlineConfigParser(getPath("InputHeaderjava2.header"), expected);
     }
 
     @Test
     public void testIgnore() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.header"));
-        checkConfig.addProperty("ignoreLines", "2");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputHeaderjava2.header"), expected);
+        verifyWithInlineConfigParser(getPath("InputHeaderjava2Ignore.header"), expected);
     }
 
     @Test
@@ -248,11 +232,8 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIgnoreLinesSorted() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.header"));
-        checkConfig.addProperty("ignoreLines", "4,2,3");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputHeaderjava3.header"), expected);
+        verifyWithInlineConfigParser(getPath("InputHeaderjava3.header"), expected);
     }
 
     @Test
@@ -272,16 +253,12 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testHeaderIsValidWithBlankLines() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.blank-lines.header"));
-        verify(checkConfig, getPath("InputHeaderBlankLines.java"));
+        verifyWithInlineConfigParser(getPath("InputHeaderBlankLines.java"));
     }
 
     @Test
     public void testHeaderIsValidWithBlankLinesBlockStyle() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.blank-lines2.header"));
-        verify(checkConfig, getPath("InputHeaderBlankLines2.java"));
+        verifyWithInlineConfigParser(getPath("InputHeaderBlankLines2.java"));
     }
 
     @Test
