@@ -412,4 +412,10 @@ public class JavadocParseTreeTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getPath("expectedDosLineEndingAsNewlineMultiline.txt"),
                 getPath("InputDosLineEndingAsNewlineMultiline.javadoc"));
     }
+
+    @Test
+    public void testEmptyReferenceInLink() throws Exception {
+        verifyJavadocTree(getDocPath("expectedEmptyReferenceInLinkAst.txt"),
+                getDocPath("InputEmptyReferenceInLink.javadoc"));
+    }
 }
