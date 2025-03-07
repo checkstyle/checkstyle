@@ -1095,22 +1095,22 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     *  JAVADOC ->; JAVADOC
-     *     |--NEWLINE ->; \r\n
-     *     |--LEADING_ASTERISK ->;      *
-     *     |--TEXT ->;
-     *     |--HTML_ELEMENT ->; HTML_ELEMENT
-     *         `--PARAGRAPH ->; PARAGRAPH
-     *             |--P_TAG_START ->; P_TAG_START
-     *             |   |--START ->; <;
-     *             |   |--P_HTML_TAG_NAME ->; p
-     *             |   `--END ->; >;
-     *             |--TEXT ->; Paragraph Tag.
-     *             `--P_TAG_END ->; P_TAG_END
-     *                 |--START ->; <;
-     *                 |--SLASH ->; /
-     *                 |--P_HTML_TAG_NAME ->; p
-     *                 `--END ->; >;
+     *  —JAVADOC -> JAVADOC [1:3]
+     *     |--NEWLINE -> \n [1:3]
+     *     |--LEADING_ASTERISK ->  * [2:0]
+     *     |--TEXT ->   [2:2]
+     *     |--HTML_ELEMENT -> HTML_ELEMENT [2:3]
+     *        `--PARAGRAPH -> PARAGRAPH [2:3]
+     *           |--P_TAG_START -> P_TAG_START [2:3]
+     *              |--START -> < [2:3]
+     *              |--P_HTML_TAG_NAME -> p [2:4]
+     *              `--END -> > [2:5]
+     *           |--TEXT -> Paragraph Tag. [2:6]
+     *           `--P_TAG_END -> P_TAG_END [2:20]
+     *              |--START -> < [2:20]
+     *              |--SLASH -> / [2:21]
+     *              |--P_HTML_TAG_NAME -> p [2:22]
+     *              `--END -> > [2:23]
      * }
      * </pre>
      *
