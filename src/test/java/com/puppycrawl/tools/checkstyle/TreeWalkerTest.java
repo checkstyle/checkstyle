@@ -35,15 +35,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.mockito.MockedConstruction;
@@ -52,6 +55,8 @@ import org.mockito.Mockito;
 import org.mockito.internal.util.Checks;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
@@ -64,6 +69,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck;
 import com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck;
+import com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
@@ -792,6 +798,110 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                         + getNonCompilablePath("InputTreeWalkerSkipParsingException.java") + "."));
 
         verify(checker, files, expectedViolation);
+    }
+
+    @Test
+    public void testSortingByIdAffectsViolationOrder() throws Exception {
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("Checker");
+        final DefaultConfiguration treeWalkerConfig = new DefaultConfiguration("TreeWalker");
+
+        checkerConfig.addChild(treeWalkerConfig);
+        treeWalkerConfig.addChild(createCheckConfig(IndentationCheck.class));
+        treeWalkerConfig.addChild(createCheckConfig(ConstantNameCheck.class));
+        treeWalkerConfig.addChild(createCheckConfig(WhitespaceAfterCheck.class));
+
+        final String filePath = getPath("InputTreeWalkerSorting.java");
+        final Checker checker = createCheckerInstance(checkerConfig);
+        final List<File> files = Collections.singletonList(new File(filePath));
+
+        final List<String> beforeSortingIds = runCheckstyle(checker, files, false);
+        final List<String> afterSortingIds = runCheckstyle(checker, files, true);
+
+        final List<String> expectedSortedIds = new ArrayList<>(beforeSortingIds);
+        expectedSortedIds.sort(Comparator.naturalOrder());
+
+        Assertions.assertEquals(
+            expectedSortedIds, afterSortingIds,
+            "Sorting should change the order of violations by ID"
+        );
+    }
+
+    private static List<String> runCheckstyle(
+            Checker checker, List<File> files, boolean sort) throws Exception {
+        final List<String> violations = new ArrayList<>();
+        final AuditListener listener = new SimpleAuditListener(violations, sort);
+
+        checker.addListener(listener);
+        checker.process(files);
+
+        List<String> result = new ArrayList<>(violations);
+        if(sort) {
+            result.sort(Comparator.naturalOrder());
+        }
+        return result;
+    }
+
+    private static DefaultConfiguration createCheckConfig(Class<?> checkClass) {
+        return new DefaultConfiguration(checkClass.getCanonicalName());
+    }
+
+    private static Checker createCheckerInstance(Configuration config) {
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+
+        try {
+            checker.configure(config);
+        }
+        catch (CheckstyleException exception) {
+            System.err.println("Failed to configure Checker: " + exception.getMessage());
+        }
+
+        return checker;
+    }
+
+    private static class SimpleAuditListener implements AuditListener {
+        private final List<String> violations;
+
+        SimpleAuditListener(List<String> violations, boolean sort) {
+            this.violations = Objects.requireNonNull(violations, "Violations list cannot be null");
+        }
+
+        @Override
+        public void addError(AuditEvent event) {
+            if (event != null) {
+                if (event.getModuleId() != null) {
+                    violations.add(0, event.getModuleId());
+                }
+                else {
+                    violations.add(0, "UnknownID");
+                }
+            }
+        }
+
+        @Override
+        public void auditStarted(AuditEvent event) {
+
+        }
+
+        @Override
+        public void auditFinished(AuditEvent event) {
+
+        }
+
+        @Override
+        public void fileStarted(AuditEvent event) {
+
+        }
+
+        @Override
+        public void fileFinished(AuditEvent event) {
+
+        }
+
+        @Override
+        public void addException(AuditEvent event, Throwable throwable) {
+
+        }
     }
 
     public static class BadJavaDocCheck extends AbstractCheck {

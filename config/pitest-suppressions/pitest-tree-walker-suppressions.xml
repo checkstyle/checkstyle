@@ -58,15 +58,6 @@
     <sourceFile>TreeWalker.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
     <mutatedMethod>createNewCheckSortedSet</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/util/Comparator::thenComparing with receiver</description>
-    <lineContent>.thenComparing(AbstractCheck::getId,</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TreeWalker.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
-    <mutatedMethod>createNewCheckSortedSet</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/util/Comparator::naturalOrder</description>
     <lineContent>Comparator.nullsLast(Comparator.naturalOrder()))</lineContent>
