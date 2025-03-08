@@ -35,58 +35,57 @@ strategy:
       image: 'ubuntu-20.04'
       cmd: "./.ci/validation.sh test"
 
-    # until https://github.com/checkstyle/checkstyle/issues/16233
-    #    # unit tests in German locale (openjdk11)
-    #    'test-de':
-    #      image: 'ubuntu-20.04'
-    #      cmd: "./.ci/validation.sh test-de"
-    #
-    #    # unit tests in Spanish locale (openjdk11)
-    #    'test-es':
-    #      image: 'ubuntu-20.04'
-    #      cmd: "./.ci/validation.sh test-es"
-    #
-    #    # unit tests in Finnish locale (openjdk11)
-    #    'test-fi':
-    #      image: 'ubuntu-20.04'
-    #      cmd: "./.ci/validation.sh test-fi"
-    #
-    #    # unit tests in French locale (openjdk11)
-    #    'test-fr':
-    #      image: 'ubuntu-20.04'
-    #      cmd: "./.ci/validation.sh test-fr"
-    #
-    #    # unit tests in Chinese locale (openjdk11)
-    #    'test-zh':
-    #      image: 'ubuntu-20.04'
-    #      cmd: "./.ci/validation.sh test-zh"
-    #
-    #    # unit tests in Japanese locale (openjdk11)
-    #    'test-ja':
-    #      image: 'ubuntu-20.04'
-    #      cmd: "./.ci/validation.sh test-ja"
-    #
-    #    # unit tests in Portuguese locale (openjdk11)
-    #    'test-pt':
-    #      image: 'ubuntu-20.04'
-    #      cmd: "./.ci/validation.sh test-pt"
-    #
-    #    # unit tests in Turkish locale (openjdk11)
-    #    'test-tr':
-    #      image: 'ubuntu-20.04'
-    #      cmd: "./.ci/validation.sh test-tr"
-    #
-    #    # unit tests in Russian locale (openjdk11)
-    #    'test-ru':
-    #      image: 'ubuntu-20.04'
-    #      cmd: "./.ci/validation.sh test-ru"
-    #
-    #    # unit tests in Albanian locale (openjdk11)
-    #    'test-al':
-    #      image: 'ubuntu-20.04'
-    #      cmd: "./.ci/validation.sh test-al"
+    # unit tests in German locale (openjdk11)
+    'test-de':
+      image: 'ubuntu-20.04'
+      cmd: "./.ci/validation.sh test-de"
 
-    # OpenJDK11 verify
+    # unit tests in Spanish locale (openjdk11)
+    'test-es':
+      image: 'ubuntu-20.04'
+      cmd: "./.ci/validation.sh test-es"
+
+    # unit tests in Finnish locale (openjdk11)
+    'test-fi':
+      image: 'ubuntu-20.04'
+      cmd: "./.ci/validation.sh test-fi"
+
+    # unit tests in French locale (openjdk11)
+    'test-fr':
+      image: 'ubuntu-20.04'
+      cmd: "./.ci/validation.sh test-fr"
+
+    # unit tests in Chinese locale (openjdk11)
+    'test-zh':
+      image: 'ubuntu-20.04'
+      cmd: "./.ci/validation.sh test-zh"
+
+    # unit tests in Japanese locale (openjdk11)
+    'test-ja':
+      image: 'ubuntu-20.04'
+      cmd: "./.ci/validation.sh test-ja"
+
+    # unit tests in Portuguese locale (openjdk11)
+    'test-pt':
+      image: 'ubuntu-20.04'
+      cmd: "./.ci/validation.sh test-pt"
+
+    # unit tests in Turkish locale (openjdk11)
+    'test-tr':
+      image: 'ubuntu-20.04'
+      cmd: "./.ci/validation.sh test-tr"
+
+    # unit tests in Russian locale (openjdk11)
+    'test-ru':
+      image: 'ubuntu-20.04'
+      cmd: "./.ci/validation.sh test-ru"
+
+    # unit tests in Albanian locale (openjdk11)
+    'test-al':
+      image: 'ubuntu-20.04'
+      cmd: "./.ci/validation.sh test-al"
+
+     # OpenJDK11 verify
     'OpenJDK11 verify':
       image: 'ubuntu-20.04'
       cmd: "mvn -e --no-transfer-progress verify"
