@@ -1,13 +1,3 @@
-^\/\*
-com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck
-charset = .*?
-fileExtensions = .*?
-header = .*?
-headerFile = .*
-multiLines = .*?
-ignoreLines = .*
-
-^\*\/
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 
