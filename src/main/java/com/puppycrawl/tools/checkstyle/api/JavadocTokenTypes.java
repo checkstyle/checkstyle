@@ -1060,8 +1060,7 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>&lt;a href="https://checkstyle.org"&gt;Checkstyle&lt;/a&gt;</
-     * code></pre>
+     * <pre><code>&lt;a href="https://checkstyle.org"&gt;Checkstyle&lt;/a&gt;</code></pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>
@@ -1082,7 +1081,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDJGIJB">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
      * Oracle Docs</a>
      * @see #START
      * @see #END
@@ -1113,7 +1112,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDJGIJB">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
      * Oracle Docs</a>
      * @see #HTML_TAG_NAME
      * @see #END
@@ -1162,7 +1161,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDJGIJB">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
      * Oracle Docs</a>
      * @see #START
      * @see #END
@@ -1194,7 +1193,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDJGIJB">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
      * Oracle Docs</a>
      * @see #START
      * @see #SLASH
@@ -1232,7 +1231,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDJGIJB">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
      * Oracle Docs</a>
      * @see #START
      * @see #HTML_TAG_NAME
@@ -1267,7 +1266,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDJGIJB">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
      * Oracle Docs</a>
      * @see #HTML_TAG_NAME
      * @see #ATTR_VALUE
@@ -1311,7 +1310,7 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @see
-     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDJGIJB">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
      * Oracle Docs</a>
      * @see #HTML_TAG_NAME
      * @see #EQUALS
