@@ -121,7 +121,7 @@ public final class Main {
         try {
             final ParseResult parseResult = commandLine.parseArgs(args);
             if (parseResult.isVersionHelpRequested()) {
-                System.out.println(getVersionString());
+                printVersionToSystemOutput();
             }
             else if (parseResult.isUsageHelpRequested()) {
                 commandLine.usage(System.out);
@@ -157,12 +157,23 @@ public final class Main {
     }
 
     /**
+     * Prints version string when the user requests version help (--version or -V).
+     *
+     * @noinspection UseOfSystemOutOrSystemErr
+     * @noinspectionreason UseOfSystemOutOrSystemErr - driver class for Checkstyle requires
+     *      usage of System.out and System.err
+     */
+    private static void printVersionToSystemOutput() {
+        System.out.println("Checkstyle version: " + getVersionString());
+    }
+
+    /**
      * Returns the version string printed when the user requests version help (--version or -V).
      *
      * @return a version string based on the package implementation version
      */
     private static String getVersionString() {
-        return "Checkstyle version: " + Main.class.getPackage().getImplementationVersion();
+        return Main.class.getPackage().getImplementationVersion();
     }
 
     /**
@@ -330,8 +341,6 @@ public final class Main {
             }
             if (LOG.isDebugEnabled()) {
                 LOG.debug("Checkstyle debug logging enabled");
-                LOG.debug("Running Checkstyle with version: "
-                        + Main.class.getPackage().getImplementationVersion());
             }
 
             // run Checker
