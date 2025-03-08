@@ -42,7 +42,7 @@ public class InputIllegalTypeRecordsWithMemberModifiersPublicProtectedStatic
     }
 
     public record IdentifiersPair2(
-        HashSet x, // violation
+        HashSet x, // violation, 'Usage of type HashSet is not allowed'.
         String identifier
     )
     {

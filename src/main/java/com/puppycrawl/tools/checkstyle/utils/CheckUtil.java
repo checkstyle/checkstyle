@@ -314,9 +314,14 @@ public final class CheckUtil {
      * @return the access modifier of the method/constructor.
      */
     public static AccessModifierOption getAccessModifierFromModifiersToken(DetailAST ast) {
-        final DetailAST modsToken = ast.findFirstToken(TokenTypes.MODIFIERS);
-        AccessModifierOption accessModifier =
-                getAccessModifierFromModifiersTokenDirectly(modsToken);
+        AccessModifierOption accessModifier;
+        if (ast.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+            accessModifier = AccessModifierOption.PUBLIC;
+        }
+        else {
+            final DetailAST modsToken = ast.findFirstToken(TokenTypes.MODIFIERS);
+            accessModifier = getAccessModifierFromModifiersTokenDirectly(modsToken);
+        }
 
         if (accessModifier == AccessModifierOption.PACKAGE) {
             if (ScopeUtil.isInEnumBlock(ast) && ast.getType() == TokenTypes.CTOR_DEF) {

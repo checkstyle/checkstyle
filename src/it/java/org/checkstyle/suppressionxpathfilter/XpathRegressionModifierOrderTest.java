@@ -31,11 +31,11 @@ import com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck;
 
 public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
 
-    private final Class<ModifierOrderCheck> clazz = ModifierOrderCheck.class;
+    private static final Class<ModifierOrderCheck> CLAZZ = ModifierOrderCheck.class;
 
     @Override
     protected String getCheckName() {
-        return clazz.getSimpleName();
+        return CLAZZ.getSimpleName();
     }
 
     @Test
@@ -43,10 +43,10 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
         final File fileToProcess = new File(
             getPath("InputXpathModifierOrderMethod.java"));
 
-        final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "4:13: " + getCheckMessage(clazz,
+            "4:13: " + getCheckMessage(CLAZZ,
                     ModifierOrderCheck.MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
         };
 
@@ -68,10 +68,10 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
         final File fileToProcess = new File(
             getPath("InputXpathModifierOrderVariable.java"));
 
-        final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "3:12: " + getCheckMessage(clazz,
+            "3:12: " + getCheckMessage(CLAZZ,
                     ModifierOrderCheck.MSG_MODIFIER_ORDER, "private"),
         };
 
@@ -88,10 +88,10 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
         final File fileToProcess = new File(
             getPath("InputXpathModifierOrderAnnotation.java"));
 
-        final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "3:8: " + getCheckMessage(clazz,
+            "3:8: " + getCheckMessage(CLAZZ,
                     ModifierOrderCheck.MSG_ANNOTATION_ORDER, "@InterfaceAnnotation"),
         };
 

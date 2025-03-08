@@ -8,8 +8,8 @@ format = ^foo$
 package com.puppycrawl.tools.checkstyle.checks.naming.classtypeparametername;
 
 import java.io.Serializable;
-
-public class InputClassTypeParameterName1<t> // violation
+// violation below  'Name 't' must match pattern'
+public class InputClassTypeParameterName1<t>
 {
     public <TT> void foo() { }
 
@@ -36,8 +36,8 @@ class Other1 <foo extends Serializable & Cloneable> {
         }
     }
 }
-
-class MoreOther1 <T extends Cloneable> { // violation
+// violation below 'Name 'T' must match pattern'
+class MoreOther1 <T extends Cloneable> {
 
     <E extends T> void getMore() {
         new Other() {

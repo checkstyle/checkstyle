@@ -607,13 +607,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference Main.class.getPackage()</message>
-    <lineContent>+ Main.class.getPackage().getImplementationVersion());</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference Main.class.getPackage()</message>
     <lineContent>private final String packageName = Main.class.getPackage().getName();</lineContent>
   </checkerFrameworkError>
 
@@ -621,7 +614,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference Main.class.getPackage()</message>
-    <lineContent>return &quot;Checkstyle version: &quot; + Main.class.getPackage().getImplementationVersion();</lineContent>
+    <lineContent>return Main.class.getPackage().getImplementationVersion();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -688,6 +681,17 @@
     <details>
       type of expression: @Initialized @Nullable Configuration
       method return type: @Initialized @NonNull Configuration
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return Main.class.getPackage().getImplementationVersion();</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable String
+      method return type: @Initialized @NonNull String
     </details>
   </checkerFrameworkError>
 
@@ -4275,13 +4279,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocVariableCheck.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field excludeScope</message>
-    <lineContent>private Scope excludeScope;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocVariableCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field ignoreNamePattern</message>
     <lineContent>private Pattern ignoreNamePattern;</lineContent>
   </checkerFrameworkError>
@@ -4679,6 +4676,17 @@
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
     <lineContent>result = latestDefinition == methodDef.getParent().getParent();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoWhitespaceAfterCheck.java</fileName>
+    <specifier>prefer.map.and.orelse</specifier>
+    <message>It is better style to use map and orElse.</message>
+    <lineContent>else if (objectArrayType.isPresent()) {</lineContent>
+    <details>
+      Consider changing to:
+      typeLastNode.map(ENCLOSINGCLASS::orElseThrow).orElse(parent.getFirstChild())
+    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
