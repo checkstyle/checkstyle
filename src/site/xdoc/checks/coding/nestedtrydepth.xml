@@ -37,7 +37,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NestedTryDepth"/&gt;
@@ -47,7 +47,7 @@
         <p id="Example1-code">
           Example1:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 {
   void testMethod() {
     try {
@@ -78,7 +78,7 @@ public class Example1 {
         <p id="Example2-config">
           To configure the check to allow nesting depth 3:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NestedTryDepth"&gt;
@@ -90,7 +90,7 @@ public class Example1 {
         <p id="Example2-code">
           Example2:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 {
   void testMethod() {
     try {

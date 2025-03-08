@@ -45,7 +45,7 @@
         <code>taskdef</code> declaration:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;taskdef resource=&quot;com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties&quot;
          classpath=&quot;/path/to/checkstyle-${projectVersion}-all.jar&quot;/&gt;
       </code></pre></div>
@@ -56,7 +56,7 @@
         declaration:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;taskdef
   resource=&quot;com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties&quot;/&gt;
       </code></pre></div>
@@ -70,7 +70,7 @@
         for more details).  For example:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;project name="foo" ...
          xmlns:cs="antlib:com.puppycrawl.tools.checkstyle.ant"&gt;
 ...
@@ -346,7 +346,7 @@
         </b>
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;checkstyle config=&quot;docs/sun_checks.xml&quot; file=&quot;Check.java&quot;/&gt;
       </code></pre></div>
 
@@ -356,7 +356,7 @@
           and an expanded property value
         </b>
       </p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;checkstyle config=&quot;/path/to/site/sun_checks.xml&quot;&gt;
   &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
 
@@ -370,7 +370,7 @@
           Run checkstyle on a previously defined source path.
         </b>
       </p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;!-- Somewhere in your config --&gt;
 &lt;path id="project.sourcepath"&gt;
   &lt;fileset dir="src"
@@ -391,7 +391,7 @@
           output in plain format, and files in XML &amp; SARIF format
         </b>
       </p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;checkstyle config=&quot;docs/sun_checks.xml&quot;&gt;
   &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
   &lt;formatter type=&quot;plain&quot;/&gt;
@@ -407,7 +407,7 @@
           names file
         </b>
       </p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;checkstyle config=&quot;docs/sun_checks.xml&quot;
             packageNamesFile=&quot;myPackageNames.xml&quot;
             file=&quot;Check.java&quot;/&gt;
@@ -419,7 +419,7 @@
           style violations are detected
         </b>
       </p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;target name=&quot;checkstyle&quot;
         description=&quot;Generates a report of code convention violations.&quot;>
 

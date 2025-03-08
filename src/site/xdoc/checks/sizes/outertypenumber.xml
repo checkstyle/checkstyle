@@ -45,7 +45,7 @@
         <p id="Example1-config">
           To configure the check to accept 1 outer type per file:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="OuterTypeNumber"/&gt;
@@ -53,7 +53,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 // violation 2 lines above 'Outer types defined is 3 (max allowed is 1)'
 
 public class Example1 {
@@ -70,7 +70,7 @@ enum outer {
         <p id="Example2-config">
           To configure the check to accept 2 outer types per file:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="OuterTypeNumber"&gt;
@@ -80,7 +80,7 @@ enum outer {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 {
 }
 

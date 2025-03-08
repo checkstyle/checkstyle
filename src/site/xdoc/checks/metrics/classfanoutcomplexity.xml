@@ -81,7 +81,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassFanOutComplexity"/&gt;
@@ -94,7 +94,7 @@
         <p id="Example1-code">
           The check passes without violations in the following:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1{
   Set set = new HashSet(); // Set, HashSet ignored
   Map map = new HashMap(); // Map, HashMap ignored
@@ -114,7 +114,7 @@ class Time1 {}
         <p id="Example2-config">
           To configure the check with a threshold of 2:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassFanOutComplexity"&gt;
@@ -129,7 +129,7 @@ class Time1 {}
         <p id="Example2-code">
           The check results in a violation in the following:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2{ // violation 'Class Fan-Out Complexity is 5 (max allowed is 2)'
   Set set = new HashSet(); // Set, HashSet ignored
   Map map = new HashMap(); // Map, HashMap ignored
@@ -151,7 +151,7 @@ class Time2 {}
           To configure the check with three excluded classes <code>HashMap</code>,
           <code>HashSet</code> and <code>Place3</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassFanOutComplexity"&gt;
@@ -167,7 +167,7 @@ class Time2 {}
         <p id="Example3-code">
           The check results in a violation in the following:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3{ // violation 'Class Fan-Out Complexity is 7 (max allowed is 3)'
   Set set = new HashSet(); // Set counted 1, HashSet ignored
   Map map = new HashMap(); // Map counted 2, HashMap ignored
@@ -188,7 +188,7 @@ class Time3 {}
           To configure the check to exclude classes with a regular expression
           <code>.*Reader$</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassFanOutComplexity"&gt;
@@ -204,7 +204,7 @@ class Time3 {}
         <p id="Example4-code">
           The check results in a violation in the following:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example4{ // violation 'Class Fan-Out Complexity is 4 (max allowed is 3)'
   Set set = new HashSet(); // Set, HashSet ignored
   Map map = new HashMap(); // Map, HashMap ignored
@@ -225,7 +225,7 @@ class Time4 {}
         <p id="Example5-config">
           To configure the check with an excluded package <code>java.io</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassFanOutComplexity"&gt;
@@ -241,7 +241,7 @@ class Time4 {}
         <p id="Example5-code">
           The check passes without violations in the following:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example5{
   Set set = new HashSet(); // Set, HashSet ignored
   Map map = new HashMap(); // Map, HashMap ignored
@@ -289,7 +289,7 @@ class Time5 {}
           even if it was listed in the <code>excludedPackages</code> parameter. For example,
           assuming the config is
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassFanOutComplexity"&gt;
@@ -305,7 +305,7 @@ class Time5 {}
         <p id="Example6-code">
           And the file is:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example6{ // violation 'Class Fan-Out Complexity is 4 (max allowed is 3)'
   Set set = new HashSet(); // Set, HashSet ignored
   Map map = new HashMap(); // Map, HashMap ignored

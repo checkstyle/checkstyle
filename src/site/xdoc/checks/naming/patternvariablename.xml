@@ -40,7 +40,7 @@
           To configure the check:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="PatternVariableName"/&gt;
@@ -48,7 +48,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
   void foo(Object o1){
     if (o1 instanceof String STRING) {} // violation
@@ -62,7 +62,7 @@ class Example1 {
           An example of how to configure the check for names that have a lower case letter,
           followed by letters and digits, optionally separated by underscore:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="PatternVariableName"&gt;
@@ -72,7 +72,7 @@ class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 {
   void foo(Object o1){
     if (o1 instanceof String STRING) {} // violation
@@ -86,7 +86,7 @@ class Example2 {
           An example of how to configure the check to that all variables have 3 or more
           chars in name:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="PatternVariableName"&gt;
@@ -96,7 +96,7 @@ class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 {
   void foo(Object o1){
     if (o1 instanceof String STRING) {} // violation
@@ -110,7 +110,7 @@ class Example3 {
           An example of how to configure the check with different format for final and non-final
           pattern variables:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="PatternVariableName"&gt;
@@ -138,7 +138,7 @@ class Example3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example4 {
   void foo(Object o1){
     if (o1 instanceof String BAD) {} // violation

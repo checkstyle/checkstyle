@@ -104,7 +104,7 @@
           <code>// CHECKSTYLE:ON</code> (the default comments).
           Checker is configured to check only properties files using UniqueProperties check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;property name="fileExtensions" value="properties"/&gt;
 
@@ -114,7 +114,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-raw">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 # // CHECKSTYLE:OFF
 # suppressed violation below
 keyB=value1
@@ -130,7 +130,7 @@ keyC=value5
           containing <code>RESUME CHECK</code>.
           Checker is configured to check only properties files using UniqueProperties check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;property name="fileExtensions" value="properties"/&gt;
 
@@ -144,7 +144,7 @@ keyC=value5
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-raw">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 # STOP CHECK
 # suppressed violation below
 keyB=value1
@@ -161,7 +161,7 @@ keyC=value5
           Checker is configured to check only properties files using both UniqueProperties check
           and OrderedProperties check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;property name="fileExtensions" value="properties"/&gt;
 
@@ -177,7 +177,7 @@ keyC=value5
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-raw">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 # STOP UNIQUE CHECK
 # (OrderedProperties check is still enabled)
 # suppressed violation below
@@ -196,7 +196,7 @@ keyC=value5
           Checker is configured to check only XML files using RegexpSingleline check to detect
           disallowed 'code' values for the 'type' parameter:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;property name="fileExtensions" value="xml"/&gt;
 
@@ -216,7 +216,7 @@ keyC=value5
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-raw">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 &lt;project&gt;
   &lt;p&gt;Examples:&lt;/p&gt;
 &lt;!-- CSOFF: RegexpSinglelineCheck --&gt;
@@ -242,7 +242,7 @@ keyC=value5
           Checker is configured to check only XML files using RegexpSingleline check to detect
           disallowed 'code' values for the 'type' parameter:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;property name="fileExtensions" value="xml"/&gt;
 
@@ -262,7 +262,7 @@ keyC=value5
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example5-raw">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 &lt;project&gt;
   &lt;p&gt;Examples:&lt;/p&gt;
 &lt;!-- CSOFF: ALMOST_ALL --&gt;
@@ -290,7 +290,7 @@ keyC=value5
           Checker is configured to check only XML files using RegexpSingleline check to detect
           disallowed 'code' and 'config' values for the 'type' parameter:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;property name="fileExtensions" value="xml"/&gt;
 
@@ -317,7 +317,7 @@ keyC=value5
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example6-raw">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 &lt;project&gt;
   &lt;p&gt;Examples:&lt;/p&gt;
 &lt;!-- CSOFF --&gt;
@@ -350,7 +350,7 @@ keyC=value5
           Checker is configured to check only XML files using RegexpSingleline check to detect
           disallowed 'code' and 'config' values for the 'type' parameter:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;property name="fileExtensions" value="xml"/&gt;
 
@@ -378,7 +378,7 @@ keyC=value5
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example7-raw">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 &lt;project&gt;
   &lt;p&gt;Examples:&lt;/p&gt;
 &lt;!-- CSOFF typeCode (OK to use examples of type code here) --&gt;
@@ -402,7 +402,7 @@ keyC=value5
           usage of JOIN operations and LineLength check to detect lines exceeding 60
           characters:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;property name="fileExtensions" value="sql"/&gt;
 
@@ -424,7 +424,7 @@ keyC=value5
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example8-raw">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 -- CSOFF: RegexpSinglelineCheck
 -- CSOFF: LineLengthCheck
 SELECT name, job_name
@@ -442,7 +442,7 @@ WHERE u.registration_date &gt;= '2023-01-01' AND u.status = 'active';
           Checker is configured to use LineLength check to detect lines exceeding the maximum
           length of 100 characters:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="LineLength"&gt;
       &lt;property name="max" value="100"/&gt;
@@ -456,7 +456,7 @@ WHERE u.registration_date &gt;= '2023-01-01' AND u.status = 'active';
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example9-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example9 {
 
   // suppressed violation below, opening/closing quotes are 'offCommentFormat' and 'onCommentFormat'

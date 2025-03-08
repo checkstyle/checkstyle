@@ -62,7 +62,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MultipleStringLiterals"/&gt;
@@ -70,7 +70,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example1 {
   String a = "StringContents"; // violation, "StringContents" occurs twice
   String a1 = "unchecked";
@@ -87,7 +87,7 @@ public class Example1 {
           To configure the check so that it allows two occurrences of each
           string:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MultipleStringLiterals"&gt;
@@ -97,7 +97,7 @@ public class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example2 {
   String a = "StringContents"; // OK, two occurrences are allowed
   String a1 = "unchecked";
@@ -113,7 +113,7 @@ public class Example2 {
         <p id="Example3-config">
           To configure the check so that it ignores &quot;, &quot; and empty strings:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MultipleStringLiterals"&gt;
@@ -124,7 +124,7 @@ public class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example3 {
   String a = "StringContents"; // violation, "StringContents" occurs twice
   String a1 = "unchecked";
@@ -142,7 +142,7 @@ public class Example3 {
           syntactical contexts, even in annotations like
           <code>@SuppressWarnings(&quot;unchecked&quot;)</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MultipleStringLiterals"&gt;
@@ -152,7 +152,7 @@ public class Example3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public class Example4 {
   String a = "StringContents"; // violation, "StringContents" occurs twice
   String a1 = "unchecked"; // // violation, "unchecked" occurs twice

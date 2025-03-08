@@ -721,7 +721,7 @@
         TreeWalker module anymore. For example, the following Checkstyle
         4.4 configuration file:
       </p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;Header&quot;&gt;
@@ -732,7 +732,7 @@
       </code></pre></div>
 
       <p>becomes the following Checkstyle 5.0 configuration file:</p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;Header&quot;&gt;
     &lt;property name=&quot;headerFile&quot; value=&quot;${checkstyle.header.file}&quot;/&gt;

@@ -148,13 +148,12 @@ casegroup
 catchparametername
 cba
 cbeaff
+ccc
 CComments
 cdata
 cde
 cdfd
 Cdi
-cdn
-cdnjs
 Cfg
 Cfml
 Cfoo
@@ -206,7 +205,6 @@ clazz
 clemens
 Clickable
 Cloneable
-cloudflare
 clss
 cmdline
 cmp
@@ -505,7 +503,6 @@ globbing
 GMetrics
 gnupg
 google
-googleapis
 googleblog
 googleecommon
 googlegroups
@@ -717,11 +714,9 @@ jpg
 jprofiler
 jq
 jqno
-jquery
 jre
 JScroll
 Jscs
-jsdelivr
 jsecurity
 Jsf
 jshiell
@@ -925,6 +920,7 @@ NODESET
 noembed
 noenumtrailingcomma
 nofinalizer
+nohighlight
 noinspection
 noinspectionreason
 nojavadoc
@@ -1281,7 +1277,6 @@ STT
 Studman
 Styleable
 styleguide
-stylesheet
 subdir
 subelements
 subext
@@ -1441,6 +1436,7 @@ VK
 Vladislav
 Vladlis
 vm
+vmatchive
 vnd
 vscode
 Vtl

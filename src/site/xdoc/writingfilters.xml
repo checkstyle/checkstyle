@@ -59,7 +59,7 @@
         introspection to set JavaBean properties such as <code>files</code>.
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+      <div class="wrapper"><pre><code class="language-java">
 package com.mycompany.filters;
 
 import java.util.regex.Matcher;
@@ -117,7 +117,7 @@ public class FilesFilter
         include the following module in the configuration file:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 &lt;module name=&quot;com.mycompany.filters.FilesFilter&quot;&gt;
   &lt;property name=&quot;files&quot; value=&quot;Generated&quot;/&gt;
 &lt;/module&gt;

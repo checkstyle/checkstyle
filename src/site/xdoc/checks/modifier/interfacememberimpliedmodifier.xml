@@ -152,7 +152,7 @@ public interface AddressFactory {
         <p id="Example1-config">
           Configuration:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="InterfaceMemberImpliedModifier"/&gt;
@@ -162,7 +162,7 @@ public interface AddressFactory {
         <p id="Example1-code">
           Code:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public interface Example1 {
 
   public static final String UNKNOWN = "Unknown";
@@ -196,7 +196,7 @@ public interface Example1 {
         <p id="Example2-config">
           Configuration:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="InterfaceMemberImpliedModifier"&gt;
@@ -209,7 +209,7 @@ public interface Example1 {
         <p id="Example2-code">
           Code:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 public interface Example2 {
 
   public static final String UNKNOWN = "Unknown";

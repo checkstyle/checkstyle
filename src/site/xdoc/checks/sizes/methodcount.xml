@@ -141,7 +141,7 @@ public class ExampleClass {
         <p id="Example1-config">
           To configure the default check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodCount"/&gt;
@@ -149,7 +149,7 @@ public class ExampleClass {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example1 {
 
   public void outerMethod1(int i) {}
@@ -174,7 +174,7 @@ class Example1 {
         <p id="Example2-config">
           To configure the check to allow no more than 5 methods per type declaration:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodCount"&gt;
@@ -184,7 +184,7 @@ class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example2 { // violation, 'Total number of methods is 6 (max allowed is 5)'
 
   public void outerMethod1(int i) {}
@@ -210,7 +210,7 @@ class Example2 { // violation, 'Total number of methods is 6 (max allowed is 5)'
           To configure the check to allow no more than 2 public methods per
           type declaration, and 6 methods in total:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodCount"&gt;
@@ -221,7 +221,7 @@ class Example2 { // violation, 'Total number of methods is 6 (max allowed is 5)'
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre><code class="language-java">
 class Example3 { // violation, 'Number of public methods is 3 (max allowed is 2)'
 
   public void outerMethod1(int i) {}

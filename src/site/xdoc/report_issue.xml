@@ -66,7 +66,7 @@
         Example of report that we expect (you can skip <code>-Duser.language=en
         -Duser.country=US</code> if your default locale is English):
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
+        <div class="wrapper"><pre><code class="language-java"><![CDATA[
 Check documentation: https://checkstyle.org/checks/whitespace/whitespacearound.html#WhitespaceAround
 
 /var/tmp $ javac Test.java
@@ -103,7 +103,7 @@ Expected: violation on first line.
         For Windows users, please use "type" command instead of "cat".
         Example of report that we expect:
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml"><![CDATA[
+        <div class="wrapper"><pre><code class="language-xml"><![CDATA[
 Check documentation: https://checkstyle.org/checks/misc/indentation.html
 
 D:\>type config.xml
@@ -173,7 +173,7 @@ expected level should be 12. [Indentation]
       <p>
         Example of Feature Request/Enhancement that we expect:
       </p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+      <div class="wrapper"><pre><code class="language-java">
 Check documentation: https://checkstyle.org/checks/whitespace/whitespacearound.html#WhitespaceAround
 
 Describe the problem in detail:
@@ -229,7 +229,7 @@ Additional context, screenshots or examples:
       <p>
         Example of Check/Module Request that we expect:
       </p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre><code class="language-xml">
 Describe the problem in detail:
 
 /var/tmp $ cat config.xml
