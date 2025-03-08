@@ -30,11 +30,11 @@ import com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck;
 
 public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport {
 
-    private final Class<EqualsAvoidNullCheck> clazz = EqualsAvoidNullCheck.class;
+    private static final Class<EqualsAvoidNullCheck> CLAZZ = EqualsAvoidNullCheck.class;
 
     @Override
     protected String getCheckName() {
-        return clazz.getSimpleName();
+        return CLAZZ.getSimpleName();
     }
 
     @Test
@@ -42,10 +42,10 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
         final File fileToProcess = new File(
             getPath("InputXpathEqualsAvoidNull.java"));
 
-        final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "6:26: " + getCheckMessage(clazz,
+            "6:26: " + getCheckMessage(CLAZZ,
                     EqualsAvoidNullCheck.MSG_EQUALS_AVOID_NULL),
         };
 
@@ -65,10 +65,10 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
         final File fileToProcess = new File(
             getPath("InputXpathEqualsAvoidNullIgnoreCase.java"));
 
-        final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "6:36: " + getCheckMessage(clazz,
+            "6:36: " + getCheckMessage(CLAZZ,
                     EqualsAvoidNullCheck.MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
         };
 

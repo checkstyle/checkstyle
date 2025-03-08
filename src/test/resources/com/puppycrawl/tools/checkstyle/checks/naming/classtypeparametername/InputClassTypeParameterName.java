@@ -9,15 +9,15 @@ package com.puppycrawl.tools.checkstyle.checks.naming.classtypeparametername;
 
 import java.io.Serializable;
 
-public class InputClassTypeParameterName<t> // violation
+public class InputClassTypeParameterName<t> // violation 'Name 't' must match pattern'
 {
     public <TT> void foo() { }
 
     <e_e> void foo(int i) {
     }
 }
-
-class Other <foo extends Serializable & Cloneable> { // violation
+// violation below 'Name 'foo' must match pattern'
+class Other <foo extends Serializable & Cloneable> {
 
     foo getOne() {
         return null;//comment
@@ -30,8 +30,8 @@ class Other <foo extends Serializable & Cloneable> { // violation
     <foo extends Runnable> foo getShadow() {
         return null;
     }
-
-    static class Junk <foo> { // violation
+// violation below 'Name 'foo' must match pattern'
+    static class Junk <foo> {
         <_fo extends foo> void getMoreFoo() {
         }
     }

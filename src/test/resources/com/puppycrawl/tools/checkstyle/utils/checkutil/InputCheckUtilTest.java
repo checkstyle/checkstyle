@@ -71,4 +71,8 @@ public class InputCheckUtilTest<V, C> {
     public interface Example {
         void method();
     }
+
+    enum Enum {
+        A;
+    }
 }

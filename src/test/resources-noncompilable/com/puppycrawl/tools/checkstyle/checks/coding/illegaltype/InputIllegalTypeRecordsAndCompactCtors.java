@@ -24,20 +24,26 @@ import java.util.TreeSet;
 
 public class InputIllegalTypeRecordsAndCompactCtors {
     record MyTestRecord
-            (LinkedHashMap<Integer, Integer> linkedHashMap) { // violation
+            (LinkedHashMap<Integer, Integer> linkedHashMap) {
+        // violation above, 'Usage of type 'LinkedHashMap' is not allowed'
 
     }
 
-    record MyTestRecord2(String string) implements Cloneable { // violation
-        static LinkedHashMap<Integer, Integer> lhm // violation
+    record MyTestRecord2(String string) implements Cloneable {
+        // violation above, 'Usage of type 'Cloneable' is not allowed'
+        static LinkedHashMap<Integer, Integer> lhm
+                // violation above, 'Usage of type 'LinkedHashMap' is not allowed'
                 = new LinkedHashMap<>();
         public MyTestRecord2 {
-            TreeSet<String> treeSet = new TreeSet<>(); // violation
+            TreeSet<String> treeSet = new TreeSet<>();
+            // violation above, 'Usage of type 'TreeSet' is not allowed'
         }
     }
 
-    record MyTestRecord3(String str, TreeSet treeSet) { // violation
-        void foo(HashMap<Integer, Integer> hashMap) { // violation
+    record MyTestRecord3(String str, TreeSet treeSet) {
+        // violation above, 'Usage of type 'TreeSet' is not allowed'
+        void foo(HashMap<Integer, Integer> hashMap) {
+            // violation above, 'Usage of type 'HashMap' is not allowed'
 
         }
     }
@@ -45,7 +51,8 @@ public class InputIllegalTypeRecordsAndCompactCtors {
     record MyTestRecord4(int x, int y) {
         public MyTestRecord4(TreeSet treeSet) { // does not check constructor params
             this(4, 5);
-            LinkedHashMap<Integer, Integer> linkedHashMap // violation
+            LinkedHashMap<Integer, Integer> linkedHashMap
+                    // violation above, 'Usage of type 'LinkedHashMap' is not allowed'
                     = new LinkedHashMap<>();
 
         }

@@ -30,12 +30,12 @@ import com.puppycrawl.tools.checkstyle.checks.coding.AvoidDoubleBraceInitializat
 
 public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractXpathTestSupport {
 
-    private final Class<AvoidDoubleBraceInitializationCheck> clazz =
+    private static final Class<AvoidDoubleBraceInitializationCheck> CLAZZ =
         AvoidDoubleBraceInitializationCheck.class;
 
     @Override
     protected String getCheckName() {
-        return clazz.getSimpleName();
+        return CLAZZ.getSimpleName();
     }
 
     @Test
@@ -43,10 +43,10 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
         final File fileToProcess = new File(
             getPath("InputXpathAvoidDoubleBraceInitializationClassFields.java"));
 
-        final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "6:41: " + getCheckMessage(clazz, AvoidDoubleBraceInitializationCheck.MSG_KEY),
+            "6:41: " + getCheckMessage(CLAZZ, AvoidDoubleBraceInitializationCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -68,10 +68,10 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
         final File fileToProcess = new File(
             getPath("InputXpathAvoidDoubleBraceInitializationMethodDef.java"));
 
-        final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
-            "7:31: " + getCheckMessage(clazz, AvoidDoubleBraceInitializationCheck.MSG_KEY),
+            "7:31: " + getCheckMessage(CLAZZ, AvoidDoubleBraceInitializationCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(

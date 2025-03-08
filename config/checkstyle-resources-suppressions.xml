@@ -100,6 +100,8 @@
     files="[\\/]InputRegexpTrailingComment10\.java"/>
   <suppress id="noTrailingWhitespace"
     files="[\\/]InputRegexpSinglelineJavaTrailingComment10\.java"/>
+  <suppress id="noTrailingWhitespace"
+            files="[\\/]javadocstyle[\\/]InputJavadocStyleTrailingSpace\.java"/>
   
   <!-- Input file contains trailing whitespace to kill pitest mutation -->
   <suppress id="noTrailingWhitespace" 
@@ -483,10 +485,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]nofinalizer[\\/]InputNoFinalizerFallThrough\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]defaultcomeslast[\\/]InputDefaultComesLast\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastSkipIfLastAndSharedWithCase\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]declarationorder[\\/]InputDeclarationOrder\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]declarationorder[\\/]InputDeclarationOrderOnlyModifiers\.java"/>
@@ -621,8 +619,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]finalparameters[\\/]InputFinalParameters\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]modifier[\\/]redundantmodifier[\\/]InputRedundantModifierIt\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]metrics[\\/]cyclomaticcomplexity[\\/]InputCyclomaticComplexity\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityRemoveIncorrectAnnotationToken\.java"/>
@@ -742,8 +738,6 @@
     files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]multiplestringliterals[\\/]InputMultipleStringLiteralsTextBlocks\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]blocks[\\/]needbraces[\\/]InputNeedBracesTestSwitchExpression\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]blocks[\\/]emptyblock[\\/]InputEmptyBlockSwitchExpressions\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]metrics[\\/]cyclomaticcomplexity[\\/]InputCyclomaticComplexityRecords\.java"/>
   <suppress checks="FileLength"

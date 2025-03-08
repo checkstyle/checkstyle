@@ -1,4 +1,4 @@
-/* // violation
+/* // violation 'File length is 228 lines (max allowed is 20)'
 FileLength
 max = 20
 fileExtensions = (default)""

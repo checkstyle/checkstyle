@@ -8,6 +8,12 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
+    inputs:
+      commits:
+        description: 'Json array of Github commits'
+        required: true
+        type: string
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -28,5 +34,12 @@ jobs:
       - name: Set milestone on issue
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_INPUT_COMMITS: ${{ inputs.commits }}
+          GITHUB_EVENT_COMMITS: ${{ toJSON(github.event.commits) }}
         run: |
-          ./.ci/set-milestone-on-referenced-issue.sh '${{ toJSON(github.event.commits) }}'
+          if [[ -z "$GITHUB_INPUT_COMMITS" ]]; then
+            COMMITS="$GITHUB_EVENT_COMMITS"
+          else
+            COMMITS="$GITHUB_INPUT_COMMITS"
+          fi
+          ./.ci/set-milestone-on-referenced-issue.sh "$COMMITS"

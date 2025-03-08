@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>ScopeUtil.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ScopeUtil</mutatedClass>
+    <mutatedMethod>isInBlockOf</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>token != null &amp;&amp; !returnValue;</lineContent>
+  </mutation>
+</suppressedMutations>

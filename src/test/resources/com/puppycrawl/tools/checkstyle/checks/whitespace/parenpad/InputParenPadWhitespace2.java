@@ -91,11 +91,11 @@ class InputParenPadWhitespace2
     /** test casts **/
     private void testCasts()
     {
-        Object o = (Object) new Object(); // ok
+        Object o = (Object) new Object(); // some comment
         o = (Object)o;
-        o = ( Object ) o; // ok
+        o = ( Object ) o; // some comment
         o = (Object)
-            o; // ok
+            o; // some comment
     }
 
     /** test questions **/
@@ -147,10 +147,10 @@ class InputParenPadWhitespace2
     /** assert statement test */
     public void assertTest()
     {
-        // OK
+        // some comment
         assert true;
 
-        // OK
+        // some comment
         assert true : "Whups";
 
         // evil colons, should be OK

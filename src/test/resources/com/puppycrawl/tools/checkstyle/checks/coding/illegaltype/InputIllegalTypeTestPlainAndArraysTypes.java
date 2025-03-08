@@ -17,13 +17,13 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 
 public class InputIllegalTypeTestPlainAndArraysTypes {
 
-    public Boolean flag; // violation
+    public Boolean flag; // violation, 'Usage of type Boolean is not allowed'.
 
     public Boolean[] array;
 
-    public Boolean[][] matrix; // violation
+    public Boolean[][] matrix; // violation, 'Usage of type Boolean[][] is not allowed'.
 
-    public Boolean getFlag() { // violation
+    public Boolean getFlag() { // violation, 'Usage of type Boolean is not allowed'.
         return flag;
     }
 
@@ -32,8 +32,10 @@ public class InputIllegalTypeTestPlainAndArraysTypes {
         return value;
     }
 
-    public Boolean[][] getMatrix() { // violation
-        Boolean[][] value = matrix != null ? matrix : new Boolean[0][0]; // violation
+    public Boolean[][] getMatrix() {
+        // violation above, 'Usage of type 'Boolean\[\]\[\]' is not allowed'
+        Boolean[][] value = matrix != null ? matrix : new Boolean[0][0];
+        // violation above, 'Usage of type 'Boolean\[\]\[\]' is not allowed'
         return value;
     }
 

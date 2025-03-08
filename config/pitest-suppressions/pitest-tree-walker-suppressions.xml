@@ -55,15 +55,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>SuppressionsStringPrinter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.SuppressionsStringPrinter</mutatedClass>
-    <mutatedMethod>printSuppressions</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/io/File::getAbsoluteFile with receiver</description>
-    <lineContent>final FileText fileText = new FileText(file.getAbsoluteFile(),</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>TreeWalker.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
     <mutatedMethod>createNewCheckSortedSet</mutatedMethod>

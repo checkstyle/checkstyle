@@ -93,6 +93,10 @@
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]translation[\\/]Expected.*\.xml"/>
 
+  <!-- the files in this folder cannot be line wrapped, we can not change expected AST -->
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]javadoc[\\/]javadocTags[\\/]expected.*\.txt"/>
+
   <!-- property names a too long, nothing we can do -->
   <suppress id="lineLength"
          files="config[\\/]org.eclipse.jdt.core.prefs"/>

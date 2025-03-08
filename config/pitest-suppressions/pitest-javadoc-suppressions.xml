@@ -64,51 +64,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>JavadocStyleCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck</mutatedClass>
-    <mutatedMethod>trimTail</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/StringBuilder::deleteCharAt</description>
-    <lineContent>builder.deleteCharAt(index);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>JavadocStyleCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck</mutatedClass>
-    <mutatedMethod>trimTail</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/StringBuilder::deleteCharAt with receiver</description>
-    <lineContent>builder.deleteCharAt(index);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>JavadocStyleCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck</mutatedClass>
-    <mutatedMethod>trimTail</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/Character::isWhitespace</description>
-    <lineContent>if (Character.isWhitespace(builder.charAt(index))) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>JavadocStyleCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck</mutatedClass>
-    <mutatedMethod>trimTail</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/StringBuilder::charAt</description>
-    <lineContent>if (Character.isWhitespace(builder.charAt(index))) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>JavadocStyleCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck</mutatedClass>
-    <mutatedMethod>trimTail</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>if (Character.isWhitespace(builder.charAt(index))) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>JavadocTagInfo.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo$11</mutatedClass>
     <mutatedMethod>isValidOn</mutatedMethod>
@@ -142,14 +97,5 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
     <description>removed conditional - replaced equality check with true</description>
     <lineContent>return astType == TokenTypes.VARIABLE_DEF</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TagParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
-    <mutatedMethod>skipHtmlComment</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser::findChar with argument</description>
-    <lineContent>toPoint = findChar(text, &apos;&gt;&apos;, getNextPoint(text, toPoint));</lineContent>
   </mutation>
 </suppressedMutations>

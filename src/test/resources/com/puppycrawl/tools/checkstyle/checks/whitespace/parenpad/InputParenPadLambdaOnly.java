@@ -10,9 +10,9 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 public class InputParenPadLambdaOnly {
     {
-        java.util.function.Consumer a = (o) -> { o.toString(); }; // ok
+        java.util.function.Consumer a = (o) -> { o.toString(); };
 
-        java.util.function.Consumer b = o -> { o.toString(); }; // ok
+        java.util.function.Consumer b = o -> { o.toString(); };
 
         java.util.function.Consumer c = ( o ) -> { o.toString(); }; // 2 violations
 
@@ -24,9 +24,9 @@ public class InputParenPadLambdaOnly {
 
         java.util.stream.Stream.of().forEach(( Object o ) -> o.toString()); // 2 violations
 
-        java.util.stream.Stream.of().forEach(o -> o.toString( )); // ok
+        java.util.stream.Stream.of().forEach(o -> o.toString( ));
     }
 
-    void someMethod( String param ) { // ok
+    void someMethod( String param ) {
     }
 }
