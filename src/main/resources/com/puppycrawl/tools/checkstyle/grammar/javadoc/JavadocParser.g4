@@ -1151,7 +1151,10 @@ javadocTag: AUTHOR_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
       | RETURN_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
       | SEE_LITERAL (WS | NEWLINE | {!isNextJavadocTag()}? LEADING_ASTERISK)+
-          (reference | STRING | htmlElement) (WS | NEWLINE)* ((WS | NEWLINE) description)?
+          (
+            htmlElement (WS | NEWLINE)* description?
+            | (reference | STRING)  (WS | NEWLINE)* ((WS | NEWLINE) description)?
+          )
 
       | SERIAL_LITERAL (WS | NEWLINE)*
           ((WS | NEWLINE) description | LITERAL_INCLUDE | LITERAL_EXCLUDE)? (WS | NEWLINE)*
