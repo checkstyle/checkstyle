@@ -1,13 +1,3 @@
-^\/\*
-com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck
-charset = .*?
-fileExtensions = .*?
-header = .*?
-headerFile = .*
-multiLines = .*?
-ignoreLines = .*
-
-^\*\/
 /*
   -----------------------------------------------------------------------------------
 
