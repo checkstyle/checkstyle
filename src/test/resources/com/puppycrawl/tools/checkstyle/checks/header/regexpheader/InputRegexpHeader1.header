@@ -1,3 +1,13 @@
+^/\*
+RegexpHeader
+charset = .*?
+fileExtensions = .*?
+header = // Nth Line of Header\n// Nth Line of Header\n
+headerFile = .*?
+multiLines = .*?
+
+
+^\*/
 ^/*$
 // .*
 ^.*$
