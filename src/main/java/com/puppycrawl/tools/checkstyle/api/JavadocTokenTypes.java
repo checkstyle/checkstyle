@@ -1093,7 +1093,8 @@ public final class JavadocTokenTypes {
     /**
      * Start html tag component: {@code '<'}.
      *
-     * <p>Represents the opening symbol '&lt;' of an HTML tag, present at the beginning of all HTML tags.</p>
+     * <p>Represents the opening symbol '&lt;' of an HTML tag,
+     * present at the beginning of all HTML tags.</p>
      *
      * <p><b>Example:</b></p>
      * <pre><code>&lt;table border="1"&gt;</code></pre>
@@ -1173,7 +1174,8 @@ public final class JavadocTokenTypes {
     /**
      * End html tag component: {@code '>'}.
      *
-     * <p>Represents the closing symbol '&gt;' of an HTML tag, marking the end of an HTML tag.</p>
+     * <p>Represents the closing symbol '&gt;' of an HTML tag,
+     * marking the end of an HTML tag.</p>
      *
      * <p><b>Example:</b></p>
      * <pre><code>&lt;code&gt;System.out.println();&lt;/code&gt;</code></pre>
@@ -1204,10 +1206,12 @@ public final class JavadocTokenTypes {
     /**
      * Slash close html tag component: {@code '/>'}.
      *
-     * <p>Represents the ending '/&gt;' of a self-closing HTML tag, used for elements that don't require
+     * <p>Represents the ending '/&gt;' of a self-closing HTML tag,
+     * used for elements that don't require
      * closing tags.</p>
      * 
-     * <p>Note: During parsing, this is treated as a single token, not as separate SLASH and END tokens.</p>
+     * <p>Note: During parsing, this is treated as a single token,
+     * not as separate SLASH and END tokens.</p>
      *
      * <p><b>Example:</b></p>
      * <pre><code>&lt;img src="logo.png" alt="Logo" /&gt;</code></pre>
@@ -1243,7 +1247,8 @@ public final class JavadocTokenTypes {
     /**
      * Equals html tag component: {@code '='}.
      *
-     * <p>Represents the equals sign '=' in HTML attributes, connecting attribute names to their values.</p>
+     * <p>Represents the equals sign '=' in HTML attributes,
+     * connecting attribute names to their values.</p>
      *
      * <p><b>Example:</b></p>
      * <pre><code>&lt;div class="container" id="main"&gt;</code></pre>
@@ -1281,7 +1286,8 @@ public final class JavadocTokenTypes {
      * can be unquoted.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>&lt;a href="https://checkstyle.org" target='_blank' width=100&gt;Checkstyle&lt;/a&gt;</code></pre>
+     * <pre><code>&lt;a href="https://checkstyle.org" target='_blank' width=100&gt;Checkstyle&lt;
+     * /a&gt;</code></pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>
