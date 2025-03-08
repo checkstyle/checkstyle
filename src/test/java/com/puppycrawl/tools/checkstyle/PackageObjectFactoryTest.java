@@ -42,10 +42,13 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
@@ -65,8 +68,20 @@ import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
  */
 public class PackageObjectFactoryTest {
 
+    private static Locale defaultLocale;
     private final PackageObjectFactory factory = new PackageObjectFactory(
             BASE_PACKAGE, Thread.currentThread().getContextClassLoader());
+
+    @BeforeClass
+    public static void setupLocale() {
+        defaultLocale = Locale.getDefault();
+        Locale.setDefault(Locale.ENGLISH);
+    }
+
+    @AfterClass
+    public static void restoreLocale() {
+        Locale.setDefault(defaultLocale);
+    }
 
     @Test
     public void testCtorNullLoaderException1() {
