@@ -1060,24 +1060,31 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>&lt;a href="https://checkstyle.org"&gt;Checkstyle&lt;/a&gt;</code></pre>
+     * <pre>{@code <a href="https://www.checkstyle.org" target='_blank' width=100>Checkstyle</a>}</pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>
-     * <code>HTML_TAG -&gt; HTML_TAG
-     *  |--START -&gt; &lt;
-     *  |--HTML_TAG_NAME -&gt; a
-     *  |--WS -&gt;
-     *  |--HTML_TAG_NAME -&gt; href
-     *  |--EQUALS -&gt; =
-     *  |--ATTR_VALUE -&gt; "https://checkstyle.org"
-     *  |--END -&gt; &gt;
-     *  |--TEXT -&gt; Checkstyle
-     *  |--START -&gt; &lt;
-     *  |--SLASH -&gt; /
-     *  |--HTML_TAG_NAME -&gt; a
-     *  `--END -&gt; &gt;
-     * </code>
+     * {@code HTML_TAG -> HTML_TAG
+     *  |--START -> <
+     *  |--HTML_TAG_NAME -> a
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> href
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> "https://www.checkstyle.org"
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> target
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> '_blank'
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> width
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> 100
+     *  |--END -> >
+     *  |--TEXT -> Checkstyle
+     *  |--START -> <
+     *  |--SLASH -> /
+     *  |--HTML_TAG_NAME -> a
+     *  `--END -> >}
      * </pre>
      *
      * @see
@@ -1097,19 +1104,18 @@ public final class JavadocTokenTypes {
      * present at the beginning of all HTML tags.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>&lt;table border="1"&gt;</code></pre>
+     * <pre>{@code <table border="1"></table>}</pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>
-     * <code>HTML_TAG -&gt; HTML_TAG
-     *  |--START -&gt; &lt;
-     *  |--HTML_TAG_NAME -&gt; table
-     *  |--WS -&gt;
-     *  |--HTML_TAG_NAME -&gt; border
-     *  |--EQUALS -&gt; =
-     *  |--ATTR_VALUE -&gt; "1"
-     *  `--END -&gt; &gt;
-     * </code>
+     * {@code HTML_TAG -> HTML_TAG
+     *  |--START -> <
+     *  |--HTML_TAG_NAME -> table
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> border
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> "1"
+     *  `--END -> >}
      * </pre>
      *
      * @see
@@ -1132,33 +1138,31 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>&lt;p&gt;Paragraph content&lt;/p&gt;</code></pre>
+     * <pre>{@code <p>Paragraph content</p>}</pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>
-     * <code>HTML_TAG -&gt; HTML_TAG
-     *  |--START -&gt; &lt;
-     *  |--HTML_TAG_NAME -&gt; p
-     *  |--END -&gt; &gt;
-     *  |--TEXT -&gt; Paragraph content
-     *  |--START -&gt; &lt;
-     *  |--SLASH -&gt; /
-     *  |--HTML_TAG_NAME -&gt; p
-     *  `--END -&gt; &gt;
-     * </code>
+     * {@code HTML_TAG -> HTML_TAG
+     *  |--START -> <
+     *  |--HTML_TAG_NAME -> p
+     *  |--END -> >
+     *  |--TEXT -> Paragraph content
+     *  |--START -> <
+     *  |--SLASH -> /
+     *  |--HTML_TAG_NAME -> p
+     *  `--END -> >}
      * </pre>
      *
      * <p>Self-closing tag example:</p>
-     * <pre><code>&lt;br/&gt;</code></pre>
+     * <pre>{@code <br/>}</pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>
-     * <code>HTML_TAG -&gt; HTML_TAG
-     *  |--START -&gt; &lt;
-     *  |--HTML_TAG_NAME -&gt; br
-     *  |--SLASH -&gt; /
-     *  `--END -&gt; &gt;
-     * </code>
+     * {@code HTML_TAG -> HTML_TAG
+     *  |--START -> <
+     *  |--HTML_TAG_NAME -> br
+     *  |--SLASH -> /
+     *  `--END -> >}
      * </pre>
      *
      * @see
@@ -1178,20 +1182,19 @@ public final class JavadocTokenTypes {
      * marking the end of an HTML tag.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>&lt;code&gt;System.out.println();&lt;/code&gt;</code></pre>
+     * <pre>{@code System.out.println();}</pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>
-     * <code>HTML_TAG -&gt; HTML_TAG
-     *  |--START -&gt; &lt;
-     *  |--HTML_TAG_NAME -&gt; code
-     *  |--END -&gt; &gt;
-     *  |--TEXT -&gt; System.out.println();
-     *  |--START -&gt; &lt;
-     *  |--SLASH -&gt; /
-     *  |--HTML_TAG_NAME -&gt; code
-     *  `--END -&gt; &gt;
-     * </code>
+     * {@code HTML_TAG -> HTML_TAG
+     *  |--START -> <
+     *  |--HTML_TAG_NAME -> code
+     *  |--END -> >
+     *  |--TEXT -> System.out.println();
+     *  |--START -> <
+     *  |--SLASH -> /
+     *  |--HTML_TAG_NAME -> code
+     *  `--END -> >}
      * </pre>
      *
      * @see
@@ -1214,24 +1217,23 @@ public final class JavadocTokenTypes {
      * not as separate SLASH and END tokens.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>&lt;img src="logo.png" alt="Logo" /&gt;</code></pre>
+     * <pre>{@code <img src="logo.png" alt="Logo" />}</pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>
-     * <code>HTML_TAG -&gt; HTML_TAG
-     *  |--START -&gt; &lt;
-     *  |--HTML_TAG_NAME -&gt; img
-     *  |--WS -&gt;
-     *  |--HTML_TAG_NAME -&gt; src
-     *  |--EQUALS -&gt; =
-     *  |--ATTR_VALUE -&gt; "logo.png"
-     *  |--WS -&gt;
-     *  |--HTML_TAG_NAME -&gt; alt
-     *  |--EQUALS -&gt; =
-     *  |--ATTR_VALUE -&gt; "Logo"
-     *  |--WS -&gt;
-     *  `--SLASH_END -&gt; /&gt;
-     * </code>
+     * {@code HTML_TAG -> HTML_TAG
+     *  |--START -> <
+     *  |--HTML_TAG_NAME -> img
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> src
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> "logo.png"
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> alt
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> "Logo"
+     *  |--WS ->
+     *  `--SLASH_END -> />}
      * </pre>
      *
      * @see
@@ -1251,23 +1253,22 @@ public final class JavadocTokenTypes {
      * connecting attribute names to their values.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>&lt;div class="container" id="main"&gt;</code></pre>
+     * <pre>{@code <div class="container" id="main"></div>}</pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>
-     * <code>HTML_TAG -&gt; HTML_TAG
-     *  |--START -&gt; &lt;
-     *  |--HTML_TAG_NAME -&gt; div
-     *  |--WS -&gt;
-     *  |--HTML_TAG_NAME -&gt; class
-     *  |--EQUALS -&gt; =
-     *  |--ATTR_VALUE -&gt; "container"
-     *  |--WS -&gt;
-     *  |--HTML_TAG_NAME -&gt; id
-     *  |--EQUALS -&gt; =
-     *  |--ATTR_VALUE -&gt; "main"
-     *  `--END -&gt; &gt;
-     * </code>
+     * {@code HTML_TAG -> HTML_TAG
+     *  |--START -> <
+     *  |--HTML_TAG_NAME -> div
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> class
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> "container"
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> id
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> "main"
+     *  `--END -> >}
      * </pre>
      *
      * @see
@@ -1286,33 +1287,31 @@ public final class JavadocTokenTypes {
      * can be unquoted.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>&lt;a href="https://checkstyle.org" target='_blank' width=100&gt;Checkstyle&lt;
-     * /a&gt;</code></pre>
+     * <pre>{@code <a href="https://www.checkstyle.org" target='_blank' width=100>Checkstyle</a>}</pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>
-     * <code>HTML_TAG -&gt; HTML_TAG
-     *  |--START -&gt; &lt;
-     *  |--HTML_TAG_NAME -&gt; a
-     *  |--WS -&gt;
-     *  |--HTML_TAG_NAME -&gt; href
-     *  |--EQUALS -&gt; =
-     *  |--ATTR_VALUE -&gt; "https://checkstyle.org"
-     *  |--WS -&gt;
-     *  |--HTML_TAG_NAME -&gt; target
-     *  |--EQUALS -&gt; =
-     *  |--ATTR_VALUE -&gt; '_blank'
-     *  |--WS -&gt;
-     *  |--HTML_TAG_NAME -&gt; width
-     *  |--EQUALS -&gt; =
-     *  |--ATTR_VALUE -&gt; 100
-     *  |--END -&gt; &gt;
-     *  |--TEXT -&gt; Checkstyle
-     *  |--START -&gt; &lt;
-     *  |--SLASH -&gt; /
-     *  |--HTML_TAG_NAME -&gt; a
-     *  `--END -&gt; &gt;
-     * </code>
+     * {@code HTML_TAG -> HTML_TAG
+     *  |--START -> <
+     *  |--HTML_TAG_NAME -> a
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> href
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> "https://www.checkstyle.org"
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> target
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> '_blank'
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> width
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> 100
+     *  |--END -> >
+     *  |--TEXT -> Checkstyle
+     *  |--START -> <
+     *  |--SLASH -> /
+     *  |--HTML_TAG_NAME -> a
+     *  `--END -> >}
      * </pre>
      *
      * @see
