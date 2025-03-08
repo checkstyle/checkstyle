@@ -771,7 +771,7 @@ public final class JavadocTokenTypes {
      *         |--REFERENCE -&gt REFERENCE
      *         |   |--HASH -&gt #
      *         |   |--MEMBER -&gt method
-     *         |   `--PARAMETERS -&gt PARAMETERS
+     *         |   `--PARAMETERS -> PARAMETERS
      *         |       |--LEFT_BRACE -&gt (
      *         |       |--ARGUMENT -&gt Processor
      *         |       |--COMMA -&gt ,
@@ -796,7 +796,7 @@ public final class JavadocTokenTypes {
      *         |--REFERENCE -&gt REFERENCE
      *         |   |--HASH -&gt #
      *         |   |--MEMBER -&gt method
-     *         |   `--PARAMETERS -&gt PARAMETERS
+     *         |   `--PARAMETERS -> PARAMETERS
      *         |       |--LEFT_BRACE -&gt (
      *         |       |--ARGUMENT -&gt Processor
      *         |       |--COMMA -&gt ,
@@ -821,7 +821,7 @@ public final class JavadocTokenTypes {
      *         |--REFERENCE -&gt REFERENCE
      *         |   |--HASH -&gt #
      *         |   |--MEMBER -&gt method
-     *         |   `--PARAMETERS -&gt PARAMETERS
+     *         |   `--PARAMETERS -> PARAMETERS
      *         |       |--LEFT_BRACE -&gt (
      *         |       |--ARGUMENT -&gt Processor
      *         |       |--COMMA -&gt ,
@@ -848,7 +848,7 @@ public final class JavadocTokenTypes {
      *  |--REFERENCE -&gt REFERENCE
      *  |   |--HASH -&gt #
      *  |   |--MEMBER -&gt method
-     *  |   `--PARAMETERS -&gt PARAMETERS
+     *  |   `--PARAMETERS -> PARAMETERS
      *  |       |--LEFT_BRACE -&gt (
      *  |       |--ARGUMENT -&gt Processor
      *  |       |--COMMA -&gt ,
@@ -1060,7 +1060,8 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>&lt;a href="<a href="https://checkstyle.org">...</a>"&gt;Checkstyle&lt;/a&gt;</code></pre>
+     * <pre><code>&lt;a href="https://checkstyle.org"&gt;Checkstyle&lt;/a&gt;</
+     * code></pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>
@@ -1120,7 +1121,7 @@ public final class JavadocTokenTypes {
      */
     public static final int START = JavadocParser.START;
 
-// HTML tag components
+    // HTML tag components
     /**
      * Slash html tag component: {@code '/'}.
      *
@@ -1206,6 +1207,7 @@ public final class JavadocTokenTypes {
      *
      * <p>Represents the ending '/&gt;' of a self-closing HTML tag, used for elements that don't require
      * closing tags.</p>
+     * 
      * <p>Note: During parsing, this is treated as a single token, not as separate SLASH and END tokens.</p>
      *
      * <p><b>Example:</b></p>
@@ -1280,7 +1282,7 @@ public final class JavadocTokenTypes {
      * can be unquoted.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>&lt;a href="<a href="https://checkstyle.org">...</a>" target='_blank' width=100&gt;Checkstyle&lt;/a&gt;</code></pre>
+     * <pre><code>&lt;a href="https://checkstyle.org" target='_blank' width=100&gt;Checkstyle&lt;/a&gt;</code></pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>
