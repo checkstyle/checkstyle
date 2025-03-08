@@ -381,4 +381,28 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
                 getPath("InputUnusedImportsFromStaticMethodRefInDocsOnly.java"), expected);
     }
 
+    @Test
+    public void testImportJavaLinkTag() throws Exception {
+        final String[] expected = {
+            "10:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsWithLinkTag.java"), expected);
+
+    }
+
+    @Test
+    public void testImportJavaLinkTagWithMethod() throws Exception {
+        final String[] expected = {
+            "10:8: " + getCheckMessage(MSG_KEY, "java.util.Collections"),
+            "12:8: " + getCheckMessage(MSG_KEY, "java.util.Set"),
+            "14:8: " + getCheckMessage(MSG_KEY, "java.util.PriorityQueue"),
+            "16:8: " + getCheckMessage(MSG_KEY, "java.util.Queue"),
+            "20:8: " + getCheckMessage(MSG_KEY, "java.util.LinkedList"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsWithLinkAndMethodTag.java"), expected);
+
+    }
+
 }
