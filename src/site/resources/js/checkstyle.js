@@ -58,24 +58,6 @@ window.addEventListener("load", function () {
     externalLinks.forEach((link) => {
         link.setAttribute("target", "_blank");
     });
-
-    const codeBlocks = document.querySelectorAll(".prettyprint code");
-    codeBlocks.forEach((block) => {
-        const code = block.innerText.split("\n");
-        if (code.length > 1) {
-            if (code[0].trim() === "") {
-                code.shift();
-            }
-            if (code[code.length -1].trim() === "") {
-                code.pop();
-            }
-            const pre = block.closest("pre.prettyprint");
-            if (pre) {
-            pre.classList.remove("prettyprinted");
-            }
-            block.innerText = code.join("\n");
-        }
-    });
     prettyPrint();
 });
 
@@ -151,6 +133,58 @@ function resetStyling() {
     document.querySelector("#bodyColumn").style.removeProperty("position");
     document.querySelector("#hamburger").remove();
     document.querySelector(".xright").lastChild.remove();
+}
+
+window.addEventListener("load", function () {
+    document.querySelectorAll("pre code").forEach(codeBlock => {
+      trimLeadingWhitespace(codeBlock);
+      trimTrailingWhitespace(codeBlock);
+    });
+});
+
+window.addEventListener("load", function () {
+    document.querySelectorAll("pre code").forEach(trimCodeBlock);
+});
+
+function trimCodeBlock(codeBlock) {
+    const walker = document.createTreeWalker(
+      codeBlock,
+      NodeFilter.SHOW_TEXT,
+      null,
+      false
+    );
+    const textNodes = [];
+    let node;
+    while ((node = walker.nextNode())) {
+      textNodes.push(node);
+    }
+ 
+    for (let i = 0; i < textNodes.length; i++) {
+      const txt = textNodes[i].textContent;
+      const trimmed = txt.replace(/^\s+/, '');
+      if (trimmed.length === 0) {
+        // If whole node is whitespace remove it.
+        if (textNodes[i].parentNode) {
+          textNodes[i].parentNode.removeChild(textNodes[i]);
+        }
+      } else {
+        textNodes[i].textContent = trimmed;
+        break;
+      }
+    }
+
+    for (let i = textNodes.length - 1; i >= 0; i--) {
+      const txt = textNodes[i].textContent;
+      const trimmed = txt.replace(/\s+$/, '');
+      if (trimmed.length === 0) {
+        if (textNodes[i].parentNode) {
+          textNodes[i].parentNode.removeChild(textNodes[i]);
+        }
+      } else {
+        textNodes[i].textContent = trimmed;
+        break;
+      }
+    }
 }
 
 window.addEventListener("load", setBodyColumnMargin);
