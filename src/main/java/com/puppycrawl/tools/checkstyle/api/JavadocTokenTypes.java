@@ -1209,6 +1209,7 @@ public final class JavadocTokenTypes {
      * <p>Represents the ending '/&gt;' of a self-closing HTML tag,
      * used for elements that don't require
      * closing tags.</p>
+     *
      * <p>Note: During parsing, this is treated as a single token,
      * not as separate SLASH and END tokens.</p>
      *
