@@ -5,10 +5,11 @@
              name="InlineVariable"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks that a local method is declared but not used, except for overloaded ones.
- &lt;/div&gt;</description>
+           Local variables should not be declared and then immediately returned or thrown.
+           &lt;/div&gt;
+         </description>
          <message-keys>
-            <message-key key="unused.local.method"/>
+           <message-key key="inline.variable"/>
          </message-keys>
       </check>
    </module>
