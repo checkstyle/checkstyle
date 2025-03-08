@@ -600,7 +600,9 @@ public class PackageObjectFactory implements ModuleFactory {
         NAME_TO_FULL_MODULE_NAME.put("MatchXpathCheck",
                 BASE_PACKAGE + ".checks.coding.MatchXpathCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnusedLocalMethodCheck",
-                BASE_PACKAGE + ".checks.coding.UnusedLocalMethodCheck");
+            BASE_PACKAGE + ".checks.coding.UnusedLocalMethodCheck");
+        NAME_TO_FULL_MODULE_NAME.put("InlineVariableCheck",
+            BASE_PACKAGE + ".checks.coding.InlineVariableCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnusedLocalVariableCheck",
                 BASE_PACKAGE + ".checks.coding.UnusedLocalVariableCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnusedCatchParameterShouldBeUnnamedCheck",
