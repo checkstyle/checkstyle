@@ -29,9 +29,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <div>
- * Checks that a local method is declared but not used, except for overloaded ones.
+ * Local variables should not be declared and then immediately returned or thrown.
  * </div>
- *
+ * <a href="https://sonarsource.github.io/rspec/#/rspec/S1488">RSPEC-S1488</a>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
- * {@code unused.local.method}
+ * {@code inline.variable}
  * </li>
  * </ul>
  *

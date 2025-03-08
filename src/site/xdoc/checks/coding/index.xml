@@ -582,6 +582,20 @@
               Ensures that lambda parameters that are not used are declared as an unnamed variable.
             </td>
           </tr>
+            <tr>
+                <td>
+                  <a href="unusedlocalmethod.html#InlineVariable">InlineVariable</a>
+                </td>
+              <td>Local variables should not be declared and then immediately returned or thrown.
+              </td>
+            </tr>
+          <tr>
+            <td>
+              <a href="unusedlocalmethod.html#UnusedLocalMethod">UnusedLocalMethod</a>
+            </td>
+              <td>Checks that a local method is declared but not used, except for overloaded ones.
+              </td>
+            </tr>
           <tr>
             <td>
               <a href="unusedlocalvariable.html#UnusedLocalVariable">
