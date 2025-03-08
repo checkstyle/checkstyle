@@ -1083,7 +1083,38 @@ public final class JavadocTokenTypes {
     public static final int EQUALS = JavadocParser.EQUALS;
 
     /**
-     * Attribute value html tag component.
+     * Attribute value HTML tag component.
+     *
+     * <p><b>Example:</b></p>
+     *
+     * <pre>{@code
+     * &lt;tag_name attr_name="attr_value">Content&lt;/tag_name&gt;
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC -> JAVADOC
+     *  |--NEWLINE -> \r\n
+     *  |--LEADING_ASTERISK ->  *
+     *  |--TEXT ->
+     *  |--HTML_ELEMENT -> HTML_ELEMENT
+     *  |   `--HTML_TAG -> HTML_TAG
+     *  |       |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *  |       |   |--START -> <
+     *  |       |   |--HTML_TAG_NAME -> tag_name
+     *  |       |   |--WS ->
+     *  |       |   |--ATTRIBUTE -> ATTRIBUTE
+     *  |       |   |   |--HTML_TAG_NAME -> attr_name
+     *  |       |   |   |--EQUALS -> =
+     *  |       |   |   `--ATTR_VALUE -> "attr_value"
+     *  |       |   `--END -> >
+     *  |       |--TEXT -> Content
+     *  |       `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *  |           |--START -> <
+     *  |           |--SLASH -> /
+     *  |           |--HTML_TAG_NAME -> tag_name
+     *  |           `--END -> >
+     * }</pre>
      */
     public static final int ATTR_VALUE = JavadocParser.ATTR_VALUE;
 
