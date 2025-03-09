@@ -771,7 +771,7 @@ public final class JavadocTokenTypes {
      *         |--REFERENCE -&gt REFERENCE
      *         |   |--HASH -&gt #
      *         |   |--MEMBER -&gt method
-     *         |   `--PARAMETERS -&gt PARAMETERS
+     *         |   `--PARAMETERS -> PARAMETERS
      *         |       |--LEFT_BRACE -&gt (
      *         |       |--ARGUMENT -&gt Processor
      *         |       |--COMMA -&gt ,
@@ -796,7 +796,7 @@ public final class JavadocTokenTypes {
      *         |--REFERENCE -&gt REFERENCE
      *         |   |--HASH -&gt #
      *         |   |--MEMBER -&gt method
-     *         |   `--PARAMETERS -&gt PARAMETERS
+     *         |   `--PARAMETERS -> PARAMETERS
      *         |       |--LEFT_BRACE -&gt (
      *         |       |--ARGUMENT -&gt Processor
      *         |       |--COMMA -&gt ,
@@ -821,7 +821,7 @@ public final class JavadocTokenTypes {
      *         |--REFERENCE -&gt REFERENCE
      *         |   |--HASH -&gt #
      *         |   |--MEMBER -&gt method
-     *         |   `--PARAMETERS -&gt PARAMETERS
+     *         |   `--PARAMETERS -> PARAMETERS
      *         |       |--LEFT_BRACE -&gt (
      *         |       |--ARGUMENT -&gt Processor
      *         |       |--COMMA -&gt ,
@@ -848,7 +848,7 @@ public final class JavadocTokenTypes {
      *  |--REFERENCE -&gt REFERENCE
      *  |   |--HASH -&gt #
      *  |   |--MEMBER -&gt method
-     *  |   `--PARAMETERS -&gt PARAMETERS
+     *  |   `--PARAMETERS -> PARAMETERS
      *  |       |--LEFT_BRACE -&gt (
      *  |       |--ARGUMENT -&gt Processor
      *  |       |--COMMA -&gt ,
@@ -1052,38 +1052,275 @@ public final class JavadocTokenTypes {
 
     /**
      * Identifier inside HTML tag: tag name or attribute name.
+     *
+     * <p>HTML_TAG_NAME can represent two different identifiers:</p>
+     * <ul>
+     *   <li>HTML tag name, like "div" in &lt;div&gt;</li>
+     *   <li>HTML attribute name, like "href" in href="..."</li>
+     * </ul>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <a href="https://www.checkstyle.org" target='_blank' width=100>Checkstyle</a>}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>
+     * {@code HTML_TAG -> HTML_TAG
+     *  |--START -> <
+     *  |--HTML_TAG_NAME -> a
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> href
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> "https://www.checkstyle.org"
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> target
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> '_blank'
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> width
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> 100
+     *  |--END -> >
+     *  |--TEXT -> Checkstyle
+     *  |--START -> <
+     *  |--SLASH -> /
+     *  |--HTML_TAG_NAME -> a
+     *  `--END -> >}
+     * </pre>
+     *
+     * @see
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
+     * Oracle Docs</a>
+     * @see #START
+     * @see #END
+     * @see #EQUALS
+     * @see #ATTR_VALUE
      */
     public static final int HTML_TAG_NAME = JavadocParser.HTML_TAG_NAME;
 
-    // HTML tag components
-
     /**
      * Start html tag component: {@code '<'}.
+     *
+     * <p>Represents the opening symbol '&lt;' of an HTML tag,
+     * present at the beginning of all HTML tags.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <table border="1"></table>}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>
+     * {@code HTML_TAG -> HTML_TAG
+     *  |--START -> <
+     *  |--HTML_TAG_NAME -> table
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> border
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> "1"
+     *  `--END -> >}
+     * </pre>
+     *
+     * @see
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
+     * Oracle Docs</a>
+     * @see #HTML_TAG_NAME
+     * @see #END
+     * @see #SLASH
      */
     public static final int START = JavadocParser.START;
 
+    // HTML tag components
     /**
      * Slash html tag component: {@code '/'}.
+     *
+     * <p>Represents the slash '/' character in HTML tags, primarily used in:</p>
+     * <ul>
+     *   <li>Closing tags: the slash in &lt;/div&gt;</li>
+     *   <li>Self-closing tags: the slash in &lt;br/&gt; (old HTML format)</li>
+     * </ul>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <p>Paragraph content</p>}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>
+     * {@code HTML_TAG -> HTML_TAG
+     *  |--START -> <
+     *  |--HTML_TAG_NAME -> p
+     *  |--END -> >
+     *  |--TEXT -> Paragraph content
+     *  |--START -> <
+     *  |--SLASH -> /
+     *  |--HTML_TAG_NAME -> p
+     *  `--END -> >}
+     * </pre>
+     *
+     * <p>Self-closing tag example:</p>
+     * <pre>{@code <br/>}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>
+     * {@code HTML_TAG -> HTML_TAG
+     *  |--START -> <
+     *  |--HTML_TAG_NAME -> br
+     *  |--SLASH -> /
+     *  `--END -> >}
+     * </pre>
+     *
+     * @see
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
+     * Oracle Docs</a>
+     * @see #START
+     * @see #END
+     * @see #SLASH_END
+     * @see #HTML_TAG_NAME
      */
     public static final int SLASH = JavadocParser.SLASH;
 
     /**
      * End html tag component: {@code '>'}.
+     *
+     * <p>Represents the closing symbol '&gt;' of an HTML tag,
+     * marking the end of an HTML tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code System.out.println();}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>
+     * {@code HTML_TAG -> HTML_TAG
+     *  |--START -> <
+     *  |--HTML_TAG_NAME -> code
+     *  |--END -> >
+     *  |--TEXT -> System.out.println();
+     *  |--START -> <
+     *  |--SLASH -> /
+     *  |--HTML_TAG_NAME -> code
+     *  `--END -> >}
+     * </pre>
+     *
+     * @see
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
+     * Oracle Docs</a>
+     * @see #START
+     * @see #SLASH
+     * @see #HTML_TAG_NAME
      */
     public static final int END = JavadocParser.END;
 
     /**
      * Slash close html tag component: {@code '/>'}.
+     *
+     * <p>Represents the ending '/&gt;' of a self-closing HTML tag,
+     * used for elements that don't require
+     * closing tags.</p>
+     *
+     * <p>Note: During parsing, this is treated as a single token,
+     * not as separate SLASH and END tokens.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <img src="logo.png" alt="Logo" />}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>
+     * {@code HTML_TAG -> HTML_TAG
+     *  |--START -> <
+     *  |--HTML_TAG_NAME -> img
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> src
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> "logo.png"
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> alt
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> "Logo"
+     *  |--WS ->
+     *  `--SLASH_END -> />}
+     * </pre>
+     *
+     * @see
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
+     * Oracle Docs</a>
+     * @see #START
+     * @see #HTML_TAG_NAME
+     * @see #SLASH
+     * @see #END
      */
     public static final int SLASH_END = JavadocParser.SLASH_END;
 
     /**
      * Equals html tag component: {@code '='}.
+     *
+     * <p>Represents the equals sign '=' in HTML attributes,
+     * connecting attribute names to their values.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <div class="container" id="main"></div>}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>
+     * {@code HTML_TAG -> HTML_TAG
+     *  |--START -> <
+     *  |--HTML_TAG_NAME -> div
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> class
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> "container"
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> id
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> "main"
+     *  `--END -> >}
+     * </pre>
+     *
+     * @see
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
+     * Oracle Docs</a>
+     * @see #HTML_TAG_NAME
+     * @see #ATTR_VALUE
      */
     public static final int EQUALS = JavadocParser.EQUALS;
 
     /**
-     * Attribute value html tag component.
+     * Attribute value html tag component. Represents the value of HTML attributes in
+     * javadoc HTML tags.
+     *
+     * <p>An attribute value can be surrounded by single or double quotes, or in some cases,
+     * can be unquoted.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <a href="https://www.checkstyle.org" target='_blank' width=100>Checkstyle</a>}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>
+     * {@code HTML_TAG -> HTML_TAG
+     *  |--START -> <
+     *  |--HTML_TAG_NAME -> a
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> href
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> "https://www.checkstyle.org"
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> target
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> '_blank'
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> width
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> 100
+     *  |--END -> >
+     *  |--TEXT -> Checkstyle
+     *  |--START -> <
+     *  |--SLASH -> /
+     *  |--HTML_TAG_NAME -> a
+     *  `--END -> >}
+     * </pre>
+     *
+     * @see
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
+     * Oracle Docs</a>
+     * @see #HTML_TAG_NAME
+     * @see #EQUALS
+     * @see #START
+     * @see #END
      */
     public static final int ATTR_VALUE = JavadocParser.ATTR_VALUE;
 
