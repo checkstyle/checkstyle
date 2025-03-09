@@ -504,6 +504,14 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/inlinevariable.html#InlineVariable">InlineVariable</a>
+            </td>
+            <td>Local variable should not be declared and then immediately returned or thrown
+              (RSPEC-S1488).
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/innerassignment.html#InnerAssignment">
                 InnerAssignment
               </a>
@@ -1399,6 +1407,15 @@
             </td>
             <td>
               Ensures that lambda parameters that are not used are declared as an unnamed variable.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/unusedlocalmethod.html#UnusedLocalMethod">
+                UnusedLocalMethod
+              </a>
+            </td>
+            <td>Checks that a local method is declared but not used, except for overloaded ones.
             </td>
           </tr>
           <tr>

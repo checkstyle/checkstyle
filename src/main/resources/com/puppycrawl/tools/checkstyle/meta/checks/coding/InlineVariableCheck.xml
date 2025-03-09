@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.InlineVariableCheck"
+             name="InlineVariable"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Local variable should not be declared and then immediately returned or thrown (RSPEC-S1488).
+ &lt;/div&gt;</description>
+         <message-keys>
+            <message-key key="inline.variable"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
