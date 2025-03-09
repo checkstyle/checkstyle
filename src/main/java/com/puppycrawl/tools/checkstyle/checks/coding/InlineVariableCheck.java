@@ -105,20 +105,25 @@ public class InlineVariableCheck extends AbstractCheck {
     @Override
     public void finishTree(DetailAST ast) {
         for (DetailAST variable : variable) {
-            final var key = variable.getFirstChild().getNextSibling().getNextSibling().getText();
+            final var name = variable.getFirstChild().getNextSibling().getNextSibling().getText();
             usages.stream()
                 .filter(usage -> usage.getLineNo() - 1 == variable.getLineNo()
-                    && key.equals(usage.getType() == TokenTypes.LITERAL_RETURN ?
-                    usage.getFirstChild().getFirstChild().getText() :
-                    usage.getFirstChild()
-                        .getFirstChild()
-                        .getFirstChild()
-                        .getNextSibling()
-                        .getNextSibling()
-                        .getFirstChild()
-                        .getFirstChild()
-                        .getText()))
-                .forEach(detailAST -> log(variable, MSG_INLINE_VARIABLE, key));
+                    && name.equals(usageName(usage)))
+                .forEach(detailAST -> log(variable, MSG_INLINE_VARIABLE, name));
         }
+    }
+
+    private static String usageName(DetailAST usage) {
+        return usage.getType() == TokenTypes.LITERAL_RETURN ?
+            usage.getFirstChild().getFirstChild().getText() :
+            // LITERAL_THROW
+            usage.getFirstChild()
+                .getFirstChild()
+                .getFirstChild()
+                .getNextSibling()
+                .getNextSibling()
+                .getFirstChild()
+                .getFirstChild()
+                .getText();
     }
 }

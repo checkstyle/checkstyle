@@ -9,7 +9,7 @@
     <section name="InlineVariable">
       <p>Since Checkstyle 9.3</p>
       <subsection name="Description" id="Description">
-        <div>Local variables should not be declared and then immediately returned or thrown (RSPEC-S1488).</div>
+        <div>Local variable should not be declared and then immediately returned or thrown (RSPEC-S1488).</div>
       </subsection>
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">

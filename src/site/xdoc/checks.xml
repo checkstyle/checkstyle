@@ -506,7 +506,7 @@
             <td>
               <a href="checks/coding/inlinevariable.html#InlineVariable">InlineVariable</a>
             </td>
-            <td>Local variables should not be declared and then immediately returned or thrown
+            <td>Local variable should not be declared and then immediately returned or thrown
               (RSPEC-S1488).
             </td>
           </tr>
