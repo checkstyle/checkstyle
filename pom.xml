@@ -1893,6 +1893,8 @@
 
                 <!-- content header is conflicting with Input inline header -->
                 <exclude>**/HeaderCheckTest.class</exclude>
+                <!-- content header is conflicting with Input inline header -->
+                <exclude>**/RegexpHeaderCheckTest.class</exclude>
               </excludes>
             </configuration>
           </execution>

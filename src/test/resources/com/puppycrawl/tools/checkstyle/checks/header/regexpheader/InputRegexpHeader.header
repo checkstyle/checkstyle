@@ -1,15 +1,5 @@
-^/\*
-RegexpHeader
-charset = .*
-fileExtensions = .*
-header = .*
-headerFile = .*
-multiLines = .*
-
-
-^\*/
 ^/*$
 // .*
 // Created: 2002
-^/*$
-^$
+^.*$
+^.*$

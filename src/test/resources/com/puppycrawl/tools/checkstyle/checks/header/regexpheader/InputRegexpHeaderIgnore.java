@@ -1,18 +1,7 @@
-/*
-RegexpHeader
-charset = (default)""
-fileExtensions = (default)""
-header = (default)(null)
-headerFile = com/puppycrawl/tools/checkstyle/checks/header/regexpheader/InputRegexpHeader.header
-multiLines = (default)
-
-
-*/
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // Test case file for checkstyle.
 // Created: 2001
 ///////////////////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.checks.header.regexpheader;
 
 import java.awt.event.MouseEvent;
