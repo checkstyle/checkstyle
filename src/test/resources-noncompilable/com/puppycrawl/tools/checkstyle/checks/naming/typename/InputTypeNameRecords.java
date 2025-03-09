@@ -20,18 +20,18 @@ public class InputTypeNameRecords {
     class SecondName {
     }
 
-    enum Third_Name {} // violation
+    enum Third_Name {} // violation 'Name 'Third_Name' must match pattern'
 
-    class FourthName_ { // violation
+    class FourthName_ { // violation 'Name 'FourthName_' must match pattern'
     }
 
-    record My_Record() { // violation
-        record Inner__Record(Record MyRecord) { // violation
+    record My_Record() { // violation 'Name 'My_Record' must match pattern'
+        record Inner__Record(Record MyRecord) { // violation 'Name 'Inner__Record' must match pattern'
             public Inner__Record{}
         }
     }
 
-    record MyRecord__() { // violation
+    record MyRecord__() { // violation 'Name 'MyRecord__' must match pattern'
     }
 
     record GoodName() {

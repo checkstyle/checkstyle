@@ -12,13 +12,13 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.naming.typename;
 
-class inputHeaderClass2 { // violation
+class inputHeaderClass2 { // violation 'Name 'inputHeaderClass2' must match pattern'
 
-    public interface inputHeaderInterface {}; // violation
+    public interface inputHeaderInterface {}; // violation 'Name 'inputHeaderInterface' must match pattern'
 //comment
-    public enum inputHeaderEnum { one, two }; // violation
+    public enum inputHeaderEnum { one, two }; // violation 'Name 'inputHeaderEnum' must match pattern'
 
-    public @interface inputHeaderAnnotation {}; // violation
+    public @interface inputHeaderAnnotation {}; // violation 'Name 'inputHeaderAnnotation' must match pattern'
 
 }
 
