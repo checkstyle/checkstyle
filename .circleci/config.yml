@@ -230,6 +230,22 @@ workflows:
           name: "no-exception-samples-gradle"
           image-name: "cimg/openjdk:11.0.19"
           command: "./.ci/no-exception-test.sh no-exception-samples-gradle"
+      - validate-with-maven-script:
+          name: "no-exception-samples-maven"
+          image-name: "cimg/openjdk:11.0.19"
+          command: "./.ci/no-exception-test.sh no-exception-samples-maven"
+
+      - validate-with-maven-script:
+          name: "no-exception-samples-ant"
+          image-name: "cimg/openjdk:11.0.19"
+          command: |
+            sudo mkdir -p /etc/ssl/certs/java
+            sudo rm -rf /etc/ssl/certs/java/cacerts
+            sudo touch /etc/ssl/certs/java/cacerts
+            sudo apt update
+            sudo apt install -y ca-certificates-java
+            sudo apt install -y ant
+            ./.ci/no-exception-test.sh no-exception-samples-ant
 
   idea:
     jobs:
