@@ -116,7 +116,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
                 visitComment(commentAst);
                 break;
             default:
-                throw new IllegalArgumentException("Unexpected token type: " + commentAst.getText());
+                throw new IllegalArgumentException(
+                    "Unexpected token type: " + commentAst.getText());
         }
     }
 

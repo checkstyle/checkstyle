@@ -65,7 +65,6 @@ public class InlineVariableCheck extends AbstractCheck {
      */
     private final List<DetailAST> usages = new ArrayList<>();
 
-
     @Override
     public int[] getDefaultTokens() {
         return new int[]{
@@ -116,12 +115,18 @@ public class InlineVariableCheck extends AbstractCheck {
     }
 
     /**
-     * @return usage name for either LITERAL_RETURN or LITERAL_THROW.
+     * Usage name.
+     *
+     * @param usage checked for either LITERAL_RETURN or LITERAL_THROW.
+     * @return referenced name
      */
     private static String usageName(DetailAST usage) {
-        return usage.getType() == TokenTypes.LITERAL_RETURN
-            ? usage.getFirstChild().getFirstChild().getText()
-            : usage.getFirstChild()
+        String name;
+        if (usage.getType() == TokenTypes.LITERAL_RETURN) {
+            name = usage.getFirstChild().getFirstChild().getText();
+        }
+        else {
+            name = usage.getFirstChild()
                 .getFirstChild()
                 .getFirstChild()
                 .getNextSibling()
@@ -129,5 +134,7 @@ public class InlineVariableCheck extends AbstractCheck {
                 .getFirstChild()
                 .getFirstChild()
                 .getText();
+        }
+        return name;
     }
 }
