@@ -9,7 +9,7 @@ public class InputInlineVariableSimple {
         String inlineVariable1 = used2();
         String inlineVariable2 = used2();
         String inlineVariable3 = used2();
-        String in = used2(); // violation, Inline1 variable 'in' for immediate return or throw.
+        String in = used2(); // violation, Inline 'in' for immediate return or throw.
         return in;
     }
 

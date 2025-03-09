@@ -36,14 +36,16 @@ public class InlineVariableCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void chain() throws Exception {
-        verifyWithInlineConfigParser(getPath("InputInlineVariableSimple.java"),
-                List.of("12:9: " + getCheckMessage(MSG_INLINE_VARIABLE, "in")));
+        verifyWithInlineConfigParser(getPath("InputInlineVariableSimple.java"), List.of(
+            "12:9: " + getCheckMessage(MSG_INLINE_VARIABLE, "in")));
     }
 
     @Test
     public void comments() throws Exception {
-        verifyWithInlineConfigParser(getPath("InputInlineVariableComments.java"),
-                List.of("29:9: " + getCheckMessage(MSG_INLINE_VARIABLE, "in")));
+        verifyWithInlineConfigParser(getPath("InputInlineVariableComments.java"), List.of(
+            "30:21: " + getCheckMessage(MSG_INLINE_VARIABLE, "out"),
+            "53:16: " + getCheckMessage(MSG_INLINE_VARIABLE, "in"),
+            "61:16: " + getCheckMessage(MSG_INLINE_VARIABLE, "throw_")));
     }
 
 }

@@ -92,17 +92,17 @@ public class InlineVariableCheck extends AbstractCheck {
         if (ast.getType() == TokenTypes.VARIABLE_DEF) {
             variables.put(ast.getFirstChild().getNextSibling().getNextSibling().getText(), ast);
         }
-        else if (ast.getType() == TokenTypes.LITERAL_RETURN) {
+        if (ast.getType() == TokenTypes.LITERAL_RETURN) {
             returns.put(ast.getFirstChild().getFirstChild().getText(), ast);
         }
     }
 
     @Override
     public void finishTree(DetailAST ast) {
-        for (Map.Entry<String, DetailAST> entry : variables.entrySet()) {
-            if (returns.containsKey(entry.getKey())
-                    && entry.getValue().getLineNo() + 1 == returns.get(entry.getKey()).getLineNo()) {
-                log(entry.getValue(), MSG_INLINE_VARIABLE, entry.getKey());
+        for (Map.Entry<String, DetailAST> variable : variables.entrySet()) {
+            if (returns.containsKey(variable.getKey())
+                && returns.get(variable.getKey()).getLineNo() - 1 == variable.getValue().getLineNo()) {
+                log(variable.getValue(), MSG_INLINE_VARIABLE, variable.getKey());
             }
         }
     }
