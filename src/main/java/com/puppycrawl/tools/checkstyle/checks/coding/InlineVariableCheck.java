@@ -106,7 +106,8 @@ public class InlineVariableCheck extends AbstractCheck {
     @Override
     public void finishTree(DetailAST ast) {
         for (DetailAST variable : variables) {
-            final var name = variable.getFirstChild().getNextSibling().getNextSibling().getText();
+            final String name =
+                variable.getFirstChild().getNextSibling().getNextSibling().getText();
             usages.stream()
                 .filter(usage -> {
                     return usage.getLineNo() - 1 == variable.getLineNo()
