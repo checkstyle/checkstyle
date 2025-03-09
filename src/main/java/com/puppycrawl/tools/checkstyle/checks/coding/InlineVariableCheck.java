@@ -29,13 +29,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <div>
- * Local variables should not be declared and then immediately returned or thrown.
+ * Local variables should not be declared and then immediately returned or thrown (RSPEC-S1488).
  * </div>
- * <a href="https://sonarsource.github.io/rspec/#/rspec/S1488">RSPEC-S1488</a>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
- *
  * <p>
  * Violation Message Keys:
  * </p>

@@ -4,10 +4,11 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.InlineVariableCheck"
              name="InlineVariable"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
- Local variables should not be declared and then immediately returned or thrown.
- &lt;/div&gt;
- &lt;a href="https://sonarsource.github.io/rspec/#/rspec/S1488"&gt;RSPEC-S1488&lt;/a&gt;</description>
+        <description>&lt;div&gt;
+          Local variables should not be declared and then immediately returned or thrown
+          (RSPEC-S1488).
+          &lt;/div>
+        </description>
          <message-keys>
             <message-key key="inline.variable"/>
          </message-keys>
