@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <div>
- * Local variable should not be declared and then immediately returned or thrown (RSPEC-S1488).
+ * Local variable should not be declared and then immediately returned or thrown.
  * </div>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
