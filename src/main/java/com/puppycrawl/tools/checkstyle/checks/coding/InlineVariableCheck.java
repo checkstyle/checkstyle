@@ -108,8 +108,10 @@ public class InlineVariableCheck extends AbstractCheck {
         for (DetailAST variable : variables) {
             final var name = variable.getFirstChild().getNextSibling().getNextSibling().getText();
             usages.stream()
-                .filter(usage -> usage.getLineNo() - 1 == variable.getLineNo()
-                    && name.equals(usageName(usage)))
+                .filter(usage -> {
+                    return usage.getLineNo() - 1 == variable.getLineNo()
+                        && name.equals(usageName(usage));
+                })
                 .forEach(detailAST -> log(variable, MSG_INLINE_VARIABLE, name));
         }
     }
@@ -121,7 +123,7 @@ public class InlineVariableCheck extends AbstractCheck {
      * @return referenced name
      */
     private static String usageName(DetailAST usage) {
-        String name;
+        final String name;
         if (usage.getType() == TokenTypes.LITERAL_RETURN) {
             name = usage.getFirstChild().getFirstChild().getText();
         }
