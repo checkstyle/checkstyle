@@ -20,9 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -63,7 +61,8 @@ public class InlineVariableCheck extends AbstractCheck {
     /**
      * Identified variable.
      */
-    private final Map<String, DetailAST> usage = new HashMap<>();
+    private final List<DetailAST> usages = new ArrayList<>();
+
 
     @Override
     public int[] getDefaultTokens() {
@@ -87,7 +86,7 @@ public class InlineVariableCheck extends AbstractCheck {
     @Override
     public void beginTree(DetailAST root) {
         variable.clear();
-        usage.clear();
+        usages.clear();
     }
 
     @Override
@@ -96,18 +95,10 @@ public class InlineVariableCheck extends AbstractCheck {
             variable.add(ast);
         }
         if (ast.getType() == TokenTypes.LITERAL_THROW) {
-            usage.put(ast.getFirstChild()
-                    .getFirstChild()
-                    .getFirstChild()
-                    .getNextSibling()
-                    .getNextSibling()
-                    .getFirstChild()
-                    .getFirstChild()
-                    .getText(),
-                ast);
+            usages.add(ast);
         }
         if (ast.getType() == TokenTypes.LITERAL_RETURN) {
-            usage.put(ast.getFirstChild().getFirstChild().getText(), ast);
+            usages.add(ast);
         }
     }
 
@@ -115,10 +106,19 @@ public class InlineVariableCheck extends AbstractCheck {
     public void finishTree(DetailAST ast) {
         for (DetailAST variable : variable) {
             final var key = variable.getFirstChild().getNextSibling().getNextSibling().getText();
-            if (usage.containsKey(key)
-                && usage.get(key).getLineNo() - 1 == variable.getLineNo()) {
-                log(variable, MSG_INLINE_VARIABLE, key);
-            }
+            usages.stream()
+                .filter(usage -> usage.getLineNo() - 1 == variable.getLineNo()
+                    && key.equals(usage.getType() == TokenTypes.LITERAL_RETURN ?
+                    usage.getFirstChild().getFirstChild().getText() :
+                    usage.getFirstChild()
+                        .getFirstChild()
+                        .getFirstChild()
+                        .getNextSibling()
+                        .getNextSibling()
+                        .getFirstChild()
+                        .getFirstChild()
+                        .getText()))
+                .forEach(detailAST -> log(variable, MSG_INLINE_VARIABLE, key));
         }
     }
 }

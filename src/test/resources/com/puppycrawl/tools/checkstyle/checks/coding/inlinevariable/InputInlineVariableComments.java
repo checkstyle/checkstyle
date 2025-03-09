@@ -31,13 +31,13 @@ public class InputInlineVariableComments {
         return out;
     }
 
-//    private PrintStream used222outUsed() {
-//        String inlineVariable1 = used2();
-//        String inlineVariable2 = used2();
-//        PrintStream out = System.out;
-//        out.println("out");
-//        return out;
-//    }
+    private PrintStream used222outUsed() {
+        String inlineVariable1 = used2();
+        String inlineVariable2 = used2();
+        PrintStream out = System.out;
+        out.println("out");
+        return out;
+    }
 
     private void used3() {
         String inlineVariable1 = used2();
