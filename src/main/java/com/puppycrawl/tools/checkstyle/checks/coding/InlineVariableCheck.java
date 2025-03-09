@@ -58,7 +58,7 @@ public class InlineVariableCheck extends AbstractCheck {
     /**
      * Identified variable.
      */
-    private final List<DetailAST> variable = new ArrayList<>();
+    private final List<DetailAST> variables = new ArrayList<>();
 
     /**
      * Identified variable.
@@ -87,14 +87,14 @@ public class InlineVariableCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST root) {
-        variable.clear();
+        variables.clear();
         usages.clear();
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.VARIABLE_DEF) {
-            variable.add(ast);
+            variables.add(ast);
         }
         if (ast.getType() == TokenTypes.LITERAL_THROW) {
             usages.add(ast);
@@ -106,7 +106,7 @@ public class InlineVariableCheck extends AbstractCheck {
 
     @Override
     public void finishTree(DetailAST ast) {
-        for (DetailAST variable : variable) {
+        for (DetailAST variable : variables) {
             final var name = variable.getFirstChild().getNextSibling().getNextSibling().getText();
             usages.stream()
                 .filter(usage -> usage.getLineNo() - 1 == variable.getLineNo()
@@ -115,11 +115,13 @@ public class InlineVariableCheck extends AbstractCheck {
         }
     }
 
+    /**
+     * @return usage name for either LITERAL_RETURN or LITERAL_THROW.
+     */
     private static String usageName(DetailAST usage) {
-        return usage.getType() == TokenTypes.LITERAL_RETURN ?
-            usage.getFirstChild().getFirstChild().getText() :
-            // LITERAL_THROW
-            usage.getFirstChild()
+        return usage.getType() == TokenTypes.LITERAL_RETURN
+            ? usage.getFirstChild().getFirstChild().getText()
+            : usage.getFirstChild()
                 .getFirstChild()
                 .getFirstChild()
                 .getNextSibling()

@@ -139,8 +139,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      */
     private static Charset createCharset(String name) {
         if (!Charset.isSupported(name)) {
-            final String message = "unsupported charset: '" + name + "'";
-            throw new UnsupportedCharsetException(message);
+            throw new UnsupportedCharsetException("unsupported charset: '" + name + "'");
         }
         return Charset.forName(name);
     }

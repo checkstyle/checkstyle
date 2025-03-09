@@ -49,4 +49,3 @@ public class InlineVariableCheckTest extends AbstractModuleTestSupport {
     }
 
 }
-
