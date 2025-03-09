@@ -1077,8 +1077,37 @@ public final class JavadocTokenTypes {
      */
     public static final int SLASH_END = JavadocParser.SLASH_END;
 
+
     /**
      * Equals html tag component: {@code '='}.
+     *
+     * <p><b>Example:</b></p>
+     *
+     * <pre>{@code
+     * &lt;div class="container" id="main"&gt;&lt;/div&gt;
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * HTML_TAG -> HTML_TAG
+     *  |--START -> <
+     *  |--HTML_TAG_NAME -> div
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> class
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> "container"
+     *  |--WS ->
+     *  |--HTML_TAG_NAME -> id
+     *  |--EQUALS -> =
+     *  |--ATTR_VALUE -> "main"
+     *  `--END -> >
+     * }</pre>
+     *
+     * @see
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
+     * Oracle Docs</a>
+     * @see #HTML_TAG_NAME
+     * @see #ATTR_VALUE
      */
     public static final int EQUALS = JavadocParser.EQUALS;
 
