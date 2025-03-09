@@ -266,7 +266,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck",
             "com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck",
-
             "com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.InterfaceTypeParameterNameCheck",
@@ -280,7 +279,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.naming.PatternVariableNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.RecordComponentNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.RecordTypeParameterNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck",
