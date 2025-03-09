@@ -451,7 +451,116 @@ java -D&lt;property&gt;=&lt;value&gt;  \
     </section>
 
 <section name="Examples">
-<h4><span>
+<ol>
+    <li>
+        <a href="#Using_Configuration_File">
+            Using Configuration File (-c, --configurationFile)
+        </a>
+    </li>
+
+    <li>
+        <a href="#Specifying_Output_Format">
+            Specifying Output Format (-f, --format)
+       </a>
+    </li>
+
+    <li>
+        <a href="#Using_a_Properties_File">
+            Using a Properties File (-p, --propertiesFile)
+        </a>
+    </li>
+
+    <li>
+        <a href="#Specifying_an_Output_File">
+            Specifying an Output File (-o, --outputPath)
+        </a>
+    </li>
+
+    <li>
+        <a href="#Printing_XPath_Suppressions">
+            Printing XPath Suppressions (-s, --suppressionLineColumnNumber)
+        </a>
+    </li>
+
+    <li>
+        <a href="#Generating_Suppressions_XML">
+            Generating Suppressions XML (-g, --generate-xpath-suppression)
+        </a>
+    </li>
+
+    <li>
+        <a href="#Setting_Tab_Width">
+            Setting Tab Width (-w, --tabWidth)
+        </a>
+    </li>
+
+    <li>
+        <a href="#Displaying_Abstract_Syntax_Tree">
+            Displaying Abstract Syntax Tree (-t, --tree)
+        </a>
+    </li>
+
+    <li>
+        <a href="#Displaying_AST_with_Comments">
+            Displaying AST with Comments (-T, --treeWithComments)
+        </a>
+    </li>
+
+    <li>
+        <a href="#Displaying_AST_with_Javadoc">
+            Displaying AST with Javadoc (-J, --treeWithJavadoc)
+        </a>
+    </li>
+
+    <li>
+        <a href="#Printing_Javadoc_Parse_Tree">
+            Printing Javadoc Parse Tree (-j, --javadocTree)
+        </a>
+    </li>
+
+    <li>
+        <a href="#Debugging_CheckStyle">
+            Debugging CheckStyle (-d, --debug)
+        </a>
+    </li>
+
+    <li>
+        <a href="#Excluding_Specific_Files_or_Directories">
+            Excluding Specific Files/Directories (-e, --exclude)
+        </a>
+    </li>
+
+    <li>
+        <a href="#Excluding_Files_Using_Regex">
+            Excluding Files Using Regular Expressions (-x, --exclude-regexp )
+        </a>
+    </li>
+
+    <li>
+        <a href="#Displaying_Checkstyle_Version">
+            Displaying Checkstyle Version (-V, --version)
+        </a>
+    </li>
+
+    <li>
+        <a href="#Matching_AST_Branches">
+            Matching AST Branches (-b, --branch-matching-xpath)
+        </a>
+    </li>
+
+    <li>
+        <a href="#Displaying_Help_Message">
+            Displaying Help Message (-h, --help)
+        </a>
+    </li>
+
+    <li>
+        <a href="#Executing_Ignored_Modules">
+            Executing Ignored Modules (-E, --executeIgnoredModules)
+        </a>
+    </li>
+</ol>
+<h4 id="Using_Configuration_File"><span>
 1. Using Configuration File (<span class="no-transform">-c, --configurationFile</span>)
 </span></h4>
 <p><strong>Goal:</strong> Run Checkstyle using the settings defined in the specified XML
@@ -515,7 +624,7 @@ Checkstyle ends with 1 errors.
   </code></pre>
 </div>
 
-<h4><span>
+<h4 id="Specifying_Output_Format"><span>
 2. Specifying Output Format (<span class="no-transform">-f, --format</span>)
 </span></h4>
 <p><strong>Goal:</strong> Output the audit results in a Xml Format
@@ -583,7 +692,7 @@ Checkstyle ends with 1 errors.
   </code></pre>
 </div>
 
-<h4><span>
+<h4 id="Using_a_Properties_File"><span>
 3. Using a Properties File (<span class="no-transform">-p, --propertiesFile</span>)
 </span></h4>
 <p><strong>Goal:</strong>
@@ -593,7 +702,6 @@ Load custom properties into Checkstyle from a properties file to enforce a heade
 <span class ="inline-command" ><strong>Command:</strong> <code class="prettyprint">
 java -jar checkstyle-${projectVersion}-all.jar -c config.xml -p checkstyle.properties Test.java
 </code></span>
-
 
 <p><strong>Content of config.xml:</strong></p>
 <div class="wrapper">
@@ -662,7 +770,7 @@ Checkstyle ends with 1 errors.
   </code></pre>
 </div>
 
-<h4><span>
+<h4 id="Specifying_an_Output_File"><span>
 4. Specifying an Output File (<span class="no-transform">-o, --outputPath</span>)
 </span></h4>
 <p><strong>Goal:</strong>
@@ -724,7 +832,7 @@ Audit done.
   </code></pre>
 </div>
 
-<h4><span>
+<h4 id="Printing_XPath_Suppressions"><span>
 5. Printing XPath Suppressions (<span class="no-transform">-s, --suppressionLineColumnNumber</span>)
 </span></h4>
 <p><strong>
@@ -775,7 +883,7 @@ class Test {
   </code></pre>
 </div>
 
-<h4><span>
+<h4 id="Generating_Suppressions_XML"><span>
 6. Generating Suppressions XML (<span class="no-transform">-g, --generate-xpath-suppression</span>)
 </span></h4>
 <p><strong>Goal:</strong> Generate an XML file containing suppressions for all
@@ -846,7 +954,7 @@ class Test {
   </code></pre>
 </div>
 
-<h4><span>
+<h4 id="Setting_Tab_Width"><span>
 7. Setting Tab Width (<span class="no-transform">-w, --tabWidth</span>)
 </span></h4>
 <p>
@@ -897,7 +1005,7 @@ class Test {
   </code></pre>
 </div>
 
-<h4><span>
+<h4 id="Displaying_Abstract_Syntax_Tree"><span>
 8. Displaying Abstract Syntax Tree (<span class="no-transform">-t, --tree</span>)
 </span></h4>
 <p><strong>Goal:</strong>
@@ -1009,7 +1117,7 @@ COMPILATION_UNIT -> COMPILATION_UNIT [6:0]
   </code></pre>
 </div>
 
-<h4><span>
+<h4 id="Displaying_AST_with_Comments"><span>
 9. Displaying AST with Comments (<span class="no-transform">-T, --treeWithComments</span>)
 </span></h4>
 <p><strong>Goal:</strong>
@@ -1130,7 +1238,7 @@ COMPILATION_UNIT -> COMPILATION_UNIT [6:0]
   </code></pre>
 </div>
 
-<h4><span>
+<h4 id="Displaying_AST_with_Javadoc"><span>
 10. Displaying AST with Javadoc (<span class="no-transform">-J, --treeWithJavadoc</span>)
 </span></h4>
 <p><strong>Goal:</strong>
@@ -1270,7 +1378,7 @@ COMPILATION_UNIT -> COMPILATION_UNIT [6:0]
 </code></pre>
 </div>
 
-<h4><span>
+<h4 id="Printing_Javadoc_Parse_Tree"><span>
 11. Printing Javadoc Parse Tree (<span class="no-transform">-j, --javadocTree</span>)
 </span></h4>
 <p><strong>Goal:</strong>
@@ -1329,7 +1437,7 @@ JAVADOC -> JAVADOC [0:0]
   </code></pre>
 </div>
 
-<h4><span>
+<h4 id="Debugging_CheckStyle"><span>
 12. Debugging CheckStyle (<span class="no-transform">-d, --debug</span>)
 </span></h4>
 <p><strong>Goal:</strong>
@@ -1398,7 +1506,7 @@ Checkstyle ends with 1 errors.
 </code></pre>
 </div>
 
-<h4><span>
+<h4 id="Excluding_Specific_Files_or_Directories"><span>
 13. Excluding Specific Files/Directories (<span class="no-transform">-e, --exclude</span>)
 </span></h4>
 <p><strong>Goal:</strong>
@@ -1461,7 +1569,7 @@ Audit done.
   </code></pre>
 </div>
 
-<h4><span>
+<h4 id="Excluding_Files_Using_Regex"><span>
 14. Excluding Files Using Regular Expressions (<span class="no-transform">-x, --exclude-regexp
 </span>)
 </span></h4>
@@ -1526,7 +1634,7 @@ Audit done.
   </code></pre>
 </div>
 
-<h4><span>
+<h4 id="Displaying_Checkstyle_Version"><span>
 15. Displaying Checkstyle Version (<span class="no-transform">-V, --version</span>)
 </span></h4>
 <p><strong>Goal:</strong> Print the current Checkstyle version information.
@@ -1543,7 +1651,7 @@ Checkstyle ${projectVersion}
   </code></pre>
 </div>
 
-<h4><span>
+<h4 id="Matching_AST_Branches"><span>
 16. Matching AST Branches (<span class="no-transform">-b, --branch-matching-xpath</span>)
 </span></h4>
 <p><strong>Goal:</strong>
@@ -1574,7 +1682,6 @@ class Test {
   </code></pre>
 </div>
 
-
 <p><strong>Output: </strong></p>
 <div class="wrapper">
   <pre class="prettyprint"><code class="language-bash">
@@ -1587,7 +1694,7 @@ COMPILATION_UNIT -> COMPILATION_UNIT [6:0]
   </code></pre>
 </div>
 
-<h4><span>
+<h4 id="Displaying_Help_Message"><span>
 17. Displaying Help Message (<span class="no-transform">-h, --help</span>)
 </span></h4>
 <p><strong>Goal:</strong>
@@ -1667,7 +1774,7 @@ Checkstyle requires a configuration XML file that configures the checks to apply
   </code></pre>
 </div>
 
-<h4><span>
+<h4 id="Executing_Ignored_Modules"><span>
 18. Executing Ignored Modules (<span class="no-transform">-E, --executeIgnoredModules</span>)
 </span></h4>
 <p><strong>Goal:</strong>
