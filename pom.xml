@@ -4453,6 +4453,8 @@
                 <param>lazyLoad</param>
                 <!-- performance optimization -->
                 <param>initStringBuilderWithOptimalBuffer</param>
+                <!-- this method in SarifLogger.java works properly only when execution is from jar -->
+                <param>replaceVersionString</param>
               </excludedMethods>
               <features>
                 <feature>+funmodifiablecollection</feature>
