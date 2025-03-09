@@ -12,7 +12,7 @@ tokens = CLASS_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.naming.typename;
 
-class inputHeaderClass3 { // violation
+class inputHeaderClass3 { // violation 'Name 'inputHeaderClass3' must match pattern'
 
     public interface inputHeaderInterface {};
 //comment
