@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
@@ -29,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <div>
- * Local variables should not be declared and then immediately returned or thrown (RSPEC-S1488).
+ * Local variable should not be declared and then immediately returned or thrown (RSPEC-S1488).
  * </div>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -54,20 +56,21 @@ public class InlineVariableCheck extends AbstractCheck {
     public static final String MSG_INLINE_VARIABLE = "inline.variable";
 
     /**
-     * Identified variables.
+     * Identified variable.
      */
-    private final Map<String, DetailAST> variables = new HashMap<>();
+    private final List<DetailAST> variable = new ArrayList<>();
 
     /**
-     * Identified variables.
+     * Identified variable.
      */
-    private final Map<String, DetailAST> returns = new HashMap<>();
+    private final Map<String, DetailAST> usage = new HashMap<>();
 
     @Override
     public int[] getDefaultTokens() {
         return new int[]{
-                TokenTypes.LITERAL_RETURN,
-                TokenTypes.VARIABLE_DEF,
+            TokenTypes.LITERAL_RETURN,
+            TokenTypes.LITERAL_THROW,
+            TokenTypes.VARIABLE_DEF,
         };
     }
 
@@ -83,26 +86,38 @@ public class InlineVariableCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST root) {
-        variables.clear();
-        returns.clear();
+        variable.clear();
+        usage.clear();
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.VARIABLE_DEF) {
-            variables.put(ast.getFirstChild().getNextSibling().getNextSibling().getText(), ast);
+            variable.add(ast);
+        }
+        if (ast.getType() == TokenTypes.LITERAL_THROW) {
+            usage.put(ast.getFirstChild()
+                    .getFirstChild()
+                    .getFirstChild()
+                    .getNextSibling()
+                    .getNextSibling()
+                    .getFirstChild()
+                    .getFirstChild()
+                    .getText(),
+                ast);
         }
         if (ast.getType() == TokenTypes.LITERAL_RETURN) {
-            returns.put(ast.getFirstChild().getFirstChild().getText(), ast);
+            usage.put(ast.getFirstChild().getFirstChild().getText(), ast);
         }
     }
 
     @Override
     public void finishTree(DetailAST ast) {
-        for (Map.Entry<String, DetailAST> variable : variables.entrySet()) {
-            if (returns.containsKey(variable.getKey())
-                && returns.get(variable.getKey()).getLineNo() - 1 == variable.getValue().getLineNo()) {
-                log(variable.getValue(), MSG_INLINE_VARIABLE, variable.getKey());
+        for (DetailAST variable : variable) {
+            final var key = variable.getFirstChild().getNextSibling().getNextSibling().getText();
+            if (usage.containsKey(key)
+                && usage.get(key).getLineNo() - 1 == variable.getLineNo()) {
+                log(variable, MSG_INLINE_VARIABLE, key);
             }
         }
     }

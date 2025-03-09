@@ -43,9 +43,9 @@ public class InlineVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void comments() throws Exception {
         verifyWithInlineConfigParser(getPath("InputInlineVariableComments.java"), List.of(
-            "30:21: " + getCheckMessage(MSG_INLINE_VARIABLE, "out"),
-            "53:16: " + getCheckMessage(MSG_INLINE_VARIABLE, "in"),
-            "61:16: " + getCheckMessage(MSG_INLINE_VARIABLE, "throw_")));
+            "30:9: " + getCheckMessage(MSG_INLINE_VARIABLE, "out"),
+            "53:9: " + getCheckMessage(MSG_INLINE_VARIABLE, "in"),
+            "61:9: " + getCheckMessage(MSG_INLINE_VARIABLE, "throw_")));
     }
 
 }
