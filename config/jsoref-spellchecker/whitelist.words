@@ -335,7 +335,6 @@ doxia
 Dpi
 Dpmd
 Dpom
-Dpuppycrawl
 Dpush
 dropbox
 dropdown
@@ -492,7 +491,6 @@ funmodifiablecollection
 Fwhitespace
 Fx
 gav
-gcp
 Gdrox
 generalform
 genericwhitespace
@@ -509,7 +507,6 @@ gnupg
 google
 googleapis
 googleblog
-googlecloudplatform
 googleecommon
 googlegroups
 googlesource
@@ -612,6 +609,7 @@ inplace
 instanceof
 Intelli
 intellij
+ij
 intercell
 interfaceistype
 interfacememberimpliedmodifier
@@ -756,6 +754,7 @@ KDoc
 keygen
 keyname
 keyscan
+kkoutsilis
 konstantinos
 Kordas
 Kotlin
@@ -1408,6 +1407,7 @@ unsubscribe
 unusedcatchparametershouldbeunnamed
 unusedimports
 unusedlambdaparametershouldbeunnamed
+unusedlocalmethod
 unusedlocalvariable
 uppercased
 upperell

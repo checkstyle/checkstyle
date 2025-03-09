@@ -221,6 +221,13 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid access modifier")
             .that(modifierPackage)
             .isEqualTo(AccessModifierOption.PACKAGE);
+
+        final DetailAST enumConstantDefinition = getNodeFromFile(TokenTypes.ENUM_CONSTANT_DEF);
+        final AccessModifierOption modifierEnumConstant = CheckUtil
+                .getAccessModifierFromModifiersToken(enumConstantDefinition);
+        assertWithMessage("Invalid access modifier")
+                .that(modifierEnumConstant)
+                .isEqualTo(AccessModifierOption.PUBLIC);
     }
 
     @Test

@@ -204,12 +204,14 @@ public class XMLLogger
                 + encode(event.getMessage())
                 + "\"");
         writer.print(" source=\"");
+        final String sourceValue;
         if (event.getModuleId() == null) {
-            writer.print(encode(event.getSourceName()));
+            sourceValue = event.getSourceName();
         }
         else {
-            writer.print(encode(event.getModuleId()));
+            sourceValue = event.getModuleId();
         }
+        writer.print(encode(sourceValue));
         writer.println("\"/>");
     }
 

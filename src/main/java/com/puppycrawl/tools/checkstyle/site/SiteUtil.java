@@ -689,8 +689,9 @@ public final class SiteUtil {
             checker.destroy();
         }
         catch (CheckstyleException checkstyleException) {
-            final String message = String.format(Locale.ROOT, "Failed processing %s", moduleName);
-            throw new MacroExecutionException(message, checkstyleException);
+            throw new MacroExecutionException(
+                String.format(Locale.ROOT, "Failed processing %s", moduleName),
+                checkstyleException);
         }
     }
 
