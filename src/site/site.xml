@@ -130,6 +130,7 @@
           <item name="IllegalToken" href="checks/coding/illegaltoken.html"/>
           <item name="IllegalTokenText" href="checks/coding/illegaltokentext.html"/>
           <item name="IllegalType" href="checks/coding/illegaltype.html"/>
+          <item name="InlineVariable" href="checks/coding/inlinevariable.html"/>
           <item name="InnerAssignment" href="checks/coding/innerassignment.html"/>
           <item name="MagicNumber" href="checks/coding/magicnumber.html"/>
           <item name="MatchXpath" href="checks/coding/matchxpath.html"/>
@@ -173,6 +174,7 @@
                 href="checks/coding/unusedcatchparametershouldbeunnamed.html"/>
           <item name="UnusedLambdaParameterShouldBeUnnamed"
                 href="checks/coding/unusedlambdaparametershouldbeunnamed.html"/>
+          <item name="UnusedLocalMethod" href="checks/coding/unusedlocalmethod.html"/>
           <item name="UnusedLocalVariable" href="checks/coding/unusedlocalvariable.html"/>
           <item name="VariableDeclarationUsageDistance"
                 href="checks/coding/variabledeclarationusagedistance.html"/>
