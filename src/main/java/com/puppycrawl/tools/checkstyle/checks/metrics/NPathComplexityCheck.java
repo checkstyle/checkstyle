@@ -484,11 +484,11 @@ public final class NPathComplexityCheck extends AbstractCheck {
      * @param ast inspected token.
      * @return number of conditional operators.
      * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.23">
-     * Java Language Specification, &sect;15.23</a>
+     *     Java Language Specification, &sect;15.23</a>
      * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.24">
-     * Java Language Specification, &sect;15.24</a>
+     *     Java Language Specification, &sect;15.24</a>
      * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.25">
-     * Java Language Specification, &sect;15.25</a>
+     *     Java Language Specification, &sect;15.25</a>
      */
     private static int countConditionalOperators(DetailAST ast) {
         int number = 0;
