@@ -6,7 +6,7 @@
 
   <property name="severity" value="ignore"/>
   <module name="TreeWalker">
-    <module name="NoCodeInFileCheck">
+    <module name="JavadocGrammarCheck">
     </module>
   </module>
 </module>
