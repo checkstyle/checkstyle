@@ -119,8 +119,8 @@ public class ExampleMacro extends AbstractMacro {
             writeSnippet(sink, content);
         }
         else {
-            final String message = String.format(Locale.ROOT, "Unknown example type: %s", type);
-            throw new MacroExecutionException(message);
+            throw new MacroExecutionException(
+                String.format(Locale.ROOT, "Unknown example type: %s", type));
         }
     }
 
@@ -137,8 +137,8 @@ public class ExampleMacro extends AbstractMacro {
             return Files.readAllLines(exampleFilePath);
         }
         catch (IOException ioException) {
-            final String message = String.format(Locale.ROOT, "Failed to read %s", path);
-            throw new MacroExecutionException(message, ioException);
+            throw new MacroExecutionException(String.format(Locale.ROOT, "Failed to read %s", path),
+                ioException);
         }
     }
 

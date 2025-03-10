@@ -187,8 +187,9 @@ public class XdocsTemplateParser extends XdocParser {
             executeMacro(macroName, request, sink);
         }
         catch (MacroNotFoundException exception) {
-            final String message = String.format(Locale.ROOT, "Macro '%s' not found.", macroName);
-            throw new MacroExecutionException(message, exception);
+            throw new MacroExecutionException(
+                String.format(Locale.ROOT, "Macro '%s' not found.", macroName),
+                exception);
         }
 
         reinitializeMacroFields();
