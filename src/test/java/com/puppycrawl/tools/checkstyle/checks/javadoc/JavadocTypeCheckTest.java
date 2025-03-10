@@ -87,10 +87,17 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testProtected() throws Exception {
+    public void testProtectedOne() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypePublicOnly1.java"), expected);
+    }
+
+    @Test
+    public void testProtectedTwo() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypePublicOnly1Two.java"), expected);
     }
 
     @Test
