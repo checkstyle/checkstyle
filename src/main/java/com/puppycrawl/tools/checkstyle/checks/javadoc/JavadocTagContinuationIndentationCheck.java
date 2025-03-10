@@ -193,7 +193,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      */
     private static boolean isBlockDescription(DetailNode description) {
         boolean isBlock = false;
-        DetailNode currentNode = description.getParent();
+        DetailNode currentNode = description;
         while (currentNode != null) {
             if (currentNode.getType() == JavadocTokenTypes.JAVADOC_TAG) {
                 isBlock = true;

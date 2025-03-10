@@ -32,4 +32,12 @@ public class InputJavadocTagContinuationIndentationCheckHtml {
     // violation 3 lines above 'Line continuation .* expected level should be 4'
     static class Test {}
 
+    /**
+     *
+     *  <a href="https://checkstyle.org/checks/javadoc">
+     *    Checks the indentation of the continuation lines
+     *  </a>  // violation not raised
+     */
+    static class Test1 {}
+
 }
