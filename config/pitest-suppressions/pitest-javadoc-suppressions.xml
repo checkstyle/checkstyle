@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>AbstractJavadocCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck</mutatedClass>
-    <mutatedMethod>walk</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>if (curNode != null) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractJavadocCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck</mutatedClass>
-    <mutatedMethod>walk</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck::shouldBeProcessed</description>
-    <lineContent>waitsForProcessing = shouldBeProcessed(curNode);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>JavadocMethodCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$Token</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
