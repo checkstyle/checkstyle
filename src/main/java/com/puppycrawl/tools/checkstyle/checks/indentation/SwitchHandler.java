@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Handler for switch statements.
@@ -74,6 +75,18 @@ public class SwitchHandler extends BlockParentHandler {
             getIndent(),
             false,
             false);
+    }
+
+    @Override
+    protected IndentLevel getIndentImpl() {
+        IndentLevel indentLevel = super.getIndentImpl();
+        // if switch is starting the line
+        if (isOnStartOfLine(getMainAst())
+                && TokenUtil.isOfType(getMainAst().getParent().getParent(), TokenTypes.ASSIGN)) {
+            indentLevel = new IndentLevel(indentLevel,
+                    getIndentCheck().getLineWrappingIndentation());
+        }
+        return indentLevel;
     }
 
     @Override

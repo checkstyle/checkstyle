@@ -3058,6 +3058,32 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIndentationSwitchExpressionOnStartOfTheLine() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+
+        final String[] expected = {
+            "40:7: " + getCheckMessage(MSG_ERROR, "switch", 6, 8),
+            "41:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 10),
+            "42:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 10),
+            "43:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 10),
+            "44:7: " + getCheckMessage(MSG_ERROR, "switch rcurly", 6, 8),
+            "49:11: " + getCheckMessage(MSG_ERROR, "switch", 10, 8),
+            "50:13: " + getCheckMessage(MSG_CHILD_ERROR, "case", 12, 10),
+            "51:13: " + getCheckMessage(MSG_CHILD_ERROR, "case", 12, 10),
+            "52:13: " + getCheckMessage(MSG_CHILD_ERROR, "case", 12, 10),
+        };
+
+        verifyWarns(checkConfig,
+                getNonCompilablePath("InputIndentationSwitchOnStartOfLine.java"), expected);
+    }
+
+    @Test
     public void testIndentationPatternMatchingForSwitch()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
