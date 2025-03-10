@@ -1640,7 +1640,7 @@ public final class JavadocTokenTypes {
      * }
      * </pre>
      */
-    
+
     public static final int PARAGRAPH = JavadocParser.RULE_paragraph + RULE_TYPES_OFFSET;
     /** Start paragraph tag. */
     public static final int P_TAG_START = JavadocParser.RULE_pTagStart + RULE_TYPES_OFFSET;
