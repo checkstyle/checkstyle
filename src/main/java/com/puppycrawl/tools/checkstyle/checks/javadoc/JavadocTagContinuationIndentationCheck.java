@@ -108,7 +108,8 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
 
     @Override
     public int[] getDefaultJavadocTokens() {
-        return new int[] {JavadocTokenTypes.DESCRIPTION };
+        return new int[] {JavadocTokenTypes.HTML_TAG, JavadocTokenTypes.DESCRIPTION};
+
     }
 
     @Override
@@ -118,7 +119,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        if (!isInlineDescription(ast)) {
+        if (isBlockDescription(ast) && !isInlineDescription(ast)) {
             final List<DetailNode> textNodes = getAllNewlineNodes(ast);
             for (DetailNode newlineNode : textNodes) {
                 final DetailNode textNode = JavadocUtil.getNextSibling(newlineNode);
@@ -182,6 +183,25 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
             node = JavadocUtil.getNextSibling(node);
         }
         return textNodes;
+    }
+
+    /**
+     * Checks if the given description node is part of a block Javadoc tag.
+     *
+     * @param description the node to check
+     * @return {@code true} if the node is inside a block tag, {@code false} otherwise
+     */
+    private static boolean isBlockDescription(DetailNode description) {
+        boolean isBlock = false;
+        DetailNode currentNode = description;
+        while (currentNode != null) {
+            if (currentNode.getType() == JavadocTokenTypes.JAVADOC_TAG) {
+                isBlock = true;
+                break;
+            }
+            currentNode = currentNode.getParent();
+        }
+        return isBlock;
     }
 
     /**
