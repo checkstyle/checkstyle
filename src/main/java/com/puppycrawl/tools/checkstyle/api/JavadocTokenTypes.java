@@ -1613,7 +1613,7 @@ public final class JavadocTokenTypes {
      * Paragraph html tag.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code <p>Sample text</p>}</pre>
+     * <pre>{@code <p>Example</p>}</pre>
      * <b>Tree:</b>
      * <pre>
      * {@code
