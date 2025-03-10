@@ -13,6 +13,6 @@ package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 // xdoc section -- start
 class Example2 {
   public void method1() {}
-  public void Method2() {} // violation
+  public void Method2() {} // violation 'Name 'Method2' must match pattern'
 }
 // xdoc section -- end
