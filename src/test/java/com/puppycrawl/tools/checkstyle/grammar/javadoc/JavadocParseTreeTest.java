@@ -418,4 +418,10 @@ public class JavadocParseTreeTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getDocPath("expectedAnnotationsInsideInlineTagAst.txt"),
                 getDocPath("InputAnnotationsInsideInlineTag.javadoc"));
     }
+
+    @Test
+    public void testSeeTagOptionalWhitespaceAfterHtmlTag() throws Exception {
+        verifyJavadocTree(getDocPath("expectedSeeTagOptionalWhitespaceAfterHtmlTag.txt"),
+                getDocPath("InputSeeTagOptionalWhitespaceAfterHtmlTag.javadoc"));
+    }
 }
