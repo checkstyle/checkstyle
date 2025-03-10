@@ -171,7 +171,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      * @param javadocRoot javadoc root node.
      * @return true, if comment has javadoc tags which are not ignored.
      * @see <a href=
-     * "https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#blockandinlinetags">
+     *     "https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#blockandinlinetags">
      *     Block and inline tags</a>
      */
     private boolean hasJavadocTags(DetailNode javadocRoot) {
@@ -186,7 +186,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      * @param javadocRoot javadoc root node.
      * @return true, if comment has in-line tags which are not ignored.
      * @see <a href=
-     * "https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#javadoctags">
+     *     "https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#javadoctags">
      *     JavadocTags</a>
      */
     private boolean hasJavadocInlineTags(DetailNode javadocRoot) {
