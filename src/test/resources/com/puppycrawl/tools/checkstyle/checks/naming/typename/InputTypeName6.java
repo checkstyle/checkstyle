@@ -17,8 +17,8 @@ class inputHeaderClass6 {
     public interface inputHeaderInterface {};
 //comment
     public enum inputHeaderEnum { one, two };
-
-    public @interface inputHeaderAnnotation {}; // violation
+    // violation below 'Name 'inputHeaderAnnotation' must match pattern'
+    public @interface inputHeaderAnnotation {};
 
 }
 
