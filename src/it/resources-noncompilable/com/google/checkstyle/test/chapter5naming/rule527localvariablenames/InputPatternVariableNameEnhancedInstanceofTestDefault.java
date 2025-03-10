@@ -70,17 +70,17 @@ public class InputPatternVariableNameEnhancedInstanceofTestDefault {
       System.out.println("done");
     }
 
-      {
-        while (!(o1 instanceof String _aa)) {
-          // violation above 'Pattern variable name '_aa' must match pattern'
-          L3:
-          break L3;
-        }
-        while (o1 instanceof String aa_) {
-          // violation above 'Pattern variable name 'aa_' must match pattern'
-          aa_.length();
-        }
+    {
+      while (!(o1 instanceof String _aa)) {
+        // violation above 'Pattern variable name '_aa' must match pattern'
+        L3:
+        break L3;
       }
+      while (o1 instanceof String aa_) {
+        // violation above 'Pattern variable name 'aa_' must match pattern'
+        aa_.length();
+      }
+    }
 
     int x = o1 instanceof String aaa$aaa ? aaa$aaa.length() : 2;
     // violation above 'Pattern variable name .* must match pattern'
