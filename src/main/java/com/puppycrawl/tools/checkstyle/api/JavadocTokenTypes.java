@@ -335,13 +335,12 @@ public final class JavadocTokenTypes {
      * <pre>{@code @author Baratali Izmailov}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   --JAVADOC_TAG -> JAVADOC_TAG
+     *   JAVADOC_TAG -> JAVADOC_TAG
      *      |--AUTHOR_LITERAL -> @author
      *      |--WS ->
      *      `--DESCRIPTION -> DESCRIPTION
      *          |--TEXT -> Baratali Izmailov
      *          |--NEWLINE -> \r\n
-     *          `--TEXT ->
      * }</pre>
      *
      * @see
@@ -1719,7 +1718,35 @@ public final class JavadocTokenTypes {
     /** End table row tag. */
     public static final int TR_TAG_END = JavadocParser.RULE_trTagEnd + RULE_TYPES_OFFSET;
 
-    /** Table cell html tag: {@code <td></td>}. */
+    /**
+     * Table cell HTML tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <td>Cell Content</td>}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   JAVADOC -> JAVADOC
+     *        |--NEWLINE -> \r\n
+     *        |--LEADING_ASTERISK ->  *
+     *        |--TEXT ->
+     *        |--HTML_ELEMENT -> HTML_ELEMENT
+     *        |   `--TD -> TD
+     *        |       |--TD_TAG_START -> TD_TAG_START
+     *        |       |   |--START -> &lt;
+     *        |       |   |--TD_HTML_TAG_NAME -> td
+     *        |       |   `--END -> &gt;
+     *        |       |--TEXT -> Cell Content
+     *        |       `--TD_TAG_END -> TD_TAG_END
+     *        |           |--START -> &lt;
+     *        |           |--SLASH -> /
+     *        |           |--TD_HTML_TAG_NAME -> td
+     *        |           `--END -> &gt;
+     *        |--NEWLINE -> \r\n
+     *        |--TEXT ->
+     * }
+     * </pre>
+     */
     public static final int TD = JavadocParser.RULE_td + RULE_TYPES_OFFSET;
     /** Start table cell tag. */
     public static final int TD_TAG_START = JavadocParser.RULE_tdTagStart + RULE_TYPES_OFFSET;
