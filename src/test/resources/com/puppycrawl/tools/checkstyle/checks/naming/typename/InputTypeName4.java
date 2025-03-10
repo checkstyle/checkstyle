@@ -13,9 +13,9 @@ tokens = INTERFACE_DEF
 package com.puppycrawl.tools.checkstyle.checks.naming.typename;
 
 class inputHeaderClass4 {
-
-    public interface inputHeaderInterface {}; // violation
-//comment
+    // violation below 'Name 'inputHeaderInterface' must match pattern'
+    public interface inputHeaderInterface {};
+    //comment
     public enum inputHeaderEnum { one, two };
 
     public @interface inputHeaderAnnotation {};
