@@ -94,8 +94,8 @@
 class Example1 {
   public void method1() {}
   protected void method2() {}
-  private void Method3() {} // violation
-  public void Method4() {} // violation
+  private void Method3() {} // violation 'Name 'Method3' must match pattern'
+  public void Method4() {} // violation 'Name 'Method4' must match pattern'
 }
 </code></pre></div>
         <p id="Example2-config">
@@ -115,7 +115,7 @@ class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   public void method1() {}
-  public void Method2() {} // violation
+  public void Method2() {} // violation 'Name 'Method2' must match pattern'
 }
 </code></pre></div>
         <p id="Example3-config">
@@ -157,7 +157,7 @@ class Example3 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
   public Example4() {}
-  public void Example4() {} // violation
+  public void Example4() {} // violation 'Name 'Example4' must match pattern'
 }
 </code></pre></div>
         <p id="Example5-config">
@@ -179,8 +179,8 @@ class Example4 {
 class Example5 {
   public void Method1() {}
   protected void Method2() {}
-  private void Method3() {} // violation
-  void Method4() {} // violation
+  private void Method3() {} // violation 'Name 'Method3' must match pattern'
+  void Method4() {} // violation 'Name 'Method4' must match pattern'
 }
 </code></pre></div>
       </subsection>
