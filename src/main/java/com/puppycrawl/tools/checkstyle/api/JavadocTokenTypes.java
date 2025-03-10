@@ -1901,7 +1901,35 @@ public final class JavadocTokenTypes {
     public static final int COLGROUP_TAG_END = JavadocParser.RULE_colgroupTagEnd
             + RULE_TYPES_OFFSET;
 
-    /** Description of a term html tag: {@code <dd></dd>}. */
+    /**
+     * DD html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <dd></dd>}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   --JAVADOC -> JAVADOC
+     *       |--NEWLINE -> \n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--HTML_ELEMENT -> HTML_ELEMENT
+     *       |   `--DD -> DD
+     *       |       |--DD_TAG_START -> DD_TAG_START
+     *       |       |   |--START -> <
+     *       |       |   |--DD_HTML_TAG_NAME -> dd
+     *       |       |   `--END -> >
+     *       |       `--DD_TAG_END -> DD_TAG_END
+     *       |           |--START -> <
+     *       |           |--SLASH -> /
+     *       |           |--DD_HTML_TAG_NAME -> dd
+     *       |           `--END -> >
+     *       |--NEWLINE -> \n
+     *       |--TEXT ->
+     *       `--EOF -> <EOF>
+     * }
+     * </pre>
+     */
     public static final int DD = JavadocParser.RULE_dd + RULE_TYPES_OFFSET;
     /** Start description of a term tag. */
     public static final int DD_TAG_START = JavadocParser.RULE_ddTagStart + RULE_TYPES_OFFSET;
