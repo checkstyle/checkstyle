@@ -1588,6 +1588,22 @@ public final class JavadocTokenTypes {
 
     /**
      * Html tag attribute. Parent node for: {@code HTML_TAG_IDENT, EQUALS, ATTR_VALUE}.
+     * <p><b>Example</b></p>
+     * <pre>{@code <p class="highlight">Sample text</p>}</pre>
+     * <b>Tree</b>
+     * {@code
+     *  `--JAVADOC -> JAVADOC
+     *     |--NEWLINE -> \n
+     *     |--LEADING_ASTERISK ->  *
+     *     |--WS ->
+     *     |--JAVADOC_TAG -> JAVADOC_TAG
+     *         |--CUSTOM_NAME -> @code
+     *         |--WS ->
+     *         `--DESCRIPTION -> DESCRIPTION
+     *         |   |--TEXT -> HTML_TAG_IDENT, EQUALS, ATTR_VALUE
+     *         |   |--NEWLINE -> \n
+     *         |   `--TEXT ->
+     * }
      */
     public static final int ATTRIBUTE = JavadocParser.RULE_attribute
             + RULE_TYPES_OFFSET;
@@ -1597,7 +1613,7 @@ public final class JavadocTokenTypes {
      * Paragraph html tag.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code <p>Sample text</p>}</pre>
+     * <pre>{@code <p>Example</p>}</pre>
      * <b>Tree:</b>
      * <pre>
      * {@code
