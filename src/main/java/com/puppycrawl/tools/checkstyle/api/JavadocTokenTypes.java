@@ -1198,11 +1198,11 @@ public final class JavadocTokenTypes {
     /** `rb` tag name. */
     public static final int RB_HTML_TAG_NAME = JavadocParser.RB_HTML_TAG_NAME;
 
-    /** `rt` tag name. */
-    public static final int RT_HTML_TAG_NAME = JavadocParser.RT_HTML_TAG_NAME;
-
     /** `rtc` tag name. */
     public static final int RTC_HTML_TAG_NAME = JavadocParser.RTC_HTML_TAG_NAME;
+
+    /** `rt` tag namw. */
+    public static final int RT_HTML_TAG_NAME = JavadocParser.RT_HTML_TAG_NAME;
 
     /** `rp` tag name. */
     public static final int RP_HTML_TAG_NAME = JavadocParser.RP_HTML_TAG_NAME;
