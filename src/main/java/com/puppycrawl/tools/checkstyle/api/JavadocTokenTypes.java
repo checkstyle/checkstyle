@@ -1626,7 +1626,7 @@ public final class JavadocTokenTypes {
      * <pre>{@code <p>Example</p>}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code
+     * {@code 
      *   `--JAVADOC -> JAVADOC
      *       |--NEWLINE -> \r\n
      *       |--LEADING_ASTERISK ->  *
