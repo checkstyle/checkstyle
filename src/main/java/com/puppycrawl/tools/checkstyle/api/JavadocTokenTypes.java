@@ -1154,7 +1154,61 @@ public final class JavadocTokenTypes {
      */
     public static final int P_HTML_TAG_NAME = JavadocParser.P_HTML_TAG_NAME;
 
-    /** List item tag name. */
+    /**
+     * List item tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     *  <ol>
+     *    <li>banana</li>
+     *    <li>apple</li>
+     *  </ol>
+     *  }</pre>
+     *  <b>Tree:</b>
+     *  <pre>
+     *  {@code
+     *  JAVADOC -> JAVADOC
+     *   |--TEXT -> /**
+     *   |--NEWLINE -> \r\n
+     *   |--LEADING_ASTERISK ->  *
+     *   |--TEXT ->
+     *   |--HTML_ELEMENT -> HTML_ELEMENT
+     *       `--HTML_TAG -> HTML_TAG
+     *           |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *           |   |--START -> <
+     *           |   |--HTML_TAG_NAME -> ol
+     *           |   `--END -> >
+     *           |--NEWLINE -> \r\n
+     *           |--LEADING_ASTERISK ->  *
+     *           |--TEXT ->
+     *           |--HTML_ELEMENT -> HTML_ELEMENT
+     *           |   `--LI -> LI
+     *           |       |--LI_TAG_START -> LI_TAG_START
+     *           |       |   |--START -> <
+     *           |       |   |--LI_HTML_TAG_NAME -> li
+     *           |       |   `--END -> >
+     *           |       |--TEXT -> banana
+     *           |       `--LI_TAG_END -> LI_TAG_END
+     *           |           |--START -> <
+     *           |           |--SLASH -> /
+     *           |           |--LI_HTML_TAG_NAME -> li
+     *           |           `--END -> >
+     *           |--NEWLINE -> \r\n
+     *           |--LEADING_ASTERISK ->  *
+     *           |--TEXT ->
+     *           `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *               |--START -> <
+     *               |--SLASH -> /
+     *               |--HTML_TAG_NAME -> ol
+     *               `--END -> >
+     *  }
+     *  </pre>
+     *
+     * @see
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
+     * comments are written in HTML</a>
+     * @see #LI_HTML_TAG_NAME
+     * */
     public static final int LI_HTML_TAG_NAME = JavadocParser.LI_HTML_TAG_NAME;
 
     /** Table row tag name. */
