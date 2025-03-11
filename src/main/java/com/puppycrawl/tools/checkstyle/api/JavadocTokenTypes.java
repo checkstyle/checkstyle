@@ -1973,32 +1973,34 @@ public final class JavadocTokenTypes {
      * <pre>{@code <table><tbody></tbody></table>}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {JAVADOC -&gt; JAVADOC
-     *      |--NEWLINE -&gt; \r\n
-     *      |--TEXT -&gt; /**
-     *      |--HTML_ELEMENT -&gt; HTML_ELEMENT
-     *      |   `--HTML_TAG -&gt; HTML_TAG
-     *      |       |--HTML_ELEMENT_START -&gt; HTML_ELEMENT_START
-     *      |       |   |--START -&gt; &lt;
-     *      |       |   |--HTML_TAG_NAME -&gt; table
-     *      |       |   `--END -&gt; &gt;
-     *      |       |--HTML_ELEMENT -&gt; HTML_ELEMENT
-     *      |       |   `--TBODY -&gt; TBODY
-     *      |       |       |--TBODY_TAG_START -&gt; TBODY_TAG_START
-     *      |       |       |   |--START -&gt; &lt;
-     *      |       |       |   |--TBODY_HTML_TAG_NAME -&gt; tbody
-     *      |       |       |   `--END -&gt; &gt;
-     *      |       |       `--TBODY_TAG_END -&gt; TBODY_TAG_END
-     *      |       |           |--START -&gt; &lt;
-     *      |       |           |--SLASH -&gt; /
-     *      |       |           |--TBODY_HTML_TAG_NAME -&gt; tbody
-     *      |       |           `--END -&gt; &gt;
-     *      |       `--HTML_ELEMENT_END -&gt; HTML_ELEMENT_END
-     *      |           |--START -&gt; &lt;
-     *      |           |--SLASH -&gt; /
-     *      |           |--HTML_TAG_NAME -&gt; table
-     *      |           `--END -&gt; &gt;
-     *      |--NEWLINE -&gt; \r\n
+     * {@code
+     *    JAVADOC -> JAVADOC
+     *      |--NEWLINE -> \r\n
+     *      |--LEADING_ASTERISK ->  *
+     *      |--TEXT ->
+     *      |--HTML_ELEMENT -> HTML_ELEMENT
+     *      |   `--HTML_TAG -> HTML_TAG
+     *      |       |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *      |       |   |--START -> <
+     *      |       |   |--HTML_TAG_NAME -> table
+     *      |       |   `--END -> >
+     *      |       |--HTML_ELEMENT -> HTML_ELEMENT
+     *      |       |   `--TBODY -> TBODY
+     *      |       |       |--TBODY_TAG_START -> TBODY_TAG_START
+     *      |       |       |   |--START -> <
+     *      |       |       |   |--TBODY_HTML_TAG_NAME -> tbody
+     *      |       |       |   `--END -> >
+     *      |       |       `--TBODY_TAG_END -> TBODY_TAG_END
+     *      |       |           |--START -> <
+     *      |       |           |--SLASH -> /
+     *      |       |           |--TBODY_HTML_TAG_NAME -> tbody
+     *      |       |           `--END -> >
+     *      |       `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *      |           |--START -> <
+     *      |           |--SLASH -> /
+     *      |           |--HTML_TAG_NAME -> table
+     *      |           `--END -> >
+     *      |--NEWLINE -> \r\n
      * }
      * </pre>
      */
