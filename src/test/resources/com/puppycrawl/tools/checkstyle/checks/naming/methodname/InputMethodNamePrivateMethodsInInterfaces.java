@@ -19,14 +19,18 @@ public interface InputMethodNamePrivateMethodsInInterfaces {
 
     private static void PrivateMethod2() {}
 
-    default void DefaultMethod() { // violation
+    // violation below 'Method name 'DefaultMethod' must match the pattern '^[a-z][a-zA-Z0-9]*$''
+    default void DefaultMethod() {
     }
 
-    public default void DefaultMethod2() { // violation
+    // violation below 'Method name 'DefaultMethod2' must match the pattern '^[a-z][a-zA-Z0-9]*$''
+    public default void DefaultMethod2() {
     }
 
-    void PublicMethod(); // violation
+    // violation below 'Method name 'PublicMethod' must match the pattern '^[a-z][a-zA-Z0-9]*$''
+    void PublicMethod();
 
-    public void PublicMethod2(); // violation
+    // violation below 'Method name 'PublicMethod2' must match the pattern '^[a-z][a-zA-Z0-9]*$''
+    public void PublicMethod2();
 
 }
