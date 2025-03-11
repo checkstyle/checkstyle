@@ -62,6 +62,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck;
 import com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
@@ -792,6 +793,47 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                         + getNonCompilablePath("InputTreeWalkerSkipParsingException.java") + "."));
 
         verify(checker, files, expectedViolation);
+    }
+
+    /**
+     * Verifies that TreeWalker sorting works correctly using AbstractCheck::getId.
+     */
+
+    @Test
+    public void testCheckSortingByIdWithVerify() throws Exception {
+        final DefaultConfiguration check1 = createModuleConfig(IllegalCatchCheck.class);
+        check1.addAttribute("id", "id1");
+
+        final DefaultConfiguration check2 = createModuleConfig(ConstantNameCheck.class);
+        check2.addAttribute("id", "id2");
+
+        final DefaultConfiguration check3 = createModuleConfig(WhitespaceAfterCheck.class);
+        check2.addAttribute("id", "id3");
+
+        final DefaultConfiguration check4 = createModuleConfig(ParameterNameCheck.class);
+        check2.addAttribute("id", "id4");
+
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(check1);
+        treeWalkerConfig.addChild(check2);
+        treeWalkerConfig.addChild(check3);
+        treeWalkerConfig.addChild(check4);
+
+        final Checker checker = createChecker(treeWalkerConfig);
+
+        final String[] expected = {
+            "12:30: " + getCheckMessage(ConstantNameCheck.class, "name.invalidPattern",
+                                   "someConstant", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+
+            "15:31: " + getCheckMessage(ParameterNameCheck.class, "name.invalidPattern",
+                                   "BADparam", "^[a-z][a-zA-Z0-9]*$"),
+
+            "18:11: " + getCheckMessage(IllegalCatchCheck.class, "illegal.catch", "Exception"),
+
+            "18:11: " + getCheckMessage(WhitespaceAfterCheck.class, "ws.notFollowed", "catch"),
+        };
+
+        verify(checker, getPath("InputTreeWalkerSorting.java"), expected);
     }
 
     public static class BadJavaDocCheck extends AbstractCheck {
