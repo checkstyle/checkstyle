@@ -390,7 +390,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
 
                 toVisit = JavadocUtil.getNextSibling(curNode);
                 curNode = curNode.getParent();
-                if (curNode != null) {
+                if (curNode != null && toVisit != null) {
                     waitsForProcessing = shouldBeProcessed(curNode);
                 }
             }
