@@ -5,7 +5,7 @@ jobs:
   run-inspections:
     docker:
       - image: checkstyle/idea-docker:jdk11-idea2022.3.3
-
+    resource_class: medium
     steps:
       - checkout
       - run:
@@ -41,6 +41,7 @@ jobs:
         default: ""
     docker:
       - image: << parameters.image-name >>
+    resource_class : large
     steps:
       - checkout
       - restore_cache:
@@ -64,6 +65,7 @@ jobs:
     parameters: *script_parameters
     docker:
       - image: << parameters.image-name >>
+    resource_class: medium
     steps:
       - checkout
       - run:
@@ -78,7 +80,7 @@ jobs:
   sonarqube:
     docker:
       - image: checkstyle/jdk-11-groovy-git-mvn:11.0.20.1__2.4.21__2.42.0__3.9.5
-
+    resource_class: medium
     steps:
       - checkout
       - run:
@@ -92,7 +94,7 @@ jobs:
   yamllint:
     docker:
       - image: cimg/base:2022.11
-
+    resource_class: medium
     steps:
       - checkout
       - run:
@@ -230,6 +232,15 @@ workflows:
           name: "no-exception-samples-gradle"
           image-name: "cimg/openjdk:11.0.19"
           command: "./.ci/no-exception-test.sh no-exception-samples-gradle"
+      - validate-with-maven-script:
+          name: "no-exception-samples-maven"
+          image-name: "cimg/openjdk:11.0.19"
+          command: "./.ci/no-exception-test.sh no-exception-samples-maven"
+
+      - validate-with-maven-script:
+          name: "no-exception-samples-ant"
+          image-name: "circleci/openjdk:11-jdk"
+          command: "./.ci/no-exception-test.sh no-exception-samples-ant"
 
   idea:
     jobs:
