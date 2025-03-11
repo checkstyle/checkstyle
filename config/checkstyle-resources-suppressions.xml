@@ -171,7 +171,9 @@
   <suppress checks="FileTabCharacter"
     files="[\\/]InputAbbreviationAsWordInNameType\.java"/>
   <suppress checks="FileTabCharacter"
-    files="[\\/]InputLineLengthSimple\.java"/>
+    files="[\\/]InputLineLengthSimpleOne\.java"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputLineLengthSimpleTwo\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputLineLengthSimple1\.java"/>
   <suppress checks="FileTabCharacter"
@@ -326,8 +328,6 @@
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]methodcount[\\/]InputMethodCount\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]linelength[\\/]InputLineLengthSimple1\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]linelength[\\/]InputLineLengthSimple\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]parameternumber[\\/]InputParameterNumberSimple\.java"/>
   <suppress checks="FileLength"

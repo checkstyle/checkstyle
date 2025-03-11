@@ -37,14 +37,23 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSimple()
+    public void testSimpleOne()
             throws Exception {
         final String[] expected = {
             "22: " + getCheckMessage(MSG_KEY, 80, 81),
-            "149: " + getCheckMessage(MSG_KEY, 80, 83),
         };
         verifyWithInlineConfigParser(
-                getPath("InputLineLengthSimple.java"), expected);
+                getPath("InputLineLengthSimpleOne.java"), expected);
+    }
+
+    @Test
+    public void testSimpleTwo()
+            throws Exception {
+        final String[] expected = {
+            "88: " + getCheckMessage(MSG_KEY, 80, 83),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLineLengthSimpleTwo.java"), expected);
     }
 
     @Test
