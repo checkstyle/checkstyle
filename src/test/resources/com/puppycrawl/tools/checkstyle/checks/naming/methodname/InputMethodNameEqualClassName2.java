@@ -21,23 +21,27 @@ package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 public class InputMethodNameEqualClassName2 {
 
         //illegal name
-    public int InputMethodNameEqualClassName2() { // violation
+    // violation below 'Method name 'InputMethodNameEqualClassName2' must match the pattern '^[a-z][a-zA-Z0-9]*$''
+    public int InputMethodNameEqualClassName2() {
         return 0;
     }
 
     //illegal name
-    private int PRIVATEInputMethodNameEqualClassName() { // violation
+    // violation below 'Method name 'PRIVATEInputMethodNameEqualClassName' must match the pattern '^[a-z][a-zA-Z0-9]*$''
+    private int PRIVATEInputMethodNameEqualClassName() {
         return 0;
     }
 
     class Inner {
                 //illegal name
-        public int Inner() { // violation
+        // violation below 'Method name 'Inner' must match the pattern '^[a-z][a-zA-Z0-9]*$''
+        public int Inner() {
                         return 0;
                 }
 
                 //OK name - name of the outter class's ctor
-        public int InputMethodNameEqualClassName2() { // violation
+        // violation below 'Method name 'InputMethodNameEqualClassName2' must match the pattern '^[a-z][a-zA-Z0-9]*$''
+        public int InputMethodNameEqualClassName2() {
                         return 0;
                 }
         }
@@ -46,7 +50,8 @@ public class InputMethodNameEqualClassName2 {
                 new InputMethodNameEqualClassName() {
 
                         //illegal name
-            public int InputMethodNameEqualClassName2() { // violation
+            // violation below 'Method name 'InputMethodNameEqualClassName2' must match the pattern '^[a-z][a-zA-Z0-9]*$''
+            public int InputMethodNameEqualClassName2() {
                                 return 1;
                         }
                 };
@@ -56,13 +61,15 @@ public class InputMethodNameEqualClassName2 {
 interface SweetInterface2 {
 
         //illegal name
-    int SweetInterface(); // violation
+    // violation below 'Method name 'SweetInterface' must match the pattern '^[a-z][a-zA-Z0-9]*$''
+    int SweetInterface();
 }
 
 class Outer2 {
 
         //illegal name
-    public void Outer() { // violation
+    // violation below 'Method name 'Outer' must match the pattern '^[a-z][a-zA-Z0-9]*$''
+    public void Outer() {
 
         }
 }

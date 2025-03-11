@@ -26,9 +26,11 @@ public class InputMethodNameOverriddenMethods extends SomeClass
 }
 
 class SomeClass {
-    public void PUBLICfoo() {  // violation
+    // violation below 'Method name 'PUBLICfoo' must match the pattern '^[a-z][a-zA-Z0-9]*$''
+    public void PUBLICfoo() {
 
     }
+    // violation below 'Method name 'PROTECTEDfoo' must match the pattern '^[a-z][a-zA-Z0-9]*$''
     protected void PROTECTEDfoo() { // violation
 
     }

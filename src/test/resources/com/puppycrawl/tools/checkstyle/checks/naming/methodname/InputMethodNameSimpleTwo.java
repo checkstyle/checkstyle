@@ -58,7 +58,8 @@ final class InputMethodNameSimpleTwo {
     }
 
     /** test method pattern */
-    void ALL_UPPERCASE_METHOD() // violation
+    // violation below 'Method name 'ALL_UPPERCASE_METHOD' must match the pattern '^[a-z][a-zA-Z0-9]*$''
+    void ALL_UPPERCASE_METHOD()
     {
     }
 
