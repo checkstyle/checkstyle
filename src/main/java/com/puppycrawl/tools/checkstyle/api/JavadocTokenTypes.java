@@ -1314,11 +1314,61 @@ public final class JavadocTokenTypes {
 
     /**
      * HTML comment start symbol '&lt;&#33;--'.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * &lt;!--
+     * This is an HTML multi-line comment:
+     * This is another comment
+     * --&gt;
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * HTML_COMMENT -> HTML_COMMENT
+     *    |--HTML_COMMENT_START -> <!--
+     *    |--NEWLINE -> \n
+     *    |--LEADING_ASTERISK ->  *
+     *    |--TEXT ->  This is an HTML multi-line comment:
+     *    |--NEWLINE -> \n
+     *    |--LEADING_ASTERISK ->  *
+     *    |--TEXT ->  This is another comment
+     *    |--NEWLINE -> \n
+     *    |--LEADING_ASTERISK ->  *
+     *    |--TEXT ->
+     *    `--HTML_COMMENT_END -> -->
+     * }
+     * </pre>
      */
     public static final int HTML_COMMENT_START = JavadocParser.HTML_COMMENT_START;
 
     /**
      * HTML comment end symbol '--&gt;'.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * &lt;!--
+     * This is an HTML multi-line comment:
+     * This is another comment
+     * --&gt;
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * HTML_COMMENT -> HTML_COMMENT
+     *    |--HTML_COMMENT_START -> <!--
+     *    |--NEWLINE -> \n
+     *    |--LEADING_ASTERISK ->  *
+     *    |--TEXT ->  This is an HTML multi-line comment:
+     *    |--NEWLINE -> \n
+     *    |--LEADING_ASTERISK ->  *
+     *    |--TEXT ->  This is another comment
+     *    |--NEWLINE -> \n
+     *    |--LEADING_ASTERISK ->  *
+     *    |--TEXT ->
+     *    `--HTML_COMMENT_END -> -->
+     * }
+     * </pre>
      */
     public static final int HTML_COMMENT_END = JavadocParser.HTML_COMMENT_END;
 
