@@ -14,10 +14,11 @@ applyToPrivate = (default)true
 package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 
 public interface InputMethodNamePublicMethodsInInterfaces {
+    // violation 'PrivateMethod' must match the pattern
+    private void PrivateMethod() {}
 
-    private void PrivateMethod() {} // violation
-
-    private static void PrivateMethod2() {} // violation
+    // violation 'PrivateMethod2' must match the pattern
+    private static void PrivateMethod2() {}
 
     default void DefaultMethod() {
     }
