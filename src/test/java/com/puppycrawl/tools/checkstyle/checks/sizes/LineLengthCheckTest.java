@@ -37,25 +37,43 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSimple()
+    public void testSimpleOne()
             throws Exception {
         final String[] expected = {
             "22: " + getCheckMessage(MSG_KEY, 80, 81),
-            "149: " + getCheckMessage(MSG_KEY, 80, 83),
         };
         verifyWithInlineConfigParser(
-                getPath("InputLineLengthSimple.java"), expected);
+                getPath("InputLineLengthSimpleOne.java"), expected);
     }
 
     @Test
-    public void shouldLogActualLineLength()
+    public void testSimpleTwo()
+            throws Exception {
+        final String[] expected = {
+            "88: " + getCheckMessage(MSG_KEY, 80, 83),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLineLengthSimpleTwo.java"), expected);
+    }
+
+    @Test
+    public void shouldLogActualLineLengthOne()
             throws Exception {
         final String[] expected = {
             "23: 80,81",
-            "150: 80,83",
         };
         verifyWithInlineConfigParser(
-                getPath("InputLineLengthSimple1.java"), expected);
+                getPath("InputLineLengthSimple1One.java"), expected);
+    }
+
+    @Test
+    public void shouldLogActualLineLengthTwo()
+            throws Exception {
+        final String[] expected = {
+            "89: 80,83",
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLineLengthSimple1Two.java"), expected);
     }
 
     @Test
