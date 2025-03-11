@@ -375,6 +375,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      *        the root of tree for process
      */
     private void walk(DetailNode root) {
+        if (root == null) return;
         DetailNode curNode = root;
         while (curNode != null) {
             boolean waitsForProcessing = shouldBeProcessed(curNode);
