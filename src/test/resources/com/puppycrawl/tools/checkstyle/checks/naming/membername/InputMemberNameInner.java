@@ -60,7 +60,7 @@ class InputMemberNameInner
         {
             private static final int CDS = 1;
 
-            private int ABC; // violation
+            private int ABC; // violation 'Name 'ABC' must match pattern
         };
      }
 
