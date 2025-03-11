@@ -13,11 +13,11 @@ package com.puppycrawl.tools.checkstyle.checks.naming.membername;
 
 // xdoc section -- start
 class Example2 {
-  public int num1; // violation
+  public int num1; // violation 'Name 'num1' must match pattern'
 
   protected int num2;
   int num3;
-  private int num4; // violation
+  private int num4; // violation 'Name 'num2' must match pattern'
 
 }
 // xdoc section -- end
