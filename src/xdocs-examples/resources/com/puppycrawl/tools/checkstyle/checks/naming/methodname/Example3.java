@@ -14,6 +14,6 @@ package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 // xdoc section -- start
 class Example3 {
   public Example3() {}
-  public void Example3() {}
+  public void Example3() {} // violation 'Example3' must match the pattern
 }
 // xdoc section -- end
