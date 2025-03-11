@@ -155,4 +155,17 @@ public class JavadocTagContinuationIndentationCheckTest
                 getPath("InputJavadocTagContinuationIndentationCheck1.java"),
                 expected);
     }
+
+    @Test
+    public void testJavadocTagContinuationBreakLine() throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_KEY, 4),
+            "17: " + getCheckMessage(MSG_KEY, 4),
+            "30: " + getCheckMessage(MSG_KEY, 4),
+            "53: " + getCheckMessage(MSG_KEY, 4),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTagContinuationIndentationSeeTag.java"),
+                expected);
+    }
 }
