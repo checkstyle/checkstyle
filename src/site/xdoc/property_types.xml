@@ -684,7 +684,7 @@
         times which is equivalent to a set of comma separated patterns.
         For example, the following:
       </p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+      <div class="wrapper"><pre class="prettyprint" ><code class="language-xml">
 &lt;property name=&quot;patterns&quot; value=&quot;^prefix*$, ^*suffix$&quot;/&gt;
       </code></pre></div>
       <p>can instead be expressed as:</p>
