@@ -694,6 +694,7 @@ Checkstyle ends with 1 errors.
 
 <h4 id="Using_a_Properties_File"><span>
 3. Using a Properties File (<span class="no-transform">-p, --propertiesFile</span>)
+<p>forcing change</p>
 </span></h4>
 <p><strong>Goal:</strong>
 Load custom properties into Checkstyle from a properties file to enforce a header check.
