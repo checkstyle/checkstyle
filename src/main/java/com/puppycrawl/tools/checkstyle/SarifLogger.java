@@ -170,10 +170,8 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
 
     @Override
     public void auditFinished(AuditEvent event) {
-        final String version = SarifLogger.class.getPackage().getImplementationVersion();
-        final String rendered = report
-            .replace(VERSION_PLACEHOLDER, String.valueOf(version))
-            .replace(RESULTS_PLACEHOLDER, String.join(",\n", results));
+        String rendered = replaceVersionString(this.report);
+        rendered = rendered.replace(RESULTS_PLACEHOLDER, String.join(",\n", results));
         writer.print(rendered);
         if (closeStream) {
             writer.close();
@@ -181,6 +179,17 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
         else {
             writer.flush();
         }
+    }
+
+    /**
+     * Returns the version string.
+     *
+     * @param report report content where replace should happen
+     * @return a version string based on the package implementation version
+     */
+    private static String replaceVersionString(String report) {
+        final String version = SarifLogger.class.getPackage().getImplementationVersion();
+        return report.replace(VERSION_PLACEHOLDER, String.valueOf(version));
     }
 
     @Override
