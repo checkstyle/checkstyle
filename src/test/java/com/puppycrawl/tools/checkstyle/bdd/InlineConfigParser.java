@@ -272,7 +272,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.naming.InterfaceTypeParameterNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.MethodTypeParameterNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck",
