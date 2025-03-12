@@ -107,7 +107,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void countUnicodePointsOnce() throws Exception {
         final String[] expected = {
-            "15: " + getCheckMessage(MSG_KEY, 100, 149),
+            "11: " + getCheckMessage(MSG_KEY, 100, 149),
             "16: " + getCheckMessage(MSG_KEY, 100, 149),
         };
         verifyWithInlineConfigParser(getPath("InputLineLengthUnicodeChars.java"), expected);
