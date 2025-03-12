@@ -161,6 +161,8 @@
           <item name="StringLiteralEquality" href="checks/coding/stringliteralequality.html"/>
           <item name="SuperClone" href="checks/coding/superclone.html"/>
           <item name="SuperFinalize" href="checks/coding/superfinalize.html"/>
+          <item name="UnnecessaryNullCheckWithInstanceOf"
+                href="checks/coding/UnnecessaryNullCheckWithInstanceOf.html"/>
           <item name="UnnecessaryParentheses" href="checks/coding/unnecessaryparentheses.html"/>
           <item name="UnnecessarySemicolonAfterOuterTypeDeclaration"
                 href="checks/coding/unnecessarysemicolonafteroutertypedeclaration.html"/>
