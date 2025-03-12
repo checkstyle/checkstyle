@@ -171,9 +171,13 @@
   <suppress checks="FileTabCharacter"
     files="[\\/]InputAbbreviationAsWordInNameType\.java"/>
   <suppress checks="FileTabCharacter"
-    files="[\\/]InputLineLengthSimple\.java"/>
+    files="[\\/]InputLineLengthSimpleOne\.java"/>
   <suppress checks="FileTabCharacter"
-    files="[\\/]InputLineLengthSimple1\.java"/>
+    files="[\\/]InputLineLengthSimpleTwo\.java"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputLineLengthSimple1One\.java"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputLineLengthSimple1Two\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputTodoCommentSimpleTwo\.java"/>
   <suppress checks="FileTabCharacter"
@@ -228,8 +232,6 @@
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocvariable[\\/]InputJavadocVariablePublicOnly2\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocvariable[\\/]InputJavadocVariableNoJavadoc3\.java"/>
-   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypePublicOnly1\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeNoJavadoc\.java"/>
   <suppress checks="FileLength"
@@ -324,10 +326,6 @@
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]methodlength[\\/]InputMethodLengthCountEmptyIsFalse\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]methodcount[\\/]InputMethodCount\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]linelength[\\/]InputLineLengthSimple1\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]linelength[\\/]InputLineLengthSimple\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]parameternumber[\\/]InputParameterNumberSimple\.java"/>
   <suppress checks="FileLength"
