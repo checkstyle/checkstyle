@@ -55,9 +55,8 @@ blocks:
                 # until https://github.com/checkstyle/checkstyle/issues/14086
                 # - .ci/no-exception-test.sh no-exception-samples-ant
                 - .ci/validation.sh nondex
-                # until https://github.com/checkstyle/checkstyle/issues/9807
-                # - mvn -e --no-transfer-progress clean package -Passembly,no-validations
-                #    && .ci/validation.sh no-violation-test-josm
+                - mvn -e --no-transfer-progress clean package -Passembly,no-validations
+                   && .ci/validation.sh no-violation-test-josm
           commands:
             - sem-version java 11
             - echo "eval of CMD is starting";
