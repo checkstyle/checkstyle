@@ -488,9 +488,8 @@
                         src="images/ban_red.png"
                         alt="" />
                   </span>
-                  That validation could not be checked by Checkstyle. It's
-                  need information from another class(java file). But Checkstyle
-                  have no way to open or look at another java file.
+                  Validation of this requirement can not be done by Checkstyle. It needs information from another class,
+                  defined in another Java file, but Checkstyle has no way to read another Java file.
                 </td>
                 <td/>
               </tr>
@@ -1347,7 +1346,7 @@
                         src="images/ban_red.png"
                         alt="" />
                   </span>
-                  Type-use annotations cannot be detected by Checkstyle due to it's
+                  Type-use annotations cannot be detected by Checkstyle due to its
                   <a href="writingchecks.html#Limitations">
                     limitations</a>,
                   see issue
@@ -1975,11 +1974,8 @@
                         src="images/ban_red.png"
                         alt="" />
                   </span>
-                  That validation could not be checked by Checkstyle. It's
-                  need to
-                  take a look as parent class. But Checkstyle have no way to
-                  open or
-                  look at another Class file.
+                  Validation of this requirement can not be done by Checkstyle. It needs information from the parent class,
+                  defined in another Java file, but Checkstyle has no way to read another Java file.
                 </td>
                 <td/>
               </tr>
@@ -2031,7 +2027,7 @@
                         src="images/ban_red.png"
                         alt="" />
                   </span>
-                  Proper validation require parsing other files, sources
+                  Proper validation requires parsing other files, sources
                   are not always available.
                 </td>
                 <td/>
@@ -2313,7 +2309,7 @@
                   <br />
                   <br />
                   Optional javadoc for "simple, obvious" members is only valid for
-                  getters/setters but they should follow
+                  getters/setters, but they should follow
                   certain rules mentioned at Check's
                   <a href="https://checkstyle.org/checks/javadoc/missingjavadocmethod.html#Description">Description</a>
                   section.
