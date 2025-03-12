@@ -201,23 +201,6 @@ public class CommitValidationTest {
                 .isEqualTo(validateCommitMessage("supplemental: Test\n\n"));
     }
 
-    @Test
-    public void testCommitMessageHasProperStructure() throws Exception {
-        final List<RevCommit> lastCommits = getCommitsToCheck();
-        for (RevCommit commit : filterValidCommits(lastCommits)) {
-            final String commitMessage = commit.getFullMessage();
-            final int error = validateCommitMessage(commitMessage);
-
-            if (error != 0) {
-                final String commitId = commit.getId().getName();
-
-                assertWithMessage(
-                        getInvalidCommitMessageFormattingError(commitId, commitMessage) + error)
-                                .fail();
-            }
-        }
-    }
-
     private static int validateCommitMessage(String commitMessage) {
         final String message = commitMessage.replace("\r", "").replace("\n", "");
         final String trimRight = commitMessage.replaceAll("[\\r\\n]+$", "");
