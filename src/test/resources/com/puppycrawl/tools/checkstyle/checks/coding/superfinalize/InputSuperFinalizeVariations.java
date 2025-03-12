@@ -31,14 +31,14 @@ public class InputSuperFinalizeVariations
 
 class NoSuperFinalize
 {
-    public void finalize() // violation
+    public void finalize() // violation "Overriding finalize() method must invoke super.finalize() to ensure proper finalization."
     {
     }
 }
 
 class InputInnerFinalize
 {
-    public void finalize() // violation
+    public void finalize() // violation "Overriding finalize() method must invoke super.finalize() to ensure proper finalization."
     {
         class Inner
         {
@@ -80,7 +80,7 @@ class FinalizeWithArgs {
 
 class OverrideClass extends FinalizeWithArgs {
     @Override
-    protected void finalize() throws Throwable { // violation
+    protected void finalize() throws Throwable { // violation "Overriding finalize() method must invoke super.finalize() to ensure proper finalization."
         super.finalize(new Object());
     }
 }

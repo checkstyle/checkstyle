@@ -43,7 +43,7 @@ class Example1 {
   }
 }
 class InvalidExample {
-  // violation below, 'Method 'finalize' should call 'super.finalize''
+  // violation below, 'Overriding finalize() method must invoke super.finalize() to ensure proper finalization.'
   protected void finalize() throws Throwable {
   }
 }
