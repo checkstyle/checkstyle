@@ -1130,7 +1130,7 @@ public final class JavadocTokenTypes {
      * {@code
      *  JAVADOC ->; JAVADOC
      *     |--NEWLINE ->; \r\n
-     *     |--LEADING_ASTERISK ->;      *
+     *     |--LEADING_ASTERISK ->;  *
      *     |--TEXT ->;
      *     |--HTML_ELEMENT ->; HTML_ELEMENT
      *         `--PARAGRAPH ->; PARAGRAPH
