@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -37,8 +36,13 @@ public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest extends Abstr
         return checkName;
     }
 
+    @Override
+    protected String getPackageLocation() {
+        return "org\\checkstyle\\suppressionxpathfilter\\unnecessarynullcheckwithinstanceof";
+    }
+
     @Test
-    public void testEqualityTrue() throws Exception {
+    public void test1() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathUnnecessaryNullCheckWithInstanceOf.java"));
         final DefaultConfiguration moduleConfig =
@@ -48,10 +52,53 @@ public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest extends Abstr
             "5:13: " + getCheckMessage(UnnecessaryNullCheckWithInstanceOfCheck.class,
                     UnnecessaryNullCheckWithInstanceOfCheck.MSG_UNNECESSARY_NULLCHECK),
         };
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathUnnecessaryNullCheckWithInstanceOf']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodWithUnnecessaryNullCheck1']]"
                 + "/SLIST/LITERAL_IF/EXPR/LAND/NOT_EQUAL/IDENT[@text='obj']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
+    }
+
+    @Test
+    public void test2() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathUnnecessaryNullCheckWithInstanceOfAnonymous.java"));
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(UnnecessaryNullCheckWithInstanceOfCheck.class);
+
+        final String[] expected = {
+            "8:17: " + getCheckMessage(UnnecessaryNullCheckWithInstanceOfCheck.class,
+                    UnnecessaryNullCheckWithInstanceOfCheck.MSG_UNNECESSARY_NULLCHECK),
+        };
+        final List<String> expectedXpathQueries = List.of(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathUnnecessaryNullCheckWithInstanceOfAnonymous']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='runnable']]/ASSIGN/EXPR/LITERAL_NEW"
+                + "[./IDENT[@text='Runnable']]/OBJBLOCK/METHOD_DEF[./IDENT[@text='run']]"
+                + "/SLIST/LITERAL_IF/EXPR/LAND/NOT_EQUAL/IDENT[@text='obj']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
+    }
+
+    @Test
+    public void test3() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathUnnecessaryNullCheckWithInstanceOfInterface.java"));
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(UnnecessaryNullCheckWithInstanceOfCheck.class);
+
+        final String[] expected = {
+            "6:16: " + getCheckMessage(UnnecessaryNullCheckWithInstanceOfCheck.class,
+                    UnnecessaryNullCheckWithInstanceOfCheck.MSG_UNNECESSARY_NULLCHECK),
+        };
+        final List<String> expectedXpathQueries = List.of(
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
+                + "[@text='InputXpathUnnecessaryNullCheckWithInstanceOfInterface']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='validateString']]/SLIST/LITERAL_RETURN"
+                + "/EXPR/LAND/NOT_EQUAL/IDENT[@text='obj']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);

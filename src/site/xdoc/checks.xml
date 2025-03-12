@@ -1337,8 +1337,8 @@
           </tr>
           <tr>
             <td>
-              <a href="checks/coding/unnecessarynullcheckwithinstanceofcheck.html#UnnecessaryNullCheckWithInstanceOfCheck">
-                UnnecessaryNullCheckWithInstanceOfCheck
+              <a href="checks/coding/unnecessarynullcheckwithinstanceof.html#UnnecessaryNullCheckWithInstanceOf">
+                UnnecessaryNullCheckWithInstanceOf
               </a>
             </td>
             <td>

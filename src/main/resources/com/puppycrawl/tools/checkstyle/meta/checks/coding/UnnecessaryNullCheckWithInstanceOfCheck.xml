@@ -4,33 +4,14 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryNullCheckWithInstanceOfCheck"
              name="UnnecessaryNullCheckWithInstanceOf"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
- Checks for unnecessary null checks when used in conjunction with the &lt;code&gt;instanceof&lt;/code&gt; operator.
- The &lt;code&gt;instanceof&lt;/code&gt; operator already returns false for null values, making an explicit null check redundant.
- &lt;/div&gt;
+         <description>&lt;p&gt;
+ Checks for unnecessary null checks when used in conjunction with the instanceof operator.
+ &lt;/p&gt;
 
  &lt;p&gt;
- Example of an unnecessary null check:
- &lt;/p&gt;
- &lt;pre&gt;
- if (obj != null &amp;&amp; obj instanceof String) {
-     // do something
- }
- &lt;/pre&gt;
-
- &lt;p&gt;
- Recommended approach:
- &lt;/p&gt;
- &lt;pre&gt;
- if (obj instanceof String) {
-     // do something
- }
- &lt;/pre&gt;
-
- &lt;p&gt;
- This check helps simplify and clean up conditional expressions.
- &lt;/p&gt;
- </description>
+ The instanceof operator inherently returns false when the left operand is null,
+ making explicit null checks redundant in boolean expressions with instanceof.
+ &lt;/p&gt;</description>
          <message-keys>
             <message-key key="unnecessary.nullcheck.with.instanceof"/>
          </message-keys>

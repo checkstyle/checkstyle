@@ -25,24 +25,31 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
+ * <p>
  * Checks for unnecessary null checks when used in conjunction with the instanceof operator.
+ * </p>
  *
- * <p>This check identifies and flags redundant null checks that are implicitly handled
- * by the instanceof operator, helping to simplify and clean up conditional logic.</p>
+ * <p>
+ * The instanceof operator inherently returns false when the left operand is null,
+ * making explicit null checks redundant in boolean expressions with instanceof.
+ * </p>
  *
- * <p>Examples of patterns detected:</p>
- * <pre>
- * // Unnecessary null check - will be flagged
- * if (obj != null && obj instanceof String) {
- *     // do something
- * }
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
  *
- * // Preferred pattern
- * if (obj instanceof String) {
- *     // do something
- * }
- * </pre>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code unnecessary.nullcheck.with.instanceof}
+ * </li>
+ * </ul>
+ *
+ * @since 10.21.4
  */
+
 @StatelessCheck
 public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
 
@@ -70,7 +77,10 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
     public void visitToken(DetailAST nullComparisonNode) {
         if (isNullLiteral(nullComparisonNode.getFirstChild().getNextSibling())
             || isNullLiteral(nullComparisonNode.getFirstChild())) {
-            checkForUnnecessaryNullCheck(nullComparisonNode);
+            DetailAST violationNode = checkForUnnecessaryNullCheck(nullComparisonNode);
+            if (violationNode != null) {
+                log(violationNode, MSG_UNNECESSARY_NULLCHECK);
+            }
         }
     }
 
@@ -79,15 +89,14 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
      *
      * @param nullComparisonNode the not null comparison AST node to check
      */
-    private void checkForUnnecessaryNullCheck(DetailAST nullComparisonNode) {
+    private static DetailAST  checkForUnnecessaryNullCheck(DetailAST nullComparisonNode) {
         DetailAST currentParent = nullComparisonNode.getParent();
+        DetailAST result = null;
 
         while (currentParent != null) {
             if (currentParent.getType() == TokenTypes.LAND
                 && findInstanceOfCheckInLogicalAnd(currentParent, nullComparisonNode) != null) {
-                log(nullComparisonNode.getFirstChild().getLineNo(),
-                    nullComparisonNode.getFirstChild().getColumnNo(),
-                    MSG_UNNECESSARY_NULLCHECK);
+                result = nullComparisonNode.getFirstChild();
                 break;
             }
             else if (currentParent.getType() == TokenTypes.EXPR || currentParent.getType() == TokenTypes.LAND) {
@@ -97,6 +106,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
                 break;
             }
         }
+        return result;
     }
 
     /**
@@ -174,12 +184,17 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
                 instanceofCheckResult = currentChild;
                 break;
             }
-            if (currentChild.getType() == TokenTypes.EXPR) {
+            else if (currentChild.getType() == TokenTypes.EXPR) {
                 currentChild = currentChild.getFirstChild();
             }
             else if (currentChild.getType() == TokenTypes.LAND) {
                 instanceofCheckResult = findInstanceOfCheckInLogicalAnd(currentChild, nullCheckNode);
-                break;
+                if(instanceofCheckResult != null) {
+                    break;
+                }
+                else {
+                    currentChild = currentChild.getNextSibling();
+                }
             }
             else {
                 currentChild = currentChild.getNextSibling();

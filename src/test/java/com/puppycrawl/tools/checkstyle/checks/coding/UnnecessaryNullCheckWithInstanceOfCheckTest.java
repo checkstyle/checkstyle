@@ -24,12 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryNullCheck
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import org.junit.jupiter.api.Test;
 
-/**
- * Unit tests for the UnnecessaryNullCheckWithInstanceofCheck.
- *
- * <p>This test class verifies the behavior of the check that detects
- * unnecessary null checks when used with instanceof operators.</p>
- */
 public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleTestSupport {
 
     @Override
@@ -41,11 +35,98 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
     public void testUnnecessaryNullCheckWithInstanceof() throws Exception {
 
         final String[] expected = {
-            "13:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "19:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-        };
+            "12:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "16:38: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "28:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
 
+        };
         verifyWithInlineConfigParser(getPath("InputUnnecessaryNullCheckWithInstanceOf.java"), expected);
     }
 
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofClass() throws Exception {
+
+        final String[] expected = {
+            "14:21: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "29:24: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath("InputUnnecessaryNullCheckWithInstanceOfAnonymousClass.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofConditions() throws Exception {
+
+        final String[] expected = {
+            "11:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "15:31: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "19:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "28:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "28:55: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath("InputUnnecessaryNullCheckWithInstanceOfMultipleConditions.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofNested() throws Exception {
+
+        final String[] expected = {
+            "12:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "19:21: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "28:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath("InputUnnecessaryNullCheckWithInstanceOfNestedIf.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofLambda() throws Exception {
+
+        final String[] expected = {
+            "19:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "24:45: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "26:33: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath("InputUnnecessaryNullCheckWithInstanceOfLambda.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceofSwitch() throws Exception {
+
+        final String[] expected = {
+            "13:21: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "35:21: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath("InputUnnecessaryNullCheckWithInstanceOfSwitch.java"), expected);
+    }
+
+     @Test
+    public void testUnnecessaryNullCheckWithInstanceofTernary() throws Exception {
+
+        final String[] expected = {
+            "11:16: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "20:25: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "25:24: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath("InputUnnecessaryNullCheckWithInstanceOfTernary.java"), expected);
+    }
+
+      @Test
+    public void testUnnecessaryNullCheckWithInstanceofTryCatch() throws Exception {
+
+        final String[] expected = {
+            "12:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "24:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "34:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath("InputUnnecessaryNullCheckWithInstanceOfTryCatch.java"), expected);
+    }
+
+      @Test
+    public void testUnnecessaryNullCheckWithInstanceofTryVariable() throws Exception {
+
+        final String[] expected = {
+            "11:27: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "18:36: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+        };
+        verifyWithInlineConfigParser(getPath("InputUnnecessaryNullCheckWithInstanceOfVariableAssignment.java"), expected);
+    }
 }
