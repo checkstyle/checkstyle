@@ -675,6 +675,7 @@
     </section>
 
     <section name="Pattern[]">
+        <a id="Pattern.5B.5D"> </a>
       <p>
         This type represents a set of patterns. The string representation
         is parsed as a set of comma (',') separated patterns.
@@ -939,7 +940,7 @@
       </p>
     </section>
 
-    <section name="String[]">
+    <section name = "String[]">
       <p>
         This type represents a set of strings. The string representation
         is parsed as a set of comma (',') separated strings. Extra spaces are allowed.
@@ -959,7 +960,7 @@
       </code></pre></div>
     </section>
 
-    <section name="TrailingArrayCommaOption">
+    <section name = "TrailingArrayCommaOption">
       <p>
         This type represents the policy for the styles for the trailing
         array comma. The following table describes the valid options:
