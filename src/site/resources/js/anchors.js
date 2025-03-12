@@ -21,8 +21,9 @@
                 return;
             }
 
-            var name = anchorItem.childNodes[0].textContent.replaceAll(" ", "_");
-            var link = "" + url + "#" + name + "";
+            var rawName = anchorItem.childNodes[0].textContent.replaceAll(" ", "_");
+            var name = encodeURIComponent(rawName).replace(/%/g, '.');
+            var link = url + "#" + name;
 
             var a = document.createElement("a");
             a.setAttribute("href", link);
@@ -44,9 +45,10 @@
             if (anchorItem.parentNode.id) {
                 name = anchorItem.parentNode.id;
             } else {
-                name = anchorItem.childNodes[0].name;
+                var rawName = anchorItem.childNodes[0].textContent.replaceAll(" ", "_");
+                name = encodeURIComponent(rawName).replace(/%/g, '.');
             }
-            var link = "" + url + "#" + name + "";
+            var link = url + "#" + name;
 
             var a = document.createElement("a");
             a.setAttribute("href", link);
@@ -65,7 +67,7 @@
         const exampleDivs = document.querySelectorAll('p[id^="Example"]');
         [].forEach.call(exampleDivs, function (exampleDiv) {
             const name = exampleDiv.id;
-            const link = "" + url + "#" + name + "";
+            const link = url + "#" + name;
 
             const a = document.createElement("a");
             a.setAttribute("href", link);
@@ -82,4 +84,3 @@
         });
     });
 }());
-
