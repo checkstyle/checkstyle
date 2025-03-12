@@ -26,7 +26,8 @@ public class InputMethodNameEqualClassName {
     }
 
     //illegal name
-    private int PRIVATEInputMethodNameEqualClassName() { // violation
+    // violation 'PRIVATEInputMethodNameEqualClassName' must match the pattern
+    private int PRIVATEInputMethodNameEqualClassName() {
         return 0;
     }
 
@@ -37,7 +38,8 @@ public class InputMethodNameEqualClassName {
                 }
 
                 //OK name - name of the outter class's ctor
-        public int InputMethodNameEqualClassName() { // violation
+        // violation 'InputMethodNameEqualClassName' must match the pattern
+        public int InputMethodNameEqualClassName() {
                         return 0;
                 }
         }
