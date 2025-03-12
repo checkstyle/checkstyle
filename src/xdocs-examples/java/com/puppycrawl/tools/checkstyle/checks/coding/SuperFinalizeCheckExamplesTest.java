@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck.MSG_KEY;
-
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
@@ -34,7 +32,7 @@ public class SuperFinalizeCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "18:18: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
+            "18:18: Overriding finalize() method must invoke super.finalize() to ensure proper finalization.",
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
