@@ -16,7 +16,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 class Example5 {
   public void Method1() {}
   protected void Method2() {}
-  private void Method3() {} // violation
-  void Method4() {} // violation
+  private void Method3() {} // violation 'Method3' must match the pattern
+  void Method4() {} // violation 'Method4' must match the pattern
 }
 // xdoc section -- end
