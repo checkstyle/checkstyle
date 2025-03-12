@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck.MSG_KEY;
 
 import java.io.File;
 import java.util.Collection;
@@ -47,9 +46,9 @@ public class SuperCloneCheckTest
     @Test
     public void testIt() throws Exception {
         final String[] expected = {
-            "33:19: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
-            "41:19: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
-            "67:48: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
+            "33:19: Overriding clone() method must invoke super.clone() to ensure proper finalization.",
+            "41:19: Overriding clone() method must invoke super.clone() to ensure proper finalization.",
+            "67:48: Overriding clone() method must invoke super.clone() to ensure proper finalization.",
         };
         verifyWithInlineConfigParser(
                 getPath("InputSuperCloneInnerAndWithArguments.java"), expected);
@@ -58,8 +57,8 @@ public class SuperCloneCheckTest
     @Test
     public void testAnotherInputFile() throws Exception {
         final String[] expected = {
-            "14:17: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
-            "48:17: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
+            "14:17: Overriding clone() method must invoke super.clone() to ensure proper finalization.",
+            "48:17: Overriding clone() method must invoke super.clone() to ensure proper finalization.",
         };
         verifyWithInlineConfigParser(
                 getPath("InputSuperClonePlainAndSubclasses.java"), expected);
