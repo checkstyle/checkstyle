@@ -50,7 +50,7 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   interface FirstInterface&lt;T&gt; {}
-  interface SecondInterface&lt;t&gt; {} // violation
+  interface SecondInterface&lt;t&gt; {} // violation 'Name 't' must match pattern'
 }
 </code></pre></div>
         <p id="Example2-config">
@@ -71,7 +71,7 @@ class Example1 {
 class Example2 {
   interface FirstInterface&lt;T&gt; {}
   interface SecondInterface&lt;t&gt; {}
-  interface ThirdInterface&lt;type&gt; {} // violation
+  interface ThirdInterface&lt;type&gt; {} // violation 'Name 'type' must match pattern'
 }
 </code></pre></div>
       </subsection>
