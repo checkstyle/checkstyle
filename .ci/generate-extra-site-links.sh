@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -e
 
 source ./.ci/util.sh
@@ -18,19 +17,21 @@ checkForVariable "REPOSITORY_OWNER"
 echo "PR_NUMBER=$PR_NUMBER"
 echo "AWS_FOLDER_LINK=$AWS_FOLDER_LINK"
 
-GITHUB_API_RESPONSE=$(curl --fail-with-body -Ls \
-  -H "Accept: application/vnd.github+json" \
-  -H "Authorization: Bearer $GITHUB_TOKEN" \
-  "https://api.github.com/repos/$REPOSITORY_OWNER/checkstyle/pulls/$PR_NUMBER/files?per_page=100")
+GITHUB_API_RESPONSE=$(
+  curl --fail-with-body -Ls \
+    -H "Accept: application/vnd.github+json" \
+    -H "Authorization: Bearer $GITHUB_TOKEN" \
+    "https://api.github.com/repos/$REPOSITORY_OWNER/checkstyle/pulls/$PR_NUMBER/files?per_page=100"
+)
 echo "GITHUB_API_RESPONSE=$GITHUB_API_RESPONSE"
 
-# Extract a list of the changed xdocs in the pull request. For example 'xdoc/config_misc.xml'.
-# We ignore template files and deleted files.
-CHANGED_XDOCS_PATHS=$(echo "$GITHUB_API_RESPONSE" \
-  | jq -r '.[] | select(.status != "removed") | .filename' \
-  | grep src/site/xdoc/ \
-  | grep -v '.*xml.template$' \
-  || true)
+# Extract changed xdoc file paths (ignoring templates and removed files).
+CHANGED_XDOCS_PATHS=$(
+  echo "$GITHUB_API_RESPONSE" | jq -r \
+    '.[] | select(.status != "removed") | .filename' \
+    | grep src/site/xdoc/ \
+    | grep -v '.*xml.template$' || true
+)
 echo "CHANGED_XDOCS_PATHS=$CHANGED_XDOCS_PATHS"
 
 if [[ -z "$CHANGED_XDOCS_PATHS" ]]; then
@@ -38,42 +39,72 @@ if [[ -z "$CHANGED_XDOCS_PATHS" ]]; then
   exit 0
 fi
 
-# Fetch the diff of the pull request.
-PR_DIFF=$(curl --fail-with-body -s \
-  "https://patch-diff.githubusercontent.com/raw/$REPOSITORY_OWNER/checkstyle/pull/$PR_NUMBER.diff")
+# Fetch the diff for the PR.
+PR_DIFF=$(
+  curl --fail-with-body -s \
+    "https://patch-diff.githubusercontent.com/raw/$REPOSITORY_OWNER/checkstyle/pull/$PR_NUMBER.diff"
+)
 
-# Iterate through all changed xdocs files.
-while IFS= read -r CURRENT_XDOC_PATH
-do
-  # Extract the line number of the earliest change in the file, i.e. '90'.
-  EARLIEST_CHANGE_LINE_NUMBER=$(echo "$PR_DIFF" | grep -A 5 "diff.*$CURRENT_XDOC_PATH" | grep @@ |
-    head -1 | grep -oEi "[0-9]+" | head -1)
-  # Add 3 to the number because diffs contain 3 lines of context.
-  EARLIEST_CHANGE_LINE_NUMBER=$((EARLIEST_CHANGE_LINE_NUMBER + 3))
-  echo "EARLIEST_CHANGE_LINE_NUMBER=$EARLIEST_CHANGE_LINE_NUMBER"
+# Iterate through each changed xdoc file.
+while IFS= read -r CURRENT_XDOC_PATH; do
+  echo "Processing file: $CURRENT_XDOC_PATH"
 
-  # Find the id of the nearest subsection to the change.
-  while read -r CURRENT_LINE
-  do
-    # When the line contains 'id='.
-    if [[ $CURRENT_LINE =~ id\= ]]
-    then
-      # Extract the id value from the line.
-      SUBSECTION_ID=$(echo "$CURRENT_LINE" | grep -Eo 'id="[^"]+"' | sed 's/id="\([^"]*\)"/\1/')
-      echo "SUBSECTION_ID=$SUBSECTION_ID"
-      break
+  EARLIEST_CHANGE_LINE_NUMBER=$(
+    echo "$PR_DIFF" | grep -A 5 "diff.*$CURRENT_XDOC_PATH" \
+    | grep @@ | head -1 | grep -oEi "[0-9]+" | head -1
+  )
+  if [[ -n "$EARLIEST_CHANGE_LINE_NUMBER" ]]; then
+    EARLIEST_CHANGE_LINE_NUMBER=$((EARLIEST_CHANGE_LINE_NUMBER + 3))
+    echo "EARLIEST_CHANGE_LINE_NUMBER=$EARLIEST_CHANGE_LINE_NUMBER"
+  else
+    echo "No diff change detected for $CURRENT_XDOC_PATH; scanning entire file."
+  fi
+
+  SUBSECTION_ID=""
+
+  # First, scan the entire file for an explicit id attribute.
+  SUBSECTION_ID=$(
+    grep -Eo 'id="[^"]+"' "$CURRENT_XDOC_PATH" \
+    | head -1 | sed 's/id="\([^"]*\)"/\1/'
+  )
+  if [[ -n "$SUBSECTION_ID" ]]; then
+    echo "SUBSECTION_ID found in full file = $SUBSECTION_ID"
+  fi
+
+  # If no id attribute is found, fallback to using the section's name.
+  if [[ -z "$SUBSECTION_ID" ]]; then
+    echo "No id attribute found; checking for section name attribute..."
+    SECTION_NAME=$(
+      grep -Eo 'name="[^"]+"' "$CURRENT_XDOC_PATH" \
+      | head -1 | sed 's/name="\([^"]*\)"/\1/'
+    )
+    if [[ -n "$SECTION_NAME" ]]; then
+      SECTION_NAME=$(echo "$SECTION_NAME" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+      echo "SECTION_NAME found = '$SECTION_NAME'"
+      if echo "$SECTION_NAME" | grep -q '[^A-Za-z0-9_-]'; then
+        echo "SECTION_NAME contains special characters; encoding..."
+        SUBSECTION_ID=$(python -c "import sys,urllib.parse; \
+print(urllib.parse.quote(sys.argv[1]).replace('%','.'))" "$SECTION_NAME")
+      else
+        echo "SECTION_NAME does not contain special characters; using raw value."
+        SUBSECTION_ID="$SECTION_NAME"
+      fi
+      echo "SUBSECTION_ID derived from section name = $SUBSECTION_ID"
+    else
+      echo "Warning: No id or section name found in $CURRENT_XDOC_PATH"
     fi
-  # Read the file from the earliest change to the top. It would read first row 90, then 89, 88..1.
-  done < <(head -n "$EARLIEST_CHANGE_LINE_NUMBER" "$CURRENT_XDOC_PATH" | tac)
+  fi
 
-  # Extract file name from path, i.e. 'config_misc' and remove '.vm' if it exists.
-  CURRENT_XDOC_NAME=$(echo "$CURRENT_XDOC_PATH" | sed 's/src\/site\/xdoc\/\(.*\)\.xml/\1/' \
-    | sed 's/.vm//')
+  # Extract file name from the xdoc path.
+  CURRENT_XDOC_NAME=$(
+    echo "$CURRENT_XDOC_PATH" | sed 's/src\/site\/xdoc\/\(.*\)\.xml/\1/' \
+    | sed 's/.vm//'
+  )
   echo "CURRENT_XDOC_NAME=$CURRENT_XDOC_NAME"
 
-  echo "" >> .ci-temp/message # Add new line between each xdoc link.
+  echo "" >> .ci-temp/message
   echo "$AWS_FOLDER_LINK/$CURRENT_XDOC_NAME.html#$SUBSECTION_ID" >> .ci-temp/message
+  echo "Added link: $AWS_FOLDER_LINK/$CURRENT_XDOC_NAME.html#$SUBSECTION_ID"
 
-  # Reset variable.
   SUBSECTION_ID=""
 done <<< "$CHANGED_XDOCS_PATHS"
