@@ -254,9 +254,8 @@ no-violation-test-configurate)
   ;;
 
 no-violation-test-josm)
-  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
+  mvn -e --no-transfer-progress clean install -Passembly,no-validations
   echo "Checkout target sources ..."
   mkdir -p .ci-temp
   cd .ci-temp
@@ -265,7 +264,7 @@ no-violation-test-josm)
   svn -q --force export https://josm.openstreetmap.de/svn/trunk/ -r "${TESTED}" --native-eol LF josm
   cd josm
   sed -i -E "s/(name=\"checkstyle\" rev=\")([0-9]+\.[0-9]+(-SNAPSHOT)?)/\1${CS_POM_VERSION}/" \
-   tools/ivy.xml
+  tools/ivy.xml
   addCheckstyleBundleToAntResolvers
   ant -v checkstyle
   grep "<error" checkstyle-josm.xml | cat > errors.log
