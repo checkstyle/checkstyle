@@ -47,5 +47,5 @@ enum MyEnum1
     XYZ;
 
     /** Should be mSomeMember */
-    private int someMember; // violation
+    private int someMember; // violation 'Name 'someMember' must match pattern
 }
