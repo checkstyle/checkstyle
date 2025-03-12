@@ -18,8 +18,8 @@ class Example1 {
 class SuperCloneB {
   private int b;
 
-  // violation below, "Method 'clone' should call 'super.clone'."
-  public SuperCloneB clone() {
+
+  public SuperCloneB clone() { // violation "Overriding clone() method must invoke super.clone() to ensure proper finalization."
     SuperCloneB other = new SuperCloneB();
     other.b = this.b;
     return other;

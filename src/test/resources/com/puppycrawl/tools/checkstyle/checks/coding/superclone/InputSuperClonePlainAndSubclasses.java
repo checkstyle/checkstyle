@@ -11,7 +11,7 @@ interface InputSuperClonePlainAndSubclasses {
 }
 
 class A {
-  public Object clone() { // violation "Method 'clone' should call 'super.clone'"
+  public Object clone() { // violation "Overriding clone() method must invoke super.clone() to ensure proper finalization."
       return null;
   }
 }
@@ -44,7 +44,7 @@ class C extends B {
 }
 
 class D extends B {
-  // violation below "Method 'clone' should call 'super.clone'"
+  // violation below "Overriding clone() method must invoke super.clone() to ensure proper finalization."
   public Object clone() throws CloneNotSupportedException {
     super.clone(null, null);
     return null;
