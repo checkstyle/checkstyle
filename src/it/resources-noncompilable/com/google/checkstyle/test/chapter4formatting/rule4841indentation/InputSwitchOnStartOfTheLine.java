@@ -30,8 +30,8 @@ public class InputSwitchOnStartOfTheLine {
     int odd =
       // violation below 'Line is longer than 100 characters (found 106)'
       switch (num) { // violation "'switch' has incorrect indentation level 6, expected level should be 8"
-        case 1, 3, 7 -> 1; // violation "'case' * level 8, expected * 10"
-        case 2, 4, 6 -> 2; // violation "'case' * level 8, expected * 10"
+        case 1, 3, 7 -> 1; // violation "'case' * level 8, expected level should be 10"
+        case 2, 4, 6 -> 2; // violation "'case' * level 8, expected level should be 10"
       }; // violation "'rcurly' * level 6, expected * 8"
   }
 
