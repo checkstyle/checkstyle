@@ -58,7 +58,7 @@ final class InputMethodNameSimpleTwo {
     }
 
     /** test method pattern */
-    void ALL_UPPERCASE_METHOD() // violation
+    void ALL_UPPERCASE_METHOD() // violation 'ALL_UPPERCASE_METHOD' must match the pattern
     {
     }
 
