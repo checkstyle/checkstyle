@@ -4455,6 +4455,8 @@
                 <param>initStringBuilderWithOptimalBuffer</param>
                 <!-- this method in SarifLogger.java works properly only when execution is from jar -->
                 <param>replaceVersionString</param>
+                <!-- this method in XMLLogger.java works properly only when execution is from jar -->
+                <param>printVersionString</param>
               </excludedMethods>
               <features>
                 <feature>+funmodifiablecollection</feature>
