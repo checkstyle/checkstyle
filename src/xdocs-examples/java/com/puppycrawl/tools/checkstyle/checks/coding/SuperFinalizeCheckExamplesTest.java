@@ -34,7 +34,7 @@ public class SuperFinalizeCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "18:18: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
+            "18:18: Overriding finalize() method must invoke super.finalize() to ensure proper finalization.",
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);

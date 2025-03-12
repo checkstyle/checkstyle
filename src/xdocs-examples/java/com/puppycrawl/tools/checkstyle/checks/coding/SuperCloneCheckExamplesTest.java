@@ -35,7 +35,7 @@ public class SuperCloneCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "22:22: " + getCheckMessage(MSG_KEY, "clone"),
+            "22:22: Overriding clone() method must invoke super.clone() to ensure proper finalization.",
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
