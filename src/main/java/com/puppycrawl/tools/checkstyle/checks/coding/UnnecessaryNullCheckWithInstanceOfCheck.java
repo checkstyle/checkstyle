@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     </li>
  * </ul>
  *
- * @since 10.21.4
+ * @since 10.22.0
  */
 
 @StatelessCheck

@@ -39,7 +39,7 @@ public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest
 
     @Override
     protected String getPackageLocation() {
-        return "org\\checkstyle\\suppressionxpathfilter\\unnecessarynullcheckwithinstanceof";
+        return "org/checkstyle/suppressionxpathfilter/unnecessarynullcheckwithinstanceof";
     }
 
     @Test

@@ -7,7 +7,7 @@
   </head>
   <body>
     <section name="UnnecessaryNullCheckWithInstanceOf">
-      <p>Since Checkstyle 10.21.4</p>
+      <p>Since Checkstyle 10.22.0</p>
       <subsection name="Description" id="Description">
         <div>
             Checks for redundant null checks with the instanceof operator.
