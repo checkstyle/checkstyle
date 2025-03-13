@@ -1280,7 +1280,31 @@ public final class JavadocTokenTypes {
     /** Frame tag name. */
     public static final int FRAME_HTML_TAG_NAME = JavadocParser.FRAME_HTML_TAG_NAME;
 
-    /** Hr tag name. */
+    /**
+     * Hr tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code text before horizontal rule < hr > text after horizontal rule}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   JAVADOC ->; JAVADOC
+     *        |--NEWLINE -> \r\n
+     *        |--LEADING_ASTERISK ->  *
+     *        |--TEXT ->  text before horizontal rule
+     *        |--HTML_ELEMENT -> HTML_ELEMENT
+     *        |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *        |       `--HR_TAG -> HR_TAG
+     *        |           |--START -> <
+     *        |           |--HR_HTML_TAG_NAME -> hr
+     *        |           `--END -> >
+     *        |--TEXT ->  text after horizontal rule
+     *        |--NEWLINE -> \r\n
+     *        |--TEXT ->
+     * }
+     * </pre>
+     */
+
     public static final int HR_HTML_TAG_NAME = JavadocParser.HR_HTML_TAG_NAME;
 
     /** Img tag name. */
