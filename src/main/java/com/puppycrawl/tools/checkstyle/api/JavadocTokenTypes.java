@@ -1304,7 +1304,7 @@ public final class JavadocTokenTypes {
      * }
      * </pre>
      */
-    
+
     public static final int HR_HTML_TAG_NAME = JavadocParser.HR_HTML_TAG_NAME;
 
     /** Img tag name. */
