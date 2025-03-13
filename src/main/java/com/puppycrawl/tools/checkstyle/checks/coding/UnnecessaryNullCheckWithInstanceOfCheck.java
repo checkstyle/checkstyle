@@ -93,33 +93,17 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
         DetailAST currentParent = nullComparisonNode.getParent();
         DetailAST result = null;
 
-        while (currentParent != null) {
-            if (currentParent.getType() == TokenTypes.LAND
-                && findInstanceOfCheckInLogicalAnd(currentParent, nullComparisonNode) != null) {
+        while (currentParent.getType() == TokenTypes.LAND) {
+            if (findInstanceOfCheckInLogicalAnd(currentParent, nullComparisonNode) != null) {
                 result = nullComparisonNode.getFirstChild();
                 break;
             }
-            else if (currentParent.getType() == TokenTypes.EXPR || currentParent.getType() == TokenTypes.LAND) {
+            else {
                 currentParent = currentParent.getParent();
             }
-            else {
-                break;
-            }
+
         }
         return result;
-    }
-
-    /**
-     * Checks if the given AST node represents a null comparison.
-     *
-     * @param node AST node to check
-     * @return true if the node is a null comparison, false otherwise
-     */
-    private static boolean isNullComparisonCheck(DetailAST node) {
-        return node.getType() == TokenTypes.NOT_EQUAL
-                && isNullLiteral(node.getFirstChild().getNextSibling())
-                || node.getType() == TokenTypes.EQUAL
-                && isNullLiteral(node.getFirstChild().getNextSibling());
     }
 
     /**
@@ -129,7 +113,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
      * @return true if the node is a null literal, false otherwise
      */
     private static boolean isNullLiteral(DetailAST node) {
-        return node != null && node.getType() == TokenTypes.LITERAL_NULL;
+        return node.getType() == TokenTypes.LITERAL_NULL;
     }
 
     /**
@@ -152,20 +136,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
     private static boolean isNullCheckRedundant(DetailAST nullCheckNode, DetailAST instanceofCheckNode) {
         String nullCheckVariableName = nullCheckNode.findFirstToken(TokenTypes.IDENT).getText();
         String instanceofVariableName = instanceofCheckNode.findFirstToken(TokenTypes.IDENT).getText();
-        return isPatternMatchingInstanceof(instanceofCheckNode)
-               && nullCheckVariableName.equals(instanceofVariableName);
-    }
-
-    /**
-     * Checks if the instanceof check is a pattern matching instanceof.
-     *
-     * @param instanceofCheckNode instanceof check node
-     * @return true if it appears to be a pattern matching instanceof, false otherwise
-     */
-    private static boolean isPatternMatchingInstanceof(DetailAST instanceofCheckNode) {
-        DetailAST typeNode = instanceofCheckNode.getFirstChild().getNextSibling();
-
-        return typeNode != null && typeNode.getType() == TokenTypes.TYPE;
+        return nullCheckVariableName.equals(instanceofVariableName);
     }
 
     /**
@@ -184,9 +155,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
                 instanceofCheckResult = currentChild;
                 break;
             }
-            else if (currentChild.getType() == TokenTypes.EXPR) {
-                currentChild = currentChild.getFirstChild();
-            }
+
             else if (currentChild.getType() == TokenTypes.LAND) {
                 instanceofCheckResult = findInstanceOfCheckInLogicalAnd(currentChild, nullCheckNode);
                 if(instanceofCheckResult != null) {

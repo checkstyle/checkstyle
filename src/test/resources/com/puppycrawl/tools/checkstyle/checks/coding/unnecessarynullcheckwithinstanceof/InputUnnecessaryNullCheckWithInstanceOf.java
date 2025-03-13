@@ -13,7 +13,7 @@ public class InputUnnecessaryNullCheckWithInstanceOf {
             String str = (String) obj;
         }
 
-        if (obj instanceof String && obj != null) { // violation, 'Unnecessary nullity check'
+        if (obj instanceof String && (obj != null)) { // violation, 'Unnecessary nullity check'
             String str = (String) obj;
         }
 
@@ -25,9 +25,10 @@ public class InputUnnecessaryNullCheckWithInstanceOf {
             String str = (String) obj;
         }
 
-        if (null != obj && obj instanceof String) { // violation, 'Unnecessary nullity check'
+        if ((null != obj) && ((obj instanceof String))) { // violation, 'Unnecessary nullity check'
             String str = (String) obj;
         }
+
     }
 
     public void separateIfStatements(Object obj) {

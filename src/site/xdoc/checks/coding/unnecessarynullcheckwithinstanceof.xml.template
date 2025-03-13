@@ -41,7 +41,7 @@
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessaryNullCheckWithInstanceOfCheck">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessaryNullCheckWithInstanceOf">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -49,7 +49,7 @@
 
       <subsection name="Violation Messages" id="Violation_Messages">
         <macro name="violation-messages">
-          <param name="checkName" value="UnnecessaryNullCheckWithInstanceOfCheck"/>
+          <param name="checkName" value="UnnecessaryNullCheckWithInstanceOf"/>
         </macro>
         <p>
           All messages can be customized if the default message doesn't suit you.

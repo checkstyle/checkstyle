@@ -36,8 +36,8 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
 
         final String[] expected = {
             "12:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "16:38: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "28:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "16:39: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "28:14: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
 
         };
         verifyWithInlineConfigParser(getPath("InputUnnecessaryNullCheckWithInstanceOf.java"), expected);
@@ -60,8 +60,10 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
             "11:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "15:31: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "19:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "28:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "28:55: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "23:54: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "32:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "32:55: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "45:14: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
         };
         verifyWithInlineConfigParser(getPath("InputUnnecessaryNullCheckWithInstanceOfMultipleConditions.java"), expected);
     }

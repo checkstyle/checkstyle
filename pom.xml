@@ -3332,7 +3332,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryNullCheckWithInstanceOfCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryNullCheckWithInstanceOfCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SuperCloneCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheckTest</param>

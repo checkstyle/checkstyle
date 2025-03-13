@@ -162,7 +162,7 @@
           <item name="SuperClone" href="checks/coding/superclone.html"/>
           <item name="SuperFinalize" href="checks/coding/superfinalize.html"/>
           <item name="UnnecessaryNullCheckWithInstanceOf"
-                href="checks/coding/UnnecessaryNullCheckWithInstanceOf.html"/>
+                href="checks/coding/unnecessarynullcheckwithinstanceof.html"/>
           <item name="UnnecessaryParentheses" href="checks/coding/unnecessaryparentheses.html"/>
           <item name="UnnecessarySemicolonAfterOuterTypeDeclaration"
                 href="checks/coding/unnecessarysemicolonafteroutertypedeclaration.html"/>
