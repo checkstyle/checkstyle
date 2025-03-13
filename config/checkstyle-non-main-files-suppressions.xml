@@ -223,7 +223,7 @@
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]annotation[\\/]packageannotation.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]annotation[\\/]unnecessarynullcheckwithinstanceof.xml.template"/>
+         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]unnecessarynullcheckwithinstanceof.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]avoiddoublebraceinitialization.xml.template"/>
   <suppress id="propertiesMacroMustExist"

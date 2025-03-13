@@ -25,7 +25,8 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-public class UnnecessaryNullCheckWithInstanceOfCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+public class UnnecessaryNullCheckWithInstanceOfCheckExamplesTest
+    extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/unnecessarynullcheckwithinstanceof";
@@ -34,8 +35,8 @@ public class UnnecessaryNullCheckWithInstanceOfCheckExamplesTest extends Abstrac
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "13:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "19:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "14:9: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "21:9: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);

@@ -9,9 +9,9 @@
     <section name="UnnecessaryNullCheckWithInstanceOf">
       <p>Since Checkstyle 10.21.4</p>
       <subsection name="Description" id="Description">
-        <p>
-           Checks for unnecessary null checks when used in conjunction with the instanceof operator.
-        </p>
+        <div>
+            Checks for redundant null checks with the instanceof operator.
+        </div>
 
         <p>
            The instanceof operator inherently returns false when the left operand is null,

@@ -9,9 +9,9 @@
     <section name="UnnecessaryNullCheckWithInstanceOf">
       <p>Since Checkstyle 10.21.4</p>
       <subsection name="Description" id="Description">
-        <p>
-           Checks for unnecessary null checks when used in conjunction with the instanceof operator.
-        </p>
+        <div>
+            Checks for redundant null checks with the instanceof operator.
+        </div>
 
         <p>
            The instanceof operator inherently returns false when the left operand is null,
@@ -35,23 +35,25 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-    public void methodWithUnnecessaryNullCheck1(Object obj) {
-        if (obj != null &amp;&amp; obj instanceof String) { // violation, 'Unnecessary nullity check'
-            String str = (String) obj;
-        }
+  public void methodWithUnnecessaryNullCheck1(Object obj) {
+    // violation below, 'Unnecessary nullity check'
+    if (obj != null &amp;&amp; obj instanceof String) {
+      String str = (String) obj;
     }
+  }
 
-    public void methodWithUnnecessaryNullCheck2(Object obj) {
-        if (obj != null &amp;&amp; obj instanceof CharSequence) { // violation, 'Unnecessary nullity check'
-            CharSequence cs = (CharSequence) obj;
-        }
+  public void methodWithUnnecessaryNullCheck2(Object obj) {
+    // violation below, 'Unnecessary nullity check'
+    if (obj != null &amp;&amp; obj instanceof CharSequence) {
+      CharSequence cs = (CharSequence) obj;
     }
+  }
 
-    public void methodWithValidNullCheck(Object obj) {
-        if (obj != null) {
-            CharSequence cs = (CharSequence) obj;
-        }
+  public void methodWithValidNullCheck(Object obj) {
+    if (obj != null) {
+      CharSequence cs = (CharSequence) obj;
     }
+  }
 }
 </code></pre></div>
       </subsection>

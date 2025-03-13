@@ -8,19 +8,23 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarynullcheckwithin
 public class InputUnnecessaryNullCheckWithInstanceOfMultipleConditions {
 
     public void multipleConditions(Object obj, String str) {
-        if (obj != null && obj instanceof String && !str.isEmpty()) { // violation, 'Unnecessary nullity check'
+        // violation below, 'Unnecessary nullity check'
+        if (obj != null && obj instanceof String && !str.isEmpty()) {
             String s = (String) obj;
         }
 
-        if (!str.isEmpty() && obj != null && obj instanceof String) { // violation, 'Unnecessary nullity check'
+        // violation below, 'Unnecessary nullity check'
+        if (!str.isEmpty() && obj != null && obj instanceof String) {
             String s = (String) obj;
         }
 
-        if (obj != null && obj instanceof String && str != null && !str.isEmpty()) { // violation, 'Unnecessary nullity check'
+        // violation below, 'Unnecessary nullity check'
+        if (obj != null && obj instanceof String && str != null && !str.isEmpty()) {
             String s = (String) obj;
         }
 
-        if ( obj instanceof String && str != null && obj != null ) { // violation, 'Unnecessary nullity check'
+        // violation below, 'Unnecessary nullity check'
+        if ( obj instanceof String && str != null && obj != null ) {
             String s = (String) obj;
         }
     }
@@ -42,7 +46,8 @@ public class InputUnnecessaryNullCheckWithInstanceOfMultipleConditions {
         if (obj1 != obj2 && obj1 instanceof String) {
             String s = (String) obj1;
         }
-         if (obj1 != null && (obj2 != null && obj1 instanceof String)) { // violation, 'Unnecessary nullity check'
+        // violation below, 'Unnecessary nullity check'
+         if (obj1 != null && (obj2 != null && obj1 instanceof String)) {
             System.out.println("obj is a String and obj2 is not null");
         }
     }

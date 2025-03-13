@@ -6,11 +6,11 @@ UnnecessaryNullCheckWithInstanceOf
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarynullcheckwithinstanceof;
 
 public class InputUnnecessaryNullCheckWithInstanceOfSwitch {
-    
     public void basicSwitch(Object obj, int type) {
         switch (type) {
             case 1:
-                if (obj != null && obj instanceof String) { // violation, 'Unnecessary nullity check'
+                // violation below, 'Unnecessary nullity check'
+                if (obj != null && obj instanceof String) {
                     String str = (String) obj;
                 }
                 break;
@@ -23,7 +23,6 @@ public class InputUnnecessaryNullCheckWithInstanceOfSwitch {
                 break;
         }
     }
-    
     public void switchWithDefault(Object obj, int type) {
         switch (type) {
             case 1:
@@ -32,7 +31,8 @@ public class InputUnnecessaryNullCheckWithInstanceOfSwitch {
                 }
                 break;
             default:
-                if (obj != null && obj instanceof Integer) { // violation, 'Unnecessary nullity check'
+                // violation below, 'Unnecessary nullity check'
+                if (obj != null && obj instanceof Integer) {
                     Integer i = (Integer) obj;
                 }
                 break;

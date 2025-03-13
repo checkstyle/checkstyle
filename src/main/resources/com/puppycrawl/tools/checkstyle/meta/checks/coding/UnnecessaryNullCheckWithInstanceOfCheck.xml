@@ -4,9 +4,9 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryNullCheckWithInstanceOfCheck"
              name="UnnecessaryNullCheckWithInstanceOf"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
- Checks for unnecessary null checks when used in conjunction with the instanceof operator.
- &lt;/p&gt;
+         <description>&lt;div&gt;
+ Checks for redundant null checks with the instanceof operator.
+ &lt;/div&gt;
 
  &lt;p&gt;
  The instanceof operator inherently returns false when the left operand is null,

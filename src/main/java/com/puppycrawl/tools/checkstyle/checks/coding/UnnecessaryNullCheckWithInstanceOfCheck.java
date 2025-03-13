@@ -25,9 +25,9 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
- * Checks for unnecessary null checks when used in conjunction with the instanceof operator.
- * </p>
+ * <div>
+ * Checks for redundant null checks with the instanceof operator.
+ * </div>
  *
  * <p>
  * The instanceof operator inherently returns false when the left operand is null,
@@ -41,10 +41,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Violation Message Keys:
  * </p>
+ *
  * <ul>
- * <li>
- * {@code unnecessary.nullcheck.with.instanceof}
- * </li>
+ *     <li>
+ *         {@code unnecessary.nullcheck.with.instanceof}
+ *     </li>
  * </ul>
  *
  * @since 10.21.4
@@ -77,7 +78,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
     public void visitToken(DetailAST nullComparisonNode) {
         if (isNullLiteral(nullComparisonNode.getFirstChild().getNextSibling())
             || isNullLiteral(nullComparisonNode.getFirstChild())) {
-            DetailAST violationNode = checkForUnnecessaryNullCheck(nullComparisonNode);
+            final DetailAST violationNode = checkForUnnecessaryNullCheck(nullComparisonNode);
             if (violationNode != null) {
                 log(violationNode, MSG_UNNECESSARY_NULLCHECK);
             }
@@ -85,11 +86,12 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
     }
 
     /**
-     * Checks for unnecessary null checks in conditional expressions.
+     * Checks for an unnecessary null check within a logical AND expression.
      *
-     * @param nullComparisonNode the not null comparison AST node to check
+     * @param nullComparisonNode the AST node representing the null comparison
+     * @return the first child of the null comparison node if an unnecessary null check is found
      */
-    private static DetailAST  checkForUnnecessaryNullCheck(DetailAST nullComparisonNode) {
+    private static DetailAST checkForUnnecessaryNullCheck(DetailAST nullComparisonNode) {
         DetailAST currentParent = nullComparisonNode.getParent();
         DetailAST result = null;
 
@@ -133,10 +135,12 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
      * @param instanceofCheckNode instanceof check node
      * @return true if null check is unnecessary, false otherwise
      */
-    private static boolean isNullCheckRedundant(DetailAST nullCheckNode, DetailAST instanceofCheckNode) {
-        String nullCheckVariableName = nullCheckNode.findFirstToken(TokenTypes.IDENT).getText();
-        String instanceofVariableName = instanceofCheckNode.findFirstToken(TokenTypes.IDENT).getText();
-        return nullCheckVariableName.equals(instanceofVariableName);
+    private static boolean isNullCheckRedundant(DetailAST nullCheckNode,
+        final DetailAST instanceofCheckNode) {
+        final DetailAST nullCheckIdent = nullCheckNode.findFirstToken(TokenTypes.IDENT);
+        final DetailAST instanceofIdent = instanceofCheckNode.findFirstToken(TokenTypes.IDENT);
+        return nullCheckIdent != null && instanceofIdent != null && nullCheckIdent.getText()
+            .equals(instanceofIdent.getText());
     }
 
     /**
@@ -146,19 +150,22 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
      * @param nullCheckNode the null check node to compare against
      * @return the instanceof check node if found, null otherwise
      */
-    private static DetailAST findInstanceOfCheckInLogicalAnd(DetailAST logicalAndNode, DetailAST nullCheckNode) {
+    private static DetailAST findInstanceOfCheckInLogicalAnd(DetailAST logicalAndNode,
+        DetailAST nullCheckNode) {
         DetailAST currentChild = logicalAndNode.getFirstChild();
         DetailAST instanceofCheckResult = null;
 
         while (currentChild != null) {
-            if (isInstanceofCheck(currentChild) && isNullCheckRedundant(nullCheckNode, currentChild)) {
+            if (isInstanceofCheck(currentChild) && isNullCheckRedundant(nullCheckNode,
+                currentChild)) {
                 instanceofCheckResult = currentChild;
                 break;
             }
 
             else if (currentChild.getType() == TokenTypes.LAND) {
-                instanceofCheckResult = findInstanceOfCheckInLogicalAnd(currentChild, nullCheckNode);
-                if(instanceofCheckResult != null) {
+                instanceofCheckResult = findInstanceOfCheckInLogicalAnd(currentChild,
+                    nullCheckNode);
+                if (instanceofCheckResult != null) {
                     break;
                 }
                 else {

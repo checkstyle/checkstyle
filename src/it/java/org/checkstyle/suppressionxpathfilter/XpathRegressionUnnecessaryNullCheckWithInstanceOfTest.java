@@ -27,7 +27,8 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryNullCheckWithInstanceOfCheck;
 
-public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest extends AbstractXpathTestSupport {
+public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest
+    extends AbstractXpathTestSupport {
 
     private final String checkName = UnnecessaryNullCheckWithInstanceOfCheck.class.getSimpleName();
 
@@ -53,7 +54,8 @@ public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest extends Abstr
                     UnnecessaryNullCheckWithInstanceOfCheck.MSG_UNNECESSARY_NULLCHECK),
         };
         final List<String> expectedXpathQueries = List.of(
-            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathUnnecessaryNullCheckWithInstanceOf']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
+                + "'InputXpathUnnecessaryNullCheckWithInstanceOf']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodWithUnnecessaryNullCheck1']]"
                 + "/SLIST/LITERAL_IF/EXPR/LAND/NOT_EQUAL/IDENT[@text='obj']"
         );
@@ -64,7 +66,8 @@ public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest extends Abstr
     @Test
     public void test2() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathUnnecessaryNullCheckWithInstanceOfAnonymous.java"));
+                new File(getPath(
+                    "InputXpathUnnecessaryNullCheckWithInstanceOfAnonymous.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UnnecessaryNullCheckWithInstanceOfCheck.class);
 
@@ -86,7 +89,8 @@ public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest extends Abstr
     @Test
     public void test3() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathUnnecessaryNullCheckWithInstanceOfInterface.java"));
+                new File(getPath(
+                    "InputXpathUnnecessaryNullCheckWithInstanceOfInterface.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UnnecessaryNullCheckWithInstanceOfCheck.class);
 

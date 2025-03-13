@@ -519,7 +519,7 @@
               </a>
             </td>
             <td>
-              Checks for unnecessary null checks when used in conjunction with the instanceof operator.
+              Checks for redundant null checks with the instanceof operator.
             </td>
           </tr>
           <tr>
