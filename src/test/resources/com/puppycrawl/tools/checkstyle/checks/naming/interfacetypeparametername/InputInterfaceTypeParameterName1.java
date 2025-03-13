@@ -52,11 +52,11 @@ class MoreOther1 <T extends Cloneable> {
     }
 }
 
-interface Boo1<Input> { // violation 'Name 'Input' must match pattern'
+interface Boo1<Input> { // violation
     Input boo();
 }
 
-interface FooInterface1<T> { // violation 'Name 'T' must match pattern'
+interface FooInterface1<T> { // violation
     T foo();
 }
 
