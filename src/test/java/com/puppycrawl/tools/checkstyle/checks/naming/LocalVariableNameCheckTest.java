@@ -47,19 +47,31 @@ public class LocalVariableNameCheckTest
     }
 
     @Test
-    public void testDefault()
+    public void testDefaultOne()
             throws Exception {
 
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expected = {
-            "122:13: " + getCheckMessage(MSG_INVALID_PATTERN, "ABC", pattern),
-            "133:18: " + getCheckMessage(MSG_INVALID_PATTERN, "I", pattern),
-            "135:20: " + getCheckMessage(MSG_INVALID_PATTERN, "InnerBlockVariable", pattern),
-            "210:21: " + getCheckMessage(MSG_INVALID_PATTERN, "O", pattern),
+            "39:13: " + getCheckMessage(MSG_INVALID_PATTERN, "ABC", pattern),
+            "50:18: " + getCheckMessage(MSG_INVALID_PATTERN, "I", pattern),
+            "52:20: " + getCheckMessage(MSG_INVALID_PATTERN, "InnerBlockVariable", pattern),
         };
         verifyWithInlineConfigParser(
-                getPath("InputLocalVariableName.java"), expected);
+                getPath("InputLocalVariableName1two.java"), expected);
+    }
+
+    @Test
+    public void testDefaultTwo()
+            throws Exception {
+
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
+
+        final String[] expected = {
+            "27:21: " + getCheckMessage(MSG_INVALID_PATTERN, "O", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLocalVariableName2one.java"), expected);
     }
 
     @Test
