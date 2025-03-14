@@ -106,13 +106,20 @@ public class XMLLogger
         // No code by default
     }
 
+    /**
+     * Returns the version string printed.
+     *
+     */
+    private void printVersionString() {
+        final String version = XMLLogger.class.getPackage().getImplementationVersion();
+        writer.println("<checkstyle version=\"" + version + "\">");
+    }
+
     @Override
     public void auditStarted(AuditEvent event) {
         writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 
-        final String version = XMLLogger.class.getPackage().getImplementationVersion();
-
-        writer.println("<checkstyle version=\"" + version + "\">");
+        printVersionString();
     }
 
     @Override

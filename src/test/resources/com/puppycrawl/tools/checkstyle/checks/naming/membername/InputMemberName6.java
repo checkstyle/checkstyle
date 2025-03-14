@@ -16,7 +16,7 @@ public class InputMemberName6
     public int mPublic;
     protected int mProtected;
     int mPackage;//comment
-    private int mPrivate; // violation
+    private int mPrivate; // violation 'Name 'mPrivate' must match pattern'
 
     public int _public;
     protected int _protected;

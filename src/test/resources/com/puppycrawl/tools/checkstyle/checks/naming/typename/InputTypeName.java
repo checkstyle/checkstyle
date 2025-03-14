@@ -22,4 +22,4 @@ class inputHeaderClass {
 
 }
 
-public class InputTypeName {} // violation
+public class InputTypeName {} // violation 'Name 'InputTypeName' must match pattern'
