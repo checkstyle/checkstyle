@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck"
              name="EmptyCatchBlock"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for empty catch blocks.
  By default, check allows empty catch block with any comment inside.
  &lt;/div&gt;
@@ -14,25 +14,25 @@
  &lt;b&gt;commentFormat&lt;/b&gt;.
  If both options are specified - they are applied by &lt;b&gt;any of them is matching&lt;/b&gt;.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value=".*"
+      <properties>
+        <property default-value=".*"
                       name="commentFormat"
                       type="java.util.regex.Pattern">
-               <description>Specify the RegExp for the first comment inside empty
+          <description>Specify the RegExp for the first comment inside empty
  catch block. If check meets comment inside empty catch block matching specified format
  empty block is suppressed. If it is multi-line comment only its first line is analyzed.</description>
-            </property>
-            <property default-value="^$"
+        </property>
+        <property default-value="^$"
                       name="exceptionVariableName"
                       type="java.util.regex.Pattern">
-               <description>Specify the RegExp for the name of the variable
+          <description>Specify the RegExp for the name of the variable
  associated with exception. If check meets variable name matching specified value empty
  block is suppressed.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="catch.block.empty"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="catch.block.empty"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

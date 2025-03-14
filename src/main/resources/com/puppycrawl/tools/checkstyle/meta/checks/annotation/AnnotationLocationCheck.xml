@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck"
              name="AnnotationLocation"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks location of annotation on language elements.
  By default, Check enforce to locate annotations immediately after
  documentation block and before target element, annotation should be located
@@ -38,36 +38,36 @@
  &amp;#64;Nullable
  public String getNameIfPresent() { ... }
  &lt;/pre&gt;</description>
-         <properties>
-            <property default-value="false"
+      <properties>
+        <property default-value="false"
                       name="allowSamelineMultipleAnnotations"
                       type="boolean">
-               <description>Allow annotation(s) to be located on
+          <description>Allow annotation(s) to be located on
  the same line as target element.</description>
-            </property>
-            <property default-value="false"
+        </property>
+        <property default-value="false"
                       name="allowSamelineParameterizedAnnotation"
                       type="boolean">
-               <description>Allow one and only parameterized
+          <description>Allow one and only parameterized
  annotation to be located on the same line as target element.</description>
-            </property>
-            <property default-value="true"
+        </property>
+        <property default-value="true"
                       name="allowSamelineSingleParameterlessAnnotation"
                       type="boolean">
-               <description>Allow single parameterless
+          <description>Allow single parameterless
  annotation to be located on the same line as target element.</description>
-            </property>
-            <property default-value="CLASS_DEF,INTERFACE_DEF,PACKAGE_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,METHOD_DEF,CTOR_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF"
+        </property>
+        <property default-value="CLASS_DEF,INTERFACE_DEF,PACKAGE_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,METHOD_DEF,CTOR_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="annotation.location"/>
-            <message-key key="annotation.location.alone"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="annotation.location"/>
+        <message-key key="annotation.location.alone"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

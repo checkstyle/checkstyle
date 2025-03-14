@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"
              name="DeclarationOrder"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that the parts of a class, record, or interface declaration appear in the order
  suggested by the
  &lt;a href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852"&gt;
@@ -46,20 +46,20 @@
    public double slope = x / y; // will be skipped from validation due to forward reference
  }
  &lt;/pre&gt;</description>
-         <properties>
-            <property default-value="false" name="ignoreConstructors" type="boolean">
-               <description>Control whether to ignore constructors.</description>
-            </property>
-            <property default-value="false" name="ignoreModifiers" type="boolean">
-               <description>Control whether to ignore modifiers (fields, ...).</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="declaration.order.access"/>
-            <message-key key="declaration.order.constructor"/>
-            <message-key key="declaration.order.instance"/>
-            <message-key key="declaration.order.static"/>
-         </message-keys>
-      </check>
-   </module>
+      <properties>
+        <property default-value="false" name="ignoreConstructors" type="boolean">
+          <description>Control whether to ignore constructors.</description>
+        </property>
+        <property default-value="false" name="ignoreModifiers" type="boolean">
+          <description>Control whether to ignore modifiers (fields, ...).</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="declaration.order.access"/>
+        <message-key key="declaration.order.constructor"/>
+        <message-key key="declaration.order.instance"/>
+        <message-key key="declaration.order.static"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

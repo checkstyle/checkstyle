@@ -26,41 +26,41 @@
     &lt;module name="OuterTypeFilename"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example file content with name of file Example1.java
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {}
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Example file content with name of file Example2.java
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation below 'The name of the outer type and the file do not match.'
 class Example2ButNotSameName {}
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">
           Example file content with name of file Example3.java
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation below 'The name of the outer type and the file do not match.'
 interface Example3ButNotSameName {}
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">
           Example file content with name of file Example4.java
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation below 'The name of the outer type and the file do not match.'
 enum Example4ButNotSameName {}
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">
           Example file content with name of file Example5.java
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation below 'The name of the outer type and the file do not match.'
 class Example5ButNotSameName {}
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

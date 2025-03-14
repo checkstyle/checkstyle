@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"
              name="LineLength"
              parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for long lines.
  &lt;/div&gt;
 
@@ -35,22 +35,22 @@
  will be 94 characters.
  &lt;/li&gt;
  &lt;/ul&gt;</description>
-         <properties>
-            <property default-value="" name="fileExtensions" type="java.lang.String[]">
-               <description>Specify the file extensions of the files to process.</description>
-            </property>
-            <property default-value="^(package|import) .*"
+      <properties>
+        <property default-value="" name="fileExtensions" type="java.lang.String[]">
+          <description>Specify the file extensions of the files to process.</description>
+        </property>
+        <property default-value="^(package|import) .*"
                       name="ignorePattern"
                       type="java.util.regex.Pattern">
-               <description>Specify pattern for lines to ignore.</description>
-            </property>
-            <property default-value="80" name="max" type="int">
-               <description>Specify the maximum line length allowed.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="maxLineLen"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Specify pattern for lines to ignore.</description>
+        </property>
+        <property default-value="80" name="max" type="int">
+          <description>Specify the maximum line length allowed.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="maxLineLen"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

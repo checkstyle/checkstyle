@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.InterfaceIsTypeCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.InterfaceIsTypeCheck"
              name="InterfaceIsType"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Implements Joshua Bloch, Effective Java, Item 17 -
  Use Interfaces only to define types.
  &lt;/div&gt;
@@ -21,15 +21,15 @@
  The check can be configured to also disallow marker interfaces like {@code java.io.Serializable},
  that do not contain methods or constants at all.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="true" name="allowMarkerInterfaces" type="boolean">
-               <description>Control whether marker interfaces
+      <properties>
+        <property default-value="true" name="allowMarkerInterfaces" type="boolean">
+          <description>Control whether marker interfaces
  like Serializable are allowed.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="interface.type"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="interface.type"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

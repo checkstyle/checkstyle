@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck"
              name="PackageDeclaration"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Ensures that a class has a package declaration, and (optionally) whether
  the package name matches the directory name for the source file.
  &lt;/div&gt;
@@ -20,16 +20,16 @@
  These directories are added to the classpath so that your classes
  are visible to JVM when it runs the code.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="true" name="matchDirectoryStructure" type="boolean">
-               <description>Control whether to check for
+      <properties>
+        <property default-value="true" name="matchDirectoryStructure" type="boolean">
+          <description>Control whether to check for
  directory and package name match.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="mismatch.package.directory"/>
-            <message-key key="missing.package.declaration"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="mismatch.package.directory"/>
+        <message-key key="missing.package.declaration"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

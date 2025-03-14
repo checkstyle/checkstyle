@@ -60,7 +60,7 @@
     &lt;module name="CatchParameterName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -84,7 +84,7 @@ public class Example1 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p>
           An example of how to configure the check for names that begin with
           a lower case letter, followed by any letters or digits is:
@@ -98,7 +98,7 @@ public class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
@@ -120,7 +120,7 @@ public class Example2 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter"
+  <module>
+    <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter"
               name="SuppressionXpathSingleFilter"
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Filter {@code SuppressionXpathSingleFilter} suppresses audit events for Checks
  violations in the specified file, class, checks, message, module id, and xpath.
  &lt;/div&gt;
@@ -29,27 +29,27 @@
  &lt;p&gt;
  {@code SuppressionXpathSingleFilter} can suppress Checks that have {@code Treewalker} as parent module.
  &lt;/p&gt;</description>
-         <properties>
-            <property name="checks" type="java.util.regex.Pattern">
-               <description>Define a Regular Expression matched against the name
+      <properties>
+        <property name="checks" type="java.util.regex.Pattern">
+          <description>Define a Regular Expression matched against the name
  of the check associated with an audit event.</description>
-            </property>
-            <property name="files" type="java.util.regex.Pattern">
-               <description>Define a Regular Expression matched against the file
+        </property>
+        <property name="files" type="java.util.regex.Pattern">
+          <description>Define a Regular Expression matched against the file
  name associated with an audit event.</description>
-            </property>
-            <property name="id" type="java.lang.String">
-               <description>Define a string matched against the ID of the check
+        </property>
+        <property name="id" type="java.lang.String">
+          <description>Define a string matched against the ID of the check
  associated with an audit event.</description>
-            </property>
-            <property name="message" type="java.util.regex.Pattern">
-               <description>Define a Regular Expression matched against the message
+        </property>
+        <property name="message" type="java.util.regex.Pattern">
+          <description>Define a Regular Expression matched against the message
  of the check associated with an audit event.</description>
-            </property>
-            <property name="query" type="java.lang.String">
-               <description>Define a string xpath query.</description>
-            </property>
-         </properties>
-      </filter>
-   </module>
+        </property>
+        <property name="query" type="java.lang.String">
+          <description>Define a string xpath query.</description>
+        </property>
+      </properties>
+    </filter>
+  </module>
 </checkstyle-metadata>

@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.OuterTypeNumberCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.OuterTypeNumberCheck"
              name="OuterTypeNumber"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for the number of types declared at the &lt;i&gt;outer&lt;/i&gt; (or &lt;i&gt;root&lt;/i&gt;) level in a file.
  &lt;/div&gt;
 
  &lt;p&gt;
  Rationale: It is considered good practice to only define one outer type per file.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="1" name="max" type="int">
-               <description>Specify the maximum number of outer types allowed.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="maxOuterTypes"/>
-         </message-keys>
-      </check>
-   </module>
+      <properties>
+        <property default-value="1" name="max" type="int">
+          <description>Specify the maximum number of outer types allowed.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="maxOuterTypes"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

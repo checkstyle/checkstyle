@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"
              name="FinalParameters"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that parameters for methods, constructors, catch and for-each blocks are final.
  Interface, abstract, and native methods are not checked: the final keyword
  does not make sense for interface, abstract, and native method parameters as
@@ -16,24 +16,24 @@
  algorithm can be confusing and should be avoided. A great way to let the Java compiler
  prevent this coding style is to declare parameters final.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="false" name="ignorePrimitiveTypes" type="boolean">
-               <description>Ignore primitive types as parameters.</description>
-            </property>
-            <property default-value="true" name="ignoreUnnamedParameters" type="boolean">
-               <description>Ignore &lt;a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html"&gt;
+      <properties>
+        <property default-value="false" name="ignorePrimitiveTypes" type="boolean">
+          <description>Ignore primitive types as parameters.</description>
+        </property>
+        <property default-value="true" name="ignoreUnnamedParameters" type="boolean">
+          <description>Ignore &lt;a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html"&gt;
  unnamed parameters&lt;/a&gt;.</description>
-            </property>
-            <property default-value="METHOD_DEF,CTOR_DEF"
+        </property>
+        <property default-value="METHOD_DEF,CTOR_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="final.parameter"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="final.parameter"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

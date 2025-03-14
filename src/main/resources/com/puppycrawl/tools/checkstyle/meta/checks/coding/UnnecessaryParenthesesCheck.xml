@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck"
              name="UnnecessaryParentheses"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks if unnecessary parentheses are used in a statement or expression.
  The check will flag the following with warnings:
  &lt;/div&gt;
@@ -67,23 +67,23 @@
  if ((++f) &amp;gt; g &amp;amp;&amp;amp; a) { // violation, unnecessary paren
  }
  &lt;/pre&gt;</description>
-         <properties>
-            <property default-value="EXPR,IDENT,NUM_DOUBLE,NUM_FLOAT,NUM_INT,NUM_LONG,STRING_LITERAL,LITERAL_NULL,LITERAL_FALSE,LITERAL_TRUE,ASSIGN,BAND_ASSIGN,BOR_ASSIGN,BSR_ASSIGN,BXOR_ASSIGN,DIV_ASSIGN,MINUS_ASSIGN,MOD_ASSIGN,PLUS_ASSIGN,SL_ASSIGN,SR_ASSIGN,STAR_ASSIGN,LAMBDA,TEXT_BLOCK_LITERAL_BEGIN,LAND,LOR,LITERAL_INSTANCEOF,GT,LT,GE,LE,EQUAL,NOT_EQUAL,UNARY_MINUS,UNARY_PLUS,INC,DEC,LNOT,BNOT,POST_INC,POST_DEC"
+      <properties>
+        <property default-value="EXPR,IDENT,NUM_DOUBLE,NUM_FLOAT,NUM_INT,NUM_LONG,STRING_LITERAL,LITERAL_NULL,LITERAL_FALSE,LITERAL_TRUE,ASSIGN,BAND_ASSIGN,BOR_ASSIGN,BSR_ASSIGN,BXOR_ASSIGN,DIV_ASSIGN,MINUS_ASSIGN,MOD_ASSIGN,PLUS_ASSIGN,SL_ASSIGN,SR_ASSIGN,STAR_ASSIGN,LAMBDA,TEXT_BLOCK_LITERAL_BEGIN,LAND,LOR,LITERAL_INSTANCEOF,GT,LT,GE,LE,EQUAL,NOT_EQUAL,UNARY_MINUS,UNARY_PLUS,INC,DEC,LNOT,BNOT,POST_INC,POST_DEC"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="unnecessary.paren.assign"/>
-            <message-key key="unnecessary.paren.expr"/>
-            <message-key key="unnecessary.paren.ident"/>
-            <message-key key="unnecessary.paren.lambda"/>
-            <message-key key="unnecessary.paren.literal"/>
-            <message-key key="unnecessary.paren.return"/>
-            <message-key key="unnecessary.paren.string"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="unnecessary.paren.assign"/>
+        <message-key key="unnecessary.paren.expr"/>
+        <message-key key="unnecessary.paren.ident"/>
+        <message-key key="unnecessary.paren.lambda"/>
+        <message-key key="unnecessary.paren.literal"/>
+        <message-key key="unnecessary.paren.return"/>
+        <message-key key="unnecessary.paren.string"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

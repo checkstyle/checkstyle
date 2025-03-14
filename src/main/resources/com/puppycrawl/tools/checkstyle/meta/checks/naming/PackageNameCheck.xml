@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck"
              name="PackageName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that package names conform to a specified pattern.
  &lt;/div&gt;
 
@@ -17,16 +17,16 @@
  uncommon, so most configurations should probably assign value
  {@code ^[a-z]+(\.[a-z][a-z0-9]*)*$} to {@code format} for module {@code PackageName}.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="^[a-z]+(\.[a-zA-Z_]\w*)*$"
+      <properties>
+        <property default-value="^[a-z]+(\.[a-zA-Z_]\w*)*$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Control the pattern to match valid identifiers.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="name.invalidPattern"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Control the pattern to match valid identifiers.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="name.invalidPattern"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

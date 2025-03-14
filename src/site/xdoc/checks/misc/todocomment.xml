@@ -58,7 +58,7 @@
     &lt;module name="TodoComment"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
@@ -73,7 +73,7 @@ public class Example1 {
     i=i/x; // FIX :  handle x = 0 case
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check for comments that contain <code>TODO</code> and <code>FIXME</code>,
           case-insensitive:
@@ -86,7 +86,7 @@ public class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
@@ -101,7 +101,7 @@ public class Example2 {
     i=i/x; // FIX :  handle x = 0 case
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

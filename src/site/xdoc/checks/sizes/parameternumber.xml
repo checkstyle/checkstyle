@@ -78,7 +78,7 @@
     &lt;module name="ParameterNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 extends ExternalService1 {
@@ -106,7 +106,7 @@ class ExternalService1 {
                           String e, String f, String g, String h) {}
 
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check to allow 10 parameters for a method:
         </p>
@@ -119,7 +119,7 @@ class ExternalService1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 extends ExternalService2 {
@@ -147,7 +147,7 @@ class ExternalService2 {
                           String e, String f, String g, String h) {}
 
 }
-</code></pre></div>
+        </code></pre></div>
         <p>
           To configure the check to ignore number of parameters for methods with
           <code>@Override</code> or <code>@java.lang.Override annotation</code>.
@@ -165,7 +165,7 @@ class ExternalService2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 extends ExternalService3 {
@@ -193,7 +193,7 @@ class ExternalService3 {
                           String e, String f, String g, String h) {}
 
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-config">
           To configure the check to ignore methods and constructors annotated with
           <code>JsonCreator</code> annotation:
@@ -206,7 +206,7 @@ class ExternalService3 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 extends ExternalService4 {
@@ -234,7 +234,7 @@ class ExternalService4 {
                           String e, String f, String g, String h) {}
 
 }
-</code></pre></div>
+        </code></pre></div>
         <p>
           Note: Annotation names specified in the <code>ignoreAnnotatedBy</code> property
           must be an exact match for the annotation name on the method or constructor.

@@ -111,7 +111,7 @@ return new int[] {
     &lt;module name="ArrayTrailingComma"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Which results in the following violations:
         </p>
@@ -149,7 +149,7 @@ public class Example1 {
     2
   ,};
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example2-config">To configure check to always validate trailing comma:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -160,7 +160,7 @@ public class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
@@ -196,7 +196,7 @@ public class Example2 {
     2
     ,};
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -7,6 +7,6 @@
 ]>
 
 <module name="Checker">
-    <property name="tabWidth" value="4" />
+  <property name="tabWidth" value="4" />
     &includedConfig;
 </module>

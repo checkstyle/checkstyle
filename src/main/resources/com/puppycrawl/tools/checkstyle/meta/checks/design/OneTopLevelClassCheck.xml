@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck"
              name="OneTopLevelClass"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that each top-level class, interface, enum
  or annotation resides in a source file of its own.
  Official description of a 'top-level' term:
@@ -12,9 +12,9 @@
  7.6. Top Level Type Declarations&lt;/a&gt;. If file doesn't contain
  public class, interface, enum or annotation, top-level type is the first type in file.
  &lt;/div&gt;</description>
-         <message-keys>
-            <message-key key="one.top.level.class"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="one.top.level.class"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

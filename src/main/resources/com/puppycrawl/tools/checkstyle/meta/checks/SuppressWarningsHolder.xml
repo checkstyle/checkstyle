@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder"
              name="SuppressWarningsHolder"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Maintains a set of check suppressions from {@code @SuppressWarnings} annotations.
  It allows to prevent Checkstyle from reporting violations from parts of code that were
  annotated with {@code @SuppressWarnings} and using name of the check to be excluded.
@@ -13,13 +13,13 @@
  from processing these annotations.
  You can also define aliases for check names that need to be suppressed.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="" name="aliasList" type="java.lang.String[]">
-               <description>Specify aliases for check names that can be used in code
+      <properties>
+        <property default-value="" name="aliasList" type="java.lang.String[]">
+          <description>Specify aliases for check names that can be used in code
  within {@code SuppressWarnings} in a format of comma separated attribute=value entries.
  The attribute is the fully qualified name of the Check and value is its alias.</description>
-            </property>
-         </properties>
-      </check>
-   </module>
+        </property>
+      </properties>
+    </check>
+  </module>
 </checkstyle-metadata>

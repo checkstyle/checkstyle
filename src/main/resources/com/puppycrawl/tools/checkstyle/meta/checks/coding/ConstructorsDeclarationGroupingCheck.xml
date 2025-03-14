@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ConstructorsDeclarationGroupingCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ConstructorsDeclarationGroupingCheck"
              name="ConstructorsDeclarationGrouping"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that all constructors are grouped together.
  If there is any non-constructor code separating constructors,
  this check identifies and logs a violation for those ungrouped constructors.
@@ -18,9 +18,9 @@
  the different ways an object can be instantiated
  and the tasks performed by each constructor.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="constructors.declaration.grouping"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="constructors.declaration.grouping"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

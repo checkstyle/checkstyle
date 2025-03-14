@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck"
              name="MutableException"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Ensures that exception classes (classes with names conforming to some pattern
  and explicitly extending classes with names conforming to other
  pattern) are immutable, that is, that they have only final fields.
@@ -25,21 +25,21 @@
  In both cases, code catching the exception could draw incorrect
  conclusions based on the state.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="^.*Exception$|^.*Error$|^.*Throwable$"
+      <properties>
+        <property default-value="^.*Exception$|^.*Error$|^.*Throwable$"
                       name="extendedClassNameFormat"
                       type="java.util.regex.Pattern">
-               <description>Specify pattern for extended class names.</description>
-            </property>
-            <property default-value="^.*Exception$|^.*Error$|^.*Throwable$"
+          <description>Specify pattern for extended class names.</description>
+        </property>
+        <property default-value="^.*Exception$|^.*Error$|^.*Throwable$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Specify pattern for exception class names.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="mutable.exception"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Specify pattern for exception class names.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="mutable.exception"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

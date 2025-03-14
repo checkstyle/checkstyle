@@ -78,7 +78,7 @@
     &lt;module name="ExecutableStatementCount"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example1:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
@@ -94,7 +94,7 @@ class Example1 {
     int sum = a + b;
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example2-config">
           To configure the check with a threshold of 2 for constructor:
@@ -108,7 +108,7 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example2:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
@@ -124,7 +124,7 @@ class Example2 {
     int sum = a + b;
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example3-config">
           To configure the check with a threshold of 2 for method definitions:
@@ -138,7 +138,7 @@ class Example2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Example3:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
@@ -154,7 +154,7 @@ class Example3 {
     int sum = a + b;
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

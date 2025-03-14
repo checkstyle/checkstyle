@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck"
              name="UniqueProperties"
              parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Detects duplicated keys in properties files.
  &lt;/div&gt;
 
@@ -13,17 +13,17 @@
  several branches. While there are no problems in runtime, there can be a confusion
  due to having different values for the duplicated properties.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value=".properties"
+      <properties>
+        <property default-value=".properties"
                       name="fileExtensions"
                       type="java.lang.String[]">
-               <description>Specify the file extensions of the files to process.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="properties.duplicate.property"/>
-            <message-key key="unable.open.cause"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Specify the file extensions of the files to process.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="properties.duplicate.property"/>
+        <message-key key="unable.open.cause"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

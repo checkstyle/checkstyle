@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingLeadingAsteriskCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingLeadingAsteriskCheck"
              name="JavadocMissingLeadingAsterisk"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks if the javadoc has
  &lt;a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks"&gt;
  leading asterisks&lt;/a&gt; on each line.
@@ -14,22 +14,22 @@
  The check does not require asterisks on the first line, nor on the last line if it is blank.
  All other lines in a Javadoc should start with {@code *}, including blank lines and code blocks.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="false"
+      <properties>
+        <property default-value="false"
                       name="violateExecutionOnNonTightHtml"
                       type="boolean">
-               <description>Control when to print violations if the
+          <description>Control when to print violations if the
  Javadoc being examined by this check violates the tight html rules defined at
  &lt;a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules"&gt;Tight-HTML Rules&lt;/a&gt;.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="javadoc.missed.html.close"/>
-            <message-key key="javadoc.missing.asterisk"/>
-            <message-key key="javadoc.parse.rule.error"/>
-            <message-key key="javadoc.unclosedHtml"/>
-            <message-key key="javadoc.wrong.singleton.html.tag"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="javadoc.missed.html.close"/>
+        <message-key key="javadoc.missing.asterisk"/>
+        <message-key key="javadoc.parse.rule.error"/>
+        <message-key key="javadoc.unclosedHtml"/>
+        <message-key key="javadoc.wrong.singleton.html.tag"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

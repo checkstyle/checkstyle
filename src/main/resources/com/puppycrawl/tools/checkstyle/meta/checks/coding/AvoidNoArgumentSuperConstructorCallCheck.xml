@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.AvoidNoArgumentSuperConstructorCallCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.AvoidNoArgumentSuperConstructorCallCheck"
              name="AvoidNoArgumentSuperConstructorCall"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks if call to superclass constructor without arguments is present.
  Such invocation is redundant because constructor body implicitly
  begins with a superclass constructor invocation {@code super();}
  See &lt;a href="https://docs.oracle.com/javase/specs/jls/se13/html/jls-8.html#jls-8.8.7"&gt;
  specification&lt;/a&gt; for detailed information.
  &lt;/div&gt;</description>
-         <message-keys>
-            <message-key key="super.constructor.call"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="super.constructor.call"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

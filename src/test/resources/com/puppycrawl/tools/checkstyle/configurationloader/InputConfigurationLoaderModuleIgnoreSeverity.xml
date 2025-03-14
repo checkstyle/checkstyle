@@ -5,9 +5,9 @@
     "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
 <module name="Checker">
-    <module name="TreeWalker">
-        <module name="MemberName">
-            <property name="severity" value="ignore"/>
-        </module>
+  <module name="TreeWalker">
+    <module name="MemberName">
+      <property name="severity" value="ignore"/>
     </module>
+  </module>
 </module>

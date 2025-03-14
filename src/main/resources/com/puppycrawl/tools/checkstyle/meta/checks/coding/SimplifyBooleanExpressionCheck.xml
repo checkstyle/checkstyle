@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheck"
              name="SimplifyBooleanExpression"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for over-complicated boolean expressions. Currently, it finds code like
  {@code if (b == true)}, {@code b || true}, {@code !false},
  {@code boolean a = q &gt; 12 ? true : false},
@@ -14,9 +14,9 @@
  &lt;p&gt;
  Rationale: Complex boolean logic makes code hard to understand and maintain.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="simplify.expression"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="simplify.expression"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

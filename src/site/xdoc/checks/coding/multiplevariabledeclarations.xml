@@ -32,7 +32,7 @@
     &lt;module name="MultipleVariableDeclarations"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
@@ -51,7 +51,7 @@ public class Example1 {
     // violation above, 'Each variable declaration must be in its own statement'
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

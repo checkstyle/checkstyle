@@ -44,7 +44,7 @@
     &lt;module name="FinalClass"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 { // ok, since it has a public constructor
@@ -93,7 +93,7 @@ public class Example1 { // ok, since it has a public constructor
 
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

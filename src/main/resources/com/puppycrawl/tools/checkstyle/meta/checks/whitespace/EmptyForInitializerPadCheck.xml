@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck"
              name="EmptyForInitializerPad"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks the padding of an empty for initializer; that is whether a white
  space is required at an empty for initializer, or such white space is
  forbidden.  No check occurs if there is a line wrap at the initializer, as in
@@ -13,17 +13,17 @@
  for (
      ; i &amp;lt; j; i++, j--)
   &lt;/pre&gt;</description>
-         <properties>
-            <property default-value="nospace"
+      <properties>
+        <property default-value="nospace"
                       name="option"
                       type="com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption">
-               <description>Specify policy on how to pad an empty for iterator.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="ws.notPreceded"/>
-            <message-key key="ws.preceded"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Specify policy on how to pad an empty for iterator.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="ws.notPreceded"/>
+        <message-key key="ws.preceded"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

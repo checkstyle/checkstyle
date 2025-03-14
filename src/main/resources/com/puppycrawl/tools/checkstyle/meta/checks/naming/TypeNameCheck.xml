@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck"
              name="TypeName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that type names conform to a specified pattern.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="true" name="applyToPackage" type="boolean">
-               <description>Control if check should apply to package-private
+      <properties>
+        <property default-value="true" name="applyToPackage" type="boolean">
+          <description>Control if check should apply to package-private
    members.</description>
-            </property>
-            <property default-value="true" name="applyToPrivate" type="boolean">
-               <description>Control if check should apply to private members.</description>
-            </property>
-            <property default-value="true" name="applyToProtected" type="boolean">
-               <description>Control if check should apply to protected
+        </property>
+        <property default-value="true" name="applyToPrivate" type="boolean">
+          <description>Control if check should apply to private members.</description>
+        </property>
+        <property default-value="true" name="applyToProtected" type="boolean">
+          <description>Control if check should apply to protected
    members.</description>
-            </property>
-            <property default-value="true" name="applyToPublic" type="boolean">
-               <description>Control if check should apply to public members.</description>
-            </property>
-            <property default-value="^[A-Z][a-zA-Z0-9]*$"
+        </property>
+        <property default-value="true" name="applyToPublic" type="boolean">
+          <description>Control if check should apply to public members.</description>
+        </property>
+        <property default-value="^[A-Z][a-zA-Z0-9]*$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Sets the pattern to match valid identifiers.</description>
-            </property>
-            <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF"
+          <description>Sets the pattern to match valid identifiers.</description>
+        </property>
+        <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="name.invalidPattern"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="name.invalidPattern"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

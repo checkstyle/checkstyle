@@ -37,7 +37,7 @@
     &lt;module name="SealedShouldHavePermitsList"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
@@ -60,7 +60,7 @@ class CorrectedExample1 {
   final class C extends A {}
   final class D { } // this can not extend A
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

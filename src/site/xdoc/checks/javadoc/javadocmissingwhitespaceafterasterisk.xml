@@ -49,7 +49,7 @@
     &lt;module name="JavadocMissingWhitespaceAfterAsterisk"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Code Example:
         </p>
@@ -73,7 +73,7 @@ class Example1 {
   void validSingleLineJavaDocMethod() {
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage"

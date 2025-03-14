@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck"
              name="DesignForExtension"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that classes are designed for extension (subclass creation).
  &lt;/div&gt;
 
@@ -129,23 +129,23 @@
    public abstract void grow();
  }
  &lt;/pre&gt;</description>
-         <properties>
-            <property default-value="After, AfterClass, Before, BeforeClass, Test"
+      <properties>
+        <property default-value="After, AfterClass, Before, BeforeClass, Test"
                       name="ignoredAnnotations"
                       type="java.lang.String[]">
-               <description>Specify annotations which allow the check to
+          <description>Specify annotations which allow the check to
  skip the method from validation.</description>
-            </property>
-            <property default-value=".*"
+        </property>
+        <property default-value=".*"
                       name="requiredJavadocPhrase"
                       type="java.util.regex.Pattern">
-               <description>Specify the comment text pattern which qualifies a
+          <description>Specify the comment text pattern which qualifies a
  method as designed for extension. Supports multi-line regex.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="design.forExtension"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="design.forExtension"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

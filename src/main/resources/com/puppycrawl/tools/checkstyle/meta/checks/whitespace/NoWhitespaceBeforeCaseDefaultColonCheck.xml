@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCaseDefaultColonCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCaseDefaultColonCheck"
              name="NoWhitespaceBeforeCaseDefaultColon"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that there is no whitespace before the colon in a switch block.
  &lt;/div&gt;</description>
-         <message-keys>
-            <message-key key="ws.preceded"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="ws.preceded"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

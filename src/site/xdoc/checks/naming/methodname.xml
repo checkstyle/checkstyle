@@ -88,7 +88,7 @@
     &lt;module name="MethodName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
@@ -97,7 +97,7 @@ class Example1 {
   private void Method3() {} // violation
   public void Method4() {} // violation
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters, digits, and underscores is:
@@ -110,14 +110,14 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   public void method1() {}
   public void Method2() {} // violation
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-config">
           An example of how to configure the check to allow method names to be equal to the
           residing class name is:
@@ -131,14 +131,14 @@ class Example2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
   public Example3() {}
   public void Example3() {}
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-config">
           An example of how to configure the check to disallow method names to be equal to the
           residing class name is:
@@ -152,14 +152,14 @@ class Example3 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
   public Example4() {}
   public void Example4() {} // violation
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-config">
           An example of how to suppress the check to public and protected methods:
         </p>
@@ -173,7 +173,7 @@ class Example4 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
@@ -182,7 +182,7 @@ class Example5 {
   private void Method3() {} // violation
   void Method4() {} // violation
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

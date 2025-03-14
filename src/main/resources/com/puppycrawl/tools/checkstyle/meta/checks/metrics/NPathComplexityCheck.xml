@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck"
              name="NPathComplexity"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks the NPATH complexity against a specified limit.
  &lt;/div&gt;
 
@@ -87,14 +87,14 @@
  your project style. Limit 200 is empirical number base on some sources of at
  AT&amp;amp;T Bell Laboratories of 1988 year.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="200" name="max" type="int">
-               <description>Specify the maximum threshold allowed.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="npathComplexity"/>
-         </message-keys>
-      </check>
-   </module>
+      <properties>
+        <property default-value="200" name="max" type="int">
+          <description>Specify the maximum threshold allowed.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="npathComplexity"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

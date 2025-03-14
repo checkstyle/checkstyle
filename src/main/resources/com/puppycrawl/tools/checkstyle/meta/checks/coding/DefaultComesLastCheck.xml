@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck"
              name="DefaultComesLast"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Check that the {@code default} is after all the cases in a {@code switch} statement.
  &lt;/div&gt;
 
@@ -12,18 +12,18 @@
  Rationale: Java allows {@code default} anywhere within the
  {@code switch} statement. But it is more readable if it comes after the last {@code case}.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="false"
+      <properties>
+        <property default-value="false"
                       name="skipIfLastAndSharedWithCase"
                       type="boolean">
-               <description>Control whether to allow {@code default}
+          <description>Control whether to allow {@code default}
  along with {@code case} if they are not last.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="default.comes.last"/>
-            <message-key key="default.comes.last.in.casegroup"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="default.comes.last"/>
+        <message-key key="default.comes.last.in.casegroup"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

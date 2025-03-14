@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck"
              name="SuppressWarnings"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Allows to specify what warnings that
  {@code @SuppressWarnings} is not allowed to suppress.
  You can also specify a list of TokenTypes that
@@ -45,21 +45,21 @@
  anything but variable and parameter declarations.
  See below of an example.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="^\s*+$" name="format" type="java.util.regex.Pattern">
-               <description>Specify the RegExp to match against warnings. Any warning
+      <properties>
+        <property default-value="^\s*+$" name="format" type="java.util.regex.Pattern">
+          <description>Specify the RegExp to match against warnings. Any warning
  being suppressed matching this pattern will be flagged.</description>
-            </property>
-            <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,ANNOTATION_FIELD_DEF,ENUM_CONSTANT_DEF,PARAMETER_DEF,VARIABLE_DEF,METHOD_DEF,CTOR_DEF,COMPACT_CTOR_DEF,RECORD_DEF,PATTERN_VARIABLE_DEF"
+        </property>
+        <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,ANNOTATION_FIELD_DEF,ENUM_CONSTANT_DEF,PARAMETER_DEF,VARIABLE_DEF,METHOD_DEF,CTOR_DEF,COMPACT_CTOR_DEF,RECORD_DEF,PATTERN_VARIABLE_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="suppressed.warning.not.allowed"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="suppressed.warning.not.allowed"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

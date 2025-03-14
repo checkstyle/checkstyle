@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck"
              name="CyclomaticComplexity"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks cyclomatic complexity against a specified limit. It is a measure of
  the minimum number of possible paths through the source and therefore the
  number of required tests, it is not about quality of code! It is only
@@ -46,26 +46,26 @@
  Please use Suppression to avoid violations on cases that could not be split
  in few methods without damaging readability of code or encapsulation.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="10" name="max" type="int">
-               <description>Specify the maximum threshold allowed.</description>
-            </property>
-            <property default-value="false"
+      <properties>
+        <property default-value="10" name="max" type="int">
+          <description>Specify the maximum threshold allowed.</description>
+        </property>
+        <property default-value="false"
                       name="switchBlockAsSingleDecisionPoint"
                       type="boolean">
-               <description>Control whether to treat
+          <description>Control whether to treat
  the whole switch block as a single decision point.</description>
-            </property>
-            <property default-value="LITERAL_WHILE,LITERAL_DO,LITERAL_FOR,LITERAL_IF,LITERAL_SWITCH,LITERAL_CASE,LITERAL_CATCH,QUESTION,LAND,LOR,LITERAL_WHEN"
+        </property>
+        <property default-value="LITERAL_WHILE,LITERAL_DO,LITERAL_FOR,LITERAL_IF,LITERAL_SWITCH,LITERAL_CASE,LITERAL_CATCH,QUESTION,LAND,LOR,LITERAL_WHEN"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="cyclomaticComplexity"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="cyclomaticComplexity"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

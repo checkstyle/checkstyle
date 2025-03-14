@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck"
              name="MultipleVariableDeclarations"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that each variable declaration is in its own statement
  and on its own line.
  &lt;/div&gt;
@@ -15,10 +15,10 @@
  the Java code conventions chapter 6.1&lt;/a&gt; recommends that
  declarations should be one per line/statement.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="multiple.variable.declarations"/>
-            <message-key key="multiple.variable.declarations.comma"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="multiple.variable.declarations"/>
+        <message-key key="multiple.variable.declarations.comma"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

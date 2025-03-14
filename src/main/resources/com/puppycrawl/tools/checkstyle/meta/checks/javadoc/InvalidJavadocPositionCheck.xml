@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocPositionCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocPositionCheck"
              name="InvalidJavadocPosition"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that Javadocs are located at the correct position. As specified at
  &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html"&gt;
  Documentation Comment Specification for the Standard Doclet&lt;/a&gt;, Javadocs are recognized
@@ -13,9 +13,9 @@
  body of a method, will be ignored by the javadoc tool and is considered
  invalid by this check.
  &lt;/div&gt;</description>
-         <message-keys>
-            <message-key key="invalid.position"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="invalid.position"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

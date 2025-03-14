@@ -74,7 +74,7 @@
     &lt;module name="ThrowsCount"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
@@ -104,7 +104,7 @@ public class Example1 {
                                 NullPointerException {
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check so that it doesn't allow more than two throws
           per method:
@@ -117,7 +117,7 @@ public class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
@@ -147,7 +147,7 @@ public class Example2 {
                                 NullPointerException {
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-config">
           To configure the check so that it doesn't skip private methods:
         </p>
@@ -159,7 +159,7 @@ public class Example2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">
           Example:
         </p>
@@ -189,7 +189,7 @@ public class Example3 {
                                 NullPointerException {
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

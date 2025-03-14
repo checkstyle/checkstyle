@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck"
              name="IllegalThrows"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that specified types are not declared to be thrown.
  Declaring that a method throws {@code java.lang.Error} or
  {@code java.lang.RuntimeException} is almost never acceptable.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="true" name="ignoreOverriddenMethods" type="boolean">
-               <description>Allow to ignore checking overridden methods
+      <properties>
+        <property default-value="true" name="ignoreOverriddenMethods" type="boolean">
+          <description>Allow to ignore checking overridden methods
  (marked with {@code Override} or {@code java.lang.Override} annotation).</description>
-            </property>
-            <property default-value="finalize"
+        </property>
+        <property default-value="finalize"
                       name="ignoredMethodNames"
                       type="java.lang.String[]">
-               <description>Specify names of methods to ignore.</description>
-            </property>
-            <property default-value="Error, RuntimeException, Throwable, java.lang.Error, java.lang.RuntimeException, java.lang.Throwable"
+          <description>Specify names of methods to ignore.</description>
+        </property>
+        <property default-value="Error, RuntimeException, Throwable, java.lang.Error, java.lang.RuntimeException, java.lang.Throwable"
                       name="illegalClassNames"
                       type="java.lang.String[]">
-               <description>Specify throw class names to reject.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="illegal.throw"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Specify throw class names to reject.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="illegal.throw"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

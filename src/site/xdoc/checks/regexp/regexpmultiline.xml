@@ -91,7 +91,7 @@
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpMultiline"/&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
         Example:
         </p>
@@ -128,7 +128,7 @@ class Example1 {
     System.out.println("TEst #5: This is a test string");
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check to find calls to print to the console:
         </p>
@@ -138,7 +138,7 @@ class Example1 {
     &lt;property name="format" value="System\.(out)|(err)\.print(ln)?\("/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
@@ -175,7 +175,7 @@ class Example2 {
     System.out.println("TEst #5: This is a test string");
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-config">
           To configure the check to match text that spans multiple lines,
           like normal code in a Java file:
@@ -187,7 +187,7 @@ class Example2 {
     &lt;property name="format" value="System\.out.*?print\("/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">
           Example:
         </p>
@@ -224,7 +224,7 @@ class Example3 {
     System.out.println("TEst #5: This is a test string");
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p>
           Note: Beware of the greedy regular expression used in the above example.
           <code>.*</code> will match as much as possible and not produce multiple violations in
@@ -244,7 +244,7 @@ class Example3 {
     &lt;property name="maximum" value="3"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">
           Example:
         </p>
@@ -281,7 +281,7 @@ class Example4 {
     System.out.println("TEst #5: This is a test string");
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-config">
         To configure the check to match a minimum of two test strings:
         </p>
@@ -292,7 +292,7 @@ class Example4 {
     &lt;property name="minimum" value="2"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">
           Example:
         </p>
@@ -329,7 +329,7 @@ class Example5 {
     System.out.println("Test #4: This is a test string");
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-config">
           To configure the check to restrict an empty file:
         </p>
@@ -341,7 +341,7 @@ class Example5 {
       &lt;property name="message" value="Empty file is not allowed" /&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-code">
           Example of violation from the above config:
         </p>
@@ -352,7 +352,7 @@ class Example5 {
 2
 3
 4
-</code></pre></div>
+        </code></pre></div>
         <p>Result:</p>
         <source>
 /var/tmp/Test.java // violation, a file must not be empty.

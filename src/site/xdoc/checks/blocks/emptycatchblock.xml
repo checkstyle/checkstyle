@@ -61,7 +61,7 @@
     &lt;module name="EmptyCatchBlock"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Such empty blocks would be both suppressed:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
@@ -95,7 +95,7 @@ public class Example1 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example2-config">
           To configure the check to suppress empty catch block if exception's variable name is
@@ -109,7 +109,7 @@ public class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Such empty blocks would be both suppressed:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
@@ -143,7 +143,7 @@ public class Example2 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example3-config">
           To configure the check to suppress empty catch block if single-line comment inside
@@ -157,7 +157,7 @@ public class Example2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Such empty blocks would be both suppressed:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
@@ -191,7 +191,7 @@ public class Example3 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example4-config">
           To configure the check to suppress empty catch block if single-line comment inside
@@ -205,7 +205,7 @@ public class Example3 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">Such empty blocks would be both suppressed:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
@@ -254,7 +254,7 @@ public class Example4 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example5-config">
           To configure the check to suppress empty catch block if
@@ -268,7 +268,7 @@ public class Example4 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">Such empty blocks would be both suppressed:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example5 {
@@ -286,7 +286,7 @@ public class Example5 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
       </subsection>
 

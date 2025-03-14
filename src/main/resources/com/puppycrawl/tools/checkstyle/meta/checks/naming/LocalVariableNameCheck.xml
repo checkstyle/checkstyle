@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck"
              name="LocalVariableName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that local, non-{@code final} variable names conform to a specified pattern.
  A catch parameter is considered to be
  a local variable.
@@ -15,24 +15,24 @@
  &lt;a href="https://checkstyle.org/checks/naming/patternvariablename.html#PatternVariableName"&gt;
  PatternVariableName&lt;/a&gt;.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="false"
+      <properties>
+        <property default-value="false"
                       name="allowOneCharVarInForLoop"
                       type="boolean">
-               <description>Allow one character variable name in
+          <description>Allow one character variable name in
  &lt;a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html"&gt;
  initialization expressions&lt;/a&gt;
  in FOR loop if one char variable name is prohibited by {@code format} regexp.</description>
-            </property>
-            <property default-value="^([a-z][a-zA-Z0-9]*|_)$"
+        </property>
+        <property default-value="^([a-z][a-zA-Z0-9]*|_)$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Sets the pattern to match valid identifiers.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="name.invalidPattern"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Sets the pattern to match valid identifiers.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="name.invalidPattern"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

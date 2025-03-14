@@ -62,7 +62,7 @@
     &lt;module name="CommentsIndentation"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example1-code">
         Example:
@@ -92,7 +92,7 @@ public class Example1 {
   }
   // violation 2 lines above  'Comment has incorrect indentation level 8'
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the Check to validate only single-line comments:
         </p>
@@ -104,7 +104,7 @@ public class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example2-code">
           Example:
@@ -134,7 +134,7 @@ public class Example2 {
   }
   // violation 2 lines above  'Comment has incorrect indentation level 8'
 }
-</code></pre></div>
+        </code></pre></div>
         <p>Please take a look at the following examples to understand how the check works:</p>
         <p id="Example3-code">
           Example #3: Comment is used as a single-line border to separate groups of methods.
@@ -151,7 +151,7 @@ public class Example3 {
   // violation 2 lines above 'Comment has incorrect indentation level 4'
   public void foo2() {}
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">
           Example #4: Single line block comment is placed within an empty code block.
           Note, if comment is placed at the end of the empty code block, we have Checkstyle's
@@ -174,7 +174,7 @@ public class Example4 {
  // It is not okay
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">Example #5: 'fallthrough' comments and Also similar
            comments  placed within an empty case block.Note, if comment is placed
            at the end of the empty case block,  we have Checkstyle limitations to
@@ -206,7 +206,7 @@ public class Example5 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-code">Example #6: Comment is placed within a distributed statement.</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example6 {
@@ -223,7 +223,7 @@ public class Example6 {
 
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example7-code">
           Example #7: Single line block comment has previous and next statement.
         </p>
@@ -248,7 +248,7 @@ public class Example7 {
     // violation 4 lines above 'Comment has incorrect indentation level 7'
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example8-code">
           Example #8: Comment within the block tries to describe the next code block.
         </p>
@@ -270,7 +270,7 @@ public class Example8 {
     } catch (Exception e) {  }
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"
              name="ImportOrder"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks the ordering/grouping of imports. Features are:
  &lt;/div&gt;
  &lt;ul&gt;
@@ -33,52 +33,52 @@
  &lt;a href="https://checkstyle.org/property_types.html#ImportOrderOption"&gt;ImportOrderOption&lt;/a&gt;)
  &lt;/li&gt;
  &lt;/ul&gt;</description>
-         <properties>
-            <property default-value="true" name="caseSensitive" type="boolean">
-               <description>Control whether string comparison should be
+      <properties>
+        <property default-value="true" name="caseSensitive" type="boolean">
+          <description>Control whether string comparison should be
  case-sensitive or not. Case-sensitive sorting is in
  &lt;a href="https://en.wikipedia.org/wiki/ASCII#Order"&gt;ASCII sort order&lt;/a&gt;.
  It affects both type imports and static imports.</description>
-            </property>
-            <property default-value="" name="groups" type="java.lang.String[]">
-               <description>Specify list of &lt;b&gt;type import&lt;/b&gt; groups. Every group identified
+        </property>
+        <property default-value="" name="groups" type="java.lang.String[]">
+          <description>Specify list of &lt;b&gt;type import&lt;/b&gt; groups. Every group identified
  either by a common prefix string, or by a regular expression enclosed in forward slashes
  (e.g. {@code /regexp/}). If an import matches two or more groups,
  the best match is selected (closest to the start, and the longest match).
  All type imports, which does not match any group, falls into an
  additional group, located at the end.
  Thus, the empty list of type groups (the default value) means one group for all type imports.</description>
-            </property>
-            <property default-value="under"
+        </property>
+        <property default-value="under"
                       name="option"
                       type="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption">
-               <description>Specify policy on the relative order between type imports and static
+          <description>Specify policy on the relative order between type imports and static
  imports.</description>
-            </property>
-            <property default-value="true" name="ordered" type="boolean">
-               <description>Control whether type imports within each group should be
+        </property>
+        <property default-value="true" name="ordered" type="boolean">
+          <description>Control whether type imports within each group should be
  sorted.
  It doesn't affect sorting for static imports.</description>
-            </property>
-            <property default-value="false" name="separated" type="boolean">
-               <description>Control whether type import groups should be separated
+        </property>
+        <property default-value="false" name="separated" type="boolean">
+          <description>Control whether type import groups should be separated
  by, at least, one blank line or comment and aren't separated internally.
  It doesn't affect separations for static imports.</description>
-            </property>
-            <property default-value="false" name="separatedStaticGroups" type="boolean">
-               <description>Control whether static import groups should
+        </property>
+        <property default-value="false" name="separatedStaticGroups" type="boolean">
+          <description>Control whether static import groups should
  be separated by, at least, one blank line or comment and aren't separated internally.
  This property has effect only when the property {@code option} is set to {@code top}
  or {@code bottom} and when property {@code staticGroups} is enabled.</description>
-            </property>
-            <property default-value="false"
+        </property>
+        <property default-value="false"
                       name="sortStaticImportsAlphabetically"
                       type="boolean">
-               <description>Control whether
+          <description>Control whether
  &lt;b&gt;static imports&lt;/b&gt; located at &lt;b&gt;top&lt;/b&gt; or &lt;b&gt;bottom&lt;/b&gt; are sorted within the group.</description>
-            </property>
-            <property default-value="" name="staticGroups" type="java.lang.String[]">
-               <description>Specify list of &lt;b&gt;static&lt;/b&gt; import groups. Every group
+        </property>
+        <property default-value="" name="staticGroups" type="java.lang.String[]">
+          <description>Specify list of &lt;b&gt;static&lt;/b&gt; import groups. Every group
  identified either by a common prefix string, or by a regular expression enclosed in forward
  slashes (e.g. {@code /regexp/}). If an import matches two or more groups,
  the best match is selected (closest to the start, and the longest match).
@@ -86,19 +86,19 @@
  an additional group, located at the end. Thus, the empty list of static groups (the default
  value) means one group for all static imports. This property has effect only when the property
  {@code option} is set to {@code top} or {@code bottom}.</description>
-            </property>
-            <property default-value="false"
+        </property>
+        <property default-value="false"
                       name="useContainerOrderingForStatic"
                       type="boolean">
-               <description>Control whether to use container
+          <description>Control whether to use container
  ordering (Eclipse IDE term) for static imports or not.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="import.groups.separated.internally"/>
-            <message-key key="import.ordering"/>
-            <message-key key="import.separation"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="import.groups.separated.internally"/>
+        <message-key key="import.ordering"/>
+        <message-key key="import.separation"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

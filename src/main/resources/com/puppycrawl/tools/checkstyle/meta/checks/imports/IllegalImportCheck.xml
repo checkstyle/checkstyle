@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck"
              name="IllegalImport"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for imports from a set of illegal packages.
  &lt;/div&gt;
 
@@ -15,27 +15,27 @@
  "not guaranteed to work on all Java-compatible platforms"&lt;/a&gt;. To reject other
  packages, set property {@code illegalPkgs} to a list of the illegal packages.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="" name="illegalClasses" type="java.lang.String[]">
-               <description>Specify class names to reject, if &lt;b&gt;regexp&lt;/b&gt;
+      <properties>
+        <property default-value="" name="illegalClasses" type="java.lang.String[]">
+          <description>Specify class names to reject, if &lt;b&gt;regexp&lt;/b&gt;
  property is not set, checks if import equals class name. If &lt;b&gt;regexp&lt;/b&gt;
  property is set, then list of class names will be interpreted as regular expressions.
  Note, all properties for match will be used.</description>
-            </property>
-            <property default-value="sun" name="illegalPkgs" type="java.lang.String[]">
-               <description>Specify packages to reject, if &lt;b&gt;regexp&lt;/b&gt;
+        </property>
+        <property default-value="sun" name="illegalPkgs" type="java.lang.String[]">
+          <description>Specify packages to reject, if &lt;b&gt;regexp&lt;/b&gt;
  property is not set, checks if import is the part of package. If &lt;b&gt;regexp&lt;/b&gt;
  property is set, then list of packages will be interpreted as regular expressions.
  Note, all properties for match will be used.</description>
-            </property>
-            <property default-value="false" name="regexp" type="boolean">
-               <description>Control whether the {@code illegalPkgs} and
+        </property>
+        <property default-value="false" name="regexp" type="boolean">
+          <description>Control whether the {@code illegalPkgs} and
  {@code illegalClasses} should be interpreted as regular expressions.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="import.illegal"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="import.illegal"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

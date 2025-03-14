@@ -46,7 +46,7 @@
       </ul>
     </section>
 
-      <section name="Release 5.8">
+    <section name="Release 5.8">
       <p>New features:</p>
       <ul>
         <li>
@@ -577,7 +577,7 @@
           has been maintained for now, rather than adopting Maven's
           <a href="https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html">
             standard directory layout
-         </a>. This will change once Maven has been <i>proven</i>.
+          </a>. This will change once Maven has been <i>proven</i>.
         </li>
         <li>
           The Maven <code>&lt;groupId&gt;</code> changed to be
@@ -587,7 +587,7 @@
           Introduced
           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/FileText.html">
               FileText
-         </a>
+          </a>
           to provide more flexibility on how the contents of a file are
           represented. This allows for Checkers that wish to operate on
           a single character sequence instead of a list of lines.
@@ -1522,26 +1522,26 @@
       <p>Fixed Bugs:</p>
 
       <ul>
-          <li>DesignForExtension check skips enums now (they are final
+        <li>DesignForExtension check skips enums now (they are final
           :). (bug# 1194470)</li>
 
-          <li>Indentation check now works better with enums and
+        <li>Indentation check now works better with enums and
           for-each statements (bugs 1193850 and 1193855)</li>
 
-          <li>Corrected calculation of Cyclomatic complexity metric
+        <li>Corrected calculation of Cyclomatic complexity metric
           (bug 1203536, module CyclomaticComplexity)</li>
 
-          <li>SuppressionCommentFilter now silently does nothing if
+        <li>SuppressionCommentFilter now silently does nothing if
           there is no FileContentsHolder (bug 1183749)</li>
 
-          <li>Java Parser now understands Java 5 hex float syntax
+        <li>Java Parser now understands Java 5 hex float syntax
           (bug 1195818)</li>
       </ul>
 
       <p>Other improvements:</p>
 
       <ul>
-          <li>Improved performance of reading Java files
+        <li>Improved performance of reading Java files
           (patch 1214386, contributed by Lars Koedderitzsch)</li>
 
       </ul>
@@ -1549,7 +1549,7 @@
       <p>Dependencies:</p>
 
       <ul>
-          <li>Since Checkstyle now requires Java 1.4, it does not need
+        <li>Since Checkstyle now requires Java 1.4, it does not need
           Jakarta Regexp library any more and uses java.util.regex
           package from J2SE instead. The regular expression specifications
           of these libraries use a slightly different syntax in some
@@ -1566,7 +1566,7 @@
       <p>Dependencies:</p>
 
       <ul>
-          <li>Checkstyle now requires Java 1.4, running Checkstyle inside
+        <li>Checkstyle now requires Java 1.4, running Checkstyle inside
           a Java 1.3 VM is no longer supported.</li>
 
       </ul>
@@ -1574,18 +1574,18 @@
       <p>Fixed Bugs:</p>
 
       <ul>
-          <li>The Ant task now always prints a summary line like
+        <li>The Ant task now always prints a summary line like
           'Running Checkstyle 4.0 on 339 files' (bug 1099573).</li>
 
-          <li>Added missing documentation for the fileExtensions
+        <li>Added missing documentation for the fileExtensions
           property of the NewlineAtEndOfFile check (bug 1174751).</li>
 
-          <li>Fixed bug #1098126 in UnusedImport check.</li>
+        <li>Fixed bug #1098126 in UnusedImport check.</li>
 
-          <li>Fixed bug #1185722 (DeclarationCollector.leaveToken unbalanced
+        <li>Fixed bug #1185722 (DeclarationCollector.leaveToken unbalanced
           with visitToken)</li>
 
-          <li>Fixed NPE in AbstractUsageCheck when we process an empty
+        <li>Fixed NPE in AbstractUsageCheck when we process an empty
           file (bug 1165855)</li>
 
       </ul>
@@ -1620,9 +1620,9 @@
         readResolve() and writeReplace()) (rfe 1036387)</li>
 
         <li>Added support for the property
-        <code>allowMissingPropertyJavadoc </code> on the <a
+          <code>allowMissingPropertyJavadoc </code> on the <a
         href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a>
-        check.</li>
+        ch</li>
 
       </ul>
 
@@ -1792,7 +1792,7 @@
       <p>API changes:</p>
       <ul>
 
-          <li>Added new class SeverityLevelCounter.</li>
+        <li>Added new class SeverityLevelCounter.</li>
 
       </ul>
     </section>
@@ -2005,7 +2005,7 @@
 
         <li>Renamed checkstyle-version-optional.jar to
         checkstyle-optional-version.jar to make the distribution
-        <a href="https://maven.apache.org">Maven</a> friendly.</li>
+          <a href="https://maven.apache.org">Maven</a> frien</li>
 
       </ul>
 

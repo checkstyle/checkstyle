@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck"
              name="RedundantImport"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for redundant import statements. An import statement is
  considered redundant if:
  &lt;/div&gt;
@@ -16,11 +16,11 @@
    &lt;li&gt;The class non-statically imported is from the same package as the
    current package.&lt;/li&gt;
  &lt;/ul&gt;</description>
-         <message-keys>
-            <message-key key="import.duplicate"/>
-            <message-key key="import.lang"/>
-            <message-key key="import.same"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="import.duplicate"/>
+        <message-key key="import.lang"/>
+        <message-key key="import.same"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

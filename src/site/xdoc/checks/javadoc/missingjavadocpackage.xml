@@ -36,14 +36,14 @@
     &lt;module name="MissingJavadocPackage"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="javadoc-package-info-code">Example1 of package-info.java:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * Provides API classes
  */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.javadoc;
-</code></pre></div>
+        </code></pre></div>
         <p id="nojavadoc-package-info-code">Example2 of package-info.java:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /*
@@ -51,7 +51,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.jav
  */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.nojavadoc;
 // violation above 'Missing javadoc for package-info.java file'
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

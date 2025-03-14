@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck"
              name="JavadocTagContinuationIndentation"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks the indentation of the continuation lines in block tags. That is whether the continued
  description of at clauses should be indented or not. If the text is not properly indented it
  throws a violation. A continuation line is when the description starts/spans past the line with
  the tag. Default indentation required is at least 4, but this can be changed with the help of
  properties below.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="4" name="offset" type="int">
-               <description>Specify how many spaces to use for new indentation level.</description>
-            </property>
-            <property default-value="false"
+      <properties>
+        <property default-value="4" name="offset" type="int">
+          <description>Specify how many spaces to use for new indentation level.</description>
+        </property>
+        <property default-value="false"
                       name="violateExecutionOnNonTightHtml"
                       type="boolean">
-               <description>Control when to print violations
+          <description>Control when to print violations
  if the Javadoc being examined by this check violates the tight html rules defined at
  &lt;a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules"&gt;Tight-HTML Rules&lt;/a&gt;.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="javadoc.missed.html.close"/>
-            <message-key key="javadoc.parse.rule.error"/>
-            <message-key key="javadoc.unclosedHtml"/>
-            <message-key key="javadoc.wrong.singleton.html.tag"/>
-            <message-key key="tag.continuation.indent"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="javadoc.missed.html.close"/>
+        <message-key key="javadoc.parse.rule.error"/>
+        <message-key key="javadoc.unclosedHtml"/>
+        <message-key key="javadoc.wrong.singleton.html.tag"/>
+        <message-key key="tag.continuation.indent"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

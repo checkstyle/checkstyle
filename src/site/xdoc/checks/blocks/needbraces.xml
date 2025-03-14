@@ -86,7 +86,7 @@
     &lt;module name="NeedBraces"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
@@ -125,7 +125,7 @@ class Example1 {
     return true;
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check for <code>if</code> and
           <code> else</code> blocks:
@@ -138,7 +138,7 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
@@ -177,7 +177,7 @@ class Example2 {
     return true;
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-config">
           To configure the check to allow single-line statements
           (<code>if, while, do-while, for</code>) without braces:
@@ -192,7 +192,7 @@ class Example2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
@@ -231,7 +231,7 @@ class Example3 {
     return true;
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-config">
           To configure the check to allow <code>case, default</code> single-line statements
           without braces:
@@ -245,7 +245,7 @@ class Example3 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">
         Next statements won't be violated by check:
         </p>
@@ -287,7 +287,7 @@ class Example4 {
     return true;
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-config">
           To configure the check to allow loops (<code>while, for</code>) with empty bodies:
         </p>
@@ -300,7 +300,7 @@ class Example4 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
@@ -339,7 +339,7 @@ class Example5 {
     return true;
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-config">
           To configure the check to lambdas:
         </p>
@@ -352,7 +352,7 @@ class Example5 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-code">Results in following:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example6 {
@@ -385,7 +385,7 @@ class CustomCompletableFuture&lt;T&gt; {
   public void addCustomCallback(java.util.function.Supplier&lt;Object&gt; successLambda,
           java.util.function.Consumer&lt;Throwable&gt; failureLambda) {}
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

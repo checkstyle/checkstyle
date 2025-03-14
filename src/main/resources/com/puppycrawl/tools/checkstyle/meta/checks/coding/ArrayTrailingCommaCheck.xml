@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheck"
              name="ArrayTrailingComma"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that array initialization contains a trailing comma.
  &lt;/div&gt;
 
@@ -72,17 +72,17 @@
   100000000000000000001, // More work needed to duplicate
  }
  &lt;/pre&gt;</description>
-         <properties>
-            <property default-value="false"
+      <properties>
+        <property default-value="false"
                       name="alwaysDemandTrailingComma"
                       type="boolean">
-               <description>Control whether to always check for a trailing
+          <description>Control whether to always check for a trailing
  comma, even when an array is inline.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="array.trailing.comma"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="array.trailing.comma"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

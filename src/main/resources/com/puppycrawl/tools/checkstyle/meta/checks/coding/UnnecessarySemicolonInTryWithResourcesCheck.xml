@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheck"
              name="UnnecessarySemicolonInTryWithResources"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks if unnecessary semicolon is used in last resource declaration.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="true"
+      <properties>
+        <property default-value="true"
                       name="allowWhenNoBraceAfterSemicolon"
                       type="boolean">
-               <description>Allow unnecessary semicolon if closing parenthesis is not on the same line.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="unnecessary.semicolon"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Allow unnecessary semicolon if closing parenthesis is not on the same line.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="unnecessary.semicolon"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

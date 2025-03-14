@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <checkstyle version="null">
-<file name="InputXMLLogger.java">
-<error column="15" line="12" message="Using the '.*' form of import should be avoided - java.io.*." severity="error" source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
-</file>
-<file name="InputXMLLogger.java">
-<error column="15" line="12" message="Using the '.*' form of import should be avoided - java.io.*." severity="error" source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
-</file>
+  <file name="InputXMLLogger.java">
+    <error column="15" line="12" message="Using the '.*' form of import should be avoided - java.io.*." severity="error" source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+  </file>
+  <file name="InputXMLLogger.java">
+    <error column="15" line="12" message="Using the '.*' form of import should be avoided - java.io.*." severity="error" source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+  </file>
 </checkstyle>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck"
              name="NoFinalizer"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that there is no method {@code finalize} with zero parameters.
  &lt;/div&gt;
 
@@ -20,9 +20,9 @@
  For more information for the finalize method and its issues, see Effective Java:
  Programming Language Guide Third Edition by Joshua Bloch, &amp;#167;8.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="avoid.finalizer.method"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="avoid.finalizer.method"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

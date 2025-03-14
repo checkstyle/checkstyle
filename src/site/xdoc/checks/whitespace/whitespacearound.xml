@@ -374,7 +374,7 @@ try {
     &lt;module name="WhitespaceAround"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
@@ -400,7 +400,7 @@ class Example1 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check for whitespace only around assignment operators:
         </p>
@@ -415,7 +415,7 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
@@ -446,7 +446,7 @@ class Example2 {
     c &gt;&gt;&gt;= 1;
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-config">
           To configure the check for whitespace only around curly braces:
         </p>
@@ -458,14 +458,14 @@ class Example2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
   void myFunction() {} // violation ''}' is not preceded with whitespace'
   void myFunction2() { }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-config">
           To configure the check to allow empty method bodies:
         </p>
@@ -477,7 +477,7 @@ class Example3 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
@@ -485,7 +485,7 @@ class Example4 {
   int a=4; // 2 violations
   // no space before and after '='
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-config">
           To configure the check to allow empty constructor bodies:
         </p>
@@ -497,7 +497,7 @@ class Example4 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
@@ -505,7 +505,7 @@ class Example5 {
   public void myFunction() {} // 2 violations
   // no space after '{', no space before '}'
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-config">
           To configure the check to allow empty type bodies:
         </p>
@@ -517,7 +517,7 @@ class Example5 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example6 {
@@ -528,7 +528,7 @@ class Example6 {
     // no space before and after '='
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example7-config">
           To configure the check to allow empty loop bodies:
         </p>
@@ -540,7 +540,7 @@ class Example6 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example7-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example7 {
@@ -552,7 +552,7 @@ class Example7 {
     // no space before and after '='
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example8-config">
           To configure the check to allow empty lambda bodies:
         </p>
@@ -564,7 +564,7 @@ class Example7 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example8-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example8 {
@@ -574,7 +574,7 @@ class Example8 {
     // no space before and after '='
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example9-config">
           To configure the check to allow empty catch bodies:
         </p>
@@ -586,7 +586,7 @@ class Example8 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example9-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example9 {
@@ -597,7 +597,7 @@ class Example9 {
     } catch (Exception e){}
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p>
           Also, this check can be configured to ignore the colon in an enhanced for loop.
           The colon in an enhanced for loop is ignored by default.
@@ -613,7 +613,7 @@ class Example9 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example10-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example10 {
@@ -625,7 +625,7 @@ class Example10 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

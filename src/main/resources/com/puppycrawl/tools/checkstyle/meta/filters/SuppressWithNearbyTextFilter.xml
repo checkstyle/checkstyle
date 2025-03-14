@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyTextFilter"
+  <module>
+    <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyTextFilter"
               name="SuppressWithNearbyTextFilter"
               parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Filter {@code SuppressWithNearbyTextFilter} uses plain text to suppress
  nearby audit events. The filter can suppress all checks which have Checker as a parent module.
  &lt;/div&gt;
@@ -15,33 +15,33 @@
  best to set this to a key phrase not commonly used in the file to help denote it
  out of the rest of the file as a suppression. See the default value as an example.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value=".*"
+      <properties>
+        <property default-value=".*"
                       name="checkPattern"
                       type="java.util.regex.Pattern">
-               <description>Specify check name pattern to suppress.
+          <description>Specify check name pattern to suppress.
  Property can also be a RegExp group index at {@code nearbyTextPattern} in
  format of {@code $x} and be picked from line that matches {@code nearbyTextPattern}.</description>
-            </property>
-            <property name="idPattern" type="java.util.regex.Pattern">
-               <description>Specify check ID pattern to suppress.</description>
-            </property>
-            <property default-value="0" name="lineRange" type="java.lang.String">
-               <description>Specify negative/zero/positive value that
+        </property>
+        <property name="idPattern" type="java.util.regex.Pattern">
+          <description>Specify check ID pattern to suppress.</description>
+        </property>
+        <property default-value="0" name="lineRange" type="java.lang.String">
+          <description>Specify negative/zero/positive value that
  defines the number of lines preceding/at/following the suppressing nearby text.
  Property can also be a RegExp group index at {@code nearbyTextPattern} in
  format of {@code $x} and be picked from line that matches {@code nearbyTextPattern}.</description>
-            </property>
-            <property name="messagePattern" type="java.util.regex.Pattern">
-               <description>Specify check violation message pattern to suppress.</description>
-            </property>
-            <property default-value="SUPPRESS CHECKSTYLE (\w+)"
+        </property>
+        <property name="messagePattern" type="java.util.regex.Pattern">
+          <description>Specify check violation message pattern to suppress.</description>
+        </property>
+        <property default-value="SUPPRESS CHECKSTYLE (\w+)"
                       name="nearbyTextPattern"
                       type="java.util.regex.Pattern">
-               <description>Specify nearby text
+          <description>Specify nearby text
  pattern to trigger filter to begin suppression.</description>
-            </property>
-         </properties>
-      </filter>
-   </module>
+        </property>
+      </properties>
+    </filter>
+  </module>
 </checkstyle-metadata>

@@ -3,20 +3,20 @@
         "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
         "https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd">
 <suppressions>
-    <suppress-xpath
+  <suppress-xpath
             files="InputSuppressionXpathFilterEscapeChar.java"
             checks="IllegalTokenTextCheck"
             query="/COMPILATION_UNIT/CLASS_DEF[./IDENT
             [@text='InputSuppressionXpathFilterEscapeChar']]/OBJBLOCK/VARIABLE_DEF
             [./IDENT[@text='c']]/ASSIGN/EXPR/CHAR_LITERAL
             [@text='&apos;&apos;\&apos;&apos;&apos;&apos;']"/>
-    <suppress-xpath
+  <suppress-xpath
             files="InputSuppressionXpathFilterEscapeChar.java"
             checks="IllegalTokenTextCheck"
             query="/COMPILATION_UNIT/CLASS_DEF[./IDENT
             [@text='InputSuppressionXpathFilterEscapeChar']]/OBJBLOCK/VARIABLE_DEF
             [./IDENT[@text='d']]/ASSIGN/EXPR/CHAR_LITERAL[@text='&apos;&apos;&lt;&apos;&apos;']"/>
-    <suppress-xpath
+  <suppress-xpath
             files="InputSuppressionXpathFilterEscapeChar.java"
             checks="IllegalTokenTextCheck"
             query="/COMPILATION_UNIT/CLASS_DEF[./IDENT

@@ -80,7 +80,7 @@
     &lt;module name="JavadocParagraph"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">By default, the check will report a violation if there is
           no empty line before or whitespace after the &lt;p&gt; tag: </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -140,7 +140,7 @@ public class Example1 {
    */
   void foo3() {}
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To not allow newlines and spaces immediately after the &lt;p&gt; tag:
         </p>
@@ -152,7 +152,7 @@ public class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           In case of <code>allowNewlineParagraph</code> set to <code>false</code>
           the following example will have violations:
@@ -214,7 +214,7 @@ public class Example2 {
    */
   void foo3() {}
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

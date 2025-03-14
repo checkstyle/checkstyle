@@ -66,7 +66,7 @@
     &lt;property name="acceptOnMatch" value="false"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
             Example code:
         </p>
@@ -76,7 +76,7 @@ public class Example1 {
 
   public void Method2(){} // violation, MethodName's severity is defaulted to error
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

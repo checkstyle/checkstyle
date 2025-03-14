@@ -145,7 +145,7 @@
     &lt;module name="SuppressWarnings"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation below 'The warning '' cannot be suppressed at this location'
@@ -173,7 +173,7 @@ class Example1 {
 // ok below as default format only checks for a blank or empty string
 @SuppressWarnings("unchecked")
 class Test1 {}
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example2-config">
           To configure the check so that the &quot;unchecked&quot; and &quot;unused&quot;
@@ -195,7 +195,7 @@ class Test1 {}
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // ok below, since we are only checking for '^unchecked$|^unused$'
@@ -228,7 +228,7 @@ class Example2 {
 // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
 @SuppressWarnings("unchecked")
 class Test2 {}
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

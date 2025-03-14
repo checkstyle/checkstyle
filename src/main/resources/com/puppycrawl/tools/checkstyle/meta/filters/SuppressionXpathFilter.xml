@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter"
+  <module>
+    <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter"
               name="SuppressionXpathFilter"
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Filter {@code SuppressionXpathFilter} works as
  &lt;a href="https://checkstyle.org/filters/suppressionfilter.html#SuppressionFilter"&gt;
  SuppressionFilter&lt;/a&gt;.
@@ -153,16 +153,16 @@
  &lt;p&gt;
  SuppressionXpathFilter can suppress Checks that have Treewalker as parent module.
  &lt;/p&gt;</description>
-         <properties>
-            <property name="file" type="java.lang.String">
-               <description>Specify the location of the &lt;em&gt;suppressions XML document&lt;/em&gt; file.</description>
-            </property>
-            <property default-value="false" name="optional" type="boolean">
-               <description>Control what to do when the file is not existing.
+      <properties>
+        <property name="file" type="java.lang.String">
+          <description>Specify the location of the &lt;em&gt;suppressions XML document&lt;/em&gt; file.</description>
+        </property>
+        <property default-value="false" name="optional" type="boolean">
+          <description>Control what to do when the file is not existing.
  If optional is set to false the file must exist, or else it ends with error.
  On the other hand if optional is true and file is not found, the filter accepts all audit events.</description>
-            </property>
-         </properties>
-      </filter>
-   </module>
+        </property>
+      </properties>
+    </filter>
+  </module>
 </checkstyle-metadata>

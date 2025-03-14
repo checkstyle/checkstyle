@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck"
              name="ParenPad"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks the policy on the padding of parentheses; that is whether a space is required
  after a left parenthesis and before a right parenthesis, or such spaces are
  forbidden. No check occurs at the right parenthesis after an empty for
@@ -20,25 +20,25 @@
  &lt;a href="https://checkstyle.org/checks/whitespace/typecastparenpad.html#TypecastParenPad"&gt;
  TypecastParenPad&lt;/a&gt; to validate them.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="nospace"
+      <properties>
+        <property default-value="nospace"
                       name="option"
                       type="com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption">
-               <description>Specify policy on how to pad parentheses.</description>
-            </property>
-            <property default-value="ANNOTATION,ANNOTATION_FIELD_DEF,CTOR_CALL,CTOR_DEF,DOT,ENUM_CONSTANT_DEF,EXPR,LITERAL_CATCH,LITERAL_DO,LITERAL_FOR,LITERAL_IF,LITERAL_NEW,LITERAL_SWITCH,LITERAL_SYNCHRONIZED,LITERAL_WHILE,METHOD_CALL,METHOD_DEF,QUESTION,RESOURCE_SPECIFICATION,SUPER_CTOR_CALL,LAMBDA,RECORD_DEF,RECORD_PATTERN_DEF"
+          <description>Specify policy on how to pad parentheses.</description>
+        </property>
+        <property default-value="ANNOTATION,ANNOTATION_FIELD_DEF,CTOR_CALL,CTOR_DEF,DOT,ENUM_CONSTANT_DEF,EXPR,LITERAL_CATCH,LITERAL_DO,LITERAL_FOR,LITERAL_IF,LITERAL_NEW,LITERAL_SWITCH,LITERAL_SYNCHRONIZED,LITERAL_WHILE,METHOD_CALL,METHOD_DEF,QUESTION,RESOURCE_SPECIFICATION,SUPER_CTOR_CALL,LAMBDA,RECORD_DEF,RECORD_PATTERN_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="ws.followed"/>
-            <message-key key="ws.notFollowed"/>
-            <message-key key="ws.notPreceded"/>
-            <message-key key="ws.preceded"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="ws.followed"/>
+        <message-key key="ws.notFollowed"/>
+        <message-key key="ws.notPreceded"/>
+        <message-key key="ws.preceded"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

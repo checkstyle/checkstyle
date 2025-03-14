@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NoEnumTrailingCommaCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NoEnumTrailingCommaCheck"
              name="NoEnumTrailingComma"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
   Checks that enum definition does not contain a trailing comma.
   Rationale: JLS allows trailing commas in arrays and enumerations, but does not allow
   them in other locations. To unify the coding style, the use of trailing commas should
@@ -27,9 +27,9 @@
    BAR, //violation
  }
  &lt;/pre&gt;</description>
-         <message-keys>
-            <message-key key="no.enum.trailing.comma"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="no.enum.trailing.comma"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

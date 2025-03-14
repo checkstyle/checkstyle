@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"
              name="LeftCurly"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for the placement of left curly braces (&lt;code&gt;'{'&lt;/code&gt;) for code blocks.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="true" name="ignoreEnums" type="boolean">
-               <description>Allow to ignore enums when left curly brace policy is EOL.</description>
-            </property>
-            <property default-value="eol"
+      <properties>
+        <property default-value="true" name="ignoreEnums" type="boolean">
+          <description>Allow to ignore enums when left curly brace policy is EOL.</description>
+        </property>
+        <property default-value="eol"
                       name="option"
                       type="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption">
-               <description>Specify the policy on placement of a left curly brace
+          <description>Specify the policy on placement of a left curly brace
  (&lt;code&gt;'{'&lt;/code&gt;).</description>
-            </property>
-            <property default-value="ANNOTATION_DEF,CLASS_DEF,CTOR_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,INTERFACE_DEF,LAMBDA,LITERAL_CASE,LITERAL_CATCH,LITERAL_DEFAULT,LITERAL_DO,LITERAL_ELSE,LITERAL_FINALLY,LITERAL_FOR,LITERAL_IF,LITERAL_SWITCH,LITERAL_SYNCHRONIZED,LITERAL_TRY,LITERAL_WHILE,METHOD_DEF,OBJBLOCK,STATIC_INIT,RECORD_DEF,COMPACT_CTOR_DEF"
+        </property>
+        <property default-value="ANNOTATION_DEF,CLASS_DEF,CTOR_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,INTERFACE_DEF,LAMBDA,LITERAL_CASE,LITERAL_CATCH,LITERAL_DEFAULT,LITERAL_DO,LITERAL_ELSE,LITERAL_FINALLY,LITERAL_FOR,LITERAL_IF,LITERAL_SWITCH,LITERAL_SYNCHRONIZED,LITERAL_TRY,LITERAL_WHILE,METHOD_DEF,OBJBLOCK,STATIC_INIT,RECORD_DEF,COMPACT_CTOR_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="line.break.after"/>
-            <message-key key="line.new"/>
-            <message-key key="line.previous"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="line.break.after"/>
+        <message-key key="line.new"/>
+        <message-key key="line.previous"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"
              name="NewlineAtEndOfFile"
              parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks whether files end with a line separator.
  &lt;/div&gt;
 
@@ -54,21 +54,21 @@
  It is also possible to enforce the use of a specific line-separator across
  platforms, with the {@code lineSeparator} property.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="" name="fileExtensions" type="java.lang.String[]">
-               <description>Specify the file extensions of the files to process.</description>
-            </property>
-            <property default-value="lf_cr_crlf"
+      <properties>
+        <property default-value="" name="fileExtensions" type="java.lang.String[]">
+          <description>Specify the file extensions of the files to process.</description>
+        </property>
+        <property default-value="lf_cr_crlf"
                       name="lineSeparator"
                       type="com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption">
-               <description>Specify the type of line separator.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="noNewlineAtEOF"/>
-            <message-key key="unable.open"/>
-            <message-key key="wrong.line.end"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Specify the type of line separator.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="noNewlineAtEOF"/>
+        <message-key key="unable.open"/>
+        <message-key key="wrong.line.end"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

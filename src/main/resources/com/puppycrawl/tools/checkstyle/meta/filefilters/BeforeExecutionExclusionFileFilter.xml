@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <file-filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter"
+  <module>
+    <file-filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter"
                    name="BeforeExecutionExclusionFileFilter"
                    parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  File filter {@code BeforeExecutionExclusionFileFilter} decides which files should be
  excluded from being processed by the utility.
  &lt;/div&gt;
@@ -24,11 +24,11 @@
  &lt;b&gt;Note:&lt;/b&gt; When a file is excluded from the utility, it is excluded from all Checks and no
  testing for violations will be performed on them.
  &lt;/p&gt;</description>
-         <properties>
-            <property name="fileNamePattern" type="java.util.regex.Pattern">
-               <description>Define regular expression to match the file name against.</description>
-            </property>
-         </properties>
-      </file-filter>
-   </module>
+      <properties>
+        <property name="fileNamePattern" type="java.util.regex.Pattern">
+          <description>Define regular expression to match the file name against.</description>
+        </property>
+      </properties>
+    </file-filter>
+  </module>
 </checkstyle-metadata>

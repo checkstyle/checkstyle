@@ -72,7 +72,7 @@
     &lt;module name="MissingOverride"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 extends ParentClass1 {
@@ -100,7 +100,7 @@ class Example1 extends ParentClass1 {
 
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check for the <code>javaFiveCompatibility</code>
           mode:
@@ -114,7 +114,7 @@ class Example1 extends ParentClass1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
@@ -151,7 +151,7 @@ class E {
     }
   };
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

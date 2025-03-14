@@ -3,9 +3,9 @@
 <!-- CS-OFF -->
 
 <root>
-    <child>
-	</child>
+  <child>
+  </child>
     <!-- CS-ON -->
-    <child>
-	</child>
+  <child>
+  </child>
 </root>

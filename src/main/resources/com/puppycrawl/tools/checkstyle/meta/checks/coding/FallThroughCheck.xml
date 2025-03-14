@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck"
              name="FallThrough"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for fall-through in {@code switch} statements.
  Finds locations where a {@code case} &lt;b&gt;contains&lt;/b&gt; Java code but lacks a
  {@code break}, {@code return}, {@code yield}, {@code throw} or {@code continue} statement.
@@ -25,21 +25,21 @@
  &lt;p&gt;
  Note: The check assumes that there is no unreachable code in the {@code case}.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="false" name="checkLastCaseGroup" type="boolean">
-               <description>Control whether the last case group must be checked.</description>
-            </property>
-            <property default-value="falls?[ -]?thr(u|ough)"
+      <properties>
+        <property default-value="false" name="checkLastCaseGroup" type="boolean">
+          <description>Control whether the last case group must be checked.</description>
+        </property>
+        <property default-value="falls?[ -]?thr(u|ough)"
                       name="reliefPattern"
                       type="java.util.regex.Pattern">
-               <description>Define the RegExp to match the relief comment that suppresses
+          <description>Define the RegExp to match the relief comment that suppresses
  the warning about a fall through.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="fall.through"/>
-            <message-key key="fall.through.last"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="fall.through"/>
+        <message-key key="fall.through.last"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

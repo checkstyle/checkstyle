@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"
              name="JavadocPackage"
              parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that each Java package has a Javadoc file used for commenting.
  By default, it only allows a {@code package-info.java} file,
  but can be configured to allow a {@code package.html} file.
@@ -13,20 +13,20 @@
  &lt;p&gt;
  A violation will be reported if both files exist as this is not allowed by the Javadoc tool.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="false" name="allowLegacy" type="boolean">
-               <description>Allow legacy {@code package.html} file to be used.</description>
-            </property>
-            <property default-value=".java"
+      <properties>
+        <property default-value="false" name="allowLegacy" type="boolean">
+          <description>Allow legacy {@code package.html} file to be used.</description>
+        </property>
+        <property default-value=".java"
                       name="fileExtensions"
                       type="java.lang.String[]">
-               <description>Specify the file extensions of the files to process.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="javadoc.legacyPackageHtml"/>
-            <message-key key="javadoc.packageInfo"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Specify the file extensions of the files to process.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="javadoc.legacyPackageHtml"/>
+        <message-key key="javadoc.packageInfo"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

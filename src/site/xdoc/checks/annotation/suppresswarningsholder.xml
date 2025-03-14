@@ -61,7 +61,7 @@
   &lt;/module&gt;
   &lt;module name="SuppressWarningsFilter"/&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
@@ -84,7 +84,7 @@ class Example1 {
   @SuppressWarnings("all")
   private int [] ARRAY; // violations suppressed
 }
-</code></pre></div>
+        </code></pre></div>
         <p>The general rule is that the argument of the <code>@SuppressWarnings</code> will be
           matched against class name of the check in any letter case. Adding <code>check</code>
           suffix is also accepted.
@@ -105,7 +105,7 @@ class Example1 {
   &lt;/module&gt;
   &lt;module name="SuppressWarningsFilter"/&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
@@ -122,7 +122,7 @@ class Example2 {
   }
 
 }
-</code></pre></div>
+        </code></pre></div>
 
       </subsection>
 

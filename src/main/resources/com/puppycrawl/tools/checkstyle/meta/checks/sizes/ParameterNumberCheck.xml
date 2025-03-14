@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck"
              name="ParameterNumber"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks the number of parameters of a method or constructor.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="" name="ignoreAnnotatedBy" type="java.lang.String[]">
-               <description>Ignore methods and constructors
+      <properties>
+        <property default-value="" name="ignoreAnnotatedBy" type="java.lang.String[]">
+          <description>Ignore methods and constructors
  annotated with the specified annotation(s).</description>
-            </property>
-            <property default-value="false" name="ignoreOverriddenMethods" type="boolean">
-               <description>Ignore number of parameters for
+        </property>
+        <property default-value="false" name="ignoreOverriddenMethods" type="boolean">
+          <description>Ignore number of parameters for
  methods with {@code @Override} annotation.</description>
-            </property>
-            <property default-value="7" name="max" type="int">
-               <description>Specify the maximum number of parameters allowed.</description>
-            </property>
-            <property default-value="METHOD_DEF,CTOR_DEF"
+        </property>
+        <property default-value="7" name="max" type="int">
+          <description>Specify the maximum number of parameters allowed.</description>
+        </property>
+        <property default-value="METHOD_DEF,CTOR_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="maxParam"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="maxParam"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

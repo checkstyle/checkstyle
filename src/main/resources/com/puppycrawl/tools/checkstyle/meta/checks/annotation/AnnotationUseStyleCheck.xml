@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck"
              name="AnnotationUseStyle"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks the style of elements in annotations.
  &lt;/div&gt;
 
@@ -83,30 +83,30 @@
  See &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html#jls-9.7"&gt;
  Java Language specification, &amp;#167;9.7&lt;/a&gt;.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="never"
+      <properties>
+        <property default-value="never"
                       name="closingParens"
                       type="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParensOption">
-               <description>Define the policy for ending parenthesis.</description>
-            </property>
-            <property default-value="compact_no_array"
+          <description>Define the policy for ending parenthesis.</description>
+        </property>
+        <property default-value="compact_no_array"
                       name="elementStyle"
                       type="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyleOption">
-               <description>Define the annotation element styles.</description>
-            </property>
-            <property default-value="never"
+          <description>Define the annotation element styles.</description>
+        </property>
+        <property default-value="never"
                       name="trailingArrayComma"
                       type="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayCommaOption">
-               <description>Define the policy for trailing comma in arrays.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="annotation.incorrect.style"/>
-            <message-key key="annotation.parens.missing"/>
-            <message-key key="annotation.parens.present"/>
-            <message-key key="annotation.trailing.comma.missing"/>
-            <message-key key="annotation.trailing.comma.present"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Define the policy for trailing comma in arrays.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="annotation.incorrect.style"/>
+        <message-key key="annotation.parens.missing"/>
+        <message-key key="annotation.parens.present"/>
+        <message-key key="annotation.trailing.comma.missing"/>
+        <message-key key="annotation.trailing.comma.present"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

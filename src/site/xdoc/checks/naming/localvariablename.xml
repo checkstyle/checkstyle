@@ -60,7 +60,7 @@
     &lt;module name="LocalVariableName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
@@ -71,7 +71,7 @@ class Example1 {
     for (int var_1 = 0; var_1 &lt; 10; var_1++) {} // violation
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower
           case letter, followed by letters, digits, and underscores is:
@@ -84,7 +84,7 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
@@ -95,7 +95,7 @@ class Example2 {
     for (int var_1 = 0; var_1 &lt; 10; var_1++) {}
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">
           An example of one character variable name in initialization expression(like &quot;i&quot;)
           in FOR loop:
@@ -110,7 +110,7 @@ class Example3 {
     for (Object O : list) {} // violation
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example4-config">
           An example of how to configure the check to allow one character variable name in
@@ -126,7 +126,7 @@ class Example3 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
@@ -148,7 +148,7 @@ class Example4 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-config">
         An example of how to configure the check to that all variables have 3 or more chars in name:
         </p>
@@ -160,7 +160,7 @@ class Example4 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
@@ -172,7 +172,7 @@ class Example5 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

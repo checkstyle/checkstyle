@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck"
              name="FileTabCharacter"
              parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that there are no tab characters ({@code '\t'}) in the source code.
  &lt;/div&gt;
 
@@ -27,19 +27,19 @@
  When the {@code FileTabCharacter} check is used with the default configuration,
  only the first instance of a tab character is reported.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="false" name="eachLine" type="boolean">
-               <description>Control whether to report on each line containing a tab,
+      <properties>
+        <property default-value="false" name="eachLine" type="boolean">
+          <description>Control whether to report on each line containing a tab,
  or just the first instance.</description>
-            </property>
-            <property default-value="" name="fileExtensions" type="java.lang.String[]">
-               <description>Specify the file extensions of the files to process.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="containsTab"/>
-            <message-key key="file.containsTab"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+        <property default-value="" name="fileExtensions" type="java.lang.String[]">
+          <description>Specify the file extensions of the files to process.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="containsTab"/>
+        <message-key key="file.containsTab"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

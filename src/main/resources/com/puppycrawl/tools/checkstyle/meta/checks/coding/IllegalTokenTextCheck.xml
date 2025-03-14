@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
              name="IllegalTokenText"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks specified tokens text for matching an illegal pattern.
  By default, no tokens are specified.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="^$" name="format" type="java.util.regex.Pattern">
-               <description>Define the RegExp for illegal pattern.</description>
-            </property>
-            <property default-value="false" name="ignoreCase" type="boolean">
-               <description>Control whether to ignore case when matching.</description>
-            </property>
-            <property default-value="" name="message" type="java.lang.String">
-               <description>Define the message which is used to notify about violations;
+      <properties>
+        <property default-value="^$" name="format" type="java.util.regex.Pattern">
+          <description>Define the RegExp for illegal pattern.</description>
+        </property>
+        <property default-value="false" name="ignoreCase" type="boolean">
+          <description>Control whether to ignore case when matching.</description>
+        </property>
+        <property default-value="" name="message" type="java.lang.String">
+          <description>Define the message which is used to notify about violations;
  if empty then the default message is used.</description>
-            </property>
-            <property default-value=""
+        </property>
+        <property default-value=""
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="illegal.token.text"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="illegal.token.text"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

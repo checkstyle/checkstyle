@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheck"
              name="MissingSwitchDefault"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that switch statement has a {@code default} clause.
  &lt;/div&gt;
 
@@ -41,9 +41,9 @@
  See the &lt;a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-14.html#jls-14.30"&gt;
      Java Language Specification&lt;/a&gt; for more information about patterns.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="missing.switch.default"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="missing.switch.default"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

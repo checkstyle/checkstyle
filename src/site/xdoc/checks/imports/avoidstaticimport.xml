@@ -64,7 +64,7 @@
     &lt;module name="AvoidStaticImport"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
@@ -73,7 +73,7 @@ import static java.lang.Math.pow;          // violation, 'Using a static member 
 import static java.lang.System.*;          // violation, 'Using a static member import should be avoided.'
 import java.io.File;                       // OK
 import java.util.*;                        // OK
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check so that the <code>java.lang.System.out</code>
           member and all members from <code>java.lang.Math</code> are allowed:
@@ -86,7 +86,7 @@ import java.util.*;                        // OK
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
          Example:
         </p>
@@ -96,7 +96,7 @@ import static java.lang.System.out;        // OK
 import static java.lang.Integer.parseInt;  // violation, 'Using a static member import should be avoided.'
 import java.io.*;                          // OK
 import java.util.*;                        // OK
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

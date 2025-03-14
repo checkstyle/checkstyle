@@ -104,14 +104,14 @@
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Code example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   public void MyMethod() {}
   // filtered violation above 'Name 'MyMethod' must match pattern'
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To suppress MethodName check for method names matched pattern 'MyMethod[0-9]':
         </p>
@@ -125,7 +125,7 @@ public class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
@@ -136,7 +136,7 @@ public class Example2 {
   // violation below 'Name 'MyMethodA' must match pattern'
   public void MyMethodA() {}
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-config">
           To suppress checks being specified by id property:
         </p>
@@ -152,14 +152,14 @@ public class Example2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Code example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
   // filtered violation below 'Name 'MyMethod' must match pattern'
   public void MyMethod() {}
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-config">
           To suppress checks for all package definitions:
         </p>
@@ -178,14 +178,14 @@ public class Example3 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">Code example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 // filtered violation above 'must match pattern'
 
 public class Example4 {}
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-config">
           To suppress RedundantModifier check for interface definitions:
         </p>
@@ -199,13 +199,13 @@ public class Example4 {}
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public interface Example5 {
   public int CONSTANT1 = 1; // filtered violation 'Redundant 'public' modifier.'
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-config">
           To suppress checks in the Example6 file by non-query:
         </p>
@@ -219,13 +219,13 @@ public interface Example5 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-code">Code example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example6 {
   private int field = 177; // filtered violation ''177' is a magic number.'
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example7-config">
           Suppress checks for elements which are either class definitions,
           or method definitions:
@@ -244,7 +244,7 @@ public class Example6 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example7-code">Code example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // filtered violation below 'Name 'Example7' must match pattern'
@@ -258,7 +258,7 @@ abstract class AnotherClass {
   public void MyMethod() {}
   // violation above, 'Name 'MyMethod' must match pattern'
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example8-config">
           Suppress checks for MyMethod1 or MyMethod2 methods:
         </p>
@@ -273,7 +273,7 @@ abstract class AnotherClass {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example8-code">Code example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example8 {
@@ -284,7 +284,7 @@ class Example8 {
   // violation below, 'Name 'MyMethod3' must match pattern'
   public void MyMethod3() {}
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example9-config">
           Suppress checks for variable testVariable1 inside
           testMethod method inside Example9 class:
@@ -303,7 +303,7 @@ class Example8 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example9-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example9 {
@@ -314,7 +314,7 @@ public class Example9 {
     final int testVariable2 = 10;
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example10-config">
           In the following sample, violations for LeftCurly check
           will be suppressed for methods with name testMethod1 inside
@@ -331,7 +331,7 @@ public class Example9 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example10-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example10 {
@@ -343,7 +343,7 @@ public class Example10 {
   { // violation, ''{' at column 3 should be on the previous line.'
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example11-config">
           The following example demonstrates how to suppress
           RequireThis violations for variable age inside changeAge method.
@@ -361,7 +361,7 @@ public class Example10 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example11-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example11 {
@@ -377,7 +377,7 @@ public class Example11 {
     number = number;
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example12-config">
           Suppress <code>IllegalThrows</code> violations only for methods with name
           <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions.
@@ -397,7 +397,7 @@ public class Example11 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example12-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example12 {
@@ -409,7 +409,7 @@ public class Example12 {
   public void sampleMethod() throws RuntimeException {
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example13-config">
           The following sample demonstrates how to suppress all violations for method itself and
           all descendants. <code>descendant-or-self</code> axis iterates through current node and
@@ -433,7 +433,7 @@ public class Example12 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example13-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example13 {
@@ -449,7 +449,7 @@ public class Example13 {
     final int num = 10;
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example14-config">
           The following example is an example of what checks would be suppressed
           while building Spring projects with checkstyle plugin.
@@ -477,13 +477,13 @@ public class Example13 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example14-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 .../src/myApplication.java // violation, Name 'myApplication' must match pattern.
 .../src/myApplicationTests.java // filtered violation 'must match pattern'
 .../src/test/java/insidePackage.java // filtered violation 'must match pattern'
-</code></pre></div>
+        </code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.SealedShouldHavePermitsListCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.SealedShouldHavePermitsListCheck"
              name="SealedShouldHavePermitsList"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that sealed classes and interfaces have a permits list.
  &lt;/div&gt;
 
@@ -22,9 +22,9 @@
  See the &lt;a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-13.html#jls-13.4.2"&gt;
  Java Language Specification&lt;/a&gt; for more information about sealed classes.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="sealed.should.have.permits"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="sealed.should.have.permits"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

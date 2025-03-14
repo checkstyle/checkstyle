@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck"
              name="PackageAnnotation"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that all package annotations are in the package-info.java file.
  &lt;/div&gt;
 
@@ -23,9 +23,9 @@
  See &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-7.html#jls-7.4.1"&gt;
  Java Language Specification, &amp;#167;7.4.1&lt;/a&gt; for more info.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="annotation.package.location"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="annotation.package.location"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

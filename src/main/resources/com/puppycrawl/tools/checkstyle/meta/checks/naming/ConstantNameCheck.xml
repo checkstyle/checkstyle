@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck"
              name="ConstantName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that constant names conform to a specified pattern.
  A &lt;em&gt;constant&lt;/em&gt; is a &lt;strong&gt;static&lt;/strong&gt; and &lt;strong&gt;final&lt;/strong&gt;
  field or an interface/annotation field, except
  &lt;strong&gt;serialVersionUID&lt;/strong&gt; and &lt;strong&gt;serialPersistentFields
  &lt;/strong&gt;.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="true" name="applyToPackage" type="boolean">
-               <description>Control if check should apply to package-private members.</description>
-            </property>
-            <property default-value="true" name="applyToPrivate" type="boolean">
-               <description>Control if check should apply to private members.</description>
-            </property>
-            <property default-value="true" name="applyToProtected" type="boolean">
-               <description>Control if check should apply to protected members.</description>
-            </property>
-            <property default-value="true" name="applyToPublic" type="boolean">
-               <description>Control if check should apply to public members.</description>
-            </property>
-            <property default-value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"
+      <properties>
+        <property default-value="true" name="applyToPackage" type="boolean">
+          <description>Control if check should apply to package-private members.</description>
+        </property>
+        <property default-value="true" name="applyToPrivate" type="boolean">
+          <description>Control if check should apply to private members.</description>
+        </property>
+        <property default-value="true" name="applyToProtected" type="boolean">
+          <description>Control if check should apply to protected members.</description>
+        </property>
+        <property default-value="true" name="applyToPublic" type="boolean">
+          <description>Control if check should apply to public members.</description>
+        </property>
+        <property default-value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Sets the pattern to match valid identifiers.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="name.invalidPattern"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Sets the pattern to match valid identifiers.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="name.invalidPattern"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

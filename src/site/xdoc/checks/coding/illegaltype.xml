@@ -185,7 +185,7 @@ List list; //No violation here
     &lt;module name="IllegalType"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation below 'Usage of type 'TreeSet' is not allowed'
@@ -246,7 +246,7 @@ public class Example1 extends TreeSet {
     var message = "Hello, World!";
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the Check so that particular tokens are checked:
         </p>
@@ -258,7 +258,7 @@ public class Example1 extends TreeSet {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 extends TreeSet {
@@ -318,7 +318,7 @@ public class Example2 extends TreeSet {
     var message = "Hello, World!";
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-config">
           To configure the Check so that it ignores function() methods:
         </p>
@@ -330,7 +330,7 @@ public class Example2 extends TreeSet {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation below 'Usage of type 'TreeSet' is not allowed'
@@ -391,7 +391,7 @@ public class Example3 extends TreeSet {
     var message = "Hello, World!";
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-config">
           To configure the Check so that it validates abstract class names:
         </p>
@@ -404,7 +404,7 @@ public class Example3 extends TreeSet {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation below 'Usage of type 'TreeSet' is not allowed'
@@ -465,7 +465,7 @@ public class Example4 extends TreeSet {
     var message = "Hello, World!";
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-config">
           To configure the Check so that it verifies only public, protected or static
            methods and fields:
@@ -479,7 +479,7 @@ public class Example4 extends TreeSet {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation below 'Usage of type 'TreeSet' is not allowed'
@@ -540,7 +540,7 @@ public class Example5 extends TreeSet {
     var message = "Hello, World!";
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-config">
           To configure the check so that it verifies usage of types Boolean and Foo:
         </p>
@@ -552,7 +552,7 @@ public class Example5 extends TreeSet {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example6-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -614,7 +614,7 @@ public class Example6 extends TreeSet {
     var message = "Hello, World!";
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example7-config">
           To configure the check to target fields types only:
         </p>
@@ -632,7 +632,7 @@ public class Example6 extends TreeSet {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example7-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example7 extends TreeSet {
@@ -692,7 +692,7 @@ public class Example7 extends TreeSet {
     var message = "Hello, World!";
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example8-config">
           To configure the check so that it violates usage of var:
         </p>
@@ -706,7 +706,7 @@ public class Example7 extends TreeSet {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example8-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example8 extends TreeSet {
@@ -766,7 +766,7 @@ public class Example8 extends TreeSet {
     var message = "Hello, World!";
   } // violation above 'Usage of type 'var' is not allowed'
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

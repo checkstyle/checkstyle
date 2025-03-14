@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck"
              name="AbbreviationAsWordInName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Validates abbreviations (consecutive capital letters) length in
  identifier name, it also allows to enforce camel case naming. Please read more at
  &lt;a href="https://checkstyle.org/styleguides/google-java-style-20220203/javaguide.html#s5.3-camel-case"&gt;
@@ -32,41 +32,41 @@
  and {@code ignoreStatic}. So for example if {@code ignoreStatic} is true but
  {@code ignoreStaticFinal} is false, then static final variables will not be ignored.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="3" name="allowedAbbreviationLength" type="int">
-               <description>Indicate the number of consecutive capital
+      <properties>
+        <property default-value="3" name="allowedAbbreviationLength" type="int">
+          <description>Indicate the number of consecutive capital
  letters allowed in targeted identifiers (abbreviations in the classes, interfaces, variables
  and methods names, ... ).</description>
-            </property>
-            <property default-value=""
+        </property>
+        <property default-value=""
                       name="allowedAbbreviations"
                       type="java.lang.String[]">
-               <description>Specify abbreviations that must be skipped for checking.</description>
-            </property>
-            <property default-value="true" name="ignoreFinal" type="boolean">
-               <description>Allow to skip variables with {@code final} modifier.</description>
-            </property>
-            <property default-value="true" name="ignoreOverriddenMethods" type="boolean">
-               <description>Allow to ignore methods tagged with {@code @Override}
+          <description>Specify abbreviations that must be skipped for checking.</description>
+        </property>
+        <property default-value="true" name="ignoreFinal" type="boolean">
+          <description>Allow to skip variables with {@code final} modifier.</description>
+        </property>
+        <property default-value="true" name="ignoreOverriddenMethods" type="boolean">
+          <description>Allow to ignore methods tagged with {@code @Override}
  annotation (that usually mean inherited name).</description>
-            </property>
-            <property default-value="true" name="ignoreStatic" type="boolean">
-               <description>Allow to skip variables with {@code static} modifier.</description>
-            </property>
-            <property default-value="true" name="ignoreStaticFinal" type="boolean">
-               <description>Allow to skip variables with both {@code static} and
+        </property>
+        <property default-value="true" name="ignoreStatic" type="boolean">
+          <description>Allow to skip variables with {@code static} modifier.</description>
+        </property>
+        <property default-value="true" name="ignoreStaticFinal" type="boolean">
+          <description>Allow to skip variables with both {@code static} and
  {@code final} modifiers.</description>
-            </property>
-            <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,ANNOTATION_FIELD_DEF,PARAMETER_DEF,VARIABLE_DEF,METHOD_DEF,PATTERN_VARIABLE_DEF,RECORD_DEF,RECORD_COMPONENT_DEF"
+        </property>
+        <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,ANNOTATION_FIELD_DEF,PARAMETER_DEF,VARIABLE_DEF,METHOD_DEF,PATTERN_VARIABLE_DEF,RECORD_DEF,RECORD_COMPONENT_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="abbreviation.as.word"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="abbreviation.as.word"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

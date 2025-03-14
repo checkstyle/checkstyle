@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck"
              name="FinalClass"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Ensures that identifies classes that can be effectively declared as final are explicitly
  marked as final. The following are different types of classes that can be identified:
  &lt;/div&gt;
@@ -28,9 +28,9 @@
        Class is extended by another class in the same file.
    &lt;/li&gt;
  &lt;/ol&gt;</description>
-         <message-keys>
-            <message-key key="final.class"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="final.class"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

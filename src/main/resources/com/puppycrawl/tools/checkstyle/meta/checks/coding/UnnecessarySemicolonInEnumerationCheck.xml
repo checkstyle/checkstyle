@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInEnumerationCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInEnumerationCheck"
              name="UnnecessarySemicolonInEnumeration"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks if unnecessary semicolon is in enum definitions.
  Semicolon is not needed if enum body contains only enum constants.
  &lt;/div&gt;</description>
-         <message-keys>
-            <message-key key="unnecessary.semicolon"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="unnecessary.semicolon"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

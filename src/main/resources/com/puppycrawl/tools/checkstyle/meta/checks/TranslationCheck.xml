@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"
              name="Translation"
              parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Ensures the correct translation of code by checking property files for consistency
  regarding their keys. Two property files describing one and the same context
  are consistent if they contain the same keys. TranslationCheck also can check
@@ -40,31 +40,31 @@
  (property "cacheFile") This is known design problem, will be addressed at
  &lt;a href="https://github.com/checkstyle/checkstyle/issues/3539"&gt;issue&lt;/a&gt;.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="^messages.*$"
+      <properties>
+        <property default-value="^messages.*$"
                       name="baseName"
                       type="java.util.regex.Pattern">
-               <description>Specify
+          <description>Specify
  &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ResourceBundle.html"&gt;
  Base name&lt;/a&gt; of resource bundles which contain message resources.
  It helps the check to distinguish config and localization resources.</description>
-            </property>
-            <property default-value=".properties"
+        </property>
+        <property default-value=".properties"
                       name="fileExtensions"
                       type="java.lang.String[]">
-               <description>Specify the file extensions of the files to process.</description>
-            </property>
-            <property default-value=""
+          <description>Specify the file extensions of the files to process.</description>
+        </property>
+        <property default-value=""
                       name="requiredTranslations"
                       type="java.lang.String[]">
-               <description>Specify language codes of required
+          <description>Specify language codes of required
  translations which must exist in project.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="translation.missingKey"/>
-            <message-key key="translation.missingTranslationFile"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="translation.missingKey"/>
+        <message-key key="translation.missingTranslationFile"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

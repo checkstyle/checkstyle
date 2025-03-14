@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck"
              name="NonEmptyAtclauseDescription"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that the block tag is followed by description.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="false"
+      <properties>
+        <property default-value="false"
                       name="violateExecutionOnNonTightHtml"
                       type="boolean">
-               <description>Control when to print violations
+          <description>Control when to print violations
  if the Javadoc being examined by this check violates the tight html rules defined at
  &lt;a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules"&gt;Tight-HTML Rules&lt;/a&gt;.</description>
-            </property>
-            <property default-value="PARAM_LITERAL,RETURN_LITERAL,THROWS_LITERAL,EXCEPTION_LITERAL,DEPRECATED_LITERAL"
+        </property>
+        <property default-value="PARAM_LITERAL,RETURN_LITERAL,THROWS_LITERAL,EXCEPTION_LITERAL,DEPRECATED_LITERAL"
                       name="javadocTokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>javadoc tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="javadoc.missed.html.close"/>
-            <message-key key="javadoc.parse.rule.error"/>
-            <message-key key="javadoc.unclosedHtml"/>
-            <message-key key="javadoc.wrong.singleton.html.tag"/>
-            <message-key key="non.empty.atclause"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>javadoc tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="javadoc.missed.html.close"/>
+        <message-key key="javadoc.parse.rule.error"/>
+        <message-key key="javadoc.unclosedHtml"/>
+        <message-key key="javadoc.wrong.singleton.html.tag"/>
+        <message-key key="non.empty.atclause"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

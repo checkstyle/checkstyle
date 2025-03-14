@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck"
              name="ExecutableStatementCount"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Restricts the number of executable statements to a specified limit.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="30" name="max" type="int">
-               <description>Specify the maximum threshold allowed.</description>
-            </property>
-            <property default-value="CTOR_DEF,METHOD_DEF,INSTANCE_INIT,STATIC_INIT,COMPACT_CTOR_DEF,LAMBDA"
+      <properties>
+        <property default-value="30" name="max" type="int">
+          <description>Specify the maximum threshold allowed.</description>
+        </property>
+        <property default-value="CTOR_DEF,METHOD_DEF,INSTANCE_INIT,STATIC_INIT,COMPACT_CTOR_DEF,LAMBDA"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="executableStatementCount"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="executableStatementCount"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

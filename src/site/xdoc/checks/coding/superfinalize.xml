@@ -34,7 +34,7 @@
     &lt;module name="SuperFinalize"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
@@ -47,7 +47,7 @@ class InvalidExample {
   protected void finalize() throws Throwable {
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
       </subsection>
 

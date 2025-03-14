@@ -73,7 +73,7 @@ public boolean equals(Foo obj) {...}
     &lt;module name="CovariantEquals"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example1-code">
           For example:
@@ -90,7 +90,7 @@ public class Example1 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           The same class without violations:
         </p>
@@ -114,7 +114,7 @@ public class Example2 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

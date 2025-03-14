@@ -53,7 +53,7 @@ for (Iterator foo = very.long.line.iterator();
     &lt;module name="EmptyForIteratorPad"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
@@ -70,7 +70,7 @@ class Example1 {
          );
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check to require white space at an empty for
           iterator:
@@ -83,7 +83,7 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
@@ -100,7 +100,7 @@ class Example2 {
          );
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

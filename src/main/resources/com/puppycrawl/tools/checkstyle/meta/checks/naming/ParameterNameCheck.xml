@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck"
              name="ParameterName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that method parameter names conform to a specified pattern.
  By using {@code accessModifiers} property it is possible
  to specify different formats for methods at different visibility levels.
@@ -21,26 +21,26 @@
  &lt;a href="https://checkstyle.org/checks/naming/lambdaparametername.html#LambdaParameterName"&gt;
  LambdaParameterName&lt;/a&gt;.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="public, protected, package, private"
+      <properties>
+        <property default-value="public, protected, package, private"
                       name="accessModifiers"
                       type="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]">
-               <description>Access modifiers of methods where parameters are
+          <description>Access modifiers of methods where parameters are
  checked.</description>
-            </property>
-            <property default-value="^[a-z][a-zA-Z0-9]*$"
+        </property>
+        <property default-value="^[a-z][a-zA-Z0-9]*$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Sets the pattern to match valid identifiers.</description>
-            </property>
-            <property default-value="false" name="ignoreOverridden" type="boolean">
-               <description>Allows to skip methods with Override annotation from
+          <description>Sets the pattern to match valid identifiers.</description>
+        </property>
+        <property default-value="false" name="ignoreOverridden" type="boolean">
+          <description>Allows to skip methods with Override annotation from
  validation.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="name.invalidPattern"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="name.invalidPattern"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck"
              name="ArrayTypeStyle"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks the style of array type definitions.
  Some like Java style: {@code public static void main(String[] args)}
  and some like C style: {@code public static void main(String args[])}.
@@ -19,14 +19,14 @@
  of the value for 'javaStyle'. For example, {@code byte[] getData()}.
  This is because C doesn't compile methods with array declarations on the name.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="true" name="javaStyle" type="boolean">
-               <description>Control whether to enforce Java style (true) or C style (false).</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="array.type.style"/>
-         </message-keys>
-      </check>
-   </module>
+      <properties>
+        <property default-value="true" name="javaStyle" type="boolean">
+          <description>Control whether to enforce Java style (true) or C style (false).</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="array.type.style"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

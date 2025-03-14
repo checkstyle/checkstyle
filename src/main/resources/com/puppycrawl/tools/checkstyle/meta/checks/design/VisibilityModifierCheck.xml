@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"
              name="VisibilityModifier"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks visibility of class members. Only static final, immutable or annotated
  by specified annotation members may be public;
  other class members must be private unless the property {@code protectedAllowed}
@@ -82,42 +82,42 @@
  star import collides with user specified one by its short name - there
  won't be Check's violation.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="false" name="allowPublicFinalFields" type="boolean">
-               <description>Allow final fields to be declared as public.</description>
-            </property>
-            <property default-value="false"
+      <properties>
+        <property default-value="false" name="allowPublicFinalFields" type="boolean">
+          <description>Allow final fields to be declared as public.</description>
+        </property>
+        <property default-value="false"
                       name="allowPublicImmutableFields"
                       type="boolean">
-               <description>Allow immutable fields to be
+          <description>Allow immutable fields to be
  declared as public if defined in final class.</description>
-            </property>
-            <property default-value="com.google.common.annotations.VisibleForTesting, org.junit.ClassRule, org.junit.Rule"
+        </property>
+        <property default-value="com.google.common.annotations.VisibleForTesting, org.junit.ClassRule, org.junit.Rule"
                       name="ignoreAnnotationCanonicalNames"
                       type="java.lang.String[]">
-               <description>Specify annotations canonical
+          <description>Specify annotations canonical
  names which ignore variables in consideration.</description>
-            </property>
-            <property default-value="java.io.File, java.lang.Boolean, java.lang.Byte, java.lang.Character, java.lang.Double, java.lang.Float, java.lang.Integer, java.lang.Long, java.lang.Short, java.lang.StackTraceElement, java.lang.String, java.math.BigDecimal, java.math.BigInteger, java.net.Inet4Address, java.net.Inet6Address, java.net.InetSocketAddress, java.net.URI, java.net.URL, java.util.Locale, java.util.UUID"
+        </property>
+        <property default-value="java.io.File, java.lang.Boolean, java.lang.Byte, java.lang.Character, java.lang.Double, java.lang.Float, java.lang.Integer, java.lang.Long, java.lang.Short, java.lang.StackTraceElement, java.lang.String, java.math.BigDecimal, java.math.BigInteger, java.net.Inet4Address, java.net.Inet6Address, java.net.InetSocketAddress, java.net.URI, java.net.URL, java.util.Locale, java.util.UUID"
                       name="immutableClassCanonicalNames"
                       type="java.lang.String[]">
-               <description>Specify immutable classes canonical names.</description>
-            </property>
-            <property default-value="false" name="packageAllowed" type="boolean">
-               <description>Control whether package visible members are allowed.</description>
-            </property>
-            <property default-value="false" name="protectedAllowed" type="boolean">
-               <description>Control whether protected members are allowed.</description>
-            </property>
-            <property default-value="^serialVersionUID$"
+          <description>Specify immutable classes canonical names.</description>
+        </property>
+        <property default-value="false" name="packageAllowed" type="boolean">
+          <description>Control whether package visible members are allowed.</description>
+        </property>
+        <property default-value="false" name="protectedAllowed" type="boolean">
+          <description>Control whether protected members are allowed.</description>
+        </property>
+        <property default-value="^serialVersionUID$"
                       name="publicMemberPattern"
                       type="java.util.regex.Pattern">
-               <description>Specify pattern for public members that should be ignored.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="variable.notPrivate"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Specify pattern for public members that should be ignored.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="variable.notPrivate"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.3-SNAPSHOT">
-<file name="InputTranslationCheckFireErrors.properties">
-</file>
-<file name="InputTranslationCheckFireErrors_de.properties">
-</file>
-<file name="">
-<error line="1" severity="error" message="$0" source="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
-</file>
-<file name="InputTranslationCheckFireErrors_de.properties">
-<error line="1" severity="error" message="$1" source="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
-</file>
+  <file name="InputTranslationCheckFireErrors.properties">
+  </file>
+  <file name="InputTranslationCheckFireErrors_de.properties">
+  </file>
+  <file name="">
+    <error line="1" severity="error" message="$0" source="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
+  </file>
+  <file name="InputTranslationCheckFireErrors_de.properties">
+    <error line="1" severity="error" message="$1" source="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
+  </file>
 </checkstyle>

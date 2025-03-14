@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck"
              name="JavaNCSS"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Determines complexity of methods, classes and files by counting
  the Non Commenting Source Statements (NCSS). This check adheres to the
  &lt;a href="http://www.kclee.de/clemens/java/javancss/#specification"&gt;specification&lt;/a&gt;
@@ -32,30 +32,30 @@
  A large NCSS number often means that a method or class has too many responsibilities
  and/or functionalities which should be decomposed into smaller units.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="1500" name="classMaximum" type="int">
-               <description>Specify the maximum allowed number of
+      <properties>
+        <property default-value="1500" name="classMaximum" type="int">
+          <description>Specify the maximum allowed number of
  non commenting lines in a class.</description>
-            </property>
-            <property default-value="2000" name="fileMaximum" type="int">
-               <description>Specify the maximum allowed number of
+        </property>
+        <property default-value="2000" name="fileMaximum" type="int">
+          <description>Specify the maximum allowed number of
  non commenting lines in a file including all top level and nested classes.</description>
-            </property>
-            <property default-value="50" name="methodMaximum" type="int">
-               <description>Specify the maximum allowed number of
+        </property>
+        <property default-value="50" name="methodMaximum" type="int">
+          <description>Specify the maximum allowed number of
  non commenting lines in a method.</description>
-            </property>
-            <property default-value="150" name="recordMaximum" type="int">
-               <description>Specify the maximum allowed number of
+        </property>
+        <property default-value="150" name="recordMaximum" type="int">
+          <description>Specify the maximum allowed number of
  non commenting lines in a record.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="ncss.class"/>
-            <message-key key="ncss.file"/>
-            <message-key key="ncss.method"/>
-            <message-key key="ncss.record"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="ncss.class"/>
+        <message-key key="ncss.file"/>
+        <message-key key="ncss.method"/>
+        <message-key key="ncss.record"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

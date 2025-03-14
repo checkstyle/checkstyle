@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck"
              name="JavadocVariable"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that a variable has a Javadoc comment. Ignores {@code serialVersionUID} fields.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="public, protected, package, private"
+      <properties>
+        <property default-value="public, protected, package, private"
                       name="accessModifiers"
                       type="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]">
-               <description>Specify the set of access modifiers used to determine which
+          <description>Specify the set of access modifiers used to determine which
  fields should be checked. This includes both explicitly declared modifiers and implicit ones,
  such as package-private for fields without an explicit modifier.
  It also accounts for special cases where fields have implicit modifiers,
  such as {@code public static final} for interface fields and {@code public static}
  for enum constants. Only fields matching the specified modifiers will be analyzed.</description>
-            </property>
-            <property name="ignoreNamePattern" type="java.util.regex.Pattern">
-               <description>Specify the regexp to define variable names to ignore.</description>
-            </property>
-            <property default-value="ENUM_CONSTANT_DEF"
+        </property>
+        <property name="ignoreNamePattern" type="java.util.regex.Pattern">
+          <description>Specify the regexp to define variable names to ignore.</description>
+        </property>
+        <property default-value="ENUM_CONSTANT_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="javadoc.missing"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="javadoc.missing"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

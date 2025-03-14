@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck"
              name="MissingJavadocType"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for missing Javadoc comments for class, enum, interface, and annotation interface
  definitions. The scope to verify is specified using the {@code Scope} class and defaults
  to {@code Scope.PUBLIC}. To verify another scope, set property scope to one of the
  {@code Scope} constants.
  &lt;/div&gt;</description>
-         <properties>
-            <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
-               <description>Specify the visibility scope where Javadoc comments are not
+      <properties>
+        <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
+          <description>Specify the visibility scope where Javadoc comments are not
  checked.</description>
-            </property>
-            <property default-value="public"
+        </property>
+        <property default-value="public"
                       name="scope"
                       type="com.puppycrawl.tools.checkstyle.api.Scope">
-               <description>Specify the visibility scope where Javadoc comments are checked.</description>
-            </property>
-            <property default-value="Generated"
+          <description>Specify the visibility scope where Javadoc comments are checked.</description>
+        </property>
+        <property default-value="Generated"
                       name="skipAnnotations"
                       type="java.lang.String[]">
-               <description>Specify annotations that allow missed
+          <description>Specify annotations that allow missed
  documentation. If annotation is present in target sources in multiple forms of qualified
  name, all forms should be listed in this property.</description>
-            </property>
-            <property default-value="INTERFACE_DEF,CLASS_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF"
+        </property>
+        <property default-value="INTERFACE_DEF,CLASS_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="javadoc.missing"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="javadoc.missing"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

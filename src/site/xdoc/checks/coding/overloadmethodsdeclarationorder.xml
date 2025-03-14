@@ -24,7 +24,7 @@
     &lt;module name="OverloadMethodsDeclarationOrder"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example of correct and incorrect grouping of overloaded methods:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
@@ -41,7 +41,7 @@ class Example1 {
   // violation below, 'All overloaded methods should be placed next to each other'
   void otherSame(String s, int i) {}
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

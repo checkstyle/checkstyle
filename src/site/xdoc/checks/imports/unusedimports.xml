@@ -92,7 +92,7 @@
     &lt;module name="UnusedImports"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // limitation as it match field name in code
@@ -122,7 +122,7 @@ class Example1{
   int[] array = copyOf(arr , 1);
   Function &lt;String, Integer&gt; stringToInteger = Integer::parseInt;
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check so that it ignores the imports referenced in Javadoc comments:
         </p>
@@ -134,7 +134,7 @@ class Example1{
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // limitation as it match field name in code
@@ -164,7 +164,7 @@ class Example2{
   int[] array = copyOf(arr , 1);
   Function &lt;String, Integer&gt; stringToInteger = Integer::parseInt;
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

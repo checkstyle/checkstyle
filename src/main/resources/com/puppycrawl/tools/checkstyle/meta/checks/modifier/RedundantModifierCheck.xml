@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"
              name="RedundantModifier"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for redundant modifiers.
  &lt;/div&gt;
 
@@ -130,25 +130,25 @@
    ProtectedInnerClass pc = new ProtectedInnerClass();
  }
  &lt;/pre&gt;</description>
-         <properties>
-            <property default-value="22" name="jdkVersion" type="java.lang.String">
-               <description>Set the JDK version that you are using.
+      <properties>
+        <property default-value="22" name="jdkVersion" type="java.lang.String">
+          <description>Set the JDK version that you are using.
  Old JDK version numbering is supported (e.g. 1.8 for Java 8)
  as well as just the major JDK version alone (e.g. 8) is supported.
  This property only considers features from officially released
  Java versions as supported. Features introduced in preview releases are not considered
  supported until they are included in a non-preview release.</description>
-            </property>
-            <property default-value="METHOD_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,INTERFACE_DEF,CTOR_DEF,CLASS_DEF,ENUM_DEF,RESOURCE,ANNOTATION_DEF,RECORD_DEF,PATTERN_VARIABLE_DEF,LITERAL_CATCH,LAMBDA"
+        </property>
+        <property default-value="METHOD_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,INTERFACE_DEF,CTOR_DEF,CLASS_DEF,ENUM_DEF,RESOURCE,ANNOTATION_DEF,RECORD_DEF,PATTERN_VARIABLE_DEF,LITERAL_CATCH,LAMBDA"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="redundantModifier"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="redundantModifier"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

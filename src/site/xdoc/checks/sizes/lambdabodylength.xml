@@ -52,7 +52,7 @@
     &lt;module name="LambdaBodyLength"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
         Example:
         </p>
@@ -92,7 +92,7 @@ class Example1 {
                 .concat("10")
                 .concat("11"); // line 11
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check to accept lambda bodies with max 5 lines:
         </p>
@@ -104,7 +104,7 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
@@ -130,7 +130,7 @@ class Example2 {
                 .concat("5")
                 .concat("6");
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

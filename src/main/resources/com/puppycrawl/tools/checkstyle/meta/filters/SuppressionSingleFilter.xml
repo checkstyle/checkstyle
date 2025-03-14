@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressionSingleFilter"
+  <module>
+    <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressionSingleFilter"
               name="SuppressionSingleFilter"
               parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Filter {@code SuppressionSingleFilter} suppresses audit events for Checks violations in the
  specified file, class, checks, message, module id, lines, and columns.
  &lt;/div&gt;
@@ -29,32 +29,32 @@
  {@code SuppressionSingleFilter} can suppress Checks that have {@code Treewalker} or
  {@code Checker} as parent module.
  &lt;/p&gt;</description>
-         <properties>
-            <property name="checks" type="java.util.regex.Pattern">
-               <description>Define the RegExp for matching against the name of the check
+      <properties>
+        <property name="checks" type="java.util.regex.Pattern">
+          <description>Define the RegExp for matching against the name of the check
  associated with an audit event.</description>
-            </property>
-            <property name="columns" type="java.lang.String">
-               <description>Specify a comma-separated list of values, where each value is an
+        </property>
+        <property name="columns" type="java.lang.String">
+          <description>Specify a comma-separated list of values, where each value is an
  integer or a range of integers denoted by integer-integer.</description>
-            </property>
-            <property name="files" type="java.util.regex.Pattern">
-               <description>Define the RegExp for matching against the file name associated with
+        </property>
+        <property name="files" type="java.util.regex.Pattern">
+          <description>Define the RegExp for matching against the file name associated with
  an audit event.</description>
-            </property>
-            <property name="id" type="java.lang.String">
-               <description>Specify a string matched against the ID of the check associated with
+        </property>
+        <property name="id" type="java.lang.String">
+          <description>Specify a string matched against the ID of the check associated with
  an audit event.</description>
-            </property>
-            <property name="lines" type="java.lang.String">
-               <description>Specify a comma-separated list of values, where each value is an
+        </property>
+        <property name="lines" type="java.lang.String">
+          <description>Specify a comma-separated list of values, where each value is an
  integer or a range of integers denoted by integer-integer.</description>
-            </property>
-            <property name="message" type="java.util.regex.Pattern">
-               <description>Define the RegExp for matching against the message of the check
+        </property>
+        <property name="message" type="java.util.regex.Pattern">
+          <description>Define the RegExp for matching against the message of the check
  associated with an audit event.</description>
-            </property>
-         </properties>
-      </filter>
-   </module>
+        </property>
+      </properties>
+    </filter>
+  </module>
 </checkstyle-metadata>

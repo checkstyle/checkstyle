@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnusedLambdaParameterShouldBeUnnamedCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnusedLambdaParameterShouldBeUnnamedCheck"
              name="UnusedLambdaParameterShouldBeUnnamed"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Ensures that lambda parameters that are not used are declared as an unnamed variable.
  &lt;/div&gt;
 
@@ -30,9 +30,9 @@
  and became an official part of the language in Java 22.
  This check should be activated only on source code which meets those requirements.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="unused.lambda.parameter"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="unused.lambda.parameter"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

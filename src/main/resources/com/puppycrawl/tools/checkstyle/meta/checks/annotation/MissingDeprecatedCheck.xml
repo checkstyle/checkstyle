@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck"
              name="MissingDeprecated"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Verifies that the annotation {@code @Deprecated} and the Javadoc tag
  {@code @deprecated} are both present when either of them is present.
  &lt;/div&gt;
@@ -41,25 +41,25 @@
      &amp;lt;property name="files" value="package-info\.java"/&amp;gt;
  &amp;lt;/module&amp;gt;
  &lt;/pre&gt;</description>
-         <properties>
-            <property default-value="false"
+      <properties>
+        <property default-value="false"
                       name="violateExecutionOnNonTightHtml"
                       type="boolean">
-               <description>Control when to
+          <description>Control when to
  print violations if the Javadoc being examined by this check violates the
  tight html rules defined at
  &lt;a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules"&gt;
  Tight-HTML Rules&lt;/a&gt;.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="annotation.missing.deprecated"/>
-            <message-key key="javadoc.duplicateTag"/>
-            <message-key key="javadoc.missed.html.close"/>
-            <message-key key="javadoc.parse.rule.error"/>
-            <message-key key="javadoc.unclosedHtml"/>
-            <message-key key="javadoc.wrong.singleton.html.tag"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="annotation.missing.deprecated"/>
+        <message-key key="javadoc.duplicateTag"/>
+        <message-key key="javadoc.missed.html.close"/>
+        <message-key key="javadoc.parse.rule.error"/>
+        <message-key key="javadoc.unclosedHtml"/>
+        <message-key key="javadoc.wrong.singleton.html.tag"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

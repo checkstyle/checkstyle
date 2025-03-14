@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck"
              name="NestedIfDepth"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Restricts nested if-else blocks to a specified depth.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="1" name="max" type="int">
-               <description>Specify maximum allowed nesting depth.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="nested.if.depth"/>
-         </message-keys>
-      </check>
-   </module>
+      <properties>
+        <property default-value="1" name="max" type="int">
+          <description>Specify maximum allowed nesting depth.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="nested.if.depth"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

@@ -106,7 +106,7 @@
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpOnFilename"/&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example1:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 .../checkstyle.xml
@@ -114,7 +114,7 @@
 .../TestExample2.xml
 .../TestExample3.md
 .../TestExample4.xml
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check to forbid 'xml' files in folders:
         </p>
@@ -126,7 +126,7 @@
       value="xml files should not match ''{1}''"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example2:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 .../checkstyle.xml
@@ -134,7 +134,7 @@
 .../TestExample2.xml // violation, 'xml files should not match '^TestExample\d+\.xml$''
 .../TestExample3.md
 .../TestExample4.xml // violation, 'xml files should not match '^TestExample\d+\.xml$''
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-config">
           To configure the check to forbid 'md' files except 'README.md file' in folders,
           with custom message:
@@ -149,7 +149,7 @@
       value="No *.md files other than README.md"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Example3:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 .../checkstyle.xml
@@ -157,7 +157,7 @@
 .../TestExample2.xml
 .../TestExample3.md  // violation, 'No *.md files other than README.md'
 .../TestExample4.xml
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-config">
           To configure the check to only allow property and xml files to be located
           in the resource folder:
@@ -171,7 +171,7 @@
       value="Only property and xml files to be located in the resource folder"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">Example4:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 .../checkstyle.xml
@@ -179,7 +179,7 @@
 .../TestExample2.xml
 .../TestExample3.md  // violation, 'Only property and xml files to be located in the resource folder'
 .../TestExample4.xml
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-config">
           To configure the check to only allow only camelcase
         </p>
@@ -193,7 +193,7 @@
       value="only filenames in camelcase is allowed"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">Example5:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 .../checkstyle.xml    // violation, 'only filenames in camelcase is allowed'
@@ -201,7 +201,7 @@
 .../TestExample2.xml
 .../TestExample3.md
 .../TestExample4.xml
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

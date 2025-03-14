@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter"
+  <module>
+    <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter"
               name="SuppressionCommentFilter"
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Filter {@code SuppressionCommentFilter} uses pairs of comments to suppress audit events.
  &lt;/div&gt;
 
@@ -40,36 +40,36 @@
  &lt;p&gt;
  SuppressionCommentFilter can suppress Checks that have Treewalker as parent module.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="true" name="checkC" type="boolean">
-               <description>Control whether to check C style comments ({@code &amp;#47;* ... *&amp;#47;}).</description>
-            </property>
-            <property default-value="true" name="checkCPP" type="boolean">
-               <description>Control whether to check C++ style comments ({@code //}).</description>
-            </property>
-            <property default-value=".*"
+      <properties>
+        <property default-value="true" name="checkC" type="boolean">
+          <description>Control whether to check C style comments ({@code &amp;#47;* ... *&amp;#47;}).</description>
+        </property>
+        <property default-value="true" name="checkCPP" type="boolean">
+          <description>Control whether to check C++ style comments ({@code //}).</description>
+        </property>
+        <property default-value=".*"
                       name="checkFormat"
                       type="java.util.regex.Pattern">
-               <description>Specify check pattern to suppress.</description>
-            </property>
-            <property name="idFormat" type="java.util.regex.Pattern">
-               <description>Specify check ID pattern to suppress.</description>
-            </property>
-            <property name="messageFormat" type="java.util.regex.Pattern">
-               <description>Specify message pattern to suppress.</description>
-            </property>
-            <property default-value="CHECKSTYLE:OFF"
+          <description>Specify check pattern to suppress.</description>
+        </property>
+        <property name="idFormat" type="java.util.regex.Pattern">
+          <description>Specify check ID pattern to suppress.</description>
+        </property>
+        <property name="messageFormat" type="java.util.regex.Pattern">
+          <description>Specify message pattern to suppress.</description>
+        </property>
+        <property default-value="CHECKSTYLE:OFF"
                       name="offCommentFormat"
                       type="java.util.regex.Pattern">
-               <description>Specify comment pattern to
+          <description>Specify comment pattern to
  trigger filter to begin suppression.</description>
-            </property>
-            <property default-value="CHECKSTYLE:ON"
+        </property>
+        <property default-value="CHECKSTYLE:ON"
                       name="onCommentFormat"
                       type="java.util.regex.Pattern">
-               <description>Specify comment pattern to trigger filter to end suppression.</description>
-            </property>
-         </properties>
-      </filter>
-   </module>
+          <description>Specify comment pattern to trigger filter to end suppression.</description>
+        </property>
+      </properties>
+    </filter>
+  </module>
 </checkstyle-metadata>

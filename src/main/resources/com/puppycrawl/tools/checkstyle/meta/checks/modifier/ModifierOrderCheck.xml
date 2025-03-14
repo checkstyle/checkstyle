@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"
              name="ModifierOrder"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that the order of modifiers conforms to the suggestions in the
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se16/preview/specs/sealed-classes-jls.html"&gt;
  Java Language specification, &amp;#167; 8.1.1, 8.3.1, 8.4.3&lt;/a&gt; and
@@ -44,10 +44,10 @@
  &lt;a href="https://www.oracle.com/technical-resources/articles/java/ma14-architect-annotations.html"&gt;
  type annotations&lt;/a&gt; from validation.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="annotation.order"/>
-            <message-key key="mod.order"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="annotation.order"/>
+        <message-key key="mod.order"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

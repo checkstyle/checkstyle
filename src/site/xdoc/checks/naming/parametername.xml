@@ -73,14 +73,14 @@
     &lt;module name="ParameterName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   void method1(int v1) {}
   void method2(int V2) {} // violation
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters, digits, and underscores:
@@ -93,7 +93,7 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
@@ -101,7 +101,7 @@ class Example2 {
   void method2(int v_2) {}
   void method3(int V3) {} // violation
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example3-config">
             An example of how to configure the check to skip methods with Override annotation from
@@ -115,7 +115,7 @@ class Example2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
@@ -126,7 +126,7 @@ class Example3 {
     return true;
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-config">
           An example of how to configure the check for names that begin with
           a lower case letter, followed by letters and digits is:
@@ -139,7 +139,7 @@ class Example3 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
@@ -147,7 +147,7 @@ class Example4 {
   void method2(int v_2) {} // violation
   void method3(int V3) {} // violation
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-config">
           The following configuration checks that the parameters always start with two
           lowercase characters and, in addition, that public method parameters cannot be one
@@ -170,7 +170,7 @@ class Example4 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
@@ -179,7 +179,7 @@ class Example5 {
   private void fn3(int a) {}
   public void fn4(int b) {} // violation "Parameter name 'b' must match pattern"
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -92,7 +92,7 @@
     &lt;module name="JavaNCSS"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example1:
         </p>
@@ -115,7 +115,7 @@ class Example1 {
     System.out.println("m-2:Line 3");
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check with 4 allowed non commented lines for a method:
         </p>
@@ -127,7 +127,7 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Example2:
         </p>
@@ -150,7 +150,7 @@ class Example2 {
     System.out.println("m-2:Line 3");
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-config">
           To configure the check to set limit of non commented lines in class to 10:
         </p>
@@ -162,7 +162,7 @@ class Example2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Example3:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
@@ -183,7 +183,7 @@ class Example3 {
     System.out.println("m-2:Line 3");
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-config">
           To configure the check to set limit of non commented lines in file to 10:
         </p>
@@ -195,7 +195,7 @@ class Example3 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">Example4:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
@@ -216,7 +216,7 @@ class Example4 {
     System.out.println("m-2:Line 3");
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">

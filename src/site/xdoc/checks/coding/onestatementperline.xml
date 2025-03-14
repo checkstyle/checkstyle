@@ -60,7 +60,7 @@
     &lt;module name="OneStatementPerLine"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           The following examples will be flagged as a violation:
         </p>
@@ -101,7 +101,7 @@ public class Example1 {
   }
 
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           An example of how to configure the check to treat resources
           in a try statement as statements to require them on their own line:
@@ -114,7 +114,7 @@ public class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Note: resource declarations can contain variable definitions
           and variable references (from java9).
@@ -160,7 +160,7 @@ public class Example2 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

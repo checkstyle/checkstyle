@@ -39,7 +39,7 @@
     &lt;module name="RedundantImport"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
             Example:
         </p>
@@ -54,7 +54,7 @@ import java.util.Scanner;
 import java.util.Scanner; // violation 'Duplicate import to line 18 - java.util.Scanner'
 
 public class Example1{ }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

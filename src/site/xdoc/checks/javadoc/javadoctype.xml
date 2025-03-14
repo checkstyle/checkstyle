@@ -140,7 +140,7 @@
     &lt;module name="JavadocType"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example1:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
@@ -177,7 +177,7 @@ public class Example1 {
   @Generated
   public class ClassG&lt;T&gt; {}
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example2-config">
           To configure the check for <code>public</code> scope:
@@ -190,7 +190,7 @@ public class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example2:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
@@ -227,7 +227,7 @@ public class Example2 {
   @Generated
   public class ClassG&lt;T&gt; {}
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example3-config">
           To configure the check for an <code>@author</code> tag:
@@ -240,7 +240,7 @@ public class Example2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Example3:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
@@ -277,7 +277,7 @@ public class Example3 {
   @Generated
   public class ClassG&lt;T&gt; {}
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example4-config">
           To configure the check for a CVS revision version tag:
@@ -290,7 +290,7 @@ public class Example3 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">Example4:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
@@ -327,7 +327,7 @@ public class Example4 {
   @Generated
   public class ClassG&lt;T&gt; {}
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example5-config">
           To configure the check for <code>private</code> classes only:
@@ -341,7 +341,7 @@ public class Example4 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">Example5:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
@@ -378,7 +378,7 @@ public class Example5 {
   @Generated
   public class ClassG&lt;T&gt; {}
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example6-config">
           To configure the check that allows missing <code>@param</code> tags:
@@ -391,7 +391,7 @@ public class Example5 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-code">Example6:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
@@ -428,7 +428,7 @@ public class Example6 {
   @Generated
   public class ClassG&lt;T&gt; {}
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example7-config">
             To configure the check that allows unknown tags:
@@ -441,7 +441,7 @@ public class Example6 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example7-code">Example7:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
@@ -478,7 +478,7 @@ public class Example7 {
   @Generated
   public class ClassG&lt;T&gt; {}
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example8-config">
           To configure a check that allows skipping validation at all
@@ -492,7 +492,7 @@ public class Example7 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example8-code">
           Example8:
         </p>
@@ -531,7 +531,7 @@ public class Example8 {
   @Generated // violation, 'Type Javadoc comment is missing @param &lt;T&gt; tag'
   public class ClassG&lt;T&gt; {}
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

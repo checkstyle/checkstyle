@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck"
              name="OneStatementPerLine"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that there is only one statement per line.
  &lt;/div&gt;
 
@@ -25,16 +25,16 @@
  object creation statements, 'for loop' statements, 'break' statements,
  'continue' statements, 'return' statements, resources statements (optional).
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="false"
+      <properties>
+        <property default-value="false"
                       name="treatTryResourcesAsStatement"
                       type="boolean">
-               <description>Enable resources processing.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="multiple.statements.line"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Enable resources processing.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="multiple.statements.line"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

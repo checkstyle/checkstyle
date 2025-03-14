@@ -78,7 +78,7 @@
     &lt;module name="NonEmptyAtclauseDescription"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
         Example1:
         </p>
@@ -101,7 +101,7 @@ class Example1 {
     // violation 6 lines above 'At-clause should have a non-empty description'
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check to validate <code>@param</code>,
           <code>@throws</code> tags:
@@ -114,7 +114,7 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
         Example2:
         </p>
@@ -137,7 +137,7 @@ class Example2 {
     // @return ignored as not mentioned in javadocTokens
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

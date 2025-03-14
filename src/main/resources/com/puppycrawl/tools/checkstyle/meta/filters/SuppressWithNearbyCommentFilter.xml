@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter"
+  <module>
+    <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter"
               name="SuppressWithNearbyCommentFilter"
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Filter {@code SuppressWithNearbyCommentFilter} uses nearby comments to suppress audit events.
  &lt;/div&gt;
 
@@ -28,34 +28,34 @@
  SuppressWithNearbyCommentFilter can suppress Checks that have
  Treewalker as parent module.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="true" name="checkC" type="boolean">
-               <description>Control whether to check C style comments ({@code &amp;#47;* ... *&amp;#47;}).</description>
-            </property>
-            <property default-value="true" name="checkCPP" type="boolean">
-               <description>Control whether to check C++ style comments ({@code //}).</description>
-            </property>
-            <property default-value=".*"
+      <properties>
+        <property default-value="true" name="checkC" type="boolean">
+          <description>Control whether to check C style comments ({@code &amp;#47;* ... *&amp;#47;}).</description>
+        </property>
+        <property default-value="true" name="checkCPP" type="boolean">
+          <description>Control whether to check C++ style comments ({@code //}).</description>
+        </property>
+        <property default-value=".*"
                       name="checkFormat"
                       type="java.util.regex.Pattern">
-               <description>Specify check pattern to suppress.</description>
-            </property>
-            <property default-value="SUPPRESS CHECKSTYLE (\w+)"
+          <description>Specify check pattern to suppress.</description>
+        </property>
+        <property default-value="SUPPRESS CHECKSTYLE (\w+)"
                       name="commentFormat"
                       type="java.util.regex.Pattern">
-               <description>Specify comment pattern to trigger filter to begin suppression.</description>
-            </property>
-            <property name="idFormat" type="java.util.regex.Pattern">
-               <description>Specify check ID pattern to suppress.</description>
-            </property>
-            <property default-value="0" name="influenceFormat" type="java.lang.String">
-               <description>Specify negative/zero/positive value that
+          <description>Specify comment pattern to trigger filter to begin suppression.</description>
+        </property>
+        <property name="idFormat" type="java.util.regex.Pattern">
+          <description>Specify check ID pattern to suppress.</description>
+        </property>
+        <property default-value="0" name="influenceFormat" type="java.lang.String">
+          <description>Specify negative/zero/positive value that
  defines the number of lines preceding/at/following the suppression comment.</description>
-            </property>
-            <property name="messageFormat" type="java.util.regex.Pattern">
-               <description>Define message pattern to suppress.</description>
-            </property>
-         </properties>
-      </filter>
-   </module>
+        </property>
+        <property name="messageFormat" type="java.util.regex.Pattern">
+          <description>Define message pattern to suppress.</description>
+        </property>
+      </properties>
+    </filter>
+  </module>
 </checkstyle-metadata>

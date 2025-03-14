@@ -119,7 +119,7 @@
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
@@ -187,7 +187,7 @@ class Example1 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example2-config">
           To configure the check to produce a violation on a switch with too many cases:
@@ -203,7 +203,7 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
@@ -271,7 +271,7 @@ class Example2 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example3-config">
           To configure the check to produce a violation on a switch that is
@@ -288,7 +288,7 @@ class Example2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">
           Example:
         </p>
@@ -356,7 +356,7 @@ class Example3 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example4-config">
           To configure the check to produce a violation on a
@@ -372,7 +372,7 @@ class Example3 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">
           Example:
         </p>
@@ -401,7 +401,7 @@ class Example4 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example5-config">
           To configure the check to produce a violation on an initializer in
@@ -418,7 +418,7 @@ class Example4 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">
           Example:
         </p>
@@ -447,7 +447,7 @@ class Example5 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example6-config">
           To configure the check to produce a violation on a return statement
@@ -463,7 +463,7 @@ class Example5 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-code">
           Example:
         </p>
@@ -504,7 +504,7 @@ class Example6 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example7-config">
           To configure the check to produce a violation on a try statement
@@ -520,7 +520,7 @@ class Example6 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example7-code">
           Example:
         </p>
@@ -561,7 +561,7 @@ class Example7 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example8-config">
           To configure the check to produce a violation on a method with
@@ -578,7 +578,7 @@ class Example7 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example8-code">
           Example:
         </p>
@@ -613,7 +613,7 @@ class Example8 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example9-config">
           To configure the check to produce a violation on a method
@@ -629,7 +629,7 @@ class Example8 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example9-code">
           Example:
         </p>
@@ -664,7 +664,7 @@ class Example9 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example10-config">
           To configure the check to produce a violation on a method
@@ -680,7 +680,7 @@ class Example9 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example10-code">
           Example:
         </p>
@@ -694,7 +694,7 @@ class Example10 {
       // ...
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example11-config">
           To configure the check to produce a violation on a method
@@ -710,7 +710,7 @@ class Example10 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example11-code">
           Example:
         </p>
@@ -727,7 +727,7 @@ class Example11 {
     int z = x + y;
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example12-config">
           To configure the check to produce a violation on an empty statement:
@@ -745,7 +745,7 @@ class Example11 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example12-code">
           Example:
         </p>
@@ -758,7 +758,7 @@ class Example12 {
       ; // violation, 'Empty statement is not allowed'
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example13-config">
           To configure the check to produce a violation on a class or interface
@@ -775,7 +775,7 @@ class Example12 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example13-code">
           Example:
         </p>
@@ -800,7 +800,7 @@ interface Test2 {
   int FIELD_1 = 1;
   int FIELD_2 = 2;
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example14-config">
           To configure the check to produce a violation on
@@ -818,7 +818,7 @@ interface Test2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example14-code">
           Example:
         </p>
@@ -843,7 +843,7 @@ class Example14 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example15-config">
           To configure the check to produce a violation on a <code>String</code>
@@ -860,7 +860,7 @@ class Example14 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example15-code">
           Example:
         </p>
@@ -876,7 +876,7 @@ class Example15 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example16-config">
           To configure the check to produce a violation on an assert statement
@@ -895,7 +895,7 @@ class Example15 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example16-code">
           Example:
         </p>
@@ -909,7 +909,7 @@ class Example16 {
     assert a == 0 : "is not";
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

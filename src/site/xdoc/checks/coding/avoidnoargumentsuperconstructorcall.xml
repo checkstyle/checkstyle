@@ -28,7 +28,7 @@
     &lt;module name="AvoidNoArgumentSuperConstructorCall"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example of violations
         </p>
@@ -51,7 +51,7 @@ class Example1 extends SuperClass {
     // ok, no explicit constructor invocation
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
