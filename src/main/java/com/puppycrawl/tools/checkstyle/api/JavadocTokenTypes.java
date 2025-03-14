@@ -1593,28 +1593,23 @@ public final class JavadocTokenTypes {
      * <pre>{@code <p class="highlight">Sample text</p>}</pre>
      * <b>Tree</b>
      * {@code
-     *    --JAVADOC -> JAVADOC
-     *       |--NEWLINE -> \n
-     *       |--LEADING_ASTERISK ->  *
-     *       |--TEXT ->
-     *       |--HTML_ELEMENT -> HTML_ELEMENT
-     *       |   `--PARAGRAPH -> PARAGRAPH
-     *       |       |--P_TAG_START -> P_TAG_START
-     *       |       |   |--START -> <
-     *       |       |   |--P_HTML_TAG_NAME -> p
-     *       |       |   |--WS ->
-     *       |       |   |--ATTRIBUTE -> ATTRIBUTE
-     *       |       |   |   |--HTML_TAG_NAME -> class
-     *       |       |   |   |--EQUALS -> =
-     *       |       |   |   `--ATTR_VALUE -> "highlight"
-     *       |       |   `--END -> >
-     *       |       |--TEXT -> Sample text
-     *       |       `--P_TAG_END -> P_TAG_END
-     *       |           |--START -> <
-     *       |           |--SLASH -> /
-     *       |           |--P_HTML_TAG_NAME -> p
-     *       |           `--END -> >
-     * }
+     *   |--HTML_ELEMENT -> HTML_ELEMENT
+     *   |  `--PARAGRAPH -> PARAGRAPH
+     *   |    |--P_TAG_START -> P_TAG_START
+     *   |    |   |--START -> <
+     *   |    |   |--P_HTML_TAG_NAME -> p
+     *   |    |   |--WS ->
+     *   |    |   |--ATTRIBUTE -> ATTRIBUTE
+     *   |    |   |   |--HTML_TAG_NAME -> class
+     *   |    |   |   |--EQUALS -> =
+     *   |    |   |   `--ATTR_VALUE -> "highlight"
+     *   |    |   `--END -> >
+     *   |    |--TEXT -> Sample text
+     *   |    `--P_TAG_END -> P_TAG_END
+     *   |       |--START -> <
+     *   |       |--SLASH -> /
+     *   |       |--P_HTML_TAG_NAME -> p
+     *   |       `--END -> >
      */
     public static final int ATTRIBUTE = JavadocParser.RULE_attribute
             + RULE_TYPES_OFFSET;
