@@ -5,162 +5,133 @@
 
 <module name="Checker">
   <property name="charset" value="UTF-8"/>
+  <property name="cacheFile" value="${checkstyle.cache.file}"/>
+  <property name="severity" value="error"/>
+  <property name="fileExtensions" value="java, properties, xml, vm, g, g4, dtd"/>
 
-  <property name="cacheFile" value="target/cache_non_main_files"/>
+  <module name="BeforeExecutionExclusionFileFilter">
+    <property name="fileNamePattern" value="module\-info\.java$"/>
+  </module>
 
-  <!-- Suppressions for resources -->
+  <module name="SeverityMatchFilter">
+    <property name="severity" value="ignore"/>
+    <property name="acceptOnMatch" value="false"/>
+  </module>
+
   <module name="SuppressionFilter">
-    <property name="file"
-             value="${checkstyle.non-main-files-suppressions.file}"/>
+    <property name="file" value="${checkstyle.suppressions.file}"/>
   </module>
-  <!-- Miscellaneous -->
-  <module name="NewlineAtEndOfFile" />
-
-  <module name="RegexpOnFilename">
-    <property name="id" value="executablesLocation"/>
-    <property name="folderPattern" value="[\\/].ci([\\/]|$)"/>
-    <property name="fileNamePattern" value="\.(bat|cmd|groovy|sh|md)$"/>
-    <property name="match" value="false"/>
-    <message key="regexp.filename.mismatch"
-      value="CI folder should only contain executables files"/>
-  </module>
-  <module name="RegexpOnFilename">
-    <property name="id" value="kebabCaseFileNamingInGithubWorkflowsFolder"/>
-    <property name="folderPattern" value="[\\/].github[\\/]workflows([\\/]|$)"/>
-    <property name="fileNamePattern" value="^[a-z][a-z0-9]*(\-[a-z0-9]+)*\.[a-z]+$"/>
-    <property name="match" value="false"/>
-    <property name="fileExtensions" value="sh, groovy, cmd, bat, yml"/>
-    <message key="regexp.filename.mismatch"
-             value="Filename should be in kebab-case."/>
-  </module>
-  <module name="RegexpOnFilename">
-    <property name="id" value="kebabCaseFileNamingInCiFolder"/>
-    <property name="folderPattern" value="[\\/].ci([\\/]|$)"/>
-    <property name="fileNamePattern" value="^[a-z][a-z0-9]*(\-[a-z0-9]+)*\.[a-z]+$"/>
-    <property name="match" value="false"/>
-    <property name="fileExtensions" value="sh, cmd, bat, groovy"/>
-    <message key="regexp.filename.mismatch"
-             value="Filename should be in kebab-case."/>
-  </module>
-  <module name="RegexpOnFilename">
-    <property name="id" value="kebabCaseFileNamingInConfigFolder"/>
-    <property name="folderPattern" value="[\\/]config([\\/]|$)"/>
-    <property name="fileNamePattern" value="^[a-z][a-z0-9]*(\-[a-z0-9\.]+)*\.[a-z]+$"/>
-    <property name="match" value="false"/>
-    <property name="fileExtensions"
-              value="xml, xsd, config, words, files, properties, header, pl, yaml, txt, rb"/>
-    <message key="regexp.filename.mismatch"
-             value="Filename should be in kebab-case."/>
+  <!-- Ensure IntelliJ Auto-Formatting Compliance -->
+  <module name="MethodParamPad">
+    <property name="option" value="nospace"/>
   </module>
 
-  <module name="RegexpSingleline">
-    <property name="id" value="lineLength"/>
-    <!-- catch lines above 100 symbols -->
-    <property name="format"
-             value="^(?!(.*value=.*|.*href=|.*http(s)?:|import |(.* )?package |.* files=|.*\.dtd| \* \{@code| \* com\.)).{101,}$"/>
-    <property name="message" value="Line should not be longer than 100 symbols"/>
+  <module name="WhitespaceAround">
+    <property name="tokens" value="ASSIGN, PLUS, MINUS, STAR, DIV, MOD, SR, BSR, SL, BXOR, BOR, BAND, LAND, LOR"/>
   </module>
 
-  <module name="RegexpSingleline">
-    <property name="id" value="properMavenCommand"/>
-    <property name="format" value="^[^#]*mvn (?!(-e --no-transfer-progress|--version))"/>
-    <property name="fileExtensions" value="sh, yml"/>
-    <property name="message"
-      value="mvn command should be '--version' or start with '-e --no-transfer-progress' options"/>
+  <module name="NoWhitespaceBefore">
+    <property name="tokens" value="DOT"/>
   </module>
 
-  <module name="RegexpSingleline">
-    <property name="id" value="properCurlCommand"/>
-    <property name="format" value="^[^#]*curl (?!--fail-with-body)"/>
-    <property name="fileExtensions" value="sh, yml"/>
-    <property name="message" value="curl command should start with '--fail-with-body' option"/>
+  <module name="NoWhitespaceAfter">
+    <property name="tokens" value="ARRAY_INIT, AT, BNOR, DEC, INC, LNOT, UNARY_MINUS, UNARY_PLUS"/>
   </module>
 
-  <!-- check the number of testCases -->
-  <module name="RegexpSingleline">
-    <property name="id" value="numberOfTestCasesInXpath"/>
-    <property name="format" value="@Test"/>
-    <property name="minimum" value="2"/>
-    <property name="maximum" value="9999"/>
-    <property name="fileExtensions" value="java"/>
-    <property name="message"
-             value="Two or more test cases are required for unit testing in Xpath "/>
+  <module name="SeparatorWrap">
+    <property name="option" value="eol"/>
   </module>
 
-  <!-- To restrict empty files -->
-  <module name="RegexpMultiline">
-    <property name="id" value="noEmptyFile"/>
-    <property name="format" value="^\s*$" />
-    <property name="matchAcrossLines" value="true" />
-    <property name="message" value="Empty file is not allowed" />
-  </module>
+  <module name="SuppressWarningsFilter"/>
 
-  <module name="RegexpSingleline">
-    <property name="id" value="commentStartSpaceXml"/>
-    <property name="format" value="&lt;!--[^ ]"/>
-    <property name="fileExtensions" value="xml, properties"/>
-    <property name="message" value="space is required after comment start"/>
-  </module>
-  <module name="RegexpSingleline">
-    <property name="id" value="commentEndSpaceXml"/>
-    <property name="format" value="[^ ]--&gt;"/>
-    <property name="fileExtensions" value="xml, properties"/>
-    <property name="message" value="space is required before comment end"/>
-  </module>
-  <module name="RegexpSingleline">
-    <property name="id" value="commentStartSpaceYml"/>
-    <property name="format" value="^ *#[^ #]"/>
-    <property name="fileExtensions" value="yml, yaml"/>
-    <property name="message" value="space is required after comment start"/>
-  </module>
-  <module name="RegexpSingleline">
-    <property name="id" value="commentStartSpaceSh"/>
-    <property name="format" value="^#[^ !#]"/>
-    <property name="fileExtensions" value="sh"/>
-    <property name="message" value="space is required after comment start"/>
-  </module>
+  <module name="TreeWalker">
+    <!-- Ensure IntelliJ Auto-Formatting Compliance -->
+    <module name="MethodParamPad">
+      <property name="option" value="nospace"/>
+    </module>
 
-  <module name="RegexpMultiline">
-    <property name="id" value="workflowJobStepSpacing"/>
-    <property name="format" value="\n(?!\s{4}steps:|\s+#).+\n\s{6}\-\s.+:\s.*"/>
-    <property name="fileExtensions" value="yml, yaml"/>
-    <property name="message"
-              value="Workflow job steps should have empty lines between each other"/>
-  </module>
+    <module name="WhitespaceAround">
+      <property name="tokens" value="ASSIGN, PLUS, MINUS, STAR, DIV, MOD, SR, BSR, SL, BXOR, BOR, BAND, LAND, LOR"/>
+    </module>
 
-  <module name="RegexpSingleline">
-    <property name="id" value="exampleMacroMustExist"/>
-    <property name="format" value="&lt;macro name=&quot;example&quot;&gt;"/>
-    <property name="fileExtensions" value="xml.template"/>
-    <property name="minimum" value="1"/>
-    <property name="maximum" value="9999"/>
-    <property name="message" value="Example macro usage is required in template files."/>
-  </module>
+    <module name="NoWhitespaceBefore">
+      <property name="tokens" value="DOT"/>
+    </module>
 
-  <module name="RegexpSingleline">
-    <property name="id" value="parentModuleMacroMustExist"/>
-    <property name="format" value="&lt;macro name=&quot;parent-module&quot;&gt;"/>
-    <property name="fileExtensions" value="xml.template"/>
-    <property name="minimum" value="1"/>
-    <property name="maximum" value="9999"/>
-    <property name="message" value="Parent module macro usage is required in template files."/>
-  </module>
+    <module name="NoWhitespaceAfter">
+      <property name="tokens" value="ARRAY_INIT, AT, BNOR, DEC, INC, LNOT, UNARY_MINUS, UNARY_PLUS"/>
+    </module>
 
-  <module name="RegexpSingleline">
-    <property name="id" value="violationMessagesModuleMacroMustExist"/>
-    <property name="format" value="&lt;macro name=&quot;violation-messages&quot;&gt;"/>
-    <property name="fileExtensions" value="xml.template"/>
-    <property name="minimum" value="1"/>
-    <property name="maximum" value="9999"/>
-    <property name="message" value="Violation messages macro usage is required in template files."/>
-  </module>
+    <module name="SeparatorWrap">
+      <property name="option" value="eol"/>
+    </module>
+    <property name="tabWidth" value="4"/>
 
-  <module name="RegexpSingleline">
-    <property name="id" value="propertiesMacroMustExist"/>
-    <property name="format" value="&lt;macro name=&quot;properties&quot;&gt;"/>
-    <property name="fileExtensions" value="xml.template"/>
-    <property name="minimum" value="1"/>
-    <property name="maximum" value="9999"/>
-    <property name="message" value="Properties macro usage is required in template files."/>
+    <module name="Indentation">
+      <property name="basicOffset" value="4"/>
+      <property name="braceAdjustment" value="0"/>
+      <property name="caseIndent" value="4"/>
+      <property name="throwsIndent" value="8"/>
+    </module>
+
+    <module name="LeftCurly">
+      <property name="option" value="nl"/>
+    </module>
+
+    <module name="RightCurly">
+      <property name="option" value="nl"/>
+    </module>
+
+    <module name="LineLength">
+      <property name="max" value="120"/>
+    </module>
+
+    <module name="EmptyLineSeparator"/>
+    <module name="FileTabCharacter"/>
+    <module name="ImportOrder">
+      <property name="groups" value="java, javax, org, com"/>
+      <property name="ordered" value="true"/>
+      <property name="separated" value="true"/>
+    </module>
+
+    <module name="NeedBraces"/>
+    <module name="NoWhitespaceAfter"/>
+    <module name="NoWhitespaceBefore"/>
+    <module name="OperatorWrap">
+      <property name="option" value="nl"/>
+    </module>
+
+    <module name="ParenPad">
+      <property name="option" value="nospace"/>
+    </module>
+
+    <module name="RedundantImport"/>
+    <module name="SeparatorWrap">
+      <property name="option" value="eol"/>
+    </module>
+
+    <module name="SingleSpaceSeparator"/>
+    <module name="WhitespaceAfter"/>
+    <module name="WhitespaceAround"/>
+    <module name="TrailingComment"/>
+    <module name="AvoidStarImport"/>
+    <module name="AvoidStaticImport"/>
+
+    <module name="JavadocMethod">
+      <property name="validateThrows" value="true"/>
+    </module>
+    <module name="JavadocType"/>
+    <module name="JavadocVariable"/>
+
+    <module name="FinalClass"/>
+    <module name="VisibilityModifier"/>
+
+    <module name="MethodCount">
+      <property name="maxTotal" value="34"/>
+    </module>
+
+    <module name="CyclomaticComplexity">
+      <property name="switchBlockAsSingleDecisionPoint" value="true"/>
+    </module>
   </module>
 </module>
