@@ -61,17 +61,17 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.NOT_EQUAL};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return getDefaultTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return new int[] {TokenTypes.NOT_EQUAL};
     }
 
     @Override
@@ -154,7 +154,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
         DetailAST nullCheckNode) {
         DetailAST currentChild = logicalAndNode.getFirstChild();
         boolean found = false;
-        while (currentChild != null && !found) {
+        while (currentChild != null) {
             if (isInstanceofCheck(currentChild) && isNullCheckRedundant(nullCheckNode,
                 currentChild)) {
                 found = true;

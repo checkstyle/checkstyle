@@ -36,6 +36,10 @@ public class InputUnnecessaryNullCheckWithInstanceOf {
             String text = (String) getData();
             System.out.println("Text length: " + text.length());
         }
+        if (getData() != null && data instanceof String) {
+            String text = (String) getData();
+            System.out.println("Text length: " + text.length());
+        }
         if (data != null && getData() instanceof String) {
             String text = (String) getData();
             System.out.println("Text length: " + text.length());
