@@ -2,19 +2,24 @@
 
 set -e
 
+# Get the baseline seconds and config file from arguments
+if [ "$#" -ne 2 ]; then
+  echo "Missing arguments!"
+  echo "Usage: $0 BASELINE_SECONDS CONFIG_FILE"
+  exit 1
+fi
+
+BASELINE_SECONDS=$1
+CONFIG_FILE=$2
+
 # max difference tolerance in %
 THRESHOLD_PERCENTAGE=10
-# baseline of execution time in seconds
-BASELINE_SECONDS=384.02
-
 # JDK version
-JDK_VERSION=17
+JDK_VERSION=21
 # sample project path
 SAMPLE_PROJECT="./.ci-temp/jdk$JDK_VERSION"
 # suppression file
 SUPPRESSION_FILE="./config/projects-to-test/openjdk$JDK_VERSION-excluded.files"
-# config file
-CONFIG_FILE="./config/benchmark-config.xml"
 
 # execute a command and time it
 # $TEST_COMMAND: command being timed
@@ -42,7 +47,7 @@ execute_benchmark() {
 
   # add suppressions to config file
   sed -i "/  <!-- Filters -->/r $SUPPRESSION_FILE" \
-        $CONFIG_FILE
+        "$CONFIG_FILE"
 
   for ((i = 0; i < NUM_EXECUTIONS; i++)); do
     local CMD=(java -jar "$JAR_PATH" -c "$CONFIG_FILE" \
