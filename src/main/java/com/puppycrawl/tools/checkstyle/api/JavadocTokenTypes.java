@@ -1610,6 +1610,7 @@ public final class JavadocTokenTypes {
      *   |       |--SLASH -> /
      *   |       |--P_HTML_TAG_NAME -> p
      *   |       `--END -> >
+     *   }
      */
     public static final int ATTRIBUTE = JavadocParser.RULE_attribute
             + RULE_TYPES_OFFSET;
