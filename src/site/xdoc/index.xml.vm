@@ -257,7 +257,7 @@
                 checkstyle-addons
               </a>
             </td>
-            <td/>
+            <td>Provides additional custom rules and enhancements for Checkstyle.</td>
           </tr>
           <tr>
             <td>
@@ -268,7 +268,7 @@
                 sevntu-checkstyle
               </a>
             </td>
-            <td/>
+            <td>Offers a collection of advanced static analysis checks for Java code.</td>
           </tr>
           <tr>
             <td>
@@ -279,7 +279,7 @@
                 check-tfij-style
               </a>
             </td>
-            <td/>
+            <td>Provides opinionated Checkstyle rules based on best practices.</td>
           </tr>
         </table>
       </div>

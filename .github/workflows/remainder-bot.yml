@@ -1,0 +1,77 @@
+#####################################################################################
+# Remainder Bot
+#
+# Workflow starts when:
+# 1) every day at 00:00 UTC
+#
+# Workflow:
+# 1) Check and close inactive issues and PRs
+# 2) Remind user to provide the requested feedback for issues
+# 3) Remind user to provide the requested feedback for PRs
+# 4) If no response is received in the next 15 days, we will close this issue
+# 5) If no response is received in the next 15 days, we will close this pull request
+# 6) Close the issue with a message after 60 days
+# 7) Close the pull request with a message after 60 days
+#####################################################################################
+
+name: "feedback-reminder-bot"
+
+on:
+  schedule:
+    # every day at 00:00 UTC
+    - cron: "0 0 * * *"
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+concurrency:
+  group: feedback-reminder-bot
+  cancel-in-progress: true
+jobs:
+  close-inactive-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check and close inactive issues and PRs
+        uses: actions/stale@v9
+        with:
+          only-issue-labels: "awaiting response"
+          only-pr-labels: "awaiting changes"
+          labels-to-remove-when-unstale: "awaiting response,awaiting changes"
+
+          days-before-stale: 15
+          stale-issue-message: |
+            Hello 👋!
+
+            It looks like this issue has been inactive for a while.
+            Could you provide the requested feedback?
+            If no response is received in the next 60 days, we will close this issue.
+
+            🚧 This Github Action is under testing, please let us know if it is misbehaving. 🚧
+
+          stale-pr-message: |
+            Hello 👋!
+
+            It looks like this pull request has been inactive for a while.
+            Could you provide the requested feedback?
+            If no response is received in the next 60 days, we will close this pull request.
+
+            🚧 This Github Action is under testing, please let us know if it is misbehaving. 🚧
+
+          days-before-close: 60
+          close-issue-message: |
+            Hello 👋!
+
+            Since we haven't received any feedback, we are closing this issue.
+            If you have any questions or need further assistance,
+            please feel free to reopen this issue.
+
+            🚧 This Github Action is under testing, please let us know if it is misbehaving. 🚧
+          close-pr-message: |
+            Hello 👋!
+
+            Since we haven't received any feedback, we are closing this pull request.
+            If you have any questions or need further assistance,
+            please feel free to reopen this pull request.
+
+            🚧 This Github Action is under testing, please let us know if it is misbehaving. 🚧

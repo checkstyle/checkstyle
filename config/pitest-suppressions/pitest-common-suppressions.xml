@@ -10,24 +10,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>SarifLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.SarifLogger</mutatedClass>
-    <mutatedMethod>auditFinished</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/Package::getImplementationVersion</description>
-    <lineContent>final String version = SarifLogger.class.getPackage().getImplementationVersion();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>XMLLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger</mutatedClass>
-    <mutatedMethod>auditStarted</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/Package::getImplementationVersion</description>
-    <lineContent>final String version = XMLLogger.class.getPackage().getImplementationVersion();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>XMLLogger.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger</mutatedClass>
     <mutatedMethod>writeFileError</mutatedMethod>

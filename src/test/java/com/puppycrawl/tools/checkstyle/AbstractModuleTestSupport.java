@@ -240,22 +240,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
-     * Verifies the specified file using the provided configuration and expected messages.
-     * Additionally, it validates the configuration specified within the input file.
-     * This method is an overload of {@link #verifyWithInlineConfigParser(String, String...)}
-     * that supports {@code List<String>} instead of varargs to avoid PMD's
-     * UnnecessaryVarargsArrayCreation warning.
-     *
-     * @param filePath the path of the file to verify.
-     * @param expected a list of expected messages.
-     * @throws Exception if an error occurs during the verification process.
-     */
-    protected final void verifyWithInlineConfigParser(String filePath, List<String> expected)
-            throws Exception {
-        verifyWithInlineConfigParser(filePath, expected.toArray(new String[0]));
-    }
-
-    /**
      * Performs verification of the file with the given file path using specified configuration
      * and the array expected messages. Also performs verification of the config specified in
      * input file.
