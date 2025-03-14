@@ -3422,7 +3422,6 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoArrayTrailingCommaCheck*</param>
@@ -3456,7 +3455,6 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoArrayTrailingCommaCheckTest</param>
