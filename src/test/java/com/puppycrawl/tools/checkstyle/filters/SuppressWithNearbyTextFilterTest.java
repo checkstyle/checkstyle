@@ -111,7 +111,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         };
 
         verifyFilterWithInlineConfigParser(
-            getPath("InputSuppressWithNearbyTextFilterNearbyTextPattern.css"),
+            getPath("InputSuppressWithNearbyTextFilterNearbyTextPattern.css.txt"),
             violationMessages, removeSuppressed(violationMessages, suppressedMessages)
         );
     }
@@ -133,7 +133,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         };
 
         verifyFilterWithInlineConfigParser(
-            getPath("InputSuppressWithNearbyTextFilterCheckPattern.bash"),
+            getPath("InputSuppressWithNearbyTextFilterCheckPattern.bash.txt"),
             violationMessages, removeSuppressed(violationMessages, suppressedMessages)
         );
     }
@@ -155,7 +155,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         };
 
         verifyFilterWithInlineConfigParser(
-            getPath("InputSuppressWithNearbyTextFilterMessagePattern.xml"),
+            getPath("InputSuppressWithNearbyTextFilterMessagePattern.xml.txt"),
             violationMessages, removeSuppressed(violationMessages, suppressedMessages)
         );
     }
@@ -177,7 +177,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         };
 
         verifyFilterWithInlineConfigParser(
-            getPath("InputSuppressWithNearbyTextFilterIdPattern.html"),
+            getPath("InputSuppressWithNearbyTextFilterIdPattern.html.txt"),
             violationMessages, removeSuppressed(violationMessages, suppressedMessages)
         );
     }
@@ -209,7 +209,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         };
 
         verifyFilterWithInlineConfigParser(
-            getPath("InputSuppressWithNearbyTextFilterLineRangePositive3.sql"),
+            getPath("InputSuppressWithNearbyTextFilterLineRangePositive3.sql.txt"),
             violationMessages, removeSuppressed(violationMessages, suppressedMessages)
         );
     }
@@ -269,7 +269,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
 
         verifyFilterWithInlineConfigParser(
             getPath("InputSuppressWithNearbyTextFilter"
-                    + "VariableNearbyTextPatternAndLineRange.xml"),
+                    + "VariableNearbyTextPatternAndLineRange.xml.txt"),
             violationMessages, removeSuppressed(violationMessages, suppressedMessages)
         );
     }

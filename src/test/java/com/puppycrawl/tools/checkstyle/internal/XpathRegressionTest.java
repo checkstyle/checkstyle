@@ -214,10 +214,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     public void validateInputFiles() throws Exception {
         try (DirectoryStream<Path> dirs = Files.newDirectoryStream(inputDir)) {
             for (Path dir : dirs) {
-                if (".DS_Store".equals(dir.getFileName().toString())) {
-                    // fix suppressionxpathfilter/.DS_Store is not a directory
-                    continue;
-                }
                 // input directory must be named in lower case
                 assertWithMessage(dir + " is not a directory")
                         .that(Files.isDirectory(dir))

@@ -1083,7 +1083,38 @@ public final class JavadocTokenTypes {
     public static final int EQUALS = JavadocParser.EQUALS;
 
     /**
-     * Attribute value html tag component.
+     * Attribute value HTML tag component.
+     *
+     * <p><b>Example:</b></p>
+     *
+     * <pre>{@code
+     * &lt;tag_name attr_name="attr_value">Content&lt;/tag_name&gt;
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC -> JAVADOC
+     *  |--NEWLINE -> \r\n
+     *  |--LEADING_ASTERISK ->  *
+     *  |--TEXT ->
+     *  |--HTML_ELEMENT -> HTML_ELEMENT
+     *  |   `--HTML_TAG -> HTML_TAG
+     *  |       |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *  |       |   |--START -> <
+     *  |       |   |--HTML_TAG_NAME -> tag_name
+     *  |       |   |--WS ->
+     *  |       |   |--ATTRIBUTE -> ATTRIBUTE
+     *  |       |   |   |--HTML_TAG_NAME -> attr_name
+     *  |       |   |   |--EQUALS -> =
+     *  |       |   |   `--ATTR_VALUE -> "attr_value"
+     *  |       |   `--END -> >
+     *  |       |--TEXT -> Content
+     *  |       `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *  |           |--START -> <
+     *  |           |--SLASH -> /
+     *  |           |--HTML_TAG_NAME -> tag_name
+     *  |           `--END -> >
+     * }</pre>
      */
     public static final int ATTR_VALUE = JavadocParser.ATTR_VALUE;
 
@@ -1097,22 +1128,18 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     *  JAVADOC ->; JAVADOC
-     *     |--NEWLINE ->; \r\n
-     *     |--LEADING_ASTERISK ->;      *
-     *     |--TEXT ->;
-     *     |--HTML_ELEMENT ->; HTML_ELEMENT
-     *         `--PARAGRAPH ->; PARAGRAPH
-     *             |--P_TAG_START ->; P_TAG_START
-     *             |   |--START ->; <;
-     *             |   |--P_HTML_TAG_NAME ->; p
-     *             |   `--END ->; >;
-     *             |--TEXT ->; Paragraph Tag.
-     *             `--P_TAG_END ->; P_TAG_END
-     *                 |--START ->; <;
-     *                 |--SLASH ->; /
-     *                 |--P_HTML_TAG_NAME ->; p
-     *                 `--END ->; >;
+     *      `--HTML_ELEMENT -> HTML_ELEMENT
+     *          `--PARAGRAPH -> PARAGRAPH
+     *              |--P_TAG_START -> P_TAG_START
+     *              |   |--START -> <
+     *              |   |--P_HTML_TAG_NAME -> p
+     *              |   `--END -> >
+     *              |--TEXT -> Paragraph Tag.
+     *              `--P_TAG_END -> P_TAG_END
+     *                  |--START -> <
+     *                  |--SLASH -> /
+     *                  |--P_HTML_TAG_NAME -> p
+     *                  `--END -> >
      * }
      * </pre>
      *
@@ -1287,11 +1314,61 @@ public final class JavadocTokenTypes {
 
     /**
      * HTML comment start symbol '&lt;&#33;--'.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * &lt;!--
+     * This is an HTML multi-line comment:
+     * This is another comment
+     * --&gt;
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * HTML_COMMENT -> HTML_COMMENT
+     *    |--HTML_COMMENT_START -> <!--
+     *    |--NEWLINE -> \n
+     *    |--LEADING_ASTERISK ->  *
+     *    |--TEXT ->  This is an HTML multi-line comment:
+     *    |--NEWLINE -> \n
+     *    |--LEADING_ASTERISK ->  *
+     *    |--TEXT ->  This is another comment
+     *    |--NEWLINE -> \n
+     *    |--LEADING_ASTERISK ->  *
+     *    |--TEXT ->
+     *    `--HTML_COMMENT_END -> -->
+     * }
+     * </pre>
      */
     public static final int HTML_COMMENT_START = JavadocParser.HTML_COMMENT_START;
 
     /**
      * HTML comment end symbol '--&gt;'.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * &lt;!--
+     * This is an HTML multi-line comment:
+     * This is another comment
+     * --&gt;
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * HTML_COMMENT -> HTML_COMMENT
+     *    |--HTML_COMMENT_START -> <!--
+     *    |--NEWLINE -> \n
+     *    |--LEADING_ASTERISK ->  *
+     *    |--TEXT ->  This is an HTML multi-line comment:
+     *    |--NEWLINE -> \n
+     *    |--LEADING_ASTERISK ->  *
+     *    |--TEXT ->  This is another comment
+     *    |--NEWLINE -> \n
+     *    |--LEADING_ASTERISK ->  *
+     *    |--TEXT ->
+     *    `--HTML_COMMENT_END -> -->
+     * }
+     * </pre>
      */
     public static final int HTML_COMMENT_END = JavadocParser.HTML_COMMENT_END;
 
@@ -1687,7 +1764,29 @@ public final class JavadocTokenTypes {
     /** End table row tag. */
     public static final int TR_TAG_END = JavadocParser.RULE_trTagEnd + RULE_TYPES_OFFSET;
 
-    /** Table cell html tag: {@code <td></td>}. */
+    /**
+     * Table cell HTML tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <td>Cell Content</td>}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     *    `--TD -> TD
+     *        |--TD_TAG_START -> TD_TAG_START
+     *        |   |--START -> &lt;
+     *        |   |--TD_HTML_TAG_NAME -> td
+     *        |   `--END -> &gt;
+     *        |--TEXT -> Cell Content
+     *        `--TD_TAG_END -> TD_TAG_END
+     *            |--START -> &lt;
+     *            |--SLASH -> /
+     *            |--TD_HTML_TAG_NAME -> td
+     *            `--END -> &gt;
+     * }
+     * </pre>
+     */
     public static final int TD = JavadocParser.RULE_td + RULE_TYPES_OFFSET;
     /** Start table cell tag. */
     public static final int TD_TAG_START = JavadocParser.RULE_tdTagStart + RULE_TYPES_OFFSET;
@@ -1914,32 +2013,34 @@ public final class JavadocTokenTypes {
      * <pre>{@code <table><tbody></tbody></table>}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {JAVADOC -&gt; JAVADOC
-     *      |--NEWLINE -&gt; \r\n
-     *      |--TEXT -&gt; /**
-     *      |--HTML_ELEMENT -&gt; HTML_ELEMENT
-     *      |   `--HTML_TAG -&gt; HTML_TAG
-     *      |       |--HTML_ELEMENT_START -&gt; HTML_ELEMENT_START
-     *      |       |   |--START -&gt; &lt;
-     *      |       |   |--HTML_TAG_NAME -&gt; table
-     *      |       |   `--END -&gt; &gt;
-     *      |       |--HTML_ELEMENT -&gt; HTML_ELEMENT
-     *      |       |   `--TBODY -&gt; TBODY
-     *      |       |       |--TBODY_TAG_START -&gt; TBODY_TAG_START
-     *      |       |       |   |--START -&gt; &lt;
-     *      |       |       |   |--TBODY_HTML_TAG_NAME -&gt; tbody
-     *      |       |       |   `--END -&gt; &gt;
-     *      |       |       `--TBODY_TAG_END -&gt; TBODY_TAG_END
-     *      |       |           |--START -&gt; &lt;
-     *      |       |           |--SLASH -&gt; /
-     *      |       |           |--TBODY_HTML_TAG_NAME -&gt; tbody
-     *      |       |           `--END -&gt; &gt;
-     *      |       `--HTML_ELEMENT_END -&gt; HTML_ELEMENT_END
-     *      |           |--START -&gt; &lt;
-     *      |           |--SLASH -&gt; /
-     *      |           |--HTML_TAG_NAME -&gt; table
-     *      |           `--END -&gt; &gt;
-     *      |--NEWLINE -&gt; \r\n
+     * {@code
+     *    JAVADOC -> JAVADOC
+     *      |--NEWLINE -> \r\n
+     *      |--LEADING_ASTERISK ->  *
+     *      |--TEXT ->
+     *      |--HTML_ELEMENT -> HTML_ELEMENT
+     *      |   `--HTML_TAG -> HTML_TAG
+     *      |       |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *      |       |   |--START -> <
+     *      |       |   |--HTML_TAG_NAME -> table
+     *      |       |   `--END -> >
+     *      |       |--HTML_ELEMENT -> HTML_ELEMENT
+     *      |       |   `--TBODY -> TBODY
+     *      |       |       |--TBODY_TAG_START -> TBODY_TAG_START
+     *      |       |       |   |--START -> <
+     *      |       |       |   |--TBODY_HTML_TAG_NAME -> tbody
+     *      |       |       |   `--END -> >
+     *      |       |       `--TBODY_TAG_END -> TBODY_TAG_END
+     *      |       |           |--START -> <
+     *      |       |           |--SLASH -> /
+     *      |       |           |--TBODY_HTML_TAG_NAME -> tbody
+     *      |       |           `--END -> >
+     *      |       `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *      |           |--START -> <
+     *      |           |--SLASH -> /
+     *      |           |--HTML_TAG_NAME -> table
+     *      |           `--END -> >
+     *      |--NEWLINE -> \r\n
      * }
      * </pre>
      */

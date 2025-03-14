@@ -15,8 +15,8 @@ package com.puppycrawl.tools.checkstyle.checks.naming.typename;
 class inputHeaderClass5 {
 
     public interface inputHeaderInterface {};
-//comment
-    public enum inputHeaderEnum { one, two }; // violation
+    // violation below 'Name 'inputHeaderEnum' must match pattern'
+    public enum inputHeaderEnum { one, two };
 
     public @interface inputHeaderAnnotation {};
 
