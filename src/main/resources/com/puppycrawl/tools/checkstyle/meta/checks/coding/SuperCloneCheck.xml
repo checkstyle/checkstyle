@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.SuperCloneCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.SuperCloneCheck"
              name="SuperClone"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that an overriding {@code clone()} method invokes {@code super.clone()}.
  Does not check native methods, as they have no possible java defined implementation.
  &lt;/div&gt;
@@ -14,9 +14,9 @@
  &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html#clone%28%29"&gt;
  Object.clone()&lt;/a&gt;.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="missing.super.call"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="missing.super.call"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck"
              name="MethodCount"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks the number of methods declared in each type declaration by access modifier
  or total count.
  &lt;/div&gt;
@@ -46,36 +46,36 @@
    }
  }
  &lt;/pre&gt;</description>
-         <properties>
-            <property default-value="100" name="maxPackage" type="int">
-               <description>Specify the maximum number of {@code package} methods allowed.</description>
-            </property>
-            <property default-value="100" name="maxPrivate" type="int">
-               <description>Specify the maximum number of {@code private} methods allowed.</description>
-            </property>
-            <property default-value="100" name="maxProtected" type="int">
-               <description>Specify the maximum number of {@code protected} methods allowed.</description>
-            </property>
-            <property default-value="100" name="maxPublic" type="int">
-               <description>Specify the maximum number of {@code public} methods allowed.</description>
-            </property>
-            <property default-value="100" name="maxTotal" type="int">
-               <description>Specify the maximum number of methods allowed at all scope levels.</description>
-            </property>
-            <property default-value="CLASS_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,INTERFACE_DEF,ANNOTATION_DEF,RECORD_DEF"
+      <properties>
+        <property default-value="100" name="maxPackage" type="int">
+          <description>Specify the maximum number of {@code package} methods allowed.</description>
+        </property>
+        <property default-value="100" name="maxPrivate" type="int">
+          <description>Specify the maximum number of {@code private} methods allowed.</description>
+        </property>
+        <property default-value="100" name="maxProtected" type="int">
+          <description>Specify the maximum number of {@code protected} methods allowed.</description>
+        </property>
+        <property default-value="100" name="maxPublic" type="int">
+          <description>Specify the maximum number of {@code public} methods allowed.</description>
+        </property>
+        <property default-value="100" name="maxTotal" type="int">
+          <description>Specify the maximum number of methods allowed at all scope levels.</description>
+        </property>
+        <property default-value="CLASS_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,INTERFACE_DEF,ANNOTATION_DEF,RECORD_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="too.many.methods"/>
-            <message-key key="too.many.packageMethods"/>
-            <message-key key="too.many.privateMethods"/>
-            <message-key key="too.many.protectedMethods"/>
-            <message-key key="too.many.publicMethods"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="too.many.methods"/>
+        <message-key key="too.many.packageMethods"/>
+        <message-key key="too.many.privateMethods"/>
+        <message-key key="too.many.protectedMethods"/>
+        <message-key key="too.many.publicMethods"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

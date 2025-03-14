@@ -5,13 +5,13 @@
     "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
 <module name="Checker">
-    <property name="tabWidth" value="4" />
-    <property name="basedir" value="${checkstyle.basedir}" />
-    <module name="TreeWalker">
-        <module name="MemberName">
-            <property name="format" value="^m[a-zA-Z0-9]*$"/>
-            <message key="name.invalidPattern"
+  <property name="tabWidth" value="4" />
+  <property name="basedir" value="${checkstyle.basedir}" />
+  <module name="TreeWalker">
+    <module name="MemberName">
+      <property name="format" value="^m[a-zA-Z0-9]*$"/>
+      <message key="name.invalidPattern"
                      value="Member ''{0}'' must start with ''m'' (checked pattern ''{1}'')."/>
-        </module>
     </module>
+  </module>
 </module>

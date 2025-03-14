@@ -91,7 +91,7 @@
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
@@ -100,7 +100,7 @@ public class Example1 {
     String test2 = "A href"; // OK, case is sensitive
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check to forbid String literals containing
           <code>&quot;a href&quot;</code> for the ignoreCase mode:
@@ -115,7 +115,7 @@ public class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
@@ -124,7 +124,7 @@ public class Example2 {
     String test2 = "A href"; // violation
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-config">
           To configure the check to forbid string literal text blocks containing
           <code>&quot;</code>:
@@ -138,7 +138,7 @@ public class Example2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
@@ -147,7 +147,7 @@ public class Example3 {
             \""""; // violation above
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-config">
           To configure the check to forbid leading zeros in an integer
           literal, other than zero and a hex literal:
@@ -162,7 +162,7 @@ public class Example3 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
@@ -175,7 +175,7 @@ public class Example4 {
     long test6 = 010L; // violation
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -51,7 +51,7 @@
     &lt;module name="OuterTypeNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation 2 lines above 'Outer types defined is 3 (max allowed is 1)'
@@ -65,7 +65,7 @@ class Example {
 
 enum outer {
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example2-config">
           To configure the check to accept 2 outer types per file:
@@ -78,7 +78,7 @@ enum outer {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
@@ -90,7 +90,7 @@ class Examples {
 
 enum outer1 {
 }
-</code></pre></div>
+        </code></pre></div>
 
       </subsection>
 

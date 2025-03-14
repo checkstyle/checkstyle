@@ -135,7 +135,7 @@
     &lt;module name="NPathComplexity"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
@@ -189,7 +189,7 @@ public abstract class Example1 {
   public abstract String buzz();
   public abstract void print(String str);
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check with a threshold of 100:
         </p>
@@ -201,7 +201,7 @@ public abstract class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
@@ -235,7 +235,7 @@ public abstract class Example2 {
   public abstract String baz();
   public abstract void print(String str);
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

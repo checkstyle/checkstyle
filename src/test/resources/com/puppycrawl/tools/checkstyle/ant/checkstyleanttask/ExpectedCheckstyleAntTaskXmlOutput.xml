@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="6.16-SNAPSHOT">
-<file name="/home/vlad/projects/checkstyle/src/test/resources/com/puppycrawl/tools/checkstyle/ant/InputCheckstyleAntTaskError.java">
-<error line="7" severity="error" message="Line is longer than 70 characters (found 80)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="9" severity="error" message="Line is longer than 70 characters (found 81)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-</file>
+  <file name="/home/vlad/projects/checkstyle/src/test/resources/com/puppycrawl/tools/checkstyle/ant/InputCheckstyleAntTaskError.java">
+    <error line="7" severity="error" message="Line is longer than 70 characters (found 80)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+    <error line="9" severity="error" message="Line is longer than 70 characters (found 81)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+  </file>
 </checkstyle>

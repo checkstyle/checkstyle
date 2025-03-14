@@ -4,5 +4,5 @@
     "../../../../../../../main/resources/com/puppycrawl/tools/checkstyle/configuration_1_1.dtd">
 
 <module name="Checker">
-    <property name="tabWidth" value="4" />
+  <property name="tabWidth" value="4" />
 </module>

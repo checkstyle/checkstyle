@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck"
              name="MethodName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that method names conform to a specified pattern.
  &lt;/div&gt;
 
@@ -15,34 +15,34 @@
  Does not check-style the name of an overridden methods because the developer does not
  have a choice in renaming such methods.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="false" name="allowClassName" type="boolean">
-               <description>Control whether to allow a method name to have the same name
+      <properties>
+        <property default-value="false" name="allowClassName" type="boolean">
+          <description>Control whether to allow a method name to have the same name
  as the enclosing class name. Setting this property {@code false} helps to avoid
  confusion between constructors and methods.</description>
-            </property>
-            <property default-value="true" name="applyToPackage" type="boolean">
-               <description>Control if check should apply to package-private members.</description>
-            </property>
-            <property default-value="true" name="applyToPrivate" type="boolean">
-               <description>Control if check should apply to private members.</description>
-            </property>
-            <property default-value="true" name="applyToProtected" type="boolean">
-               <description>Control if check should apply to protected members.</description>
-            </property>
-            <property default-value="true" name="applyToPublic" type="boolean">
-               <description>Control if check should apply to public members.</description>
-            </property>
-            <property default-value="^[a-z][a-zA-Z0-9]*$"
+        </property>
+        <property default-value="true" name="applyToPackage" type="boolean">
+          <description>Control if check should apply to package-private members.</description>
+        </property>
+        <property default-value="true" name="applyToPrivate" type="boolean">
+          <description>Control if check should apply to private members.</description>
+        </property>
+        <property default-value="true" name="applyToProtected" type="boolean">
+          <description>Control if check should apply to protected members.</description>
+        </property>
+        <property default-value="true" name="applyToPublic" type="boolean">
+          <description>Control if check should apply to public members.</description>
+        </property>
+        <property default-value="^[a-z][a-zA-Z0-9]*$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Sets the pattern to match valid identifiers.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="method.name.equals.class.name"/>
-            <message-key key="name.invalidPattern"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Sets the pattern to match valid identifiers.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="method.name.equals.class.name"/>
+        <message-key key="name.invalidPattern"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

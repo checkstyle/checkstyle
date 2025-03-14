@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck"
              name="NoWhitespaceAfter"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that there is no whitespace after a token.
  More specifically, it checks that it is not followed by whitespace,
  or (if linebreaks are allowed) all characters on the line after are
@@ -39,21 +39,21 @@
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se19/html/jls-14.html#jls-14.19"&gt;
  synchronized statement&lt;/a&gt;, i.e. {@code synchronized(this) {}}.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="true" name="allowLineBreaks" type="boolean">
-               <description>Control whether whitespace is allowed
+      <properties>
+        <property default-value="true" name="allowLineBreaks" type="boolean">
+          <description>Control whether whitespace is allowed
  if the token is at a linebreak.</description>
-            </property>
-            <property default-value="ARRAY_INIT,AT,INC,DEC,UNARY_MINUS,UNARY_PLUS,BNOT,LNOT,DOT,ARRAY_DECLARATOR,INDEX_OP"
+        </property>
+        <property default-value="ARRAY_INIT,AT,INC,DEC,UNARY_MINUS,UNARY_PLUS,BNOT,LNOT,DOT,ARRAY_DECLARATOR,INDEX_OP"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="ws.followed"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="ws.followed"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

@@ -73,7 +73,7 @@ public class StringUtils // not final to allow subclassing
     &lt;module name="HideUtilityClassConstructor"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation below, 'should not have a public or default constructor'
@@ -115,7 +115,7 @@ class Application1 {
   public static void main(String[] args) {
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example2-config">
           To configure the check to ignore classes annotated with <code>SpringBootApplication</code>
@@ -130,7 +130,7 @@ class Application1 {
     &lt;/module&gt;
    &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // ok below, skipped by annotation
@@ -172,7 +172,7 @@ class Application2 {
   public static void main(String[] args) {
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

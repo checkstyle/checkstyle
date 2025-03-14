@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck"
              name="OverloadMethodsDeclarationOrder"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that overloaded methods are grouped together. Overloaded methods have the same
  name but different signatures where the signature can differ by the number of
  input parameters or type of input parameters or both.
  &lt;/div&gt;</description>
-         <message-keys>
-            <message-key key="overload.methods.declaration"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="overload.methods.declaration"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

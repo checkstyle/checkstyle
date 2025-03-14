@@ -5,28 +5,28 @@
     "https://checkstyle.org/dtds/configuration_1_1.dtd">
 
 <module name="Checker">
-    <metadata name="any-possible-value" value="just smth"/>
+  <metadata name="any-possible-value" value="just smth"/>
 
-    <property name="tabWidth" value="4" />
-    <property name="basedir" value="${checkstyle.basedir}" />
-    <module name="TreeWalker">
-        <module name="AvoidStarImport"/>
-        <module name="MemberName">
-            <property name="format" value="^m_[a-zA-Z0-9]*$"/>
-        </module>
-        <property name="testName" value="testValue" />
-        <module name="ConstantName"/>
-        <module name="EmptyBlock"/>
-        <module name="EqualsHashCode"/>
-        <module name="FileLength"/>
-        <module name="NoWhitespaceAfter">
-            <property name="tokens" value="DOT"/>
-            <property name="allowLineBreaks" value="true"/>
-        </module>
-        <module name="GenericIllegalRegexp">
-            <property name="format" value="System.out.println"/>
-        </module>
+  <property name="tabWidth" value="4" />
+  <property name="basedir" value="${checkstyle.basedir}" />
+  <module name="TreeWalker">
+    <module name="AvoidStarImport"/>
+    <module name="MemberName">
+      <property name="format" value="^m_[a-zA-Z0-9]*$"/>
     </module>
-    <module name="JavadocPackage"/>
-    <module name="Translation"/>
+    <property name="testName" value="testValue" />
+    <module name="ConstantName"/>
+    <module name="EmptyBlock"/>
+    <module name="EqualsHashCode"/>
+    <module name="FileLength"/>
+    <module name="NoWhitespaceAfter">
+      <property name="tokens" value="DOT"/>
+      <property name="allowLineBreaks" value="true"/>
+    </module>
+    <module name="GenericIllegalRegexp">
+      <property name="format" value="System.out.println"/>
+    </module>
+  </module>
+  <module name="JavadocPackage"/>
+  <module name="Translation"/>
 </module>

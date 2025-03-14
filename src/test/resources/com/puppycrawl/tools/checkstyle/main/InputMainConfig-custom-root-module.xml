@@ -4,5 +4,5 @@
           "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
 <module name="com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker">
-    <property name="property" value="${lineLength.severity}" default=""/>
+  <property name="property" value="${lineLength.severity}" default=""/>
 </module>

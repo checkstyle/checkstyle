@@ -1,1 +1,7 @@
-* line 0* Checks that commentContent starts with '*' javadoc comment identifier.    *&lt;property name="ignorePattern" value="^ *\* *[^ ]+$"/&gt** This * is not a leading ** @return true if commentContent starts with '*' javadoc comment identifier* line 5    * line 6
+* line 0
+* Checks that commentContent starts with '*' javadoc comment identifier.
+    *&lt;property name="ignorePattern" value="^ *\* *[^ ]+$"/&gt*
+* This * is not a leading *
+* @return true if commentContent starts with '*' javadoc comment identifier
+* line 5
+    * line 6

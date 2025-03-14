@@ -64,7 +64,7 @@
     &lt;module name="SingleLineJavadoc"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
@@ -101,7 +101,7 @@ public class Example1 {
     return 42;
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check with a list of ignored block tags:
         </p>
@@ -113,7 +113,7 @@ public class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
@@ -150,7 +150,7 @@ public class Example2 {
     return 42;
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-config">
           To configure the check to not ignore inline tags:
         </p>
@@ -162,7 +162,7 @@ public class Example2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">
           Example:
         </p>
@@ -199,7 +199,7 @@ public class Example3 {
     return 42;
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-config">
           To configure the check to report violations for Tight-HTML Rules:
         </p>
@@ -211,7 +211,7 @@ public class Example3 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">
           Example:
         </p>
@@ -248,7 +248,7 @@ public class Example4 {
     return 42;
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

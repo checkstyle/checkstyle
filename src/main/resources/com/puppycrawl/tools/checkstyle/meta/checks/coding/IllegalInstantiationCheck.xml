@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck"
              name="IllegalInstantiation"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for illegal instantiations where a factory method is preferred.
  &lt;/div&gt;
 
@@ -30,14 +30,14 @@
  &lt;p&gt;
  There is a limitation that it is currently not possible to specify array classes.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="" name="classes" type="java.lang.String[]">
-               <description>Specify fully qualified class names that should not be instantiated.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="instantiation.avoid"/>
-         </message-keys>
-      </check>
-   </module>
+      <properties>
+        <property default-value="" name="classes" type="java.lang.String[]">
+          <description>Specify fully qualified class names that should not be instantiated.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="instantiation.avoid"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

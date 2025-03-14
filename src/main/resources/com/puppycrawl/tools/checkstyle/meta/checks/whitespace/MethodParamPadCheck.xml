@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck"
              name="MethodParamPad"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks the padding between the identifier of a method definition,
  constructor definition, method call, constructor invocation, record, or record pattern;
  and the left parenthesis of the parameter list.
@@ -15,28 +15,28 @@
  allow line breaks. To allow linebreaks after the identifier, set property
  {@code allowLineBreaks} to {@code true}.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="false" name="allowLineBreaks" type="boolean">
-               <description>Allow a line break between the identifier
+      <properties>
+        <property default-value="false" name="allowLineBreaks" type="boolean">
+          <description>Allow a line break between the identifier
  and left parenthesis.</description>
-            </property>
-            <property default-value="nospace"
+        </property>
+        <property default-value="nospace"
                       name="option"
                       type="com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption">
-               <description>Specify policy on how to pad method parameter.</description>
-            </property>
-            <property default-value="CTOR_DEF,CTOR_CALL,LITERAL_NEW,METHOD_CALL,METHOD_DEF,SUPER_CTOR_CALL,ENUM_CONSTANT_DEF,RECORD_DEF,RECORD_PATTERN_DEF"
+          <description>Specify policy on how to pad method parameter.</description>
+        </property>
+        <property default-value="CTOR_DEF,CTOR_CALL,LITERAL_NEW,METHOD_CALL,METHOD_DEF,SUPER_CTOR_CALL,ENUM_CONSTANT_DEF,RECORD_DEF,RECORD_PATTERN_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="line.previous"/>
-            <message-key key="ws.notPreceded"/>
-            <message-key key="ws.preceded"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="line.previous"/>
+        <message-key key="ws.notPreceded"/>
+        <message-key key="ws.preceded"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

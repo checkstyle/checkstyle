@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.ClassMemberImpliedModifierCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.ClassMemberImpliedModifierCheck"
              name="ClassMemberImpliedModifier"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for implicit modifiers on nested types in classes and records.
  &lt;/div&gt;
 
@@ -35,29 +35,29 @@
  remember this rule, and this check provides the means to enforce that the modifier is coded
  explicitly.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="true"
+      <properties>
+        <property default-value="true"
                       name="violateImpliedStaticOnNestedEnum"
                       type="boolean">
-               <description>Control whether to enforce that
+          <description>Control whether to enforce that
  {@code static} is explicitly coded on nested enums in classes and records.</description>
-            </property>
-            <property default-value="true"
+        </property>
+        <property default-value="true"
                       name="violateImpliedStaticOnNestedInterface"
                       type="boolean">
-               <description>Control whether to enforce that
+          <description>Control whether to enforce that
  {@code static} is explicitly coded on nested interfaces in classes and records.</description>
-            </property>
-            <property default-value="true"
+        </property>
+        <property default-value="true"
                       name="violateImpliedStaticOnNestedRecord"
                       type="boolean">
-               <description>Control whether to enforce that
+          <description>Control whether to enforce that
  {@code static} is explicitly coded on nested records in classes and records.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="class.implied.modifier"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="class.implied.modifier"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

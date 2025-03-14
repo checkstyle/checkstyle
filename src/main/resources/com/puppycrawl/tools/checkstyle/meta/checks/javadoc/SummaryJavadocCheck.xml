@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck"
              name="SummaryJavadoc"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that
  &lt;a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#firstsentence"&gt;
  Javadoc summary sentence&lt;/a&gt; does not contain phrases that are not recommended to use.
@@ -13,36 +13,36 @@
  Check also violate Javadoc that does not contain first sentence, though with {@code {@return}} a
  period is not required as the Javadoc tool adds it.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="^$"
+      <properties>
+        <property default-value="^$"
                       name="forbiddenSummaryFragments"
                       type="java.util.regex.Pattern">
-               <description>Specify the regexp for forbidden summary fragments.</description>
-            </property>
-            <property default-value="." name="period" type="java.lang.String">
-               <description>Specify the period symbol. Used to check the first sentence ends with a
+          <description>Specify the regexp for forbidden summary fragments.</description>
+        </property>
+        <property default-value="." name="period" type="java.lang.String">
+          <description>Specify the period symbol. Used to check the first sentence ends with a
  period. Periods that are not followed by a whitespace character are ignored (eg. the period in
  v1.0). Because some periods include whitespace built into the character, if this is set to a
  non-default value any period will end the sentence, whether it is followed by whitespace or not.</description>
-            </property>
-            <property default-value="false"
+        </property>
+        <property default-value="false"
                       name="violateExecutionOnNonTightHtml"
                       type="boolean">
-               <description>Control when to print violations
+          <description>Control when to print violations
  if the Javadoc being examined by this check violates the tight html rules defined at
  &lt;a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules"&gt;Tight-HTML Rules&lt;/a&gt;.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="javadoc.missed.html.close"/>
-            <message-key key="javadoc.parse.rule.error"/>
-            <message-key key="javadoc.unclosedHtml"/>
-            <message-key key="javadoc.wrong.singleton.html.tag"/>
-            <message-key key="summary.first.sentence"/>
-            <message-key key="summary.javaDoc"/>
-            <message-key key="summary.javaDoc.missing"/>
-            <message-key key="summary.javaDoc.missing.period"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="javadoc.missed.html.close"/>
+        <message-key key="javadoc.parse.rule.error"/>
+        <message-key key="javadoc.unclosedHtml"/>
+        <message-key key="javadoc.wrong.singleton.html.tag"/>
+        <message-key key="summary.first.sentence"/>
+        <message-key key="summary.javaDoc"/>
+        <message-key key="summary.javaDoc.missing"/>
+        <message-key key="summary.javaDoc.missing.period"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

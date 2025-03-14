@@ -84,7 +84,7 @@
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpSingleline" /&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p>
         This configuration does not match to anything,
         so we do not provide any code example for it
@@ -103,7 +103,7 @@
     &lt;property name="maximum" value="1"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -118,7 +118,7 @@ public class Example2 {
 
   void doSomething(){}
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Example with violation:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
@@ -133,7 +133,7 @@ public class Example3 {
 
   void doSomething(){}
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-config">
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
@@ -147,14 +147,14 @@ public class Example3 {
     &lt;property name="maximum" value="10"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
 * This file is copyrighted under CC.
 */
 public class Example4 {}
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-config">
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
@@ -170,7 +170,7 @@ public class Example4 {}
               value="File must contain copyright statement"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">Example with violation:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
@@ -179,7 +179,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
  * MyClass as a configuration example.
  */
 public class Example5 {}
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-config">
           An example of how to configure the check to make sure sql files contains the term
           'license'.
@@ -198,21 +198,21 @@ public class Example5 {}
       &lt;property name="fileExtensions" value="sql"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-raw">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /*
  AP 2.0 License. // Ok, Check ignores the case of the term.
 */
 CREATE DATABASE MyDB;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example7-raw">Example with violation:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /* // violation, file doesn't contain the term.
  Example sql file.
 */
 CREATE DATABASE MyDB;
-</code></pre></div>
+        </code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

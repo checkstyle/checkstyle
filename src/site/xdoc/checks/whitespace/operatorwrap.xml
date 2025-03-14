@@ -180,7 +180,7 @@
     &lt;module name="OperatorWrap"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
          Example:
         </p>
@@ -205,7 +205,7 @@ class Example1 {
             + 10;
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check for assignment operators at the end of a line:
         </p>
@@ -221,7 +221,7 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
          Example:
         </p>
@@ -256,7 +256,7 @@ class Example2 {
             &lt;&lt;= 1; // violation ''&lt;&lt;=' should be on the previous line'
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

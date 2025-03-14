@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck"
              name="IllegalType"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that particular classes or interfaces are never used.
  &lt;/div&gt;
 
@@ -53,52 +53,52 @@
  as methods that are differ from interface methods are rarely used, so in most cases user will
  benefit from checking for them.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="getEnvironment, getInitialContext"
+      <properties>
+        <property default-value="getEnvironment, getInitialContext"
                       name="ignoredMethodNames"
                       type="java.lang.String[]">
-               <description>Specify methods that should not be checked.</description>
-            </property>
-            <property default-value="^(.*[.])?Abstract.*$"
+          <description>Specify methods that should not be checked.</description>
+        </property>
+        <property default-value="^(.*[.])?Abstract.*$"
                       name="illegalAbstractClassNameFormat"
                       type="java.util.regex.Pattern">
-               <description>Specify RegExp for illegal abstract class
+          <description>Specify RegExp for illegal abstract class
  names.</description>
-            </property>
-            <property default-value="HashMap, HashSet, LinkedHashMap, LinkedHashSet, TreeMap, TreeSet, java.util.HashMap, java.util.HashSet, java.util.LinkedHashMap, java.util.LinkedHashSet, java.util.TreeMap, java.util.TreeSet"
+        </property>
+        <property default-value="HashMap, HashSet, LinkedHashMap, LinkedHashSet, TreeMap, TreeSet, java.util.HashMap, java.util.HashSet, java.util.LinkedHashMap, java.util.LinkedHashSet, java.util.TreeMap, java.util.TreeSet"
                       name="illegalClassNames"
                       type="java.lang.String[]">
-               <description>Specify classes that should not be used
+          <description>Specify classes that should not be used
  as types in variable declarations, return values or parameters.</description>
-            </property>
-            <property default-value=""
+        </property>
+        <property default-value=""
                       name="legalAbstractClassNames"
                       type="java.lang.String[]">
-               <description>Define abstract classes that may be used as types.</description>
-            </property>
-            <property default-value=""
+          <description>Define abstract classes that may be used as types.</description>
+        </property>
+        <property default-value=""
                       name="memberModifiers"
                       type="java.lang.String[]"
                       validation-type="tokenTypesSet">
-               <description>Control whether to check only methods and fields with any
+          <description>Control whether to check only methods and fields with any
  of the specified modifiers.
  This property does not affect method calls nor method references nor record components.</description>
-            </property>
-            <property default-value="false"
+        </property>
+        <property default-value="false"
                       name="validateAbstractClassNames"
                       type="boolean">
-               <description>Control whether to validate abstract class names.</description>
-            </property>
-            <property default-value="ANNOTATION_FIELD_DEF,CLASS_DEF,INTERFACE_DEF,METHOD_CALL,METHOD_DEF,METHOD_REF,PARAMETER_DEF,VARIABLE_DEF,PATTERN_VARIABLE_DEF,RECORD_DEF,RECORD_COMPONENT_DEF,RECORD_PATTERN_DEF"
+          <description>Control whether to validate abstract class names.</description>
+        </property>
+        <property default-value="ANNOTATION_FIELD_DEF,CLASS_DEF,INTERFACE_DEF,METHOD_CALL,METHOD_DEF,METHOD_REF,PARAMETER_DEF,VARIABLE_DEF,PATTERN_VARIABLE_DEF,RECORD_DEF,RECORD_COMPONENT_DEF,RECORD_PATTERN_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="illegal.type"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="illegal.type"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

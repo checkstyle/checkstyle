@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck"
              name="StringLiteralEquality"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that string literals are not used with &lt;code&gt;==&lt;/code&gt; or &lt;code&gt;&amp;#33;=&lt;/code&gt;.
  Since &lt;code&gt;==&lt;/code&gt; will compare the object references, not the actual value of the strings,
  &lt;code&gt;String.equals()&lt;/code&gt; should be used.
@@ -26,9 +26,9 @@
  &lt;pre&gt;
  if ("something".equals(x))
  &lt;/pre&gt;</description>
-         <message-keys>
-            <message-key key="string.literal.equality"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="string.literal.equality"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

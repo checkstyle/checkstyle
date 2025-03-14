@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck"
              name="InterfaceMemberImpliedModifier"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for implicit modifiers on interface members and nested types.
  &lt;/div&gt;
 
@@ -77,51 +77,51 @@
  remember which modifiers are required and which are implied. This check allows the simpler
  alternative approach to be adopted where the implied modifiers must always be coded explicitly.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="true"
+      <properties>
+        <property default-value="true"
                       name="violateImpliedAbstractMethod"
                       type="boolean">
-               <description>Control whether to enforce that {@code abstract}
+          <description>Control whether to enforce that {@code abstract}
  is explicitly coded on interface methods.</description>
-            </property>
-            <property default-value="true" name="violateImpliedFinalField" type="boolean">
-               <description>Control whether to enforce that {@code final}
+        </property>
+        <property default-value="true" name="violateImpliedFinalField" type="boolean">
+          <description>Control whether to enforce that {@code final}
  is explicitly coded on interface fields.</description>
-            </property>
-            <property default-value="true"
+        </property>
+        <property default-value="true"
                       name="violateImpliedPublicField"
                       type="boolean">
-               <description>Control whether to enforce that {@code public}
+          <description>Control whether to enforce that {@code public}
  is explicitly coded on interface fields.</description>
-            </property>
-            <property default-value="true"
+        </property>
+        <property default-value="true"
                       name="violateImpliedPublicMethod"
                       type="boolean">
-               <description>Control whether to enforce that {@code public}
+          <description>Control whether to enforce that {@code public}
  is explicitly coded on interface methods.</description>
-            </property>
-            <property default-value="true"
+        </property>
+        <property default-value="true"
                       name="violateImpliedPublicNested"
                       type="boolean">
-               <description>Control whether to enforce that {@code public}
+          <description>Control whether to enforce that {@code public}
  is explicitly coded on interface nested types.</description>
-            </property>
-            <property default-value="true"
+        </property>
+        <property default-value="true"
                       name="violateImpliedStaticField"
                       type="boolean">
-               <description>Control whether to enforce that {@code static}
+          <description>Control whether to enforce that {@code static}
  is explicitly coded on interface fields.</description>
-            </property>
-            <property default-value="true"
+        </property>
+        <property default-value="true"
                       name="violateImpliedStaticNested"
                       type="boolean">
-               <description>Control whether to enforce that {@code static}
+          <description>Control whether to enforce that {@code static}
  is explicitly coded on interface nested types.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="interface.implied.modifier"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="interface.implied.modifier"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

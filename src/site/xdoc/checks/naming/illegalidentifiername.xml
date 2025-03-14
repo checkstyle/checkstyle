@@ -112,7 +112,7 @@
     &lt;module name="IllegalIdentifierName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
@@ -140,7 +140,7 @@ public class Example1 {
   Object transitiveObject = "transitiveObject";
 
 }
-</code></pre></div>
+        </code></pre></div>
         <p>
           To configure the check to include some of JLS Keywords in the
           set of illegal identifiers (See <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-3.html#jls-3.9">
@@ -156,7 +156,7 @@ public class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
@@ -184,7 +184,7 @@ public class Example2 {
   Object transitiveObject = "transitiveObject";
   // ok above, word 'transitive' is not used as an identifier by itself
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

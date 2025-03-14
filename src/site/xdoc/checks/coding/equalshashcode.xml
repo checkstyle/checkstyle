@@ -37,7 +37,7 @@
     &lt;module name="EqualsHashCode"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
@@ -82,7 +82,7 @@ class ExampleNoValidEquals {
   }
   public static boolean equals(Object o, Object o2) { return false; }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

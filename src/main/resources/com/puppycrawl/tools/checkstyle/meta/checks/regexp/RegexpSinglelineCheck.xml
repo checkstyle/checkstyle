@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"
              name="RegexpSingleline"
              parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that a specified pattern matches a single-line in any file type.
  &lt;/div&gt;
 
@@ -13,31 +13,31 @@
  practice such as calling {@code ex.printStacktrace()},
  {@code System.out.println()}, {@code System.exit()}, etc.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="" name="fileExtensions" type="java.lang.String[]">
-               <description>Specify the file extensions of the files to process.</description>
-            </property>
-            <property default-value="$." name="format" type="java.util.regex.Pattern">
-               <description>Specify the format of the regular expression to match.</description>
-            </property>
-            <property default-value="false" name="ignoreCase" type="boolean">
-               <description>Control whether to ignore case when searching.</description>
-            </property>
-            <property default-value="0" name="maximum" type="int">
-               <description>Specify the maximum number of matches required in each file.</description>
-            </property>
-            <property name="message" type="java.lang.String">
-               <description>Specify the message which is used to notify about
+      <properties>
+        <property default-value="" name="fileExtensions" type="java.lang.String[]">
+          <description>Specify the file extensions of the files to process.</description>
+        </property>
+        <property default-value="$." name="format" type="java.util.regex.Pattern">
+          <description>Specify the format of the regular expression to match.</description>
+        </property>
+        <property default-value="false" name="ignoreCase" type="boolean">
+          <description>Control whether to ignore case when searching.</description>
+        </property>
+        <property default-value="0" name="maximum" type="int">
+          <description>Specify the maximum number of matches required in each file.</description>
+        </property>
+        <property name="message" type="java.lang.String">
+          <description>Specify the message which is used to notify about
  violations, if empty then default (hard-coded) message is used.</description>
-            </property>
-            <property default-value="0" name="minimum" type="int">
-               <description>Specify the minimum number of matches required in each file.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="regexp.exceeded"/>
-            <message-key key="regexp.minimum"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+        <property default-value="0" name="minimum" type="int">
+          <description>Specify the minimum number of matches required in each file.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="regexp.exceeded"/>
+        <message-key key="regexp.minimum"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

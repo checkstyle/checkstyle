@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"
              name="MagicNumber"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that there are no
  &lt;a href="https://en.wikipedia.org/wiki/Magic_number_%28programming%29"&gt;
  &amp;quot;magic numbers&amp;quot;&lt;/a&gt; where a magic
@@ -23,41 +23,41 @@
  static final Border STANDARD_BORDER = BorderFactory.createEmptyBorder(3, 3, 3, 3);
  static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
  &lt;/pre&gt;</description>
-         <properties>
-            <property default-value="ARRAY_INIT,ASSIGN,BAND,BNOT,BOR,BSR,BXOR,COLON,DIV,ELIST,EQUAL,EXPR,GE,GT,LE,LITERAL_NEW,LT,METHOD_CALL,MINUS,MOD,NOT_EQUAL,PLUS,QUESTION,SL,SR,STAR,TYPECAST,UNARY_MINUS,UNARY_PLUS"
+      <properties>
+        <property default-value="ARRAY_INIT,ASSIGN,BAND,BNOT,BOR,BSR,BXOR,COLON,DIV,ELIST,EQUAL,EXPR,GE,GT,LE,LITERAL_NEW,LT,METHOD_CALL,MINUS,MOD,NOT_EQUAL,PLUS,QUESTION,SL,SR,STAR,TYPECAST,UNARY_MINUS,UNARY_PLUS"
                       name="constantWaiverParentToken"
                       type="java.lang.String[]"
                       validation-type="tokenTypesSet">
-               <description>Specify tokens that are allowed in the AST path
+          <description>Specify tokens that are allowed in the AST path
  from the number literal to the enclosing constant definition.</description>
-            </property>
-            <property default-value="false" name="ignoreAnnotation" type="boolean">
-               <description>Ignore magic numbers in annotation declarations.</description>
-            </property>
-            <property default-value="true"
+        </property>
+        <property default-value="false" name="ignoreAnnotation" type="boolean">
+          <description>Ignore magic numbers in annotation declarations.</description>
+        </property>
+        <property default-value="true"
                       name="ignoreAnnotationElementDefaults"
                       type="boolean">
-               <description>Ignore magic numbers in annotation elements defaults.</description>
-            </property>
-            <property default-value="false" name="ignoreFieldDeclaration" type="boolean">
-               <description>Ignore magic numbers in field declarations.</description>
-            </property>
-            <property default-value="false" name="ignoreHashCodeMethod" type="boolean">
-               <description>Ignore magic numbers in hashCode methods.</description>
-            </property>
-            <property default-value="-1, 0, 1, 2" name="ignoreNumbers" type="double[]">
-               <description>Specify non-magic numbers.</description>
-            </property>
-            <property default-value="NUM_DOUBLE,NUM_FLOAT,NUM_INT,NUM_LONG"
+          <description>Ignore magic numbers in annotation elements defaults.</description>
+        </property>
+        <property default-value="false" name="ignoreFieldDeclaration" type="boolean">
+          <description>Ignore magic numbers in field declarations.</description>
+        </property>
+        <property default-value="false" name="ignoreHashCodeMethod" type="boolean">
+          <description>Ignore magic numbers in hashCode methods.</description>
+        </property>
+        <property default-value="-1, 0, 1, 2" name="ignoreNumbers" type="double[]">
+          <description>Specify non-magic numbers.</description>
+        </property>
+        <property default-value="NUM_DOUBLE,NUM_FLOAT,NUM_INT,NUM_LONG"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="magic.number"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="magic.number"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

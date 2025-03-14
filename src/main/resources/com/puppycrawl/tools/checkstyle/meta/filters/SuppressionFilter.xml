@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressionFilter"
+  <module>
+    <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressionFilter"
               name="SuppressionFilter"
               parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Filter {@code SuppressionFilter} rejects audit events for Check violations according to a
  &lt;a href="https://checkstyle.org/dtds/suppressions_1_2.dtd"&gt;suppressions XML document&lt;/a&gt;
  in a file. If there is no configured suppressions file or the optional is set to true and
@@ -86,17 +86,17 @@
  &lt;p&gt;
  SuppressionFilter can suppress Checks that have Treewalker or Checker as parent module.
  &lt;/p&gt;</description>
-         <properties>
-            <property name="file" type="java.lang.String">
-               <description>Specify the location of the &lt;em&gt;suppressions XML document&lt;/em&gt; file.</description>
-            </property>
-            <property default-value="false" name="optional" type="boolean">
-               <description>Control what to do when the file is not existing.
+      <properties>
+        <property name="file" type="java.lang.String">
+          <description>Specify the location of the &lt;em&gt;suppressions XML document&lt;/em&gt; file.</description>
+        </property>
+        <property default-value="false" name="optional" type="boolean">
+          <description>Control what to do when the file is not existing.
  If {@code optional} is set to {@code false} the file must exist, or else it
  ends with error. On the other hand if optional is {@code true} and file is
  not found, the filter accept all audit events.</description>
-            </property>
-         </properties>
-      </filter>
-   </module>
+        </property>
+      </properties>
+    </filter>
+  </module>
 </checkstyle-metadata>

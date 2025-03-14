@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck"
              name="MatchXpath"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Evaluates Xpath query and report violation on all matching AST nodes. This check allows
  user to implement custom checks using Xpath. If Xpath query is not specified explicitly,
  then the check does nothing.
@@ -27,14 +27,14 @@
  &lt;a href="https://github.com/checkstyle/checkstyle/search?q=%22TOKEN_TYPES_WITH_TEXT_ATTRIBUTE+%3D+Arrays.asList%22"&gt;
      XpathUtil&lt;/a&gt;.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="" name="query" type="java.lang.String">
-               <description>Specify Xpath query.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="matchxpath.match"/>
-         </message-keys>
-      </check>
-   </module>
+      <properties>
+        <property default-value="" name="query" type="java.lang.String">
+          <description>Specify Xpath query.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="matchxpath.match"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

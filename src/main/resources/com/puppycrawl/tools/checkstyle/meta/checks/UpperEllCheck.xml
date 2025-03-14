@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.UpperEllCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.UpperEllCheck"
              name="UpperEll"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that long constants are defined with an upper ell. That is {@code 'L'}
  and not {@code 'l'}. This is in accordance with the Java Language Specification,
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.10.1"&gt;
@@ -14,9 +14,9 @@
  &lt;p&gt;
  Rationale: The lower-case ell {@code 'l'} looks a lot like {@code 1}.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="upperEll"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="upperEll"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

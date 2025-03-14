@@ -43,7 +43,7 @@
     &lt;module name="NestedTryDepth"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example1:
         </p>
@@ -74,7 +74,7 @@ public class Example1 {
     } catch (Exception e) {}
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check to allow nesting depth 3:
         </p>
@@ -86,7 +86,7 @@ public class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Example2:
         </p>
@@ -117,7 +117,7 @@ public class Example2 {
     } catch (Exception e) {}
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

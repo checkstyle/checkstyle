@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck"
              name="EmptyStatement"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Detects empty statements (standalone {@code ";"} semicolon).
  Empty statements often introduce bugs that are hard to spot
  &lt;/div&gt;</description>
-         <message-keys>
-            <message-key key="empty.statement"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="empty.statement"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

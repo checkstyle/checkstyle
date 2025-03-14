@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck"
              name="JavadocContentLocation"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that the Javadoc content begins from the same position
  for all Javadoc comments in the project. Any leading asterisks and spaces
  are not counted as the beginning of the content and are therefore ignored.
@@ -66,17 +66,17 @@
  they should not be considered as the beginning of the Javadoc content.
  In such cases, the check assumes that the Javadoc content begins on the second line.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="second_line"
+      <properties>
+        <property default-value="second_line"
                       name="location"
                       type="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationOption">
-               <description>Specify the policy on placement of the Javadoc content.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="javadoc.content.first.line"/>
-            <message-key key="javadoc.content.second.line"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Specify the policy on placement of the Javadoc content.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="javadoc.content.first.line"/>
+        <message-key key="javadoc.content.second.line"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

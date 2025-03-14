@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheck"
              name="SuperFinalize"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that an overriding {@code finalize()} method invokes {@code super.finalize()}.
  Does not check native methods, as they have no possible java defined implementation.
  &lt;/div&gt;
@@ -16,9 +16,9 @@
  &lt;a href="https://javarevisited.blogspot.com/2012/03/finalize-method-in-java-tutorial.html"&gt;
  10 points on finalize method in Java&lt;/a&gt;.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="missing.super.call"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="missing.super.call"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

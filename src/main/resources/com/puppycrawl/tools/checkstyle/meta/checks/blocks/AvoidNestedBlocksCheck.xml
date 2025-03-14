@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck"
              name="AvoidNestedBlocks"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Finds nested blocks (blocks that are used freely in the code).
  &lt;/div&gt;
 
@@ -44,15 +44,15 @@
  the allowInSwitchCase property to true and include all statements
  of the case in the block.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="false" name="allowInSwitchCase" type="boolean">
-               <description>Allow nested blocks if they are the
+      <properties>
+        <property default-value="false" name="allowInSwitchCase" type="boolean">
+          <description>Allow nested blocks if they are the
  only child of a switch case.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="block.nested"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="block.nested"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

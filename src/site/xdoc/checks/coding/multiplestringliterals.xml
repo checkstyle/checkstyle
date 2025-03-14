@@ -68,7 +68,7 @@
     &lt;module name="MultipleStringLiterals"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
@@ -82,7 +82,7 @@ public class Example1 {
     String a5 = ", " + ", " + ", "; // violation, ", " occurs three times
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check so that it allows two occurrences of each
           string:
@@ -95,7 +95,7 @@ public class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
@@ -109,7 +109,7 @@ public class Example2 {
     String a5 = ", " + ", " + ", "; // violation, three occurrences are NOT allowed
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-config">
           To configure the check so that it ignores &quot;, &quot; and empty strings:
         </p>
@@ -122,7 +122,7 @@ public class Example2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
@@ -136,7 +136,7 @@ public class Example3 {
     String a5 = ", " + ", " + ", "; // OK, multiple occurrences of ", " are allowed
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-config">
           To configure the check so that it flags duplicate strings in all
           syntactical contexts, even in annotations like
@@ -150,7 +150,7 @@ public class Example3 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
@@ -164,7 +164,7 @@ public class Example4 {
     String a5 = ", " + ", " + ", "; // violation, ", " occurs three times
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

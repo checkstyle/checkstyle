@@ -112,7 +112,7 @@
     &lt;module name="RightCurly"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
@@ -163,7 +163,7 @@ public class Example1 {
 
   public void testSingleLine() { bar(); } // OK, because singleline is allowed
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check with policy <code>alone</code> for <code> else</code> and
           <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
@@ -179,7 +179,7 @@ public class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
@@ -217,7 +217,7 @@ public class Example2 {
     bar();
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-config">
           To configure the check with policy <code>alone</code> for
           <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">
@@ -233,7 +233,7 @@ public class Example2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
@@ -263,7 +263,7 @@ class Example3 {
     // violation above, 'should be alone on a line.'
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-config">
           To configure the check with policy <code>alone_or_singleline</code> for <code> if</code>
           and
@@ -280,7 +280,7 @@ class Example3 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
@@ -314,7 +314,7 @@ public class Example4 {
 
   public void violate() { bar(); } // OK , because singleline
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-config">
           To configure the check with policy <code>alone_or_singleline</code> for
           <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">
@@ -330,7 +330,7 @@ public class Example4 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
@@ -366,7 +366,7 @@ class Example5 {
     // violation above, 'should be alone on a line.'
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck"
              name="LocalFinalVariableName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that local final variable names conform to a specified pattern.
   A catch parameter and resources in try statements
  are considered to be a local, final variables.
@@ -15,22 +15,22 @@
  &lt;a href="https://checkstyle.org/checks/naming/patternvariablename.html#PatternVariableName"&gt;
  PatternVariableName&lt;/a&gt;.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="^([a-z][a-zA-Z0-9]*|_)$"
+      <properties>
+        <property default-value="^([a-z][a-zA-Z0-9]*|_)$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Sets the pattern to match valid identifiers.</description>
-            </property>
-            <property default-value="VARIABLE_DEF,PARAMETER_DEF,RESOURCE"
+          <description>Sets the pattern to match valid identifiers.</description>
+        </property>
+        <property default-value="VARIABLE_DEF,PARAMETER_DEF,RESOURCE"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="name.invalidPattern"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="name.invalidPattern"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

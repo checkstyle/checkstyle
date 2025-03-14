@@ -99,7 +99,7 @@
     &lt;property name="requiredTranslations" value="es, fr"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-file">Example1 (target folder structure):</p>
         <source>
 messages.properties
@@ -110,23 +110,23 @@ messages_es.properties
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 hello=Hello
 cancel=Cancel
-</code></pre></div>
+        </code></pre></div>
         <p id="messages_es-raw">Contents of messages_es.properties file:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 greeting=Saludo
 age=Edad
-</code></pre></div>
+        </code></pre></div>
         <p id="messages_fr-raw">Contents of messages_fr.properties file:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 greeting=Bonjour
 name=Nom
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Validation for Example1:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 messages.properties     // violation 'Key 'age', 'name' and 'greeting' missing.'
 messages_fr.properties  // violation 'Key 'age', 'cancel' and 'hello' missing.'
 messages_es.properties  // violation 'Key 'cancel', 'name' and 'hello' missing.'
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           An example of how to configure the check to validate only bundles which base names
           start with &quot;ButtonLabels&quot;:
@@ -138,7 +138,7 @@ messages_es.properties  // violation 'Key 'cancel', 'name' and 'hello' missing.'
     &lt;property name="requiredTranslations" value="fr"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-file">Example2 (target folder structure):</p>
         <source>
 ButtonLabels.properties
@@ -148,17 +148,17 @@ ButtonLabels_fr.properties
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 hello=Hello
 cancel=Cancel
-</code></pre></div>
+        </code></pre></div>
         <p id="ButtonLabels_fr-raw">Contents of ButtonLabels_fr.properties file:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 hello=Bonjour
 name=Nom
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Validation for Example2:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 ButtonLabels.properties     // violation 'Key 'name' is missing.'
 ButtonLabels_fr.properties  // violation 'Key 'cancel' is missing.'
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-config">
           To configure the check to check only files which have '.properties' and '.translations'
           extensions:
@@ -171,7 +171,7 @@ ButtonLabels_fr.properties  // violation 'Key 'cancel' is missing.'
     &lt;property name="requiredTranslations" value="fr"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-file">Example3 no messages_home_fr.* files (target folder structure):</p>
         <source>
 messages_home.properties
@@ -181,19 +181,19 @@ messages_home.translations
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 hello=Hello
 cancel=Cancel
-</code></pre></div>
+        </code></pre></div>
         <p id="messages_home-code">Contents of messages_home.translations file:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 hello=Hallo
 ok=OK
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Validation for Example3:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 messages_home.properties   // violation,
                           'Properties file 'messages_home_fr.properties' missing.'
 messages_home.translations // violation,
                           'Properties file 'messages_home_fr.translations' missing.'
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

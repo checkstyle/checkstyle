@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck"
              name="SimplifyBooleanReturn"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for over-complicated boolean return or yield statements.
  For example the following code
  &lt;/div&gt;
@@ -27,9 +27,9 @@
  &lt;a href="https://pmd.github.io/pmd/pmd_rules_java_design.html#simplifybooleanreturns"&gt;
      PMD&lt;/a&gt; rule.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="simplify.boolReturn"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="simplify.boolReturn"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

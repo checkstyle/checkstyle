@@ -5,9 +5,9 @@
     "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
 <module name="Checker">
-    <property name="tabWidth" value="${checkstyle.tabsize}" default="2"/>
-    <property name="basedir" value="src/${checkstyle.baseDirectory}" default="."/>
-    <property name="charset"
+  <property name="tabWidth" value="${checkstyle.tabsize}" default="2"/>
+  <property name="basedir" value="src/${checkstyle.baseDirectory}" default="."/>
+  <property name="charset"
               value="${checkstyle.charset.base}-${checkstyle.charset.number}" default="ASCII"/>
 
 </module>

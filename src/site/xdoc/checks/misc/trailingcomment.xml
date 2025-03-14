@@ -109,7 +109,7 @@ d = e / f;        // Another comment for this line
     &lt;module name="TrailingComment"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example1-code">
           Example:
@@ -130,7 +130,7 @@ public class Example1 {
   private static void doSomething(String param) {
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example2-config">
           To configure the check to enforce only comment on a line:
@@ -143,7 +143,7 @@ public class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example2-code">
           Example:
@@ -163,7 +163,7 @@ public class Example2 {
   private static void doSomething(String param) {
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example3-config">
           To configure check so that trailing comment with exact comments like
@@ -182,7 +182,7 @@ public class Example2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example3-code">
           Example for trailing comments check to suppress specific trailing comment:
@@ -194,7 +194,7 @@ public class Example3 {
   int c; // NOSONAR
   int d; // violation, not suppressed
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example4-config">
           To configure check so that trailing comment starting with &quot;SUPPRESS CHECKSTYLE&quot;,
@@ -215,7 +215,7 @@ public class Example3 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example4-code">
           Example:
@@ -227,7 +227,7 @@ public class Example4 {
   int c; // NOSONAR - OK, comment starts with " NOSONAR"
   int d; // violation, not suppressed
 }
-</code></pre></div>
+        </code></pre></div>
 
       </subsection>
 

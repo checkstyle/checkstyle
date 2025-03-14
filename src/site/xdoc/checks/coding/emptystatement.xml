@@ -25,7 +25,7 @@
     &lt;module name="EmptyStatement"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
             Example:
         </p>
@@ -41,7 +41,7 @@ public class Example1 {
       i++;
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

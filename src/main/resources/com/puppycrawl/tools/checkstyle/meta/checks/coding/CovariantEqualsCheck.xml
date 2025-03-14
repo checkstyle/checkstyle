@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck"
              name="CovariantEquals"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that classes and records which define a covariant {@code equals()} method
  also override method {@code equals(Object)}.
  &lt;/div&gt;
@@ -55,9 +55,9 @@
  in a container, the behavior might be mysterious. For these reasons, this type
  of bug can elude testing and code inspections.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="covariant.equals"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="covariant.equals"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

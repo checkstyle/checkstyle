@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck"
              name="BooleanExpressionComplexity"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Restricts the number of boolean operators ({@code &amp;amp;&amp;amp;}, {@code ||},
  {@code &amp;amp;}, {@code |} and {@code ^}) in an expression.
  &lt;/div&gt;
@@ -26,21 +26,21 @@
  of constructor or method call because they can be applied to non-boolean
  variables and Checkstyle does not know types of methods from different classes.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="3" name="max" type="int">
-               <description>Specify the maximum number of boolean operations
+      <properties>
+        <property default-value="3" name="max" type="int">
+          <description>Specify the maximum number of boolean operations
  allowed in one expression.</description>
-            </property>
-            <property default-value="LAND,BAND,LOR,BOR,BXOR"
+        </property>
+        <property default-value="LAND,BAND,LOR,BOR,BXOR"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="booleanExpressionComplexity"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="booleanExpressionComplexity"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

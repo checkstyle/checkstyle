@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck"
              name="IllegalIdentifierName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks identifiers against a regular expression pattern to detect illegal names. Since this
  check uses a pattern to define &lt;i&gt;valid&lt;/i&gt; identifiers, users will need to use negative
  lookaheads to explicitly ban certain names (e.g., "var") or patterns (e.g., any identifier
  containing $) while still allowing all other valid identifiers.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="^(?!var$|\S*\$)\S+$"
+      <properties>
+        <property default-value="^(?!var$|\S*\$)\S+$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Sets the pattern to match valid identifiers.</description>
-            </property>
-            <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,ANNOTATION_FIELD_DEF,PARAMETER_DEF,VARIABLE_DEF,METHOD_DEF,ENUM_CONSTANT_DEF,PATTERN_VARIABLE_DEF,RECORD_DEF,RECORD_COMPONENT_DEF,LAMBDA"
+          <description>Sets the pattern to match valid identifiers.</description>
+        </property>
+        <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,ANNOTATION_FIELD_DEF,PARAMETER_DEF,VARIABLE_DEF,METHOD_DEF,ENUM_CONSTANT_DEF,PATTERN_VARIABLE_DEF,RECORD_DEF,RECORD_COMPONENT_DEF,LAMBDA"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="name.invalidPattern"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="name.invalidPattern"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

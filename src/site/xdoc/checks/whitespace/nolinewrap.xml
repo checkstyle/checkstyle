@@ -78,7 +78,7 @@
     &lt;module name="NoLineWrap"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Examples of line-wrapped statements (bad case):
         </p>
@@ -91,7 +91,7 @@ import com.puppycrawl.tools. // violation 'should not be line-wrapped'
 
 import static java.math. // violation 'should not be line-wrapped'
   BigInteger.ZERO;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Examples:
         </p>
@@ -105,7 +105,7 @@ import java.lang. // violation 'should not be line-wrapped'
 
 import static java.math. // violation 'should not be line-wrapped'
   BigInteger.TEN;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nolinewrap;
@@ -114,7 +114,7 @@ import java.lang. // violation 'should not be line-wrapped'
   Boolean;
 
 import static java.math.BigInteger.ONE;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-config">
           To configure the check to force no line-wrapping only
           in import statements:
@@ -127,7 +127,7 @@ import static java.math.BigInteger.ONE;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">
           Example:
         </p>
@@ -141,7 +141,7 @@ import java.lang. // violation 'should not be line-wrapped'
 
 import static java.math. // OK, STATIC_IMPORT is not part of the tokens
   BigInteger.ZERO;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-config">
           To configure the check to force no line-wrapping only
           in class, method and constructor definitions:
@@ -154,7 +154,7 @@ import static java.math. // OK, STATIC_IMPORT is not part of the tokens
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">
           Example:
         </p>
@@ -182,7 +182,7 @@ class // violation 'should not be line-wrapped'
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p>
           Examples of not line-wrapped statements (good case):
         </p>

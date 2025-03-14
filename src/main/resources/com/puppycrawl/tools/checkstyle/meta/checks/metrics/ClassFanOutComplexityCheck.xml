@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck"
              name="ClassFanOutComplexity"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks the number of other types a given class/record/interface/enum/annotation
  relies on. Also, the square of this has been shown to indicate the amount
  of maintenance required in functional programs (on a file basis) at least.
@@ -28,28 +28,28 @@
  the class does not increase complexity.
  &lt;/li&gt;
  &lt;/ol&gt;</description>
-         <properties>
-            <property default-value="^$"
+      <properties>
+        <property default-value="^$"
                       name="excludeClassesRegexps"
                       type="java.util.regex.Pattern[]">
-               <description>Specify user-configured regular
+          <description>Specify user-configured regular
  expressions to ignore classes.</description>
-            </property>
-            <property default-value="ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, Character, Class, Collection, Deprecated, Deque, Double, DoubleStream, EnumSet, Exception, Float, FunctionalInterface, HashMap, HashSet, IllegalArgumentException, IllegalStateException, IndexOutOfBoundsException, IntStream, Integer, LinkedHashMap, LinkedHashSet, LinkedList, List, Long, LongStream, Map, NullPointerException, Object, Optional, OptionalDouble, OptionalInt, OptionalLong, Override, Queue, RuntimeException, SafeVarargs, SecurityException, Set, Short, SortedMap, SortedSet, Stream, String, StringBuffer, StringBuilder, SuppressWarnings, Throwable, TreeMap, TreeSet, UnsupportedOperationException, Void, boolean, byte, char, double, float, int, long, short, var, void"
+        </property>
+        <property default-value="ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, Character, Class, Collection, Deprecated, Deque, Double, DoubleStream, EnumSet, Exception, Float, FunctionalInterface, HashMap, HashSet, IllegalArgumentException, IllegalStateException, IndexOutOfBoundsException, IntStream, Integer, LinkedHashMap, LinkedHashSet, LinkedList, List, Long, LongStream, Map, NullPointerException, Object, Optional, OptionalDouble, OptionalInt, OptionalLong, Override, Queue, RuntimeException, SafeVarargs, SecurityException, Set, Short, SortedMap, SortedSet, Stream, String, StringBuffer, StringBuilder, SuppressWarnings, Throwable, TreeMap, TreeSet, UnsupportedOperationException, Void, boolean, byte, char, double, float, int, long, short, var, void"
                       name="excludedClasses"
                       type="java.lang.String[]">
-               <description>Specify user-configured class names to ignore.</description>
-            </property>
-            <property default-value="" name="excludedPackages" type="java.lang.String[]">
-               <description>Specify user-configured packages to ignore.</description>
-            </property>
-            <property default-value="20" name="max" type="int">
-               <description>Specify the maximum threshold allowed.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="classFanOutComplexity"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Specify user-configured class names to ignore.</description>
+        </property>
+        <property default-value="" name="excludedPackages" type="java.lang.String[]">
+          <description>Specify user-configured packages to ignore.</description>
+        </property>
+        <property default-value="20" name="max" type="int">
+          <description>Specify the maximum threshold allowed.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="classFanOutComplexity"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

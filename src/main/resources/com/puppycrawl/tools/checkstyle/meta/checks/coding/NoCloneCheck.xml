@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheck"
              name="NoClone"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that the clone method is not overridden from the
  Object class.
  &lt;/div&gt;
@@ -115,9 +115,9 @@
  Programming Language Guide First Edition by Joshua Bloch
  pages 45-52.  Give Bloch credit for writing an excellent book.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="avoid.clone.method"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="avoid.clone.method"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnusedCatchParameterShouldBeUnnamedCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnusedCatchParameterShouldBeUnnamedCheck"
              name="UnusedCatchParameterShouldBeUnnamed"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Ensures that catch parameters that are not used are declared as an unnamed variable.
  &lt;/div&gt;
 
@@ -30,9 +30,9 @@
  that is compiled by jdk21 or higher;
  unnamed catch parameters came out as the first preview in Java 21.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="unused.catch.parameter"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="unused.catch.parameter"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

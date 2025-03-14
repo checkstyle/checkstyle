@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck"
              name="SeparatorWrap"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks line wrapping with separators.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="eol"
+      <properties>
+        <property default-value="eol"
                       name="option"
                       type="com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption">
-               <description>Specify policy on how to wrap lines.</description>
-            </property>
-            <property default-value="DOT,COMMA"
+          <description>Specify policy on how to wrap lines.</description>
+        </property>
+        <property default-value="DOT,COMMA"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="line.new"/>
-            <message-key key="line.previous"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="line.new"/>
+        <message-key key="line.previous"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

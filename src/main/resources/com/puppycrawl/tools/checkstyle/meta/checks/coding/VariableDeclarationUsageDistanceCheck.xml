@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck"
              name="VariableDeclarationUsageDistance"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks the distance between declaration of variable and its first usage.
  Note : Variable declaration/initialization statements are not counted while calculating length.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="3" name="allowedDistance" type="int">
-               <description>Specify distance between declaration
+      <properties>
+        <property default-value="3" name="allowedDistance" type="int">
+          <description>Specify distance between declaration
  of variable and its first usage. Values should be greater than 0.</description>
-            </property>
-            <property default-value="true" name="ignoreFinal" type="boolean">
-               <description>Allow to ignore variables with a 'final' modifier.</description>
-            </property>
-            <property default-value=""
+        </property>
+        <property default-value="true" name="ignoreFinal" type="boolean">
+          <description>Allow to ignore variables with a 'final' modifier.</description>
+        </property>
+        <property default-value=""
                       name="ignoreVariablePattern"
                       type="java.util.regex.Pattern">
-               <description>Define RegExp to ignore distance calculation
+          <description>Define RegExp to ignore distance calculation
  for variables listed in this pattern.</description>
-            </property>
-            <property default-value="false" name="validateBetweenScopes" type="boolean">
-               <description>Allow to calculate the distance between
+        </property>
+        <property default-value="false" name="validateBetweenScopes" type="boolean">
+          <description>Allow to calculate the distance between
  declaration of variable and its first usage in the different scopes.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="variable.declaration.usage.distance"/>
-            <message-key key="variable.declaration.usage.distance.extend"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="variable.declaration.usage.distance"/>
+        <message-key key="variable.declaration.usage.distance.extend"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

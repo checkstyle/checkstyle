@@ -39,14 +39,14 @@
     &lt;module name="NoCodeInFile"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /* the violation is on first line of file */
 // public class Example1 {
 // single-line comment is not code
 // }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /* the violation is on first line of file */
@@ -55,7 +55,7 @@
  block comment is not code
  }
 */
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

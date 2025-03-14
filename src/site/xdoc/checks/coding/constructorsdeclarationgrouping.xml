@@ -34,7 +34,7 @@
     &lt;module name="ConstructorsDeclarationGrouping"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example of correct grouping of constructors:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
@@ -67,7 +67,7 @@ public class Example1 {
     void foo() {}
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example of incorrect grouping of constructors:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
@@ -101,7 +101,7 @@ public class Example2 {
 
   Example2(float f) {} // violation 'Constructors should be grouped together'
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

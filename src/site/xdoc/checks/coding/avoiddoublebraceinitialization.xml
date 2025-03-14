@@ -41,7 +41,7 @@
     &lt;module name="AvoidDoubleBraceInitialization"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Which results in the following violations:
         </p>
@@ -69,7 +69,7 @@ class Example1 {
     }
   };
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck"
              name="Regexp"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that a specified pattern exists, exists less than
  a set number of times, or does not exist in the file.
  &lt;/div&gt;
@@ -76,36 +76,36 @@
  XML parser does not act on them, but instead passes the correct
  character to the regexp engine.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="0" name="duplicateLimit" type="int">
-               <description>Control whether to check for duplicates
+      <properties>
+        <property default-value="0" name="duplicateLimit" type="int">
+          <description>Control whether to check for duplicates
  of a required pattern, any negative value means no checking for duplicates,
  any positive value is used as the maximum number of allowed duplicates,
  if the limit is exceeded violations will be logged.</description>
-            </property>
-            <property default-value="100" name="errorLimit" type="int">
-               <description>Specify the maximum number of violations before
+        </property>
+        <property default-value="100" name="errorLimit" type="int">
+          <description>Specify the maximum number of violations before
  the check will abort.</description>
-            </property>
-            <property default-value="^$" name="format" type="java.util.regex.Pattern">
-               <description>Specify the pattern to match against.</description>
-            </property>
-            <property default-value="false" name="ignoreComments" type="boolean">
-               <description>Control whether to ignore matches found within comments.</description>
-            </property>
-            <property default-value="false" name="illegalPattern" type="boolean">
-               <description>Control whether the pattern is required or illegal.</description>
-            </property>
-            <property name="message" type="java.lang.String">
-               <description>Specify message which is used to notify about
+        </property>
+        <property default-value="^$" name="format" type="java.util.regex.Pattern">
+          <description>Specify the pattern to match against.</description>
+        </property>
+        <property default-value="false" name="ignoreComments" type="boolean">
+          <description>Control whether to ignore matches found within comments.</description>
+        </property>
+        <property default-value="false" name="illegalPattern" type="boolean">
+          <description>Control whether the pattern is required or illegal.</description>
+        </property>
+        <property name="message" type="java.lang.String">
+          <description>Specify message which is used to notify about
  violations, if empty then the default (hard-coded) message is used.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="duplicate.regexp"/>
-            <message-key key="illegal.regexp"/>
-            <message-key key="required.regexp"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="duplicate.regexp"/>
+        <message-key key="illegal.regexp"/>
+        <message-key key="required.regexp"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

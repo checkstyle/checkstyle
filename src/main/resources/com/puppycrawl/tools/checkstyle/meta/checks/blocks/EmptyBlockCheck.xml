@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck"
              name="EmptyBlock"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for empty blocks.
  &lt;/div&gt;
 
@@ -16,23 +16,23 @@
  NOTE: This check processes LITERAL_CASE and LITERAL_DEFAULT separately.
  Verification empty block is done for single nearest {@code case} or {@code default}.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="statement"
+      <properties>
+        <property default-value="statement"
                       name="option"
                       type="com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption">
-               <description>Specify the policy on block contents.</description>
-            </property>
-            <property default-value="LITERAL_WHILE,LITERAL_TRY,LITERAL_FINALLY,LITERAL_DO,LITERAL_IF,LITERAL_ELSE,LITERAL_FOR,INSTANCE_INIT,STATIC_INIT,LITERAL_SWITCH,LITERAL_SYNCHRONIZED"
+          <description>Specify the policy on block contents.</description>
+        </property>
+        <property default-value="LITERAL_WHILE,LITERAL_TRY,LITERAL_FINALLY,LITERAL_DO,LITERAL_IF,LITERAL_ELSE,LITERAL_FOR,INSTANCE_INIT,STATIC_INIT,LITERAL_SWITCH,LITERAL_SYNCHRONIZED"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="block.empty"/>
-            <message-key key="block.noStatement"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="block.empty"/>
+        <message-key key="block.noStatement"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

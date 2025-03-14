@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck"
              name="EmptyForIteratorPad"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks the padding of an empty for iterator; that is whether a white
  space is required at an empty for iterator, or such white space is
  forbidden. No check occurs if there is a line wrap at the iterator, as in
@@ -14,17 +14,17 @@
      foo.hasNext();
     )
  &lt;/pre&gt;</description>
-         <properties>
-            <property default-value="nospace"
+      <properties>
+        <property default-value="nospace"
                       name="option"
                       type="com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption">
-               <description>Specify policy on how to pad an empty for iterator.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="ws.followed"/>
-            <message-key key="ws.notFollowed"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Specify policy on how to pad an empty for iterator.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="ws.followed"/>
+        <message-key key="ws.notFollowed"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

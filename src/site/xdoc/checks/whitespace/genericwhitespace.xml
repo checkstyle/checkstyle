@@ -44,7 +44,7 @@
     &lt;module name="GenericWhitespace"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Examples with correct spacing:
         </p>
@@ -57,7 +57,7 @@ class Example1 {
   HashSet&lt;Integer&gt; set;
   record License&lt;T&gt;() {}
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Examples with incorrect spacing:
         </p>
@@ -70,7 +70,7 @@ class Example2 {
   HashSet&lt;Integer &gt; set; // violation, "&gt;" preceded with whitespace
   record License&lt;T&gt; () {} // violation, "&gt;" followed by whitespace
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

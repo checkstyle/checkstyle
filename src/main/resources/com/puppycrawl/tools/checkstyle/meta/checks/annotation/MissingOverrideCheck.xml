@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck"
              name="MissingOverride"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Verifies that the {@code @Override} annotation is present
  when the {@code @inheritDoc} javadoc tag is present.
  &lt;/div&gt;
@@ -36,15 +36,15 @@
  &lt;b&gt;Java 5 Compatibility mode severely limits this check. It is recommended to
  only use it on Java 5 source.&lt;/b&gt;
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="false" name="javaFiveCompatibility" type="boolean">
-               <description>Enable java 5 compatibility mode.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="annotation.missing.override"/>
-            <message-key key="tag.not.valid.on"/>
-         </message-keys>
-      </check>
-   </module>
+      <properties>
+        <property default-value="false" name="javaFiveCompatibility" type="boolean">
+          <description>Enable java 5 compatibility mode.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="annotation.missing.override"/>
+        <message-key key="tag.not.valid.on"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

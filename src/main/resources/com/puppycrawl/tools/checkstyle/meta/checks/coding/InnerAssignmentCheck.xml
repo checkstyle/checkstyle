@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck"
              name="InnerAssignment"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for assignments in subexpressions, such as in
  {@code String s = Integer.toString(i = 2);}.
  &lt;/div&gt;
@@ -40,9 +40,9 @@
  by an extra pair of parentheses. The comparison is {@code != null} and there is no chance that
  intention was to write {@code line == reader.readLine()}.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="assignment.inner.avoid"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="assignment.inner.avoid"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

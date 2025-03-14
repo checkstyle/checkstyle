@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck"
              name="WriteTag"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Requires user defined Javadoc tag to be present in Javadoc comment with defined format.
  To define the format for a tag, set property tagFormat to a regular expression.
  Property tagSeverity is used for severity of events when the tag exists.
  No violation reported in case there is no javadoc.
  &lt;/div&gt;</description>
-         <properties>
-            <property name="tag" type="java.lang.String">
-               <description>Specify the name of tag.</description>
-            </property>
-            <property name="tagFormat" type="java.util.regex.Pattern">
-               <description>Specify the regexp to match tag content.</description>
-            </property>
-            <property default-value="info"
+      <properties>
+        <property name="tag" type="java.lang.String">
+          <description>Specify the name of tag.</description>
+        </property>
+        <property name="tagFormat" type="java.util.regex.Pattern">
+          <description>Specify the regexp to match tag content.</description>
+        </property>
+        <property default-value="info"
                       name="tagSeverity"
                       type="com.puppycrawl.tools.checkstyle.api.SeverityLevel">
-               <description>Specify the severity level when tag is found and printed.</description>
-            </property>
-            <property default-value="INTERFACE_DEF,CLASS_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF"
+          <description>Specify the severity level when tag is found and printed.</description>
+        </property>
+        <property default-value="INTERFACE_DEF,CLASS_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="javadoc.writeTag"/>
-            <message-key key="type.missingTag"/>
-            <message-key key="type.tagFormat"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="javadoc.writeTag"/>
+        <message-key key="type.missingTag"/>
+        <message-key key="type.tagFormat"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

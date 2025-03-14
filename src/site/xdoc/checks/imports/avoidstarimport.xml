@@ -73,7 +73,7 @@
     &lt;module name="AvoidStarImport"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
@@ -83,7 +83,7 @@ import java.io.*; // violation, 'Using the '.*' form of import should be avoided
 import static java.lang.Math.*; // violation, 'form of import should be avoided.'
 import java.util.*; // violation, 'Using the '.*' form of import should be avoided.'
 import java.net.*; // violation, 'Using the '.*' form of import should be avoided.'
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check so that star imports from packages
           <code>java.io and java.net</code> as well as static members from class
@@ -97,7 +97,7 @@ import java.net.*; // violation, 'Using the '.*' form of import should be avoide
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
@@ -107,7 +107,7 @@ import java.io.*;
 import static java.lang.Math.*;
 import java.util.*; // violation, 'Using the '.*' form of import should be avoided.'
 import java.net.*;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-config">
           To configure the check so that star imports
           from all packages are allowed:
@@ -120,7 +120,7 @@ import java.net.*;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">
           Example:
         </p>
@@ -130,7 +130,7 @@ import java.io.*;
 import static java.lang.Math.*; // violation, 'form of import should be avoided.'
 import java.util.*;
 import java.net.*;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-config">
           To configure the check so that starred static member imports
           from all packages are allowed:
@@ -143,7 +143,7 @@ import java.net.*;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">
           Example:
         </p>
@@ -153,7 +153,7 @@ import java.io.*; // violation, 'Using the '.*' form of import should be avoided
 import static java.lang.Math.*;
 import java.util.*; // violation, 'Using the '.*' form of import should be avoided.'
 import java.net.*; // violation, 'Using the '.*' form of import should be avoided.'
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-config">
           To configure the check so that star imports from packages
           <code>java.io and java.net</code> are allowed:
@@ -167,7 +167,7 @@ import java.net.*; // violation, 'Using the '.*' form of import should be avoide
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">
           Example:
         </p>
@@ -177,7 +177,7 @@ import java.io.*;
 import static java.lang.Math.*; // violation, 'form of import should be avoided.'
 import java.util.*;
 import java.net.*;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-config">
           To configure the check so that star imports from packages
           <code>java.io and java.net</code> as well as static members imports
@@ -192,7 +192,7 @@ import java.net.*;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-code">
           Example:
         </p>
@@ -202,7 +202,7 @@ import java.io.*;
 import static java.lang.Math.*;
 import java.util.*; // violation, 'Using the '.*' form of import should be avoided.'
 import java.net.*;
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

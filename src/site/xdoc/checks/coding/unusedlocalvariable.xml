@@ -50,7 +50,7 @@
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
@@ -100,7 +100,7 @@ class Example1 {
     obj.test("Test");
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
            To configure the check to violate variables named with a single underscore
            if they are not used:
@@ -113,7 +113,7 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
@@ -163,7 +163,7 @@ class Example1 {
     obj.test("Test");
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

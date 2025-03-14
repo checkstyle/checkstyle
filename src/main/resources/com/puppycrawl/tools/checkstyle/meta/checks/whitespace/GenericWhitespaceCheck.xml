@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck"
              name="GenericWhitespace"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that the whitespace around the Generic tokens (angle brackets)
  "&amp;lt;" and "&amp;gt;" are correct to the &lt;i&gt;typical&lt;/i&gt; convention.
  The convention is not configurable.
@@ -30,12 +30,12 @@
  &lt;li&gt; should be followed with whitespace in almost all cases,
    except diamond operators and when preceding a method name, constructor, or record header.&lt;/li&gt;
  &lt;/ul&gt;</description>
-         <message-keys>
-            <message-key key="ws.followed"/>
-            <message-key key="ws.illegalFollow"/>
-            <message-key key="ws.notPreceded"/>
-            <message-key key="ws.preceded"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="ws.followed"/>
+        <message-key key="ws.illegalFollow"/>
+        <message-key key="ws.notPreceded"/>
+        <message-key key="ws.preceded"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

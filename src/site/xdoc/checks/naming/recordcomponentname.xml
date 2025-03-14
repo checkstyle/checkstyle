@@ -43,7 +43,7 @@
     &lt;module name="RecordComponentName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
@@ -53,7 +53,7 @@ class Example1 {
 
   record Rec3(double myNumber) {}
 }
-</code></pre></div>
+        </code></pre></div>
         <p>
           An example of how to configure the check for names that are only letters in lowercase:
         </p>
@@ -66,7 +66,7 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
@@ -76,7 +76,7 @@ class Example2 {
 
   record Rec3(double myNumber) {} // violation, Name must match '^[a-z]+$'
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

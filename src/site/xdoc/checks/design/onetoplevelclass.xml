@@ -29,7 +29,7 @@
     &lt;module name="OneTopLevelClass"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p>
           <b>ATTENTION:</b> This Check does not support customization of validated tokens, so do
           not use the &quot;tokens&quot; property.
@@ -45,7 +45,7 @@ public class Example1 { // OK, first top-level class
 class ViolationExample1 { // violation, "has to reside in its own source file."
   // methods
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           An example of code without public top-level type:
         </p>
@@ -57,7 +57,7 @@ class Example2 { // OK, first top-level class
 class ViolationExample2 { // violation, "has to reside in its own source file."
   // methods
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">
           An example of code without violations:
         </p>
@@ -65,7 +65,7 @@ class ViolationExample2 { // violation, "has to reside in its own source file."
 public class Example3 { // OK, only one top-level class
   // methods
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

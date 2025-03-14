@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="">
-<file name="Test.java">
-</file>
+  <file name="Test.java">
+  </file>
 </checkstyle>

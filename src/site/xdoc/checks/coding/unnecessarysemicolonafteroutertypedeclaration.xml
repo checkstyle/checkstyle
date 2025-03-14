@@ -75,7 +75,7 @@
     &lt;module name="UnnecessarySemicolonAfterOuterTypeDeclaration"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
@@ -98,7 +98,7 @@ enum C {
 @interface D {
 
 }; // violation 'Unnecessary semicolon'
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
            To configure the check to detect unnecessary semicolon only after top level class
            definitions:
@@ -111,7 +111,7 @@ enum C {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
@@ -134,7 +134,7 @@ enum U {
 @interface V {
 
 };
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage"

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"
              name="IllegalCatch"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that certain exception types do not appear in a {@code catch} statement.
  &lt;/div&gt;
 
@@ -15,16 +15,16 @@
  multiple exception classes. This unfortunately leads to code that inadvertently
  catches {@code NullPointerException}, {@code OutOfMemoryError}, etc.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="Error, Exception, RuntimeException, Throwable, java.lang.Error, java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable"
+      <properties>
+        <property default-value="Error, Exception, RuntimeException, Throwable, java.lang.Error, java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable"
                       name="illegalClassNames"
                       type="java.lang.String[]">
-               <description>Specify exception class names to reject.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="illegal.catch"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Specify exception class names to reject.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="illegal.catch"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

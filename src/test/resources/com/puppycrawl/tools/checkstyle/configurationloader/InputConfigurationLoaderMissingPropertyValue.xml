@@ -5,5 +5,5 @@
     "https://checkstyle.org/dtds/configuration_1_1.dtd">
 
 <module name="Checker">
-    <property name="tabWidth" value_="4"/>
+  <property name="tabWidth" value_="4"/>
 </module>

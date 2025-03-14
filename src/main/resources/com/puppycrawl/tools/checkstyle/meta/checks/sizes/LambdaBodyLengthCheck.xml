@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.LambdaBodyLengthCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.LambdaBodyLengthCheck"
              name="LambdaBodyLength"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks lambda body length.
  &lt;/div&gt;
 
@@ -14,14 +14,14 @@
  where the lambda is defined. Therefore, long lambda body
  should usually be extracted to method.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="10" name="max" type="int">
-               <description>Specify the maximum number of lines allowed.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="maxLen.lambdaBody"/>
-         </message-keys>
-      </check>
-   </module>
+      <properties>
+        <property default-value="10" name="max" type="int">
+          <description>Specify the maximum number of lines allowed.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="maxLen.lambdaBody"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

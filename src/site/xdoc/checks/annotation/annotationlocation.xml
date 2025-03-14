@@ -146,7 +146,7 @@ public String getNameIfPresent() { ... }
     &lt;module name="AnnotationLocation"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
@@ -165,7 +165,7 @@ class Example1 {
   @Nonnull @Mock DataLoader loader3;
   // violation above, 'Annotation 'Mock' should be alone on line'
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           Use the following configuration to allow multiple annotations on the same line:
         </p>
@@ -180,7 +180,7 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
@@ -198,7 +198,7 @@ class Example2 {
   @Nonnull @Mock DataLoader loader2;
   // ok above as 'allowSamelineMultipleAnnotations' set to true
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-config">
           Use the following configuration to allow only one and only parameterized annotation
           on the same line:
@@ -214,7 +214,7 @@ class Example2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
@@ -234,7 +234,7 @@ class Example3 {
   @Nonnull @Mock DataLoader loader2;
   // violation above, 'Annotation 'Mock' should be alone on line.'
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-config">
           Use the following configuration to only validate annotations on methods to allow one
           single parameterless annotation on the same line:
@@ -251,7 +251,7 @@ class Example3 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
@@ -268,7 +268,7 @@ class Example4 {
   // violation above, 'Annotation 'SuppressWarnings' should be alone on line.'
   @NotNull @Mock DataLoader loader2;
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

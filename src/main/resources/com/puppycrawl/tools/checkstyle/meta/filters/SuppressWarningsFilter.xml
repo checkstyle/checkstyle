@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter"
+  <module>
+    <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter"
               name="SuppressWarningsFilter"
               parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Filter {@code SuppressWarningsFilter} uses annotation
  {@code @SuppressWarnings} to suppress audit events.
  &lt;/div&gt;
@@ -31,6 +31,6 @@
  SuppressWarningsFilter can suppress Checks that have Treewalker or
  Checker as parent module.
  &lt;/p&gt;</description>
-      </filter>
-   </module>
+    </filter>
+  </module>
 </checkstyle-metadata>

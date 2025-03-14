@@ -46,7 +46,7 @@
     &lt;module name="RequireEmptyLineBeforeBlockTagGroup"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           The check will report a violation if there is no blank line before the
           block tag, like in the example below.
@@ -69,7 +69,7 @@ class Example1 {
     return false;
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -161,7 +161,7 @@
     &lt;module name="ParenPad"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
@@ -189,7 +189,7 @@ class Example1 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check to require spaces for the parentheses of
           constructor, method, and super constructor calls:
@@ -204,7 +204,7 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
@@ -239,7 +239,7 @@ class Example2 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p>
           The following cases are not checked:
         </p>

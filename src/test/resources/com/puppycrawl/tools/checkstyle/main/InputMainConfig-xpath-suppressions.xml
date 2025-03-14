@@ -5,10 +5,10 @@
     "https://checkstyle.org/dtds/configuration_1_1.dtd">
 
 <module name="Checker">
-    <property name="severity" value="warning"/>
-    <module name="TreeWalker">
-        <module name="ExplicitInitialization"/>
-        <module name="IllegalThrows"/>
-        <module name="NestedForDepth"/>
-    </module>
+  <property name="severity" value="warning"/>
+  <module name="TreeWalker">
+    <module name="ExplicitInitialization"/>
+    <module name="IllegalThrows"/>
+    <module name="NestedForDepth"/>
+  </module>
 </module>

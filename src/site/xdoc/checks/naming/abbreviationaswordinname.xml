@@ -161,7 +161,7 @@
     &lt;module name="AbbreviationAsWordInName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 extends SuperClass { // OK, camel case
@@ -182,7 +182,7 @@ class Example1 extends SuperClass { // OK, camel case
     GLOBAL_COUNTER++; // OK, only definitions are checked
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p>
           To configure to include static variables and
           methods tagged with <code>@Override</code> annotation.
@@ -197,7 +197,7 @@ class Example1 extends SuperClass { // OK, camel case
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 extends SuperClass { // OK, camel case
@@ -219,7 +219,7 @@ class Example2 extends SuperClass { // OK, camel case
     GLOBAL_COUNTER++; // OK, only definitions are checked
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p>
           To configure to check all variables and identifiers
           (including ones with the static modifier) and enforce
@@ -238,7 +238,7 @@ class Example2 extends SuperClass { // OK, camel case
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
@@ -254,7 +254,7 @@ class Example3 {
   void OAuth2() {} // OK, O abbreviation is allowed
   void OAUth2() {}
 }
-</code></pre></div>
+        </code></pre></div>
         <p>
           To configure to check variables, excluding fields with
           the static modifier, and allow abbreviations up to 2
@@ -272,7 +272,7 @@ class Example3 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 { // OK, ignore checking the class name
@@ -286,7 +286,7 @@ class Example4 { // OK, ignore checking the class name
   final int TOTAL = 5; // OK, final is ignored
   static final int LIMIT = 10; // OK, static final is ignored
 }
-</code></pre></div>
+        </code></pre></div>
         <p>
           To configure to check variables, enforcing no abbreviations
           except for variables that are both static and final.
@@ -304,7 +304,7 @@ class Example4 { // OK, ignore checking the class name
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
@@ -314,7 +314,7 @@ class Example5 {
   static int nextID = 3; // violation 'no more than '1' consecutive capital letters'
   static final int MAX_ALLOWED = 4; // OK, ignored
 }
-</code></pre></div>
+        </code></pre></div>
         <p>
           To configure to check variables, enforcing no abbreviations
           and ignoring static (but non-final) variables only.
@@ -332,7 +332,7 @@ class Example5 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example6 {
@@ -343,7 +343,7 @@ class Example6 {
   // violation below 'no more than '1' consecutive capital letters'
   static final int MAX_ALLOWED = 4;
 }
-</code></pre></div>
+        </code></pre></div>
         <p>
           To configure to check variables, enforce
           no abbreviations (essentially camel case) except for
@@ -359,7 +359,7 @@ class Example6 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example7-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example7 {
@@ -368,7 +368,7 @@ class Example7 {
   static int nextID = 3;
   static final int MAX_ALLOWED = 4; // OK, abbreviation is allowed
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

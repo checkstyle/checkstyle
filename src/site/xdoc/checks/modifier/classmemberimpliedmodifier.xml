@@ -88,7 +88,7 @@ public final class Person {
     &lt;module name="ClassMemberImpliedModifier" /&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Code:
         </p>
@@ -118,7 +118,7 @@ public final class Example1 {
     record InnerRecord2(){}
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

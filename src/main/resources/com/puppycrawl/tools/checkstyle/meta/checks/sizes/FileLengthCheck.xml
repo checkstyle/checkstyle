@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck"
              name="FileLength"
              parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for long source files.
  &lt;/div&gt;
 
@@ -13,17 +13,17 @@
  Therefore, long classes should usually be refactored into several
  individual classes that focus on a specific task.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="" name="fileExtensions" type="java.lang.String[]">
-               <description>Specify the file extensions of the files to process.</description>
-            </property>
-            <property default-value="2000" name="max" type="int">
-               <description>Specify the maximum number of lines allowed.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="maxLen.file"/>
-         </message-keys>
-      </check>
-   </module>
+      <properties>
+        <property default-value="" name="fileExtensions" type="java.lang.String[]">
+          <description>Specify the file extensions of the files to process.</description>
+        </property>
+        <property default-value="2000" name="max" type="int">
+          <description>Specify the maximum number of lines allowed.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="maxLen.file"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

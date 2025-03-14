@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck"
              name="ThrowsCount"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Restricts throws statements to a specified count.
  Methods with "Override" or "java.lang.Override" annotation are skipped
  from validation as current class cannot change signature of these methods.
@@ -32,17 +32,17 @@
  &lt;b&gt;ignorePrivateMethods&lt;/b&gt; - allows to skip private methods as they do
  not cause problems for other classes.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="true" name="ignorePrivateMethods" type="boolean">
-               <description>Allow private methods to be ignored.</description>
-            </property>
-            <property default-value="4" name="max" type="int">
-               <description>Specify maximum allowed number of throws statements.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="throws.count"/>
-         </message-keys>
-      </check>
-   </module>
+      <properties>
+        <property default-value="true" name="ignorePrivateMethods" type="boolean">
+          <description>Allow private methods to be ignored.</description>
+        </property>
+        <property default-value="4" name="max" type="int">
+          <description>Specify maximum allowed number of throws statements.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="throws.count"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

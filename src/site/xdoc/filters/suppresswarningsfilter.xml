@@ -51,7 +51,7 @@
   &lt;/module&gt;
   &lt;module name="SuppressWarningsFilter" /&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Java code:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
@@ -66,7 +66,7 @@ public class Example1 {
   //   ''int' is followed by whitespace'
   //   'must match pattern'
 }
-</code></pre></div>
+        </code></pre></div>
         <p>
           It is possible to specify an ID of checks, so that it can be leveraged by the
           SuppressWarningsFilter to skip validations. The following examples show how to skip
@@ -88,7 +88,7 @@ public class Example1 {
   &lt;/module&gt;
   &lt;module name="SuppressWarningsFilter" /&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Java code:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
@@ -102,7 +102,7 @@ public class Example2 {
     System.out.println("Some info."); // violation 'use SLF4J instead.'
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

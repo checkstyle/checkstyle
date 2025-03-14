@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck"
              name="ImportControl"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Controls what can be imported in each package and file. Useful for ensuring
  that application layering rules are not violated, especially on large projects.
  &lt;/div&gt;
@@ -79,23 +79,23 @@
      "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
      "https://checkstyle.org/dtds/import_control_1_4.dtd"&amp;gt;
  &lt;/pre&gt;</description>
-         <properties>
-            <property name="file" type="java.net.URI">
-               <description>Specify the location of the file containing the
+      <properties>
+        <property name="file" type="java.net.URI">
+          <description>Specify the location of the file containing the
  import control configuration. It can be a regular file, URL or resource path.
  It will try loading the path as a URL first, then as a file, and finally as a resource.</description>
-            </property>
-            <property default-value=".*" name="path" type="java.util.regex.Pattern">
-               <description>Specify the regular expression of file paths to which
+        </property>
+        <property default-value=".*" name="path" type="java.util.regex.Pattern">
+          <description>Specify the regular expression of file paths to which
  this check should apply. Files that don't match the pattern will not be checked.
  The pattern will be matched against the full absolute file path.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="import.control.disallowed"/>
-            <message-key key="import.control.missing.file"/>
-            <message-key key="import.control.unknown.pkg"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="import.control.disallowed"/>
+        <message-key key="import.control.missing.file"/>
+        <message-key key="import.control.unknown.pkg"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

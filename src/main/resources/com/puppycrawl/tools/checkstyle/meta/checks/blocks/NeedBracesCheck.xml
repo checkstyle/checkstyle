@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"
              name="NeedBraces"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for braces around code blocks.
  &lt;/div&gt;
 
  &lt;p&gt;
  Attention: The break in case blocks is not counted to allow compact view.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="false" name="allowEmptyLoopBody" type="boolean">
-               <description>Allow loops with empty bodies.</description>
-            </property>
-            <property default-value="false"
+      <properties>
+        <property default-value="false" name="allowEmptyLoopBody" type="boolean">
+          <description>Allow loops with empty bodies.</description>
+        </property>
+        <property default-value="false"
                       name="allowSingleLineStatement"
                       type="boolean">
-               <description>Allow single-line statements without braces.</description>
-            </property>
-            <property default-value="LITERAL_DO,LITERAL_ELSE,LITERAL_FOR,LITERAL_IF,LITERAL_WHILE"
+          <description>Allow single-line statements without braces.</description>
+        </property>
+        <property default-value="LITERAL_DO,LITERAL_ELSE,LITERAL_FOR,LITERAL_IF,LITERAL_WHILE"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="needBraces"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="needBraces"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

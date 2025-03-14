@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck"
              name="SingleSpaceSeparator"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that non-whitespace characters are separated by no more than one
  whitespace. Separating characters by tabs or multiple spaces will be
  reported. Currently, the check doesn't permit horizontal alignment. To inspect
@@ -32,15 +32,15 @@
  public long toNanos(long d)  { return d;             } &amp;#47;&amp;#47; 2 violations
  public long toMicros(long d) { return d / (C1 / C0); }
  &lt;/pre&gt;</description>
-         <properties>
-            <property default-value="false" name="validateComments" type="boolean">
-               <description>Control whether to validate whitespaces
+      <properties>
+        <property default-value="false" name="validateComments" type="boolean">
+          <description>Control whether to validate whitespaces
  surrounding comments.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="single.space.separator"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="single.space.separator"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

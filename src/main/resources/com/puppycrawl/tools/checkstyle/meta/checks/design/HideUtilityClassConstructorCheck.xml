@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck"
              name="HideUtilityClassConstructor"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Makes sure that utility classes (classes that contain only static methods or fields in their API)
  do not have a public constructor.
  &lt;/div&gt;
@@ -32,20 +32,20 @@
    }
  }
  &lt;/pre&gt;</description>
-         <properties>
-            <property default-value="" name="ignoreAnnotatedBy" type="java.lang.String[]">
-               <description>Ignore classes annotated
+      <properties>
+        <property default-value="" name="ignoreAnnotatedBy" type="java.lang.String[]">
+          <description>Ignore classes annotated
  with the specified annotation(s). Annotation names provided in this property
  must exactly match the annotation names on the classes. If the target class has annotations
  specified with their fully qualified names (including package), the annotations in this
  property should also be specified with their fully qualified names. Similarly, if the target
  class has annotations specified with their simple names, this property should contain the
  annotations with the same simple names.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="hide.utility.class"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="hide.utility.class"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

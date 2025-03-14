@@ -46,7 +46,7 @@
     &lt;module name="UnusedLambdaParameterShouldBeUnnamed"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
@@ -66,7 +66,7 @@ class Example1 {
     BiFunction&lt;Integer, Integer, Integer&gt; bf1 = (x, y) -&gt; x + this.x;
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

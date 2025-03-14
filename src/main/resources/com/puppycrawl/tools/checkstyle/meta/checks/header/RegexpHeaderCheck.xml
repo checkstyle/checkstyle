@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck"
              name="RegexpHeader"
              parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks the header of a source file against a header that contains a
  &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html"&gt;
  pattern&lt;/a&gt; for each line of the source header.
  &lt;/div&gt;</description>
-         <properties>
-            <property name="charset" type="java.lang.String">
-               <description>Specify the character encoding to use when reading the headerFile.</description>
-            </property>
-            <property default-value="" name="fileExtensions" type="java.lang.String[]">
-               <description>Specify the file extensions of the files to process.</description>
-            </property>
-            <property name="header" type="java.lang.String">
-               <description>Define the required header specified inline.
+      <properties>
+        <property name="charset" type="java.lang.String">
+          <description>Specify the character encoding to use when reading the headerFile.</description>
+        </property>
+        <property default-value="" name="fileExtensions" type="java.lang.String[]">
+          <description>Specify the file extensions of the files to process.</description>
+        </property>
+        <property name="header" type="java.lang.String">
+          <description>Define the required header specified inline.
  Individual header lines must be separated by the string {@code "\n"}
  (even on platforms with a different line separator).
  For header lines containing {@code "\n\n"} checkstyle will
  forcefully expect an empty line to exist. See examples below.
  Regular expressions must not span multiple lines.</description>
-            </property>
-            <property name="headerFile" type="java.net.URI">
-               <description>Specify the name of the file containing the required header.</description>
-            </property>
-            <property default-value="" name="multiLines" type="int[]">
-               <description>Specify the line numbers to repeat (zero or more times).</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="header.mismatch"/>
-            <message-key key="header.missing"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+        <property name="headerFile" type="java.net.URI">
+          <description>Specify the name of the file containing the required header.</description>
+        </property>
+        <property default-value="" name="multiLines" type="int[]">
+          <description>Specify the line numbers to repeat (zero or more times).</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="header.mismatch"/>
+        <message-key key="header.missing"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

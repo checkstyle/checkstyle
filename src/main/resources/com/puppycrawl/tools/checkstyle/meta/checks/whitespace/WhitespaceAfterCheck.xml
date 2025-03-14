@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"
              name="WhitespaceAfter"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that a token is followed by whitespace, with the exception that it
  does not check for whitespace after the semicolon of an empty for iterator.
  Use Check
  &lt;a href="https://checkstyle.org/checks/whitespace/emptyforiteratorpad.html#EmptyForIteratorPad"&gt;
  EmptyForIteratorPad&lt;/a&gt; to validate empty for iterators.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="COMMA,SEMI,TYPECAST,LITERAL_IF,LITERAL_ELSE,LITERAL_WHILE,LITERAL_DO,LITERAL_FOR,LITERAL_FINALLY,LITERAL_RETURN,LITERAL_YIELD,LITERAL_CATCH,DO_WHILE,ELLIPSIS,LITERAL_SWITCH,LITERAL_SYNCHRONIZED,LITERAL_TRY,LITERAL_CASE,LAMBDA,LITERAL_WHEN"
+      <properties>
+        <property default-value="COMMA,SEMI,TYPECAST,LITERAL_IF,LITERAL_ELSE,LITERAL_WHILE,LITERAL_DO,LITERAL_FOR,LITERAL_FINALLY,LITERAL_RETURN,LITERAL_YIELD,LITERAL_CATCH,DO_WHILE,ELLIPSIS,LITERAL_SWITCH,LITERAL_SYNCHRONIZED,LITERAL_TRY,LITERAL_CASE,LAMBDA,LITERAL_WHEN"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="ws.notFollowed"/>
-            <message-key key="ws.typeCast"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="ws.notFollowed"/>
+        <message-key key="ws.typeCast"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

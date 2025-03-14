@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"
              name="JavadocMethod"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks the Javadoc of a method or constructor.
  &lt;/div&gt;
 
@@ -67,45 +67,45 @@
                            JavadocTag[] aTags,
                            int aLineNo)
  &lt;/pre&gt;</description>
-         <properties>
-            <property default-value="public, protected, package, private"
+      <properties>
+        <property default-value="public, protected, package, private"
                       name="accessModifiers"
                       type="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]">
-               <description>Specify the access modifiers where Javadoc comments are
+          <description>Specify the access modifiers where Javadoc comments are
  checked.</description>
-            </property>
-            <property default-value="false" name="allowMissingParamTags" type="boolean">
-               <description>Control whether to ignore violations
+        </property>
+        <property default-value="false" name="allowMissingParamTags" type="boolean">
+          <description>Control whether to ignore violations
  when a method has parameters but does not have matching {@code param} tags in the javadoc.</description>
-            </property>
-            <property default-value="false" name="allowMissingReturnTag" type="boolean">
-               <description>Control whether to ignore violations
+        </property>
+        <property default-value="false" name="allowMissingReturnTag" type="boolean">
+          <description>Control whether to ignore violations
  when a method returns non-void type and does not have a {@code return} tag in the javadoc.</description>
-            </property>
-            <property default-value="Override"
+        </property>
+        <property default-value="Override"
                       name="allowedAnnotations"
                       type="java.lang.String[]">
-               <description>Specify annotations that allow missed documentation.</description>
-            </property>
-            <property default-value="false" name="validateThrows" type="boolean">
-               <description>Control whether to validate {@code throws} tags.</description>
-            </property>
-            <property default-value="METHOD_DEF,CTOR_DEF,ANNOTATION_FIELD_DEF,COMPACT_CTOR_DEF"
+          <description>Specify annotations that allow missed documentation.</description>
+        </property>
+        <property default-value="false" name="validateThrows" type="boolean">
+          <description>Control whether to validate {@code throws} tags.</description>
+        </property>
+        <property default-value="METHOD_DEF,CTOR_DEF,ANNOTATION_FIELD_DEF,COMPACT_CTOR_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="javadoc.classInfo"/>
-            <message-key key="javadoc.duplicateTag"/>
-            <message-key key="javadoc.expectedTag"/>
-            <message-key key="javadoc.invalidInheritDoc"/>
-            <message-key key="javadoc.return.expected"/>
-            <message-key key="javadoc.unusedTag"/>
-            <message-key key="javadoc.unusedTagGeneral"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="javadoc.classInfo"/>
+        <message-key key="javadoc.duplicateTag"/>
+        <message-key key="javadoc.expectedTag"/>
+        <message-key key="javadoc.invalidInheritDoc"/>
+        <message-key key="javadoc.return.expected"/>
+        <message-key key="javadoc.unusedTag"/>
+        <message-key key="javadoc.unusedTagGeneral"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

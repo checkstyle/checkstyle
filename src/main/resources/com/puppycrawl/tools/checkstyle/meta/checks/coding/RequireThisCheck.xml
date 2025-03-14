@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck"
              name="RequireThis"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that references to instance variables and methods of the present
  object are explicitly of the form "this.varName" or "this.methodName(args)"
  and that those references don't rely on the default behavior when "this." is absent.
@@ -32,22 +32,22 @@
  Non-static methods invoked on either this or a variable name seem to be
  OK, likewise.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="true" name="checkFields" type="boolean">
-               <description>Control whether to check references to fields.</description>
-            </property>
-            <property default-value="true" name="checkMethods" type="boolean">
-               <description>Control whether to check references to methods.</description>
-            </property>
-            <property default-value="true" name="validateOnlyOverlapping" type="boolean">
-               <description>Control whether to check only
+      <properties>
+        <property default-value="true" name="checkFields" type="boolean">
+          <description>Control whether to check references to fields.</description>
+        </property>
+        <property default-value="true" name="checkMethods" type="boolean">
+          <description>Control whether to check references to methods.</description>
+        </property>
+        <property default-value="true" name="validateOnlyOverlapping" type="boolean">
+          <description>Control whether to check only
  overlapping by variables or arguments.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="require.this.method"/>
-            <message-key key="require.this.variable"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="require.this.method"/>
+        <message-key key="require.this.variable"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

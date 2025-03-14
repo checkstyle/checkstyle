@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck"
              name="MissingCtor"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that classes (except abstract ones) define a constructor and don't rely
  on the default one.
  &lt;/div&gt;</description>
-         <message-keys>
-            <message-key key="missing.ctor"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="missing.ctor"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

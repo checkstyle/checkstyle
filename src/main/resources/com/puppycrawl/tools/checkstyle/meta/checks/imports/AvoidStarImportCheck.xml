@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"
              name="AvoidStarImport"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that there are no import statements that use the {@code *} notation.
  &lt;/div&gt;
 
@@ -19,25 +19,25 @@
  Note that property {@code excludes} is not recursive, subpackages of excluded
  packages are not automatically excluded.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="false" name="allowClassImports" type="boolean">
-               <description>Control whether to allow starred class
+      <properties>
+        <property default-value="false" name="allowClassImports" type="boolean">
+          <description>Control whether to allow starred class
  imports like {@code import java.util.*;}.</description>
-            </property>
-            <property default-value="false"
+        </property>
+        <property default-value="false"
                       name="allowStaticMemberImports"
                       type="boolean">
-               <description>Control whether to allow starred
+          <description>Control whether to allow starred
  static member imports like {@code import static org.junit.Assert.*;}.</description>
-            </property>
-            <property default-value="" name="excludes" type="java.lang.String[]">
-               <description>Specify packages where starred class imports are
+        </property>
+        <property default-value="" name="excludes" type="java.lang.String[]">
+          <description>Specify packages where starred class imports are
  allowed and classes where starred static member imports are allowed.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="import.avoidStar"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="import.avoidStar"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck"
              name="InnerTypeLast"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks nested (internal) classes/interfaces are declared at the bottom of the
  primary (top-level) class after all init and static init blocks,
  method, constructor and field declarations.
  &lt;/div&gt;</description>
-         <message-keys>
-            <message-key key="arrangement.members.before.inner"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="arrangement.members.before.inner"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

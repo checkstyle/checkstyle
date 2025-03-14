@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck"
              name="CommentsIndentation"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Controls the indentation between comments and surrounding code.
  Comments are indented at the same level as the surrounding code.
  Detailed info about such convention can be found
  &lt;a href="https://checkstyle.org/styleguides/google-java-style-20220203/javaguide.html#s4.8.6.1-block-comment-style"&gt;
  here&lt;/a&gt;
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="SINGLE_LINE_COMMENT,BLOCK_COMMENT_BEGIN"
+      <properties>
+        <property default-value="SINGLE_LINE_COMMENT,BLOCK_COMMENT_BEGIN"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="comments.indentation.block"/>
-            <message-key key="comments.indentation.single"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="comments.indentation.block"/>
+        <message-key key="comments.indentation.single"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

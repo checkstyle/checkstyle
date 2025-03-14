@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"
              name="UnusedImports"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for unused import statements. An import statement
  is considered unused if:
  &lt;/div&gt;
@@ -49,14 +49,14 @@
  due to &lt;a href="https://checkstyle.org/writingchecks.html#Limitations"&gt;limitation.&lt;/a&gt;)
  &lt;/li&gt;
  &lt;/ul&gt;</description>
-         <properties>
-            <property default-value="true" name="processJavadoc" type="boolean">
-               <description>Control whether to process Javadoc comments.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="import.unused"/>
-         </message-keys>
-      </check>
-   </module>
+      <properties>
+        <property default-value="true" name="processJavadoc" type="boolean">
+          <description>Control whether to process Javadoc comments.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="import.unused"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck"
              name="TypecastParenPad"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks the policy on the padding of parentheses for typecasts. That is, whether a space
  is required after a left parenthesis and before a right parenthesis, or such
  spaces are forbidden.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="nospace"
+      <properties>
+        <property default-value="nospace"
                       name="option"
                       type="com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption">
-               <description>Specify policy on how to pad parentheses.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="ws.followed"/>
-            <message-key key="ws.notFollowed"/>
-            <message-key key="ws.notPreceded"/>
-            <message-key key="ws.preceded"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Specify policy on how to pad parentheses.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="ws.followed"/>
+        <message-key key="ws.notFollowed"/>
+        <message-key key="ws.notPreceded"/>
+        <message-key key="ws.preceded"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

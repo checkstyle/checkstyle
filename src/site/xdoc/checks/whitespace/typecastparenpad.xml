@@ -47,7 +47,7 @@
     &lt;module name="TypecastParenPad"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example:
         </p>
@@ -65,7 +65,7 @@ class Example1 {
 
   float f4 = ( float) d; // violation 'followed by whitespace'
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example2-config">
           To configure the check to require spaces:
@@ -78,7 +78,7 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Example:
         </p>
@@ -96,7 +96,7 @@ class Example2 {
 
   int y = ( int) d2; // violation 'not preceded with whitespace'
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

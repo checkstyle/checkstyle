@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck"
              name="AbstractClassName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Ensures that the names of abstract classes conforming to some pattern
  and check that {@code abstract} modifier exists.
  &lt;/div&gt;
@@ -14,26 +14,26 @@
  interfaces. For this reason, it should be made obvious that a given class
  is abstract by prefacing the class name with 'Abstract'.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="^Abstract.+$"
+      <properties>
+        <property default-value="^Abstract.+$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Specify valid identifiers.</description>
-            </property>
-            <property default-value="false" name="ignoreModifier" type="boolean">
-               <description>Control whether to ignore checking for the
+          <description>Specify valid identifiers.</description>
+        </property>
+        <property default-value="false" name="ignoreModifier" type="boolean">
+          <description>Control whether to ignore checking for the
  {@code abstract} modifier on classes that match the name.</description>
-            </property>
-            <property default-value="false" name="ignoreName" type="boolean">
-               <description>Control whether to ignore checking the name.
+        </property>
+        <property default-value="false" name="ignoreName" type="boolean">
+          <description>Control whether to ignore checking the name.
  Realistically only useful if using the check to identify that match name and
  do not have the {@code abstract} modifier.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="illegal.abstract.class.name"/>
-            <message-key key="no.abstract.class.modifier"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="illegal.abstract.class.name"/>
+        <message-key key="no.abstract.class.modifier"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

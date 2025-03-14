@@ -3,5 +3,5 @@
         "-//Checkstyle//DTD SuppressionFilter Configuration 1.1//EN"
         "https://checkstyle.org/dtds/suppressions_1_1.dtd">
 <suppressions>
-    <suppress files="file0" checks="check0" id="someId"/>
+  <suppress files="file0" checks="check0" id="someId"/>
 </suppressions>

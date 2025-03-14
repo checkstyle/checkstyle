@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheck"
              name="NoCodeInFile"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks whether file contains code.
  Java compiler is not raising errors on files with no code or all commented out.
  Files which are considered to have no code:
@@ -21,9 +21,9 @@
  File with a multi line comment(s).
  &lt;/li&gt;
  &lt;/ul&gt;</description>
-         <message-keys>
-            <message-key key="nocode.in.file"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="nocode.in.file"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

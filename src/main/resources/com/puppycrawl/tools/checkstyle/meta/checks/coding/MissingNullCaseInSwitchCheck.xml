@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MissingNullCaseInSwitchCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MissingNullCaseInSwitchCheck"
              name="MissingNullCaseInSwitch"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that a given switch statement or expression that use a reference type in its selector
  expression has a {@code null} case label.
  &lt;/div&gt;
@@ -36,9 +36,9 @@
  &lt;b&gt;Attention&lt;/b&gt;: this Check should be activated only on source code
  that is compiled by jdk21 or above.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="missing.switch.nullcase"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="missing.switch.nullcase"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

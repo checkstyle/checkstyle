@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck"
              name="ReturnCount"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Restricts the number of return statements in methods, constructors and lambda expressions.
  Ignores specified methods ({@code equals} by default).
  &lt;/div&gt;
@@ -27,31 +27,31 @@
  Rationale: Too many return points can mean that code is
  attempting to do too much or may be difficult to understand.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="^equals$"
+      <properties>
+        <property default-value="^equals$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Specify method names to ignore.</description>
-            </property>
-            <property default-value="2" name="max" type="int">
-               <description>Specify maximum allowed number of return statements
+          <description>Specify method names to ignore.</description>
+        </property>
+        <property default-value="2" name="max" type="int">
+          <description>Specify maximum allowed number of return statements
  in non-void methods/lambdas.</description>
-            </property>
-            <property default-value="1" name="maxForVoid" type="int">
-               <description>Specify maximum allowed number of return statements
+        </property>
+        <property default-value="1" name="maxForVoid" type="int">
+          <description>Specify maximum allowed number of return statements
  in void methods/constructors/lambdas.</description>
-            </property>
-            <property default-value="CTOR_DEF,METHOD_DEF,LAMBDA"
+        </property>
+        <property default-value="CTOR_DEF,METHOD_DEF,LAMBDA"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="return.count"/>
-            <message-key key="return.countVoid"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="return.count"/>
+        <message-key key="return.countVoid"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

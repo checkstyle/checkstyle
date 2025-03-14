@@ -3,7 +3,7 @@
         "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
         "https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd">
 <suppressions>
-    <suppress-xpath
+  <suppress-xpath
             files="InputSuppressionXpathFilter5.java"
             checks="IllegalTokenTextCheck"
             query="/descendant-or-self::*"/>

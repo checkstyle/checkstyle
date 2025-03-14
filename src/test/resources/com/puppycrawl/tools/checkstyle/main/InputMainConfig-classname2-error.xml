@@ -5,10 +5,10 @@
         "https://checkstyle.org/dtds/configuration_1_1.dtd">
 
 <module name="Checker">
-    <module name="TreeWalker">
-        <module name="TypeName">
-            <property name="format" value="^[a-z0-9]*$"/>
-            <property name="severity" value="error"/>
-        </module>
+  <module name="TreeWalker">
+    <module name="TypeName">
+      <property name="format" value="^[a-z0-9]*$"/>
+      <property name="severity" value="error"/>
     </module>
+  </module>
 </module>

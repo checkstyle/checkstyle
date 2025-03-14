@@ -5,8 +5,8 @@
         "https://checkstyle.org/dtds/configuration_1_1.dtd">
 
 <module name="Checker">
-    <module name="FileLength">
-        <property name="max" value="170"/>
-        <property name="severity" value="warning"/>
-    </module>
+  <module name="FileLength">
+    <property name="max" value="170"/>
+    <property name="severity" value="warning"/>
+  </module>
 </module>

@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationOnSameLineCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationOnSameLineCheck"
              name="AnnotationOnSameLine"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that annotations are located on the same line with their targets.
  Verifying with this check is not good practice, but it is using by some style guides.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,METHOD_DEF,CTOR_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF"
+      <properties>
+        <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,METHOD_DEF,CTOR_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="annotation.same.line"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="annotation.same.line"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

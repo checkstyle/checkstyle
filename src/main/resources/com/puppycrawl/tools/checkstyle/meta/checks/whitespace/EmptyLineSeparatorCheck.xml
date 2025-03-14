@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck"
              name="EmptyLineSeparator"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for empty line separators before package, all import declarations,
  fields, constructors, methods, nested classes,
  static initializers and instance initializers.
@@ -22,34 +22,34 @@
  is required at its end (for example for CLASS_DEF it is after '}').
  Also, trailing comments are skipped.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="true" name="allowMultipleEmptyLines" type="boolean">
-               <description>Allow multiple empty lines between class members.</description>
-            </property>
-            <property default-value="true"
+      <properties>
+        <property default-value="true" name="allowMultipleEmptyLines" type="boolean">
+          <description>Allow multiple empty lines between class members.</description>
+        </property>
+        <property default-value="true"
                       name="allowMultipleEmptyLinesInsideClassMembers"
                       type="boolean">
-               <description>Allow multiple
+          <description>Allow multiple
  empty lines inside class members.</description>
-            </property>
-            <property default-value="false"
+        </property>
+        <property default-value="false"
                       name="allowNoEmptyLineBetweenFields"
                       type="boolean">
-               <description>Allow no empty line between fields.</description>
-            </property>
-            <property default-value="PACKAGE_DEF,IMPORT,STATIC_IMPORT,CLASS_DEF,INTERFACE_DEF,ENUM_DEF,STATIC_INIT,INSTANCE_INIT,METHOD_DEF,CTOR_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF"
+          <description>Allow no empty line between fields.</description>
+        </property>
+        <property default-value="PACKAGE_DEF,IMPORT,STATIC_IMPORT,CLASS_DEF,INTERFACE_DEF,ENUM_DEF,STATIC_INIT,INSTANCE_INIT,METHOD_DEF,CTOR_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="empty.line.separator"/>
-            <message-key key="empty.line.separator.multiple.lines"/>
-            <message-key key="empty.line.separator.multiple.lines.after"/>
-            <message-key key="empty.line.separator.multiple.lines.inside"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="empty.line.separator"/>
+        <message-key key="empty.line.separator.multiple.lines"/>
+        <message-key key="empty.line.separator.multiple.lines.after"/>
+        <message-key key="empty.line.separator.multiple.lines.inside"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

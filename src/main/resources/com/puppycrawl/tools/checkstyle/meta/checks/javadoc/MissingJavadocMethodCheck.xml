@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"
              name="MissingJavadocMethod"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for missing Javadoc comments for a method or constructor. The scope to verify is
  specified using the {@code Scope} class and defaults to {@code Scope.PUBLIC}. To verify
  another scope, set property scope to a different
@@ -38,46 +38,46 @@
      return false;
  }
  &lt;/pre&gt;</description>
-         <properties>
-            <property default-value="false"
+      <properties>
+        <property default-value="false"
                       name="allowMissingPropertyJavadoc"
                       type="boolean">
-               <description>Control whether to allow missing Javadoc on
+          <description>Control whether to allow missing Javadoc on
  accessor methods for properties (setters and getters).</description>
-            </property>
-            <property default-value="Override"
+        </property>
+        <property default-value="Override"
                       name="allowedAnnotations"
                       type="java.lang.String[]">
-               <description>Configure annotations that allow missed
+          <description>Configure annotations that allow missed
  documentation.</description>
-            </property>
-            <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
-               <description>Specify the visibility scope where Javadoc comments are
+        </property>
+        <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
+          <description>Specify the visibility scope where Javadoc comments are
  not checked.</description>
-            </property>
-            <property name="ignoreMethodNamesRegex" type="java.util.regex.Pattern">
-               <description>Ignore method whose names are matching specified
+        </property>
+        <property name="ignoreMethodNamesRegex" type="java.util.regex.Pattern">
+          <description>Ignore method whose names are matching specified
  regex.</description>
-            </property>
-            <property default-value="-1" name="minLineCount" type="int">
-               <description>Control the minimal amount of lines in method to allow no
+        </property>
+        <property default-value="-1" name="minLineCount" type="int">
+          <description>Control the minimal amount of lines in method to allow no
  documentation.</description>
-            </property>
-            <property default-value="public"
+        </property>
+        <property default-value="public"
                       name="scope"
                       type="com.puppycrawl.tools.checkstyle.api.Scope">
-               <description>Specify the visibility scope where Javadoc comments are checked.</description>
-            </property>
-            <property default-value="METHOD_DEF,CTOR_DEF,ANNOTATION_FIELD_DEF,COMPACT_CTOR_DEF"
+          <description>Specify the visibility scope where Javadoc comments are checked.</description>
+        </property>
+        <property default-value="METHOD_DEF,CTOR_DEF,ANNOTATION_FIELD_DEF,COMPACT_CTOR_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="javadoc.missing"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="javadoc.missing"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

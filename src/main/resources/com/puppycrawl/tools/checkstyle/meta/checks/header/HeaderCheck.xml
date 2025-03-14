@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
              name="Header"
              parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that a source file begins with a specified header.
  Property {@code headerFile} specifies a file that contains the required header.
  Alternatively, the header specification can be set directly in the
@@ -15,30 +15,30 @@
  In default configuration, if header is not specified, the default value
  of header is set to {@code null} and the check does not rise any violations.
  &lt;/p&gt;</description>
-         <properties>
-            <property name="charset" type="java.lang.String">
-               <description>Specify the character encoding to use when reading the headerFile.</description>
-            </property>
-            <property default-value="" name="fileExtensions" type="java.lang.String[]">
-               <description>Specify the file extensions of the files to process.</description>
-            </property>
-            <property name="header" type="java.lang.String">
-               <description>Specify the required header specified inline.
+      <properties>
+        <property name="charset" type="java.lang.String">
+          <description>Specify the character encoding to use when reading the headerFile.</description>
+        </property>
+        <property default-value="" name="fileExtensions" type="java.lang.String[]">
+          <description>Specify the file extensions of the files to process.</description>
+        </property>
+        <property name="header" type="java.lang.String">
+          <description>Specify the required header specified inline.
  Individual header lines must be separated by the string {@code "\n"}
  (even on platforms with a different line separator).</description>
-            </property>
-            <property name="headerFile" type="java.net.URI">
-               <description>Specify the name of the file containing the required header.</description>
-            </property>
-            <property default-value="" name="ignoreLines" type="int[]">
-               <description>Specifies the line
+        </property>
+        <property name="headerFile" type="java.net.URI">
+          <description>Specify the name of the file containing the required header.</description>
+        </property>
+        <property default-value="" name="ignoreLines" type="int[]">
+          <description>Specifies the line
            numbers to ignore when matching lines in a content of headerFile.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="header.mismatch"/>
-            <message-key key="header.missing"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="header.mismatch"/>
+        <message-key key="header.missing"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

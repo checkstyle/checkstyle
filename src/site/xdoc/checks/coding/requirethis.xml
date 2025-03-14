@@ -91,7 +91,7 @@
     &lt;module name="RequireThis"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
@@ -112,7 +112,7 @@ class Example1 {
     field3 = field3;
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p>
           Note that method call foo(5) does not raise a violation
           because methods cannot be overlapped in java.
@@ -128,7 +128,7 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
@@ -149,7 +149,7 @@ class Example4 {
     field3 = field3;
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check demand fields only to have 'this.'
         </p>
@@ -162,7 +162,7 @@ class Example4 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
@@ -183,7 +183,7 @@ class Example2 {
     field3 = field3;
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-config">
             To configure the check demand methods only to have 'this.'
         </p>
@@ -196,7 +196,7 @@ class Example2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
@@ -217,7 +217,7 @@ class Example3 {
     field3 = field3;
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p>
           Please, be aware of the following logic, which is implemented in the check:
@@ -240,7 +240,7 @@ class Example5 {
     field2 *= field1;
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-code">
           2) If method parameter is returned from the method, the check will not raise violation for
              returned variable/parameter, for example:
@@ -254,7 +254,7 @@ class Example6 {
     return prefix;
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

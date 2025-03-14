@@ -4,5 +4,5 @@
     "com/puppycrawl/tools/checkstyle/suppressions_1_1.dtd">
 
 <suppressions>
-    <suppress checks="ConstantNameCheck" files="InputSuppressionFilter.*\.java"/>
+  <suppress checks="ConstantNameCheck" files="InputSuppressionFilter.*\.java"/>
 </suppressions>

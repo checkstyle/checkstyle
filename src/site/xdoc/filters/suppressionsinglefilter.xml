@@ -123,7 +123,7 @@
     &lt;property name="message" value="Missing a Javadoc comment"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -133,7 +133,7 @@ public class Example1 {
     // filtered violation ''100' is a magic number'
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           Suppress check by <a href="https://checkstyle.org/config.html#Id">module id</a>
           when config have two instances on the same check:
@@ -148,7 +148,7 @@ public class Example1 {
     &lt;property name="checks" value="EqualsAvoidNull, JavadocMethod"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -159,7 +159,7 @@ public class Example2 {
     assert str1 == str2 ;
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-config">
           Suppress all checks for hidden files and folders:
         </p>
@@ -173,7 +173,7 @@ public class Example2 {
     &lt;property name="checks" value="RegexpSinglelineCheck"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -193,7 +193,7 @@ public class Example3 {
   }
 
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-config">
           Suppress all checks for Maven-generated code:
         </p>
@@ -205,7 +205,7 @@ public class Example3 {
     &lt;property name="checks" value="NoWhitespaceAfter"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -220,7 +220,7 @@ public class Example4 {
   }
 
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-config">
           Suppress all checks for archives, classes and other binary files:
         </p>
@@ -232,7 +232,7 @@ public class Example4 {
     &lt;property name="checks" value="MethodName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -245,7 +245,7 @@ public class Example5 {
   public void Another_Method() {
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-config">
           Suppress all checks for image files:
         </p>
@@ -257,7 +257,7 @@ public class Example5 {
     &lt;property name="checks" value="ConstantName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-code">
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -267,7 +267,7 @@ public class Example6 {
   private static final int myConstant = 42;
 
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example7-config">
           Suppress all checks for non-java files:
         </p>
@@ -279,7 +279,7 @@ public class Example6 {
     &lt;property name="checks" value="MemberName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example7-code">
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -295,7 +295,7 @@ public class Example7 {
   public void printHello() {
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example8-config">
           Suppress all checks in generated sources:
         </p>
@@ -311,7 +311,7 @@ public class Example7 {
     &lt;property name="checks" value="ParameterNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example8-code">
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -322,7 +322,7 @@ public class Example8 {
     int param5
   ) {}
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example9-config">
           Suppress FileLength check on integration tests in certain folder:
         </p>
@@ -338,14 +338,14 @@ public class Example8 {
     &lt;property name="checks" value="FileLength"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example9-code">
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example9 {
   //filtered violation 'File length is 19 lines (max allowed is 1)'
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example10-config">
           Suppress naming violations on variable named 'log' in all files:
         </p>
@@ -359,7 +359,7 @@ public class Example9 {
     &lt;property name="message" value="Name 'log' must match pattern"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example10-code">
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -369,7 +369,7 @@ public class Example10 {
   private String log = "Some log message";
 
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

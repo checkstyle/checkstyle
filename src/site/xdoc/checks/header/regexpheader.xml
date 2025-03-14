@@ -74,13 +74,13 @@
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpHeader"/&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example1:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.header.header;
 // OK, as by default there is not specific header defined to validate it presence
 public class Example1 { }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example2-config">
           To configure the check to use header file <code>&quot;java.header&quot;</code> and
@@ -93,7 +93,7 @@ public class Example1 { }
     &lt;property name="multiLines" value="10, 13"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="java-raw">content of &quot;java.header&quot; file:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,14 +114,14 @@ public class Example1 { }
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example2:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.header.header;
 /* violation on first line 'Line does not match expected header line of' */
 // because headerFile is bigger then target java file
 public class Example2 { }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example3-config">
           To configure the check to verify that each file starts with the
@@ -136,13 +136,13 @@ public class Example2 { }
       \n^// All rights reserved$"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Example3:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.header.regexpheader;
 /* violation on first line 'Line does not match expected header line' */
 public class Example3 { }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example4-config">
           For regex containing <code>&quot;.*&quot;</code>
@@ -155,7 +155,7 @@ public class Example3 { }
       value="^.*"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">
           <code>&quot;.*&quot;</code> will match all lines and
           expect no violation. For example -
@@ -164,7 +164,7 @@ public class Example3 { }
 package com.puppycrawl.tools.checkstyle.checks.header.regexpheader;
 //OK, as regex value matches all lines
 public class Example4 { }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

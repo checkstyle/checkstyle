@@ -5,12 +5,12 @@
     "com/puppycrawl/tools/checkstyle/configuration_1_0.dtd">
 
 <module name="Checker">
-    <property name="severity" value="error"/>
-    <property name="fileExtensions" value="java, properties, xml"/>
-    <module name="TreeWalker">
-        <property name="severity" value="info"/>
-        <module name="MatchXpath">
-            <property name="query" value="//CTOR_DEF[count(./PARAMETERS/*)> 0]"/>
-        </module>
+  <property name="severity" value="error"/>
+  <property name="fileExtensions" value="java, properties, xml"/>
+  <module name="TreeWalker">
+    <property name="severity" value="info"/>
+    <module name="MatchXpath">
+      <property name="query" value="//CTOR_DEF[count(./PARAMETERS/*)> 0]"/>
     </module>
+  </module>
 </module>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck"
              name="IllegalToken"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for illegal tokens. By default, labels are prohibited.
  &lt;/div&gt;
 
@@ -14,14 +14,14 @@
  may be discouraged in certain frameworks, such as not having
  native methods in Enterprise JavaBeans components.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="LABELED_STAT" name="tokens" type="anyTokenTypesSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="illegal.token"/>
-         </message-keys>
-      </check>
-   </module>
+      <properties>
+        <property default-value="LABELED_STAT" name="tokens" type="anyTokenTypesSet">
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="illegal.token"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

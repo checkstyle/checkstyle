@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck"
              name="DescendantToken"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for restricted tokens beneath other tokens.
  &lt;/div&gt;
 
@@ -16,47 +16,47 @@
  check just works on the level of an abstract syntax tree and knows nothing
  about language structures.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value=""
+      <properties>
+        <property default-value=""
                       name="limitedTokens"
                       type="java.lang.String[]"
                       validation-type="tokenTypesSet">
-               <description>Specify set of tokens with limited occurrences as descendants.</description>
-            </property>
-            <property default-value="2147483647" name="maximumDepth" type="int">
-               <description>Specify the maximum depth for descendant counts.</description>
-            </property>
-            <property name="maximumMessage" type="java.lang.String">
-               <description>Define the violation message
+          <description>Specify set of tokens with limited occurrences as descendants.</description>
+        </property>
+        <property default-value="2147483647" name="maximumDepth" type="int">
+          <description>Specify the maximum depth for descendant counts.</description>
+        </property>
+        <property name="maximumMessage" type="java.lang.String">
+          <description>Define the violation message
  when the maximum count is exceeded.</description>
-            </property>
-            <property default-value="2147483647" name="maximumNumber" type="int">
-               <description>Specify a maximum count for descendants.</description>
-            </property>
-            <property default-value="0" name="minimumDepth" type="int">
-               <description>Specify the minimum depth for descendant counts.</description>
-            </property>
-            <property name="minimumMessage" type="java.lang.String">
-               <description>Define the violation message
+        </property>
+        <property default-value="2147483647" name="maximumNumber" type="int">
+          <description>Specify a maximum count for descendants.</description>
+        </property>
+        <property default-value="0" name="minimumDepth" type="int">
+          <description>Specify the minimum depth for descendant counts.</description>
+        </property>
+        <property name="minimumMessage" type="java.lang.String">
+          <description>Define the violation message
  when the minimum count is not reached.</description>
-            </property>
-            <property default-value="0" name="minimumNumber" type="int">
-               <description>Specify a minimum count for descendants.</description>
-            </property>
-            <property default-value="false" name="sumTokenCounts" type="boolean">
-               <description>Control whether the number of tokens found
+        </property>
+        <property default-value="0" name="minimumNumber" type="int">
+          <description>Specify a minimum count for descendants.</description>
+        </property>
+        <property default-value="false" name="sumTokenCounts" type="boolean">
+          <description>Control whether the number of tokens found
  should be calculated from the sum of the individual token counts.</description>
-            </property>
-            <property default-value="" name="tokens" type="anyTokenTypesSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="descendant.token.max"/>
-            <message-key key="descendant.token.min"/>
-            <message-key key="descendant.token.sum.max"/>
-            <message-key key="descendant.token.sum.min"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+        <property default-value="" name="tokens" type="anyTokenTypesSet">
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="descendant.token.max"/>
+        <message-key key="descendant.token.min"/>
+        <message-key key="descendant.token.sum.max"/>
+        <message-key key="descendant.token.sum.min"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

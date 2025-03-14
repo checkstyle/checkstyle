@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck"
              name="MissingJavadocPackage"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for missing package definition Javadoc comments in package-info.java files.
  &lt;/div&gt;
 
@@ -20,9 +20,9 @@
  This check specifically only validates package definitions. It will not validate any methods or
  interfaces declared in the package-info.java file.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="package.javadoc.missing"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="package.javadoc.missing"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

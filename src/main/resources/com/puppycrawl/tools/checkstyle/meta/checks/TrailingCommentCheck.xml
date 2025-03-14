@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck"
              name="TrailingComment"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  The check to ensure that lines with code do not end with comment.
  For the case of {@code //} comments that means that the only thing that should precede
  it is whitespace. It doesn't check comments if they do not end a line; for example,
@@ -59,18 +59,18 @@
  McConnell's comments on being hard to maintain when the size of the line changes
  are even more important in the age of automated refactorings.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="" name="format" type="java.util.regex.Pattern">
-               <description>Specify pattern for strings allowed before the comment.</description>
-            </property>
-            <property name="legalComment" type="java.util.regex.Pattern">
-               <description>Define pattern for text allowed in trailing comments.
+      <properties>
+        <property default-value="" name="format" type="java.util.regex.Pattern">
+          <description>Specify pattern for strings allowed before the comment.</description>
+        </property>
+        <property name="legalComment" type="java.util.regex.Pattern">
+          <description>Define pattern for text allowed in trailing comments.
  This pattern will not be applied to multiline comments.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="trailing.comments"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="trailing.comments"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

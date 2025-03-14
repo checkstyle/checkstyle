@@ -55,7 +55,7 @@
     &lt;module name="MissingSwitchDefault"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">
           Example of violation:
         </p>
@@ -81,7 +81,7 @@ class Example1 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">
           Example of correct code:
         </p>
@@ -110,7 +110,7 @@ class Example2 {
     }
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">
           Example of correct code which does not require default labels:
         </p>
@@ -164,7 +164,7 @@ class Example3 {
     };
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

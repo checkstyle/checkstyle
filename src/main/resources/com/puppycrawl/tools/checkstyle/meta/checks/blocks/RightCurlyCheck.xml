@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck"
              name="RightCurly"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks the placement of right curly braces (&lt;code&gt;'}'&lt;/code&gt;) for code blocks. This check
  supports if-else, try-catch-finally blocks, switch statements, switch cases, while-loops,
   for-loops, method definitions, class definitions, constructor definitions,
@@ -15,25 +15,25 @@
  For right curly brace of enum constant please follow issue
  &lt;a href="https://github.com/checkstyle/checkstyle/issues/7519"&gt;#7519&lt;/a&gt;.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="same"
+      <properties>
+        <property default-value="same"
                       name="option"
                       type="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption">
-               <description>Specify the policy on placement of a right curly brace
+          <description>Specify the policy on placement of a right curly brace
  (&lt;code&gt;'}'&lt;/code&gt;).</description>
-            </property>
-            <property default-value="LITERAL_TRY,LITERAL_CATCH,LITERAL_FINALLY,LITERAL_IF,LITERAL_ELSE"
+        </property>
+        <property default-value="LITERAL_TRY,LITERAL_CATCH,LITERAL_FINALLY,LITERAL_IF,LITERAL_ELSE"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="line.alone"/>
-            <message-key key="line.break.before"/>
-            <message-key key="line.same"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="line.alone"/>
+        <message-key key="line.break.before"/>
+        <message-key key="line.same"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

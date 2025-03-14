@@ -71,7 +71,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
     &lt;module name="SingleSpaceSeparator"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
@@ -83,7 +83,7 @@ class Example1 {
   }
   void  fun2() {} // violation 'Use a single space'
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-config">
           To configure the check so that it validates comments:
         </p>
@@ -96,7 +96,7 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
@@ -119,7 +119,7 @@ class Example2 {
    * OK, 1 white space after the doc comment ends
    */ float f2;
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

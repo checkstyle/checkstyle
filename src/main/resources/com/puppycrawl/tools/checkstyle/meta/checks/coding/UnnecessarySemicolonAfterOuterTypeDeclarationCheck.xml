@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheck"
              name="UnnecessarySemicolonAfterOuterTypeDeclaration"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks if unnecessary semicolon is used after type declaration.
  &lt;/div&gt;
 
@@ -14,17 +14,17 @@
  href="https://checkstyle.org/checks/coding/unnecessarysemicolonaftertypememberdeclaration.html"&gt;
  UnnecessarySemicolonAfterTypeMemberDeclaration&lt;/a&gt; is responsible for it.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF"
+      <properties>
+        <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="unnecessary.semicolon"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="unnecessary.semicolon"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

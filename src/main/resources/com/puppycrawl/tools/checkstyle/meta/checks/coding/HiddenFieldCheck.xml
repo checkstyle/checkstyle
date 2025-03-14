@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"
              name="HiddenField"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that a local variable or a parameter does not shadow
  a field that is defined in the same class.
  &lt;/div&gt;
@@ -47,37 +47,37 @@
  is used. Property &lt;em&gt;setterCanReturnItsClass&lt;/em&gt; has effect only if
  &lt;em&gt;ignoreSetter&lt;/em&gt; is set to true.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="false" name="ignoreAbstractMethods" type="boolean">
-               <description>Control whether to ignore parameters
+      <properties>
+        <property default-value="false" name="ignoreAbstractMethods" type="boolean">
+          <description>Control whether to ignore parameters
  of abstract methods.</description>
-            </property>
-            <property default-value="false"
+        </property>
+        <property default-value="false"
                       name="ignoreConstructorParameter"
                       type="boolean">
-               <description>Control whether to ignore constructor parameters.</description>
-            </property>
-            <property name="ignoreFormat" type="java.util.regex.Pattern">
-               <description>Define the RegExp for names of variables
+          <description>Control whether to ignore constructor parameters.</description>
+        </property>
+        <property name="ignoreFormat" type="java.util.regex.Pattern">
+          <description>Define the RegExp for names of variables
  and parameters to ignore.</description>
-            </property>
-            <property default-value="false" name="ignoreSetter" type="boolean">
-               <description>Allow to ignore the parameter of a property setter method.</description>
-            </property>
-            <property default-value="false" name="setterCanReturnItsClass" type="boolean">
-               <description>Allow to expand the definition of a setter method
+        </property>
+        <property default-value="false" name="ignoreSetter" type="boolean">
+          <description>Allow to ignore the parameter of a property setter method.</description>
+        </property>
+        <property default-value="false" name="setterCanReturnItsClass" type="boolean">
+          <description>Allow to expand the definition of a setter method
  to include methods that return the class' instance.</description>
-            </property>
-            <property default-value="VARIABLE_DEF,PARAMETER_DEF,PATTERN_VARIABLE_DEF,LAMBDA,RECORD_COMPONENT_DEF"
+        </property>
+        <property default-value="VARIABLE_DEF,PARAMETER_DEF,PATTERN_VARIABLE_DEF,LAMBDA,RECORD_COMPONENT_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="hidden.field"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>tokens to check</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="hidden.field"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.AvoidDoubleBraceInitializationCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.AvoidDoubleBraceInitializationCheck"
              name="AvoidDoubleBraceInitialization"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Detects double brace initialization.
  &lt;/div&gt;
 
@@ -24,9 +24,9 @@
  article&lt;/a&gt; for more details.
  Check ignores any comments and semicolons in class body.
  &lt;/p&gt;</description>
-         <message-keys>
-            <message-key key="avoid.double.brace.init"/>
-         </message-keys>
-      </check>
-   </module>
+      <message-keys>
+        <message-key key="avoid.double.brace.init"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

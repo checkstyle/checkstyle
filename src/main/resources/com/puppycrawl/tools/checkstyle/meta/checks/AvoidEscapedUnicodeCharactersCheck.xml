@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck"
              name="AvoidEscapedUnicodeCharacters"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Restricts using
  &lt;a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.3"&gt;
  Unicode escapes&lt;/a&gt;
@@ -15,31 +15,31 @@
  if trail comment is present. By the option it is possible to
  allow using escapes if literal contains only them.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="false" name="allowByTailComment" type="boolean">
-               <description>Allow use escapes if trail comment is present.</description>
-            </property>
-            <property default-value="false"
+      <properties>
+        <property default-value="false" name="allowByTailComment" type="boolean">
+          <description>Allow use escapes if trail comment is present.</description>
+        </property>
+        <property default-value="false"
                       name="allowEscapesForControlCharacters"
                       type="boolean">
-               <description>Allow use escapes for
+          <description>Allow use escapes for
  non-printable, control characters.</description>
-            </property>
-            <property default-value="false"
+        </property>
+        <property default-value="false"
                       name="allowIfAllCharactersEscaped"
                       type="boolean">
-               <description>Allow if all characters in literal are escaped.</description>
-            </property>
-            <property default-value="false"
+          <description>Allow if all characters in literal are escaped.</description>
+        </property>
+        <property default-value="false"
                       name="allowNonPrintableEscapes"
                       type="boolean">
-               <description>Allow use escapes for
+          <description>Allow use escapes for
  non-printable, whitespace characters.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="forbid.escaped.unicode.char"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="forbid.escaped.unicode.char"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

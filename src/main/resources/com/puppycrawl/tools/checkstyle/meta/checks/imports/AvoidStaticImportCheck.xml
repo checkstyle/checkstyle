@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStaticImportCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStaticImportCheck"
              name="AvoidStaticImport"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that there are no static import statements.
  &lt;/div&gt;
 
@@ -25,17 +25,17 @@
  of each static member in the Math class individually like
  {@code java.lang.Math.PI, java.lang.Math.cos, ...}.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="" name="excludes" type="java.lang.String[]">
-               <description>Control whether to allow for certain classes via
+      <properties>
+        <property default-value="" name="excludes" type="java.lang.String[]">
+          <description>Control whether to allow for certain classes via
  a star notation to be excluded such as {@code java.lang.Math.*} or specific
  static members to be excluded like {@code java.lang.System.out} for a variable
  or {@code java.lang.Math.random} for a method. See notes section for details.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="import.avoidStatic"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="import.avoidStatic"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

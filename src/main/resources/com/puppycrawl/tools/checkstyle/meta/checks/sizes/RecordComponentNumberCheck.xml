@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck"
              name="RecordComponentNumber"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks the number of record components in the
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se14/preview/specs/records-jls.html#jls-8.10.1"&gt;
  header&lt;/a&gt; of a record definition.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="public, protected, package, private"
+      <properties>
+        <property default-value="public, protected, package, private"
                       name="accessModifiers"
                       type="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]">
-               <description>Access modifiers of record definitions where
+          <description>Access modifiers of record definitions where
  the number of record components should be checked.</description>
-            </property>
-            <property default-value="8" name="max" type="int">
-               <description>Specify the maximum number of components allowed in the header of a
+        </property>
+        <property default-value="8" name="max" type="int">
+          <description>Specify the maximum number of components allowed in the header of a
  record definition.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="too.many.components"/>
-         </message-keys>
-      </check>
-   </module>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="too.many.components"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

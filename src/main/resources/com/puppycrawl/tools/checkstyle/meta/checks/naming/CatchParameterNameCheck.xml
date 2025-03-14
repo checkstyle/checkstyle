@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck"
              name="CatchParameterName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks that {@code catch} parameter names conform to a specified pattern.
  &lt;/div&gt;
 
@@ -23,16 +23,16 @@
  &lt;li&gt;prohibits two letter abbreviations like {@code ie} or {@code ee}&lt;/li&gt;
  &lt;li&gt;prohibits any other characters than letters&lt;/li&gt;
  &lt;/ul&gt;</description>
-         <properties>
-            <property default-value="^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$"
+      <properties>
+        <property default-value="^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Sets the pattern to match valid identifiers.</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="name.invalidPattern"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Sets the pattern to match valid identifiers.</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="name.invalidPattern"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

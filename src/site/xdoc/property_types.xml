@@ -718,10 +718,10 @@
                 <pre><code class="language-java">
     try {
         ...
-    <b>}</b>
+                  <b>}</b>
     finally {
         ...
-    <b>}</b>
+                  <b>}</b>
                 </code></pre>
               </div>
             </td>
@@ -738,13 +738,13 @@
     // Brace is alone on the line
     try {
         ...
-    <b>}</b>
+                  <b>}</b>
     finally {
         ...
-    <b>}</b>
+                  <b>}</b>
 
     // Single-line format of block
-    public long getId() { return id; <b>}</b>
+    public long getId() { return id;               <b>}</b>
                 </code></pre>
               </div>
             </td>
@@ -768,18 +768,18 @@
     // try-catch-finally blocks
     try {
         ...
-    <b>}</b> catch (Exception ex) { // this is OK
+                  <b>}</b> catch (Exception ex) { // this is OK
         ...
-    <b>}</b> finally { // this is OK
+                  <b>}</b> finally { // this is OK
         ...
     }
 
     try {
         ...
-    <b>}</b> // this is NOT OK, not on the same line as the next part of a multi-block statement
+                  <b>}</b> // this is NOT OK, not on the same line as the next part of a multi-block statement
     catch (Exception ex) {
           ...
-    <b>}</b> // this is NOT OK, not on the same line as the next part of a multi-block statement
+                  <b>}</b> // this is NOT OK, not on the same line as the next part of a multi-block statement
     finally {
           ...
     }
@@ -787,33 +787,33 @@
     // if-else blocks
     if (a &#62; 0) {
        ...
-    <b>}</b> else { // this is OK
+                  <b>}</b> else { // this is OK
        ...
     }
 
     if (a &#62; 0) {
        ...
-    <b>}</b> // this is NOT OK, not on the same line as the next part of a multi-block statement
+                  <b>}</b> // this is NOT OK, not on the same line as the next part of a multi-block statement
     else {
        ...
     }
 
     if (a &#62; 0) {
        ...
-    <b>}</b> int i = 5; // NOT OK, no next part of a multi-block statement, so should be alone
+                  <b>}</b> int i = 5; // NOT OK, no next part of a multi-block statement, so should be alone
 
     Thread t = new Thread(new Runnable() {
        @Override
        public void run() {
                   ...
-       <b>}</b> // this is OK, should be alone as next part of a multi-block statement is absent
-    <b>}</b>); // this case is out of scope of RightCurly Check (see issue #5945)
+                  <b>}</b> // this is OK, should be alone as next part of a multi-block statement is absent
+                  <b>}</b>); // this case is out of scope of RightCurly Check (see issue #5945)
 
-    if (a &#62; 0) { ... <b>}</b> // OK, single-line multi-block statement
-    if (a &#62; 0) { ... } else { ... <b>}</b> // OK, single-line multi-block statement
+    if (a &#62; 0) { ...               <b>}</b> // OK, single-line multi-block statement
+    if (a &#62; 0) { ... } else { ...               <b>}</b> // OK, single-line multi-block statement
     if (a &#62; 0) {
         ...
-    } else { ... <b>}</b> // OK, single-line multi-block statement
+    } else { ...               <b>}</b> // OK, single-line multi-block statement
                 </code></pre>
               </div>
             </td>

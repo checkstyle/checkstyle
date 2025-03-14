@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle-metadata>
-   <module>
-      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck"
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck"
              name="MultipleStringLiterals"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;div&gt;
+      <description>&lt;div&gt;
  Checks for multiple occurrences of the same string literal within a single file.
  &lt;/div&gt;
 
@@ -12,28 +12,28 @@
  Rationale: Code duplication makes maintenance more difficult, so it can be better
  to replace the multiple occurrences with a constant.
  &lt;/p&gt;</description>
-         <properties>
-            <property default-value="1" name="allowedDuplicates" type="int">
-               <description>Specify the maximum number of occurrences
+      <properties>
+        <property default-value="1" name="allowedDuplicates" type="int">
+          <description>Specify the maximum number of occurrences
  to allow without generating a warning.</description>
-            </property>
-            <property default-value="ANNOTATION"
+        </property>
+        <property default-value="ANNOTATION"
                       name="ignoreOccurrenceContext"
                       type="java.lang.String[]"
                       validation-type="tokenTypesSet">
-               <description>Specify token type names where duplicate
+          <description>Specify token type names where duplicate
  strings are ignored even if they don't match ignoredStringsRegexp. This allows you to
  exclude syntactical contexts like annotations or static initializers from the check.</description>
-            </property>
-            <property default-value="^$"
+        </property>
+        <property default-value="^$"
                       name="ignoreStringsRegexp"
                       type="java.util.regex.Pattern">
-               <description>Specify RegExp for ignored strings (with quotation marks).</description>
-            </property>
-         </properties>
-         <message-keys>
-            <message-key key="multiple.string.literal"/>
-         </message-keys>
-      </check>
-   </module>
+          <description>Specify RegExp for ignored strings (with quotation marks).</description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="multiple.string.literal"/>
+      </message-keys>
+    </check>
+  </module>
 </checkstyle-metadata>

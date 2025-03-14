@@ -141,7 +141,7 @@ class PageBuilder {
     &lt;module name="HiddenField"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
@@ -165,7 +165,7 @@ class Example1 {
     abstract int method(String field); // violation, ''field' hides a field'
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example2-config">
           To configure the check so that it checks local variables but not
@@ -179,7 +179,7 @@ class Example1 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
@@ -203,7 +203,7 @@ class Example2 {
     abstract int method(String field); // OK, because PARAMETER_DEF not configured
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example3-config">
           To configure the check so that it ignores the variables and parameters named
@@ -217,7 +217,7 @@ class Example2 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
@@ -241,7 +241,7 @@ class Example3 {
     abstract int method(String field); // violation, ''field' hides a field'
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example4-config">
           To configure the check so that it ignores constructor parameters:
@@ -254,7 +254,7 @@ class Example3 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
@@ -278,7 +278,7 @@ class Example4 {
     abstract int method(String field); // violation, ''field' hides a field'
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example5-config">
           To configure the check so that it ignores the parameter of setter
@@ -292,7 +292,7 @@ class Example4 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
@@ -316,7 +316,7 @@ class Example5 {
     abstract int method(String field); // violation, ''field' hides a field'
   }
 }
-</code></pre></div>
+        </code></pre></div>
 
         <p id="Example6-config">
           To configure the check so that it ignores the parameter of setter
@@ -332,7 +332,7 @@ class Example5 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example6-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example6 {
@@ -356,7 +356,7 @@ class Example6 {
     abstract int method(String field); // violation, ''field' hides a field'
   }
 }
-</code></pre></div>
+        </code></pre></div>
         <p id="Example7-config">
           To configure the check so that it ignores parameters of abstract methods:
         </p>
@@ -368,7 +368,7 @@ class Example6 {
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
+        </code></pre></div>
         <p id="Example7-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example7 {
@@ -393,7 +393,7 @@ class Example7 {
     abstract int method(String field); // OK, because ignoreAbstractMethods is true
   }
 }
-</code></pre></div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
