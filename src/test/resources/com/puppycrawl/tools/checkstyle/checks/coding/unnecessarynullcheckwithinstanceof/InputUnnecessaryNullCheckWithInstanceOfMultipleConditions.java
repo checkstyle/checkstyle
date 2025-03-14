@@ -47,8 +47,12 @@ public class InputUnnecessaryNullCheckWithInstanceOfMultipleConditions {
             String s = (String) obj1;
         }
         // violation below, 'Unnecessary nullity check'
-         if (obj1 != null && (obj2 != null && obj1 instanceof String)) {
-            System.out.println("obj is a String and obj2 is not null");
+        if (obj1 != null && (obj2 != null && obj1 instanceof String)) {
+           System.out.println("obj is a String and obj2 is not null");
         }
+        if ((obj1 != null || obj2 instanceof String) && obj2 != null) {
+           String s = (String) obj1;
+        }
+
     }
 }

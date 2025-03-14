@@ -61,7 +61,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[]{TokenTypes.NOT_EQUAL};
+        return new int[] {TokenTypes.NOT_EQUAL};
     }
 
     @Override
@@ -96,7 +96,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
         DetailAST result = null;
 
         while (currentParent.getType() == TokenTypes.LAND) {
-            if (findInstanceOfCheckInLogicalAnd(currentParent, nullComparisonNode) != null) {
+            if (findInstanceOfCheckInLogicalAnd(currentParent, nullComparisonNode)) {
                 result = nullComparisonNode.getFirstChild();
                 break;
             }
@@ -148,34 +148,24 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
      *
      * @param logicalAndNode the logical AND AST node
      * @param nullCheckNode the null check node to compare against
-     * @return the instanceof check node if found, null otherwise
+     * @return true, if the instanceof check node is found
      */
-    private static DetailAST findInstanceOfCheckInLogicalAnd(DetailAST logicalAndNode,
+    private static boolean findInstanceOfCheckInLogicalAnd(DetailAST logicalAndNode,
         DetailAST nullCheckNode) {
         DetailAST currentChild = logicalAndNode.getFirstChild();
         DetailAST instanceofCheckResult = null;
-
-        while (currentChild != null) {
+        boolean found = false;
+        while (currentChild != null && !found) {
             if (isInstanceofCheck(currentChild) && isNullCheckRedundant(nullCheckNode,
                 currentChild)) {
-                instanceofCheckResult = currentChild;
-                break;
+                found = true;
             }
-
             else if (currentChild.getType() == TokenTypes.LAND) {
-                instanceofCheckResult = findInstanceOfCheckInLogicalAnd(currentChild,
+                found = findInstanceOfCheckInLogicalAnd(currentChild,
                     nullCheckNode);
-                if (instanceofCheckResult != null) {
-                    break;
-                }
-                else {
-                    currentChild = currentChild.getNextSibling();
-                }
             }
-            else {
-                currentChild = currentChild.getNextSibling();
-            }
+            currentChild = currentChild.getNextSibling();
         }
-        return instanceofCheckResult;
+        return found;
     }
 }

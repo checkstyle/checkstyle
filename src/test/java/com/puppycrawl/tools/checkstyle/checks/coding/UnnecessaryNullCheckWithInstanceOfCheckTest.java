@@ -66,7 +66,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
             "27:54: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "36:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
             "36:55: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
-            "50:14: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
+            "50:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
         };
         verifyWithInlineConfigParser(getPath(
             "InputUnnecessaryNullCheckWithInstanceOfMultipleConditions.java"), expected);
