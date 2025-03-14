@@ -153,7 +153,6 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
     private static boolean findInstanceOfCheckInLogicalAnd(DetailAST logicalAndNode,
         DetailAST nullCheckNode) {
         DetailAST currentChild = logicalAndNode.getFirstChild();
-        DetailAST instanceofCheckResult = null;
         boolean found = false;
         while (currentChild != null && !found) {
             if (isInstanceofCheck(currentChild) && isNullCheckRedundant(nullCheckNode,
