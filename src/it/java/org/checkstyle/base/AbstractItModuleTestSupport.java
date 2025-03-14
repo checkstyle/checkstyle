@@ -388,6 +388,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      */
     protected final void verify(Configuration config, String fileName, String[] expected,
             Integer... warnsExpected) throws Exception {
+
         verify(createChecker(config),
                 new File[] {new File(fileName)},
                 fileName, expected, warnsExpected);
@@ -451,6 +452,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
             assertWithMessage("unexpected warnings %s", theWarnings)
                 .that(theWarnings)
                 .isEmpty();
+
         }
 
         checker.destroy();
