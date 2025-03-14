@@ -85,13 +85,13 @@ class Example1 {
   static int num5;
   public static final int CONSTANT = 1;
 
-  public int NUM1; // violation
+  public int NUM1; // violation 'Name 'NUM1' must match pattern'
 
-  protected int NUM2; // violation
+  protected int NUM2; // violation 'Name 'NUM2' must match pattern'
 
-  int NUM3; // violation
+  int NUM3; // violation 'Name 'NUM3' must match pattern'
 
-  private int NUM4; // violation
+  private int NUM4; // violation 'Name 'NUM4' must match pattern'
 
 }
 </code></pre></div>
@@ -116,11 +116,11 @@ class Example1 {
         <p id="Example2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-  public int num1; // violation
+  public int num1; // violation 'Name 'num1' must match pattern'
 
   protected int num2;
   int num3;
-  private int num4; // violation
+  private int num4; // violation 'Name 'num4' must match pattern'
 
 }
 </code></pre></div>
@@ -142,9 +142,9 @@ class Example2 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
   public int NUM1;
-  protected int NUM2; // violation
+  protected int NUM2; // violation 'Name 'NUM2' must match pattern'
 
-  int NUM3; // violation
+  int NUM3; // violation 'Name 'NUM3' must match pattern'
 
   private int NUM4;
 }

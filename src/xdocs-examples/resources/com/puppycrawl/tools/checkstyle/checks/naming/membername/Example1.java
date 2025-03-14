@@ -18,13 +18,13 @@ class Example1 {
   static int num5;
   public static final int CONSTANT = 1;
 
-  public int NUM1; // violation
+  public int NUM1; // violation 'Name 'NUM1' must match pattern'
 
-  protected int NUM2; // violation
+  protected int NUM2; // violation 'Name 'NUM2' must match pattern'
 
-  int NUM3; // violation
+  int NUM3; // violation 'Name 'NUM3' must match pattern'
 
-  private int NUM4; // violation
+  private int NUM4; // violation 'Name 'NUM4' must match pattern'
 
 }
 // xdoc section -- end

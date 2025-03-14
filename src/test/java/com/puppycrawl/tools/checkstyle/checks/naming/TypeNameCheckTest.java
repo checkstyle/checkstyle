@@ -113,8 +113,8 @@ public class TypeNameCheckTest
             "23:10: " + getCheckMessage(MSG_INVALID_PATTERN, "Third_Name", DEFAULT_PATTERN),
             "25:11: " + getCheckMessage(MSG_INVALID_PATTERN, "FourthName_", DEFAULT_PATTERN),
             "28:12: " + getCheckMessage(MSG_INVALID_PATTERN, "My_Record", DEFAULT_PATTERN),
-            "29:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner__Record", DEFAULT_PATTERN),
-            "34:12: " + getCheckMessage(MSG_INVALID_PATTERN, "MyRecord__", DEFAULT_PATTERN),
+            "30:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner__Record", DEFAULT_PATTERN),
+            "35:12: " + getCheckMessage(MSG_INVALID_PATTERN, "MyRecord__", DEFAULT_PATTERN),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputTypeNameRecords.java"), expected);

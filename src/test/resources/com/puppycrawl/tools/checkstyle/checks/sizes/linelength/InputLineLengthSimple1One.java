@@ -1,15 +1,14 @@
 /*
-MemberName
-format = ^m[A-Z][a-zA-Z0-9]*$
-applyToPublic = (default)true
-applyToProtected = (default)true
-applyToPackage = (default)true
-applyToPrivate = (default)true
+LineLength
+fileExtensions = (default)""
+ignorePattern = ^.*is OK.*regexp.*$
+max = (default)80
+message.maxLineLen = {0},{1}
 
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.naming.membername;
+package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 
 /**
  * Contains simple mistakes:
@@ -19,10 +18,10 @@ package com.puppycrawl.tools.checkstyle.checks.naming.membername;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputMemberNameSimpleOne
+final class InputLineLengthSimple1One
 {
-    // Long line ----------------------------------------------------------------
-    // Contains a tab ->        <-
+    // Long line --------------------------------------------------- // violation
+    // Contains a tab ->	<-
     // Contains trailing whitespace ->
 
     // Name format tests
@@ -38,7 +37,7 @@ final class InputMemberNameSimpleOne
     private static int sNumCreated = 0;
 
     /** Invalid format **/
-    private int badMember = 2; // violation 'Name 'badMember' must match pattern'
+    private int badMember = 2;
     /** Valid format **/
     private int mNumCreated1 = 0;
     /** Valid format **/
@@ -72,35 +71,12 @@ final class InputMemberNameSimpleOne
      * @param badFormat1 bad format
      * @param badFormat2 bad format
      * @param badFormat3 bad format
-     * @throws java.lang.Exception abc
+     * @throws Exception abc
      **/
     int test1(int badFormat1,int badFormat2,
               final int badFormat3)
-        throws java.lang.Exception
+        throws Exception
     {
         return 0;
-    }
-
-    /** method that is 20 lines long **/
-    private void longMethod()
-    {
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
     }
 }

@@ -123,6 +123,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
         createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderDefaultConfig.java"), expected);
     }
 
@@ -151,6 +152,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Created: 2002"),
         };
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderIgnore.java"), expected);
     }
 
@@ -164,6 +166,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_HEADER_MISMATCH, "\\/\\/ Nth Line of Header"),
         };
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderNonMatching.java"), expected);
     }
 
@@ -175,6 +178,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Created: 2002"),
         };
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderIgnore.java"), expected);
     }
 
@@ -186,6 +190,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Created: 2002"),
         };
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderIgnore.java"), expected);
     }
 
@@ -216,6 +221,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$"),
         };
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderConsecutiveNewLines.java"), expected);
     }
 
@@ -227,6 +233,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$"),
         };
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderConsecutiveNewLines.java"), expected);
     }
 
@@ -236,6 +243,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(RegexpHeaderCheck.class);
         checkConfig.addProperty("headerFile", getPath("InputRegexpHeader1.header"));
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderIgnore.java"), expected);
     }
 
@@ -246,6 +254,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2.header"));
         checkConfig.addProperty("multiLines", "3, 6");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderDefaultConfig.java"), expected);
     }
 
@@ -256,6 +265,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2.header"));
         checkConfig.addProperty("multiLines", "3, 6");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderMulti2.java"), expected);
     }
 
@@ -266,6 +276,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2.header"));
         checkConfig.addProperty("multiLines", "3, 7");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderDefaultConfig.java"), expected);
     }
 
@@ -276,6 +287,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2.header"));
         checkConfig.addProperty("multiLines", "3, 5, 6, 7");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderMulti4.java"), expected);
     }
 
@@ -288,6 +300,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_HEADER_MISSING),
         };
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderMulti5.java"), expected);
     }
 
@@ -298,6 +311,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2_4.header"));
         checkConfig.addProperty("multiLines", "8974382");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderMulti6.java"), expected);
     }
 
@@ -308,6 +322,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2.header"));
         checkConfig.addProperty("multiLines", "3, 6");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderSmallHeader.java"), expected);
     }
 
@@ -320,6 +335,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_HEADER_MISSING),
         };
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderSmallHeader.java"), expected);
     }
 
@@ -331,6 +347,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_HEADER_MISSING),
         };
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderMulti52.java"), expected);
     }
 
@@ -341,6 +358,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("headerFile", getPath("InputRegexpHeader5.header"));
         checkConfig.addProperty("multiLines", "7,5,3");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderIgnoreLinesSorted.java"), expected);
     }
 
@@ -351,6 +369,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         final String path = getPath("InputRegexpHeaderMulti52.java");
         try {
+            // Content header is conflicting with Input inline header
             verify(checkConfig, path, expected);
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
@@ -366,6 +385,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
         checkConfig.addProperty("headerFile", getPath("InputRegexpHeader4.header"));
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderMulti5.java"), expected);
     }
 
@@ -377,6 +397,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "5: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$"),
         };
+        // Content header is conflicting with Input inline header
         verify(checkConfig, getPath("InputRegexpHeaderMulti52.java"), expected);
     }
 
@@ -386,6 +407,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("headerFile", getPath("InputRegexpHeader7.header"));
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         final String path = getPath("InputRegexpHeader4.java");
+        // Content header is conflicting with Input inline header
         verify(checkConfig, path, expected);
     }
 
@@ -399,6 +421,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
             "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "// some.class.��������.passed"),
         };
         final String path = getPath("InputRegexpHeader4.java");
+        // Content header is conflicting with Input inline header
         verify(checkConfig, path, expected);
 
     }
@@ -411,6 +434,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("charset", "US-ASCII");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         final String path = getPath("InputRegexpHeader3.java");
+        // Content header is conflicting with Input inline header
         verify(checkConfig, path, expected);
     }
 }
