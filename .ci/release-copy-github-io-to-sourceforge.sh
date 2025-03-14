@@ -84,7 +84,7 @@ tar -xzvf htdocs-archive/htdocs-$PREV_RELEASE.tar.gz -C htdocs-version/ --same-o
 --exclude="*/xref" --exclude="*/xref-test" --exclude="*/cobertura" --exclude="*/dsm" \
 --exclude="*/api" --exclude="reports" --exclude="jacoco" --exclude="dtds" \
 --exclude="dependency-updates-report.html" --exclude="plugin-updates-report.html" \
---exclude="failsafe-report.html" \
+--exclude="jdepend-report.html" --exclude="failsafe-report.html" \
 --exclude="surefire-report.html" \
 --exclude="linkcheck.html" --exclude="findbugs.html" --exclude="taglist.html" \
 --exclude="releasenotes_old_6-0_7-8.html" --exclude="releasenotes_old_1-0_5-9.html" \
