@@ -1590,7 +1590,7 @@ public final class JavadocTokenTypes {
      * Html tag attribute. Parent node for: {@code HTML_TAG_IDENT, EQUALS, ATTR_VALUE}.
      *
      * <p><b>Example</b></p>
-     * <pre>{@code <p class="highlight">Sample text</p>}</pre>
+     * <pre>{@code <p class="highlight">Sample paragraph</p>}</pre>
      * <b>Tree</b>
      * {@code
      *   |--HTML_ELEMENT -> HTML_ELEMENT
