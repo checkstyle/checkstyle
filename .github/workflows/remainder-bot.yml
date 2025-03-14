@@ -30,6 +30,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   close-inactive-issues:
+    if: github.repository == 'checkstyle/checkstyle'
     runs-on: ubuntu-latest
     steps:
       - name: check and close inactive issues and PRs
