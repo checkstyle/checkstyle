@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryNullCheckWithInstanceOfCheck.MSG_UNNECESSARY_NULLCHECK;
 
 import org.junit.jupiter.api.Test;
@@ -140,5 +141,20 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
         };
         verifyWithInlineConfigParser(getPath(
             "InputUnnecessaryNullCheckWithInstanceOfVariableAssignment.java"), expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        final UnnecessaryNullCheckWithInstanceOfCheck check =
+            new UnnecessaryNullCheckWithInstanceOfCheck();
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Default tokens should not be null")
+            .that(check.getDefaultTokens())
+            .isNotNull();
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
     }
 }
