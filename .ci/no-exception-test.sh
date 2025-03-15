@@ -258,6 +258,24 @@ no-exception-samples-gradle)
   removeFolderWithProtectedFiles checkstyle-samples
   ;;
 
+no-exception-samples-maven)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress -B install -Pno-validations
+
+  checkout_from https://github.com/sevntu-checkstyle/checkstyle-samples
+  cd .ci-temp/checkstyle-samples/maven-project
+
+  sed -i "s|\(<checkstyle.version>\)[0-9.]\+\(</checkstyle.version>\)"`
+  `"|\1${CS_POM_VERSION}\2|" pom.xml
+
+
+  echo "Building Maven project..."
+  mvn -e --no-transfer-progress -B verify
+
+  cd ../..
+  removeFolderWithProtectedFiles checkstyle-samples
+  ;;
 
   *)
   echo "Unexpected argument: $1"

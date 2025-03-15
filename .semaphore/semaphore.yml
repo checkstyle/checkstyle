@@ -52,8 +52,6 @@ blocks:
                 - .ci/validation.sh verify-regexp-id
                 - .ci/no-exception-test.sh guava-with-google-checks
                 - .ci/no-exception-test.sh guava-with-sun-checks
-                # until https://github.com/checkstyle/checkstyle/issues/14086
-                # - .ci/no-exception-test.sh no-exception-samples-ant
                 - .ci/validation.sh nondex
                 # until https://github.com/checkstyle/checkstyle/issues/9807
                 # - mvn -e --no-transfer-progress clean package -Passembly,no-validations
