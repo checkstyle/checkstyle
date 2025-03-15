@@ -2071,7 +2071,32 @@ public final class JavadocTokenTypes {
     /** End description of a term tag. */
     public static final int DD_TAG_END = JavadocParser.RULE_ddTagEnd + RULE_TYPES_OFFSET;
 
-    /** Description term html tag: {@code <dt></dt>}. */
+    /**
+     * DT html tag.
+     * 
+     * <p>Defines a term in a definition list ({@code <dl>}). Must be followed by a
+     * {@code <dt>} element describing the term.</p>
+     * 
+     * <p><b>Example:</b></p>
+     * <pre>{@code <dt>Software Quality</dt>}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   --HTML_ELEMENT -> HTML_ELEMENT
+     *      `--DT -> DT
+     *          |--DT_TAG_START -> DT_TAG_START
+     *          |   |--START -> <
+     *          |   |--DT_HTML_TAG_NAME -> dt
+     *          |   `--END -> >
+     *          |--TEXT -> "Software Quality"
+     *          `--DT_TAG_END -> DT_TAG_END
+     *              |--START -> <
+     *              |--SLASH -> /
+     *              |--DT_HTML_TAG_NAME -> dt
+     *              `--END -> >
+     * }
+     * </pre>
+     */
     public static final int DT = JavadocParser.RULE_dt + RULE_TYPES_OFFSET;
     /** Start description term tag. */
     public static final int DT_TAG_START = JavadocParser.RULE_dtTagStart + RULE_TYPES_OFFSET;
