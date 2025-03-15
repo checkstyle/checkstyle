@@ -48,6 +48,7 @@ APRV
 Aqj
 archunit
 arget
+argv
 Arial
 arity
 Arquillian
@@ -1308,7 +1309,7 @@ suse
 svg
 svn
 sxpath
-Sys
+sys
 sysextensions
 sysprop
 systemout
@@ -1409,6 +1410,7 @@ upsss
 urandom
 uri
 url
+urllib
 userguide
 username
 usr
