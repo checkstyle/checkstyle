@@ -1,7 +1,7 @@
 [*]
 charset = utf-8
 end_of_line = lf
-ij_continuation_indent_size = 4
+ij_continuation_indent_size = 8
 indent_size = 4
 indent_style = space
 insert_final_newline = true
