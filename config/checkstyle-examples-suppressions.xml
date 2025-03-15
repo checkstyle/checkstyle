@@ -156,6 +156,9 @@
   <!-- Example needs to have really long regex format properly shown in config  -->
   <suppress checks="LineLength" files="illegalidentifiername[\\/]Example[2].java"/>
 
+  <!-- Example suppresses "Line is longer than 85 characters"  -->
+  <suppress checks="LineLength" files="localfinalvariablename[\\/]Example[3].java"/>
+
   <!-- Example must show PackageDeclaration violations -->
   <suppress checks="PackageDeclaration"
     files="packagedeclaration[\\/]Example\d+.*"/>
