@@ -17,6 +17,10 @@
           that contain a non-empty {@code {@return}} are allowed. Check also violate Javadoc that
           does not contain first sentence, though with {@code {@return}} a period is not required
           as the Javadoc tool adds it.
+          <br/><br/><br/><br/>
+          Note: In past, summary could only be implemented using the first sentence of each Javadoc.
+          Now, we can also denote summary by the corresponding @summary tag. We support both
+          approaches.
         </div>
       </subsection>
 
