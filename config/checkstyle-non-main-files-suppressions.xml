@@ -132,6 +132,10 @@
        until https://github.com/checkstyle/checkstyle/issues/13426 -->
   <suppress id="lineLength"
             files="[\\/]src[\\/]site[\\/]xdoc[\\/](checks|(file)?filters)[\\/](?!.*index\.xml)(?!.*\.xml\.template).+\.xml"/>
+ 
+  <!-- Suppressing LineLength check as long lines are necessary to preserve intended message format. -->
+  <suppress id="lineLength"
+         files="[\\/]src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]naming[\\/]localfinalvariablename[\\/]InputLocalFinalVariableNameTryResources\.java"/>
 
   <!-- apply check numberOfTestCasesInXpath only for files in suppressionxpathfilter directory -->
   <suppress id="numberOfTestCasesInXpath"
