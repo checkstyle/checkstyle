@@ -752,7 +752,7 @@ public class CheckstyleAntTask extends Task {
          * @return the property key
          */
         public String getKey() {
-            return key;
+            return "";
         }
 
         /**
