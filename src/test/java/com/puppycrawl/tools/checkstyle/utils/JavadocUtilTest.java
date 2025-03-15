@@ -179,6 +179,7 @@ public class JavadocUtilTest {
             "/** @fake block",
             " * {@bogus inline}",
             " * {@link List valid}",
+
         };
         final Comment comment = new Comment(text, 1, 3, text[2].length());
         final JavadocTags allTags =

@@ -86,4 +86,12 @@ public class JavadocTagTest {
                 .isFalse();
     }
 
+    @Test
+    public void testJavadocTagIsInlineTag() {
+        assertThat(new JavadocTag(0, 0, "link", null).isInlineTag()).isTrue();
+        assertThat(new JavadocTag(0, 0, "value", null).isInlineTag()).isTrue();
+        assertThat(new JavadocTag(0, 0, "see", null).isInlineTag()).isFalse();
+
+    }
+
 }
