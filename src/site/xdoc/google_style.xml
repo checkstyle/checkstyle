@@ -488,9 +488,9 @@
                         src="images/ban_red.png"
                         alt="" />
                   </span>
-                  Validation of this requirement can not be done by Checkstyle.
-                  It needs information from another class, defined in another Java file,
-                  but Checkstyle has no way to read another Java file.
+                  Violations of this guideline cannot be detected by Checkstyle due to its
+                  <a href="writingchecks.html#Limitations">
+                    limitation</a>, multiple file checking is not supported.
                 </td>
                 <td/>
               </tr>
@@ -1347,13 +1347,9 @@
                         src="images/ban_red.png"
                         alt="" />
                   </span>
-                  Type-use annotations cannot be detected by Checkstyle due to its
+                  Violations of this guideline cannot be detected by Checkstyle due to its
                   <a href="writingchecks.html#Limitations">
-                    limitations</a>,
-                  see issue
-                  <a href="https://github.com/checkstyle/checkstyle/issues/15416">
-                    #15416</a>
-                  for more detailed explanation.
+                    limitation</a>, multiple file checking is not supported.
                 </td>
                 <td/>
               </tr>
@@ -1975,9 +1971,9 @@
                         src="images/ban_red.png"
                         alt="" />
                   </span>
-                  Validation of this requirement can not be done by Checkstyle.
-                  It needs information from the parent class, defined in another Java file,
-                  but Checkstyle has no way to read another Java file.
+                  Violations of this guideline cannot be detected by Checkstyle due to its
+                  <a href="writingchecks.html#Limitations">
+                    limitation</a>, multiple file checking is not supported.
                 </td>
                 <td/>
               </tr>
@@ -2029,8 +2025,9 @@
                         src="images/ban_red.png"
                         alt="" />
                   </span>
-                  Proper validation requires parsing other files, sources
-                  are not always available.
+                  Violations of this guideline cannot be detected by Checkstyle due to its
+                  <a href="writingchecks.html#Limitations">
+                    limitation</a>, multiple file checking is not supported.
                 </td>
                 <td/>
               </tr>
