@@ -2442,7 +2442,28 @@ public final class JavadocTokenTypes {
     /** End description of a term tag. */
     public static final int DD_TAG_END = JavadocParser.RULE_ddTagEnd + RULE_TYPES_OFFSET;
 
-    /** Description term html tag: {@code <dt></dt>}. */
+    /**
+     * DT html tag.
+     *
+     * <p><b>Example AST:</b></p>
+     * <pre>{@code <dd>Description Term</dd>}</pre>
+     * <pre>
+     * {@code
+     *   --HTML_ELEMENT -> HTML_ELEMENT
+     *      `--DT -> DT
+     *          |--DT_TAG_START -> DT_TAG_START
+     *          |   |--START -> <
+     *          |   |--DT_HTML_TAG_NAME -> dt
+     *          |   `--END -> >
+     *          |--TEXT -> "Description term"
+     *          `--DT_TAG_END -> DT_TAG_END
+     *              |--START -> <
+     *              |--SLASH -> /
+     *              |--DT_HTML_TAG_NAME -> dt
+     *              `--END -> >
+     * }
+     * </pre>
+     */
     public static final int DT = JavadocParser.RULE_dt + RULE_TYPES_OFFSET;
     /** Start description term tag. */
     public static final int DT_TAG_START = JavadocParser.RULE_dtTagStart + RULE_TYPES_OFFSET;
