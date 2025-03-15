@@ -16,11 +16,11 @@ import java.util.Scanner;
 // xdoc section -- start
 class Example3 {
   void MyMethod() {
-    try(Scanner scanner = new Scanner(System.in)) { // violation
+    try(Scanner scanner = new Scanner(System.in)) { // violation 'Name 'scanner' must match pattern'
 
       final int VAR1 = 5;
       final int var1 = 10;
-    } catch (final Exception ex) { // violation
+    } catch (final Exception ex) { // violation 'Name 'ex' must match pattern'
 
       final int VAR2 = 15;
       final int var2 = 20;

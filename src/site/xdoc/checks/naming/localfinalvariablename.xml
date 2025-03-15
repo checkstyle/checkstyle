@@ -83,10 +83,10 @@
 class Example1{
   void MyMethod() {
     try {
-      final int VAR1 = 5; // violation
+      final int VAR1 = 5; // violation 'Name 'VAR1' must match pattern'
       final int var1 = 10;
     } catch (Exception ex) {
-      final int VAR2 = 15; // violation
+      final int VAR2 = 15; // violation 'Name 'VAR2' must match pattern'
       final int var2 = 20;
     }
   }
@@ -111,10 +111,10 @@ class Example2 {
   void MyMethod() {
     try {
       final int VAR1 = 5;
-      final int var1 = 10; // violation
+      final int var1 = 10; // violation 'Name 'var1' must match pattern'
     } catch (Exception ex) {
       final int VAR2 = 15;
-      final int var2 = 20; // violation
+      final int var2 = 20; // violation 'Name 'var2' must match pattern'
     }
   }
 }
@@ -137,11 +137,11 @@ class Example2 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
   void MyMethod() {
-    try(Scanner scanner = new Scanner(System.in)) { // violation
+    try(Scanner scanner = new Scanner(System.in)) { // violation 'Name 'scanner' must match pattern'
 
       final int VAR1 = 5;
       final int var1 = 10;
-    } catch (final Exception ex) { // violation
+    } catch (final Exception ex) { // violation 'Name 'ex' must match pattern'
 
       final int VAR2 = 15;
       final int var2 = 20;
