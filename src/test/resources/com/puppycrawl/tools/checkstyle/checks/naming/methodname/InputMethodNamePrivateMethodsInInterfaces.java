@@ -19,14 +19,14 @@ public interface InputMethodNamePrivateMethodsInInterfaces {
 
     private static void PrivateMethod2() {}
 
-    default void DefaultMethod() { // violation
+    default void DefaultMethod() { // violation ''PRIVATEInputMethodNameEqualClassName' must match the pattern'
     }
 
-    public default void DefaultMethod2() { // violation
+    public default void DefaultMethod2() { // violation ''PRIVATEInputMethodNameEqualClassName' must match the pattern'
     }
 
-    void PublicMethod(); // violation
+    void PublicMethod(); // violation ''PublicMethod' must match the pattern'
 
-    public void PublicMethod2(); // violation
+    public void PublicMethod2(); // violation ''PublicMethod' must match the pattern'
 
 }

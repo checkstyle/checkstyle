@@ -21,23 +21,23 @@ package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 public class InputMethodNameEqualClassName2 {
 
         //illegal name
-    public int InputMethodNameEqualClassName2() { // violation
+    public int InputMethodNameEqualClassName2() {  // violation ''InputMethodNameEqualClassName2' must match the pattern'
         return 0;
     }
 
     //illegal name
-    private int PRIVATEInputMethodNameEqualClassName() { // violation
+    private int PRIVATEInputMethodNameEqualClassName() { // violation 'PRIVATEInputMethodNameEqualClassName' must match the pattern
         return 0;
     }
 
     class Inner {
                 //illegal name
-        public int Inner() { // violation
+        public int Inner() { // violation 'Inner' must match the pattern
                         return 0;
                 }
 
                 //OK name - name of the outter class's ctor
-        public int InputMethodNameEqualClassName2() { // violation
+        public int InputMethodNameEqualClassName2() { // violation 'InputMethodNameEqualClassName2' must match the pattern
                         return 0;
                 }
         }
@@ -46,7 +46,7 @@ public class InputMethodNameEqualClassName2 {
                 new InputMethodNameEqualClassName() {
 
                         //illegal name
-            public int InputMethodNameEqualClassName2() { // violation
+            public int InputMethodNameEqualClassName2() { // violation ''InputMethodNameEqualClassName2' must match the pattern'
                                 return 1;
                         }
                 };
@@ -56,13 +56,13 @@ public class InputMethodNameEqualClassName2 {
 interface SweetInterface2 {
 
         //illegal name
-    int SweetInterface(); // violation
+    int SweetInterface(); // violation ''SweetInterface' must match the pattern'
 }
 
 class Outer2 {
 
         //illegal name
-    public void Outer() { // violation
+    public void Outer() { // violation ''Outer' must match the pattern'
 
         }
 }
