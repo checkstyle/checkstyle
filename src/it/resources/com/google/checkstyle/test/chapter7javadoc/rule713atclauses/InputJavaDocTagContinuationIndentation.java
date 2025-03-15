@@ -203,6 +203,28 @@ class InputJavaDocTagContinuationIndentation implements Serializable {
     /**
      * Some text.
      *
+     * @see <a href="https://checkstyle.org/checks/javadoc/javadoctag.html">
+     *    JavadocTagContinuationIndentation: Checks the indentation </a>
+     *     // violation above 'Line continuation .* expected level should be 4'
+     */
+    String method6() {
+      return "null";
+    }
+
+    /**
+     * Some text.
+     *
+     * @see reference <a href="https://checkstyle.org/checks/javadoc/javadoctag.html">
+     *    JavadocTagContinuationIndentation: Checks the indentation </a>
+     *     // violation above 'Line continuation .* expected level should be 4'
+     */
+    String method7() {
+      return "null";
+    }
+
+    /**
+     * Some text.
+     *
      * @param str Some text.
      * @param number Some text.
      *    Some javadoc.
@@ -214,7 +236,7 @@ class InputJavaDocTagContinuationIndentation implements Serializable {
      * @throws Exception Some text.
      * @deprecated Some text.
      */
-    String method6(String str, int number, boolean bool) throws Exception {
+    String method8(String str, int number, boolean bool) throws Exception {
       return "null";
     }
   }
