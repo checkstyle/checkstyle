@@ -18,8 +18,7 @@ public class InputSimplifyBooleanExpression
     {
         boolean even = System.currentTimeMillis() % 2 == 0;
 
-        // can be simplified to "if (even)"
-        if (even == true) { // violation
+        if (even == true) { // violation, can be simplified to even
             return false;
         }
         else {
@@ -40,9 +39,9 @@ public class InputSimplifyBooleanExpression
 
     public static boolean giveMeTrue()
     {
-        boolean tt = isOddMillis() || true; // violation
-        boolean ff = isOddMillis() && false; // violation
-        return !false || (true != false); // 2 violations
+        boolean tt = isOddMillis() || true; // violation, can be simplified to true
+        boolean ff = isOddMillis() && false; // violation, can be simplified to false
+        return !false || (true != false); // 2 violations, can be simplified to "return true"
     }
 
     public void tryToProvokeNPE()
@@ -92,23 +91,23 @@ public class InputSimplifyBooleanExpression
         boolean a = false;
         boolean b = true;
         int c = 13;
-        boolean m = c > 1 ? true : false; // violation
-        boolean e = (a == true) // violation
+        boolean m = c > 1 ? true : false; // violation, can be simplified to c > 1
+        boolean e = (a == true) // violation, can be simplified to a
                 ? c > 1 : false;
-        boolean h = false ? c > 13 : c < 21; // violation
+        boolean h = false ? c > 13 : c < 21; // violation, can be simplified to c < 21
         boolean f = a == b ? false : c > 1;
         boolean q = c > 1 ? (c < 15
                 ? false : b)
                 : a != b;
         boolean v = c > 0 ? true :
-                c < 0 ? false : true; // violation
+                c < 0 ? false : true; // violation, can be simplified to true
         boolean g = (c > 0 ? true : c < 0)
-                ? false : false; // violation
+                ? false : false; // violation, can be simplified to false
         Boolean value = null;
         boolean temp = value != null ? value : false;
-        temp = true ? a() : b(); // violation
-        int d = false ? 1 : 2; // violation
-        temp = a() ? true : true; // violation
+        temp = true ? a() : b(); // violation, can be simplified to a()
+        int d = false ? 1 : 2; // violation, can be simplified to 2
+        temp = a() ? true : true; // violation, can be simplified to true
         temp = value != null ? value : (false);
     }
 }
