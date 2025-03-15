@@ -123,7 +123,7 @@ final class InputLocalFinalVariableName
 
         // final decls
         final int cde = 0;
-        final int CDE = 0; // violation
+        final int CDE = 0; // violation 'Name 'CDE' must match pattern'
 
         // decl in for loop init statement
         for (int k = 0; k < 1; k++)
