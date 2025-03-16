@@ -1076,10 +1076,6 @@ public class JavadocMethodCheck extends AbstractCheck {
      */
     private static final class Token {
 
-        /** Token's column number. */
-        private final int columnNo;
-        /** Token's line number. */
-        private final int lineNo;
         /** Token's text. */
         private final String text;
 
@@ -1087,13 +1083,9 @@ public class JavadocMethodCheck extends AbstractCheck {
          * Creates token.
          *
          * @param text token's text
-         * @param lineNo token's line number
-         * @param columnNo token's column number
          */
         private Token(String text, int lineNo, int columnNo) {
             this.text = text;
-            this.lineNo = lineNo;
-            this.columnNo = columnNo;
         }
 
         /**
@@ -1103,8 +1095,6 @@ public class JavadocMethodCheck extends AbstractCheck {
          */
         private Token(FullIdent fullIdent) {
             text = fullIdent.getText();
-            lineNo = fullIdent.getLineNo();
-            columnNo = fullIdent.getColumnNo();
         }
 
         /**
@@ -1115,13 +1105,6 @@ public class JavadocMethodCheck extends AbstractCheck {
         public String getText() {
             return text;
         }
-
-        @Override
-        public String toString() {
-            return "Token[" + text + "(" + lineNo
-                + "x" + columnNo + ")]";
-        }
-
     }
 
     /** Stores useful information about declared exception. */
