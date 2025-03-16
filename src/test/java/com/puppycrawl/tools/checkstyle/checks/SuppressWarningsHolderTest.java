@@ -157,6 +157,13 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAliasCombo() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineXmlConfig(getPath("InputSuppressWarningsHolderAlias3.java"), expected);
+    }
+
+    @Test
     public void testIsSuppressed() throws Exception {
         populateHolder("MockEntry", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 100, 10);
