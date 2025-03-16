@@ -24,6 +24,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.Definitions;
+import com.puppycrawl.tools.checkstyle.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -61,10 +63,6 @@ public final class JavadocUtil {
     /** Maps from a token value to name. */
     private static final Map<Integer, String> TOKEN_VALUE_TO_NAME;
 
-    /** Exception message for unknown JavaDoc token id. */
-    private static final String UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE = "Unknown javadoc"
-            + " token id. Given id: ";
-
     /** Newline pattern. */
     private static final Pattern NEWLINE = Pattern.compile("\n");
 
@@ -73,6 +71,18 @@ public final class JavadocUtil {
 
     /** Tab pattern. */
     private static final Pattern TAB = Pattern.compile("\t");
+
+    /**
+     * A key pointing to the unknown token id
+     * message in the "messages.properties" file.
+     */
+    public static final String UNKNOWN_TOKEN_ID_MESSAGE = "util.javadoc.unknownTokenId";
+
+    /**
+     * A key pointing to the unknown token name
+     * message in the "messages.properties" file.
+     */
+    public static final String UNKNOWN_TOKEN_NAME_MESSAGE = "util.javadoc.unknownTokenName";
 
     // initialise the constants
     static {
@@ -285,7 +295,10 @@ public final class JavadocUtil {
     public static String getTokenName(int id) {
         final String name = TOKEN_VALUE_TO_NAME.get(id);
         if (name == null) {
-            throw new IllegalArgumentException(UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE + id);
+            final LocalizedMessage unkownTokenIdMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, JavadocUtil.class,
+                    UNKNOWN_TOKEN_ID_MESSAGE,id);
+            throw new IllegalArgumentException(unkownTokenIdMessage.getMessage());
         }
         return name;
     }
@@ -301,7 +314,10 @@ public final class JavadocUtil {
     public static int getTokenId(String name) {
         final Integer id = TOKEN_NAME_TO_VALUE.get(name);
         if (id == null) {
-            throw new IllegalArgumentException("Unknown javadoc token name. Given name " + name);
+            final LocalizedMessage unkownTokenNameMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, JavadocUtil.class,
+                    UNKNOWN_TOKEN_NAME_MESSAGE,name);
+            throw new IllegalArgumentException(unkownTokenNameMessage.getMessage());
         }
         return id;
     }
