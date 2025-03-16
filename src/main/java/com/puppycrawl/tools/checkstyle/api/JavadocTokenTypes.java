@@ -1219,14 +1219,11 @@ public final class JavadocTokenTypes {
      * Colgroup tag name.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code <colgroup span="2"></colgroup>}</pre>
+     * <pre>{@code <colgroup><col span="2"></colgroup>}</pre>
      * <b>Tree:</b>
      * <pre>
      *     {@code
      *     `--JAVADOC -> JAVADOC
-     *            |--NEWLINE -> \n
-     *            |--LEADING_ASTERISK ->  *
-     *            |--TEXT ->
      *            |--HTML_ELEMENT -> HTML_ELEMENT
      *            |   `--COLGROUP -> COLGROUP
      *            |       |--COLGROUP_TAG_START -> COLGROUP_TAG_START
@@ -1240,10 +1237,6 @@ public final class JavadocTokenTypes {
      *            |       |   `--END -> >
      *            |       `--COLGROUP_TAG_END -> COLGROUP_TAG_END
      *            |           |--START -> <
-     *            |           |--SLASH -> /
-     *            |           |--COLGROUP_HTML_TAG_NAME -> colgroup
-     *            |           `--END -> >
-     *            |--NEWLINE -> \n
      *            |--TEXT ->
      *            `--EOF -> <EOF>
      *     }</pre>
