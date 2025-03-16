@@ -97,6 +97,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         getAllowedDirectoryAndChecks();
 
     private static final Set<String> INTERNAL_MODULES = getInternalModules();
+    private static final String DOT_JAVA = ".java";
 
     private Path javaDir;
     private Path inputDir;
@@ -212,53 +213,100 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     @Test
     public void validateInputFiles() throws Exception {
-        try (DirectoryStream<Path> dirs = Files.newDirectoryStream(inputDir)) {
+        try (DirectoryStream<Path> dirs = Files.newDirectoryStream(inputDir, path -> {
+            return path.toFile().isDirectory();
+        })) {
             for (Path dir : dirs) {
-                // input directory must be named in lower case
-                assertWithMessage(dir + " is not a directory")
-                        .that(Files.isDirectory(dir))
-                        .isTrue();
-                final String dirName = dir.toFile().getName();
-                assertWithMessage("Invalid directory name: " + dirName)
-                        .that(ALLOWED_DIRECTORY_AND_CHECKS)
-                        .containsKey(dirName);
-
-                // input directory must be connected to an existing test
-                final String check = ALLOWED_DIRECTORY_AND_CHECKS.get(dirName);
-                final Path javaPath = javaDir.resolve("XpathRegression" + check + "Test.java");
-                assertWithMessage("Input directory '" + dir
-                            + "' is not connected to Java test case: " + javaPath)
-                        .that(Files.exists(javaPath))
-                        .isTrue();
-
-                // input files should be named correctly
-                validateInputDirectory(dir);
+                validateInputFiles(dir, dir.getFileName().toString());
             }
         }
     }
 
-    private static void validateInputDirectory(Path checkDir) throws IOException {
-        final Pattern pattern = Pattern.compile("^InputXpath(.+)\\.java$");
-        final String check = ALLOWED_DIRECTORY_AND_CHECKS.get(checkDir.toFile().getName());
+    /**
+     * Validates the input files in the specified directory by ensuring the directory name is valid,
+     * the directory is connected to a corresponding Java test case file, and each input file in the
+     * directory matches the expected naming pattern.
+     *
+     * @param dir  The directory containing the input files to validate.
+     * @param name The name of the directory to validate.
+     * @throws IOException    If an I/O error occurs while reading the directory.
+     * @throws AssertionError If the directory name is invalid, the test case file is missing,
+     *                        or an input file does not match the expected pattern.
+     */
+    private void validateInputFiles(Path dir, String name) throws IOException {
+        assertWithMessage("Invalid dir name: " + name)
+                .that(ALLOWED_DIRECTORY_AND_CHECKS)
+                .containsKey(name);
 
-        try (DirectoryStream<Path> inputPaths = Files.newDirectoryStream(checkDir)) {
-            for (Path inputPath : inputPaths) {
-                final String filename = inputPath.toFile().getName();
-                if (filename.endsWith("java")) {
-                    final Matcher matcher = pattern.matcher(filename);
-                    assertWithMessage(
-                              "Invalid input file '" + inputPath
-                              + "', expected pattern:" + pattern)
-                            .that(matcher.matches())
-                            .isTrue();
+        assertTestDirectoryIsConnectedToTestCase(
+                dir,
+                javaDir.resolve("XpathRegression" + ALLOWED_DIRECTORY_AND_CHECKS.get(name)
+                        + "Test" + DOT_JAVA));
 
-                    final String remaining = matcher.group(1);
-                    assertWithMessage("Check name '" + check
-                                + "' should be included in input file: " + inputPath)
-                            .that(remaining)
-                            .startsWith(check);
-                }
+        try (DirectoryStream<Path> inputPaths = Files.newDirectoryStream(dir)) {
+            for (Path input : inputPaths) {
+                validateInputFilesIfEndsWithJava(
+                        input,
+                        Pattern.compile("^InputXpath(.+)\\" + DOT_JAVA + "$"),
+                        ALLOWED_DIRECTORY_AND_CHECKS.get(dir.toFile().getName())
+                );
             }
         }
+    }
+
+    /**
+     * Validates an input file if it ends with ".java". Ensures the file name matches the
+     * expected pattern
+     * and contains the specified check name.
+     *
+     * @param path    The path to the input file to validate.
+     * @param pattern The expected pattern that the file name should match.
+     * @param check   The check name that should be included in the file name.
+     * @throws AssertionError If the file name does not match the pattern or does not contain the
+     *                        check name.
+     */
+    private static void validateInputFilesIfEndsWithJava(Path path, Pattern pattern, String check) {
+        if (path.endsWith(DOT_JAVA)) {
+            assertInputFileMatchesPatternAndContainsCheck(
+                    path,
+                    pattern,
+                    check,
+                    pattern.matcher(path.getFileName().toString()));
+        }
+    }
+
+    /**
+     * Asserts that the input file matches the expected pattern and that the check name is
+     * included in the file.
+     *
+     * @param path    The path to the input file being validated.
+     * @param pattern The expected pattern that the file should match.
+     * @param check   The name of the check that should be included in the file.
+     * @param matcher The matcher used to validate the file against the pattern.
+     * @throws AssertionError if the file does not match the pattern or if the check name is not
+     *                        included.
+     */
+    private static void assertInputFileMatchesPatternAndContainsCheck(Path path, Pattern pattern,
+                                                                      String check,
+                                                                      Matcher matcher) {
+        assertWithMessage("Invalid input file '" + path + "', expected pattern: " + pattern)
+                .that(matcher.matches())
+                .isTrue();
+        assertWithMessage("Check name '" + check + "' should be included in input file: " + path)
+                .that(matcher.group(1))
+                .startsWith(check);
+    }
+
+    /**
+     * Asserts that the given directory is connected to an existing Java test case file.
+     *
+     * @param dir  The directory that should be connected to a Java test case.
+     * @param test The path to the Java test case file that should exist.
+     * @throws AssertionError if the test file does not exist.
+     */
+    private void assertTestDirectoryIsConnectedToTestCase(Path dir, Path test) {
+        assertWithMessage("Input dir '" + dir + "' is not connected to Java test case: " + test)
+                .that(Files.exists(test))
+                .isTrue();
     }
 }
