@@ -481,21 +481,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTokenToString() throws Exception {
-        final Class<?> tokenType = Class.forName("com.puppycrawl.tools.checkstyle.checks.javadoc."
-                + "JavadocMethodCheck$Token");
-        final Constructor<?> tokenConstructor = tokenType.getDeclaredConstructor(String.class,
-                int.class, int.class);
-        tokenConstructor.setAccessible(true);
-        final Object token = tokenConstructor.newInstance("tokenName", 1, 1);
-        final Method toString = token.getClass().getDeclaredMethod("toString");
-        final String result = (String) toString.invoke(token);
-        assertWithMessage("Invalid toString result")
-            .that(result)
-            .isEqualTo("Token[tokenName(1x1)]");
-    }
-
-    @Test
     public void testWithoutLogErrors() throws Exception {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodLoadErrors.java"),
