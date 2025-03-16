@@ -445,6 +445,16 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
+     * Return the instance of Properties through
+     * createOverridingProperties().
+     *
+     * @return instance of Properties class.
+     */
+    protected Properties getOverridingPropertiesForTest() {
+        return createOverridingProperties();
+    }
+
+    /**
      * Return the array of listeners set in this task.
      *
      * @return the array of listeners.
