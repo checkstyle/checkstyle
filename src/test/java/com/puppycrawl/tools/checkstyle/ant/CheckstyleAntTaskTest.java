@@ -356,6 +356,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.addProperty(property);
         antTask.execute();
 
+        assertWithMessage("Property key should not be empty")
+                    .that(property.getKey())
+                    .isNotEmpty();
         assertWithMessage("Checker is not processed")
                 .that(TestRootModuleChecker.isProcessed())
                 .isTrue();
