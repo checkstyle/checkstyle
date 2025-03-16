@@ -19,7 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
-import static com.google.common.truth.Truth.assertWithMessage;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.Definitions;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.*;
+import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -34,17 +39,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.Definitions;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
-import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 public class XpathRegressionTest extends AbstractModuleTestSupport {
 
@@ -212,25 +207,23 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     @Test
     public void validateInputFiles() throws Exception {
-        try (DirectoryStream<Path> dirs = Files.newDirectoryStream(inputDir)) {
+        try (DirectoryStream<Path> dirs = Files.newDirectoryStream(
+                inputDir,
+                path -> {
+                    return path.toFile().isDirectory();
+                })) {
             for (Path dir : dirs) {
-                // input directory must be named in lower case
-                assertWithMessage(dir + " is not a directory")
-                        .that(Files.isDirectory(dir))
-                        .isTrue();
-                final String dirName = dir.toFile().getName();
-                assertWithMessage("Invalid directory name: " + dirName)
-                        .that(ALLOWED_DIRECTORY_AND_CHECKS)
-                        .containsKey(dirName);
-
-                // input directory must be connected to an existing test
-                final String check = ALLOWED_DIRECTORY_AND_CHECKS.get(dirName);
-                final Path javaPath = javaDir.resolve("XpathRegression" + check + "Test.java");
-                assertWithMessage("Input directory '" + dir
-                            + "' is not connected to Java test case: " + javaPath)
-                        .that(Files.exists(javaPath))
-                        .isTrue();
-
+                final String name = dir.toFile().getName();
+                assertWithMessage("Invalid dir name: " + name)
+                    .that(ALLOWED_DIRECTORY_AND_CHECKS)
+                    .containsKey(name);
+                // input dir must be connected to an existing test
+                final Path test = javaDir.resolve("XpathRegression" + ALLOWED_DIRECTORY_AND_CHECKS.get(name)
+                        + "Test.java");
+                assertWithMessage("Input dir '" + dir
+                        + "' is not connected to Java test case: " + test)
+                    .that(Files.exists(test))
+                    .isTrue();
                 // input files should be named correctly
                 validateInputDirectory(dir);
             }
