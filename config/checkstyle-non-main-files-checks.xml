@@ -57,7 +57,7 @@
     <property name="id" value="lineLength"/>
     <!-- catch lines above 100 symbols -->
     <property name="format"
-             value="^(?!(.*value=.*|.*href=|.*http(s)?:|import |(.* )?package |.* files=|.*\.dtd| \* \{@code| \* com\.)).{101,}$"/>
+             value="^(?!(.*value=.*|.*href=|.*http(s)?:|import |(.* )?package |.* files=|.*file:|.*\.dtd| \* \{@code| \* com\.)).{101,}$"/>
     <property name="message" value="Line should not be longer than 100 symbols"/>
   </module>
 
