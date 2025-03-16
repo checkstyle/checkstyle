@@ -100,16 +100,14 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAddError() throws IOException {
+    public void testAddError() throws Exception {
+        final String inputFile = "InputSarifLoggerSingleError.java";
+        final String expectedReportFile = "ExpectedSarifLoggerSingleError.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
-        logger.auditStarted(null);
-        final Violation violation =
-                new Violation(1, 1,
-                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
-                        getClass(), "found an error");
-        executeLogger(this, logger, "Test.java", violation);
-        verifyContent(getPath("ExpectedSarifLoggerSingleError.sarif"), outStream);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
     @Test

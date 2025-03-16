@@ -42,6 +42,7 @@ import java.util.stream.Collectors;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
@@ -367,6 +368,24 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         verify(parsedConfig, filePath, expected);
     }
 
+    protected void verifyWithInlineConfigParserAndLogger(String inputFile,
+                                                         String expectedReportFile,
+                                                         AuditListener logger,
+                                                         ByteArrayOutputStream outputStream)
+            throws Exception {
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parse(inputFile);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration.createConfiguration();
+        final List<File> filesToCheck = Collections.singletonList(new File(inputFile));
+
+        final Checker checker = createChecker(parsedConfig);
+        checker.addListener(logger);
+        checker.process(filesToCheck);
+
+        verifyContent(expectedReportFile, outputStream);
+    }
+
     /**
      * Performs verification of the file with the given file name. Uses specified configuration.
      * Expected messages are represented by the array of strings.
@@ -584,6 +603,17 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                     .that(actualViolations.get(index))
                     .matches(testInputViolations.get(index).toRegex());
         }
+    }
+
+    private static void verifyContent(
+            String expectedOutputFile,
+            ByteArrayOutputStream outputStream) throws IOException {
+        final String expectedContent = readFile(expectedOutputFile);
+        final String actualContent =
+                toLfLineEnding(outputStream.toString(StandardCharsets.UTF_8));
+        assertWithMessage("Content should match")
+                .that(actualContent)
+                .isEqualTo(expectedContent);
     }
 
     /**
