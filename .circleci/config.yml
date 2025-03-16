@@ -237,7 +237,7 @@ workflows:
 
       - validate-with-maven-script:
           name: "no-exception-samples-ant"
-          image-name: "circleci/openjdk:11-jdk"
+          image-name: "cimg/openjdk:11.0.19"
           command: |
             export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
             sudo apt update
