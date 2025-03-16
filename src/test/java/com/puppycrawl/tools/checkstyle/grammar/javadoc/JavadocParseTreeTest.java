@@ -412,4 +412,22 @@ public class JavadocParseTreeTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getPath("expectedDosLineEndingAsNewlineMultiline.txt"),
                 getPath("InputDosLineEndingAsNewlineMultiline.javadoc"));
     }
+
+    @Test
+    public void testAnnotationsInsideInlineTag() throws Exception {
+        verifyJavadocTree(getDocPath("expectedAnnotationsInsideInlineTagAst.txt"),
+                getDocPath("InputAnnotationsInsideInlineTag.javadoc"));
+    }
+
+    @Test
+    public void testSeeTagOptionalWhitespaceAfterHtmlTag() throws Exception {
+        verifyJavadocTree(getDocPath("expectedSeeTagOptionalWhitespaceAfterHtmlTag.txt"),
+                getDocPath("InputSeeTagOptionalWhitespaceAfterHtmlTag.javadoc"));
+    }
+
+    @Test
+    public void testEmptyReferenceInLink() throws Exception {
+        verifyJavadocTree(getDocPath("expectedEmptyReferenceInLinkAst.txt"),
+                getDocPath("InputEmptyReferenceInLink.javadoc"));
+    }
 }

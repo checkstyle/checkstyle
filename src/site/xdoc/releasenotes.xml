@@ -10,6 +10,72 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.21.4">
+      <div class="releaseDate">04.03.2025</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            AnnotationOnSameLine: FalseNegative when the annotation is on the same line of the
+            modifer of the target class.
+            Author: Anmol
+            <a href="https://github.com/checkstyle/checkstyle/issues/15161">#15161</a>
+          </li>
+          <li>
+            PARAMETER_DEF in FinalLocalVariable doesn&#39;t seem to work in interfaces.
+            Author: Anmol
+            <a href="https://github.com/checkstyle/checkstyle/issues/16081">#16081</a>
+          </li>
+          <li>
+            Regression: CyclomaticComplexity.switchBlockAsSingleDecisionPoint does not work
+            properly anymore (10.21.1).
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/16165">#16165</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: Atharv Chavan, jerryyummy, bishoy
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            Resolve Pitest Suppression in Pitest-Javadoc Profile.
+            Author: Amit Kumar Deohoria, Harsh-Agrawal96
+            <a href="https://github.com/checkstyle/checkstyle/issues/13999">#13999</a>
+          </li>
+          <li>
+            Define violation messages for all violations.
+            Author: Usman Shaikh
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            Improve documentation - how to add usage of `var` to check `IllegalType`? .
+            Author: Priyambada Roul
+            <a href="https://github.com/checkstyle/checkstyle/issues/14775">#14775</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: Amit Kumar Deohoria, abc
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Strange echo failure for static message in github action execution.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/16414">#16414</a>
+          </li>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: vishakha-mali, Tahanima Chowdhury
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+          <li>
+            Cover pitest survivals with tests.
+            Author: Ziad Ahmed
+            <a href="https://github.com/checkstyle/checkstyle/issues/14019">#14019</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.21.3">
       <div class="releaseDate">23.02.2025</div>
       <p>Bug fixes:</p>

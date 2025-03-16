@@ -212,7 +212,6 @@ public final class InlineConfigParser {
      *  Until <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>.
      */
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
-            "com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck",
             "com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck",
@@ -225,7 +224,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding"
@@ -239,7 +237,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck",
 
             "com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck",
-            "com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc."
                     + "AbstractJavadocCheckTest$TokenIsNotInAcceptablesCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck",
@@ -267,13 +264,11 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck",
             "com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck",
+
             "com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.InterfaceTypeParameterNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.MethodTypeParameterNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck",
@@ -281,7 +276,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.naming.PatternVariableNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.RecordComponentNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.RecordTypeParameterNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck",

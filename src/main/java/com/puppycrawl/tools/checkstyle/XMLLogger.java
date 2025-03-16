@@ -106,13 +106,20 @@ public class XMLLogger
         // No code by default
     }
 
+    /**
+     * Returns the version string printed.
+     *
+     */
+    private void printVersionString() {
+        final String version = XMLLogger.class.getPackage().getImplementationVersion();
+        writer.println("<checkstyle version=\"" + version + "\">");
+    }
+
     @Override
     public void auditStarted(AuditEvent event) {
         writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 
-        final String version = XMLLogger.class.getPackage().getImplementationVersion();
-
-        writer.println("<checkstyle version=\"" + version + "\">");
+        printVersionString();
     }
 
     @Override
@@ -204,12 +211,14 @@ public class XMLLogger
                 + encode(event.getMessage())
                 + "\"");
         writer.print(" source=\"");
+        final String sourceValue;
         if (event.getModuleId() == null) {
-            writer.print(encode(event.getSourceName()));
+            sourceValue = event.getSourceName();
         }
         else {
-            writer.print(encode(event.getModuleId()));
+            sourceValue = event.getModuleId();
         }
+        writer.print(encode(sourceValue));
         writer.println("\"/>");
     }
 

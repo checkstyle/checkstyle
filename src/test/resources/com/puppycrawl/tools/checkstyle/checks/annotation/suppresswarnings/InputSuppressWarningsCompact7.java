@@ -15,7 +15,8 @@ import java.lang.annotation.Documented;
 @SuppressWarnings({"unchecked", "unused"}) // 2 violations
 public class InputSuppressWarningsCompact7
 {
-    @SuppressWarnings({"   "}) // violation
+    // violation below, 'The warning '   ' cannot be suppressed at this location'
+    @SuppressWarnings({"   "})
     class Empty {
 
         @SuppressWarnings({"unchecked", ""}) // 2 violations
@@ -24,7 +25,8 @@ public class InputSuppressWarningsCompact7
         }
     }
 
-    @SuppressWarnings({"unused"}) // violation
+    // violation below, 'The warning 'unused' cannot be suppressed at this location'
+    @SuppressWarnings({"unused"})
     enum Duh {
 
         @SuppressWarnings({"unforgiven", "    un"}) // 2 violations
@@ -32,11 +34,13 @@ public class InputSuppressWarningsCompact7
 
         public static void foo() {
 
-            @SuppressWarnings({"unused"}) // violation
+            // violation below, 'The warning 'unused' cannot be suppressed at this location'
+            @SuppressWarnings({"unused"})
             Object o = new InputSuppressWarningsCompact7() {
 
                 @Override
-                @SuppressWarnings({"unchecked"}) // violation
+                @SuppressWarnings({"unchecked"})
+                // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
                 public String toString() {
                     return "";
                 }
@@ -44,14 +48,16 @@ public class InputSuppressWarningsCompact7
         }
     }
 
-    @SuppressWarnings({"abcun"}) // violation
+    // violation below, 'The warning 'abcun' cannot be suppressed at this location'
+    @SuppressWarnings({"abcun"})
     @Documented
     @interface Sweet {
         int cool();
     }
 
     @Documented
-    @SuppressWarnings({}) // violation
+    @SuppressWarnings({})
+    // violation above, 'The warning '' cannot be suppressed at this location'
     @interface MoreSweetness {
 
         @SuppressWarnings({"unused", "bleh"}) // 2 violations
@@ -60,13 +66,16 @@ public class InputSuppressWarningsCompact7
 
     public class Junk {
 
-        @SuppressWarnings({}) // violation
+        // violation below, 'The warning '' cannot be suppressed at this location'
+        @SuppressWarnings({})
         int a = 1;
 
-        @SuppressWarnings({"unchecked"}) // violation
+        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        @SuppressWarnings({"unchecked"})
         @Deprecated
         int b = 1;
-        void doFoo(String s, @SuppressWarnings({"unchecked"})String y) { // violation
+        void doFoo(String s, @SuppressWarnings({"unchecked"})String y) {
+            // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
 
         }
     }

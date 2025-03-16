@@ -81,11 +81,6 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                     "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
             "46: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 6,
                     "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
-            "68: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 13,
-                    "mismatched input '}' expecting {LEADING_ASTERISK, WS, NEWLINE}",
-                    "JAVADOC_INLINE_TAG"),
-            "78: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 19,
-                    "no viable alternative at input '}'", "REFERENCE"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocJavadocTagsWithoutArgs.java"), expected);
@@ -596,6 +591,41 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTags3.java"), expected);
+    }
+
+    @Test
+    public void testLeaveJavadocToken() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputAbstractJavadocLeaveToken.java"), expected);
+    }
+
+    public static class JavadocLeaveTokenCheck extends AbstractJavadocCheck {
+
+        private static int visitCount;
+        private static int leaveCount;
+
+        @Override
+        public int[] getDefaultJavadocTokens() {
+            return new int[] {JavadocTokenTypes.HTML_ELEMENT};
+        }
+
+        @Override
+        public void visitJavadocToken(DetailNode ast) {
+            visitCount++;
+        }
+
+        @Override
+        public void leaveJavadocToken(DetailNode ast) {
+            leaveCount++;
+        }
+
+        @Override
+        public void finishJavadocTree(DetailNode ast) {
+            if (visitCount != leaveCount) {
+                throw new IllegalStateException("mismatch in visitCount and leaveCount");
+            }
+        }
     }
 
     public static class ParseJavadocOnlyCheck extends AbstractJavadocCheck {

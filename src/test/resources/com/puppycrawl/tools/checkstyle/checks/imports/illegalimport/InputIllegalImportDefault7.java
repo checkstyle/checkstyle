@@ -12,12 +12,12 @@ package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 import java.io.*;
 import java.lang.*;
 import java.sql.Connection;
-import java.util.List; // violation
-import java.util.List; // violation
+import java.util.List; // violation 'Illegal import - java.util.List'
+import java.util.List; // violation 'Illegal import - java.util.List'
 import java.lang.ArithmeticException;
 import org.junit.jupiter.api.*;
-import java.util.Enumeration; // violation
-import java.util.Arrays; // violation
+import java.util.Enumeration; // violation 'Illegal import - java.util.Enumeration'
+import java.util.Arrays; // violation 'Illegal import - java.util.Arrays'
 
 import javax.swing.JToolBar;
 import javax.swing.JToggleButton;
@@ -30,13 +30,13 @@ import static javax.swing.WindowConstants.*;
 import static java.io.File.createTempFile;
 import org.junit.jupiter.api.*;
 
-import java.awt.Component; // violation
-import java.awt.Graphics2D; // violation
-import java.awt.HeadlessException; // violation
-import java.awt.Label; // violation
-import java.util.Date; // violation
-import java.util.Calendar; // violation
-import java.util.BitSet; // violation
+import java.awt.Component; // violation 'Illegal import - java.awt.Component'
+import java.awt.Graphics2D; // violation 'Illegal import - java.awt.Graphics2D'
+import java.awt.HeadlessException; // violation 'Illegal import - java.awt.HeadlessException'
+import java.awt.Label; // violation 'Illegal import - java.awt.Label'
+import java.util.Date; // violation 'Illegal import - java.util.Date'
+import java.util.Calendar; // violation 'Illegal import - java.util.Calendar'
+import java.util.BitSet; // violation 'Illegal import - java.util.BitSet'
 
 class InputIllegalImportDefault7
 {
