@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -355,7 +356,13 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         property.setValue("ignore");
         antTask.addProperty(property);
         antTask.execute();
+        final Properties resultProperties = antTask.getOverridingPropertiesForTest();
 
+        for (String key : resultProperties.stringPropertyNames()) {
+            assertWithMessage("Property key should not be empty")
+                    .that(key)
+                    .isNotEmpty();
+        }
         assertWithMessage("Checker is not processed")
                 .that(TestRootModuleChecker.isProcessed())
                 .isTrue();

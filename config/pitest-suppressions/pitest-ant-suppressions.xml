@@ -188,13 +188,4 @@
     <description>Removed assignment to member variable maxErrors</description>
     <lineContent>this.maxErrors = maxErrors;</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckstyleAntTask.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask$Property</mutatedClass>
-    <mutatedMethod>getKey</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
-    <description>replaced return value with &quot;&quot; for com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask$Property::getKey</description>
-    <lineContent>return key;</lineContent>
-  </mutation>
 </suppressedMutations>
