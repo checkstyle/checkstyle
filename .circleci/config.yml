@@ -230,6 +230,21 @@ workflows:
           name: "no-exception-samples-gradle"
           image-name: "cimg/openjdk:11.0.19"
           command: "./.ci/no-exception-test.sh no-exception-samples-gradle"
+      - validate-with-maven-script:
+          name: "no-exception-samples-maven"
+          image-name: "cimg/openjdk:11.0.19"
+          command: "./.ci/no-exception-test.sh no-exception-samples-maven"
+
+      - validate-with-maven-script:
+          name: "no-exception-samples-ant"
+          image-name: "circleci/openjdk:11-jdk"
+          command: |
+            export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+            sudo apt update
+            sudo apt install -y --reinstall ca-certificates-java
+            sudo apt install -y ant
+            sudo update-ca-certificates -f
+            ./.ci/no-exception-test.sh no-exception-samples-ant
 
   idea:
     jobs:
