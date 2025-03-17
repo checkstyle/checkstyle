@@ -1,0 +1,25 @@
+[*]
+charset = utf-8
+end_of_line = lf
+ij_continuation_indent_size = 8
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+max_line_length = 100
+
+[*.xml]
+indent_size = 2
+ij_continuation_indent_size = 4
+
+[pom.xml]
+max_line_length = 140
+
+[*.java]
+ij_java_class_count_to_use_import_on_demand = 999
+ij_java_else_on_new_line = true
+ij_java_imports_layout = $*, |, java.**, |, javax.**, |, org.**, |, net.**, |, com.**, |, *
+ij_java_names_count_to_use_import_on_demand = 999
+
+[**xdocs-examples**.java]
+ij_continuation_indent_size = 2
+indent_size = 2

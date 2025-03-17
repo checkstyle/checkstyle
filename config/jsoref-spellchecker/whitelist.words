@@ -606,6 +606,7 @@ inplace
 instanceof
 Intelli
 intellij
+ij
 intercell
 interfaceistype
 interfacememberimpliedmodifier
@@ -1402,6 +1403,7 @@ unsubscribe
 unusedcatchparametershouldbeunnamed
 unusedimports
 unusedlambdaparametershouldbeunnamed
+unusedlocalmethod
 unusedlocalvariable
 uppercased
 upperell
