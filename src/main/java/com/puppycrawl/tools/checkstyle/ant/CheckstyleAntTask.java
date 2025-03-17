@@ -102,9 +102,6 @@ public class CheckstyleAntTask extends Task {
     /** The name of the properties file. */
     private File properties;
 
-    /** The maximum number of errors that are tolerated. */
-    private int maxErrors;
-
     /** The maximum number of warnings that are tolerated. */
     private int maxWarnings = Integer.MAX_VALUE;
 
@@ -137,15 +134,6 @@ public class CheckstyleAntTask extends Task {
      */
     public void setFailOnViolation(boolean fail) {
         failOnViolation = fail;
-    }
-
-    /**
-     * Sets the maximum number of errors allowed. Default is 0.
-     *
-     * @param maxErrors the maximum number of errors allowed.
-     */
-    public void setMaxErrors(int maxErrors) {
-        this.maxErrors = maxErrors;
     }
 
     /**
@@ -351,17 +339,13 @@ public class CheckstyleAntTask extends Task {
             throw new BuildException("Unable to process files: " + files, ex);
         }
         final int numWarnings = warningCounter.getCount();
-        final boolean okStatus = numErrs <= maxErrors && numWarnings <= maxWarnings;
-
-        // Handle the return status
-        if (!okStatus) {
+        if (numErrs > 0 || numWarnings > maxWarnings) {
             final String failureMsg =
                     "Got " + numErrs + " errors and " + numWarnings
                             + " warnings.";
             if (failureProperty != null) {
                 getProject().setProperty(failureProperty, failureMsg);
             }
-
             if (failOnViolation) {
                 throw new BuildException(failureMsg, getLocation());
             }
