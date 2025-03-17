@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocVariableCheckTest
     extends AbstractModuleTestSupport {
@@ -370,6 +371,14 @@ public class JavadocVariableCheckTest
         };
         verifyWithInlineConfigParser(
             getPath("InputJavadocVariableMethodInnerClass.java"),
+            expected);
+    }
+
+    @Test
+    public void testJavadocVariableAboveComment() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocVariableAboveComment.java"),
             expected);
     }
 }
