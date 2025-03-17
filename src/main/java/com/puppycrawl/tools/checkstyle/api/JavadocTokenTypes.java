@@ -1223,20 +1223,27 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      *     {@code
-     *     `--JAVADOC -> JAVADOC
      *            |--HTML_ELEMENT -> HTML_ELEMENT
      *            |   `--COLGROUP -> COLGROUP
      *            |       |--COLGROUP_TAG_START -> COLGROUP_TAG_START
      *            |       |   |--START -> <
      *            |       |   |--COLGROUP_HTML_TAG_NAME -> colgroup
-     *            |       |   |--WS ->
-     *            |       |   |--ATTRIBUTE -> ATTRIBUTE
-     *            |       |   |   |--HTML_TAG_NAME -> span
-     *            |       |   |   |--EQUALS -> =
-     *            |       |   |   `--ATTR_VALUE -> "2"
      *            |       |   `--END -> >
+     *            |       |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *            |       |   `--COL_TAG -> COL_TAG
+     *            |       |       |--START -> <
+     *            |       |       |--COL_HTML_TAG_NAME -> col
+     *            |       |       |--WS ->
+     *            |       |       |--ATTRIBUTE -> ATTRIBUTE
+     *            |       |       |   |--HTML_TAG_NAME -> span
+     *            |       |       |   |--EQUALS -> =
+     *            |       |       |   `--ATTR_VALUE -> "2"
+     *            |       |       `--END -> >
      *            |       `--COLGROUP_TAG_END -> COLGROUP_TAG_END
      *            |           |--START -> <
+     *            |           |--SLASH -> /
+     *            |           |--COLGROUP_HTML_TAG_NAME -> colgroup
+     *            |           `--END -> >
      *            |--TEXT ->
      *            `--EOF -> <EOF>
      *     }</pre>
