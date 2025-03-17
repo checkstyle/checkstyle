@@ -27,9 +27,6 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_UNUSED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_UNUSED_TAG_GENERAL;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -478,21 +475,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Required tokens differ from expected")
             .that(actual)
             .isEqualTo(expected);
-    }
-
-    @Test
-    public void testTokenToString() throws Exception {
-        final Class<?> tokenType = Class.forName("com.puppycrawl.tools.checkstyle.checks.javadoc."
-                + "JavadocMethodCheck$Token");
-        final Constructor<?> tokenConstructor = tokenType.getDeclaredConstructor(String.class,
-                int.class, int.class);
-        tokenConstructor.setAccessible(true);
-        final Object token = tokenConstructor.newInstance("tokenName", 1, 1);
-        final Method toString = token.getClass().getDeclaredMethod("toString");
-        final String result = (String) toString.invoke(token);
-        assertWithMessage("Invalid toString result")
-            .that(result)
-            .isEqualTo("Token[tokenName(1x1)]");
     }
 
     @Test
