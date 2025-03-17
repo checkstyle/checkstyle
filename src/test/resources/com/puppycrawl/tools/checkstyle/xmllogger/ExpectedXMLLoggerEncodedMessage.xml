@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="">
+  <error line="1" column="1"
+         severity="error"
+         message="Test XML encoding: &lt;tag&gt; &amp; &quot;quotes&quot; &amp; &apos;apos&apos;; Existing entities: &amp; &lt;"
+         source="test-module"/>
+</checkstyle>
