@@ -223,6 +223,26 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
                 violation.getViolation());
     }
 
+     @Test
+public void testAddErrorWithEncodedMessage() throws Exception {
+    final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
+    logger.auditStarted(null);
+
+    // Create a violation with a message containing special XML characters
+    final Violation violation = new Violation(
+        1, 1, "messages.properties", "key", null, SeverityLevel.ERROR,
+        "test-module", getClass(),
+        "Test XML encoding: <tag> & \"quotes\" & \'apos\'; Existing entities: & <"
+    );
+
+    final AuditEvent ev = new AuditEvent(this, "Test.xml", violation);
+    logger.addError(ev);
+    logger.auditFinished(null);
+
+    // Verify the XML output matches the expected escaped values
+    verifyXml(getPath("ExpectedXMLLoggerEncodedMessage.xml"), outStream);
+}
+
     @Test
     public void testAddErrorOnZeroColumns() throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
