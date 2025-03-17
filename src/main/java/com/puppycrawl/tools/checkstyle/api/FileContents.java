@@ -38,6 +38,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public final class FileContents implements CommentListener {
 
     /**
+     * The start of a Javadoc comment.
+     */
+    private static final String JAVADOC_START = "/**";
+
+    /**
      * The pattern to match a single-line comment containing only the comment
      * itself -- no code.
      */
@@ -158,7 +163,7 @@ public final class FileContents implements CommentListener {
 
         // Remember if possible Javadoc comment
         final String firstLine = line(startLineNo - 1);
-        if (firstLine.contains("/**") && !firstLine.contains("/**/")) {
+        if (firstLine.contains(JAVADOC_START) && !firstLine.contains("/**/")) {
             javadocComments.put(endLineNo - 1, comment);
         }
     }
@@ -216,12 +221,33 @@ public final class FileContents implements CommentListener {
         // Lines start at 1 to the callers perspective, so need to take off 2
         int lineNo = lineNoBefore - 2;
 
-        // skip blank lines
-        while (lineNo > 0 && (lineIsBlank(lineNo) || lineIsComment(lineNo))) {
+        // skip blank lines and comments
+        while (lineNo > 0 && (lineIsBlank(lineNo) || lineIsComment(lineNo)
+                            || lineInsideBlockComment(lineNo + 1))) {
             lineNo--;
         }
 
         return javadocComments.get(lineNo);
+    }
+
+    /**
+     * Checks if the specified line number is inside a block comment.
+     * This method scans through all block comments (excluding Javadoc comments)
+     * and determines whether the given line number falls within any of them
+     *
+     * @param lineNo the line number to check
+     * @return {@code true} if the line is inside a block comment (excluding Javadoc comments)
+     *          , {@code false} otherwise
+     */
+    public boolean lineInsideBlockComment(int lineNo) {
+        final Collection<List<TextBlock>> values = clangComments.values();
+        return values.stream()
+            .flatMap(List::stream)
+            .filter(comment -> !comment.getText()[0].startsWith(JAVADOC_START))
+            .anyMatch(comment -> {
+                return lineNo >= comment.getStartLineNo()
+                                        && lineNo <= comment.getEndLineNo();
+            });
     }
 
     /**
