@@ -35,6 +35,7 @@ import java.util.stream.Collectors;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
+import org.apache.tools.ant.FileScanner;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.Task;
 import org.apache.tools.ant.taskdefs.LogOutputStream;
@@ -579,13 +580,14 @@ public class CheckstyleAntTask extends Task {
      * @param logIndex A log entry index. Used only for log messages.
      * @return A list of files, retrieved from the given scanner.
      */
-    private List<File> retrieveAllScannedFiles(DirectoryScanner scanner, int logIndex) {
+    private List<File> retrieveAllScannedFiles(FileScanner scanner, int logIndex) {
+        final File baseDir = scanner.getBasedir();
         final String[] fileNames = scanner.getIncludedFiles();
         log(String.format(Locale.ROOT, "%d) Adding %d files from directory %s",
-            logIndex, fileNames.length, scanner.getBasedir()), Project.MSG_VERBOSE);
+            logIndex, fileNames.length, baseDir), Project.MSG_VERBOSE);
 
         return Arrays.stream(fileNames)
-            .map(name -> scanner.getBasedir() + File.separator + name)
+            .map(name -> baseDir + File.separator + name)
             .map(File::new)
             .collect(Collectors.toUnmodifiableList());
     }
