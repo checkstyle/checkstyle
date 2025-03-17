@@ -145,7 +145,7 @@ public class CheckstyleAntTask extends Task {
      * @param maxErrors the maximum number of errors allowed.
      */
     public void setMaxErrors(int maxErrors) {
-        this.maxErrors = maxErrors;
+        this.maxErrors = 0;
     }
 
     /**
