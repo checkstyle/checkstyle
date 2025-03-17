@@ -470,4 +470,13 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocType4.java"), expected);
     }
+
+    @Test
+    public void testJavadocTypeAboveComments() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeAboveComments.java"), expected);
+    }
 }

@@ -436,4 +436,14 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testMissingJavadocTypeAboveComments() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputMissingJavadocTypeAboveComments.java"),
+            expected);
+    }
+
 }
