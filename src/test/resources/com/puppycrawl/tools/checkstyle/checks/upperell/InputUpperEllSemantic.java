@@ -93,7 +93,8 @@ class InputUpperEllSemantic
     }
 
     /** test **/
-    private static final long IGNORE = 666l + 666L; // violation
+    private static final long IGNORE = 666l + 666L; // violation 'Should use uppercase 'L'.'
+
 
 
 
