@@ -1,0 +1,97 @@
+/*
+JavadocMethod
+validateThrows = true
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
+
+public class InputJavadocMethodAboveComments {
+
+    /**
+     * A Javadoc comment.
+     * @return 0
+     */
+    //@ A JML Annotation
+    public int foo() throws Exception { // violation, 'Expected @throws tag for 'Exception''
+        return 0;
+    }
+
+    /**
+     * A Javadoc comment.
+     * @return 0
+     */
+    /*@ A JML Annotation */
+    public int foo2() throws Exception { // violation, 'Expected @throws tag for 'Exception''
+        return 0;
+    }
+
+    /**
+     * A dangling Javadoc comment.
+     */
+    /**
+     * A Javadoc comment.
+     * @return 0
+     */
+    public int foo3() {
+        return 0;
+    }
+
+    /**
+     * A dangling Javadoc comment.
+     * @return 0
+     */
+    /**
+     * A Javadoc comment.
+     */
+    public int foo4() { // violation, '@return tag should be present and have description.'
+        return 0;
+    }
+
+    /**
+     * A Javadoc comment.
+     * @return 0
+     */
+    @SuppressWarnings("unchecked")
+    /* generic type warnings are suppressed for this method
+    because of reason xyz */
+    public int method() throws Exception { // violation, 'Expected @throws tag for 'Exception''
+        return 0;
+    }
+
+    /**
+     * A Javadoc comment.
+     * @return 0
+     */
+    /* generic type warnings are suppressed for this method
+    because of reason xyz */
+    @SuppressWarnings("unchecked")
+    public int method2() throws Exception {  // violation,'Expected @throws tag for 'Exception''
+        return 0;
+    }
+
+    /**
+     * A Javadoc comment.
+     * @return 0
+     */
+    // generic type warnings are suppressed for this method because of reason xyz
+    @SuppressWarnings("unchecked")
+    public int method3() throws Exception { // violation, 'Expected @throws tag for 'Exception''
+        return 0;
+    }
+
+    /**
+     * A Javadoc comment.
+     * @return 0
+     */
+    @SuppressWarnings("unchecked")
+    // generic type warnings are suppressed for this method because of reason xyz */
+    public int method4() throws Exception { // violation, 'Expected @throws tag for 'Exception''
+        return 0;
+    }
+
+    /*@ A JML Annotation */
+    public int foo5() {
+        return 0;
+    }
+}

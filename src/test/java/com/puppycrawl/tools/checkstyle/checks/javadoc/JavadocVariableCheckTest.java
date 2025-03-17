@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck.MSG_JAVADOC_MISSING;
 
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -370,6 +371,14 @@ public class JavadocVariableCheckTest
         };
         verifyWithInlineConfigParser(
             getPath("InputJavadocVariableMethodInnerClass.java"),
+            expected);
+    }
+
+    @Test
+    public void testJavadocVariableAboveComment() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocVariableAboveComment.java"),
             expected);
     }
 }
