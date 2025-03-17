@@ -208,7 +208,7 @@ public class XMLLogger
                 + event.getSeverityLevel().getName()
                 + "\"");
         writer.print(" message=\""
-                + encode(event.getMessage())
+                + event.getMessage()
                 + "\"");
         writer.print(" source=\"");
         final String sourceValue;

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="">
+  <error line="1" column="1"
+         severity="error"
+         message="Test &lt;message&gt; &amp; &quot;quotes&quot;"
+         source="module-id"/>
+</checkstyle>
