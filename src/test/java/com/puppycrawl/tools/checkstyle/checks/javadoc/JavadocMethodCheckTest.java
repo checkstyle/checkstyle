@@ -28,11 +28,14 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_UNUSED_TAG_GENERAL;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -493,6 +496,42 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid toString result")
             .that(result)
             .isEqualTo("Token[tokenName(1x1)]");
+    }
+
+    @Test
+    public void testTokenToString2() throws Exception {
+        final Class<?> tokenType = Class.forName("com.puppycrawl.tools.checkstyle.checks.javadoc."
+                + "JavadocMethodCheck$Token");
+        final Constructor<?> tokenConstructor = tokenType.getDeclaredConstructor(FullIdent.class);
+        tokenConstructor.setAccessible(true);
+        final Class<?> detailAstImplClass =
+                Class.forName("com.puppycrawl.tools.checkstyle.DetailAstImpl");
+        final DetailAST ast = getDetailAST(detailAstImplClass);
+        final FullIdent fullIdentInstance = FullIdent.createFullIdent(ast);
+        final Object token = tokenConstructor.newInstance(fullIdentInstance);
+        final Method toString = token.getClass().getDeclaredMethod("toString");
+        final String result = (String) toString.invoke(token);
+        assertWithMessage("Invalid toString result")
+            .that(result)
+            .isEqualTo("Token[tokenName(1x1)]");
+    }
+
+    private static DetailAST getDetailAST(Class<?> detailAstImplClass) throws
+            Exception {
+        final Constructor<?> detailAstConstructor = detailAstImplClass.getDeclaredConstructor();
+        detailAstConstructor.setAccessible(true);
+        final Object detailAstInstance = detailAstConstructor.newInstance();
+        final Method initializeMethod = detailAstImplClass
+                .getDeclaredMethod("initialize", int.class, String.class);
+        initializeMethod.setAccessible(true);
+        initializeMethod.invoke(detailAstInstance, 1, "tokenName");
+        final Field lineNoField = detailAstImplClass.getDeclaredField("lineNo");
+        lineNoField.setAccessible(true);
+        lineNoField.set(detailAstInstance, 1);
+        final Field columnNoField = detailAstImplClass.getDeclaredField("columnNo");
+        columnNoField.setAccessible(true);
+        columnNoField.set(detailAstInstance, 1);
+        return (DetailAST) detailAstInstance;
     }
 
     @Test
