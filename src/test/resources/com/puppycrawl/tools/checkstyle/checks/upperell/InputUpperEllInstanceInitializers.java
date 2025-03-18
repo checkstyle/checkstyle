@@ -4,7 +4,7 @@ import java.awt.*;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
-public class InstanceInitializers {
+public class InputUpperEllInstanceInitializers {
     /* Boolean instantiation in a non-static initializer */
     {
         Boolean x = new Boolean(true);
@@ -18,8 +18,8 @@ public class InstanceInitializers {
     void otherInstantiations()
     {
         // instantiation of classes in the same package
-        Object o1 = new InputBraces();
-        Object o2 = new InputModifier();
+        Object o1 = new InputUpperEllBraces();
+        Object o2 = new InputUpperEllModifier();
         // classes in another package with .* import
         ByteArrayOutputStream s = new ByteArrayOutputStream();
         File f = new File("/tmp");

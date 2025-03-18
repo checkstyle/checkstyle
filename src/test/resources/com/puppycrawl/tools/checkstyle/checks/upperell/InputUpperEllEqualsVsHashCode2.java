@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.upperell;
 
-public class EqualsVsHashCode2
+public class InputUpperEllEqualsVsHashCode2
 {
     public boolean equals(String a) // flag
     {

@@ -2,7 +2,7 @@ package com.puppycrawl.tools.checkstyle.checks.upperell;
 
 import java.io.ByteArrayOutputStream;
 
-public class EqualsVsHashCode4
+public class InputUpperEllEqualsVsHashCode4
 {
     // in anon inner class
     ByteArrayOutputStream bos1 = new ByteArrayOutputStream()
