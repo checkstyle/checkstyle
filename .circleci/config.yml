@@ -18,6 +18,9 @@ jobs:
             echo "IDEA version:"
             echo $IDEA_VERSION
       - run:
+          name: Install Apache Ant
+          command: sudo apt-get update && sudo apt-get install -y ant
+      - run:
           name: Run inspections
           command: |
             mkdir .idea
@@ -230,6 +233,15 @@ workflows:
           name: "no-exception-samples-gradle"
           image-name: "cimg/openjdk:11.0.19"
           command: "./.ci/no-exception-test.sh no-exception-samples-gradle"
+      - validate-with-maven-script:
+          name: "no-exception-samples-maven"
+          image-name: "cimg/openjdk:11.0.19"
+          command: "./.ci/no-exception-test.sh no-exception-samples-maven"
+
+      - validate-with-maven-script:
+          name: "no-exception-samples-ant"
+          image-name: "cimg/openjdk:11.0.19"
+          command: "./.ci/no-exception-test.sh no-exception-samples-ant"
 
   idea:
     jobs:
