@@ -731,6 +731,47 @@
     </pluginManagement>
     <plugins>
       <plugin>
+        <groupId>org.ec4j.maven</groupId>
+        <artifactId>editorconfig-maven-plugin</artifactId>
+        <version>0.1.3</version>
+        <executions>
+          <execution>
+            <id>editorconfig-check</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <excludes>
+            <!-- revise these and apply format afterward *.java, *.xml, *.properties, as some are just about (end_of_line = lf) -->
+            <exclude>**/*</exclude>
+            <!-- <exclude>**/*.javadoc</exclude> -->
+            <!-- <exclude>**/*.jpeg</exclude> -->
+            <!-- <exclude>.ci/**</exclude> -->
+            <!-- <exclude>.ci-temp/**</exclude> -->
+            <!-- <exclude>.docs/**</exclude> -->
+            <!-- <exclude>.github/**</exclude> -->
+            <!-- <exclude>src/main/resources/com/puppycrawl/tools/checkstyle/meta/**/*.xml</exclude> -->
+            <!-- <exclude>src/main/resources/com/puppycrawl/tools/checkstyle/sarif/*.template</exclude> -->
+            <!-- <exclude>src/site/xdoc/*.xml</exclude> -->
+            <!-- <exclude>src/site/xdoc/checks/**/*.xml</exclude> -->
+            <!-- <exclude>src/site/xdoc/filefilters/**/*.xml</exclude> -->
+            <!-- <exclude>src/site/xdoc/filters/**/*.xml</exclude> -->
+            <!-- <exclude>src/test/resources-noncompilable/**/*.java</exclude> -->
+            <!-- <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/**/*.java</exclude> -->
+            <!-- <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/**/*.xml</exclude> -->
+            <!-- <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/*.properties</exclude> -->
+            <!-- <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/**/*</exclude> -->
+            <!-- <exclude>src/xdocs-examples/resources/**/*.java</exclude> -->
+            <!-- <exclude>src/xdocs-examples/resources/**/*.properties</exclude> -->
+            <!-- <exclude>src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example4.cpp</exclude> -->
+            <!-- <exclude>src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example6.txt</exclude> -->
+          </excludes>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.codehaus.plexus</groupId>
         <artifactId>plexus-component-metadata</artifactId>
         <version>2.2.0</version>
