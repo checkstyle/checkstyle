@@ -1,5 +1,5 @@
 package com.puppycrawl.tools.checkstyle.checks.upperell;
 
-public class InputBraces {
+public class InputUpperEllBraces {
 
 }

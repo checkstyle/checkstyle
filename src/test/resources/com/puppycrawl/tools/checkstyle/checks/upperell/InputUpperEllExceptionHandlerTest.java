@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.upperell;
 
-public class ExceptionHandlerTest {
+public class InputUpperEllExceptionHandlerTest {
     void exHandlerTest()
     {
         try {
