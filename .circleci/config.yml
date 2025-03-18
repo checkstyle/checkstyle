@@ -230,6 +230,15 @@ workflows:
           name: "no-exception-samples-gradle"
           image-name: "cimg/openjdk:11.0.19"
           command: "./.ci/no-exception-test.sh no-exception-samples-gradle"
+      - validate-with-maven-script:
+          name: "no-exception-samples-maven"
+          image-name: "cimg/openjdk:11.0.19"
+          command: "./.ci/no-exception-test.sh no-exception-samples-maven"
+
+      - validate-with-maven-script:
+          name: "no-exception-samples-ant"
+          image-name: "cimg/openjdk:11.0.8"
+          command: "./.ci/no-exception-test.sh no-exception-samples-ant"
 
   idea:
     jobs:
