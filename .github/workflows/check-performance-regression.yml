@@ -22,7 +22,22 @@ concurrency:
 jobs:
   test:
     if: github.repository == 'checkstyle/checkstyle'
+    strategy:
+      matrix:
+        target:
+          - java
+          - javadoc
+        include:
+          - target: java
+            BASELINE_SECONDS: 445.76
+            CONFIG_FILE: './config/benchmark-config.xml'
+          - target: javadoc
+            BASELINE_SECONDS: 570.62
+            CONFIG_FILE: './config/benchmark-javadoc-config.xml'
     runs-on: ubuntu-latest
+    env:
+      BASELINE_SECONDS: ${{ matrix.BASELINE_SECONDS }}
+      CONFIG_FILE: ${{ matrix.CONFIG_FILE }}
     steps:
       - name: Set up JDK 11
         uses: actions/setup-java@v4
@@ -33,11 +48,11 @@ jobs:
       - name: Checkout Pull Request Code
         uses: actions/checkout@v4
 
-      - name: Clone JDK 17 Repo
+      - name: Clone JDK 21 Repo
         uses: actions/checkout@v4
         with:
-          repository: openjdk/jdk17
-          path: ./.ci-temp/jdk17
+          repository: openjdk/jdk21
+          path: ./.ci-temp/jdk21
 
       - name: Setup local maven cache
         uses: actions/cache@v4
@@ -47,4 +62,4 @@ jobs:
 
       - name: Run performance test
         run: |
-          ./.ci/check-performance-regression.sh
+          ./.ci/check-performance-regression.sh "$BASELINE_SECONDS" "$CONFIG_FILE"
