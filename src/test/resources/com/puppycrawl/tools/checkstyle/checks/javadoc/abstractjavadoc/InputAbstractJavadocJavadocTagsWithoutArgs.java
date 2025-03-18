@@ -67,9 +67,6 @@ public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
     /**
      * {@link}
      */
-    // violation 2 lines above 'Javadoc comment at column 13 has parse error.'
-    // Details: mismatched input '}' expecting {LEADING_ASTERISK, WS, NEWLINE}
-    // while parsing JAVADOC_INLINE_TAG
     public void method7() {
 
     }
@@ -77,8 +74,6 @@ public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
     /**
      * {@linkplain }
      */
-    // violation 2 lines above 'Javadoc comment at column 19 has parse error.'
-    // Details: no viable alternative at input '}' while parsing REFERENCE
     public void method8() {
 
     }

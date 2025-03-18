@@ -12,13 +12,15 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 import java.lang.annotation.Documented;
 
-@SuppressWarnings(value={"unchecked", "unused"}) // violation
+// violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+@SuppressWarnings(value={"unchecked", "unused"})
 public class InputSuppressWarningsExpandedNonConstant3
 {
     @SuppressWarnings(value={"   "})
     class Empty {
 
-        @SuppressWarnings(value={"unchecked", ""}) // violation
+        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        @SuppressWarnings(value={"unchecked", ""})
         public Empty() {
 
         }
@@ -36,7 +38,8 @@ public class InputSuppressWarningsExpandedNonConstant3
             Object o = new InputSuppressWarningsExpandedNonConstant3() {
 
                 @Override
-                @SuppressWarnings(value={"unchecked"}) // violation
+                @SuppressWarnings(value={"unchecked"})
+                // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
                 public String toString() {
                     return "";
                 }
@@ -63,36 +66,45 @@ public class InputSuppressWarningsExpandedNonConstant3
         @SuppressWarnings(value={})
         int a = 1;
 
-        @SuppressWarnings(value={"unchecked"}) // violation
+        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        @SuppressWarnings(value={"unchecked"})
         @Deprecated
         int b = 1;
-        void doFoo(String s, @SuppressWarnings(value={"unchecked"})String y) { // violation
+        void doFoo(String s, @SuppressWarnings(value={"unchecked"})String y) {
+            // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
 
         }
     }
 
-    @SuppressWarnings(value={(false) ? "unchecked" : "", (false) ? "unchecked" : ""}) // violation
-    class Cond { // violation above
+    // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+    @SuppressWarnings(value={(false) ? "unchecked" : "", (false) ? "unchecked" : ""})
+    class Cond { // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
 
-        @SuppressWarnings(value={(false) ? "" : "unchecked"}) // violation
+        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        @SuppressWarnings(value={(false) ? "" : "unchecked"})
         public Cond() {
 
         }
 
-        @SuppressWarnings(value={(false) ? (true) ? "   " : "unused" : "unchecked", // violation
-            (false) ? (true) ? "   " : "unused" : "unchecked"}) // violation
+        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        @SuppressWarnings(value={(false) ? (true) ? "   " : "unused" : "unchecked",
+            (false) ? (true) ? "   " : "unused" : "unchecked"})
+        // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
         public void aCond1() {
 
         }
 
-        @SuppressWarnings(value={(false) ? "unchecked" : (true) ? "   " : "unused"}) // violation
+        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        @SuppressWarnings(value={(false) ? "unchecked" : (true) ? "   " : "unused"})
         public void aCond2() {
 
         }
 
-        @java.lang.SuppressWarnings(value={(false) ? "unchecked" : // violation
+        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        @java.lang.SuppressWarnings(value={(false) ? "unchecked" :
                     ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused",
-                (false) ? "unchecked" : // violation
+                (false) ? "unchecked" :
+                // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
                     ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused"})
         public void seriously() {
 
