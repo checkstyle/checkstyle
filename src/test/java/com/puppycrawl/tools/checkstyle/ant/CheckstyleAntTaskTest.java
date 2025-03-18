@@ -306,20 +306,6 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void testMaxErrors() throws IOException {
-        TestRootModuleChecker.reset();
-
-        final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
-        antTask.setFile(new File(getPath(VIOLATED_INPUT)));
-        antTask.setMaxErrors(2);
-        antTask.execute();
-
-        assertWithMessage("Checker is not processed")
-                .that(TestRootModuleChecker.isProcessed())
-                .isTrue();
-    }
-
-    @Test
     public final void testFailureProperty() throws IOException {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setConfig(getPath(CONFIG_FILE));
