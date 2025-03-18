@@ -78,9 +78,23 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCountEmptyIsFalse() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputMethodLengthCountEmptyIsFalse.java"), expected);
+                getPath("InputMethodLengthCountEmptyIsFalse.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Test
+    public void testCountEmptyIsFalsetwo() throws Exception {
+        verifyWithInlineConfigParser(
+                getPath("InputMethodLengthCountEmptyIsFalsetwo.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Test
+    public void testCountEmptyIsFalsethree() throws Exception {
+        verifyWithInlineConfigParser(
+                getPath("InputMethodLengthCountEmptyIsFalsethree.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
