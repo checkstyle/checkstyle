@@ -24,24 +24,24 @@ class InputMagicNumberIgnoreHashCodeMethod3 {
 
 
     public int hashCode(int val) {
-        return 42; // violation
+        return 42; // violation 'Magic number: 42'
     }
 
 
     public int hashcode() {
-        return 13; // violation
+        return 13; // violation 'Magic number: 13'
     }
 
     static {
-        int x=21; // violation
+        int x=21; // violation 'Magic number: 21'
     }
 
     {
-        int y=37; // violation
+        int y=37; // violation 'Magic number: 37'
     }
 
     public InputMagicNumberIgnoreHashCodeMethod3() {
-        int z=101; // violation
+        int z=101; // violation 'Magic number: 101'
     }
 
     @InputMagicNumberIntMethodAnnotation(42)
@@ -74,7 +74,7 @@ class TestMethodCallIgnoreHashCodeMethod3 {
 }
 
 class BinaryIgnoreHashCodeMethod3 {
-    int intValue = 0b101; // violation
+    int intValue = 0b101; // violation 'Magic number: 0b101'
     long l = 0b1010000101000101101000010100010110100001010001011010000101000101L; // violation
 }
 @interface AnnotationWithDefaultValueIgnoreHashCodeMethod3{
@@ -85,7 +85,7 @@ class AIgnoreHashCodeMethod3 {
     {
         switch (Blah2IgnoreHashCodeMethod1.LOW) {
         default:
-            int b = 122; // violation
+            int b = 122; // violation 'Magic number: 122'
         }
     }
 }

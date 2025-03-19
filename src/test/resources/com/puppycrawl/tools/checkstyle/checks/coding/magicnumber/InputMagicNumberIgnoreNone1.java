@@ -40,58 +40,58 @@ public class InputMagicNumberIgnoreNone1 {
         final double DOUBLE_CONST3 = 1.5;
 
 
-        int int_var1 = 1; // violation
-        int int_var2 = (2); // violation
-        long long_var1 = 0L; // violation
-        long long_var2 = 0l; // violation
-        double double_var1 = 0D; // violation
-        double double_var2 = 0d; // violation
+        int int_var1 = 1; // violation 'Magic number: 1'
+        int int_var2 = (2); // violation 'Magic number: 2'
+        long long_var1 = 0L; // violation 'Magic number: 0L'
+        long long_var2 = 0l; // violation 'Magic number: 0l'
+        double double_var1 = 0D; // violation 'Magic number: 0D'
+        double double_var2 = 0d; // violation 'Magic number: 0d'
 
-        int[] int_array = new int[2]; // violation
+        int[] int_array = new int[2]; // violation 'Magic number: 2'
 
-        int_var1 = 1 + 2; // 2 violations
-        int_var1 += 1;  // violation
-        double_var1 = 1.0 + 2.0; // 2 violations
+        int_var1 = 1 + 2; // 2 violations 'Magic number: 1', 'Magic number: 2'
+        int_var1 += 1;  // violation 'Magic number: 1'
+        double_var1 = 1.0 + 2.0; // 2 violations 'Magic number: 1.0', 'Magic number: 2.0'
 
-        for (int i = 0; i < 2; i++); // 2 violations
+        for (int i = 0; i < 2; i++); // 2 violations 'Magic number: 0', 'Magic number: 2'
 
-        if (1 < 2); // 2 violations
+        if (1 < 2); // 2 violations 'Magic number: 1', 'Magic number: 2'
 
-        if (1.0 < 2.0); // 2 violations
+        if (1.0 < 2.0); // 2 violations 'Magic number: 1.0', Magic number: 2.0'
 
 
-        int int_magic1 = 3_000; // violation
-        double double_magic1 = 1.5_0; // violation
-        int int_magic2 = (3 + 4); // 2 violations
+        int int_magic1 = 3_000; // violation 'Magic number: 3000'
+        double double_magic1 = 1.5_0; // violation 'Magic number: 1.50'
+        int int_magic2 = (3 + 4); // 2 violations 'Magic number: 3', 'Magic number: 4'
 
-        int_array = new int[3]; // violation
+        int_array = new int[3]; // violation 'Magic number: 3'
 
-        int_magic1 += 3; // violation
-        double_magic1 *= 1.5; // violation
+        int_magic1 += 3; // violation 'Magic number: 3'
+        double_magic1 *= 1.5; // violation 'Magic number: 1.5'
 
-        for (int j = 3; j < 5; j += 3) { // 3 violations
+        for (int j = 3; j < 5; j += 3) { // 3 violations 'Magic number: 3', 'Magic number: 5', 'Magic number: 3'
             int_magic1++;
         }
 
-        if (int_magic1 < 3) { // violation
-            int_magic1 = int_magic1 + 3; // violation
+        if (int_magic1 < 3) { // violation 'Magic number: 3'
+            int_magic1 = int_magic1 + 3; // violation 'Magic number: 3'
         }
 
 
-        int octalVar0 = 00;  // violation
-        int octalVar8 = 010; // violation
-        int octalVar9 = 011; // violation
+        int octalVar0 = 00;  // violation 'Magic number: 00'
+        int octalVar8 = 010; // violation 'Magic number: 010'
+        int octalVar9 = 011; // violation 'Magic number: 011'
 
-        long longOctalVar8 = 0_10L; // violation
-        long longOctalVar9 = 011l; // violation
+        long longOctalVar8 = 0_10L; // violation 'Magic number: 010L'
+        long longOctalVar9 = 011l; // violation 'Magic number: 011l'
 
 
-        int hexVar0 = 0x0; // violation
-        int hexVar16 = 0x10; // violation
-        int hexVar17 = 0X011;  // violation
-        long longHexVar0 = 0x0L; // violation
-        long longHexVar16 = 0x10L; // violation
-        long longHexVar17 = 0X11l; // violation
+        int hexVar0 = 0x0; // violation 'Magic number: 0x0'
+        int hexVar16 = 0x10; // violation 'Magic number: 0x10'
+        int hexVar17 = 0X011;  // violation 'Magic number: 0X011'
+        long longHexVar0 = 0x0L; // violation 'Magic number: 0x0L'
+        long longHexVar16 = 0x10L; // violation 'Magic number: 0x10L'
+        long longHexVar17 = 0X11l; // violation ''Magic number: 0X11l'
     }
 }
 
@@ -104,6 +104,6 @@ interface Blah2IgnoreNone1
 class ArrayMagicTestIgnoreNone1
 {
     private static final int[] NONMAGIC = {3};
-    private int[] magic = {3}; // violation
+    private int[] magic = {3}; // violation 'Magic number: 3
     private static final int[][] NONMAGIC2 = {{1}, {2}, {3}};
 }
