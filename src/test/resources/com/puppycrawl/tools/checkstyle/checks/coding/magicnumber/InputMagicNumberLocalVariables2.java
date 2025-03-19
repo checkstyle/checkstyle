@@ -24,7 +24,7 @@ public class InputMagicNumberLocalVariables2 {
     private int A = 8;
 
     void method() {
-        int b = 8; // violation
+        int b = 8; // violation 'Magic number: 8'
     }
 
     void method2() {

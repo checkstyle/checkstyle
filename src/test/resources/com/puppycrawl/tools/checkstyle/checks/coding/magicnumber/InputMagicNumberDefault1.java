@@ -53,36 +53,36 @@ public class InputMagicNumberDefault1 {
         if (1.0 < 2.0);
 
 
-        int int_magic1 = 3_000; // violation
-        double double_magic1 = 1.5_0; // violation
-        int int_magic2 = (3 + 4); // 2 violations
+        int int_magic1 = 3_000; // violation 'Magic number: 3000'
+        double double_magic1 = 1.5_0; // violation 'Magic number: 1.50'
+        int int_magic2 = (3 + 4); // 2 violations 'Magic number: 3', 'Magic number: 4'
 
-        int_array = new int[3]; // violation
+        int_array = new int[3]; // violation 'Magic number: 3'
 
-        int_magic1 += 3;  // violation
-        double_magic1 *= 1.5; // violation
+        int_magic1 += 3;  // violation 'Magic number: 3'
+        double_magic1 *= 1.5; // violation 'Magic number: 1.5'
 
-        for (int j = 3; j < 5; j += 3) { // 3 violations
+        for (int j = 3; j < 5; j += 3) { // 3 violations 'Magic number: 3', 'Magic number: 4', 'Magic number: 5'
             int_magic1++;
         }
 
-        if (int_magic1 < 3) { // violation
-            int_magic1 = int_magic1 + 3; // violation
+        if (int_magic1 < 3) { // violation 'Magic number: 3'
+            int_magic1 = int_magic1 + 3; // violation 'Magic number: 3'
         }
 
         int octalVar0 = 00;
-        int octalVar8 = 010; // violation
-        int octalVar9 = 011; // violation
+        int octalVar8 = 010; // violation 'Magic number: 010'
+        int octalVar9 = 011; // violation 'Magic number: 011'
 
-        long longOctalVar8 = 0_10L; // violation
-        long longOctalVar9 = 011l;  // violation
+        long longOctalVar8 = 0_10L; // violation 'Magic number: 010L'
+        long longOctalVar9 = 011l;  // violation 'Magic number: 011l'
 
         int hexVar0 = 0x0;
-        int hexVar16 = 0x10; // violation
-        int hexVar17 = 0X011; // violation
+        int hexVar16 = 0x10; // violation 'Magic number: 0x10'
+        int hexVar17 = 0X011; // violation 'Magic number: 0x011'
         long longHexVar0 = 0x0L;
-        long longHexVar16 = 0x10L; // violation
-        long longHexVar17 = 0X11l; // violation
+        long longHexVar16 = 0x10L; // violation 'Magic number: 0x10L'
+        long longHexVar17 = 0X11l; // violation 'Magic number: 0x11l'
     }
 }
 
@@ -95,6 +95,6 @@ interface Blah2Default1
 class ArrayMagicTestDefault1
 {
     private static final int[] NONMAGIC = {3};
-    private int[] magic = {3}; // violation
+    private int[] magic = {3}; // violation 'Magic number: 3'
     private static final int[][] NONMAGIC2 = {{1}, {2}, {3}};
 }

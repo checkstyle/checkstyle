@@ -211,94 +211,6 @@ public final class InlineConfigParser {
      *  Checks in which violation message is not specified in input files.
      *  Until <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>.
      */
-    private static final Set<String> SUPPRESSED_CHECKS = Set.of(
-            "com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding"
-                    + ".UnnecessarySemicolonAfterTypeMemberDeclarationCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding"
-                    + ".UnusedCatchParameterShouldBeUnnamedCheck",
-            "com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck",
-            "com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck",
-            "com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck",
-            "com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck",
-            "com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck",
-
-            "com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc."
-                    + "AbstractJavadocCheckTest$TokenIsNotInAcceptablesCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocPositionCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLocationCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingLeadingAsteriskCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc"
-                    + ".JavadocMissingWhitespaceAfterAsteriskCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc"
-                    + ".JavadocTagContinuationIndentationCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc"
-                    + ".RequireEmptyLineBeforeBlockTagGroupCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck",
-            "com.puppycrawl.tools.checkstyle.checks.modifier.ClassMemberImpliedModifierCheck",
-            "com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck",
-            "com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck",
-
-            "com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.MethodTypeParameterNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.PatternVariableNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.RecordComponentNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.RecordTypeParameterNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck",
-            "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck",
-            "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.LambdaBodyLengthCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.OuterTypeNumberCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck",
-            "com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck",
-            "com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck",
-            "com.puppycrawl.tools.checkstyle.checks.UpperEllCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace."
-                    + "NoWhitespaceBeforeCaseDefaultColonCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck",
-            "com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper",
-            "com.puppycrawl.tools.checkstyle.api.AbstractCheckTest$ViolationAstCheck",
-            "com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet"
-    );
 
     // This is a hack until https://github.com/checkstyle/checkstyle/issues/13845
     private static final Map<String, String> MODULE_MAPPINGS = new HashMap<>();
@@ -896,8 +808,7 @@ public final class InlineConfigParser {
             throws CheckstyleException {
         final List<ModuleInputConfiguration> moduleLists = inputConfigBuilder.getChildrenModules();
         final boolean specifyViolationMessage = moduleLists.size() == 1
-                && !PERMANENT_SUPPRESSED_CHECKS.contains(moduleLists.get(0).getModuleName())
-                && !SUPPRESSED_CHECKS.contains(moduleLists.get(0).getModuleName());
+                && !PERMANENT_SUPPRESSED_CHECKS.contains(moduleLists.get(0).getModuleName());
         for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
             setViolations(inputConfigBuilder, lines,
                     useFilteredViolations, lineNo, specifyViolationMessage);
