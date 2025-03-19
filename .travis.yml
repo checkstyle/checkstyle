@@ -29,7 +29,7 @@ jobs:
       env:
         - DESC="tests and deploy"
         - CMD="mvn -e --no-transfer-progress clean integration-test failsafe:verify
-          -DargLine='-Xms1024m -Xmx2048m'"
+          -DargLine='-Xms1024m -Xmx2g'"
         - DEPLOY="true"
         - USE_MAVEN_REPO="true"
 
