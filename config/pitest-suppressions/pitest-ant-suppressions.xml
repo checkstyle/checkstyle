@@ -21,15 +21,6 @@
   <mutation unstable="false">
     <sourceFile>CheckstyleAntTask.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
-    <mutatedMethod>createClasspath</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask::getProject</description>
-    <lineContent>return new Path(getProject());</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckstyleAntTask.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
     <mutatedMethod>createOverridingProperties</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask::getLocation</description>
