@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpecte
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -345,7 +346,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void testOverrideProperty() throws IOException {
+    public final void testOverrideProperty() throws IOException, NoSuchFieldException, IllegalAccessException {
         TestRootModuleChecker.reset();
 
         final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
@@ -355,6 +356,16 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         property.setValue("ignore");
         antTask.addProperty(property);
         antTask.execute();
+
+        Field field = CheckstyleAntTask.class.getDeclaredField("overrideProps");
+        field.setAccessible(true);
+
+        @SuppressWarnings("unchecked")
+        List<CheckstyleAntTask.Property> overrideProps = (List<CheckstyleAntTask.Property>) field.get(antTask);
+
+        assertWithMessage("Added Property should be present in overrideProps")
+                .that(overrideProps)
+                        .contains(property);
 
         assertWithMessage("Property key should not be empty")
                     .that(property.getKey())
@@ -750,6 +761,12 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     @Test
     public void testCreateClasspath() {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
+        final Project mockProject = new Project();
+        antTask.setProject(mockProject);
+
+        assertWithMessage("Classpath should belong to the expected project")
+                .that(antTask.createClasspath().getProject())
+                .isEqualTo(mockProject);
 
         assertWithMessage("Invalid classpath")
                 .that(antTask.createClasspath().toString())
