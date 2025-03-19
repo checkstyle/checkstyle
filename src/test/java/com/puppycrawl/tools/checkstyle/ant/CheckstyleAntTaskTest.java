@@ -37,6 +37,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.tools.ant.BuildException;
+import org.apache.tools.ant.Location;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.Path;
@@ -245,12 +246,40 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setProject(new Project());
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
+        final Location fileLocation = new Location("build.xml", 42, 10);
+        antTask.setLocation(fileLocation);
+
+
         final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
                 .isEqualTo("Must specify 'config'.");
+        assertWithMessage("Location is missing in the exception")
+                .that(ex.getLocation())
+                .isEqualTo(fileLocation);
+    }
+
+    @Test
+    public final void testNoFileOrPathSpecified() throws IOException {
+        final CheckstyleAntTask antTask = new CheckstyleAntTask();
+        antTask.setProject(new Project());
+
+        final Location fileLocation = new Location("build.xml", 42, 10);
+        antTask.setLocation(fileLocation);
+
+        final BuildException ex = getExpectedThrowable(BuildException.class,
+                antTask::execute,
+                "BuildException is expected");
+
+        assertWithMessage("Error message is unexpected")
+                .that(ex.getMessage())
+                .isEqualTo("Must specify at least one of 'file' or nested 'fileset' or 'path'.");
+
+        assertWithMessage("Location is missing in the exception")
+                .that(ex.getLocation())
+                .isEqualTo(fileLocation);
     }
 
     @Test
