@@ -8,19 +8,14 @@ set -e
 spellchecker='config/jsoref-spellchecker'
 temp='.ci-temp'
 whitelist_path="$spellchecker/whitelist.words"
-dict="$temp/english.words"
+# english.words is taken from rpm:
+# https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/w/"
+# "words-.*.noarch.rpm"
+dict="$spellchecker/english.words"
 word_splitter="$temp/spelling-unknown-word-splitter.pl"
 run_output="$temp/unknown.words"
 
 mkdir -p $temp
-
-if [ ! -e "$dict" ]; then
-  echo "Retrieve cached english.words from checkstyle.sourceforge.io"
-  # english.words is taken from rpm:
-  # https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/w/"
-  # "words-.*.noarch.rpm"
-  curl --fail-with-body -k https://checkstyle.sourceforge.io/reports/english.words -o $dict
-fi
 
 if [ ! -e "$word_splitter" ]; then
   echo "Retrieve w"
@@ -73,7 +68,6 @@ diff_output=$(diff -U1 "$whitelist_path" "$run_output" |grep -v "$spellchecker" 
 
 if [ -z "$diff_output" ]; then
   echo "No new words and misspellings found."
-  rm $dict
   rm $word_splitter
   rm $run_output
   exit 0
@@ -88,7 +82,6 @@ if [ -z "$new_output" ]; then
   echo "patch '$whitelist_path' <<EOF"
   echo "$diff_output"
   echo "EOF"
-  rm $dict
   sleep 5s
   exit 1
 fi
@@ -98,6 +91,5 @@ printDetails
 echo "patch $whitelist_path <<EOF"
 echo "$diff_output"
 echo "EOF"
-rm $dict
 sleep 5s
 exit 1
