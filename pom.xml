@@ -208,7 +208,7 @@
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.13.2</antlr4.version>
     <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
-    <maven.spotbugs.plugin.version>4.9.2.0</maven.spotbugs.plugin.version>
+    <maven.spotbugs.plugin.version>4.9.3.0</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.26.0</maven.pmd.plugin.version>
     <pmd.version>7.11.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.12</maven.jacoco.plugin.version>
@@ -223,7 +223,7 @@
     <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
     <java.version>11</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
-    <pitest.plugin.version>1.18.2</pitest.plugin.version>
+    <pitest.plugin.version>1.19.0</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
@@ -730,6 +730,45 @@
       </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+        <groupId>org.ec4j.maven</groupId>
+        <artifactId>editorconfig-maven-plugin</artifactId>
+        <version>0.1.3</version>
+        <executions>
+          <execution>
+            <id>editorconfig</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <excludes>
+            <exclude>**/*.javadoc</exclude>
+            <exclude>**/*.jpeg</exclude>
+            <exclude>.ci/**</exclude>
+            <exclude>.ci-temp/**</exclude>
+            <exclude>.docs/**</exclude>
+            <exclude>.github/**</exclude>
+            <exclude>src/main/resources/com/puppycrawl/tools/checkstyle/meta/**/*.xml</exclude>
+            <exclude>src/main/resources/com/puppycrawl/tools/checkstyle/sarif/*.template</exclude>
+            <exclude>src/site/xdoc/*.xml</exclude>
+            <exclude>src/site/xdoc/checks/**/*.xml</exclude>
+            <exclude>src/site/xdoc/filefilters/**/*.xml</exclude>
+            <exclude>src/site/xdoc/filters/**/*.xml</exclude>
+            <exclude>src/test/resources-noncompilable/**/*.java</exclude>
+            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/**/*.java</exclude>
+            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/**/*.xml</exclude>
+            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/*.properties</exclude>
+            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/**/*</exclude>
+            <exclude>src/xdocs-examples/resources/**/*.java</exclude>
+            <exclude>src/xdocs-examples/resources/**/*.properties</exclude>
+            <exclude>src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/**/*.cpp</exclude>
+            <exclude>src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/**/*.txt</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.codehaus.plexus</groupId>
         <artifactId>plexus-component-metadata</artifactId>
