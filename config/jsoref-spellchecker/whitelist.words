@@ -572,6 +572,7 @@ ietf
 Igno
 IGNORETHIS
 igorminar
+ij
 Ilja
 illegalcatch
 illegalex
@@ -1402,6 +1403,7 @@ unsubscribe
 unusedcatchparametershouldbeunnamed
 unusedimports
 unusedlambdaparametershouldbeunnamed
+unusedlocalmethod
 unusedlocalvariable
 uppercased
 upperell
