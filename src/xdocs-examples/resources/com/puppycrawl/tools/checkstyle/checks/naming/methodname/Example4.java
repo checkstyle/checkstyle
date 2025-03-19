@@ -14,6 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 // xdoc section -- start
 class Example4 {
   public Example4() {}
-  public void Example4() {} // violation
+  // violation below 'Name 'Example4' must not equal the enclosing class name.'
+  public void Example4() {}
 }
 // xdoc section -- end
