@@ -27,7 +27,7 @@ public class InputMagicNumberIgnoreNegativeOctalHex2 {
      */
     public static final int CONST_PLUS_THREE = +3;
     public static final int CONST_MINUS_TWO = -2;
-    private int mPlusThree = +3; // violation
+    private int mPlusThree = +3; // violation 'Magic number: 3'
     private int mMinusTwo = -2;
     private double mPlusDecimal = +3.5;
     private double mMinusDecimal = -2.5;
@@ -49,7 +49,7 @@ public class InputMagicNumberIgnoreNegativeOctalHex2 {
     public static final java.util.List MYLIST = new java.util.ArrayList() {
         public int size() {
 
-            return 378; // violation
+            return 378; // violation 'Magic number: 378'
         }
     };
 

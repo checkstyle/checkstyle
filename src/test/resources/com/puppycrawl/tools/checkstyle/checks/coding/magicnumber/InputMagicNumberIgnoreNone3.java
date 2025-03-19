@@ -19,29 +19,29 @@ package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 class InputMagicNumberIgnoreNone3 {
 
     public int hashCode() {
-        return 31; // violation
+        return 31; // violation 'Magic number: 31'
     }
 
 
     public int hashCode(int val) {
-        return 42; // violation
+        return 42; // violation 'Magic number: 42'
     }
 
 
     public int hashcode() {
-        return 13; // violation
+        return 13; // violation 'Magic number: 13'
     }
 
     static {
-        int x=21; // violation
+        int x=21; // violation 'Magic number: 21'
     }
 
     {
-        int y=37; // violation
+        int y=37; // violation 'Magic number: 37'
     }
 
     public InputMagicNumberIgnoreNone3() {
-        int z=101; // violation
+        int z=101; // violation 'Magic number: 101'
     }
 
     @InputMagicNumberIntMethodAnnotation(42)
@@ -73,8 +73,8 @@ class TestMethodCallIgnoreNone3 {
 }
 
 class BinaryIgnoreNone3 {
-    int intValue = 0b101; // violation
-    long l = 0b1010000101000101101000010100010110100001010001011010000101000101L; // violation
+    int intValue = 0b101; // violation 'Magic number: 0b101'
+    long l = 0b1010000101000101101000010100010110100001010001011010000101000101L; // violation 'Magic number: 0b1010000101000101101000010100010110100001010001011010000101000101L'
 }
 @interface AnnotationWithDefaultValueIgnoreNone3 {
     int value() default 101;
@@ -84,7 +84,7 @@ class AIgnoreNone3 {
     {
         switch (Blah2IgnoreNone1.LOW) {
         default:
-            int b = 122; // violation
+            int b = 122; // violation 'Magic number: 122'
         }
     }
 }
