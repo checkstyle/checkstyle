@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpecte
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -750,6 +751,12 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     @Test
     public void testCreateClasspath() {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
+        final Project mockProject = new Project();
+        antTask.setProject(mockProject);
+
+        assertWithMessage("Classpath should belong to the expected project")
+                .that(antTask.createClasspath().getProject())
+                .isEqualTo(mockProject);
 
         assertWithMessage("Invalid classpath")
                 .that(antTask.createClasspath().toString())
