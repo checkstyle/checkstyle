@@ -750,6 +750,12 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     @Test
     public void testCreateClasspath() {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
+        final Project mockProject = new Project();
+        antTask.setProject(mockProject);
+
+        assertWithMessage("Classpath should belong to the expected project")
+                .that(antTask.createClasspath().getProject())
+                .isEqualTo(mockProject);
 
         assertWithMessage("Invalid classpath")
                 .that(antTask.createClasspath().toString())
