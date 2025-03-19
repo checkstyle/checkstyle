@@ -97,7 +97,7 @@ nondex)
   # Exclude test that fails due to stackoverflow error
   SKIPPED_TESTS+='!SingleSpaceSeparatorCheckTest#testNoStackoverflowError'
   mvn -e --no-transfer-progress \
-    --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m' \
+    --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2g' \
     -Dtest="$SKIPPED_TESTS"
 
   mkdir -p .ci-temp
@@ -134,57 +134,57 @@ pr-age)
 
 test)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-  -DargLine='-Xms1024m -Xmx2048m'
+  -DargLine='-Xms1024m -Xmx2g'
   ;;
 
 test-de)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=de -Duser.country=DE -Xms1024m -Xmx2048m'
+    -Dsurefire.options='-Duser.language=de -Duser.country=DE -Xms1024m -Xmx2g'
   ;;
 
 test-es)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=es -Duser.country=ES -Xms1024m -Xmx2048m'
+    -Dsurefire.options='-Duser.language=es -Duser.country=ES -Xms1024m -Xmx2g'
   ;;
 
 test-fi)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=fi -Duser.country=FI -Xms1024m -Xmx2048m'
+    -Dsurefire.options='-Duser.language=fi -Duser.country=FI -Xms1024m -Xmx2g'
   ;;
 
 test-fr)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=fr -Duser.country=FR -Xms1024m -Xmx2048m'
+    -Dsurefire.options='-Duser.language=fr -Duser.country=FR -Xms1024m -Xmx2g'
   ;;
 
 test-zh)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=zh -Duser.country=CN -Xms1024m -Xmx2048m'
+    -Dsurefire.options='-Duser.language=zh -Duser.country=CN -Xms1024m -Xmx2g'
   ;;
 
 test-ja)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=ja -Duser.country=JP -Xms1024m -Xmx2048m'
+    -Dsurefire.options='-Duser.language=ja -Duser.country=JP -Xms1024m -Xmx2g'
   ;;
 
 test-pt)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=pt -Duser.country=PT -Xms1024m -Xmx2048m'
+    -Dsurefire.options='-Duser.language=pt -Duser.country=PT -Xms1024m -Xmx2g'
   ;;
 
 test-tr)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=tr -Duser.country=TR -Xms1024m -Xmx2048m'
+    -Dsurefire.options='-Duser.language=tr -Duser.country=TR -Xms1024m -Xmx2g'
   ;;
 
 test-ru)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=ru -Duser.country=RU -Xms1024m -Xmx2048m'
+    -Dsurefire.options='-Duser.language=ru -Duser.country=RU -Xms1024m -Xmx2g'
   ;;
 
 test-al)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=sq -Duser.country=AL -Xms1024m -Xmx2048m'
+    -Dsurefire.options='-Duser.language=sq -Duser.country=AL -Xms1024m -Xmx2g'
   ;;
 
 versions)
@@ -425,7 +425,7 @@ verify-regexp-id)
   ;;
 
 checkstyle-and-sevntu)
-  export MAVEN_OPTS='-Xmx2000m'
+  export MAVEN_OPTS='-Xmx2g'
   mvn -e --no-transfer-progress clean verify -DskipTests -DskipITs \
     -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
   ;;
@@ -433,7 +433,7 @@ checkstyle-and-sevntu)
 spotbugs-and-pmd)
   mkdir -p .ci-temp/spotbugs-and-pmd
   CHECKSTYLE_DIR=$(pwd)
-  export MAVEN_OPTS='-Xmx2000m'
+  export MAVEN_OPTS='-Xmx2g'
   mvn -e --no-transfer-progress clean test-compile pmd:check spotbugs:check
   cd .ci-temp/spotbugs-and-pmd
   grep "Processing_Errors" "$CHECKSTYLE_DIR/target/site/pmd.html" | cat > errors.log
@@ -625,7 +625,7 @@ sonarqube)
       echo "SONAR_PR_VARIABLES: ""$SONAR_PR_VARIABLES"
   fi
 
-  export MAVEN_OPTS='-Xmx2000m'
+  export MAVEN_OPTS='-Xmx2g'
   # until https://github.com/checkstyle/checkstyle/issues/11637
   # shellcheck disable=SC2086
   mvn -e --no-transfer-progress -Pno-validations clean package sonar:sonar \
@@ -1113,7 +1113,7 @@ git-check-pull-number)
   ;;
 
 jacoco)
-  export MAVEN_OPTS='-Xmx2000m'
+  export MAVEN_OPTS='-Xmx2g'
   mvn -e --no-transfer-progress clean test \
     jacoco:restore-instrumented-classes \
     jacoco:report@default-report \

@@ -28,7 +28,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,7 +42,6 @@ import java.util.stream.Collectors;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
-import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
@@ -370,37 +368,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
-     * Verifies logger output using the inline configuration parser.
-     * Expects an input file with configuration and violations, and a report file with expected
-     * output.
-     *
-     * @param inputFile path to the file with configuration and violations
-     * @param expectedReportFile path to the expected logger report file
-     * @param logger logger to test
-     * @param outputStream output stream where the logger writes its actual output
-     * @throws Exception if an exception occurs during verification
-     */
-    protected void verifyWithInlineConfigParserAndLogger(String inputFile,
-                                                         String expectedReportFile,
-                                                         AuditListener logger,
-                                                         ByteArrayOutputStream outputStream)
-            throws Exception {
-        final TestInputConfiguration testInputConfiguration =
-                InlineConfigParser.parse(inputFile);
-        final DefaultConfiguration parsedConfig =
-                testInputConfiguration.createConfiguration();
-        final List<File> filesToCheck = Collections.singletonList(new File(inputFile));
-        final String basePath = Path.of("").toAbsolutePath().toString();
-
-        final Checker checker = createChecker(parsedConfig);
-        checker.setBasedir(basePath);
-        checker.addListener(logger);
-        checker.process(filesToCheck);
-
-        verifyContent(expectedReportFile, outputStream);
-    }
-
-    /**
      * Performs verification of the file with the given file name. Uses specified configuration.
      * Expected messages are represented by the array of strings.
      * This implementation uses overloaded
@@ -617,24 +584,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                     .that(actualViolations.get(index))
                     .matches(testInputViolations.get(index).toRegex());
         }
-    }
-
-    /**
-     * Verifies that the logger's actual output matches the expected report file.
-     *
-     * @param expectedOutputFile path to the expected logger report file
-     * @param outputStream output stream containing the actual logger output
-     * @throws IOException if an exception occurs while reading the file
-     */
-    private static void verifyContent(
-            String expectedOutputFile,
-            ByteArrayOutputStream outputStream) throws IOException {
-        final String expectedContent = readFile(expectedOutputFile);
-        final String actualContent =
-                toLfLineEnding(outputStream.toString(StandardCharsets.UTF_8));
-        assertWithMessage("Content should match")
-                .that(actualContent)
-                .isEqualTo(expectedContent);
     }
 
     /**
