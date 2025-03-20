@@ -74,6 +74,7 @@ public final class CheckUtil {
      *     Precondition: ast is a TokenTypes.METHOD_DEF node.
      * @return true if ast defines an equals covariant.
      */
+    @SuppressWarnings("CheckReturnValue")
     public static boolean isEqualsMethod(DetailAST ast) {
         boolean equalsMethod = false;
 
