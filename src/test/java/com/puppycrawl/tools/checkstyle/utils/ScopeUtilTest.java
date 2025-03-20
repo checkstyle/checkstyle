@@ -32,6 +32,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class ScopeUtilTest {
 
     @Test
+    public void testIsInBlockOf2() {
+        final DetailAST node = new DetailAstImpl();
+        final int tokenType = TokenTypes.CLASS_DEF;
+
+        assertWithMessage("Should return false when node has no parent")
+                .that(ScopeUtil.isInBlockOf(node, tokenType))
+                .isFalse();
+    }
+
+    @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(ScopeUtil.class))
