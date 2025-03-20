@@ -256,7 +256,7 @@ no-violation-test-configurate)
 no-violation-test-josm)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
+  mvn -e --no-transfer-progress clean install -Passembly,no-validations
   echo "Checkout target sources ..."
   mkdir -p .ci-temp
   cd .ci-temp
