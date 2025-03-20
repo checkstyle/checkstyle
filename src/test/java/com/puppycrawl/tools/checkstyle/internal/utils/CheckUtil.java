@@ -388,7 +388,7 @@ public final class CheckUtil {
                     }
                 })
                 .filter(character -> character == '\n')
-                .findFirst();
+                .findFirst().isPresent();
 
         final String result;
         if (crFound[0]) {
