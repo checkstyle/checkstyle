@@ -1224,7 +1224,35 @@ public final class JavadocTokenTypes {
     /** Description term tag name. */
     public static final int DT_HTML_TAG_NAME = JavadocParser.DT_HTML_TAG_NAME;
 
-    /** Head tag name. */
+    /** Head tag name.
+     *
+     *  <p><b>Example:</b></p>
+     *  <pre>{@code
+     *  <head>This is Head Tag</head>
+     *  }</pre>
+     *  <b>Tree:</b>
+     *  <pre>
+     *  --HTML_ELEMENT -> HTML_ELEMENT
+     *    `--HEAD -> HEAD
+     *        |--HEAD_TAG_START -> HEAD_TAG_START
+     *        |   |--START -> <
+     *        |   |--HEAD_HTML_TAG_NAME -> head
+     *        |   `--END -> >
+     *        |--TEXT -> This is Head Tag
+     *        `--HEAD_TAG_END -> HEAD_TAG_END
+     *            |--START -> <
+     *            |--SLASH -> /
+     *            |--HEAD_HTML_TAG_NAME -> head
+     *            `--END -> >
+     * --NEWLINE -> \r\n
+     *  }
+     *  </pre>
+     *  @see
+     *  <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
+     *  Comments are written in HTML</a>
+     * @see #HEAD_HTML_TAG_NAME
+     *
+     * */
     public static final int HEAD_HTML_TAG_NAME = JavadocParser.HEAD_HTML_TAG_NAME;
 
     /** Html tag name. */
