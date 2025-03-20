@@ -32,6 +32,32 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class ScopeUtilTest {
 
     @Test
+    public void testIsInBlockOf() {
+        final DetailAstImpl blockNode = new DetailAstImpl();
+        blockNode.setType(TokenTypes.SLIST);
+
+        final DetailAstImpl parentNode = new DetailAstImpl();
+        parentNode.setType(TokenTypes.LITERAL_IF);
+        parentNode.addChild(blockNode);
+
+        final boolean firstResult = ScopeUtil.isInBlockOf(blockNode, TokenTypes.LITERAL_IF);
+
+        assertWithMessage("Node should be detected inside the specified block")
+                .that(firstResult)
+                .isTrue();
+
+        final DetailAstImpl unrelatedParent = new DetailAstImpl();
+        unrelatedParent.setType(TokenTypes.CLASS_DEF);
+        unrelatedParent.addChild(blockNode);
+
+        final boolean secondResult = ScopeUtil.isInBlockOf(blockNode, TokenTypes.LITERAL_IF);
+
+        assertWithMessage("Node should not be detected inside the specified block")
+                .that(secondResult)
+                .isFalse();
+    }
+
+    @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(ScopeUtil.class))
