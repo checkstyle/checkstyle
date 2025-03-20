@@ -759,12 +759,13 @@
             <exclude>src/site/xdoc/filters/**/*.xml</exclude>
             <exclude>src/test/resources-noncompilable/**/*.java</exclude>
             <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/**/*.xml</exclude>
-            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/**/*</exclude> <!-- intended -->
-            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/grammar/InputAstRegressionNewlineCrAtEndOfFile.java</exclude> <!-- intended -->
-            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/asttreestringprinter/InputAstTreeStringPrinterFullOfBlockCommentsCR.java</exclude> <!-- intended -->
+            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/asttreestringprinter/InputAstTreeStringPrinterFullOfBlockCommentsCR.java</exclude>
+            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/**/*</exclude>
+            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/grammar/InputAstRegressionNewlineCrAtEndOfFile.java</exclude>
             <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/**/*</exclude>
             <exclude>src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/**/*.cpp</exclude>
             <exclude>src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/**/*.txt</exclude>
+            <exclude>src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/**/*</exclude>
           </excludes>
         </configuration>
       </plugin>
