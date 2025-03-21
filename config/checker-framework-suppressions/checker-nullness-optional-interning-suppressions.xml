@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedErrors>
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return checkAlias;</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable String
+      method return type: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field configuration</message>
