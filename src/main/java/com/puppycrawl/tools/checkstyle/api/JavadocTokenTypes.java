@@ -1650,26 +1650,28 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     *   --JAVADOC_TAG -> JAVADOC_TAG
-     *      |--THROWS_LITERAL -> @throws
-     *      |--WS ->
-     *      |--CLASS_NAME -> IOException
-     *      |--WS ->
-     *      `--DESCRIPTION -> DESCRIPTION
-     *          |--TEXT -> if
-     *          |--HTML_ELEMENT -> HTML_ELEMENT
-     *          |   `--HTML_TAG -> HTML_TAG
-     *          |       |--HTML_ELEMENT_START -> HTML_ELEMENT_START
-     *          |       |   |--START -> <
-     *          |       |   |--HTML_TAG_NAME -> b
-     *          |       |   `--END -> >
-     *          |       |--TEXT -> connection
-     *          |       `--HTML_ELEMENT_END -> HTML_ELEMENT_END
-     *          |           |--START -> <
-     *          |           |--SLASH -> /
-     *          |           |--HTML_TAG_NAME -> b
-     *          |           `--END -> >
-     *          |--TEXT ->  problems occur
+     *  --JAVADOC_TAG -> JAVADOC_TAG [2:3]
+     *    |--THROWS_LITERAL -> @throws [2:3]
+     *    |--WS ->   [2:10]
+     *    |--CLASS_NAME -> IOException [2:11]
+     *    |--WS ->   [2:22]
+     *    `--DESCRIPTION -> DESCRIPTION [2:23]
+     *        |--TEXT -> if  [2:23]
+     *        |--HTML_ELEMENT -> HTML_ELEMENT [2:26]
+     *        |   `--HTML_TAG -> HTML_TAG [2:26]
+     *        |       |--HTML_ELEMENT_START -> HTML_ELEMENT_START [2:26]
+     *        |       |   |--START -> < [2:26]
+     *        |       |   |--HTML_TAG_NAME -> b [2:27]
+     *        |       |   `--END -> > [2:28]
+     *        |       |--TEXT -> connection [2:29]
+     *        |       `--HTML_ELEMENT_END -> HTML_ELEMENT_END [2:39]
+     *        |           |--START -> < [2:39]
+     *        |           |--SLASH -> / [2:40]
+     *        |           |--HTML_TAG_NAME -> b [2:41]
+     *        |           `--END -> > [2:42]
+     *        |--TEXT ->  problems occur [2:43]
+     *        |--NEWLINE -> \n [2:58]
+     *        `--TEXT ->   [3:0]
      * }
      * </pre>
      */
@@ -2315,7 +2317,34 @@ public final class JavadocTokenTypes {
     /** Link html tag. */
     public static final int LINK_TAG = JavadocParser.RULE_linkTag + RULE_TYPES_OFFSET;
 
-    /** Meta html tag. */
+    /**
+     * Meta html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code Type here: <input type="text" id="id" name="name"> }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   JAVADOC -> JAVADOC [1:3]
+     *        |--NEWLINE -> \n [1:3]
+     *        |--LEADING_ASTERISK ->  * [2:0]
+     *        |--TEXT ->   [2:2]
+     *        |--HTML_ELEMENT -> HTML_ELEMENT [2:3]
+     *        |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT [2:3]
+     *        |       `--META_TAG -> META_TAG [2:3]
+     *        |           |--START -> < [2:3]
+     *        |           |--META_HTML_TAG_NAME -> meta [2:4]
+     *        |           |--WS ->   [2:8]
+     *        |           |--ATTRIBUTE -> ATTRIBUTE [2:9]
+     *        |           |   |--HTML_TAG_NAME -> charset [2:9]
+     *        |           |   |--EQUALS -> = [2:16]
+     *        |           |   `--ATTR_VALUE -> "UTF-8" [2:17]
+     *        |           `--END -> > [2:25]
+     *        |--NEWLINE -> \n [2:26]
+     *        |--TEXT ->   [3:0]
+     *
+     * */
+
     public static final int META_TAG = JavadocParser.RULE_metaTag + RULE_TYPES_OFFSET;
 
     /** Param html tag. */
