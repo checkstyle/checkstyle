@@ -129,8 +129,7 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   public void exampleMethod() {
-    int value = 100;
-    // filtered violation ''100' is a magic number'
+    int value = 100; // filtered violation ''100' is a magic number'
   }
 }
 </code></pre></div>
@@ -140,12 +139,17 @@ public class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
-  &lt;module name="EqualsAvoidNull"/&gt;
-  &lt;module name="JavadocMethod"/&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocMethod"/&gt;
+    &lt;module name="EqualsAvoidNull"/&gt;
+  &lt;/module&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="id" value="stringEqual"/&gt;
     &lt;property name="files" value="Example2.java"/&gt;
-    &lt;property name="checks" value="EqualsAvoidNull, JavadocMethod"/&gt;
+    &lt;property name="checks" value="JavadocMethod"/&gt;
+  &lt;/module&gt;
+  &lt;module name="SuppressionSingleFilter"&gt;
+    &lt;property name="files" value="Example2.java"/&gt;
+    &lt;property name="checks" value="EqualsAvoidNull"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -154,9 +158,9 @@ public class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
 
-  public void checkStringEquality(String str1, String str2) {
-    // filtered violation ''.equals()' should be used for string comparison'
-    assert str1 == str2 ;
+  public void checkStringEquality(String s) {
+    // filtered violation below 'String literal expressions should be on the left side of an equals comparison.'
+    s.equals("M");
   }
 }
 </code></pre></div>
@@ -166,7 +170,7 @@ public class Example2 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpSingleline"&gt;
-    &lt;property name="format" value=".*example.*"/&gt;
+    &lt;property name="format" value="ex&amp;#97;mple"/&gt;
   &lt;/module&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="files" value="Example3.java"/&gt;
@@ -180,15 +184,14 @@ public class Example2 {
 public class Example3 {
 
   public void printExample() {
-    // filtered violation 'Line matches the illegal pattern 'example''
     System.out.println(
-      "This is an example string."
+      "This is an example string." // filtered violation 'Line matches the illegal pattern 'example''
     );
   }
 
   public void noViolation() {
     System.out.println(
-      "This string does not contain 'example'."
+      "This string does not contain 'Example'."
     );
   }
 
@@ -199,7 +202,9 @@ public class Example3 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
-  &lt;module name="NoWhitespaceAfter"/&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NoWhitespaceAfter"/&gt;
+  &lt;/module&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="files" value="Example4.java"/&gt;
     &lt;property name="checks" value="NoWhitespaceAfter"/&gt;
@@ -211,12 +216,13 @@ public class Example3 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
 
-  // filtered violation 'WhiteSpace after ',''
   public void exampleMethod(int a, int b) {
+    // filtered violation below ''.' is followed by whitespace'
+    Integer. parseInt("3");
   }
 
   public void exampleMethod2() {
-    int x = 5 ; // filtered violation 'WhiteSpace before ';''
+    int [] x; // filtered violation ''int' is followed by whitespace'
   }
 
 }
@@ -237,11 +243,10 @@ public class Example4 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example5 {
-  // filtered violation 'Name 'example_Method' must match pattern'
+  // filtered violation below 'Name 'example_Method' must match pattern'
   public void example_Method() {
   }
-
-  // filtered violation Name 'Another_Method' must match pattern
+  // filtered violation below 'Name 'Another_Method' must match pattern'
   public void Another_Method() {
   }
 }
@@ -262,8 +267,7 @@ public class Example5 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example6 {
-
-  // filtered violation 'Name 'myConstant' must match pattern'
+  // filtered violation below 'Name 'myConstant' must match pattern'
   private static final int myConstant = 42;
 
 }
@@ -274,9 +278,14 @@ public class Example6 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="MemberName"/&gt;
+  &lt;module name="MethodName"/&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="files" value="Example7.java"/&gt;
     &lt;property name="checks" value="MemberName"/&gt;
+  &lt;/module&gt;
+  &lt;module name="SuppressionSingleFilter"&gt;
+    &lt;property name="files" value="Example7.java"/&gt;
+    &lt;property name="checks" value="MethodName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -284,11 +293,9 @@ public class Example6 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example7 {
-
-  // filtered violation 'Name 'MyVariable' must match pattern'
+  // filtered violation below 'Name 'MyVariable' must match pattern'
   private int MyVariable = 5;
-
-  // filtered violation 'Name 'PrintHello' must match pattern'
+  // filtered violation below 'Name 'PrintHello' must match pattern'
   public void PrintHello() {
   }
 
@@ -316,10 +323,9 @@ public class Example7 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example8 {
-  // filtered violation 'more than 5 parameters'
+  // filtered violation below 'More than 5 parameters (found 6)'
   public void exampleMethod(
-    int param1, int param2, int param3, int param4,
-    int param5
+    int param1, int param2, int param3, int param4, int param5, int param6
   ) {}
 }
 </code></pre></div>
@@ -330,7 +336,7 @@ public class Example8 {
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="FileLength"&gt;
-      &lt;property name="max" value="1"/&gt;
+      &lt;property name="max" value="19"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
@@ -343,7 +349,7 @@ public class Example8 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example9 {
-  //filtered violation 'File length is 19 lines (max allowed is 1)'
+
 }
 </code></pre></div>
         <p id="Example10-config">
@@ -364,8 +370,7 @@ public class Example9 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example10 {
-
-  // filtered violation 'Name 'log' must match pattern'
+  // filtered violation below 'Name 'log' must match pattern'
   private String log = "Some log message";
 
 }
