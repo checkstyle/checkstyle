@@ -1895,6 +1895,8 @@
                 <exclude>**/HeaderCheckTest.class</exclude>
                 <!-- content header is conflicting with Input inline header -->
                 <exclude>**/RegexpHeaderCheckTest.class</exclude>
+                <!-- content header is conflicting with Input inline header -->
+                <exclude>**/MultiFileRegexpHeaderCheckTest.class</exclude>
               </excludes>
             </configuration>
           </execution>
