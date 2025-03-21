@@ -182,6 +182,7 @@
         </item>
         <item name="Headers" href="checks/header/index.html" collapse="true">
           <item name="Header" href="checks/header/header.html"/>
+          <item name="MultiFileRegexpHeader" href="checks/header/multifileregexpheader.html"/>
           <item name="RegexpHeader" href="checks/header/regexpheader.html"/>
         </item>
         <item name="Imports" href="checks/imports/index.html" collapse="true">
