@@ -1,7 +1,7 @@
 /*xml
 <module name="Checker">
   <module name="RegexpSingleline">
-    <property name="format" value=".*example.*"/>
+    <property name="format" value="&#101;&#120;&#97;&#109;&#112;&#108;&#101;"/>
   </module>
   <module name="SuppressionSingleFilter">
     <property name="files" value="Example3.java"/>
@@ -14,15 +14,14 @@ package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 public class Example3 {
 
   public void printExample() {
-    // filtered violation 'Line matches the illegal pattern 'example''
     System.out.println(
-      "This is an example string."
+      "This is an example string." // filtered violation 'Line matches the illegal pattern 'example''
     );
   }
 
   public void noViolation() {
     System.out.println(
-      "This string does not contain 'example'."
+      "This string does not contain 'Example'."
     );
   }
 

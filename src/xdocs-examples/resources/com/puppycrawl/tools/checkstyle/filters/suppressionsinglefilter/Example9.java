@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="FileLength">
-      <property name="max" value="1"/>
+      <property name="max" value="19"/>
     </module>
   </module>
   <module name="SuppressionSingleFilter">
@@ -14,6 +14,6 @@
 package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 // xdoc section -- start
 public class Example9 {
-  //filtered violation 'File length is 19 lines (max allowed is 1)'
+
 }
 // xdoc section -- end

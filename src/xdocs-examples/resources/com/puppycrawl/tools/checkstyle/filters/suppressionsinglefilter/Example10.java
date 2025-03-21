@@ -12,8 +12,7 @@
 package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 // xdoc section -- start
 public class Example10 {
-
-  // filtered violation 'Name 'log' must match pattern'
+  // filtered violation below 'Name 'log' must match pattern'
   private String log = "Some log message";
 
 }
