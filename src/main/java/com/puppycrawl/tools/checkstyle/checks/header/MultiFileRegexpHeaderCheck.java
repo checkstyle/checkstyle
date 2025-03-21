@@ -20,19 +20,20 @@
 package com.puppycrawl.tools.checkstyle.checks.header;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
-import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
+import java.io.File;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Collections;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -73,9 +74,6 @@ public class MultiFileRegexpHeaderCheck extends AbstractFileSetCheck implements 
      */
     public static final int VALID_LINE_HEADER_CHECKER = -1;
 
-    /** Specify a comma-separated list of files containing the required headers. */
-    private String headerFiles = "";
-
     /**
      * List of metadata objects for each configured header file,
      * containing patterns and line contents.
@@ -89,7 +87,6 @@ public class MultiFileRegexpHeaderCheck extends AbstractFileSetCheck implements 
      * @throws IllegalArgumentException if headerFiles is null or empty
      */
     public void setHeaderFiles(String headerFiles) {
-        this.headerFiles = headerFiles;
         if (CommonUtil.isBlank(headerFiles)) {
             throw new IllegalArgumentException("headerFiles cannot be null or empty");
         }
@@ -101,13 +98,10 @@ public class MultiFileRegexpHeaderCheck extends AbstractFileSetCheck implements 
 
     @Override
     public Set<String> getExternalResourceLocations() {
-        if (headerFilesMetadata.isEmpty()) {
-            return Set.of();
-        }
         return headerFilesMetadata.stream()
                 .map(HeaderFileMetadata::getHeaderFile)
                 .map(URI::toASCIIString)
-                .collect(Collectors.toCollection(LinkedHashSet::new));
+                .collect(Collectors.toUnmodifiableSet());
     }
 
     @Override
@@ -136,17 +130,18 @@ public class MultiFileRegexpHeaderCheck extends AbstractFileSetCheck implements 
             // If the file header has fewer lines than patterns, log missing header
             if (metadata.getHeaderPatterns().size() > fileText.size()) {
                 log(1, MSG_HEADER_MISSING);
-                return;
+                break;
             }
+
             int mismatchLine = findFirstMismatch(fileText, metadata);
             if (mismatchLine != VALID_LINE_HEADER_CHECKER) {
                 String lineContent = metadata.getLineContents().get(mismatchLine);
                 if (lineContent.isEmpty()) {
                     log(mismatchLine + 1, MSG_HEADER_MISMATCH, EMPTY_LINE_PATTERN);
-                    return;
+                } else {
+                    log(mismatchLine + 1, MSG_HEADER_MISMATCH, lineContent);
                 }
-                log(mismatchLine + 1, MSG_HEADER_MISMATCH, metadata.getLineContents().get(mismatchLine));
-                return;
+                break;
             }
         }
     }
@@ -158,13 +153,14 @@ public class MultiFileRegexpHeaderCheck extends AbstractFileSetCheck implements 
      * @param headerFileMetadata the metadata containing header patterns
      * @return the line number of the first mismatch, or {@link #VALID_LINE_HEADER_CHECKER} if valid
      */
-    private int findFirstMismatch(FileText fileText, HeaderFileMetadata headerFileMetadata) {
+    private static int findFirstMismatch(FileText fileText, HeaderFileMetadata headerFileMetadata) {
         int fileSize = fileText.size();
         List<Pattern> headerPatterns = headerFileMetadata.getHeaderPatterns();
 
         BitSet lineMatches = new BitSet(headerPatterns.size());
         boolean allEmpty = true;
 
+        // First pass: check matches and build lineMatches
         for (int i = 0; i < headerPatterns.size(); i++) {
             if (i < fileSize) {
                 if (headerPatterns.get(i).matcher(fileText.get(i)).matches()) {
@@ -175,20 +171,21 @@ public class MultiFileRegexpHeaderCheck extends AbstractFileSetCheck implements 
                     lineMatches.set(i);
                 }
             }
-            allEmpty &= lineMatches.get(i);
+            allEmpty = allEmpty && lineMatches.get(i);
         }
 
-        if (allEmpty || lineMatches.cardinality() == headerPatterns.size()) {
-            return VALID_LINE_HEADER_CHECKER;
-        }
-
-        for (int i = 0; i < fileSize; i++) {
-            if (i < headerPatterns.size() && !headerPatterns.get(i).matcher(fileText.get(i)).find()) {
-                return i;
+        // Only proceed to find mismatch if not all patterns match or are empty
+        int result = VALID_LINE_HEADER_CHECKER;
+        if (!allEmpty && lineMatches.cardinality() != headerPatterns.size()) {
+            for (int i = 0; i < fileSize && i < headerPatterns.size(); i++) {
+                if (!headerPatterns.get(i).matcher(fileText.get(i)).find()) {
+                    result = i;
+                    break;
+                }
             }
         }
 
-        return VALID_LINE_HEADER_CHECKER;
+        return result;
     }
 
     /**
@@ -257,8 +254,13 @@ public class MultiFileRegexpHeaderCheck extends AbstractFileSetCheck implements 
                 URI uri = CommonUtil.getUriByFilename(headerFile);
                 List<String> readerLines = getLines(headerFile, uri);
                 List<Pattern> patterns = readerLines.stream()
-                        .map(line -> line.isEmpty() ? BLANK_LINE : Pattern.compile(line))
-                        .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
+                        .map(line -> {
+                            if (line.isEmpty()) {
+                                return BLANK_LINE;
+                            }
+                            return Pattern.compile(line);
+                        })
+                        .collect(Collectors.toList());
                 return new HeaderFileMetadata(uri, patterns, readerLines);
             } catch (Exception e) {
                 throw new IllegalArgumentException("Error reading or corrupted header file: " + headerFile, e);
@@ -276,20 +278,19 @@ public class MultiFileRegexpHeaderCheck extends AbstractFileSetCheck implements 
      */
     static List<String> getLines(String headerFile, URI uri) {
         List<String> readerLines = new ArrayList<>();
-        try (Reader headerReader = new InputStreamReader(new BufferedInputStream(uri.toURL().openStream()),
-                StandardCharsets.UTF_8)) {
-            try (LineNumberReader lnr = new LineNumberReader(headerReader)) {
-                String line;
-                do {
-                    line = lnr.readLine();
-                    if (line != null) {
-                        readerLines.add(line);
-                    }
-                } while (line != null);
+        try (LineNumberReader lnr = new LineNumberReader(
+                new InputStreamReader(
+                        new BufferedInputStream(uri.toURL().openStream()),
+                        StandardCharsets.UTF_8)
+        )) {
+            while (lnr.readLine() != null) {
+                String line = lnr.readLine();
+                readerLines.add(line);
             }
         } catch (final IOException ex) {
             throw new IllegalArgumentException("unable to load header file " + headerFile, ex);
         }
+
         if (readerLines.isEmpty()) {
             throw new IllegalArgumentException("Header file is empty: " + headerFile);
         }

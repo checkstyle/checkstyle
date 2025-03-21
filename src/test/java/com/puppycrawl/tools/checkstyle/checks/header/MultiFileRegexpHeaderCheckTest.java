@@ -7,9 +7,6 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import static com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck.MSG_HEADER_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck.MSG_HEADER_MISSING;
 
-import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-
 import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
@@ -20,13 +17,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.List;
 import org.junit.jupiter.api.io.TempDir;
-import java.nio.file.Path;
-import java.io.IOException;
 import java.net.URI;
 import java.util.Set;
-import java.util.regex.Pattern;
 
-class MultiFileRegexpHeaderCheckTest<HeaderFileMetadata> extends AbstractModuleTestSupport {
+class MultiFileRegexpHeaderCheckTest<T> extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -85,8 +79,7 @@ class MultiFileRegexpHeaderCheckTest<HeaderFileMetadata> extends AbstractModuleT
     @Test
     public void testDefaultConfiguration() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        final String[] expected = EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputRegexpHeaderDefaultConfig.java"), expected);
+        verify(checkConfig, getPath("InputRegexpHeaderDefaultConfig.java"), EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -104,9 +97,8 @@ class MultiFileRegexpHeaderCheckTest<HeaderFileMetadata> extends AbstractModuleT
         checkConfig.addProperty("headerFiles", headerFile.getPath());
 
         // Expect no violations (all header lines are matched)
-        final String[] expected = EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, testFile.getPath(), expected);
+        verify(checkConfig, testFile.getPath(), EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -156,8 +148,7 @@ class MultiFileRegexpHeaderCheckTest<HeaderFileMetadata> extends AbstractModuleT
     public void testRegexpHeaderIgnore() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MultiFileRegexpHeaderCheck.class);
         checkConfig.addProperty("headerFiles", getPath("InputRegexpHeader1.header"));
-        final String[] expected = EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputRegexpHeaderIgnore.java"), expected);
+        verify(checkConfig, getPath("InputRegexpHeaderIgnore.java"), EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -186,8 +177,7 @@ class MultiFileRegexpHeaderCheckTest<HeaderFileMetadata> extends AbstractModuleT
         checkConfig.addProperty("headerFiles", headerFile1.getPath() + "," + headerFile2.getPath());
 
         // Expect no violations
-        final String[] expected = EMPTY_STRING_ARRAY;
-        verify(checkConfig, testFile.getPath(), expected);
+        verify(checkConfig, testFile.getPath(), EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -205,9 +195,8 @@ class MultiFileRegexpHeaderCheckTest<HeaderFileMetadata> extends AbstractModuleT
         checkConfig.addProperty("headerFiles", headerFile.getPath());
 
         // Expect no violations (all header lines are matched)
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, testFile.getPath(), expected);
+        verify(checkConfig, testFile.getPath(), EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -223,12 +212,11 @@ class MultiFileRegexpHeaderCheckTest<HeaderFileMetadata> extends AbstractModuleT
         final DefaultConfiguration checkConfig = createModuleConfig(MultiFileRegexpHeaderCheck.class);
         checkConfig.addProperty("headerFiles", headerFile.getPath());
 
-        final String[] expected = EMPTY_STRING_ARRAY;
-        verify(checkConfig, testFile.getPath(), expected);
+        verify(checkConfig, testFile.getPath(), EMPTY_STRING_ARRAY);
     }
 
     @Test
-    public void testHeaderWithInvalidRegexp() throws Exception {
+    public void testHeaderWithInvalidRegexp() {
         final MultiFileRegexpHeaderCheck instance = new MultiFileRegexpHeaderCheck();
         assertThrows(IllegalArgumentException.class,
                 () -> instance.setHeaderFiles(getPath("InputRegexpHeader.invalid.header")));
@@ -281,8 +269,7 @@ class MultiFileRegexpHeaderCheckTest<HeaderFileMetadata> extends AbstractModuleT
     public void testNoWarningIfSingleLinedLeft() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MultiFileRegexpHeaderCheck.class);
         checkConfig.addProperty("headerFiles", getPath("InputRegexpHeader4.header"));
-        final String[] expected = EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputRegexpHeaderMulti5.java"), expected);
+        verify(checkConfig, getPath("InputRegexpHeaderMulti5.java"), EMPTY_STRING_ARRAY);
     }
 
 
@@ -296,8 +283,7 @@ class MultiFileRegexpHeaderCheckTest<HeaderFileMetadata> extends AbstractModuleT
         checkConfig.addProperty("headerFiles", headerFile.getPath() + "," + headerFile.getPath());
 
         // Execute the check using the verify method
-        final String[] expected = EMPTY_STRING_ARRAY;
-        verify(checkConfig, headerFile.getPath(), expected);
+        verify(checkConfig, headerFile.getPath(), EMPTY_STRING_ARRAY);
     }
 
 
@@ -313,15 +299,15 @@ class MultiFileRegexpHeaderCheckTest<HeaderFileMetadata> extends AbstractModuleT
         // Test with actual header files
         check.setHeaderFiles(getPath("InputRegexpHeader4.header") + "," +
                 getPath("InputRegexpHeader1.header"));
-        locations = check.getExternalResourceLocations();
+        Set<String> externalResourceLocations = check.getExternalResourceLocations();
         assertWithMessage("Should have two external resource locations")
-                .that(locations.size())
+                .that(externalResourceLocations.size())
                 .isEqualTo(2);
         assertWithMessage("Locations should include InputRegexpHeader4.header")
-                .that(locations.stream().anyMatch(loc -> loc.contains("InputRegexpHeader4.header")))
+                .that(externalResourceLocations.stream().anyMatch(loc -> loc.contains("InputRegexpHeader4.header")))
                 .isTrue();
         assertWithMessage("Locations should include InputRegexpHeader1.header")
-                .that(locations.stream().anyMatch(loc -> loc.contains("InputRegexpHeader1.header")))
+                .that(externalResourceLocations.stream().anyMatch(loc -> loc.contains("InputRegexpHeader1.header")))
                 .isTrue();
     }
 
@@ -347,8 +333,7 @@ class MultiFileRegexpHeaderCheckTest<HeaderFileMetadata> extends AbstractModuleT
         final DefaultConfiguration checkConfig = createModuleConfig(MultiFileRegexpHeaderCheck.class);
         checkConfig.addProperty("headerFiles", headerFile.getAbsolutePath());
 
-        final String[] expected = EMPTY_STRING_ARRAY;
-        verify(checkConfig, testFile.getAbsolutePath(), expected);
+        verify(checkConfig, testFile.getAbsolutePath(), EMPTY_STRING_ARRAY);
     }
 
 
@@ -371,8 +356,7 @@ class MultiFileRegexpHeaderCheckTest<HeaderFileMetadata> extends AbstractModuleT
         final DefaultConfiguration checkConfig = createModuleConfig(MultiFileRegexpHeaderCheck.class);
         checkConfig.addProperty("headerFiles", headerFile.getAbsolutePath());
 
-        final String[] expected = EMPTY_STRING_ARRAY;
-        verify(checkConfig, fileWithBlank.getAbsolutePath(), expected);
+        verify(checkConfig, fileWithBlank.getAbsolutePath(), EMPTY_STRING_ARRAY);
     }
 
     @Test
