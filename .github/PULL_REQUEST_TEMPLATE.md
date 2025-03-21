@@ -1,22 +1,29 @@
-# PLEASE READ before removing
+# PLEASE READ BEFORE REMOVING
 
-Rules:
-1) The issue you are trying to fix/resolve has to have the "approved" label.
-2) Put in the description of Pull Request the reference to an issue if it exists.
-   Example: "Issue: #XXXXXX"
-3) Commit message should adhere to the following rules:
-   a) MUST match one of the following patterns:
-      ^Issue #\\d+: .*$
-      ^Pull #\\d+: .*$
-      ^(minor|config|infra|doc|spelling|dependency): .*$
-   b) MUST contain only one line of text
-   c) MUST NOT end with a period, space, or tab
-   d) MUST be less than or equal to 200 characters
+**Rules:**
 
-To avoid multiple iterations of fixes and CIs failures, please read
-https://checkstyle.org/contributing.html
+1) **Issue Requirement**
+   - The issue you are trying to fix/resolve **must** have the `"approved"` label.
+   - If an issue exists, reference it in the Pull Request description:
+     Example: `"Issue: #XXXXXX"`
+2) **Commit message** should adhere to the following rules:
+   - MUST match any one of the following patterns:
 
-ATTENTION: We are not merging Pull Requests that are not passing our CIs,
+     ```
+     ^Issue #\d+: .*$
+     ^Pull #\d+: .*$
+     ^(minor|config|infra|doc|spelling|dependency): .*$
+     ```
+
+   - MUST contain only one line of text
+   - MUST NOT end with a period, space, or tab
+   - MUST be less than or equal to 200 characters
+
+To avoid multiple iterations of fixes and CI failures, please read
+[Contribution Guide](https://checkstyle.org/contributing.html).
+
+**ATTENTION:** Pull Requests that do not pass our CI checks will not be merged,
 but we will help to resolve issues.
 
-Thanks for reading, remove whole this message and type what you need.
+---
+Thanks for reading, feel free to remove this whole message and type what you need.
