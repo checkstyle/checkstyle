@@ -23,8 +23,7 @@ package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 // xdoc section -- start
 public class Example1 {
   public void exampleMethod() {
-    int value = 100;
-    // filtered violation ''100' is a magic number'
+    int value = 100; // filtered violation ''100' is a magic number'
   }
 }
 // xdoc section -- end
