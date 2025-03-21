@@ -824,6 +824,13 @@
             </td>
           </tr>
           <tr>
+            <td><a href="checks/header/multifileregexpheader.html#MultiFileRegexpHeader">MultiFileRegexpHeader</a></td>
+            <td>
+              Checks the header of a source file against multiple header files that contain
+              a pattern for each line of the source header.
+            </td>
+          </tr>
+          <tr>
             <td>
               <a href="checks/coding/multiplestringliterals.html#MultipleStringLiterals">
                 MultipleStringLiterals
@@ -1197,6 +1204,7 @@
             <td><a href="checks/blocks/rightcurly.html#RightCurly">RightCurly</a></td>
             <td>Checks the placement of right curly braces (<code>'}'</code>) for code blocks.</td>
           </tr>
+
           <tr>
             <td>
               <a href="checks/design/sealedshouldhavepermitslist.html#SealedShouldHavePermitsList">SealedShouldHavePermitsList</a>
