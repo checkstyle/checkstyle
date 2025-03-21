@@ -2317,7 +2317,34 @@ public final class JavadocTokenTypes {
     /** Link html tag. */
     public static final int LINK_TAG = JavadocParser.RULE_linkTag + RULE_TYPES_OFFSET;
 
-    /** Meta html tag. */
+    /**
+     * Meta html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code Type here: <input type="text" id="id" name="name"> }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   JAVADOC -> JAVADOC [1:3]
+     *        |--NEWLINE -> \n [1:3]
+     *        |--LEADING_ASTERISK ->  * [2:0]
+     *        |--TEXT ->   [2:2]
+     *        |--HTML_ELEMENT -> HTML_ELEMENT [2:3]
+     *        |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT [2:3]
+     *        |       `--META_TAG -> META_TAG [2:3]
+     *        |           |--START -> < [2:3]
+     *        |           |--META_HTML_TAG_NAME -> meta [2:4]
+     *        |           |--WS ->   [2:8]
+     *        |           |--ATTRIBUTE -> ATTRIBUTE [2:9]
+     *        |           |   |--HTML_TAG_NAME -> charset [2:9]
+     *        |           |   |--EQUALS -> = [2:16]
+     *        |           |   `--ATTR_VALUE -> "UTF-8" [2:17]
+     *        |           `--END -> > [2:25]
+     *        |--NEWLINE -> \n [2:26]
+     *        |--TEXT ->   [3:0]
+     *
+     * */
+
     public static final int META_TAG = JavadocParser.RULE_metaTag + RULE_TYPES_OFFSET;
 
     /** Param html tag. */
