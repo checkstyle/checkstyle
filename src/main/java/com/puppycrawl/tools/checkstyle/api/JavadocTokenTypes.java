@@ -1267,6 +1267,7 @@ public final class JavadocTokenTypes {
      *  }</pre>
      *  <b>Tree:</b>
      *  <pre>
+     *  {@code
      *  --HTML_ELEMENT -> HTML_ELEMENT
      *    `--HEAD -> HEAD
      *        |--HEAD_TAG_START -> HEAD_TAG_START
