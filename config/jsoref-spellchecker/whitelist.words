@@ -870,6 +870,7 @@ mstudman
 MTAGLIST
 mtime
 multicharacter
+multifileregexpheader
 multiline
 Multimap
 multiplestringliterals
@@ -926,6 +927,7 @@ NMTOKEN
 noarch
 noarg
 noarraytrailingcomma
+noblank
 nobr
 noclone
 nocode

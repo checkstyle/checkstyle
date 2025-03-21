@@ -151,6 +151,12 @@ public final class SiteUtil {
      */
     private static final String REGEXP_HEADER_CHECK_HEADER = "RegexpHeaderCheck.header";
 
+    /**
+     * Check and property name.
+     */
+    private static final String MULTI_FILE_REGEXP_HEADER_CHECK_HEADER =
+            "MultiFileRegexpHeaderCheck.header";
+
     /** Set of properties that are undocumented. Those are internal properties. */
     private static final Set<String> UNDOCUMENTED_PROPERTIES = Set.of(
         "SuppressWithNearbyCommentFilter.fileContents",
@@ -198,6 +204,11 @@ public final class SiteUtil {
     /**
      * Frequent version.
      */
+    private static final String VERSION_10_24 = "10.24";
+
+    /**
+     * Frequent version.
+     */
     private static final String VERSION_3_0 = "3.0";
 
     /**
@@ -239,6 +250,9 @@ public final class SiteUtil {
         Map.entry("RegexpHeaderCheck.fileExtensions", VERSION_6_9),
         Map.entry("RegexpHeaderCheck.headerFile", VERSION_3_2),
         Map.entry(REGEXP_HEADER_CHECK_HEADER, VERSION_5_0),
+        Map.entry("MultiFileRegexpHeaderCheck.fileExtensions", VERSION_10_24),
+        Map.entry("MultiFileRegexpHeaderCheck.headerFiles", VERSION_10_24),
+        Map.entry(MULTI_FILE_REGEXP_HEADER_CHECK_HEADER, VERSION_10_24),
         Map.entry("ClassDataAbstractionCouplingCheck.excludeClassesRegexps", VERSION_7_7),
         Map.entry("ClassDataAbstractionCouplingCheck.excludedClasses", VERSION_5_7),
         Map.entry("ClassDataAbstractionCouplingCheck.excludedPackages", VERSION_7_7),
