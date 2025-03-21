@@ -53,7 +53,15 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getPath("InputCatchParameterNameSimple.java"), expected);
+                getPath("InputCatchParameterNameSimpleOne1.java"), expected);
+    }
+
+    @Test
+    public void testDefaultConfigurationOnCorrectFile2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputCatchParameterNameSimple2.java"), expected);
     }
 
     @Test
