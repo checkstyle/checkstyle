@@ -375,7 +375,7 @@ public final class CheckUtil {
 
         return result.toString();
     }
-
+    @SuppressWarnings("ReturnValueIgnored")
     public static String getLineSeparatorForFile(String filepath, Charset charset)
             throws IOException {
         final boolean[] crFound = {false};
@@ -388,7 +388,7 @@ public final class CheckUtil {
                     }
                 })
                 .filter(character -> character == '\n')
-                .findFirst();
+                .findFirst().isPresent();
 
         final String result;
         if (crFound[0]) {
