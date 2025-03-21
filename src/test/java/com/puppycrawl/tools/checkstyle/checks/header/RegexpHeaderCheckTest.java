@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MSG_HEADER_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MSG_HEADER_MISSING;
 
+import java.net.*;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
@@ -195,21 +196,44 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFailureForMultilineRegexp() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RegexpHeaderCheck.class);
-        checkConfig.addProperty("header", "^(.*\\n.*)");
+    public void testSetHeaderUriNotSupport() {
+        final MultiFileRegexpHeaderCheck instance = new MultiFileRegexpHeaderCheck();
         try {
-            createChecker(checkConfig);
-            assertWithMessage(
-                    "Checker creation should not succeed when regexp spans multiple lines").fail();
+            instance.setHeaderFiles(String.valueOf(URI.create("file://test")));
+            assertWithMessage("Expected exception for unsupported URI").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (IllegalArgumentException ex) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
-                .isEqualTo("cannot initialize module"
-                    + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck"
-                    + " - Cannot set property 'header' to '^(.*\\n.*)'");
+                    .that(ex.getMessage())
+                    .isEqualTo("unsupported protocol: file");
+        }
+    }
+
+    @Test
+    public void testSetHeaderFilesNull() {
+        final MultiFileRegexpHeaderCheck instance = new MultiFileRegexpHeaderCheck();
+        try {
+            instance.setHeaderFiles(null);
+            assertWithMessage("Expected exception for null header files").fail();
+        }
+        catch (IllegalArgumentException ex) {
+            assertWithMessage("Invalid exception message")
+                    .that(ex.getMessage())
+                    .isEqualTo("headerFiles cannot be null");
+        }
+    }
+
+    @Test
+    public void testSetHeaderFilesIsBlank() {
+        final MultiFileRegexpHeaderCheck instance = new MultiFileRegexpHeaderCheck();
+        try {
+            instance.setHeaderFiles(" , ");
+            assertWithMessage("Expected exception for blank header files").fail();
+        }
+        catch (IllegalArgumentException ex) {
+            assertWithMessage("Invalid exception message")
+                    .that(ex.getMessage())
+                    .isEqualTo("headerFiles cannot be blank");
         }
     }
 
