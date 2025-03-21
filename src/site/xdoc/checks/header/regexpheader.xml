@@ -88,6 +88,7 @@ public class Example1 { }
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpHeader"&gt;
+    &lt;property name="fileExtensions" value="java, g4"/&gt;
     &lt;property name="headerFile" value="${config.folder}/java.header"/&gt;
     &lt;property name="multiLines" value="10, 13"/&gt;
   &lt;/module&gt;
@@ -128,6 +129,7 @@ public class Example2 { }
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpHeader"&gt;
+    &lt;property name="fileExtensions" value="java, g4"/&gt;
     &lt;property
       name="header"
       value="^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$
@@ -147,6 +149,7 @@ public class Example3 { }
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpHeader"&gt;
+    &lt;property name="fileExtensions" value="java, g4"/&gt;
     &lt;property
       name="header"
       value="^.*"/&gt;
