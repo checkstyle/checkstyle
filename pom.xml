@@ -3422,6 +3422,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalMethodCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck*</param>
@@ -3456,6 +3457,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalMethodCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheckTest</param>
@@ -4777,6 +4779,7 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.api.*</param>
                 <!-- 1% mutation in FullIdent -->
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalMethodCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest</param>
                 <!-- 1% mutation in CheckUtil -->
                 <param>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheckTest</param>
@@ -4989,6 +4992,9 @@
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalMethodCheckTest
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest
