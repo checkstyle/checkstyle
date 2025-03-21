@@ -1283,12 +1283,12 @@ public final class JavadocTokenTypes {
      * --NEWLINE -> \r\n
      *  }
      *  </pre>
+     *
      *  @see
      *  <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
      *  Comments are written in HTML</a>
      * @see #HEAD_HTML_TAG_NAME
-     *
-     * */
+     */
     public static final int HEAD_HTML_TAG_NAME = JavadocParser.HEAD_HTML_TAG_NAME;
 
     /** Html tag name. */
