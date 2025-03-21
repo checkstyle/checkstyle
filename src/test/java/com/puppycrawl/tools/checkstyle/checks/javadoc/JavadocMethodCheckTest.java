@@ -593,4 +593,19 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputJavadocMethodRecords3.java"), expected);
     }
+
+    @Test
+    public void testJavadocMethodAboveComments() throws Exception {
+        final String[] expected = {
+            "16:29: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "25:30: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "47: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "58:32: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "69:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "79:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "89:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodAboveComments.java"), expected);
+    }
 }
