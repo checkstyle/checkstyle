@@ -2971,6 +2971,13 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/MultiFileRegexpHeaderCheck.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field headerFiles</message>
+    <lineContent>private String headerFiles;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/CustomImportOrderCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter previousImport of CustomImportOrderCheck.isAlphabeticalOrderBroken.</message>
