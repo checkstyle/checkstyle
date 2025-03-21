@@ -46,8 +46,12 @@ public class CatchHandler extends BlockParentHandler {
      */
     private void checkCondExpr() {
         final DetailAST condAst = getMainAst().findFirstToken(TokenTypes.LPAREN)
-            .getNextSibling();
-        checkExpressionSubtree(condAst, getIndent(), true, true);
+                .getNextSibling();
+        IndentLevel level = getIndent();
+        if (isOnStartOfLine(condAst)) {
+            level = new IndentLevel(getIndent(), getIndentCheck().getLineWrappingIndentation());
+        }
+        checkExpressionSubtree(condAst, level, true, true);
     }
 
     @Override
