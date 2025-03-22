@@ -1224,7 +1224,8 @@ public final class JavadocTokenTypes {
     /** Description term tag name. */
     public static final int DT_HTML_TAG_NAME = JavadocParser.DT_HTML_TAG_NAME;
 
-    /** Head tag name.
+    /**
+     * Head tag name.
      *
      *  <p><b>Example:</b></p>
      *  <pre>{@code
@@ -1245,15 +1246,14 @@ public final class JavadocTokenTypes {
      *            |--SLASH -> /
      *            |--HEAD_HTML_TAG_NAME -> head
      *            `--END -> >
-     * --NEWLINE -> \r\n
      *  }
      *  </pre>
+     *
      *  @see
      *  <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
      *  Comments are written in HTML</a>
-     * @see #HEAD_HTML_TAG_NAME
-     *
-     * */
+     *  @see #HEAD_HTML_TAG_NAME
+     */
     public static final int HEAD_HTML_TAG_NAME = JavadocParser.HEAD_HTML_TAG_NAME;
 
     /** Html tag name. */
