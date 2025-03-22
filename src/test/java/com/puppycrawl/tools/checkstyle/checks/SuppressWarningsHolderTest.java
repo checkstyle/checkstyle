@@ -160,7 +160,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     public void testAliasCombo() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineXmlConfig(getPath("InputSuppressWarningsHolderAlias3.java"), expected);
+        verifyWithInlineXmlConfig(getPath("InputSuppressWarningsHolderAlias5.java"), expected);
     }
 
     @Test
@@ -514,6 +514,35 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputSuppressWarningsHolderAlias2.java"),
+                expected);
+    }
+
+    @Test
+    public void testAliasList3() throws Exception {
+        final String[] expected = {
+            "16:17: " + getCheckMessage(ParameterNumberCheck.class,
+                    ParameterNumberCheck.MSG_KEY, 7, 8),
+            "28:17: " + getCheckMessage(ParameterNumberCheck.class,
+                    ParameterNumberCheck.MSG_KEY, 7, 8),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSuppressWarningsHolderAlias3.java"),
+                expected);
+    }
+
+    @Test
+    public void testAliasList4() throws Exception {
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+        final String[] expected = {
+            "16:30: " + getCheckMessage(ConstantNameCheck.class,
+                AbstractNameCheck.MSG_INVALID_PATTERN, "a", pattern),
+            "19:30: " + getCheckMessage(ConstantNameCheck.class,
+                AbstractNameCheck.MSG_INVALID_PATTERN, "b", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSuppressWarningsHolderAlias4.java"),
                 expected);
     }
 

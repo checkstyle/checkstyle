@@ -123,6 +123,30 @@ public class SuppressWarningsHolder
     }
 
     /**
+     * Returns the alias of simple check name for a check, The alias is
+     * for the form of CheckNameCheck or CheckName.
+     *
+     * @param sourceName the source name of the check (generally the class
+     *        name)
+     * @return the alias of the simple check name for the given check
+     */
+    public static String getSimpleNameAlias(String sourceName) {
+        final int checkNameStartIndex = sourceName.lastIndexOf('.') + 1;
+        String checkName = sourceName.substring(checkNameStartIndex);
+        // check alias for the CheckNameCheck
+        String checkAlias = CHECK_ALIAS_MAP.get(checkName);
+        final String checkNameSuffix = "Check";
+        if (checkAlias == null && checkName.endsWith(checkNameSuffix)) {
+            final int checkStartIndex = checkName.length() - checkNameSuffix.length();
+            checkName = checkName.substring(0, checkStartIndex);
+            // check alias for the CheckName
+            checkAlias = CHECK_ALIAS_MAP.get(checkName);
+        }
+
+        return checkAlias;
+    }
+
+    /**
      * Returns the alias for the source name of a check. If an alias has been
      * explicitly registered via {@link #setAliasList(String...)}, that
      * alias is returned; otherwise, the default alias is used.
@@ -133,6 +157,9 @@ public class SuppressWarningsHolder
      */
     public static String getAlias(String sourceName) {
         String checkAlias = CHECK_ALIAS_MAP.get(sourceName);
+        if (checkAlias == null) {
+            checkAlias = getSimpleNameAlias(sourceName);
+        }
         if (checkAlias == null) {
             checkAlias = getDefaultAlias(sourceName);
         }
