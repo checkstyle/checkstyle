@@ -224,6 +224,13 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
+    public void testAddErrorWithEncodedMessage() throws Exception {
+        final String inputFileWithConfig = "InputXMLLoggerEncodedMessage.java";
+        final String expectedXmlReport = "ExpectedXMLLoggerEncodedMessage.xml";
+        verifyWithInlineConfigParserAndXmlLogger(inputFileWithConfig, expectedXmlReport);
+    }
+
+    @Test
     public void testAddErrorOnZeroColumns() throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
