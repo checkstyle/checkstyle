@@ -48,7 +48,7 @@ public class UpperEllCheckTest
     public void testWithChecker()
             throws Exception {
         final String[] expected = {
-            "96:40: " + getCheckMessage(MSG_KEY),
+            "29:40: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUpperEllSemantic.java"), expected);
