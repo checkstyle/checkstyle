@@ -424,7 +424,8 @@
               <td>
                 <a href="https://github.com/sivakumar-kailasam/codeclimate-checkstyle">
                   codeclimate-checkstyle
-                </a></td>
+                </a>
+              </td>
               <td>Supports Checkstyle configuration files and integrates with Code
                 Climate's automated code review system.
               </td>
