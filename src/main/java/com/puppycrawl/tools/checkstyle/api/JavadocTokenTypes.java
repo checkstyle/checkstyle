@@ -921,15 +921,16 @@ public final class JavadocTokenTypes {
      * <pre>{@code @param T The bar.}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code JAVADOC_TAG -&gt JAVADOC_TAG
-     *         |--PARAM_LITERAL -&gt @param
-     *         |--WS -&gt
-     *         |--PARAMETER_NAME -&gt T
-     *         |--WS -&gt
-     *         `--DESCRIPTION -&gt DESCRIPTION
-     *             |--TEXT -&gt The bar.
-     *             |--NEWLINE -&gt \r\n
-     *             `--TEXT -&gt
+     * {@code
+     *   --JAVADOC_TAG -> JAVADOC_TAG
+     *      |--PARAM_LITERAL -> @param
+     *      |--WS ->
+     *      |--PARAMETER_NAME -> T
+     *      |--WS ->
+     *      `--DESCRIPTION -> DESCRIPTION
+     *          |--TEXT -> The bar.
+     *          |--NEWLINE -> \r\n
+     *          `--TEXT ->
      * }
      * </pre>
      *
