@@ -33,20 +33,31 @@ public class InputTryCatchIfElse {
 
     try (MyResource r = new MyResource()) {}
 
+    // violation below ''}' at column 74 should be alone on a line.'
     try (MyResource r = new MyResource()) {} catch (Exception expected) {}
 
     try (MyResource r = new MyResource()) {} catch (Exception expected) { }
-    // violation above 'Empty blocks should have no spaces.'
+    // 2 violations above:
+    //                    'Empty blocks should have no spaces.'
+    //                    ''}' at column 75 should be alone on a line.'
 
     try (MyResource r = new MyResource()) {
     } catch (Exception expected) {}
+    // violation above ''}' at column 35 should be alone on a line.'
 
     try (MyResource r = new MyResource()) {
-      // violation below 'Empty blocks should have no spaces.'
     } catch (Exception expected) { }
+    // 2 violations above:
+    //                    'Empty blocks should have no spaces.'
+    //                    ''}' at column 36 should be alone on a line.'
 
     try (MyResource r = new MyResource()) { ; }
     // violation above ''{' at column 43 should have line break after.'
+
+    try {
+      /* foo */
+      // violation below ''}' at column 35 should be alone on a line.'
+    } catch (Exception expected) {}
 
     try {
       /* foo */
