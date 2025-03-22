@@ -200,6 +200,69 @@ class InputJavaDocTagContinuationIndentation implements Serializable {
       return "null";
     }
 
+    // violation 5 lines below 'Line continuation .* expected level should be 4'
+    /**
+     * Some text.
+     *
+     * @see <a href="https://checkstyle.org/checks/javadoc/javadoctag.html">
+     *    JavadocTagContinuationIndentation: Checks the indentation </a>
+     */
+    String method6() {
+      return "null";
+    }
+
+    /**
+     * Some text.
+     *
+     * @see <a href="https://checkstyle.org/checks/javadoc/javadoctag.html">
+     *     JavadocTagContinuationIndentation: Checks the indentation </a>
+     */
+    String method7() {
+      return "null";
+    }
+
+    // violation 5 lines below 'Line continuation .* expected level should be 4'
+    /**
+     * Some text.
+     *
+     * @see reference <a href="https://checkstyle.org/checks/javadoc/javadoctag.html">
+     *    JavadocTagContinuationIndentation: Checks the indentation </a>
+     */
+    String method8() {
+      return "null";
+    }
+
+    /**
+     * Some text.
+     *
+     * @see reference <a href="https://checkstyle.org/checks/javadoc/javadoctag.html">
+     *     JavadocTagContinuationIndentation: Checks the indentation </a>
+     */
+    String method9() {
+      return "null";
+    }
+
+    // violation 5 lines below 'Line continuation .* expected level should be 4'
+    /**
+     * Something.
+     *
+     * @param source <a href="https://example.com/data-source">
+     *    Data Source Documentation </a>
+     */
+    String method10() {
+      return "null";
+    }
+
+    /**
+     * Something.
+     *
+     * @param source <a href="https://example.com/data-source">
+     *     Data Source Documentation </a>
+     */
+    String method11() {
+      return "null";
+    }
+
     /**
      * Some text.
      *
@@ -214,7 +277,7 @@ class InputJavaDocTagContinuationIndentation implements Serializable {
      * @throws Exception Some text.
      * @deprecated Some text.
      */
-    String method6(String str, int number, boolean bool) throws Exception {
+    String method12(String str, int number, boolean bool) throws Exception {
       return "null";
     }
   }

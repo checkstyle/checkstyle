@@ -648,8 +648,6 @@ no-error-pgjdbc)
   echo "Checkout target sources ..."
   checkout_from https://github.com/pgjdbc/pgjdbc.git
   cd .ci-temp/pgjdbc
-  # pgjdbc easily damage build, we should use stable versions
-  git checkout "fcc13e70e6b6bb64b848df4b4ba6b3566b5""e95a3"
   ./gradlew --no-parallel --no-daemon checkstyleAll \
             -PenableMavenLocal -Pcheckstyle.version="${CS_POM_VERSION}"
   cd ../
