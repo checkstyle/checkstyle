@@ -498,7 +498,7 @@
               <td>Todd Papaioannou</td>
               <td><a href="https://plugins.jedit.org/plugins/?CheckStylePlugin">
                   JEdit CheckStylePlugin</a></td>
-              <td/>
+              <td>Open-source (GPL 2.0) editor with CheckStyle integration via plugin.</td>
             </tr>
             <tr>
               <td><a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a></td>
