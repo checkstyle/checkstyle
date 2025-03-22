@@ -10,11 +10,19 @@
     <artifactId>maven-fluido-skin</artifactId>
     <version>2.0.1</version>
   </skin>
+
+  <custom>
+    <fluidoSkin>
+      <leftColumnClass>span4</leftColumnClass>
+      <bodyColumnClass>span8</bodyColumnClass>
+    </fluidoSkin>
+  </custom>
+
   <bannerLeft href="https://checkstyle.org">
     <image src="images/header-checkstyle-logo.png" alt="Checkstyle"/>
   </bannerLeft>
   <bannerRight>
-    <image src="images/header-right-ruller.png" alt="Checkstyle"/>
+    <image src="images/header-right-ruler.png" alt=""/>
   </bannerRight>
 
   <publishDate position="right" />

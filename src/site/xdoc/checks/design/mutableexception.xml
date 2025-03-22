@@ -107,8 +107,7 @@ class FirstBadException extends java.lang.Exception {
     this.code = code;
   }
 }
-</code></pre></div>
-
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that it checks for class name that ends
           with 'Exception':
@@ -157,8 +156,7 @@ class SecondBadException extends java.lang.Exception {
     this.code = code;
   }
 }
-</code></pre></div>
-
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check so that it checks for type name that is used in
           'extends' and ends with 'Throwable':

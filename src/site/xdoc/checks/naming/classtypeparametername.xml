@@ -53,7 +53,7 @@ class Example1 {
   class MyClass4&lt;LISTENER&gt; {} // violation 'Name 'LISTENER' must match pattern'
   class MyClass5&lt;RequestT&gt; {} // violation 'Name 'RequestT' must match pattern'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check for names that are uppercase word:
         </p>
@@ -75,7 +75,7 @@ class Example2 {
   class MyClass4&lt;LISTENER&gt; {}
   class MyClass5&lt;RequestT&gt; {} // violation 'Name 'RequestT' must match pattern'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check for names that are camel case word with T as suffix
           (<a href="../../styleguides/google-java-style-20220203/javaguide.html#s5.2.8-type-variable-names">Google Style</a>):
