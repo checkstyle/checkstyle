@@ -105,8 +105,13 @@
     <module name="RightCurly">
       <property name="id" value="RightCurlySame"/>
       <property name="tokens"
-               value="LITERAL_TRY, LITERAL_CATCH, LITERAL_IF, LITERAL_ELSE,
-                    LITERAL_DO"/>
+                value="LITERAL_TRY, LITERAL_IF, LITERAL_ELSE,
+                LITERAL_DO, LITERAL_CATCH"/>
+    </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="id" value="RightCurlySame"/>
+      <property name="query" value="//RCURLY[parent::SLIST[parent::LITERAL_CATCH
+                               and not(parent::LITERAL_CATCH/following-sibling::*)]]"/>
     </module>
     <module name="RightCurly">
       <property name="id" value="RightCurlyAlone"/>
@@ -114,13 +119,17 @@
       <property name="tokens"
                value="CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, STATIC_INIT,
                     INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF, RECORD_DEF,
-                    COMPACT_CTOR_DEF, LITERAL_SWITCH, LITERAL_CASE, LITERAL_FINALLY"/>
+                    COMPACT_CTOR_DEF, LITERAL_SWITCH, LITERAL_CASE, LITERAL_FINALLY,
+                    LITERAL_CATCH"/>
     </module>
     <module name="SuppressionXpathSingleFilter">
-      <!-- suppression is required till https://github.com/checkstyle/checkstyle/issues/7541 -->
       <property name="id" value="RightCurlyAlone"/>
-      <property name="query" value="//RCURLY[parent::SLIST[count(./*)=1]
-                                     or preceding-sibling::*[last()][self::LCURLY]]"/>
+      <property name="query" value="//RCURLY[parent::SLIST[count(./*)=1
+                               and not(parent::LITERAL_CATCH)]
+                               or (preceding-sibling::*[last()][self::LCURLY]
+                               and not(parent::SLIST/parent::LITERAL_CATCH))
+                               or (parent::SLIST/parent::LITERAL_CATCH
+                               and parent::SLIST/parent::LITERAL_CATCH/following-sibling::*)]"/>
     </module>
     <module name="WhitespaceAfter">
       <property name="tokens"
@@ -154,10 +163,14 @@
     </module>
     <module name="SuppressionXpathSingleFilter">
       <property name="checks" value="WhitespaceAround"/>
-      <property name="query" value="//*[self::LITERAL_IF or self::LITERAL_ELSE or self::STATIC_INIT
-                                 or self::LITERAL_TRY or self::LITERAL_CATCH]/SLIST[count(./*)=1]
+      <property name="query" value=" //*[self::LITERAL_IF or self::LITERAL_ELSE or
+                                 self::STATIC_INIT]/SLIST[count(./*)=1]
                                  | //*[self::STATIC_INIT or self::LITERAL_TRY or self::LITERAL_IF]
-                                 //*[self::RCURLY][parent::SLIST[count(./*)=1]]"/>
+                                 //*[self::RCURLY][parent::SLIST[count(./*)=1]]
+                                 | //SLIST[count(./*)=1][parent::LITERAL_TRY and
+                                 not(following-sibling::*)]
+                                 | //SLIST[count(./*)=1][parent::LITERAL_CATCH and
+                                 not(parent::LITERAL_CATCH/following-sibling::*)]"/>
     </module>
     <module name="RegexpSinglelineJava">
       <property name="format" value="\{[ ]+\}"/>
