@@ -152,13 +152,4 @@
     <description>removed call to org/apache/tools/ant/DirectoryScanner::getBasedir</description>
     <lineContent>logIndex, fileNames.length, scanner.getBasedir()), Project.MSG_VERBOSE);</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckstyleAntTask.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
-    <mutatedMethod>setMaxErrors</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable maxErrors</description>
-    <lineContent>this.maxErrors = maxErrors;</lineContent>
-  </mutation>
 </suppressedMutations>
