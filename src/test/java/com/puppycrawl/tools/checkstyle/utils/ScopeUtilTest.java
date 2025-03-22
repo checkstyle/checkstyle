@@ -375,6 +375,18 @@ public class ScopeUtilTest {
                 .isFalse();
     }
 
+    @Test
+    public void testIsInBlockOf() {
+      DetailAST standaloneNode = getNode(TokenTypes.LITERAL_NEW);
+      try {
+          ScopeUtil.isInBlockOf(standaloneNode, TokenTypes.OBJBLOCK);
+      } catch (NullPointerException ex) {
+          assertWithMessage("NullPointerException was correctly thrown when node had no parent")
+                  .that(ex.getMessage())
+                  .isNotNull();
+      }
+    }
+
     private static DetailAstImpl getNode(int... nodeTypes) {
         DetailAstImpl ast = new DetailAstImpl();
         ast.setType(nodeTypes[0]);
