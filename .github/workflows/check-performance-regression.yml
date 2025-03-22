@@ -32,7 +32,7 @@ jobs:
             BASELINE_SECONDS: 445.76
             CONFIG_FILE: './config/benchmark-config.xml'
           - target: javadoc
-            BASELINE_SECONDS: 570.62
+            BASELINE_SECONDS: 481.41
             CONFIG_FILE: './config/benchmark-javadoc-config.xml'
     runs-on: ubuntu-latest
     env:
