@@ -376,9 +376,7 @@
               <td><a href="https://www.jgrasp.org/">jGRASP</a></td>
               <td>Larry Barowski</td>
               <td><a href="https://www.jgrasp.org/">jGRASP Home Page</a></td>
-              <td>Integrates Checkstyle for code analysis and displays
-                  results within the IDE.
-              </td>
+              <td/>
             </tr>
             <tr>
               <td><a href="https://www.eclipse.org/">Eclipse/RAD/RDz</a></td>
@@ -424,10 +422,9 @@
               <td>
                 <a href="https://github.com/sivakumar-kailasam/codeclimate-checkstyle">
                   codeclimate-checkstyle
-                </a></td>
-              <td>Supports Checkstyle configuration files and integrates with Code
-                Climate's automated code review system.
+                </a>
               </td>
+              <td/>
             </tr>
             <tr>
               <td>
@@ -445,7 +442,7 @@
             <tr>
               <td><a href="https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin">Jenkins
               Checkstyle plug-in</a></td>
-              <td>Jenkins Community</td>
+              <td/>
               <td><a href="https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin">Jenkins
               Checkstyle plug-in Home Page</a></td>
               <td>This plug-in is supported by the Static Analysis Collector plug-in that
@@ -461,9 +458,9 @@
             </tr>
             <tr>
               <td><a href="http://tide.olympe.in/">tIDE</a></td>
-              <td>Olympe Team</td>
+              <td/>
               <td>Built in</td>
-              <td>Includes built-in Checkstyle support for code analysis during development.</td>
+              <td/>
             </tr>
             <tr>
               <td><a href="https://netbeans.apache.org/front/main/index.html">NetBeans</a></td>
@@ -478,13 +475,11 @@
             </tr>
             <tr>
               <td><a href="https://netbeans.apache.org/front/main/index.html">NetBeans</a></td>
-              <td>SQE Team</td>
+              <td/>
               <td>
                 <a href="http://sqe-team.github.io">Software Quality Environment (SQE)</a>
               </td>
-              <td>Provides a comprehensive suite of quality assurance tools,
-                  including Checkstyle integration.
-              </td>
+              <td/>
             </tr>
             <tr>
               <td><a href="https://www.sonarsource.com/products/sonarqube/">SonarQube</a></td>
@@ -510,7 +505,7 @@
             </tr>
             <tr>
               <td><a href="https://www.jarchitect.com">JArchitect</a></td>
-              <td>JArchitect Team</td>
+              <td/>
               <td><a href="https://www.jarchitect.com">JArchitect Home Page</a></td>
               <td>Imports XML result files from CheckStyle.</td>
             </tr>
