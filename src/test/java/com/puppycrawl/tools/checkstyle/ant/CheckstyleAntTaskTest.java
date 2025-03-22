@@ -329,7 +329,21 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
-                .isEqualTo("Got 0 errors and 1 warnings.");
+                .isEqualTo("Got 0 errors (max allowed: 0) and 1 warnings.");
+    }
+
+    @Test
+    public final void testMaxErrorsExceeded() throws IOException {
+        final CheckstyleAntTask antTask = getCheckstyleAntTask();
+        antTask.setFile(new File(getPath(VIOLATED_INPUT)));
+        antTask.setMaxErrors(1);
+
+        final BuildException ex = getExpectedThrowable(BuildException.class,
+                antTask::execute,
+                "BuildException is expected");
+        assertWithMessage("Failure message should include maxErrors value")
+                .that(ex.getMessage())
+                .contains("max allowed: 1");
     }
 
     @Test
@@ -363,12 +377,12 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
-                .isEqualTo("Got 2 errors and 0 warnings.");
+                .isEqualTo("Got 2 errors (max allowed: 0) and 0 warnings.");
         final Map<String, Object> hashtable = project.getProperties();
         final Object propertyValue = hashtable.get(failurePropertyName);
         assertWithMessage("Number of errors is unexpected")
                 .that(propertyValue)
-                .isEqualTo("Got 2 errors and 0 warnings.");
+                .isEqualTo("Got 2 errors (max allowed: 0) and 0 warnings.");
     }
 
     @Test
