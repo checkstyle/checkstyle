@@ -50,17 +50,29 @@ class InputEmptyBlocksAndCatchBlocks {
     try (MyResource r = new MyResource()) { }
     // violation above 'Empty blocks should have no spaces. .* may only be represented as {}'
     try (MyResource r = new MyResource()) {}
+
     try (MyResource r = new MyResource()) {} catch (Exception expected) {}
-    // false-negative above until #15792
+    // 2 violations above:
+    //                    'WhitespaceAround: '{' is not followed by whitespace.'
+    //                    ''}' at column 74 should be alone on a line.'
+
     try (MyResource r = new MyResource()) {} catch (Exception expected) { }
-    // violation above 'Empty blocks should have no spaces. .* may only be represented as {}'
+    // 3 violations above:
+    //                    'Empty blocks should have no spaces.'
+    //                    'WhitespaceAround: '{' is not followed by whitespace.'
+    //                    ''}' at column 75 should be alone on a line.'
+
     try (MyResource r = new MyResource()) {
 
-    } catch (Exception expected) {} // false-negative until #15792
+    } catch (Exception expected) {}
+    // violation above ''}' at column 35 should be alone on a line.'
     try (MyResource r = new MyResource()) {
 
     } catch (Exception expected) { }
-    // violation above 'Empty blocks should have no spaces. .* may only be represented as {}'
+    // 2 violations above:
+    //                    'Empty blocks should have no spaces.'
+    //                    ''}' at column 36 should be alone on a line.'
+
     try (MyResource r = new MyResource()) {;}
     // 3 violations above:
     //  'WhitespaceAround: '{' is not followed by whitespace.'
