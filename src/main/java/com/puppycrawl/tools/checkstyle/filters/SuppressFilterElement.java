@@ -76,7 +76,7 @@ public class SuppressFilterElement
      * @param columns columns CSV values and ranges for column number filtering.
      */
     public SuppressFilterElement(String files, String checks,
-                           String message, String modId, String lines, String columns) {
+                                 String message, String modId, String lines, String columns) {
         if (files == null) {
             fileRegexp = null;
         }

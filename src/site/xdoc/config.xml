@@ -411,7 +411,7 @@
       </subsection>
 
       <subsection name="Examples" id="Checker_Examples">
-        <p>
+        <p id="Example-config1">
           For example, the following configuration fragment specifies base
           directory <code>src/checkstyle</code>, cache file <code>target/cachefile</code> and German
           locale for all modules:
@@ -430,7 +430,7 @@
 &lt;/module&gt;
         </code></pre></div>
 
-        <p>
+        <p id="Example-config2">
           To configure a <code>Checker</code> so that it
           handles files with the <code>ISO-8859-5</code> charset:
         </p>
@@ -442,7 +442,7 @@
 &lt;/module&gt;
         </code></pre></div>
 
-        <p>
+        <p id="Example-config3">
           To configure a <code>Checker</code> so that it
           handles files with the <code>java, xml, properties</code> extensions:
         </p>
@@ -454,7 +454,7 @@
 &lt;/module&gt;
         </code></pre></div>
 
-        <p>
+        <p id="Example-config4">
           To configure a <code>Checker</code> so that it doesn't stop execution on an
           <code>Exception</code> and instead prints it as a violation:
         </p>
@@ -466,7 +466,7 @@
 &lt;/module&gt;
         </code></pre></div>
 
-        <p>
+        <p id="Example-config5">
           To configure a <code>Checker</code> so that it
           handles files with any extension:
         </p>

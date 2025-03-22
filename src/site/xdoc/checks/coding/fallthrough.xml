@@ -108,7 +108,7 @@ class Example1 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
             To configure the check to enable check for last case group:
         </p>
@@ -153,7 +153,7 @@ class Example2 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
             To configure the check with custom relief pattern:
         </p>

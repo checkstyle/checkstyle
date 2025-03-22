@@ -97,7 +97,7 @@ class Example1 {
   private void Method3() {} // violation 'Name 'Method3' must match pattern'
   public void Method4() {} // violation 'Name 'Method4' must match pattern'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters, digits, and underscores is:
@@ -117,7 +117,7 @@ class Example2 {
   public void method1() {}
   public void Method2() {} // violation 'Name 'Method2' must match pattern'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           An example of how to configure the check to allow method names to be equal to the
           residing class name is:
@@ -138,7 +138,7 @@ class Example3 {
   public Example3() {}
   public void Example3() {}
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           An example of how to configure the check to disallow method names to be equal to the
           residing class name is:
@@ -160,7 +160,7 @@ class Example4 {
   // violation below 'Name 'Example4' must not equal the enclosing class name.'
   public void Example4() {}
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           An example of how to suppress the check to public and protected methods:
         </p>
