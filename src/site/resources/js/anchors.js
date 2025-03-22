@@ -16,12 +16,12 @@
 
         var anchors = document.querySelectorAll("h1, h2");
         [].forEach.call(anchors, function (anchorItem) {
-            
-            if (anchorItem.closest("#bannerRight") ) {
+
+            if (anchorItem.closest("#bannerRight") || anchorItem.closest("#bannerLeft")) {
                 return;
             }
 
-            var name = anchorItem.childNodes[0].textContent.replaceAll(" ", "_");
+            var name = anchorItem.previousSibling.previousElementSibling.id;
             var link = "" + url + "#" + name + "";
 
             var a = document.createElement("a");
@@ -82,4 +82,3 @@
         });
     });
 }());
-
