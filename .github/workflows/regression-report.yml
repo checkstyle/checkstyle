@@ -663,14 +663,27 @@ jobs:
   send_message:
     runs-on: ubuntu-latest
     needs: [
+      check_pr_status,
+      checkout_and_cache,
+      parse_comment,
+      handle_existing_config_bundle,
       handle_generated_config_bundle,
+      handle_configs_in_pr_description,
       download_configs,
-      make_report ]
+      make_report,
+      add_sad_Emoji
+    ]
     if: always()
       && (needs.make_report.result == 'failure'
           || needs.make_report.outputs.message != ''
           || needs.download_configs.result == 'failure'
-          || needs.handle_generated_config_bundle.result == 'failure')
+          || needs.handle_existing_config_bundle.result == 'failure'
+          || needs.handle_generated_config_bundle.result == 'failure'
+          || needs.handle_configs_in_pr_description.result == 'failure'
+          || needs.check_pr_status.result == 'failure'
+          || needs.checkout_and_cache.result == 'failure'
+          || needs.parse_comment.result == 'failure'
+          || needs.add_sad_Emoji.result == 'failure')
     steps:
       - name: Restore cache
         uses: actions/cache/restore@v4
@@ -684,12 +697,28 @@ jobs:
           MSG: ${{ needs.make_report.outputs.message }}
           DOWNLOAD_RESULT: ${{ needs.download_configs.result }}
           MAKE_REPORT_RESULT: ${{ needs.make_report.result }}
+          EXISTING_CONFIG_RESULT: ${{ needs.handle_existing_config_bundle.result }}
           GENERATED_CONFIG_RESULT: ${{ needs.handle_generated_config_bundle.result }}
+          CONFIGS_IN_PR_RESULT: ${{ needs.handle_configs_in_pr_description.result }}
+          PR_STATUS_RESULT: ${{ needs.check_pr_status.result }}
+          CHECKOUT_RESULT: ${{ needs.checkout_and_cache.result }}
+          PARSE_RESULT: ${{ needs.parse_comment.result }}
+          ADD_SAD_RESULT: ${{ needs.add_sad_Emoji.result }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p .ci-temp
           JOBS_LINK="https://github.com/checkstyle/checkstyle/actions/runs/${{github.run_id}}"
-          if [ "$DOWNLOAD_RESULT" == "failure" ]; then
+          if [ "$ADD_SAD_RESULT" == "failure" ]; then
+            {
+              echo "Failed to add reaction to comment after cancellation."
+              echo "<br>Link: $JOBS_LINK"
+            } > .ci-temp/message
+          elif [ "$PR_STATUS_RESULT" == "failure" ]; then
+            {
+              echo "PR is not active. Only active PRs are allowed for report generation."
+              echo "<br>Link: $JOBS_LINK"
+            } > .ci-temp/message
+          elif [ "$DOWNLOAD_RESULT" == "failure" ]; then
             {
               echo "Failed to download or process the specified configuration(s)."
               echo "Error details: $DOWNLOAD_ERROR"
@@ -707,9 +736,33 @@ jobs:
               echo "<br>Usage: 'GitHub, generate report by config from <file_path>'"
               echo "<br>Link: $JOBS_LINK"
             } > .ci-temp/message
+          elif [ "$CONFIGS_IN_PR_RESULT" == "failure" ]; then
+            {
+              echo "Failed to process configs in PR description."
+              echo "Please check the PR description format and config links."
+              echo "<br>Link: $JOBS_LINK"
+            } > .ci-temp/message
+          elif [ "$EXISTING_CONFIG_RESULT" == "failure" ]; then
+            {
+              echo "Failed to process existing config bundle."
+              echo "Please verify the config bundle path is correct."
+              echo "<br>Usage: 'GitHub, generate report for <config_bundle_path>'"
+              echo "<br>Link: $JOBS_LINK"
+            } > .ci-temp/message
           elif [ "$MAKE_REPORT_RESULT" == "failure" ]; then
             {
               echo "Report generation failed. Please check the logs for more details."
+              echo "<br>Link: $JOBS_LINK"
+            } > .ci-temp/message
+          elif [ "$CHECKOUT_RESULT" == "failure" ]; then
+            {
+              echo "Failed to checkout repository or set up cache."
+              echo "<br>Link: $JOBS_LINK"
+            } > .ci-temp/message
+          elif [ "$PARSE_RESULT" == "failure" ]; then
+            {
+              echo "Failed to parse comment command."
+              echo "<br>Please ensure you've used one of the valid command formats."
               echo "<br>Link: $JOBS_LINK"
             } > .ci-temp/message
           elif [ -z "$MSG" ]; then
