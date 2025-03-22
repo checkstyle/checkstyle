@@ -18,6 +18,12 @@
           does not contain first sentence, though with {@code {@return}} a period is not required
           as the Javadoc tool adds it.
         </div>
+
+        <p>
+        Note: For defining a summary, both the first sentence and the @summary tag approaches
+        are supported.
+        </p>
+
       </subsection>
 
       <subsection name="Properties" id="Properties">
