@@ -34,6 +34,7 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.atn.PredictionMode;
 import org.antlr.v4.runtime.misc.Interval;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -112,6 +113,7 @@ public class JavadocDetailNodeParser {
 
         try {
             final JavadocParser javadocParser = createJavadocParser(javadocComment, errorListener);
+            javadocParser.getInterpreter().setPredictionMode(PredictionMode.SLL);
 
             final ParseTree javadocParseTree = javadocParser.javadoc();
 
