@@ -1228,24 +1228,22 @@ public final class JavadocTokenTypes {
      * Head tag name.
      *
      *  <p><b>Example:</b></p>
-     *  <pre>{@code
-     *  <head>This is Head Tag</head>
+     *  <pre>{@code <head></head>
      *  }</pre>
      *  <b>Tree:</b>
      *  <pre>
      *  {@code
-     *  --HTML_ELEMENT -> HTML_ELEMENT
-     *    `--HEAD -> HEAD
-     *        |--HEAD_TAG_START -> HEAD_TAG_START
-     *        |   |--START -> <
-     *        |   |--HEAD_HTML_TAG_NAME -> head
-     *        |   `--END -> >
-     *        |--TEXT -> This is Head Tag
-     *        `--HEAD_TAG_END -> HEAD_TAG_END
-     *            |--START -> <
-     *            |--SLASH -> /
-     *            |--HEAD_HTML_TAG_NAME -> head
-     *            `--END -> >
+     *  HTML_ELEMENT -> HTML_ELEMENT
+     *   `--HEAD -> HEAD
+     *       |--HEAD_TAG_START -> HEAD_TAG_START
+     *       |   |--START -> <
+     *       |   |--HEAD_HTML_TAG_NAME -> head
+     *       |   `--END -> >
+     *       `--HEAD_TAG_END -> HEAD_TAG_END
+     *           |--START -> <
+     *           |--SLASH -> /
+     *           |--HEAD_HTML_TAG_NAME -> head
+     *           `--END -> >
      *  }
      *  </pre>
      *
