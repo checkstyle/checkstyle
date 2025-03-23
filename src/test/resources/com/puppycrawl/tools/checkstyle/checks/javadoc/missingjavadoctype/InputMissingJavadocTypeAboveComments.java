@@ -1,6 +1,6 @@
 /*
 MissingJavadocType
-scope = (default)public
+scope = private
 excludeScope = (default)null
 skipAnnotations = (default)Generated
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
@@ -20,3 +20,9 @@ public class InputMissingJavadocTypeAboveComments { // violation, 'Missing a Jav
 class InputMissingJavadocTypeAboveComments2 {
 }
 
+/**
+ *
+ */
+class Myclass { } /* My class */
+
+class Myclass2 { } // violation, 'Missing a Javadoc comment.'
