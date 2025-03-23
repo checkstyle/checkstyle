@@ -23,6 +23,8 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -519,6 +521,7 @@ public class JavadocDetailNodeParser {
      * @param javadocLineOffset The line number of beginning of the Javadoc comment
      * @return First non-tight HTML tag if one exists; null otherwise
      */
+    @Nullable
     private static Token getFirstNonTightHtmlTag(JavadocParser javadocParser,
             int javadocLineOffset) {
         final CommonToken offendingToken;
