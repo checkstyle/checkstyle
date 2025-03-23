@@ -29,6 +29,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -47,6 +48,87 @@ public class EmptyLineSeparatorCheckTest
                 + "by default")
             .that(checkObj.getRequiredTokens())
             .isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
+    }
+
+    @Test
+    public void testMultipleLinesEmptyWithJavadoc() throws Exception {
+
+        final String[] expected = {
+            "27:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "45:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "53:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "58:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "67:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "77:13: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "88:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "95:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "101:3: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+        };
+        verifyWithInlineXmlConfig(
+                getPath("InputEmptyLineSeparatorWithJavadoc.java"), expected);
+    }
+
+    @Test
+    public void testSeparationOfClassAndPackageWithComment() throws Exception {
+
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "//"),
+            "13:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+        };
+
+        verifyWithInlineXmlConfig(
+                getPath("InputEmptyLineSeparatorClassPackageSeparation.java"), expected);
+    }
+
+    /**
+     * Config is defined in the method because indexOutOfBond test is also required.
+     */
+    @Test
+    public void testCompactNoPackage() throws Exception {
+
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addProperty("allowMultipleEmptyLines", "false");
+
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(checkConfig);
+
+        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
+
+        final String[] expected = {
+            "5:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "9:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "14:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "18:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "23:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "27:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "32:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+        };
+
+        verify(checkerConfig, getNonCompilablePath("InputEmptyLineSeparatorCompactNoPackage.java"),
+            expected);
+    }
+
+    /**
+     * Config is defined in the method because strictly the file with one line
+     * is required to be tested.
+     */
+    @Test
+    public void testMultipleEmptyLinesInOneLine() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addProperty("allowNoEmptyLineBetweenFields", "true");
+        checkConfig.addProperty("allowMultipleEmptyLines", "false");
+        checkConfig.addProperty("allowMultipleEmptyLinesInsideClassMembers", "false");
+
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(checkConfig);
+
+        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
+
+        final String[] expected = {
+            "1:79: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+        };
+
+        verify(checkerConfig, getPath("InputEmptyLineSeparatorOneLine.java"), expected);
     }
 
     @Test
