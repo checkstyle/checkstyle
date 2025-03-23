@@ -240,8 +240,16 @@ public final class FileContents implements CommentListener {
             .flatMap(List::stream)
             .filter(comment -> !javadocComments.containsValue(comment))
             .anyMatch(comment -> {
-                return lineNo >= comment.getStartLineNo()
-                                        && lineNo <= comment.getEndLineNo();
+                 boolean lineinSideBlockComment =  lineNo >= comment.getStartLineNo()
+                                                    && lineNo <= comment.getEndLineNo();
+
+                boolean lineHasOnlyBlockComment = true;
+                if (comment.getStartLineNo() == comment.getEndLineNo()) {
+                    String line = line(comment.getStartLineNo() - 1).trim();
+                    lineHasOnlyBlockComment = line.startsWith("/*") && line.endsWith("*/");
+                }
+
+                return lineinSideBlockComment && lineHasOnlyBlockComment;
             });
     }
 
