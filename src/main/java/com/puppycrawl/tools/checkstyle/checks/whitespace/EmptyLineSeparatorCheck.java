@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import static com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_BEGIN;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -613,7 +614,15 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         // 3 is the number of the pre-previous line because the numbering starts from zero.
         final int number = 3;
         if (lineNo >= number) {
-            final String prePreviousLine = getLine(lineNo - number);
+            String prePreviousLine = getLine(lineNo - number);
+            String lineBefore = getLine(lineNo - 2);
+            if (lineBefore.contains("*/")) {
+                DetailAST javadocBlockBeginning = token.getFirstChild().getNextSibling()
+                    .getFirstChild();
+                if (javadocBlockBeginning.getType() == BLOCK_COMMENT_BEGIN) {
+                    prePreviousLine = getLine(javadocBlockBeginning.getLineNo() - 3);
+                }
+            }
             result = CommonUtil.isBlank(prePreviousLine);
         }
         return result;
@@ -691,7 +700,14 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         final int lineNo = token.getLineNo();
         if (lineNo != 1) {
             // [lineNo - 2] is the number of the previous line as the numbering starts from zero.
-            final String lineBefore = getLine(lineNo - 2);
+            String lineBefore = getLine(lineNo - 2);
+            if (lineBefore.contains("*/")) {
+                DetailAST javadocBlockBeginning = token.getFirstChild().getNextSibling()
+                    .getFirstChild();
+                if (javadocBlockBeginning.getType() == BLOCK_COMMENT_BEGIN) {
+                    lineBefore = getLine(javadocBlockBeginning.getLineNo() - 2);
+                }
+            }
             result = CommonUtil.isBlank(lineBefore);
         }
         return result;
@@ -723,7 +739,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     private static boolean isPrecededByJavadoc(DetailAST token) {
         boolean result = false;
         final DetailAST previous = token.getPreviousSibling();
-        if (previous.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+        if (previous.getType() == BLOCK_COMMENT_BEGIN
                 && JavadocUtil.isJavadocComment(previous.getFirstChild().getText())) {
             result = true;
         }
