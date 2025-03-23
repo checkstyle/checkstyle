@@ -376,7 +376,9 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testJavadocVariableAboveComment() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "23:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
         verifyWithInlineConfigParser(
             getPath("InputJavadocVariableAboveComment.java"),
             expected);
