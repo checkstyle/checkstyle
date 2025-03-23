@@ -198,7 +198,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                                     + test + "' in test file: " + test);
                         }
                         if (INCOMPATIBLE_CHECK_NAMES.contains(test)) {
-                            throw new IllegalStateException("Test '"
+                            throw new IllegalStateException("Check '"
                                     + test + "' is not compatible with SuppressionXpathFilter.");
                         }
                     })
