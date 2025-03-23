@@ -613,7 +613,34 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         // 3 is the number of the pre-previous line because the numbering starts from zero.
         final int number = 3;
         if (lineNo >= number) {
-            final String prePreviousLine = getLine(lineNo - number);
+            String prePreviousLine = getLine(lineNo - number);
+            String lineBefore = getLine(lineNo - 2);
+
+            if (lineBefore.contains("*/")) {
+                DetailAST beginningCommentBlock = token;
+                if (token.getPreviousSibling().getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                    beginningCommentBlock = token.getPreviousSibling();
+                }
+                else if (token.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN) != null) {
+                    beginningCommentBlock = token.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+                }
+                else {
+                    DetailAST currentChildBlock = token.getFirstChild();
+                    int numberOfChildren = token.getChildCount();
+                    for (int i = 0; i < numberOfChildren; i++) {
+                        if (currentChildBlock.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN) != null) {
+                            beginningCommentBlock = currentChildBlock.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+                            break;
+                        }
+                        currentChildBlock = currentChildBlock.getNextSibling();
+                    }
+                }
+                if (beginningCommentBlock.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                    && beginningCommentBlock.getLineNo() >= 3) {
+                    prePreviousLine = getLine(beginningCommentBlock.getLineNo() - number);
+                }
+            }
+
             result = CommonUtil.isBlank(prePreviousLine);
         }
         return result;
@@ -691,7 +718,33 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         final int lineNo = token.getLineNo();
         if (lineNo != 1) {
             // [lineNo - 2] is the number of the previous line as the numbering starts from zero.
-            final String lineBefore = getLine(lineNo - 2);
+            String lineBefore = getLine(lineNo - 2);
+
+            if (lineBefore.contains("*/")) {
+                DetailAST beginningCommentBlock = token;
+                if (token.getPreviousSibling().getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                    beginningCommentBlock = token.getPreviousSibling();
+                }
+                else if (token.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN) != null) {
+                    beginningCommentBlock = token.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+                }
+                else {
+                    DetailAST currentChildBlock = token.getFirstChild();
+                    int numberOfChildren = token.getChildCount();
+                    for (int i = 0; i < numberOfChildren; i++) {
+                        if (currentChildBlock.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN) != null) {
+                            beginningCommentBlock = currentChildBlock.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+                            break;
+                        }
+                        currentChildBlock = currentChildBlock.getNextSibling();
+                    }
+                }
+                if (beginningCommentBlock.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                    && beginningCommentBlock.getLineNo() >= 3) {
+                    lineBefore = getLine(beginningCommentBlock.getLineNo() - 2);
+                }
+            }
+
             result = CommonUtil.isBlank(lineBefore);
         }
         return result;

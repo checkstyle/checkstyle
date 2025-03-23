@@ -50,6 +50,16 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testMultipleLinesEmptyWithJavadoc() throws Exception {
+
+        final String[] expected = {
+            "23:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+        };
+        verifyWithInlineXmlConfig(
+                getPath("InputEmptyLineSeparatorWithJavadoc.java"), expected);
+    }
+
+    @Test
     public void testDefault() throws Exception {
 
         final String[] expected = {
