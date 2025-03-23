@@ -56,6 +56,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import org.jspecify.annotations.Nullable;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -469,7 +470,6 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             throws CheckstyleException {
         final String name = childConf.getName();
         final Object child;
-
         try {
             child = moduleFactory.createModule(name);
 
