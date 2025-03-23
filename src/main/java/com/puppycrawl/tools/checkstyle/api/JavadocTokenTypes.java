@@ -300,23 +300,23 @@ public final class JavadocTokenTypes {
     public static final int EXCEPTION_LITERAL = JavadocParser.EXCEPTION_LITERAL;
 
     /**
-     * '@throws' literal in {@code @throws} Javadoc tag.
+     * '@exception' literal in {@code @exception} Javadoc tag.
      *
      * <p>Such Javadoc tag can have two argument - {@link #CLASS_NAME} and {@link #DESCRIPTION}</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code @throws SQLException if query is not correct}</pre>
+     * <pre>{@code @exception SQLException if query is not correct}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   JAVADOC_TAG -> JAVADOC_TAG
-     *      |--THROWS_LITERAL -> @throws
-     *      |--WS ->
-     *      |--CLASS_NAME -> SQLException
-     *      |--WS ->
-     *      `--DESCRIPTION -> DESCRIPTION
-     *          |--TEXT -> if query is not correct
-     *          |--NEWLINE -> \r\n
-     *          `--TEXT ->
+     * JAVADOC_TAG -> JAVADOC_TAG
+     * |--EXCEPTION_LITERAL -> @exception
+     * |--WS ->
+     * |--CLASS_NAME -> SQLException
+     * |--WS ->
+     * `--DESCRIPTION -> DESCRIPTION
+     *     |--TEXT -> if query is not correct
+     *     |--NEWLINE -> \r\n
+     *     TEXT ->
      * }</pre>
      *
      * @see
