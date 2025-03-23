@@ -24,6 +24,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.api.Context;
 
 /**
@@ -34,7 +36,7 @@ public final class DefaultContext implements Context {
     /** Stores the context entries. */
     private final Map<String, Object> entries = new HashMap<>();
 
-    @Override
+    @Nullable
     public Object get(String key) {
         return entries.get(key);
     }
