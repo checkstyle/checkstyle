@@ -440,6 +440,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testMissingJavadocTypeAboveComments() throws Exception {
         final String[] expected = {
             "13:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "28:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
             getPath("InputMissingJavadocTypeAboveComments.java"),
