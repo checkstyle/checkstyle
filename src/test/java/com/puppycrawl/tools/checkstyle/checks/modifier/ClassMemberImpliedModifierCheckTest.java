@@ -53,6 +53,17 @@ public class ClassMemberImpliedModifierCheckTest
     }
 
     @Test
+    public void testIsBlockOf() throws Exception {
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_KEY, "static"),
+            "21:13: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputClassMemberImpliedModifierOnClassIsInBlockOf.java"),
+                expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final ClassMemberImpliedModifierCheck check = new ClassMemberImpliedModifierCheck();
         final int[] actual = check.getRequiredTokens();
