@@ -54,8 +54,8 @@ public class LocalFinalVariableNameCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "19:17: " + getCheckMessage(MSG_INVALID_PATTERN, "scanner", "^[A-Z][A-Z0-9]*$"),
-            "23:30: " + getCheckMessage(MSG_INVALID_PATTERN, "ex", "^[A-Z][A-Z0-9]*$"),
+            "20:17: " + getCheckMessage(MSG_INVALID_PATTERN, "scanner", "^[A-Z][A-Z0-9]*$"),
+            "24:30: " + getCheckMessage(MSG_INVALID_PATTERN, "ex", "^[A-Z][A-Z0-9]*$"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
