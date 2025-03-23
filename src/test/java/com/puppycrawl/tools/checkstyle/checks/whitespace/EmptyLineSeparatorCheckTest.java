@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
 
 public class EmptyLineSeparatorCheckTest
     extends AbstractModuleTestSupport {
@@ -47,6 +48,32 @@ public class EmptyLineSeparatorCheckTest
                 + "by default")
             .that(checkObj.getRequiredTokens())
             .isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
+    }
+
+    @Test
+    public void testMultipleLinesEmptyWithJavadoc() throws Exception {
+
+        final String[] expected = {
+            "23:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+        };
+        verifyWithInlineXmlConfig(
+                getPath("InputEmptyLineSeparatorWithJavadoc.java"), expected);
+    }
+
+    @Test
+    public void testMultilineInOneLine() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addProperty("allowMultipleEmptyLines", "false");
+        checkConfig.addProperty("allowMultipleEmptyLinesInsideClassMembers", "false");
+
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(checkConfig);
+
+        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkerConfig,getPath("InputEmptyLineSeparatorOneLine.java"), expected);
     }
 
     @Test
