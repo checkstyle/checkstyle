@@ -99,4 +99,15 @@ public class InputJavadocMethodAboveComments {
     public int foo5() {
         return 0;
     }
+
+    /**
+     * A Javadoc comment.
+     * @return 0
+     */
+    /*@ A JML Annotation */ public int foo6() { return 0; }
+
+
+    public int foo7() throws Exception {
+        return 0;
+    }
 }
