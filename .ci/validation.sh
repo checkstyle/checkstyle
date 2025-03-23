@@ -10,14 +10,11 @@ addCheckstyleBundleToAntResolvers() {
     -i '/ivysettings/resolvers/filesystem[last()]' -t attr -n name -v local-checkstyle \
     -s '/ivysettings/resolvers/filesystem[last()]' -t elem -n artifact \
     -i '/ivysettings/resolvers/filesystem[last()]/artifact' -t attr -n pattern -v \
-    "${CHECKSTYLE_DIR}/target/[artifact]-[revision]-all.[ext]" \
+    '${base.dir}/../../target/[artifact]-[revision]-all.[ext]' \
     -s '/ivysettings/modules' -t elem -n module \
     -i '/ivysettings/modules/module[last()]' -t attr -n organisation -v com.puppycrawl.tools \
     -i '/ivysettings/modules/module[last()]' -t attr -n name -v checkstyle \
     -i '/ivysettings/modules/module[last()]' -t attr -n resolver -v local-checkstyle \
-    ivysettings.xml
-    xmlstarlet ed --inplace \
-    -m '/ivysettings/resolvers/filesystem[last()]' '/ivysettings/resolvers/*[1]' \
     ivysettings.xml
 }
 
@@ -259,10 +256,7 @@ no-violation-test-configurate)
 no-violation-test-josm)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Passembly,no-validations
-  export CHECKSTYLE_DIR=$(pwd)
-  svn -q --force export https://josm.openstreetmap.de/svn/trunk/ivysettings.xml
-  addCheckstyleBundleToAntResolvers
+  mvn -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
   mkdir -p .ci-temp
   cd .ci-temp
@@ -270,17 +264,17 @@ no-violation-test-josm)
   echo "JOSM revision: ${TESTED}"
   svn -q --force export https://josm.openstreetmap.de/svn/trunk/ -r "${TESTED}" --native-eol LF josm
   cd josm
-  sed -i -E \
-  "s/(name=\"checkstyle\" rev=\")([0-9]+(\.[0-9]+){1,2}(-SNAPSHOT)?)/\1${CS_POM_VERSION}/" \
-  tools/ivy.xml
-  ant -v -Divy.settings.file=${CHECKSTYLE_DIR}/ivysettings.xml checkstyle
+  sed -i -E "s/(name=\"checkstyle\" rev=\")([0-9]+\.[0-9]+(-SNAPSHOT)?)/\1${CS_POM_VERSION}/" \
+   tools/ivy.xml
+  addCheckstyleBundleToAntResolvers
+  ant -v checkstyle
   grep "<error" checkstyle-josm.xml | cat > errors.log
   echo "Checkstyle Errors:"
   RESULT=$(wc -l < errors.log)
   cat errors.log
   echo "Size of output: ${RESULT}"
-  cd ../..
-  removeFolderWithProtectedFiles .ci-temp/josm
+  cd ..
+  removeFolderWithProtectedFiles josm
   if [[ ${RESULT} != 0 ]]; then false; fi
   ;;
 
