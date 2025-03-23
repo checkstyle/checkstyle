@@ -389,8 +389,6 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @param ast the ast to check.
      * @return list of line numbers for empty lines.
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     private List<Integer> getEmptyLines(DetailAST ast) {
         final DetailAST lastToken = ast.getLastChild().getLastChild();
         int lastTokenLineNo = 0;
@@ -400,10 +398,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             lastTokenLineNo = lastToken.getLineNo() - 2;
         }
         final List<Integer> emptyLines = new ArrayList<>();
-        final FileContents fileContents = getFileContents();
 
         for (int lineNo = ast.getLineNo(); lineNo <= lastTokenLineNo; lineNo++) {
-            if (fileContents.lineIsBlank(lineNo)) {
+            if (CommonUtil.isBlank(getLine(lineNo))) {
                 emptyLines.add(lineNo);
             }
         }
