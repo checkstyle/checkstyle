@@ -66,4 +66,7 @@
           files="[\\/]packageobjectfactory[\\/]abc[\\/]FooCheck.java"/>
   <suppress id="noCheckstyleInInputs"
           files="[\\/]packageobjectfactory[\\/]zoo[\\/]FooCheck.java"/>
+
+  <suppress checks="PackageDeclaration"
+          files="src[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorCompactNoPackage.java"/>
 </suppressions>
