@@ -610,9 +610,69 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         final int number = 3;
         if (lineNo >= number) {
             final String prePreviousLine = getLine(lineNo - number);
+
             result = CommonUtil.isBlank(prePreviousLine);
+            final boolean straightPreviousLineIsEmpty = CommonUtil.isBlank(getLine(lineNo - 2));
+
+            if (straightPreviousLineIsEmpty && result) {
+                result = true;
+            }
+            else if (token.findFirstToken(TokenTypes.TYPE) != null) {
+                result = isEmptyUpToPrePreviousLinesFromComment(token);
+            }
         }
         return result;
+
+    }
+
+    /**
+     * Checks if token has up to pre-previous lines empty, starting from its describing comment.
+     *
+     * @param token token checked.
+     * @return true, if both previous and pre-previous lines from dependent comment are empty
+     */
+    private boolean isEmptyUpToPrePreviousLinesFromComment(DetailAST token) {
+        boolean upToPrePreviousLinesEmpty = false;
+
+        for (DetailAST typeChild = token.findFirstToken(TokenTypes.TYPE).getLastChild();
+             typeChild != null; typeChild = typeChild.getPreviousSibling()) {
+
+            if (isTokenNotOnPreviousSiblingLines(typeChild, token)) {
+
+                final String commentBeginningPreviousLine =
+                    getLine(typeChild.getLineNo() - 2);
+                final String commentBeginningPrePreviousLine =
+                    getLine(typeChild.getLineNo() - 3);
+
+                if (CommonUtil.isBlank(commentBeginningPreviousLine)
+                    && CommonUtil.isBlank(commentBeginningPrePreviousLine)) {
+                    upToPrePreviousLinesEmpty = true;
+                    break;
+                }
+
+            }
+
+        }
+
+        return upToPrePreviousLinesEmpty;
+    }
+
+    /**
+     * Checks if token is not placed on the realm of previous sibling of token's parent.
+     *
+     * @param token token checked.
+     * @param parentToken parent token.
+     * @return true, if child token doesn't occupy parent token's previous sibling's realm.
+     */
+    private static boolean isTokenNotOnPreviousSiblingLines(DetailAST token,
+                                                            DetailAST parentToken) {
+        DetailAST previousSiblingRealm = parentToken.getPreviousSibling();
+        for (DetailAST contactZone = previousSiblingRealm; contactZone != null;
+             contactZone = contactZone.getLastChild()) {
+            previousSiblingRealm = contactZone;
+        }
+
+        return token.getLineNo() != previousSiblingRealm.getLineNo();
     }
 
     /**
@@ -685,7 +745,21 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (lineNo != 1) {
             // [lineNo - 2] is the number of the previous line as the numbering starts from zero.
             final String lineBefore = getLine(lineNo - 2);
-            result = CommonUtil.isBlank(lineBefore);
+
+            if (CommonUtil.isBlank(lineBefore)) {
+                result = true;
+            }
+            else if (token.findFirstToken(TokenTypes.TYPE) != null) {
+                for (DetailAST typeChild = token.findFirstToken(TokenTypes.TYPE).getLastChild();
+                     typeChild != null && !result && typeChild.getLineNo() > 1;
+                     typeChild = typeChild.getPreviousSibling()) {
+
+                    final String commentBeginningPreviousLine =
+                        getLine(typeChild.getLineNo() - 2);
+                    result = CommonUtil.isBlank(commentBeginningPreviousLine);
+
+                }
+            }
         }
         return result;
     }
