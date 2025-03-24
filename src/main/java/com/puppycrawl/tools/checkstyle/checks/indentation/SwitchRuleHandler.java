@@ -64,7 +64,20 @@ public class SwitchRuleHandler extends AbstractExpressionHandler {
 
     @Override
     public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
-        return getIndent();
+        final IndentLevel result;
+
+        if (child instanceof SlistHandler) {
+            // switchRule with block body (enclosed in {})
+            result = getIndent();
+        }
+        else {
+            // Single-expression switchRule (no {} block):
+            // assume line wrapping and add additional indentation
+            // for the statement in the next line.
+            result = new IndentLevel(getIndent(), getIndentCheck().getLineWrappingIndentation());
+        }
+
+        return result;
     }
 
     @Override
