@@ -74,6 +74,9 @@
                <description>Specify the access modifiers where Javadoc comments are
  checked.</description>
             </property>
+            <property default-value="false" name="allowInlineReturn" type="boolean">
+               <description>Control whether to allow inline return tag.</description>
+            </property>
             <property default-value="false" name="allowMissingParamTags" type="boolean">
                <description>Control whether to ignore violations
  when a method has parameters but does not have matching {@code param} tags in the javadoc.</description>
