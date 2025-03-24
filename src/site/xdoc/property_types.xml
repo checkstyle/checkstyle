@@ -85,6 +85,7 @@
     </section>
 
     <section name="double[]">
+        <p>forcing change</p>
       <p>
         This type represents a set of doubles. The string representation
         is parsed as a set of comma (',') separated doubles that are parsed
