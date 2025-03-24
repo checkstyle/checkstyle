@@ -37,6 +37,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.tools.ant.BuildException;
+import org.apache.tools.ant.Location;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.Path;
@@ -245,12 +246,38 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setProject(new Project());
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
+        final Location fileLocation = new Location("build.xml", 42, 10);
+        antTask.setLocation(fileLocation);
+
         final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
                 .isEqualTo("Must specify 'config'.");
+        assertWithMessage("Location is missing in exception")
+                .that(ex.getLocation())
+                .isEqualTo(fileLocation);
+    }
+
+    @Test
+    public final void testNoFileOrPathSpecified() {
+        final CheckstyleAntTask antTask = new CheckstyleAntTask();
+        antTask.setProject(new Project());
+
+        final Location fileLocation = new Location("build.xml", 42, 10);
+        antTask.setLocation(fileLocation);
+
+        final BuildException ex = getExpectedThrowable(BuildException.class,
+                antTask::execute,
+                "BuildException is expected");
+
+        assertWithMessage("Error message is unexpected")
+                .that(ex.getMessage())
+                .isEqualTo("Must specify at least one of 'file' or nested 'fileset' or 'path'.");
+        assertWithMessage("Location is missing in the exception")
+                .that(ex.getLocation())
+                .isEqualTo(fileLocation);
     }
 
     @Test
@@ -302,7 +329,21 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
-                .isEqualTo("Got 0 errors and 1 warnings.");
+                .isEqualTo("Got 0 errors (max allowed: 0) and 1 warnings.");
+    }
+
+    @Test
+    public final void testMaxErrorsExceeded() throws IOException {
+        final CheckstyleAntTask antTask = getCheckstyleAntTask();
+        antTask.setFile(new File(getPath(VIOLATED_INPUT)));
+        antTask.setMaxErrors(1);
+
+        final BuildException ex = getExpectedThrowable(BuildException.class,
+                antTask::execute,
+                "BuildException is expected");
+        assertWithMessage("Failure message should include maxErrors value")
+                .that(ex.getMessage())
+                .contains("max allowed: 1");
     }
 
     @Test
@@ -336,12 +377,12 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
-                .isEqualTo("Got 2 errors and 0 warnings.");
+                .isEqualTo("Got 2 errors (max allowed: 0) and 0 warnings.");
         final Map<String, Object> hashtable = project.getProperties();
         final Object propertyValue = hashtable.get(failurePropertyName);
         assertWithMessage("Number of errors is unexpected")
                 .that(propertyValue)
-                .isEqualTo("Got 2 errors and 0 warnings.");
+                .isEqualTo("Got 2 errors (max allowed: 0) and 0 warnings.");
     }
 
     @Test
@@ -356,6 +397,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.addProperty(property);
         antTask.execute();
 
+        assertWithMessage("Property key should not be empty")
+                    .that(property.getKey())
+                    .isNotEmpty();
         assertWithMessage("Checker is not processed")
                 .that(TestRootModuleChecker.isProcessed())
                 .isTrue();
@@ -747,6 +791,12 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     @Test
     public void testCreateClasspath() {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
+        final Project mockProject = new Project();
+        antTask.setProject(mockProject);
+
+        assertWithMessage("Classpath should belong to the expected project")
+                .that(antTask.createClasspath().getProject())
+                .isEqualTo(mockProject);
 
         assertWithMessage("Invalid classpath")
                 .that(antTask.createClasspath().toString())
