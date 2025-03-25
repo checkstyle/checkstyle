@@ -12,13 +12,15 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 
 import java.lang.annotation.Documented;
 
-@SuppressWarnings({"unchecked", "unused"}) // violation
+// violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+@SuppressWarnings({"unchecked", "unused"})
 public class InputSuppressWarningsCompact3
 {
     @SuppressWarnings({"   "})
     class Empty {
 
-        @SuppressWarnings({"unchecked", ""}) // violation
+        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        @SuppressWarnings({"unchecked", ""})
         public Empty() {
 
         }
@@ -36,7 +38,8 @@ public class InputSuppressWarningsCompact3
             Object o = new InputSuppressWarningsCompact3() {
 
                 @Override
-                @SuppressWarnings({"unchecked"}) // violation
+                @SuppressWarnings({"unchecked"})
+                // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
                 public String toString() {
                     return "";
                 }
@@ -63,10 +66,12 @@ public class InputSuppressWarningsCompact3
         @SuppressWarnings({})
         int a = 1;
 
-        @SuppressWarnings({"unchecked"}) // violation
+        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        @SuppressWarnings({"unchecked"})
         @Deprecated
         int b = 1;
-        void doFoo(String s, @SuppressWarnings({"unchecked"})String y) { // violation
+        void doFoo(String s, @SuppressWarnings({"unchecked"})String y) {
+            // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
 
         }
     }

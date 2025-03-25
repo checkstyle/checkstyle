@@ -528,4 +528,14 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMissingJavadocMethodBasic.java"), expected);
     }
+
+    @Test
+    public void testMissingJavadocMethodAboveComments() throws Exception {
+        final String[] expected = {
+            "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMissingJavadocMethodAboveComments.java"),
+                expected);
+    }
 }
