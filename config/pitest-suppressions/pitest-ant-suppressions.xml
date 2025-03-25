@@ -143,13 +143,4 @@
     <description>removed call to java/lang/Integer::valueOf</description>
     <lineContent>logIndex, fileNames.length, scanner.getBasedir()), Project.MSG_VERBOSE);</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckstyleAntTask.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
-    <mutatedMethod>retrieveAllScannedFiles</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to org/apache/tools/ant/DirectoryScanner::getBasedir</description>
-    <lineContent>logIndex, fileNames.length, scanner.getBasedir()), Project.MSG_VERBOSE);</lineContent>
-  </mutation>
 </suppressedMutations>
