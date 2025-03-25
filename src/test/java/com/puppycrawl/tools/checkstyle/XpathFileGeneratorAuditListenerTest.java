@@ -136,6 +136,18 @@ public class XpathFileGeneratorAuditListenerTest {
     }
 
     @Test
+    public void testWhenCloseStreamFalse() {
+        final OutputStream out = new ByteArrayOutputStream();
+        final XpathFileGeneratorAuditListener listener =
+                new XpathFileGeneratorAuditListener(out, null);
+        final AuditEvent ev = new AuditEvent(this, "Test.java");
+            listener.auditFinished(ev);
+            assertWithMessage("Exception expected")
+                    .that(listener.isStreamClosed())
+                    .isTrue();
+    }
+
+    @Test
     public void testAddException() {
         final OutputStream out = new ByteArrayOutputStream();
         final XpathFileGeneratorAuditListener logger =
