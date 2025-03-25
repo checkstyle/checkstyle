@@ -2455,4 +2455,3 @@ public final class JavadocTokenTypes {
     }
 
 }
-
