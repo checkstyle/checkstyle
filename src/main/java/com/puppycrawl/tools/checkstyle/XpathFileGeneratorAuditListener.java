@@ -56,6 +56,7 @@ public class XpathFileGeneratorAuditListener
      *
      * @param out the output stream
      * @param outputStreamOptions if {@code CLOSE} stream should be closed in auditFinished()
+     * @throws IllegalArgumentException if input is null
      */
     public XpathFileGeneratorAuditListener(OutputStream out,
                                            OutputStreamOptions outputStreamOptions) {
@@ -77,6 +78,8 @@ public class XpathFileGeneratorAuditListener
         writer.flush();
         if (closeStream) {
             writer.close();
+        } else {
+            throw new IllegalStateException("Stream was not closed!");
         }
     }
 
