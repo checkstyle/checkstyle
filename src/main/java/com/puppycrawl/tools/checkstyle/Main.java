@@ -410,7 +410,7 @@ public final class Main {
                 }
 
                 listener = new XpathFileGeneratorAuditListener(getOutputStream(options.outputPath),
-                        getOutputStreamOptions(options.outputPath));
+                        null);
             }
             else {
                 listener = createListener(options.format, options.outputPath);
