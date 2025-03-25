@@ -598,6 +598,17 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter outputStreamOptions of XpathFileGeneratorAuditListener constructor.</message>
+    <lineContent>null);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull OutputStreamOptions
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference Checker.class.getPackage()</message>
     <lineContent>Checker.class.getPackage().getName(), moduleClassLoader);</lineContent>
