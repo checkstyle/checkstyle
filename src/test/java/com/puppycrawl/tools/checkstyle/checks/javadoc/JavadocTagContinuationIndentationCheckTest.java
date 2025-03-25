@@ -155,4 +155,29 @@ public class JavadocTagContinuationIndentationCheckTest
                 getPath("InputJavadocTagContinuationIndentationCheck1.java"),
                 expected);
     }
+
+    @Test
+    public void testJavadocTagContinuationIndentationCheckHtml() throws Exception {
+        final String[] expected = {
+            "15: " + getCheckMessage(MSG_KEY, 4),
+            "18: " + getCheckMessage(MSG_KEY, 4),
+            "28: " + getCheckMessage(MSG_KEY, 4),
+            "29: " + getCheckMessage(MSG_KEY, 4),
+            "30: " + getCheckMessage(MSG_KEY, 4),
+            "60: " + getCheckMessage(MSG_KEY, 4),
+            "61: " + getCheckMessage(MSG_KEY, 4),
+            "62: " + getCheckMessage(MSG_KEY, 4),
+            "75: " + getCheckMessage(MSG_KEY, 4),
+            "76: " + getCheckMessage(MSG_KEY, 4),
+            "77: " + getCheckMessage(MSG_KEY, 4),
+            "88: " + getCheckMessage(MSG_KEY, 4),
+            "89: " + getCheckMessage(MSG_KEY, 4),
+            "90: " + getCheckMessage(MSG_KEY, 4),
+            "100: " + getCheckMessage(MSG_KEY, 4),
+            "101: " + getCheckMessage(MSG_KEY, 4),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTagContinuationIndentationCheckHtml.java"),
+                expected);
+    }
 }
