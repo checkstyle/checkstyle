@@ -111,6 +111,7 @@ public class FilesBeforeExecutionFileFilter
     </section>
 
     <section name="Huh? I can&#39;t figure it out!">
+      <p>forcing change</p>
       <p>
         That&#39;s probably our fault, and it means that we have to provide
         better documentation. Please do not hesitate to ask questions on the
