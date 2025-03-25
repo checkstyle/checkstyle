@@ -78,6 +78,9 @@ public class XpathFileGeneratorAuditListener
         if (closeStream) {
             writer.close();
         }
+        if (!closeStream) {
+            throw new IllegalStateException("Stream was not closed!");
+        }
     }
 
     @Override
