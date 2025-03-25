@@ -24,6 +24,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
@@ -59,6 +60,9 @@ public class XpathFileGeneratorAuditListener
      */
     public XpathFileGeneratorAuditListener(OutputStream out,
                                            OutputStreamOptions outputStreamOptions) {
+        // validate input parameters
+        Objects.requireNonNull(outputStreamOptions, "OutputStreamOptions must not be null");
+
         writer = new PrintWriter(new OutputStreamWriter(out, StandardCharsets.UTF_8));
         closeStream = outputStreamOptions == OutputStreamOptions.CLOSE;
     }
