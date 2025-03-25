@@ -75,7 +75,10 @@ public class XpathFileGeneratorAuditListener
         }
 
         writer.flush();
-        if (closeStream) {
+        if (!closeStream) {
+            throw new IllegalStateException("Stream was not closed!");
+        }
+        else {
             writer.close();
         }
     }
