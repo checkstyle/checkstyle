@@ -19,6 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.*;
+import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
+import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
+import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
+import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.atn.PredictionMode;
+import org.antlr.v4.runtime.misc.ParseCancellationException;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -26,27 +34,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
 
-import org.antlr.v4.runtime.BaseErrorListener;
-import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonToken;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.RecognitionException;
-import org.antlr.v4.runtime.Recognizer;
-import org.antlr.v4.runtime.Token;
-
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
-import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
-import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
-
 /**
  * Helper methods to parse java source files.
- *
  */
 // -@cs[ClassDataAbstractionCoupling] No way to split up class usage.
 public final class JavaParser {
@@ -68,7 +57,9 @@ public final class JavaParser {
 
     }
 
-    /** Stop instances being created. **/
+    /**
+     * Stop instances being created.
+     **/
     private JavaParser() {
     }
 
@@ -89,19 +80,32 @@ public final class JavaParser {
         final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
         final JavaLanguageParser parser =
                 new JavaLanguageParser(tokenStream, JavaLanguageParser.CLEAR_DFA_LIMIT);
-        parser.setErrorHandler(new CheckstyleParserErrorStrategy());
+        parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
         parser.removeErrorListeners();
-        parser.addErrorListener(new CheckstyleErrorListener());
+        parser.setErrorHandler(new BailErrorStrategy());
 
-        final JavaLanguageParser.CompilationUnitContext compilationUnit;
+        JavaLanguageParser.CompilationUnitContext compilationUnit;
+
         try {
             compilationUnit = parser.compilationUnit();
         }
-        catch (IllegalStateException ex) {
-            final String exceptionMsg = String.format(Locale.ROOT,
-                "%s occurred while parsing file %s.",
-                ex.getClass().getSimpleName(), contents.getFileName());
-            throw new CheckstyleException(exceptionMsg, ex);
+        catch (ParseCancellationException e) {
+            // if we get here, it means that the input is not parsable by SLL
+            // we need to retry with LL
+            tokenStream.seek(0);
+            parser.setErrorHandler(new CheckstyleParserErrorStrategy());
+            parser.addErrorListener(new CheckstyleErrorListener());
+            parser.getInterpreter().setPredictionMode(PredictionMode.LL);
+
+            try {
+                compilationUnit = parser.compilationUnit();
+            }
+            catch (IllegalStateException ex) {
+                final String exceptionMsg = String.format(Locale.ROOT,
+                        "%s occurred while parsing file %s.",
+                        ex.getClass().getSimpleName(), contents.getFileName());
+                throw new CheckstyleException(exceptionMsg, ex);
+            }
         }
 
         return new JavaAstVisitor(tokenStream).visit(compilationUnit);
@@ -110,7 +114,7 @@ public final class JavaParser {
     /**
      * Parse a text and return the parse tree.
      *
-     * @param text the text to parse
+     * @param text    the text to parse
      * @param options {@link Options} to control inclusion of comment nodes
      * @return the root node of the parse tree
      * @throws CheckstyleException if the text is not a valid Java source
@@ -128,16 +132,16 @@ public final class JavaParser {
     /**
      * Parses Java source file.
      *
-     * @param file the file to parse
+     * @param file    the file to parse
      * @param options {@link Options} to control inclusion of comment nodes
      * @return DetailAST tree
-     * @throws IOException if the file could not be read
+     * @throws IOException         if the file could not be read
      * @throws CheckstyleException if the file is not a valid Java source file
      */
     public static DetailAST parseFile(File file, Options options)
             throws IOException, CheckstyleException {
         final FileText text = new FileText(file,
-            StandardCharsets.UTF_8.name());
+                StandardCharsets.UTF_8.name());
         return parseFileText(text, options);
     }
 
@@ -208,8 +212,7 @@ public final class JavaParser {
         final DetailAST commentAst;
         if (token.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
             commentAst = createSlCommentNode(token);
-        }
-        else {
+        } else {
             commentAst = ParserUtil.createBlockCommentNode(token);
         }
         return commentAst;
