@@ -49,7 +49,7 @@ public class XpathFileGeneratorAuditListener
 
     /** Determines if xml header is printed. */
     private boolean isXmlHeaderPrinted;
-
+    
     /**
      * Creates a new {@code SuppressionFileGenerator} instance.
      * Sets the output to a defined stream.
