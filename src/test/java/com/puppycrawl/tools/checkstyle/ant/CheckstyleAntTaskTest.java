@@ -174,6 +174,34 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public final void testBaseDirPresence() throws IOException {
+        TestRootModuleChecker.reset();
+
+        final CheckstyleAntTaskLogStub antTask = new CheckstyleAntTaskLogStub();
+        antTask.setConfig(getPath(CUSTOM_ROOT_CONFIG_FILE));
+
+        final Project project = new Project();
+        project.setBaseDir(new File("."));
+        antTask.setProject(new Project());
+
+        final FileSet fileSet = new FileSet();
+        fileSet.setFile(new File(getPath(FLAWLESS_INPUT)));
+        antTask.addFileset(fileSet);
+
+        antTask.scanFileSets();
+
+        final List<MessageLevelPair> loggedMessages = antTask.getLoggedMessages();
+
+        final String expectedPath = new File(getPath(".")).getAbsolutePath();
+        final boolean containsBaseDir = loggedMessages.stream()
+                .anyMatch(msg -> msg.getMsg().contains(expectedPath));
+
+        assertWithMessage("Base directory should be present in logs.")
+                .that(containsBaseDir)
+                .isTrue();
+    }
+
+    @Test
     public final void testPathsDirectoryWithNestedFile() throws IOException {
         // given
         TestRootModuleChecker.reset();
