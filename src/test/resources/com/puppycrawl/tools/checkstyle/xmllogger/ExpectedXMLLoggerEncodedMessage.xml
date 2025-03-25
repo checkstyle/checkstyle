@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<checkstyle version="">
-<file name="InputXMLLoggerEncodedMessage.java">
-<error line="15" column="17" severity="error" message="Test XML encoding: &lt;tag&gt; &amp; &quot;quotes&quot; &amp; apos; Existing entities: &amp; &lt;" source="com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck"/>
-</file>
-</checkstyle>

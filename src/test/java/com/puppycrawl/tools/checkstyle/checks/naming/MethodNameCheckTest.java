@@ -83,22 +83,22 @@ public class MethodNameCheckTest
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "27:16: " + getCheckMessage(MSG_KEY, "InputMethodNameEqualClassName"),
-            "27:16: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "24:16: " + getCheckMessage(MSG_KEY, "InputMethodNameEqualClassName"),
+            "24:16: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "InputMethodNameEqualClassName", pattern),
-            "33:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PRIVATEInputMethodNameEqualClassName",
+            "29:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PRIVATEInputMethodNameEqualClassName",
                     pattern),
-            "42:20: " + getCheckMessage(MSG_KEY, "Inner"),
-            "42:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
-            "48:20: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "35:20: " + getCheckMessage(MSG_KEY, "Inner"),
+            "35:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
+            "40:20: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "InputMethodNameEqualClassName", pattern),
-            "60:24: " + getCheckMessage(MSG_KEY, "InputMethodNameEqualClassName"),
-            "60:24: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "49:24: " + getCheckMessage(MSG_KEY, "InputMethodNameEqualClassName"),
+            "49:24: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "InputMethodNameEqualClassName", pattern),
-            "73:9: " + getCheckMessage(MSG_KEY, "SweetInterface"),
-            "73:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
-            "82:17: " + getCheckMessage(MSG_KEY, "Outer"),
-            "82:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
+            "59:9: " + getCheckMessage(MSG_KEY, "SweetInterface"),
+            "59:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
+            "65:17: " + getCheckMessage(MSG_KEY, "Outer"),
+            "65:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
         };
 
         verifyWithInlineConfigParser(
@@ -110,17 +110,17 @@ public class MethodNameCheckTest
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "25:16: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "24:16: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "InputMethodNameEqualClassName2", pattern),
-            "31:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PRIVATEInputMethodNameEqualClassName",
+            "29:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PRIVATEInputMethodNameEqualClassName",
                     pattern),
-            "38:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
-            "44:20: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "35:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
+            "40:20: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "InputMethodNameEqualClassName2", pattern),
-            "54:24: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "49:24: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "InputMethodNameEqualClassName2", pattern),
-            "64:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
-            "70:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
+            "59:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
+            "65:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
         };
 
         verifyWithInlineConfigParser(
@@ -132,15 +132,15 @@ public class MethodNameCheckTest
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "25:16: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "24:16: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "InputMethodNameEqualClassName3", pattern),
-            "36:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
-            "42:20: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "35:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
+            "40:20: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "InputMethodNameEqualClassName3", pattern),
-            "52:24: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "49:24: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "InputMethodNameEqualClassName3", pattern),
-            "62:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
-            "68:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
+            "59:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
+            "65:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
         };
 
         verifyWithInlineConfigParser(

@@ -590,6 +590,21 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
+    <specifier>override.receiver</specifier>
+    <message>Incompatible receiver type</message>
+    <lineContent>public String toString() {</lineContent>
+    <details>
+      found   : @GuardedBy Token
+      required: @GuardSatisfied Object
+      Consequence: method in @GuardedBy Token
+      @GuardedBy String toString(@GuardedBy Token this)
+      cannot override method in @GuardedBy Object
+      @GuardedBy String toString(@GuardSatisfied Object this)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@SideEffectFree method toString calls method getTokenName with a weaker @ReleasesNoLocks side effect guarantee</message>

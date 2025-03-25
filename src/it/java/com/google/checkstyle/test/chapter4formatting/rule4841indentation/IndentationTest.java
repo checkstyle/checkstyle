@@ -94,9 +94,4 @@ public class IndentationTest extends AbstractIndentationTestSupport {
     public void testFastMatcher() throws Exception {
         verifyWithWholeConfig(getPath("InputFastMatcher.java"));
     }
-
-    @Test
-    public void testSwitchOnTheStartOfTheLine() throws Exception {
-        verifyWithWholeConfig(getNonCompilablePath("InputSwitchOnStartOfTheLine.java"));
-    }
 }

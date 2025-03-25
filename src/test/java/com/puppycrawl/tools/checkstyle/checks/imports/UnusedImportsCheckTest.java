@@ -381,13 +381,4 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
                 getPath("InputUnusedImportsFromStaticMethodRefInDocsOnly.java"), expected);
     }
 
-    @Test
-    public void testUnusedImportsJavadocAboveComments() throws Exception {
-        final String[] expected = {
-            "11:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
-        };
-        verifyWithInlineConfigParser(
-                getPath("InputUnusedImportsJavadocAboveComments.java"), expected);
-    }
-
 }

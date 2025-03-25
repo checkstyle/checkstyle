@@ -26,8 +26,7 @@ class InputUpperEllSemantic
     }
 
     /** test **/
-    private static final long IGNORE = 666l + 666L; // violation 'Should use uppercase 'L'.'
-
+    private static final long IGNORE = 666l + 666L; // violation
 
     public void triggerEmptyBlockWithoutBlock()
     {

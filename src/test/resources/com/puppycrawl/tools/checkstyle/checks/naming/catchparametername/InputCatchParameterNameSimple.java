@@ -1,23 +1,23 @@
 /*
-MethodLength
-max = 19
-countEmpty = false
-tokens = (default)METHOD_DEF , CTOR_DEF , COMPACT_CTOR_DEF
+CatchParameterName
+format = (default)^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$
 
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
+package com.puppycrawl.tools.checkstyle.checks.naming.catchparametername;
+
 import java.io.*;
-
-final class InputMethodLengthCountEmptyIsFalse
+/**
+ * Contains simple mistakes:
+ * - Long lines
+ * - Tabs
+ * - Format of variables and parameters
+ * - Order of modifiers
+ * @author Oliver Burn
+ **/
+final class InputCatchParameterNameSimple
 {
-    // Long line ----------------------------------------------------------------
-    // Contains a tab ->        <-
-    // Contains trailing whitespace ->
-
-    // Name format tests
-    //
     /** Invalid format **/
     public static final int badConstant = 2;
     /** Valid format **/
@@ -96,7 +96,7 @@ final class InputMethodLengthCountEmptyIsFalse
     }
 
     /** constructor that is 10 lines long **/
-    private InputMethodLengthCountEmptyIsFalse()
+    private InputCatchParameterNameSimple()
     {
         // a line
         // a line
@@ -195,7 +195,7 @@ final class InputMethodLengthCountEmptyIsFalse
 }
 
 /** Test class for variable naming in for each clause. */
-class InputSimple3
+class InputCatchParameterNameSimple2
 {
     /** Some more Javadoc. */
     public void doSomething()
@@ -209,7 +209,7 @@ class InputSimple3
 }
 
 /** Test enum for member naming check */
-enum MyEnum2
+enum MyEnum1
 {
     /** ABC constant */
     ABC,

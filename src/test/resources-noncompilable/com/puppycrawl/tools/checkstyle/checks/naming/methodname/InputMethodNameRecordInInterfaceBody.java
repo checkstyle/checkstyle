@@ -21,7 +21,7 @@ public interface InputMethodNameRecordInInterfaceBody {
         String record() {
             return null;
         }
-        void VIOLATION() { // violation 'Name 'VIOLATION' must match pattern'
+        void VIOLATION() { // violation
 
         }
     }

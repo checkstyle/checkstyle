@@ -195,8 +195,7 @@ public class SuppressWarningsHolder
             final boolean nameMatches =
                 ALL_WARNING_MATCHING_ID.equals(checkName)
                     || checkName.equalsIgnoreCase(checkAlias)
-                    || getDefaultAlias(checkName).equalsIgnoreCase(checkAlias)
-                    || getDefaultAlias(sourceName).equalsIgnoreCase(checkName);
+                    || getDefaultAlias(checkName).equalsIgnoreCase(checkAlias);
             if (afterStart && beforeEnd
                     && (nameMatches || checkName.equals(event.getModuleId()))) {
                 suppressed = true;

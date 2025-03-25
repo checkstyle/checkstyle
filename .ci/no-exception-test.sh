@@ -17,7 +17,7 @@ guava-with-google-checks)
   cp src/main/resources/google_checks.xml .ci-temp/google_checks.xml
   sed -i.'' 's/warning/ignore/' .ci-temp/google_checks.xml
   cd .ci-temp/contribution/checkstyle-tester
-  export MAVEN_OPTS="-Xmx2g"
+  export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig ../../google_checks.xml \
       --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false" \
@@ -39,7 +39,7 @@ guava-with-sun-checks)
   cp src/main/resources/sun_checks.xml .ci-temp/sun_checks.xml
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' .ci-temp/sun_checks.xml
   cd .ci-temp/contribution/checkstyle-tester
-  export MAVEN_OPTS="-Xmx2g"
+  export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig ../../sun_checks.xml \
       --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false" \
@@ -60,7 +60,7 @@ openjdk17-with-checks-nonjavadoc-error)
       openjdk-17-projects-to-test-on.config
   sed -i '/  <!-- Filters -->/r ../../../config/projects-to-test/openjdk17-excluded.files' \
       checks-nonjavadoc-error.xml
-  export MAVEN_OPTS="-Xmx2g"
+  export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects openjdk-17-projects-to-test-on.config \
       --mode single --allowExcludes \
       --patchConfig checks-nonjavadoc-error.xml \
@@ -82,7 +82,7 @@ openjdk19-with-checks-nonjavadoc-error)
       openjdk-19-projects-to-test-on.config
   sed -i '/  <!-- Filters -->/r ../../../config/projects-to-test/openjdk19-excluded.files' \
       checks-nonjavadoc-error.xml
-  export MAVEN_OPTS="-Xmx2g"
+  export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects openjdk-19-projects-to-test-on.config \
       --mode single --allowExcludes \
       --patchConfig checks-nonjavadoc-error.xml \
@@ -104,7 +104,7 @@ openjdk20-with-checks-nonjavadoc-error)
       openjdk-20-projects-to-test-on.config
   sed -i '/  <!-- Filters -->/r ../../../config/projects-to-test/openjdk20-excluded.files' \
       checks-nonjavadoc-error.xml
-  export MAVEN_OPTS="-Xmx2g"
+  export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects openjdk-20-projects-to-test-on.config \
       --mode single --allowExcludes \
       --patchConfig checks-nonjavadoc-error.xml \
@@ -126,7 +126,7 @@ openjdk21-with-checks-nonjavadoc-error)
       openjdk-21-projects-to-test-on.config
   sed -i '/  <!-- Filters -->/r ../../../config/projects-to-test/openjdk21-excluded.files' \
       checks-nonjavadoc-error.xml
-  export MAVEN_OPTS="-Xmx2g"
+  export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects openjdk-21-projects-to-test-on.config \
       --mode single --allowExcludes \
       --patchConfig checks-nonjavadoc-error.xml \
@@ -150,7 +150,7 @@ no-exception-lucene-and-others-javadoc)
   sed -i'' 's/#protonpack/protonpack/' projects-for-no-exception-javadoc.config
   sed -i'' 's/#jOOL/jOOL/' projects-for-no-exception-javadoc.config
   sed -i'' 's/#lucene-solr/lucene-solr/' projects-for-no-exception-javadoc.config
-  export MAVEN_OPTS="-Xmx2g"
+  export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-for-no-exception-javadoc.config \
       --patchConfig checks-only-javadoc-error.xml \
       --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false" \
@@ -171,7 +171,7 @@ no-exception-cassandra-storm-tapestry-javadoc)
   sed -i'' 's/#tapestry-5/tapestry-5/' projects-for-no-exception-javadoc.config
   sed -i'' 's/#storm/storm/' projects-for-no-exception-javadoc.config
   sed -i'' 's/#cassandra/cassandra/' projects-for-no-exception-javadoc.config
-  export MAVEN_OPTS="-Xmx2g"
+  export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-for-no-exception-javadoc.config \
       --patchConfig checks-only-javadoc-error.xml \
       --mode single --allowExcludes  -xm "-Dcheckstyle.failsOnError=false" \
@@ -193,7 +193,7 @@ no-exception-hadoop-apache-groovy-scouter-javadoc)
   sed -i'' 's/#hadoop/hadoop/' projects-for-no-exception-javadoc.config
   sed -i'' 's/#groovy/groovy/' projects-for-no-exception-javadoc.config
   sed -i'' 's/#scouter/scouter/' projects-for-no-exception-javadoc.config
-  export MAVEN_OPTS="-Xmx2g"
+  export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-for-no-exception-javadoc.config \
       --patchConfig checks-only-javadoc-error.xml \
       --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false" \
@@ -214,7 +214,7 @@ no-exception-only-javadoc)
   sed -i.'' 's/#spotbugs/spotbugs/' projects-to-test-on.properties
   sed -i.'' 's/#pmd/pmd/' projects-to-test-on.properties
   sed -i.'' 's/#apache-ant/apache-ant/' projects-to-test-on.properties
-  export MAVEN_OPTS="-Xmx2g"
+  export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-only-javadoc-error.xml --allowExcludes \
       --mode single -xm "-Dcheckstyle.failsOnError=false" \
@@ -258,24 +258,6 @@ no-exception-samples-gradle)
   removeFolderWithProtectedFiles checkstyle-samples
   ;;
 
-no-exception-samples-maven)
-  CS_POM_VERSION="$(getCheckstylePomVersion)"
-  echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress -B install -Pno-validations
-
-  checkout_from https://github.com/sevntu-checkstyle/checkstyle-samples
-  cd .ci-temp/checkstyle-samples/maven-project
-
-  sed -i "s|\(<checkstyle.version>\)[0-9.]\+\(</checkstyle.version>\)"`
-  `"|\1${CS_POM_VERSION}\2|" pom.xml
-
-
-  echo "Building Maven project..."
-  mvn -e --no-transfer-progress -B verify
-
-  cd ../..
-  removeFolderWithProtectedFiles checkstyle-samples
-  ;;
 
   *)
   echo "Unexpected argument: $1"

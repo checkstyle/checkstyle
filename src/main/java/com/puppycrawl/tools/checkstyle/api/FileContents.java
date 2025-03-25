@@ -216,33 +216,12 @@ public final class FileContents implements CommentListener {
         // Lines start at 1 to the callers perspective, so need to take off 2
         int lineNo = lineNoBefore - 2;
 
-        // skip blank lines and comments
-        while (lineNo > 0 && (lineIsBlank(lineNo) || lineIsComment(lineNo)
-                            || lineInsideBlockComment(lineNo + 1))) {
+        // skip blank lines
+        while (lineNo > 0 && (lineIsBlank(lineNo) || lineIsComment(lineNo))) {
             lineNo--;
         }
 
         return javadocComments.get(lineNo);
-    }
-
-    /**
-     * Checks if the specified line number is inside a block comment.
-     * This method scans through all block comments (excluding Javadoc comments)
-     * and determines whether the given line number falls within any of them
-     *
-     * @param lineNo the line number to check
-     * @return {@code true} if the line is inside a block comment (excluding Javadoc comments)
-     *          , {@code false} otherwise
-     */
-    private boolean lineInsideBlockComment(int lineNo) {
-        final Collection<List<TextBlock>> values = clangComments.values();
-        return values.stream()
-            .flatMap(List::stream)
-            .filter(comment -> !javadocComments.containsValue(comment))
-            .anyMatch(comment -> {
-                return lineNo >= comment.getStartLineNo()
-                                        && lineNo <= comment.getEndLineNo();
-            });
     }
 
     /**
