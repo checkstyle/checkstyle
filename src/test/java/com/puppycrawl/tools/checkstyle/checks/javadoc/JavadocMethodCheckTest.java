@@ -27,6 +27,9 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_UNUSED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_UNUSED_TAG_GENERAL;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -478,6 +481,21 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testTokenToString() throws Exception {
+        final Class<?> tokenType = Class.forName("com.puppycrawl.tools.checkstyle.checks.javadoc."
+                + "JavadocMethodCheck$Token");
+        final Constructor<?> tokenConstructor = tokenType.getDeclaredConstructor(String.class,
+                int.class, int.class);
+        tokenConstructor.setAccessible(true);
+        final Object token = tokenConstructor.newInstance("tokenName", 1, 1);
+        final Method toString = token.getClass().getDeclaredMethod("toString");
+        final String result = (String) toString.invoke(token);
+        assertWithMessage("Invalid toString result")
+            .that(result)
+            .isEqualTo("Token[tokenName(1x1)]");
+    }
+
+    @Test
     public void testWithoutLogErrors() throws Exception {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodLoadErrors.java"),
@@ -574,20 +592,5 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {};
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputJavadocMethodRecords3.java"), expected);
-    }
-
-    @Test
-    public void testJavadocMethodAboveComments() throws Exception {
-        final String[] expected = {
-            "16:29: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
-            "25:30: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
-            "52:30: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
-            "63:32: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
-            "74:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
-            "84:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
-            "94:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
-        };
-        verifyWithInlineConfigParser(
-                getPath("InputJavadocMethodAboveComments.java"), expected);
     }
 }

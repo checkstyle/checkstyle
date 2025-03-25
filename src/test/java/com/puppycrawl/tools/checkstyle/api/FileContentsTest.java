@@ -202,11 +202,11 @@ public class FileContentsTest {
                 .that(fileContents.getJavadocBefore(4).toString())
                 .isEqualTo(new Comment(new String[] {"/** A */"}, 0, 1, 7).toString());
         assertWithMessage("Invalid comment")
-                .that(fileContents.getJavadocBefore(5).toString())
-                .isEqualTo(new Comment(new String[] {"/** A */"}, 0, 1, 7).toString());
+                .that(fileContents.getJavadocBefore(5))
+                .isNull();
         assertWithMessage("Invalid comment")
-                .that(fileContents.getJavadocBefore(6).toString())
-                .isEqualTo(new Comment(new String[] {"/** A */"}, 0, 1, 7).toString());
+                .that(fileContents.getJavadocBefore(6))
+                .isNull();
     }
 
     @Test

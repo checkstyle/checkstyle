@@ -356,8 +356,8 @@ public class CheckstyleAntTask extends Task {
         // Handle the return status
         if (!okStatus) {
             final String failureMsg =
-                    "Got " + numErrs + " errors (max allowed: " + maxErrors + ") and "
-                            + numWarnings + " warnings.";
+                    "Got " + numErrs + " errors and " + numWarnings
+                            + " warnings.";
             if (failureProperty != null) {
                 getProject().setProperty(failureProperty, failureMsg);
             }

@@ -63,7 +63,7 @@ public class MethodNameCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "18:15: " + getCheckMessage(MSG_KEY, "Example4"),
+            "17:15: " + getCheckMessage(MSG_KEY, "Example4"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);

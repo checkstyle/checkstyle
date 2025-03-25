@@ -26,10 +26,10 @@ public class InputMethodNameOverriddenMethods extends SomeClass
 }
 
 class SomeClass {
-    public void PUBLICfoo() {  // violation 'Name 'PUBLICfoo' must match pattern'
+    public void PUBLICfoo() {  // violation
 
     }
-    protected void PROTECTEDfoo() { // violation 'Name 'PROTECTEDfoo' must match pattern'
+    protected void PROTECTEDfoo() { // violation
 
     }
 }

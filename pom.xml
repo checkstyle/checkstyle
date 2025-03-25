@@ -208,7 +208,7 @@
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.13.2</antlr4.version>
     <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
-    <maven.spotbugs.plugin.version>4.9.3.0</maven.spotbugs.plugin.version>
+    <maven.spotbugs.plugin.version>4.9.2.0</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.26.0</maven.pmd.plugin.version>
     <pmd.version>7.11.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.12</maven.jacoco.plugin.version>
@@ -223,7 +223,7 @@
     <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
     <java.version>11</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
-    <pitest.plugin.version>1.19.0</pitest.plugin.version>
+    <pitest.plugin.version>1.18.2</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
@@ -308,7 +308,7 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>33.4.5-jre</version>
+      <version>33.4.0-jre</version>
       <exclusions>
         <exclusion>
           <groupId>org.checkerframework</groupId>

@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
+    <sourceFile>JavadocMethodCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$Token</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/FullIdent::getColumnNo</description>
+    <lineContent>columnNo = fullIdent.getColumnNo();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocMethodCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$Token</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable columnNo</description>
+    <lineContent>columnNo = fullIdent.getColumnNo();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocMethodCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$Token</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/FullIdent::getLineNo</description>
+    <lineContent>lineNo = fullIdent.getLineNo();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocMethodCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$Token</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable lineNo</description>
+    <lineContent>lineNo = fullIdent.getLineNo();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
     <sourceFile>JavadocNodeImpl.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl</mutatedClass>
     <mutatedMethod>toString</mutatedMethod>

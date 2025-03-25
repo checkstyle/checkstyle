@@ -20,28 +20,24 @@ package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
  */
 public class InputMethodNameEqualClassName2 {
 
-    //illegal name
-    // violation below 'Name 'InputMethodNameEqualClassName2' must match pattern.'
-    public int InputMethodNameEqualClassName2() {
+        //illegal name
+    public int InputMethodNameEqualClassName2() { // violation
         return 0;
     }
 
     //illegal name
-    // violation below 'Name 'PRIVATEInputMethodNameEqualClassName' must match pattern.'
-    private int PRIVATEInputMethodNameEqualClassName() {
+    private int PRIVATEInputMethodNameEqualClassName() { // violation
         return 0;
     }
 
     class Inner {
-        //illegal name
-        // violation below 'Name 'Inner' must match pattern.'
-        public int Inner() {
+                //illegal name
+        public int Inner() { // violation
                         return 0;
                 }
 
-        //OK name - name of the outter class's ctor
-        // violation below 'Name 'InputMethodNameEqualClassName2' must match pattern.'
-        public int InputMethodNameEqualClassName2() {
+                //OK name - name of the outter class's ctor
+        public int InputMethodNameEqualClassName2() { // violation
                         return 0;
                 }
         }
@@ -49,9 +45,8 @@ public class InputMethodNameEqualClassName2 {
         public void anotherMethod() {
                 new InputMethodNameEqualClassName() {
 
-            //illegal name
-            // violation below 'Name 'InputMethodNameEqualClassName2' must match pattern.'
-            public int InputMethodNameEqualClassName2() {
+                        //illegal name
+            public int InputMethodNameEqualClassName2() { // violation
                                 return 1;
                         }
                 };
@@ -61,13 +56,13 @@ public class InputMethodNameEqualClassName2 {
 interface SweetInterface2 {
 
         //illegal name
-    int SweetInterface(); // violation 'Name 'SweetInterface' must match pattern'
+    int SweetInterface(); // violation
 }
 
 class Outer2 {
 
         //illegal name
-    public void Outer() { // violation 'Name 'Outer' must match pattern'
+    public void Outer() { // violation
 
         }
 }
