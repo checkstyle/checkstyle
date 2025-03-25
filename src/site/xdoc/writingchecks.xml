@@ -260,6 +260,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
     </section>
 
     <section name="Understanding the visitor pattern">
+      <p>forcing change</p>
 
       <p>
         Ready for a bit more theory? The last bit
