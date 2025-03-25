@@ -183,7 +183,7 @@ Checkstyle uses libraries:
 [sponsors.opencollective img]:https://opencollective.com/checkstyle/sponsors/badge.svg
 
 [dependabot]:https://dependabot.com
-[dependabot img]:https://api.dependabot.com/badges/status?host=github&repo=checkstyle/checkstyle
+[dependabot img]:https://img.shields.io/badge/dependabot-025E8C?style=for-the-badge&logo=dependabot
 
 [closed issues]:https://github.com/checkstyle/checkstyle/actions/workflows/no-old-refs.yml
 [closed issues img]:https://github.com/checkstyle/checkstyle/actions/workflows/no-old-refs.yml/badge.svg
