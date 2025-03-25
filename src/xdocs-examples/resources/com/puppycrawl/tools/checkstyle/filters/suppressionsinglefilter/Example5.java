@@ -10,11 +10,10 @@
 package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 // xdoc section -- start
 public class Example5 {
-  // filtered violation 'Name 'example_Method' must match pattern'
+  // filtered violation below 'Name 'example_Method' must match pattern'
   public void example_Method() {
   }
-
-  // filtered violation Name 'Another_Method' must match pattern
+  // filtered violation below 'Name 'Another_Method' must match pattern'
   public void Another_Method() {
   }
 }
