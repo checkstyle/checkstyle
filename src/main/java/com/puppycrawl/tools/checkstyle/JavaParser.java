@@ -43,6 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
 import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
+import org.antlr.v4.runtime.atn.PredictionMode;
 
 /**
  * Helper methods to parse java source files.
@@ -89,6 +90,7 @@ public final class JavaParser {
         final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
         final JavaLanguageParser parser =
                 new JavaLanguageParser(tokenStream, JavaLanguageParser.CLEAR_DFA_LIMIT);
+        parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
         parser.setErrorHandler(new CheckstyleParserErrorStrategy());
         parser.removeErrorListeners();
         parser.addErrorListener(new CheckstyleErrorListener());
