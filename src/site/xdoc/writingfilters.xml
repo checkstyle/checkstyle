@@ -99,6 +99,7 @@ public class FilesFilter
     </section>
 
     <section name="Declare check's external resource locations">
+      <p>forcing change</p>
       <p>
         See <a href="writingchecks.html#Declare_check.27s_external_resource_locations">
         Declare check's external resource locations</a>.
