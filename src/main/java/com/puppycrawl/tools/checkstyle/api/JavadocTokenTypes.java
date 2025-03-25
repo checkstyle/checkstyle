@@ -1447,7 +1447,6 @@ public final class JavadocTokenTypes {
 
     /**
      *  Link tag name.
-     *
      *  <p><b>Example:</b></p>
      *  <pre>{@code <link rel="stylesheet" href="Style.css">}</pre>
      *  <b>Tree:</b>
