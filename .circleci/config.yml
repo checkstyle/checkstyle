@@ -197,11 +197,12 @@ workflows:
           name: "checkstyle-and-sevntu"
           image-name: *cs_img
           command: "./.ci/validation.sh checkstyle-and-sevntu"
-      # until https://github.com/spotbugs/spotbugs-maven-plugin/issues/806
-      # - validate-with-maven-script:
-      #    name: "spotbugs-and-pmd"
-      #    image-name: *cs_img
-      #    command: "./.ci/validation.sh spotbugs-and-pmd"
+      # https://github.com/spotbugs/spotbugs-maven-plugin/issues/806 explains
+      # why we need execution of spotbugs without any other maven plugins which can change binaries
+      - validate-with-maven-script:
+          name: "spotbugs-and-pmd"
+          image-name: *cs_img
+          command: "./.ci/validation.sh spotbugs-and-pmd"
       - validate-with-maven-script:
           name: "site"
           image-name: *cs_img
