@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
 
+import org.antlr.v4.runtime.BailErrorStrategy;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -43,6 +44,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
 import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
+import org.antlr.v4.runtime.atn.PredictionMode;
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 
 /**
  * Helper methods to parse java source files.
@@ -68,7 +71,9 @@ public final class JavaParser {
 
     }
 
-    /** Stop instances being created. **/
+    /**
+     * Stop instances being created.
+     **/
     private JavaParser() {
     }
 
@@ -89,22 +94,66 @@ public final class JavaParser {
         final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
         final JavaLanguageParser parser =
                 new JavaLanguageParser(tokenStream, JavaLanguageParser.CLEAR_DFA_LIMIT);
-        parser.setErrorHandler(new CheckstyleParserErrorStrategy());
-        parser.removeErrorListeners();
-        parser.addErrorListener(new CheckstyleErrorListener());
+        JavaLanguageParser.CompilationUnitContext compilationUnit;
 
-        final JavaLanguageParser.CompilationUnitContext compilationUnit;
+        try {
+            compilationUnit = parseWithSLLPredictionMode(parser);
+        }
+        catch (ParseCancellationException e) {
+            // if we get here, it means that the input is not parsable by SLL
+            // we need to retry with LL
+            tokenStream.seek(0);
+            compilationUnit = parseWithLLPredictionMode(parser, contents.getFileName());
+        }
+
+        return new JavaAstVisitor(tokenStream).visit(compilationUnit);
+    }
+
+    /**
+     * Parse the input with {@link PredictionMode#SLL} prediction mode.
+     * SLL mode is faster but may fail on complex constructs.
+     *
+     * @param parser the java language parser to use
+     * @return the compilation unit context
+     */
+    private static JavaLanguageParser.CompilationUnitContext
+                parseWithSLLPredictionMode(JavaLanguageParser parser)  {
+        parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
+        parser.removeErrorListeners();
+        parser.setErrorHandler(new BailErrorStrategy());
+
+        return parser.compilationUnit();
+    }
+
+    /**
+     * Parse the input with {@link PredictionMode#LL} prediction mode.
+     * This mode is more robust and is used as a fallback when SLL mode fails.
+     *
+     * @param parser the java language parser to use
+     * @param fileName the file name being parsed (for error reporting)
+     * @return the compilation unit context
+     * @throws CheckstyleException if an exception occurs during parsing
+     */
+    private static JavaLanguageParser.CompilationUnitContext
+                parseWithLLPredictionMode(JavaLanguageParser parser, String fileName)
+                throws CheckstyleException {
+        parser.addErrorListener(new CheckstyleErrorListener());
+        parser.setErrorHandler(new CheckstyleParserErrorStrategy());
+        parser.getInterpreter().setPredictionMode(PredictionMode.LL);
+
+        JavaLanguageParser.CompilationUnitContext compilationUnit;
+
         try {
             compilationUnit = parser.compilationUnit();
         }
         catch (IllegalStateException ex) {
             final String exceptionMsg = String.format(Locale.ROOT,
-                "%s occurred while parsing file %s.",
-                ex.getClass().getSimpleName(), contents.getFileName());
+                    "%s occurred while parsing file %s.",
+                    ex.getClass().getSimpleName(), fileName);
             throw new CheckstyleException(exceptionMsg, ex);
-        }
+        };
 
-        return new JavaAstVisitor(tokenStream).visit(compilationUnit);
+        return compilationUnit;
     }
 
     /**
