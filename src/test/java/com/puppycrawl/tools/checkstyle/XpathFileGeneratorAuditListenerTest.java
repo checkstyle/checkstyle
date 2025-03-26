@@ -136,6 +136,23 @@ public class XpathFileGeneratorAuditListenerTest {
     }
 
     @Test
+    void testXpathFileGeneratorAuditListener() {
+        final OutputStream out = new ByteArrayOutputStream();
+        NullPointerException thrownException = null;
+        try {
+            new XpathFileGeneratorAuditListener(out, null);
+        } catch (NullPointerException e){
+            thrownException = e;
+        }
+         assertWithMessage("Expected NullPointerException to be thrown")
+                .that(thrownException)
+                .isNotNull();
+        assertWithMessage("Exception message should match expected text")
+                .that(thrownException.getMessage())
+                .isEqualTo("OutputStreamOptions must not be null");
+    }
+
+    @Test
     public void testAddException() {
         final OutputStream out = new ByteArrayOutputStream();
         final XpathFileGeneratorAuditListener logger =
