@@ -18,7 +18,6 @@ class InputEmptyFinallyBlocks {
     } catch (Exception e) {
       /* ignore */
     } finally {
-      /* ignore */
     }
   }
 
