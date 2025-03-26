@@ -27,7 +27,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenInAstByPredicate;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
-import java.io.File;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -410,8 +410,8 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     private DetailAST getNodeFromFile(int type) throws Exception {
-        return getNode(JavaParser.parseFile(new File(getPath("InputCheckUtilTest.java")),
-            JavaParser.Options.WITH_COMMENTS), type);
+        final Path path = Path.of(getPath("InputCheckUtilTest.java"));
+        return getNode(JavaParser.parseFile(path.toFile(), JavaParser.Options.WITH_COMMENTS), type);
     }
 
     /**
@@ -419,12 +419,13 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
      *
      * @param type The token type to search for in the file.
      *             This parameter determines the type of AST node to retrieve.
-     * @param file The file from which the AST node should be retrieved.
+     * @param filePath The file from which the AST node should be retrieved.
      * @return The AST node associated with the specified token type from the given file.
      * @throws Exception If there's an issue reading or parsing the file.
      */
-    public static DetailAST getNode(File file, int type) throws Exception {
-        return getNode(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS), type);
+    public static DetailAST getNode(Path filePath, int type) throws Exception {
+        return getNode(JavaParser.parseFile(filePath.toFile(),
+                JavaParser.Options.WITH_COMMENTS), type);
     }
 
     /**
@@ -444,4 +445,14 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
 
         return node.orElseThrow();
     }
+
+    @Test
+    public void testPackageInfo() {
+        final boolean result = CheckUtil.isPackageInfo("/");
+
+        assertWithMessage("Expected isPackageInfo() to return false for ('/')")
+                .that(result)
+                .isFalse();
+    }
+
 }
