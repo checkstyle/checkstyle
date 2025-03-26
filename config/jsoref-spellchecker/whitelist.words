@@ -1278,6 +1278,7 @@ STT
 Studman
 Styleable
 styleguide
+stylesheet
 subdir
 subelements
 subext
@@ -1552,4 +1553,3 @@ zf
 zh
 zm
 ZSH
-stylesheet
