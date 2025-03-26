@@ -308,7 +308,7 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>33.4.5-jre</version>
+      <version>33.4.6-jre</version>
       <exclusions>
         <exclusion>
           <groupId>org.checkerframework</groupId>
@@ -4717,6 +4717,14 @@
                 mutation on it as mutation is only looking at the non-existent return value. -->
                 <avoidCallsTo>
                   org.antlr.v4.runtime.BailErrorStrategy
+                </avoidCallsTo>
+                <!-- Setting the prediction mode to SLL is an intentional optimization
+                 to speed up parsing.
+                 Since this is a deterministic change to the parser's behavior,
+                 no normal check execution test case will be able to kill the mutation, as the test
+                 will always pass regardless of the parsing strategy. -->
+                <avoidCallsTo>
+                  org.antlr.v4.runtime.atn.ParserATNSimulator
                 </avoidCallsTo>
               </avoidCallsTo>
               <coverageThreshold>100</coverageThreshold>
