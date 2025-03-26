@@ -1491,7 +1491,7 @@ public final class JavadocTokenTypes {
 
     /** Isindex tag name. */
     public static final int ISINDEX_HTML_TAG_NAME = JavadocParser.ISINDEX_HTML_TAG_NAME;
-
+ 
     /**
      *  Link tag name.
      *
