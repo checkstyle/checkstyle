@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -133,6 +135,14 @@ public class XpathFileGeneratorAuditListenerTest {
         assertWithMessage("Output should be empty")
             .that(actual)
             .isEmpty();
+    }
+
+    @Test
+    void testXpathFileGeneratorAuditListener() {
+        final OutputStream out = new ByteArrayOutputStream();
+        NullPointerException thrownException = assertThrows(NullPointerException.class, () ->
+        new XpathFileGeneratorAuditListener(out, null));
+        assertThat(thrownException.getMessage()).isEqualTo("OutputStreamOptions must not be null");
     }
 
     @Test
