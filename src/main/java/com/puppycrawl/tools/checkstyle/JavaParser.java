@@ -35,6 +35,8 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.misc.ParseCancellationException;
+import org.antlr.v4.runtime.atn.PredictionMode;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -44,8 +46,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
 import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
-import org.antlr.v4.runtime.atn.PredictionMode;
-import org.antlr.v4.runtime.misc.ParseCancellationException;
 
 /**
  * Helper methods to parse java source files.
@@ -97,7 +97,7 @@ public final class JavaParser {
         try {
             compilationUnit = parseWithSLLPredictionMode(parser);
         }
-        catch (ParseCancellationException e) {
+        catch (ParseCancellationException ex) {
             tokenStream.seek(0);
             compilationUnit = parseWithLLPredictionMode(parser, contents.getFileName());
         }
@@ -137,7 +137,7 @@ public final class JavaParser {
         parser.setErrorHandler(new CheckstyleParserErrorStrategy());
         parser.getInterpreter().setPredictionMode(PredictionMode.LL);
 
-        JavaLanguageParser.CompilationUnitContext compilationUnit;
+        final JavaLanguageParser.CompilationUnitContext compilationUnit;
 
         try {
             compilationUnit = parser.compilationUnit();
@@ -147,7 +147,7 @@ public final class JavaParser {
                     "%s occurred while parsing file %s.",
                     ex.getClass().getSimpleName(), fileName);
             throw new CheckstyleException(exceptionMsg, ex);
-        };
+        }
 
         return compilationUnit;
     }
