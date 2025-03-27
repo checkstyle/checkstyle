@@ -34,6 +34,7 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.atn.PredictionMode;
 import org.antlr.v4.runtime.misc.Interval;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -168,6 +169,9 @@ public class JavadocDetailNodeParser {
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
 
         final JavadocParser parser = new JavadocParser(tokens);
+
+        // set prediction mode to SLL to speed up parsing
+        parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
 
         // remove default error listeners
         parser.removeErrorListeners();

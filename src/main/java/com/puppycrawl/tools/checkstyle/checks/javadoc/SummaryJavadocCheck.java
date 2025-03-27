@@ -45,6 +45,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * period is not required as the Javadoc tool adds it.
  * </div>
  *
+ * <p>
+ * Note: For defining a summary, both the first sentence and the @summary tag approaches
+ * are supported.
+ * </p>
+ *
  * <ul>
  * <li>
  * Property {@code forbiddenSummaryFragments} - Specify the regexp for forbidden summary fragments.
