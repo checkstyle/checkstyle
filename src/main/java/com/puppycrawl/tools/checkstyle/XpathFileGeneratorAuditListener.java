@@ -56,9 +56,13 @@ public class XpathFileGeneratorAuditListener
      *
      * @param out the output stream
      * @param outputStreamOptions if {@code CLOSE} stream should be closed in auditFinished()
+     * @throws IllegalArgumentException if input is null
      */
     public XpathFileGeneratorAuditListener(OutputStream out,
                                            OutputStreamOptions outputStreamOptions) {
+        if (outputStreamOptions == null) {
+            throw new IllegalArgumentException("outputStreamOptions parameter should not be null");
+        }
         writer = new PrintWriter(new OutputStreamWriter(out, StandardCharsets.UTF_8));
         closeStream = outputStreamOptions == OutputStreamOptions.CLOSE;
     }
