@@ -136,6 +136,23 @@ public class XpathFileGeneratorAuditListenerTest {
     }
 
     @Test
+    public void testAuditFinished_WhenCloseStreamFalse() {
+        final OutputStream out = new ByteArrayOutputStream();
+        final XpathFileGeneratorAuditListener listener =
+                new XpathFileGeneratorAuditListener(out, null);
+        final AuditEvent ev = new AuditEvent(this, "Test.java");
+        try {
+        listener.auditFinished(ev);
+            assertWithMessage("Exception is excepted").fail();
+        }
+        catch (IllegalStateException ex) {
+            assertWithMessage("Exception expected")
+                    .that(ex.getMessage())
+                    .isEqualTo("Stream was not closed!");
+        }
+    }
+
+    @Test
     public void testAddException() {
         final OutputStream out = new ByteArrayOutputStream();
         final XpathFileGeneratorAuditListener logger =
