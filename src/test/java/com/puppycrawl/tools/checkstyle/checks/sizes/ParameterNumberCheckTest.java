@@ -61,13 +61,29 @@ public class ParameterNumberCheckTest
     }
 
     @Test
-    public void testDefault()
+    public void testDefaultOne()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNumberSimpleOne.java"), expected);
+    }
+
+    @Test
+    public void testDefaultTwo()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNumberSimpleTwo.java"), expected);
+    }
+
+    @Test
+    public void testDefaultThree()
             throws Exception {
         final String[] expected = {
-            "198:10: " + getCheckMessage(MSG_KEY, 7, 9),
+            "47:10: " + getCheckMessage(MSG_KEY, 7, 9),
         };
         verifyWithInlineConfigParser(
-                getPath("InputParameterNumberSimple.java"), expected);
+                getPath("InputParameterNumberSimpleThree.java"), expected);
     }
 
     @Test
