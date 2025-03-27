@@ -1196,7 +1196,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
-     * comments are written in HTML</a>
+     *     comments are written in HTML</a>
      * @see #LI_HTML_TAG_NAME
      */
     public static final int LI_HTML_TAG_NAME = JavadocParser.LI_HTML_TAG_NAME;
@@ -1247,7 +1247,7 @@ public final class JavadocTokenTypes {
      *
      *  @see
      *  <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
-     *  comments are written in HTML</a>
+     *      comments are written in HTML</a>
      *  @see #TR_HTML_TAG_NAME
      */
     public static final int TR_HTML_TAG_NAME = JavadocParser.TR_HTML_TAG_NAME;
@@ -1297,7 +1297,7 @@ public final class JavadocTokenTypes {
      *
      *  @see
      *  <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
-     *  comments are written in HTML</a>
+     *      comments are written in HTML</a>
      *  @see #TD_HTML_TAG_NAME
      */
     public static final int TD_HTML_TAG_NAME = JavadocParser.TD_HTML_TAG_NAME;
