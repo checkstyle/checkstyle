@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck.MSG_UNUSED_LOCAL_VARIABLE;
+import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
@@ -44,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck;
@@ -514,6 +516,50 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputSuppressWarningsHolderAlias2.java"),
+                expected);
+    }
+
+    @Test
+    public void testAliasList3() throws Exception {
+        final String[] expected = {
+            "16:17: " + getCheckMessage(ParameterNumberCheck.class,
+                    ParameterNumberCheck.MSG_KEY, 7, 8),
+            "28:17: " + getCheckMessage(ParameterNumberCheck.class,
+                    ParameterNumberCheck.MSG_KEY, 7, 8),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSuppressWarningsHolderAlias5.java"),
+                expected);
+    }
+
+    @Test
+    public void testAliasList4() throws Exception {
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+        final String[] expected = {
+            "16:30: " + getCheckMessage(ConstantNameCheck.class,
+                AbstractNameCheck.MSG_INVALID_PATTERN, "a", pattern),
+            "19:30: " + getCheckMessage(ConstantNameCheck.class,
+                AbstractNameCheck.MSG_INVALID_PATTERN, "b", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSuppressWarningsHolderAlias4.java"),
+                expected);
+    }
+
+    @Test
+    public void testAliasList5() throws Exception {
+        final String[] expected = {
+            "18: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 80, 83),
+            "28: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 96),
+            "28: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 80, 96),
+            "58: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 76),
+            "65: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 87),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSuppressWarningsHolderAlias6.java"),
                 expected);
     }
 
