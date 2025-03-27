@@ -184,6 +184,7 @@
     </file>
     <subpackage name="imports">
       <allow class="com.puppycrawl.tools.checkstyle.XmlLoader" local-only="true"/>
+      <allow class="org.checkerframework.checker.regex.qual.Regex"/>
     </subpackage>
     <subpackage name="indentation">
       <allow pkg="java.lang.reflect"/>
@@ -319,4 +320,5 @@
     <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions"
            local-only="true"/>
   </file>
+
 </import-control>
