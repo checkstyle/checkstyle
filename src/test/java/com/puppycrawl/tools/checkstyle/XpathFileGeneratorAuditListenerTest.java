@@ -136,6 +136,19 @@ public class XpathFileGeneratorAuditListenerTest {
     }
 
     @Test
+    public void testXpathFileGeneratorAuditListener() {
+        final OutputStream out = new ByteArrayOutputStream();
+        try {
+            new XpathFileGeneratorAuditListener(out, null);
+        }
+        catch (IllegalArgumentException ex){
+            assertWithMessage("Exception expected")
+                    .that(ex.getMessage())
+                    .isEqualTo("outputStreamOptions parameter should not be null");
+        }
+    }
+
+    @Test
     public void testAddException() {
         final OutputStream out = new ByteArrayOutputStream();
         final XpathFileGeneratorAuditListener logger =
