@@ -4,18 +4,9 @@
     <sourceFile>DetailNodeTreeStringPrinter.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinter</mutatedClass>
     <mutatedMethod>parseFile</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/nio/charset/Charset::name</description>
-    <lineContent>System.getProperty(&quot;file.encoding&quot;, StandardCharsets.UTF_8.name()));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>DetailNodeTreeStringPrinter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinter</mutatedClass>
-    <mutatedMethod>parseFile</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
     <description>replaced call to java/lang/System::getProperty with argument</description>
-    <lineContent>System.getProperty(&quot;file.encoding&quot;, StandardCharsets.UTF_8.name()));</lineContent>
+    <lineContent>System.getProperty(&quot;file.encoding&quot;, &quot;UTF-8&quot;));</lineContent>
   </mutation>
 
   <mutation unstable="false">
