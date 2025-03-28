@@ -2000,15 +2000,15 @@ public final class JavadocTokenTypes {
      * HTML_ELEMENT -> HTML_ELEMENT
      *    `--TD -> TD
      *        |--TD_TAG_START -> TD_TAG_START
-     *        |   |--START -> &lt;
+     *        |   |--START -> <
      *        |   |--TD_HTML_TAG_NAME -> td
-     *        |   `--END -> &gt;
+     *        |   `--END -> >
      *        |--TEXT -> Cell Content
      *        `--TD_TAG_END -> TD_TAG_END
-     *            |--START -> &lt;
+     *            |--START -> <
      *            |--SLASH -> /
      *            |--TD_HTML_TAG_NAME -> td
-     *            `--END -> &gt;
+     *            `--END -> >
      * }
      * </pre>
      */
