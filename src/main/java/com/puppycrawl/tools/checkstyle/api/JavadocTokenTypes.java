@@ -242,6 +242,8 @@ public final class JavadocTokenTypes {
      *       |--WS
      *       |--DESCRIPTION -> DESCRIPTION
      *           |--TEXT -> serialized company name
+     *           |--NEWLINE -> \r\n
+     *           `--TEXT ->
      * }</pre>
      *
      * @see
