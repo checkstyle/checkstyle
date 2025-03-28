@@ -919,15 +919,16 @@ public final class JavadocTokenTypes {
      * <pre>{@code @param T The bar.}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code JAVADOC_TAG -&gt JAVADOC_TAG
-     *         |--PARAM_LITERAL -&gt @param
-     *         |--WS -&gt
-     *         |--PARAMETER_NAME -&gt T
-     *         |--WS -&gt
-     *         `--DESCRIPTION -&gt DESCRIPTION
-     *             |--TEXT -&gt The bar.
-     *             |--NEWLINE -&gt \r\n
-     *             `--TEXT -&gt
+     * {@code
+     *   --JAVADOC_TAG -> JAVADOC_TAG
+     *      |--PARAM_LITERAL -> @param
+     *      |--WS ->
+     *      |--PARAMETER_NAME -> T
+     *      |--WS ->
+     *      `--DESCRIPTION -> DESCRIPTION
+     *          |--TEXT -> The bar.
+     *          |--NEWLINE -> \r\n
+     *          `--TEXT ->
      * }
      * </pre>
      *
@@ -1346,7 +1347,68 @@ public final class JavadocTokenTypes {
      */
     public static final int COLGROUP_HTML_TAG_NAME = JavadocParser.COLGROUP_HTML_TAG_NAME;
 
-    /** Description of a term tag name. */
+    /**
+     * Description of a term tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <dl>
+     *     <dt>Java</dt>
+     *     <dd>A high-level programming language.</dd>
+     * </dl>
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *  HTML_ELEMENT -> HTML_ELEMENT
+     *   `--HTML_TAG -> HTML_TAG
+     *       |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *       |   |--START -> <
+     *       |   |--HTML_TAG_NAME -> dl
+     *       |   `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--HTML_ELEMENT -> HTML_ELEMENT
+     *       |   `--DT -> DT
+     *       |       |--DT_TAG_START -> DT_TAG_START
+     *       |       |   |--START -> <
+     *       |       |   |--DT_HTML_TAG_NAME -> dt
+     *       |       |   `--END -> >
+     *       |       |--TEXT -> Java
+     *       |       `--DT_TAG_END -> DT_TAG_END
+     *       |           |--START -> <
+     *       |           |--SLASH -> /
+     *       |           |--DT_HTML_TAG_NAME -> dt
+     *       |           `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--HTML_ELEMENT -> HTML_ELEMENT
+     *       |   `--DD -> DD
+     *       |       |--DD_TAG_START -> DD_TAG_START
+     *       |       |   |--START -> <
+     *       |       |   |--DD_HTML_TAG_NAME -> dd
+     *       |       |   `--END -> >
+     *       |       |--TEXT -> A high-level programming language.
+     *       |       `--DD_TAG_END -> DD_TAG_END
+     *       |           |--START -> <
+     *       |           |--SLASH -> /
+     *       |           |--DD_HTML_TAG_NAME -> dd
+     *       |           `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *           |--START -> <
+     *           |--SLASH -> /
+     *           |--HTML_TAG_NAME -> dl
+     *           `--END -> >
+     * }
+     * </pre>
+     *
+     * @see #DD_HTML_TAG_NAME
+     */
     public static final int DD_HTML_TAG_NAME = JavadocParser.DD_HTML_TAG_NAME;
 
     /** Description term tag name. */
@@ -1490,7 +1552,38 @@ public final class JavadocTokenTypes {
     /** Isindex tag name. */
     public static final int ISINDEX_HTML_TAG_NAME = JavadocParser.ISINDEX_HTML_TAG_NAME;
 
-    /** Link tag name. */
+    /**
+     *  Link tag name.
+     *
+     *  <p><b>Example:</b></p>
+     *  <pre>{@code <link rel="stylesheet" href="Style.css">}</pre>
+     *  <b>Tree:</b>
+     *  <pre>
+     *  {@code
+     *  HTML_ELEMENT -> HTML_ELEMENT
+     *  `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *      `--LINK_TAG -> LINK_TAG
+     *          |--START -> <
+     *          |--LINK_HTML_TAG_NAME -> link
+     *          |--WS ->
+     *          |--ATTRIBUTE -> ATTRIBUTE
+     *          |   |--HTML_TAG_NAME -> rel
+     *          |   |--EQUALS -> =
+     *          |   `--ATTR_VALUE -> "stylesheet"
+     *          |--WS ->
+     *          |--ATTRIBUTE -> ATTRIBUTE
+     *          |   |--HTML_TAG_NAME -> href
+     *          |   |--EQUALS -> =
+     *          |   `--ATTR_VALUE -> "Style.css"
+     *          `--END -> >
+     *  }
+     *  </pre>
+     *
+     *  @see
+     *  <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
+     *      comments are written in HTML</a>
+     *  @see #LINK_HTML_TAG_NAME
+     */
     public static final int LINK_HTML_TAG_NAME = JavadocParser.LINK_HTML_TAG_NAME;
 
     /** Meta tag name. */
