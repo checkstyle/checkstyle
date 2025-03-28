@@ -64,7 +64,16 @@ public class SwitchRuleHandler extends AbstractExpressionHandler {
 
     @Override
     public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
-        return getIndent();
+        final IndentLevel result;
+
+        if (child instanceof LambdaHandler) {
+            result = super.getSuggestedChildIndent(child);
+        }
+        else {
+            result = getIndent();
+        }
+
+        return result;
     }
 
     @Override
