@@ -1588,19 +1588,19 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     *   JAVADOC ->; JAVADOC
-     *        |--NEWLINE ->; \r\n
-     *        |--LEADING_ASTERISK ->;  *
-     *        |--TEXT ->;  text before break
-     *        |--HTML_ELEMENT ->; HTML_ELEMENT
-     *        |   `--SINGLETON_ELEMENT ->; SINGLETON_ELEMENT
-     *        |       `--BR_TAG ->; BR_TAG
-     *        |           |--START ->; -<;
-     *        |           |--BR_HTML_TAG_NAME ->; br
-     *        |           `--END ->; >;
-     *        |--TEXT ->;  text after break
-     *        |--NEWLINE ->; \r\n
-     *        |--TEXT ->;
+     *   `--JAVADOC -> JAVADOC
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->  text before break
+     *       |--HTML_ELEMENT -> HTML_ELEMENT
+     *       |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *       |       `--BR_TAG -> BR_TAG
+     *       |           |--START -> <
+     *       |           |--BR_HTML_TAG_NAME -> br
+     *       |           `--END -> >
+     *       |--TEXT ->  text after break
+     *       |--NEWLINE -> \r\n
+     *       |--TEXT ->
      * }
      * </pre>
      */
