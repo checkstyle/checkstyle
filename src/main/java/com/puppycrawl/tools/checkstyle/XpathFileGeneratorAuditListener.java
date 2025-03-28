@@ -50,6 +50,9 @@ public class XpathFileGeneratorAuditListener
     /** Determines if xml header is printed. */
     private boolean isXmlHeaderPrinted;
 
+    /** Determine if the stream was closed properly. */
+    private boolean streamClosed;
+
     /**
      * Creates a new {@code SuppressionFileGenerator} instance.
      * Sets the output to a defined stream.
@@ -77,6 +80,7 @@ public class XpathFileGeneratorAuditListener
         writer.flush();
         if (closeStream) {
             writer.close();
+            streamClosed = true;
         }
     }
 
@@ -146,5 +150,14 @@ public class XpathFileGeneratorAuditListener
     @Override
     protected void finishLocalSetup() {
         // No code by default
+    }
+
+    /**
+     * Checks if the stream was closed properly.
+     *
+     * @return true if the stream is closed
+     */
+    public boolean isStreamClosed() {
+        return streamClosed;
     }
 }
