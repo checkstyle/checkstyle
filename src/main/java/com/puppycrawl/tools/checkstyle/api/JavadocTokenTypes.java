@@ -1348,7 +1348,68 @@ public final class JavadocTokenTypes {
      */
     public static final int COLGROUP_HTML_TAG_NAME = JavadocParser.COLGROUP_HTML_TAG_NAME;
 
-    /** Description of a term tag name. */
+    /**
+     * Description of a term tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <dl>
+     *     <dt>Java</dt>
+     *     <dd>A high-level programming language.</dd>
+     * </dl>
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *  HTML_ELEMENT -> HTML_ELEMENT
+     *   `--HTML_TAG -> HTML_TAG
+     *       |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *       |   |--START -> <
+     *       |   |--HTML_TAG_NAME -> dl
+     *       |   `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--HTML_ELEMENT -> HTML_ELEMENT
+     *       |   `--DT -> DT
+     *       |       |--DT_TAG_START -> DT_TAG_START
+     *       |       |   |--START -> <
+     *       |       |   |--DT_HTML_TAG_NAME -> dt
+     *       |       |   `--END -> >
+     *       |       |--TEXT -> Java
+     *       |       `--DT_TAG_END -> DT_TAG_END
+     *       |           |--START -> <
+     *       |           |--SLASH -> /
+     *       |           |--DT_HTML_TAG_NAME -> dt
+     *       |           `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--HTML_ELEMENT -> HTML_ELEMENT
+     *       |   `--DD -> DD
+     *       |       |--DD_TAG_START -> DD_TAG_START
+     *       |       |   |--START -> <
+     *       |       |   |--DD_HTML_TAG_NAME -> dd
+     *       |       |   `--END -> >
+     *       |       |--TEXT -> A high-level programming language.
+     *       |       `--DD_TAG_END -> DD_TAG_END
+     *       |           |--START -> <
+     *       |           |--SLASH -> /
+     *       |           |--DD_HTML_TAG_NAME -> dd
+     *       |           `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *           |--START -> <
+     *           |--SLASH -> /
+     *           |--HTML_TAG_NAME -> dl
+     *           `--END -> >
+     * }
+     * </pre>
+     *
+     * @see #DD_HTML_TAG_NAME
+     */
     public static final int DD_HTML_TAG_NAME = JavadocParser.DD_HTML_TAG_NAME;
 
     /** Description term tag name. */
