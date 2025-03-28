@@ -824,6 +824,13 @@
             </td>
           </tr>
           <tr>
+            <td><a href="checks/header/multifileregexpheader.html#MultiFileRegexpHeader">MultiFileRegexpHeader</a></td>
+            <td>
+              Checks the header of a source file against multiple header files that contain
+              a pattern for each line of the source header.
+            </td>
+          </tr>
+          <tr>
             <td>
               <a href="checks/coding/multiplestringliterals.html#MultipleStringLiterals">
                 MultipleStringLiterals
