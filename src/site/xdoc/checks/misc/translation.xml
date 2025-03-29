@@ -195,7 +195,6 @@ messages_home.translations // violation,
                           'Properties file 'messages_home_fr.translations' missing.'
 </code></pre></div>
       </subsection>
-
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
