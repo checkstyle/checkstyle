@@ -13,13 +13,13 @@
 package com.puppycrawl.tools.checkstyle.checks.suppresswarningsholder;
 
 public class InputSuppressWarningsHolderAlias3 {
-  private int a;
-  void withOriginal() {
-    @SuppressWarnings({"hiddenfield"})
-    int a = 1;
-  }
-  void withAlias() {
-    @SuppressWarnings("LocalVariableHidesMemberVariable")
-    int a = 1;
-  }
+    private int a;
+    void withOriginal() {
+      @SuppressWarnings({"hiddenfield"})
+      int a = 1;
+    }
+    void withAlias() {
+      @SuppressWarnings("LocalVariableHidesMemberVariable")
+      int a = 1;
+    }
 }
