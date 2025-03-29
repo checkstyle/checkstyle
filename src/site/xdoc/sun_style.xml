@@ -22,10 +22,6 @@
         </p>
 
         <p>
-          <a href="reports/javadoc/openjdk8/">
-            Checkstyle's html report for Open JDK library (javadoc validation)</a>
-        </p>
-        <p>
           <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml">
             incomplete Checkstyle configuration for 'Sun's Java Style'</a>
         </p>
