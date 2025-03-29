@@ -77,6 +77,11 @@
     <property name="headerFile" value="${checkstyle.regexp.header.file}"/>
     <property name="fileExtensions" value="java, g4"/>
   </module>
+  <module name="MultiFileRegexpHeader">
+    <property name="id" value="multiFileRegexpHeader"/>
+    <property name="headerFiles" value="${checkstyle.regexp.header.file}.01, ${checkstyle.regexp.header.file}.02" />
+    <property name="fileExtensions" value="java" />
+  </module>
 
   <!-- Javadoc Comments -->
   <module name="JavadocPackage">
