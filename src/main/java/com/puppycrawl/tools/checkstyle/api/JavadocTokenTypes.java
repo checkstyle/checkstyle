@@ -649,15 +649,14 @@ public final class JavadocTokenTypes {
      * <pre><code>{&#64;value Integer#MAX_VALUE}</code></pre>
      * <b>Tree:</b>
      * <pre>
-     * <code> JAVADOC_INLINE_TAG --&gt; JAVADOC_INLINE_TAG
-     *         |--JAVADOC_INLINE_TAG_START --&gt; {
-     *         |--VALUE_LITERAL --&gt; @value
-     *         |--WS --&gt;
-     *         |--REFERENCE --&gt; REFERENCE
-     *         |   |--PACKAGE_CLASS --&gt; Integer
-     *         |   |--HASH --&gt; #
-     *         |   `--MEMBER --&gt; MAX_VALUE
-     *         `--JAVADOC_INLINE_TAG_END --&gt; }
+     * <code>
+     *   --JAVADOC_TAG -> JAVADOC_TAG
+     *      |--CUSTOM_NAME -> @value
+     *      |--WS ->
+     *      `--DESCRIPTION -> DESCRIPTION
+     *          |--TEXT -> Integer#MAX_VALUE
+     *          |--NEWLINE -> \r\n
+     *          `--TEXT ->
      * </code>
      * </pre>
      *
