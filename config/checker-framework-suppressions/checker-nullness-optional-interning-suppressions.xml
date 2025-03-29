@@ -487,17 +487,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
-    <lineContent>return offendingToken;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable CommonToken
-      method return type: @Initialized @NonNull Token
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
     <lineContent>return nextSibling;</lineContent>
     <details>
       type of expression: @Initialized @Nullable ParseTree
