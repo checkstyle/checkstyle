@@ -28,7 +28,6 @@ public class InputJavadocParagraphIncorrect4 {
      *
      * <p><b>testing</b> ok, inline HTML tag. Not a block-level tag
      */
-    // violation 7 lines above 'tag should be preceded with an empty line.'
     public void foo() {}
 
     // violation 4 lines below '<p> tag should not precede HTML block-tag '<table>''
