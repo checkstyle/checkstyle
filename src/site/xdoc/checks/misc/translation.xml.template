@@ -166,7 +166,6 @@ messages_home.translations
           <param name="type" value="code"/>
         </macro>
       </subsection>
-
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
