@@ -19,13 +19,18 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.checkerframework.checker.index.qual.IndexOrLow;
+import org.checkerframework.checker.regex.qual.Regex;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -130,6 +135,21 @@ public class UnusedImportsCheck extends AbstractCheck {
     /** Regexp pattern to match java.lang package. */
     private static final Pattern JAVA_LANG_PACKAGE_PATTERN =
         CommonUtil.createPattern("^java\\.lang\\.[a-zA-Z]+$");
+
+    /** Reference total groups. */
+    private static final int REFERENCE_COUNT = 3;
+
+    /** Reference pattern. */
+    private static final @Regex(REFERENCE_COUNT) Pattern REFERENCE = Pattern.compile(
+            "^([a-z_$][a-z\\d_$<>.]*)?(#(.*))?$",
+            Pattern.CASE_INSENSITIVE
+    );
+
+    /** Method pattern. */
+    private static final Pattern METHOD = Pattern.compile(
+            "^([a-z_$#][a-z\\d_$]*)(\\([^)]*\\))?$",
+            Pattern.CASE_INSENSITIVE
+    );
 
     /** Suffix for the star import. */
     private static final String STAR_IMPORT_SUFFIX = ".*";
@@ -343,16 +363,18 @@ public class UnusedImportsCheck extends AbstractCheck {
      * @return a set of classes referenced in the javadoc block
      */
     private static Set<String> collectReferencesFromJavadoc(TextBlock textBlock) {
-        final List<JavadocTag> tags = new ArrayList<>();
-        // gather all the inline tags, like @link
-        // INLINE tags inside BLOCKs get hidden when using ALL
-        tags.addAll(getValidTags(textBlock, JavadocUtil.JavadocTagType.INLINE));
-        // gather all the block-level tags, like @throws and @see
-        tags.addAll(getValidTags(textBlock, JavadocUtil.JavadocTagType.BLOCK));
+        // Process INLINE tags
+        final List<JavadocTag> inlineTags = getTargetTags(textBlock,
+                JavadocUtil.JavadocTagType.INLINE);
+        // Process BLOCK tags
+        final List<JavadocTag> blockTags = getTargetTags(textBlock,
+                JavadocUtil.JavadocTagType.BLOCK);
+        final List<JavadocTag> targetTags = Stream.concat(inlineTags.stream(), blockTags.stream())
+                .collect(Collectors.toUnmodifiableList());
 
         final Set<String> references = new HashSet<>();
 
-        tags.stream()
+        targetTags.stream()
             .filter(JavadocTag::canReferenceImports)
             .forEach(tag -> references.addAll(processJavadocTag(tag)));
         return references;
@@ -360,14 +382,22 @@ public class UnusedImportsCheck extends AbstractCheck {
 
     /**
      * Returns the list of valid tags found in a javadoc {@link TextBlock}.
+     * Filters tags based on whether they are inline or block tags, ensuring they match
+     * the correct format supported.
      *
      * @param cmt The javadoc block to parse
-     * @param tagType The type of tags we're interested in
+     * @param javadocTagType The type of tags we're interested in
      * @return the list of tags
      */
-    private static List<JavadocTag> getValidTags(TextBlock cmt,
-            JavadocUtil.JavadocTagType tagType) {
-        return JavadocUtil.getJavadocTags(cmt, tagType).getValidTags();
+    private static List<JavadocTag> getTargetTags(TextBlock cmt,
+            JavadocUtil.JavadocTagType javadocTagType) {
+        return JavadocUtil.getJavadocTags(cmt, javadocTagType)
+            .getValidTags()
+            .stream()
+            .filter(tag -> isMatchingTagType(tag, javadocTagType))
+            .map(UnusedImportsCheck::bestTryToMatchReference)
+            .flatMap(Optional::stream)
+            .collect(Collectors.toUnmodifiableList());
     }
 
     /**
@@ -421,6 +451,95 @@ public class UnusedImportsCheck extends AbstractCheck {
             topLevelType = type.substring(0, dotIndex);
         }
         return topLevelType;
+    }
+
+    /**
+     * Checks if a Javadoc tag matches the expected type based on its extraction format.
+     * This method checks if an inline tag is extracted as a block tag or vice versa.
+     * It ensures that block tags are correctly recognized as block tags and inline tags
+     * as inline tags during processing.
+     *
+     * @param tag The Javadoc tag to check.
+     * @param javadocTagType The expected type of the tag (BLOCK or INLINE).
+     * @return {@code true} if the tag matches the expected type, otherwise {@code false}.
+     */
+    private static boolean isMatchingTagType(JavadocTag tag,
+                                             JavadocUtil.JavadocTagType javadocTagType) {
+        final boolean isInlineTag = tag.isInlineTag();
+        final boolean isBlockTagType = javadocTagType == JavadocUtil.JavadocTagType.BLOCK;
+
+        return isBlockTagType != isInlineTag;
+    }
+
+    /**
+     * Attempts to match a reference string against a predefined pattern
+     * and extracts valid reference.
+     *
+     * @param tag the input tag to check
+     * @return Optional of extracted references
+     */
+    public static Optional<JavadocTag> bestTryToMatchReference(JavadocTag tag) {
+        final String content = tag.getFirstArg();
+        final int referenceIndex = extractReferencePart(content);
+        Optional<JavadocTag> validTag = Optional.empty();
+
+        if (referenceIndex != -1) {
+            final String referenceString;
+            if (referenceIndex == 0) {
+                referenceString = content;
+            }
+            else {
+                referenceString = content.substring(0, referenceIndex);
+            }
+            final Matcher matcher = REFERENCE.matcher(referenceString);
+            if (matcher.matches()) {
+                final int methodIndex = 3;
+                final String methodPart = matcher.group(methodIndex);
+                final boolean isValid = methodPart == null
+                        || METHOD.matcher(methodPart).matches();
+                if (isValid) {
+                    validTag = Optional.of(tag);
+                }
+            }
+        }
+        return validTag;
+    }
+
+    /**
+     * Extracts the reference part from an input string while ensuring balanced parentheses.
+     *
+     * @param input the input string
+     * @return -1 if parentheses are unbalanced, 0 if no method is found,
+     *         or the index of the first space outside parentheses.
+     */
+    private static @IndexOrLow("#1")int extractReferencePart(String input) {
+        int parenthesesCount = 0;
+        int firstSpaceOutsideParens = -1;
+        for (int index = 0; index < input.length(); index++) {
+            final char currentCharacter = input.charAt(index);
+
+            if (currentCharacter == '(') {
+                parenthesesCount++;
+            }
+            else if (currentCharacter == ')') {
+                parenthesesCount--;
+            }
+            else if (currentCharacter == ' ' && parenthesesCount == 0) {
+                firstSpaceOutsideParens = index;
+                break;
+            }
+        }
+
+        int methodIndex = -1;
+        if (parenthesesCount == 0) {
+            if (firstSpaceOutsideParens == -1) {
+                methodIndex = 0;
+            }
+            else {
+                methodIndex = firstSpaceOutsideParens;
+            }
+        }
+        return methodIndex;
     }
 
     /**
