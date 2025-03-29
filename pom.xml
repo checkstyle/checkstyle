@@ -731,6 +731,45 @@
     </pluginManagement>
     <plugins>
       <plugin>
+        <groupId>org.ec4j.maven</groupId>
+        <artifactId>editorconfig-maven-plugin</artifactId>
+        <version>0.1.3</version>
+        <executions>
+          <execution>
+            <id>editorconfig</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <excludes>
+            <exclude>**/*.javadoc</exclude>
+            <exclude>**/*.jpeg</exclude>
+            <exclude>.ci-temp/**</exclude>
+            <exclude>.ci/**</exclude>
+            <exclude>.docs/**</exclude>
+            <exclude>.github/**</exclude>
+            <exclude>src/main/resources/com/puppycrawl/tools/checkstyle/meta/**/*.xml</exclude>
+            <exclude>src/main/resources/com/puppycrawl/tools/checkstyle/sarif/*.template</exclude>
+            <exclude>src/site/xdoc/*.xml</exclude>
+            <exclude>src/site/xdoc/checks/**/*.xml</exclude>
+            <exclude>src/site/xdoc/filefilters/**/*.xml</exclude>
+            <exclude>src/site/xdoc/filters/**/*.xml</exclude>
+            <exclude>src/test/resources-noncompilable/**/*.java</exclude>
+            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/**/*.xml</exclude>
+            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/asttreestringprinter/InputAstTreeStringPrinterFullOfBlockCommentsCR.java</exclude>
+            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/**/*</exclude>
+            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/grammar/InputAstRegressionNewlineCrAtEndOfFile.java</exclude>
+            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/**/*</exclude>
+            <exclude>src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/**/*.cpp</exclude>
+            <exclude>src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/**/*.txt</exclude>
+            <exclude>src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/**/*</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.codehaus.plexus</groupId>
         <artifactId>plexus-component-metadata</artifactId>
         <version>2.2.0</version>
