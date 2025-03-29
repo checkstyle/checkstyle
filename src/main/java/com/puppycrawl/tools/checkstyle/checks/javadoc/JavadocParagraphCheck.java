@@ -247,10 +247,10 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      */
     private static boolean isNestedParagraph(DetailNode tag) {
         boolean nested = false;
-        DetailNode parent = tag;
+        DetailNode parent = tag.getParent();
 
         while (parent != null) {
-            if (parent.getType() == JavadocTokenTypes.PARAGRAPH) {
+            if (parent.getType() == JavadocTokenTypes.HTML_ELEMENT) {
                 nested = true;
                 break;
             }
