@@ -17,9 +17,8 @@ THRESHOLD_PERCENTAGE=10
 # JDK version
 JDK_VERSION=21
 # sample project path
-SAMPLE_PROJECT="./.ci-temp/jdk$JDK_VERSION"
-# suppression file
-SUPPRESSION_FILE="./config/projects-to-test/openjdk$JDK_VERSION-excluded.files"
+SAMPLE_PROJECT="./.ci-temp/checkstyle"
+
 
 # execute a command and time it
 # $TEST_COMMAND: command being timed
@@ -45,9 +44,6 @@ execute_benchmark() {
   [ ! -d "$SAMPLE_PROJECT" ] &&
     echo "Directory $SAMPLE_PROJECT DOES NOT exist." | exit 1
 
-  # add suppressions to config file
-  sed -i "/  <!-- Filters -->/r $SUPPRESSION_FILE" \
-        "$CONFIG_FILE"
 
   for ((i = 0; i < NUM_EXECUTIONS; i++)); do
     local CMD=(java -jar "$JAR_PATH" -c "$CONFIG_FILE" \

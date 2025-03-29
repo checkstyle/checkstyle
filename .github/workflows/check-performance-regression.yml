@@ -47,11 +47,11 @@ jobs:
       - name: Checkout Pull Request Code
         uses: actions/checkout@v4
 
-      - name: Clone JDK 21 Repo
+      - name: Clone Checkstyle Repo
         uses: actions/checkout@v4
         with:
-          repository: openjdk/jdk21
-          path: ./.ci-temp/jdk21
+          repository: checkstyle/checkstyle
+          path: ./.ci-temp/checkstyle
 
       - name: Setup local maven cache
         uses: actions/cache@v4
