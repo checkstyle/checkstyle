@@ -90,6 +90,7 @@
           Note, that files with the same path and base name but which have different
           extensions will be considered as files that belong to different resource bundles.
         </p>
+        <hr /><hr />
         <p id="Example1-config">
           To configure the check to check existence of Japanese and French translations:
         </p>
@@ -127,6 +128,7 @@ messages.properties     // violation 'Key 'age', 'name' and 'greeting' missing.'
 messages_fr.properties  // violation 'Key 'age', 'cancel' and 'hello' missing.'
 messages_es.properties  // violation 'Key 'cancel', 'name' and 'hello' missing.'
 </code></pre></div>
+        <hr /><hr />
         <p id="Example2-config">
           An example of how to configure the check to validate only bundles which base names
           start with &quot;ButtonLabels&quot;:
@@ -159,6 +161,7 @@ name=Nom
 ButtonLabels.properties     // violation 'Key 'name' is missing.'
 ButtonLabels_fr.properties  // violation 'Key 'cancel' is missing.'
 </code></pre></div>
+        <hr /><hr />
         <p id="Example3-config">
           To configure the check to check only files which have '.properties' and '.translations'
           extensions:
@@ -195,7 +198,7 @@ messages_home.translations // violation,
                           'Properties file 'messages_home_fr.translations' missing.'
 </code></pre></div>
       </subsection>
-
+      <hr /><hr />
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
