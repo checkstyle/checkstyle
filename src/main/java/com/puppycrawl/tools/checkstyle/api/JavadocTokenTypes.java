@@ -1000,17 +1000,16 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     *   JAVADOC_TAG ->; JAVADOC_TAG
-     *    |--SERIAL_FIELD_LITERAL ->; @serialField
-     *    |--WS ->;
-     *    |--FIELD_NAME ->; counter
-     *    |--WS ->;
-     *    |--FIELD_TYPE ->; Integer
-     *    |--WS ->;
-     *    `--DESCRIPTION ->; DESCRIPTION
-     *        |--TEXT ->; objects counter
-     *        |--NEWLINE ->; \r\n
-     *        `--TEXT ->;
+     *   --JAVADOC_TAG -> JAVADOC_TAG
+     *   |--SERIAL_LITERAL -> @serial
+     *   |--WS ->
+     *   |--LITERAL_INCLUDE -> include
+     *   |--NEWLINE -> \r\n
+     *   `--WS ->
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        |--TEXT -> objects counter
+     *        |--NEWLINE -> \r\n
+     *        `--TEXT ->
      * }</pre>
      *
      * @see
