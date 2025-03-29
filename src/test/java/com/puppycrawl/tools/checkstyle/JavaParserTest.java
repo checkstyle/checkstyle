@@ -268,9 +268,144 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFullJavaIdentifierSupport() throws Exception {
+    public void testFullJavaIdentifierSupport1() throws Exception {
         final File file =
-                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport.java"));
+                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport1.java"));
+        assertWithMessage("File parsing should complete successfully.")
+                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
+                .isNotNull();
+    }
+
+    @Test
+    public void testFullJavaIdentifierSupport2() throws Exception {
+        final File file =
+                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport2.java"));
+        assertWithMessage("File parsing should complete successfully.")
+                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
+                .isNotNull();
+    }
+
+    @Test
+    public void testFullJavaIdentifierSupport3() throws Exception {
+        final File file =
+                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport3.java"));
+        assertWithMessage("File parsing should complete successfully.")
+                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
+                .isNotNull();
+    }
+
+    @Test
+    public void testFullJavaIdentifierSupport4() throws Exception {
+        final File file =
+                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport4.java"));
+        assertWithMessage("File parsing should complete successfully.")
+                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
+                .isNotNull();
+    }
+
+    @Test
+    public void testFullJavaIdentifierSupport5() throws Exception {
+        final File file =
+                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport5.java"));
+        assertWithMessage("File parsing should complete successfully.")
+                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
+                .isNotNull();
+    }
+
+    @Test
+    public void testFullJavaIdentifierSupport6() throws Exception {
+        final File file =
+                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport6.java"));
+        assertWithMessage("File parsing should complete successfully.")
+                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
+                .isNotNull();
+    }
+
+    @Test
+    public void testFullJavaIdentifierSupport7() throws Exception {
+        final File file =
+                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport7.java"));
+        assertWithMessage("File parsing should complete successfully.")
+                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
+                .isNotNull();
+    }
+
+    @Test
+    public void testFullJavaIdentifierSupport8() throws Exception {
+        final File file =
+                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport8.java"));
+        assertWithMessage("File parsing should complete successfully.")
+                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
+                .isNotNull();
+    }
+
+    @Test
+    public void testFullJavaIdentifierSupport9() throws Exception {
+        final File file =
+                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport9.java"));
+        assertWithMessage("File parsing should complete successfully.")
+                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
+                .isNotNull();
+    }
+
+    @Test
+    public void testFullJavaIdentifierSupport10() throws Exception {
+        final File file =
+                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport10.java"));
+        assertWithMessage("File parsing should complete successfully.")
+                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
+                .isNotNull();
+    }
+
+    @Test
+    public void testFullJavaIdentifierSupport11() throws Exception {
+        final File file =
+                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport11.java"));
+        assertWithMessage("File parsing should complete successfully.")
+                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
+                .isNotNull();
+    }
+
+    @Test
+    public void testFullJavaIdentifierSupport12() throws Exception {
+        final File file =
+                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport12.java"));
+        assertWithMessage("File parsing should complete successfully.")
+                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
+                .isNotNull();
+    }
+
+    @Test
+    public void testFullJavaIdentifierSupport13() throws Exception {
+        final File file =
+                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport13.java"));
+        assertWithMessage("File parsing should complete successfully.")
+                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
+                .isNotNull();
+    }
+
+    @Test
+    public void testFullJavaIdentifierSupport14() throws Exception {
+        final File file =
+                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport14.java"));
+        assertWithMessage("File parsing should complete successfully.")
+                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
+                .isNotNull();
+    }
+
+    @Test
+    public void testFullJavaIdentifierSupport15() throws Exception {
+        final File file =
+                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport15.java"));
+        assertWithMessage("File parsing should complete successfully.")
+                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
+                .isNotNull();
+    }
+
+    @Test
+    public void testFullJavaIdentifierSupport16() throws Exception {
+        final File file =
+                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport16.java"));
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
