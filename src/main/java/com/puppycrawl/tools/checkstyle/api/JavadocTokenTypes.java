@@ -505,19 +505,17 @@ public final class JavadocTokenTypes {
      *
      * <pre>
      * <code>
-     *   JAVADOC_INLINE_TAG -&gt; JAVADOC_INLINE_TAG
-     *    |--JAVADOC_INLINE_TAG_START -&gt; {
-     *    |--LINK_LITERAL -&gt; @link
-     *    |--WS -&gt;
-     *    |--REFERENCE -&gt; REFERENCE
-     *    |   |--PACKAGE_CLASS -&gt; org.apache.utils.Lists.Comparator
-     *    |   |--HASH -&gt; #
-     *    |   |--MEMBER -&gt; compare
-     *    |   `--PARAMETERS -&gt; PARAMETERS
-     *    |       |--LEFT_BRACE -&gt; (
-     *    |       |--ARGUMENT -&gt; Object
-     *    |       `--RIGHT_BRACE -&gt; )
-     *    `--JAVADOC_INLINE_TAG_END -&gt; }
+     *  --JAVADOC -> JAVADOC
+     *     |--NEWLINE -> \r\n
+     *     |--LEADING_ASTERISK ->  *
+     *     |--WS ->
+     *     |--JAVADOC_TAG -> JAVADOC_TAG
+     *     |   |--CUSTOM_NAME -> @link
+     *     |   |--WS ->
+     *     |   `--DESCRIPTION -> DESCRIPTION
+     *     |       |--TEXT -> org.apache.utils.Lists.Comparator#compare(Object)
+     *     |       |--NEWLINE -> \r\n
+     *     |       `--TEXT ->
      * </code>
      * </pre>
      *
