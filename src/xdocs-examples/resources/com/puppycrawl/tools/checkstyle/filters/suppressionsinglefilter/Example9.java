@@ -13,7 +13,8 @@
 */
 package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 // xdoc section -- start
+// filtered violation 16 lines above 'File length is 20 lines (max allowed is 1)'
 public class Example9 {
-  //filtered violation 'File length is 19 lines (max allowed is 1)'
+
 }
 // xdoc section -- end

@@ -31,91 +31,114 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
-
+        final String[] expectedWithoutFilter = {
+            "26:17: '100' is a magic number.",
         };
+        final String[] expectedWithFilter = {};
 
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example1.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample2() throws Exception {
-        final String[] expected = {
-
+        final String[] expectedWithoutFilter = {
+            "23:13: String literal expressions should be on the left side of an equals comparison.",
+            "29: @return tag should be present and have description.",
         };
+        final String[] expectedWithFilter = {};
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example2.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample3() throws Exception {
-        final String[] expected = {
-
+        final String[] expectedWithoutFilter = {
+            "18: Line matches the illegal pattern 'example'.",
         };
+        final String[] expectedWithFilter = {};
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example3.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample4() throws Exception {
-        final String[] expected = {
-
+        final String[] expectedWithoutFilter = {
+            "18:12: '.' is followed by whitespace.", "22:9: 'int' is followed by whitespace.",
         };
+        final String[] expectedWithFilter = {};
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example4.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample5() throws Exception {
-        final String[] expected = {
-
+        final String[] expectedWithoutFilter = {
+            "14:15: Name 'example_Method' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "17:15: Name 'Another_Method' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
+        final String[] expectedWithFilter = {};
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example5.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample6() throws Exception {
-        final String[] expected = {
-
+        final String[] expectedWithoutFilter = {
+            "14:28: Name 'myConstant' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
+        final String[] expectedWithFilter = {};
 
-        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example6.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample7() throws Exception {
-        final String[] expected = {
-
+        final String[] expectedWithoutFilter = {
+            "19:15: Name 'MyVariable' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "21:15: Name 'MyMethod' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
+        final String[] expectedWithFilter = {};
 
-        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example7.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample8() throws Exception {
-        final String[] expected = {
-
+        final String[] expectedWithoutFilter = {
+            "18:15: More than 5 parameters (found 6).",
         };
+        final String[] expectedWithFilter = {};
 
-        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example8.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample9() throws Exception {
-        final String[] expected = {
-
+        final String[] expectedWithoutFilter = {
+            "1: File length is 20 lines (max allowed is 1).",
         };
+        final String[] expectedWithFilter = {};
 
-        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example9.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample10() throws Exception {
-        final String[] expected = {
-
+        final String[] expectedWithoutFilter = {
+            "16:18: Name 'log' must match pattern '^[A-Z][a-zA-Z0-9]*$'.",
         };
+        final String[] expectedWithFilter = {};
 
-        verifyWithInlineConfigParser(getPath("Example10.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example10.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 }
