@@ -590,4 +590,25 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodAboveComments.java"), expected);
     }
+
+    @Test
+    public void testJavadocMethodAllowInlineReturn() throws Exception {
+        final String[] expected = {
+            "32: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "39: " + getCheckMessage(MSG_RETURN_EXPECTED),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodAllowInlineReturn.java"), expected);
+    }
+
+    @Test
+    public void testJavadocMethodDoNotAllowInlineReturn() throws Exception {
+        final String[] expected = {
+            "21: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "33: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "40: " + getCheckMessage(MSG_RETURN_EXPECTED),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodDoNotAllowInlineReturn.java"), expected);
+    }
 }
