@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
 
+import org.antlr.v4.runtime.BailErrorStrategy;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -34,6 +35,8 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.misc.ParseCancellationException;
+import org.antlr.v4.runtime.atn.PredictionMode;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -89,22 +92,64 @@ public final class JavaParser {
         final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
         final JavaLanguageParser parser =
                 new JavaLanguageParser(tokenStream, JavaLanguageParser.CLEAR_DFA_LIMIT);
-        parser.setErrorHandler(new CheckstyleParserErrorStrategy());
+        JavaLanguageParser.CompilationUnitContext compilationUnit;
+
+        try {
+            compilationUnit = parseWithSLLPredictionMode(parser);
+        }
+        catch (ParseCancellationException ex) {
+            tokenStream.seek(0);
+            compilationUnit = parseWithLLPredictionMode(parser, contents.getFileName());
+        }
+
+        return new JavaAstVisitor(tokenStream).visit(compilationUnit);
+    }
+
+    /**
+     * Parse the input with {@link PredictionMode#SLL} prediction mode.
+     * SLL mode is faster but may fail on complex constructs.
+     *
+     * @param parser the java language parser to use
+     * @return the compilation unit context
+     */
+    private static JavaLanguageParser.CompilationUnitContext
+                parseWithSLLPredictionMode(JavaLanguageParser parser)  {
+        parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
         parser.removeErrorListeners();
+        parser.setErrorHandler(new BailErrorStrategy());
+
+        return parser.compilationUnit();
+    }
+
+    /**
+     * Parse the input with {@link PredictionMode#LL} prediction mode.
+     * This mode is more robust and is used as a fallback when SLL mode fails.
+     *
+     * @param parser the java language parser to use
+     * @param fileName the file name being parsed (for error reporting)
+     * @return the compilation unit context
+     * @throws CheckstyleException if an exception occurs during parsing
+     */
+    private static JavaLanguageParser.CompilationUnitContext
+                parseWithLLPredictionMode(JavaLanguageParser parser, String fileName)
+                throws CheckstyleException {
         parser.addErrorListener(new CheckstyleErrorListener());
+        parser.setErrorHandler(new CheckstyleParserErrorStrategy());
+        parser.getInterpreter().setPredictionMode(PredictionMode.LL);
 
         final JavaLanguageParser.CompilationUnitContext compilationUnit;
+
         try {
             compilationUnit = parser.compilationUnit();
         }
         catch (IllegalStateException ex) {
             final String exceptionMsg = String.format(Locale.ROOT,
-                "%s occurred while parsing file %s.",
-                ex.getClass().getSimpleName(), contents.getFileName());
+                    "%s occurred while parsing file %s.",
+                    ex.getClass().getSimpleName(), fileName);
             throw new CheckstyleException(exceptionMsg, ex);
         }
 
-        return new JavaAstVisitor(tokenStream).visit(compilationUnit);
+        return compilationUnit;
     }
 
     /**
