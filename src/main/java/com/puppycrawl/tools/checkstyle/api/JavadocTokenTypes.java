@@ -1413,7 +1413,51 @@ public final class JavadocTokenTypes {
      */
     public static final int DD_HTML_TAG_NAME = JavadocParser.DD_HTML_TAG_NAME;
 
-    /** Description term tag name. */
+    /**
+     * Description term tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <dl>
+     *     <dt>Java</dt>
+     * </dl>
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     *  HTML_ELEMENT -> HTML_ELEMENT
+     *   `--HTML_TAG -> HTML_TAG
+     *       |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *       |   |--START -> <
+     *       |   |--HTML_TAG_NAME -> dl
+     *       |   `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--HTML_ELEMENT -> HTML_ELEMENT
+     *       |   `--DT -> DT
+     *       |       |--DT_TAG_START -> DT_TAG_START
+     *       |       |   |--START -> <
+     *       |       |   |--DT_HTML_TAG_NAME -> dt
+     *       |       |   `--END -> >
+     *       |       |--TEXT -> Java
+     *       |       `--DT_TAG_END -> DT_TAG_END
+     *       |           |--START -> <
+     *       |           |--SLASH -> /
+     *       |           |--DT_HTML_TAG_NAME -> dt
+     *       |           `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *           |--START -> <
+     *           |--SLASH -> /
+     *           |--HTML_TAG_NAME -> dl
+     *           `--END -> >
+     * }
+     * </pre>
+     *
+     * @see #DT_HTML_TAG_NAME
+     */
     public static final int DT_HTML_TAG_NAME = JavadocParser.DT_HTML_TAG_NAME;
 
     /** Head tag name. */
