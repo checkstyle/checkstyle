@@ -105,7 +105,6 @@ class InputFormattedIncorrectJavadocParagraph {
          * @see <a href="example.com">Documentation about
          *     <p>GWT emulated source</a>
          */
-        // violation 2 lines above '<p> tag should be preceded with an empty line.'
         boolean emulated() {
           return false;
         }
@@ -136,9 +135,6 @@ class InputFormattedIncorrectJavadocParagraph {
      *   <li>1 should NOT give violation as there is not empty line before
      * </ul>
      */
-    // 2 violations 4 lines above:
-    //  '<p> tag should be placed immediately before the first word'
-    //  '<p> tag should be preceded with an empty line.'
     public void foo() {}
 
     // 2 violations 6 lines below:
