@@ -63,6 +63,7 @@
           Note, that files with the same path and base name but which have different
           extensions will be considered as files that belong to different resource bundles.
         </p>
+        <hr />
         <p id="Example1-config">
           To configure the check to check existence of Japanese and French translations:
         </p>
@@ -101,6 +102,7 @@ messages_es.properties
                  value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr />
         <p id="Example2-config">
           An example of how to configure the check to validate only bundles which base names
           start with &quot;ButtonLabels&quot;:
@@ -133,6 +135,7 @@ ButtonLabels_fr.properties
                  value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr />
         <p id="Example3-config">
           To configure the check to check only files which have '.properties' and '.translations'
           extensions:
@@ -166,7 +169,7 @@ messages_home.translations
           <param name="type" value="code"/>
         </macro>
       </subsection>
-
+      <hr />
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
