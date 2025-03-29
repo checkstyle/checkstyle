@@ -81,10 +81,8 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
             "87:11: " + getCheckMessage(MSG_TAG_AFTER),
             "97:27: " + getCheckMessage(MSG_LINE_BEFORE),
             "99:13: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "102:36: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "102:36: " + getCheckMessage(MSG_LINE_BEFORE),
-            "112:11: " + getCheckMessage(MSG_TAG_AFTER),
-            "113:11: " + getCheckMessage(MSG_TAG_AFTER),
+            "109:11: " + getCheckMessage(MSG_TAG_AFTER),
+            "110:11: " + getCheckMessage(MSG_TAG_AFTER),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocParagraphIncorrect.java"), expected);
@@ -95,11 +93,10 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "14:4: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "h1"),
             "22:7: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ul"),
-            "24:11: " + getCheckMessage(MSG_LINE_BEFORE),
-            "38:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "table"),
-            "50:8: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "52:8: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "52:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ol"),
+            "37:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "table"),
+            "49:8: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "51:8: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "51:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ol"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocParagraphIncorrect4.java"), expected);
@@ -154,10 +151,8 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
             "30:27: " + getCheckMessage(MSG_MISPLACED_TAG),
             "30:27: " + getCheckMessage(MSG_LINE_BEFORE),
             "32:13: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "35:36: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "35:36: " + getCheckMessage(MSG_LINE_BEFORE),
-            "45:11: " + getCheckMessage(MSG_TAG_AFTER),
-            "46:11: " + getCheckMessage(MSG_TAG_AFTER),
+            "42:11: " + getCheckMessage(MSG_TAG_AFTER),
+            "43:11: " + getCheckMessage(MSG_TAG_AFTER),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocParagraphIncorrect3.java"), expected);
@@ -166,19 +161,11 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAllowNewlineParagraph3() throws Exception {
         final String[] expected = {
-            "15:12: " + getCheckMessage(MSG_LINE_BEFORE),
-            "17:15: " + getCheckMessage(MSG_LINE_BEFORE),
-            "20:9: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "20:9: " + getCheckMessage(MSG_LINE_BEFORE),
-            "34:11: " + getCheckMessage(MSG_LINE_BEFORE),
-            "38:8: " + getCheckMessage(MSG_LINE_BEFORE),
-            "44:8: " + getCheckMessage(MSG_LINE_BEFORE),
-            "48:8: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "52:8: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "52:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "h1"),
-            "67:11: " + getCheckMessage(MSG_LINE_BEFORE),
-            "80:8: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "80:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ul"),
+            "42:8: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "46:8: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "46:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "h1"),
+            "73:8: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "73:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ul"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocParagraphIncorrect5.java"), expected);
@@ -191,7 +178,6 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
             "28:7: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
             "31:7: " + getCheckMessage(MSG_LINE_BEFORE),
             "50:7: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ul"),
-            "65:8: " + getCheckMessage(MSG_LINE_BEFORE),
             "76:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "table"),
             "87:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "pre"),
         };
