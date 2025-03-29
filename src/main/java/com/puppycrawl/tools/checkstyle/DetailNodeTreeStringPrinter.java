@@ -170,7 +170,8 @@ public final class DetailNodeTreeStringPrinter {
      */
     private static DetailNode parseFile(File file) throws IOException {
         final FileText text = new FileText(file.getAbsoluteFile(),
-            System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
+                 System.getProperty("file.encoding",
+                         String.valueOf(StandardCharsets.UTF_8)));
         return parseJavadocAsDetailNode(text.getFullText().toString());
     }
 
