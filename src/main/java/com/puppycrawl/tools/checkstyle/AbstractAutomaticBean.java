@@ -56,6 +56,7 @@ import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 
 /**
  * A Java Bean that implements the component lifecycle interfaces by
@@ -85,7 +86,7 @@ public abstract class AbstractAutomaticBean
     private static final String COMMA_SEPARATOR = ",";
 
     /** The configuration of this bean. */
-    private Configuration configuration;
+    private @MonotonicNonNull Configuration configuration;
 
     /**
      * Provides a hook to finish the part of this component's setup that
