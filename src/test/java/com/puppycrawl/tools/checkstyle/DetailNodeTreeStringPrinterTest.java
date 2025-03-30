@@ -225,4 +225,28 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
         }
     }
 
+    @Test
+    public void testInvokeStaticMethodWithBlankEncoding() {
+        try {
+            TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
+                    "getFileEncoding", "");
+
+            assertWithMessage("Expected IllegalStateException was not thrown").fail();
+        }
+        catch (ReflectiveOperationException ex) {
+            final Throwable cause = ex.getCause();
+            final String errorMessage;
+            if (cause != null) {
+                errorMessage = cause.getMessage();
+            }
+            else {
+                errorMessage = ex.getMessage();
+            }
+
+            assertWithMessage("Exception should contain 'Encode should not be blank'")
+                    .that(errorMessage)
+                    .contains("Encode should not be blank");
+        }
+    }
+
 }
