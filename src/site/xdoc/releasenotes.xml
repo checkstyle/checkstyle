@@ -10,6 +10,204 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.22.0">
+      <div class="releaseDate">30.03.2025</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            JavadocVariable: new property &#39;accessModifiers&#39; as substitution of
+            &#39;scope&#39; and &#39;excludeScope&#39; .
+            Author: Konstantinos Koutsilis
+            <a href="https://github.com/checkstyle/checkstyle/issues/9280">#9280</a>
+          </li>
+          <li>
+            Change default or IllegalIdentifierName.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/15499">#15499</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            `FileContents.getJavadocBefore()`: Comments should not be skipped if it is not alone in
+            line.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/16641">#16641</a>
+          </li>
+          <li>
+            JavadocTagContinuationIndentation Ignore indentation check when HTML tag break line.
+            Author: Anmol
+            <a href="https://github.com/checkstyle/checkstyle/issues/16385">#16385</a>
+          </li>
+          <li>
+            use SLL prediction mode for fast javadoc parsing to improve performance.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/16628">#16628</a>
+          </li>
+          <li>
+            JavadocMethod: Javadoc Not Detected Above Multiline Comments.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/43">#43</a>
+          </li>
+          <li>
+            Incorrect Indentation errors for expression switches with google_checks.xml.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/12817">#12817</a>
+          </li>
+          <li>
+            SuppressWarningsHolder aliasList members don&#39;t act like aliases.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/6637">#6637</a>
+          </li>
+          <li>
+            Make references optional for link and linkplain tags.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/13043">#13043</a>
+          </li>
+          <li>
+            Parse errors if `@see` spans multiple lines.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/16005">#16005</a>
+          </li>
+          <li>
+            Parse error when Javadoc contains @snippet with code example that uses Java annotation.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14446">#14446</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: MD. Zaid, Prarthana-Ramesh, Sambhav Jain, Mohammad Soleh, Simran, Mahmoud Ayman, YuktiNandwana, Ziad Abd El-Fatah, sushanthraiurwa, kapishyadav, abdelrhmansersawy, kornilov-mr, Abhishek Bansode, Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            Broken Link - Javadoc OpenJDK 8 Report in website, 404 Error.
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/16666">#16666</a>
+          </li>
+          <li>
+            Github generate site fails to generate links with anchors..
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/14857">#14857</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: Atharv Chavan, Mahmoud Ayman, MD. Zaid, vishakha-mali, Ziad Abd El-Fatah, kapishyadav, abdelrhmansersawy, bishoy, ZaeemSheikh
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Badges in the README are missing.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/12742">#12742</a>
+          </li>
+          <li>
+            Fix existing cases of `getFileContents()` usage.
+            Author: Priyambada Roul
+            <a href="https://github.com/checkstyle/checkstyle/issues/11166">#11166</a>
+          </li>
+          <li>
+            Cover pitest survivals with tests.
+            Author: Mahmoud Ayman, SteLeo1602, Rohanraj123, Harsh-Agrawal96, abdelrhmansersawy
+            <a href="https://github.com/checkstyle/checkstyle/issues/14019">#14019</a>
+          </li>
+          <li>
+            doc: Clarified the description of SummaryJavadoc check.
+            Author: SteLeo1602
+          </li>
+          <li>
+            align xmx args.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/16608">#16608</a>
+          </li>
+          <li>
+            There is nothing in few column in Active tool .
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/16157">#16157</a>
+          </li>
+          <li>
+            Resolve Pitest Suppression in Pitest-Javadoc Profile.
+            Author: atharv, Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/13999">#13999</a>
+          </li>
+          <li>
+            Define violation messages for all violations.
+            Author: Atharv Chavan, jerryyummy, MD. Zaid, Mahmoud Ayman, kapishyadav, abdelrhmansersawy, Abhishek Bansode, Prarthana-Ramesh, kornilov-mr, ZaeemSheikh
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            SarifLoggerTest.java to use verifyWithInlineConfigParserAndLogger.
+            Author: ElinaZoldnere
+            <a href="https://github.com/checkstyle/checkstyle/issues/16361">#16361</a>
+          </li>
+          <li>
+            Create integration tests in CI to alarm on breaking compatibility.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/6784">#6784</a>
+          </li>
+          <li>
+            improve logging.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/16560">#16560</a>
+          </li>
+          <li>
+            Reminder bot for issues.
+            Author: Priyambada Roul
+            <a href="https://github.com/checkstyle/checkstyle/issues/15770">#15770</a>
+          </li>
+          <li>
+            check-performance-regression workflow does not check Javadoc grammar performance.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/16482">#16482</a>
+          </li>
+          <li>
+            Update RegexpHeaderCheckTest to use verifyWithInlineConfigParser method.
+            Author: Kushagra-Sedwal
+            <a href="https://github.com/checkstyle/checkstyle/issues/16359">#16359</a>
+          </li>
+          <li>
+            Links for examples of CLI page.
+            Author: Abhishek Bansode
+            <a href="https://github.com/checkstyle/checkstyle/issues/16466">#16466</a>
+          </li>
+          <li>
+            Copy to clipboard image button for all sources .
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/16072">#16072</a>
+          </li>
+          <li>
+            Static html for syntax highlight in web site.
+            Author: ZaeemSheikh
+            <a href="https://github.com/checkstyle/checkstyle/issues/16300">#16300</a>
+          </li>
+          <li>
+            Update all non java Inputs of SuppressWithNearbyTextFilter to have txt extension .
+            Author: Harsh-Agrawal96
+            <a href="https://github.com/checkstyle/checkstyle/issues/13267">#13267</a>
+          </li>
+          <li>
+            test execution is failing on non EN locales.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/16233">#16233</a>
+          </li>
+          <li>
+            Update HeaderCheckTest to use verifyWithInlineConfigParser method.
+            Author: kornilov-mr
+            <a href="https://github.com/checkstyle/checkstyle/issues/16358">#16358</a>
+          </li>
+          <li>
+            Nothing in remark table in additional checks.
+            Author: Suyash
+            <a href="https://github.com/checkstyle/checkstyle/issues/16149">#16149</a>
+          </li>
+          <li>
+            Use bom artifact for junit version management.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/16396">#16396</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.21.4">
       <div class="releaseDate">04.03.2025</div>
       <p>Bug fixes:</p>
