@@ -2488,7 +2488,34 @@ public final class JavadocTokenTypes {
     /** Hr html tag. */
     public static final int HR_TAG = JavadocParser.RULE_hrTag + RULE_TYPES_OFFSET;
 
-    /** Img html tag. */
+    /**
+     * Img html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code Type here: <input type="text" id="id" name="name"> }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *  HTML_ELEMENT -> HTML_ELEMENT
+     *  `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *      `--IMG_TAG -> IMG_TAG
+     *          |--START -> <
+     *          |--IMG_HTML_TAG_NAME -> img
+     *          |--WS ->
+     *          |--ATTRIBUTE -> ATTRIBUTE
+     *          |   |--HTML_TAG_NAME -> src
+     *          |   |--EQUALS -> =
+     *          |   `--ATTR_VALUE -> "https://static.pexels.com/photos/13937/"
+     *       + "pexels-photo-13937.jpeg"
+     *          |--WS ->
+     *          |--ATTRIBUTE -> ATTRIBUTE
+     *          |   |--HTML_TAG_NAME -> alt
+     *          |   |--EQUALS -> =
+     *          |   `--ATTR_VALUE -> "Github"
+     *          `--END -> >
+     * }
+     * </pre>
+     */
     public static final int IMG_TAG = JavadocParser.RULE_imgTag + RULE_TYPES_OFFSET;
 
     /**
