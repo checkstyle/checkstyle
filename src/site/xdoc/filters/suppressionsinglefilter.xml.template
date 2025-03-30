@@ -46,15 +46,9 @@
       </subsection>
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">
-          The following suppressions directs
-          a <code>SuppressionSingleFilter</code> to
-          reject <code>JavadocStyleCheck</code> violations for
-          lines 82 and 108 to 122 of
-          file <code>AbstractComplexityCheck.java</code>,
-          and <code>MagicNumberCheck</code> violations for line
-          221 of file <code>JavadocStyleCheck.java</code>,
-          and <code>'Missing a Javadoc comment'</code> violations
-          for all lines and files:
+          To configure a filter to suppress violations of <code>JavadocStyle</code> and
+          <code>MagicNumber</code> checks in <code>Example1.java</code> for specific line ranges
+          using <code>SuppressionSingleFilter</code>:
         </p>
         <macro name="example">
           <param name="path"
@@ -69,8 +63,9 @@
           <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">
-          Suppress check by <a href="https://checkstyle.org/config.html#Id">module id</a>
-          when config have two instances on the same check:
+          To configure a filter to suppress violations of <code>JavadocMethod</code> and
+          <code>EqualsAvoidNull</code> checks in <code>Example2.java</code> using
+          <code>SuppressionSingleFilter</code>:
         </p>
         <macro name="example">
           <param name="path"
@@ -85,7 +80,8 @@
           <param name="type" value="code"/>
         </macro>
         <p id="Example3-config">
-          Suppress all checks for hidden files and folders:
+          To configure a filter to suppress violations of <code>RegexpSinglelineCheck</code>
+          in <code>Example3.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
         <macro name="example">
           <param name="path"
@@ -100,7 +96,8 @@
           <param name="type" value="code"/>
         </macro>
         <p id="Example4-config">
-          Suppress all checks for Maven-generated code:
+          To configure a filter to suppress violations of <code>NoWhitespaceAfter</code>
+          in <code>Example4.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
         <macro name="example">
           <param name="path"
@@ -115,7 +112,8 @@
           <param name="type" value="code"/>
         </macro>
         <p id="Example5-config">
-          Suppress all checks for archives, classes and other binary files:
+          To configure a filter to suppress violations of <code>MethodName</code>
+          in <code>Example5.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
         <macro name="example">
           <param name="path"
@@ -130,7 +128,8 @@
           <param name="type" value="code"/>
         </macro>
         <p id="Example6-config">
-          Suppress all checks for image files:
+          To configure a filter to suppress violations of <code>ConstantName</code>
+          in <code>Example6.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
         <macro name="example">
           <param name="path"
@@ -145,7 +144,9 @@
           <param name="type" value="code"/>
         </macro>
         <p id="Example7-config">
-          Suppress all checks for non-java files:
+          To configure a filter to suppress violations of <code>MemberName</code>
+          and <code>MethodName</code> in <code>Example7.java</code> using
+          <code>SuppressionSingleFilter</code>:
         </p>
         <macro name="example">
           <param name="path"
@@ -160,7 +161,8 @@
           <param name="type" value="code"/>
         </macro>
         <p id="Example8-config">
-          Suppress all checks in generated sources:
+          To configure a filter to suppress <code>ParameterNumber</code> violations
+          in <code>Example8.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
         <macro name="example">
           <param name="path"
@@ -175,7 +177,8 @@
           <param name="type" value="code"/>
         </macro>
         <p id="Example9-config">
-          Suppress FileLength check on integration tests in certain folder:
+          To configure a filter to suppress <code>FileLength</code> violations
+          in <code>Example9.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
         <macro name="example">
           <param name="path"
@@ -190,7 +193,8 @@
           <param name="type" value="code"/>
         </macro>
         <p id="Example10-config">
-          Suppress naming violations on variable named 'log' in all files:
+          To configure a filter to suppress <code>MemberName</code> violations
+          in <code>Example10.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
         <macro name="example">
           <param name="path"
