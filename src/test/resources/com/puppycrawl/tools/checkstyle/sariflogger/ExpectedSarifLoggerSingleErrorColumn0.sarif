@@ -24,18 +24,58 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file:Test.java"
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerErrorColumn0.java"
                 },
                 "region": {
-                  "startLine": 1
+                  "startColumn": 29,
+                  "startLine": 14
                 }
               }
             }
           ],
           "message": {
-            "text": "found an error\nplease try again"
+            "text": "<p> tag should be placed immediately before the first word, with no space after."
           },
-          "ruleId": "ruleId"
+          "ruleId": "javadoc.paragraph.misplaced.tag"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerErrorColumn0.java"
+                },
+                "region": {
+                  "startColumn": 29,
+                  "startLine": 14
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "<p> tag should be preceded with an empty line."
+          },
+          "ruleId": "javadoc.paragraph.line.before"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerErrorColumn0.java"
+                },
+                "region": {
+                  "startLine": 18
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Line is longer than 100 characters (found 104)."
+          },
+          "ruleId": "maxLineLen"
         }
       ]
     }
