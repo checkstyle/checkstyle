@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="">
+<file name="InputXMLLoggerAddError.java">
+<error line="1" severity="error" message="Line does not match expected header line of 'Test'."
+       source="com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"/>
+</file>
+</checkstyle>
