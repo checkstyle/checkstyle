@@ -17,7 +17,7 @@ THRESHOLD_PERCENTAGE=300
 # JDK version
 JDK_VERSION=21
 # sample project path
-SAMPLE_PROJECT="./.ci-temp/checkstyle"
+SAMPLE_PROJECT="./.ci-temp/guava"
 
 
 # execute a command and time it

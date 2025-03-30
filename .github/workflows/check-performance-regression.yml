@@ -47,11 +47,11 @@ jobs:
       - name: Checkout Pull Request Code
         uses: actions/checkout@v4
 
-      - name: Clone Checkstyle Repo
+      - name: Clone Guava Repo
         uses: actions/checkout@v4
         with:
-          repository: checkstyle/checkstyle
-          path: ./.ci-temp/checkstyle
+          repository: google/guava
+          path: ./.ci-temp/guava
 
       - name: Setup local maven cache
         uses: actions/cache@v4
