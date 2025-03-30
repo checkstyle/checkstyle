@@ -24,18 +24,39 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file:Test.java"
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerErrorColumn0.java"
                 },
                 "region": {
-                  "startLine": 1
+                  "startColumn": 16,
+                  "startLine": 14
                 }
               }
             }
           ],
           "message": {
-            "text": "found an error\nplease try again"
+            "text": "'(' is followed by whitespace."
           },
-          "ruleId": "ruleId"
+          "ruleId": "ws.followed"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerErrorColumn0.java"
+                },
+                "region": {
+                  "startColumn": 18,
+                  "startLine": 14
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "')' is preceded with whitespace."
+          },
+          "ruleId": "ws.preceded"
         }
       ]
     }
