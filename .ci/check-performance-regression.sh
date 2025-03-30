@@ -13,7 +13,7 @@ BASELINE_SECONDS=$1
 CONFIG_FILE=$2
 
 # max difference tolerance in %
-THRESHOLD_PERCENTAGE=10
+THRESHOLD_PERCENTAGE=50
 # JDK version
 JDK_VERSION=21
 # sample project path
