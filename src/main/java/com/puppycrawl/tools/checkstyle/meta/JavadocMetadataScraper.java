@@ -44,6 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+import org.checkerframework.checker.formatter.qual.Format;
 
 /**
  * Class for scraping module metadata from the corresponding class' class-level javadoc.
@@ -117,6 +118,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
     /**
      * Format for exception message for missing default value for check property.
      */
+    @Format({})
     private static final String PROP_DEFAULT_VALUE_MISSING =
         "Default value for property '%s' is missing";
 
