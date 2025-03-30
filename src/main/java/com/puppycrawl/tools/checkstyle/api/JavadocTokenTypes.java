@@ -2616,7 +2616,49 @@ public final class JavadocTokenTypes {
     /** Hr html tag. */
     public static final int HR_TAG = JavadocParser.RULE_hrTag + RULE_TYPES_OFFSET;
 
-    /** Img html tag. */
+    /**
+     * Img html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <img src="./image.png" alt="image description" width="200" height="100"> }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   `--JAVADOC -> JAVADOC
+     *        |--NEWLINE -> \r\n
+     *        |--LEADING_ASTERISK ->  *
+     *        |--TEXT ->
+     *        |--HTML_ELEMENT -> HTML_ELEMENT
+     *        |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *        |       `--IMG_TAG -> IMG_TAG
+     *        |           |--START -> <
+     *        |           |--IMG_HTML_TAG_NAME -> img
+     *        |           |--WS ->
+     *        |           |--ATTRIBUTE -> ATTRIBUTE
+     *        |           |   |--HTML_TAG_NAME -> src
+     *        |           |   |--EQUALS -> =
+     *        |           |   `--ATTR_VALUE -> "./image.png"
+     *        |           |--WS ->
+     *        |           |--ATTRIBUTE -> ATTRIBUTE
+     *        |           |   |--HTML_TAG_NAME -> alt
+     *        |           |   |--EQUALS -> =
+     *        |           |   `--ATTR_VALUE -> "image description"
+     *        |           |--WS ->
+     *        |           |--ATTRIBUTE -> ATTRIBUTE
+     *        |           |   |--HTML_TAG_NAME -> width
+     *        |           |   |--EQUALS -> =
+     *        |           |   `--ATTR_VALUE -> "200"
+     *        |           |--WS ->
+     *        |           |--ATTRIBUTE -> ATTRIBUTE
+     *        |           |   |--HTML_TAG_NAME -> height
+     *        |           |   |--EQUALS -> =
+     *        |           |   `--ATTR_VALUE -> "100"
+     *        |           `--END -> >
+     *        |--NEWLINE -> \r\n
+     *        |--TEXT ->
+     * }
+     * </pre>
+     */
     public static final int IMG_TAG = JavadocParser.RULE_imgTag + RULE_TYPES_OFFSET;
 
     /**
