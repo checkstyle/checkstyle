@@ -1304,7 +1304,54 @@ public final class JavadocTokenTypes {
      */
     public static final int TD_HTML_TAG_NAME = JavadocParser.TD_HTML_TAG_NAME;
 
-    /** Table header cell tag name. */
+    /**
+     * Table header cell tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <tr>
+     *     <th>Table Head</th>
+     * </tr>
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *  HTML_ELEMENT -> HTML_ELEMENT
+     *   `--TR -> TR
+     *       |--TR_TAG_START -> TR_TAG_START
+     *       |   |--START -> <
+     *       |   |--TR_HTML_TAG_NAME -> tr
+     *       |   `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--TH -> TH
+     *       |   |--TH_TAG_START -> TH_TAG_START
+     *       |   |   |--START -> <
+     *       |   |   |--TH_HTML_TAG_NAME -> th
+     *       |   |   `--END -> >
+     *       |   |--TEXT -> Table Head
+     *       |   `--TH_TAG_END -> TH_TAG_END
+     *       |       |--START -> <
+     *       |       |--SLASH -> /
+     *       |       |--TH_HTML_TAG_NAME -> th
+     *       |       `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       `--TR_TAG_END -> TR_TAG_END
+     *           |--START -> <
+     *           |--SLASH -> /
+     *           |--TR_HTML_TAG_NAME -> tr
+     *           `--END -> >
+     *  }
+     *  </pre>
+     *
+     *  @see
+     *  <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
+     *      comments are written in HTML</a>
+     *  @see #TH_HTML_TAG_NAME
+     */
     public static final int TH_HTML_TAG_NAME = JavadocParser.TH_HTML_TAG_NAME;
 
     /** Body tag name. */
