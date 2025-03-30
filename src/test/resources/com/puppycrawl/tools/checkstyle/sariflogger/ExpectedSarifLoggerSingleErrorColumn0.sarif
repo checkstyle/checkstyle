@@ -24,18 +24,37 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file:Test.java"
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerErrorColumn0.java"
                 },
                 "region": {
-                  "startLine": 1
+                  "startLine": 7
                 }
               }
             }
           ],
           "message": {
-            "text": "found an error\nplease try again"
+            "text": "Line is longer than 80 characters (found 92)."
           },
-          "ruleId": "ruleId"
+          "ruleId": "maxLineLen"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerErrorColumn0.java"
+                },
+                "region": {
+                  "startLine": 16
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Line is longer than 80 characters (found 96)."
+          },
+          "ruleId": "maxLineLen"
         }
       ]
     }
