@@ -11,13 +11,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
     <specifier>format.string</specifier>
     <message>invalid format string (is a @Format annotation missing?)</message>
-    <lineContent>Locale.ROOT, PROP_DEFAULT_VALUE_MISSING, propertyName)</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
-    <specifier>format.string</specifier>
-    <message>invalid format string (is a @Format annotation missing?)</message>
     <lineContent>Locale.ROOT, PROP_TYPE_MISSING, propertyName)</lineContent>
   </checkerFrameworkError>
 
