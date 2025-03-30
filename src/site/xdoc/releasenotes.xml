@@ -79,7 +79,9 @@
         <ul>
           <li>
             update JavadocTokenTypes.java to new format of AST print.
-            Author: MD. Zaid, Prarthana-Ramesh, Sambhav Jain, Mohammad Soleh, Simran, Mahmoud Ayman, YuktiNandwana, Ziad Abd El-Fatah, sushanthraiurwa, kapishyadav, abdelrhmansersawy, kornilov-mr, Abhishek Bansode, Brijeshthummar02
+            Author: MD. Zaid, Prarthana-Ramesh, Sambhav Jain, Mohammad Soleh, Simran, Mahmoud Ayman,
+            YuktiNandwana, Ziad Abd El-Fatah, sushanthraiurwa, kapishyadav, abdelrhmansersawy,
+            kornilov-mr, Abhishek Bansode, Brijeshthummar02
             <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
           </li>
           <li>
@@ -94,7 +96,8 @@
           </li>
           <li>
             Enforce file size on Java inputs.
-            Author: Atharv Chavan, Mahmoud Ayman, MD. Zaid, vishakha-mali, Ziad Abd El-Fatah, kapishyadav, abdelrhmansersawy, bishoy, ZaeemSheikh
+            Author: Atharv Chavan, Mahmoud Ayman, MD. Zaid, vishakha-mali, Ziad Abd El-Fatah,
+            kapishyadav, abdelrhmansersawy, bishoy, ZaeemSheikh
             <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
           </li>
           <li>
@@ -133,7 +136,8 @@
           </li>
           <li>
             Define violation messages for all violations.
-            Author: Atharv Chavan, jerryyummy, MD. Zaid, Mahmoud Ayman, kapishyadav, abdelrhmansersawy, Abhishek Bansode, Prarthana-Ramesh, kornilov-mr, ZaeemSheikh
+            Author: Atharv Chavan, jerryyummy, MD. Zaid, Mahmoud Ayman, kapishyadav,
+            abdelrhmansersawy, Abhishek Bansode, Prarthana-Ramesh, kornilov-mr, ZaeemSheikh
             <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
           </li>
           <li>

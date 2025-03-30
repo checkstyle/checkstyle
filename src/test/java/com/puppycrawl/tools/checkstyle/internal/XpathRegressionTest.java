@@ -19,12 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
-import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.Definitions;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.*;
-import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -40,7 +35,17 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.google.common.truth.Truth.assertWithMessage;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.Definitions;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
+import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
 public class XpathRegressionTest extends AbstractModuleTestSupport {
 
@@ -194,6 +199,9 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                             throw new IllegalStateException("Unknown check '" + checkName
                                     + "' in test file: " + checkName);
                         }
+                        return checkName;
+                    })
+                    .map(checkName -> {
                         if (INCOMPATIBLE_CHECK_NAMES.contains(checkName)) {
                             throw new IllegalStateException("Check '" + checkName
                                     + "' is not compatible with SuppressionXpathFilter.");
