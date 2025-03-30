@@ -24,19 +24,39 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file:Test.java"
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerErrorColumn1.java"
                 },
                 "region": {
-                  "startColumn": 1,
-                  "startLine": 1
+                  "startColumn": 8,
+                  "startLine": 15
                 }
               }
             }
           ],
           "message": {
-            "text": "found an error\ntry again"
+            "text": "Unused import - java.util.List."
           },
-          "ruleId": "ruleId"
+          "ruleId": "import.unused"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerErrorColumn1.java"
+                },
+                "region": {
+                  "startLine": 21
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Using System.out.println is not allowed.\nPlease use a proper logging framework instead."
+          },
+          "ruleId": "Using System.out.println is not allowed.
+Please use a proper logging framework instead."
         }
       ]
     }
