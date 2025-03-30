@@ -17,7 +17,7 @@ THRESHOLD_PERCENTAGE=300
 # JDK version
 JDK_VERSION=21
 # sample project path
-SAMPLE_PROJECT="./.ci-temp/jOOL"
+SAMPLE_PROJECT="./.ci-temp/hadoop"
 
 
 # execute a command and time it

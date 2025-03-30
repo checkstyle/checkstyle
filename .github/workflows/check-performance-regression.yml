@@ -47,11 +47,11 @@ jobs:
       - name: Checkout Pull Request Code
         uses: actions/checkout@v4
 
-      - name: Clone jOOL Repo
+      - name: Clone hadoop Repo
         uses: actions/checkout@v4
         with:
-          repository: jOOQ/jOOL
-          path: ./.ci-temp/jOOL
+          repository: apache/hadoop
+          path: ./.ci-temp/hadoop
 
       - name: Setup local maven cache
         uses: actions/cache@v4
