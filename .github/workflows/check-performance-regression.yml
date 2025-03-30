@@ -28,7 +28,7 @@ jobs:
           - javadoc
         include:
           - target: java
-            BASELINE_SECONDS:  40
+            BASELINE_SECONDS:  10
             CONFIG_FILE: './config/benchmark-config.xml'
           - target: javadoc
             BASELINE_SECONDS: 481.41
