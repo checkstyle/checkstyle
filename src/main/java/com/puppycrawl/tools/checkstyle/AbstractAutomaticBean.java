@@ -56,6 +56,9 @@ import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import org.checkerframework.checker.nullness.qual.EnsuresNonNull;
+import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
+import org.checkerframework.checker.nullness.qual.RequiresNonNull;
 
 /**
  * A Java Bean that implements the component lifecycle interfaces by
@@ -279,6 +282,7 @@ public abstract class AbstractAutomaticBean
      *
      * @return the configuration that was used to configure this component.
      */
+    @EnsuresNonNull("configuration")
     protected final Configuration getConfiguration() {
         return configuration;
     }
@@ -296,6 +300,7 @@ public abstract class AbstractAutomaticBean
      * @throws CheckstyleException if there is a configuration error.
      * @see Configuration#getChildren
      */
+    @RequiresNonNull("configuration")
     protected void setupChild(Configuration childConf)
             throws CheckstyleException {
         if (childConf != null) {

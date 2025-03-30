@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedErrors>
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
-    <specifier>i18nformat.key.not.found</specifier>
-    <message>a key doesn&apos;t exist in the provided translation file</message>
-    <lineContent>final String pattern = resourceBundle.getString(key);</lineContent>
-  </checkerFrameworkError>
+  <fileName>src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
+  <specifier>i18nformat.key.not.found</specifier>
+  <message>a key doesn&apos;t exist in the provided translation file</message>
+  <lineContent>final String pattern = resourceBundle.getString(key);</lineContent>
+</checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
