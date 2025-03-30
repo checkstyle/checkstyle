@@ -19,7 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
-import static com.google.common.truth.Truth.assertWithMessage;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.Definitions;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.*;
+import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -33,18 +38,9 @@ import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.Definitions;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
-import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 public class XpathRegressionTest extends AbstractModuleTestSupport {
 
@@ -93,10 +89,18 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     );
 
     private static final Set<String> SIMPLE_CHECK_NAMES = getSimpleCheckNames();
-    private static final Map<String, String> ALLOWED_DIRECTORY_AND_CHECKS =
-        getAllowedDirectoryAndChecks();
 
+    /**
+     * Directory containing the corresponding test file.
+     */
+    private static final Map<String, String> DIR_AND_TEST = getAllowedDirectoryAndChecks();
     private static final Set<String> INTERNAL_MODULES = getInternalModules();
+    private static final String JAVA = ".java";
+    private static final Pattern INPUT_XPATH = Pattern.compile("^InputXpath(.+)\\" + JAVA + "$");
+    private static final Pattern REGRESSION_TEST_NAME =
+            Pattern.compile("^XpathRegression(.+)Test\\" + JAVA + "$");
+    private static final DirectoryStream.Filter<Path> DIR_FILTER = path
+            -> path.toFile().isDirectory();
 
     private Path javaDir;
     private Path inputDir;
@@ -162,102 +166,103 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     @Test
     public void validateIntegrationTestClassNames() throws Exception {
-        final Set<String> compatibleChecks = new HashSet<>();
-        final Pattern pattern = Pattern.compile("^XpathRegression(.+)Test\\.java$");
-        try (DirectoryStream<Path> javaPaths = Files.newDirectoryStream(javaDir)) {
-            for (Path path : javaPaths) {
-                assertWithMessage(path + " is not a regular file")
-                        .that(Files.isRegularFile(path))
-                        .isTrue();
-                final String filename = path.toFile().getName();
-                if (filename.startsWith("Abstract")) {
-                    continue;
-                }
-
-                final Matcher matcher = pattern.matcher(filename);
-                assertWithMessage(
-                            "Invalid test file: " + filename + ", expected pattern: " + pattern)
-                        .that(matcher.matches())
-                        .isTrue();
-
-                final String check = matcher.group(1);
-                assertWithMessage("Unknown check '" + check + "' in test file: " + filename)
-                        .that(SIMPLE_CHECK_NAMES)
-                        .contains(check);
-
-                assertWithMessage(
-                            "Check '" + check + "' is now compatible with SuppressionXpathFilter."
-                                + " Please update the todo list in"
-                                + " XpathRegressionTest.INCOMPATIBLE_CHECK_NAMES")
-                        .that(INCOMPATIBLE_CHECK_NAMES.contains(check))
-                        .isFalse();
-                compatibleChecks.add(check);
-            }
-        }
-
         // Ensure that all lists are up-to-date
         final Set<String> allChecks = new HashSet<>(SIMPLE_CHECK_NAMES);
         allChecks.removeAll(INCOMPATIBLE_JAVADOC_CHECK_NAMES);
         allChecks.removeAll(INCOMPATIBLE_CHECK_NAMES);
         allChecks.removeAll(Set.of("Regexp", "RegexpSinglelineJava", "NoCodeInFile"));
         allChecks.removeAll(NO_VIOLATION_MODULES);
-        allChecks.removeAll(compatibleChecks);
+        allChecks.removeAll(compatibleChecks());
         allChecks.removeAll(INTERNAL_MODULES);
 
         assertWithMessage("XpathRegressionTest is missing for [" + String.join(", ", allChecks)
                 + "]. Please add them to src/it/java/org/checkstyle/suppressionxpathfilter")
-                        .that(allChecks)
-                        .isEmpty();
+                .that(allChecks)
+                .isEmpty();
     }
 
+    private Set<String> compatibleChecks() throws IOException {
+        try (Stream<Path> files = Files.list(javaDir)) {
+            return files
+                    .filter(Files::isRegularFile)
+                    .map(Path::getFileName)
+                    .map(Path::toString)
+                    .filter(name -> !name.startsWith("Abstract"))
+                    .flatMap(name -> firstGroupMatchOrEmpty(REGRESSION_TEST_NAME.matcher(name)))
+                    .map(checkName -> {
+                        if (!SIMPLE_CHECK_NAMES.contains(checkName)) {
+                            throw new IllegalStateException("Unknown check '" + checkName
+                                    + "' in test file: " + checkName);
+                        }
+                        if (INCOMPATIBLE_CHECK_NAMES.contains(checkName)) {
+                            throw new IllegalStateException("Check '" + checkName
+                                    + "' is not compatible with SuppressionXpathFilter.");
+                        }
+                        return checkName;
+                    })
+                    .collect(Collectors.toUnmodifiableSet());
+        }
+    }
+
+    private static Stream<String> firstGroupMatchOrEmpty(Matcher matcher) {
+        Stream<String> match = Stream.empty();
+        if (matcher.matches()) {
+            match = Stream.of(matcher.group(1));
+        }
+        return match;
+    }
+
+    /**
+     * Validates the input directory by iterating through all directories within the input directory
+     * and validating each one against its corresponding test case.
+     *
+     * @throws Exception If an I/O error occurs or if validation fails.
+     */
     @Test
-    public void validateInputFiles() throws Exception {
-        try (DirectoryStream<Path> dirs = Files.newDirectoryStream(inputDir)) {
-            for (Path dir : dirs) {
-                // input directory must be named in lower case
-                assertWithMessage(dir + " is not a directory")
-                        .that(Files.isDirectory(dir))
+    public void validateInputDir() throws Exception {
+        try (DirectoryStream<Path> inputDirs = Files.newDirectoryStream(inputDir, DIR_FILTER)) {
+            for (Path path : inputDirs) {
+                assertWithMessage(
+                        "Invalid directory name: " + path.getFileName())
+                        .that(DIR_AND_TEST)
+                        .containsKey(path.getFileName().toString());
+                final Path test = javaDir
+                        .resolve("XpathRegression"
+                                + DIR_AND_TEST.get(path.getFileName().toString())
+                                + "Test" + JAVA);
+                assertWithMessage(
+                        "Input dir '" + path + "' is not connected to Java test case: " + test)
+                        .that(Files.exists(test))
                         .isTrue();
-                final String dirName = dir.toFile().getName();
-                assertWithMessage("Invalid directory name: " + dirName)
-                        .that(ALLOWED_DIRECTORY_AND_CHECKS)
-                        .containsKey(dirName);
-
-                // input directory must be connected to an existing test
-                final String check = ALLOWED_DIRECTORY_AND_CHECKS.get(dirName);
-                final Path javaPath = javaDir.resolve("XpathRegression" + check + "Test.java");
-                assertWithMessage("Input directory '" + dir
-                            + "' is not connected to Java test case: " + javaPath)
-                        .that(Files.exists(javaPath))
-                        .isTrue();
-
-                // input files should be named correctly
-                validateInputDirectory(dir);
+                try (DirectoryStream<Path> dirs = Files.newDirectoryStream(path, DIR_FILTER)) {
+                    assertByPattern(dirs);
+                }
             }
         }
     }
 
-    private static void validateInputDirectory(Path checkDir) throws IOException {
-        final Pattern pattern = Pattern.compile("^InputXpath(.+)\\.java$");
-        final String check = ALLOWED_DIRECTORY_AND_CHECKS.get(checkDir.toFile().getName());
-
-        try (DirectoryStream<Path> inputPaths = Files.newDirectoryStream(checkDir)) {
-            for (Path inputPath : inputPaths) {
-                final String filename = inputPath.toFile().getName();
-                if (filename.endsWith("java")) {
-                    final Matcher matcher = pattern.matcher(filename);
-                    assertWithMessage(
-                              "Invalid input file '" + inputPath
-                              + "', expected pattern:" + pattern)
-                            .that(matcher.matches())
-                            .isTrue();
-
-                    final String remaining = matcher.group(1);
-                    assertWithMessage("Check name '" + check
-                                + "' should be included in input file: " + inputPath)
-                            .that(remaining)
-                            .startsWith(check);
-                }
+    /**
+     * Asserts that all files in the given directory match the specified pattern and that the
+     * test name is included in the file name. This method is used to validate that input files
+     * follow the expected naming convention and are associated with the correct test case.
+     *
+     * @param dirs The directory stream containing the files to validate.
+     * @throws AssertionError If any file does not match the pattern or if the test name is not
+     *                        included in the file name.
+     */
+    private static void assertByPattern(DirectoryStream<Path> dirs) {
+        for (Path file : dirs) {
+            if (file.endsWith(JAVA)) {
+                final String test = DIR_AND_TEST.get(file.getFileName().toString());
+                final Matcher matcher = INPUT_XPATH.matcher(file.getFileName().toString());
+                assertWithMessage(
+                        "Invalid input file '" + file + "', expected pattern: " + INPUT_XPATH)
+                        .that(matcher.matches())
+                        .isTrue();
+                assertWithMessage(
+                        "Check name '" + test + "' should be included in input file: " + file)
+                        .that(matcher.group(1))
+                        .startsWith(test);
             }
         }
     }
