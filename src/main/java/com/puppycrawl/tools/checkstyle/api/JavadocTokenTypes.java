@@ -998,17 +998,16 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     *   JAVADOC_TAG ->; JAVADOC_TAG
-     *    |--SERIAL_FIELD_LITERAL ->; @serialField
-     *    |--WS ->;
-     *    |--FIELD_NAME ->; counter
-     *    |--WS ->;
-     *    |--FIELD_TYPE ->; Integer
-     *    |--WS ->;
-     *    `--DESCRIPTION ->; DESCRIPTION
-     *        |--TEXT ->; objects counter
-     *        |--NEWLINE ->; \r\n
-     *        `--TEXT ->;
+     *   --JAVADOC_TAG -> JAVADOC_TAG
+     *   |--SERIAL_FIELD_LITERAL -> @serialField
+     *   |--WS ->
+     *   |--LITERAL_INCLUDE -> include
+     *   |--NEWLINE -> \r\n
+     *   `--WS ->
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        |--TEXT -> objects counter
+     *        |--NEWLINE -> \r\n
+     *        `--TEXT ->
      * }</pre>
      *
      * @see
@@ -1546,7 +1545,43 @@ public final class JavadocTokenTypes {
     /** Img tag name. */
     public static final int IMG_HTML_TAG_NAME = JavadocParser.IMG_HTML_TAG_NAME;
 
-    /** Input tag name. */
+    /**
+     * Input tag name.
+     *
+     *  <p><b>Example:</b></p>
+     *  <pre>{@code <input name="Name" type="text" placeholder="Enter your name"/>}</pre>
+     *  <b>Tree:</b>
+     *  <pre>
+     *  {@code
+     *    HTML_ELEMENT -> HTML_ELEMENT
+     *       `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *         `--INPUT_TAG -> INPUT_TAG
+     *             |--START -> <
+     *             |--INPUT_HTML_TAG_NAME -> input
+     *             |--WS ->
+     *             |--ATTRIBUTE -> ATTRIBUTE
+     *             |   |--HTML_TAG_NAME -> name
+     *             |   |--EQUALS -> =
+     *             |   `--ATTR_VALUE -> "Name"
+     *             |--WS ->
+     *             |--ATTRIBUTE -> ATTRIBUTE
+     *             |   |--HTML_TAG_NAME -> type
+     *             |   |--EQUALS -> =
+     *             |   `--ATTR_VALUE -> "text"
+     *             |--WS ->
+     *             |--ATTRIBUTE -> ATTRIBUTE
+     *             |   |--HTML_TAG_NAME -> placeholder
+     *             |   |--EQUALS -> =
+     *             |   `--ATTR_VALUE -> "Enter your name"
+     *              `--SLASH_END -> />
+     *  }
+     *  </pre>
+     *
+     *   @see
+     *   <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
+     *      comments are written in HTML</a>
+     *     @see #INPUT_HTML_TAG_NAME
+     */
     public static final int INPUT_HTML_TAG_NAME = JavadocParser.INPUT_HTML_TAG_NAME;
 
     /** Isindex tag name. */
@@ -2091,15 +2126,15 @@ public final class JavadocTokenTypes {
      * HTML_ELEMENT -> HTML_ELEMENT
      *    `--TD -> TD
      *        |--TD_TAG_START -> TD_TAG_START
-     *        |   |--START -> &lt;
+     *        |   |--START -> <
      *        |   |--TD_HTML_TAG_NAME -> td
-     *        |   `--END -> &gt;
+     *        |   `--END -> >
      *        |--TEXT -> Cell Content
      *        `--TD_TAG_END -> TD_TAG_END
-     *            |--START -> &lt;
+     *            |--START -> <
      *            |--SLASH -> /
      *            |--TD_HTML_TAG_NAME -> td
-     *            `--END -> &gt;
+     *            `--END -> >
      * }
      * </pre>
      */
