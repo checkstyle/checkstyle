@@ -12,6 +12,5 @@
     <module name="SuppressionXpathSingleFilter">
       <property name="message" value="Javadoc comment at column \d+ has parse error"/>
     </module>
-    </module>
   </module>
 </module>
