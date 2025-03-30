@@ -26,6 +26,7 @@ import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADO
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 
 import org.junit.jupiter.api.Test;
 
@@ -223,6 +224,16 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 .that(ex.getMessage())
                 .isEqualTo(expected);
         }
+    }
+
+    @Test
+    public void testGetStandardCharSetsReturnsUtf8() throws Exception {
+        final Object returnValue = TestUtil.invokeStaticMethod(
+                DetailNodeTreeStringPrinter.class, "getStandardCharSets");
+
+        assertWithMessage("getStandardCharSets() should return UTF-8")
+                .that(returnValue)
+                .isEqualTo(StandardCharsets.UTF_8.name());
     }
 
 }

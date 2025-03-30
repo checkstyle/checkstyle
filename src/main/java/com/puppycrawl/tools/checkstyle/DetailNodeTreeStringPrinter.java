@@ -162,6 +162,15 @@ public final class DetailNodeTreeStringPrinter {
     }
 
     /**
+     * Returns the standard character encoding name for UTF-8.
+     *
+     * @return the name of the UTF-8 character set, which is "UTF-8".
+     */
+    private static String getStandardCharSets() {
+        return StandardCharsets.UTF_8.name();
+    }
+
+    /**
      * Parse a file and return the parse tree.
      *
      * @param file the file to parse.
@@ -170,7 +179,7 @@ public final class DetailNodeTreeStringPrinter {
      */
     private static DetailNode parseFile(File file) throws IOException {
         final FileText text = new FileText(file.getAbsoluteFile(),
-            System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
+            System.getProperty("file.encoding", getStandardCharSets()));
         return parseJavadocAsDetailNode(text.getFullText().toString());
     }
 
