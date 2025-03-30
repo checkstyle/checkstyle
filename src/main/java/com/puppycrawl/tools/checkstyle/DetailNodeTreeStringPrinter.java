@@ -162,6 +162,21 @@ public final class DetailNodeTreeStringPrinter {
     }
 
     /**
+     * Retrieves the file encoding from system properties.
+     * If the provided encoding is blank, an exception is thrown.
+     *
+     * @param encode the encoding to use as a fallback if not found in system properties.
+     * @return the file encoding from system properties, or the provided fallback encoding.
+     * @throws IllegalStateException if the provided encoding is blank.
+     */
+    private static String getFileEncoding(String encode) {
+        if (encode.isBlank()) {
+            throw new IllegalStateException("Encode should not be blank");
+        }
+        return System.getProperty("file.encoding", encode);
+    }
+
+    /**
      * Parse a file and return the parse tree.
      *
      * @param file the file to parse.
@@ -170,7 +185,7 @@ public final class DetailNodeTreeStringPrinter {
      */
     private static DetailNode parseFile(File file) throws IOException {
         final FileText text = new FileText(file.getAbsoluteFile(),
-            System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
+            getFileEncoding(StandardCharsets.UTF_8.name()));
         return parseJavadocAsDetailNode(text.getFullText().toString());
     }
 
