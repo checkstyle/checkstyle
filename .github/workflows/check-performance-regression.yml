@@ -47,11 +47,11 @@ jobs:
       - name: Checkout Pull Request Code
         uses: actions/checkout@v4
 
-      - name: Clone Guava Repo
+      - name: Clone jOOL Repo
         uses: actions/checkout@v4
         with:
-          repository: google/guava
-          path: ./.ci-temp/guava
+          repository: jOOQ/jOOL
+          path: ./.ci-temp/jOOL
 
       - name: Setup local maven cache
         uses: actions/cache@v4
