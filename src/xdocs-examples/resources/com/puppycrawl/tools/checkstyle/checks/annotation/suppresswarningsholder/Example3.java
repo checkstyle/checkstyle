@@ -3,8 +3,7 @@
   <module name="TreeWalker">
     <module name="ParameterNumber"/>
     <module name="SuppressWarningsHolder">
-      <property name="aliasList"
-        value="com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum"/>
+      <property name="aliasList" value="ParameterNumberCheck=paramnum"/>
     </module>
   </module>
   <module name="SuppressWarningsFilter"/>
@@ -14,7 +13,7 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarningsholder;
 
 // xdoc section -- start
-class Example2 {
+public class Example3 {
   // violation below, 'More than 7 parameters (found 8)'
   public void needsLotsOfParameters (int a,
     int b, int c, int d, int e, int f, int g, int h) {
