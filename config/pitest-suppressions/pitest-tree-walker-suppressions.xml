@@ -1,33 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>DetailNodeTreeStringPrinter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinter</mutatedClass>
-    <mutatedMethod>parseFile</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/nio/charset/Charset::name</description>
-    <lineContent>System.getProperty(&quot;file.encoding&quot;, StandardCharsets.UTF_8.name()));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>DetailNodeTreeStringPrinter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinter</mutatedClass>
-    <mutatedMethod>parseFile</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/lang/System::getProperty with argument</description>
-    <lineContent>System.getProperty(&quot;file.encoding&quot;, StandardCharsets.UTF_8.name()));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>DetailNodeTreeStringPrinter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinter</mutatedClass>
-    <mutatedMethod>parseFile</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/io/File::getAbsoluteFile with receiver</description>
-    <lineContent>final FileText text = new FileText(file.getAbsoluteFile(),</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>JavadocDetailNodeParser.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser</mutatedClass>
     <mutatedMethod>getMissedHtmlTag</mutatedMethod>
