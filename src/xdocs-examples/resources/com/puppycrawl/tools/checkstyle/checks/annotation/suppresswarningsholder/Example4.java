@@ -1,11 +1,11 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
+  <module name="MemberName"/>
   <module name="ParameterNumber"/>
   <module name="SuppressWarningsHolder">
     <property name="aliasList"
-      value=
-      "com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum"/>
+      value="ParameterNumber=paramnum"/>
   </module>
   </module>
   <module name="SuppressWarningsFilter"/>
@@ -15,7 +15,11 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarningsholder;
 
 // xdoc section -- start
-class Example2 {
+public class Example4 {
+  private int Val1; // violation, 'Name 'Val1' must match pattern'
+  @SuppressWarnings({"membername"})
+  private int Val2; // violation suppressed
+
   // violation below, 'More than 7 parameters (found 8)'
   public void needsLotsOfParameters (int a,
     int b, int c, int d, int e, int f, int g, int h) {
