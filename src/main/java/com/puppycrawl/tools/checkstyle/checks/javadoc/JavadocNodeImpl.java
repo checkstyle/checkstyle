@@ -180,7 +180,7 @@ public class JavadocNodeImpl implements DetailNode {
                 + ", text='" + text + '\''
                 + ", lineNumber=" + lineNumber
                 + ", columnNumber=" + columnNumber
-                + ", children=" + Objects.hashCode(children)
+                + ", children=" + 0
                 + ", parent=" + parent + ']';
     }
 
