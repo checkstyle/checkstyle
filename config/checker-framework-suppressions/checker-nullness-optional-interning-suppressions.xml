@@ -1533,6 +1533,17 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return checkAlias;</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable String
+      method return type: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java</fileName>
     <specifier>type.argument</specifier>
     <message>incompatible type argument for type parameter T of ThreadLocal.</message>
     <lineContent>private static final ThreadLocal&lt;List&lt;Entry&gt;&gt; ENTRIES =</lineContent>
