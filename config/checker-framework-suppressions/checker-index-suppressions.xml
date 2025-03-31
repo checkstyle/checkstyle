@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedErrors>
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/AstTreeStringPrinter.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of String.substring.</message>
-    <lineContent>baseIndentation = baseIndentation.substring(0, baseIndentation.length() - 2);</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter bitIndex of BitSet.get.</message>

@@ -116,7 +116,8 @@ public final class AstTreeStringPrinter {
         final DetailNode tree = DetailNodeTreeStringPrinter.parseJavadocAsDetailNode(javadocBlock);
 
         String baseIndentation = getIndentation(node);
-        baseIndentation = baseIndentation.substring(0, baseIndentation.length() - 2);
+        final int endIndex = Math.max(0, baseIndentation.length() - 2);
+        baseIndentation = baseIndentation.substring(0, endIndex);
         final String rootPrefix = baseIndentation + "   `--";
         final String prefix = baseIndentation + "       ";
         return DetailNodeTreeStringPrinter.printTree(tree, rootPrefix, prefix);
