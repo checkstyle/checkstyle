@@ -162,6 +162,32 @@ public final class DetailNodeTreeStringPrinter {
     }
 
     /**
+     * Determines the encoding to use based on the provided encoding and default encoding.
+     * If the provided encoding is null or blank, the method returns the default encoding.
+     * If the default encoding is null or blank, an IllegalStateException is thrown.
+     *
+     *
+     * @param encode        the encoding to check, can be null or blank
+     * @param defaultEncode the default encoding to use if {@code encode} is null or blank,
+     *                      must not be null or blank
+     * @return the determined encoding, either {@code encode} if valid or {@code defaultEncode}
+     * @throws IllegalStateException if {@code defaultEncode} is null or blank
+     */
+    private static String getEncoding(String encode, String defaultEncode) {
+        if (defaultEncode == null || defaultEncode.isBlank()) {
+            throw new IllegalStateException("DefaultEncode should not be null or blank");
+        }
+        final String result;
+        if (encode != null && !encode.isBlank()) {
+            result = encode;
+        }
+        else {
+            result = defaultEncode;
+        }
+        return result;
+    }
+
+    /**
      * Parse a file and return the parse tree.
      *
      * @param file the file to parse.
@@ -169,8 +195,9 @@ public final class DetailNodeTreeStringPrinter {
      * @throws IOException if the file could not be read.
      */
     private static DetailNode parseFile(File file) throws IOException {
-        final FileText text = new FileText(file.getAbsoluteFile(),
-            System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
+        final FileText text = new FileText(file,
+                getEncoding(System.getProperty("file.encoding"),
+                        StandardCharsets.UTF_8.name()));
         return parseJavadocAsDetailNode(text.getFullText().toString());
     }
 
