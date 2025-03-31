@@ -2567,7 +2567,50 @@ public final class JavadocTokenTypes {
      */
     public static final int INPUT_TAG = JavadocParser.RULE_inputTag + RULE_TYPES_OFFSET;
 
-    /** Isindex html tag. */
+    /**
+     * Isindex tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <head>
+     *    <isindex prompt="search">
+     * </head>
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   |--HTML_ELEMENT -> HTML_ELEMENT
+     *   |   `--HEAD -> HEAD
+     *   |       |--HEAD_TAG_START -> HEAD_TAG_START
+     *   |       |   |--START -> <
+     *   |       |   |--HEAD_HTML_TAG_NAME -> head
+     *   |       |   `--END -> >
+     *   |       |--NEWLINE -> \r\n
+     *   |       |--LEADING_ASTERISK ->  *
+     *   |       |--TEXT ->
+     *   |       |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *   |       |   `--ISINDEX_TAG -> ISINDEX_TAG
+     *   |       |       |--START -> <
+     *   |       |       |--ISINDEX_HTML_TAG_NAME -> isindex
+     *   |       |       |--WS ->
+     *   |       |       |--ATTRIBUTE -> ATTRIBUTE
+     *   |       |       |   |--HTML_TAG_NAME -> prompt
+     *   |       |       |   |--EQUALS -> =
+     *   |       |       |   `--ATTR_VALUE -> "search"
+     *   |       |       `--END -> >
+     *   |       |--NEWLINE -> \r\n
+     *   |       |--LEADING_ASTERISK ->  *
+     *   |       |--TEXT ->
+     *   |       `--HEAD_TAG_END -> HEAD_TAG_END
+     *   |           |--START -> <
+     *   |           |--SLASH -> /
+     *   |           |--HEAD_HTML_TAG_NAME -> head
+     *   |           `--END -> >
+     *   |--NEWLINE -> \r\n
+     *   |--TEXT ->
+     * }
+     * </pre>
+     */
     public static final int ISINDEX_TAG = JavadocParser.RULE_isindexTag + RULE_TYPES_OFFSET;
 
     /** Link html tag. */
