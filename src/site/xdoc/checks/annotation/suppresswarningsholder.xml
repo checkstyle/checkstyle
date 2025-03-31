@@ -91,8 +91,8 @@ class Example1 {
         </p>
         <p id="Example2-config">
           If <code>aliasList</code> property was provided you can use your own names e.g. below
-          code will work if there was provided a <code>ParameterNumberCheck=paramnum</code> in
-          the <code>aliasList</code>:
+          code will work if there was provided a <code>com.puppycrawl.tools.checkstyle.checks.
+          sizes.ParameterNumberCheck=paramnum</code> in the <code>aliasList</code>:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -109,6 +109,87 @@ class Example1 {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
+  // violation below, 'More than 7 parameters (found 8)'
+  public void needsLotsOfParameters (int a,
+    int b, int c, int d, int e, int f, int g, int h) {
+    // ...
+  }
+
+  @SuppressWarnings("paramnum")
+  public void needsLotsOfParameters1 (int a, // violation suppressed
+    int b, int c, int d, int e, int f, int g, int h) {
+    // ...
+  }
+
+}
+</code></pre></div>
+        <p id="Example3-config">
+          You can also use simple check name like <code>ParameterNumberCheck=paramnum</code>
+          instead to use fully qualified name of check in the <code>aliasList</code>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+  &lt;module name="MemberName"/&gt;
+  &lt;module name="ConstantName"/&gt;
+  &lt;module name="ParameterNumber"/&gt;
+  &lt;module name="SuppressWarningsHolder"&gt;
+    &lt;property name="aliasList" value=
+      "ParameterNumberCheck=paramnum"/&gt;
+  &lt;/module&gt;
+  &lt;/module&gt;
+  &lt;module name="SuppressWarningsFilter"/&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {
+  private int Val1; // violation, 'Name 'Val1' must match pattern'
+  @SuppressWarnings({"membername"})
+  private int Val2; // violation suppressed
+
+  private static final int ele1 = 0; // violation, 'Name 'ele1' must match pattern'
+  @SuppressWarnings("checkstyle:constantname")
+  private static final int ele2 = 0; // violation suppressed
+
+  // violation below, 'More than 7 parameters (found 8)'
+  public void needsLotsOfParameters (int a,
+    int b, int c, int d, int e, int f, int g, int h) {
+    // ...
+  }
+
+  @SuppressWarnings("paramnum")
+  public void needsLotsOfParameters1 (int a, // violation suppressed
+    int b, int c, int d, int e, int f, int g, int h) {
+    // ...
+  }
+
+}
+</code></pre></div>
+        <p id="Example4-config">
+          The check can also be used without suffix of &quot;Check&quot; like
+          <code>ParameterNumber=paramnum</code> in the <code>aliasList</code>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+  &lt;module name="MemberName"/&gt;
+  &lt;module name="ParameterNumber"/&gt;
+  &lt;module name="SuppressWarningsHolder"&gt;
+    &lt;property name="aliasList" value=
+      "ParameterNumber=paramnum"/&gt;
+  &lt;/module&gt;
+  &lt;/module&gt;
+  &lt;module name="SuppressWarningsFilter"/&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example4 {
+  private int Val1; // violation, 'Name 'Val1' must match pattern'
+  @SuppressWarnings({"membername"})
+  private int Val2; // violation suppressed
+
   // violation below, 'More than 7 parameters (found 8)'
   public void needsLotsOfParameters (int a,
     int b, int c, int d, int e, int f, int g, int h) {
