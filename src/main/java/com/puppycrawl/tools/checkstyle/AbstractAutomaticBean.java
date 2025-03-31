@@ -47,6 +47,10 @@ import org.apache.commons.beanutils.converters.IntegerConverter;
 import org.apache.commons.beanutils.converters.LongConverter;
 import org.apache.commons.beanutils.converters.ShortConverter;
 
+import org.checkerframework.checker.nullness.qual.EnsuresNonNull;
+import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
+import org.checkerframework.checker.nullness.qual.RequiresNonNull;
+
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configurable;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -56,6 +60,7 @@ import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+
 
 /**
  * A Java Bean that implements the component lifecycle interfaces by
@@ -85,7 +90,7 @@ public abstract class AbstractAutomaticBean
     private static final String COMMA_SEPARATOR = ",";
 
     /** The configuration of this bean. */
-    private Configuration configuration;
+    private @MonotonicNonNull Configuration configuration;
 
     /**
      * Provides a hook to finish the part of this component's setup that
@@ -279,7 +284,11 @@ public abstract class AbstractAutomaticBean
      *
      * @return the configuration that was used to configure this component.
      */
+    @EnsuresNonNull("configuration")
     protected final Configuration getConfiguration() {
+        if (configuration == null) {
+            throw new IllegalStateException("Configuration has not been initialized");
+        }
         return configuration;
     }
 
@@ -296,6 +305,7 @@ public abstract class AbstractAutomaticBean
      * @throws CheckstyleException if there is a configuration error.
      * @see Configuration#getChildren
      */
+    @RequiresNonNull("configuration")
     protected void setupChild(Configuration childConf)
             throws CheckstyleException {
         if (childConf != null) {
