@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="">
-<file name="Test.java">
-<error line="1" severity="error" message="$0" source="com.puppycrawl.tools.checkstyle.XMLLoggerTest"/>
+<file name="InputXMLLoggerErrorOnZeroColumn.java">
+<error line="14" severity="error" message="Javadoc line should start with leading asterisk." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingLeadingAsteriskCheck"/>
 </file>
 </checkstyle>
