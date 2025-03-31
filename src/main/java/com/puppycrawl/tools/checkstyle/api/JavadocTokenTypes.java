@@ -335,12 +335,15 @@ public final class JavadocTokenTypes {
      * <pre>{@code @author Baratali Izmailov}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   JAVADOC_TAG -> JAVADOC_TAG
-     *      |--AUTHOR_LITERAL -> @author
-     *      |--WS ->
-     *      `--DESCRIPTION -> DESCRIPTION
-     *          |--TEXT -> Baratali Izmailov
-     *          |--NEWLINE -> \r\n
+
+     *   --JAVADOC_TAG -> JAVADOC_TAG
+     *        |--AUTHOR_LITERAL -> @author
+     *        |--WS ->
+     *        `--DESCRIPTION -> DESCRIPTION
+     *            |--TEXT -> Baratali Izmailov
+     *            |--NEWLINE -> \r\n
+     *            `--TEXT ->
+
      * }</pre>
      *
      * @see
