@@ -2573,7 +2573,34 @@ public final class JavadocTokenTypes {
     /** Link html tag. */
     public static final int LINK_TAG = JavadocParser.RULE_linkTag + RULE_TYPES_OFFSET;
 
-    /** Meta html tag. */
+    /**
+     * Meta html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <meta charset="UTF-8"> }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   `--JAVADOC -> JAVADOC
+     *        |--NEWLINE -> \r\n
+     *        |--LEADING_ASTERISK ->  *
+     *        |--TEXT ->
+     *        |--HTML_ELEMENT -> HTML_ELEMENT
+     *        |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *        |       `--META_TAG -> META_TAG
+     *        |           |--START -> <
+     *        |           |--META_HTML_TAG_NAME -> meta
+     *        |           |--WS ->
+     *        |           |--ATTRIBUTE -> ATTRIBUTE
+     *        |           |   |--HTML_TAG_NAME -> charset
+     *        |           |   |--EQUALS -> =
+     *        |           |   `--ATTR_VALUE -> "UTF-8"
+     *        |           `--END -> >
+     *        |--NEWLINE -> \r\n
+     *        |--TEXT ->
+     * }
+     * </pre>
+     */
     public static final int META_TAG = JavadocParser.RULE_metaTag + RULE_TYPES_OFFSET;
 
     /** Param html tag. */
