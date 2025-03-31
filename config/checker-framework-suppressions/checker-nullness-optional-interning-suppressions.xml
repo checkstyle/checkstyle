@@ -1293,17 +1293,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileContents.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return javadocComments.get(lineNo);</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable TextBlock
-      method return type: @Initialized @NonNull TextBlock
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileText.java</fileName>
     <specifier>assignment</specifier>
     <message>incompatible types in assignment.</message>
