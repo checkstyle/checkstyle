@@ -2567,34 +2567,7 @@ public final class JavadocTokenTypes {
      */
     public static final int INPUT_TAG = JavadocParser.RULE_inputTag + RULE_TYPES_OFFSET;
 
-    /**
-     * Isindex tag name.
-     *
-     * <p><b>Example:</b></p>
-     * <pre>{@code <isindex prompt="search"> }</pre>
-     * <b>Tree:</b>
-     * <pre>
-     * {@code
-     *   `--JAVADOC -> JAVADOC
-     *        |--NEWLINE -> \r\n
-     *        |--LEADING_ASTERISK ->  *
-     *        |--TEXT ->
-     *        |--HTML_ELEMENT -> HTML_ELEMENT
-     *        |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
-     *        |       `--ISINDEX_TAG -> ISINDEX_TAG
-     *        |           |--START -> <
-     *        |           |--ISINDEX_HTML_TAG_NAME -> isindex
-     *        |           |--WS ->
-     *        |           |--ATTRIBUTE -> ATTRIBUTE
-     *        |           |   |--HTML_TAG_NAME -> prompt
-     *        |           |   |--EQUALS -> =
-     *        |           |   `--ATTR_VALUE -> "search"
-     *        |           `--END -> >
-     *        |--NEWLINE -> \r\n
-     *        |--TEXT ->
-     * }
-     * </pre>
-     */
+    /** Isindex html tag. */
     public static final int ISINDEX_TAG = JavadocParser.RULE_isindexTag + RULE_TYPES_OFFSET;
 
     /** Link html tag. */
