@@ -179,18 +179,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
 
     @Test
     public void testAddError() throws Exception {
-        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
-        logger.auditStarted(null);
-        final Violation violation =
-            new Violation(1, 1,
-                "messages.properties", "key", null, SeverityLevel.ERROR, null,
-                    getClass(), null);
-        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
-        logger.fileStarted(ev);
-        logger.addError(ev);
-        logger.fileFinished(ev);
-        logger.auditFinished(null);
-        verifyXml(getPath("ExpectedXMLLoggerError.xml"), outStream, violation.getViolation());
+        verifyWithInlineConfigParserAndXmlLogger("InputXMLLoggerAddError.java",
+                "ExpectedXMLLoggerAddError.xml");
     }
 
     @Test
@@ -232,19 +222,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
 
     @Test
     public void testAddErrorOnZeroColumns() throws Exception {
-        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
-        logger.auditStarted(null);
-        final Violation violation =
-                new Violation(1, 0,
-                        "messages.properties", "key", null, SeverityLevel.ERROR, null,
-                        getClass(), null);
-        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
-        logger.fileStarted(ev);
-        logger.addError(ev);
-        logger.fileFinished(ev);
-        logger.auditFinished(null);
-        verifyXml(getPath("ExpectedXMLLoggerErrorZeroColumn.xml"), outStream,
-                violation.getViolation());
+        verifyWithInlineConfigParserAndXmlLogger("InputXMLLoggerErrorOnZeroColumn.java",
+                "ExpectedXMLLoggerErrorZeroColumn.xml");
     }
 
     @Test
