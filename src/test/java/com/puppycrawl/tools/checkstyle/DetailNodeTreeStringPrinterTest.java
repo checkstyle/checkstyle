@@ -26,6 +26,8 @@ import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADO
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
@@ -222,6 +224,67 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
             assertWithMessage("Generated and expected parse error messages don't match")
                 .that(ex.getMessage())
                 .isEqualTo(expected);
+        }
+    }
+
+    @Test
+    public void testNullEncodingForGetEncoding() throws ReflectiveOperationException {
+        final String returnValue = TestUtil.invokeStaticMethod(
+                DetailNodeTreeStringPrinter.class, "getEncoding",
+                null, StandardCharsets.ISO_8859_1.name());
+
+        assertWithMessage("Expected getEncoding(null, ISO_8859_1) to return 'ISO_8859_1'")
+                .that(returnValue)
+                .isEqualTo(StandardCharsets.ISO_8859_1.name());
+    }
+
+    @Test
+    public void testBlankEncodingForGetEncoding() throws ReflectiveOperationException {
+        final String returnValue = TestUtil.invokeStaticMethod(
+                DetailNodeTreeStringPrinter.class, "getEncoding",
+                "", StandardCharsets.ISO_8859_1.name());
+
+        assertWithMessage("Expected getEncoding(\"\", ISO_8859_1) to return 'ISO_8859_1'")
+                .that(returnValue)
+                .isEqualTo(StandardCharsets.ISO_8859_1.name());
+    }
+
+
+    @Test
+    public void testBlankEncodingForGetDefaultEncoding() {
+        try {
+            TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
+                    "getEncoding", System.getProperty("file.encoding"), null);
+
+            assertWithMessage("Expected IllegalStateException was not thrown").fail();
+        }
+        catch (ReflectiveOperationException ex) {
+            final Throwable cause = ex.getCause();
+            final String errorMessage = Objects.requireNonNullElse(cause, ex).getMessage();
+
+            assertWithMessage("Exception should contain "
+                    + "'DefaultEncode should not be null or blank'")
+                    .that(errorMessage)
+                    .contains("DefaultEncode should not be null or blank");
+        }
+    }
+
+    @Test
+    public void testEncodingForGetNullEncoding() {
+        try {
+            TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
+                    "getEncoding", System.getProperty("file.encoding"), "");
+
+            assertWithMessage("Expected IllegalStateException was not thrown").fail();
+        }
+        catch (ReflectiveOperationException ex) {
+            final Throwable cause = ex.getCause();
+            final String errorMessage = Objects.requireNonNullElse(cause, ex).getMessage();
+
+            assertWithMessage("Exception should contain "
+                    + "'DefaultEncode should not be null or blank'")
+                    .that(errorMessage)
+                    .contains("DefaultEncode should not be null or blank");
         }
     }
 
