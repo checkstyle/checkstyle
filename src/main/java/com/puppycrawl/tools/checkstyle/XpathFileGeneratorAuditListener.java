@@ -24,6 +24,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
@@ -96,11 +97,11 @@ public class XpathFileGeneratorAuditListener
         if (xpathQuery != null) {
             printXmlHeader();
 
-            final File file = new File(event.getFileName());
+            final Path path = Path.of(event.getFileName());
 
             writer.println("<suppress-xpath");
             writer.print("       files=\"");
-            writer.print(file.getName());
+            writer.print(path.getFileName());
             writer.println(QUOTE_CHAR);
 
             if (event.getModuleId() == null) {
