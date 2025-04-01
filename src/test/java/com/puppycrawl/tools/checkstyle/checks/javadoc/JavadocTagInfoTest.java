@@ -334,6 +334,21 @@ public class JavadocTagInfoTest {
         assertWithMessage("Should return false when ast type is invalid for current tag")
                 .that(JavadocTagInfo.RETURN.isValidOn(ast))
                 .isFalse();
+
+        final int[] invalidTypes = {
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.CTOR_DEF,
+        };
+
+        for (int type : invalidTypes) {
+            final DetailAstImpl invalidNode = new DetailAstImpl();
+            invalidNode.setType(type);
+            assertWithMessage("RETURN tag on invalid node: " + type)
+                .that(JavadocTagInfo.RETURN.isValidOn(invalidNode))
+                .isFalse();
+        }
     }
 
     @Test
@@ -371,6 +386,34 @@ public class JavadocTagInfoTest {
         assertWithMessage("Should return false when ast type is invalid for current tag")
                 .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
                 .isFalse();
+
+        ast.setType(TokenTypes.METHOD_DEF);
+        assertWithMessage("SERIAL_FIELD on METHOD_DEF (invalid node)")
+            .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
+            .isFalse();
+
+        ast.setType(TokenTypes.VARIABLE_DEF);
+        astChild2.setType(TokenTypes.IDENT);
+        astChild2.setText("ObjectStreamField");
+        assertWithMessage("SERIAL_FIELD with non-array type")
+            .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
+            .isFalse();
+
+        final DetailAstImpl invalidNode = new DetailAstImpl();
+        invalidNode.setType(TokenTypes.METHOD_DEF);
+
+        final DetailAstImpl typeNode = new DetailAstImpl();
+        typeNode.setType(TokenTypes.TYPE);
+        invalidNode.addChild(typeNode);
+
+        final DetailAstImpl arrayDeclarator = new DetailAstImpl();
+        arrayDeclarator.setType(TokenTypes.ARRAY_DECLARATOR);
+        arrayDeclarator.setText("ObjectStreamField");
+        typeNode.addChild(arrayDeclarator);
+
+        assertWithMessage("@serialField on METHOD_DEF with valid type/text")
+            .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(invalidNode))
+            .isFalse();
     }
 
     @Test
@@ -406,6 +449,19 @@ public class JavadocTagInfoTest {
         assertWithMessage("Should return false when ast type is invalid for current tag")
                 .that(JavadocTagInfo.SERIAL_DATA.isValidOn(ast))
                 .isFalse();
+
+        final int[] invalidTypes = {
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+        };
+        for (int type : invalidTypes) {
+            ast.setType(type);
+            astChild.setText("writeObject");
+            assertWithMessage("@serialData on invalid node: " + type)
+                .that(JavadocTagInfo.SERIAL_DATA.isValidOn(ast))
+                .isFalse();
+        }
     }
 
     @Test
