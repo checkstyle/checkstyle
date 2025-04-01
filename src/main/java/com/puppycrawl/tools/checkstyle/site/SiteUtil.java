@@ -316,21 +316,14 @@ public final class SiteUtil {
             SRC, "main", "java", "com", "puppycrawl", "tools", "checkstyle").toString();
 
     /** List of files who are superclasses and contain certain properties that checks inherit. */
-    private static final List<File> MODULE_SUPER_CLASS_FILES = List.of(
-        new File(Path.of(MAIN_FOLDER_PATH,
-                CHECKS, NAMING, "AbstractAccessControlNameCheck.java").toString()),
-        new File(Path.of(MAIN_FOLDER_PATH,
-                CHECKS, NAMING, "AbstractNameCheck.java").toString()),
-        new File(Path.of(MAIN_FOLDER_PATH,
-                CHECKS, "javadoc", "AbstractJavadocCheck.java").toString()),
-        new File(Path.of(MAIN_FOLDER_PATH,
-                "api", "AbstractFileSetCheck.java").toString()),
-        new File(Path.of(MAIN_FOLDER_PATH,
-                CHECKS, "header", "AbstractHeaderCheck.java").toString()),
-        new File(Path.of(MAIN_FOLDER_PATH,
-                CHECKS, "metrics", "AbstractClassCouplingCheck.java").toString()),
-        new File(Path.of(MAIN_FOLDER_PATH,
-                CHECKS, "whitespace", "AbstractParenPadCheck.java").toString())
+    private static final List<Path> MODULE_SUPER_CLASS_PATHS = List.of(
+        Path.of(MAIN_FOLDER_PATH, CHECKS, NAMING, "AbstractAccessControlNameCheck.java"),
+        Path.of(MAIN_FOLDER_PATH, CHECKS, NAMING, "AbstractNameCheck.java"),
+        Path.of(MAIN_FOLDER_PATH, CHECKS, "javadoc", "AbstractJavadocCheck.java"),
+        Path.of(MAIN_FOLDER_PATH, "api", "AbstractFileSetCheck.java"),
+        Path.of(MAIN_FOLDER_PATH, CHECKS, "header", "AbstractHeaderCheck.java"),
+        Path.of(MAIN_FOLDER_PATH, CHECKS, "metrics", "AbstractClassCouplingCheck.java"),
+        Path.of(MAIN_FOLDER_PATH, CHECKS, "whitespace", "AbstractParenPadCheck.java")
     );
 
     /**
@@ -582,19 +575,19 @@ public final class SiteUtil {
      *
      * @param properties the properties of the module.
      * @param moduleName the name of the module.
-     * @param moduleFile the module file.
+     * @param modulePath the module file path.
      * @return the javadocs of the properties of the module.
      * @throws MacroExecutionException if an error occurs during processing.
      */
     public static Map<String, DetailNode> getPropertiesJavadocs(Set<String> properties,
-                                                                String moduleName, File moduleFile)
+                                                                String moduleName, Path modulePath)
             throws MacroExecutionException {
         // lazy initialization
         if (SUPER_CLASS_PROPERTIES_JAVADOCS.isEmpty()) {
             processSuperclasses();
         }
 
-        processModule(moduleName, moduleFile);
+        processModule(moduleName, modulePath);
 
         final Map<String, DetailNode> unmodifiableJavadocs =
                 ClassAndPropertiesSettersJavadocScraper.getJavadocsForModuleOrProperty();
@@ -627,13 +620,13 @@ public final class SiteUtil {
             Set<String> properties, String moduleName, Map<String, DetailNode> javadocs)
             throws MacroExecutionException {
         for (String property : properties) {
-            final boolean isPropertySetterJavadocFound = javadocs.containsKey(property)
-                       || TOKENS.equals(property) || JAVADOC_TOKENS.equals(property);
-            if (!isPropertySetterJavadocFound) {
-                final String message = String.format(Locale.ROOT,
-                        "%s: Failed to find setter javadoc for property '%s'",
-                        moduleName, property);
-                throw new MacroExecutionException(message);
+            final boolean isDocumented = javadocs.containsKey(property)
+                   || SUPER_CLASS_PROPERTIES_JAVADOCS.containsKey(property)
+                   || TOKENS.equals(property) || JAVADOC_TOKENS.equals(property);
+            if (!isDocumented) {
+                throw new MacroExecutionException(String.format(Locale.ROOT,
+                   "%s: Missing documentation for property '%s'. Check superclasses.",
+                        moduleName, property));
             }
         }
     }
@@ -644,12 +637,16 @@ public final class SiteUtil {
      * @throws MacroExecutionException if an error occurs during processing.
      */
     private static void processSuperclasses() throws MacroExecutionException {
-        for (File superclassFile : MODULE_SUPER_CLASS_FILES) {
-            final String superclassName = CommonUtil
-                    .getFileNameWithoutExtension(superclassFile.getName());
-            processModule(superclassName, superclassFile);
+        for (Path superclassPath : MODULE_SUPER_CLASS_PATHS) {
+            final Path fileNamePath = superclassPath.getFileName();
+            if (fileNamePath == null) {
+                throw new MacroExecutionException("Invalid superclass path: " + superclassPath);
+            }
+            final String superclassName = CommonUtil.getFileNameWithoutExtension(
+                fileNamePath.toString());
+            processModule(superclassName, superclassPath);
             final Map<String, DetailNode> superclassJavadocs =
-                    ClassAndPropertiesSettersJavadocScraper.getJavadocsForModuleOrProperty();
+                ClassAndPropertiesSettersJavadocScraper.getJavadocsForModuleOrProperty();
             SUPER_CLASS_PROPERTIES_JAVADOCS.putAll(superclassJavadocs);
         }
     }
@@ -659,14 +656,14 @@ public final class SiteUtil {
      * ClassAndPropertiesSettersJavadocScraper.
      *
      * @param moduleName the name of the module.
-     * @param moduleFile the module file.
+     * @param modulePath the module Path.
      * @throws MacroExecutionException if an error occurs during processing.
      */
-    private static void processModule(String moduleName, File moduleFile)
+    private static void processModule(String moduleName, Path modulePath)
             throws MacroExecutionException {
-        if (!moduleFile.isFile()) {
+        if (!Files.isRegularFile(modulePath)) {
             final String message = String.format(Locale.ROOT,
-                    "File %s is not a file. Please check the 'modulePath' property.", moduleFile);
+                    "File %s is not a file. Please check the 'modulePath' property.", modulePath);
             throw new MacroExecutionException(message);
         }
         ClassAndPropertiesSettersJavadocScraper.initialize(moduleName);
@@ -684,7 +681,7 @@ public final class SiteUtil {
         treeWalkerConfig.addChild(scraperCheckConfig);
         try {
             checker.configure(defaultConfiguration);
-            final List<File> filesToProcess = List.of(moduleFile);
+            final List<File> filesToProcess = List.of(modulePath.toFile());
             checker.process(filesToProcess);
             checker.destroy();
         }

@@ -69,7 +69,7 @@
     <mutatedMethod>execute</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/lang/Package::getImplementationVersion</description>
-    <lineContent>final String version = CheckstyleAntTask.class.getPackage().getImplementationVersion();</lineContent>
+    <lineContent>CheckstyleAntTask.class.getPackage().getImplementationVersion(),</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -84,10 +84,10 @@
   <mutation unstable="false">
     <sourceFile>CheckstyleAntTask.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
-    <mutatedMethod>processFiles</mutatedMethod>
+    <mutatedMethod>execute</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
     <description>replaced call to java/util/Objects::toString with argument</description>
-    <lineContent>+ Objects.toString(checkstyleVersion, &quot;&quot;)</lineContent>
+    <lineContent>final String version = Objects.toString(</lineContent>
   </mutation>
 
   <mutation unstable="false">
