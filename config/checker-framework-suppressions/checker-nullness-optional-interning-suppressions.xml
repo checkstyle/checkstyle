@@ -4820,65 +4820,10 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
     <specifier>assignment</specifier>
     <message>incompatible types in assignment.</message>
-    <lineContent>columnFilter = null;</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull CsvFilterElement
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
     <lineContent>lineFilter = null;</lineContent>
     <details>
       found   : null (NullType)
       required: @Initialized @NonNull CsvFilterElement
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>lineFilter = null;</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull CsvFilterElement
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>checkRegexp = null;</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull Pattern
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>fileRegexp = null;</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull Pattern
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>messageRegexp = null;</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull Pattern
     </details>
   </checkerFrameworkError>
 
@@ -4916,6 +4861,17 @@
       @Initialized @NonNull boolean equals(@Initialized @NonNull SuppressFilterElement this, @Initialized @NonNull Object p0)
       cannot override method in @Initialized @NonNull Object
       @Initialized @NonNull boolean equals(@Initialized @NonNull Object this, @Initialized @Nullable Object p0)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return result;</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable Pattern
+      method return type: @Initialized @NonNull Pattern
     </details>
   </checkerFrameworkError>
 
