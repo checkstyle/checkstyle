@@ -2634,7 +2634,28 @@ public final class JavadocTokenTypes {
     /** Frame html tag. */
     public static final int FRAME_TAG = JavadocParser.RULE_frameTag + RULE_TYPES_OFFSET;
 
-    /** Hr html tag. */
+    /**
+     * Hr html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code text above line<hr> test after line}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   |--LEADING_ASTERISK ->  *
+     *   |--TEXT ->  text above line
+     *   |--HTML_ELEMENT -> HTML_ELEMENT
+     *   |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *   |       `--HR_TAG -> HR_TAG
+     *   |           |--START -> <
+     *   |           |--HR_HTML_TAG_NAME -> hr
+     *   |           `--END -> >
+     *   |--TEXT ->  test after line
+     *   |--NEWLINE -> \r\n
+     *   |--TEXT ->
+     * }
+     * </pre>
+     */
     public static final int HR_TAG = JavadocParser.RULE_hrTag + RULE_TYPES_OFFSET;
 
     /**
