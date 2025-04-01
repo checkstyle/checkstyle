@@ -705,7 +705,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     public void testSetFileValueByFile() throws IOException {
         final String filename = getPath("InputCheckstyleAntTaskCheckstyleAntTest.properties");
         final CheckstyleAntTask.Property property = new CheckstyleAntTask.Property();
-        property.setFile(new File(filename));
+        property.setFile(java.nio.file.Path.of(filename));
         assertWithMessage("File path is unexpected")
                 .that(new File(filename).getAbsolutePath())
                 .isEqualTo(property.getValue());
