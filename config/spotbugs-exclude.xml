@@ -335,4 +335,10 @@
     <Class name="com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck"/>
     <Bug pattern="AT_STALE_THREAD_WRITE_OF_PRIMITIVE"/>
   </Match>
+  <Match>
+    <!-- Suppress NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE in configureGlobalProperties -->
+    <Class name="com.puppycrawl.tools.checkstyle.site.PropertiesMacro"/>
+    <Method name="configureGlobalProperties"/>
+    <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE"/>
+  </Match>
 </FindBugsFilter>
