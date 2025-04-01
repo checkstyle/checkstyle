@@ -39,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import org.checkerframework.checker.nullness.qual.RequiresNonNull;
 
 /**
  * Abstract super class for header checks.
@@ -90,6 +91,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      * @param uri the uri of the header to load.
      * @throws CheckstyleException if fileName is empty.
      */
+    @RequiresNonNull("configuration")
     public void setHeaderFile(URI uri) throws CheckstyleException {
         if (uri == null) {
             throw new CheckstyleException(

@@ -56,6 +56,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import org.checkerframework.checker.nullness.qual.RequiresNonNull;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -150,6 +151,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @param fileName the cache file.
      * @throws IOException if there are some problems with file loading.
      */
+    @RequiresNonNull("configuration")
     public void setCacheFile(String fileName) throws IOException {
         final Configuration configuration = getConfiguration();
         cacheFile = new PropertyCacheFile(configuration, fileName);

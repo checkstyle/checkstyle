@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.api;
 import java.util.Map;
 
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
+import org.checkerframework.checker.nullness.qual.RequiresNonNull;
 
 /**
  * Serves as an abstract base class for all modules that report inspection
@@ -101,6 +102,7 @@ public abstract class AbstractViolationReporter
      *
      * @return unmodifiable map containing custom messages
      */
+    @RequiresNonNull("configuration")
     protected Map<String, String> getCustomMessages() {
         return getConfiguration().getMessages();
     }
