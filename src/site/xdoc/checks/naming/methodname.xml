@@ -82,7 +82,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"/&gt;
@@ -102,7 +102,7 @@ class Example1 {
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters, digits, and underscores is:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"&gt;
@@ -122,7 +122,7 @@ class Example2 {
           An example of how to configure the check to allow method names to be equal to the
           residing class name is:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"&gt;
@@ -143,7 +143,7 @@ class Example3 {
           An example of how to configure the check to disallow method names to be equal to the
           residing class name is:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"&gt;
@@ -164,7 +164,7 @@ class Example4 {
         <p id="Example5-config">
           An example of how to suppress the check to public and protected methods:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"&gt;

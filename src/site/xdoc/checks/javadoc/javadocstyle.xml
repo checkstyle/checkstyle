@@ -185,7 +185,7 @@
           To configure the default check:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocStyle"/&gt;
@@ -246,7 +246,7 @@ public class Example1 {
         <p id="Example2-config">
           To configure the check for <code>public</code> scope:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocStyle"&gt;
@@ -310,7 +310,7 @@ public class Example2 {
           <code>package</code> scope:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocStyle"&gt;
@@ -374,7 +374,7 @@ public class Example3 {
           To configure the check to turn off first sentence checking:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocStyle"&gt;
@@ -436,7 +436,7 @@ public class Example4 {
         <p id="Example5-config">
           To configure the check to turn off validation of incomplete html tags:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocStyle"&gt;
@@ -499,7 +499,7 @@ public class Example5 {
         <p id="Example6-config">
           To configure the check for only class definitions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocStyle"&gt;

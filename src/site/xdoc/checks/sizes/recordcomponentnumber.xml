@@ -50,7 +50,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RecordComponentNumber"/&gt;
@@ -78,7 +78,7 @@ class Example1{
           To configure the check to allow 5 record components at all access modifier
           levels for record definitions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RecordComponentNumber"&gt;
@@ -108,7 +108,7 @@ class Example2{
           To configure the check to allow 10 record components for a public record definition,
           but 3 for private record definitions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RecordComponentNumber"&gt;

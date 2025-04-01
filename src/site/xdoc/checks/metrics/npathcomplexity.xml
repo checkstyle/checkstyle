@@ -129,7 +129,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NPathComplexity"/&gt;
@@ -193,7 +193,7 @@ public abstract class Example1 {
         <p id="Example2-config">
           To configure the check with a threshold of 100:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NPathComplexity"&gt;

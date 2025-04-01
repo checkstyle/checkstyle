@@ -70,7 +70,7 @@
             To configure the check such that no violations arise.
             Default values of properties are used.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpHeader"/&gt;
 &lt;/module&gt;
@@ -86,7 +86,7 @@ public class Example1 { }
           To configure the check to use header file <code>&quot;java.header&quot;</code> and
           <code>10</code> and <code>13</code> multi-lines:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpHeader"&gt;
     &lt;property name="headerFile" value="${config.folder}/java.header"/&gt;
@@ -127,7 +127,7 @@ public class Example2 { }
           To configure the check to verify that each file starts with the
           header
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpHeader"&gt;
     &lt;property
@@ -147,7 +147,7 @@ public class Example3 { }
         <p id="Example4-config">
           For regex containing <code>&quot;.*&quot;</code>
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpHeader"&gt;
     &lt;property

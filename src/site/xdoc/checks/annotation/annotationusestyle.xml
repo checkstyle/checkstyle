@@ -124,7 +124,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AnnotationUseStyle"/&gt;
@@ -156,7 +156,7 @@ class TestStyle1
           To configure the check to enforce an <code>expanded</code> style,
           with a closing parenthesis and a trailing array comma set to <code>never</code>.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AnnotationUseStyle"&gt;
@@ -191,7 +191,7 @@ class TestStyle2 {
           To configure the check to enforce an <code>expanded</code> style,
           with a closing parenthesis and a trailing array comma set to <code>never</code>.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AnnotationUseStyle"&gt;
@@ -226,7 +226,7 @@ class TestStyle3 {
           To configure the check to enforce a trailing array comma,
           with ignoring the elementStyle and a closing parenthesis.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AnnotationUseStyle"&gt;

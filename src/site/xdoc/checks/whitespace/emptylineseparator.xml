@@ -129,7 +129,7 @@
         <p id="Example1-config">
             To configure the default check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="EmptyLineSeparator"/&gt;
@@ -173,7 +173,7 @@ class Example1 {
           <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
                   METHOD_DEF</a>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="EmptyLineSeparator"&gt;
@@ -212,7 +212,7 @@ class Example2 {
         <p id="Example3-config">
           To allow no empty line between fields:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="EmptyLineSeparator"&gt;
@@ -254,7 +254,7 @@ class Example3 {
         <p id="Example4-config">
           To disallow multiple empty lines between class members:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="EmptyLineSeparator"&gt;
@@ -295,7 +295,7 @@ class Example4 {
           To disallow multiple empty lines inside constructor,
             initialization block and method:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="EmptyLineSeparator"&gt;

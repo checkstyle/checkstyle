@@ -75,7 +75,7 @@
         <p id="Example1-config">
           To configure the default check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocBlockTagLocation"/&gt;
@@ -95,7 +95,7 @@
           To configure the check to verify tags from
           <a href="https://openjdk.org/jeps/8068562">JEP 8068562</a> only:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocBlockTagLocation"&gt;
@@ -107,7 +107,7 @@
         <p id="Example3-config">
           To configure the check to verify all default tags and some custom tags in addition:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocBlockTagLocation"&gt;

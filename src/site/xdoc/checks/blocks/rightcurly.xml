@@ -106,7 +106,7 @@
 
       <subsection name="Examples" id="Examples">
         <p id="Example1-config"> To configure the check: </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RightCurly"/&gt;
@@ -170,7 +170,7 @@ public class Example1 {
           METHOD_DEF</a>
           tokens:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RightCurly"&gt;
@@ -224,7 +224,7 @@ public class Example2 {
           Switch</a>
           Statements and Switch Cases:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RightCurly"&gt;
@@ -271,7 +271,7 @@ class Example3 {
           METHOD_DEF</a>
           tokens:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RightCurly"&gt;
@@ -321,7 +321,7 @@ public class Example4 {
           Switch</a>
           Statements and Switch Cases:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RightCurly"&gt;

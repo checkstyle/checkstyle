@@ -114,7 +114,7 @@
           between a comment containing <code>CHECKSTYLE:OFF</code> and a comment containing
           <code>CHECKSTYLE:ON</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressionCommentFilter"/&gt;
@@ -161,7 +161,7 @@ class Example1
           check</code> and <code>// resume constant check</code> marks
           legitimate constant names:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressionCommentFilter"&gt;
@@ -213,7 +213,7 @@ class Example2
           variable or parameter known not to be used by the code by
           matching the variable name in the message through a specified message in messageFormat:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressionCommentFilter"&gt;
@@ -266,7 +266,7 @@ class Example3
           in comment <code>CSOFF: <i>regexp</i></code>
           and <code>CSON: <i>regexp</i></code> mark a matching check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressionCommentFilter"&gt;
@@ -317,7 +317,7 @@ class Example4
           containing <code>CHECKSTYLE_OFF: ALMOST_ALL</code> and a comment containing
           <code>CHECKSTYLE_OFF: ALMOST_ALL</code> except for the <em>ConstantName</em> check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressionCommentFilter"&gt;
@@ -373,7 +373,7 @@ class Example5
           to the ID written in the offCommentFormat and onCommentFormat. Config for such a
           case is written below:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressionCommentFilter"&gt;
@@ -428,7 +428,7 @@ class Example6
         <p id="Example7-config">
           Example of how to configure the check to suppress checks by name defined in comment.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressionCommentFilter"&gt;
@@ -478,7 +478,7 @@ class Example7
         <p id="Example8-config">
           Example depicting use of checkC and checkCPP style comments
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressionCommentFilter"&gt;

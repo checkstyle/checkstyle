@@ -69,7 +69,7 @@ for (int a[]={0};a[0] &lt; 10;a[0]++) {
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ModifiedControlVariable"/&gt;
@@ -104,7 +104,7 @@ class Example1 {
         <p id="Example2-config">
           An example of how to configure the check so that it skips enhanced For Loop Variable is:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ModifiedControlVariable"&gt;

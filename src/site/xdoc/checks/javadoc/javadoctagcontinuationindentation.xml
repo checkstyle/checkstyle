@@ -52,7 +52,7 @@
         <p id="Example1-config">
           To configure the default check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocTagContinuationIndentation"/&gt;
@@ -89,7 +89,7 @@ class Example1 {
         <p id="Example2-config">
           To configure the check with two spaces indentation:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocTagContinuationIndentation"&gt;
@@ -128,7 +128,7 @@ class Example2 {
         <p id="Example3-config">
           To configure the check to show violations for Tight-HTML Rules:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocTagContinuationIndentation"&gt;

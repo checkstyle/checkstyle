@@ -87,7 +87,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NoWhitespaceBefore"/&gt;
@@ -125,7 +125,7 @@ class Example1 {
         <p id="Example2-config">
             To configure the check to allow linebreaks before default tokens:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NoWhitespaceBefore"&gt;
@@ -154,7 +154,7 @@ class Example2 {
         <p id="Example3-config">
         To Configure the check to restrict the use of whitespace before METHOD_REF and DOT tokens:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NoWhitespaceBefore"&gt;
@@ -179,7 +179,7 @@ class Example3 {
         <p id="Example4-config">
            To configure the check to allow linebreak before METHOD_REF and DOT tokens:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NoWhitespaceBefore"&gt;

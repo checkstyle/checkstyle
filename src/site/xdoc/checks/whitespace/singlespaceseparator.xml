@@ -65,7 +65,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
           To configure the check:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SingleSpaceSeparator"/&gt;
@@ -88,7 +88,7 @@ class Example1 {
           To configure the check so that it validates comments:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SingleSpaceSeparator"&gt;

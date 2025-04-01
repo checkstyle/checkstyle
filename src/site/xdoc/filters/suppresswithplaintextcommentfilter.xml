@@ -104,7 +104,7 @@
           <code>// CHECKSTYLE:ON</code> (the default comments).
           Checker is configured to check only properties files using UniqueProperties check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;property name="fileExtensions" value="properties"/&gt;
 
@@ -130,7 +130,7 @@ keyC=value5
           containing <code>RESUME CHECK</code>.
           Checker is configured to check only properties files using UniqueProperties check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;property name="fileExtensions" value="properties"/&gt;
 
@@ -161,7 +161,7 @@ keyC=value5
           Checker is configured to check only properties files using both UniqueProperties check
           and OrderedProperties check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;property name="fileExtensions" value="properties"/&gt;
 
@@ -196,7 +196,7 @@ keyC=value5
           Checker is configured to check only XML files using RegexpSingleline check to detect
           disallowed 'code' values for the 'type' parameter:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;property name="fileExtensions" value="xml"/&gt;
 
@@ -242,7 +242,7 @@ keyC=value5
           Checker is configured to check only XML files using RegexpSingleline check to detect
           disallowed 'code' values for the 'type' parameter:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;property name="fileExtensions" value="xml"/&gt;
 
@@ -290,7 +290,7 @@ keyC=value5
           Checker is configured to check only XML files using RegexpSingleline check to detect
           disallowed 'code' and 'config' values for the 'type' parameter:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;property name="fileExtensions" value="xml"/&gt;
 
@@ -350,7 +350,7 @@ keyC=value5
           Checker is configured to check only XML files using RegexpSingleline check to detect
           disallowed 'code' and 'config' values for the 'type' parameter:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;property name="fileExtensions" value="xml"/&gt;
 
@@ -402,7 +402,7 @@ keyC=value5
           usage of JOIN operations and LineLength check to detect lines exceeding 60
           characters:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;property name="fileExtensions" value="sql"/&gt;
 
@@ -442,7 +442,7 @@ WHERE u.registration_date &gt;= '2023-01-01' AND u.status = 'active';
           Checker is configured to use LineLength check to detect lines exceeding the maximum
           length of 100 characters:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="LineLength"&gt;
       &lt;property name="max" value="100"/&gt;
