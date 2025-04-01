@@ -2518,7 +2518,9 @@ public final class JavadocTokenTypes {
     /** Col html tag. */
     public static final int COL_TAG = JavadocParser.RULE_colTag + RULE_TYPES_OFFSET;
 
-    /** Frame html tag.
+    /**
+     * Frame html tag.
+     *
      * <p><b>Example:</b></p>
      * <pre>{@code &lt area shape="rect" &gt}</pre>
      * <b>Tree:</b>
