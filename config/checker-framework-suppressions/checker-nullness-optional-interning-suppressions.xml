@@ -793,6 +793,10 @@
     <lineContent>.collect(Collectors.groupingBy(Class::getSimpleName,</lineContent>
     <details>
       unsatisfiable constraint: @Initialized @Nullable String &lt;: @Initialized @NonNull String
+      @Initialized @Nullable String &lt;: use of U from Collectors.mapping(Class::getCanonicalName, Collectors.toCollection(HashSet::new))
+      From complementary bound.: @Initialized @Nullable String -&gt; use of U from Collectors.mapping(Class::getCanonicalName, Collectors.toCollection(HashSet::new))
+      Class::getCanonicalName -&gt; inference type: java.util.function.Function&lt;? super java.lang.Class&lt;?&gt;,? extends U&gt;
+      From: Argument constraint
     </details>
   </checkerFrameworkError>
 
@@ -2801,6 +2805,11 @@
     <lineContent>return new SimpleEntry&lt;&gt;(variableUsageAst, dist);</lineContent>
     <details>
       unsatisfiable constraint: @Initialized @Nullable DetailAST &lt;: @Initialized @NonNull DetailAST
+      use of K from new SimpleEntry&lt;&gt;(variableUsageAst, dist) &lt;: @Initialized @NonNull DetailAST
+      From complementary bound.: use of K from new SimpleEntry&lt;&gt;(variableUsageAst, dist) &lt;= @Initialized @NonNull DetailAST
+      inference type: java.util.AbstractMap.SimpleEntry&lt;K,V&gt; &lt;: @Initialized @NonNull Entry&lt;@Initialized @NonNull DetailAST, @Initialized @NonNull Integer&gt;
+      inference type: java.util.AbstractMap.SimpleEntry&lt;K,V&gt; -&gt; @Initialized @NonNull Entry&lt;@Initialized @NonNull DetailAST, @Initialized @NonNull Integer&gt;
+      From: Constraint between method call type and target type for method call:new SimpleEntry&lt;&gt;(variableUsageAst, dist)
     </details>
   </checkerFrameworkError>
 
@@ -2811,6 +2820,11 @@
     <lineContent>return new SimpleEntry&lt;&gt;(variableUsageAst, dist);</lineContent>
     <details>
       unsatisfiable constraint: @Initialized @Nullable DetailAST &lt;: @Initialized @NonNull DetailAST
+      use of K from new SimpleEntry&lt;&gt;(variableUsageAst, dist) &lt;: @Initialized @NonNull DetailAST
+      From complementary bound.: use of K from new SimpleEntry&lt;&gt;(variableUsageAst, dist) &lt;= @Initialized @NonNull DetailAST
+      inference type: java.util.AbstractMap.SimpleEntry&lt;K,V&gt; &lt;: @Initialized @NonNull Entry&lt;@Initialized @NonNull DetailAST, @Initialized @NonNull Integer&gt;
+      inference type: java.util.AbstractMap.SimpleEntry&lt;K,V&gt; -&gt; @Initialized @NonNull Entry&lt;@Initialized @NonNull DetailAST, @Initialized @NonNull Integer&gt;
+      From: Constraint between method call type and target type for method call:new SimpleEntry&lt;&gt;(variableUsageAst, dist)
     </details>
   </checkerFrameworkError>
 
@@ -5523,6 +5537,12 @@
     <lineContent>.collect(Collectors.toUnmodifiableList());</lineContent>
     <details>
       unsatisfiable constraint: @Initialized @PolyNull AbstractNode &lt;: @Initialized @NonNull AbstractNode
+      use of T from Collectors.toUnmodifiableList() = @Initialized @NonNull AbstractNode
+      From complementary bound.: use of T from Collectors.toUnmodifiableList() &lt;= @Initialized @NonNull AbstractNode
+      inference type: java.util.List&lt;T&gt; &lt;: @UnknownInitialization @Nullable List&lt;@Initialized @NonNull AbstractNode&gt;
+      use of R from getItems(event).stream().map(AbstractNode.class::cast).collect(Collectors.toUnmodifiableList()) &lt;: @UnknownInitialization @Nullable List&lt;@Initialized @NonNull AbstractNode&gt;
+      From complementary bound.: use of R from getItems(event).stream().map(AbstractNode.class::cast).collect(Collectors.toUnmodifiableList()) -&gt; @UnknownInitialization @Nullable List&lt;@Initialized @NonNull AbstractNode&gt;
+      From: Constraint between method call type and target type for method call:getItems(event).stream().map(AbstractNode.class::cast).collect(Collectors.toUnmodifiableList())
     </details>
   </checkerFrameworkError>
 
@@ -5902,6 +5922,8 @@
     <lineContent>.map(ElementNode::getUnderlyingNode)</lineContent>
     <details>
       unsatisfiable constraint: @Initialized @PolyNull ElementNode &lt;: @Initialized @NonNull ElementNode
+      ElementNode::getUnderlyingNode -&gt; inference type: java.util.function.Function&lt;? super com.puppycrawl.tools.checkstyle.xpath.ElementNode,? extends R&gt;
+      From: Argument constraint
     </details>
   </checkerFrameworkError>
 
@@ -6334,6 +6356,8 @@
     <lineContent>.map(Pattern.class::cast)</lineContent>
     <details>
       unsatisfiable constraint: capture extends @Initialized @Nullable Object &lt;: @Initialized @PolyNull Object
+      Pattern.class::cast -&gt; inference type: java.util.function.Function&lt;? super capture of ?,? extends R&gt;
+      From: Argument constraint
     </details>
   </checkerFrameworkError>
 
@@ -6344,6 +6368,8 @@
     <lineContent>.map(String.class::cast)</lineContent>
     <details>
       unsatisfiable constraint: capture extends @Initialized @Nullable Object &lt;: @Initialized @PolyNull Object
+      String.class::cast -&gt; inference type: java.util.function.Function&lt;? super capture of ?,? extends R&gt;
+      From: Argument constraint
     </details>
   </checkerFrameworkError>
 
@@ -6593,7 +6619,20 @@
     <message>Could not infer type arguments for Map.copyOf</message>
     <lineContent>return Map.copyOf(map);</lineContent>
     <details>
-      unsatisfiable constraint: K extends @Initialized @Nullable Object &lt;: @Initialized @NonNull Object V extends @Initialized @Nullable Object &lt;: @Initialized @NonNull Object
+      unsatisfiable constraint: K extends @Initialized @Nullable Object &lt;: @Initialized @NonNull Object
+      capture extends K extends @Initialized @Nullable Object &lt;: use of K from Map.copyOf(map)
+      From complementary bound.: capture extends K extends @Initialized @Nullable Object &lt;= inference type: ? extends K
+      @Initialized @NonNull Map&lt;capture extends K extends @Initialized @Nullable Object, capture extends V extends @Initialized @Nullable Object&gt; &lt;: inference type: java.util.Map&lt;? extends K,? extends V&gt;
+      @Initialized @NonNull Map&lt;capture extends K extends @Initialized @Nullable Object, capture extends V extends @Initialized @Nullable Object&gt; -&gt; inference type: java.util.Map&lt;? extends K,? extends V&gt;
+      map -&gt; inference type: java.util.Map&lt;? extends K,? extends V&gt;
+      From: Argument constraint
+      V extends @Initialized @Nullable Object &lt;: @Initialized @NonNull Object
+      capture extends V extends @Initialized @Nullable Object &lt;: use of V from Map.copyOf(map)
+      From complementary bound.: capture extends V extends @Initialized @Nullable Object &lt;= inference type: ? extends V
+      @Initialized @NonNull Map&lt;capture extends K extends @Initialized @Nullable Object, capture extends V extends @Initialized @Nullable Object&gt; &lt;: inference type: java.util.Map&lt;? extends K,? extends V&gt;
+      @Initialized @NonNull Map&lt;capture extends K extends @Initialized @Nullable Object, capture extends V extends @Initialized @Nullable Object&gt; -&gt; inference type: java.util.Map&lt;? extends K,? extends V&gt;
+      map -&gt; inference type: java.util.Map&lt;? extends K,? extends V&gt;
+      From: Argument constraint
     </details>
   </checkerFrameworkError>
 
@@ -6604,6 +6643,12 @@
     <lineContent>.collect(Collectors.toUnmodifiableList());</lineContent>
     <details>
       unsatisfiable constraint: T extends @Initialized @PolyNull Object &lt;: T extends @Initialized @Nullable Object
+      use of T from Collectors.toUnmodifiableList() = T extends @Initialized @Nullable Object
+      From complementary bound.: use of T from Collectors.toUnmodifiableList() &lt;= T extends @Initialized @Nullable Object
+      inference type: java.util.List&lt;T&gt; &lt;: @Initialized @NonNull List&lt;T extends @Initialized @Nullable Object&gt;
+      use of R from items.stream().map(elementType::cast).collect(Collectors.toUnmodifiableList()) &lt;: @Initialized @NonNull List&lt;T extends @Initialized @Nullable Object&gt;
+      From complementary bound.: use of R from items.stream().map(elementType::cast).collect(Collectors.toUnmodifiableList()) -&gt; @Initialized @NonNull List&lt;T extends @Initialized @Nullable Object&gt;
+      From: Constraint between method call type and target type for method call:items.stream().map(elementType::cast).collect(Collectors.toUnmodifiableList())
     </details>
   </checkerFrameworkError>
 
