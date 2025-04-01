@@ -81,7 +81,7 @@
           Default values of properties are used.
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="Header"/&gt;
 &lt;/module&gt;
@@ -100,7 +100,7 @@ public class Example1 { }
           copyright dates or other content that slightly different in some files:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="Header"&gt;
     &lt;property name="headerFile" value="${config.folder}/java.header"/&gt;
@@ -141,7 +141,7 @@ public class Example2 { }
         <p id="Example3-config">
           Without the need for an external header file:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="Header"&gt;
     &lt;property name="header"
@@ -159,7 +159,7 @@ public class Example3 { }
         <p id="Example4-config">
           In case target file is less in size than header file:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="Header"&gt;
     &lt;property name="headerFile" value="${config.folder}/java.header"/&gt;

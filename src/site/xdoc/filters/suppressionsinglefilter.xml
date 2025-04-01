@@ -103,7 +103,7 @@
           and <code>'Missing a Javadoc comment'</code> violations
           for all lines and files:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocStyle"/&gt;
@@ -138,7 +138,7 @@ public class Example1 {
           Suppress check by <a href="https://checkstyle.org/config.html#Id">module id</a>
           when config have two instances on the same check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="EqualsAvoidNull"/&gt;
   &lt;module name="JavadocMethod"/&gt;
@@ -163,7 +163,7 @@ public class Example2 {
         <p id="Example3-config">
           Suppress all checks for hidden files and folders:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpSingleline"&gt;
     &lt;property name="format" value=".*example.*"/&gt;
@@ -197,7 +197,7 @@ public class Example3 {
         <p id="Example4-config">
           Suppress all checks for Maven-generated code:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="NoWhitespaceAfter"/&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
@@ -224,7 +224,7 @@ public class Example4 {
         <p id="Example5-config">
           Suppress all checks for archives, classes and other binary files:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="MethodName"/&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
@@ -249,7 +249,7 @@ public class Example5 {
         <p id="Example6-config">
           Suppress all checks for image files:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="ConstantName"/&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
@@ -271,7 +271,7 @@ public class Example6 {
         <p id="Example7-config">
           Suppress all checks for non-java files:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="MemberName"/&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
@@ -299,7 +299,7 @@ public class Example7 {
         <p id="Example8-config">
           Suppress all checks in generated sources:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ParameterNumber"&gt;
@@ -326,7 +326,7 @@ public class Example8 {
         <p id="Example9-config">
           Suppress FileLength check on integration tests in certain folder:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="FileLength"&gt;
@@ -349,7 +349,7 @@ public class Example9 {
         <p id="Example10-config">
           Suppress naming violations on variable named 'log' in all files:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="MemberName"&gt;
     &lt;property name="format" value="^[A-Z][a-zA-Z0-9]*$"/&gt;

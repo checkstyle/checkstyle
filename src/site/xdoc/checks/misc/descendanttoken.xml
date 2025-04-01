@@ -108,7 +108,7 @@
           To configure the check to produce a violation on a switch statement
           with no default case:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -192,7 +192,7 @@ class Example1 {
         <p id="Example2-config">
           To configure the check to produce a violation on a switch with too many cases:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -277,7 +277,7 @@ class Example2 {
           To configure the check to produce a violation on a switch that is
           nested in another switch:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -362,7 +362,7 @@ class Example3 {
           To configure the check to produce a violation on a
           condition in <code>for</code> which performs no check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -408,7 +408,7 @@ class Example4 {
           <code>for</code> performs no setup (where a <code>while</code>
           statement could be used instead):
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -453,7 +453,7 @@ class Example5 {
           To configure the check to produce a violation on a return statement
           from within a catch or finally block:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -510,7 +510,7 @@ class Example6 {
           To configure the check to produce a violation on a try statement
           within a catch or finally block:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -567,7 +567,7 @@ class Example7 {
           To configure the check to produce a violation on a method with
           too many local variables:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -619,7 +619,7 @@ class Example8 {
           To configure the check to produce a violation on a method
           with too many returns:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -670,7 +670,7 @@ class Example9 {
           To configure the check to produce a violation on a method
           which throws too many exceptions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -700,7 +700,7 @@ class Example10 {
           To configure the check to produce a violation on a method
           with too many expressions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -732,7 +732,7 @@ class Example11 {
         <p id="Example12-config">
           To configure the check to produce a violation on an empty statement:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -764,7 +764,7 @@ class Example12 {
           To configure the check to produce a violation on a class or interface
           with too many fields:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -806,7 +806,7 @@ interface Test2 {
           To configure the check to produce a violation on
           comparing <code>this</code> with <code>null</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -849,7 +849,7 @@ class Example14 {
           To configure the check to produce a violation on a <code>String</code>
           literal equality check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;
@@ -882,7 +882,7 @@ class Example15 {
           To configure the check to produce a violation on an assert statement
           that may have side effects:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="DescendantToken"&gt;

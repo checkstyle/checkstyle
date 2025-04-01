@@ -54,7 +54,7 @@
           With the default configuration, no files are matched against the
           <code>fileNamePattern</code>, so the filter does not affect the audit:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
 
   &lt;module name="RegexpOnFilename"&gt;
@@ -82,7 +82,7 @@
         <p id="Example2-config">
           To configure the filter to exclude all 'module-info.java' files:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
 
   &lt;module name="RegexpOnFilename"&gt;
@@ -114,7 +114,7 @@
           or end with &quot;Client&quot; in names or named as &quot;Remote.java&quot; or &quot;Client.java&quot;
           use <a href="https://www.regular-expressions.info/lookaround.html">negative lookahead</a>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
 
   &lt;module name="RegexpOnFilename"&gt;
@@ -146,7 +146,7 @@
           To configure the filter to exclude all 'test' folder files and all 'module-info.java'
           files:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
 
   &lt;module name="RegexpOnFilename"&gt;

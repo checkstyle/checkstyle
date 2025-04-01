@@ -326,6 +326,13 @@ span.wrapper.inline {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+hr.example-separator {
+    border: none;
+    height: 1.5px;
+    background: linear-gradient(to right, #777, #555, #777);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
 @media screen and (max-width: 823px) {
   #leftColumn {
     float: none;

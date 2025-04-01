@@ -123,7 +123,7 @@
 
       <subsection name="Examples" id="Examples">
         <p id="Example0-config"> Default configuration does nothing: </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"/&gt;
@@ -134,7 +134,7 @@
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;
@@ -157,7 +157,7 @@ public class Example1 {}
 public class Example2 {}
 </code></pre></div>
         <p id="Example3-config"> Your statement may be multiline. </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;
@@ -174,7 +174,7 @@ public class Example2 {}
 public class Example3 {}
 </code></pre></div>
         <p id="Example4-config">Configure Check to make sure that it appear only once:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;
@@ -199,7 +199,7 @@ class Example41 {}
         <p id="Example5-config">Instead of printing whole regexp that might be unnecessary for
           user, you can substitute it to some static text:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;
@@ -221,7 +221,7 @@ public class Example5 {}
         <p id="Example6-config">
           Configure the check to make sure there are no calls to <code>System.out.println</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;
@@ -244,7 +244,7 @@ public class Example6 {
 }
 </code></pre></div>
         <p id="Example7-config">Configure to ignore comments:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;
@@ -270,7 +270,7 @@ public class Example7 {
         <p id="Example8-config">
           Configure the check to find trailing whitespace at the end of a line:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;
@@ -292,7 +292,7 @@ public class Example8 {
         <p id="Example9-config">
           Configure the check to find case-insensitive occurrences of &quot;debug&quot;:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;
@@ -320,7 +320,7 @@ public class Example9 {
           When the limit is reached the check aborts with a message
           reporting that the limit has been reached.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;
@@ -348,7 +348,7 @@ public class Example10 {
           To configure the check to verify that each file has the
           multiline header where year could be any digits.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Regexp"&gt;

@@ -60,7 +60,7 @@
         <p id="Example1-config">
           To configure the check to accept lines up to 80 characters long:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="LineLength"/&gt;
 &lt;/module&gt;
@@ -91,7 +91,7 @@ class Example1 {
         <p id="Example2-config">
           To configure the check to accept lines up to 120 characters long:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="LineLength"&gt;
     &lt;property name="max" value="120"/&gt;
@@ -125,7 +125,7 @@ class Example2 {
           To configure the check to ignore lines that begin with <code>&quot; * &quot;</code>code,
           followed by just one word, such as within a Javadoc comment:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="LineLength"&gt;
     &lt;property name="ignorePattern" value="^ *\* *[^ ]+$"/&gt;
@@ -159,7 +159,7 @@ class Example3 {
           To configure the check to only validate xml and property files and ignore other
           extensions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="LineLength"&gt;
     &lt;property name="fileExtensions" value="xml, properties"/&gt;
@@ -192,7 +192,7 @@ class Example4 {
         <p id="Example5-config">
           To configure check to validate <code>import</code> statements:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="LineLength"&gt;
     &lt;property name="ignorePattern"

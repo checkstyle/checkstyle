@@ -99,7 +99,7 @@
           To configure the check:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="TypeName"/&gt;
@@ -120,7 +120,7 @@ class Example1 {
           followed by letters, digits, and underscores. Also, suppress the check from being
           applied to protected and private type:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="TypeName"&gt;
@@ -145,7 +145,7 @@ class Example2 {   // violation 'Name 'Example2' must match pattern'
           interface names begin with <code>&quot;I_&quot;</code>, followed by
           letters and digits:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="TypeName"&gt;

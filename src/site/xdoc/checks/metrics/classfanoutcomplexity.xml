@@ -81,7 +81,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassFanOutComplexity"/&gt;
@@ -114,7 +114,7 @@ class Time1 {}
         <p id="Example2-config">
           To configure the check with a threshold of 2:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassFanOutComplexity"&gt;
@@ -151,7 +151,7 @@ class Time2 {}
           To configure the check with three excluded classes <code>HashMap</code>,
           <code>HashSet</code> and <code>Place3</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassFanOutComplexity"&gt;
@@ -188,7 +188,7 @@ class Time3 {}
           To configure the check to exclude classes with a regular expression
           <code>.*Reader$</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassFanOutComplexity"&gt;
@@ -225,7 +225,7 @@ class Time4 {}
         <p id="Example5-config">
           To configure the check with an excluded package <code>java.io</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassFanOutComplexity"&gt;
@@ -289,7 +289,7 @@ class Time5 {}
           even if it was listed in the <code>excludedPackages</code> parameter. For example,
           assuming the config is
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassFanOutComplexity"&gt;

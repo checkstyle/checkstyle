@@ -92,7 +92,7 @@ StaticMethodCandidateCheck.name = Static Method Candidate
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="NewlineAtEndOfFile"/&gt;
 &lt;/module&gt;
@@ -114,7 +114,7 @@ public class Example2 { // ⤶
         <p id="Example3-config">
           To configure the check to always use Unix-style line separators:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="NewlineAtEndOfFile"&gt;
     &lt;property name="lineSeparator" value="lf"/&gt;
@@ -130,7 +130,7 @@ public class Example3 { // ⤶
         <p id="Example4-config">
           To configure the check to work only on Java, XML and Cpp files:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="NewlineAtEndOfFile"&gt;
     &lt;property name="fileExtensions" value="java, xml, cpp"/&gt;

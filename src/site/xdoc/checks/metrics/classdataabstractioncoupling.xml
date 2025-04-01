@@ -115,7 +115,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassDataAbstractionCoupling"/&gt;
@@ -163,7 +163,7 @@ public class Example2 {
         <p id="Example3-config">
           To configure the check with a threshold of 2:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassDataAbstractionCoupling"&gt;
@@ -206,7 +206,7 @@ public class Example4 {
           To configure the check with three excluded classes <code>HashMap</code>,
           <code>HashSet</code> and <code>Example1</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassDataAbstractionCoupling"&gt;
@@ -262,7 +262,7 @@ public class Example6 {
           To configure the check to exclude classes with a regular expression
           <code>.*Reader$</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassDataAbstractionCoupling"&gt;
@@ -320,7 +320,7 @@ public class Example8 {
           To configure the check with an excluded package <code>java.io</code>:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassDataAbstractionCoupling"&gt;
@@ -431,7 +431,7 @@ class Example10 {
           even if it was listed in the <code>excludedPackages</code> parameter. For example,
           assuming the config is
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassDataAbstractionCoupling"&gt;
