@@ -15,9 +15,10 @@ ij_java_space_before_array_initializer_left_brace = true
 indent_size = 4
 max_line_length = 100
 
-[**xdocs-examples**.java]
+[*.xml]
 ij_continuation_indent_size = 2
 indent_size = 2
+max_line_length = 160
 
-[*.xml]
-indent_size = 2
+[**spotbugs-exclude.xml]
+max_line_length = 100
