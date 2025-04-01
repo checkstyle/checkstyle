@@ -2526,8 +2526,8 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     *HTML_ELEMENT -> HTML_ELEMENT
-     * `--HTML_TAG -> HTML_TAG
+     * HTML_ELEMENT -> HTML_ELEMENT
+     *  `--HTML_TAG -> HTML_TAG
      *     |--HTML_ELEMENT_START -> HTML_ELEMENT_START
      *     |   |--START -> <
      *     |   |--HTML_TAG_NAME -> frameset
