@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.22.0-SNAPSHOT</version>
+  <version>10.22.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -210,7 +210,7 @@
     <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
     <maven.spotbugs.plugin.version>4.9.3.0</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.26.0</maven.pmd.plugin.version>
-    <pmd.version>7.11.0</pmd.version>
+    <pmd.version>7.12.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.12</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
     <saxon.version>12.5</saxon.version>
@@ -1535,7 +1535,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
-        <version>3.5.2</version>
+        <version>3.5.3</version>
         <configuration>
           <includes>
             <include>com/google/**/*.java</include>
@@ -1562,7 +1562,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.5.2</version>
+        <version>3.5.3</version>
         <configuration>
           <argLine>-Dfile.encoding=UTF-8 ${surefire.options}</argLine>
           <systemPropertyVariables>
@@ -1964,7 +1964,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-report-plugin</artifactId>
-        <version>3.5.2</version>
+        <version>3.5.3</version>
         <reportSets>
           <reportSet>
             <reports>

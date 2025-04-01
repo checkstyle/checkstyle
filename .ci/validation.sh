@@ -284,10 +284,8 @@ no-error-xwiki)
   echo "version:${CS_POM_VERSION} antlr4:${ANTLR4_VERSION}"
   mvn -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  checkout_from "https://github.com/kkoutsilis/xwiki-commons"
+  checkout_from "https://github.com/xwiki/xwiki-commons.git"
   cd .ci-temp/xwiki-commons
-  git ls-remote
-  git checkout "88f75d13376587956a5e5bd""dad0fa003383f190a"
   # Build custom Checkstyle rules
   mvn -e --no-transfer-progress -f \
     xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
@@ -318,10 +316,8 @@ no-error-xwiki)
   cd ..
   removeFolderWithProtectedFiles xwiki-rendering
   cd ..
-  checkout_from https://github.com/kkoutsilis/xwiki-platform.git
+  checkout_from https://github.com/xwiki/xwiki-platform.git
   cd .ci-temp/xwiki-platform
-  git ls-remote
-  git checkout "01848f""ca559805b535559b7b94119a95990a2b5c"
   # Validate xwiki-platform
   mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ..

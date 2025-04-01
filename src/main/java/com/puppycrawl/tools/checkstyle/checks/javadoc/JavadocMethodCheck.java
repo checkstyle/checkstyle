@@ -115,6 +115,11 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * Default value is {@code public, protected, package, private}.
  * </li>
  * <li>
+ * Property {@code allowInlineReturn} - Control whether to allow inline return tags.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
  * Property {@code allowMissingParamTags} - Control whether to ignore violations
  * when a method has parameters but does not have matching {@code param} tags in the javadoc.
  * Type is {@code boolean}.
@@ -256,12 +261,20 @@ public class JavadocMethodCheck extends AbstractCheck {
     /** Compiled regexp to match Javadoc tags with no argument. */
     private static final Pattern MATCH_JAVADOC_NOARG =
             CommonUtil.createPattern("^\\s*(?>\\*|\\/\\*\\*)?\\s*@(return|see)\\s+\\S");
+    /** Compiled regexp to match Javadoc tags with no argument allowing inline return tag. */
+    private static final Pattern MATCH_JAVADOC_NOARG_INLINE_RETURN =
+            CommonUtil.createPattern("^\\s*(?>\\*|\\/\\*\\*)?\\s*\\{?@(return|see)\\s+\\S");
     /** Compiled regexp to match first part of multilineJavadoc tags. */
     private static final Pattern MATCH_JAVADOC_NOARG_MULTILINE_START =
             CommonUtil.createPattern("^\\s*(?>\\*|\\/\\*\\*)?\\s*@(return|see)\\s*$");
     /** Compiled regexp to match Javadoc tags with no argument and {}. */
     private static final Pattern MATCH_JAVADOC_NOARG_CURLY =
             CommonUtil.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
+
+    /**
+     * Control whether to allow inline return tags.
+     */
+    private boolean allowInlineReturn;
 
     /** Specify the access modifiers where Javadoc comments are checked. */
     private AccessModifierOption[] accessModifiers = {
@@ -290,6 +303,16 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     /** Specify annotations that allow missed documentation. */
     private Set<String> allowedAnnotations = Set.of("Override");
+
+    /**
+     * Setter to control whether to allow inline return tags.
+     *
+     * @param value a {@code boolean} value
+     * @since 10.22.1
+     */
+    public void setAllowInlineReturn(boolean value) {
+        allowInlineReturn = value;
+    }
 
     /**
      * Setter to control whether to validate {@code throws} tags.
@@ -511,7 +534,11 @@ public class JavadocMethodCheck extends AbstractCheck {
      * @param comment the Javadoc comment
      * @return the tags found
      */
-    private static List<JavadocTag> getMethodTags(TextBlock comment) {
+    private List<JavadocTag> getMethodTags(TextBlock comment) {
+        Pattern matchJavadocNoArg = MATCH_JAVADOC_NOARG;
+        if (allowInlineReturn) {
+            matchJavadocNoArg = MATCH_JAVADOC_NOARG_INLINE_RETURN;
+        }
         final String[] lines = comment.getText();
         final List<JavadocTag> tags = new ArrayList<>();
         int currentLine = comment.getStartLineNo() - 1;
@@ -524,7 +551,7 @@ public class JavadocMethodCheck extends AbstractCheck {
             final Matcher javadocArgMissingDescriptionMatcher =
                 MATCH_JAVADOC_ARG_MISSING_DESCRIPTION.matcher(lines[i]);
             final Matcher javadocNoargMatcher =
-                MATCH_JAVADOC_NOARG.matcher(lines[i]);
+                matchJavadocNoArg.matcher(lines[i]);
             final Matcher noargCurlyMatcher =
                 MATCH_JAVADOC_NOARG_CURLY.matcher(lines[i]);
             final Matcher noargMultilineStart =
