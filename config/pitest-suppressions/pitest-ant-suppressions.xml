@@ -66,15 +66,6 @@
   <mutation unstable="false">
     <sourceFile>CheckstyleAntTask.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
-    <mutatedMethod>createRootModule</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/lang/String::format with argument</description>
-    <lineContent>throw new BuildException(String.format(Locale.ROOT, &quot;Unable to create Root Module: &quot;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckstyleAntTask.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
     <mutatedMethod>execute</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/lang/Package::getImplementationVersion</description>
@@ -88,15 +79,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/util/List::size</description>
     <lineContent>final int formatterCount = Math.max(1, formatters.size());</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckstyleAntTask.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
-    <mutatedMethod>getListeners</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/lang/String::format with argument</description>
-    <lineContent>throw new BuildException(String.format(Locale.ROOT, &quot;Unable to create listeners: &quot;</lineContent>
   </mutation>
 
   <mutation unstable="false">
