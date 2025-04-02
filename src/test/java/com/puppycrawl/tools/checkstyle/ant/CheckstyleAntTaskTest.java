@@ -649,7 +649,8 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
-                .startsWith("Unable to create listeners: formatters");
+                .isEqualTo("Unable to create listeners: formatters "
+                        + "{" + List.of(formatter) + "}.");
     }
 
     @Test
