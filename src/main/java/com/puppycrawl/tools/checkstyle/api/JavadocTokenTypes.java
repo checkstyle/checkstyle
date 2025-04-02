@@ -2516,7 +2516,7 @@ public final class JavadocTokenTypes {
      *  Br html tag.
      *
      *  <p><b>Example:</b></p>
-     *  <pre>{@code &lt area shape="rect" &gt}</pre>
+     *  <pre>{@code <br> line breaks<br>}</pre>
      *  <b>Tree:</b>
      *  <pre>
      *  {@code
