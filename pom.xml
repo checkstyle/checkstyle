@@ -211,7 +211,7 @@
     <maven.spotbugs.plugin.version>4.9.3.0</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.26.0</maven.pmd.plugin.version>
     <pmd.version>7.12.0</pmd.version>
-    <maven.jacoco.plugin.version>0.8.12</maven.jacoco.plugin.version>
+    <maven.jacoco.plugin.version>0.8.13</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
     <saxon.version>12.5</saxon.version>
     <maven.checkstyle.plugin.version>3.6.0</maven.checkstyle.plugin.version>
