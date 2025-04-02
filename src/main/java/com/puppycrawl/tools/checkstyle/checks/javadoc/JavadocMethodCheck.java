@@ -308,7 +308,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      * Setter to control whether to allow inline return tags.
      *
      * @param value a {@code boolean} value
-     * @since 10.22.1
+     * @since 10.23.0
      */
     public void setAllowInlineReturn(boolean value) {
         allowInlineReturn = value;
