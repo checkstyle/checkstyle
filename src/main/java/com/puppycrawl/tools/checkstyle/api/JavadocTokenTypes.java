@@ -2631,7 +2631,10 @@ public final class JavadocTokenTypes {
     /** Col html tag. */
     public static final int COL_TAG = JavadocParser.RULE_colTag + RULE_TYPES_OFFSET;
 
-    /** Frame html tag. */
+    /**
+     * Frame html tag.
+     * ....
+     */
     public static final int FRAME_TAG = JavadocParser.RULE_frameTag + RULE_TYPES_OFFSET;
 
     /**
