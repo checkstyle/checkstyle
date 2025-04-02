@@ -2860,9 +2860,37 @@ public final class JavadocTokenTypes {
     public static final int PARAM_TAG = JavadocParser.RULE_paramTag + RULE_TYPES_OFFSET;
 
     /**
-     * HTML void element {@code <embed>}.
+     * HTML void element.
      *
-     * @see #SINGLETON_ELEMENT
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <embed src="URL" type="MIME_type">
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *    |--HTML_ELEMENT -> HTML_ELEMENT
+     *    |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *    |       `--EMBED_TAG -> EMBED_TAG
+     *    |           |--START -> <
+     *    |           |--EMBED_HTML_TAG_NAME -> embed
+     *    |           |--WS ->
+     *    |           |--ATTRIBUTE -> ATTRIBUTE
+     *    |           |   |--HTML_TAG_NAME -> src
+     *    |           |   |--EQUALS -> =
+     *    |           |   `--ATTR_VALUE -> "URL"
+     *    |           |--WS ->
+     *    |           |--ATTRIBUTE -> ATTRIBUTE
+     *    |           |   |--HTML_TAG_NAME -> type
+     *    |           |   |--EQUALS -> =
+     *    |           |   `--ATTR_VALUE -> "MIME_type"
+     *    |           `--END -> >
+     *    |--NEWLINE -> \r\n
+     *    |--TEXT ->
+     * }
+     * </pre>
+     *
+     * @see #EMBED_TAG
      * @see <a href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-embed">
      *     W3 docs</a>
      */
