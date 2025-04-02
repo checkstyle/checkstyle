@@ -2282,14 +2282,14 @@ public final class JavadocTokenTypes {
      *        |             |--SLASH -> /
      *        |             |--BODY_HTML_TAG_NAME -> body
      *        |             `--END -> >
-     *          |--NEWLINE -> \n
-     *          |--LEADING_ASTERISK ->  *
-     *          |--TEXT -> /
-     *          |--NEWLINE -> \n
-     *          |--TEXT -> public class Test {
-     *          |--NEWLINE -> \n
-     *          |--TEXT -> }
-     *          |--NEWLINE -> \n
+     *        |--NEWLINE -> \n
+     *        |--LEADING_ASTERISK ->  *
+     *        |--TEXT -> /
+     *        |--NEWLINE -> \n
+     *        |--TEXT -> public class Test {
+     *        |--NEWLINE -> \n
+     *        |--TEXT -> }
+     *        |--NEWLINE -> \n
      * }
      * </pre>
      */
