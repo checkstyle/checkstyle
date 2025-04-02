@@ -183,6 +183,7 @@
         <item name="Headers" href="checks/header/index.html" collapse="true">
           <item name="Header" href="checks/header/header.html"/>
           <item name="RegexpHeader" href="checks/header/regexpheader.html"/>
+          <item name="RegexpHeader" href="checks/header/multifileregexpheader.html"/>
         </item>
         <item name="Imports" href="checks/imports/index.html" collapse="true">
           <item name="AvoidStarImport" href="checks/imports/avoidstarimport.html"/>
