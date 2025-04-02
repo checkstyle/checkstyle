@@ -1507,7 +1507,37 @@ public final class JavadocTokenTypes {
      */
     public static final int DT_HTML_TAG_NAME = JavadocParser.DT_HTML_TAG_NAME;
 
-    /** Head tag name. */
+    /**
+     * head tag name
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <head>Metadata here</head>}</pre>
+     * <b>Tree:</b>
+     * <pre>{@code
+     *  JAVADOC -> JAVADOC
+     *  |--NEWLINE -> \r\n
+     *  |--LEADING_ASTERISK ->  *
+     *  |--TEXT ->
+     *  |--HTML_ELEMENT -> HTML_ELEMENT
+     *  |   `--HEAD -> HEAD
+     *  |       |--HEAD_TAG_START -> HEAD_TAG_START
+     *  |       |   |--START -> <
+     *  |       |   |--HEAD_HTML_TAG_NAME -> head
+     *  |       |   `--END -> >
+     *  |       |--TEXT -> Metadata here
+     *  |       `--HEAD_TAG_END -> HEAD_TAG_END
+     *  |           |--START -> <
+     *  |           |--SLASH -> /
+     *  |           |--HEAD_HTML_TAG_NAME -> head
+     *  |           `--END -> >
+     *  |--NEWLINE -> \r\n
+     *  |--TEXT ->
+     *   `--EOF -> <EOF>
+     * }
+     * </pre>
+     *
+     * @see #HEAD_HTML_TAG_NAME
+     */
     public static final int HEAD_HTML_TAG_NAME = JavadocParser.HEAD_HTML_TAG_NAME;
 
     /** Html tag name. */
