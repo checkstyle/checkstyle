@@ -1138,7 +1138,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field properties</message>
-    <lineContent>private File properties;</lineContent>
+    <lineContent>private Path properties;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
