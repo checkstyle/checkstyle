@@ -1,6 +1,7 @@
 /*
 BooleanExpressionComplexity
-
+max = (default)3
+tokens = (default)LAND,BAND,LOR,BOR,BXOR
 
 */
 

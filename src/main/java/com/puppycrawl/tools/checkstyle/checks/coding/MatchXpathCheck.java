@@ -105,15 +105,13 @@ public class MatchXpathCheck extends AbstractCheck {
      */
     public void setQuery(String query) {
         this.query = query;
-        if (!query.isEmpty()) {
-            try {
-                final XPathEvaluator xpathEvaluator =
-                        new XPathEvaluator(Configuration.newConfiguration());
-                xpathExpression = xpathEvaluator.createExpression(query);
-            }
-            catch (XPathException ex) {
-                throw new IllegalStateException("Creating Xpath expression failed: " + query, ex);
-            }
+        try {
+            final XPathEvaluator xpathEvaluator =
+                new XPathEvaluator(Configuration.newConfiguration());
+            xpathExpression = xpathEvaluator.createExpression(query);
+        }
+        catch (XPathException ex) {
+            throw new IllegalStateException("Creating Xpath expression failed: " + query, ex);
         }
     }
 

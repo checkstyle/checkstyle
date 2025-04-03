@@ -2,7 +2,7 @@
 LeftCurly
 option = \tNL
 tokens = STATIC_INIT
-
+ignoreEnums = (default)true
 
 */
 

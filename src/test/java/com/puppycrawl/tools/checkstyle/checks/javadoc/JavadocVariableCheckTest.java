@@ -363,10 +363,10 @@ public class JavadocVariableCheckTest
     @Test
     public void testMethodInnerClass() throws Exception {
         final String[] expected = {
-            "9:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "10:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "11:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "12:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "14:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
             getPath("InputJavadocVariableMethodInnerClass.java"),
@@ -376,7 +376,7 @@ public class JavadocVariableCheckTest
     @Test
     public void testJavadocVariableAboveComment() throws Exception {
         final String[] expected = {
-            "23:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "26:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
             getPath("InputJavadocVariableAboveComment.java"),

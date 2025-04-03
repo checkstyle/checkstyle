@@ -170,9 +170,9 @@ public class CyclomaticComplexityCheckTest
     @Test
     public void testWhenExpression() throws Exception {
         final String[] expected = {
-            "13:4: " + getCheckMessage(MSG_KEY, 5, 0),
-            "19:4: " + getCheckMessage(MSG_KEY, 5, 0),
-            "28:4: " + getCheckMessage(MSG_KEY, 7, 0),
+            "16:4: " + getCheckMessage(MSG_KEY, 5, 0),
+            "22:4: " + getCheckMessage(MSG_KEY, 5, 0),
+            "31:4: " + getCheckMessage(MSG_KEY, 7, 0),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputCyclomaticComplexityWhenExpression.java"), expected);
@@ -181,10 +181,10 @@ public class CyclomaticComplexityCheckTest
     @Test
     public void testWhenExpressionSwitchAsSinglePoint() throws Exception {
         final String[] expected = {
-            "14:5: " + getCheckMessage(MSG_KEY, 5, 0),
-            "20:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "29:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "39:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "16:5: " + getCheckMessage(MSG_KEY, 5, 0),
+            "22:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "31:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "41:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(

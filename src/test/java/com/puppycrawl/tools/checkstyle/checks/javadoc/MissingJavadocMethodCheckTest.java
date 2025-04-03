@@ -453,7 +453,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMinLineCount() throws Exception {
         final String[] expected = {
-            "14:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "20:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMissingJavadocMethod1.java"),

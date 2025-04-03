@@ -4,6 +4,7 @@ ignoreFormat = (default)null
 ignoreConstructorParameter = true
 setterCanReturnItsClass = (default)false
 ignoreAbstractMethods = (default)false
+ignoreSetter = (default)false
 tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_COMPONENT_DEF
 
 

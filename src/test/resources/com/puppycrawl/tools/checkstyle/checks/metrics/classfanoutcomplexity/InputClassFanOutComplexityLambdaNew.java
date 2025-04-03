@@ -13,6 +13,7 @@ excludedClasses = (default)ArrayIndexOutOfBoundsException, ArrayList, Boolean, B
                   UnsupportedOperationException, Void, boolean, byte, char, double, float, \
                   int, long, short, var, void
 excludedPackages = (default)
+excludeClassesRegexps = (default)^$
 
 
 */

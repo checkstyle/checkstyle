@@ -1,6 +1,7 @@
 /*
 NestedIfDepth
 depth = (default)0
+max = (default)1
 
 */
 

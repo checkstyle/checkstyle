@@ -41,10 +41,10 @@ public class RedundantModifierCheckTest
     @Test
     public void testClassesInsideOfInterfaces() throws Exception {
         final String[] expected = {
-            "19:5: " + getCheckMessage(MSG_KEY, "static"),
-            "25:5: " + getCheckMessage(MSG_KEY, "public"),
-            "28:5: " + getCheckMessage(MSG_KEY, "public"),
-            "34:5: " + getCheckMessage(MSG_KEY, "static"),
+            "20:5: " + getCheckMessage(MSG_KEY, "static"),
+            "26:5: " + getCheckMessage(MSG_KEY, "public"),
+            "29:5: " + getCheckMessage(MSG_KEY, "public"),
+            "35:5: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierClassesInsideOfInterfaces.java"),
@@ -94,7 +94,7 @@ public class RedundantModifierCheckTest
     public void testFinalInInterface()
             throws Exception {
         final String[] expected = {
-            "13:9: " + getCheckMessage(MSG_KEY, "final"),
+            "14:9: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierFinalInInterface.java"), expected);
@@ -103,7 +103,7 @@ public class RedundantModifierCheckTest
     @Test
     public void testEnumConstructorIsImplicitlyPrivate() throws Exception {
         final String[] expected = {
-            "14:5: " + getCheckMessage(MSG_KEY, "private"),
+            "15:5: " + getCheckMessage(MSG_KEY, "private"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierConstructorModifier.java"), expected);
@@ -112,8 +112,8 @@ public class RedundantModifierCheckTest
     @Test
     public void testInnerTypeInInterfaceIsImplicitlyStatic() throws Exception {
         final String[] expected = {
-            "12:5: " + getCheckMessage(MSG_KEY, "static"),
-            "16:5: " + getCheckMessage(MSG_KEY, "static"),
+            "13:5: " + getCheckMessage(MSG_KEY, "static"),
+            "17:5: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierStaticInInnerTypeOfInterface.java"),
@@ -124,7 +124,7 @@ public class RedundantModifierCheckTest
     public void testNotPublicClassConstructorHasNotPublicModifier() throws Exception {
 
         final String[] expected = {
-            "22:5: " + getCheckMessage(MSG_KEY, "public"),
+            "23:5: " + getCheckMessage(MSG_KEY, "public"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierPublicModifierInNotPublicClass.java"),
@@ -135,11 +135,11 @@ public class RedundantModifierCheckTest
     public void testNestedClassConsInPublicInterfaceHasValidPublicModifier() throws Exception {
 
         final String[] expected = {
-            "22:17: " + getCheckMessage(MSG_KEY, "public"),
-            "24:13: " + getCheckMessage(MSG_KEY, "public"),
-            "26:21: " + getCheckMessage(MSG_KEY, "public"),
-            "37:12: " + getCheckMessage(MSG_KEY, "public"),
-            "45:17: " + getCheckMessage(MSG_KEY, "public"),
+            "23:17: " + getCheckMessage(MSG_KEY, "public"),
+            "25:13: " + getCheckMessage(MSG_KEY, "public"),
+            "27:21: " + getCheckMessage(MSG_KEY, "public"),
+            "38:12: " + getCheckMessage(MSG_KEY, "public"),
+            "46:17: " + getCheckMessage(MSG_KEY, "public"),
         };
 
         verifyWithInlineConfigParser(
@@ -199,9 +199,9 @@ public class RedundantModifierCheckTest
     @Test
     public void testNestedStaticEnum() throws Exception {
         final String[] expected = {
-            "12:5: " + getCheckMessage(MSG_KEY, "static"),
-            "16:9: " + getCheckMessage(MSG_KEY, "static"),
-            "20:9: " + getCheckMessage(MSG_KEY, "static"),
+            "13:5: " + getCheckMessage(MSG_KEY, "static"),
+            "17:9: " + getCheckMessage(MSG_KEY, "static"),
+            "21:9: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierStaticModifierInNestedEnum.java"),
@@ -212,7 +212,7 @@ public class RedundantModifierCheckTest
     public void testFinalInAnonymousClass()
             throws Exception {
         final String[] expected = {
-            "22:20: " + getCheckMessage(MSG_KEY, "final"),
+            "23:20: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierFinalInAnonymousClass.java"),
@@ -222,9 +222,9 @@ public class RedundantModifierCheckTest
     @Test
     public void testFinalInTryWithResource() throws Exception {
         final String[] expected = {
-            "38:14: " + getCheckMessage(MSG_KEY, "final"),
-            "43:14: " + getCheckMessage(MSG_KEY, "final"),
-            "44:17: " + getCheckMessage(MSG_KEY, "final"),
+            "39:14: " + getCheckMessage(MSG_KEY, "final"),
+            "44:14: " + getCheckMessage(MSG_KEY, "final"),
+            "45:17: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierFinalInTryWithResource.java"),
@@ -234,11 +234,11 @@ public class RedundantModifierCheckTest
     @Test
     public void testFinalInAbstractMethods() throws Exception {
         final String[] expected = {
-            "12:33: " + getCheckMessage(MSG_KEY, "final"),
-            "16:49: " + getCheckMessage(MSG_KEY, "final"),
-            "19:17: " + getCheckMessage(MSG_KEY, "final"),
-            "24:24: " + getCheckMessage(MSG_KEY, "final"),
-            "33:33: " + getCheckMessage(MSG_KEY, "final"),
+            "13:33: " + getCheckMessage(MSG_KEY, "final"),
+            "17:49: " + getCheckMessage(MSG_KEY, "final"),
+            "20:17: " + getCheckMessage(MSG_KEY, "final"),
+            "25:24: " + getCheckMessage(MSG_KEY, "final"),
+            "34:33: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierFinalInAbstractMethods.java"),
@@ -248,8 +248,8 @@ public class RedundantModifierCheckTest
     @Test
     public void testEnumMethods() throws Exception {
         final String[] expected = {
-            "15:16: " + getCheckMessage(MSG_KEY, "final"),
-            "30:16: " + getCheckMessage(MSG_KEY, "final"),
+            "16:16: " + getCheckMessage(MSG_KEY, "final"),
+            "31:16: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierFinalInEnumMethods.java"), expected);
@@ -258,7 +258,7 @@ public class RedundantModifierCheckTest
     @Test
     public void testEnumStaticMethodsInPublicClass() throws Exception {
         final String[] expected = {
-            "20:23: " + getCheckMessage(MSG_KEY, "final"),
+            "21:23: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierFinalInEnumStaticMethods.java"), expected);
@@ -267,7 +267,7 @@ public class RedundantModifierCheckTest
     @Test
     public void testAnnotationOnEnumConstructor() throws Exception {
         final String[] expected = {
-            "22:5: " + getCheckMessage(MSG_KEY, "private"),
+            "23:5: " + getCheckMessage(MSG_KEY, "private"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierAnnotationOnEnumConstructor.java"),
@@ -277,7 +277,7 @@ public class RedundantModifierCheckTest
     @Test
     public void testPrivateMethodInPrivateClass() throws Exception {
         final String[] expected = {
-            "13:17: " + getCheckMessage(MSG_KEY, "final"),
+            "14:17: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierPrivateMethodInPrivateClass.java"),
@@ -297,29 +297,29 @@ public class RedundantModifierCheckTest
     @Test
     public void testNestedDef() throws Exception {
         final String[] expected = {
-            "10:5: " + getCheckMessage(MSG_KEY, "public"),
-            "11:5: " + getCheckMessage(MSG_KEY, "static"),
             "12:5: " + getCheckMessage(MSG_KEY, "public"),
-            "12:12: " + getCheckMessage(MSG_KEY, "static"),
             "13:5: " + getCheckMessage(MSG_KEY, "static"),
-            "13:12: " + getCheckMessage(MSG_KEY, "public"),
-            "16:9: " + getCheckMessage(MSG_KEY, "public"),
-            "19:5: " + getCheckMessage(MSG_KEY, "public"),
-            "19:12: " + getCheckMessage(MSG_KEY, "static"),
-            "22:5: " + getCheckMessage(MSG_KEY, "public"),
-            "22:12: " + getCheckMessage(MSG_KEY, "abstract"),
-            "22:21: " + getCheckMessage(MSG_KEY, "static"),
-            "26:1: " + getCheckMessage(MSG_KEY, "abstract"),
-            "28:5: " + getCheckMessage(MSG_KEY, "public"),
-            "28:12: " + getCheckMessage(MSG_KEY, "static"),
-            "32:9: " + getCheckMessage(MSG_KEY, "public"),
-            "32:16: " + getCheckMessage(MSG_KEY, "static"),
-            "34:13: " + getCheckMessage(MSG_KEY, "public"),
-            "34:20: " + getCheckMessage(MSG_KEY, "static"),
-            "37:13: " + getCheckMessage(MSG_KEY, "public"),
-            "37:20: " + getCheckMessage(MSG_KEY, "static"),
-            "40:13: " + getCheckMessage(MSG_KEY, "public"),
-            "40:20: " + getCheckMessage(MSG_KEY, "static"),
+            "14:5: " + getCheckMessage(MSG_KEY, "public"),
+            "14:12: " + getCheckMessage(MSG_KEY, "static"),
+            "15:5: " + getCheckMessage(MSG_KEY, "static"),
+            "15:12: " + getCheckMessage(MSG_KEY, "public"),
+            "18:9: " + getCheckMessage(MSG_KEY, "public"),
+            "21:5: " + getCheckMessage(MSG_KEY, "public"),
+            "21:12: " + getCheckMessage(MSG_KEY, "static"),
+            "24:5: " + getCheckMessage(MSG_KEY, "public"),
+            "24:12: " + getCheckMessage(MSG_KEY, "abstract"),
+            "24:21: " + getCheckMessage(MSG_KEY, "static"),
+            "28:1: " + getCheckMessage(MSG_KEY, "abstract"),
+            "30:5: " + getCheckMessage(MSG_KEY, "public"),
+            "30:12: " + getCheckMessage(MSG_KEY, "static"),
+            "34:9: " + getCheckMessage(MSG_KEY, "public"),
+            "34:16: " + getCheckMessage(MSG_KEY, "static"),
+            "36:13: " + getCheckMessage(MSG_KEY, "public"),
+            "36:20: " + getCheckMessage(MSG_KEY, "static"),
+            "39:13: " + getCheckMessage(MSG_KEY, "public"),
+            "39:20: " + getCheckMessage(MSG_KEY, "static"),
+            "42:13: " + getCheckMessage(MSG_KEY, "public"),
+            "42:20: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(getPath(
                 "InputRedundantModifierNestedDef.java"), expected);
@@ -328,18 +328,18 @@ public class RedundantModifierCheckTest
     @Test
     public void testRecords() throws Exception {
         final String[] expected = {
-            "12:5: " + getCheckMessage(MSG_KEY, "static"),
-            "16:9: " + getCheckMessage(MSG_KEY, "final"),
-            "16:15: " + getCheckMessage(MSG_KEY, "static"),
-            "21:9: " + getCheckMessage(MSG_KEY, "static"),
-            "27:9: " + getCheckMessage(MSG_KEY, "final"),
-            "27:15: " + getCheckMessage(MSG_KEY, "static"),
-            "32:13: " + getCheckMessage(MSG_KEY, "static"),
-            "38:1: " + getCheckMessage(MSG_KEY, "final"),
-            "40:5: " + getCheckMessage(MSG_KEY, "final"),
-            "43:5: " + getCheckMessage(MSG_KEY, "static"),
-            "47:9: " + getCheckMessage(MSG_KEY, "final"),
-            "47:15: " + getCheckMessage(MSG_KEY, "static"),
+            "14:5: " + getCheckMessage(MSG_KEY, "static"),
+            "18:9: " + getCheckMessage(MSG_KEY, "final"),
+            "18:15: " + getCheckMessage(MSG_KEY, "static"),
+            "23:9: " + getCheckMessage(MSG_KEY, "static"),
+            "29:9: " + getCheckMessage(MSG_KEY, "final"),
+            "29:15: " + getCheckMessage(MSG_KEY, "static"),
+            "34:13: " + getCheckMessage(MSG_KEY, "static"),
+            "40:1: " + getCheckMessage(MSG_KEY, "final"),
+            "42:5: " + getCheckMessage(MSG_KEY, "final"),
+            "45:5: " + getCheckMessage(MSG_KEY, "static"),
+            "49:9: " + getCheckMessage(MSG_KEY, "final"),
+            "49:15: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRedundantModifierRecords.java"), expected);
@@ -348,19 +348,19 @@ public class RedundantModifierCheckTest
     @Test
     public void testSealedClasses() throws Exception {
         final String[] expected = {
-            "11:4: " + getCheckMessage(MSG_KEY, "final"),
-            "11:10: " + getCheckMessage(MSG_KEY, "public"),
-            "11:17: " + getCheckMessage(MSG_KEY, "static"),
-            "16:4: " + getCheckMessage(MSG_KEY, "abstract"),
-            "16:13: " + getCheckMessage(MSG_KEY, "public"),
-            "20:4: " + getCheckMessage(MSG_KEY, "public"),
-            "20:12: " + getCheckMessage(MSG_KEY, "static"),
-            "24:9: " + getCheckMessage(MSG_KEY, "abstract"),
-            "24:18: " + getCheckMessage(MSG_KEY, "public"),
-            "29:4: " + getCheckMessage(MSG_KEY, "public"),
-            "29:11: " + getCheckMessage(MSG_KEY, "static"),
-            "33:4: " + getCheckMessage(MSG_KEY, "public"),
-            "33:11: " + getCheckMessage(MSG_KEY, "static"),
+            "14:4: " + getCheckMessage(MSG_KEY, "final"),
+            "14:10: " + getCheckMessage(MSG_KEY, "public"),
+            "14:17: " + getCheckMessage(MSG_KEY, "static"),
+            "19:4: " + getCheckMessage(MSG_KEY, "abstract"),
+            "19:13: " + getCheckMessage(MSG_KEY, "public"),
+            "23:4: " + getCheckMessage(MSG_KEY, "public"),
+            "23:12: " + getCheckMessage(MSG_KEY, "static"),
+            "27:9: " + getCheckMessage(MSG_KEY, "abstract"),
+            "27:18: " + getCheckMessage(MSG_KEY, "public"),
+            "32:4: " + getCheckMessage(MSG_KEY, "public"),
+            "32:11: " + getCheckMessage(MSG_KEY, "static"),
+            "36:4: " + getCheckMessage(MSG_KEY, "public"),
+            "36:11: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRedundantModifierSealedClasses.java"), expected);
@@ -416,18 +416,18 @@ public class RedundantModifierCheckTest
     @Test
     public void testStrictfpWithDefaultVersion() throws Exception {
         final String[] expected = {
-            "14:19: " + getCheckMessage(MSG_KEY, "strictfp"),
-            "17:5: " + getCheckMessage(MSG_KEY, "strictfp"),
-            "20:5: " + getCheckMessage(MSG_KEY, "strictfp"),
-            "23:5: " + getCheckMessage(MSG_KEY, "strictfp"),
-            "26:14: " + getCheckMessage(MSG_KEY, "strictfp"),
-            "29:5: " + getCheckMessage(MSG_KEY, "abstract"),
-            "29:14: " + getCheckMessage(MSG_KEY, "strictfp"),
-            "33:9: " + getCheckMessage(MSG_KEY, "public"),
-            "33:16: " + getCheckMessage(MSG_KEY, "static"),
-            "33:23: " + getCheckMessage(MSG_KEY, "strictfp"),
-            "41:9: " + getCheckMessage(MSG_KEY, "final"),
-            "41:15: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "15:19: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "18:5: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "21:5: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "24:5: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "27:14: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "30:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "30:14: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "34:9: " + getCheckMessage(MSG_KEY, "public"),
+            "34:16: " + getCheckMessage(MSG_KEY, "static"),
+            "34:23: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "42:9: " + getCheckMessage(MSG_KEY, "final"),
+            "42:15: " + getCheckMessage(MSG_KEY, "strictfp"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRedundantModifierStrictfpWithDefaultVersion.java"),

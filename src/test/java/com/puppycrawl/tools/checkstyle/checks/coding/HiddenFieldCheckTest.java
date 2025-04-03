@@ -281,38 +281,38 @@ public class HiddenFieldCheckTest
     public void testIgnoreConstructorParameter()
             throws Exception {
         final String[] expected = {
-            "29:13: " + getCheckMessage(MSG_KEY, "hidden"),
-            "38:13: " + getCheckMessage(MSG_KEY, "hidden"),
-            "43:18: " + getCheckMessage(MSG_KEY, "hidden"),
-            "48:33: " + getCheckMessage(MSG_KEY, "hidden"),
-            "59:17: " + getCheckMessage(MSG_KEY, "innerHidden"),
-            "68:17: " + getCheckMessage(MSG_KEY, "innerHidden"),
-            "69:17: " + getCheckMessage(MSG_KEY, "hidden"),
-            "74:22: " + getCheckMessage(MSG_KEY, "innerHidden"),
-            "78:22: " + getCheckMessage(MSG_KEY, "hidden"),
-            "83:17: " + getCheckMessage(MSG_KEY, "innerHidden"),
-            "85:17: " + getCheckMessage(MSG_KEY, "hidden"),
-            "91:17: " + getCheckMessage(MSG_KEY, "innerHidden"),
-            "92:17: " + getCheckMessage(MSG_KEY, "hidden"),
-            "97:13: " + getCheckMessage(MSG_KEY, "hidden"),
-            "115:29: " + getCheckMessage(MSG_KEY, "prop"),
-            "121:29: " + getCheckMessage(MSG_KEY, "prop"),
-            "127:29: " + getCheckMessage(MSG_KEY, "prop"),
-            "139:28: " + getCheckMessage(MSG_KEY, "prop"),
-            "153:13: " + getCheckMessage(MSG_KEY, "hidden"),
-            "158:13: " + getCheckMessage(MSG_KEY, "hidden"),
-            "163:13: " + getCheckMessage(MSG_KEY, "hidden"),
-            "167:13: " + getCheckMessage(MSG_KEY, "hidden"),
-            "194:23: " + getCheckMessage(MSG_KEY, "y"),
-            "215:17: " + getCheckMessage(MSG_KEY, "hidden"),
-            "232:13: " + getCheckMessage(MSG_KEY, "hidden"),
-            "238:13: " + getCheckMessage(MSG_KEY, "hiddenStatic"),
-            "245:41: " + getCheckMessage(MSG_KEY, "x"),
-            "251:30: " + getCheckMessage(MSG_KEY, "xAxis"),
-            "268:41: " + getCheckMessage(MSG_KEY, "prop"),
-            "282:29: " + getCheckMessage(MSG_KEY, "prop"),
-            "293:42: " + getCheckMessage(MSG_KEY, "prop2"),
-            "305:19: " + getCheckMessage(MSG_KEY, "i"),
+            "30:13: " + getCheckMessage(MSG_KEY, "hidden"),
+            "39:13: " + getCheckMessage(MSG_KEY, "hidden"),
+            "44:18: " + getCheckMessage(MSG_KEY, "hidden"),
+            "49:33: " + getCheckMessage(MSG_KEY, "hidden"),
+            "60:17: " + getCheckMessage(MSG_KEY, "innerHidden"),
+            "69:17: " + getCheckMessage(MSG_KEY, "innerHidden"),
+            "70:17: " + getCheckMessage(MSG_KEY, "hidden"),
+            "75:22: " + getCheckMessage(MSG_KEY, "innerHidden"),
+            "79:22: " + getCheckMessage(MSG_KEY, "hidden"),
+            "84:17: " + getCheckMessage(MSG_KEY, "innerHidden"),
+            "86:17: " + getCheckMessage(MSG_KEY, "hidden"),
+            "92:17: " + getCheckMessage(MSG_KEY, "innerHidden"),
+            "93:17: " + getCheckMessage(MSG_KEY, "hidden"),
+            "98:13: " + getCheckMessage(MSG_KEY, "hidden"),
+            "116:29: " + getCheckMessage(MSG_KEY, "prop"),
+            "122:29: " + getCheckMessage(MSG_KEY, "prop"),
+            "128:29: " + getCheckMessage(MSG_KEY, "prop"),
+            "140:28: " + getCheckMessage(MSG_KEY, "prop"),
+            "154:13: " + getCheckMessage(MSG_KEY, "hidden"),
+            "159:13: " + getCheckMessage(MSG_KEY, "hidden"),
+            "164:13: " + getCheckMessage(MSG_KEY, "hidden"),
+            "168:13: " + getCheckMessage(MSG_KEY, "hidden"),
+            "195:23: " + getCheckMessage(MSG_KEY, "y"),
+            "216:17: " + getCheckMessage(MSG_KEY, "hidden"),
+            "233:13: " + getCheckMessage(MSG_KEY, "hidden"),
+            "239:13: " + getCheckMessage(MSG_KEY, "hiddenStatic"),
+            "246:41: " + getCheckMessage(MSG_KEY, "x"),
+            "252:30: " + getCheckMessage(MSG_KEY, "xAxis"),
+            "269:41: " + getCheckMessage(MSG_KEY, "prop"),
+            "283:29: " + getCheckMessage(MSG_KEY, "prop"),
+            "294:42: " + getCheckMessage(MSG_KEY, "prop2"),
+            "306:19: " + getCheckMessage(MSG_KEY, "i"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputHiddenField6.java"), expected);
@@ -474,7 +474,7 @@ public class HiddenFieldCheckTest
     public void testHiddenFieldInnerRecordsImplicitlyStatic() throws Exception {
 
         final String[] expected = {
-            "35:30: " + getCheckMessage(MSG_KEY, "pointer"),
+            "36:30: " + getCheckMessage(MSG_KEY, "pointer"),
         };
 
         verifyWithInlineConfigParser(
@@ -486,7 +486,7 @@ public class HiddenFieldCheckTest
     public void testHiddenFieldRecordsImplicitlyStaticClassComparison() throws Exception {
 
         final String[] expected = {
-            "49:27: " + getCheckMessage(MSG_KEY, "x"),
+            "50:27: " + getCheckMessage(MSG_KEY, "x"),
         };
 
         verifyWithInlineConfigParser(
@@ -498,15 +498,15 @@ public class HiddenFieldCheckTest
     public void testHiddenFieldRecordPattern() throws Exception {
 
         final String[] expected = {
-            "18:46: " + getCheckMessage(MSG_KEY, "s"),
-            "18:53: " + getCheckMessage(MSG_KEY, "x"),
-            "26:39: " + getCheckMessage(MSG_KEY, "s"),
-            "26:46: " + getCheckMessage(MSG_KEY, "x"),
-            "35:45: " + getCheckMessage(MSG_KEY, "s"),
-            "35:52: " + getCheckMessage(MSG_KEY, "x"),
-            "35:63: " + getCheckMessage(MSG_KEY, "z"),
-            "43:37: " + getCheckMessage(MSG_KEY, "s"),
-            "43:44: " + getCheckMessage(MSG_KEY, "x"),
+            "24:46: " + getCheckMessage(MSG_KEY, "s"),
+            "24:53: " + getCheckMessage(MSG_KEY, "x"),
+            "32:39: " + getCheckMessage(MSG_KEY, "s"),
+            "32:46: " + getCheckMessage(MSG_KEY, "x"),
+            "41:45: " + getCheckMessage(MSG_KEY, "s"),
+            "41:52: " + getCheckMessage(MSG_KEY, "x"),
+            "41:63: " + getCheckMessage(MSG_KEY, "z"),
+            "49:37: " + getCheckMessage(MSG_KEY, "s"),
+            "49:44: " + getCheckMessage(MSG_KEY, "x"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputHiddenFieldRecordPattern.java"), expected);

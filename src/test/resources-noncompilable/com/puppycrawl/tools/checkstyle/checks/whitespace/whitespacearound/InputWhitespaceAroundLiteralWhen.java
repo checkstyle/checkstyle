@@ -1,6 +1,7 @@
 /*
 WhitespaceAround
 allowEmptyConstructors = (default)false
+allowEmptySwitchBlockStatements = (default)false
 allowEmptyMethods = (default)false
 allowEmptyTypes = (default)false
 allowEmptyLoops = (default)false

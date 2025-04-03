@@ -1,6 +1,6 @@
 /*
 MatchXpath
-query =
+query = (default)
 
 
 */
