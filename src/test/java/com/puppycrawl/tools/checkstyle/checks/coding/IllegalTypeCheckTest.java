@@ -450,7 +450,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIllegalTypeAbstractClassNameFormat() throws Exception {
         final String[] expected = {
-            "15:20: " + getCheckMessage(MSG_KEY, "Gitter"),
+            "24:20: " + getCheckMessage(MSG_KEY, "Gitter"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeAbstractClassNameFormat.java"),
