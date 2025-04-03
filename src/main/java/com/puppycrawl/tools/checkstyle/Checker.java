@@ -269,7 +269,6 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @noinspectionreason ProhibitedExceptionThrown - There is no other way to
      *      deliver filename that was under processing.
      */
-    // -@cs[CyclomaticComplexity] no easy way to split this logic of processing the file
     private void processFiles(List<File> files) throws CheckstyleException {
         for (final File file : files) {
             String fileName = null;
