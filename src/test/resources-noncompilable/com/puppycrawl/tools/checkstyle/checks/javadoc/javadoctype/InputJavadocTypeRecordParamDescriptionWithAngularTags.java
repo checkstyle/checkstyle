@@ -1,6 +1,13 @@
 /*
 JavadocType
-
+allowUnknownTags = (default)false
+authorFormat = (default)
+scope = (default)private
+excludeScope = (default)
+versionFormat = (default)
+tokens = (default)INTERFACE_DEF,CLASS_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF
+allowMissingParamTags = (default)false
+allowedAnnotations = (default)Generated
 
 */
 
