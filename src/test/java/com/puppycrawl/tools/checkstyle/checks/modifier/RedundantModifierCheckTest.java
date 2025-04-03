@@ -212,7 +212,7 @@ public class RedundantModifierCheckTest
     public void testFinalInAnonymousClass()
             throws Exception {
         final String[] expected = {
-            "22:20: " + getCheckMessage(MSG_KEY, "final"),
+            "23:20: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierFinalInAnonymousClass.java"),
@@ -258,7 +258,7 @@ public class RedundantModifierCheckTest
     @Test
     public void testEnumStaticMethodsInPublicClass() throws Exception {
         final String[] expected = {
-            "20:23: " + getCheckMessage(MSG_KEY, "final"),
+            "21:23: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierFinalInEnumStaticMethods.java"), expected);

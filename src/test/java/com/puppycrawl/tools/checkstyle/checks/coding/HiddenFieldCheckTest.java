@@ -474,7 +474,7 @@ public class HiddenFieldCheckTest
     public void testHiddenFieldInnerRecordsImplicitlyStatic() throws Exception {
 
         final String[] expected = {
-            "35:30: " + getCheckMessage(MSG_KEY, "pointer"),
+            "36:30: " + getCheckMessage(MSG_KEY, "pointer"),
         };
 
         verifyWithInlineConfigParser(
