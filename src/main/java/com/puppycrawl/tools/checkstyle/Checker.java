@@ -295,8 +295,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                     cacheFile.remove(fileName);
                 }
                 // We need to catch all exceptions to put a reason failure (file name) in exception
-                throw new CheckstyleException(CheckerUtil.
-                    getLocalizedMessage("Checker.processFilesException", getClass(), file), ex);
+                throw new CheckstyleException(CheckerUtil
+                    .getLocalizedMessage("Checker.processFilesException", getClass(), file), ex);
             }
             catch (Error error) {
                 if (fileName != null && cacheFile != null) {
@@ -307,7 +307,6 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             }
         }
     }
-
 
     /**
      * Processes a file with all FileSetChecks.
@@ -638,15 +637,18 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
          * Extracts a localized message from Checkstyle's properties files.
          *
          * @param messageKey the key for the message in the messages.properties file
-         * @param checkerClass the Checker class requesting the message (used for package resolution)
+         * @param sourceClass the source class requesting the message (used for package resolution)
          * @param args variable arguments for message formatting
          * @return the formatted localized message string
          */
         static String getLocalizedMessage(String messageKey,
-                                          Class<? extends Checker> checkerClass,
+                                          Class<? extends Checker> sourceClass,
                                           Object... args) {
-            return new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE, checkerClass, messageKey, args)
-                .getMessage();
+            return new LocalizedMessage(
+                Definitions.CHECKSTYLE_BUNDLE,
+                sourceClass,
+                messageKey,
+                args).getMessage();
         }
 
         /**
@@ -657,36 +659,36 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
          * @param cacheFile the cache implementation (may be null)
          * @param fileFilters the set of file filters to check against
          * @param baseDir the base directory for relative path calculation
-         * @return {@code true} if the file should be skipped (cached or filtered), {@code false} otherwise
+         * @return if the file should be skipped (cached or filtered)
          */
         static boolean isCached(String fileName,
                                 long timestamp,
                                 PropertyCacheFile cacheFile,
                                 BeforeExecutionFileFilterSet fileFilters,
                                 String baseDir) {
-            return cacheFile(
+            return cache(
                 cacheFile != null
                     && cacheFile.isInCache(fileName, timestamp)
                     || !fileFilters.accept(CommonUtil.relativizePath(baseDir, fileName)),
+                cacheFile,
                 fileName,
-                timestamp,
-                cacheFile
+                timestamp
             );
         }
 
         /**
          * Updates the cache for files that should be processed.
          *
-         * @param skip {@code true} to skip caching, {@code false} to potentially cache the file
-         * @param fileName the full path of the file to cache
-         * @param timestamp the last modification time to store in the cache
+         * @param skip      to skip caching
          * @param cacheFile the cache implementation (may be null)
+         * @param fileName  the full path of the file to cache
+         * @param timestamp the last modification time to store in the cache
          * @return the original {@code skip} parameter value
          */
-        static boolean cacheFile(boolean skip,
-                                 String fileName,
-                                 long timestamp,
-                                 PropertyCacheFile cacheFile) {
+        static boolean cache(boolean skip,
+                             PropertyCacheFile cacheFile,
+                             String fileName,
+                             long timestamp) {
             if (!skip && cacheFile != null) {
                 cacheFile.put(fileName, timestamp);
             }
