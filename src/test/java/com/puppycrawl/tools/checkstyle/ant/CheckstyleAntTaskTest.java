@@ -317,9 +317,11 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
+        final String expectedMessage = String.format(Locale.ROOT,
+                "Unable to create Root Module: config {%s}.", getPath(NOT_EXISTING_FILE));
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
-                .startsWith("Unable to create Root Module: config");
+                .isEqualTo(expectedMessage);
     }
 
     @Test
@@ -331,9 +333,12 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
+        final String expectedMessage = String.format(Locale.ROOT,
+                "Unable to create Root Module: config {%s}.",
+                getPath("InputCheckstyleAntTaskEmptyConfig.xml"));
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
-                .startsWith("Unable to create Root Module: config");
+                .isEqualTo(expectedMessage);
     }
 
     @Test
