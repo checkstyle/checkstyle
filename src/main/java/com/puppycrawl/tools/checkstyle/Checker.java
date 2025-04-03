@@ -275,14 +275,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             String fileName = null;
             try {
                 fileName = file.getAbsolutePath();
-                final long timestamp = file.lastModified();
-                if (cacheFile != null && cacheFile.isInCache(fileName, timestamp)
-                        || !acceptFileStarted(fileName)) {
-                    continue;
-                }
-                if (cacheFile != null) {
-                    cacheFile.put(fileName, timestamp);
-                }
+                if (shouldSkip(fileName, file.lastModified())) continue;
                 fireFileStarted(fileName);
                 fireErrors(fileName, processFile(file));
                 fireFileFinished(fileName);
@@ -307,6 +300,16 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 throw new Error("Error was thrown while processing " + file, error);
             }
         }
+    }
+
+    private boolean shouldSkip(String fileName, long timestamp) {
+        if (cacheFile != null && cacheFile.isInCache(fileName, timestamp) || !acceptFileStarted(fileName)) {
+            return true;
+        }
+        if (cacheFile != null) {
+            cacheFile.put(fileName, timestamp);
+        }
+        return false;
     }
 
     /**
