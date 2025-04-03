@@ -1,5 +1,8 @@
 /*
 JavadocVariable
+ignoreNamePattern = (default)
+tokens = (default)ENUM_CONSTANT_DEF
+accessModifiers = (default)public, protected, package, private
 
 */
 

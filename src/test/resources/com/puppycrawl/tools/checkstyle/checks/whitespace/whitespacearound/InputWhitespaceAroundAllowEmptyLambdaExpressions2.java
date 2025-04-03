@@ -7,6 +7,7 @@ allowEmptyLoops = (default)false
 allowEmptyLambdas = true
 allowEmptyCatches = (default)false
 ignoreEnhancedForColon = (default)true
+allowEmptySwitchBlockStatements = (default)false
 tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, BXOR, \
          BXOR_ASSIGN, COLON, DIV, DIV_ASSIGN, DO_WHILE, EQUAL, GE, GT, LAMBDA, LAND, \
          LCURLY, LE, LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, \

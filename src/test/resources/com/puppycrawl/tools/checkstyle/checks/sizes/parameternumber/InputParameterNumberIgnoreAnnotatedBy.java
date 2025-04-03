@@ -2,6 +2,8 @@
 ParameterNumber
 max = 2
 ignoreAnnotatedBy = MyAnno, Session
+ignoreOverriddenMethods = (default)false
+tokens = (default)METHOD_DEF,CTOR_DEF
 
 */
 

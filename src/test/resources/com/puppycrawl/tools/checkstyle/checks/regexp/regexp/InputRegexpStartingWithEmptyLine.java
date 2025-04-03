@@ -5,7 +5,7 @@ errorLimit = (default)100
 format = (default)^$
 ignoreComments = (default)false
 illegalPattern = (default)false
-
+message = (default)
 
 */
 

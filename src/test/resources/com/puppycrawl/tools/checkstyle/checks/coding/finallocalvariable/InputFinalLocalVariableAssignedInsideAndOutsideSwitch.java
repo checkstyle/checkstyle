@@ -2,6 +2,7 @@
 FinalLocalVariable
 validateEnhancedForLoopVariable = (default)false
 tokens = (default)VARIABLE_DEF
+validateUnnamedVariables = (default)false
 
 
 */

@@ -36,36 +36,9 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultTokens() throws Exception {
         final String[] expected = {
-            "27:26: " + getCheckMessage(MSG_KEY, "s"),
-            "42:26: " + getCheckMessage(MSG_KEY, "i"),
-            "47:26: " + getCheckMessage(MSG_KEY, "s"),
-            "57:17: " + getCheckMessage(MSG_KEY, "s"),
-            "73:17: " + getCheckMessage(MSG_KEY, "s"),
-            "79:17: " + getCheckMessage(MSG_KEY, "s"),
-            "94:45: " + getCheckMessage(MSG_KEY, "e"),
-            "97:36: " + getCheckMessage(MSG_KEY, "e"),
-            "114:18: " + getCheckMessage(MSG_KEY, "aParam"),
-            "117:18: " + getCheckMessage(MSG_KEY, "args"),
-            "120:18: " + getCheckMessage(MSG_KEY, "args"),
-        };
-        verifyWithInlineConfigParser(
-                getPath("InputFinalParameters.java"), expected);
-    }
-
-    @Test
-    public void testCtorToken() throws Exception {
-        final String[] expected = {
-            "28:27: " + getCheckMessage(MSG_KEY, "s"),
-            "43:27: " + getCheckMessage(MSG_KEY, "i"),
-            "48:27: " + getCheckMessage(MSG_KEY, "s"),
-        };
-        verifyWithInlineConfigParser(
-                getPath("InputFinalParameters2.java"), expected);
-    }
-
-    @Test
-    public void testMethodToken() throws Exception {
-        final String[] expected = {
+            "28:26: " + getCheckMessage(MSG_KEY, "s"),
+            "43:26: " + getCheckMessage(MSG_KEY, "i"),
+            "48:26: " + getCheckMessage(MSG_KEY, "s"),
             "58:17: " + getCheckMessage(MSG_KEY, "s"),
             "74:17: " + getCheckMessage(MSG_KEY, "s"),
             "80:17: " + getCheckMessage(MSG_KEY, "s"),
@@ -76,15 +49,42 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "121:18: " + getCheckMessage(MSG_KEY, "args"),
         };
         verifyWithInlineConfigParser(
+                getPath("InputFinalParameters.java"), expected);
+    }
+
+    @Test
+    public void testCtorToken() throws Exception {
+        final String[] expected = {
+            "29:27: " + getCheckMessage(MSG_KEY, "s"),
+            "44:27: " + getCheckMessage(MSG_KEY, "i"),
+            "49:27: " + getCheckMessage(MSG_KEY, "s"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalParameters2.java"), expected);
+    }
+
+    @Test
+    public void testMethodToken() throws Exception {
+        final String[] expected = {
+            "59:17: " + getCheckMessage(MSG_KEY, "s"),
+            "75:17: " + getCheckMessage(MSG_KEY, "s"),
+            "81:17: " + getCheckMessage(MSG_KEY, "s"),
+            "96:45: " + getCheckMessage(MSG_KEY, "e"),
+            "99:36: " + getCheckMessage(MSG_KEY, "e"),
+            "116:18: " + getCheckMessage(MSG_KEY, "aParam"),
+            "119:18: " + getCheckMessage(MSG_KEY, "args"),
+            "122:18: " + getCheckMessage(MSG_KEY, "args"),
+        };
+        verifyWithInlineConfigParser(
                 getPath("InputFinalParameters3.java"), expected);
     }
 
     @Test
     public void testCatchToken() throws Exception {
         final String[] expected = {
-            "130:16: " + getCheckMessage(MSG_KEY, "npe"),
-            "136:16: " + getCheckMessage(MSG_KEY, "e"),
-            "139:16: " + getCheckMessage(MSG_KEY, "e"),
+            "131:16: " + getCheckMessage(MSG_KEY, "npe"),
+            "137:16: " + getCheckMessage(MSG_KEY, "e"),
+            "140:16: " + getCheckMessage(MSG_KEY, "e"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFinalParameters4.java"), expected);
@@ -93,8 +93,8 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testForEachClauseToken() throws Exception {
         final String[] expected = {
-            "157:13: " + getCheckMessage(MSG_KEY, "s"),
-            "165:13: " + getCheckMessage(MSG_KEY, "s"),
+            "158:13: " + getCheckMessage(MSG_KEY, "s"),
+            "166:13: " + getCheckMessage(MSG_KEY, "s"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFinalParameters5.java"), expected);
@@ -103,13 +103,13 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnorePrimitiveTypesParameters() throws Exception {
         final String[] expected = {
-            "14:22: " + getCheckMessage(MSG_KEY, "k"),
-            "15:15: " + getCheckMessage(MSG_KEY, "s"),
-            "15:25: " + getCheckMessage(MSG_KEY, "o"),
-            "19:15: " + getCheckMessage(MSG_KEY, "array"),
-            "20:31: " + getCheckMessage(MSG_KEY, "s"),
-            "21:22: " + getCheckMessage(MSG_KEY, "l"),
-            "21:32: " + getCheckMessage(MSG_KEY, "s"),
+            "15:22: " + getCheckMessage(MSG_KEY, "k"),
+            "16:15: " + getCheckMessage(MSG_KEY, "s"),
+            "16:25: " + getCheckMessage(MSG_KEY, "o"),
+            "20:15: " + getCheckMessage(MSG_KEY, "array"),
+            "21:31: " + getCheckMessage(MSG_KEY, "s"),
+            "22:22: " + getCheckMessage(MSG_KEY, "l"),
+            "22:32: " + getCheckMessage(MSG_KEY, "s"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFinalParametersPrimitiveTypes.java"), expected);
@@ -118,20 +118,20 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPrimitiveTypesParameters() throws Exception {
         final String[] expected = {
-            "13:14: " + getCheckMessage(MSG_KEY, "i"),
-            "14:15: " + getCheckMessage(MSG_KEY, "i"),
-            "14:22: " + getCheckMessage(MSG_KEY, "k"),
-            "14:32: " + getCheckMessage(MSG_KEY, "s"),
-            "19:15: " + getCheckMessage(MSG_KEY, "s"),
-            "19:25: " + getCheckMessage(MSG_KEY, "o"),
-            "19:35: " + getCheckMessage(MSG_KEY, "l"),
-            "24:15: " + getCheckMessage(MSG_KEY, "array"),
-            "25:15: " + getCheckMessage(MSG_KEY, "i"),
-            "25:22: " + getCheckMessage(MSG_KEY, "x"),
-            "25:31: " + getCheckMessage(MSG_KEY, "s"),
-            "30:15: " + getCheckMessage(MSG_KEY, "x"),
-            "30:22: " + getCheckMessage(MSG_KEY, "l"),
-            "30:32: " + getCheckMessage(MSG_KEY, "s"),
+            "14:14: " + getCheckMessage(MSG_KEY, "i"),
+            "15:15: " + getCheckMessage(MSG_KEY, "i"),
+            "15:22: " + getCheckMessage(MSG_KEY, "k"),
+            "15:32: " + getCheckMessage(MSG_KEY, "s"),
+            "20:15: " + getCheckMessage(MSG_KEY, "s"),
+            "20:25: " + getCheckMessage(MSG_KEY, "o"),
+            "20:35: " + getCheckMessage(MSG_KEY, "l"),
+            "25:15: " + getCheckMessage(MSG_KEY, "array"),
+            "26:15: " + getCheckMessage(MSG_KEY, "i"),
+            "26:22: " + getCheckMessage(MSG_KEY, "x"),
+            "26:31: " + getCheckMessage(MSG_KEY, "s"),
+            "31:15: " + getCheckMessage(MSG_KEY, "x"),
+            "31:22: " + getCheckMessage(MSG_KEY, "l"),
+            "31:32: " + getCheckMessage(MSG_KEY, "s"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFinalParametersPrimitiveTypes2.java"), expected);

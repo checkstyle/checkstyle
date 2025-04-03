@@ -68,6 +68,9 @@
   <suppress checks="MethodCount" files="[\\/]SiteUtil.java"/>
   <!-- parse method needs catching Exceptions to print context of execution -->
   <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]InlineConfigParser\.java"/>
+
+  <suppress checks="ParameterNumber" files="[\\/]src[\\/]test[\\/].*[\\/]InlineConfigParser\.java"/>
+
   <!-- exception maybe thrown while executing the static block -->
   <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]XpathFileGeneratorAuditListenerTest\.java"/>
 
@@ -88,6 +91,7 @@
   <suppress checks="ClassFanOutComplexity" files="CheckerTest\.java"/>
   <suppress checks="ClassFanOutComplexity" files="Checker\.java"/>
   <suppress checks="ClassFanOutComplexity" files="XdocsPagesTest\.java"/>
+  <suppress checks="ClassFanOutComplexity" files="InlineConfigParser\.java"/>
   <!-- a lot of GUI elements is OK -->
   <suppress checks="ClassDataAbstractionCoupling" files="(TreeTable|MainFrame)\.java"/>
 
