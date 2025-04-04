@@ -19,14 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.ArrayDeque;
-import java.util.BitSet;
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Optional;
-
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -34,6 +26,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+
+import java.util.*;
 
 /**
  * <div>
@@ -684,8 +678,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @return true if the parameter is in a method without a body
      */
     private static boolean isInMethodWithoutBody(DetailAST parameterDefAst) {
-        final DetailAST methodDefAst = parameterDefAst.getParent().getParent();
-        return methodDefAst.findFirstToken(TokenTypes.SLIST) == null;
+        return parameterDefAst.getParent().getParent().findFirstToken(TokenTypes.SLIST) == null;
     }
 
     /**
@@ -705,13 +698,12 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @return ast The Class or Constructor or Method in which it is defined.
      */
     private static DetailAST findFirstUpperNamedBlock(DetailAST ast) {
-        DetailAST astTraverse = ast;
-        while (!TokenUtil.isOfType(astTraverse, TokenTypes.METHOD_DEF, TokenTypes.CLASS_DEF,
+        if (TokenUtil.isOfType(ast, TokenTypes.METHOD_DEF, TokenTypes.CLASS_DEF,
                 TokenTypes.ENUM_DEF, TokenTypes.CTOR_DEF, TokenTypes.COMPACT_CTOR_DEF)
-                && !ScopeUtil.isClassFieldDef(astTraverse)) {
-            astTraverse = astTraverse.getParent();
+                || ScopeUtil.isClassFieldDef(ast)) {
+            return ast;
         }
-        return astTraverse;
+        return findFirstUpperNamedBlock(ast.getParent());
     }
 
     /**
@@ -722,11 +714,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @return true if both the variables are same, otherwise false
      */
     private static boolean isSameVariables(DetailAST ast1, DetailAST ast2) {
-        final DetailAST classOrMethodOfAst1 =
-            findFirstUpperNamedBlock(ast1);
-        final DetailAST classOrMethodOfAst2 =
-            findFirstUpperNamedBlock(ast2);
-        return classOrMethodOfAst1 == classOrMethodOfAst2 && ast1.getText().equals(ast2.getText());
+        return findFirstUpperNamedBlock(ast1) == findFirstUpperNamedBlock(ast2)
+                && ast1.getText().equals(ast2.getText());
     }
 
     /**
