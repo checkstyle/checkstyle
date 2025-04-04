@@ -35,7 +35,7 @@ final class FinalLocalVariableCheckUtil {
     /**
      * Assign operator types.
      */
-    static final BitSet ASSIGN_OPERATOR_TYPES = TokenUtil.asBitSet(
+    public static final BitSet ASSIGN_OPERATOR_TYPES = TokenUtil.asBitSet(
         TokenTypes.ASSIGN,
         TokenTypes.BAND_ASSIGN,
         TokenTypes.BOR_ASSIGN,
@@ -57,7 +57,7 @@ final class FinalLocalVariableCheckUtil {
     /**
      * Loop types.
      */
-    static final BitSet LOOP_TYPES = TokenUtil.asBitSet(
+    public static final BitSet LOOP_TYPES = TokenUtil.asBitSet(
         TokenTypes.LITERAL_DO,
         TokenTypes.LITERAL_FOR,
         TokenTypes.LITERAL_WHILE

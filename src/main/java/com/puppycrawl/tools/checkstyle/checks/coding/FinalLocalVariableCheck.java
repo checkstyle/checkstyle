@@ -504,7 +504,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
          * @param ast ast.
          * @return Optional of {@link FinalVariableCandidate}.
          */
-        Optional<FinalVariableCandidate> findFinalVariableCandidateForAst(DetailAST ast) {
+        public Optional<FinalVariableCandidate> findFinalVariableCandidateForAst(DetailAST ast) {
             Optional<FinalVariableCandidate> result = Optional.empty();
             DetailAST storedVariable = null;
             final Optional<FinalVariableCandidate> candidate =
@@ -526,7 +526,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
          * @param ast the variable ast.
          * @return true, if the variable should be removed.
          */
-        boolean isRemoveFinalVariableCandidate(DetailAST ast) {
+        public boolean isRemoveFinalVariableCandidate(DetailAST ast) {
             boolean shouldRemove = true;
             for (DetailAST variable : uninitializedVariables) {
                 if (variable.getText().equals(ast.getText())) {
@@ -549,12 +549,12 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     /**
      * Represents information about final local variable candidate.
      */
-    static final class FinalVariableCandidate {
+    public static final class FinalVariableCandidate {
 
         /**
          * Block types.
          */
-        static final int[] BLOCK_TYPES = {
+        public static final int[] BLOCK_TYPES = {
             TokenTypes.CASE_GROUP,
             TokenTypes.LITERAL_ELSE,
             TokenTypes.SWITCH_RULE,
