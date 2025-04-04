@@ -41,6 +41,7 @@ import java.util.Properties;
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
@@ -431,56 +432,56 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     @Test
     public void testIsBlank() {
         assertWithMessage("Should return false when string is not empty")
-                .that(CommonUtil.isBlank("string"))
+                .that(StringUtils.isBlank("string"))
                 .isFalse();
     }
 
     @Test
     public void testIsBlankAheadWhitespace() {
         assertWithMessage("Should return false when string is not empty")
-                .that(CommonUtil.isBlank("  string"))
+                .that(StringUtils.isBlank("  string"))
                 .isFalse();
     }
 
     @Test
     public void testIsBlankBehindWhitespace() {
         assertWithMessage("Should return false when string is not empty")
-                .that(CommonUtil.isBlank("string    "))
+                .that(StringUtils.isBlank("string    "))
                 .isFalse();
     }
 
     @Test
     public void testIsBlankWithWhitespacesAround() {
         assertWithMessage("Should return false when string is not empty")
-                .that(CommonUtil.isBlank("    string    "))
+                .that(StringUtils.isBlank("    string    "))
                 .isFalse();
     }
 
     @Test
     public void testIsBlankWhitespaceInside() {
         assertWithMessage("Should return false when string is not empty")
-                .that(CommonUtil.isBlank("str    ing"))
+                .that(StringUtils.isBlank("str    ing"))
                 .isFalse();
     }
 
     @Test
     public void testIsBlankNullString() {
         assertWithMessage("Should return true when string is null")
-                .that(CommonUtil.isBlank(null))
+                .that(StringUtils.isBlank(null))
                 .isTrue();
     }
 
     @Test
     public void testIsBlankWithEmptyString() {
         assertWithMessage("Should return true when string is empty")
-                .that(CommonUtil.isBlank(""))
+                .that(StringUtils.isBlank(""))
                 .isTrue();
     }
 
     @Test
     public void testIsBlankWithWhitespacesOnly() {
         assertWithMessage("Should return true when string contains only spaces")
-                .that(CommonUtil.isBlank("   "))
+                .that(StringUtils.isBlank("   "))
                 .isTrue();
     }
 

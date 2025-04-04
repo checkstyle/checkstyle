@@ -46,6 +46,7 @@ import org.apache.commons.beanutils.converters.FloatConverter;
 import org.apache.commons.beanutils.converters.IntegerConverter;
 import org.apache.commons.beanutils.converters.LongConverter;
 import org.apache.commons.beanutils.converters.ShortConverter;
+import org.apache.commons.lang3.StringUtils;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configurable;
@@ -367,7 +368,7 @@ public abstract class AbstractAutomaticBean
             final String url = value.toString();
             URI result = null;
 
-            if (!CommonUtil.isBlank(url)) {
+            if (!StringUtils.isBlank(url)) {
                 try {
                     result = CommonUtil.getUriByFilename(url);
                 }

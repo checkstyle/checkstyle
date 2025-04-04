@@ -27,6 +27,8 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -553,7 +555,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             }
             if ((child.getType() == JavadocTokenTypes.TEXT
                     || child.getType() == JavadocTokenTypes.HTML_ELEMENT)
-                    && !CommonUtil.isBlank(child.getText())) {
+                    && !StringUtils.isBlank(child.getText())) {
                 break;
             }
         }
@@ -577,7 +579,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             else {
                 final String summary = result.toString();
                 if (child.getType() == JavadocTokenTypes.HTML_ELEMENT
-                        && CommonUtil.isBlank(summary)) {
+                        && StringUtils.isBlank(summary)) {
                     result.append(getStringInsideTag(summary,
                             child.getChildren()[0].getChildren()[0]));
                 }
