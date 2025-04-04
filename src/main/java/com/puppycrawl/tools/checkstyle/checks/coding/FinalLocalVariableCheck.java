@@ -19,14 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.ArrayDeque;
-import java.util.BitSet;
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Optional;
-
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -34,6 +26,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+
+import java.util.*;
 
 /**
  * <div>
@@ -722,11 +716,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @return true if both the variables are same, otherwise false
      */
     private static boolean isSameVariables(DetailAST ast1, DetailAST ast2) {
-        final DetailAST classOrMethodOfAst1 =
-            findFirstUpperNamedBlock(ast1);
-        final DetailAST classOrMethodOfAst2 =
-            findFirstUpperNamedBlock(ast2);
-        return classOrMethodOfAst1 == classOrMethodOfAst2 && ast1.getText().equals(ast2.getText());
+        return findFirstUpperNamedBlock(ast1) == findFirstUpperNamedBlock(ast2)
+                && ast1.getText().equals(ast2.getText());
     }
 
     /**
