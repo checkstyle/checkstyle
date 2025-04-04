@@ -28,11 +28,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class XdocsPropertyTypeTest {
 
@@ -57,7 +57,7 @@ public class XdocsPropertyTypeTest {
     public void testAllPropertyTypesHaveDescription() {
         for (PropertyType value : PropertyType.values()) {
             assertWithMessage("Property type '%s' has no description", value)
-                .that(CommonUtil.isBlank(value.getDescription()))
+                .that(StringUtils.isBlank(value.getDescription()))
                 .isFalse();
         }
     }

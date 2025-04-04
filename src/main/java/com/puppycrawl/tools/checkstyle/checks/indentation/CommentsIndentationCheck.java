@@ -23,6 +23,8 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Locale;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -784,7 +786,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
         final String[] lines = getLines();
         final int endLineNo = endStatement.getLineNo();
         for (int lineNo = startStatement.getLineNo(); lineNo < endLineNo; lineNo++) {
-            if (CommonUtil.isBlank(lines[lineNo])) {
+            if (StringUtils.isBlank(lines[lineNo])) {
                 emptyLinesNumber++;
             }
         }

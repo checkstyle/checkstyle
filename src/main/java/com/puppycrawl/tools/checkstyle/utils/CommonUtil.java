@@ -19,6 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import org.apache.commons.lang3.StringUtils;
+import org.xml.sax.InputSource;
+
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
@@ -31,14 +35,9 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.BitSet;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-
-import org.xml.sax.InputSource;
-
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  * Contains utility methods.
@@ -567,10 +566,10 @@ public final class CommonUtil {
      *
      * @param value A string to check.
      * @return true if the arg is blank.
+     * @deprecated @see {@link StringUtils#isBlank(CharSequence)}
      */
-    public static boolean isBlank(String value) {
-        return Objects.isNull(value)
-                || indexOfNonWhitespace(value) >= value.length();
+    public static boolean isBlankkkk(String value) {
+        return StringUtils.isBlank(value);
     }
 
     /**

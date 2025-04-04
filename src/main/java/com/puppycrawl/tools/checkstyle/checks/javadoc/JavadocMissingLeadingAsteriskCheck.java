@@ -19,10 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -156,7 +157,7 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
      */
     private static boolean isLastLine(DetailNode detailNode) {
         final DetailNode node;
-        if (CommonUtil.isBlank(detailNode.getText())) {
+        if (StringUtils.isBlank(detailNode.getText())) {
             node = getNextNode(detailNode);
         }
         else {
