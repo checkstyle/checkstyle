@@ -5016,6 +5016,9 @@
                   com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest
                 </param>
                 <param>
+                  com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheckTest
+                </param>
+                <param>
                   com.puppycrawl.tools.checkstyle.xpath.XpathMapperTest
                 </param>
                 <param>
@@ -5031,9 +5034,6 @@
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
               </avoidCallsTo>
-              <excludedTestClasses>
-                <param>*.Input*</param>
-              </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>96</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
