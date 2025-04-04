@@ -214,11 +214,12 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         };
     }
 
-    // -@cs[CyclomaticComplexity] The only optimization which can be done here is moving CASE-block
-    // expressions to separate methods, but that will not increase readability.
+    /**
+     * Processes the AST node during visitation phase.
+     * @param ast The AST node being visited
+     */
     @Override
     public void visitToken(DetailAST ast) {
-
         switch (ast.getType()) {
             case TokenTypes.OBJBLOCK:
             case TokenTypes.METHOD_DEF:
@@ -227,56 +228,105 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 scopeStack.push(new ScopeData());
                 break;
             case TokenTypes.SLIST:
-                currentScopeAssignedVariables.push(new ArrayDeque<>());
-                if (ast.getParent().getType() != TokenTypes.CASE_GROUP
-                    || ast.getParent().getParent().findFirstToken(TokenTypes.CASE_GROUP)
-                    == ast.getParent()) {
-                    storePrevScopeUninitializedVariableData();
-                    scopeStack.push(new ScopeData());
-                }
+                processStatementList(ast);
                 break;
             case TokenTypes.PARAMETER_DEF:
-                if (!isInLambda(ast)
-                        && ast.findFirstToken(TokenTypes.MODIFIERS)
-                            .findFirstToken(TokenTypes.FINAL) == null
-                        && !isInMethodWithoutBody(ast)
-                        && !isMultipleTypeCatch(ast)
-                        && !CheckUtil.isReceiverParameter(ast)) {
-                    insertParameter(ast);
-                }
+                processParameterDefinition(ast);
                 break;
             case TokenTypes.VARIABLE_DEF:
-                if (ast.getParent().getType() != TokenTypes.OBJBLOCK
-                        && ast.findFirstToken(TokenTypes.MODIFIERS)
-                            .findFirstToken(TokenTypes.FINAL) == null
-                        && !isVariableInForInit(ast)
-                        && shouldCheckEnhancedForLoopVariable(ast)
-                        && shouldCheckUnnamedVariable(ast)) {
-                    insertVariable(ast);
-                }
+                processVariableDefinition(ast);
                 break;
             case TokenTypes.IDENT:
-                if (isAssignOperator(ast.getParent().getType()) && isFirstChild(ast)) {
-                    final Optional<FinalVariableCandidate> candidate = getFinalCandidate(ast);
-                    if (candidate.isPresent()) {
-                        determineAssignmentConditions(ast, candidate.orElseThrow());
-                        currentScopeAssignedVariables.peek().add(ast);
-                    }
-                    removeFinalVariableCandidateFromStack(ast);
-                }
+                processIdentifier(ast);
                 break;
             case TokenTypes.LITERAL_BREAK:
                 scopeStack.peek().containsBreak = true;
                 break;
             case TokenTypes.EXPR:
-                // Switch labeled expression has no slist
-                if (ast.getParent().getType() == TokenTypes.SWITCH_RULE) {
-                    storePrevScopeUninitializedVariableData();
-                }
+                processExpression(ast);
                 break;
             default:
                 throw new IllegalStateException("Incorrect token type");
         }
+    }
+
+    /**
+     * Processes expression nodes in switch rules.
+     * @param exprAst The expression AST node
+     */
+    private void processExpression(DetailAST exprAst) {
+        // Switch labeled expression has no statement list
+        if (exprAst.getParent().getType() == TokenTypes.SWITCH_RULE) {
+            storePrevScopeUninitializedVariableData();
+        }
+    }
+
+    /**
+     * Processes identifier nodes that might be assignments.
+     * @param identAst The identifier AST node
+     */
+    private void processIdentifier(DetailAST identAst) {
+        if (isAssignOperator(identAst.getParent().getType()) && isFirstChild(identAst)) {
+            final Optional<FinalVariableCandidate> candidate = getFinalCandidate(identAst);
+            if (candidate.isPresent()) {
+                determineAssignmentConditions(identAst, candidate.orElseThrow());
+                currentScopeAssignedVariables.peek().add(identAst);
+            }
+            removeFinalVariableCandidateFromStack(identAst);
+        }
+    }
+
+    /**
+     * Processes variable definition nodes.
+     * @param varDefAst The variable definition AST node
+     */
+    private void processVariableDefinition(DetailAST varDefAst) {
+        if (varDefAst.getParent().getType() != TokenTypes.OBJBLOCK
+            && varDefAst.findFirstToken(TokenTypes.MODIFIERS)
+            .findFirstToken(TokenTypes.FINAL) == null
+            && !isVariableInForInit(varDefAst)
+            && shouldCheckEnhancedForLoopVariable(varDefAst)
+            && shouldCheckUnnamedVariable(varDefAst)) {
+            insertVariable(varDefAst);
+        }
+    }
+
+    /**
+     * Processes parameter definition nodes.
+     * @param paramDefAst The parameter definition AST node
+     */
+    private void processParameterDefinition(DetailAST paramDefAst) {
+        if (isValidParameterDefinition(paramDefAst)) {
+            insertParameter(paramDefAst);
+        }
+    }
+
+    /**
+     * Processes statement list nodes.
+     * @param stmtListAst The statement list AST node
+     */
+    private void processStatementList(DetailAST stmtListAst) {
+        currentScopeAssignedVariables.push(new ArrayDeque<>());
+        if (stmtListAst.getParent().getType() != TokenTypes.CASE_GROUP
+            || stmtListAst.getParent().getParent().findFirstToken(TokenTypes.CASE_GROUP)
+            == stmtListAst.getParent()) {
+            storePrevScopeUninitializedVariableData();
+            scopeStack.push(new ScopeData());
+        }
+    }
+
+    /**
+     * Checks if a parameter definition meets the criteria for final checking.
+     * @param paramDefAst The parameter definition AST node
+     * @return true if the parameter should be checked for final declaration
+     */
+    private static boolean isValidParameterDefinition(DetailAST paramDefAst) {
+        return !isInLambda(paramDefAst)
+            && paramDefAst.findFirstToken(TokenTypes.MODIFIERS)
+            .findFirstToken(TokenTypes.FINAL) == null
+            && !isInMethodWithoutBody(paramDefAst)
+            && !isMultipleTypeCatch(paramDefAst)
+            && !CheckUtil.isReceiverParameter(paramDefAst);
     }
 
     @Override
