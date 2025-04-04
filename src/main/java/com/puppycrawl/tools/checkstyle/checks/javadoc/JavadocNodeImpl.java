@@ -110,6 +110,15 @@ public class JavadocNodeImpl implements DetailNode {
     }
 
     /**
+     * Gets hashCode of children.
+     *
+     * @return int hashCode of children.
+     */
+    public int getChildrenHashCode() {
+        return Objects.hashCode(children);
+    }
+
+    /**
      * Sets node's type.
      *
      * @param type Node's type.
