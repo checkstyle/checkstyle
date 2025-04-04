@@ -38,10 +38,6 @@ public class InputJavadocMethod3 implements Input {
 
 class CommonUtil {
 
-    public static boolean isBlank(String header) {
-        return false;
-    }
-
     public static boolean isPatternValid(String header) {
         return false;
     }
