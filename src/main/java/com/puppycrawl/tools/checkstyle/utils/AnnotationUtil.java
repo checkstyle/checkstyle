@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
-import java.util.Set;
-import java.util.function.Predicate;
-
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Set;
+import java.util.function.Predicate;
 
 /**
  * Contains utility methods designed to work with annotations.
@@ -215,7 +216,7 @@ public final class AnnotationUtil {
             throw new IllegalArgumentException("the annotation is null");
         }
 
-        if (CommonUtil.isBlank(annotation)) {
+        if (StringUtils.isBlank(annotation)) {
             throw new IllegalArgumentException(
                     "the annotation is empty or spaces");
         }

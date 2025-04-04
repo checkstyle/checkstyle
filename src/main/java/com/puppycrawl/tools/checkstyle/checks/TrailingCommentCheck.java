@@ -19,15 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.util.Arrays;
-import java.util.regex.Pattern;
-
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+
+import java.util.Arrays;
+import java.util.regex.Pattern;
 
 /**
  * <div>
@@ -233,7 +232,7 @@ public class TrailingCommentCheck extends AbstractCheck {
                 Arrays.copyOfRange(getLineCodePoints(lineNo - 1), 0, ast.getColumnNo());
         final String lineBefore = new String(lineBeforeCodePoints, 0, lineBeforeCodePoints.length);
         final boolean isCommentAtEndOfLine = ast.getLineNo() != lastChild.getLineNo()
-                || CommonUtil.isBlank(line);
+                || StringUtils.isBlank(line);
         final boolean isLegalBlockComment = isLegalCommentContent(comment)
                 && TokenUtil.areOnSameLine(firstChild, lastChild)
                 || format.matcher(lineBefore).find();

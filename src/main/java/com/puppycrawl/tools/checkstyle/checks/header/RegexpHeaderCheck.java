@@ -19,17 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
+import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-
-import com.puppycrawl.tools.checkstyle.StatelessCheck;
-import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
@@ -246,7 +246,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
      */
     @Override
     public void setHeader(String header) {
-        if (!CommonUtil.isBlank(header)) {
+        if (!StringUtils.isBlank(header)) {
             if (!CommonUtil.isPatternValid(header)) {
                 throw new IllegalArgumentException("Unable to parse format: " + header);
             }

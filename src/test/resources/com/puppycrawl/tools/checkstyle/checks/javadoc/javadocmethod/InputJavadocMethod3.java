@@ -26,7 +26,7 @@ public class InputJavadocMethod3 implements Input {
      */
     @Override
     public void setHeader(String header) {
-        if (!CommonUtil.isBlank(header)) {
+        if (!StringUtils.isBlank(header)) {
             if (!CommonUtil.isPatternValid(header)) {
                 throw new IllegalArgumentException("Unable to parse format: " + header);
             }

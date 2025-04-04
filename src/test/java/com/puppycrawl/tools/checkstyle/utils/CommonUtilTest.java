@@ -19,14 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
-import static com.google.common.truth.Truth.assertThat;
-import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.CALLS_REAL_METHODS;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.mockStatic;
-import static org.mockito.Mockito.when;
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+import com.puppycrawl.tools.checkstyle.PropertiesExpander;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+import org.apache.commons.io.IOUtils;
+import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 
 import java.io.Closeable;
 import java.io.File;
@@ -40,15 +40,11 @@ import java.util.Dictionary;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
-import org.apache.commons.io.IOUtils;
-import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
-
-import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
-import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
-import com.puppycrawl.tools.checkstyle.PropertiesExpander;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
+import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.*;
 
 public class CommonUtilTest extends AbstractPathTestSupport {
 
@@ -431,56 +427,56 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     @Test
     public void testIsBlank() {
         assertWithMessage("Should return false when string is not empty")
-                .that(CommonUtil.isBlank("string"))
+                .that(StringUtils.isBlank("string"))
                 .isFalse();
     }
 
     @Test
     public void testIsBlankAheadWhitespace() {
         assertWithMessage("Should return false when string is not empty")
-                .that(CommonUtil.isBlank("  string"))
+                .that(StringUtils.isBlank("  string"))
                 .isFalse();
     }
 
     @Test
     public void testIsBlankBehindWhitespace() {
         assertWithMessage("Should return false when string is not empty")
-                .that(CommonUtil.isBlank("string    "))
+                .that(StringUtils.isBlank("string    "))
                 .isFalse();
     }
 
     @Test
     public void testIsBlankWithWhitespacesAround() {
         assertWithMessage("Should return false when string is not empty")
-                .that(CommonUtil.isBlank("    string    "))
+                .that(StringUtils.isBlank("    string    "))
                 .isFalse();
     }
 
     @Test
     public void testIsBlankWhitespaceInside() {
         assertWithMessage("Should return false when string is not empty")
-                .that(CommonUtil.isBlank("str    ing"))
+                .that(StringUtils.isBlank("str    ing"))
                 .isFalse();
     }
 
     @Test
     public void testIsBlankNullString() {
         assertWithMessage("Should return true when string is null")
-                .that(CommonUtil.isBlank(null))
+                .that(StringUtils.isBlank(null))
                 .isTrue();
     }
 
     @Test
     public void testIsBlankWithEmptyString() {
         assertWithMessage("Should return true when string is empty")
-                .that(CommonUtil.isBlank(""))
+                .that(StringUtils.isBlank(""))
                 .isTrue();
     }
 
     @Test
     public void testIsBlankWithWhitespacesOnly() {
         assertWithMessage("Should return true when string contains only spaces")
-                .that(CommonUtil.isBlank("   "))
+                .that(StringUtils.isBlank("   "))
                 .isTrue();
     }
 

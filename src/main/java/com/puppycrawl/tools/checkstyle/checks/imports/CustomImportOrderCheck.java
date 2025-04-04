@@ -19,19 +19,18 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FullIdent;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <div>
@@ -744,7 +743,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
         for (int i = fromLineNo + 1; i <= toLineNo - 1; i++) {
             // "- 1" because the numbering is one-based
-            if (CommonUtil.isBlank(lines[i - 1])) {
+            if (StringUtils.isBlank(lines[i - 1])) {
                 result++;
             }
         }

@@ -19,12 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
-import java.io.Reader;
-import java.io.StringReader;
+import com.puppycrawl.tools.checkstyle.PropertyType;
+import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
+import org.apache.commons.lang3.StringUtils;
+
+import java.io.*;
 import java.net.URI;
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
@@ -32,13 +34,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
-
-import com.puppycrawl.tools.checkstyle.PropertyType;
-import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
-import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Abstract super class for header checks.
@@ -154,7 +149,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      * @throws IllegalArgumentException if the header cannot be interpreted
      */
     public void setHeader(String header) {
-        if (!CommonUtil.isBlank(header)) {
+        if (!StringUtils.isBlank(header)) {
             checkHeaderNotInitialized();
 
             final String headerExpandedNewLines = ESCAPED_LINE_FEED_PATTERN

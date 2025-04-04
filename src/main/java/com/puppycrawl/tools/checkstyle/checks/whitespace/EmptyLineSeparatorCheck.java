@@ -19,11 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -33,6 +28,11 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * <div>
@@ -400,7 +400,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         final List<Integer> emptyLines = new ArrayList<>();
 
         for (int lineNo = ast.getLineNo(); lineNo <= lastTokenLineNo; lineNo++) {
-            if (CommonUtil.isBlank(getLine(lineNo))) {
+            if (StringUtils.isBlank(getLine(lineNo))) {
                 emptyLines.add(lineNo);
             }
         }
@@ -611,7 +611,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         final int number = 3;
         if (lineNo >= number) {
             final String prePreviousLine = getLine(lineNo - number);
-            result = CommonUtil.isBlank(prePreviousLine);
+            result = StringUtils.isBlank(prePreviousLine);
         }
         return result;
     }
@@ -689,7 +689,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (lineNo != 1) {
             // [lineNo - 2] is the number of the previous line as the numbering starts from zero.
             final String lineBefore = getLine(lineNo - 2);
-            result = CommonUtil.isBlank(lineBefore);
+            result = StringUtils.isBlank(lineBefore);
         }
         return result;
     }

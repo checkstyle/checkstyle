@@ -19,16 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Locale;
-
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Locale;
 
 /**
  * <div>
@@ -784,7 +784,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
         final String[] lines = getLines();
         final int endLineNo = endStatement.getLineNo();
         for (int lineNo = startStatement.getLineNo(); lineNo < endLineNo; lineNo++) {
-            if (CommonUtil.isBlank(lines[lineNo])) {
+            if (StringUtils.isBlank(lines[lineNo])) {
                 emptyLinesNumber++;
             }
         }

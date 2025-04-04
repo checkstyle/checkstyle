@@ -19,20 +19,19 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
-import static com.google.common.truth.Truth.assertWithMessage;
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.methods;
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
-
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
-
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.domain.JavaModifier;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.lang.ArchRule;
 import com.tngtech.archunit.lang.EvaluationResult;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.methods;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 
 public class ArchUnitTest {
 
@@ -82,9 +81,9 @@ public class ArchUnitTest {
             + ".utils.CommonUtil.getUriByFilename(java.lang.String)>",
         "Method <com.puppycrawl.tools.checkstyle.AbstractAutomaticBean$UriConverter.convert("
             + "java.lang.Class, java.lang.Object)> calls method <com.puppycrawl.tools.checkstyle"
-            + ".utils.CommonUtil.isBlank(java.lang.String)>",
+                + ".utils.StringUtils.isBlank(java.lang.String)>",
         "Method <com.puppycrawl.tools.checkstyle.api.FileContents.lineIsBlank(int)> calls method "
-            + "<com.puppycrawl.tools.checkstyle.utils.CommonUtil.isBlank(java.lang.String)>"
+                + "<com.puppycrawl.tools.checkstyle.utils.StringUtils.isBlank(java.lang.String)>"
     );
 
     /**

@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static com.google.common.truth.Truth.assertWithMessage;
+import com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck;
+import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -28,11 +30,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Test;
-
-import com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck;
-import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 public class XdocsPropertyTypeTest {
 
@@ -57,7 +55,7 @@ public class XdocsPropertyTypeTest {
     public void testAllPropertyTypesHaveDescription() {
         for (PropertyType value : PropertyType.values()) {
             assertWithMessage("Property type '%s' has no description", value)
-                .that(CommonUtil.isBlank(value.getDescription()))
+                .that(StringUtils.isBlank(value.getDescription()))
                 .isFalse();
         }
     }

@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
@@ -133,7 +132,7 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
         boolean result = true;
         for (DetailNode child : description.getChildren()) {
             if (child.getType() != JavadocTokenTypes.LEADING_ASTERISK
-                    && !CommonUtil.isBlank(child.getText())) {
+                    && !StringUtils.isBlank(child.getText())) {
                 result = false;
                 break;
             }

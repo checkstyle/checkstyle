@@ -19,14 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <div>
@@ -144,7 +143,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         boolean result = false;
         final String text = textNode.getText();
         if (text.length() <= offset) {
-            if (CommonUtil.isBlank(text)) {
+            if (StringUtils.isBlank(text)) {
                 final DetailNode nextNode = JavadocUtil.getNextSibling(textNode);
                 if (nextNode != null && nextNode.getType() != JavadocTokenTypes.NEWLINE) {
                     // text is blank but line hasn't ended yet
@@ -156,7 +155,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
                 result = true;
             }
         }
-        else if (!CommonUtil.isBlank(text.substring(1, offset + 1))) {
+        else if (!StringUtils.isBlank(text.substring(1, offset + 1))) {
             // first offset number of characters are not blank
             result = true;
         }
