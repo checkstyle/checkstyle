@@ -216,6 +216,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
 
     /**
      * Processes the AST node during visitation phase.
+     *
      * @param ast The AST node being visited
      */
     @Override
@@ -252,6 +253,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
 
     /**
      * Processes expression nodes in switch rules.
+     *
      * @param exprAst The expression AST node
      */
     private void processExpression(DetailAST exprAst) {
@@ -263,21 +265,22 @@ public class FinalLocalVariableCheck extends AbstractCheck {
 
     /**
      * Processes identifier nodes that might be assignments.
+     *
      * @param identAst The identifier AST node
      */
     private void processIdentifier(DetailAST identAst) {
-        if (isAssignOperator(identAst.getParent().getType()) && isFirstChild(identAst)) {
-            final Optional<FinalVariableCandidate> candidate = getFinalCandidate(identAst);
-            if (candidate.isPresent()) {
-                determineAssignmentConditions(identAst, candidate.orElseThrow());
-                currentScopeAssignedVariables.peek().add(identAst);
-            }
+        final Optional<FinalVariableCandidate> candidate = getFinalCandidate(identAst);
+        if (candidate.isPresent() && isFirstChild(identAst)
+            && isAssignOperator(identAst.getParent().getType())) {
+            determineAssignmentConditions(identAst, candidate.orElseThrow());
+            currentScopeAssignedVariables.peek().add(identAst);
             removeFinalVariableCandidateFromStack(identAst);
         }
     }
 
     /**
      * Processes variable definition nodes.
+     *
      * @param varDefAst The variable definition AST node
      */
     private void processVariableDefinition(DetailAST varDefAst) {
@@ -293,6 +296,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
 
     /**
      * Processes parameter definition nodes.
+     *
      * @param paramDefAst The parameter definition AST node
      */
     private void processParameterDefinition(DetailAST paramDefAst) {
@@ -303,6 +307,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
 
     /**
      * Processes statement list nodes.
+     *
      * @param stmtListAst The statement list AST node
      */
     private void processStatementList(DetailAST stmtListAst) {
@@ -317,6 +322,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
 
     /**
      * Checks if a parameter definition meets the criteria for final checking.
+     *
      * @param paramDefAst The parameter definition AST node
      * @return true if the parameter should be checked for final declaration
      */
