@@ -33,56 +33,16 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <div>
- * Checks that local variables that never have their values changed are declared final.
- * The check can be configured to also check that unchanged parameters are declared final.
- * </div>
- *
- * <p>
- * When configured to check parameters, the check ignores parameters of interface
- * methods and abstract methods.
- * </p>
- * <ul>
- * <li>
- * Property {@code validateEnhancedForLoopVariable} - Control whether to check
- * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
- * enhanced for-loop</a> variable.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code validateUnnamedVariables} - Control whether to check
- * <a href="https://docs.oracle.com/javase/specs/jls/se21/preview/specs/unnamed-jls.html">
- * unnamed variables</a>.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code tokens} - tokens to check
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
- * Default value is:
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
- * VARIABLE_DEF</a>.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code final.variable}
- * </li>
- * </ul>
- *
- * @since 3.2
+ * Utility class for {@link FinalLocalVariableCheck}-related operations.
  */
-public class FinalLocalVariableCheckUtil {
+class FinalLocalVariableCheckUtil {
+
+    /**
+     * Private constructor to prevent instantiation.
+     */
+    private FinalLocalVariableCheckUtil() {
+        // Private constructor to prevent instantiation.
+    }
 
     /**
      * Block types.
@@ -410,8 +370,8 @@ public class FinalLocalVariableCheckUtil {
         }
 
         /**
-         * Whether the final variable candidate should be removed from the list of final local variable
-         * candidates.
+         * Whether the final variable candidate should be removed from the list of
+         * final local variable candidates.
          *
          * @param ast the variable ast.
          * @return true, if the variable should be removed.
