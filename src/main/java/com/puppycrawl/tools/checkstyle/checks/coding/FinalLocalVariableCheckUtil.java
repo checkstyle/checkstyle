@@ -35,23 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * Utility class for {@link FinalLocalVariableCheck}-related operations.
  */
-class FinalLocalVariableCheckUtil {
-
-    /**
-     * Private constructor to prevent instantiation.
-     */
-    private FinalLocalVariableCheckUtil() {
-        // Private constructor to prevent instantiation.
-    }
-
-    /**
-     * Block types.
-     */
-    static final int[] BLOCK_TYPES = {
-        TokenTypes.CASE_GROUP,
-        TokenTypes.LITERAL_ELSE,
-        TokenTypes.SWITCH_RULE,
-    };
+final class FinalLocalVariableCheckUtil {
 
     /**
      * Assign operator types.
@@ -85,6 +69,22 @@ class FinalLocalVariableCheckUtil {
     );
 
     /**
+     * Block types.
+     */
+    static final int[] BLOCK_TYPES = {
+        TokenTypes.CASE_GROUP,
+        TokenTypes.LITERAL_ELSE,
+        TokenTypes.SWITCH_RULE,
+    };
+
+    /**
+     * Private constructor to prevent instantiation.
+     */
+    private FinalLocalVariableCheckUtil() {
+        // Private constructor to prevent instantiation.
+    }
+
+    /**
      * Checks if a parameter definition meets the criteria for final checking.
      *
      * @param paramDefAst The parameter definition AST node
@@ -98,7 +98,6 @@ class FinalLocalVariableCheckUtil {
             && !isMultipleTypeCatch(paramDefAst)
             && !CheckUtil.isReceiverParameter(paramDefAst);
     }
-
 
     /**
      * Determines identifier assignment conditions (assigned or already assigned).
@@ -332,22 +331,22 @@ class FinalLocalVariableCheckUtil {
         /**
          * Contains variable definitions.
          */
-        final Map<String, FinalVariableCandidate> scope = new HashMap<>();
+        private final Map<String, FinalVariableCandidate> scope = new HashMap<>();
 
         /**
          * Contains definitions of uninitialized variables.
          */
-        final Deque<DetailAST> uninitializedVariables = new ArrayDeque<>();
+        private final Deque<DetailAST> uninitializedVariables = new ArrayDeque<>();
 
         /**
          * Contains definitions of previous scope uninitialized variables.
          */
-        Deque<DetailAST> prevScopeUninitializedVariables = new ArrayDeque<>();
+        private Deque<DetailAST> prevScopeUninitializedVariables = new ArrayDeque<>();
 
         /**
          * Whether there is a {@code break} in the scope.
          */
-        boolean containsBreak;
+        private boolean containsBreak;
 
         /**
          * Searches for final local variable candidate for ast in the scope.
@@ -403,11 +402,11 @@ class FinalLocalVariableCheckUtil {
         /**
          * Identifier token.
          */
-        final DetailAST variableIdent;
+        private final DetailAST variableIdent;
         /**
          * Whether the variable is assigned.
          */
-        boolean assigned;
+        private boolean assigned;
         /**
          * Whether the variable is already assigned.
          */
