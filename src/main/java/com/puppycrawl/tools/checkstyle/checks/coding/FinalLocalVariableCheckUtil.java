@@ -85,6 +85,7 @@ final class FinalLocalVariableCheckUtil {
             && !isMultipleTypeCatch(paramDefAst)
             && !CheckUtil.isReceiverParameter(paramDefAst);
     }
+
     /**
      * Checks whether the scope of a node is restricted to a specific code blocks.
      *
@@ -259,13 +260,13 @@ final class FinalLocalVariableCheckUtil {
      * @return ast The Class or Constructor or Method in which it is defined.
      */
     public static DetailAST findFirstUpperNamedBlock(DetailAST ast) {
-        return TokenUtil.isOfType(ast,
+        return ScopeUtil.isClassFieldDef(ast) ||
+            TokenUtil.isOfType(ast,
             TokenTypes.METHOD_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.COMPACT_CTOR_DEF)
-            || ScopeUtil.isClassFieldDef(ast)
             // recursion: key to success (and failure)
             // https://reddit.com/r/learnprogramming/comments/10o0gli/recursion_bad_practice/
             // -@cs[AvoidInlineConditionals]
