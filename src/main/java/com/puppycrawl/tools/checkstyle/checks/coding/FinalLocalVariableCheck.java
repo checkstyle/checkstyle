@@ -237,7 +237,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         getFinalCandidate(identAst).map(candidate -> {
             if (FinalLocalVariableCheckUtil.isFirstChild(identAst)
                 && FinalLocalVariableCheckUtil.isAssignOperator(identAst.getParent().getType())) {
-                candidate.determineAssignmentConditions(identAst, candidate);
+                candidate.setAssignmentConditions(candidate, identAst);
                 currentScopeAssignedVariables.peek().add(identAst);
                 removeFinalVariableCandidateFromStack(identAst);
             }
@@ -585,11 +585,10 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         /**
          * Determines identifier assignment conditions (assigned or already assigned).
          *
-         * @param ident     identifier.
          * @param candidate final local variable candidate.
+         * @param ident     identifier.
          */
-        private void determineAssignmentConditions(DetailAST ident,
-                                                   FinalVariableCandidate candidate) {
+        private void setAssignmentConditions(FinalVariableCandidate candidate, DetailAST ident) {
             candidate.alreadyAssigned = candidate.assigned
                 && !FinalLocalVariableCheckUtil.isInSpecificCodeBlocks(ident, BLOCK_TYPES);
             candidate.assigned = true;
