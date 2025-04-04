@@ -678,8 +678,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @return true if the parameter is in a method without a body
      */
     private static boolean isInMethodWithoutBody(DetailAST parameterDefAst) {
-        final DetailAST methodDefAst = parameterDefAst.getParent().getParent();
-        return methodDefAst.findFirstToken(TokenTypes.SLIST) == null;
+        return parameterDefAst.getParent().getParent().findFirstToken(TokenTypes.SLIST) == null;
     }
 
     /**
