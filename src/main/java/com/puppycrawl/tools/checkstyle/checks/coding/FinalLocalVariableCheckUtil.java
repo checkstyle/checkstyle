@@ -78,7 +78,8 @@ final class FinalLocalVariableCheckUtil {
      */
     public static boolean isValidParameterDefinition(DetailAST paramDefAst) {
         return !isInLambda(paramDefAst)
-            && paramDefAst.findFirstToken(TokenTypes.MODIFIERS)
+            && paramDefAst
+            .findFirstToken(TokenTypes.MODIFIERS)
             .findFirstToken(TokenTypes.FINAL) == null
             && !isInMethodWithoutBody(paramDefAst)
             && !isMultipleTypeCatch(paramDefAst)
@@ -181,8 +182,9 @@ final class FinalLocalVariableCheckUtil {
      * @return true if it is a multiple type catch, false otherwise
      */
     public static boolean isMultipleTypeCatch(DetailAST parameterDefAst) {
-        return parameterDefAst.findFirstToken(TokenTypes.TYPE).findFirstToken(TokenTypes.BOR)
-            != null;
+        return parameterDefAst
+            .findFirstToken(TokenTypes.TYPE)
+            .findFirstToken(TokenTypes.BOR) != null;
     }
 
     /**
@@ -256,7 +258,6 @@ final class FinalLocalVariableCheckUtil {
      * @param ast Variable for which we want to find the scope in which it is defined
      * @return ast The Class or Constructor or Method in which it is defined.
      */
-    // https://reddit.com/r/learnprogramming/comments/10o0gli/recursion_bad_practice/
     public static DetailAST findFirstUpperNamedBlock(DetailAST ast) {
         return TokenUtil.isOfType(ast,
             TokenTypes.METHOD_DEF,
@@ -265,7 +266,9 @@ final class FinalLocalVariableCheckUtil {
             TokenTypes.CTOR_DEF,
             TokenTypes.COMPACT_CTOR_DEF)
             || ScopeUtil.isClassFieldDef(ast)
-            // -@cs[AvoidInlineConditionals] recursion is the key to success (and failure)
+            // recursion: key to success (and failure)
+            // https://reddit.com/r/learnprogramming/comments/10o0gli/recursion_bad_practice/
+            // -@cs[AvoidInlineConditionals]
             ? ast
             : findFirstUpperNamedBlock(ast.getParent());
     }
