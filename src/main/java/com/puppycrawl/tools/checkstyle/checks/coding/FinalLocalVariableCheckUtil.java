@@ -271,7 +271,6 @@ final class FinalLocalVariableCheckUtil {
             // https://reddit.com/r/learnprogramming/comments/10o0gli/recursion_bad_practice/
             // -@cs[AvoidInlineConditionals] recursion: key to success (and failure)
             ? ast
-            // -@cs[AvoidInlineConditionals] recursion: key to success (and failure)
             : findFirstUpperNamedBlock(ast.getParent());
     }
 
