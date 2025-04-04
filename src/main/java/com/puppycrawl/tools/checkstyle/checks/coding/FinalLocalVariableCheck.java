@@ -401,13 +401,12 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private static void determineAssignmentConditions(DetailAST ident,
                                                       FinalVariableCandidate candidate) {
-        if (candidate.assigned && !isInSpecificCodeBlocks(ident, BLOCK_TYPES)) {
-            candidate.alreadyAssigned = true;
-        }
+        candidate.alreadyAssigned = candidate.assigned
+            && !isInSpecificCodeBlocks(ident, BLOCK_TYPES);
+        candidate.assigned = true;
         // RV: skipping the else block works; assuming a test blind spot but as we have 100%
         //        else {
         //        }
-        candidate.assigned = true;
     }
 
     /**
