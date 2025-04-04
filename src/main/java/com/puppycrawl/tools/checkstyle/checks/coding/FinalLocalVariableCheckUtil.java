@@ -125,7 +125,7 @@ final class FinalLocalVariableCheckUtil {
      *
      * @param ast token to be checked
      * @return true if token is CASE_GROUP or SWITCH_RULE and there is another {@code case}
-     * following, else false
+     *     following, else false
      */
     public static boolean isCaseTokenWithAnotherCaseFollowing(DetailAST ast) {
         boolean result = false;
@@ -194,7 +194,7 @@ final class FinalLocalVariableCheckUtil {
      *
      * @param ast ast node
      * @return ast node of type {@link FinalLocalVariableCheckUtil#LOOP_TYPES} that is the ancestor
-     * of the current ast node, null if no such node exists
+     *     of the current ast node, null if no such node exists
      */
     public static DetailAST getParentLoop(DetailAST ast) {
         DetailAST parentLoop = ast;
@@ -269,8 +269,9 @@ final class FinalLocalVariableCheckUtil {
             TokenTypes.COMPACT_CTOR_DEF)
             // recursion: key to success (and failure)
             // https://reddit.com/r/learnprogramming/comments/10o0gli/recursion_bad_practice/
-            // -@cs[AvoidInlineConditionals] asdasd
+            // -@cs[AvoidInlineConditionals] recursion: key to success (and failure)
             ? ast
+            // -@cs[AvoidInlineConditionals] recursion: key to success (and failure)
             : findFirstUpperNamedBlock(ast.getParent());
     }
 
