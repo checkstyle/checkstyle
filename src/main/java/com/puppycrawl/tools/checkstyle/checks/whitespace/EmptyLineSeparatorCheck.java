@@ -27,7 +27,6 @@ import java.util.Optional;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -661,15 +660,12 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return {@code true} if found any blank line within the range, {@code false}
      *         otherwise
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     private boolean hasEmptyLine(int startLine, int endLine) {
         // Initial value is false - blank line not found
         boolean result = false;
-        final FileContents fileContents = getFileContents();
         for (int line = startLine; line <= endLine; line++) {
             // Check, if the line is blank. Lines are numbered from 0, so subtract 1
-            if (fileContents.lineIsBlank(line - 1)) {
+            if (CommonUtil.isBlank(getLine(line - 1))) {
                 result = true;
                 break;
             }
