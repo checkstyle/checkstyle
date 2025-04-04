@@ -187,6 +187,33 @@ public final class JavadocUtil {
     }
 
     /**
+     * Find Javadoc comment AST.
+     *
+     * @param ast
+     *        DetailAST
+     * @return Javadoc comment ast.
+     */
+    public static DetailAST findJavadocComment(DetailAST ast) {
+        DetailAST result = null;
+
+        if (ast != null) {
+            if (ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                    && JavadocUtil.isJavadocComment(ast)) {
+                result = ast;
+            }
+            else {
+                DetailAST child = ast.getFirstChild();
+                while (child != null && result == null) {
+                    result = findJavadocComment(child);
+                    child = child.getNextSibling();
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
      * Returns the first child token that has a specified type.
      *
      * @param detailNode
