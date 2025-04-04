@@ -257,8 +257,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 }
                 break;
             case TokenTypes.IDENT:
-                final int parentType = ast.getParent().getType();
-                if (isAssignOperator(parentType) && isFirstChild(ast)) {
+                if (isAssignOperator(ast.getParent().getType()) && isFirstChild(ast)) {
                     final Optional<FinalVariableCandidate> candidate = getFinalCandidate(ast);
                     if (candidate.isPresent()) {
                         determineAssignmentConditions(ast, candidate.orElseThrow());
@@ -594,8 +593,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @return true if it is a multiple type catch, false otherwise
      */
     private static boolean isMultipleTypeCatch(DetailAST parameterDefAst) {
-        final DetailAST typeAst = parameterDefAst.findFirstToken(TokenTypes.TYPE);
-        return typeAst.findFirstToken(TokenTypes.BOR) != null;
+        return parameterDefAst.findFirstToken(TokenTypes.TYPE).findFirstToken(TokenTypes.BOR)
+            != null;
     }
 
     /**
