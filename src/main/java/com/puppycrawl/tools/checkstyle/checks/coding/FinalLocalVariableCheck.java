@@ -19,9 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheckUtil.BLOCK_TYPES;
-import static com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheckUtil.isInSpecificCodeBlocks;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
@@ -238,8 +235,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private void processIdentifier(DetailAST identAst) {
         getFinalCandidate(identAst).map(candidate -> {
-            if (FinalLocalVariableCheckUtil.isFirstChild(identAst)
-                && FinalLocalVariableCheckUtil.isAssignOperator(identAst.getParent().getType())) {
+            if (FinalLocalVariableCheckUtil.isFirstChild(identAst) &&
+                FinalLocalVariableCheckUtil.isAssignOperator(identAst.getParent().getType())) {
                 candidate.determineAssignmentConditions(identAst, candidate);
                 currentScopeAssignedVariables.peek().add(identAst);
                 removeFinalVariableCandidateFromStack(identAst);
@@ -554,6 +551,15 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     static final class FinalVariableCandidate {
 
         /**
+         * Block types.
+         */
+        static final int[] BLOCK_TYPES = {
+            TokenTypes.CASE_GROUP,
+            TokenTypes.LITERAL_ELSE,
+            TokenTypes.SWITCH_RULE,
+        };
+
+        /**
          * Identifier token.
          */
         private final DetailAST variableIdent;
@@ -575,7 +581,6 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             this.variableIdent = variableIdent;
         }
 
-
         /**
          * Determines identifier assignment conditions (assigned or already assigned).
          *
@@ -585,7 +590,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         private void determineAssignmentConditions(DetailAST ident,
                                                    FinalVariableCandidate candidate) {
             candidate.alreadyAssigned = candidate.assigned
-                && !isInSpecificCodeBlocks(ident, BLOCK_TYPES);
+                && !FinalLocalVariableCheckUtil.isInSpecificCodeBlocks(ident, BLOCK_TYPES);
             candidate.assigned = true;
             // RV: skipping the else block works; assuming a test blind spot but as we have 100%
             //        else {

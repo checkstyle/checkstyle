@@ -65,15 +65,6 @@ final class FinalLocalVariableCheckUtil {
     );
 
     /**
-     * Block types.
-     */
-    static final int[] BLOCK_TYPES = {
-        TokenTypes.CASE_GROUP,
-        TokenTypes.LITERAL_ELSE,
-        TokenTypes.SWITCH_RULE,
-    };
-
-    /**
      * Private constructor to prevent instantiation.
      */
     private FinalLocalVariableCheckUtil() {
