@@ -20,6 +20,8 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import java.util.ArrayList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -36,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.BlockTagUtil;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.InlineTagUtil;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.TagInfo;
+
 
 /**
  * Contains utility methods for working with Javadoc.
@@ -184,6 +187,43 @@ public final class JavadocUtil {
     public static String getJavadocCommentContent(DetailAST javadocCommentBegin) {
         final DetailAST commentContent = javadocCommentBegin.getFirstChild();
         return commentContent.getText().substring(1);
+    }
+
+    /**
+     * Searches for a Javadoc comment node within the given AST.
+     *
+     * <p>This method uses a stack to simulate depth-first traversal
+     * and returns the first Javadoc comment node it finds.</p>
+     *
+     * @param ast the root AST node to start the search from.
+     * @return the {@code DetailAST} node representing the Javadoc comment,
+     *     or {@code null} if none is found.
+     */
+    public static DetailAST findJavadocComment(DetailAST ast) {
+        DetailAST result = null;
+
+        if (ast != null) {
+            Deque<DetailAST> stack = new ArrayDeque<>();
+            stack.push(ast);
+
+            while (!stack.isEmpty() && result == null) {
+                DetailAST current = stack.pop();
+
+                if (current.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                        && JavadocUtil.isJavadocComment(current)) {
+                    result = current;
+                }
+                else {
+                    DetailAST child = current.getLastChild();
+                    while (child != null) {
+                        stack.push(child);
+                        child = child.getPreviousSibling();
+                    }
+                }
+            }
+        }
+
+        return result;
     }
 
     /**
