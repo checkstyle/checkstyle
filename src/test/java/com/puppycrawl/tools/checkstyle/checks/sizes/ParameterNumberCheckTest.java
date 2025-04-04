@@ -90,8 +90,8 @@ public class ParameterNumberCheckTest
     public void testNum()
             throws Exception {
         final String[] expected = {
-            "75:9: " + getCheckMessage(MSG_KEY, 2, 3),
-            "198:10: " + getCheckMessage(MSG_KEY, 2, 9),
+            "76:9: " + getCheckMessage(MSG_KEY, 2, 3),
+            "199:10: " + getCheckMessage(MSG_KEY, 2, 9),
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterNumberSimple2.java"), expected);
@@ -109,7 +109,7 @@ public class ParameterNumberCheckTest
     public void shouldLogActualParameterNumber()
             throws Exception {
         final String[] expected = {
-            "199:10: 7,9",
+            "200:10: 7,9",
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterNumberSimple4.java"), expected);
@@ -130,10 +130,10 @@ public class ParameterNumberCheckTest
     public void testIgnoreOverriddenMethodsFalse()
             throws Exception {
         final String[] expected = {
-            "15:10: " + getCheckMessage(MSG_KEY, 7, 8),
-            "20:10: " + getCheckMessage(MSG_KEY, 7, 8),
-            "28:10: " + getCheckMessage(MSG_KEY, 7, 8),
-            "33:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "16:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "21:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "29:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "34:10: " + getCheckMessage(MSG_KEY, 7, 8),
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterNumber2.java"), expected);

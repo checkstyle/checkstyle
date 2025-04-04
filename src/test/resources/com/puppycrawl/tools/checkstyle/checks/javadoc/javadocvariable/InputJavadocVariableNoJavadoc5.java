@@ -1,7 +1,7 @@
 /*
 JavadocVariable
 accessModifiers = (default)public,protected,package,private
-ignoreNamePattern =
+ignoreNamePattern = (default)null
 tokens = (default)ENUM_CONSTANT_DEF
 
 */

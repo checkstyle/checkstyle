@@ -384,12 +384,12 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadocTypeRecordParamDescriptionWithAngularTags() throws Exception {
         final String[] expected = {
-            "51:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<P>"),
-            "53:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <U>"),
-            "57:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "region"),
-            "60:1: " + getCheckMessage(MSG_MISSING_TAG, "@param a"),
-            "73:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "e"),
-            "76:1: " + getCheckMessage(MSG_MISSING_TAG, "@param c"),
+            "58:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<P>"),
+            "60:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <U>"),
+            "64:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "region"),
+            "67:1: " + getCheckMessage(MSG_MISSING_TAG, "@param a"),
+            "80:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "e"),
+            "83:1: " + getCheckMessage(MSG_MISSING_TAG, "@param c"),
         };
 
         verifyWithInlineConfigParser(
