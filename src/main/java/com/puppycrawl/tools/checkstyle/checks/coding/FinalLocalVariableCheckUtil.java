@@ -23,7 +23,6 @@ import java.util.BitSet;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck.FinalVariableCandidate;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -187,11 +186,11 @@ final class FinalLocalVariableCheckUtil {
     }
 
     /**
-     * Get the ast node of type {@link FinalVariableCandidate#LOOP_TYPES} that is the ancestor
+     * Get the ast node of type {@link FinalLocalVariableCheckUtil#LOOP_TYPES} that is the ancestor
      * of the current ast node, if there is no such node, null is returned.
      *
      * @param ast ast node
-     * @return ast node of type {@link FinalVariableCandidate#LOOP_TYPES} that is the ancestor
+     * @return ast node of type {@link FinalLocalVariableCheckUtil#LOOP_TYPES} that is the ancestor
      * of the current ast node, null if no such node exists
      */
     public static DetailAST getParentLoop(DetailAST ast) {
