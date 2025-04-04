@@ -19,16 +19,18 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Locale;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
-
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Locale;
 
 /**
  * <div>

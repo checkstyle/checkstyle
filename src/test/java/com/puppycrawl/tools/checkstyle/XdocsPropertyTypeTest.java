@@ -19,9 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck;
-import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
-import org.junit.jupiter.api.Test;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -30,7 +28,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.google.common.truth.Truth.assertWithMessage;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck;
+import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
 public class XdocsPropertyTypeTest {
 

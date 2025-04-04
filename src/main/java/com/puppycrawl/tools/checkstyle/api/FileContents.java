@@ -19,11 +19,18 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.puppycrawl.tools.checkstyle.grammar.CommentListener;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
-
-import java.util.*;
-import java.util.regex.Pattern;
 
 /**
  * Represents the contents of a file.
