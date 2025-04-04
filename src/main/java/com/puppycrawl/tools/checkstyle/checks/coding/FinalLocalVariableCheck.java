@@ -699,13 +699,12 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @return ast The Class or Constructor or Method in which it is defined.
      */
     private static DetailAST findFirstUpperNamedBlock(DetailAST ast) {
-        DetailAST astTraverse = ast;
-        while (!TokenUtil.isOfType(astTraverse, TokenTypes.METHOD_DEF, TokenTypes.CLASS_DEF,
+        if (TokenUtil.isOfType(ast, TokenTypes.METHOD_DEF, TokenTypes.CLASS_DEF,
                 TokenTypes.ENUM_DEF, TokenTypes.CTOR_DEF, TokenTypes.COMPACT_CTOR_DEF)
-                && !ScopeUtil.isClassFieldDef(astTraverse)) {
-            astTraverse = astTraverse.getParent();
+                || ScopeUtil.isClassFieldDef(ast)) {
+            return ast;
         }
-        return astTraverse;
+        return findFirstUpperNamedBlock(ast.getParent());
     }
 
     /**
