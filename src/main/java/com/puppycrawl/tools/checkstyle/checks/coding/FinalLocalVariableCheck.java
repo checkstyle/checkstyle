@@ -695,9 +695,15 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @param ast Variable for which we want to find the scope in which it is defined
      * @return ast The Class or Constructor or Method in which it is defined.
      */
+    // -@cs[AvoidInlineConditionals] recursion is the key to success (and failure)
+    // https://reddit.com/r/learnprogramming/comments/10o0gli/recursion_bad_practice/
     private static DetailAST findFirstUpperNamedBlock(DetailAST ast) {
-        return TokenUtil.isOfType(ast, TokenTypes.METHOD_DEF, TokenTypes.CLASS_DEF,
-            TokenTypes.ENUM_DEF, TokenTypes.CTOR_DEF, TokenTypes.COMPACT_CTOR_DEF)
+        return TokenUtil.isOfType(ast,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.COMPACT_CTOR_DEF)
             || ScopeUtil.isClassFieldDef(ast)
             ? ast
             : findFirstUpperNamedBlock(ast.getParent());
