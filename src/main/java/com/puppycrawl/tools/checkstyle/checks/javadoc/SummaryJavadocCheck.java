@@ -19,17 +19,22 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.BitSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.regex.Pattern;
+import java.util.stream.Stream;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
-import org.apache.commons.lang3.StringUtils;
-
-import java.util.*;
-import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 /**
  * <div>

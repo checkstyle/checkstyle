@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import org.apache.commons.lang3.StringUtils;
+  import org.apache.commons.lang3.StringUtils;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;

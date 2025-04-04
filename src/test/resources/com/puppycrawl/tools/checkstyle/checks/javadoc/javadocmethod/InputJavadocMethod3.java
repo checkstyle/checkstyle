@@ -7,7 +7,7 @@ validateThrows = true
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
 
-import org.apache.commons.lang3.StringUtils;
+  import org.apache.commons.lang3.StringUtils;
 
 interface Input {
 

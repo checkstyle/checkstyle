@@ -19,19 +19,44 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.*;
-import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import org.apache.commons.beanutils.*;
-import org.apache.commons.beanutils.converters.*;
-import org.apache.commons.lang3.StringUtils;
-
-import javax.annotation.Nullable;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Locale;
+import java.util.StringTokenizer;
 import java.util.regex.Pattern;
+
+import javax.annotation.Nullable;
+
+import org.apache.commons.beanutils.BeanUtilsBean;
+import org.apache.commons.beanutils.ConversionException;
+import org.apache.commons.beanutils.ConvertUtilsBean;
+import org.apache.commons.beanutils.Converter;
+import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.beanutils.PropertyUtilsBean;
+import org.apache.commons.beanutils.converters.ArrayConverter;
+import org.apache.commons.beanutils.converters.BooleanConverter;
+import org.apache.commons.beanutils.converters.ByteConverter;
+import org.apache.commons.beanutils.converters.CharacterConverter;
+import org.apache.commons.beanutils.converters.DoubleConverter;
+import org.apache.commons.beanutils.converters.FloatConverter;
+import org.apache.commons.beanutils.converters.IntegerConverter;
+import org.apache.commons.beanutils.converters.LongConverter;
+import org.apache.commons.beanutils.converters.ShortConverter;
+import org.apache.commons.lang3.StringUtils;
+
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Configurable;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.Context;
+import com.puppycrawl.tools.checkstyle.api.Contextualizable;
+import com.puppycrawl.tools.checkstyle.api.Scope;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * A Java Bean that implements the component lifecycle interfaces by
