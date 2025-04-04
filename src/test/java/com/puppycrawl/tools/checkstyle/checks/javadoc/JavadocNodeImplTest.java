@@ -21,8 +21,11 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 
 public class JavadocNodeImplTest {
@@ -30,16 +33,25 @@ public class JavadocNodeImplTest {
     @Test
     public void testToString() {
         final JavadocNodeImpl javadocNode = new JavadocNodeImpl();
+        final JavadocNodeImpl child1 = new JavadocNodeImpl();
+        final JavadocNodeImpl child2 = new JavadocNodeImpl();
+        child1.setType(JavadocTokenTypes.CODE_LITERAL);
+        child2.setType(JavadocTokenTypes.CODE_LITERAL);
         javadocNode.setType(JavadocTokenTypes.CODE_LITERAL);
+
+        final DetailNode[] children = {child1, child2};
+
         javadocNode.setLineNumber(1);
         javadocNode.setColumnNumber(2);
+        javadocNode.setChildren(children);
 
         final String result = javadocNode.toString();
 
         assertWithMessage("Invalid toString result")
             .that(result)
             .isEqualTo("JavadocNodeImpl[index=0, type=CODE_LITERAL, text='null', lineNumber=1,"
-                + " columnNumber=2, children=0, parent=null]");
+                + " columnNumber=2, children=" + Arrays.hashCode(javadocNode.getChildren())
+                + ", parent=null]");
     }
 
     @Test
