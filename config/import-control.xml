@@ -21,6 +21,8 @@
   <allow pkg="java.net"/>
   <allow pkg="java.util"/>
   <allow class="javax.annotation.Nullable"/>
+  <allow class="org.checkerframework.checker.formatter.qual.Format"/>
+  <allow class="org.checkerframework.checker.formatter.qual.ConversionCategory"/>
   <allow pkg="javax.xml.parsers"/>
   <allow pkg="org.apache.commons.beanutils"/>
   <allow pkg="org.apache.commons.logging"/>
