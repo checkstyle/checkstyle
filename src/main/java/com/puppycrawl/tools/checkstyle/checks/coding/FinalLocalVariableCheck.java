@@ -593,7 +593,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             candidate.alreadyAssigned = candidate.assigned
                 && !FinalLocalVariableCheckUtil.isInSpecificCodeBlocks(ident, BLOCK_TYPES);
             candidate.assigned = true;
-            // RV: skipping the else block works; assuming a BUG (test blind spot) but as we have 100% test coverage
+            // RV: skipping the else block works - assuming BUG or test blind-spot
+            // as we have 100% test coverage so the else might not be needed
             //        else {
             //        }
         }
