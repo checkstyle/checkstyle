@@ -22,14 +22,15 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * <div>
@@ -116,6 +117,9 @@ public class WriteTagCheck
      */
     public static final String MSG_TAG_FORMAT = "type.tagFormat";
 
+    /** Line split pattern. */
+    private static final Pattern LINE_SPLIT_PATTERN = Pattern.compile("\\R");
+
     /** Compiled regexp to match tag. */
     private Pattern tagRegExp;
     /** Specify the regexp to match tag content. */
@@ -186,30 +190,81 @@ public class WriteTagCheck
     }
 
     @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public int[] getRequiredTokens() {
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     @Override
     public void visitToken(DetailAST ast) {
-        final FileContents contents = getFileContents();
-        final int lineNo = ast.getLineNo();
-        final TextBlock cmt =
-            contents.getJavadocBefore(lineNo);
-        if (cmt != null) {
-            checkTag(lineNo, cmt.getText());
+        final DetailAST javadoc = getJavadoc(ast);
+
+        if (javadoc != null) {
+            final String[] cmtLines = LINE_SPLIT_PATTERN
+                    .split(JavadocUtil.getJavadocCommentContent(javadoc));
+
+            checkTag(javadoc.getLineNo(),
+                    javadoc.getLineNo() + countCommentLines(javadoc),
+                    cmtLines);
         }
     }
 
     /**
-     * Verifies that a type definition has a required tag.
+     * Retrieves the Javadoc comment associated with a given AST node.
      *
-     * @param lineNo the line number for the type definition.
-     * @param comment the Javadoc comment for the type definition.
+     * @param ast the AST node (e.g., class, method, constructor) to search above.
+     * @return the {@code DetailAST} representing the Javadoc comment if found and
+     *          valid; {@code null} otherwise.
      */
-    private void checkTag(int lineNo, String... comment) {
+    @Nullable
+    private static DetailAST getJavadoc(DetailAST ast) {
+        // Prefer Javadoc directly above the node
+        DetailAST cmt = ast.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+        if (cmt == null) {
+            // Check MODIFIERS and TYPE block for comments
+            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+            final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+
+            cmt = modifiers.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+            if (cmt == null && type != null) {
+                cmt = type.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+            }
+        }
+
+        final DetailAST javadoc;
+        if (cmt != null && JavadocUtil.isJavadocComment(cmt)) {
+            javadoc = cmt;
+        }
+        else {
+            javadoc = null;
+        }
+
+        return javadoc;
+    }
+
+    /**
+     * Counts the number of lines in a block comment.
+     *
+     * @param blockComment the AST node representing the block comment.
+     * @return the number of lines in the comment.
+     */
+    private static int countCommentLines(DetailAST blockComment) {
+        final String content = JavadocUtil.getBlockCommentContent(blockComment);
+        return LINE_SPLIT_PATTERN.split(content).length;
+    }
+
+    /**
+     * Validates the Javadoc comment against the configured requirements.
+     *
+     * @param javadocLineNo the starting line number of the Javadoc comment block.
+     * @param astLineNo the line number of the type definition.
+     * @param comment the lines of the Javadoc comment block.
+     */
+    private void checkTag(int astLineNo, int javadocLineNo, String... comment) {
         if (tagRegExp != null) {
             boolean hasTag = false;
             for (int i = 0; i < comment.length; i++) {
@@ -220,15 +275,15 @@ public class WriteTagCheck
                     final int contentStart = matcher.start(1);
                     final String content = commentValue.substring(contentStart);
                     if (tagFormat == null || tagFormat.matcher(content).find()) {
-                        logTag(lineNo + i - comment.length, tag, content);
+                        logTag(astLineNo + i, tag, content);
                     }
                     else {
-                        log(lineNo + i - comment.length, MSG_TAG_FORMAT, tag, tagFormat.pattern());
+                        log(astLineNo + i, MSG_TAG_FORMAT, tag, tagFormat.pattern());
                     }
                 }
             }
             if (!hasTag) {
-                log(lineNo, MSG_MISSING_TAG, tag);
+                log(javadocLineNo, MSG_MISSING_TAG, tag);
             }
         }
     }
@@ -250,5 +305,4 @@ public class WriteTagCheck
 
         setSeverity(originalSeverity);
     }
-
 }
