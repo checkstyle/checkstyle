@@ -19,11 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheckUtil.findLastCaseGroupWhichContainsSlist;
-import static com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheckUtil.isInitialized;
-import static com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheckUtil.isSameVariables;
-import static com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheckUtil.shouldRemoveFinalVariableCandidate;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Iterator;
@@ -240,10 +235,11 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @param identAst The identifier AST node
      */
     private void processIdentifier(DetailAST identAst) {
-        final Optional<FinalVariableCandidate> candidate = getFinalCandidate(identAst);
-        if (candidate.isPresent() && FinalLocalVariableCheckUtil.isFirstChild(identAst)
+        final Optional<FinalVariableCandidate> can = getFinalCandidate(identAst);
+        if (can.isPresent()
+            && FinalLocalVariableCheckUtil.isFirstChild(identAst)
             && FinalLocalVariableCheckUtil.isAssignOperator(identAst.getParent().getType())) {
-            FinalLocalVariableCheckUtil.determineAssignmentConditions(identAst, candidate.orElseThrow());
+            FinalLocalVariableCheckUtil.determineAssignmentConditions(identAst, can.orElseThrow());
             currentScopeAssignedVariables.peek().add(identAst);
             removeFinalVariableCandidateFromStack(identAst);
         }
@@ -272,7 +268,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private void processParameterDefinition(DetailAST paramDefAst) {
         if (FinalLocalVariableCheckUtil.isValidParameterDefinition(paramDefAst)) {
-            insertParameter(paramDefAst);
+            final DetailAST astNode = paramDefAst.findFirstToken(TokenTypes.IDENT);
+            scopeStack.peek().scope.put(astNode.getText(), new FinalVariableCandidate(astNode));
         }
     }
 
@@ -312,7 +309,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             case TokenTypes.SLIST:
                 boolean containsBreak = false;
                 if (parentAst.getType() != TokenTypes.CASE_GROUP
-                    || findLastCaseGroupWhichContainsSlist(parentAst.getParent()) == parentAst) {
+                    || FinalLocalVariableCheckUtil
+                    .findLastCaseGroupWhichContainsSlist(parentAst.getParent()) == parentAst) {
                     containsBreak = scopeStack.peek().containsBreak;
                     scope = scopeStack.pop().scope;
                 }
@@ -400,7 +398,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                         storedVariable = candidate.variableIdent;
                     }
                     if (storedVariable != null
-                            && isSameVariables(assignedVariable, variable)) {
+                        && FinalLocalVariableCheckUtil.isSameVariables(assignedVariable, variable)) {
                         scopeData.uninitializedVariables.push(variable);
                         shouldRemove = true;
                     }
@@ -435,16 +433,6 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Insert a parameter at the topmost scope stack.
-     *
-     * @param ast the variable to insert.
-     */
-    private void insertParameter(DetailAST ast) {
-        final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
-        scopeStack.peek().scope.put(astNode.getText(), new FinalVariableCandidate(astNode));
-    }
-
-    /**
      * Insert a variable at the topmost scope stack.
      *
      * @param ast the variable to insert.
@@ -455,7 +443,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         // for-each variables are implicitly assigned
         candidate.assigned = ast.getParent().getType() == TokenTypes.FOR_EACH_CLAUSE;
         scopeStack.peek().scope.put(astNode.getText(), candidate);
-        if (!isInitialized(astNode)) {
+        if (!FinalLocalVariableCheckUtil.isInitialized(astNode)) {
             scopeStack.peek().uninitializedVariables.add(astNode);
         }
     }
@@ -474,8 +462,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             if (candidate != null) {
                 storedVariable = candidate.variableIdent;
             }
-            if (storedVariable != null && isSameVariables(storedVariable, ast)) {
-                if (shouldRemoveFinalVariableCandidate(scopeData, ast)) {
+            if (storedVariable != null
+                && FinalLocalVariableCheckUtil.isSameVariables(storedVariable, ast)) {
+                if (FinalLocalVariableCheckUtil.isRemoveFinalVariableCandidate(scopeData, ast)) {
                     scope.remove(ast.getText());
                 }
                 break;

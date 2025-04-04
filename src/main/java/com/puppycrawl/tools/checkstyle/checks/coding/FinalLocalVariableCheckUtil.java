@@ -265,7 +265,7 @@ public class FinalLocalVariableCheckUtil {
      * @param ast       the variable ast.
      * @return true, if the variable should be removed.
      */
-    public static boolean shouldRemoveFinalVariableCandidate(ScopeData scopeData, DetailAST ast) {
+    public static boolean isRemoveFinalVariableCandidate(ScopeData scopeData, DetailAST ast) {
         boolean shouldRemove = true;
         for (DetailAST variable : scopeData.uninitializedVariables) {
             if (variable.getText().equals(ast.getText())) {
