@@ -232,7 +232,7 @@
     <pitest.accelerator.junit5.plugin.version>1.0.6</pitest.accelerator.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
     <junit.version>5.12.1</junit.version>
-    <forbiddenapis.version>3.8</forbiddenapis.version>
+    <forbiddenapis.version>3.9</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <checkerframework.version>3.49.2</checkerframework.version>
     <error-prone.version>2.31.0</error-prone.version>
@@ -730,6 +730,49 @@
       </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+        <groupId>org.ec4j.maven</groupId>
+        <artifactId>editorconfig-maven-plugin</artifactId>
+        <version>0.1.3</version>
+        <executions>
+          <execution>
+            <id>editorconfig-check</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <excludes>
+            <exclude>**/*.javadoc</exclude>
+            <exclude>**/*.jpeg</exclude>
+            <exclude>.ci-temp/**</exclude>
+            <exclude>.ci/**</exclude>
+            <exclude>.docs/**</exclude>
+            <exclude>.github/**</exclude>
+            <exclude>src/main/resources/com/puppycrawl/tools/checkstyle/meta/**/*.xml</exclude>
+            <exclude>src/main/resources/com/puppycrawl/tools/checkstyle/sarif/*.template</exclude>
+            <exclude>src/site/xdoc/*.xml</exclude>
+            <exclude>src/site/xdoc/checks/**/*.xml</exclude>
+            <exclude>src/site/xdoc/filefilters/**s/*.xml</exclude>
+            <exclude>src/site/xdoc/filefilters/beforeexecutionexclusionfilefilter.xml</exclude>
+            <exclude>src/site/xdoc/filters/**/*.xml</exclude>
+            <exclude>src/test/resources-noncompilable/**/*.java</exclude>
+            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/**/*.java</exclude>
+            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/**/*.xml</exclude>
+            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/asttreestringprinter/InputAstTreeStringPrinterFullOfBlockCommentsCR.java</exclude>
+            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/**/*</exclude>
+            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/InputUniquePropertiesWithDuplicates.properties</exclude>
+            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/grammar/InputAstRegressionNewlineCrAtEndOfFile.java</exclude>
+            <exclude>src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/**/*</exclude>
+            <exclude>src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/**/*.cpp</exclude>
+            <exclude>src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/**/*.txt</exclude>
+            <exclude>src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/**/*</exclude>
+            <exclude>src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example1.properties</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.codehaus.plexus</groupId>
         <artifactId>plexus-component-metadata</artifactId>
@@ -3422,6 +3465,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalMethodCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck*</param>
@@ -3456,6 +3500,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalMethodCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheckTest</param>
@@ -4785,6 +4830,7 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.api.*</param>
                 <!-- 1% mutation in FullIdent -->
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalMethodCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest</param>
                 <!-- 1% mutation in CheckUtil -->
                 <param>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheckTest</param>
@@ -4997,6 +5043,9 @@
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalMethodCheckTest
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest
