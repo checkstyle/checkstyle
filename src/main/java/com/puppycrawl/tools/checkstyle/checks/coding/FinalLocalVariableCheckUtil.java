@@ -258,31 +258,6 @@ public class FinalLocalVariableCheckUtil {
     }
 
     /**
-     * Whether the final variable candidate should be removed from the list of final local variable
-     * candidates.
-     *
-     * @param scopeData the scope data of the variable.
-     * @param ast       the variable ast.
-     * @return true, if the variable should be removed.
-     */
-    public static boolean isRemoveFinalVariableCandidate(ScopeData scopeData, DetailAST ast) {
-        boolean shouldRemove = true;
-        for (DetailAST variable : scopeData.uninitializedVariables) {
-            if (variable.getText().equals(ast.getText())) {
-                // if the variable is declared outside the loop and initialized inside
-                // the loop, then it cannot be declared final, as it can be initialized
-                // more than once in this case
-                if (getParentLoop(ast) == getParentLoop(variable)) {
-                    shouldRemove = scopeData.scope.get(ast.getText()).alreadyAssigned;
-                }
-                scopeData.uninitializedVariables.remove(variable);
-                break;
-            }
-        }
-        return shouldRemove;
-    }
-
-    /**
      * Get the ast node of type {@link FinalVariableCandidate#LOOP_TYPES} that is the ancestor
      * of the current ast node, if there is no such node, null is returned.
      *
@@ -432,6 +407,30 @@ public class FinalLocalVariableCheckUtil {
                 result = candidate;
             }
             return result;
+        }
+
+        /**
+         * Whether the final variable candidate should be removed from the list of final local variable
+         * candidates.
+         *
+         * @param ast the variable ast.
+         * @return true, if the variable should be removed.
+         */
+        public boolean isRemoveFinalVariableCandidate(DetailAST ast) {
+            boolean shouldRemove = true;
+            for (DetailAST variable : uninitializedVariables) {
+                if (variable.getText().equals(ast.getText())) {
+                    // if the variable is declared outside the loop and initialized inside
+                    // the loop, then it cannot be declared final, as it can be initialized
+                    // more than once in this case
+                    if (getParentLoop(ast) == getParentLoop(variable)) {
+                        shouldRemove = scope.get(ast.getText()).alreadyAssigned;
+                    }
+                    uninitializedVariables.remove(variable);
+                    break;
+                }
+            }
+            return shouldRemove;
         }
 
     }

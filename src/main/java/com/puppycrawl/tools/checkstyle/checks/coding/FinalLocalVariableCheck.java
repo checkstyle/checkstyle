@@ -465,7 +465,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             }
             if (storedVariable != null
                 && FinalLocalVariableCheckUtil.isSameVariables(storedVariable, ast)) {
-                if (FinalLocalVariableCheckUtil.isRemoveFinalVariableCandidate(scopeData, ast)) {
+                if (scopeData.isRemoveFinalVariableCandidate(ast)) {
                     scope.remove(ast.getText());
                 }
                 break;
