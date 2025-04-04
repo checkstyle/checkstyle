@@ -399,8 +399,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private void storePrevScopeUninitializedVariableData() {
         final ScopeData scopeData = scopeStack.peek();
-        final Deque<DetailAST> prevScopeUninitializedVariableData =
-                new ArrayDeque<>();
+        final Deque<DetailAST> prevScopeUninitializedVariableData = new ArrayDeque<>();
         scopeData.uninitializedVariables.forEach(prevScopeUninitializedVariableData::push);
         scopeData.prevScopeUninitializedVariables = prevScopeUninitializedVariableData;
     }
@@ -409,8 +408,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * Update current scope data uninitialized variable according to the whole scope data.
      */
     private void updateAllUninitializedVariables() {
-        final boolean hasSomeScopes = !currentScopeAssignedVariables.isEmpty();
-        if (hasSomeScopes) {
+        if (!currentScopeAssignedVariables.isEmpty()) {
             scopeStack.forEach(scopeData -> {
                 updateUninitializedVariables(scopeData.prevScopeUninitializedVariables);
             });
@@ -525,9 +523,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @param ast the variable to insert.
      */
     private void insertParameter(DetailAST ast) {
-        final Map<String, FinalVariableCandidate> scope = scopeStack.peek().scope;
         final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
-        scope.put(astNode.getText(), new FinalVariableCandidate(astNode));
+        scopeStack.peek().scope.put(astNode.getText(), new FinalVariableCandidate(astNode));
     }
 
     /**
@@ -536,12 +533,11 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @param ast the variable to insert.
      */
     private void insertVariable(DetailAST ast) {
-        final Map<String, FinalVariableCandidate> scope = scopeStack.peek().scope;
         final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
         final FinalVariableCandidate candidate = new FinalVariableCandidate(astNode);
         // for-each variables are implicitly assigned
         candidate.assigned = ast.getParent().getType() == TokenTypes.FOR_EACH_CLAUSE;
-        scope.put(astNode.getText(), candidate);
+        scopeStack.peek().scope.put(astNode.getText(), candidate);
         if (!isInitialized(astNode)) {
             scopeStack.peek().uninitializedVariables.add(astNode);
         }
