@@ -4,7 +4,7 @@
     <module name="WriteTag">
       <property name="tokens"
                 value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
-                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" />
+                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF, BLOCK_COMMENT_BEGIN" />
       <property name="tag" value="@since"/>
       <property name="tagFormat" value="[1-9\.]"/>
       <property name="tagSeverity" value="ignore"/>
