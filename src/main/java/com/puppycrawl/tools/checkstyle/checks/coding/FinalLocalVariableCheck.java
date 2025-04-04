@@ -239,7 +239,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 && FinalLocalVariableCheckUtil.isAssignOperator(identAst.getParent().getType())) {
                 candidate.setAssignmentConditions(identAst);
                 currentScopeAssignedVariables.peek().add(identAst);
-                removeFinalVariableCandidateFromStack(identAst);
+                scopeStack.descendingIterator().forEachRemaining(scopeData
+                    -> removeFinalVariableCandidateFromStackVoid(identAst, scopeData));
             }
         });
     }
@@ -452,24 +453,17 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      *
      * @param ast variable to remove.
      */
-    private void removeFinalVariableCandidateFromStack(DetailAST ast) {
-        final Iterator<ScopeData> iterator = scopeStack.descendingIterator();
-        while (iterator.hasNext()) {
-            final ScopeData scopeData = iterator.next();
-            final Map<String, FinalVariableCandidate> scope = scopeData.scope;
-            final FinalVariableCandidate candidate = scope.get(ast.getText());
-            DetailAST storedVariable = null;
-            if (candidate != null) {
-                storedVariable = candidate.variableIdent;
-            }
-            if (storedVariable != null
-                && FinalLocalVariableCheckUtil.isEqual(storedVariable, ast)) {
+    private static void removeFinalVariableCandidateFromStackVoid(DetailAST ast,
+                                                                  ScopeData scopeData) {
+        Optional.ofNullable(scopeData.scope.get(ast.getText()))
+            .filter(candidate
+                -> FinalLocalVariableCheckUtil.isEqual(candidate.variableIdent, ast))
+            .ifPresent(candidate
+                -> {
                 if (scopeData.isRemoveFinalVariableCandidate(ast)) {
-                    scope.remove(ast.getText());
+                    scopeData.scope.remove(ast.getText());
                 }
-                break;
-            }
-        }
+            });
     }
 
     /**
