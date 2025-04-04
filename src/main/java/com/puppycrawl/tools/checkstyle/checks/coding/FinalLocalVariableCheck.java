@@ -234,14 +234,13 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @param identAst The identifier AST node
      */
     private void processIdentifier(DetailAST identAst) {
-        getFinalCandidate(identAst).map(candidate -> {
+        getFinalCandidate(identAst).ifPresent(candidate -> {
             if (FinalLocalVariableCheckUtil.isFirstChild(identAst)
                 && FinalLocalVariableCheckUtil.isAssignOperator(identAst.getParent().getType())) {
-                candidate.setAssignmentConditions(candidate, identAst);
+                candidate.setAssignmentConditions(identAst);
                 currentScopeAssignedVariables.peek().add(identAst);
                 removeFinalVariableCandidateFromStack(identAst);
             }
-            return null;
         });
     }
 
@@ -418,7 +417,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private boolean shouldCheckEnhancedForLoopVariable(DetailAST ast) {
         return validateEnhancedForLoopVariable
-                || ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE;
+            || ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE;
     }
 
     /**
@@ -429,7 +428,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private boolean shouldCheckUnnamedVariable(DetailAST ast) {
         return validateUnnamedVariables
-                 || !"_".equals(ast.findFirstToken(TokenTypes.IDENT).getText());
+            || !"_".equals(ast.findFirstToken(TokenTypes.IDENT).getText());
     }
 
     /**
@@ -585,19 +584,12 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         /**
          * Determines identifier assignment conditions (assigned or already assigned).
          *
-         * @param candidate final local variable candidate.
-         * @param ident     identifier.
+         * @param ident identifier.
          */
-        private void setAssignmentConditions(FinalVariableCandidate candidate, DetailAST ident) {
-            candidate.alreadyAssigned = candidate.assigned
+        private void setAssignmentConditions(DetailAST ident) {
+            this.alreadyAssigned = this.assigned
                 && !FinalLocalVariableCheckUtil.isInSpecificCodeBlocks(ident, BLOCK_TYPES);
-            candidate.assigned = true;
-            // RV: skipping the else block works - assuming BUG or test blind-spot
-            // as we have 100% test coverage so the else might not be needed
-            //        else {
-            //        }
+            this.assigned = true;
         }
-
     }
-
 }
