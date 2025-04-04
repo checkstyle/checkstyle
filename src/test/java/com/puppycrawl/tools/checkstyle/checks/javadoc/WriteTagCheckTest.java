@@ -267,12 +267,21 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWriteTagRecordsAndCompactCtors() throws Exception {
         final String[] expected = {
+            "13: " + getCheckMessage(MSG_TAG_FORMAT, "@incomplete", "\\S"),
             "19: " + getCheckMessage(MSG_TAG_FORMAT, "@incomplete", "\\S"),
             "26: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                     "Failed to recognize 'record' introduced in Java 14."),
+            "31: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+                    "Failed to recognize 'record' introduced in Java 14."),
             "37: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                     "Failed to recognize 'record' introduced in Java 14."),
+            "42: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+                    "Failed to recognize 'record' introduced in Java 14."),
             "48: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+                    "Failed to recognize 'record' introduced in Java 14."),
+            "54: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+                    "Failed to recognize 'record' introduced in Java 14."),
+            "56: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                     "Failed to recognize 'record' introduced in Java 14."),
             "62: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                     "Failed to recognize 'record' introduced in Java 14."),

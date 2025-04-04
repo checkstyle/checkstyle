@@ -10,7 +10,7 @@ tokens = INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, COMPACT
 
 //non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
-
+// violation 'Type Javadoc tag @incomplete must match pattern '\\S''
 
 public class InputWriteTagRecordsAndCompactCtors {
 
@@ -28,7 +28,7 @@ public class InputWriteTagRecordsAndCompactCtors {
     record MyRecord1() {
 
     }
-
+        // violation 'Failed to recognize 'record' introduced in Java 14.'
 
     record MyRecord2(String myString) {
 
@@ -39,7 +39,7 @@ public class InputWriteTagRecordsAndCompactCtors {
         public MyRecord2 {
         }
     }
-
+        // violation 'Failed to recognize 'record' introduced in Java 14.'
 
     record MyRecord3(int x) {
 
@@ -51,9 +51,9 @@ public class InputWriteTagRecordsAndCompactCtors {
             this(3);
         }
     }
+        // violation 'Failed to recognize 'record' introduced in Java 14.'
 
-
-    record MyRecord4(int y) {
+    record MyRecord4(int y) { // violation 'Failed to recognize 'record' introduced in Java 14.'
 
         private record MyRecord5(int z) {
 
