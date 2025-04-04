@@ -260,8 +260,8 @@ final class FinalLocalVariableCheckUtil {
      * @return ast The Class or Constructor or Method in which it is defined.
      */
     public static DetailAST findFirstUpperNamedBlock(DetailAST ast) {
-        return ScopeUtil.isClassFieldDef(ast) ||
-            TokenUtil.isOfType(ast,
+        return ScopeUtil.isClassFieldDef(ast)
+            || TokenUtil.isOfType(ast,
             TokenTypes.METHOD_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
@@ -269,7 +269,7 @@ final class FinalLocalVariableCheckUtil {
             TokenTypes.COMPACT_CTOR_DEF)
             // recursion: key to success (and failure)
             // https://reddit.com/r/learnprogramming/comments/10o0gli/recursion_bad_practice/
-            // -@cs[AvoidInlineConditionals]
+            // -@cs[AvoidInlineConditionals] asdasd
             ? ast
             : findFirstUpperNamedBlock(ast.getParent());
     }

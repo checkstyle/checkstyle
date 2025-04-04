@@ -235,8 +235,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private void processIdentifier(DetailAST identAst) {
         getFinalCandidate(identAst).map(candidate -> {
-            if (FinalLocalVariableCheckUtil.isFirstChild(identAst) &&
-                FinalLocalVariableCheckUtil.isAssignOperator(identAst.getParent().getType())) {
+            if (FinalLocalVariableCheckUtil.isFirstChild(identAst)
+                && FinalLocalVariableCheckUtil.isAssignOperator(identAst.getParent().getType())) {
                 candidate.determineAssignmentConditions(identAst, candidate);
                 currentScopeAssignedVariables.peek().add(identAst);
                 removeFinalVariableCandidateFromStack(identAst);
@@ -512,7 +512,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             if (candidate.isPresent()) {
                 storedVariable = candidate.orElseThrow().variableIdent;
             }
-            if (storedVariable != null && FinalLocalVariableCheckUtil.isEqual(storedVariable, ast)) {
+            if (storedVariable != null
+                && FinalLocalVariableCheckUtil.isEqual(storedVariable, ast)) {
                 result = candidate;
             }
             return result;
