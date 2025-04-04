@@ -129,8 +129,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private final Deque<ScopeData> scopeStack = new ArrayDeque<>();
 
     /** Assigned variables of current scope. */
-    private final Deque<Deque<DetailAST>> currentScopeAssignedVariables =
-            new ArrayDeque<>();
+    private final Deque<Deque<DetailAST>> currentScopeAssignedVariables = new ArrayDeque<>();
 
     /**
      * Control whether to check
@@ -696,6 +695,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @param ast Variable for which we want to find the scope in which it is defined
      * @return ast The Class or Constructor or Method in which it is defined.
      */
+    // -@cs[ReturnCount] recursion is a very usefully tool in it
     private static DetailAST findFirstUpperNamedBlock(DetailAST ast) {
         if (TokenUtil.isOfType(ast, TokenTypes.METHOD_DEF, TokenTypes.CLASS_DEF,
                 TokenTypes.ENUM_DEF, TokenTypes.CTOR_DEF, TokenTypes.COMPACT_CTOR_DEF)
