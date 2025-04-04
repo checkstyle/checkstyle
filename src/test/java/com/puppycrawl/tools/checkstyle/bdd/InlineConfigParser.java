@@ -37,12 +37,21 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
@@ -305,6 +314,9 @@ public final class InlineConfigParser {
     // This is a hack until https://github.com/checkstyle/checkstyle/issues/13845
     private static final Map<String, String> MODULE_MAPPINGS = new HashMap<>();
 
+    private static final Map<String, Map<String, String>> MODULE_PROPERTIES_CACHE =
+        new ConcurrentHashMap<>();
+
     // -@cs[ExecutableStatementCount] Suppressing due to large module mappings
     static {
         MODULE_MAPPINGS.put("IllegalCatch",
@@ -546,15 +558,94 @@ public final class InlineConfigParser {
             final ModuleInputConfiguration.Builder moduleInputConfigBuilder =
                     new ModuleInputConfiguration.Builder();
             final String moduleName = lines.get(lineNo);
+            Map<String, String> propertiesDefault = new HashMap<>();
+            if (!moduleName.contains(".")) {
+                if (MODULE_PROPERTIES_CACHE.containsKey(moduleName)) {
+                    propertiesDefault = MODULE_PROPERTIES_CACHE.get(moduleName);
+                }
+                else {
+                    final String metaPath = modifyPath(inputFilePath, moduleName);
+                    propertiesDefault = getPropertiesWithDefaults(metaPath, inputFilePath);
+                    MODULE_PROPERTIES_CACHE.put(moduleName, propertiesDefault);
+                }
+            }
             setModuleName(moduleInputConfigBuilder, inputFilePath, moduleName);
-            setProperties(moduleInputConfigBuilder, inputFilePath, lines, lineNo + 1, moduleName);
+            setProperties(moduleInputConfigBuilder, inputFilePath, lines, lineNo + 1,
+                moduleName, propertiesDefault);
             testInputConfigBuilder.addChildModule(moduleInputConfigBuilder.build());
+            if (!propertiesDefault.isEmpty()) {
+                throw new CheckstyleException("There are more properties than expected."
+                    + propertiesDefault);
+            }
             do {
                 lineNo++;
             } while (lineNo < lines.size()
                     && lines.get(lineNo).isEmpty()
                     || !lines.get(lineNo - 1).isEmpty());
         }
+    }
+
+    public static Map<String, String> getPropertiesWithDefaults(String filePath, String inputPath)
+            throws IOException {
+        final Map<String, String> propertiesMap = new HashMap<>();
+        try {
+
+            final File xmlFile = new File(filePath);
+            final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            final DocumentBuilder builder = factory.newDocumentBuilder();
+            final Document document = builder.parse(xmlFile);
+            document.getDocumentElement().normalize();
+
+            final NodeList propertyNodes = document.getElementsByTagName("property");
+
+            for (int index = 0; index < propertyNodes.getLength(); index++) {
+                final Node node = propertyNodes.item(index);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    final Element propertyElement = (Element) node;
+                    final String name = propertyElement.getAttribute("name");
+                    final String defaultValue = propertyElement.getAttribute("default-value");
+                    propertiesMap.put(name, defaultValue);
+                }
+            }
+        }
+        catch (Exception ex) {
+            throw new IOException("Error parsing XML file: " + filePath
+                + "input file: " + inputPath, ex);
+        }
+        return propertiesMap;
+    }
+
+    public static String modifyPath(String filePath, String replacement) {
+        final String[] parts = filePath.split(Pattern.quote(File.separator));
+        String extension = ".xml";
+        final StringBuilder newPath = new StringBuilder(128);
+        for (int index = 0; index < parts.length - 2
+            && (index < 2 || !"checks".equals(parts[index - 2])
+            && !"filters".equals(parts[index - 1])
+            && !"filefilters".equals(parts[index - 1])); index++) {
+            newPath.append(parts[index]).append(File.separator);
+        }
+
+        newPath.append(replacement);
+        final String xmlPath = newPath.toString()
+            .replace("test", "main")
+            .replace("resources-noncompilable", "resources")
+            .replace(String.join(File.separator, "com", "puppycrawl",
+                    "tools", "checkstyle"),
+                        String.join(File.separator, "com",
+                            "puppycrawl", "tools", "checkstyle", "meta"));
+        final String[] dir = xmlPath.split("\\\\");
+        int len = dir.length - 1;
+        while (!"meta".equals(dir[len])) {
+            if ("checks".equals(dir[len]) && "meta".equals(dir[len - 1])) {
+                extension = "Check.xml";
+                break;
+            }
+            len--;
+        }
+
+        return xmlPath + extension;
+
     }
 
     private static String getFullyQualifiedClassName(String filePath, String moduleName)
@@ -823,7 +914,8 @@ public final class InlineConfigParser {
     private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
                             String inputFilePath,
                             List<String> lines,
-                            int beginLineNo, String moduleName)
+                            int beginLineNo, String moduleName,
+                            Map<String, String> propertiesDefault)
             throws IOException, CheckstyleException, ReflectiveOperationException {
 
         final String propertyContent = readPropertiesContent(beginLineNo, lines);
@@ -832,6 +924,12 @@ public final class InlineConfigParser {
         for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
             final String key = entry.getKey().toString();
             final String value = entry.getValue().toString();
+
+            if (Objects.equals(propertiesDefault.get(key), value)) {
+                throw new CheckstyleException(key
+                    + " is set to default value but missing '(default)' tag.");
+            }
+            propertiesDefault.remove(key);
 
             if (key.startsWith("message.")) {
                 inputConfigBuilder.addModuleMessage(key.substring(8), value);

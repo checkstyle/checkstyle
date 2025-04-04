@@ -2,7 +2,7 @@
 VariableDeclarationUsageDistance
 allowedDistance = 1
 ignoreVariablePattern = (default)
-validateBetweenScopes = false
+validateBetweenScopes = (default)false
 ignoreFinal = false
 
 
