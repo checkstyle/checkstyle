@@ -98,35 +98,39 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * Assign operator types.
      */
     private static final BitSet ASSIGN_OPERATOR_TYPES = TokenUtil.asBitSet(
-        TokenTypes.POST_INC,
-        TokenTypes.POST_DEC,
         TokenTypes.ASSIGN,
-        TokenTypes.PLUS_ASSIGN,
-        TokenTypes.MINUS_ASSIGN,
-        TokenTypes.STAR_ASSIGN,
-        TokenTypes.DIV_ASSIGN,
-        TokenTypes.MOD_ASSIGN,
-        TokenTypes.SR_ASSIGN,
-        TokenTypes.BSR_ASSIGN,
-        TokenTypes.SL_ASSIGN,
         TokenTypes.BAND_ASSIGN,
-        TokenTypes.BXOR_ASSIGN,
         TokenTypes.BOR_ASSIGN,
+        TokenTypes.BSR_ASSIGN,
+        TokenTypes.BXOR_ASSIGN,
+        TokenTypes.DEC,
+        TokenTypes.DIV_ASSIGN,
         TokenTypes.INC,
-        TokenTypes.DEC
+        TokenTypes.MINUS_ASSIGN,
+        TokenTypes.MOD_ASSIGN,
+        TokenTypes.PLUS_ASSIGN,
+        TokenTypes.POST_DEC,
+        TokenTypes.POST_INC,
+        TokenTypes.SL_ASSIGN,
+        TokenTypes.SR_ASSIGN,
+        TokenTypes.STAR_ASSIGN
     );
 
     /**
      * Loop types.
      */
     private static final BitSet LOOP_TYPES = TokenUtil.asBitSet(
+        TokenTypes.LITERAL_DO,
         TokenTypes.LITERAL_FOR,
-        TokenTypes.LITERAL_WHILE,
-        TokenTypes.LITERAL_DO
+        TokenTypes.LITERAL_WHILE
     );
-    public static final int[] BLOCK_TYPES = {
-        TokenTypes.LITERAL_ELSE,
+
+    /**
+     * Block types.
+     */
+    private static final int[] BLOCK_TYPES = {
         TokenTypes.CASE_GROUP,
+        TokenTypes.LITERAL_ELSE,
         TokenTypes.SWITCH_RULE,
     };
 
