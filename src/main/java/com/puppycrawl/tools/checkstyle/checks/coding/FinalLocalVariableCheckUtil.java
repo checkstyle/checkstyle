@@ -349,7 +349,7 @@ public class FinalLocalVariableCheckUtil {
      * @param ast2 Variable to compare
      * @return true if both the variables are same, otherwise false
      */
-    public static boolean isSameVariables(DetailAST ast1, DetailAST ast2) {
+    public static boolean isEqual(DetailAST ast1, DetailAST ast2) {
         return findFirstUpperNamedBlock(ast1) == findFirstUpperNamedBlock(ast2)
             && ast1.getText().equals(ast2.getText());
     }
@@ -403,7 +403,7 @@ public class FinalLocalVariableCheckUtil {
             if (candidate.isPresent()) {
                 storedVariable = candidate.orElseThrow().variableIdent;
             }
-            if (storedVariable != null && isSameVariables(storedVariable, ast)) {
+            if (storedVariable != null && isEqual(storedVariable, ast)) {
                 result = candidate;
             }
             return result;
@@ -416,7 +416,7 @@ public class FinalLocalVariableCheckUtil {
          * @param ast the variable ast.
          * @return true, if the variable should be removed.
          */
-        public boolean isRemoveFinalVariableCandidate(DetailAST ast) {
+        boolean isRemoveFinalVariableCandidate(DetailAST ast) {
             boolean shouldRemove = true;
             for (DetailAST variable : uninitializedVariables) {
                 if (variable.getText().equals(ast.getText())) {

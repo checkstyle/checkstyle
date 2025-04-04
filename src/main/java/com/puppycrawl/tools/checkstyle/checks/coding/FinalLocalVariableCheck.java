@@ -398,7 +398,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                         storedVariable = candidate.variableIdent;
                     }
                     if (storedVariable != null
-                        && FinalLocalVariableCheckUtil.isSameVariables(assignedVariable, variable)) {
+                        && FinalLocalVariableCheckUtil.isEqual(assignedVariable, variable)) {
                         scopeData.uninitializedVariables.push(variable);
                         shouldRemove = true;
                     }
@@ -464,7 +464,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 storedVariable = candidate.variableIdent;
             }
             if (storedVariable != null
-                && FinalLocalVariableCheckUtil.isSameVariables(storedVariable, ast)) {
+                && FinalLocalVariableCheckUtil.isEqual(storedVariable, ast)) {
                 if (scopeData.isRemoveFinalVariableCandidate(ast)) {
                     scope.remove(ast.getText());
                 }
