@@ -124,6 +124,11 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         TokenTypes.LITERAL_WHILE,
         TokenTypes.LITERAL_DO
     );
+    public static final int[] BLOCK_TYPES = {
+        TokenTypes.LITERAL_ELSE,
+        TokenTypes.CASE_GROUP,
+        TokenTypes.SWITCH_RULE,
+    };
 
     /** Scope Deque. */
     private final Deque<ScopeData> scopeStack = new ArrayDeque<>();
@@ -396,19 +401,13 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private static void determineAssignmentConditions(DetailAST ident,
                                                       FinalVariableCandidate candidate) {
-        if (candidate.assigned) {
-            final int[] blockTypes = {
-                TokenTypes.LITERAL_ELSE,
-                TokenTypes.CASE_GROUP,
-                TokenTypes.SWITCH_RULE,
-            };
-            if (!isInSpecificCodeBlocks(ident, blockTypes)) {
-                candidate.alreadyAssigned = true;
-            }
+        if (candidate.assigned && !isInSpecificCodeBlocks(ident, BLOCK_TYPES)) {
+            candidate.alreadyAssigned = true;
         }
-        else {
-            candidate.assigned = true;
-        }
+        // RV: skipping the else block works; assuming a test blind spot but as we have 100%
+        //        else {
+        //        }
+        candidate.assigned = true;
     }
 
     /**
@@ -463,9 +462,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private void updateAllUninitializedVariables() {
         if (!currentScopeAssignedVariables.isEmpty()) {
-            scopeStack.forEach(scopeData -> {
-                updateUninitializedVariables(scopeData.prevScopeUninitializedVariables);
-            });
+            scopeStack.forEach(scopeData
+                -> updateUninitializedVariables(scopeData.prevScopeUninitializedVariables));
         }
     }
 
@@ -667,11 +665,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 // if the variable is declared outside the loop and initialized inside
                 // the loop, then it cannot be declared final, as it can be initialized
                 // more than once in this case
-                final DetailAST currAstLoopAstParent = getParentLoop(ast);
-                final DetailAST currVarLoopAstParent = getParentLoop(variable);
-                if (currAstLoopAstParent == currVarLoopAstParent) {
-                    final FinalVariableCandidate candidate = scopeData.scope.get(ast.getText());
-                    shouldRemove = candidate.alreadyAssigned;
+                if (getParentLoop(ast) == getParentLoop(variable)) {
+                    shouldRemove = scopeData.scope.get(ast.getText()).alreadyAssigned;
                 }
                 scopeData.uninitializedVariables.remove(variable);
                 break;
@@ -751,7 +746,6 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @param ast Variable for which we want to find the scope in which it is defined
      * @return ast The Class or Constructor or Method in which it is defined.
      */
-    // -@cs[AvoidInlineConditionals] recursion is the key to success (and failure)
     // https://reddit.com/r/learnprogramming/comments/10o0gli/recursion_bad_practice/
     private static DetailAST findFirstUpperNamedBlock(DetailAST ast) {
         return TokenUtil.isOfType(ast,
@@ -761,6 +755,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.CTOR_DEF,
             TokenTypes.COMPACT_CTOR_DEF)
             || ScopeUtil.isClassFieldDef(ast)
+            // -@cs[AvoidInlineConditionals] recursion is the key to success (and failure)
             ? ast
             : findFirstUpperNamedBlock(ast.getParent());
     }
