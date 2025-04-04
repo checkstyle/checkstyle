@@ -447,6 +447,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             scopeStack.peek().uninitializedVariables.add(astNode);
         }
     }
+
     /**
      * Removes the final variable candidate from the Stack.
      *
