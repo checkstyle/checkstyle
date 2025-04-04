@@ -18,23 +18,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
  * @doubletag second text
  * @emptytag
  */
-class InputWriteTag
-{
-    /**
-     * @todo Add a constructor comment
-     */
-    public InputWriteTag()
-    {
-    }
-
-    public void method()
-    {
-    }
-
+interface InputWriteTagInterface {
     /**
      * @todo Add a comment
      */
-    public void anotherMethod()
-    {
-    }
+    void anotherMethod();
 }
