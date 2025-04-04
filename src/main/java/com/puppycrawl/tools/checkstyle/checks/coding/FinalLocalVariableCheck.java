@@ -19,6 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.ArrayDeque;
+import java.util.BitSet;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Optional;
+
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -26,8 +34,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
-
-import java.util.*;
 
 /**
  * <div>
@@ -321,12 +327,10 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private void updateCurrentScopeAssignedVariables() {
         // -@cs[MoveVariableInsideIf] assignment value is a modification call, so it can't be moved
-        final Deque<DetailAST> poppedScopeAssignedVariableData =
-                currentScopeAssignedVariables.pop();
-        final Deque<DetailAST> currentScopeAssignedVariableData =
-                currentScopeAssignedVariables.peek();
-        if (currentScopeAssignedVariableData != null) {
-            currentScopeAssignedVariableData.addAll(poppedScopeAssignedVariableData);
+        final Deque<DetailAST> pop = currentScopeAssignedVariables.pop();
+        final Deque<DetailAST> peek = currentScopeAssignedVariables.peek();
+        if (peek != null) {
+            peek.addAll(pop);
         }
     }
 
