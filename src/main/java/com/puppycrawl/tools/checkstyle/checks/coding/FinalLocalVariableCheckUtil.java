@@ -19,15 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.ArrayDeque;
 import java.util.BitSet;
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck.FinalVariableCandidate;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -98,23 +94,6 @@ final class FinalLocalVariableCheckUtil {
             && !isMultipleTypeCatch(paramDefAst)
             && !CheckUtil.isReceiverParameter(paramDefAst);
     }
-
-    /**
-     * Determines identifier assignment conditions (assigned or already assigned).
-     *
-     * @param ident     identifier.
-     * @param candidate final local variable candidate.
-     */
-    public static void determineAssignmentConditions(DetailAST ident,
-                                                     FinalVariableCandidate candidate) {
-        candidate.alreadyAssigned = candidate.assigned
-            && !isInSpecificCodeBlocks(ident, BLOCK_TYPES);
-        candidate.assigned = true;
-        // RV: skipping the else block works; assuming a test blind spot but as we have 100%
-        //        else {
-        //        }
-    }
-
     /**
      * Checks whether the scope of a node is restricted to a specific code blocks.
      *
@@ -321,106 +300,6 @@ final class FinalLocalVariableCheckUtil {
      */
     public static boolean isLoopAst(int ast) {
         return LOOP_TYPES.get(ast);
-    }
-
-    /**
-     * Holder for the scope data.
-     */
-    static final class ScopeData {
-
-        /**
-         * Contains variable definitions.
-         */
-        private final Map<String, FinalVariableCandidate> scope = new HashMap<>();
-
-        /**
-         * Contains definitions of uninitialized variables.
-         */
-        private final Deque<DetailAST> uninitializedVariables = new ArrayDeque<>();
-
-        /**
-         * Contains definitions of previous scope uninitialized variables.
-         */
-        private Deque<DetailAST> prevScopeUninitializedVariables = new ArrayDeque<>();
-
-        /**
-         * Whether there is a {@code break} in the scope.
-         */
-        private boolean containsBreak;
-
-        /**
-         * Searches for final local variable candidate for ast in the scope.
-         *
-         * @param ast ast.
-         * @return Optional of {@link FinalVariableCandidate}.
-         */
-        Optional<FinalVariableCandidate> findFinalVariableCandidateForAst(DetailAST ast) {
-            Optional<FinalVariableCandidate> result = Optional.empty();
-            DetailAST storedVariable = null;
-            final Optional<FinalVariableCandidate> candidate =
-                Optional.ofNullable(scope.get(ast.getText()));
-            if (candidate.isPresent()) {
-                storedVariable = candidate.orElseThrow().variableIdent;
-            }
-            if (storedVariable != null && isEqual(storedVariable, ast)) {
-                result = candidate;
-            }
-            return result;
-        }
-
-        /**
-         * Whether the final variable candidate should be removed from the list of
-         * final local variable candidates.
-         *
-         * @param ast the variable ast.
-         * @return true, if the variable should be removed.
-         */
-        boolean isRemoveFinalVariableCandidate(DetailAST ast) {
-            boolean shouldRemove = true;
-            for (DetailAST variable : uninitializedVariables) {
-                if (variable.getText().equals(ast.getText())) {
-                    // if the variable is declared outside the loop and initialized inside
-                    // the loop, then it cannot be declared final, as it can be initialized
-                    // more than once in this case
-                    if (getParentLoop(ast) == getParentLoop(variable)) {
-                        shouldRemove = scope.get(ast.getText()).alreadyAssigned;
-                    }
-                    uninitializedVariables.remove(variable);
-                    break;
-                }
-            }
-            return shouldRemove;
-        }
-
-    }
-
-    /**
-     * Represents information about final local variable candidate.
-     */
-    public static final class FinalVariableCandidate {
-
-        /**
-         * Identifier token.
-         */
-        private final DetailAST variableIdent;
-        /**
-         * Whether the variable is assigned.
-         */
-        private boolean assigned;
-        /**
-         * Whether the variable is already assigned.
-         */
-        private boolean alreadyAssigned;
-
-        /**
-         * Creates new instance.
-         *
-         * @param variableIdent variable identifier.
-         */
-        FinalVariableCandidate(DetailAST variableIdent) {
-            this.variableIdent = variableIdent;
-        }
-
     }
 
 }
