@@ -972,4 +972,29 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         return Long.parseLong(matcher.group(1));
     }
 
+    @Test
+    public void testAllFormattersResultInListeners() throws Exception {
+        final CheckstyleAntTask task = getCheckstyleAntTask();
+        task.setFile(new File(getPath(FLAWLESS_INPUT)));
+
+        final CheckstyleAntTask.Formatter xml = new CheckstyleAntTask.Formatter();
+        final File xmlOut = new File("target/xml.out");
+        xml.setTofile(xmlOut);
+        final CheckstyleAntTask.FormatterType xmlType = new CheckstyleAntTask.FormatterType();
+        xmlType.setValue("xml");
+        xml.setType(xmlType);
+        task.addFormatter(xml);
+
+        final CheckstyleAntTask.Formatter sarif = new CheckstyleAntTask.Formatter();
+        final File sarifOut = new File("target/sarif.out");
+        sarif.setTofile(sarifOut);
+        final CheckstyleAntTask.FormatterType sarifType = new CheckstyleAntTask.FormatterType();
+        sarifType.setValue("sarif");
+        sarif.setType(sarifType);
+        task.addFormatter(sarif);
+
+        final int listenerCount = task.getListenerCountForTesting();
+        assertWithMessage("Expected 2 listeners when 2 formatters are configured")
+                .that(listenerCount).isEqualTo(2);
+    }
 }
