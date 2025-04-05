@@ -101,9 +101,6 @@ class InputJavadocParagraphIncorrect {
          * @see <a href="example.com">
          *     Documentation about <p> GWT emulated source</a>
          */
-        // 2 violations 2 lines above:
-        //  'tag should be placed immediately before the first word'
-        //  'tag should be preceded with an empty line.'
         boolean emulated() {return false;}
 
         // violation 3 lines below 'Empty line should be followed by <p> tag on the next line.'
