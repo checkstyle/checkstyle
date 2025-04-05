@@ -239,6 +239,15 @@ public class CheckstyleAntTask extends Task {
         executeIgnoredModules = omit;
     }
 
+    /**
+     * For testing purposes only: returns the number of listeners created.
+     *
+     * @return the count of listeners created by getListeners()
+     */
+    int getListenerCountForTesting() {
+        return getListeners().length;
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // Setters for Root Module's configuration attributes
     ////////////////////////////////////////////////////////////////////////////
