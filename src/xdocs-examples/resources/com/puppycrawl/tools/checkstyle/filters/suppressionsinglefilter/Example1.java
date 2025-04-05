@@ -8,6 +8,7 @@
     <property name="checks" value="JavadocStyle|MagicNumber"/>
     <property name="files" value="Example1.java"/>
     <property name="lines" value="1,5-100"/>
+    <property name="columns" value="17-30"/>
   </module>
   <module name="SuppressionSingleFilter">
     <property name="message" value="Missing a Javadoc comment"/>

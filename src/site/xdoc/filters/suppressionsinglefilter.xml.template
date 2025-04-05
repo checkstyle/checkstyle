@@ -209,6 +209,26 @@
           <param name="type" value="code"/>
         </macro>
       </subsection>
+      <subsection name="To use both 'id' and 'columns' properties in the same filter"
+                  id="Example11">
+        <p id="Example11-config">
+          To configure a filter to suppress violations of <code>WhitespaceAround</code> check
+          but allow <code>MethodLength</code> violations in <code>Example11.java</code> using
+          <code>SuppressionSingleFilter</code> with both 'id' and 'columns' properties:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example11.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example11-code">
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example11.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
