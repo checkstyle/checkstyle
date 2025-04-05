@@ -1507,7 +1507,109 @@ public final class JavadocTokenTypes {
      */
     public static final int DT_HTML_TAG_NAME = JavadocParser.DT_HTML_TAG_NAME;
 
-    /** Head tag name. */
+    /**
+     * Head tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * &lt;head&gt;
+     *   &lt;title&gt;Page Title&lt;/title&gt;
+     *   &lt;meta charset="UTF-8"&gt;
+     *   &lt;link rel="stylesheet" href="styles.css"&gt;
+     *   &lt;script src="script.js"&gt;&lt;/script&gt;
+     * &lt;/head&gt;
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>{@code
+     *  JAVADOC -> JAVADOC
+     *  |--NEWLINE -> \r\n
+     *  |--LEADING_ASTERISK ->  *
+     *  |--TEXT ->
+     *  |--HTML_ELEMENT -> HTML_ELEMENT
+     *  |   `--HEAD -> HEAD
+     *  |       |--HEAD_TAG_START -> HEAD_TAG_START
+     *  |       |   |--START -> <
+     *  |       |   |--HEAD_HTML_TAG_NAME -> head
+     *  |       |   `--END -> >
+     *  |       |--NEWLINE -> \r\n
+     *  |       |--LEADING_ASTERISK ->  *
+     *  |       |--TEXT ->
+     *  |       |--HTML_TAG -> HTML_TAG
+     *  |       |   |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *  |       |   |   |--START -> <
+     *  |       |   |   |--HTML_TAG_NAME -> title
+     *  |       |   |   `--END -> >
+     *  |       |   |--TEXT -> Page Title
+     *  |       |   `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *  |       |       |--START -> <
+     *  |       |       |--SLASH -> /
+     *  |       |       |--HTML_TAG_NAME -> title
+     *  |       |       `--END -> >
+     *  |       |--NEWLINE -> \r\n
+     *  |       |--LEADING_ASTERISK ->  *
+     *  |       |--TEXT ->
+     *  |       |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *  |       |   `--META_TAG -> META_TAG
+     *  |       |       |--START -> <
+     *  |       |       |--META_HTML_TAG_NAME -> meta
+     *  |       |       |--WS ->
+     *  |       |       |--ATTRIBUTE -> ATTRIBUTE
+     *  |       |       |   |--HTML_TAG_NAME -> charset
+     *  |       |       |   |--EQUALS -> =
+     *  |       |       |   `--ATTR_VALUE -> "UTF-8"
+     *  |       |       `--END -> >
+     *  |       |--NEWLINE -> \r\n
+     *  |       |--LEADING_ASTERISK ->  *
+     *  |       |--TEXT ->
+     *  |       |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *  |       |   `--LINK_TAG -> LINK_TAG
+     *  |       |       |--START -> <
+     *  |       |       |--LINK_HTML_TAG_NAME -> link
+     *  |       |       |--WS ->
+     *  |       |       |--ATTRIBUTE -> ATTRIBUTE
+     *  |       |       |   |--HTML_TAG_NAME -> rel
+     *  |       |       |   |--EQUALS -> =
+     *  |       |       |   `--ATTR_VALUE -> "stylesheet"
+     *  |       |       |--WS ->
+     *  |       |       |--ATTRIBUTE -> ATTRIBUTE
+     *  |       |       |   |--HTML_TAG_NAME -> href
+     *  |       |       |   |--EQUALS -> =
+     *  |       |       |   `--ATTR_VALUE -> "styles.css"
+     *  |       |       `--END -> >
+     *  |       |--NEWLINE -> \r\n
+     *  |       |--LEADING_ASTERISK ->  *
+     *  |       |--TEXT ->
+     *  |       |--HTML_TAG -> HTML_TAG
+     *  |       |   |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *  |       |   |   |--START -> <
+     *  |       |   |   |--HTML_TAG_NAME -> script
+     *  |       |   |   |--WS ->
+     *  |       |   |   |--ATTRIBUTE -> ATTRIBUTE
+     *  |       |   |   |   |--HTML_TAG_NAME -> src
+     *  |       |   |   |   |--EQUALS -> =
+     *  |       |   |   |   `--ATTR_VALUE -> "script.js"
+     *  |       |   |   `--END -> >
+     *  |       |   `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *  |       |       |--START -> <
+     *  |       |       |--SLASH -> /
+     *  |       |       |--HTML_TAG_NAME -> script
+     *  |       |       `--END -> >
+     *  |       |--NEWLINE -> \r\n
+     *  |       |--LEADING_ASTERISK ->  *
+     *  |       |--TEXT ->
+     *  |       `--HEAD_TAG_END -> HEAD_TAG_END
+     *  |           |--START -> <
+     *  |           |--SLASH -> /
+     *  |           |--HEAD_HTML_TAG_NAME -> head
+     *  |           `--END -> >
+     *  |--NEWLINE -> \r\n
+     *  |--TEXT ->
+     *  `--EOF -> <EOF>
+     * }
+     * </pre>
+     *
+     * @see #HEAD_HTML_TAG_NAME
+     */
     public static final int HEAD_HTML_TAG_NAME = JavadocParser.HEAD_HTML_TAG_NAME;
 
     /** Html tag name. */
