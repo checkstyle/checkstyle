@@ -239,6 +239,15 @@ public class CheckstyleAntTask extends Task {
         executeIgnoredModules = omit;
     }
 
+    /**
+     * Package-private method used only for testing purposes.
+     *
+     * @return the number of formatter-based listeners configured in the task.
+     */
+    int getListenerCountForTesting() {
+        return formatters.size();
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // Setters for Root Module's configuration attributes
     ////////////////////////////////////////////////////////////////////////////
