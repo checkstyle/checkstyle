@@ -1,5 +1,6 @@
 /*
 JavadocPackage
+allowLegacy = (default)false
 
 */
 

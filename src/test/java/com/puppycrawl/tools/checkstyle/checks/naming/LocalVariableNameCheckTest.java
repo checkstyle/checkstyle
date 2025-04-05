@@ -105,9 +105,9 @@ public class LocalVariableNameCheckTest
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expected = {
-            "16:13: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
-            "17:13: " + getCheckMessage(MSG_INVALID_PATTERN, "_result", pattern),
-            "33:22: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "18:13: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "19:13: " + getCheckMessage(MSG_INVALID_PATTERN, "_result", pattern),
+            "35:22: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputLocalVariableNameUnnamedVariables.java"), expected);

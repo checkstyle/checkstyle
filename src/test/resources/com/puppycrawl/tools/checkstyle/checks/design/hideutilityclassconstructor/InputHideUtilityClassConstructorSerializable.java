@@ -1,6 +1,6 @@
 /*
 HideUtilityClassConstructor
-
+ignoreAnnotatedBy = (default)
 
 */
 

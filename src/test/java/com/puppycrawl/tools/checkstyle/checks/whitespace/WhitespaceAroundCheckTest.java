@@ -99,12 +99,12 @@ public class WhitespaceAroundCheckTest
     public void testSimpleInput()
             throws Exception {
         final String[] expected = {
-            "168:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
             "169:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
             "170:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
             "171:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
             "172:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
             "173:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
+            "174:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
         };
         verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundSimple.java"), expected);
