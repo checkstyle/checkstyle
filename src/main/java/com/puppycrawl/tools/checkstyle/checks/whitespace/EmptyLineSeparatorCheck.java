@@ -611,7 +611,23 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         final int number = 3;
         if (lineNo >= number) {
             final String prePreviousLine = getLine(lineNo - number);
+
             result = CommonUtil.isBlank(prePreviousLine);
+
+            if (!result) {
+                if (token.getPreviousSibling() != null
+                    && token.getPreviousSibling().getType() != TokenTypes.BLOCK_COMMENT_BEGIN
+                    && token.findFirstToken(TokenTypes.TYPE) != null) {
+                    final DetailAST beginningCommentBlock = token.findFirstToken(TokenTypes.TYPE)
+                        .findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+
+                    if (beginningCommentBlock != null
+                        && beginningCommentBlock.getLineNo() >= number) {
+                        result = CommonUtil.isBlank(
+                            getLine(beginningCommentBlock.getLineNo() - number));
+                    }
+                }
+            }
         }
         return result;
     }
@@ -689,7 +705,26 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (lineNo != 1) {
             // [lineNo - 2] is the number of the previous line as the numbering starts from zero.
             final String lineBefore = getLine(lineNo - 2);
+
             result = CommonUtil.isBlank(lineBefore);
+
+            if (!result) {
+                if (token.getPreviousSibling() != null
+                    && token.getPreviousSibling().getType() != TokenTypes.BLOCK_COMMENT_BEGIN
+                    && token.findFirstToken(TokenTypes.TYPE) != null) {
+                    final DetailAST beginningCommentBlock = token.findFirstToken(TokenTypes.TYPE)
+                        .findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+
+                    // 3 is the number of the pre-previous to make sure it is present
+                    final int number = 3;
+
+                    if (beginningCommentBlock != null
+                        && beginningCommentBlock.getLineNo() >= number) {
+                        result = CommonUtil.isBlank(
+                            getLine(beginningCommentBlock.getLineNo() - 2));
+                    }
+                }
+            }
         }
         return result;
     }
