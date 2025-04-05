@@ -2625,7 +2625,30 @@ public final class JavadocTokenTypes {
     /** Basefont html tag. */
     public static final int BASEFONT_TAG = JavadocParser.RULE_basefontTag + RULE_TYPES_OFFSET;
 
-    /** Br html tag. */
+    /**
+     * Br html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <br> line breaks<br>}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     *  `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *      `--BR_TAG -> BR_TAG
+     *          |--START -> <
+     *          |--BR_HTML_TAG_NAME -> br
+     *          `--END -> >
+     * TEXT ->  line breaks
+     * HTML_ELEMENT -> HTML_ELEMENT
+     *  `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *      `--BR_TAG -> BR_TAG
+     *          |--START -> <
+     *          |--BR_HTML_TAG_NAME -> br
+     *          `--END -> >
+     * }
+     * </pre>
+     */
     public static final int BR_TAG = JavadocParser.RULE_brTag + RULE_TYPES_OFFSET;
 
     /** Col html tag. */
