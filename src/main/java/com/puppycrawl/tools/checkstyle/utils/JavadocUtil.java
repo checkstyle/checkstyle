@@ -187,6 +187,36 @@ public final class JavadocUtil {
     }
 
     /**
+     * Recursively searches for a Javadoc comment node within the given AST.
+     *
+     * <p>This method checks whether the current AST node is a Javadoc comment. If not,
+     * it recursively traverses its child nodes until a Javadoc comment is found.</p>
+     *
+     * @param ast the root AST node to start the search from.
+     * @return the {@code DetailAST} node representing the Javadoc comment,
+     *     or {@code null} if none is found.
+     */
+    public static DetailAST findJavadocComment(DetailAST ast) {
+        DetailAST result = null;
+
+        if (ast != null) {
+            if (ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                    && JavadocUtil.isJavadocComment(ast)) {
+                result = ast;
+            }
+            else {
+                DetailAST child = ast.getFirstChild();
+                while (child != null && result == null) {
+                    result = findJavadocComment(child);
+                    child = child.getNextSibling();
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
      * Returns the first child token that has a specified type.
      *
      * @param detailNode
