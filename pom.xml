@@ -12,7 +12,8 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.22.0-SNAPSHOT</version>
+
+  <version>10.23.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -211,7 +212,7 @@
     <maven.spotbugs.plugin.version>4.9.3.0</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.26.0</maven.pmd.plugin.version>
     <pmd.version>7.12.0</pmd.version>
-    <maven.jacoco.plugin.version>0.8.12</maven.jacoco.plugin.version>
+    <maven.jacoco.plugin.version>0.8.13</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
     <saxon.version>12.5</saxon.version>
     <maven.checkstyle.plugin.version>3.6.0</maven.checkstyle.plugin.version>
@@ -232,9 +233,9 @@
     <pitest.accelerator.junit5.plugin.version>1.0.6</pitest.accelerator.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
     <junit.version>5.12.1</junit.version>
-    <forbiddenapis.version>3.8</forbiddenapis.version>
+    <forbiddenapis.version>3.9</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
-    <checkerframework.version>3.49.1</checkerframework.version>
+    <checkerframework.version>3.49.2</checkerframework.version>
     <error-prone.version>2.31.0</error-prone.version>
     <error-prone-support.version>0.15.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
@@ -386,7 +387,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.19.2</version>
+      <version>3.19.3</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -1535,7 +1536,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
-        <version>3.5.2</version>
+        <version>3.5.3</version>
         <configuration>
           <includes>
             <include>com/google/**/*.java</include>
@@ -1562,7 +1563,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.5.2</version>
+        <version>3.5.3</version>
         <configuration>
           <argLine>-Dfile.encoding=UTF-8 ${surefire.options}</argLine>
           <systemPropertyVariables>
@@ -1964,7 +1965,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-report-plugin</artifactId>
-        <version>3.5.2</version>
+        <version>3.5.3</version>
         <reportSets>
           <reportSet>
             <reports>
