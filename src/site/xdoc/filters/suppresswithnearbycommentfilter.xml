@@ -103,7 +103,7 @@
           To configure a filter to suppress audit events for <i>check</i>
           on any line with a comment <code>SUPPRESS CHECKSTYLE <i>check</i></code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressWithNearbyCommentFilter"/&gt;
@@ -121,7 +121,7 @@ public class Example1 {
           To configure a filter to suppress all audit events on any line
           containing the comment <code>CHECKSTYLE IGNORE THIS LINE</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressWithNearbyCommentFilter"&gt;
@@ -145,7 +145,7 @@ public class Example2 {
           permits the current and previous line to avoid generating an IllegalCatch
           audit event:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressWithNearbyCommentFilter"&gt;
@@ -177,7 +177,7 @@ public class Example3 {
           avoids triggering any audits for the given check for
           the current line and the next <i>var</i> lines (for a total of <i>var</i>+1 lines):
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressWithNearbyCommentFilter"&gt;
@@ -204,7 +204,7 @@ public class Example4 {
         <p id="Example5-config">
           To configure a filter to avoid any audits on code like:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressWithNearbyCommentFilter"&gt;
@@ -228,7 +228,7 @@ public class Example5 {
           To configure a filter to allow suppress one or more Checks
           (separated by &quot;|&quot;) and demand comment no less than 14 symbols:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressWithNearbyCommentFilter"&gt;
@@ -262,7 +262,7 @@ public class Example6 {
           is set to '$1' points that ID of the checks is in the first group of
           commentFormat regular expressions):
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressWithNearbyCommentFilter"&gt;
@@ -301,7 +301,7 @@ public class Example7 {
           Example of how to configure the check to suppress more than one checks.
           The influence format is specified in the second regexp group.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressWithNearbyCommentFilter"&gt;

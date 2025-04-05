@@ -72,7 +72,7 @@ public void guessTheOutput()
 
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">To configure the check:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AvoidNestedBlocks"/&gt;
@@ -102,7 +102,7 @@ public class Example1 {
 }
 </code></pre></div>
         <p id="Example2-config">To configure the check to allow nested blocks in switch case:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AvoidNestedBlocks"&gt;

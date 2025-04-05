@@ -155,7 +155,7 @@
 
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">To configure the check:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AbbreviationAsWordInName"/&gt;
@@ -188,7 +188,7 @@ class Example1 extends SuperClass { // OK, camel case
           methods tagged with <code>@Override</code> annotation.
         </p>
         <p id="Example2-config">Configuration:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AbbreviationAsWordInName"&gt;
@@ -227,7 +227,7 @@ class Example2 extends SuperClass { // OK, camel case
           words like 'XML' and 'URL'.
         </p>
         <p id="Example3-config">Configuration:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AbbreviationAsWordInName"&gt;
@@ -261,7 +261,7 @@ class Example3 {
           consecutive capital letters ignoring the longer word 'CSV'.
         </p>
         <p id="Example4-config">Configuration:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AbbreviationAsWordInName"&gt;
@@ -292,7 +292,7 @@ class Example4 { // OK, ignore checking the class name
           except for variables that are both static and final.
         </p>
         <p id="Example5-config">Configuration:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AbbreviationAsWordInName"&gt;
@@ -320,7 +320,7 @@ class Example5 {
           and ignoring static (but non-final) variables only.
         </p>
         <p id="Example6-config">Configuration:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AbbreviationAsWordInName"&gt;
@@ -350,7 +350,7 @@ class Example6 {
           words like 'ALLOWED'.
         </p>
         <p id="Example7-config">Configuration:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AbbreviationAsWordInName"&gt;

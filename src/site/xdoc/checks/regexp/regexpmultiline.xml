@@ -87,7 +87,7 @@
         <p id="Example1-config">
         To run the check with its default configuration (no matches will be):
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpMultiline"/&gt;
 &lt;/module&gt;
@@ -132,7 +132,7 @@ class Example1 {
         <p id="Example2-config">
           To configure the check to find calls to print to the console:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpMultiline"&gt;
     &lt;property name="format" value="System\.(out)|(err)\.print(ln)?\("/&gt;
@@ -180,7 +180,7 @@ class Example2 {
           To configure the check to match text that spans multiple lines,
           like normal code in a Java file:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpMultiline"&gt;
     &lt;property name="matchAcrossLines" value="true"/&gt;
@@ -236,7 +236,7 @@ class Example3 {
         <p id="Example4-config">
         To configure the check to match a maximum of three test strings:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpMultiline"&gt;
     &lt;property name="format" value="Test #[0-9]+:[A-Za-z ]+"/&gt;
@@ -285,7 +285,7 @@ class Example4 {
         <p id="Example5-config">
         To configure the check to match a minimum of two test strings:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpMultiline"&gt;
     &lt;property name="format" value="Test #[0-9]+:[A-Za-z ]+"/&gt;
@@ -333,7 +333,7 @@ class Example5 {
         <p id="Example6-config">
           To configure the check to restrict an empty file:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpMultiline"&gt;
       &lt;property name="format" value="^\s*$" /&gt;

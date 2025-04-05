@@ -67,7 +67,7 @@
           To configure the default check to validate that first sentence is not empty and first
           sentence is not missing:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SummaryJavadoc"/&gt;
@@ -127,7 +127,7 @@ class Example1 {
           To ensure that summary does not contain phrase like &quot;This method returns&quot;, use
           following config:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SummaryJavadoc"&gt;
@@ -189,7 +189,7 @@ class Example2 {
         <p id="Example3-config">
           To specify period symbol at the end of first javadoc sentence:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SummaryJavadoc"&gt;

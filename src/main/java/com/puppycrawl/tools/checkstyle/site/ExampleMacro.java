@@ -85,6 +85,8 @@ public class ExampleMacro extends AbstractMacro {
         }
 
         if ("config".equals(type)) {
+            sink.rawText("<hr class=\"example-separator\"/>");
+
             final String config = getConfigSnippet(lines);
 
             if (config.isBlank()) {

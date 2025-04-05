@@ -89,7 +89,7 @@
           To configure the default check to make sure all public class, enum, interface, and
           annotation interface, definitions have javadocs:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MissingJavadocType"/&gt;
@@ -112,7 +112,7 @@ class Example1 {
         <p id="Example2-config">
           To configure the check for <code>private</code> scope:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MissingJavadocType"&gt;
@@ -137,7 +137,7 @@ class Example2 { // violation, 'Missing a Javadoc comment'
         <p id="Example3-config">
           To configure the check for <code>private</code> classes only:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MissingJavadocType"&gt;
@@ -165,7 +165,7 @@ class Example3 {
           To configure a check that allows missing comments for classes annotated with
           <code>@SpringBootApplication</code> and <code>@Configuration</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MissingJavadocType"&gt;
@@ -187,7 +187,7 @@ class DatabaseConfiguration {}
           To configure a check that allows missing comments for classes annotated with
           <code>@Annotation</code> and <code>@MyClass.Annotation</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MissingJavadocType"&gt;

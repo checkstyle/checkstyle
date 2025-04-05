@@ -102,7 +102,7 @@
         <p id="Example1-config">
           To configure the check to report file names that contain a space:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpOnFilename"/&gt;
 &lt;/module&gt;
@@ -118,7 +118,7 @@
         <p id="Example2-config">
           To configure the check to forbid 'xml' files in folders:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpOnFilename"&gt;
     &lt;property name="fileNamePattern" value="^TestExample\d+\.xml$"/&gt;
@@ -139,7 +139,7 @@
           To configure the check to forbid 'md' files except 'README.md file' in folders,
           with custom message:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpOnFilename"&gt;
     &lt;property name="fileNamePattern" value="README"/&gt;
@@ -162,7 +162,7 @@
           To configure the check to only allow property and xml files to be located
           in the resource folder:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpOnFilename"&gt;
     &lt;property name="fileNamePattern" value=".*\.(properties|xml)$"/&gt;
@@ -183,7 +183,7 @@
         <p id="Example5-config">
           To configure the check to only allow only camelcase
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpOnFilename"&gt;
     &lt;property name="fileNamePattern" value="^([A-Z][a-z0-9]+\.?)+$"/&gt;

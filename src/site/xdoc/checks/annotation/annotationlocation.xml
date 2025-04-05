@@ -140,7 +140,7 @@ public String getNameIfPresent() { ... }
           To configure the default check to allow one single parameterless annotation on the same
             line:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AnnotationLocation"/&gt;
@@ -169,7 +169,7 @@ class Example1 {
         <p id="Example2-config">
           Use the following configuration to allow multiple annotations on the same line:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AnnotationLocation"&gt;
@@ -203,7 +203,7 @@ class Example2 {
           Use the following configuration to allow only one and only parameterized annotation
           on the same line:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AnnotationLocation"&gt;
@@ -239,7 +239,7 @@ class Example3 {
           Use the following configuration to only validate annotations on methods to allow one
           single parameterless annotation on the same line:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AnnotationLocation"&gt;

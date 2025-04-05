@@ -152,7 +152,7 @@
 
       <subsection name="Examples" id="Examples">
         <p id="Example1-config"> To configure the check: </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LeftCurly"/&gt;
@@ -183,7 +183,7 @@ class Example1
           To configure the check to apply the <code>nl</code> policy to
           type blocks:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LeftCurly"&gt;
@@ -216,7 +216,7 @@ class Example2
           To configure the check to apply the <code>nlow</code> policy to
           type blocks:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LeftCurly"&gt;
@@ -247,7 +247,7 @@ class Example3
         <p id="Example4-config">
           An example of how to configure the check to validate enum definitions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LeftCurly"&gt;

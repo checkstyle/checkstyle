@@ -97,7 +97,7 @@
           return statements per method (ignoring the <code>equals()</code>
           method):
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ReturnCount"&gt;
@@ -144,7 +144,7 @@ public class Example1 {
           To configure the check so that it doesn't allow any
           return statements per void method:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ReturnCount"&gt;
@@ -192,7 +192,7 @@ public class Example2 {
           return statements per method (ignoring the <code>equals()</code>
           method) and more than 1 return statements per void method:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ReturnCount"&gt;
@@ -240,7 +240,7 @@ public class Example3 {
           To configure the check so that it doesn't allow more than three
           return statements per method for all methods:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ReturnCount"&gt;
@@ -289,7 +289,7 @@ public class Example4 {
           in constructors, more than one return statement in all lambda
           expressions and more than two return statements in methods:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ReturnCount"&gt;

@@ -114,7 +114,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"/&gt;
@@ -157,7 +157,7 @@ import com.neurologic.http.impl.ApacheHttpClient;
           <li>configuration below doesn't work in all 100% cases due to inconsistent behavior
               prior to Mars release, but covers most scenarios</li>
         </ul>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -199,7 +199,7 @@ import org.apache.http.conn.ClientConnectionManager;
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -257,7 +257,7 @@ import com.neurologic.http.impl.ApacheHttpClient;
           Note: &quot;separated&quot; option is disabled because IDEA default has blank line
           between &quot;java&quot; and static imports, and no blank line between &quot;javax&quot; and &quot;java&quot;.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -297,7 +297,7 @@ import com.neurologic.http.HttpClient; // violation, wrong order, 'com' imports 
               group</li>
           <li>static imports are not separated, they will be sorted along with other imports</li>
         </ul>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -342,7 +342,7 @@ import static javax.windowConstants.*;
           To configure the Check allows static imports grouped to the <b>top</b> being sorted
           alphabetically:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -370,7 +370,7 @@ import org.abego.*;
           To configure the Check with groups of static imports:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -414,7 +414,7 @@ import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
         <p id="Example8-config">
           Example for <code>useContainerOrderingForStatic=true</code>
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -439,7 +439,7 @@ import static io.netty.handler.codec.http.HttpHeaders.Names.DATE;
         <p id="Example9-config">
           Example for <code>useContainerOrderingForStatic=false</code>
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -469,7 +469,7 @@ public class Example9 { }
         <p id="Example10-config">
           Example for <code>separatedStaticGroups=true</code>
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -495,7 +495,7 @@ import java.net.URL;
           To configure the Check with groups of static imports when staticGroups=&quot;&quot;
           represents all imports as {@code everything else} group:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;
@@ -521,7 +521,7 @@ import static com.puppycrawl.tools.checkstyle;
           should be in last group:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ImportOrder"&gt;

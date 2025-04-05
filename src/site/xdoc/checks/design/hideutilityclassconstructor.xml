@@ -67,7 +67,7 @@ public class StringUtils // not final to allow subclassing
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="HideUtilityClassConstructor"/&gt;
@@ -121,7 +121,7 @@ class Application1 {
           To configure the check to ignore classes annotated with <code>SpringBootApplication</code>
           or <code>java.lang.Deprecated</code>.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="HideUtilityClassConstructor"&gt;

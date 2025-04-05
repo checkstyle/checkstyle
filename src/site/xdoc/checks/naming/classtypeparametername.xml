@@ -37,7 +37,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassTypeParameterName"/&gt;
@@ -57,7 +57,7 @@ class Example1 {
         <p id="Example2-config">
           To configure the check for names that are uppercase word:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassTypeParameterName"&gt;
@@ -80,7 +80,7 @@ class Example2 {
           To configure the check for names that are camel case word with T as suffix
           (<a href="../../styleguides/google-java-style-20220203/javaguide.html#s5.2.8-type-variable-names">Google Style</a>):
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassTypeParameterName"&gt;

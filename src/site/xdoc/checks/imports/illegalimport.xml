@@ -64,7 +64,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalImport"/&gt;
@@ -91,7 +91,7 @@ public class Example1 {}
           To configure the check so that it rejects packages <code>java.io.*</code>
           and <code>java.sql.*</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalImport"&gt;
@@ -124,7 +124,7 @@ public class Example2 {}
           To configure the check so that it rejects classes <code>java.util.Date</code> and
           <code>java.sql.Connection</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalImport"&gt;
@@ -158,7 +158,7 @@ public class Example3 {}
           To configure the check so that it rejects packages not satisfying to regular
           expression <code>java\.util</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalImport"&gt;
@@ -198,7 +198,7 @@ public class Example4 {}
           expression <code>^java\.util\.(List|Arrays)</code> and
           <code>^java\.sql\.Connection</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalImport"&gt;

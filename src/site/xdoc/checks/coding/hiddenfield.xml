@@ -135,7 +135,7 @@ class PageBuilder {
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="HiddenField"/&gt;
@@ -171,7 +171,7 @@ class Example1 {
           To configure the check so that it checks local variables but not
           parameters:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="HiddenField"&gt;
@@ -209,7 +209,7 @@ class Example2 {
           To configure the check so that it ignores the variables and parameters named
           &quot;test&quot;:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="HiddenField"&gt;
@@ -246,7 +246,7 @@ class Example3 {
         <p id="Example4-config">
           To configure the check so that it ignores constructor parameters:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="HiddenField"&gt;
@@ -284,7 +284,7 @@ class Example4 {
           To configure the check so that it ignores the parameter of setter
           methods:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="HiddenField"&gt;
@@ -323,7 +323,7 @@ class Example5 {
           methods recognizing setter as returning either <code>void</code> or
           a class in which it is declared:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="HiddenField"&gt;
@@ -360,7 +360,7 @@ class Example6 {
         <p id="Example7-config">
           To configure the check so that it ignores parameters of abstract methods:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="HiddenField"&gt;

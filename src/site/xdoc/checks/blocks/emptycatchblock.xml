@@ -55,7 +55,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="EmptyCatchBlock"/&gt;
@@ -101,7 +101,7 @@ public class Example1 {
           To configure the check to suppress empty catch block if exception's variable name is
           <code>expected</code> or <code>ignore</code> or there's any comment inside:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="EmptyCatchBlock"&gt;
@@ -149,7 +149,7 @@ public class Example2 {
           To configure the check to suppress empty catch block if single-line comment inside
            is &quot;This is expected&quot;:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="EmptyCatchBlock"&gt;
@@ -197,7 +197,7 @@ public class Example3 {
           To configure the check to suppress empty catch block if single-line comment inside
           is &quot;This is expected&quot;:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="EmptyCatchBlock"&gt;
@@ -260,7 +260,7 @@ public class Example4 {
           To configure the check to suppress empty catch block if
           exception's variable name is &quot;myException&quot;:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="EmptyCatchBlock"&gt;

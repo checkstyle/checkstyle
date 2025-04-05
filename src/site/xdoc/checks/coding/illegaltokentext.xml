@@ -82,7 +82,7 @@
           To configure the check to forbid String literals containing
           <code>&quot;a href&quot;</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalTokenText"&gt;
@@ -105,7 +105,7 @@ public class Example1 {
           To configure the check to forbid String literals containing
           <code>&quot;a href&quot;</code> for the ignoreCase mode:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalTokenText"&gt;
@@ -129,7 +129,7 @@ public class Example2 {
           To configure the check to forbid string literal text blocks containing
           <code>&quot;</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalTokenText"&gt;
@@ -152,7 +152,7 @@ public class Example3 {
           To configure the check to forbid leading zeros in an integer
           literal, other than zero and a hex literal:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalTokenText"&gt;

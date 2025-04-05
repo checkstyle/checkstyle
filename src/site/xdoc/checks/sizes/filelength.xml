@@ -52,7 +52,7 @@
         <p id="Example1-config">
          To configure the check to accept files with up to 2000 lines:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="FileLength"/&gt;
 &lt;/module&gt;
@@ -69,7 +69,7 @@ public class Example1 {
         <p id="Example2-config">
           To configure the check to accept files with up to 5 lines:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="FileLength"&gt;
     &lt;property name="max" value="5"/&gt;
@@ -88,7 +88,7 @@ public class Example2 {
         <p id="Example3-config">
           To configure the check to accept files with up to 5 lines and with txt extension only:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="FileLength"&gt;
     &lt;property name="max" value="5"/&gt;

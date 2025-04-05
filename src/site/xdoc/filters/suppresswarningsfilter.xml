@@ -42,7 +42,7 @@
       </subsection>
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">Example of suppression by name of Check in annotation:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressWarningsHolder" /&gt;
@@ -75,7 +75,7 @@ public class Example1 {
           you want to suppress.
         </p>
         <p id="Example2-config">Example of suppression by prefix &quot;checkstyle:&quot;:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressWarningsHolder" /&gt;

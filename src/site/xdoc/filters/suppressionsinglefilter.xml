@@ -97,7 +97,7 @@
           <code>MagicNumber</code> checks in <code>Example1.java</code> for specific line ranges
           using <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocStyle"/&gt;
@@ -127,7 +127,7 @@ public class Example1 {
           <code>EqualsAvoidNull</code> checks in <code>Example2.java</code> using
           <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocMethod"/&gt;
@@ -159,7 +159,7 @@ public class Example2 {
           To configure a filter to suppress violations of <code>RegexpSinglelineCheck</code>
           in <code>Example3.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpSingleline"&gt;
     &lt;property name="format" value="example"/&gt;
@@ -193,7 +193,7 @@ public class Example3 {
           To configure a filter to suppress violations of <code>NoWhitespaceAfter</code>
           in <code>Example4.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NoWhitespaceAfter"/&gt;
@@ -224,7 +224,7 @@ public class Example4 {
           To configure a filter to suppress violations of <code>MethodName</code>
           in <code>Example5.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="MethodName"/&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
@@ -249,7 +249,7 @@ public class Example5 {
           To configure a filter to suppress violations of <code>ConstantName</code>
           in <code>Example6.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="ConstantName"/&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
@@ -272,7 +272,7 @@ public class Example6 {
           and <code>MethodName</code> in <code>Example7.java</code> using
           <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="MemberName"/&gt;
   &lt;module name="MethodName"/&gt;
@@ -297,7 +297,7 @@ public class Example7 {
           To configure a filter to suppress <code>ParameterNumber</code> violations
           in <code>Example8.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ParameterNumber"&gt;
@@ -324,7 +324,7 @@ public class Example8 {
           To configure a filter to suppress <code>FileLength</code> violations
           in <code>Example9.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="FileLength"&gt;
@@ -349,7 +349,7 @@ public class Example9 {
           To configure a filter to suppress <code>MemberName</code> violations
           in <code>Example10.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="MemberName"&gt;
     &lt;property name="format" value="^[A-Z][a-zA-Z0-9]*$"/&gt;

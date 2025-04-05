@@ -90,7 +90,7 @@
           for all methods with name MyMethod
           inside Example1 and Example3 files:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"/&gt;
@@ -115,7 +115,7 @@ public class Example1 {
         <p id="Example2-config">
           To suppress MethodName check for method names matched pattern 'MyMethod[0-9]':
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"/&gt;
@@ -140,7 +140,7 @@ public class Example2 {
         <p id="Example3-config">
           To suppress checks being specified by id property:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"&gt;
@@ -163,7 +163,7 @@ public class Example3 {
         <p id="Example4-config">
           To suppress checks for all package definitions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="PackageName"&gt;
@@ -189,7 +189,7 @@ public class Example4 {}
         <p id="Example5-config">
           To suppress RedundantModifier check for interface definitions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RedundantModifier"/&gt;
@@ -209,7 +209,7 @@ public interface Example5 {
         <p id="Example6-config">
           To suppress checks in the Example6 file by non-query:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MagicNumber"/&gt;
@@ -230,7 +230,7 @@ public class Example6 {
           Suppress checks for elements which are either class definitions,
           or method definitions:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AbstractClassName"/&gt;
@@ -262,7 +262,7 @@ abstract class AnotherClass {
         <p id="Example8-config">
           Suppress checks for MyMethod1 or MyMethod2 methods:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"/&gt;
@@ -289,7 +289,7 @@ class Example8 {
           Suppress checks for variable testVariable1 inside
           testMethod method inside Example9 class:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LocalFinalVariableName"&gt;
@@ -320,7 +320,7 @@ public class Example9 {
           will be suppressed for methods with name testMethod1 inside
           Example10 file.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LeftCurly"/&gt;
@@ -348,7 +348,7 @@ public class Example10 {
           The following example demonstrates how to suppress
           RequireThis violations for variable age inside changeAge method.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RequireThis"&gt;
@@ -386,7 +386,7 @@ public class Example11 {
           <code>METHOD_DEF</code> and name <i>throwsMethod</i>. Please read more about xpath axes at
           <a href="https://www.w3schools.com/xml/xpath_axes.asp">W3Schools Xpath Axes</a>.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalThrows"/&gt;
@@ -417,7 +417,7 @@ public class Example12 {
           Please read more about xpath syntax at
           <a href="https://www.w3schools.com/xml/xpath_syntax.asp">W3Schools Xpath Syntax</a>.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LocalFinalVariableName"&gt;
@@ -456,7 +456,7 @@ public class Example13 {
           Please find more information at:
           <a href="https://github.com/spring-io/spring-javaformat">spring-javaformat</a>
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <hr class="example-separator"/><div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalIdentifierName"&gt;
