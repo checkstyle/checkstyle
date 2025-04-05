@@ -23,6 +23,8 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -94,6 +96,7 @@ public class JavadocDetailNodeParser {
      *        DetailAST of Javadoc comment
      * @return DetailNode tree of Javadoc comment
      */
+    @Nullable
     public ParseStatus parseJavadocAsDetailNode(DetailAST javadocCommentAst) {
         blockCommentLineNumber = javadocCommentAst.getLineNo();
 
