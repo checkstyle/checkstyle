@@ -343,7 +343,6 @@ public final class JavadocTokenTypes {
      *            |--TEXT -> Baratali Izmailov
      *            |--NEWLINE -> \r\n
      *            `--TEXT ->
-
      * }</pre>
      *
      * @see
