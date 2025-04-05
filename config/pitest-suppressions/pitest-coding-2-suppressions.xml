@@ -1,23 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
-  <!-- until https://github.com/checkstyle/checkstyle/issues/14894 -->
-  <mutation unstable="false">
-    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
-    <mutatedMethod>getBlockContainingLocalAnonInnerClass</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
-    <description>negated conditional</description>
-    <lineContent>if (currentAst.getType() == TokenTypes.LAMBDA) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
-    <mutatedMethod>getBlockContainingLocalAnonInnerClass</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (currentAst.getType() == TokenTypes.LAMBDA) {</lineContent>
-  </mutation>
 
   <mutation unstable="false">
     <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
