@@ -47,6 +47,8 @@
       <property key="checkstyle.cache.file" file="${mvn.project.build.directory}/cachefile"/>
       <property key="checkstyle.header.file" file="config/java.header"/>
       <property key="checkstyle.regexp.header.file" file="config/java-regexp.header"/>
+      <property key="checkstyle.regexp.header.file.01" file="config/java-regexp.header"/>
+      <property key="checkstyle.regexp.header.file.02" file="config/java-regexp.header"/>
       <property key="checkstyle.importcontrol.file" file="config/import-control.xml"/>
       <property key="checkstyle.importcontroltest.file" file="config/import-control-test.xml"/>
       <property key="checkstyle.suppressions.file"
