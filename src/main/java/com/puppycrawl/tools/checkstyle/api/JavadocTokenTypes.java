@@ -2631,30 +2631,7 @@ public final class JavadocTokenTypes {
     /** Col html tag. */
     public static final int COL_TAG = JavadocParser.RULE_colTag + RULE_TYPES_OFFSET;
 
-    /**
-     * Br html tag.
-     *
-     * <p><b>Example:</b></p>
-     * <pre>{@code <br> line breaks<br>}</pre>
-     * <b>Tree:</b>
-     * <pre>
-     *  {@code
-     *  HTML_ELEMENT -> HTML_ELEMENT
-     *  `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
-     *  `--BR_TAG -> BR_TAG
-     *  |--START -> <
-     *  |--BR_HTML_TAG_NAME -> br
-     *  `--END -> >
-     *  TEXT ->  line breaks
-     *  HTML_ELEMENT -> HTML_ELEMENT
-     *  `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
-     *  `--BR_TAG -> BR_TAG
-     *  |--START -> <
-     *  |--BR_HTML_TAG_NAME -> br
-     *   `--END -> >
-     *  }
-     *  </pre>
-     */
+    /** Frame html tag. */
     public static final int FRAME_TAG = JavadocParser.RULE_frameTag + RULE_TYPES_OFFSET;
 
     /**
