@@ -130,7 +130,7 @@ public enum JavadocTagInfo {
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
-            return astType == TokenTypes.METHOD_DEF || astType == TokenTypes.CTOR_DEF;
+            return TokenUtil.isOfType(astType, TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF);
         }
 
     },
@@ -144,7 +144,7 @@ public enum JavadocTagInfo {
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
 
-            return astType == TokenTypes.METHOD_DEF
+            return TokenUtil.isOfType(astType, TokenTypes.METHOD_DEF)
                 && ast.findFirstToken(TokenTypes.MODIFIERS)
                     .findFirstToken(TokenTypes.LITERAL_STATIC) == null
                 && ScopeUtil.getScope(ast) != Scope.PRIVATE;
@@ -202,10 +202,11 @@ public enum JavadocTagInfo {
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
-            return astType == TokenTypes.CLASS_DEF
-                || astType == TokenTypes.INTERFACE_DEF
-                || astType == TokenTypes.METHOD_DEF
-                || astType == TokenTypes.CTOR_DEF;
+            return TokenUtil.isOfType(astType,
+                    TokenTypes.CLASS_DEF,
+                    TokenTypes.INTERFACE_DEF,
+                    TokenTypes.METHOD_DEF,
+                    TokenTypes.CTOR_DEF);
         }
 
     },
@@ -220,7 +221,7 @@ public enum JavadocTagInfo {
             final int astType = ast.getType();
             final DetailAST returnType = ast.findFirstToken(TokenTypes.TYPE);
 
-            return astType == TokenTypes.METHOD_DEF
+            return TokenUtil.isOfType(astType, TokenTypes.METHOD_DEF)
                 && returnType.getFirstChild().getType() != TokenTypes.LITERAL_VOID;
         }
 
@@ -249,7 +250,7 @@ public enum JavadocTagInfo {
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
 
-            return astType == TokenTypes.VARIABLE_DEF
+            return TokenUtil.isOfType(astType, TokenTypes.VARIABLE_DEF)
                 && !ScopeUtil.isLocalVariableDef(ast);
         }
 
@@ -266,7 +267,7 @@ public enum JavadocTagInfo {
             final DetailAST methodNameAst = ast.findFirstToken(TokenTypes.IDENT);
             final String methodName = methodNameAst.getText();
 
-            return astType == TokenTypes.METHOD_DEF
+            return TokenUtil.isOfType(astType, TokenTypes.METHOD_DEF)
                 && ("writeObject".equals(methodName)
                     || "readObject".equals(methodName)
                     || "writeExternal".equals(methodName)
@@ -286,9 +287,9 @@ public enum JavadocTagInfo {
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
             final DetailAST varType = ast.findFirstToken(TokenTypes.TYPE);
-
             return astType == TokenTypes.VARIABLE_DEF
-                && varType.getFirstChild().getType() == TokenTypes.ARRAY_DECLARATOR
+                && TokenUtil.isOfType(varType.getFirstChild().getType(),
+                    TokenTypes.ARRAY_DECLARATOR)
                 && "ObjectStreamField".equals(varType.getFirstChild().getText());
         }
 
@@ -316,8 +317,7 @@ public enum JavadocTagInfo {
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
-            return astType == TokenTypes.METHOD_DEF
-                || astType == TokenTypes.CTOR_DEF;
+            return TokenUtil.isOfType(astType, TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF);
         }
 
     },
