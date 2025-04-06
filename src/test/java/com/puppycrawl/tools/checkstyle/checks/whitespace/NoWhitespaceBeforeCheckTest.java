@@ -47,6 +47,7 @@ public class NoWhitespaceBeforeCheckTest
             "215:16: " + getCheckMessage(MSG_KEY, ";"),
             "270:1: " + getCheckMessage(MSG_KEY, ";"),
             "274:16: " + getCheckMessage(MSG_KEY, ";"),
+            "278:16: " + getCheckMessage(MSG_KEY, ";"),
             "288:1: " + getCheckMessage(MSG_KEY, ";"),
             "291:62: " + getCheckMessage(MSG_KEY, "..."),
             "295:16: " + getCheckMessage(MSG_KEY, ":"),

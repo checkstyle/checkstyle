@@ -17,6 +17,7 @@ class Example1 {
   int foo = 5;
   void example() {
     foo ++; // violation 'is preceded with whitespace'
+     foo++; // violation 'is preceded with whitespace'
     foo++;
     for (int i = 0 ; i < 5; i++) {}  // violation '';' is preceded with whitespace'
     for (int i = 0; i < 5; i++) {}

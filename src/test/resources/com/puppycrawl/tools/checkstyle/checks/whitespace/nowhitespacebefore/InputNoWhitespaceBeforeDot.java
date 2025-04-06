@@ -274,6 +274,10 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDot
         return ;
     }
 
+    public void testNullSemi2() {
+         return;
+    }
+
     public void register(Object obj) { }
 
     public void doSomething(String args[]) {
