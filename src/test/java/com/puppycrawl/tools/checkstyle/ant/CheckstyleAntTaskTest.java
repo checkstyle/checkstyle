@@ -317,9 +317,12 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
+        // Verify exact format of error message (testing String.format mutation)
+        final String expectedExceptionFormat = String.format(Locale.ROOT,
+                "Unable to create Root Module: config {%s}.", getPath(NOT_EXISTING_FILE));
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
-                .startsWith("Unable to create Root Module: config");
+                .isEqualTo(expectedExceptionFormat);
     }
 
     @Test
@@ -331,9 +334,12 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
+        final String expectedMessage = String.format(Locale.ROOT,
+                "Unable to create Root Module: config {%s}.",
+                getPath("InputCheckstyleAntTaskEmptyConfig.xml"));
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
-                .startsWith("Unable to create Root Module: config");
+                .isEqualTo(expectedMessage);
     }
 
     @Test
@@ -649,7 +655,8 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
-                .startsWith("Unable to create listeners: formatters");
+                .isEqualTo("Unable to create listeners: formatters "
+                        + "{" + List.of(formatter) + "}.");
     }
 
     @Test
