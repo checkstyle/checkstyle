@@ -875,10 +875,10 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final String auditFinishedMessage = bundle.getString(DefaultLogger.AUDIT_FINISHED_MESSAGE);
 
         final List<MessageLevelPair> expectedList = Arrays.asList(
-                new MessageLevelPair("checkstyle version .*", Project.MSG_VERBOSE),
+                new MessageLevelPair("Checkstyle version .*", Project.MSG_VERBOSE),
                 new MessageLevelPair("Adding standalone file for audit", Project.MSG_VERBOSE),
                 new MessageLevelPair("To locate the files took \\d+ ms.", Project.MSG_VERBOSE),
-                new MessageLevelPair("Running Checkstyle  on 1 files", Project.MSG_INFO),
+                new MessageLevelPair("Running Checkstyle on 1 files", Project.MSG_INFO),
                 new MessageLevelPair("Using configuration file:.*", Project.MSG_VERBOSE),
                 new MessageLevelPair(auditStartedMessage, Project.MSG_DEBUG),
                 new MessageLevelPair(auditFinishedMessage, Project.MSG_DEBUG),
