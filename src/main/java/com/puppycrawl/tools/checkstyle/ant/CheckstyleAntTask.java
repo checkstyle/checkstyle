@@ -38,7 +38,6 @@ import java.util.stream.IntStream;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
-import org.apache.tools.ant.FileScanner;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.Task;
 import org.apache.tools.ant.taskdefs.LogOutputStream;
@@ -336,7 +335,7 @@ public class CheckstyleAntTask extends Task {
                               SeverityLevelCounter warningCounter,
                               String checkstyleVersion) {
         final List<File> files = getFilesToCheck();
-        log("Running Checkstyle " + Objects.toString(checkstyleVersion, "") + " on " + files.size()
+        log("Running Checkstyle" + Objects.toString(checkstyleVersion, "") + " on " + files.size()
             + " files.", Project.MSG_INFO);
         log("Using configuration " + config, Project.MSG_VERBOSE);
         final int numErrs;
@@ -535,8 +534,7 @@ public class CheckstyleAntTask extends Task {
         }
 
         if (concreteFilesCount > 0) {
-            SCANNER.scan();
-            logAdditionOfFiles(SCANNER, pathIndex);
+            logAdditionOfFiles(pathIndex, SCANNER.getBasedir());
         }
 
         return allFiles;
@@ -567,7 +565,7 @@ public class CheckstyleAntTask extends Task {
      * @return an unmodifiable {@code List<File>} containing absolute file paths
      */
     private List<File> mapToAbsolutePaths(DirectoryScanner scanner, int index) {
-        logAdditionOfFiles(scanner, index);
+        logAdditionOfFiles(index, scanner.getBasedir());
         return Arrays
             .stream(scanner.getIncludedFiles())
             .map(name -> new File(scanner.getBasedir(), name))
@@ -582,10 +580,10 @@ public class CheckstyleAntTask extends Task {
      * ? logIndex
      * : scanner.getIncludedFiles().length
      *
-     * @param scanner  The file scanner containing the file information
      * @param logIndex The index of the file set being processed
+     * @param basedir
      */
-    private void logAdditionOfFiles(FileScanner scanner, int logIndex) {
+    private void logAdditionOfFiles(int logIndex, File basedir) {
         log(
             String.format(
                 Locale.ROOT,
@@ -593,7 +591,7 @@ public class CheckstyleAntTask extends Task {
                 logIndex,
                 // test blind spot:
                 logIndex,
-                scanner.getBasedir()
+                basedir
             ),
             Project.MSG_VERBOSE
         );
