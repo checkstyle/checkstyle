@@ -274,7 +274,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDot
         return ;
     }
 
-    public void testNullSemi2() {
+    public void testNullSemiSpaceFirst() {
          return;
     }
 
@@ -287,6 +287,10 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDot
 
     public void parentheses() {
         testNullSemi
+(
+)
+;
+        testNullSemiSpaceFirst
 (
 )
 ;
