@@ -332,10 +332,10 @@ public class CheckstyleAntTask extends Task {
         log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
             Project.MSG_VERBOSE);
 
-        log("Running Checkstyle "
+        log("Running Checkstyle"
                 + Objects.toString(checkstyleVersion, "")
                 + " on " + files.size()
-                + " files", Project.MSG_INFO);
+                + " files.", Project.MSG_INFO);
         log("Using configuration " + config, Project.MSG_VERBOSE);
 
         final int numErrs;
