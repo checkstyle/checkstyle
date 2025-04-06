@@ -275,7 +275,9 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDot
     }
 
     public void testNullSemiSpaceFirst() {
-         return;
+        "" .toString(); // violation
+        "". toString(); // violation
+         "".toString(); // violation
     }
 
     public void register(Object obj) { }
