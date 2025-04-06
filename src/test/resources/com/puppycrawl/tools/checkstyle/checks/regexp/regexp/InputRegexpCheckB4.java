@@ -3,7 +3,9 @@ Regexp
 format = .*
 errorLimit = 30
 duplicateLimit = 33
-illegalPattern = false
+illegalPattern = (default)false
+ignoreComments = (default)false
+message = (default)
 
 */
 

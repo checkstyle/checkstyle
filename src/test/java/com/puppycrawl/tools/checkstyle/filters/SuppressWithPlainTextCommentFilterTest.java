@@ -556,18 +556,18 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     @Test
     public void testFilterWithCustomMessageFormat() throws Exception {
         final String[] suppressed = {
-            "34:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "35:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         final String[] violationMessages = {
-            "32: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "34:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "34: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "35:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "35: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "37: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "39: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "40: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
         };
 

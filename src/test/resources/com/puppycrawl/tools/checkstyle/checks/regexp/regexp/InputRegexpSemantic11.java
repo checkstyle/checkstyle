@@ -1,7 +1,7 @@
 /*
 Regexp
 format = System\\.(out)|(err)\\.print(ln)?\\(
-message =
+message = (default)
 illegalPattern = true
 duplicateLimit = (default)0
 errorLimit = (default)100

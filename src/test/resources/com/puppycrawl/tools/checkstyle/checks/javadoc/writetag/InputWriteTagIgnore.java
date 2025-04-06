@@ -3,6 +3,7 @@ WriteTag
 tag = @todo2
 tagFormat = \\S
 severity = ignore
+tagSeverity = (default)info
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 

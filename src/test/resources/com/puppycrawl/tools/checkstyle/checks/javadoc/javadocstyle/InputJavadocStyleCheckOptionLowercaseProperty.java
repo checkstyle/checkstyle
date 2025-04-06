@@ -1,6 +1,7 @@
 /*
 JavadocStyle
 scope = (default)private
+endOfSentenceFormat = (default)([.?!][ \t\n\r\f<])|([.?!]$)
 excludeScope = (default)null
 checkFirstSentence = false
 checkEmptyJavadoc = (default)false

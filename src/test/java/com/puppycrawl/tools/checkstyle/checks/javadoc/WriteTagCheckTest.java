@@ -125,9 +125,9 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMethod() throws Exception {
         final String[] expected = {
-            "24: " + getCheckMessage(MSG_WRITE_TAG, "@todo",
+            "25: " + getCheckMessage(MSG_WRITE_TAG, "@todo",
                     "Add a constructor comment"),
-            "36: " + getCheckMessage(MSG_WRITE_TAG, "@todo", "Add a comment"),
+            "37: " + getCheckMessage(MSG_WRITE_TAG, "@todo", "Add a comment"),
         };
         verifyWithInlineConfigParserTwice(
                 getPath("InputWriteTagMethod.java"), expected);

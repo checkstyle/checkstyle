@@ -2,6 +2,7 @@
 FinalParameters
 ignorePrimitiveTypes = (default)false
 tokens = CTOR_DEF
+ignoreUnnamedParameters = (default)true
 
 
 */

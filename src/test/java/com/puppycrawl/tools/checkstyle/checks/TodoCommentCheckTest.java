@@ -81,7 +81,8 @@ public class TodoCommentCheckTest
     @Test
     public void test() throws Exception {
         final String[] expected = {
-            "11:16: " + getCheckMessage(MSG_KEY, "TODO:"),
+            "1:3: " + getCheckMessage(MSG_KEY, "TODO:"),
+            "12:16: " + getCheckMessage(MSG_KEY, "TODO:"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputTodoCommentDefault.java"), expected);

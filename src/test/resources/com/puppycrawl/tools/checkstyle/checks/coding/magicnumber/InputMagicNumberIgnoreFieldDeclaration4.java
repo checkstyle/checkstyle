@@ -4,6 +4,9 @@ ignoreNumbers = -2, -1, 0, 1, 2, 100
 ignoreHashCodeMethod = true
 ignoreFieldDeclaration = true
 constantWaiverParentToken = ARRAY_INIT, ASSIGN, ELIST, EXPR
+ignoreAnnotation = (default)false
+tokens = (default)NUM_DOUBLE,NUM_FLOAT,NUM_INT,NUM_LONG
+ignoreAnnotationElementDefaults = (default)true
 
 */
 

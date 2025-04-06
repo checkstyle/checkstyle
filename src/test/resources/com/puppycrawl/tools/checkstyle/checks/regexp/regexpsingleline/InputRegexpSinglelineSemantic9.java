@@ -3,7 +3,9 @@ RegexpSingleline
 format = (default)$.
 message = not expected
 fileExtensions = (default)""
-
+ignoreCase = (default)false
+maximum = (default)0
+minimum = (default)0
 
 */
 
