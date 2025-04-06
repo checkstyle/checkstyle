@@ -889,15 +889,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setProject(new Project());
         antTask.setConfig(new File(getPath(CONFIG_FILE)).toURI().toURL().toString());
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
-
         antTask.execute();
 
         final List<MessageLevelPair> loggedMessages = antTask.getLoggedMessages();
-
-        assertWithMessage("Amount of log messages is unexpected")
-            .that(loggedMessages)
-            .hasSize(expectedList.size());
-
         for (int i = 0; i < expectedList.size(); i++) {
             final MessageLevelPair expected = expectedList.get(i);
             final MessageLevelPair actual = loggedMessages.get(i);
@@ -908,6 +902,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 .that(actual.getLevel())
                 .isEqualTo(expected.getLevel());
         }
+        assertWithMessage("Amount of log messages is not even")
+            .that(loggedMessages)
+            .hasSize(expectedList.size());
     }
 
     @Test
