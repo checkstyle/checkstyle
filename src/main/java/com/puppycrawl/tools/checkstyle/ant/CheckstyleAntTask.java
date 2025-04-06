@@ -540,10 +540,10 @@ public class CheckstyleAntTask extends Task {
      * @return the list of files included via the filesets.
      */
     protected List<File> scanFileSets() {
-        return IntStream.range(0, fileSets.size())
+        return IntStream
+                .range(0, fileSets.size())
                 .mapToObj(i -> retrieveAllScannedFiles(
-                        fileSets.get(i)
-                                .getDirectoryScanner(getProject()), i))
+                        fileSets.get(i).getDirectoryScanner(getProject()), i))
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
     }
