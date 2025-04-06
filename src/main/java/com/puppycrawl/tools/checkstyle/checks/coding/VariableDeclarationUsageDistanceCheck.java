@@ -37,7 +37,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * <div>
  * Checks the distance between declaration of variable and its first usage.
- * Note : Variable declaration/initialization statements are not counted while calculating length.
+ * Note : Any additional variables declared or initialized between the declaration and
+ *         the first usage of the said variable are not counted when calculating the distance.
  * </div>
  * <ul>
  * <li>
