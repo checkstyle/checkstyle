@@ -397,7 +397,7 @@ public class RegexpCheck extends AbstractCheck {
     private String getMessage(int errorCount) {
         String msg;
 
-        if (message == null || message.isEmpty()) {
+        if (message == null) {
             msg = format.pattern();
         }
         else {

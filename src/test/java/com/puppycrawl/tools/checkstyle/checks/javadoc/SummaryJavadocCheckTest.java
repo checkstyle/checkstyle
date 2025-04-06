@@ -292,7 +292,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testForbidden() throws Exception {
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "15: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
         };
 
         verifyWithInlineConfigParser(

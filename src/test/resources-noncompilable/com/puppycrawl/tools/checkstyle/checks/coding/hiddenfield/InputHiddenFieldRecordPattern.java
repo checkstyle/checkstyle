@@ -1,5 +1,11 @@
 /*
 HiddenField
+ignoreFormat = (default)
+ignoreConstructorParameter = (default)false
+setterCanReturnItsClass = (default)false
+tokens = (default)VARIABLE_DEF,PARAMETER_DEF,PATTERN_VARIABLE_DEF,LAMBDA,RECORD_COMPONENT_DEF
+ignoreAbstractMethods = (default)false
+ignoreSetter = (default)false
 
 */
 

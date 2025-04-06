@@ -124,12 +124,12 @@ public class LocalFinalVariableNameCheckTest
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expected = {
-            "18:18: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
-            "21:32: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
-            "29:24: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
-            "31:24: " + getCheckMessage(MSG_INVALID_PATTERN, "_BAD", pattern),
-            "37:19: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
-            "38:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_BAD", pattern),
+            "20:18: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "23:32: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "31:24: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "33:24: " + getCheckMessage(MSG_INVALID_PATTERN, "_BAD", pattern),
+            "39:19: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "40:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_BAD", pattern),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputLocalFinalVariableNameUnnamedVariables.java"),

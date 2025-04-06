@@ -372,9 +372,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadocTypeParamDescriptionWithAngularTags() throws Exception {
         final String[] expected = {
-            "44:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<P>"),
-            "46:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <U>"),
-            "50:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "region"),
+            "51:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<P>"),
+            "53:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <U>"),
+            "57:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "region"),
         };
 
         verifyWithInlineConfigParser(
@@ -384,12 +384,12 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadocTypeRecordParamDescriptionWithAngularTags() throws Exception {
         final String[] expected = {
-            "51:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<P>"),
-            "53:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <U>"),
-            "57:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "region"),
-            "60:1: " + getCheckMessage(MSG_MISSING_TAG, "@param a"),
-            "73:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "e"),
-            "76:1: " + getCheckMessage(MSG_MISSING_TAG, "@param c"),
+            "58:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<P>"),
+            "60:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <U>"),
+            "64:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "region"),
+            "67:1: " + getCheckMessage(MSG_MISSING_TAG, "@param a"),
+            "80:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "e"),
+            "83:1: " + getCheckMessage(MSG_MISSING_TAG, "@param c"),
         };
 
         verifyWithInlineConfigParser(
@@ -449,7 +449,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAuthorFormat2() throws Exception {
         final String[] expected = {
-            "15:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "21:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocType2.java"), expected);
@@ -474,8 +474,8 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadocTypeAboveComments() throws Exception {
         final String[] expected = {
-            "15:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "41:15: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "21:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "47:15: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeAboveComments.java"), expected);

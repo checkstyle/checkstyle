@@ -187,13 +187,13 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadocParagraph() throws Exception {
         final String[] expected = {
-            "19:4: " + getCheckMessage(MSG_LINE_BEFORE),
-            "28:7: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
-            "31:7: " + getCheckMessage(MSG_LINE_BEFORE),
-            "50:7: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ul"),
-            "65:8: " + getCheckMessage(MSG_LINE_BEFORE),
-            "76:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "table"),
-            "87:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "pre"),
+            "21:4: " + getCheckMessage(MSG_LINE_BEFORE),
+            "30:7: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
+            "33:7: " + getCheckMessage(MSG_LINE_BEFORE),
+            "52:7: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ul"),
+            "67:8: " + getCheckMessage(MSG_LINE_BEFORE),
+            "78:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "table"),
+            "89:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "pre"),
         };
 
         verifyWithInlineConfigParser(

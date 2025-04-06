@@ -171,7 +171,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
         final String inputWithWarnings = getPath("InputOneStatementPerLineBeginTree1.java");
         final String inputWithoutWarnings = getPath("InputOneStatementPerLineBeginTree2.java");
         final List<String> expectedFirstInput = List.of(
-                "6:96: " + getCheckMessage(MSG_KEY)
+                "7:96: " + getCheckMessage(MSG_KEY)
         );
         final List<String> expectedSecondInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
         verifyWithInlineConfigParser(inputWithWarnings,

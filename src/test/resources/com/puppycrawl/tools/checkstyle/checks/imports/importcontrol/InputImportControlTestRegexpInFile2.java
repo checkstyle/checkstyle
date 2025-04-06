@@ -1,6 +1,7 @@
 /*
 ImportControl
 file = (file)(resource)InputImportControlTestRegexpInFile2.xml
+path = (default).*
 
 */
 

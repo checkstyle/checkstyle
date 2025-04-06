@@ -2,7 +2,10 @@
 Regexp
 format =
 ignoreComments = true
-
+errorLimit = (default)100
+message = (default)
+duplicateLimit = (default)0
+illegalPattern = (default)false
 
 */
 

@@ -7,6 +7,7 @@ allowEmptyLoops = (default)false
 allowEmptyLambdas = (default)false
 allowEmptyCatches = (default)false
 ignoreEnhancedForColon = (default)true
+allowEmptySwitchBlockStatements = (default)false
 tokens = ELLIPSIS
 
 

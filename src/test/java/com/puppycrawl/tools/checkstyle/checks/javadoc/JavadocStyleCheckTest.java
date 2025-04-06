@@ -768,8 +768,8 @@ public class JavadocStyleCheckTest
     @Test
     public void testJavadocTag() throws Exception {
         final String[] expected = {
-            "11: " + getCheckMessage(MSG_NO_PERIOD),
-            "15: " + getCheckMessage(MSG_NO_PERIOD),
+            "19: " + getCheckMessage(MSG_NO_PERIOD),
+            "23: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
         verifyWithInlineConfigParser(
@@ -780,8 +780,8 @@ public class JavadocStyleCheckTest
     @Test
     public void testJavadocTag2() throws Exception {
         final String[] expected = {
-            "16: " + getCheckMessage(MSG_NO_PERIOD),
-            "18:16: " + getCheckMessage(MSG_UNCLOSED_HTML,
+            "24: " + getCheckMessage(MSG_NO_PERIOD),
+            "26:16: " + getCheckMessage(MSG_UNCLOSED_HTML,
                     "<AREA ALT=\"alt\" Coordination=\"100,0,200,50\" HREF=\"/href/\"> <"),
         };
 
@@ -793,7 +793,7 @@ public class JavadocStyleCheckTest
     @Test
     public void testJavadocTag3() throws Exception {
         final String[] expected = {
-            "21:4: " + getCheckMessage(MSG_EXTRA_HTML, "</body>"),
+            "29:4: " + getCheckMessage(MSG_EXTRA_HTML, "</body>"),
         };
 
         verifyWithInlineConfigParser(
@@ -804,7 +804,7 @@ public class JavadocStyleCheckTest
     @Test
     public void testJavadocStyleCheck3() throws Exception {
         final String[] expected = {
-            "11: " + getCheckMessage(MSG_NO_PERIOD),
+            "19: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
         verifyWithInlineConfigParser(
@@ -815,7 +815,7 @@ public class JavadocStyleCheckTest
     @Test
     public void testJavadocStyleCheck4() throws Exception {
         final String[] expected = {
-            "12: " + getCheckMessage(MSG_NO_PERIOD),
+            "19: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
         verifyWithInlineConfigParser(
@@ -826,8 +826,8 @@ public class JavadocStyleCheckTest
     @Test
     public void testJavadocStyleAboveComments() throws Exception {
         final String[] expected = {
-            "13: " + getCheckMessage(MSG_NO_PERIOD),
             "20: " + getCheckMessage(MSG_NO_PERIOD),
+            "27: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
         verifyWithInlineConfigParser(

@@ -1,6 +1,8 @@
 /*
 RedundantModifier
 jdkVersion = 11
+tokens = (default)METHOD_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, INTERFACE_DEF, \
+         CTOR_DEF, CLASS_DEF, ENUM_DEF, RESOURCE
 
 */
 

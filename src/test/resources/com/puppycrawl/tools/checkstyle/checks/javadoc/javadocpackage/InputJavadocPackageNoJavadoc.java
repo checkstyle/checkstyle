@@ -1,6 +1,6 @@
 /*
 JavadocPackage
-allowLegacy = false
+allowLegacy = (default)false
 fileExtensions = java
 
 
