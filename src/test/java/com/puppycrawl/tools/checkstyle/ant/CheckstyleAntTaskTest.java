@@ -876,10 +876,10 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         final List<MessageLevelPair> expectedList = Arrays.asList(
                 new MessageLevelPair("Checkstyle version: .*", Project.MSG_VERBOSE),
+                new MessageLevelPair("Using config file:.*", Project.MSG_VERBOSE),
                 new MessageLevelPair("Adding standalone file for audit", Project.MSG_VERBOSE),
                 new MessageLevelPair("File discovery took \\d+ ms.", Project.MSG_VERBOSE),
                 new MessageLevelPair("Running Checkstyle on 1 file.", Project.MSG_INFO),
-                new MessageLevelPair("Using configuration file:.*", Project.MSG_VERBOSE),
                 new MessageLevelPair(auditStartedMessage, Project.MSG_DEBUG),
                 new MessageLevelPair(auditFinishedMessage, Project.MSG_DEBUG),
                 new MessageLevelPair("File processing took \\d+ ms.", Project.MSG_VERBOSE),

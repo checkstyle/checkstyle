@@ -260,12 +260,7 @@ public class CheckstyleAntTask extends Task {
     @Override
     public void execute() {
         final long startTime = System.currentTimeMillis();
-
         try {
-            final String version = CheckstyleAntTask.class.getPackage().getImplementationVersion();
-
-            log("Checkstyle version: " + version, Project.MSG_VERBOSE);
-
             // Check for no arguments
             if (fileName == null
                     && fileSets.isEmpty()
@@ -277,6 +272,9 @@ public class CheckstyleAntTask extends Task {
             if (config == null) {
                 throw new BuildException("Must specify 'config'.", getLocation());
             }
+            final String version = CheckstyleAntTask.class.getPackage().getImplementationVersion();
+            log("Checkstyle version: " + version, Project.MSG_VERBOSE);
+            log("Using config " + config, Project.MSG_VERBOSE);
             realExecute(version);
         }
         finally {
@@ -329,14 +327,9 @@ public class CheckstyleAntTask extends Task {
         final long startTime = System.currentTimeMillis();
         final List<File> files = getFilesToCheck();
         final long endTime = System.currentTimeMillis();
-        log("File discovery took " + (endTime - startTime) + TIME_SUFFIX,
-            Project.MSG_VERBOSE);
-
-        log("Running Checkstyle"
-                + Objects.toString(checkstyleVersion, "")
-                + " on " + files.size()
-                + " file.", Project.MSG_INFO);
-        log("Using configuration " + config, Project.MSG_VERBOSE);
+        log("File discovery took " + (endTime - startTime) + TIME_SUFFIX, Project.MSG_VERBOSE);
+        log("Running Checkstyle" + Objects.toString(checkstyleVersion, "")
+                + " on " + files.size() + " file.", Project.MSG_INFO);
 
         final int numErrs;
 
