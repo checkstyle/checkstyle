@@ -868,42 +868,47 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
     @Test
     public final void testExecuteLogOutput() throws Exception {
+        final URL url = new File(getPath(CONFIG_FILE)).toURI().toURL();
         final ResourceBundle bundle = ResourceBundle.getBundle(
                 Definitions.CHECKSTYLE_BUNDLE, Locale.ROOT);
+        final String auditStartedMessage = bundle.getString(DefaultLogger.AUDIT_STARTED_MESSAGE);
+        final String auditFinishedMessage = bundle.getString(DefaultLogger.AUDIT_FINISHED_MESSAGE);
+
         final List<MessageLevelPair> expectedList = Arrays.asList(
-            new MessageLevelPair("checkstyle version .*", Project.MSG_VERBOSE),
-            new MessageLevelPair("Adding standalone file for audit", Project.MSG_VERBOSE),
-            new MessageLevelPair("File discovery took \\d+ ms.", Project.MSG_VERBOSE),
-            new MessageLevelPair("Running Checkstyle on 1 files.", Project.MSG_INFO),
-            new MessageLevelPair("Using configuration file:.*", Project.MSG_VERBOSE),
-            new MessageLevelPair(bundle.getString(DefaultLogger.AUDIT_STARTED_MESSAGE),
-                Project.MSG_DEBUG),
-            new MessageLevelPair(bundle.getString(DefaultLogger.AUDIT_FINISHED_MESSAGE),
-                Project.MSG_DEBUG),
-            new MessageLevelPair("To process the files took \\d+ ms.", Project.MSG_VERBOSE),
-            new MessageLevelPair("Total execution took \\d+ ms.", Project.MSG_VERBOSE)
+                new MessageLevelPair("checkstyle version .*", Project.MSG_VERBOSE),
+                new MessageLevelPair("Adding standalone file for audit", Project.MSG_VERBOSE),
+                new MessageLevelPair("To locate the files took \\d+ ms.", Project.MSG_VERBOSE),
+                new MessageLevelPair("Running Checkstyle  on 1 files", Project.MSG_INFO),
+                new MessageLevelPair("Using configuration file:.*", Project.MSG_VERBOSE),
+                new MessageLevelPair(auditStartedMessage, Project.MSG_DEBUG),
+                new MessageLevelPair(auditFinishedMessage, Project.MSG_DEBUG),
+                new MessageLevelPair("To process the files took \\d+ ms.", Project.MSG_VERBOSE),
+                new MessageLevelPair("Total execution took \\d+ ms.", Project.MSG_VERBOSE)
         );
 
         final CheckstyleAntTaskLogStub antTask = new CheckstyleAntTaskLogStub();
         antTask.setProject(new Project());
-        antTask.setConfig(new File(getPath(CONFIG_FILE)).toURI().toURL().toString());
+        antTask.setConfig(url.toString());
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
+
         antTask.execute();
 
         final List<MessageLevelPair> loggedMessages = antTask.getLoggedMessages();
+
+        assertWithMessage("Amount of log messages is unexpected")
+                .that(loggedMessages)
+                .hasSize(expectedList.size());
+
         for (int i = 0; i < expectedList.size(); i++) {
             final MessageLevelPair expected = expectedList.get(i);
             final MessageLevelPair actual = loggedMessages.get(i);
             assertWithMessage("Log messages should match")
-                .that(actual.getMsg())
-                .matches(expected.getMsg());
+                    .that(actual.getMsg())
+                    .matches(expected.getMsg());
             assertWithMessage("Log levels should be equal")
-                .that(actual.getLevel())
-                .isEqualTo(expected.getLevel());
+                    .that(actual.getLevel())
+                    .isEqualTo(expected.getLevel());
         }
-        assertWithMessage("Amount of log messages is not even")
-            .that(loggedMessages)
-            .hasSize(expectedList.size());
     }
 
     @Test
@@ -929,11 +934,12 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         final long startTime = System.currentTimeMillis();
         antTask.execute();
-        final long testingTime = System.currentTimeMillis() - startTime;
+        final long endTime = System.currentTimeMillis();
+        final long testingTime = endTime - startTime;
         final List<MessageLevelPair> loggedMessages = antTask.getLoggedMessages();
 
         assertLoggedTime(loggedMessages, testingTime, "Total execution");
-        assertLoggedTime(loggedMessages, testingTime, "File discovery took");
+        assertLoggedTime(loggedMessages, testingTime, "To locate the files");
         assertLoggedTime(loggedMessages, testingTime, "To process the files");
     }
 
@@ -941,17 +947,19 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                                          long testingTime, String expectedMsg) {
 
         final Optional<MessageLevelPair> optionalMessageLevelPair = loggedMessages.stream()
-                .filter(msg -> msg.getMsg().startsWith(expectedMsg))
-                .findFirst();
+            .filter(msg -> msg.getMsg().startsWith(expectedMsg))
+            .findFirst();
 
         assertWithMessage("Message should be present.")
-                .that(optionalMessageLevelPair.isPresent())
-                .isTrue();
+            .that(optionalMessageLevelPair.isPresent())
+            .isTrue();
+
+        final long actualTime = getNumberFromLine(optionalMessageLevelPair.orElseThrow().getMsg());
 
         assertWithMessage("Logged time in '" + expectedMsg + "' "
-                + "must be less than the testing time")
-                .that(getNumberFromLine(optionalMessageLevelPair.orElseThrow().getMsg()))
-                .isAtMost(testingTime);
+                              + "must be less than the testing time")
+            .that(actualTime)
+            .isAtMost(testingTime);
     }
 
     private static List<String> readWholeFile(File outputFile) throws IOException {

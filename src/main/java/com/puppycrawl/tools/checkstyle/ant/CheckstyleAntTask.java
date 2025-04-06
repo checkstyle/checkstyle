@@ -30,11 +30,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Properties;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
@@ -68,17 +65,6 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
  */
 public class CheckstyleAntTask extends Task {
 
-    /**
-     * Shared DirectoryScanner instance used for XML formatting operations.
-     *
-     * <p>This serves as a lightweight alternative to creating multiple scanner instances,
-     * particularly for simple XML formatting tasks where thread safety isn't required.
-     * The scanner is intentionally kept package-private for internal use only.</p>
-     *
-     * <p>Note: This is not thread-safe for concurrent operations. For thread-safe usage,
-     * create separate scanner instances.</p>
-     */
-    private static final DirectoryScanner SCANNER = new DirectoryScanner();
     /** Poor man's enum for an xml formatter. */
     private static final String E_XML = "xml";
     /** Poor man's enum for a plain formatter. */
@@ -88,10 +74,6 @@ public class CheckstyleAntTask extends Task {
 
     /** Suffix for time string. */
     private static final String TIME_SUFFIX = " ms.";
-    /**
-     * Suffix for time string.
-     */
-    private static final String D_ADDING_D_FILES_FROM_PATH_S = "%d) Adding %d files from path %s";
 
     /** Contains the paths to process. */
     private final List<Path> paths = new ArrayList<>();
@@ -310,16 +292,27 @@ public class CheckstyleAntTask extends Task {
      * @param checkstyleVersion Checkstyle compile version.
      */
     private void realExecute(String checkstyleVersion) {
-        Optional.ofNullable(createRootModule()).ifPresent(rootModule -> {
-            try {
-                Arrays.stream(getListeners()).forEach(rootModule::addListener);
-                final SeverityLevelCounter warningCounter = new SeverityLevelCounter(SeverityLevel.WARNING);
-                rootModule.addListener(warningCounter);
-                processFiles(rootModule, warningCounter, checkstyleVersion);
-            } finally {
+        // Create the root module
+        RootModule rootModule = null;
+        try {
+            rootModule = createRootModule();
+
+            // setup the listeners
+            final AuditListener[] listeners = getListeners();
+            for (AuditListener element : listeners) {
+                rootModule.addListener(element);
+            }
+            final SeverityLevelCounter warningCounter =
+                new SeverityLevelCounter(SeverityLevel.WARNING);
+            rootModule.addListener(warningCounter);
+
+            processFiles(rootModule, warningCounter, checkstyleVersion);
+        }
+        finally {
+            if (rootModule != null) {
                 rootModule.destroy();
             }
-        });
+        }
     }
 
     /**
@@ -331,34 +324,44 @@ public class CheckstyleAntTask extends Task {
      * @throws BuildException if the files could not be processed,
      *     or if the build failed due to violations.
      */
-    private void processFiles(RootModule rootModule,
-                              SeverityLevelCounter warningCounter,
-                              String checkstyleVersion) {
+    private void processFiles(RootModule rootModule, final SeverityLevelCounter warningCounter,
+            final String checkstyleVersion) {
+        final long startTime = System.currentTimeMillis();
         final List<File> files = getFilesToCheck();
-        log("Running Checkstyle" + Objects.toString(checkstyleVersion, "") + " on " + files.size()
-            + " files.", Project.MSG_INFO);
+        final long endTime = System.currentTimeMillis();
+        log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
+            Project.MSG_VERBOSE);
+
+        log("Running Checkstyle "
+                + Objects.toString(checkstyleVersion, "")
+                + " on " + files.size()
+                + " files", Project.MSG_INFO);
         log("Using configuration " + config, Project.MSG_VERBOSE);
+
         final int numErrs;
+
         try {
-            final long processingStart = System.currentTimeMillis();
+            final long processingStartTime = System.currentTimeMillis();
             numErrs = rootModule.process(files);
-            log("To process the files took " + (System.currentTimeMillis() - processingStart)
+            final long processingEndTime = System.currentTimeMillis();
+            log("To process the files took " + (processingEndTime - processingStartTime)
                 + TIME_SUFFIX, Project.MSG_VERBOSE);
         }
         catch (CheckstyleException ex) {
             throw new BuildException("Unable to process files: " + files, ex);
         }
-        handleReturnStatus(numErrs, warningCounter.getCount());
-    }
+        final int numWarnings = warningCounter.getCount();
+        final boolean okStatus = numErrs <= maxErrors && numWarnings <= maxWarnings;
 
-    private void handleReturnStatus(int numErrs, int numWarnings) {
-        if (!(numErrs <= maxErrors && numWarnings <= maxWarnings)) {
+        // Handle the return status
+        if (!okStatus) {
             final String failureMsg =
                     "Got " + numErrs + " errors (max allowed: " + maxErrors + ") and "
                             + numWarnings + " warnings.";
             if (failureProperty != null) {
                 getProject().setProperty(failureProperty, failureMsg);
             }
+
             if (failOnViolation) {
                 throw new BuildException(failureMsg, getLocation());
             }
@@ -455,16 +458,15 @@ public class CheckstyleAntTask extends Task {
         // formatters
         try {
             if (formatters.isEmpty()) {
-                listeners[0] = new DefaultLogger(
-                    new LogOutputStream(this, Project.MSG_DEBUG),
-                    OutputStreamOptions.CLOSE,
-                    new LogOutputStream(this, Project.MSG_ERR),
-                    OutputStreamOptions.CLOSE
-                );
+                final OutputStream debug = new LogOutputStream(this, Project.MSG_DEBUG);
+                final OutputStream err = new LogOutputStream(this, Project.MSG_ERR);
+                listeners[0] = new DefaultLogger(debug, OutputStreamOptions.CLOSE,
+                        err, OutputStreamOptions.CLOSE);
             }
             else {
                 for (int i = 0; i < formatterCount; i++) {
-                    listeners[i] = formatters.get(i).createListener(this);
+                    final Formatter formatter = formatters.get(i);
+                    listeners[i] = formatter.createListener(this);
                 }
             }
         }
@@ -476,36 +478,25 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
-     * Gets the list of files to be checked, measuring the time taken to locate them.
-     * The result includes files from fileName, filesets and paths.
+     * Returns the list of files (full path name) to process.
      *
-     * @return List of files (with full path) to be processed
+     * @return the list of files included via the fileName, filesets and paths.
      */
     private List<File> getFilesToCheck() {
-        final long checkStart = System.currentTimeMillis();
-        final List<File> files = collectFilesToCheck();
-        log("File discovery took " + (System.currentTimeMillis() - checkStart) + TIME_SUFFIX,
-            Project.MSG_VERBOSE);
-        return files;
-    }
-
-    /**
-     * Collects all files to be checked by combining standalone files,
-     * filesets and path entries. This is the actual implementation
-     * that gathers the files without performance measurement.
-     *
-     * @return Combined list of all files to be checked
-     */
-    private List<File> collectFilesToCheck() {
         final List<File> allFiles = new ArrayList<>();
         if (fileName != null) {
-            // oops, we've got an additional one to process, don't forget it.
-            // No sweat, it's fully resolved via the setter.
+            // oops, we've got an additional one to process, don't
+            // forget it. No sweat, it's fully resolved via the setter.
             log("Adding standalone file for audit", Project.MSG_VERBOSE);
             allFiles.add(new File(fileName));
         }
-        allFiles.addAll(scanFileSets());
-        allFiles.addAll(scanPaths());
+
+        final List<File> filesFromFileSets = scanFileSets();
+        allFiles.addAll(filesFromFileSets);
+
+        final List<File> filesFromPaths = scanPaths();
+        allFiles.addAll(filesFromPaths);
+
         return allFiles;
     }
 
@@ -515,11 +506,15 @@ public class CheckstyleAntTask extends Task {
      * @return a list of files defined via paths.
      */
     private List<File> scanPaths() {
-        return IntStream
-            .range(0, paths.size())
-            .mapToObj(i -> scanPath(paths.get(i), i + 1))
-            .flatMap(List::stream)
-            .collect(Collectors.toList());
+        final List<File> allFiles = new ArrayList<>();
+
+        for (int i = 0; i < paths.size(); i++) {
+            final Path currentPath = paths.get(i);
+            final List<File> pathFiles = scanPath(currentPath, i + 1);
+            allFiles.addAll(pathFiles);
+        }
+
+        return allFiles;
     }
 
     /**
@@ -530,24 +525,29 @@ public class CheckstyleAntTask extends Task {
      * @return A list of files, extracted from the given path.
      */
     private List<File> scanPath(Path path, int pathIndex) {
+        final String[] resources = path.list();
         log(pathIndex + ") Scanning path " + path, Project.MSG_VERBOSE);
         final List<File> allFiles = new ArrayList<>();
         int concreteFilesCount = 0;
-        for (String resource : path.list()) {
+
+        for (String resource : resources) {
             final File file = new File(resource);
             if (file.isFile()) {
                 concreteFilesCount++;
                 allFiles.add(file);
             }
             else {
-                SCANNER.setBasedir(file);
-                SCANNER.scan();
-                allFiles.addAll(mapToAbsolutePaths(SCANNER, pathIndex));
+                final DirectoryScanner scanner = new DirectoryScanner();
+                scanner.setBasedir(file);
+                scanner.scan();
+                final List<File> scannedFiles = retrieveAllScannedFiles(scanner, pathIndex);
+                allFiles.addAll(scannedFiles);
             }
         }
 
         if (concreteFilesCount > 0) {
-            logAdditionOfFiles(pathIndex, SCANNER.getBasedir());
+            log(String.format(Locale.ROOT, "%d) Adding %d files from path %s",
+                pathIndex, concreteFilesCount, path), Project.MSG_VERBOSE);
         }
 
         return allFiles;
@@ -559,56 +559,35 @@ public class CheckstyleAntTask extends Task {
      * @return the list of files included via the filesets.
      */
     protected List<File> scanFileSets() {
-        final AtomicInteger index = new AtomicInteger(0);
-        return fileSets.stream()
-            .map(fileSet -> fileSet.getDirectoryScanner(getProject()))
-            .map(scanner -> mapToAbsolutePaths(scanner, index.getAndIncrement()))
-            .flatMap(List::stream)
-            .collect(Collectors.toUnmodifiableList());
+        final List<File> allFiles = new ArrayList<>();
+
+        for (int i = 0; i < fileSets.size(); i++) {
+            final FileSet fileSet = fileSets.get(i);
+            final DirectoryScanner scanner = fileSet.getDirectoryScanner(getProject());
+            final List<File> scannedFiles = retrieveAllScannedFiles(scanner, i);
+            allFiles.addAll(scannedFiles);
+        }
+
+        return allFiles;
     }
 
     /**
-     * Converts the relative file paths returned by the provided {@link DirectoryScanner}
-     * into absolute {@link File} objects by prepending the scanner's base directory.
+     * Retrieves all matched files from the given scanner.
      *
-     * <p>
-     * The resulting list of {@code File} objects is unmodifiable.
-     *
-     * @param scanner the {@code DirectoryScanner} instance used to obtain the base directory
-     *                and included file names
-     * @return an unmodifiable {@code List<File>} containing absolute file paths
+     * @param scanner  A directory scanner. Note, that {@link DirectoryScanner#scan()}
+     *                 must be called before calling this method.
+     * @param logIndex A log entry index. Used only for log messages.
+     * @return A list of files, retrieved from the given scanner.
      */
-    private List<File> mapToAbsolutePaths(DirectoryScanner scanner, int index) {
-        logAdditionOfFiles(index, scanner.getBasedir());
-        return Arrays
-            .stream(scanner.getIncludedFiles())
-            .map(name -> new File(scanner.getBasedir(), name))
-            .collect(Collectors.toUnmodifiableList());
-    }
+    private List<File> retrieveAllScannedFiles(DirectoryScanner scanner, int logIndex) {
+        final String[] fileNames = scanner.getIncludedFiles();
+        log(String.format(Locale.ROOT, "%d) Adding %d files from directory %s",
+            logIndex, fileNames.length, scanner.getBasedir()), Project.MSG_VERBOSE);
 
-    /**
-     * Logs information about files being added from a directory scan.
-     * test blind spot:
-     * check:
-     * scanner.getIncludedFiles().length == 0
-     * ? logIndex
-     * : scanner.getIncludedFiles().length
-     *
-     * @param logIndex The index of the file set being processed
-     * @param basedir
-     */
-    private void logAdditionOfFiles(int logIndex, File basedir) {
-        log(
-            String.format(
-                Locale.ROOT,
-                D_ADDING_D_FILES_FROM_PATH_S,
-                logIndex,
-                // BUG: we need scanner.getIncludedFiles().length
-                logIndex,
-                basedir
-            ),
-            Project.MSG_VERBOSE
-        );
+        return Arrays.stream(fileNames)
+            .map(name -> scanner.getBasedir() + File.separator + name)
+            .map(File::new)
+            .collect(Collectors.toUnmodifiableList());
     }
 
     /**
