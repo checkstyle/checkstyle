@@ -574,7 +574,7 @@ public class CheckstyleAntTask extends Task {
             .peek(this::logAdditionOfFilesFromDir)
             .map(this::mapToAbsolutePaths)
             .flatMap(List::stream)
-            .collect(Collectors.toList());
+            .collect(Collectors.toUnmodifiableList());
     }
 
     /**
