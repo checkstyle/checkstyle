@@ -20,5 +20,13 @@ public class Example4 {
   protected int c; // violation, 'Missing a Javadoc comment'
   public int d; // violation, 'Missing a Javadoc comment'
   /*package*/ int e; // violation, 'Missing a Javadoc comment'
+
+  public enum PublicEnum {
+    CONSTANT // violation, 'Missing a Javadoc comment'
+  }
+
+  private enum PrivateEnum {
+    CONSTANT // violation, 'Missing a Javadoc comment'
+  }
 }
 // xdoc section -- end
