@@ -130,7 +130,11 @@ public class NoWhitespaceBeforeCheck
         final int columnNoBeforeToken = ast.getColumnNo() - 1;
         final boolean isFirstToken = columnNoBeforeToken == -1;
 
-        if (!isInEmptyForInitializerOrCondition(ast)
+        if (ast.getType() == TokenTypes.VARIABLE_DEF
+        && ast.toString().contains(EMPTY_SEMICOLON)) {
+            log(ast, MSG_KEY, ast.getText());
+        }
+                if (!isInEmptyForInitializerOrCondition(ast)
             && isCodePointWhitespace(isFirstToken, line, columnNoBeforeToken)
             && hasWhitespaceBefore(isFirstToken, columnNoBeforeToken, line, ast)) {
             log(ast, MSG_KEY, ast.getText());
@@ -147,8 +151,9 @@ public class NoWhitespaceBeforeCheck
                                         int columnNoBeforeToken,
                                         int[] line,
                                         DetailAST ast) {
-        return !allowLineBreaks || !isFirstToken && !CodePointUtil.hasWhitespaceBefore(columnNoBeforeToken, line)
-            || ast.toString().contains(EMPTY_SEMICOLON);
+        return !allowLineBreaks ||
+            !isFirstToken
+                && !CodePointUtil.hasWhitespaceBefore(columnNoBeforeToken, line);
     }
 
     /**

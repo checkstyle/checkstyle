@@ -13,6 +13,7 @@ class InputNoWhitespaceBeforeDot2
     Boolean equals;
 
     public void testSpaceViolation() {
+        "".equals("") ; // violation
         " ".equals("");
         "".equals(" ");
          "".equals(""); // violation
@@ -21,7 +22,6 @@ class InputNoWhitespaceBeforeDot2
         "".equals (""); // violation
         "".equals( ""); // violation
         "".equals("" ); // violation
-        "".equals("") ; // violation
         equals = " ".equals("");
          equals = "".equals(""); // violation
         equals  = "".equals(""); // violation
