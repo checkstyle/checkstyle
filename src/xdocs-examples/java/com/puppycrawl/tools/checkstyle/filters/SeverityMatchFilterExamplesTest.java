@@ -39,6 +39,7 @@ public class SeverityMatchFilterExamplesTest extends AbstractExamplesModuleTestS
             "21:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Method2", pattern),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example1.java"), expected);
+
     }
 }
