@@ -227,7 +227,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
                 .getAccessModifierFromModifiersToken(enumConstantDefinition);
         assertWithMessage("Invalid access modifier")
                 .that(modifierEnumConstant)
-                .isEqualTo(AccessModifierOption.PUBLIC);
+                .isEqualTo(AccessModifierOption.PACKAGE);
     }
 
     @Test
