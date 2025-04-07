@@ -274,6 +274,12 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDot
         return ;
     }
 
+    public void testNullSemiSpaceFirst() {
+        "" .toString(); // violation
+        "". toString(); // violation
+         "".toString(); // violation
+    }
+
     public void register(Object obj) { }
 
     public void doSomething(String args[]) {
@@ -283,6 +289,10 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDot
 
     public void parentheses() {
         testNullSemi
+(
+)
+;
+        testNullSemiSpaceFirst
 (
 )
 ;
