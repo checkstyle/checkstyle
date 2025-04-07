@@ -35,4 +35,39 @@ class InputNoWhitespaceBeforeDot2
     public void testSpaceViolation5 ()  {}  // violation
     public void testSpaceViolation6 () { }  // violation
     public void testSpaceViolation7 () {}
+
+    /**
+     * as we check with string contains we must ignore comments
+     */
+    public void testSpaceViolationComments() {
+//        " ".equals("");
+//        "".equals(" ");
+//        "".equals("");
+//        "" .equals("");
+//        "". equals("");
+//        "".equals ("");
+//        "".equals( "");
+//        "".equals("" );
+//        "".equals("") ;
+//        equals = " ".equals("");
+//        equals = "".equals("");
+//        equals  = "".equals("");
+//        equals =  "".equals("");
+//    public  void testSpaceViolation1() {}
+//    public void  testSpaceViolation2() {}
+//    public void testSpaceViolation3  () {}
+//    public void testSpaceViolation4 ( ) {}
+//    public void testSpaceViolation5 ()  {}
+//    public void testSpaceViolation6 () { }
+//    public void testSpaceViolation7 () {}
+    }
+
+
+//    public  void testSpaceViolation1() {}
+//    public void  testSpaceViolation2() {}
+//    public void testSpaceViolation3  () {}
+//    public void testSpaceViolation4 ( ) {}
+//    public void testSpaceViolation5 ()  {}
+//    public void testSpaceViolation6 () { }
+//    public void testSpaceViolation7 () {}
 }
