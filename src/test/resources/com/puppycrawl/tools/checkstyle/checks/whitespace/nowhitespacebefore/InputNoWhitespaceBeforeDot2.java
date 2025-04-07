@@ -18,6 +18,10 @@ class InputNoWhitespaceBeforeDot2
         "".equals( ""); // violation
         "".equals("" ); // violation
         "".equals("") ; // violation
+        Object b;
+         b = "".equals(""); // violation
+        b  = "".equals(""); // violation
+        b =  "".equals(""); // violation
         " ".equals("");
         "".equals(" ");
     }
