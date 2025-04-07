@@ -28,5 +28,6 @@ class InputNoWhitespaceBeforeDot2
     public void testSpaceViolation22() {
         " ".equals("");
         "".equals(" ");
+        equals = "".equals("");
     }
 }
