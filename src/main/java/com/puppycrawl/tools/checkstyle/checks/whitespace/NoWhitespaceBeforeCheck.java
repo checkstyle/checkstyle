@@ -136,11 +136,15 @@ public class NoWhitespaceBeforeCheck
         }
     }
 
-    private static boolean isCodePointWhitespace(boolean isFirstToken, int[] line, int columnNoBeforeToken) {
+    private static boolean isCodePointWhitespace(boolean isFirstToken,
+                                                 int[] line,
+                                                 int columnNoBeforeToken) {
         return isFirstToken || CommonUtil.isCodePointWhitespace(line, columnNoBeforeToken);
     }
 
-    private boolean hasWhitespaceBefore(boolean isFirstToken, int columnNoBeforeToken, int[] line) {
+    private boolean hasWhitespaceBefore(boolean isFirstToken,
+                                        int columnNoBeforeToken,
+                                        int[] line) {
         return !allowLineBreaks || !isFirstToken && !CodePointUtil.hasWhitespaceBefore(columnNoBeforeToken, line);
     }
 
