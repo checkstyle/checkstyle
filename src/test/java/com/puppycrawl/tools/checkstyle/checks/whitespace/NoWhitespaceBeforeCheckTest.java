@@ -70,6 +70,21 @@ public class NoWhitespaceBeforeCheckTest
     }
 
     @Test
+    public void testDot2() throws Exception {
+        final String[] expected = {
+            "14:13: " + getCheckMessage(MSG_KEY, "."),
+            "15:13: " + getCheckMessage(MSG_KEY, "."),
+            "16:13: " + getCheckMessage(MSG_KEY, "."),
+            "17:13: " + getCheckMessage(MSG_KEY, "."),
+            "18:13: " + getCheckMessage(MSG_KEY, "."),
+            "19:13: " + getCheckMessage(MSG_KEY, "."),
+            "20:13: " + getCheckMessage(MSG_KEY, "."),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDot2.java"), expected);
+    }
+
+    @Test
     public void testDotAllowLineBreaks() throws Exception {
         final String[] expected = {
             "9:13: " + getCheckMessage(MSG_KEY, "."),
