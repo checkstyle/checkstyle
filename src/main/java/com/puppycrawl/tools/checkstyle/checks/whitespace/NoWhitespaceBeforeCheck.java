@@ -44,12 +44,13 @@ public class NoWhitespaceBeforeCheck extends AbstractCheck {
      * Common whitespace patterns to check for.
      */
     private static final List<String> COMMON_WHITESPACE_PATTERNS = Arrays.asList(
-        " ;",  // Semicolon with preceding space
-        " (",  // Parenthesis with preceding space
-        "  = ", // Equals with surrounding spaces
-        " =  ", // Equals with trailing spaces
-        ". (",  // Dot followed by parenthesis with space
-        "\" ."  // Quote followed by dot with space
+        " ;",
+        " (",
+        "  = ",
+        " =  ",
+        ". (",
+        ".  (",
+        "\" ."
     );
 
     /** Control whether whitespace is allowed if the token is at a linebreak. */
