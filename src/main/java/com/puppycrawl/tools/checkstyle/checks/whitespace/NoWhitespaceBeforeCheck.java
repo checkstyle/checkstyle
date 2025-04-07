@@ -95,6 +95,8 @@ public class NoWhitespaceBeforeCheck
         return new int[] {
             TokenTypes.COMMA,
             TokenTypes.SEMI,
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.METHOD_DEF,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
             TokenTypes.ELLIPSIS,
@@ -129,6 +131,8 @@ public class NoWhitespaceBeforeCheck
         final int columnNoBeforeToken = ast.getColumnNo() - 1;
         final boolean isFirstToken = columnNoBeforeToken == -1;
 
+        // remive comments // foo
+        // check if space contains
         if ((isFirstToken || CommonUtil.isCodePointWhitespace(line, columnNoBeforeToken))
                 && !isInEmptyForInitializerOrCondition(ast)) {
             final boolean isViolation = !allowLineBreaks

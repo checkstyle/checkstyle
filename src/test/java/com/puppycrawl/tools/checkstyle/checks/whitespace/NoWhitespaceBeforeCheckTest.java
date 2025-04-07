@@ -82,6 +82,12 @@ public class NoWhitespaceBeforeCheckTest
             "26:13: " + getCheckMessage(MSG_KEY, "."),
             "27:13: " + getCheckMessage(MSG_KEY, "."),
             "28:13: " + getCheckMessage(MSG_KEY, "."),
+            "31:13: " + getCheckMessage(MSG_KEY, "."),
+            "32:13: " + getCheckMessage(MSG_KEY, "."),
+            "33:13: " + getCheckMessage(MSG_KEY, "."),
+            "34:13: " + getCheckMessage(MSG_KEY, "."),
+            "35:13: " + getCheckMessage(MSG_KEY, "."),
+            "36:13: " + getCheckMessage(MSG_KEY, "."),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceBeforeDot2.java"), expected);
