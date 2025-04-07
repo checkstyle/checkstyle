@@ -28,7 +28,7 @@ final class InputConstantNameSimple1
     // Name format tests
     //
     /** Invalid format **/
-    public static final int badConstant = 2; // violation
+    public static final int badConstant = 2; // violation 'Name 'badConstant' must match pattern'
     /** Valid format **/
     public static final int MAX_ROWS = 2;
 
@@ -145,7 +145,7 @@ final class InputConstantNameSimple1
     }
 
     /** test illegal constant **/
-    private static final int BAD__NAME = 3; // violation
+    private static final int BAD__NAME = 3; // violation 'Name 'BAD__NAME' must match pattern'
 
     // A very, very long line that is OK because it matches the regexp "^.*is OK.*regexp.*$"
     // long line that has a tab ->        <- and would be OK if tab counted as 1 char
