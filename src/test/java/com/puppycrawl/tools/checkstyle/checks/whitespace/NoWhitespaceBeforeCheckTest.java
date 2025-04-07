@@ -70,30 +70,29 @@ public class NoWhitespaceBeforeCheckTest
                 getPath("InputNoWhitespaceBeforeDot.java"), expected);
     }
 
-//    @Test
-//    @Ignore
-//    public void testDot2() throws Exception {
-//        final String[] expected = {
-//            "18:13: " + getCheckMessage(MSG_KEY, "."),
-//            "19:13: " + getCheckMessage(MSG_KEY, "."),
-//            "20:13: " + getCheckMessage(MSG_KEY, "."),
-//            "21:13: " + getCheckMessage(MSG_KEY, "."),
-//            "22:13: " + getCheckMessage(MSG_KEY, "."),
-//            "23:13: " + getCheckMessage(MSG_KEY, "."),
-//            "24:13: " + getCheckMessage(MSG_KEY, "."),
-//            "26:13: " + getCheckMessage(MSG_KEY, "."),
-//            "27:13: " + getCheckMessage(MSG_KEY, "."),
-//            "28:13: " + getCheckMessage(MSG_KEY, "."),
-//            "31:13: " + getCheckMessage(MSG_KEY, "."),
-//            "32:13: " + getCheckMessage(MSG_KEY, "."),
-//            "33:13: " + getCheckMessage(MSG_KEY, "."),
-//            "34:13: " + getCheckMessage(MSG_KEY, "."),
-//            "35:13: " + getCheckMessage(MSG_KEY, "."),
-//            "36:13: " + getCheckMessage(MSG_KEY, "."),
-//        };
-//        verifyWithInlineConfigParser(
-//                getPath("InputNoWhitespaceBeforeDot2.java"), expected);
-//    }
+    @Test
+    public void testDot2() throws Exception {
+        final String[] expected = {
+            "18:13: " + getCheckMessage(MSG_KEY, "."),
+            "19:13: " + getCheckMessage(MSG_KEY, "."),
+            "20:13: " + getCheckMessage(MSG_KEY, "."),
+            "21:13: " + getCheckMessage(MSG_KEY, "."),
+            "22:13: " + getCheckMessage(MSG_KEY, "."),
+            "23:13: " + getCheckMessage(MSG_KEY, "."),
+            "24:13: " + getCheckMessage(MSG_KEY, "."),
+            "26:13: " + getCheckMessage(MSG_KEY, "."),
+            "27:13: " + getCheckMessage(MSG_KEY, "."),
+            "28:13: " + getCheckMessage(MSG_KEY, "."),
+            "31:13: " + getCheckMessage(MSG_KEY, "."),
+            "32:13: " + getCheckMessage(MSG_KEY, "."),
+            "33:13: " + getCheckMessage(MSG_KEY, "."),
+            "34:13: " + getCheckMessage(MSG_KEY, "."),
+            "35:13: " + getCheckMessage(MSG_KEY, "."),
+            "36:13: " + getCheckMessage(MSG_KEY, "."),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDot2.java"), expected);
+    }
 
     @Test
     public void testDotAllowLineBreaks() throws Exception {
