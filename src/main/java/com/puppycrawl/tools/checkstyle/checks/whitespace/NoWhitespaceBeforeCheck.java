@@ -130,12 +130,18 @@ public class NoWhitespaceBeforeCheck
         final boolean isFirstToken = columnNoBeforeToken == -1;
 
         if (!isInEmptyForInitializerOrCondition(ast)
-            && (isFirstToken || CommonUtil.isCodePointWhitespace(line, columnNoBeforeToken))
-            && (!allowLineBreaks
-            || !isFirstToken
-            && !CodePointUtil.hasWhitespaceBefore(columnNoBeforeToken, line))) {
+            && isCodePointWhitespace(isFirstToken, line, columnNoBeforeToken)
+            && hasWhitespaceBefore(isFirstToken, columnNoBeforeToken, line)) {
             log(ast, MSG_KEY, ast.getText());
         }
+    }
+
+    private static boolean isCodePointWhitespace(boolean isFirstToken, int[] line, int columnNoBeforeToken) {
+        return isFirstToken || CommonUtil.isCodePointWhitespace(line, columnNoBeforeToken);
+    }
+
+    private boolean hasWhitespaceBefore(boolean isFirstToken, int columnNoBeforeToken, int[] line) {
+        return !allowLineBreaks || !isFirstToken && !CodePointUtil.hasWhitespaceBefore(columnNoBeforeToken, line);
     }
 
     /**
