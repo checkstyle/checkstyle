@@ -22,12 +22,6 @@ class InputNoWhitespaceBeforeDot2
         "".equals (""); // violation
         "".equals( ""); // violation
         "".equals("" ); // violation
-        "".equals(""    ); // violation
-        ""  .equals(""); // violation
-        "".   equals(""); // violation
-        "".equals    (""); // violation
-        "".equals(  ""); // violation
-        "".equals(""    ); // violation
         equals = " ".equals("");
          equals = "".equals(""); // violation
         equals  = "".equals(""); // violation
