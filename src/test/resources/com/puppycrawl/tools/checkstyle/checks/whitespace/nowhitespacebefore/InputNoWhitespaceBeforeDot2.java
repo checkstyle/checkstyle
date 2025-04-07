@@ -30,7 +30,7 @@ class InputNoWhitespaceBeforeDot2
 
     public  void testSpaceViolation1() {}  // violation
     public void  testSpaceViolation2() {}  // violation
-    public void testSpaceViolation3 () {}  // violation
+    public void testSpaceViolation3  () {}  // violation
     public void testSpaceViolation4 ( ) {}  // violation
     public void testSpaceViolation5 ()  {}  // violation
     public void testSpaceViolation6 () { }  // violation
