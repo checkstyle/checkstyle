@@ -34,6 +34,15 @@ class InputNoWhitespaceBeforeDot2
         equals =  "".equals(""); // violation
     }
 
+    public void testSpaceViolationTab() {
+        "".equals(""    ); // violation
+        ""  .equals(""); // violation
+        "".   equals(""); // violation
+        "".equals    (""); // violation
+        "".equals(  ""); // violation
+        "".equals(""    ); // violation
+    }
+
     public  void testSpaceViolation1() {}  // violation
     public void  testSpaceViolation2() {}  // violation
     public void testSpaceViolation3  () {}  // violation
