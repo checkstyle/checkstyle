@@ -95,7 +95,7 @@ public class NoWhitespaceBeforeCheck extends AbstractCheck {
         final int columnBeforeToken = ast.getColumnNo() - 1;
         final boolean isFirstToken = columnBeforeToken == -1;
 
-        if (containsInvalidWhitespacePattern(ast)) {
+        if (containsInvalidWhitespacePattern(ast, ast.getType())) {
             log(ast, MSG_KEY, ast.getText());
         }
 
@@ -109,8 +109,7 @@ public class NoWhitespaceBeforeCheck extends AbstractCheck {
     /**
      * Checks if the AST contains any invalid whitespace patterns.
      */
-    private boolean containsInvalidWhitespacePattern(DetailAST ast) {
-        final int type = ast.getType();
+    private boolean containsInvalidWhitespacePattern(DetailAST ast, int type) {
         return (type == TokenTypes.VARIABLE_DEF
             || type == TokenTypes.METHOD_REF
             || type == TokenTypes.METHOD_CALL
