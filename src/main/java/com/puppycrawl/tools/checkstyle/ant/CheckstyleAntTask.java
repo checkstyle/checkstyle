@@ -264,7 +264,7 @@ public class CheckstyleAntTask extends Task {
         try {
             final String version = CheckstyleAntTask.class.getPackage().getImplementationVersion();
 
-            log("checkstyle version " + version, Project.MSG_VERBOSE);
+            log("Checkstyle version " + version, Project.MSG_VERBOSE);
 
             // Check for no arguments
             if (fileName == null
@@ -332,7 +332,7 @@ public class CheckstyleAntTask extends Task {
         log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
             Project.MSG_VERBOSE);
 
-        log("Running Checkstyle "
+        log("Running Checkstyle"
                 + Objects.toString(checkstyleVersion, "")
                 + " on " + files.size()
                 + " files", Project.MSG_INFO);
