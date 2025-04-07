@@ -36,10 +36,11 @@ public class SeverityMatchFilterExamplesTest extends AbstractExamplesModuleTestS
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "21:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Method2", pattern),
+            "19:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Method2", pattern),
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example1.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("InputSeverityMatchFilterExample1.java"), expected);
+
 
     }
 }
