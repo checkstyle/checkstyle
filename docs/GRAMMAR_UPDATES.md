@@ -152,7 +152,7 @@ have updated
 TokenTypes to include `LITERAL_WHEN`. At this point, we are able to parse the new syntax, however,
 the new tokens
 will not appear in the AST unless we update the JavaAstVisitor. This is because our ANTLR grammar
-provides us with a parse tree, which we use the JavaAstVisitor to traverse and build our AST.
+provides us with a parse tree, which we traverse using the JavaAstVisitor to build our AST.
 
 ```java
 @Override
