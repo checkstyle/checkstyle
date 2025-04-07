@@ -2133,10 +2133,6 @@
             <!-- Excluded due to linkcheck's issue #22:
                  https://issues.apache.org/jira/browse/MLINKCHECK-22 -->
             <excludedLink>https://twitter.com/checkstyle_java/</excludedLink>
-            <!-- linkcheck plugin can not resolve &amps; inside url -->
-            <excludedLink>https://flattr.com/submit/</excludedLink>
-            <!-- 403 forbidden for linkcheck, works in the browser -->
-            <excludedLink>https://button.flattr.com/flattr-badge-large.png</excludedLink>
             <!-- Too unstable sites to keep validate them -->
             <excludedLink>http://tide.olympe.in/*</excludedLink>
             <excludedLink>http://dl.acm.org/*</excludedLink>
