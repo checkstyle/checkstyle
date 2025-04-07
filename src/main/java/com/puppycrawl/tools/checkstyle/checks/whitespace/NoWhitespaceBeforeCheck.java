@@ -86,6 +86,7 @@ public class NoWhitespaceBeforeCheck
      * file.
      */
     public static final String MSG_KEY = "ws.preceded";
+    public static final String EMPTY_SEMICOLON = " ;";
 
     /** Control whether whitespace is allowed if the token is at a linebreak. */
     private boolean allowLineBreaks;
@@ -131,7 +132,7 @@ public class NoWhitespaceBeforeCheck
 
         if (!isInEmptyForInitializerOrCondition(ast)
             && isCodePointWhitespace(isFirstToken, line, columnNoBeforeToken)
-            && hasWhitespaceBefore(isFirstToken, columnNoBeforeToken, line)) {
+            && hasWhitespaceBefore(isFirstToken, columnNoBeforeToken, line, ast)) {
             log(ast, MSG_KEY, ast.getText());
         }
     }
@@ -144,8 +145,10 @@ public class NoWhitespaceBeforeCheck
 
     private boolean hasWhitespaceBefore(boolean isFirstToken,
                                         int columnNoBeforeToken,
-                                        int[] line) {
-        return !allowLineBreaks || !isFirstToken && !CodePointUtil.hasWhitespaceBefore(columnNoBeforeToken, line);
+                                        int[] line,
+                                        DetailAST ast) {
+        return !allowLineBreaks || !isFirstToken && !CodePointUtil.hasWhitespaceBefore(columnNoBeforeToken, line)
+            || ast.toString().contains(EMPTY_SEMICOLON);
     }
 
     /**
