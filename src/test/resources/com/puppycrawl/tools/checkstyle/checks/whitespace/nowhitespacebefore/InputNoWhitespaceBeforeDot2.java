@@ -12,7 +12,9 @@ class InputNoWhitespaceBeforeDot2
 {
     Boolean equals;
 
-    public void testSpaceViolation2() {
+    public void testSpaceViolation() {
+        " ".equals("");
+        "".equals(" ");
          "".equals(""); // violation
         "" .equals(""); // violation
         "". equals(""); // violation
@@ -20,14 +22,9 @@ class InputNoWhitespaceBeforeDot2
         "".equals( ""); // violation
         "".equals("" ); // violation
         "".equals("") ; // violation
+        equals = " ".equals("");
          equals = "".equals(""); // violation
         equals  = "".equals(""); // violation
         equals =  "".equals(""); // violation
-    }
-
-    public void testSpaceViolation22() {
-        " ".equals("");
-        "".equals(" ");
-        equals = "".equals("");
     }
 }
