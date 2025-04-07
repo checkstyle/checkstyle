@@ -322,7 +322,6 @@ public final class CheckUtil {
             final DetailAST modsToken = ast.findFirstToken(TokenTypes.MODIFIERS);
             accessModifier = getAccessModifierFromModifiersTokenDirectly(modsToken);
         }
-
         if (accessModifier == AccessModifierOption.PACKAGE) {
             if (ScopeUtil.isInEnumBlock(ast) && ast.getType() == TokenTypes.CTOR_DEF) {
                 accessModifier = AccessModifierOption.PRIVATE;
@@ -333,6 +332,33 @@ public final class CheckUtil {
         }
 
         return accessModifier;
+    }
+
+    /**
+     * A derivative of {@link #getAccessModifierFromModifiersToken(DetailAST)} that considers enum
+     * definitions' visibility when evaluating the accessibility of an enum constant.
+     *
+     * <a href="https://github.com/checkstyle/checkstyle/pull/16787/files#r2073671898">Implemented
+     * separately</a> to reduce scope of fix for <a href="https://github.com/checkstyle/checkstyle/
+     * issues/16786">issue #16786</a> until a wider solution can be developed.
+     *
+     * @param ast the token of the method/constructor.
+     * @return the access modifier of the method/constructor.
+     */
+    public static AccessModifierOption getAccessModifierFromModifiersTokenWithPrivateEnumSupport(
+            DetailAST ast) {
+        // In some scenarios we want to investigate a parent AST instead
+        DetailAST selectedAst = ast;
+
+        if (selectedAst.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+            // Enum constants don't have modifiers
+            // implicitly public but validate against parent(s)
+            while (selectedAst.getType() != TokenTypes.ENUM_DEF) {
+                selectedAst = selectedAst.getParent();
+            }
+        }
+
+        return getAccessModifierFromModifiersToken(selectedAst);
     }
 
     /**
