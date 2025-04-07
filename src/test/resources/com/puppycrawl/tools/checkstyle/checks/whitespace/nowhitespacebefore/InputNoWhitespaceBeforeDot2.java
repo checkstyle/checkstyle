@@ -10,6 +10,8 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebefore;
 
 class InputNoWhitespaceBeforeDot2
 {
+    Boolean equals;
+
     public void testSpaceViolation2() {
          "".equals(""); // violation
         "" .equals(""); // violation
@@ -18,10 +20,12 @@ class InputNoWhitespaceBeforeDot2
         "".equals( ""); // violation
         "".equals("" ); // violation
         "".equals("") ; // violation
-        Object b;
-         b = "".equals(""); // violation
-        b  = "".equals(""); // violation
-        b =  "".equals(""); // violation
+         equals = "".equals(""); // violation
+        equals  = "".equals(""); // violation
+        equals =  "".equals(""); // violation
+    }
+
+    public void testSpaceViolation22() {
         " ".equals("");
         "".equals(" ");
     }
