@@ -362,6 +362,7 @@ public class JavadocTagInfoTest {
                 .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
                 .isFalse();
 
+        astChild2.setText("ObjectStreamField");
         astChild2.setType(TokenTypes.LITERAL_VOID);
         assertWithMessage("Should return false when ast type is invalid for current tag")
                 .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
