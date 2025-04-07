@@ -91,14 +91,17 @@ public class NoWhitespaceBeforeCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final int[] line = getLineCodePoints(ast.getLineNo() - 1);
-        final int columnBeforeToken = ast.getColumnNo() - 1;
-        final boolean isFirstToken = columnBeforeToken == -1;
-
         if (containsInvalidWhitespacePattern(ast, ast.getType())) {
             log(ast, MSG_KEY, ast.getText());
         }
+        visitTokenOther(
+            ast,
+            getLineCodePoints(ast.getLineNo() - 1),
+            ast.getColumnNo() - 1,
+            ast.getColumnNo() - 1 == -1);
+    }
 
+    private void visitTokenOther(DetailAST ast, int[] line, int columnBeforeToken, boolean isFirstToken) {
         if (!isInEmptyForInitializerOrCondition(ast.getPreviousSibling())
             && isWhitespaceOrLineStart(isFirstToken, line, columnBeforeToken)
             && requiresLeadingWhitespace(isFirstToken, columnBeforeToken, line)) {
