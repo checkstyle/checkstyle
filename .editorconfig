@@ -1,7 +1,7 @@
 [*]
 charset = utf-8
 end_of_line = lf
-indent_style = space
+indent_style = tab
 insert_final_newline = true
 
 [*.java]

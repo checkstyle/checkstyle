@@ -45,10 +45,13 @@ public class NoWhitespaceBeforeCheck extends AbstractCheck {
      */
     private static final List<String> COMMON_WHITESPACE_PATTERNS = Arrays.asList(
         " ;",
+		"	;",
         " (",
+		"	(",
         "  = ",
         " =  ",
         ". (",
+		".	(",
         ".  (",
         "\" ."
     );
