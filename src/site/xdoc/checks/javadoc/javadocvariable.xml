@@ -27,7 +27,7 @@
             </tr>
             <tr>
               <td>accessModifiers</td>
-              <td>Specify the set of access modifiers used to determine which fields should be checked. This includes both explicitly declared modifiers and implicit ones, such as package-private for fields without an explicit modifier. It also accounts for special cases where fields have implicit modifiers, such as <code>public static final</code> for interface fields and <code>public static</code> for enum constants. Only fields matching the specified modifiers will be analyzed.</td>
+              <td>Specify the set of access modifiers used to determine which fields should be checked. This includes both explicitly declared modifiers and implicit ones, such as package-private for fields without an explicit modifier. It also accounts for special cases where fields have implicit modifiers, such as <code>public static final</code> for interface fields and <code>public static</code> for enum constants, or where the nesting types' accessibility is more restrictive and hides the nested field. Only fields matching the specified modifiers will be analyzed.</td>
               <td><a href="../../property_types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
               <td><code>public, protected, package, private</code></td>
               <td>10.22.0</td>
@@ -216,6 +216,40 @@ public class Example5 {
           System.identityHashCode("running");
         }
     };
+  }
+}
+</code></pre></div>
+
+        <p id="Example6-config">
+          Demonstration of how nesting types' accessiblity is
+           evaluated.
+        </p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocVariable"&gt;
+      &lt;property name="accessModifiers" value="public"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">
+          Although configured to report a violation if there is no javadoc for a
+           <code>public</code> field, although the <code>CONSTANT</code>
+           <code>enum</code> constant is implicitly <code>public</code>,
+           a violation is only reported when the nesting types' accessiblity is
+           considered - i.e. in a private <code>enum</code> the constant is
+           <i>effectively</i> <code>public</code> as not externally accessible. 
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example6 {
+  public enum PublicEnum {
+    CONSTANT // violation, 'Missing a Javadoc comment'
+  }
+
+  private enum PrivateEnum {
+    CONSTANT
   }
 }
 </code></pre></div>
