@@ -19,6 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -27,65 +30,28 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <div>
- * Checks that there is no whitespace before a token.
- * More specifically, it checks that it is not preceded with whitespace,
- * or (if linebreaks are allowed) all characters on the line before are
- * whitespace. To allow linebreaks before a token, set property
- * {@code allowLineBreaks} to {@code true}. No check occurs before semicolons in empty
- * for loop initializers or conditions.
- * </div>
- * <ul>
- * <li>
- * Property {@code allowLineBreaks} - Control whether whitespace is allowed
- * if the token is at a linebreak.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code tokens} - tokens to check
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
- * Default value is:
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">
- * COMMA</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SEMI">
- * SEMI</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_INC">
- * POST_INC</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
- * POST_DEC</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
- * ELLIPSIS</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LABELED_STAT">
- * LABELED_STAT</a>.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code ws.preceded}
- * </li>
- * </ul>
- *
- * @since 3.0
+ * Checks that there is no whitespace before specific tokens.
  */
 @StatelessCheck
-public class NoWhitespaceBeforeCheck
-    extends AbstractCheck {
+public class NoWhitespaceBeforeCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "ws.preceded";
+
+    /**
+     * Common whitespace patterns to check for.
+     */
+    private static final List<String> COMMON_WHITESPACE_PATTERNS = Arrays.asList(
+        " ;",
+        " (",
+        "  = ",
+        " =  ",
+        ". (",
+        ".  (",
+        "\" ."
+    );
 
     /** Control whether whitespace is allowed if the token is at a linebreak. */
     private boolean allowLineBreaks;
@@ -125,49 +91,68 @@ public class NoWhitespaceBeforeCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        final int[] line = getLineCodePoints(ast.getLineNo() - 1);
-        final int columnNoBeforeToken = ast.getColumnNo() - 1;
-        final boolean isFirstToken = columnNoBeforeToken == -1;
+        if (containsInvalidWhitespacePattern(ast, ast.getType())) {
+            log(ast, MSG_KEY, ast.getText());
+        }
+        visitTokenOther(
+            ast,
+            getLineCodePoints(ast.getLineNo() - 1),
+            ast.getColumnNo() - 1,
+            ast.getColumnNo() - 1 == -1);
+    }
 
-        if ((isFirstToken || CommonUtil.isCodePointWhitespace(line, columnNoBeforeToken))
-                && !isInEmptyForInitializerOrCondition(ast)) {
-            final boolean isViolation = !allowLineBreaks
-                    || !isFirstToken
-                    && !CodePointUtil.hasWhitespaceBefore(columnNoBeforeToken, line);
-
-            if (isViolation) {
-                log(ast, MSG_KEY, ast.getText());
-            }
+    private void visitTokenOther(DetailAST ast, int[] line, int columnBeforeToken, boolean isFirstToken) {
+        if (!isInEmptyForInitializerOrCondition(ast.getPreviousSibling())
+            && isWhitespaceOrLineStart(isFirstToken, line, columnBeforeToken)
+            && requiresLeadingWhitespace(isFirstToken, columnBeforeToken, line)) {
+            log(ast, MSG_KEY, ast.getText());
         }
     }
 
     /**
-     * Checks that semicolon is in empty for initializer or condition.
-     *
-     * @param semicolonAst DetailAST of semicolon.
-     * @return true if semicolon is in empty for initializer or condition.
+     * Checks if the AST contains any invalid whitespace patterns.
      */
-    private static boolean isInEmptyForInitializerOrCondition(DetailAST semicolonAst) {
-        boolean result = false;
-        final DetailAST sibling = semicolonAst.getPreviousSibling();
-        if (sibling != null
-                && (sibling.getType() == TokenTypes.FOR_INIT
-                        || sibling.getType() == TokenTypes.FOR_CONDITION)
-                && !sibling.hasChildren()) {
-            result = true;
-        }
-        return result;
+    private boolean containsInvalidWhitespacePattern(DetailAST ast, int type) {
+        return (type == TokenTypes.VARIABLE_DEF
+            || type == TokenTypes.METHOD_REF
+            || type == TokenTypes.METHOD_CALL
+            || type == TokenTypes.METHOD_DEF)
+            && containsWhitespacePattern(ast);
     }
 
     /**
-     * Setter to control whether whitespace is allowed if the token is at a linebreak.
-     *
-     * @param allowLineBreaks whether whitespace should be
-     *     flagged at line breaks.
-     * @since 3.0
+     * Checks if the AST text contains any common whitespace patterns.
      */
+    private boolean containsWhitespacePattern(DetailAST ast) {
+        return COMMON_WHITESPACE_PATTERNS.stream().anyMatch(ast.toString()::contains);
+    }
+
+    /**
+     * Checks if the position before the token is whitespace or line start.
+     */
+    private static boolean isWhitespaceOrLineStart(boolean isFirstToken, int[] line, int columnBeforeToken) {
+        return isFirstToken || CommonUtil.isCodePointWhitespace(line, columnBeforeToken);
+    }
+
+    /**
+     * Determines if whitespace is required before the token.
+     */
+    private boolean requiresLeadingWhitespace(boolean isFirstToken, int columnBeforeToken, int[] line) {
+        return !allowLineBreaks
+            || (!isFirstToken && !CodePointUtil.hasWhitespaceBefore(columnBeforeToken, line));
+    }
+
+    /**
+     * Checks if semicolon is in empty for initializer or condition.
+     */
+    private static boolean isInEmptyForInitializerOrCondition(DetailAST sibling) {
+        return sibling != null
+            && !sibling.hasChildren()
+            && (sibling.getType() == TokenTypes.FOR_INIT
+            || sibling.getType() == TokenTypes.FOR_CONDITION);
+    }
+
     public void setAllowLineBreaks(boolean allowLineBreaks) {
         this.allowLineBreaks = allowLineBreaks;
     }
-
 }
