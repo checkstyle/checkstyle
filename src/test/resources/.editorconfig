@@ -1,0 +1,40 @@
+root = true
+
+[*]
+charset = unset
+end_of_line = unset
+indent_style = unset
+insert_final_newline = unset
+
+[*.java]
+ij_continuation_indent_size = unset
+ij_java_binary_operation_sign_on_next_line = unset
+ij_java_block_brace_style = unset
+ij_java_catch_on_new_line = unset
+ij_java_class_brace_style = unset
+ij_java_class_count_to_use_import_on_demand = unset
+ij_java_do_while_brace_force = unset
+ij_java_else_on_new_line = unset
+ij_java_finally_on_new_line = unset
+ij_java_for_brace_force = unset
+ij_java_if_brace_force = unset
+ij_java_imports_layout = unset
+ij_java_keep_blank_lines_before_right_brace = unset
+ij_java_keep_blank_lines_between_package_declaration_and_header = unset
+ij_java_keep_blank_lines_in_code = unset
+ij_java_keep_blank_lines_in_declarations = unset
+ij_java_lambda_brace_style = unset
+ij_java_method_brace_style = unset
+ij_java_names_count_to_use_import_on_demand = unset
+ij_java_space_before_array_initializer_left_brace = unset
+ij_java_space_within_empty_array_initializer_braces = unset
+ij_java_spaces_within_array_initializer_braces = unset
+ij_java_while_brace_force = unset
+ij_java_wrap_comments = unset
+indent_size = unset
+max_line_length = unset
+
+[*.xml]
+ij_continuation_indent_size = unset
+indent_size = unset
+max_line_length = unset
