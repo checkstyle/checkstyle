@@ -1,0 +1,4 @@
+root = true
+
+[**spotbugs-exclude.xml]
+max_line_length = 100
