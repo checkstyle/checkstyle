@@ -53,15 +53,15 @@ public class InputConstantNameMemberExtended
 
 interface In
 {
-    public int mPublic = 0; // violation
-    int mProtected = 0; // violation
-    int mPackage = 0; // violation
-    int mPrivate = 0; // violation
+    public int mPublic = 0; // violation 'Name 'mPublic' must match pattern'
+    int mProtected = 0; // violation 'Name 'mProtected' must match pattern'
+    int mPackage = 0; // violation 'Name 'mPackage' must match pattern'
+    int mPrivate = 0; // violation 'Name 'mPrivate' must match pattern'
 
-    public int _public = 0; // violation
-    int _protected = 0; // violation
-    int _package = 0; // violation
-    int _private = 0; // violation
+    public int _public = 0; // violation 'Name '_public' must match pattern'
+    int _protected = 0; // violation 'Name '_protected' must match pattern'
+    int _package = 0; // violation 'Name '_package' must match pattern'
+    int _private = 0; // violation 'Name '_private' must match pattern'
 }
 
 enum Direction {
