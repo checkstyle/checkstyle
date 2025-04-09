@@ -43,7 +43,7 @@ class InputNoWhitespaceBefore22 {
     }
 
     public void testSpaceViolationTab() {
-        "".equals(""); // violation
+        "".equals(""); // violation TODO insert tap char
         "".equals(""); // violation
         "".equals(""); // violation
         "".equals(""); // violation
@@ -51,26 +51,26 @@ class InputNoWhitespaceBefore22 {
         "".equals(""); // violation
     }
 
-    public void testSpaceViolation1() {
+     public void testSpaceViolation1() {
     }  // violation
 
-    public void testSpaceViolation2() {
+    public  void testSpaceViolation2() {
     }  // violation
 
-    public void testSpaceViolation3() {
+    public void  testSpaceViolation3() {
     }  // violation
 
-    public void testSpaceViolation4() {
+    public void testSpaceViolation4 () {
     }  // violation
 
-    public void testSpaceViolation5() {
+    public void testSpaceViolation5( ) {
     }  // violation
 
-    public void testSpaceViolation6() {
+    public void testSpaceViolation6()  {
     }  // violation
 
     public void testSpaceViolation7() {
-    }
+     }  // violation
 
     /**
      * as we check with string contains we must ignore comments
