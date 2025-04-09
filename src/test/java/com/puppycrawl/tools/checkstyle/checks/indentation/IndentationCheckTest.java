@@ -832,7 +832,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidMethodWithChecker()
+    public void testInvalidMethodWithChecker1()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -844,7 +844,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("lineWrappingIndentation", "4");
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("throwsIndent", "4");
-        final String fileName = getPath("InputIndentationInvalidMethodIndent.java");
+        final String fileName = getPath("InputIndentationInvalidMethodIndent1.java");
         final String[] expected = {
             "23:7: " + getCheckMessage(MSG_ERROR, "ctor def rcurly", 6, 4),
             "26:7: " + getCheckMessage(MSG_ERROR, "ctor def modifier", 6, 4),
@@ -856,31 +856,50 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "70:6: " + getCheckMessage(MSG_ERROR, "final", 5, 9),
             "71:6: " + getCheckMessage(MSG_ERROR, "void", 5, 9),
             "72:5: " + getCheckMessage(MSG_ERROR, "method5", 4, 9),
-            "80:4: " + getCheckMessage(MSG_ERROR, "method def modifier", 3, 4),
-            "81:4: " + getCheckMessage(MSG_ERROR, "final", 3, 7),
-            "82:4: " + getCheckMessage(MSG_ERROR, "void", 3, 7),
-            "83:6: " + getCheckMessage(MSG_ERROR, "method6", 5, 7),
-            "93:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 8),
-            "98:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 6, 8),
-            "99:7: " + getCheckMessage(MSG_ERROR, "if", 6, 8),
-            "100:11: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
-            "101:7: " + getCheckMessage(MSG_ERROR, "if rcurly", 6, 8),
-            "104:11: " + getCheckMessage(MSG_ERROR, "Arrays", 10, 12),
-            "110:15: " + getCheckMessage(MSG_ERROR, "new", 14, 16),
-            "113:11: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 10, 12),
-            "118:15: " + getCheckMessage(MSG_ERROR, "new", 14, 16),
-            "122:11: " + getCheckMessage(MSG_ERROR, "new", 10, 12),
-            "126:11: " + getCheckMessage(MSG_ERROR, "new", 10, 12),
-            "127:7: " + getCheckMessage(MSG_ERROR, ")", 6, 8),
-            "131:7: " + getCheckMessage(MSG_ERROR, "method call rparen", 6, 8),
-            "145:11: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 10, 12),
-            "148:11: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 10, 12),
-            "158:7: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 6, 12),
-            "170:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
-            "175:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
-            "179:1: " + getCheckMessage(MSG_ERROR, "int", 0, 8),
-            "180:5: " + getCheckMessage(MSG_ERROR, "method9", 4, 8),
-            "190:13: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 12, 8),
+            "86:11: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 10, 12),
+            "89:11: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 10, 12),
+            "99:7: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 6, 12),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testInvalidMethodWithChecker2()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String fileName = getPath("InputIndentationInvalidMethodIndent2.java");
+        final String[] expected = {
+            "23:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 8),
+            "26:4: " + getCheckMessage(MSG_ERROR, "method def modifier", 3, 4),
+            "27:4: " + getCheckMessage(MSG_ERROR, "final", 3, 7),
+            "28:4: " + getCheckMessage(MSG_ERROR, "void", 3, 7),
+            "29:6: " + getCheckMessage(MSG_ERROR, "method6", 5, 7),
+            "39:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 6, 8),
+            "40:7: " + getCheckMessage(MSG_ERROR, "if", 6, 8),
+            "41:11: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
+            "42:7: " + getCheckMessage(MSG_ERROR, "if rcurly", 6, 8),
+            "45:11: " + getCheckMessage(MSG_ERROR, "Arrays", 10, 12),
+            "51:15: " + getCheckMessage(MSG_ERROR, "new", 14, 16),
+            "54:11: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 10, 12),
+            "59:15: " + getCheckMessage(MSG_ERROR, "new", 14, 16),
+            "63:11: " + getCheckMessage(MSG_ERROR, "new", 10, 12),
+            "67:11: " + getCheckMessage(MSG_ERROR, "new", 10, 12),
+            "68:7: " + getCheckMessage(MSG_ERROR, ")", 6, 8),
+            "72:7: " + getCheckMessage(MSG_ERROR, "method call rparen", 6, 8),
+            "86:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "91:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "95:1: " + getCheckMessage(MSG_ERROR, "int", 0, 8),
+            "96:5: " + getCheckMessage(MSG_ERROR, "method9", 4, 8),
+            "106:13: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 12, 8),
         };
         verifyWarns(checkConfig, fileName, expected);
     }

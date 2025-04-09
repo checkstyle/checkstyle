@@ -279,8 +279,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharacters3\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]indentation[\\/]indentation[\\/]InputIndentationInvalidMethodIndent\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]indentation[\\/]indentation[\\/]InputIndentationValidMethodIndent\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]indentation[\\/]indentation[\\/]InputIndentationInvalidClassDefIndent\.java"/>
