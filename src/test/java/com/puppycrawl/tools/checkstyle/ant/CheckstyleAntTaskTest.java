@@ -358,12 +358,18 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(WARNING_INPUT)));
         antTask.setMaxWarnings(0);
+        final Location fileLocation = new Location("build.xml", 42, 10);
+        antTask.setLocation(fileLocation);
+
         final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
                 .isEqualTo("Got 0 errors (max allowed: 0) and 1 warnings.");
+        assertWithMessage("Location is missing in exception")
+                .that(ex.getLocation())
+                .isEqualTo(fileLocation);
     }
 
     @Test

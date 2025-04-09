@@ -1507,7 +1507,63 @@ public final class JavadocTokenTypes {
      */
     public static final int DT_HTML_TAG_NAME = JavadocParser.DT_HTML_TAG_NAME;
 
-    /** Head tag name. */
+    /**
+     * Head tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * &lt;head&gt;
+     *   &lt;title&gt;Page Title&lt;/title&gt;
+     *   &lt;meta charset="UTF-8"&gt;
+     * &lt;/head&gt;
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>{@code
+     *  HEAD -> HEAD
+     *   |--HEAD_TAG_START -> HEAD_TAG_START
+     *   |   |--START -> <
+     *   |   |--HEAD_HTML_TAG_NAME -> head
+     *   |   `--END -> >
+     *   |--NEWLINE -> \r\n
+     *   |--LEADING_ASTERISK ->  *
+     *   |--TEXT ->
+     *   |--HTML_TAG -> HTML_TAG
+     *   |   |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *   |   |   |--START -> <
+     *   |   |   |--HTML_TAG_NAME -> title
+     *   |   |   `--END -> >
+     *   |   |--TEXT -> Page Title
+     *   |   `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *   |       |--START -> <
+     *   |       |--SLASH -> /
+     *   |       |--HTML_TAG_NAME -> title
+     *   |       `--END -> >
+     *   |--NEWLINE -> \r\n
+     *   |--LEADING_ASTERISK ->  *
+     *   |--TEXT ->
+     *   |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *   |   `--META_TAG -> META_TAG
+     *   |       |--START -> <
+     *   |       |--META_HTML_TAG_NAME -> meta
+     *   |       |--WS ->
+     *   |       |--ATTRIBUTE -> ATTRIBUTE
+     *   |       |   |--HTML_TAG_NAME -> charset
+     *   |       |   |--EQUALS -> =
+     *   |       |   `--ATTR_VALUE -> "UTF-8"
+     *   |       `--END -> >
+     *   |--NEWLINE -> \r\n
+     *   |--LEADING_ASTERISK ->  *
+     *   |--TEXT ->
+     *   `--HEAD_TAG_END -> HEAD_TAG_END
+     *       |--START -> <
+     *       |--SLASH -> /
+     *       |--HEAD_HTML_TAG_NAME -> head
+     *       `--END -> >
+     * }
+     * </pre>
+     *
+     * @see #HEAD_HTML_TAG_NAME
+     */
     public static final int HEAD_HTML_TAG_NAME = JavadocParser.HEAD_HTML_TAG_NAME;
 
     /** Html tag name. */
@@ -2282,14 +2338,14 @@ public final class JavadocTokenTypes {
      *        |             |--SLASH -> /
      *        |             |--BODY_HTML_TAG_NAME -> body
      *        |             `--END -> >
-     *          |--NEWLINE -> \n
-     *          |--LEADING_ASTERISK ->  *
-     *          |--TEXT -> /
-     *          |--NEWLINE -> \n
-     *          |--TEXT -> public class Test {
-     *          |--NEWLINE -> \n
-     *          |--TEXT -> }
-     *          |--NEWLINE -> \n
+     *        |--NEWLINE -> \n
+     *        |--LEADING_ASTERISK ->  *
+     *        |--TEXT -> /
+     *        |--NEWLINE -> \n
+     *        |--TEXT -> public class Test {
+     *        |--NEWLINE -> \n
+     *        |--TEXT -> }
+     *        |--NEWLINE -> \n
      * }
      * </pre>
      */
@@ -2442,7 +2498,28 @@ public final class JavadocTokenTypes {
     /** End description of a term tag. */
     public static final int DD_TAG_END = JavadocParser.RULE_ddTagEnd + RULE_TYPES_OFFSET;
 
-    /** Description term html tag: {@code <dt></dt>}. */
+    /**
+     * DT html tag.
+     *
+     * <p><b>Example AST:</b></p>
+     * <pre>{@code <dd>Description Term</dd>}</pre>
+     * <pre>
+     * {@code
+     *   --HTML_ELEMENT -> HTML_ELEMENT
+     *      `--DT -> DT
+     *          |--DT_TAG_START -> DT_TAG_START
+     *          |   |--START -> <
+     *          |   |--DT_HTML_TAG_NAME -> dt
+     *          |   `--END -> >
+     *          |--TEXT -> "Description term"
+     *          `--DT_TAG_END -> DT_TAG_END
+     *              |--START -> <
+     *              |--SLASH -> /
+     *              |--DT_HTML_TAG_NAME -> dt
+     *              `--END -> >
+     * }
+     * </pre>
+     */
     public static final int DT = JavadocParser.RULE_dt + RULE_TYPES_OFFSET;
     /** Start description term tag. */
     public static final int DT_TAG_START = JavadocParser.RULE_dtTagStart + RULE_TYPES_OFFSET;
