@@ -9,10 +9,10 @@ tokens = DOT
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebefore;
 
 class InputNoWhitespaceBefore22 {
+
     Boolean equals;
 
     public void testSpaceViolation() {
-        boolean e = "".equals(""); // violation
         " ".equals("");
         "".equals(" ");
         "".equals(""); // violation
@@ -21,10 +21,24 @@ class InputNoWhitespaceBefore22 {
         "".equals(""); // violation
         "".equals(""); // violation
         "".equals(""); // violation
+    }
+
+    public void testSpaceViolationVarAssignment() {
         equals = " ".equals("");
-        equals = "".equals(""); // violation
-        equals = "".equals(""); // violation
-        equals = "".equals(""); // violation
+         equals = "".equals(""); // violation
+        equals  = "".equals(""); // violation
+        equals =  "".equals(""); // violation
+    }
+
+    public void testSpaceViolationVarDeclaration() {
+        boolean e = "".equals("");
+        boolean e1  = "".equals(""); // violation
+        boolean  e2 = "".equals(""); // violation
+         boolean e3 = "".equals(""); // violation
+         e3 = "".equals(""); // violation
+        e3  = "".equals(""); // violation
+        e3 =  "".equals(""); // violation
+        e3 = "".equals("");
     }
 
     public void testSpaceViolationTab() {
