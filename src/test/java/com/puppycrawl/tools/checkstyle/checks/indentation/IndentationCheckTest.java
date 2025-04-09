@@ -171,6 +171,16 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testMethodChainArrayAccess_NoViolation() throws Exception {
+        final String filePath = getPath(
+            "checks/indentation/indentation/InputIndentationMethodChainArray.java");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+    
+        verifyWithInlineConfigParser(
+            getPath("config-indent.xml"), filePath, expected);
+    }
+    
+    @Test
     public void testGetRequiredTokens() {
         final IndentationCheck checkObj = new IndentationCheck();
         final int[] requiredTokens = checkObj.getRequiredTokens();
