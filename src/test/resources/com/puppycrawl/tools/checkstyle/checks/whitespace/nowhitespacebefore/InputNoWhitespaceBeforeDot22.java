@@ -12,7 +12,7 @@ class InputNoWhitespaceBefore22 {
 
     Boolean equals;
 
-    public void testSpaceViolation() {
+    public void testSpaceViolationMethodCall() {
         " ".equals("");
         "".equals(" ");
          "".equals(""); // violation is preceded with whitespace.
