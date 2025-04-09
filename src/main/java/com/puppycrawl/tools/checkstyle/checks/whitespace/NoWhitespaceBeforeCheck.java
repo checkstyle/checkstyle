@@ -57,7 +57,7 @@ public class NoWhitespaceBeforeCheck extends AbstractFileSetCheck {
     protected void processFiltered(File file, FileText fileText) {
         for (int lineNum = 0; lineNum < fileText.size(); lineNum++) {
             if (containsWhitespacePattern(fileText.get(lineNum))) {
-                log(lineNum + 1, MSG_CONTAINS_TAB);
+                log(lineNum + 1, MSG_KEY);
             }
         }
     }
