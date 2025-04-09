@@ -39,6 +39,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -49,6 +50,9 @@ import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.meta.ModuleDetails;
+import com.puppycrawl.tools.checkstyle.meta.ModulePropertyDetails;
+import com.puppycrawl.tools.checkstyle.meta.XmlMetaReader;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -300,6 +304,64 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet"
     );
 
+    private static final Map<String, ModuleDetails> MODULE_DETAILS_MAP =
+        XmlMetaReader.readAllModulesIncludingThirdPartyIfAny().stream()
+            .collect(Collectors.toUnmodifiableMap(ModuleDetails::getFullQualifiedName,
+                                      Function.identity()));
+
+    /**
+     *  Modules missing default property mentions in input files.
+     *  Until <a href="https://github.com/checkstyle/checkstyle/issues/16807">#16807</a>.
+     */
+    private static final Set<String> SUPPRESSED_MODULES = Set.of(
+            "TodoComment",
+            "FileLength",
+            "RegexpSinglelineJava",
+            "BooleanExpressionComplexity",
+            "JavadocContentLocation",
+            "ImportOrder",
+            "DescendantToken",
+            "RequireThis",
+            "EqualsAvoidNull",
+            "NeedBraces",
+            "LeftCurly",
+            "ImportControl",
+            "RegexpSingleline",
+            "MatchXpath",
+            "ModifiedControlVariable",
+            "VariableDeclarationUsageDistance",
+            "HideUtilityClassConstructor",
+            "CustomImportOrder",
+            "FinalLocalVariable",
+            "JavadocPackage",
+            "HiddenField",
+            "IllegalType",
+            "MagicNumber",
+            "NestedIfDepth",
+            "OneStatementPerLine",
+            "JavadocMethod",
+            "JavadocParagraph",
+            "JavadocStyle",
+            "JavadocType",
+            "JavadocVariable",
+            "MissingJavadocMethod",
+            "SummaryJavadoc",
+            "WriteTag",
+            "ClassFanOutComplexity",
+            "CyclomaticComplexity",
+            "RedundantModifier",
+            "AbbreviationAsWordInName",
+            "LocalFinalVariableName",
+            "LocalVariableName",
+            "Regexp",
+            "ParameterNumber",
+            "ParenPad",
+            "WhitespaceAround",
+            "SuppressWithPlainTextCommentFilter",
+            "NoWhitespaceAfter",
+            "MethodParamPad"
+    );
+
     // This is a hack until https://github.com/checkstyle/checkstyle/issues/13845
     private static final Map<String, String> MODULE_MAPPINGS = new HashMap<>();
 
@@ -544,15 +606,40 @@ public final class InlineConfigParser {
             final ModuleInputConfiguration.Builder moduleInputConfigBuilder =
                     new ModuleInputConfiguration.Builder();
             final String moduleName = lines.get(lineNo);
+            Map<String, String> defaultProperties = new HashMap<>();
+            if (!moduleName.contains(".") && !SUPPRESSED_MODULES.contains(moduleName)) {
+                defaultProperties = getDefaultProperties(inputFilePath, moduleName);
+            }
             setModuleName(moduleInputConfigBuilder, inputFilePath, moduleName);
-            setProperties(moduleInputConfigBuilder, inputFilePath, lines, lineNo + 1, moduleName);
+            validateDefaultProperties(loadProperties(readPropertiesContent(lineNo + 1,
+                lines)), defaultProperties);
+            setProperties(moduleInputConfigBuilder, inputFilePath, lines, lineNo + 1,
+                moduleName);
             testInputConfigBuilder.addChildModule(moduleInputConfigBuilder.build());
+
             do {
                 lineNo++;
             } while (lineNo < lines.size()
                     && lines.get(lineNo).isEmpty()
                     || !lines.get(lineNo - 1).isEmpty());
         }
+    }
+
+    public static Map<String, String> getDefaultProperties(String filePath, String moduleName)
+            throws CheckstyleException {
+
+        final String fullyQualifiedClassName = getFullyQualifiedClassName(filePath, moduleName);
+        final ModuleDetails moduleDetails = MODULE_DETAILS_MAP.get(fullyQualifiedClassName);
+
+        List<ModulePropertyDetails> properties = moduleDetails.getProperties();
+        if (properties == null) {
+            properties = Collections.emptyList();
+        }
+
+        final Map<String, String> result = new HashMap<>();
+        properties.forEach(prop -> result.put(prop.getName(), prop.getDefaultValue()));
+
+        return result;
     }
 
     private static String getFullyQualifiedClassName(String filePath, String moduleName)
@@ -816,6 +903,33 @@ public final class InlineConfigParser {
             line = lines.get(lineNo);
         }
         return stringBuilder.toString();
+    }
+
+    private static void validateDefaultProperties(
+        Map<Object, Object> properties,
+        Map<String, String> expectedDefaults) throws CheckstyleException {
+
+        final List<String> unusedDefaults = new ArrayList<>();
+        for (String key : expectedDefaults.keySet()) {
+            if (!properties.containsKey(key)) {
+                unusedDefaults.add(key);
+            }
+        }
+
+        if (!unusedDefaults.isEmpty()) {
+            throw new CheckstyleException("There are more properties than expected: "
+                + unusedDefaults);
+        }
+
+        for (Map.Entry<Object, Object> entry : properties.entrySet()) {
+            final String key = entry.getKey().toString();
+            final String value = entry.getValue().toString();
+
+            if (value.equals(expectedDefaults.get(key))) {
+                throw new CheckstyleException(key
+                    + " is set to default value but missing '(default)' tag.");
+            }
+        }
     }
 
     private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
