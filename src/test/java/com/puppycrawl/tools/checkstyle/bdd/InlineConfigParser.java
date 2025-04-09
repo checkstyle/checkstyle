@@ -43,6 +43,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
@@ -300,6 +307,59 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet"
     );
 
+    /**
+     *  Modules missing default property mentions in input files.
+     *  Until <a href="https://github.com/checkstyle/checkstyle/issues/16807">#16807</a>.
+     */
+    private static final Set<String> SUPPRESSED_MODULES = Set.of(
+            "TodoComment",
+            "FileLength",
+            "RegexpSinglelineJava",
+            "BooleanExpressionComplexity",
+            "JavadocContentLocation",
+            "ImportOrder",
+            "DescendantToken",
+            "RequireThis",
+            "EqualsAvoidNull",
+            "NeedBraces",
+            "LeftCurly",
+            "ImportControl",
+            "RegexpSingleline",
+            "MatchXpath",
+            "ModifiedControlVariable",
+            "VariableDeclarationUsageDistance",
+            "HideUtilityClassConstructor",
+            "CustomImportOrder",
+            "FinalLocalVariable",
+            "JavadocPackage",
+            "HiddenField",
+            "IllegalType",
+            "MagicNumber",
+            "NestedIfDepth",
+            "OneStatementPerLine",
+            "JavadocMethod",
+            "JavadocParagraph",
+            "JavadocStyle",
+            "JavadocType",
+            "JavadocVariable",
+            "MissingJavadocMethod",
+            "SummaryJavadoc",
+            "WriteTag",
+            "ClassFanOutComplexity",
+            "CyclomaticComplexity",
+            "RedundantModifier",
+            "AbbreviationAsWordInName",
+            "LocalFinalVariableName",
+            "LocalVariableName",
+            "Regexp",
+            "ParameterNumber",
+            "ParenPad",
+            "WhitespaceAround",
+            "SuppressWithPlainTextCommentFilter",
+            "NoWhitespaceAfter",
+            "MethodParamPad"
+    );
+
     // This is a hack until https://github.com/checkstyle/checkstyle/issues/13845
     private static final Map<String, String> MODULE_MAPPINGS = new HashMap<>();
 
@@ -544,15 +604,93 @@ public final class InlineConfigParser {
             final ModuleInputConfiguration.Builder moduleInputConfigBuilder =
                     new ModuleInputConfiguration.Builder();
             final String moduleName = lines.get(lineNo);
+            Map<String, String> defaultProperties = new HashMap<>();
+            if (!moduleName.contains(".") && !SUPPRESSED_MODULES.contains(moduleName)) {
+                defaultProperties = getPropertiesWithDefaults(
+                    getMetaPath(inputFilePath, moduleName),
+                    inputFilePath);
+            }
             setModuleName(moduleInputConfigBuilder, inputFilePath, moduleName);
-            setProperties(moduleInputConfigBuilder, inputFilePath, lines, lineNo + 1, moduleName);
+            validateDefaultProperties(lines, lineNo + 1, defaultProperties);
+            setProperties(moduleInputConfigBuilder, inputFilePath, lines, lineNo + 1,
+                moduleName);
             testInputConfigBuilder.addChildModule(moduleInputConfigBuilder.build());
+
             do {
                 lineNo++;
             } while (lineNo < lines.size()
                     && lines.get(lineNo).isEmpty()
                     || !lines.get(lineNo - 1).isEmpty());
         }
+    }
+
+    public static Map<String, String> getPropertiesWithDefaults(String filePath, String inputPath)
+            throws IOException {
+        final Map<String, String> propertiesMap = new HashMap<>();
+        try {
+
+            final File xmlFile = new File(filePath);
+            final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            final DocumentBuilder builder = factory.newDocumentBuilder();
+            final Document document = builder.parse(xmlFile);
+
+            final NodeList propertyNodes = document.getElementsByTagName("property");
+
+            for (int index = 0; index < propertyNodes.getLength(); index++) {
+                final Node node = propertyNodes.item(index);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    final Element propertyElement = (Element) node;
+                    final String name = propertyElement.getAttribute("name");
+                    final String defaultValue = propertyElement.getAttribute("default-value");
+                    propertiesMap.put(name, defaultValue);
+                }
+            }
+        }
+        catch (Exception ex) {
+            throw new IOException("Error parsing XML file: " + filePath
+                + "input file: " + inputPath, ex);
+        }
+
+        return propertiesMap;
+    }
+
+    private static String getMetaPath(String filePath, String replacement) {
+
+        final String[] parts = filePath.split(Pattern.quote(File.separator));
+        final StringBuilder newPath = new StringBuilder(128);
+
+        int startIndex = 0;
+        String extension = ".xml";
+        for (int index = 0; index < parts.length; index++) {
+            if ("checks".equals(parts[index])
+                || "filters".equals(parts[index])
+                || "filefilters".equals(parts[index])) {
+                if ("checks".equals(parts[index])) {
+                    extension = "Check.xml";
+                }
+                startIndex = index;
+                break;
+            }
+        }
+
+        final String repoPath = System.getProperty("user.dir");
+        final String path = String.join(File.separator,
+            "src", "main", "resources", "com", "puppycrawl",
+            "tools", "checkstyle", "meta");
+
+        newPath.append(repoPath).append(File.separator).append(path).append(File.separator);
+
+        for (int index = startIndex; index < parts.length - 2 && !"checks".equals(parts[index - 2])
+            && !"filters".equals(parts[index - 1])
+            && !"filefilters".equals(parts[index - 1]); index++) {
+            newPath.append(parts[index]).append(File.separator);
+        }
+
+        newPath.append(replacement);
+
+        final String xmlPath = newPath.toString();
+
+        return xmlPath + extension;
     }
 
     private static String getFullyQualifiedClassName(String filePath, String moduleName)
@@ -816,6 +954,36 @@ public final class InlineConfigParser {
             line = lines.get(lineNo);
         }
         return stringBuilder.toString();
+    }
+
+    private static void validateDefaultProperties(
+        List<String> lines,
+        int beginLineNo,
+        Map<String, String> expectedDefaults) throws IOException, CheckstyleException {
+
+        final String propertyContent = readPropertiesContent(beginLineNo, lines);
+        final Map<Object, Object> properties = loadProperties(propertyContent);
+        final Set<String> actualKeys = properties.keySet().stream()
+            .map(Object::toString)
+            .collect(Collectors.collectingAndThen(Collectors.toSet(),
+                Collections::unmodifiableSet));
+
+        final Set<String> unusedDefaults = new HashSet<>(expectedDefaults.keySet());
+        unusedDefaults.removeAll(actualKeys);
+        if (!unusedDefaults.isEmpty()) {
+            throw new CheckstyleException("There are more properties than expected: "
+                + unusedDefaults);
+        }
+
+        for (Map.Entry<Object, Object> entry : properties.entrySet()) {
+            final String key = entry.getKey().toString();
+            final String value = entry.getValue().toString();
+
+            if (value.equals(expectedDefaults.get(key))) {
+                throw new CheckstyleException(key
+                    + " is set to default value but missing '(default)' tag.");
+            }
+        }
     }
 
     private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
