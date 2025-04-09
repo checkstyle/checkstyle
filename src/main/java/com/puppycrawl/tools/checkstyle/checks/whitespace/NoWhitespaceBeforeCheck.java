@@ -19,16 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import java.io.File;
-import java.util.Arrays;
-import java.util.List;
-
 import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
-import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_CONTAINS_TAB;
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Checks that there is no whitespace before specific tokens.
@@ -45,13 +42,32 @@ public class NoWhitespaceBeforeCheck extends AbstractFileSetCheck {
      * Common whitespace patterns to check for.
      */
     private static final List<String> COMMON_WHITESPACE_PATTERNS = Arrays.asList(
-        " ;",
-        " (",
-        "  = ",
-        " =  ",
-        ". (",
-        ".  (",
-        "\" ."
+            " ;",
+            " (",
+            "  = ",
+            " =  ",
+            ". (",
+            ".  (",
+            "\" .",
+            " .",
+            " [",
+            "[ ",
+            "] ",
+            " ]",
+            " )",
+            " )",
+            " :",
+            " ::",
+            "  ->",
+            " ->  ",
+            " {",
+            "} ",
+            "break  ",
+            "return  ",
+            "throw  ",
+            " @",
+            " (",
+            ") "
     );
 
     @Override
