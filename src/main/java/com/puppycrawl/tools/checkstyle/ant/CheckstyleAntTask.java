@@ -328,7 +328,7 @@ public class CheckstyleAntTask extends Task {
         final List<File> files = getFilesToCheck();
         final long endTime = System.currentTimeMillis();
         log("File discovery took " + (endTime - startTime) + TIME_SUFFIX, Project.MSG_VERBOSE);
-        log("Running Checkstyle" + Objects.toString(checkstyleVersion, "")
+        log("Running Checkstyle " + Objects.toString(checkstyleVersion, "")
                 + " on " + files.size() + " file.", Project.MSG_INFO);
 
         final int numErrs;
