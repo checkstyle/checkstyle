@@ -3156,6 +3156,43 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIndentationCodeBlocks1() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_ERROR, "block lcurly", 4, 2),
+            "18:7: " + getCheckMessage(MSG_CHILD_ERROR, "block", 6, 4),
+            "19:5: " + getCheckMessage(MSG_ERROR, "block rcurly", 4, 2),
+            "30:5: " + getCheckMessage(MSG_ERROR, "block lcurly", 4, 2),
+            "31:7: " + getCheckMessage(MSG_CHILD_ERROR, "block", 6, 4),
+            "32:5: " + getCheckMessage(MSG_ERROR, "block rcurly", 4, 2),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationCodeBlocks1.java"), expected);
+    }
+
+    @Test
+    public void testIndentationCodeBlocks2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        final String[] expected = {
+            "45:13: " + getCheckMessage(MSG_ERROR, "for lcurly", 12, 14),
+            "47:13: " + getCheckMessage(MSG_ERROR, "for rcurly", 12, 14),
+        };
+        verifyWarns(checkConfig,
+                getNonCompilablePath("InputIndentationCodeBlocks2.java"), expected);
+    }
+
+    @Test
     public void testIndentationSealedClasses()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
