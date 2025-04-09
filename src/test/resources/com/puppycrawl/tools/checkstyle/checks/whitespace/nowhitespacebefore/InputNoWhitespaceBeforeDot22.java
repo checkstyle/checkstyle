@@ -1,7 +1,5 @@
 /*
 NoWhitespaceBefore
-allowLineBreaks = (default)false
-tokens = DOT
 
 
 */
