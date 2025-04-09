@@ -15,12 +15,13 @@ class InputNoWhitespaceBefore22 {
     public void testSpaceViolation() {
         " ".equals("");
         "".equals(" ");
-        "".equals(""); // violation
-        "".equals(""); // violation
-        "".equals(""); // violation
-        "".equals(""); // violation
-        "".equals(""); // violation
-        "".equals(""); // violation
+         "".equals(""); // violation
+        "" .equals(""); // violation
+        "". equals(""); // violation
+        "".equals (""); // violation
+        "".equals( ""); // violation
+        "".equals("" ); // violation
+        "".equals("") ; // violation
     }
 
     public void testSpaceViolationVarAssignment() {
@@ -32,9 +33,9 @@ class InputNoWhitespaceBefore22 {
 
     public void testSpaceViolationVarDeclaration() {
         boolean e = "".equals("");
+         boolean e3 = "".equals(""); // violation
         boolean e1  = "".equals(""); // violation
         boolean  e2 = "".equals(""); // violation
-         boolean e3 = "".equals(""); // violation
          e3 = "".equals(""); // violation
         e3  = "".equals(""); // violation
         e3 =  "".equals(""); // violation
