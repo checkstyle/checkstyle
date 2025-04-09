@@ -5,7 +5,9 @@ format = [A-Z]+
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.naming.packagename; // violation
+package com.puppycrawl.tools.checkstyle.checks.naming.packagename;
+// violation above 'Name 'com.puppycrawl.tools.checkstyle.checks.naming.packagename'
+// must match pattern'
 
 /**
  * Contains simple mistakes:
