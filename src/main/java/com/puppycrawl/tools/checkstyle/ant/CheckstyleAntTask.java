@@ -19,20 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.ant;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Properties;
-import java.util.stream.Collectors;
-
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
+import com.puppycrawl.tools.checkstyle.*;
+import com.puppycrawl.tools.checkstyle.api.*;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
 import org.apache.tools.ant.Project;
@@ -42,22 +31,13 @@ import org.apache.tools.ant.types.EnumeratedAttribute;
 import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.Path;
 
-import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
-import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
-import com.puppycrawl.tools.checkstyle.DefaultLogger;
-import com.puppycrawl.tools.checkstyle.ModuleFactory;
-import com.puppycrawl.tools.checkstyle.PackageObjectFactory;
-import com.puppycrawl.tools.checkstyle.PropertiesExpander;
-import com.puppycrawl.tools.checkstyle.SarifLogger;
-import com.puppycrawl.tools.checkstyle.ThreadModeSettings;
-import com.puppycrawl.tools.checkstyle.XMLLogger;
-import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.RootModule;
-import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * An implementation of an ANT task for calling checkstyle. See the documentation
@@ -332,7 +312,7 @@ public class CheckstyleAntTask extends Task {
         log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
             Project.MSG_VERBOSE);
 
-        log("Running Checkstyle "
+        log("Running Checkstyle"
                 + Objects.toString(checkstyleVersion, "")
                 + " on " + files.size()
                 + " files", Project.MSG_INFO);
