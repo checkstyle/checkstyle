@@ -334,6 +334,11 @@ public class JavadocTagInfoTest {
         assertWithMessage("Should return false when ast type is invalid for current tag")
                 .that(JavadocTagInfo.RETURN.isValidOn(ast))
                 .isFalse();
+
+        astChild2.setType(TokenTypes.LITERAL_INT);
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.RETURN.isValidOn(ast))
+                .isFalse();
     }
 
     @Test
