@@ -2797,7 +2797,6 @@
                 </path>
               </annotationProcessorPaths>
               <annotationProcessors>
-                <annotationProcessor>org.checkerframework.checker.formatter.FormatterChecker</annotationProcessor>
                 <annotationProcessor>org.checkerframework.checker.i18nformatter.I18nFormatterChecker</annotationProcessor>
               </annotationProcessors>
               <compilerArgs combine.children="append">
