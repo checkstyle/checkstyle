@@ -51,6 +51,9 @@ class InputNoWhitespaceBefore22 {
         "".equals(""); // violation
     }
 
+    public void testSpaceViolation0() {
+    }
+
      public void testSpaceViolation1() {
     }  // violation
 
