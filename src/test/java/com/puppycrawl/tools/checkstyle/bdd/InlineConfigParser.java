@@ -39,6 +39,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -49,6 +50,8 @@ import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.meta.ModuleDetails;
+import com.puppycrawl.tools.checkstyle.meta.XmlMetaReader;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -300,6 +303,64 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet"
     );
 
+    private static final Map<String, ModuleDetails> MODULE_DETAILS_MAP =
+        XmlMetaReader.readAllModulesIncludingThirdPartyIfAny().stream()
+            .collect(Collectors.toUnmodifiableMap(ModuleDetails::getFullQualifiedName,
+                                      Function.identity()));
+
+    /**
+     *  Modules missing default property mentions in input files.
+     *  Until <a href="https://github.com/checkstyle/checkstyle/issues/16807">#16807</a>.
+     */
+    private static final Set<String> SUPPRESSED_MODULES = Set.of(
+            "TodoComment",
+            "FileLength",
+            "RegexpSinglelineJava",
+            "BooleanExpressionComplexity",
+            "JavadocContentLocation",
+            "ImportOrder",
+            "DescendantToken",
+            "RequireThis",
+            "EqualsAvoidNull",
+            "NeedBraces",
+            "LeftCurly",
+            "ImportControl",
+            "RegexpSingleline",
+            "MatchXpath",
+            "ModifiedControlVariable",
+            "VariableDeclarationUsageDistance",
+            "HideUtilityClassConstructor",
+            "CustomImportOrder",
+            "FinalLocalVariable",
+            "JavadocPackage",
+            "HiddenField",
+            "IllegalType",
+            "MagicNumber",
+            "NestedIfDepth",
+            "OneStatementPerLine",
+            "JavadocMethod",
+            "JavadocParagraph",
+            "JavadocStyle",
+            "JavadocType",
+            "JavadocVariable",
+            "MissingJavadocMethod",
+            "SummaryJavadoc",
+            "WriteTag",
+            "ClassFanOutComplexity",
+            "CyclomaticComplexity",
+            "RedundantModifier",
+            "AbbreviationAsWordInName",
+            "LocalFinalVariableName",
+            "LocalVariableName",
+            "Regexp",
+            "ParameterNumber",
+            "ParenPad",
+            "WhitespaceAround",
+            "SuppressWithPlainTextCommentFilter",
+            "NoWhitespaceAfter",
+            "MethodParamPad"
+    );
+
     // This is a hack until https://github.com/checkstyle/checkstyle/issues/13845
     private static final Map<String, String> MODULE_MAPPINGS = new HashMap<>();
 
@@ -544,15 +605,35 @@ public final class InlineConfigParser {
             final ModuleInputConfiguration.Builder moduleInputConfigBuilder =
                     new ModuleInputConfiguration.Builder();
             final String moduleName = lines.get(lineNo);
+
             setModuleName(moduleInputConfigBuilder, inputFilePath, moduleName);
-            setProperties(moduleInputConfigBuilder, inputFilePath, lines, lineNo + 1, moduleName);
+            validateDefaultProperties(loadProperties(readPropertiesContent(lineNo + 1,
+                lines)), moduleName, inputFilePath);
+            setProperties(moduleInputConfigBuilder, inputFilePath, lines, lineNo + 1,
+                moduleName);
             testInputConfigBuilder.addChildModule(moduleInputConfigBuilder.build());
+
             do {
                 lineNo++;
             } while (lineNo < lines.size()
                     && lines.get(lineNo).isEmpty()
                     || !lines.get(lineNo - 1).isEmpty());
         }
+    }
+
+    public static Map<String, String> getDefaultProperties(String filePath, String moduleName)
+            throws CheckstyleException {
+
+        final String fullyQualifiedClassName = getFullyQualifiedClassName(filePath, moduleName);
+        final ModuleDetails moduleDetails = MODULE_DETAILS_MAP.get(fullyQualifiedClassName);
+
+        final Map<String, String> result = new HashMap<>();
+
+        moduleDetails.getProperties().forEach(prop -> {
+            result.put(prop.getName(), prop.getDefaultValue());
+        });
+
+        return result;
     }
 
     private static String getFullyQualifiedClassName(String filePath, String moduleName)
@@ -816,6 +897,56 @@ public final class InlineConfigParser {
             line = lines.get(lineNo);
         }
         return stringBuilder.toString();
+    }
+
+    private static void validateDefaultProperties(
+        Map<Object, Object> actualProperties,
+        String moduleName, String inputFilePath) throws CheckstyleException {
+
+        final Map<String, String> defaultProperties;
+        final boolean isModuleValid = !moduleName.contains(".")
+            && !SUPPRESSED_MODULES.contains(moduleName);
+
+        if (isModuleValid) {
+            defaultProperties = getDefaultProperties(inputFilePath, moduleName);
+        }
+        else {
+            defaultProperties = Collections.emptyMap();
+        }
+
+        final List<String> unusedProperties = defaultProperties.keySet().stream()
+            .filter(propName -> !actualProperties.containsKey(propName))
+            .collect(Collectors.collectingAndThen(
+                Collectors.toList(),
+                Collections::unmodifiableList
+            ));
+
+        if (!unusedProperties.isEmpty()) {
+            throw new CheckstyleException("All properties must be explicitly specified."
+                + " Found unused properties: "
+                + unusedProperties);
+        }
+
+        final Map<String, String> propertiesWithMissingDefaultTag = Collections.unmodifiableMap(
+            actualProperties.entrySet()
+                .stream()
+                .filter(entry -> {
+                    return entry.getValue().equals(defaultProperties
+                    .get(entry.getKey().toString()));
+                })
+                .collect(Collectors.toMap(
+                    entry -> entry.getKey().toString(),
+                    entry -> entry.getValue().toString()
+                ))
+        );
+
+        if (!propertiesWithMissingDefaultTag.isEmpty()) {
+            throw new CheckstyleException("Default properties must use the '(default)' tag."
+                + " Properties missing the '(default)' tag: "
+                + propertiesWithMissingDefaultTag.entrySet().stream()
+                    .map(entry -> entry.getKey() + " = (default)" + entry.getValue())
+                    .collect(Collectors.joining(", ")));
+        }
     }
 
     private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
