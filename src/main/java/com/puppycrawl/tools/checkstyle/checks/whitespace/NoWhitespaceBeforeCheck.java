@@ -19,21 +19,21 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.FileText;
+
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_CONTAINS_TAB;
 
 /**
  * Checks that there is no whitespace before specific tokens.
  */
 @StatelessCheck
-public class NoWhitespaceBeforeCheck extends AbstractCheck {
+public class NoWhitespaceBeforeCheck extends AbstractFileSetCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties" file.
@@ -53,106 +53,19 @@ public class NoWhitespaceBeforeCheck extends AbstractCheck {
         "\" ."
     );
 
-    /** Control whether whitespace is allowed if the token is at a linebreak. */
-    private boolean allowLineBreaks;
-
     @Override
-    public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.COMMA,
-            TokenTypes.SEMI,
-            TokenTypes.POST_INC,
-            TokenTypes.POST_DEC,
-            TokenTypes.ELLIPSIS,
-            TokenTypes.LABELED_STAT,
-        };
-    }
-
-    @Override
-    public int[] getAcceptableTokens() {
-        return new int[] {
-            TokenTypes.COMMA,
-            TokenTypes.SEMI,
-            TokenTypes.POST_INC,
-            TokenTypes.POST_DEC,
-            TokenTypes.DOT,
-            TokenTypes.GENERIC_START,
-            TokenTypes.GENERIC_END,
-            TokenTypes.ELLIPSIS,
-            TokenTypes.LABELED_STAT,
-            TokenTypes.METHOD_REF,
-        };
-    }
-
-    @Override
-    public int[] getRequiredTokens() {
-        return CommonUtil.EMPTY_INT_ARRAY;
-    }
-
-    @Override
-    public void visitToken(DetailAST ast) {
-        if (containsInvalidWhitespacePattern(ast, ast.getType())) {
-            log(ast, MSG_KEY, ast.getText());
-        }
-        visitTokenOther(
-            ast,
-            getLineCodePoints(ast.getLineNo() - 1),
-            ast.getColumnNo() - 1,
-            ast.getColumnNo() - 1 == -1);
-    }
-
-    private void visitTokenOther(DetailAST ast, int[] line, int columnBeforeToken, boolean isFirstToken) {
-        if (!isInEmptyForInitializerOrCondition(ast.getPreviousSibling())
-            && isWhitespaceOrLineStart(isFirstToken, line, columnBeforeToken)
-            && requiresLeadingWhitespace(isFirstToken, columnBeforeToken, line)) {
-            log(ast, MSG_KEY, ast.getText());
+    protected void processFiltered(File file, FileText fileText) {
+        for (int lineNum = 0; lineNum < fileText.size(); lineNum++) {
+            if (containsWhitespacePattern(fileText.get(lineNum))) {
+                log(lineNum + 1, MSG_CONTAINS_TAB);
+            }
         }
     }
 
     /**
-     * Checks if the AST contains any invalid whitespace patterns.
+     * Checks if the line contains any common whitespace patterns.
      */
-    private boolean containsInvalidWhitespacePattern(DetailAST ast, int type) {
-        return (type == TokenTypes.VARIABLE_DEF
-            || type == TokenTypes.METHOD_REF
-            || type == TokenTypes.METHOD_CALL
-            || type == TokenTypes.METHOD_DEF)
-            && containsWhitespacePattern(ast);
-    }
-
-    /**
-     * Checks if the AST text contains any common whitespace patterns.
-     */
-    private boolean containsWhitespacePattern(DetailAST ast) {
-        return COMMON_WHITESPACE_PATTERNS.stream().anyMatch(ast.toString()::contains);
-    }
-
-    /**
-     * Checks if the position before the token is whitespace or line start.
-     */
-    private static boolean isWhitespaceOrLineStart(boolean isFirstToken, int[] line, int columnBeforeToken) {
-        return isFirstToken || CommonUtil.isCodePointWhitespace(line, columnBeforeToken);
-    }
-
-    /**
-     * Determines if whitespace is required before the token.
-     */
-    private boolean requiresLeadingWhitespace(boolean isFirstToken, int columnBeforeToken, int[] line) {
-        return !allowLineBreaks
-            || (!isFirstToken && !CodePointUtil.hasWhitespaceBefore(columnBeforeToken, line));
-    }
-
-    /**
-     * Checks if semicolon is in empty for initializer or condition.
-     */
-    private static boolean isInEmptyForInitializerOrCondition(DetailAST sibling) {
-        return sibling != null
-            && !sibling.hasChildren()
-            && (sibling.getType() == TokenTypes.FOR_INIT
-            || sibling.getType() == TokenTypes.FOR_CONDITION);
-    }
-
-    public void setAllowLineBreaks(boolean allowLineBreaks) {
-        this.allowLineBreaks = allowLineBreaks;
+    private boolean containsWhitespacePattern(String line) {
+        return COMMON_WHITESPACE_PATTERNS.stream().anyMatch(line::contains);
     }
 }
