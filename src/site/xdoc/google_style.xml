@@ -1991,11 +1991,6 @@
                 </td>
                 <td>
                   <span class="wrapper inline">
-                    <img
-                        src="images/ok_blue.png"
-                        alt="" />
-                  </span>
-                  <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="checks/blocks/emptycatchblock.html#EmptyCatchBlock">EmptyCatchBlock</a>
