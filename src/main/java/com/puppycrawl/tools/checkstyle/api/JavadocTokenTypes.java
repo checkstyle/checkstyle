@@ -2632,10 +2632,16 @@ public final class JavadocTokenTypes {
     public static final int COL_TAG = JavadocParser.RULE_colTag + RULE_TYPES_OFFSET;
 
     /**
-     * Frame html tag.
+     * Frame HTML tag, typically used inside a frameset.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code &lt area shape="rect" &gt}</pre>
+     * <pre>{@code
+     * &lt;frameset cols="50%,50%"&gt;
+     *   &lt;frame src="page1.html"&gt;
+     *   &lt;frame src="page2.html"&gt;
+     * &lt;/frameset&gt;
+     * }</pre>
+     *
      * <b>Tree:</b>
      * <pre>
      * {@code
@@ -2690,6 +2696,7 @@ public final class JavadocTokenTypes {
      * </pre>
      */
     public static final int FRAME_TAG = JavadocParser.RULE_frameTag + RULE_TYPES_OFFSET;
+
 
     /**
      * Hr html tag.
