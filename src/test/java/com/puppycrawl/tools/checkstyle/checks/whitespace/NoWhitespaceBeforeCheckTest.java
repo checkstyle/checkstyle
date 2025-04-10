@@ -50,6 +50,21 @@ public class NoWhitespaceBeforeCheckTest
             "288:1: " + getCheckMessage(MSG_KEY, ";"),
             "291:62: " + getCheckMessage(MSG_KEY, "..."),
             "295:16: " + getCheckMessage(MSG_KEY, ":"),
+            "312:16: " + getCheckMessage(MSG_KEY, ":"),
+            "313:16: " + getCheckMessage(MSG_KEY, ":"),
+            "314:16: " + getCheckMessage(MSG_KEY, ":"),
+            "315:16: " + getCheckMessage(MSG_KEY, ":"),
+            "316:16: " + getCheckMessage(MSG_KEY, ":"),
+            "317:16: " + getCheckMessage(MSG_KEY, ":"),
+            "318:16: " + getCheckMessage(MSG_KEY, ":"),
+            "319:16: " + getCheckMessage(MSG_KEY, ":"),
+            "320:16: " + getCheckMessage(MSG_KEY, ":"),
+            "321:16: " + getCheckMessage(MSG_KEY, ":"),
+            "322:16: " + getCheckMessage(MSG_KEY, ":"),
+            "323:16: " + getCheckMessage(MSG_KEY, ":"),
+            "324:16: " + getCheckMessage(MSG_KEY, ":"),
+            "325:16: " + getCheckMessage(MSG_KEY, ":"),
+            "326:16: " + getCheckMessage(MSG_KEY, ":"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceBeforeDefault.java"), expected);

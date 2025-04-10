@@ -300,7 +300,8 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         label2: // no violation
         while (true) {}
     }
-    public void testSpaceViolationMethodCall() {
+
+    public void test() {
         // Valid cases
         " ".equals("");
         "".equals(" ");
