@@ -43,8 +43,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadoctype/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check for <code>private</code> scope:
         </p>
@@ -59,8 +58,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadoctype/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check for <code>private</code> classes only:
         </p>
@@ -68,15 +66,13 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadoctype/Example3.java"/>
           <param name="type" value="config"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example3-code">Example3:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadoctype/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           To configure a check that allows missing comments for classes annotated with
           <code>@SpringBootApplication</code> and <code>@Configuration</code>:
@@ -91,8 +87,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadoctype/Example4.txt"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example5-config">
           To configure a check that allows missing comments for classes annotated with
           <code>@Annotation</code> and <code>@MyClass.Annotation</code>:

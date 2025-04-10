@@ -204,7 +204,7 @@ class Example1 {
   }
   private void fun1() {}
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check with a threshold of 4 and check only for while and do-while loops:
         </p>
@@ -278,7 +278,7 @@ class Example2 {
   }
   private void fun1() {}
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to consider switch-case block as one decision point.
         </p>

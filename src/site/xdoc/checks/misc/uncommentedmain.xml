@@ -82,7 +82,7 @@ record MyRecord1() {
 record MyRecord2() {
   //public void main(){}
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to allow the <code>main</code> method for all classes
           with &quot;Main&quot; name:

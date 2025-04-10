@@ -101,7 +101,7 @@ public class Example1 {
   }
 
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check to treat resources
           in a try statement as statements to require them on their own line:

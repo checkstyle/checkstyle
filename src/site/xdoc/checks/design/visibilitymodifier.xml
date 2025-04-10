@@ -192,7 +192,7 @@ class Example1 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that it allows package visible members:
         </p>
@@ -245,7 +245,7 @@ class Example2 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check so that it allows protected visible members:
         </p>
@@ -299,7 +299,7 @@ class Example3 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the check so that it allows no public members:
         </p>
@@ -354,7 +354,7 @@ class Example4 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           To configure the Check so that it allows public immutable fields
           (mostly for immutable classes):
@@ -409,7 +409,7 @@ class Example5 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example6-config">
           To configure the Check in order to allow user specified immutable class names:
         </p>
@@ -466,7 +466,7 @@ class Example6 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example7-config">
           Note, if allowPublicImmutableFields is set to true, the check will also check whether
           generic type parameters are immutable. If at least one generic type parameter is mutable,
@@ -525,7 +525,7 @@ class Example7 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example8-config">
           To configure the Check passing fields annotated with @java.lang.Deprecated:
         </p>
@@ -580,8 +580,7 @@ class Example8 {
   // violation below, annotation not configured 'must be private'
   public String testString = "";
 }
-</code></pre></div>
-
+</code></pre></div><hr class="example-separator"/>
         <p id="Example9-config">
           To configure the Check passing fields annotated with @org.junit.Rule,
           @org.junit.ClassRule and @com.google.common.annotations.VisibleForTesting annotations:
@@ -634,7 +633,7 @@ class Example9 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example10-config">
           To configure the Check passing fields annotated with short annotation name:
         </p>
@@ -692,7 +691,7 @@ class Example10 {
         <p>
           To understand the difference between allowPublicImmutableFields and
           allowPublicFinalFields options, please, study the following examples.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example11-config">
            1) To configure the check to use only 'allowPublicImmutableFields' option:
         </p>
@@ -720,7 +719,7 @@ class Example11 {
 
   public final List list = null; // violation 'must be private'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example12-config">
           2) To configure the check to use only 'allowPublicFinalFields' option:
         </p>

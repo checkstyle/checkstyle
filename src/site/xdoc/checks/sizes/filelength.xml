@@ -65,7 +65,7 @@ public class Example1 {
     String test = "Some content";
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to accept files with up to 5 lines:
         </p>
@@ -84,7 +84,7 @@ public class Example2 {
     String test = "Some content"; // there is violation
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to accept files with up to 5 lines and with txt extension only:
         </p>

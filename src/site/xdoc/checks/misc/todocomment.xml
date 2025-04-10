@@ -73,7 +73,7 @@ public class Example1 {
     i=i/x; // FIX :  handle x = 0 case
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check for comments that contain <code>TODO</code> and <code>FIXME</code>,
           case-insensitive:
