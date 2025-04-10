@@ -35,6 +35,7 @@ import java.util.stream.Collectors;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
+import org.apache.tools.ant.FileScanner;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.Task;
 import org.apache.tools.ant.taskdefs.LogOutputStream;
@@ -65,6 +66,17 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
  */
 public class CheckstyleAntTask extends Task {
 
+    /**
+     * Shared DirectoryScanner instance used for XML formatting operations.
+     *
+     * <p>This serves as a lightweight alternative to creating multiple scanner instances,
+     * particularly for simple XML formatting tasks where thread safety isn't required.
+     * The scanner is intentionally kept package-private for internal use only.</p>
+     *
+     * <p>Note: This is not thread-safe for concurrent operations. For thread-safe usage,
+     * create separate scanner instances.</p>
+     */
+    private static final DirectoryScanner SCANNER = new DirectoryScanner();
     /** Poor man's enum for an xml formatter. */
     private static final String E_XML = "xml";
     /** Poor man's enum for a plain formatter. */
@@ -529,7 +541,6 @@ public class CheckstyleAntTask extends Task {
         log(pathIndex + ") Scanning path " + path, Project.MSG_VERBOSE);
         final List<File> allFiles = new ArrayList<>();
         int concreteFilesCount = 0;
-
         for (String resource : resources) {
             final File file = new File(resource);
             if (file.isFile()) {
@@ -537,11 +548,9 @@ public class CheckstyleAntTask extends Task {
                 allFiles.add(file);
             }
             else {
-                final DirectoryScanner scanner = new DirectoryScanner();
-                scanner.setBasedir(file);
-                scanner.scan();
-                final List<File> scannedFiles = retrieveAllScannedFiles(scanner, pathIndex);
-                allFiles.addAll(scannedFiles);
+                SCANNER.setBasedir(file);
+                SCANNER.scan();
+                allFiles.addAll(mapToAbsolutePaths(SCANNER));
             }
         }
 
@@ -559,32 +568,43 @@ public class CheckstyleAntTask extends Task {
      * @return the list of files included via the filesets.
      */
     protected List<File> scanFileSets() {
-        final List<File> allFiles = new ArrayList<>();
-
-        for (int i = 0; i < fileSets.size(); i++) {
-            final FileSet fileSet = fileSets.get(i);
-            final DirectoryScanner scanner = fileSet.getDirectoryScanner(getProject());
-            final List<File> scannedFiles = retrieveAllScannedFiles(scanner, i);
-            allFiles.addAll(scannedFiles);
-        }
-
-        return allFiles;
+        return fileSets
+            .stream()
+            .map(fileSet -> fileSet.getDirectoryScanner(getProject()))
+            .peek(this::logAdditionOfFilesFromDir)
+            .map(this::mapToAbsolutePaths)
+            .flatMap(List::stream)
+            .collect(Collectors.toList());
     }
 
     /**
-     * Retrieves all matched files from the given scanner.
+     * Logs information about files being added from a directory scan.
      *
-     * @param scanner  A directory scanner. Note, that {@link DirectoryScanner#scan()}
-     *                 must be called before calling this method.
-     * @param logIndex A log entry index. Used only for log messages.
-     * @return A list of files, retrieved from the given scanner.
+     * @param scanner The file scanner containing the file information
      */
-    private List<File> retrieveAllScannedFiles(DirectoryScanner scanner, int logIndex) {
-        final String[] fileNames = scanner.getIncludedFiles();
-        log(String.format(Locale.ROOT, "%d) Adding %d files from directory %s",
-            logIndex, fileNames.length, scanner.getBasedir()), Project.MSG_VERBOSE);
+    private void logAdditionOfFilesFromDir(FileScanner scanner) {
+        log(String.format(
+                Locale.ROOT,
+                "Adding %d files from directory %s",
+                scanner.getIncludedFiles().length,
+                scanner.getBasedir()),
+            Project.MSG_VERBOSE);
+    }
 
-        return Arrays.stream(fileNames)
+    /**
+     * Converts the relative file paths returned by the provided {@link DirectoryScanner}
+     * into absolute {@link File} objects by prepending the scanner's base directory.
+     *
+     * <p>
+     * The resulting list of {@code File} objects is unmodifiable.
+     *
+     * @param scanner the {@code DirectoryScanner} instance used to obtain the base directory
+     *                and included file names
+     * @return an unmodifiable {@code List<File>} containing absolute file paths
+     */
+    private List<File> mapToAbsolutePaths(DirectoryScanner scanner) {
+        logAdditionOfFilesFromDir(scanner);
+        return Arrays.stream(scanner.getIncludedFiles())
             .map(name -> scanner.getBasedir() + File.separator + name)
             .map(File::new)
             .collect(Collectors.toUnmodifiableList());
