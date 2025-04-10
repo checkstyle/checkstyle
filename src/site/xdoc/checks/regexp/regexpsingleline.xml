@@ -118,7 +118,7 @@ public class Example2 {
 
   void doSomething(){}
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-code">Example with violation:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
@@ -133,7 +133,7 @@ public class Example3 {
 
   void doSomething(){}
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
@@ -154,7 +154,7 @@ public class Example3 {
 * This file is copyrighted under CC.
 */
 public class Example4 {}
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
@@ -179,7 +179,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
  * MyClass as a configuration example.
  */
 public class Example5 {}
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example6-config">
           An example of how to configure the check to make sure sql files contains the term
           'license'.

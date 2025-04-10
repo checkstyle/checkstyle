@@ -79,7 +79,7 @@ public class Example1 {
   private int arrField2[] = new int[10];
   private int arrField3[];
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that it only checks
           for objects that explicitly initialize to null:

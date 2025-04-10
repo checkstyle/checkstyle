@@ -138,7 +138,7 @@ import org.apache.http.conn.ClientConnectionManager;
 import java.util.Set; // violation, wrong order, 'java' should not come after 'org' imports
 import com.neurologic.http.HttpClient; // violation, wrong order, 'com' imports comes at top
 import com.neurologic.http.impl.ApacheHttpClient;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           To configure the check so that it matches default Eclipse formatter configuration
           (tested on Kepler and Luna releases):
@@ -186,7 +186,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager; // violation, groups should not be separated internally
 
 import org.apache.http.conn.ClientConnectionManager;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check so that it matches default Eclipse formatter configuration
           (tested on Mars release):
@@ -232,7 +232,7 @@ import org.linux.apache.server.SoapServer;
 
 import com.neurologic.http.HttpClient;
 import com.neurologic.http.impl.ApacheHttpClient;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           To configure the check so that it matches default IntelliJ IDEA formatter
           configuration (tested on v2018.2):
@@ -287,7 +287,7 @@ import java.net.URL; // violation, extra separation in import group
 import java.security.KeyManagementException;
 import javax.swing.JComponent; // violation, wrong order, 'javax' should be above 'java' imports
 import com.neurologic.http.HttpClient; // violation, wrong order, 'com' imports should be at top
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           To configure the check so that it matches default NetBeans formatter configuration
           (tested on v8):
@@ -316,7 +316,7 @@ import java.lang.Math.sqrt;
 import javax.swing.JComponent; // violation 'Extra separation in import group'
 import static javax.windowConstants.*;
 // all static imports are processed like non static imports.
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           Group descriptions enclosed in slashes are interpreted as regular expressions.
           If multiple groups match, the one matching a longer
@@ -364,7 +364,7 @@ import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphab
 import java.util.Set; // violation, extra separation in import group
 import static java.lang.Math.abs; // violation, wrong order, all static imports comes at 'top'
 import org.abego.*;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example7-config">
           To configure the Check with groups of static imports:
@@ -389,7 +389,7 @@ import static org.abego.treelayout.Configuration.AlignmentInLevel; // Group 1
 import static java.lang.Math.abs; // Group 2
 import static java.lang.String.format; // Group 2
 import static com.google.common.primitives.Doubles.BYTES; // Group "everything else"
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p>
           The following example shows the idea of 'useContainerOrderingForStatic' option that is
@@ -435,7 +435,7 @@ import static io.netty.handler.codec.http.HttpConstants.COLON;
 import static io.netty.handler.codec.http.HttpHeaders.addHeader;
 import static io.netty.handler.codec.http.HttpHeaders.setHeader;
 import static io.netty.handler.codec.http.HttpHeaders.Names.DATE;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example9-config">
           Example for <code>useContainerOrderingForStatic=false</code>
         </p>
@@ -490,7 +490,7 @@ import static javax.swing.JComponent; // violation, should be separated from pre
 import static javax.WindowConstants.*;
 
 import java.net.URL;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example11-config">
           To configure the Check with groups of static imports when staticGroups=&quot;&quot;
           represents all imports as {@code everything else} group:
@@ -513,7 +513,7 @@ import static java.io.File.listRoots;
 import static javax.swing.WindowConstants.*;
 import static java.io.File.createTempFile;
 import static com.puppycrawl.tools.checkstyle;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example12-config">
           To configure the Check with groups of static imports when
           staticGroups=&quot;java, javax&quot; represents three groups i.e java*, javax*

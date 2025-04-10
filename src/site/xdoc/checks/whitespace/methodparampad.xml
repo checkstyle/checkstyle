@@ -124,7 +124,7 @@ class Example1 {
   public void methodWithVeryLongName
   () {} // violation ''(' should be on the previous line.'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example2-config">
           To configure the check to require a space after the identifier of a

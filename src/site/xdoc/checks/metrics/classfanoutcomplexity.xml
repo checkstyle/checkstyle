@@ -110,7 +110,7 @@ class Example1{
 }
 class Place1 {}
 class Time1 {}
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check with a threshold of 2:
         </p>
@@ -145,7 +145,7 @@ class Example2{ // violation 'Class Fan-Out Complexity is 5 (max allowed is 2)'
 }
 class Place2 {}
 class Time2 {}
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example3-config">
           To configure the check with three excluded classes <code>HashMap</code>,
@@ -183,7 +183,7 @@ class Example3{ // violation 'Class Fan-Out Complexity is 7 (max allowed is 3)'
 }
 class Place3 {}
 class Time3 {}
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the check to exclude classes with a regular expression
           <code>.*Reader$</code>:
@@ -220,7 +220,7 @@ class Example4{ // violation 'Class Fan-Out Complexity is 4 (max allowed is 3)'
 }
 class Place4 {}
 class Time4 {}
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example5-config">
           To configure the check with an excluded package <code>java.io</code>:
@@ -257,7 +257,7 @@ class Example5{
 }
 class Place5 {}
 class Time5 {}
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           Override property <code>excludedPackages</code> to mark some packages as excluded.
           Each member of <code>excludedPackages</code> should be a valid identifier:

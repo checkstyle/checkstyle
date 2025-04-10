@@ -107,7 +107,7 @@ class Example1 {
   protected class testClass3 {}
   class testClass4 {}
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example2-config">
           To configure the check for <code>private</code> scope:
@@ -132,7 +132,7 @@ class Example2 { // violation, 'Missing a Javadoc comment'
   protected class testClass3 {} // violation, 'Missing a Javadoc comment'
   class testClass4 {} // violation, 'Missing a Javadoc comment'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example3-config">
           To configure the check for <code>private</code> classes only:
@@ -181,7 +181,7 @@ public class Application {}
 
 @Configuration // no violations about missing comment on class
 class DatabaseConfiguration {}
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example5-config">
           To configure a check that allows missing comments for classes annotated with
@@ -208,7 +208,7 @@ class Class2 {}
 
 @com.mycompany.MyClass.Annotation // violation, as this form is missed in config
 class Class3 {}
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

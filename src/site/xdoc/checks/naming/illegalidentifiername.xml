@@ -140,7 +140,7 @@ public class Example1 {
   Object transitiveObject = "transitiveObject";
 
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           To configure the check to include some of JLS Keywords in the
           set of illegal identifiers (See <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-3.html#jls-3.9">

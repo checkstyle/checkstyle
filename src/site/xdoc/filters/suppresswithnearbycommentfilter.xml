@@ -116,7 +116,7 @@
 public class Example1 {
   private int [] array; // SUPPRESS CHECKSTYLE NoWhitespaceAfter
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure a filter to suppress all audit events on any line
           containing the comment <code>CHECKSTYLE IGNORE THIS LINE</code>:
@@ -138,7 +138,7 @@ public class Example1 {
 public class Example2 {
   public static final int lowerCaseConstant = 1; // CHECKSTYLE IGNORE THIS LINE
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure a filter so that
           <code>// OK to catch (Throwable|Exception|RuntimeException) here</code>
@@ -170,7 +170,7 @@ public class Example3 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           To configure a filter so that
           <code>CHECKSTYLE IGNORE <i>check</i> FOR NEXT<i>var</i> LINES</code>
@@ -200,7 +200,7 @@ public class Example4 {
   static final int lowerCaseConstant4 = 4;
   static final int lowerCaseConstant5 = 5; // violation 'must match pattern'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           To configure a filter to avoid any audits on code like:
         </p>
@@ -222,7 +222,7 @@ public class Example5 {
   private int D2;
   // ALLOW MemberName ON PREVIOUS LINE
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example6-config">
           To configure a filter to allow suppress one or more Checks
@@ -248,7 +248,7 @@ public class Example6 {
   // @cs.suppress [ConstantName|NoWhitespaceAfter] A comment here
   public static final int [] array = {};
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           It is possible to specify an ID of checks, so that it can be leveraged by the
           SuppressWithNearbyCommentFilter to skip validations. The following examples
@@ -296,7 +296,7 @@ public class Example7 {
     System.out.println("Debug info."); // @cs-: systemout (should not fail)
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example8-config">
           Example of how to configure the check to suppress more than one checks.
           The influence format is specified in the second regexp group.
