@@ -104,7 +104,7 @@ public final class DefaultConfiguration implements Configuration {
     @Override
     public Configuration[] getChildren() {
         return children.toArray(
-                EMPTY_CONFIGURATION_ARRAY);
+                new Configuration[0]);
     }
 
     @Override
