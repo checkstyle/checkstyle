@@ -188,8 +188,7 @@ public class NoWhitespaceBeforeCheckTest
         @Test
         public void testInTryCatch() throws Exception {
             final String[] expected = {
-                    "134:31: " + getCheckMessage(MSG_KEY, "."),
-                    "135:31: " + getCheckMessage(MSG_KEY, "."),
+                    "177:31: " + getCheckMessage(MSG_KEY, "."),
             };
             verifyWithInlineConfigParser(
                     getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), expected);
@@ -198,8 +197,7 @@ public class NoWhitespaceBeforeCheckTest
         @Test
         public void testInAnnotations() throws Exception {
             final String[] expected = {
-                    "134:31: " + getCheckMessage(MSG_KEY, "."),
-                    "135:31: " + getCheckMessage(MSG_KEY, "."),
+                    "189:31: " + getCheckMessage(MSG_KEY, "."),
             };
             verifyWithInlineConfigParser(
                     getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), expected);
@@ -208,8 +206,7 @@ public class NoWhitespaceBeforeCheckTest
         @Test
         public void testInTypeCast() throws Exception {
             final String[] expected = {
-                    "134:31: " + getCheckMessage(MSG_KEY, "."),
-                    "135:31: " + getCheckMessage(MSG_KEY, "."),
+                    "201:31: " + getCheckMessage(MSG_KEY, "."),
             };
             verifyWithInlineConfigParser(
                     getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), expected);
@@ -218,8 +215,7 @@ public class NoWhitespaceBeforeCheckTest
         @Test
         public void testInSwitch() throws Exception {
             final String[] expected = {
-                    "134:31: " + getCheckMessage(MSG_KEY, "."),
-                    "135:31: " + getCheckMessage(MSG_KEY, "."),
+                    "213:31: " + getCheckMessage(MSG_KEY, "."),
             };
             verifyWithInlineConfigParser(
                     getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), expected);
@@ -228,8 +224,7 @@ public class NoWhitespaceBeforeCheckTest
         @Test
         public void testInSynchronized() throws Exception {
             final String[] expected = {
-                    "134:31: " + getCheckMessage(MSG_KEY, "."),
-                    "135:31: " + getCheckMessage(MSG_KEY, "."),
+                    "227:31: " + getCheckMessage(MSG_KEY, "."),
             };
             verifyWithInlineConfigParser(
                     getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), expected);
@@ -238,25 +233,6 @@ public class NoWhitespaceBeforeCheckTest
         @Test
         public void testInAssert() throws Exception {
             final String[] expected = {
-                    "134:31: " + getCheckMessage(MSG_KEY, "."),
-                    "135:31: " + getCheckMessage(MSG_KEY, "."),
-            };
-            verifyWithInlineConfigParser(
-                    getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), expected);
-        }
-
-        @Test
-        public void testInReturn() throws Exception {
-            final String[] expected = {
-                    "227:31: " + getCheckMessage(MSG_KEY, "."),
-            };
-            verifyWithInlineConfigParser(
-                    getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), expected);
-        }
-
-        @Test
-        public void testInReturn2() throws Exception {
-            final String[] expected = {
                     "238:31: " + getCheckMessage(MSG_KEY, "."),
             };
             verifyWithInlineConfigParser(
@@ -264,7 +240,7 @@ public class NoWhitespaceBeforeCheckTest
         }
 
         @Test
-        public void testInThrow() throws Exception {
+        public void testInReturn2() throws Exception {
             final String[] expected = {
                     "249:31: " + getCheckMessage(MSG_KEY, "."),
             };
