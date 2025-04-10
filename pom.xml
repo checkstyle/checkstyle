@@ -2172,7 +2172,7 @@
             <!-- 405 Not Allowed, link present in generated website only -->
             <excludedLink>https://oss.sonatype.org/service/local/staging/deploy/maven2/</excludedLink>
             <!-- site is too unstable, it might improve in future -->
-            <excludedLink>https://freedomsponsors.org/*</excludedLink>
+            
             <!-- site works fine in browser but for plugin always return 500  -->
             <excludedLink>https://liberapay.com/checkstyle/</excludedLink>
             <!-- CertPathValidatorException: validity check failed  -->
