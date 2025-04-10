@@ -308,7 +308,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         "".equals("");
 
         // Violations
-        "".equals(""); // violation
+        "".equals("");
         "".equals(""  + ""); // violation
         "".equals("" +  ""); // violation
          System.out.println(""); // violation
