@@ -308,6 +308,15 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
 
         // Violations
         "".equals(""); // violation is preceded with whitespace.
+        "".equals(""  + ""); // violation is preceded with whitespace.
+        "".equals("" +  ""); // violation is preceded with whitespace.
+         System.out.println(""); // violation is preceded with whitespace.
+        System .out.println(""); // violation is preceded with whitespace.
+        System. out.println(""); // violation is preceded with whitespace.
+        System.out .println(""); // violation is preceded with whitespace.
+        System.out. println(""); // violation is preceded with whitespace.
+        System.out. println(""); // violation is preceded with whitespace.
+        System.out.println (""); // violation is preceded with whitespace.
         "" .equals(""); // violation is preceded with whitespace.
         "". equals(""); // violation is preceded with whitespace.
         "".equals (""); // violation is preceded with whitespace.
