@@ -52,7 +52,7 @@
           <param name="path"
                  value="resources-noncompilable/com/puppycrawl/tools/checkstyle/filefilters/beforeexecutionexclusionfilefilter/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the filter to exclude all 'module-info.java' files:
         </p>
@@ -66,7 +66,7 @@
           <param name="path"
                  value="resources-noncompilable/com/puppycrawl/tools/checkstyle/filefilters/beforeexecutionexclusionfilefilter/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the filter to run only on required files for example that ends with "Remote"
           or end with "Client" in names or named as "Remote.java" or "Client.java"
@@ -82,7 +82,7 @@
           <param name="path"
                  value="resources-noncompilable/com/puppycrawl/tools/checkstyle/filefilters/beforeexecutionexclusionfilefilter/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the filter to exclude all 'test' folder files and all 'module-info.java'
           files:

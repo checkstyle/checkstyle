@@ -106,7 +106,7 @@ class ExternalService1 {
                           String e, String f, String g, String h) {}
 
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to allow 10 parameters for a method:
         </p>
@@ -151,7 +151,7 @@ class ExternalService2 {
         <p>
           To configure the check to ignore number of parameters for methods with
           <code>@Override</code> or <code>@java.lang.Override annotation</code>.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example3-config">
           Rationale: developer may need to override method with many parameters from
           3-rd party library.
@@ -193,7 +193,7 @@ class ExternalService3 {
                           String e, String f, String g, String h) {}
 
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the check to ignore methods and constructors annotated with
           <code>JsonCreator</code> annotation:

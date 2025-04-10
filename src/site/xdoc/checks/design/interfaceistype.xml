@@ -79,7 +79,7 @@ class Example1 {
     void test();
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to report violation so that it doesn't allow Marker Interfaces:
         </p>

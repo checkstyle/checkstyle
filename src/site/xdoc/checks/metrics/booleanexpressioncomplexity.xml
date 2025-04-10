@@ -117,7 +117,7 @@ public class Example1
     // 1(^) + 1(||) + 1(^) + 1(||) + 1(&amp;) + 1(|) = 6
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check with 5 allowed operation in boolean
           expression:
@@ -150,7 +150,7 @@ public class Example2
     // 1(^) + 1(||) + 1(^) + 1(||) + 1(&amp;) + 1(|) = 6
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to ignore <code>&amp;</code> and
           <code>|</code>:

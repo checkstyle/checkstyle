@@ -126,7 +126,7 @@ class Invalid1 implements Serializable {}
  * @author max // violation
  */
 enum Test1 {}
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
             To configure the check such that it checks in the custom order:
         </p>
@@ -185,7 +185,7 @@ class Invalid2 implements Serializable {}
  * @author max // violation
  */
 enum Test2 {}
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
             To configure the check such that it targets only enums:
         </p>

@@ -173,7 +173,7 @@ public class ClassExtending extends ClassExample {
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/redundantmodifier/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example2-config">
           To configure the check to check only methods:
@@ -190,7 +190,7 @@ public class ClassExtending extends ClassExample {
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/redundantmodifier/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check if you are using JDK 11:
         </p>
