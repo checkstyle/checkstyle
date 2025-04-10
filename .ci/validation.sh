@@ -374,26 +374,37 @@ verify-no-exception-configs)
     if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
       LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$PULL_REQUEST
       REGEXP="https://github.com/checkstyle/contribution/pull/"
-      PR_DESC=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" "$LINK_PR" \
-                  | jq '.body' | grep $REGEXP | cat )
-      echo 'PR Description grepped:'"${PR_DESC:0:180}"
-      if [[ -z $PR_DESC ]]; then
-        echo 'You introduce new Check'
+      PR_DESC=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" "$LINK_PR" | jq '.body')
+      # shellcheck disable=SC1087
+      CONTRIB_URL=$(echo "$PR_DESC" | grep -oE "$REGEXP[0-9]+")
+      echo "Extracted contribution PR URL: ${CONTRIB_URL}"
+      if [[ -z $CONTRIB_URL ]]; then
+        echo "Error: New Check added but PR description lacks link to contribution PR."
+        echo "Please include a valid contribution PR URL."
         diff -u $working_dir/web.txt $working_dir/file.txt | cat
-        echo 'Please create PR to repository https://github.com/checkstyle/contribution'
-        echo 'and add your new Check '
-        echo '   to file checkstyle-tester/checks-nonjavadoc-error.xml'
-        echo 'or to file checkstyle-tester/checks-only-javadoc-error.xml'
-        echo 'Place the contribution repository PR link in the description of this PR.'
-        echo 'PR for contribution repository will be merged right after this PR.'
-        fail=1;
+        echo "Please create a PR in the repository https://github.com/checkstyle/contribution"
+        echo "and add your new Check to file checkstyle-tester/checks-nonjavadoc-error.xml"
+        echo "or to file checkstyle-tester/checks-only-javadoc-error.xml"
+        echo "Place the contribution PR link in the description of this PR."
+        echo "The contribution PR must be merged before this PR can be accepted."
+        fail=1
+      else
+        CONTRIB_PR_NUMBER=$(echo "$CONTRIB_URL" | grep -oE '[0-9]+$')
+        CONTRIB_PR_JSON=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" "https://api.github.com/repos/checkstyle/contribution/pulls/$CONTRIB_PR_NUMBER")
+        MERGED_STATUS=$(echo "$CONTRIB_PR_JSON" | jq '.merged')
+        echo "Contribution PR merge status: $MERGED_STATUS"
+        if [[ "$MERGED_STATUS" != "true" ]]; then
+          echo "Error: Contribution PR #$CONTRIB_PR_NUMBER is not merged."
+          echo "Please merge the contribution PR before merging this PR."
+          fail=1
+        fi
       fi
     else
       diff -u $working_dir/web.txt $working_dir/file.txt | cat
-      echo 'file config/checkstyle-checks.xml contains Check that is not present at:'
-      echo 'https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/checks-nonjavadoc-error.xml'
-      echo 'https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/checks-only-javadoc-error.xml'
-      echo 'Please add new Check to one of such files to let Check participate in auto testing'
+      echo "file config/checkstyle-checks.xml contains Check that is not present at:"
+      echo "https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/checks-nonjavadoc-error.xml"
+      echo "https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/checks-only-javadoc-error.xml"
+      echo "Please add new Check to one of such files to let Check participate in auto testing"
       fail=1;
     fi
   else
