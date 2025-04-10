@@ -77,7 +77,7 @@ class InputNoWhitespaceBeforeDefaultNextGeneration
         // Violations
         int x = arr [0]; // violation
         int y = arr[ 0]; // violation
-        int z = arr [ 0]; // violation
+        int z = arr[0]; // violation
     }
 
     /** Test generics violations */
