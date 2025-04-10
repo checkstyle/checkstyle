@@ -35,8 +35,10 @@ import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck;
+import com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck;
+import com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
 
 public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
@@ -166,6 +168,23 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
         final String[] expectedWithFilter = {};
 
         verifyFilterWithInlineConfigParser(getPath("Example10.java"),
+                expectedWithoutFilter, expectedWithFilter);
+    }
+
+    @Test
+    public void testExample11() throws Exception {
+        final String[] expectedWithoutFilter = {
+            "17:11: " + getCheckMessage(WhitespaceAroundCheck.class,
+                    WhitespaceAroundCheck.MSG_WS_NOT_FOLLOWED, "="),
+            "17: " + getCheckMessage(MethodLengthCheck.class,
+                    MethodLengthCheck.MSG_KEY, 5, 2),
+        };
+        final String[] expectedWithFilter = {
+            "17: " + getCheckMessage(MethodLengthCheck.class,
+                    MethodLengthCheck.MSG_KEY, 5, 2),
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example11.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
 }
