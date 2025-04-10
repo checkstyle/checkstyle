@@ -22,8 +22,7 @@ bin
 checkstyle.iml
 checkstyle.ipr
 checkstyle.iws
-.idea
-
+.idea/*
 # Vscode project files
 .vscode
 
