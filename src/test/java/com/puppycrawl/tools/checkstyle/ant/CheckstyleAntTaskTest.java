@@ -153,7 +153,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         assertWithMessage("Scanning path was not logged")
                 .that(loggedMessages.stream().filter(
-                        msg -> msg.getMsg().startsWith("1) Adding 1 files from path")).count())
+                        msg -> msg.getMsg().startsWith("1) Adding 1 file from path")).count())
                 .isEqualTo(1);
 
         assertWithMessage("Scanning empty was logged")
@@ -946,7 +946,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         assertLoggedTime(loggedMessages, testingTime, "Total execution");
         assertLoggedTime(loggedMessages, testingTime, "To locate the files");
-        assertLoggedTime(loggedMessages, testingTime, "To process the files");
+        assertLoggedTime(loggedMessages, testingTime, "File processing");
     }
 
     private static void assertLoggedTime(List<MessageLevelPair> loggedMessages,
