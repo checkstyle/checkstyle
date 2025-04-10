@@ -60,80 +60,74 @@ public class NoWhitespaceBeforeCheckTest
 
         @Test
         public void testDefaultCheck() throws Exception {
-            final String[] expected = {
-                    "25:16: " + getCheckMessage(MSG_KEY, ":"),
-                    "26:16: " + getCheckMessage(MSG_KEY, ":"),
-                    "27:16: " + getCheckMessage(MSG_KEY, ":"),
-                    "28:16: " + getCheckMessage(MSG_KEY, ":"),
-                    "29:16: " + getCheckMessage(MSG_KEY, ":"),
-                    "30:16: " + getCheckMessage(MSG_KEY, ":"),
-                    "31:16: " + getCheckMessage(MSG_KEY, ":"),
-                    "32:16: " + getCheckMessage(MSG_KEY, ":"),
-                    "33:16: " + getCheckMessage(MSG_KEY, ":"),
-                    "34:16: " + getCheckMessage(MSG_KEY, ":"),
-                    "35:16: " + getCheckMessage(MSG_KEY, ":"),
-                    "36:16: " + getCheckMessage(MSG_KEY, ":"),
-                    "37:16: " + getCheckMessage(MSG_KEY, ":"),
-                    "38:16: " + getCheckMessage(MSG_KEY, ":"),
-                    "39:16: " + getCheckMessage(MSG_KEY, ":"),
-            };
             verifyWithInlineConfigParser(
-                    getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), expected);
+                    getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[]{
+                            "25:16: " + getCheckMessage(MSG_KEY, ":"),
+                            "26:16: " + getCheckMessage(MSG_KEY, ":"),
+                            "27:16: " + getCheckMessage(MSG_KEY, ":"),
+                            "28:16: " + getCheckMessage(MSG_KEY, ":"),
+                            "29:16: " + getCheckMessage(MSG_KEY, ":"),
+                            "30:16: " + getCheckMessage(MSG_KEY, ":"),
+                            "31:16: " + getCheckMessage(MSG_KEY, ":"),
+                            "32:16: " + getCheckMessage(MSG_KEY, ":"),
+                            "33:16: " + getCheckMessage(MSG_KEY, ":"),
+                            "34:16: " + getCheckMessage(MSG_KEY, ":"),
+                            "35:16: " + getCheckMessage(MSG_KEY, ":"),
+                            "36:16: " + getCheckMessage(MSG_KEY, ":"),
+                            "37:16: " + getCheckMessage(MSG_KEY, ":"),
+                            "38:16: " + getCheckMessage(MSG_KEY, ":"),
+                            "39:16: " + getCheckMessage(MSG_KEY, ":"),
+                    });
         }
 
         @Test
         public void testSpaceViolationVarAssignment() throws Exception {
-            final String[] expected = {
-                    "49:31: " + getCheckMessage(MSG_KEY, "."),
-                    "50:31: " + getCheckMessage(MSG_KEY, "."),
-                    "51:31: " + getCheckMessage(MSG_KEY, "."),
-            };
             verifyWithInlineConfigParser(
-                    getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), expected);
+                    getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[]{
+                            "49:31: " + getCheckMessage(MSG_KEY, "."),
+                            "50:31: " + getCheckMessage(MSG_KEY, "."),
+                            "51:31: " + getCheckMessage(MSG_KEY, "."),
+                    });
         }
 
         @Test
         public void testSpaceViolationVarDeclaration() throws Exception {
-            final String[] expected = {
-                    "62:31: " + getCheckMessage(MSG_KEY, "."),
-                    "63:31: " + getCheckMessage(MSG_KEY, "."),
-                    "64:31: " + getCheckMessage(MSG_KEY, "."),
-                    "65:31: " + getCheckMessage(MSG_KEY, "."),
-                    "66:31: " + getCheckMessage(MSG_KEY, "."),
-                    "67:31: " + getCheckMessage(MSG_KEY, "."),
-            };
             verifyWithInlineConfigParser(
-                    getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), expected);
+                    getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[]{
+                            "62:31: " + getCheckMessage(MSG_KEY, "."),
+                            "63:31: " + getCheckMessage(MSG_KEY, "."),
+                            "64:31: " + getCheckMessage(MSG_KEY, "."),
+                            "65:31: " + getCheckMessage(MSG_KEY, "."),
+                            "66:31: " + getCheckMessage(MSG_KEY, "."),
+                            "67:31: " + getCheckMessage(MSG_KEY, "."),
+                    });
         }
 
         @Test
         public void testArrayAccess() throws Exception {
-            final String[] expected = {
-                    "78:31: " + getCheckMessage(MSG_KEY, "["),
-                    "79:31: " + getCheckMessage(MSG_KEY, "["),
-                    "80:31: " + getCheckMessage(MSG_KEY, "["),
-            };
             verifyWithInlineConfigParser(
-                    getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), expected);
+                    getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[]{
+                            "78:31: " + getCheckMessage(MSG_KEY, "["),
+                            "79:31: " + getCheckMessage(MSG_KEY, "["),
+                            "80:31: " + getCheckMessage(MSG_KEY, "["),
+                    });
         }
 
         @Test
         public void testGenerics() throws Exception {
-            final String[] expected = {
-                    "91:31: " + getCheckMessage(MSG_KEY, "."),
-                    "92:31: " + getCheckMessage(MSG_KEY, "."),
-            };
             verifyWithInlineConfigParser(
-                    getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), expected);
+                    getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[]{
+                            "91:31: " + getCheckMessage(MSG_KEY, "."),
+                            "92:31: " + getCheckMessage(MSG_KEY, "."),
+                    });
         }
 
         @Test
         public void testLambda() throws Exception {
-            final String[] expected = {
-                    "101:31: " + getCheckMessage(MSG_KEY, "."),
-            };
             verifyWithInlineConfigParser(
-                    getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), expected);
+                    getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[]{
+                            "101:31: " + getCheckMessage(MSG_KEY, "."),
+                    });
         }
 
         @Test
