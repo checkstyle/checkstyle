@@ -50,6 +50,13 @@ public class NoWhitespaceBeforeCheckTest
             "288:1: " + getCheckMessage(MSG_KEY, ";"),
             "291:62: " + getCheckMessage(MSG_KEY, "..."),
             "295:16: " + getCheckMessage(MSG_KEY, ":"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefault.java"), expected);
+    }
+    @Test
+    public void testDefaultChecktestSpaceViolationVarAssignment() throws Exception {
+        final String[] expected = {
             "312:16: " + getCheckMessage(MSG_KEY, ":"),
             "313:16: " + getCheckMessage(MSG_KEY, ":"),
             "314:16: " + getCheckMessage(MSG_KEY, ":"),
@@ -65,6 +72,7 @@ public class NoWhitespaceBeforeCheckTest
             "324:16: " + getCheckMessage(MSG_KEY, ":"),
             "325:16: " + getCheckMessage(MSG_KEY, ":"),
             "326:16: " + getCheckMessage(MSG_KEY, ":"),
+                // new method testSpaceViolationVarDeclaration
             "342:31: " + getCheckMessage(MSG_KEY, "."),
             "343:29: " + getCheckMessage(MSG_KEY, "."),
             "344:28: " + getCheckMessage(MSG_KEY, "."),
@@ -111,6 +119,16 @@ public class NoWhitespaceBeforeCheckTest
             "450:30: " + getCheckMessage(MSG_KEY, ")"),
             "456:27: " + getCheckMessage(MSG_KEY, ")"),
             "463:27: " + getCheckMessage(MSG_KEY, ";"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefault.java"), expected);
+    }
+    @Test
+    public void testSpaceViolationVarAssignment() throws Exception {
+        final String[] expected = {
+            "336:31: " + getCheckMessage(MSG_KEY, "."),
+            "337:31: " + getCheckMessage(MSG_KEY, "."),
+            "338:31: " + getCheckMessage(MSG_KEY, "."),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceBeforeDefault.java"), expected);
