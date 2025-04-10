@@ -308,22 +308,22 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         "".equals("");
 
         // Violations
-        "".equals(""); // violation is preceded with whitespace.
-        "".equals(""  + ""); // violation is preceded with whitespace.
-        "".equals("" +  ""); // violation is preceded with whitespace.
-         System.out.println(""); // violation is preceded with whitespace.
-        System .out.println(""); // violation is preceded with whitespace.
-        System. out.println(""); // violation is preceded with whitespace.
-        System.out .println(""); // violation is preceded with whitespace.
-        System.out. println(""); // violation is preceded with whitespace.
-        System.out. println(""); // violation is preceded with whitespace.
-        System.out.println (""); // violation is preceded with whitespace.
-        "" .equals(""); // violation is preceded with whitespace.
-        "". equals(""); // violation is preceded with whitespace.
-        "".equals (""); // violation is preceded with whitespace.
-        "".equals( ""); // violation is preceded with whitespace.
-        "".equals("" ); // violation is preceded with whitespace.
-        "".equals("") ; // violation is preceded with whitespace.
+        "".equals(""); // violation
+        "".equals(""  + ""); // violation
+        "".equals("" +  ""); // violation
+         System.out.println(""); // violation
+        System .out.println(""); // violation
+        System. out.println(""); // violation
+        System.out .println(""); // violation
+        System.out. println(""); // violation
+        System.out. println(""); // violation
+        System.out.println (""); // violation
+        "" .equals(""); // violation
+        "". equals(""); // violation
+        "".equals (""); // violation
+        "".equals( ""); // violation
+        "".equals("" ); // violation
+        "".equals("") ; // violation
     }
 
     /** Test variable assignment violations */
@@ -333,9 +333,9 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         boolean eq2 = "".equals("");
 
         // Violations
-        eq2 = "".equals(""); // violation is preceded with whitespace.
-        eq2  = "".equals(""); // violation is preceded with whitespace.
-        eq2 =  "".equals(""); // violation is preceded with whitespace.
+        eq2 = "".equals(""); // violation
+        eq2  = "".equals(""); // violation
+        eq2 =  "".equals(""); // violation
     }
 
     /** Test variable declaration violations */
@@ -346,12 +346,12 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         e3 = "".equals("");
 
         // Violations
-        boolean e4 = "".equals(""); // violation is preceded with whitespace.
-        boolean e1  = "".equals(""); // violation is preceded with whitespace.
-        boolean  e2 = "".equals(""); // violation is preceded with whitespace.
-        e3 = "".equals(""); // violation is preceded with whitespace.
-        e3  = "".equals(""); // violation is preceded with whitespace.
-        e3 =  "".equals(""); // violation is preceded with whitespace.
+        boolean e4 = "".equals(""); // violation
+        boolean e1  = "".equals(""); // violation
+        boolean  e2 = "".equals(""); // violation
+        e3 = "".equals(""); // violation
+        e3  = "".equals(""); // violation
+        e3 =  "".equals(""); // violation
     }
 
     /** Test array access violations */
@@ -362,9 +362,9 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         int a = arr[0];
 
         // Violations
-        int x = arr [0]; // violation is preceded with whitespace.
-        int y = arr[ 0]; // violation is preceded with whitespace.
-        int z = arr [ 0]; // violation is preceded with whitespace.
+        int x = arr [0]; // violation
+        int y = arr[ 0]; // violation
+        int z = arr [ 0]; // violation
     }
 
     /** Test generics violations */
@@ -375,8 +375,8 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         list.add("test");
 
         // Violations
-        list .add("test"); // violation is preceded with whitespace.
-        list. add("test"); // violation is preceded with whitespace.
+        list .add("test"); // violation
+        list. add("test"); // violation
     }
 
     /** Test lambda violations */
@@ -385,7 +385,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         Runnable r = () -> System.out.println();
 
         // Violation
-        Runnable r2 = () -> System.out .println(); // violation is preceded with whitespace.
+        Runnable r2 = () -> System.out .println(); // violation
     }
 
     /** Test method reference violations */
@@ -394,7 +394,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         java.util.function.Function<String, String> f1 = String::valueOf;
 
         // Violation
-        java.util.function.Function<String, String> f2 = String ::valueOf; // violation is preceded with whitespace.
+        java.util.function.Function<String, String> f2 = String ::valueOf; // violation
     }
 
     /** Test nested calls violations */
@@ -406,8 +406,8 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         s.substring(1).trim();
 
         // Violations
-        s.substring(1). trim(); // violation is preceded with whitespace.
-        s.substring(1 ).trim(); // violation is preceded with whitespace.
+        s.substring(1). trim(); // violation
+        s.substring(1 ).trim(); // violation
     }
 
     /** Test multiple dots violations */
@@ -418,8 +418,8 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         s.substring(1).substring(1).substring(1);
 
         // Violations
-        s.substring(1).substring(1). substring(1); // violation is preceded with whitespace.
-        s.substring(1) .substring(1).substring(1); // violation is preceded with whitespace.
+        s.substring(1).substring(1). substring(1); // violation
+        s.substring(1) .substring(1).substring(1); // violation
     }
 
     /** Test with other operators */
@@ -429,7 +429,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         int x = 1 + 2 * 3;
 
         // Violation
-        String s2 = "a" + "b". toString(); // violation is preceded with whitespace.
+        String s2 = "a" + "b". toString(); // violation
     }
 
     /** Test in control structures */
@@ -440,7 +440,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         }
 
         // Violations
-        if ("test". equals("test")) { // violation is preceded with whitespace.
+        if ("test". equals("test")) { // violation
             System.out.println();
         }
 
@@ -461,7 +461,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         // Violation
         try {
             // do something
-        } catch (Exception e ) { // violation is preceded with whitespace.
+        } catch (Exception e ) { // violation
             // handle
         }
     }
@@ -473,7 +473,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         Object o1 = new Object();
 
         // Violation
-        @SuppressWarnings ("unchecked") // violation is preceded with whitespace.
+        @SuppressWarnings ("unchecked") // violation
         Object o2 = new Object();
     }
 
@@ -485,7 +485,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         String s1 = (String) o;
 
         // Violation
-        String s2 = (String ) o; // violation is preceded with whitespace.
+        String s2 = (String ) o; // violation
     }
 
     /** Test in switch */
@@ -497,7 +497,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         }
 
         // Violation
-        switch (1 ) { // violation is preceded with whitespace.
+        switch (1 ) { // violation
             case 1:
                 break;
         }
@@ -511,7 +511,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         }
 
         // Violation
-        synchronized (this ) { // violation is preceded with whitespace.
+        synchronized (this ) { // violation
             // do something
         }
     }
@@ -522,7 +522,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         assert true : "message";
 
         // Violation
-        assert true : "message" ; // violation is preceded with whitespace.
+        assert true : "message" ; // violation
     }
 
     /** Test in return */
@@ -533,7 +533,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
 
     public void testInReturn2() {
         // Violation
-        return ; // violation is preceded with whitespace.
+        return ; // violation
     }
 
     /** Test in throw */
@@ -544,7 +544,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
 
     public void testInThrow2() throws Exception {
         // Violation
-        throw new Exception() ; // violation is preceded with whitespace.
+        throw new Exception() ; // violation
     }
 
     /** Test in array initializer */
@@ -553,6 +553,6 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         int[] arr1 = new int[] {1, 2, 3};
 
         // Violation
-        int[] arr2 = new int[] {1, 2, 3 } ; // violation is preceded with whitespace.
+        int[] arr2 = new int[] {1, 2, 3 } ; // violation
     }
 }
