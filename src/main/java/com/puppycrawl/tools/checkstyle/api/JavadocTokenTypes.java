@@ -2718,7 +2718,6 @@ public final class JavadocTokenTypes {
      *   &lt;frame src="page2.html"&gt;
      * &lt;/frameset&gt;
      * }</pre>
-     *
      * <b>Tree:</b>
      * <pre>
      * {@code
@@ -2773,7 +2772,6 @@ public final class JavadocTokenTypes {
      * </pre>
      */
     public static final int FRAME_TAG = JavadocParser.RULE_frameTag + RULE_TYPES_OFFSET;
-
 
     /**
      * Hr html tag.
