@@ -300,4 +300,28 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         label2: // no violation
         while (true) {}
     }
+    public void testSpaceViolationMethodCall() {
+        // Valid cases
+        " ".equals("");
+        "".equals(" ");
+        "".equals("");
+
+        // Violations
+        "".equals(""); // violation is preceded with whitespace.
+        "".equals(""  + ""); // violation is preceded with whitespace.
+        "".equals("" +  ""); // violation is preceded with whitespace.
+         System.out.println(""); // violation is preceded with whitespace.
+        System .out.println(""); // violation is preceded with whitespace.
+        System. out.println(""); // violation is preceded with whitespace.
+        System.out .println(""); // violation is preceded with whitespace.
+        System.out. println(""); // violation is preceded with whitespace.
+        System.out. println(""); // violation is preceded with whitespace.
+        System.out.println (""); // violation is preceded with whitespace.
+        "" .equals(""); // violation is preceded with whitespace.
+        "". equals(""); // violation is preceded with whitespace.
+        "".equals (""); // violation is preceded with whitespace.
+        "".equals( ""); // violation is preceded with whitespace.
+        "".equals("" ); // violation is preceded with whitespace.
+        "".equals("") ; // violation is preceded with whitespace.
+    }
 }
