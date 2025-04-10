@@ -100,7 +100,7 @@ public class Example1 {
   public void methodTwo(int x) { } // violation, 'x should be final'
   public static void main(String[] args) { } // violation, 'args should be final'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to enforce final parameters only for
           constructors:
@@ -126,7 +126,7 @@ public class Example2 {
   public void methodTwo(int x) { }
   public static void main(String[] args) { }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to allow ignoring
           <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">

@@ -46,7 +46,7 @@
 // public class Example1 {
 // single-line comment is not code
 // }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /* the violation is on first line of file */

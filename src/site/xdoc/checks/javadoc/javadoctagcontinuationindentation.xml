@@ -85,7 +85,7 @@ class Example1 {
     // violation 3 lines above 'Line continuation have incorrect indentation level'
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check with two spaces indentation:
         </p>
@@ -124,7 +124,7 @@ class Example2 {
     // OK, Indentation above 1 is fine as offset value is 2
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to show violations for Tight-HTML Rules:
         </p>

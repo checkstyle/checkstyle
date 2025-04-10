@@ -66,7 +66,7 @@ public class Example1 {
   //   ''int' is followed by whitespace'
   //   'must match pattern'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           It is possible to specify an ID of checks, so that it can be leveraged by the
           SuppressWarningsFilter to skip validations. The following examples show how to skip

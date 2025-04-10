@@ -182,7 +182,7 @@ class Example1 extends SuperClass { // OK, camel case
     GLOBAL_COUNTER++; // OK, only definitions are checked
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           To configure to include static variables and
           methods tagged with <code>@Override</code> annotation.
@@ -219,7 +219,7 @@ class Example2 extends SuperClass { // OK, camel case
     GLOBAL_COUNTER++; // OK, only definitions are checked
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           To configure to check all variables and identifiers
           (including ones with the static modifier) and enforce
@@ -254,7 +254,7 @@ class Example3 {
   void OAuth2() {} // OK, O abbreviation is allowed
   void OAUth2() {}
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           To configure to check variables, excluding fields with
           the static modifier, and allow abbreviations up to 2
@@ -286,7 +286,7 @@ class Example4 { // OK, ignore checking the class name
   final int TOTAL = 5; // OK, final is ignored
   static final int LIMIT = 10; // OK, static final is ignored
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           To configure to check variables, enforcing no abbreviations
           except for variables that are both static and final.
@@ -314,7 +314,7 @@ class Example5 {
   static int nextID = 3; // violation 'no more than '1' consecutive capital letters'
   static final int MAX_ALLOWED = 4; // OK, ignored
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           To configure to check variables, enforcing no abbreviations
           and ignoring static (but non-final) variables only.
@@ -343,7 +343,7 @@ class Example6 {
   // violation below 'no more than '1' consecutive capital letters'
   static final int MAX_ALLOWED = 4;
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           To configure to check variables, enforce
           no abbreviations (essentially camel case) except for

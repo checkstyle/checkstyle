@@ -80,7 +80,7 @@
 package com.puppycrawl.tools.checkstyle.checks.header.header;
 // OK, as by default there is not specific header defined to validate it presence
 public class Example1 { }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example2-config">
           To configure the check to use header file <code>&quot;java.header&quot;</code> and
@@ -121,7 +121,7 @@ package com.puppycrawl.tools.checkstyle.checks.header.header;
 /* violation on first line 'Line does not match expected header line of' */
 // because headerFile is bigger then target java file
 public class Example2 { }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example3-config">
           To configure the check to verify that each file starts with the
@@ -142,7 +142,7 @@ public class Example2 { }
 package com.puppycrawl.tools.checkstyle.checks.header.regexpheader;
 /* violation on first line 'Line does not match expected header line' */
 public class Example3 { }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example4-config">
           For regex containing <code>&quot;.*&quot;</code>

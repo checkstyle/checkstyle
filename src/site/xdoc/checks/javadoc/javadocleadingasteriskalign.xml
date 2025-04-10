@@ -100,7 +100,7 @@ public class Example1 {
     TWO
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example2-code">
           Example with incorrect alignment:
@@ -145,7 +145,7 @@ public class Example2 {
     THREE
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example3-config">
           To configure the check with <code>tabWidth</code> property:

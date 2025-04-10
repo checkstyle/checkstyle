@@ -74,7 +74,7 @@ public class Example1 {
     "My_Sweet_String".equalsIgnoreCase(nullString);
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example2-config">
          To configure the check to allow ignoreEqualsIgnoreCase:
