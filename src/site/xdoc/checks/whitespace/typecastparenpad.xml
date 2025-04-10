@@ -65,7 +65,7 @@ class Example1 {
 
   float f4 = ( float) d; // violation 'followed by whitespace'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example2-config">
           To configure the check to require spaces:

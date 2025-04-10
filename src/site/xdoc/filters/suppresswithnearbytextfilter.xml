@@ -91,7 +91,7 @@ public class Example1 {
   int hoursInDay = 24; // SUPPRESS CHECKSTYLE because it is too obvious
   int daysInWeek = 7; // violation, "'7' is a magic number."
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the filter to suppress audit events on any line that contains
           <code>DO NOT CHECK THIS LINE</code>:
@@ -114,7 +114,7 @@ public class Example2 {
   int a = 42; // DO NOT CHECK THIS LINE
   int b = 43; // violation, "'43' is a magic number."
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
            To configure the filter to suppress audit events whose check message contains
             the word <code>Line</code>. In this case, <code>LineLengthCheck</code>'s violation
@@ -139,7 +139,7 @@ public class Example3 {
   // ok, because violation message is matching suppress pattern
   int a_really_long_variable_name = 10;
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the filter to suppress audit events only on a check whose id is
           <code>ignoreMe</code>:
@@ -168,7 +168,7 @@ public class Example4 {
   static final int LONG_VAR_NAME_TO_TAKE_MORE_THAN_55_CHARS = 22;
   // violation above 'Line is longer ...'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           To configure the filter to suppress audit events for the current and next 2 lines:
         </p>
@@ -234,7 +234,7 @@ public class Example7 {
   int a = 42; // -@cs[MagicNumber] We do not consider this number as magic.
   int b = 43; // violation "'43' is a magic number."
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example8-config">
           To configure the filter to accept variable <code>checkPattern</code>
           and <code>lineRange</code>:
@@ -263,7 +263,7 @@ public class Example8 {
   int d = 45;
   int e = 46; // violation "'46' is a magic number."
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example9-config">
           To configure the filter to suppress <code>LineLength</code>
           violations for lines containing a URL:

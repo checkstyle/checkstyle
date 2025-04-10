@@ -24,10 +24,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.maven.doxia.macro.AbstractMacro;
 import org.apache.maven.doxia.macro.Macro;
@@ -66,6 +68,15 @@ public class ExampleMacro extends AbstractMacro {
             Pattern.DOTALL
     );
 
+    /** Path prefix for source examples. */
+    private static final String SRC_XDOCS_EXAMPLES = "src/xdocs-examples/";
+
+    /** File name prefix for example files. */
+    private static final String EXAMPLE_PREFIX = "Example";
+
+    /** HTML for a horizontal rule separator. */
+    private static final String HR_SEPARATOR = "<hr class=\"example-separator\"/>";
+
     /** The path of the last file. */
     private String lastPath = "";
 
@@ -79,23 +90,13 @@ public class ExampleMacro extends AbstractMacro {
 
         List<String> lines = lastLines;
         if (!path.equals(lastPath)) {
-            lines = readFile("src/xdocs-examples/" + path);
+            lines = readFile(SRC_XDOCS_EXAMPLES + path);
             lastPath = path;
             lastLines = lines;
         }
 
         if ("config".equals(type)) {
-            final String config = getConfigSnippet(lines);
-
-            if (config.isBlank()) {
-                final String message = String.format(Locale.ROOT,
-                        "Empty config snippet from %s, check"
-                                + " for xml config snippet delimiters in input file.", path
-                );
-                throw new MacroExecutionException(message);
-            }
-
-            writeSnippet(sink, config);
+            processConfig(sink, path, lines);
         }
         else if ("code".equals(type)) {
             String code = getCodeSnippet(lines);
@@ -113,6 +114,13 @@ public class ExampleMacro extends AbstractMacro {
             }
 
             writeSnippet(sink, code);
+
+            final int lastIndex = path.lastIndexOf('/');
+            final String fileName = path.substring(lastIndex + 1);
+            if (fileName.startsWith(EXAMPLE_PREFIX)) {
+                final String dirPath = path.substring(0, lastIndex);
+                addHrSeparator(sink, fileName, dirPath);
+            }
         }
         else if ("raw".equals(type)) {
             final String content = String.join(NEWLINE, lines);
@@ -122,6 +130,111 @@ public class ExampleMacro extends AbstractMacro {
             final String message = String.format(Locale.ROOT, "Unknown example type: %s", type);
             throw new MacroExecutionException(message);
         }
+    }
+
+    /**
+     * Processes configuration-type snippets.
+     *
+     * @param sink  The Sink object to write to.
+     * @param path  The file path.
+     * @param lines The content lines of the file.
+     * @throws MacroExecutionException If the configuration snippet is invalid.
+     */
+    private static void processConfig(Sink sink, String path, List<String> lines)
+            throws MacroExecutionException {
+        final String config = getConfigSnippet(lines);
+        if (config.isBlank()) {
+            final String message = String.format(Locale.ROOT,
+                    "Empty config snippet from %s, "
+                            + "check for xml config snippet delimiters in input file.", path);
+            throw new MacroExecutionException(message);
+        }
+        writeSnippet(sink, config);
+    }
+
+    /**
+     * Safely returns the file name (as a string) from the given file path.
+     *
+     * @param filePath the file path to check.
+     * @return the file name as a String, or an empty string if unavailable.
+     */
+    private static String getFileNameSafe(Path filePath) {
+        String result = "";
+        final Path namePath = filePath.getFileName();
+        if (namePath != null) {
+            result = namePath.toString();
+        }
+        return result;
+    }
+
+    /**
+     * Safely extracts the example number from the file name of the given file path.
+     *
+     * @param filePath the file path to check.
+     * @return the numeric part of the file name, or 0 if not found.
+     */
+    private static int getExampleNumberSafe(Path filePath) {
+        return extractExampleNumber(getFileNameSafe(filePath));
+    }
+
+    /**
+     * Adds a horizontal rule separator, unless the current file is the last example.
+     *
+     * @param sink     the sink to write to.
+     * @param fileName the current example file name.
+     * @param dirPath  the directory path containing the examples.
+     */
+    private static void addHrSeparator(Sink sink, String fileName, String dirPath) {
+        List<Path> examples = new ArrayList<>();
+        boolean hrNeeded = true;
+
+        try (Stream<Path> stream = Files.list(Path.of(SRC_XDOCS_EXAMPLES + dirPath))) {
+            if (stream != null) {
+                examples = stream
+                        .filter(filePath -> {
+                            final String name = getFileNameSafe(filePath);
+                            return name.startsWith(EXAMPLE_PREFIX) && name.endsWith(".java");
+                        })
+                        .sorted(Comparator.comparingInt(ExampleMacro::getExampleNumberSafe))
+                        .collect(Collectors.toCollection(ArrayList::new));
+            }
+        }
+        catch (IOException ex) {
+            hrNeeded = true;
+        }
+
+        if (!examples.isEmpty()) {
+            final String lastExampleFile =
+                    getFileNameSafe(examples.get(examples.size() - 1));
+            hrNeeded = !fileName.equals(lastExampleFile);
+        }
+        if (dirPath.contains("resources/") && !dirPath.contains("noncompilable")
+                && !fileName.equals(getFileNameSafe(examples.get(examples.size() - 1)))) {
+            hrNeeded = true;
+        }
+
+        if (hrNeeded) {
+            sink.rawText(HR_SEPARATOR);
+        }
+    }
+
+    /**
+     * Helper method to extract a numeric value from an example file name.
+     * Assumes file names have the format "ExampleX.java", where X is a number.
+     *
+     * @param fileName the file name to process.
+     * @return the numeric part of the example file name or 0 if not found.
+     */
+    private static int extractExampleNumber(String fileName) {
+        int exampleNumber = 0;
+        try {
+            final String numberStr = fileName.replaceAll("[^0-9]", "");
+            exampleNumber = Integer.parseInt(numberStr);
+        }
+        catch (NumberFormatException ignored) {
+            // Default value of exampleNumber (0) will be used
+        }
+        return exampleNumber;
     }
 
     /**
