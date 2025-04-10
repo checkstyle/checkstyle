@@ -20,6 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Handler for lambda expressions.
@@ -115,6 +117,17 @@ public class LambdaHandler extends AbstractExpressionHandler {
         if (isLineWrappedLambda) {
             checkLineWrappedLambda(isSwitchRuleLambda, mainAstColumnNo);
         }
+
+        final DetailAST nextSibling = mainAst.getNextSibling();
+
+        if (isSwitchRuleLambda
+                && nextSibling.getType() == TokenTypes.EXPR
+                && !TokenUtil.areOnSameLine(mainAst, nextSibling)) {
+            // Likely a single-statement switch rule lambda without curly braces, e.g.:
+            // case ONE ->
+            //      1;
+            checkSingleStatementSwitchRuleIndentation(isLineWrappedLambda);
+        }
     }
 
     /**
@@ -161,5 +174,34 @@ public class LambdaHandler extends AbstractExpressionHandler {
             isLambdaCorrectlyIndented = false;
             logError(mainAst, "", mainAstColumnNo, level);
         }
+    }
+
+    /**
+     * Checks the indentation of statements inside a single-statement switch rule
+     * when the statement is not on the same line as the lambda operator ({@code ->}).
+     * This applies to single-statement switch rules without curly braces {@code {}}.
+     * Example:
+     * <pre>
+     * case ONE {@code ->}
+     *     1;
+     * </pre>
+     *
+     * @param isLambdaFirstInLine if {@code ->} is the first element on the line
+     */
+    private void checkSingleStatementSwitchRuleIndentation(boolean isLambdaFirstInLine) {
+        final DetailAST mainAst = getMainAst();
+        IndentLevel level = getParent().getSuggestedChildIndent(this);
+
+        if (isLambdaFirstInLine) {
+            // If the lambda operator (`->`) is at the start of the line, assume line wrapping
+            // and add additional indentation for the statement in the next line.
+            level = new IndentLevel(level, getIndentCheck().getLineWrappingIndentation());
+        }
+
+        // The first line should not match if the switch rule statement starts on the same line
+        // as "->" but continues onto the next lines as part of a single logical expression.
+        final DetailAST nextSibling = mainAst.getNextSibling();
+        final boolean firstLineMatches = getFirstLine(nextSibling) != mainAst.getLineNo();
+        checkExpressionSubtree(nextSibling, level, firstLineMatches, false);
     }
 }
