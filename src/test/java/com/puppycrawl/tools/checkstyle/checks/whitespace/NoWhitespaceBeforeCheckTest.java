@@ -87,7 +87,8 @@ public class NoWhitespaceBeforeCheckTest
                 getPath("InputNoWhitespaceBeforeDefault.java"), expected);
     }
 
-    //
+    // testSpaceViolationVarDeclaration
+    // testArrayAccess
 
     // new method testSpaceViolationVarDeclaration
 //            "342:31: " + getCheckMessage(MSG_KEY, "."),
