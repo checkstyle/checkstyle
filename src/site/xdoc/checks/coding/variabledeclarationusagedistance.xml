@@ -28,7 +28,7 @@
             </tr>
             <tr>
               <td>allowedDistance</td>
-              <td>Specify distance between declaration of variable and its first usage. Values should be greater than 0.</td>
+              <td>Specify the maximum distance between a variable´s declaration and its first usage. Value should be greater than 0.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>3</code></td>
               <td>5.8</td>
@@ -49,7 +49,7 @@
             </tr>
             <tr>
               <td>validateBetweenScopes</td>
-              <td>Allow to calculate the distance between declaration of variable and its first usage in the different scopes.</td>
+              <td>Allow to calculate the distance between a variable's declaration and its first usage across different scopes.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
@@ -96,46 +96,59 @@ public class Example1 {
     }
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p>
+          Check is able to detect a block of initialization methods, as a single point for distance.
+          If a variable is used in such a block and there are no other statements after
+          variable declaration, then distance = 1.
+        </p>
+        <p id="Example2-config">
+          Configure the check to default:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VariableDeclarationUsageDistance"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+
+  public void case1(long timeNow, int hh, int min) {
+    int minutes = min + 5; // Ok, No violation reported
+    Calendar cal = Calendar.getInstance();
+    cal.setTimeInMillis(timeNow);
+    cal.set(Calendar.SECOND, 0);
+    cal.set(Calendar.MILLISECOND, 0);
+    cal.set(Calendar.HOUR_OF_DAY, hh);
+    cal.set(Calendar.MINUTE, minutes);
+  }
+
+  public void case2(long timeNow, int hh, int min){
+    // violation below, 'variable 'minutes' declaration and its first usage is 6.'
+    int minutes = min + 5000;
+    Calendar cal = Calendar.getInstance();
+    cal.setTimeInMillis(timeNow);
+    cal.set(Calendar.SECOND, 0);
+    cal.set(Calendar.MILLISECOND, 0);
+    cal.set(Calendar.HOUR_OF_DAY, hh);
+    System.out.println("Hello World");
+    cal.set(Calendar.MINUTE, minutes);
+  }
+}
 </code></pre></div>
         <p>
-          Check can detect a block of initialization methods. If a variable is used in
-          such a block and there are no other statements after variable declaration,
-          then distance = 1.
-        </p>
-        <p>
-          Case #1:
-        </p>
-        <source>
-int minutes = 5;
-Calendar cal = Calendar.getInstance();
-cal.setTimeInMillis(timeNow);
-cal.set(Calendar.SECOND, 0);
-cal.set(Calendar.MILLISECOND, 0);
-cal.set(Calendar.HOUR_OF_DAY, hh);
-cal.set(Calendar.MINUTE, minutes);
-        </source>
-        <p>
-          The distance for the variable &quot;minutes&quot; is 1 even
+          The distance for the variable &quot;minutes&quot; in the method <code>case1</code> is 1 even
           though this variable is used in the fifth method's call.
         </p>
         <p>
-          Case #2:
-        </p>
-        <source>
-int minutes = 5;
-Calendar cal = Calendar.getInstance();
-cal.setTimeInMillis(timeNow);
-cal.set(Calendar.SECOND, 0);
-cal.set(Calendar.MILLISECOND, 0);
-System.out.println(cal);
-cal.set(Calendar.HOUR_OF_DAY, hh);
-cal.set(Calendar.MINUTE, minutes);
-        </source>
-        <p>
-          The distance for the variable &quot;minutes&quot; is 6 because there is one more expression
-          (except the initialization block) between the declaration of this variable and its usage.
+          The distance for the variable &quot;minutes&quot; in the method <code>case2</code> is 6
+          because there is one more expression (except the initialization block) between the
+          declaration of this variable and its usage.
         </p><hr class="example-separator"/>
-        <p id="Example2-config">
+        <p id="Example3-config">
             To configure the check to set allowed distance:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -147,9 +160,9 @@ cal.set(Calendar.MINUTE, minutes);
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example2-code">Example:</p>
+        <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example2 {
+public class Example3 {
 
   public void foo1() {
     int num;        // OK, distance = 4
@@ -175,7 +188,7 @@ public class Example2 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+        <p id="Example4-config">
             To configure the check to ignore certain variables:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -190,9 +203,9 @@ public class Example2 {
         <p>
             This configuration ignores variables named &quot;num&quot;.
         </p>
-        <p id="Example3-code">Example:</p>
+        <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example3 {
+public class Example4 {
 
   public void foo1() {
     int num;        // OK, variable ignored
@@ -218,7 +231,7 @@ public class Example3 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="Example5-config">
             To configure the check to force validation between scopes:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -230,9 +243,9 @@ public class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">Example:</p>
+        <p id="Example5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
+public class Example5 {
 
   public void foo1() {
     int num;        // violation, distance = 4
@@ -258,7 +271,7 @@ public class Example4 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="Example6-config">
             To configure the check to check final variables:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -270,9 +283,9 @@ public class Example4 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">Example:</p>
+        <p id="Example6-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example5 {
+public class Example6 {
 
   public void foo1() {
     int num;        // violation, distance = 4

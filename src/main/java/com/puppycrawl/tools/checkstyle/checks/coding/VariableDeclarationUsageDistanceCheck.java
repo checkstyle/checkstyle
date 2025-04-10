@@ -42,8 +42,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </div>
  * <ul>
  * <li>
- * Property {@code allowedDistance} - Specify distance between declaration
- * of variable and its first usage. Values should be greater than 0.
+ * Property {@code allowedDistance} - Specify the maximum distance between a
+ * variable´s declaration and its first usage. Value should be greater than 0.
  * Type is {@code int}.
  * Default value is {@code 3}.
  * </li>
@@ -59,8 +59,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code ""}.
  * </li>
  * <li>
- * Property {@code validateBetweenScopes} - Allow to calculate the distance between
- * declaration of variable and its first usage in the different scopes.
+ * Property {@code validateBetweenScopes} - Allow to calculate the distance between a
+ * variable's declaration and its first usage across different scopes.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
