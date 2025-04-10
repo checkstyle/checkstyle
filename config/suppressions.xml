@@ -114,7 +114,6 @@
   <suppress id="noConsecutiveLines" files="[\\/]javadocparagraph.xml"/>
 
   <!-- these are legacy use cases until #11166 -->
-  <suppress id="noUsageOfGetFileContentsMethod" files="FallThroughCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="UnusedImportsCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocMethodCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocStyleCheck.java"/>
@@ -125,7 +124,6 @@
   <suppress id="noUsageOfGetFileContentsMethod" files="WriteTagCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpSinglelineJavaCheck.java"/>
-  <suppress id="noUsageOfGetFileContentsMethod" files="EmptyLineSeparatorCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="AvoidEscapedUnicodeCharactersCheck.java"/>
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/5234 -->
