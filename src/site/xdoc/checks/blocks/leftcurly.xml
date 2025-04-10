@@ -178,7 +178,7 @@ class Example1
     GREEN;
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to apply the <code>nl</code> policy to
           type blocks:
@@ -211,7 +211,7 @@ class Example2
     GREEN;
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to apply the <code>nlow</code> policy to
           type blocks:
@@ -243,7 +243,7 @@ class Example3
     GREEN;
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           An example of how to configure the check to validate enum definitions:
         </p>

@@ -96,7 +96,7 @@ public class Example1 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           Check can detect a block of initialization methods. If a variable is used in
           such a block and there are no other statements after variable declaration,
@@ -174,7 +174,7 @@ public class Example2 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
             To configure the check to ignore certain variables:
         </p>
@@ -217,7 +217,7 @@ public class Example3 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
             To configure the check to force validation between scopes:
         </p>
@@ -257,7 +257,7 @@ public class Example4 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
             To configure the check to check final variables:
         </p>

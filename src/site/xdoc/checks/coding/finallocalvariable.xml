@@ -98,7 +98,7 @@ class Example1
     int result=foo(1,2); // violation, 'Variable 'result' should be declared final'
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that it checks local variables and
           parameters:
@@ -131,7 +131,7 @@ class Example2
     int result=foo(1,2); // violation, 'Variable 'result' should be declared final'
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           By default, this Check skip final validation on
           <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
@@ -172,7 +172,7 @@ class Example3
     int result=foo(1,2); // violation, 'Variable 'result' should be declared final'
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           An example of how to configure check on local variables and parameters
           but do not validate loop variables:

@@ -84,7 +84,7 @@ class Example1 {
   @SuppressWarnings("all")
   private int [] ARRAY; // violations suppressed
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>The general rule is that the argument of the <code>@SuppressWarnings</code> will be
           matched against class name of the check in any letter case. Adding <code>check</code>
           suffix is also accepted.

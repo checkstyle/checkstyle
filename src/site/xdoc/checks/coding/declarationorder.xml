@@ -121,7 +121,7 @@ public class Example1 {
 
   private String name;     // violation, instance variable declaration in wrong order
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to ignore validation of constructors:
         </p>
@@ -156,7 +156,7 @@ public class Example2 {
 
   private String name;     // violation, instance variable declaration in wrong order
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to ignore modifiers:
         </p>
