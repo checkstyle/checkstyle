@@ -223,7 +223,7 @@
     <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
     <java.version>11</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
-    <pitest.plugin.version>1.19.0</pitest.plugin.version>
+    <pitest.plugin.version>1.19.1</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
@@ -308,7 +308,7 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>33.4.6-jre</version>
+      <version>33.4.7-jre</version>
       <exclusions>
         <exclusion>
           <groupId>org.checkerframework</groupId>
@@ -2133,10 +2133,6 @@
             <!-- Excluded due to linkcheck's issue #22:
                  https://issues.apache.org/jira/browse/MLINKCHECK-22 -->
             <excludedLink>https://twitter.com/checkstyle_java/</excludedLink>
-            <!-- linkcheck plugin can not resolve &amps; inside url -->
-            <excludedLink>https://flattr.com/submit/</excludedLink>
-            <!-- 403 forbidden for linkcheck, works in the browser -->
-            <excludedLink>https://button.flattr.com/flattr-badge-large.png</excludedLink>
             <!-- Too unstable sites to keep validate them -->
             <excludedLink>http://tide.olympe.in/*</excludedLink>
             <excludedLink>http://dl.acm.org/*</excludedLink>
