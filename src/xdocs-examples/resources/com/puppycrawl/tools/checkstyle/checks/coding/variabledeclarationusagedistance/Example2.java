@@ -1,38 +1,38 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="VariableDeclarationUsageDistance">
-      <property name="allowedDistance" value="4"/>
-    </module>
+    <module name="VariableDeclarationUsageDistance"/>
   </module>
 </module>
 */
+
 package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedistance;
+
+import java.util.Calendar;
 
 // xdoc section -- start
 public class Example2 {
 
-  public void foo1() {
-    int num;        // OK, distance = 4
-    final double PI;   // OK, final variables not checked
-    System.out.println("Statement 1");
-    System.out.println("Statement 2");
-    System.out.println("Statement 3");
-    num = 1;
-    PI = 3.14;
+  public void case1(long timeNow, int hh, int min) {
+    int minutes = min + 5; // Ok, No violation reported
+    Calendar cal = Calendar.getInstance();
+    cal.setTimeInMillis(timeNow);
+    cal.set(Calendar.SECOND, 0);
+    cal.set(Calendar.MILLISECOND, 0);
+    cal.set(Calendar.HOUR_OF_DAY, hh);
+    cal.set(Calendar.MINUTE, minutes);
   }
 
-  public void foo2() {
-    int a;          // OK, used in different scope
-    int b;          // OK, used in different scope
-    int count = 0;  // OK, used in different scope
-
-    {
-      System.out.println("Inside inner scope");
-      a = 1;
-      b = 2;
-      count++;
-    }
+  public void case2(long timeNow, int hh, int min){
+    // violation below, 'variable 'minutes' declaration and its first usage is 6.'
+    int minutes = min + 5000;
+    Calendar cal = Calendar.getInstance();
+    cal.setTimeInMillis(timeNow);
+    cal.set(Calendar.SECOND, 0);
+    cal.set(Calendar.MILLISECOND, 0);
+    cal.set(Calendar.HOUR_OF_DAY, hh);
+    System.out.println("Hello World");
+    cal.set(Calendar.MINUTE, minutes);
   }
 }
 // xdoc section -- end
