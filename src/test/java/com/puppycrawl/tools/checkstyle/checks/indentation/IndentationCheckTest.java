@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Unit test for IndentationCheck.
@@ -169,6 +169,15 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/indentation/indentation";
     }
+    
+    @Test
+    public void testMethodChainArrayAccess() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(IndentationCheck.class);
+        verify(checkConfig,
+               getPath("indentation/InputIndentationMethodChainArray.java"),
+               CommonUtils.EMPTY_STRING_ARRAY);
+    }    
 
     @Test
     public void testMethodChainArrayAccess_NoViolation() throws Exception {
