@@ -105,8 +105,7 @@ return new int[] {
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/arraytrailingcomma/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">To configure check to always validate trailing comma:</p>
         <macro name="example">
           <param name="path"

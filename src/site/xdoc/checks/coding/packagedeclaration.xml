@@ -62,7 +62,7 @@
 public class Example1{ // violation, 'Missing package declaration'
   String str = "Some Content";
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           Example of how the check works when matchDirectoryStructure option is set to false.
         </p>
