@@ -326,6 +326,20 @@ span.wrapper.inline {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+.example-separator {
+  border: none;
+  height: 3px;
+  width: 100%;
+  margin: 40px 0;
+  background: linear-gradient(
+    to right,
+    rgba(51, 51, 51, 0) 0%,    /* Start fully transparent */
+    rgba(51, 51, 51, 1) 10%,   /* Fade into dark quickly */
+    rgba(51, 51, 51, 1) 90%,   /* Stay dark in the center */
+    rgba(51, 51, 51, 0) 100%   /* Fade out at the right end */
+  );
+}
+
 @media screen and (max-width: 823px) {
   #leftColumn {
     float: none;
