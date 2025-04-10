@@ -171,52 +171,6 @@
       </p>
     </section>
 
-    <section name="Backport">
-      <p>
-        Since Checkstyle 7, some users have been unable to continue upgrading to newer versions
-        of the utility because of the new JDK compile requirements. The development team doesn't
-        have the resources to keep updating the utility for older JDKs for those that can't
-        work with the latest version.
-      </p>
-      <p>
-        However, some members of the community have created an unofficial backport of the latest
-        Checkstyle releases to be run with older JDKs. It is not always an easy process and provided
-        at the same release time as Checkstyle, but it tries to maintain a functional equivalent
-        alternative.
-      </p>
-      <div class="wrapper">
-        <table>
-          <tr>
-            <th>Backport version</th>
-            <th>Min. JRE version</th>
-            <th>Link</th>
-          </tr>
-          <tr>
-            <td>
-              10.0+
-            </td>
-            <td>
-              8
-            </td>
-            <td>
-              <a href="https://github.com/rnveach/checkstyle-backport-jre8">github site</a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              7.0 - 8.45
-            </td>
-            <td>
-              6
-            </td>
-            <td>
-              <a href="https://github.com/rnveach/checkstyle-backport-jre6">github site</a>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </section>
-
     <section name="Supported Java Language Version">
       <p>
         Checkstyle can parse all Java language features introduced
