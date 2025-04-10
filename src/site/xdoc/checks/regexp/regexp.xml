@@ -147,7 +147,7 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // This code is copyrighted.
 public class Example1 {}
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-code">Example2 with violation:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /* violation on first line 'Required pattern missing in a file.' */
@@ -155,7 +155,7 @@ public class Example1 {}
  * Some Copyright
  */
 public class Example2 {}
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config"> Your statement may be multiline. </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -172,7 +172,7 @@ public class Example2 {}
 // This code is copyrighted
 // (c) MyCompany
 public class Example3 {}
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">Configure Check to make sure that it appear only once:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -195,7 +195,7 @@ public class Example4 {}
 // This code is copyrighted
 // (c) MyCompany
 class Example41 {}
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">Instead of printing whole regexp that might be unnecessary for
           user, you can substitute it to some static text:
         </p>
@@ -216,7 +216,7 @@ class Example41 {}
  * violation on first line 'Required pattern 'Copyright' missing in file.'
 */
 public class Example5 {}
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example6-config">
           Configure the check to make sure there are no calls to <code>System.out.println</code>:
@@ -242,7 +242,7 @@ public class Example6 {
     // violation above, 'Line matches the illegal pattern'
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example7-config">Configure to ignore comments:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -266,7 +266,7 @@ public class Example7 {
 
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example8-config">
           Configure the check to find trailing whitespace at the end of a line:
         </p>
@@ -288,7 +288,7 @@ public class Example8 {
     // violation above 'Trailing whitespace'
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example9-config">
           Configure the check to find case-insensitive occurrences of &quot;debug&quot;:
         </p>
@@ -314,7 +314,7 @@ public class Example9 {
     // violation above, 'Line matches the illegal pattern.'
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example10-config">
           There is also a feature to limit the number of violations reported.
           When the limit is reached the check aborts with a message
@@ -343,7 +343,7 @@ public class Example10 {
 
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example11-config">
           To configure the check to verify that each file has the
           multiline header where year could be any digits.

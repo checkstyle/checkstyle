@@ -138,7 +138,7 @@ public class Example1 {
   private Instant instant = Instant.now(); // Counted 1
   private LocalTime localTime = LocalTime.now(); // Counted 2
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example2-code">
           The check results in a violation in the following:
@@ -158,7 +158,7 @@ public class Example2 {
   Example6 example6 = new Example6();
   Example7 example7 = new Example7(); // Counted 8
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example3-config">
           To configure the check with a threshold of 2:
@@ -186,7 +186,7 @@ public class Example3 {
   Instant instant = Instant.now(); // Counted 1
   LocalTime localTime = LocalTime.now(); // Counted 2
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example4-code">
           The check results in a violation in the following:
@@ -200,7 +200,7 @@ public class Example4 {
   BigInteger bigInteger = new BigInteger("0");
   BigDecimal bigDecimal = new BigDecimal("0"); // Counted 3
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example5-config">
           To configure the check with three excluded classes <code>HashMap</code>,
@@ -236,7 +236,7 @@ public class Example5 {
   Example6 example6 = new Example6();
   Example7 example7 = new Example7(); // Counted 7
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example6-code">
           The check results in a violation in the following:
@@ -294,7 +294,7 @@ public class Example7 {
   // Ignored using module excludeClassesRegexps property
   BufferedReader bufferedReader = new BufferedReader(new PipedReader());
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example8-code">
           The check results in a violation in the following:
@@ -314,7 +314,7 @@ public class Example8 {
   StringWriter stringWriter = new StringWriter();
   File file = new File("path"); // Counted 8
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example9-config">
           To configure the check with an excluded package <code>java.io</code>:
@@ -354,7 +354,7 @@ public class Example9 {
   PipedReader pipedReader = new PipedReader();
   BufferedReader bufferedReader = new BufferedReader(pipedReader);
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example10-code">
           The check results in a violation in the following:

@@ -65,7 +65,7 @@ class Example {
 
 enum outer {
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example2-config">
           To configure the check to accept 2 outer types per file:
