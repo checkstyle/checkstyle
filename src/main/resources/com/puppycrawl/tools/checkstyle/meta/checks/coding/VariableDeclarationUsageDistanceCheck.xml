@@ -6,7 +6,7 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks the distance between declaration of variable and its first usage.
- Note : Variable declaration/initialization statements are not counted while calculating length.
+ Note: Variable declaration/initialization statements are not counted while calculating length.
  &lt;/div&gt;</description>
          <properties>
             <property default-value="3" name="allowedDistance" type="int">
