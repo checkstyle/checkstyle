@@ -246,16 +246,6 @@ public class NoWhitespaceBeforeCheckTest
         }
 
         @Test
-        public void testWithOtherOperators() throws Exception {
-            final String[] expected = {
-                    "134:31: " + getCheckMessage(MSG_KEY, "."),
-                    "135:31: " + getCheckMessage(MSG_KEY, "."),
-            };
-            verifyWithInlineConfigParser(
-                    getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), expected);
-        }
-
-        @Test
         public void testInReturn() throws Exception {
             final String[] expected = {
                     "134:31: " + getCheckMessage(MSG_KEY, "."),
