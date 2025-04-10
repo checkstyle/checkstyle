@@ -739,6 +739,11 @@
             <goals>
               <goal>generate-metadata</goal>
             </goals>
+            <configuration>
+              <extractors>
+                <extractor>class</extractor>
+              </extractors>
+            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -2578,6 +2583,7 @@
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+                <arg>-ANullnessChecker_lint=trustArrayLenZero</arg>
               </compilerArgs>
             </configuration>
           </plugin>
