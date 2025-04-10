@@ -168,8 +168,7 @@ public class NoWhitespaceBeforeCheckTest
         @Test
         public void testWithOtherOperators() throws Exception {
             final String[] expected = {
-                    "134:31: " + getCheckMessage(MSG_KEY, "."),
-                    "135:31: " + getCheckMessage(MSG_KEY, "."),
+                    "145:31: " + getCheckMessage(MSG_KEY, "."),
             };
             verifyWithInlineConfigParser(
                     getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), expected);
@@ -178,8 +177,7 @@ public class NoWhitespaceBeforeCheckTest
         @Test
         public void testInControlStructures() throws Exception {
             final String[] expected = {
-                    "134:31: " + getCheckMessage(MSG_KEY, "."),
-                    "135:31: " + getCheckMessage(MSG_KEY, "."),
+                    "156:31: " + getCheckMessage(MSG_KEY, "."),
             };
             verifyWithInlineConfigParser(
                     getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), expected);
