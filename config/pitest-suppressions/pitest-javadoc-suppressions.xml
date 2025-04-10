@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
+    <sourceFile>JavadocNodeImpl.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl</mutatedClass>
+    <mutatedMethod>toString</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::valueOf</description>
+    <lineContent>+ ", children=" + Arrays.hashCode(children)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
     <sourceFile>JavadocTagInfo.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo$11</mutatedClass>
     <mutatedMethod>isValidOn</mutatedMethod>
