@@ -56,7 +56,6 @@ public class NoWhitespaceBeforeCheckTest
     }
 
     @Nested
-    class NextGeneration     @Nested
     class NextGeneration {
 
         @Test
@@ -151,6 +150,16 @@ public class NoWhitespaceBeforeCheckTest
             final String[] expected = {
                     "122:31: " + getCheckMessage(MSG_KEY, "."),
                     "123:31: " + getCheckMessage(MSG_KEY, "("),
+            };
+            verifyWithInlineConfigParser(
+                    getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), expected);
+        }
+
+        @Test
+        public void testMultipleDots() throws Exception {
+            final String[] expected = {
+                    "134:31: " + getCheckMessage(MSG_KEY, "."),
+                    "135:31: " + getCheckMessage(MSG_KEY, "."),
             };
             verifyWithInlineConfigParser(
                     getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), expected);
