@@ -128,7 +128,7 @@ class Example1 {
     System.out.println("TEst #5: This is a test string");
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to find calls to print to the console:
         </p>
@@ -175,7 +175,7 @@ class Example2 {
     System.out.println("TEst #5: This is a test string");
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to match text that spans multiple lines,
           like normal code in a Java file:
@@ -224,7 +224,7 @@ class Example3 {
     System.out.println("TEst #5: This is a test string");
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           Note: Beware of the greedy regular expression used in the above example.
           <code>.*</code> will match as much as possible and not produce multiple violations in
@@ -281,7 +281,7 @@ class Example4 {
     System.out.println("TEst #5: This is a test string");
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
         To configure the check to match a minimum of two test strings:
         </p>
@@ -352,7 +352,7 @@ class Example5 {
 2
 3
 4
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>Result:</p>
         <source>
 /var/tmp/Test.java // violation, a file must not be empty.

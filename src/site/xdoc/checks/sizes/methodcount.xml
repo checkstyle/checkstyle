@@ -170,7 +170,7 @@ class Example1 {
     public void innerMethod2() {} // NOT counted towards Example1
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to allow no more than 5 methods per type declaration:
         </p>
@@ -205,7 +205,7 @@ class Example2 { // violation, 'Total number of methods is 6 (max allowed is 5)'
     public void innerMethod2() {} // NOT counted towards Example2
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to allow no more than 2 public methods per
           type declaration, and 6 methods in total:
