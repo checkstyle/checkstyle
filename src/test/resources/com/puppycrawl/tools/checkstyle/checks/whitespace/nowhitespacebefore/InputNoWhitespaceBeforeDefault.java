@@ -301,7 +301,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         while (true) {}
     }
 
-    public void test() {
+        public void test() {
         // Valid cases
         " ".equals("");
         "".equals(" ");
