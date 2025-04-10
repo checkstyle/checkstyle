@@ -641,6 +641,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.header.HeaderCheck");
         NAME_TO_FULL_MODULE_NAME.put("RegexpHeaderCheck",
                 BASE_PACKAGE + ".checks.header.RegexpHeaderCheck");
+        NAME_TO_FULL_MODULE_NAME.put("MultiFileRegexpHeaderCheck",
+                BASE_PACKAGE + ".checks.header.MultiFileRegexpHeaderCheck");
     }
 
     /**

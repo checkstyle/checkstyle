@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck"
+             name="MultiFileRegexpHeader"
+             parent="com.puppycrawl.tools.checkstyle.Checker">
+         <description>&lt;div&gt;
+ Checks the header of a source file against multiple header files that contain a
+ &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html"&gt;
+ pattern&lt;/a&gt; for each line of the source header.
+ &lt;/div&gt;</description>
+         <properties>
+             <property default-value="all files"
+                       name="fileExtensions"
+                       type="java.lang.String[]">
+                 <description>Specify the file extensions of the files to process.</description>
+             </property>
+              <property name="headerFiles" type="java.net.URI">
+              <description>Specify a comma-separated list of files containing the required headers.</description>
+              </property>
+
+         </properties>
+         <message-keys>
+            <message-key key="header.mismatch"/>
+            <message-key key="header.missing"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
