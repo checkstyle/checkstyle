@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="VariableDeclarationUsageDistance">
-      <property name="ignoreFinal" value="false"/>
+      <property name="validateBetweenScopes" value="true"/>
     </module>
   </module>
 </module>
@@ -14,7 +14,7 @@ public class Example5 {
 
   public void foo1() {
     int num;        // violation, distance = 4
-    final double PI;   // violation, distance = 5
+    final double PI;   // OK, final variables not checked
     System.out.println("Statement 1");
     System.out.println("Statement 2");
     System.out.println("Statement 3");
@@ -23,9 +23,9 @@ public class Example5 {
   }
 
   public void foo2() {
-    int a;          // OK, used in different scope
-    int b;          // OK, used in different scope
-    int count = 0;  // OK, used in different scope
+    int a;          // OK, distance = 2
+    int b;          // OK, distance = 3
+    int count = 0;  // violation, distance = 4
 
     {
       System.out.println("Inside inner scope");
