@@ -114,7 +114,6 @@
   <suppress id="noConsecutiveLines" files="[\\/]javadocparagraph.xml"/>
 
   <!-- these are legacy use cases until #11166 -->
-  <suppress id="noUsageOfGetFileContentsMethod" files="FallThroughCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="UnusedImportsCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocMethodCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocStyleCheck.java"/>
