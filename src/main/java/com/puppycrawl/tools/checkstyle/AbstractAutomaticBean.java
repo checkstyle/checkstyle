@@ -46,6 +46,9 @@ import org.apache.commons.beanutils.converters.FloatConverter;
 import org.apache.commons.beanutils.converters.IntegerConverter;
 import org.apache.commons.beanutils.converters.LongConverter;
 import org.apache.commons.beanutils.converters.ShortConverter;
+import org.checkerframework.checker.nullness.qual.EnsuresNonNull;
+import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
+import org.checkerframework.checker.nullness.qual.RequiresNonNull;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configurable;
@@ -85,7 +88,7 @@ public abstract class AbstractAutomaticBean
     private static final String COMMA_SEPARATOR = ",";
 
     /** The configuration of this bean. */
-    private Configuration configuration;
+    private @MonotonicNonNull Configuration configuration;
 
     /**
      * Provides a hook to finish the part of this component's setup that
@@ -278,8 +281,13 @@ public abstract class AbstractAutomaticBean
      * Returns the configuration that was used to configure this component.
      *
      * @return the configuration that was used to configure this component.
+     * @throws IllegalArgumentException
      */
+    @EnsuresNonNull("configuration")
     protected final Configuration getConfiguration() {
+        if (configuration == null) {
+            throw new IllegalArgumentException("Configuration should not be null");
+        }
         return configuration;
     }
 
@@ -296,6 +304,7 @@ public abstract class AbstractAutomaticBean
      * @throws CheckstyleException if there is a configuration error.
      * @see Configuration#getChildren
      */
+    @RequiresNonNull("configuration")
     protected void setupChild(Configuration childConf)
             throws CheckstyleException {
         if (childConf != null) {
