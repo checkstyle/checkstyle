@@ -125,4 +125,12 @@ class  PackageClass2 {
 
     /**/
     void methodWithTwoStarComment() {}
+
+    public enum PublicEnum {
+        CONSTANT // violation, 'Missing a Javadoc comment'
+    }
+
+    private enum PrivateEnum {
+        CONSTANT
+    }
 }
