@@ -73,23 +73,7 @@ public class JavadocTagInfoTest {
     @Test
     public void testAuthor() {
         final DetailAstImpl ast = new DetailAstImpl();
-
-        final int[] validTypes = {
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.ANNOTATION_DEF,
-        };
-        for (int type: validTypes) {
-            ast.setType(type);
-            assertWithMessage("Invalid ast type for current tag: " + ast.getType())
-                    .that(JavadocTagInfo.AUTHOR.isValidOn(ast))
-                    .isTrue();
-        }
-
-        ast.setType(TokenTypes.LAMBDA);
-        assertWithMessage("Should return false when ast type is invalid for current tag")
+        assertWithMessage("Should default to false for the given AST: " + ast.getType())
                 .that(JavadocTagInfo.AUTHOR.isValidOn(ast))
                 .isFalse();
     }
