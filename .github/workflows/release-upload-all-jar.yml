@@ -27,7 +27,7 @@ concurrency:
 jobs:
   upload-all-jar:
     name: Upload '-all' jar ${{ inputs.version }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v4
