@@ -300,4 +300,21 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         label2: // no violation
         while (true) {}
     }
+
+    public void test() {
+         System.out.println(""); // violation
+        System .out.println(""); // violation
+        System. out.println(""); // violation
+        System.out .println(""); // violation
+        System.out. println(""); // violation
+        System.out. println(""); // violation
+        System.out.println (""); // violation
+         "".equals(""); // violation
+        "" .equals(""); // violation
+        "". equals(""); // violation
+        "".equals (""); // violation
+        "".equals( ""); // violation
+        "".equals("" ); // violation
+        "".equals("") ; // violation
+    }
 }
