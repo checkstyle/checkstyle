@@ -138,6 +138,10 @@
   <suppress checks="NewlineAtEndOfFile"
     files="newlineatendoffile[\\/]Example\d+.*"/>
 
+  <!-- We need to maintain indentation on xml part -->
+  <suppress checks="LineLength"
+    files="annotation[\\/]suppresswarningsholder[\\/]Example2.java"/>
+
   <!-- Example must show line length violations and suppressed violations -->
   <suppress checks="LineLength"
     files="suppresswithplaintextcommentfilter[\\/]Example9.java"/>
