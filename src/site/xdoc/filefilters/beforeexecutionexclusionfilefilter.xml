@@ -78,7 +78,7 @@
 .../test/generated_StubBankRemote.java // violation, must start with an uppercase
 .../test/MockPaymentRemote.java
 .../module-info.java // violation, name must start with an uppercase
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the filter to exclude all 'module-info.java' files:
         </p>
@@ -108,7 +108,7 @@
 .../test/generated_StubBankRemote.java // violation, must start with an uppercase
 .../test/MockPaymentRemote.java
 .../module-info.java // OK, the file is not audited
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the filter to run only on required files for example that ends with &quot;Remote&quot;
           or end with &quot;Client&quot; in names or named as &quot;Remote.java&quot; or &quot;Client.java&quot;
@@ -141,7 +141,7 @@
 .../test/generated_StubBankRemote.java // violation, must start with an uppercase
 .../test/MockPaymentRemote.java
 .../module-info.java // OK, the file is not audited
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the filter to exclude all 'test' folder files and all 'module-info.java'
           files:

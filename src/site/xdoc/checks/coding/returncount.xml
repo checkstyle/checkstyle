@@ -138,8 +138,7 @@ public class Example1 {
     // ok below, because default void restriction is 1
     public void methodB(int x) { return; }
 }
-</code></pre></div>
-
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that it doesn't allow any
           return statements per void method:
@@ -185,8 +184,7 @@ public class Example2 {
     // violation below, 'max allowed for void methods/constructors/lambdas is 0'
     public void methodB(int x) { return; }
 }
-</code></pre></div>
-
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check so that it doesn't allow more than 2
           return statements per method (ignoring the <code>equals()</code>
@@ -234,8 +232,7 @@ public class Example3 {
     // ok below, because default void restriction is 1
     public void methodB(int x) { return; }
 }
-</code></pre></div>
-
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the check so that it doesn't allow more than three
           return statements per method for all methods:
@@ -282,8 +279,7 @@ public class Example4 {
     // ok below, because default void restriction is 1
     public void methodB(int x) { return; }
 }
-</code></pre></div>
-
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           To configure the check so that it doesn't allow any return statements
           in constructors, more than one return statement in all lambda

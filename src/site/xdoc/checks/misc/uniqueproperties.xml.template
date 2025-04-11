@@ -47,7 +47,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/Example1.properties"/>
           <param name="type" value="raw"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to scan custom file extensions:
         </p>
@@ -63,7 +63,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/Example2.customProperties"/>
           <param name="type" value="raw"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-raw">
           Example: in foo.properties file
         </p>

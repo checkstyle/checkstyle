@@ -61,7 +61,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/missingswitchdefault/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-code">
           Example of correct code:
         </p>
@@ -69,7 +69,7 @@
           <param name="path"
                  value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/missingswitchdefault/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-code">
           Example of correct code which does not require default labels:
         </p>

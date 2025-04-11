@@ -45,7 +45,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the Check to validate only single-line comments:
         </p>
@@ -62,7 +62,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p>Please take a look at the following examples to understand how the check works:</p>
         <p id="Example3-code">
           Example #3: Comment is used as a single-line border to separate groups of methods.
@@ -71,7 +71,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example4-code">
           Example #4: Single line block comment is placed within an empty code block.
           Note, if comment is placed at the end of the empty code block, we have Checkstyle's
@@ -84,7 +84,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example4.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example5-code">Example #5: 'fallthrough' comments and Also similar
            comments  placed within an empty case block.Note, if comment is placed
            at the end of the empty case block,  we have Checkstyle limitations to
@@ -97,13 +97,13 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example5.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example6-code">Example #6: Comment is placed within a distributed statement.</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example6.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example7-code">
           Example #7: Single line block comment has previous and next statement.
         </p>
@@ -111,7 +111,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example7.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example8-code">
           Example #8: Comment within the block tries to describe the next code block.
         </p>

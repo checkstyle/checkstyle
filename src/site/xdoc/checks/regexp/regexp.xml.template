@@ -80,7 +80,7 @@
           <param name="path"
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example0.java"/>
           <param name="type" value="config"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example1-config">
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
@@ -95,13 +95,13 @@
           <param name="path"
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-code">Example2 with violation:</p>
         <macro name="example">
           <param name="path"
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config"> Your statement may be multiline. </p>
         <macro name="example">
           <param name="path"
@@ -113,19 +113,19 @@
           <param name="path"
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">Configure Check to make sure that it appear only once:</p>
         <macro name="example">
           <param name="path"
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example4.java"/>
           <param name="type" value="config"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example4-code">Example4:</p>
         <macro name="example">
           <param name="path"
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example4.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example5-config">Instead of printing whole regexp that might be unnecessary for
           user, you can substitute it to some static text:
         </p>
@@ -139,7 +139,7 @@
           <param name="path"
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example5.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example6-config">
           Configure the check to make sure there are no calls to <code>System.out.println</code>:
@@ -154,7 +154,7 @@
           <param name="path"
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example6.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example7-config">Configure to ignore comments:</p>
         <macro name="example">
           <param name="path"
@@ -166,7 +166,7 @@
           <param name="path"
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example7.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example8-config">
           Configure the check to find trailing whitespace at the end of a line:
         </p>
@@ -180,7 +180,7 @@
           <param name="path"
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example8.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example9-config">
           Configure the check to find case-insensitive occurrences of "debug":
         </p>
@@ -198,7 +198,7 @@
           <param name="path"
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example9.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example10-config">
           There is also a feature to limit the number of violations reported.
           When the limit is reached the check aborts with a message
@@ -214,7 +214,7 @@
           <param name="path"
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example10.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example11-config">
           To configure the check to verify that each file has the
           multiline header where year could be any digits.

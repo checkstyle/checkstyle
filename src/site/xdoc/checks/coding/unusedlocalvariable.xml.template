@@ -42,7 +42,7 @@
           <param name="path"
                  value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/unusedlocalvariable/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
            To configure the check to violate variables named with a single underscore
            if they are not used:

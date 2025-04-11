@@ -69,7 +69,7 @@ class Example1 {
           ; i &lt; 2; i++ );
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example2-config">
           To configure the check to require white space at an empty for

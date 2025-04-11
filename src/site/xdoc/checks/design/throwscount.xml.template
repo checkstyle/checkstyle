@@ -61,7 +61,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/design/throwscount/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that it doesn't allow more than two throws
           per method:
@@ -78,7 +78,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/design/throwscount/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check so that it doesn't skip private methods:
         </p>

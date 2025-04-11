@@ -52,7 +52,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check for comments that contain <code>TODO</code> and <code>FIXME</code>,
           case-insensitive:

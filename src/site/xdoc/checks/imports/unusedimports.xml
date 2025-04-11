@@ -122,7 +122,7 @@ class Example1{
   int[] array = copyOf(arr , 1);
   Function &lt;String, Integer&gt; stringToInteger = Integer::parseInt;
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that it ignores the imports referenced in Javadoc comments:
         </p>

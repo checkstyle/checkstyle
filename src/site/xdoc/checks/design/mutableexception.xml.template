@@ -56,8 +56,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/design/mutableexception/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that it checks for class name that ends
           with 'Exception':
@@ -72,8 +71,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/design/mutableexception/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check so that it checks for type name that is used in
           'extends' and ends with 'Throwable':

@@ -58,7 +58,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstaticimport/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that the <code>java.lang.System.out</code>
           member and all members from <code>java.lang.Math</code> are allowed:

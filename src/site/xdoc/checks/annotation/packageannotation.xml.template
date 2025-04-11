@@ -43,13 +43,13 @@
           <param name="path"
                  value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/annotation/packageannotation/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-code">Example of class without violation:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/packageannotation/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="package-info-code">Example of validating package-info.java:</p>
         <macro name="example">
           <param name="path"

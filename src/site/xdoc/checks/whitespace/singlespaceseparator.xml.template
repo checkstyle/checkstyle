@@ -63,7 +63,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/singlespaceseparator/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that it validates comments:
         </p>

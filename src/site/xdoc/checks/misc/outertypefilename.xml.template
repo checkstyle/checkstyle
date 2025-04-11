@@ -32,7 +32,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/outertypefilename/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-code">
           Example file content with name of file Example2.java
         </p>
@@ -40,7 +40,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/outertypefilename/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-code">
           Example file content with name of file Example3.java
         </p>
@@ -48,7 +48,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/outertypefilename/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example4-code">
           Example file content with name of file Example4.java
         </p>
@@ -56,7 +56,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/outertypefilename/Example4.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example5-code">
           Example file content with name of file Example5.java
         </p>

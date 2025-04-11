@@ -90,8 +90,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check for <code>public</code> scope:
         </p>
@@ -105,8 +104,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check for javadoc which is in <code>private</code>, but not in
           <code>package</code> scope:
@@ -122,8 +120,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the check to turn off first sentence checking:
         </p>
@@ -138,8 +135,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example4.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example5-config">
           To configure the check to turn off validation of incomplete html tags:
         </p>
@@ -154,8 +150,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example5.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example6-config">
           To configure the check for only class definitions:
         </p>

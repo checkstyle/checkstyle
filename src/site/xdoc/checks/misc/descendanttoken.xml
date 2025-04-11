@@ -187,7 +187,7 @@ class Example1 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example2-config">
           To configure the check to produce a violation on a switch with too many cases:
@@ -271,7 +271,7 @@ class Example2 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example3-config">
           To configure the check to produce a violation on a switch that is
@@ -356,7 +356,7 @@ class Example3 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example4-config">
           To configure the check to produce a violation on a
@@ -401,7 +401,7 @@ class Example4 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example5-config">
           To configure the check to produce a violation on an initializer in
@@ -447,7 +447,7 @@ class Example5 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example6-config">
           To configure the check to produce a violation on a return statement
@@ -504,7 +504,7 @@ class Example6 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example7-config">
           To configure the check to produce a violation on a try statement
@@ -561,7 +561,7 @@ class Example7 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example8-config">
           To configure the check to produce a violation on a method with
@@ -613,7 +613,7 @@ class Example8 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example9-config">
           To configure the check to produce a violation on a method
@@ -664,7 +664,7 @@ class Example9 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example10-config">
           To configure the check to produce a violation on a method
@@ -694,7 +694,7 @@ class Example10 {
       // ...
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example11-config">
           To configure the check to produce a violation on a method
@@ -727,7 +727,7 @@ class Example11 {
     int z = x + y;
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example12-config">
           To configure the check to produce a violation on an empty statement:
@@ -758,7 +758,7 @@ class Example12 {
       ; // violation, 'Empty statement is not allowed'
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example13-config">
           To configure the check to produce a violation on a class or interface
@@ -800,7 +800,7 @@ interface Test2 {
   int FIELD_1 = 1;
   int FIELD_2 = 2;
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example14-config">
           To configure the check to produce a violation on
@@ -843,7 +843,7 @@ class Example14 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example15-config">
           To configure the check to produce a violation on a <code>String</code>
@@ -876,7 +876,7 @@ class Example15 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example16-config">
           To configure the check to produce a violation on an assert statement

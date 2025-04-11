@@ -155,7 +155,7 @@ class Example1
     //CHECKSTYLE:ON
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure a filter so that <code>// stop constant
           check</code> and <code>// resume constant check</code> marks
@@ -206,7 +206,7 @@ class Example2
     //resume constant check
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure a filter so that <code>UNUSED OFF:<i>var</i></code>
           and <code>UNUSED ON: <i>var</i></code> marks a
@@ -260,7 +260,7 @@ class Example3
     //ILLEGAL ON: Exception
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           To configure a filter so that name of suppressed check mentioned
           in comment <code>CSOFF: <i>regexp</i></code>
@@ -311,7 +311,7 @@ class Example4
     //CSON: IllegalCatch
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           To configure a filter to suppress all audit events between a comment
           containing <code>CHECKSTYLE_OFF: ALMOST_ALL</code> and a comment containing
@@ -363,7 +363,7 @@ class Example5
     //CHECKSTYLE_ON: ALMOST_ALL
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example6-config">
           It is possible to specify an ID of checks, so that it can be leveraged by the
           SuppressionCommentFilter to skip validations. The following examples show how to skip
@@ -424,7 +424,7 @@ class Example6
     //CSON IllegalID
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example7-config">
           Example of how to configure the check to suppress checks by name defined in comment.
         </p>
@@ -474,7 +474,7 @@ class Example7
   //cson IllegalCatch
 
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example8-config">
           Example depicting use of checkC and checkCPP style comments
         </p>

@@ -46,7 +46,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example2-config">
           To configure the check to accept lines up to 120 characters long:
@@ -63,7 +63,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example3-config">
           To configure the check to ignore lines that begin with <code>" * "</code>code,
@@ -81,7 +81,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example4-config">
           To configure the check to only validate xml and property files and ignore other
@@ -99,7 +99,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example4.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example5-config">
           To configure check to validate <code>import</code> statements:

@@ -173,8 +173,7 @@ class Example1 {
 // ok below as default format only checks for a blank or empty string
 @SuppressWarnings("unchecked")
 class Test1 {}
-</code></pre></div>
-
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that the &quot;unchecked&quot; and &quot;unused&quot;
           warnings cannot be suppressed on anything

@@ -35,7 +35,7 @@
           <param name="path"
                  value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/naming/recordcomponentname/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p>
           An example of how to configure the check for names that are only letters in lowercase:
         </p>

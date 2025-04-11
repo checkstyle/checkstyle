@@ -74,8 +74,7 @@ class PageBuilder {
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that it checks local variables but not
           parameters:
@@ -90,8 +89,7 @@ class PageBuilder {
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check so that it ignores the variables and parameters named
           "test":
@@ -106,8 +104,7 @@ class PageBuilder {
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the check so that it ignores constructor parameters:
         </p>
@@ -121,8 +118,7 @@ class PageBuilder {
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example4.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example5-config">
           To configure the check so that it ignores the parameter of setter
           methods:
@@ -137,8 +133,7 @@ class PageBuilder {
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example5.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example6-config">
           To configure the check so that it ignores the parameter of setter
           methods recognizing setter as returning either <code>void</code> or
@@ -154,7 +149,7 @@ class PageBuilder {
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example6.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example7-config">
           To configure the check so that it ignores parameters of abstract methods:
         </p>

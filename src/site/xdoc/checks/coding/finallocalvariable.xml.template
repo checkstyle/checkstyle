@@ -46,7 +46,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that it checks local variables and
           parameters:
@@ -70,7 +70,7 @@
         <p>
           Option 'validateEnhancedForLoopVariable' could be used to make Check to validate
           even variable from Enhanced For Loop.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example3-config">
           An example of how to configure the check so that it also validates enhanced For Loop
           Variable is:
@@ -85,7 +85,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           An example of how to configure check on local variables and parameters
           but do not validate loop variables:

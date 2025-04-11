@@ -165,8 +165,7 @@ class Example1 {
     abstract int method(String field); // violation, ''field' hides a field'
   }
 }
-</code></pre></div>
-
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that it checks local variables but not
           parameters:
@@ -203,8 +202,7 @@ class Example2 {
     abstract int method(String field); // OK, because PARAMETER_DEF not configured
   }
 }
-</code></pre></div>
-
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check so that it ignores the variables and parameters named
           &quot;test&quot;:
@@ -241,8 +239,7 @@ class Example3 {
     abstract int method(String field); // violation, ''field' hides a field'
   }
 }
-</code></pre></div>
-
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the check so that it ignores constructor parameters:
         </p>
@@ -278,8 +275,7 @@ class Example4 {
     abstract int method(String field); // violation, ''field' hides a field'
   }
 }
-</code></pre></div>
-
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           To configure the check so that it ignores the parameter of setter
           methods:
@@ -316,8 +312,7 @@ class Example5 {
     abstract int method(String field); // violation, ''field' hides a field'
   }
 }
-</code></pre></div>
-
+</code></pre></div><hr class="example-separator"/>
         <p id="Example6-config">
           To configure the check so that it ignores the parameter of setter
           methods recognizing setter as returning either <code>void</code> or
@@ -356,7 +351,7 @@ class Example6 {
     abstract int method(String field); // violation, ''field' hides a field'
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example7-config">
           To configure the check so that it ignores parameters of abstract methods:
         </p>

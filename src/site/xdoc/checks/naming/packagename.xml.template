@@ -47,7 +47,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/packagename/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check to ensure with packages start with a upper case
           letter and only contains lowercase letters or numbers is:

@@ -53,7 +53,7 @@ class Example1 {
 
   record Record3&lt;abc&gt;() {} // violation, Name "abc" must match pattern '^[A-Z]$'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           An example of how to configure the check for names that are only a single letter is:
         </p>

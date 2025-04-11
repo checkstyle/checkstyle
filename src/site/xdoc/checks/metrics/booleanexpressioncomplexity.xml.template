@@ -57,7 +57,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check with 5 allowed operation in boolean
           expression:
@@ -72,7 +72,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to ignore <code>&amp;</code> and
           <code>|</code>:

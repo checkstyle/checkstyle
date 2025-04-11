@@ -74,7 +74,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example1.properties"/>
           <param name="type" value="raw"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure a filter to suppress audit events between a comment
           containing <code>STOP CHECK</code> and a comment
@@ -91,7 +91,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example2.properties"/>
           <param name="type" value="raw"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure a filter to suppress UniqueProperties check audit events between a comment
           containing <code>STOP UNIQUE CHECK</code> and a comment containing
@@ -109,7 +109,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example3.properties"/>
           <param name="type" value="raw"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           To configure a filter to suppress audit events for the check mentioned in the comment
           <code>CSOFF: <i>regexp</i></code> and <code>CSON: <i>regexp</i></code>.
@@ -126,7 +126,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example4.xml"/>
           <param name="type" value="raw"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example5-config">
           To configure a filter to suppress all audit events between a comment
           containing <code>CSOFF: ALMOST_ALL</code> and a comment containing
@@ -145,7 +145,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example5.xml"/>
           <param name="type" value="raw"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example6-config">
           To configure a filter to suppress audit events <b>that match a
           specific message in the messageFormat</b> (allowing suppression not only by the
@@ -172,7 +172,7 @@
           The following examples show how to suppress audit events in code surrounded
           by <code>CSOFF &lt;ID&gt; (reason)</code> and <code>CSON &lt;ID&gt;</code>,
           where ID is the ID of the check you want to suppress.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example7-config">
           Example of Checkstyle checks and SuppressWithPlainTextCommentFilter configuration -
           the checkFormat, set to '$1', indicates that the ID of the check
@@ -191,7 +191,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example7.xml"/>
           <param name="type" value="raw"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example8-config">
           Example of how to configure the check to suppress more than one check.
           Checker is configured to check only SQL files using RegexpSingleline check to detect
@@ -208,7 +208,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example8.sql"/>
           <param name="type" value="raw"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example9-config">
           This check is not limited to comments. It can match any symbols in the given file
           as <code>offCommentFormat</code> and <code>onCommentFormat</code> for suppression.

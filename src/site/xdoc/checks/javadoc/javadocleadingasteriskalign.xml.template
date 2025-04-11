@@ -61,8 +61,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocleadingasteriskalign/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check with <code>tabWidth</code> property:
         </p>

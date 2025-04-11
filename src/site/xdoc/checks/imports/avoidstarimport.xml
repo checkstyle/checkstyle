@@ -83,7 +83,7 @@ import java.io.*; // violation, 'Using the '.*' form of import should be avoided
 import static java.lang.Math.*; // violation, 'form of import should be avoided.'
 import java.util.*; // violation, 'Using the '.*' form of import should be avoided.'
 import java.net.*; // violation, 'Using the '.*' form of import should be avoided.'
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that star imports from packages
           <code>java.io and java.net</code> as well as static members from class
@@ -107,7 +107,7 @@ import java.io.*;
 import static java.lang.Math.*;
 import java.util.*; // violation, 'Using the '.*' form of import should be avoided.'
 import java.net.*;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check so that star imports
           from all packages are allowed:
@@ -130,7 +130,7 @@ import java.io.*;
 import static java.lang.Math.*; // violation, 'form of import should be avoided.'
 import java.util.*;
 import java.net.*;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the check so that starred static member imports
           from all packages are allowed:
@@ -153,7 +153,7 @@ import java.io.*; // violation, 'Using the '.*' form of import should be avoided
 import static java.lang.Math.*;
 import java.util.*; // violation, 'Using the '.*' form of import should be avoided.'
 import java.net.*; // violation, 'Using the '.*' form of import should be avoided.'
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           To configure the check so that star imports from packages
           <code>java.io and java.net</code> are allowed:
@@ -177,7 +177,7 @@ import java.io.*;
 import static java.lang.Math.*; // violation, 'form of import should be avoided.'
 import java.util.*;
 import java.net.*;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example6-config">
           To configure the check so that star imports from packages
           <code>java.io and java.net</code> as well as static members imports

@@ -99,7 +99,7 @@ public class Example1 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to allow default label to be not last if it is shared with case:
         </p>

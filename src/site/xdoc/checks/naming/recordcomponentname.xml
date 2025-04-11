@@ -53,7 +53,7 @@ class Example1 {
 
   record Rec3(double myNumber) {}
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           An example of how to configure the check for names that are only letters in lowercase:
         </p>

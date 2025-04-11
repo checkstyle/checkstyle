@@ -60,7 +60,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To suppress MethodName check for method names matched pattern 'MyMethod[0-9]':
         </p>
@@ -74,7 +74,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To suppress checks being specified by id property:
         </p>
@@ -88,7 +88,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           To suppress checks for all package definitions:
         </p>
@@ -102,7 +102,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example4.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example5-config">
           To suppress RedundantModifier check for interface definitions:
         </p>
@@ -116,7 +116,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example5.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example6-config">
           To suppress checks in the Example6 file by non-query:
         </p>
@@ -130,7 +130,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example6.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example7-config">
           Suppress checks for elements which are either class definitions,
           or method definitions:
@@ -145,7 +145,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example7.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example8-config">
           Suppress checks for MyMethod1 or MyMethod2 methods:
         </p>
@@ -159,7 +159,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example8.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example9-config">
           Suppress checks for variable testVariable1 inside
           testMethod method inside Example9 class:
@@ -174,7 +174,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example9.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example10-config">
           In the following sample, violations for LeftCurly check
           will be suppressed for methods with name testMethod1 inside
@@ -190,7 +190,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example10.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example11-config">
           The following example demonstrates how to suppress
           RequireThis violations for variable age inside changeAge method.
@@ -205,7 +205,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example11.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example12-config">
           Suppress <code>IllegalThrows</code> violations only for methods with name
           <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions.
@@ -224,7 +224,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example12.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example13-config">
           The following sample demonstrates how to suppress all violations for method itself and
           all descendants. <code>descendant-or-self</code> axis iterates through current node and
@@ -242,7 +242,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example13.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example14-config">
           The following example is an example of what checks would be suppressed
           while building Spring projects with checkstyle plugin.

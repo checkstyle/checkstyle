@@ -51,7 +51,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/parametername/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters, digits, and underscores:
@@ -66,7 +66,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/parametername/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example3-config">
             An example of how to configure the check to skip methods with Override annotation from
@@ -82,7 +82,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/parametername/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           An example of how to configure the check for names that begin with
           a lower case letter, followed by letters and digits is:
@@ -97,7 +97,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/parametername/Example4.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example5-config">
           The following configuration checks that the parameters always start with two
           lowercase characters and, in addition, that public method parameters cannot be one

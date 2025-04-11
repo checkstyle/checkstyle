@@ -105,19 +105,21 @@ public class XdocsTemplateParser extends XdocParser {
     @Override
     protected void handleEndTag(XmlPullParser parser, Sink sink) throws MacroExecutionException {
         final String tagName = parser.getName();
-        if (tagName.equals(DOCUMENT_TAG.toString())) {
-            sink.rawText(parser.getText());
-            sink.body_();
-        }
-        else if (macroName != null
-                && tagName.equals(MACRO_TAG.toString())
-                && !macroName.isEmpty()
-                && !isSecondParsing()) {
-            processMacroEnd(sink);
-            setIgnorableWhitespace(false);
-        }
-        else if (!tagName.equals(PARAM.toString())) {
-            sink.rawText(parser.getText());
+        if (!"hr".equalsIgnoreCase(tagName)) {
+            if (tagName.equals(DOCUMENT_TAG.toString())) {
+                sink.rawText(parser.getText());
+                sink.body_();
+            }
+            else if (macroName != null
+                    && tagName.equals(MACRO_TAG.toString())
+                    && !macroName.isEmpty()
+                    && !isSecondParsing()) {
+                processMacroEnd(sink);
+                setIgnorableWhitespace(false);
+            }
+            else if (!tagName.equals(PARAM.toString())) {
+                sink.rawText(parser.getText());
+            }
         }
     }
 

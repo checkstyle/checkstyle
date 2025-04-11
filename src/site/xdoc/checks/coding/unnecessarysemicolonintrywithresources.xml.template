@@ -39,7 +39,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonintrywithresources/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to detect unnecessary semicolon
           if closing parenthesis is not on the same line

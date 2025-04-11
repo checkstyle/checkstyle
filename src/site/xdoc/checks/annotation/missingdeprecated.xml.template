@@ -71,8 +71,7 @@
           <param name="path"
                    value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/Example1.java"/>
             <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check such that it prints violation
           messages if tight HTML rules are not obeyed

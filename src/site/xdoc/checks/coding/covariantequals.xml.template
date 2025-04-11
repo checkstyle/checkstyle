@@ -80,7 +80,7 @@ public boolean equals(Foo obj) {...}
           <param name="path"
                  value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-code">
           The same class without violations:
         </p>

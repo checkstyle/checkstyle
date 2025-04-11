@@ -84,7 +84,7 @@ public class Example1 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           An example of how to configure the check for names that begin with
           a lower case letter, followed by any letters or digits is:

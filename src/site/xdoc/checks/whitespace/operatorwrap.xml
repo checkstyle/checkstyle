@@ -205,7 +205,7 @@ class Example1 {
             + 10;
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check for assignment operators at the end of a line:
         </p>

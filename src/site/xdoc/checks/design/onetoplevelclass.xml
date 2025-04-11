@@ -45,7 +45,7 @@ public class Example1 { // OK, first top-level class
 class ViolationExample1 { // violation, "has to reside in its own source file."
   // methods
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-code">
           An example of code without public top-level type:
         </p>
@@ -57,7 +57,7 @@ class Example2 { // OK, first top-level class
 class ViolationExample2 { // violation, "has to reside in its own source file."
   // methods
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-code">
           An example of code without violations:
         </p>

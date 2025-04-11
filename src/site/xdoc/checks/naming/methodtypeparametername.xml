@@ -54,7 +54,7 @@ class Example1 {
   public &lt;K, V&gt; void method3() {}
   public &lt;k, V&gt; void method4() {} // violation
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check for names that are only a single letter is:
         </p>
