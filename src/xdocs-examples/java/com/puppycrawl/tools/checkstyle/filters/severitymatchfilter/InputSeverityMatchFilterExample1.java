@@ -1,4 +1,4 @@
-/*xml
+/* Config:
 <module name="Checker">
   <module name="TreeWalker">
     <module name="ParameterName">
@@ -14,10 +14,10 @@
 */
 package com.puppycrawl.tools.checkstyle.filters.severitymatchfilter;
 
-// xdoc section -- start
-public class Example1 {
-  public void method1(int V1){} // ok, ParameterName's severity is info
-
-  public void Method2(){} // violation, MethodName's severity is defaulted to error
+public class InputSeverityMatchFilterExample1 {
+    public void method1() {}
+    public void Method2() {} // This should trigger the violation (bad naming)
 }
-// xdoc section -- end
+
+
+
