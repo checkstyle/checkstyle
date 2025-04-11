@@ -25,11 +25,10 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * <div>
@@ -186,30 +185,40 @@ public class WriteTagCheck
     }
 
     @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public int[] getRequiredTokens() {
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     @Override
     public void visitToken(DetailAST ast) {
-        final FileContents contents = getFileContents();
-        final int lineNo = ast.getLineNo();
-        final TextBlock cmt =
-            contents.getJavadocBefore(lineNo);
-        if (cmt != null) {
-            checkTag(lineNo, cmt.getText());
+        final DetailAST javadocComment = JavadocUtil.findJavadocComment(ast);
+
+        if (javadocComment != null) {
+            final String commentContent = JavadocUtil.getBlockCommentContent(javadocComment);
+            final String[] cmtLines = commentContent.split("\\R");
+            checkTag(javadocComment.getLineNo(), ast.getLineNo(), cmtLines);
         }
     }
 
     /**
-     * Verifies that a type definition has a required tag.
+     * Verifies that a type definition has a required Javadoc tag.
      *
-     * @param lineNo the line number for the type definition.
-     * @param comment the Javadoc comment for the type definition.
+     * <p>If the tag is found and correctly formatted,
+     * it logs at the line of the tag.
+     * If the tag is missing, it logs the violation
+     * at the line where the type definition begins.</p>
+     *
+     * @param javadocLineNo the starting line number of the Javadoc comment block.
+     * @param astLineNo the line number of the type definition
+     *                  (e.g., class, record, constructor).
+     * @param comment the lines of the Javadoc comment block.
      */
-    private void checkTag(int lineNo, String... comment) {
+    private void checkTag(int javadocLineNo, int astLineNo, String... comment) {
         if (tagRegExp != null) {
             boolean hasTag = false;
             for (int i = 0; i < comment.length; i++) {
@@ -220,15 +229,15 @@ public class WriteTagCheck
                     final int contentStart = matcher.start(1);
                     final String content = commentValue.substring(contentStart);
                     if (tagFormat == null || tagFormat.matcher(content).find()) {
-                        logTag(lineNo + i - comment.length, tag, content);
+                        logTag(javadocLineNo + i, tag, content);
                     }
                     else {
-                        log(lineNo + i - comment.length, MSG_TAG_FORMAT, tag, tagFormat.pattern());
+                        log(javadocLineNo + i, MSG_TAG_FORMAT, tag, tagFormat.pattern());
                     }
                 }
             }
             if (!hasTag) {
-                log(lineNo, MSG_MISSING_TAG, tag);
+                log(astLineNo, MSG_MISSING_TAG, tag);
             }
         }
     }

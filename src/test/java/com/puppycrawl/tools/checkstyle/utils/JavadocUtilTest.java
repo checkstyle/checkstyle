@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.Comment;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -112,6 +113,80 @@ public class JavadocUtilTest {
         assertWithMessage("Invalid first arg")
             .that(tags.get(0).getFirstArg())
             .isEqualTo("List#add(Object)");
+    }
+
+    @Test
+    public void testFindJavadocComment() {
+        final DetailAstImpl commentBegin = new DetailAstImpl();
+        commentBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
+        commentBegin.setText("/*");
+
+        final DetailAstImpl commentContent = new DetailAstImpl();
+        commentContent.setType(TokenTypes.COMMENT_CONTENT);
+        commentContent.setText("* This is a Javadoc comment");
+
+        final DetailAstImpl commentEnd = new DetailAstImpl();
+        commentEnd.setType(TokenTypes.BLOCK_COMMENT_END);
+        commentEnd.setText("*/");
+
+        commentBegin.setFirstChild(commentContent);
+        commentContent.setNextSibling(commentEnd);
+
+        final DetailAstImpl modifiers = new DetailAstImpl();
+        modifiers.setType(TokenTypes.MODIFIERS);
+        modifiers.setFirstChild(commentBegin);
+
+        final DetailAstImpl methodDef = new DetailAstImpl();
+        methodDef.setType(TokenTypes.METHOD_DEF);
+        methodDef.setFirstChild(modifiers);
+
+        final DetailAST found = JavadocUtil.findJavadocComment(methodDef);
+
+        assertWithMessage("Expected to find the Javadoc comment node")
+                .that(found)
+                .isSameInstanceAs(commentBegin);
+    }
+
+    @Test
+    public void testFindJavadocCommentNullInput() {
+        assertWithMessage("Expected null for null input")
+                .that(JavadocUtil.findJavadocComment(null))
+                .isNull();
+    }
+
+    @Test
+    public void testFindJavadocCommentNoJavadoc() {
+        final DetailAstImpl root = new DetailAstImpl();
+        root.setType(TokenTypes.CLASS_DEF);
+
+        final DetailAstImpl child = new DetailAstImpl();
+        child.setType(TokenTypes.MODIFIERS);
+        root.setFirstChild(child);
+
+        assertWithMessage("Expected null when there is no Javadoc comment")
+                .that(JavadocUtil.findJavadocComment(root))
+                .isNull();
+    }
+
+    @Test
+    public void testFindJavadocCommentBlockCommentButNotJavadoc() {
+        final DetailAstImpl blockComment = new DetailAstImpl();
+        blockComment.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
+        blockComment.setText("/* Not Javadoc */");
+
+        final DetailAstImpl content = new DetailAstImpl();
+        content.setType(TokenTypes.COMMENT_CONTENT);
+        content.setText(" Not Javadoc comment");
+
+        blockComment.setFirstChild(content);
+
+        final DetailAstImpl root = new DetailAstImpl();
+        root.setType(TokenTypes.METHOD_DEF);
+        root.setFirstChild(blockComment);
+
+        assertWithMessage("Expected null for non-Javadoc block comment")
+                .that(JavadocUtil.findJavadocComment(root))
+                .isNull();
     }
 
     @Test
