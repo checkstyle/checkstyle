@@ -38,7 +38,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to suppress the check to public and protected types is:
         </p>
@@ -52,7 +52,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters, digits, and underscores. Also, suppress the check from being

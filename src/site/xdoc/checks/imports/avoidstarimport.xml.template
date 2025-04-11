@@ -53,7 +53,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that star imports from packages
           <code>java.io and java.net</code> as well as static members from class
@@ -71,7 +71,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check so that star imports
           from all packages are allowed:
@@ -88,7 +88,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the check so that starred static member imports
           from all packages are allowed:
@@ -105,7 +105,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example4.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example5-config">
           To configure the check so that star imports from packages
           <code>java.io and java.net</code> are allowed:
@@ -122,7 +122,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example5.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example6-config">
           To configure the check so that star imports from packages
           <code>java.io and java.net</code> as well as static members imports

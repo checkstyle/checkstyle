@@ -101,7 +101,7 @@ class Example1 {
     // violation 6 lines above 'At-clause should have a non-empty description'
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to validate <code>@param</code>,
           <code>@throws</code> tags:

@@ -88,7 +88,7 @@ class Example1 {
   private static int It_Static1 = 2; // violation, 'must match pattern'
   static int It_Static2 = 2; // violation, 'must match pattern'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to suppress the check to public and protected types is:
         </p>
@@ -115,7 +115,7 @@ class Example2 {
   private static int It_Static1 = 2; // violation, 'must match pattern'
   static int It_Static2 = 2; // violation, 'must match pattern'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters, digits, and underscores. Also, suppress the check from being

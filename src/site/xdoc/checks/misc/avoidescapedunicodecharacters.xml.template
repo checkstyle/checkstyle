@@ -47,7 +47,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check to allow using escapes
           for non-printable, control characters:
@@ -64,7 +64,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           An example of how to configure the check to allow using escapes
           if trail comment is present:
@@ -81,7 +81,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           An example of how to configure the check to allow if
           all characters in literal are escaped.
@@ -96,7 +96,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters/Example4.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example5-config">
           An example of how to configure the check to allow using escapes
           for non-printable whitespace characters:

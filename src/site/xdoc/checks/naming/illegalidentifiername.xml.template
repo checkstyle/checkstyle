@@ -41,7 +41,7 @@
           <param name="path"
                  value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/naming/illegalidentifiername/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p>
           To configure the check to include some of JLS Keywords in the
           set of illegal identifiers (See <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-3.html#jls-3.9">

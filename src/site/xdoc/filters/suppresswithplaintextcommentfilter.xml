@@ -123,7 +123,7 @@ keyB=value2
 # // violation below 'Duplicated property 'keyC' (2 occurrence(s)).'
 keyC=value4
 keyC=value5
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure a filter to suppress audit events between a comment
           containing <code>STOP CHECK</code> and a comment
@@ -153,7 +153,7 @@ keyB=value2
 # // violation below 'Duplicated property 'keyC' (2 occurrence(s)).'
 keyC=value4
 keyC=value5
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure a filter to suppress UniqueProperties check audit events between a comment
           containing <code>STOP UNIQUE CHECK</code> and a comment containing
@@ -189,7 +189,7 @@ keyA=value3
 # // violation below 'Duplicated property 'keyC' (2 occurrence(s)).'
 keyC=value4
 keyC=value5
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           To configure a filter to suppress audit events for the check mentioned in the comment
           <code>CSOFF: <i>regexp</i></code> and <code>CSON: <i>regexp</i></code>.
@@ -233,7 +233,7 @@ keyC=value5
     --&gt;
   &lt;/macro&gt;
 &lt;/project&gt;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           To configure a filter to suppress all audit events between a comment
           containing <code>CSOFF: ALMOST_ALL</code> and a comment containing
@@ -280,7 +280,7 @@ keyC=value5
     --&gt;
   &lt;/macro&gt;
 &lt;/project&gt;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example6-config">
           To configure a filter to suppress audit events <b>that match a
           specific message in the messageFormat</b> (allowing suppression not only by the
@@ -341,7 +341,7 @@ keyC=value5
           The following examples show how to suppress audit events in code surrounded
           by <code>CSOFF &lt;ID&gt; (reason)</code> and <code>CSON &lt;ID&gt;</code>,
           where ID is the ID of the check you want to suppress.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example7-config">
           Example of Checkstyle checks and SuppressWithPlainTextCommentFilter configuration -
           the checkFormat, set to '$1', indicates that the ID of the check
@@ -395,7 +395,7 @@ keyC=value5
 &lt;!-- CSON typeCode --&gt;
   &lt;/macro&gt;
 &lt;/project&gt;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example8-config">
           Example of how to configure the check to suppress more than one check.
           Checker is configured to check only SQL files using RegexpSingleline check to detect
@@ -433,7 +433,7 @@ FROM users AS u
 JOIN jobs AS j ON u.job_id = j.id
 -- suppressed violation below (LineLengthCheck)
 WHERE u.registration_date &gt;= '2023-01-01' AND u.status = 'active';
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example9-config">
           This check is not limited to comments. It can match any symbols in the given file
           as <code>offCommentFormat</code> and <code>onCommentFormat</code> for suppression.

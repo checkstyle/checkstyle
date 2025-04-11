@@ -42,7 +42,7 @@
         This configuration does not match to anything,
         so we do not provide any code example for it
         as no violation will ever be reported.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example2-config">
         To configure the check to find occurrences of 'System.exit('
         with some <i>slack</i> of allowing only one occurrence per file:
@@ -58,13 +58,13 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-code">Example with violation:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
@@ -79,7 +79,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example4.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example5-config">
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
@@ -94,7 +94,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example5.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example6-config">
           An example of how to configure the check to make sure sql files contains the term
           'license'.
@@ -109,7 +109,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example6.sql"/>
           <param name="type" value="raw"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example7-raw">Example with violation:</p>
         <macro name="example">
           <param name="path"

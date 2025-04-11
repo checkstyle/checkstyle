@@ -61,7 +61,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure a filter to suppress violations of <code>JavadocMethod</code> and
           <code>EqualsAvoidNull</code> checks in <code>Example2.java</code> using
@@ -78,7 +78,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure a filter to suppress violations of <code>RegexpSinglelineCheck</code>
           in <code>Example3.java</code> using <code>SuppressionSingleFilter</code>:
@@ -94,7 +94,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           To configure a filter to suppress violations of <code>NoWhitespaceAfter</code>
           in <code>Example4.java</code> using <code>SuppressionSingleFilter</code>:
@@ -110,7 +110,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example4.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example5-config">
           To configure a filter to suppress violations of <code>MethodName</code>
           in <code>Example5.java</code> using <code>SuppressionSingleFilter</code>:
@@ -126,7 +126,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example5.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example6-config">
           To configure a filter to suppress violations of <code>ConstantName</code>
           in <code>Example6.java</code> using <code>SuppressionSingleFilter</code>:
@@ -142,7 +142,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example6.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example7-config">
           To configure a filter to suppress violations of <code>MemberName</code>
           and <code>MethodName</code> in <code>Example7.java</code> using
@@ -159,7 +159,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example7.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example8-config">
           To configure a filter to suppress <code>ParameterNumber</code> violations
           in <code>Example8.java</code> using <code>SuppressionSingleFilter</code>:
@@ -175,7 +175,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example8.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example9-config">
           To configure a filter to suppress <code>FileLength</code> violations
           in <code>Example9.java</code> using <code>SuppressionSingleFilter</code>:
@@ -191,7 +191,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example9.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example10-config">
           To configure a filter to suppress <code>MemberName</code> violations
           in <code>Example10.java</code> using <code>SuppressionSingleFilter</code>:
