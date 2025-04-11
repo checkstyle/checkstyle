@@ -69,16 +69,7 @@ public enum JavadocTagInfo {
     /**
      * {@code @author}.
      */
-    AUTHOR("@author", "author", Type.BLOCK) {
-
-        @Override
-        public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
-            return astType == TokenTypes.PACKAGE_DEF
-                || TokenUtil.isTypeDeclaration(astType);
-        }
-
-    },
+    AUTHOR("@author", "author", Type.BLOCK),
 
     /**
      * {@code {@code}}.
@@ -423,7 +414,7 @@ public enum JavadocTagInfo {
      * @param ast the AST representing a type that can be Javadoc'd
      * @return true if tag is valid.
      */
-    public abstract boolean isValidOn(DetailAST ast);
+    public boolean isValidOn(DetailAST ast) { return false; }
 
     /**
      * Gets the tag text.
