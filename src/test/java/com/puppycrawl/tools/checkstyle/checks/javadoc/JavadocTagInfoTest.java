@@ -38,8 +38,8 @@ public class JavadocTagInfoTest {
     public void testJavadocTagInfoValueOf() {
         final JavadocTagInfo tag = JavadocTagInfo.valueOf("AUTHOR");
         assertWithMessage("Invalid valueOf result")
-            .that(tag)
-            .isEqualTo(JavadocTagInfo.AUTHOR);
+                .that(tag)
+                .isEqualTo(JavadocTagInfo.AUTHOR);
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -50,8 +50,8 @@ public class JavadocTagInfoTest {
     public void testTypeValueOf() {
         final JavadocTagInfo.Type type = JavadocTagInfo.Type.valueOf("BLOCK");
         assertWithMessage("Invalid valueOf result")
-            .that(type)
-            .isEqualTo(JavadocTagInfo.Type.BLOCK);
+                .that(type)
+                .isEqualTo(JavadocTagInfo.Type.BLOCK);
     }
 
     /* Additional test for jacoco, since values()
@@ -61,50 +61,26 @@ public class JavadocTagInfoTest {
     @Test
     public void testTypeValues() {
         final JavadocTagInfo.Type[] expected = {
-            JavadocTagInfo.Type.BLOCK,
-            JavadocTagInfo.Type.INLINE,
+                JavadocTagInfo.Type.BLOCK,
+                JavadocTagInfo.Type.INLINE,
         };
         final JavadocTagInfo.Type[] actual = JavadocTagInfo.Type.values();
         assertWithMessage("Invalid Type values")
-            .that(actual)
-            .isEqualTo(expected);
-    }
-
-    @Test
-    public void testAuthor() {
-        final DetailAstImpl ast = new DetailAstImpl();
-
-        final int[] validTypes = {
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.ANNOTATION_DEF,
-        };
-        for (int type: validTypes) {
-            ast.setType(type);
-            assertWithMessage("Invalid ast type for current tag: " + ast.getType())
-                    .that(JavadocTagInfo.AUTHOR.isValidOn(ast))
-                    .isTrue();
-        }
-
-        ast.setType(TokenTypes.LAMBDA);
-        assertWithMessage("Should return false when ast type is invalid for current tag")
-                .that(JavadocTagInfo.AUTHOR.isValidOn(ast))
-                .isFalse();
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
     public void testOthers() throws ReflectiveOperationException {
         final JavadocTagInfo[] tags = {
-            JavadocTagInfo.CODE,
-            JavadocTagInfo.DOC_ROOT,
-            JavadocTagInfo.LINK,
-            JavadocTagInfo.LINKPLAIN,
-            JavadocTagInfo.LITERAL,
-            JavadocTagInfo.SEE,
-            JavadocTagInfo.SINCE,
-            JavadocTagInfo.VALUE,
+                JavadocTagInfo.CODE,
+                JavadocTagInfo.DOC_ROOT,
+                JavadocTagInfo.LINK,
+                JavadocTagInfo.LINKPLAIN,
+                JavadocTagInfo.LITERAL,
+                JavadocTagInfo.SEE,
+                JavadocTagInfo.SINCE,
+                JavadocTagInfo.VALUE,
         };
         for (JavadocTagInfo tagInfo : tags) {
             final DetailAstImpl astParent = new DetailAstImpl();
@@ -117,14 +93,14 @@ public class JavadocTagInfoTest {
             setParent.invoke(ast, astParent);
 
             final int[] validTypes = {
-                TokenTypes.PACKAGE_DEF,
-                TokenTypes.CLASS_DEF,
-                TokenTypes.INTERFACE_DEF,
-                TokenTypes.ENUM_DEF,
-                TokenTypes.ANNOTATION_DEF,
-                TokenTypes.METHOD_DEF,
-                TokenTypes.CTOR_DEF,
-                TokenTypes.VARIABLE_DEF,
+                    TokenTypes.PACKAGE_DEF,
+                    TokenTypes.CLASS_DEF,
+                    TokenTypes.INTERFACE_DEF,
+                    TokenTypes.ENUM_DEF,
+                    TokenTypes.ANNOTATION_DEF,
+                    TokenTypes.METHOD_DEF,
+                    TokenTypes.CTOR_DEF,
+                    TokenTypes.VARIABLE_DEF,
             };
             for (int type: validTypes) {
                 ast.setType(type);
@@ -156,15 +132,15 @@ public class JavadocTagInfoTest {
         setParent.invoke(ast, astParent);
 
         final int[] validTypes = {
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.ANNOTATION_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.ENUM_CONSTANT_DEF,
-            TokenTypes.ANNOTATION_FIELD_DEF,
-            TokenTypes.VARIABLE_DEF,
+                TokenTypes.CLASS_DEF,
+                TokenTypes.INTERFACE_DEF,
+                TokenTypes.ENUM_DEF,
+                TokenTypes.ANNOTATION_DEF,
+                TokenTypes.METHOD_DEF,
+                TokenTypes.CTOR_DEF,
+                TokenTypes.ENUM_CONSTANT_DEF,
+                TokenTypes.ANNOTATION_FIELD_DEF,
+                TokenTypes.VARIABLE_DEF,
         };
         for (int type: validTypes) {
             ast.setType(type);
@@ -195,7 +171,7 @@ public class JavadocTagInfoTest {
         setParent.invoke(ast, astParent);
 
         final int[] validTypes = {
-            TokenTypes.VARIABLE_DEF,
+                TokenTypes.VARIABLE_DEF,
         };
         for (int type: validTypes) {
             ast.setType(type);
@@ -221,8 +197,8 @@ public class JavadocTagInfoTest {
         final DetailAstImpl ast = new DetailAstImpl();
 
         final int[] validTypes = {
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
+                TokenTypes.METHOD_DEF,
+                TokenTypes.CTOR_DEF,
         };
         for (int type: validTypes) {
             ast.setType(type);
@@ -242,8 +218,8 @@ public class JavadocTagInfoTest {
         final DetailAstImpl ast = new DetailAstImpl();
 
         final int[] validTypes = {
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
+                TokenTypes.METHOD_DEF,
+                TokenTypes.CTOR_DEF,
         };
         for (int type: validTypes) {
             ast.setType(type);
@@ -263,11 +239,11 @@ public class JavadocTagInfoTest {
         final DetailAstImpl ast = new DetailAstImpl();
 
         final int[] validTypes = {
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.ANNOTATION_DEF,
+                TokenTypes.PACKAGE_DEF,
+                TokenTypes.CLASS_DEF,
+                TokenTypes.INTERFACE_DEF,
+                TokenTypes.ENUM_DEF,
+                TokenTypes.ANNOTATION_DEF,
         };
         for (int type: validTypes) {
             ast.setType(type);
@@ -287,10 +263,10 @@ public class JavadocTagInfoTest {
         final DetailAstImpl ast = new DetailAstImpl();
 
         final int[] validTypes = {
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
+                TokenTypes.CLASS_DEF,
+                TokenTypes.INTERFACE_DEF,
+                TokenTypes.METHOD_DEF,
+                TokenTypes.CTOR_DEF,
         };
         for (int type: validTypes) {
             ast.setType(type);
@@ -316,7 +292,7 @@ public class JavadocTagInfoTest {
         astChild.setFirstChild(astChild2);
 
         final int[] validTypes = {
-            TokenTypes.METHOD_DEF,
+                TokenTypes.METHOD_DEF,
         };
         for (int type: validTypes) {
             ast.setType(type);
@@ -337,6 +313,22 @@ public class JavadocTagInfoTest {
     }
 
     @Test
+    public void testReturnFalse() {
+        final DetailAstImpl ast = new DetailAstImpl();
+        final DetailAstImpl astChild = new DetailAstImpl();
+        astChild.setType(TokenTypes.TYPE);
+        ast.setFirstChild(astChild);
+        final DetailAstImpl astChild2 = new DetailAstImpl();
+        astChild2.setType(TokenTypes.LITERAL_INT);
+        astChild.setFirstChild(astChild2);
+
+        ast.setType(TokenTypes.LAMBDA);
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.RETURN.isValidOn(ast))
+                .isFalse();
+    }
+
+    @Test
     public void testSerialField() {
         final DetailAstImpl ast = new DetailAstImpl();
         final DetailAstImpl astChild = new DetailAstImpl();
@@ -348,7 +340,7 @@ public class JavadocTagInfoTest {
         astChild.setFirstChild(astChild2);
 
         final int[] validTypes = {
-            TokenTypes.VARIABLE_DEF,
+                TokenTypes.VARIABLE_DEF,
         };
         for (int type: validTypes) {
             ast.setType(type);
@@ -383,12 +375,12 @@ public class JavadocTagInfoTest {
         ast.setFirstChild(astChild);
 
         final String[] validNames = {
-            "writeObject",
-            "readObject",
-            "writeExternal",
-            "readExternal",
-            "writeReplace",
-            "readResolve",
+                "writeObject",
+                "readObject",
+                "writeExternal",
+                "readExternal",
+                "writeReplace",
+                "readResolve",
         };
         for (String name: validNames) {
             astChild.setText(name);
@@ -411,12 +403,12 @@ public class JavadocTagInfoTest {
     @Test
     public void testCoverage() {
         assertWithMessage("Invalid type")
-            .that(JavadocTagInfo.VERSION.getType())
-            .isEqualTo(JavadocTagInfo.Type.BLOCK);
+                .that(JavadocTagInfo.VERSION.getType())
+                .isEqualTo(JavadocTagInfo.Type.BLOCK);
 
         assertWithMessage("Invalid toString result")
-            .that(JavadocTagInfo.VERSION.toString())
-            .isEqualTo("text [@version] name [version] type [BLOCK]");
+                .that(JavadocTagInfo.VERSION.toString())
+                .isEqualTo("text [@version] name [version] type [BLOCK]");
 
         try {
             JavadocTagInfo.fromName(null);
@@ -424,8 +416,8 @@ public class JavadocTagInfoTest {
         }
         catch (IllegalArgumentException ex) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
-                .isEqualTo("the name is null");
+                    .that(ex.getMessage())
+                    .isEqualTo("the name is null");
         }
 
         try {
@@ -434,8 +426,8 @@ public class JavadocTagInfoTest {
         }
         catch (IllegalArgumentException ex) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
-                .isEqualTo("the name [myname] is not a valid Javadoc tag name");
+                    .that(ex.getMessage())
+                    .isEqualTo("the name [myname] is not a valid Javadoc tag name");
         }
 
         try {
@@ -444,8 +436,8 @@ public class JavadocTagInfoTest {
         }
         catch (IllegalArgumentException ex) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
-                .isEqualTo("the text is null");
+                    .that(ex.getMessage())
+                    .isEqualTo("the text is null");
         }
 
         try {
@@ -454,13 +446,13 @@ public class JavadocTagInfoTest {
         }
         catch (IllegalArgumentException ex) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
-                .isEqualTo("the text [myname] is not a valid Javadoc tag text");
+                    .that(ex.getMessage())
+                    .isEqualTo("the text [myname] is not a valid Javadoc tag text");
         }
 
         assertWithMessage("Invalid fromText result")
-            .that(JavadocTagInfo.fromText("@version"))
-            .isEqualTo(JavadocTagInfo.VERSION);
+                .that(JavadocTagInfo.fromText("@version"))
+                .isEqualTo(JavadocTagInfo.VERSION);
     }
 
 }
