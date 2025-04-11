@@ -1095,27 +1095,12 @@ public final class JavadocTokenTypes {
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
-     * JAVADOC -> JAVADOC
-     *  |--NEWLINE -> \r\n
-     *  |--LEADING_ASTERISK ->  *
-     *  |--TEXT ->
-     *  |--HTML_ELEMENT -> HTML_ELEMENT
-     *  |   `--HTML_TAG -> HTML_TAG
-     *  |       |--HTML_ELEMENT_START -> HTML_ELEMENT_START
-     *  |       |   |--START -> <
-     *  |       |   |--HTML_TAG_NAME -> tag_name
-     *  |       |   |--WS ->
-     *  |       |   |--ATTRIBUTE -> ATTRIBUTE
-     *  |       |   |   |--HTML_TAG_NAME -> attr_name
-     *  |       |   |   |--EQUALS -> =
-     *  |       |   |   `--ATTR_VALUE -> "attr_value"
-     *  |       |   `--END -> >
-     *  |       |--TEXT -> Content
-     *  |       `--HTML_ELEMENT_END -> HTML_ELEMENT_END
-     *  |           |--START -> <
-     *  |           |--SLASH -> /
-     *  |           |--HTML_TAG_NAME -> tag_name
-     *  |           `--END -> >
+     *    `--JAVADOC -> JAVADOC
+     *        |--NEWLINE -> \r\n
+     *        |--LEADING_ASTERISK ->  *
+     *        |--TEXT ->  &lt;tag_name attr_name="attr_value">Content&lt;/
+     *        |--NEWLINE -> \r\n
+     *        |--TEXT ->
      * }</pre>
      */
     public static final int ATTR_VALUE = JavadocParser.ATTR_VALUE;
@@ -1858,6 +1843,7 @@ public final class JavadocTokenTypes {
     /**
      * Newline symbol - '\n'.
      */
+
     public static final int NEWLINE = JavadocParser.NEWLINE;
 
     /**
