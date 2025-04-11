@@ -37,6 +37,9 @@ import java.util.stream.Collectors;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
+import org.checkerframework.checker.formatter.qual.ConversionCategory;
+import org.checkerframework.checker.formatter.qual.Format;
+
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -117,7 +120,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
     /**
      * Format for exception message for missing default value for check property.
      */
-    private static final String PROP_DEFAULT_VALUE_MISSING =
+    private static final @Format(ConversionCategory.GENERAL) String PROP_DEFAULT_VALUE_MISSING =
         "Default value for property '%s' is missing";
 
     /** ModuleDetails instance for each module AST traversal. */
