@@ -412,7 +412,7 @@
     </module>
     <module name="SingleLineJavadoc"/>
     <module name="EmptyCatchBlock">
-      <property name="exceptionVariableName" value="expected"/>
+      <property name="exceptionVariableName" value="expected.*"/>
     </module>
     <module name="CommentsIndentation">
       <property name="tokens" value="SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN"/>

@@ -2001,6 +2001,12 @@
                   <a href="checks/blocks/emptycatchblock.html#EmptyCatchBlock">EmptyCatchBlock</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyCatchBlock">
                   config</a>)
+                  <br />
+                  <br />
+                  Currently, ignored catch blocks skip the comment check if the
+                  exception variable is named "expected", regardless of method type.
+                  However, according to the rule, this exemption should apply only
+                  in test methods, which we don't yet differentiate in Checkstyle
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter6programpractice/rule62donotignoreexceptions">
