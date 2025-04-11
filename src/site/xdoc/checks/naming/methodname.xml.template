@@ -45,7 +45,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters, digits, and underscores is:
@@ -60,7 +60,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           An example of how to configure the check to allow method names to be equal to the
           residing class name is:
@@ -75,7 +75,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           An example of how to configure the check to disallow method names to be equal to the
           residing class name is:
@@ -90,7 +90,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example4.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example5-config">
           An example of how to suppress the check to public and protected methods:
         </p>

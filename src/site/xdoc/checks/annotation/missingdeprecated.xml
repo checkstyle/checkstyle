@@ -106,8 +106,7 @@ class Example1 {
   @Deprecated
   public static final int CONST = 12; // ok
 }
-</code></pre></div>
-
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check such that it prints violation
           messages if tight HTML rules are not obeyed

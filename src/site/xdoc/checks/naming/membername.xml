@@ -94,7 +94,7 @@ class Example1 {
   private int NUM4; // violation 'Name 'NUM4' must match pattern'
 
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with
           <code>&quot;m&quot;</code>, followed by an upper case letter, and then letters
@@ -123,7 +123,7 @@ class Example2 {
   private int num4; // violation 'Name 'num4' must match pattern'
 
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           An example of how to suppress the check which is applied to
           public and private member:

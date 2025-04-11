@@ -50,7 +50,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To ensure that summary does not contain phrase like "This method returns", use
           following config:
@@ -65,7 +65,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To specify period symbol at the end of first javadoc sentence:
         </p>
