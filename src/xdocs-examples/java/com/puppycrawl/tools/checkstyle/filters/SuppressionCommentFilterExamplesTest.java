@@ -37,7 +37,7 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
             "32:5: Catching 'Exception' is not allowed.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
@@ -51,7 +51,7 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
             "43:5: Catching 'Error' is not allowed.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
@@ -65,7 +65,7 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
             "44:5: Catching 'Error' is not allowed.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
@@ -76,7 +76,7 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
             "36:5: Catching 'Exception' is not allowed.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
@@ -88,7 +88,7 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
             "37:5: Catching 'Exception' is not allowed.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 
     @Test
@@ -99,7 +99,7 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
             "41:5: Catching 'Exception' is not allowed.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 
     @Test
@@ -109,7 +109,7 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
             "25:27: Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 
     @Test
@@ -123,6 +123,6 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
             "40:5: Catching 'Error' is not allowed.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example8.java"), expected);
     }
 }
