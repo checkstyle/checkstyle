@@ -269,6 +269,19 @@ public class XpathFileGeneratorAuditListenerTest {
             .isEqualTo(0);
     }
 
+    @Test
+    public void testNoCloseStreamTwo() {
+        final XpathFileGeneratorAuditListener listener =
+                new XpathFileGeneratorAuditListener(outStream, null);
+        listener.finishLocalSetup();
+        listener.auditStarted(null);
+        listener.auditFinished(null);
+
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(0);
+    }
+
     private AuditEvent createAuditEvent(String fileName, int lineNumber, int columnNumber,
                                         Class<?> sourceClass) {
         final Violation violation =
