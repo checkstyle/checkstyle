@@ -19,11 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck.MSG_KEY;
+
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck.MSG_KEY;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NoWhitespaceBeforeCheckTest extends AbstractModuleTestSupport {
 
@@ -33,211 +35,299 @@ public class NoWhitespaceBeforeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    @Disabled // make work then replace with #testInputNoWhitespaceBefore22
-    public void testInputNoWhitespaceBefore() throws Exception {
+    public void testDefault() throws Exception {
+        final String[] expected = {
+            "34:15: " + getCheckMessage(MSG_KEY, "++"),
+            "34:22: " + getCheckMessage(MSG_KEY, "--"),
+            "180:19: " + getCheckMessage(MSG_KEY, ";"),
+            "182:24: " + getCheckMessage(MSG_KEY, ";"),
+            "189:19: " + getCheckMessage(MSG_KEY, ";"),
+            "191:28: " + getCheckMessage(MSG_KEY, ";"),
+            "199:27: " + getCheckMessage(MSG_KEY, ";"),
+            "215:16: " + getCheckMessage(MSG_KEY, ";"),
+            "270:1: " + getCheckMessage(MSG_KEY, ";"),
+            "274:16: " + getCheckMessage(MSG_KEY, ";"),
+            "288:1: " + getCheckMessage(MSG_KEY, ";"),
+            "291:62: " + getCheckMessage(MSG_KEY, "..."),
+            "295:16: " + getCheckMessage(MSG_KEY, ":"),
+        };
         verifyWithInlineConfigParser(
-            getPath("InputNoWhitespaceBefore.java"), new String[] {
-                "11:13: " + getCheckMessage(MSG_KEY, ".")
-            });
-    }
-    @Test
-    @Disabled
-    public void testMethodCallViolations() throws Exception {
-        verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "19:13: " + getCheckMessage(MSG_KEY, "."),
-                        "20:13: " + getCheckMessage(MSG_KEY, "."),
-                        "21:13: " + getCheckMessage(MSG_KEY, "."),
-                        "22:13: " + getCheckMessage(MSG_KEY, "."),
-                        "23:13: " + getCheckMessage(MSG_KEY, "."),
-                        "24:13: " + getCheckMessage(MSG_KEY, "."),
-                        "25:13: " + getCheckMessage(MSG_KEY, ".")
-                });
+                getPath("InputNoWhitespaceBeforeDefault.java"), expected);
     }
 
     @Test
-    @Disabled
-    public void testVarAssignmentViolations() throws Exception {
+    public void testDot() throws Exception {
+        final String[] expected = {
+            "9:13: " + getCheckMessage(MSG_KEY, "."),
+            "10:5: " + getCheckMessage(MSG_KEY, "."),
+            "133:18: " + getCheckMessage(MSG_KEY, "."),
+            "139:13: " + getCheckMessage(MSG_KEY, "."),
+            "140:11: " + getCheckMessage(MSG_KEY, "."),
+            "268:1: " + getCheckMessage(MSG_KEY, "."),
+        };
         verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "32:13: " + getCheckMessage(MSG_KEY, "."),
-                        "33:13: " + getCheckMessage(MSG_KEY, "."),
-                        "34:13: " + getCheckMessage(MSG_KEY, ".")
-                });
+                getPath("InputNoWhitespaceBeforeDot.java"), expected);
     }
 
     @Test
-    @Disabled
-    public void testVarDeclarationViolations() throws Exception {
+    public void testDotAllowLineBreaks() throws Exception {
+        final String[] expected = {
+            "9:13: " + getCheckMessage(MSG_KEY, "."),
+            "133:18: " + getCheckMessage(MSG_KEY, "."),
+            "140:11: " + getCheckMessage(MSG_KEY, "."),
+        };
         verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "45:13: " + getCheckMessage(MSG_KEY, "."),
-                        "46:13: " + getCheckMessage(MSG_KEY, "."),
-                        "47:13: " + getCheckMessage(MSG_KEY, "."),
-                        "48:13: " + getCheckMessage(MSG_KEY, "."),
-                        "49:13: " + getCheckMessage(MSG_KEY, "."),
-                        "50:13: " + getCheckMessage(MSG_KEY, ".")
-                });
+                getPath("InputNoWhitespaceBeforeDotAllowLineBreaks.java"), expected);
     }
 
     @Test
-    @Disabled
-    public void testArrayAccessViolations() throws Exception {
+    public void testMethodReference() throws Exception {
+        final String[] expected = {
+            "25:32: " + getCheckMessage(MSG_KEY, "::"),
+            "26:61: " + getCheckMessage(MSG_KEY, "::"),
+        };
         verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "60:13: " + getCheckMessage(MSG_KEY, "."),
-                        "61:13: " + getCheckMessage(MSG_KEY, "."),
-                        "62:13: " + getCheckMessage(MSG_KEY, ".")
-                });
+                getPath("InputNoWhitespaceBeforeMethodRef.java"), expected);
     }
 
     @Test
-    @Disabled
-    public void testGenericsViolations() throws Exception {
+    public void testDotAtTheStartOfTheLine() throws Exception {
+        final String[] expected = {
+            "10:1: " + getCheckMessage(MSG_KEY, "."),
+        };
         verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "68:13: " + getCheckMessage(MSG_KEY, "."),
-                        "69:13: " + getCheckMessage(MSG_KEY, ".")
-                });
+                getPath("InputNoWhitespaceBeforeAtStartOfTheLine.java"), expected);
     }
 
     @Test
-    @Disabled
-    public void testLambdaViolations() throws Exception {
+    public void testMethodRefAtTheStartOfTheLine() throws Exception {
+        final String[] expected = {
+            "22:3: " + getCheckMessage(MSG_KEY, "::"),
+        };
         verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "76:13: " + getCheckMessage(MSG_KEY, ".")
-                });
+                getPath("InputNoWhitespaceBeforeAtStartOfTheLine2.java"), expected);
     }
 
     @Test
-    @Disabled
-    public void testMethodReferenceViolations() throws Exception {
+    public void testEmptyForLoop() throws Exception {
+        final String[] expected = {
+            "20:24: " + getCheckMessage(MSG_KEY, ";"),
+            "26:32: " + getCheckMessage(MSG_KEY, ";"),
+        };
         verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "84:13: " + getCheckMessage(MSG_KEY, ".")
-                });
+                getPath("InputNoWhitespaceBeforeEmptyForLoop.java"), expected);
     }
 
     @Test
-    @Disabled
-    public void testNestedCallsViolations() throws Exception {
+    public void testNoWhitespaceBeforeTextBlocksWithTabIndent() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
         verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "92:13: " + getCheckMessage(MSG_KEY, "."),
-                        "93:13: " + getCheckMessage(MSG_KEY, ".")
-                });
+                getNonCompilablePath("InputNoWhitespaceBeforeTextBlocksTabIndent.java"), expected);
     }
 
     @Test
-    @Disabled
-    public void testMultipleDotsViolations() throws Exception {
+    public void testNoWhitespaceBeforeWithEmoji() throws Exception {
+        final String[] expected = {
+            "13:15: " + getCheckMessage(MSG_KEY, ","),
+            "14:17: " + getCheckMessage(MSG_KEY, ","),
+            "20:37: " + getCheckMessage(MSG_KEY, ";"),
+            "21:37: " + getCheckMessage(MSG_KEY, ";"),
+        };
+
         verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "100:13: " + getCheckMessage(MSG_KEY, "."),
-                        "101:13: " + getCheckMessage(MSG_KEY, ".")
-                });
+                getPath("InputNoWhitespaceBeforeWithEmoji.java"), expected);
     }
 
-    @Test
-    @Disabled
-    public void testWithOtherOperatorsViolations() throws Exception {
-        verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "108:13: " + getCheckMessage(MSG_KEY, ".")
-                });
-    }
+    @Nested
+    class NextGeneration {
 
-    @Test
-    @Disabled
-    public void testInControlStructuresViolations() throws Exception {
-        verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "116:13: " + getCheckMessage(MSG_KEY, "."),
-                        "120:13: " + getCheckMessage(MSG_KEY, ".")
+        @Test
+        public void testDefaultCheck() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "25:16: " + getCheckMessage(MSG_KEY, ":"),
+                    "26:16: " + getCheckMessage(MSG_KEY, ":"),
+                    "27:16: " + getCheckMessage(MSG_KEY, ":"),
+                    "28:16: " + getCheckMessage(MSG_KEY, ":"),
+                    "29:16: " + getCheckMessage(MSG_KEY, ":"),
+                    "30:16: " + getCheckMessage(MSG_KEY, ":"),
+                    "31:16: " + getCheckMessage(MSG_KEY, ":"),
+                    "32:16: " + getCheckMessage(MSG_KEY, ":"),
+                    "33:16: " + getCheckMessage(MSG_KEY, ":"),
+                    "34:16: " + getCheckMessage(MSG_KEY, ":"),
+                    "35:16: " + getCheckMessage(MSG_KEY, ":"),
+                    "36:16: " + getCheckMessage(MSG_KEY, ":"),
+                    "37:16: " + getCheckMessage(MSG_KEY, ":"),
+                    "38:16: " + getCheckMessage(MSG_KEY, ":"),
+                    "39:16: " + getCheckMessage(MSG_KEY, ":"),
                 });
-    }
+        }
 
-    @Test
-    @Disabled
-    public void testInTryCatchViolations() throws Exception {
-        verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "128:13: " + getCheckMessage(MSG_KEY, ".")
+        @Test
+        public void testSpaceViolationVarAssignment() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "49:31: " + getCheckMessage(MSG_KEY, "."),
+                    "50:31: " + getCheckMessage(MSG_KEY, "."),
+                    "51:31: " + getCheckMessage(MSG_KEY, "."),
                 });
-    }
+        }
 
-    @Test
-    @Disabled
-    public void testInAnnotationsViolations() throws Exception {
-        verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "136:13: " + getCheckMessage(MSG_KEY, ".")
+        @Test
+        public void testSpaceViolationVarDeclaration() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "62:31: " + getCheckMessage(MSG_KEY, "."),
+                    "63:31: " + getCheckMessage(MSG_KEY, "."),
+                    "64:31: " + getCheckMessage(MSG_KEY, "."),
+                    "65:31: " + getCheckMessage(MSG_KEY, "."),
+                    "66:31: " + getCheckMessage(MSG_KEY, "."),
+                    "67:31: " + getCheckMessage(MSG_KEY, "."),
                 });
-    }
+        }
 
-    @Test
-    @Disabled
-    public void testInTypeCastViolations() throws Exception {
-        verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "144:13: " + getCheckMessage(MSG_KEY, ".")
+        @Test
+        public void testArrayAccess() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "78:31: " + getCheckMessage(MSG_KEY, "["),
+                    "79:31: " + getCheckMessage(MSG_KEY, "["),
+                    "80:31: " + getCheckMessage(MSG_KEY, "["),
                 });
-    }
+        }
 
-    @Test
-    @Disabled
-    public void testInSwitchViolations() throws Exception {
-        verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "152:13: " + getCheckMessage(MSG_KEY, ".")
+        @Test
+        public void testGenerics() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "91:31: " + getCheckMessage(MSG_KEY, "."),
+                    "92:31: " + getCheckMessage(MSG_KEY, "."),
                 });
-    }
+        }
 
-    @Test
-    @Disabled
-    public void testInSynchronizedViolations() throws Exception {
-        verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "160:13: " + getCheckMessage(MSG_KEY, ".")
+        @Test
+        public void testLambda() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "101:31: " + getCheckMessage(MSG_KEY, "."),
                 });
-    }
+        }
 
-    @Test
-    @Disabled
-    public void testInAssertViolations() throws Exception {
-        verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "168:13: " + getCheckMessage(MSG_KEY, ".")
+        @Test
+        public void testMethodReference() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "110:31: " + getCheckMessage(MSG_KEY, ":"),
                 });
-    }
+        }
 
-    @Test
-    @Disabled
-    public void testInReturnViolations() throws Exception {
-        verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "176:13: " + getCheckMessage(MSG_KEY, ".")
+        @Test
+        public void testNestedCalls() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "122:31: " + getCheckMessage(MSG_KEY, "."),
+                    "123:31: " + getCheckMessage(MSG_KEY, "("),
                 });
-    }
+        }
 
-    @Test
-    @Disabled
-    public void testInThrowViolations() throws Exception {
-        verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "184:13: " + getCheckMessage(MSG_KEY, ".")
+        @Test
+        public void testMultipleDots() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "134:31: " + getCheckMessage(MSG_KEY, "."),
+                    "135:31: " + getCheckMessage(MSG_KEY, "."),
                 });
-    }
+        }
 
-    @Test
-    @Disabled
-    public void testInArrayInitializerViolations() throws Exception {
-        verifyWithInlineConfigParser(
-                getPath("InputNoWhitespaceBefore22.java"), new String[]{
-                        "192:13: " + getCheckMessage(MSG_KEY, "."),
-                        "193:13: " + getCheckMessage(MSG_KEY, ".")
+        @Test
+        public void testWithOtherOperators() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "145:31: " + getCheckMessage(MSG_KEY, "."),
                 });
+        }
+
+        @Test
+        public void testInControlStructures() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "156:31: " + getCheckMessage(MSG_KEY, "."),
+                });
+        }
+
+        @Test
+        public void testInTryCatch() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "177:31: " + getCheckMessage(MSG_KEY, "."),
+                });
+        }
+
+        @Test
+        public void testInAnnotations() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "189:31: " + getCheckMessage(MSG_KEY, "."),
+                });
+        }
+
+        @Test
+        public void testInTypeCast() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "201:31: " + getCheckMessage(MSG_KEY, "."),
+                });
+        }
+
+        @Test
+        public void testInSwitch() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "213:31: " + getCheckMessage(MSG_KEY, "."),
+                });
+        }
+
+        @Test
+        public void testInSynchronized() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "227:31: " + getCheckMessage(MSG_KEY, "."),
+                });
+        }
+
+        @Test
+        public void testInAssert() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "238:31: " + getCheckMessage(MSG_KEY, "."),
+                });
+        }
+
+        @Test
+        public void testInReturn2() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "249:31: " + getCheckMessage(MSG_KEY, "."),
+                });
+        }
+
+        @Test
+        public void testInThrow2() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "260:31: " + getCheckMessage(MSG_KEY, "."),
+                });
+        }
+
+        @Test
+        public void testInArrayInitializer() throws Exception {
+            verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeDefaultNextGeneration.java"), new String[] {
+                    "269:31: " + getCheckMessage(MSG_KEY, "."),
+                });
+        }
     }
 
 }

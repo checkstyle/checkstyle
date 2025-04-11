@@ -1,42 +1,57 @@
 /*
 NoWhitespaceBefore
+allowLineBreaks = (default)false
+tokens = (default)COMMA, SEMI, POST_INC, POST_DEC, ELLIPSIS, LABELED_STAT
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebefore;
 
-class InputNoWhitespaceBefore22 {
-
-    Boolean equals;
-
-    public void testSpaceViolationMethodCall() {
+/**
+ * Class for testing whitespace issues.
+ * violation missing author tag
+ **/
+class InputNoWhitespaceBeforeDefaultNextGeneration
+{
+    public void test() {
         // Valid cases
         " ".equals("");
         "".equals(" ");
         "".equals("");
 
         // Violations
-         "".equals(""); // violation is preceded with whitespace.
-        "" .equals(""); // violation is preceded with whitespace.
-        "". equals(""); // violation is preceded with whitespace.
-        "".equals (""); // violation is preceded with whitespace.
-        "".equals( ""); // violation is preceded with whitespace.
-        "".equals("" ); // violation is preceded with whitespace.
-        "".equals("") ; // violation is preceded with whitespace.
+        "".equals("");
+        "".equals(""  + ""); // violation
+        "".equals("" +  ""); // violation
+         System.out.println(""); // violation
+        System .out.println(""); // violation
+        System. out.println(""); // violation
+        System.out .println(""); // violation
+        System.out. println(""); // violation
+        System.out. println(""); // violation
+        System.out.println (""); // violation
+        "" .equals(""); // violation
+        "". equals(""); // violation
+        "".equals (""); // violation
+        "".equals( ""); // violation
+        "".equals("" ); // violation
+        "".equals("") ; // violation
     }
 
+    /** Test variable assignment violations */
     public void testSpaceViolationVarAssignment() {
         // Valid
-        equals = " ".equals("");
-        equals = "".equals("");
+        boolean eq1 = " ".equals("");
+        boolean eq2 = "".equals("");
 
         // Violations
-         equals = "".equals(""); // violation is preceded with whitespace.
-        equals  = "".equals(""); // violation is preceded with whitespace.
-        equals =  "".equals(""); // violation is preceded with whitespace.
+        eq2 = "".equals(""); // violation
+        eq2  = "".equals(""); // violation
+        eq2 =  "".equals(""); // violation
     }
 
+    /** Test variable declaration violations */
     public void testSpaceViolationVarDeclaration() {
         // Valid
         boolean e = "".equals("");
@@ -44,25 +59,15 @@ class InputNoWhitespaceBefore22 {
         e3 = "".equals("");
 
         // Violations
-         boolean e4 = "".equals(""); // violation is preceded with whitespace.
-        boolean e1  = "".equals(""); // violation is preceded with whitespace.
-        boolean  e2 = "".equals(""); // violation is preceded with whitespace.
-         e3 = "".equals(""); // violation is preceded with whitespace.
-        e3  = "".equals(""); // violation is preceded with whitespace.
-        e3 =  "".equals(""); // violation is preceded with whitespace.
+        boolean e4 = "".equals(""); // violation
+        boolean e1  = "".equals(""); // violation
+        boolean  e2 = "".equals(""); // violation
+        e3 = "".equals(""); // violation
+        e3  = "".equals(""); // violation
+        e3 =  "".equals(""); // violation
     }
 
-    public void testSpaceViolationTab() {
-        // Valid
-        "".equals("");
-
-        // Violations (with tabs)
-        "".equals(""); // violation is preceded with whitespace.
-        "".equals(""); // violation is preceded with whitespace.
-    }
-
-
-    // Additional test cases with valid/invalid pattern
+    /** Test array access violations */
     public void testArrayAccess() {
         int[] arr = new int[10];
 
@@ -70,11 +75,12 @@ class InputNoWhitespaceBefore22 {
         int a = arr[0];
 
         // Violations
-        int x = arr [0]; // violation is preceded with whitespace.
-        int y = arr[ 0]; // violation is preceded with whitespace.
-        int z = arr [ 0]; // violation is preceded with whitespace.
+        int x = arr [0]; // violation
+        int y = arr[ 0]; // violation
+        int z = arr[0]; // violation
     }
 
+    /** Test generics violations */
     public void testGenerics() {
         java.util.List<String> list = new java.util.ArrayList<>();
 
@@ -82,26 +88,29 @@ class InputNoWhitespaceBefore22 {
         list.add("test");
 
         // Violations
-        list .add("test"); // violation is preceded with whitespace.
-        list. add("test"); // violation is preceded with whitespace.
+        list .add("test"); // violation
+        list. add("test"); // violation
     }
 
+    /** Test lambda violations */
     public void testLambda() {
         // Valid
         Runnable r = () -> System.out.println();
 
         // Violation
-        Runnable r2 = () -> System.out .println(); // violation is preceded with whitespace.
+        Runnable r2 = () -> System.out .println(); // violation
     }
 
+    /** Test method reference violations */
     public void testMethodReference() {
         // Valid
         java.util.function.Function<String, String> f1 = String::valueOf;
 
         // Violation
-        java.util.function.Function<String, String> f2 = String ::valueOf; // violation is preceded with whitespace.
+        java.util.function.Function<String, String> f2 = String ::valueOf; // violation
     }
 
+    /** Test nested calls violations */
     public void testNestedCalls() {
         String s = "hello";
 
@@ -110,10 +119,11 @@ class InputNoWhitespaceBefore22 {
         s.substring(1).trim();
 
         // Violations
-        s.substring(1). trim(); // violation is preceded with whitespace.
-        s.substring(1 ).trim(); // violation is preceded with whitespace.
+        s.substring(1). trim(); // violation
+        s.substring(1 ).trim(); // violation
     }
 
+    /** Test multiple dots violations */
     public void testMultipleDots() {
         String s = "hello";
 
@@ -121,19 +131,21 @@ class InputNoWhitespaceBefore22 {
         s.substring(1).substring(1).substring(1);
 
         // Violations
-        s.substring(1).substring(1). substring(1); // violation is preceded with whitespace.
-        s.substring(1) .substring(1).substring(1); // violation is preceded with whitespace.
+        s.substring(1).substring(1). substring(1); // violation
+        s.substring(1) .substring(1).substring(1); // violation
     }
 
+    /** Test with other operators */
     public void testWithOtherOperators() {
         // Valid
         String s1 = "a" + "b".toString();
         int x = 1 + 2 * 3;
 
         // Violation
-        String s2 = "a" + "b". toString(); // violation is preceded with whitespace.
+        String s2 = "a" + "b". toString(); // violation
     }
 
+    /** Test in control structures */
     public void testInControlStructures() {
         // Valid
         if ("test".equals("test")) {
@@ -141,7 +153,7 @@ class InputNoWhitespaceBefore22 {
         }
 
         // Violations
-        if ("test". equals("test")) { // violation is preceded with whitespace.
+        if ("test". equals("test")) { // violation
             System.out.println();
         }
 
@@ -150,6 +162,7 @@ class InputNoWhitespaceBefore22 {
         }
     }
 
+    /** Test in try-catch */
     public void testInTryCatch() {
         // Valid
         try {
@@ -161,21 +174,23 @@ class InputNoWhitespaceBefore22 {
         // Violation
         try {
             // do something
-        } catch (Exception e ) { // violation is preceded with whitespace.
+        } catch (Exception e ) { // violation
             // handle
         }
     }
 
+    /** Test in annotations */
     public void testInAnnotations() {
         // Valid
         @SuppressWarnings("unchecked")
         Object o1 = new Object();
 
         // Violation
-        @SuppressWarnings ("unchecked") // violation is preceded with whitespace.
+        @SuppressWarnings ("unchecked") // violation
         Object o2 = new Object();
     }
 
+    /** Test in type cast */
     public void testInTypeCast() {
         Object o = "test";
 
@@ -183,9 +198,10 @@ class InputNoWhitespaceBefore22 {
         String s1 = (String) o;
 
         // Violation
-        String s2 = (String ) o; // violation is preceded with whitespace.
+        String s2 = (String ) o; // violation
     }
 
+    /** Test in switch */
     public void testInSwitch() {
         // Valid
         switch (1) {
@@ -194,12 +210,13 @@ class InputNoWhitespaceBefore22 {
         }
 
         // Violation
-        switch (1 ) { // violation is preceded with whitespace.
+        switch (1 ) { // violation
             case 1:
                 break;
         }
     }
 
+    /** Test in synchronized */
     public void testInSynchronized() {
         // Valid
         synchronized (this) {
@@ -207,28 +224,32 @@ class InputNoWhitespaceBefore22 {
         }
 
         // Violation
-        synchronized (this ) { // violation is preceded with whitespace.
+        synchronized (this ) { // violation
             // do something
         }
     }
 
+    /** Test in assert */
     public void testInAssert() {
         // Valid
         assert true : "message";
 
         // Violation
-        assert true : "message" ; // violation is preceded with whitespace.
+        assert true : "message" ; // violation
     }
 
+    /** Test in return */
     public void testInReturn() {
         // Valid (no return value)
         return;
     }
+
     public void testInReturn2() {
         // Violation
-        return ; // violation is preceded with whitespace.
+        return ; // violation
     }
 
+    /** Test in throw */
     public void testInThrow() throws Exception {
         // Valid
         throw new Exception();
@@ -236,14 +257,15 @@ class InputNoWhitespaceBefore22 {
 
     public void testInThrow2() throws Exception {
         // Violation
-        throw new Exception() ; // violation is preceded with whitespace.
+        throw new Exception() ; // violation
     }
 
+    /** Test in array initializer */
     public void testInArrayInitializer() {
         // Valid
         int[] arr1 = new int[] {1, 2, 3};
 
         // Violation
-        int[] arr2 = new int[] {1, 2, 3 } ; // violation is preceded with whitespace.
+        int[] arr2 = new int[] {1, 2, 3 } ; // violation
     }
 }
