@@ -48,7 +48,6 @@ section p {
   position: relative;
   top: 0;
   left: 40px;
-
 }
 
 #bannerLeft h1 {
@@ -232,12 +231,7 @@ pre {
   margin: 3px 0;
 }
 
-#bodyColumn {
-  margin-left: 286px;
-}
-
 #leftColumn {
-  min-width: 250px;
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
