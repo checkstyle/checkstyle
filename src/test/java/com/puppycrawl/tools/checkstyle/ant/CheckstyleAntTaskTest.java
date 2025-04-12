@@ -19,23 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.ant;
 
-import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Optional;
-import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import com.google.common.truth.StandardSubjectBuilder;
+import com.puppycrawl.tools.checkstyle.*;
+import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckstyleAntTaskLogStub;
+import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckstyleAntTaskStub;
+import com.puppycrawl.tools.checkstyle.internal.testmodules.MessageLevelPair;
+import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Location;
 import org.apache.tools.ant.Project;
@@ -44,16 +33,17 @@ import org.apache.tools.ant.types.Path;
 import org.apache.tools.ant.types.resources.FileResource;
 import org.junit.jupiter.api.Test;
 
-import com.google.common.truth.StandardSubjectBuilder;
-import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultLogger;
-import com.puppycrawl.tools.checkstyle.Definitions;
-import com.puppycrawl.tools.checkstyle.SarifLogger;
-import com.puppycrawl.tools.checkstyle.XMLLogger;
-import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckstyleAntTaskLogStub;
-import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckstyleAntTaskStub;
-import com.puppycrawl.tools.checkstyle.internal.testmodules.MessageLevelPair;
-import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
@@ -454,7 +444,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         final File outputFile = new File("target/ant_task_plain_output.txt");
-        formatter.setTofile(outputFile);
+        formatter.setTarget(outputFile);
         final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
         formatterType.setValue("plain");
         formatter.setType(formatterType);
@@ -499,7 +489,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         final File outputFile = new File("target/ant_task_config_by_url.txt");
-        formatter.setTofile(outputFile);
+        formatter.setTarget(outputFile);
         final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
         formatterType.setValue("plain");
         formatter.setType(formatterType);
@@ -524,7 +514,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         final File outputFile = new File("target/ant_task_config_by_url.txt");
-        formatter.setTofile(outputFile);
+        formatter.setTarget(outputFile);
         final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
         formatterType.setValue("plain");
         formatter.setType(formatterType);
@@ -591,7 +581,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setFailOnViolation(false);
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         final File outputFile = new File("target/log.xml");
-        formatter.setTofile(outputFile);
+        formatter.setTarget(outputFile);
         final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
         formatterType.setValue("xml");
         formatter.setType(formatterType);
@@ -618,7 +608,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setFailOnViolation(false);
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         final File outputFile = new File("target/log.sarif");
-        formatter.setTofile(outputFile);
+        formatter.setTarget(outputFile);
         final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
         formatterType.setValue("sarif");
         formatter.setType(formatterType);
@@ -654,7 +644,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         final File outputFile = new File("target/");
-        formatter.setTofile(outputFile);
+        formatter.setTarget(outputFile);
         antTask.addFormatter(formatter);
         final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
@@ -671,7 +661,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         final File outputFile = new File("target/");
-        formatter.setTofile(outputFile);
+        formatter.setTarget(outputFile);
         final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
         formatterType.setValue("xml");
         formatter.setType(formatterType);
@@ -690,7 +680,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         final File outputFile = new File("target/");
-        formatter.setTofile(outputFile);
+        formatter.setTarget(outputFile);
         final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
         formatterType.setValue("sarif");
         formatter.setType(formatterType);
@@ -737,7 +727,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     public void testDefaultLoggerListenerWithToFile() throws IOException {
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         formatter.setUseFile(false);
-        formatter.setTofile(new File("target/"));
+        formatter.setTarget(new File("target/"));
         assertWithMessage("Listener instance has unexpected type")
                 .that(formatter.createListener(null))
                 .isInstanceOf(DefaultLogger.class);
@@ -762,7 +752,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         formatter.setType(formatterType);
         formatter.setUseFile(false);
-        formatter.setTofile(new File("target/"));
+        formatter.setTarget(new File("target/"));
         assertWithMessage("Listener instance has unexpected type")
                 .that(formatter.createListener(null))
                 .isInstanceOf(XMLLogger.class);
@@ -771,7 +761,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     @Test
     public void testDefaultLoggerWithNullToFile() throws IOException {
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
-        formatter.setTofile(null);
+        formatter.setTarget(null);
         assertWithMessage("Listener instance has unexpected type")
             .that(formatter.createListener(null))
             .isInstanceOf(DefaultLogger.class);
@@ -783,7 +773,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         formatterType.setValue("xml");
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         formatter.setType(formatterType);
-        formatter.setTofile(null);
+        formatter.setTarget(null);
         assertWithMessage("Listener instance has unexpected type")
             .that(formatter.createListener(null))
             .isInstanceOf(XMLLogger.class);
@@ -808,7 +798,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         formatter.setType(formatterType);
         formatter.setUseFile(false);
-        formatter.setTofile(new File("target/"));
+        formatter.setTarget(new File("target/"));
         assertWithMessage("Listener instance has unexpected type")
                 .that(formatter.createListener(null))
                 .isInstanceOf(SarifLogger.class);
@@ -820,7 +810,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         formatterType.setValue("sarif");
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         formatter.setType(formatterType);
-        formatter.setTofile(null);
+        formatter.setTarget(null);
         assertWithMessage("Listener instance has unexpected type")
                 .that(formatter.createListener(null))
                 .isInstanceOf(SarifLogger.class);
