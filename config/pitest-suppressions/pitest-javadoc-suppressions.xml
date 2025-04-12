@@ -2,7 +2,16 @@
 <suppressedMutations>
   <mutation unstable="false">
     <sourceFile>JavadocTagInfo.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo$11</mutatedClass>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo$10</mutatedClass>
+    <mutatedMethod>isValidOn</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>return astType == TokenTypes.METHOD_DEF</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocTagInfo.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo$13</mutatedClass>
     <mutatedMethod>isValidOn</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
     <description>removed conditional - replaced equality check with true</description>
@@ -15,21 +24,12 @@
     <mutatedMethod>isValidOn</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
     <description>removed conditional - replaced equality check with true</description>
-    <lineContent>return astType == TokenTypes.METHOD_DEF</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>JavadocTagInfo.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo$15</mutatedClass>
-    <mutatedMethod>isValidOn</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
     <lineContent>&amp;&amp; varType.getFirstChild().getType() == TokenTypes.ARRAY_DECLARATOR</lineContent>
   </mutation>
 
   <mutation unstable="false">
     <sourceFile>JavadocTagInfo.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo$15</mutatedClass>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo$14</mutatedClass>
     <mutatedMethod>isValidOn</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
     <description>removed conditional - replaced equality check with true</description>
