@@ -1,5 +1,5 @@
 #!/bin/bash
-# Attention, there is no "-x" to avoid problems on Travis
+# Attention, this script is used with GitHub Actions
 set -e
 
 CODENARC_REPORT=$(groovy ./.ci/codenarc.groovy ./.ci/ *.groovy)
