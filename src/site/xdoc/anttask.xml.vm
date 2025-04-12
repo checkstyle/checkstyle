@@ -267,7 +267,7 @@
           </tr>
 
           <tr>
-            <td>toFile</td>
+            <td>target</td>
             <td>
               The file to write output to. Defaults to standard output. Note,
               there is no way to explicitly specify standard output.
@@ -395,8 +395,8 @@
 &lt;checkstyle config=&quot;docs/sun_checks.xml&quot;&gt;
   &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
   &lt;formatter type=&quot;plain&quot;/&gt;
-  &lt;formatter type=&quot;xml&quot; toFile=&quot;build/checkstyle_errors.xml&quot;/&gt;
-  &lt;formatter type=&quot;sarif&quot; toFile=&quot;build/checkstyle_errors.sarif&quot;/&gt;
+  &lt;formatter type=&quot;xml&quot; target=&quot;build/checkstyle_errors.xml&quot;/&gt;
+  &lt;formatter type=&quot;sarif&quot; target=&quot;build/checkstyle_errors.sarif&quot;/&gt;
 &lt;/checkstyle&gt;
       </code></pre></div>
 
@@ -426,7 +426,7 @@
   &lt;checkstyle config=&quot;docs/sun_checks.xml&quot;
               failureProperty=&quot;checkstyle.failure&quot;
               failOnViolation=&quot;false&quot;&gt;
-    &lt;formatter type=&quot;xml&quot; tofile=&quot;checkstyle_report.xml&quot;/&gt;
+    &lt;formatter type=&quot;xml&quot; target=&quot;checkstyle_report.xml&quot;/&gt;
     &lt;fileset dir=&quot;src&quot; includes=&quot;**/*.java&quot;/&gt;
   &lt;/checkstyle&gt;
 

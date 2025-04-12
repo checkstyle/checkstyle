@@ -32,6 +32,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
@@ -559,16 +560,12 @@ public class CheckstyleAntTask extends Task {
      * @return the list of files included via the filesets.
      */
     protected List<File> scanFileSets() {
-        final List<File> allFiles = new ArrayList<>();
-
-        for (int i = 0; i < fileSets.size(); i++) {
-            final FileSet fileSet = fileSets.get(i);
-            final DirectoryScanner scanner = fileSet.getDirectoryScanner(getProject());
-            final List<File> scannedFiles = retrieveAllScannedFiles(scanner, i);
-            allFiles.addAll(scannedFiles);
-        }
-
-        return allFiles;
+        return IntStream
+                .range(0, fileSets.size())
+                .mapToObj(i -> retrieveAllScannedFiles(
+                        fileSets.get(i).getDirectoryScanner(getProject()), i))
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -580,11 +577,15 @@ public class CheckstyleAntTask extends Task {
      * @return A list of files, retrieved from the given scanner.
      */
     private List<File> retrieveAllScannedFiles(DirectoryScanner scanner, int logIndex) {
-        final String[] fileNames = scanner.getIncludedFiles();
-        log(String.format(Locale.ROOT, "%d) Adding %d files from directory %s",
-            logIndex, fileNames.length, scanner.getBasedir()), Project.MSG_VERBOSE);
+        log(String.format(
+                Locale.ROOT,
+                "%d) Adding %d files from directory %s",
+                logIndex,
+                scanner.getIncludedFiles().length,
+                scanner.getBasedir()),
+            Project.MSG_VERBOSE);
 
-        return Arrays.stream(fileNames)
+        return Arrays.stream(scanner.getIncludedFiles())
             .map(name -> scanner.getBasedir() + File.separator + name)
             .map(File::new)
             .collect(Collectors.toUnmodifiableList());
@@ -613,8 +614,10 @@ public class CheckstyleAntTask extends Task {
         /** The formatter type. */
         private FormatterType type;
         /** The file to output to. */
-        private File toFile;
-        /** Whether or not to write to the named file. */
+        private File target;
+        /**
+         * whether or not to write to the named file.
+         */
         private boolean useFile = true;
 
         /**
@@ -629,10 +632,10 @@ public class CheckstyleAntTask extends Task {
         /**
          * Set the file to output to.
          *
-         * @param destination destination the file to output to
+         * @param target target the file to output to
          */
-        public void setTofile(File destination) {
-            toFile = destination;
+        public void setTarget(File target) {
+            this.target = target;
         }
 
         /**
@@ -676,12 +679,12 @@ public class CheckstyleAntTask extends Task {
          */
         private AuditListener createSarifLogger(Task task) throws IOException {
             final AuditListener sarifLogger;
-            if (toFile == null || !useFile) {
+            if (target == null || !useFile) {
                 sarifLogger = new SarifLogger(new LogOutputStream(task, Project.MSG_INFO),
                         OutputStreamOptions.CLOSE);
             }
             else {
-                sarifLogger = new SarifLogger(Files.newOutputStream(toFile.toPath()),
+                sarifLogger = new SarifLogger(Files.newOutputStream(target.toPath()),
                         OutputStreamOptions.CLOSE);
             }
             return sarifLogger;
@@ -697,7 +700,7 @@ public class CheckstyleAntTask extends Task {
         private AuditListener createDefaultLogger(Task task)
                 throws IOException {
             final AuditListener defaultLogger;
-            if (toFile == null || !useFile) {
+            if (target == null || !useFile) {
                 defaultLogger = new DefaultLogger(
                     new LogOutputStream(task, Project.MSG_DEBUG),
                         OutputStreamOptions.CLOSE,
@@ -706,7 +709,7 @@ public class CheckstyleAntTask extends Task {
                 );
             }
             else {
-                final OutputStream infoStream = Files.newOutputStream(toFile.toPath());
+                final OutputStream infoStream = Files.newOutputStream(target.toPath());
                 defaultLogger =
                         new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
                                 infoStream, OutputStreamOptions.NONE);
@@ -723,12 +726,12 @@ public class CheckstyleAntTask extends Task {
          */
         private AuditListener createXmlLogger(Task task) throws IOException {
             final AuditListener xmlLogger;
-            if (toFile == null || !useFile) {
+            if (target == null || !useFile) {
                 xmlLogger = new XMLLogger(new LogOutputStream(task, Project.MSG_INFO),
                         OutputStreamOptions.CLOSE);
             }
             else {
-                xmlLogger = new XMLLogger(Files.newOutputStream(toFile.toPath()),
+                xmlLogger = new XMLLogger(Files.newOutputStream(target.toPath()),
                         OutputStreamOptions.CLOSE);
             }
             return xmlLogger;
