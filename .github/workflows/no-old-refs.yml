@@ -21,7 +21,7 @@ concurrency:
 jobs:
   check_issues:
     if: github.repository == 'checkstyle/checkstyle'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Download checkstyle
         uses: actions/checkout@v4

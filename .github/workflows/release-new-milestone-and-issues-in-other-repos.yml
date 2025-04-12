@@ -28,7 +28,7 @@ concurrency:
 jobs:
   new-milestone-and-issues-in-other-repos:
     name: New Milestone, Create issues for ${{ inputs.version }}
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v4
