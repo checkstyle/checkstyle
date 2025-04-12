@@ -614,8 +614,10 @@ public class CheckstyleAntTask extends Task {
         /** The formatter type. */
         private FormatterType type;
         /** The file to output to. */
-        private File toFile;
-        /** Whether or not to write to the named file. */
+        private File target;
+        /**
+         * whether or not to write to the named file.
+         */
         private boolean useFile = true;
 
         /**
@@ -630,10 +632,10 @@ public class CheckstyleAntTask extends Task {
         /**
          * Set the file to output to.
          *
-         * @param destination destination the file to output to
+         * @param target target the file to output to
          */
-        public void setToFile(File destination) {
-            toFile = destination;
+        public void setTarget(File target) {
+            this.target = target;
         }
 
         /**
@@ -677,12 +679,12 @@ public class CheckstyleAntTask extends Task {
          */
         private AuditListener createSarifLogger(Task task) throws IOException {
             final AuditListener sarifLogger;
-            if (toFile == null || !useFile) {
+            if (target == null || !useFile) {
                 sarifLogger = new SarifLogger(new LogOutputStream(task, Project.MSG_INFO),
                         OutputStreamOptions.CLOSE);
             }
             else {
-                sarifLogger = new SarifLogger(Files.newOutputStream(toFile.toPath()),
+                sarifLogger = new SarifLogger(Files.newOutputStream(target.toPath()),
                         OutputStreamOptions.CLOSE);
             }
             return sarifLogger;
@@ -698,7 +700,7 @@ public class CheckstyleAntTask extends Task {
         private AuditListener createDefaultLogger(Task task)
                 throws IOException {
             final AuditListener defaultLogger;
-            if (toFile == null || !useFile) {
+            if (target == null || !useFile) {
                 defaultLogger = new DefaultLogger(
                     new LogOutputStream(task, Project.MSG_DEBUG),
                         OutputStreamOptions.CLOSE,
@@ -707,7 +709,7 @@ public class CheckstyleAntTask extends Task {
                 );
             }
             else {
-                final OutputStream infoStream = Files.newOutputStream(toFile.toPath());
+                final OutputStream infoStream = Files.newOutputStream(target.toPath());
                 defaultLogger =
                         new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
                                 infoStream, OutputStreamOptions.NONE);
@@ -724,12 +726,12 @@ public class CheckstyleAntTask extends Task {
          */
         private AuditListener createXmlLogger(Task task) throws IOException {
             final AuditListener xmlLogger;
-            if (toFile == null || !useFile) {
+            if (target == null || !useFile) {
                 xmlLogger = new XMLLogger(new LogOutputStream(task, Project.MSG_INFO),
                         OutputStreamOptions.CLOSE);
             }
             else {
-                xmlLogger = new XMLLogger(Files.newOutputStream(toFile.toPath()),
+                xmlLogger = new XMLLogger(Files.newOutputStream(target.toPath()),
                         OutputStreamOptions.CLOSE);
             }
             return xmlLogger;
