@@ -51,9 +51,6 @@ window.addEventListener("load", function () {
 
 // for newer version of site.
 window.addEventListener("load", function () {
-    const bodyColumn = document.getElementById("bodyColumn");
-    bodyColumn.classList.remove("span10");
-
     const externalLinks = document.querySelectorAll(".externalLink");
     externalLinks.forEach((link) => {
         link.setAttribute("target", "_blank");
@@ -71,8 +68,21 @@ window.addEventListener("scroll", function () {
 });
 
 function setBodyColumnMargin() {
-    const leftColumn = document.querySelector("#leftColumn");
-    const bodyColumn = document.querySelector("#bodyColumn");
+    const leftColumn = document.getElementById("leftColumn");
+    const bodyColumn = document.getElementById("bodyColumn");
+
+    if (window.innerWidth > 1920) {
+      leftColumn.className = "span2";
+      bodyColumn.className = "span10";
+    } else if (window.innerWidth > 1280) {
+      leftColumn.className = "span3";
+      bodyColumn.className = "span9";
+    } else if  (window.innerWidth > 823) {
+      leftColumn.className = "span4";
+      bodyColumn.className = "span8";
+    } else {
+      bodyColumn.className = "span12";
+    }
 
     if (window.innerWidth > 823 && document.querySelector("#hamburger")) {
         resetStyling();
@@ -151,7 +161,7 @@ function trimCodeBlock(codeBlock) {
     while ((node = walker.nextNode())) {
       textNodes.push(node);
     }
- 
+
     for (let i = 0; i < textNodes.length; i++) {
       const txt = textNodes[i].textContent;
       const trimmed = txt.trim();
