@@ -100,14 +100,6 @@ strategy:
       image: 'macOS-14'
       cmd: "JAVA_HOME=$JAVA_HOME_17_X64 mvn -e --no-transfer-progress verify"
 
-    # moved back to Travis till we find a way to keep secrets in azure
-    # ensure that all modules are used in no exception configs
-    # 'verify-no-exception-configs':
-    #   image: 'ubuntu-24.04'
-    #   cmd: "./.ci/validation.sh verify-no-exception-configs"
-    #   skipCache: true
-    #   needXmlstarlet: true
-
     # versions to update
     'versions':
       image: 'ubuntu-24.04'
