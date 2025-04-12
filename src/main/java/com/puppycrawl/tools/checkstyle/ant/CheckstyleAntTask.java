@@ -614,9 +614,7 @@ public class CheckstyleAntTask extends Task {
         private FormatterType type;
         /** The file to output to. */
         private File target;
-        /**
-         * Whether or not to write to the named file.
-         */
+        /** Whether or not to write to the named file. */
         private boolean useFile = true;
 
         /**

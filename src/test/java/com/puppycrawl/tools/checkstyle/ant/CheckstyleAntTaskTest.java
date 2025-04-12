@@ -19,23 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.ant;
 
-import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Optional;
-import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import com.google.common.truth.StandardSubjectBuilder;
+import com.puppycrawl.tools.checkstyle.*;
+import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckstyleAntTaskLogStub;
+import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckstyleAntTaskStub;
+import com.puppycrawl.tools.checkstyle.internal.testmodules.MessageLevelPair;
+import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Location;
 import org.apache.tools.ant.Project;
@@ -44,16 +33,17 @@ import org.apache.tools.ant.types.Path;
 import org.apache.tools.ant.types.resources.FileResource;
 import org.junit.jupiter.api.Test;
 
-import com.google.common.truth.StandardSubjectBuilder;
-import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultLogger;
-import com.puppycrawl.tools.checkstyle.Definitions;
-import com.puppycrawl.tools.checkstyle.SarifLogger;
-import com.puppycrawl.tools.checkstyle.XMLLogger;
-import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckstyleAntTaskLogStub;
-import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckstyleAntTaskStub;
-import com.puppycrawl.tools.checkstyle.internal.testmodules.MessageLevelPair;
-import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
@@ -322,7 +312,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 "Unable to create Root Module: config {%s}.", getPath(NOT_EXISTING_FILE));
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
-            .isEqualTo(expectedExceptionFormat);
+                .isEqualTo(expectedExceptionFormat);
     }
 
     @Test
@@ -661,8 +651,8 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
-            .isEqualTo("Unable to create listeners: formatters "
-                + "{" + List.of(formatter) + "}.");
+                .isEqualTo("Unable to create listeners: formatters "
+                        + "{" + List.of(formatter) + "}.");
     }
 
     @Test
