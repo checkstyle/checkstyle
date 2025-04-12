@@ -6,4 +6,4 @@ ATTENTION:
 Example of usage:
   ./.ci/validation.sh all-sevntu-checks
 
-  export TRAVIS_PULL_REQUEST="" && ./.ci/validation.sh releasenotes-gen
+  ./.ci/validation.sh releasenotes-gen
