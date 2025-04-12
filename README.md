@@ -6,7 +6,6 @@
 
 *Checkstyle is a tool that ensures adherence to a code standard or a set of best practices.*
 
-[![][travis img]][travis]
 [![][appveyor img]][appveyor]
 [![][circleci img]][circleci]
 [![][cirrusci img]][cirrusci]
@@ -139,9 +138,6 @@ Checkstyle uses libraries:
 - [Apache Commons](https://commons.apache.org/)
 - [Google Guava](https://github.com/google/guava/)
 - [Picocli](https://github.com/remkop/picocli/)
-
-[travis]:https://travis-ci.com/github/checkstyle/checkstyle/builds
-[travis img]:https://api.travis-ci.com/checkstyle/checkstyle.svg
 
 [appveyor]:https://ci.appveyor.com/project/checkstyle/checkstyle/history
 [appveyor img]:https://ci.appveyor.com/api/projects/status/rw6bw3dl9kph6ucc?svg=true

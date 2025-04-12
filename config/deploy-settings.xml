@@ -4,7 +4,7 @@
                               https://maven.apache.org/xsd/settings-1.0.0.xsd">
   <servers>
     <server>
-      <!-- this config is used by our TravisCI to deploy snapshot artifacts to maven repo -->
+      <!-- this config is used by GitHub Actions to deploy snapshot artifacts to Maven repo -->
       <id>sonatype-nexus-snapshots</id>
       <username>${env.CI_DEPLOY_USERNAME}</username>
       <password>${env.CI_DEPLOY_PASSWORD}</password>

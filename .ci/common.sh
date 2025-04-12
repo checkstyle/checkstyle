@@ -1,5 +1,5 @@
 #!/bin/bash
-# Attention, there is no "-x" to avoid problems on Travis
+# Attention, there is no "-x" to avoid issues during execution
 set -e
 
 DEBUG=true
