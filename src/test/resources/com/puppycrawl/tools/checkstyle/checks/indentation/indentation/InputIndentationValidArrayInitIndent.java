@@ -32,7 +32,6 @@ public class InputIndentationValidArrayInitIndent { //indent:0 exp:0
             3 //indent:12 exp:12
     }; //indent:4 exp:4
 
-
     int[] array4 = new int[] //indent:4 exp:4
     { //indent:4 exp:4
             1, //indent:12 exp:12
@@ -42,7 +41,6 @@ public class InputIndentationValidArrayInitIndent { //indent:0 exp:0
 
     int[] array5 = new int[] //indent:4 exp:4
     {1, 2, 3}; //indent:4 exp:4
-
 
     // check nesting on first line //indent:4 exp:4
     int[] array6 = new int[] { 1, 2, //indent:4 exp:4
@@ -77,7 +75,6 @@ public class InputIndentationValidArrayInitIndent { //indent:0 exp:0
             new int[] { 1, 2, 3}, //indent:12 exp:12
     }; //indent:4 exp:4
 
-
     int[][] array10b //indent:4 exp:4
         = new int[][] { //indent:8 exp:8
                 new int[] { 1, 2, 3}, //indent:16 exp:16
@@ -102,7 +99,6 @@ public class InputIndentationValidArrayInitIndent { //indent:0 exp:0
         }; //indent:8 exp:8
 
     } //indent:4 exp:4
-
 
     /** Creates a new instance of InputIndentationValidArrayInitIndent */ //indent:4 exp:4
     public InputIndentationValidArrayInitIndent() { //indent:4 exp:4

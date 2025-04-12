@@ -6,11 +6,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent:0 exp:0
 
-public class InputIndentationLongConcatenatedString { //indent:0 exp:0
-
+public class InputIndentationLongConcatenatedString5 { //indent:0 exp:0
     public void test() { //indent:4 exp:4
         String s = " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + //indent:8 exp:8
-                " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + //indent:16 exp:16
                 " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + //indent:16 exp:16
                 " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + //indent:16 exp:16
                 " " + " " + " " + " " + " " + " " + " " + " " + " " + " " + //indent:16 exp:16
