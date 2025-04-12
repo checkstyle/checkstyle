@@ -322,7 +322,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 "Unable to create Root Module: config {%s}.", getPath(NOT_EXISTING_FILE));
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
-            .isEqualTo(expectedExceptionFormat);
+                .isEqualTo(expectedExceptionFormat);
     }
 
     @Test
@@ -661,8 +661,8 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
-            .isEqualTo("Unable to create listeners: formatters "
-                + "{" + List.of(formatter) + "}.");
+                .isEqualTo("Unable to create listeners: formatters "
+                        + "{" + List.of(formatter) + "}.");
     }
 
     @Test
