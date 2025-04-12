@@ -321,6 +321,11 @@ span.wrapper.inline {
 }
 
 @media screen and (max-width: 823px) {
+  body {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   #leftColumn {
     float: none;
     width: auto;
@@ -346,11 +351,6 @@ span.wrapper.inline {
     top: 0;
     z-index: 10;
     box-shadow: 0 5px 10px -3px rgba(0,0,0,0.5);
-  }
-
-  .container-fluid {
-    padding-left: 0;
-    padding-right: 0;
   }
 
   #bodyColumn {
