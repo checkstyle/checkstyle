@@ -42,8 +42,8 @@
                test/resources/**/*,test/resources-noncompilable/**/*,**/gen/**,
                xdocs-examples/resources/**/*,xdocs-examples/resources-noncompilable/**/*"/>
       <formatter type="plain"/>
-      <formatter type="xml" toFile="${mvn.project.build.directory}/cs_errors.xml"/>
-      <formatter type="sarif" toFile="${mvn.project.build.directory}/cs_errors.sarif"/>
+      <formatter type="xml" target="${mvn.project.build.directory}/cs_errors.xml"/>
+      <formatter type="sarif" target="${mvn.project.build.directory}/cs_errors.sarif"/>
       <property key="checkstyle.cache.file" file="${mvn.project.build.directory}/cachefile"/>
       <property key="checkstyle.header.file" file="config/java.header"/>
       <property key="checkstyle.regexp.header.file" file="config/java-regexp.header"/>
@@ -138,7 +138,7 @@
         </fileset>
       </path>
       <formatter type="plain"/>
-      <formatter type="xml" toFile="${mvn.project.build.directory}/cs_non_main_files_errors.xml"/>
+      <formatter type="xml" target="${mvn.project.build.directory}/cs_non_main_files_errors.xml"/>
     </checkstyle>
 
     <tstamp>
@@ -175,7 +175,7 @@
         </fileset>
       </path>
       <formatter type="plain"/>
-      <formatter type="xml" toFile="${mvn.project.build.directory}/cs_resources_errors.xml"/>
+      <formatter type="xml" target="${mvn.project.build.directory}/cs_resources_errors.xml"/>
     </checkstyle>
 
     <tstamp>
@@ -242,7 +242,7 @@
         </fileset>
       </path>
       <formatter type="plain"/>
-      <formatter type="xml" toFile="${mvn.project.build.directory}/cs_input_errors.xml"/>
+      <formatter type="xml" target="${mvn.project.build.directory}/cs_input_errors.xml"/>
     </checkstyle>
 
     <tstamp>
@@ -273,7 +273,7 @@
         </fileset>
       </path>
       <formatter type="plain"/>
-      <formatter type="xml" toFile="${mvn.project.build.directory}/cs_xdocs_examples_errors.xml"/>
+      <formatter type="xml" target="${mvn.project.build.directory}/cs_xdocs_examples_errors.xml"/>
     </checkstyle>
 
     <tstamp>
