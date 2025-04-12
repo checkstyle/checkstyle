@@ -32,7 +32,7 @@
                ,**/xdocs-examples/resources/**/*,**/xdocs-examples/resources-noncompilable/**/*,
                ,**/gen/**"/>
       <formatter type="plain"/>
-      <formatter type="xml" toFile="${mvn.project.build.directory}/cs_sevntu_errors.xml"/>
+      <formatter type="xml" target="${mvn.project.build.directory}/cs_sevntu_errors.xml"/>
       <property key="checkstyle.sevntu.cache.file"
         file="${mvn.project.build.directory}/cachefile_sevntu"/>
     </checkstyle>
