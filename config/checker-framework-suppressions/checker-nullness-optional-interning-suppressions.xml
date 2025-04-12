@@ -1144,8 +1144,8 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field toFile</message>
-    <lineContent>private File toFile;</lineContent>
+    <message>the default constructor does not initialize field target</message>
+    <lineContent>private File target;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
