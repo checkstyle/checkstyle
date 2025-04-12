@@ -22,7 +22,7 @@
     <image src="images/header-checkstyle-logo.png" alt="Checkstyle"/>
   </bannerLeft>
   <bannerRight>
-    <image src="images/header-right-ruller.png" alt="Checkstyle"/>
+    <image src="images/header-right-ruler.png" alt=""/>
   </bannerRight>
 
   <publishDate position="right" />
