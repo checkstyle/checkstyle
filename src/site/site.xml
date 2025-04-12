@@ -10,11 +10,19 @@
     <artifactId>maven-fluido-skin</artifactId>
     <version>2.0.1</version>
   </skin>
+
+  <custom>
+    <fluidoSkin>
+      <leftColumnClass>span4</leftColumnClass>
+      <bodyColumnClass>span8</bodyColumnClass>
+    </fluidoSkin>
+  </custom>
+
   <bannerLeft href="https://checkstyle.org">
     <image src="images/header-checkstyle-logo.png" alt="Checkstyle"/>
   </bannerLeft>
   <bannerRight>
-    <image src="images/header-right-ruller.png" alt="Checkstyle"/>
+    <image src="images/header-right-ruler.png" alt=""/>
   </bannerRight>
 
   <publishDate position="right" />
@@ -22,16 +30,17 @@
 
   <poweredBy>
     <logo href="https://github.com/checkstyle/checkstyle">
-      <image src="images/github_logo_social_coding_outlined.png" alt="GitHub"/>
+      <image src="images/github_logo_social_coding_outlined.png" alt="Checkstyle on GitHub"/>
     </logo>
-    <logo href="https://twitter.com/checkstyle_java/">
-      <image src="images/twitter_button.png" alt="Twitter"/>
+    <logo href="https://x.com/checkstyle_java/">
+      <image src="images/twitter_button.png" alt="Checkstyle on X (Formally Twitter)"/>
     </logo>
     <logo href="https://stackoverflow.com/questions/tagged/checkstyle">
-      <image src="images/stackoverflow.jpeg" alt="Stackoverflow"/>
+      <image src="images/stackoverflow.jpeg"
+             alt="Questions tagged with Checkstyle on Stack Overflow"/>
     </logo>
     <logo href="https://groups.google.com/forum/#!forum/checkstyle">
-      <image src="images/groups.png" alt="GoogleGroups"/>
+      <image src="images/groups.png" alt="Checkstyle on Google Groups"/>
     </logo>
     <logo href="https://www.ej-technologies.com/products/jprofiler/overview.html">
       <image src="https://www.ej-technologies.com/images/product_banners/jprofiler_medium.png"
