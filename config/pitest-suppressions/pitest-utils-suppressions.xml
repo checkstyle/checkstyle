@@ -1,3 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+  <mutation unstable="false">
+      <sourceFile>JavadocUtil.java</sourceFile>
+      <mutatedClass>com.puppycrawl.tools.checkstyle.utils.JavadocUtil</mutatedClass>
+      <mutatedMethod>findJavadocComment</mutatedMethod>
+      <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+      <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getPreviousSibling</description>
+      <lineContent>child = child.getPreviousSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+      <sourceFile>avadocUtil.java</sourceFile>
+      <mutatedClass>com.puppycrawl.tools.checkstyle.utils.JavadocUtil</mutatedClass>
+      <mutatedMethod>findJavadocComment</mutatedMethod>
+      <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+      <description>removed conditional - replaced equality check with true</description>
+      <lineContent>while (!stack.isEmpty() &amp;&amp; result == null) {</lineContent>
+  </mutation>
 </suppressedMutations>
