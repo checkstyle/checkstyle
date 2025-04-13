@@ -42,7 +42,7 @@ public abstract class AbstractSunModuleTestSupport extends AbstractItModuleTestS
     static {
         try {
             CONFIGURATION = ConfigurationLoader.loadConfiguration(XML_NAME,
-                    new PropertiesExpander(System.getProperties()));
+                new PropertiesExpander(System.getProperties()));
         }
         catch (CheckstyleException ex) {
             throw new IllegalStateException(ex);
