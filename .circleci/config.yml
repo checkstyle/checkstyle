@@ -9,10 +9,13 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Make mvnw executable
+          command: chmod +x ./mvnw
+      - run:
           name: Print versions
           command: |
             echo "Maven version:"
-            mvn --version
+            ./mvnw --version
             echo "Java version:"
             java --version
             echo "IDEA version:"

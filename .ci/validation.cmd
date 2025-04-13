@@ -8,26 +8,31 @@
 
 SET OPTION=%1
 
+if not exist mvnw.cmd (
+  echo mvnw.cmd not found. Make sure Maven Wrapper is available.
+  exit /b 1
+)
+
 if "%OPTION%" == "sevntu" (
-  call mvn -e --no-transfer-progress verify -Pno-validations,sevntu^
+  call mvnw.cmd -e --no-transfer-progress verify -Pno-validations,sevntu^
     || goto :ERROR
   goto :END_CASE
 )
 
 if "%OPTION%" == "run_checkstyle" (
-  call mvn -e --no-transfer-progress clean compile antrun:run@ant-phase-verify^
+  call mvnw.cmd -e --no-transfer-progress clean compile antrun:run@ant-phase-verify^
     || goto :ERROR
   goto :END_CASE
 )
 
 if "%OPTION%" ==  "verify_without_checkstyle" (
-  call mvn -e --no-transfer-progress verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true^
+  call mvnw.cmd -e --no-transfer-progress verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true^
     || goto :ERROR
   goto :END_CASE
 )
 
 if "%OPTION%" ==  "site_without_verify" (
-  call mvn -e --no-transfer-progress -Pno-validations site^
+  call mvnw.cmd -e --no-transfer-progress -Pno-validations site^
     || goto :ERROR
   goto :END_CASE
 )

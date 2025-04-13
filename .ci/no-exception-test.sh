@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e
 
+cd "$(git rev-parse --show-toplevel)"
+
+chmod +x ./mvnw
+
+rm -rf .ci-temp/checkstyle-samples || echo "Could not remove old checkstyle-samples"
+
 source ./.ci/util.sh
 
 case $1 in
@@ -226,7 +232,7 @@ no-exception-only-javadoc)
 no-exception-samples-ant)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress -B install -Pno-validations
+  ./mvnw -e --no-transfer-progress -B install -Pno-validations
   checkout_from https://github.com/sevntu-checkstyle/checkstyle-samples
   cd .ci-temp/checkstyle-samples/ant-project
 
@@ -243,7 +249,7 @@ no-exception-samples-ant)
 no-exception-samples-gradle)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress -B install -Pno-validations
+  ./mvnw -e --no-transfer-progress -B install -Pno-validations
   checkout_from https://github.com/sevntu-checkstyle/checkstyle-samples
   cd .ci-temp/checkstyle-samples/gradle-project
 
@@ -261,9 +267,16 @@ no-exception-samples-gradle)
 no-exception-samples-maven)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress -B install -Pno-validations
+  ./mvnw -e --no-transfer-progress -B install -Pno-validations
 
   checkout_from https://github.com/sevntu-checkstyle/checkstyle-samples
+
+   if [ ! -d ".ci-temp/checkstyle-samples/maven-project" ]; then
+    echo "ERROR: Maven project folder not found after checkout."
+    ls -l .ci-temp/checkstyle-samples || true
+    exit 1
+   fi
+
   cd .ci-temp/checkstyle-samples/maven-project
 
   sed -i "s|\(<checkstyle.version>\)[0-9.]\+\(</checkstyle.version>\)"`
@@ -271,7 +284,8 @@ no-exception-samples-maven)
 
 
   echo "Building Maven project..."
-  mvn -e --no-transfer-progress -B verify
+  chmod +x mvnw
+  ./mvnw -e --no-transfer-progress -B verify
 
   cd ../..
   removeFolderWithProtectedFiles checkstyle-samples

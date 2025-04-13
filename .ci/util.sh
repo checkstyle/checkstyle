@@ -2,6 +2,8 @@
 # This script contains common bash CI functions
 set -e
 
+chmod +x ./mvnw
+
 removeFolderWithProtectedFiles() {
   find "$1" -delete
 }
@@ -22,7 +24,7 @@ function checkForVariable() {
 
 function getMavenProperty {
   property="\${$1}"
-  mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
+  ./mvnw -e --no-transfer-progress -q -Dexec.executable='echo' \
                       -Dexec.args="${property}" \
                       --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec
 }

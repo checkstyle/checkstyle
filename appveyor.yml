@@ -8,24 +8,13 @@ branches:
     - master
   except:
     - gh-pages
-install:
-  - ps: |
-      Add-Type -AssemblyName System.IO.Compression.FileSystem
-      if (!(Test-Path -Path "C:\maven\apache-maven-3.8.8" )) {
-        (new-object System.Net.WebClient).DownloadFile(
-          'https://downloads.apache.org/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.zip',
-          'C:\maven-bin.zip'
-        )
-        [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\maven-bin.zip", "C:\maven")
-      }
-  - cmd: SET M2_HOME=C:\maven\apache-maven-3.8.8
-  - cmd: SET PATH=%M2_HOME%\bin;%JAVA_HOME%\bin;%PATH%
-  - cmd: git config core.autocrlf
-  - cmd: mvn --version
-  - cmd: java -version
+  install:
+    - cmd: git config core.autocrlf
+    - cmd: chmod +x mvnw
+    - cmd: ./mvnw --version
+    - cmd: java -version
 
 cache:
-  - C:\maven\apache-maven-3.8.8
   - C:\Users\appveyor\.m2
 
 matrix:
@@ -36,8 +25,8 @@ environment:
     CMD: " "
     # https://stackoverflow.com/questions/42024619/maven-build-gets-connection-reset-when-downloading-artifacts
     MAVEN_OPTS: "-Dhttp.keepAlive=false -Dmaven.wagon.http.retryHandler.count=3"
-  # We do matrix as AppVeyor could fail to finish simple "mvn -e verify"
-  #    if he loose maven cache (happens from time to time)
+  # We do matrix as AppVeyor could fail to finish simple "./mvnw -e verify"
+  # if he loose maven cache (happens from time to time)
   matrix:
     # sevntu (JDK11)
     - JAVA_HOME: C:\Program Files\Java\jdk11
@@ -72,5 +61,4 @@ build_script:
       }
   - ps: ./.ci/validation.cmd git_diff
   - ps: echo "Size of caches (bytes):"
-  - ps: Get-ChildItem -Recurse 'C:\maven\apache-maven-3.8.8' | Measure-Object -Property Length -Sum
   - ps: Get-ChildItem -Recurse 'C:\Users\appveyor\.m2' | Measure-Object -Property Length -Sum

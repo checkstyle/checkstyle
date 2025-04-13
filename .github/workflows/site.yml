@@ -92,11 +92,14 @@ jobs:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
+      - name: Make mvnw executable
+        run: chmod +x .ci-temp/checkstyle/mvnw
+
       - name: Generate site
         run: |
           bash
           cd .ci-temp/checkstyle
-          mvn -e --no-transfer-progress clean site -Pno-validations -Dmaven.javadoc.skip=false
+          ./mvnw -e --no-transfer-progress clean site -Pno-validations -Dmaven.javadoc.skip=false
 
       - name: Setup local maven cache
         uses: actions/cache/save@v4

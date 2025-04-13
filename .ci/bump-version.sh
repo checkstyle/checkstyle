@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+chmod +x ./mvnw
+
 source ./.ci/util.sh
 
 if [[ -z $1 ]]; then
@@ -65,5 +67,5 @@ elif [ "$CURRENT_VERSION_THIRD_NUMBER" != "$NEW_VERSION_THIRD_NUMBER" ]; then
 fi
 
 echo "bump version in pom.xml"
-mvn -e --no-transfer-progress versions:set -DnewVersion="$NEW_VERSION-SNAPSHOT"
-mvn -e --no-transfer-progress versions:commit
+./mvnw -e --no-transfer-progress versions:set -DnewVersion="$NEW_VERSION-SNAPSHOT"
+./mvnw -e --no-transfer-progress versions:commit
