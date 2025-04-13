@@ -5,9 +5,9 @@
 set -e
 pwd
 uname -a
-mvn --version
+./mvnw --version
 curl --fail-with-body -I https://sourceforge.net/projects/checkstyle/
-mvn -e --no-transfer-progress clean site -Dcheckstyle.ant.skip=true -DskipTests -DskipITs \
+./mvnw -e --no-transfer-progress clean site -Dcheckstyle.ant.skip=true -DskipTests -DskipITs \
    -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dcheckstyle.skip=true
 mkdir -p .ci-temp
 
