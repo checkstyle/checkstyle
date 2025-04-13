@@ -265,12 +265,10 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Error message is not expected")
-                    .that(ex.getMessage())
-                    .isEqualTo("TreeWalker is not allowed as a parent of java.lang.String. "
-                            + "Please review 'Parent Module' section "
-                            + "(parent=\"com.puppycrawl.tools.checkstyle.TreeWalker\") "
-                            + "(parent=\"com.puppycrawl.tools.checkstyle.Checker\") "
-                            + "for this Check in web documentation if Check is standard.");
+                .that(ex.getMessage())
+                .isEqualTo("TreeWalker is not allowed as a parent of java.lang.String "
+                    + "Please review 'Parent Module' section for this Check in "
+                    + "web documentation if Check is standard.");
         }
     }
 
