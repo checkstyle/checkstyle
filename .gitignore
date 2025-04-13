@@ -43,6 +43,9 @@ replay_pid*
 # temp folder for files/folders of ci validations
 .ci-temp
 
+# Maven Wrapper JAR (optional, not needed with only-script setup)
+.mvn/wrapper/maven-wrapper.jar
+
 # antlr4 grammar generates these
 **/gen
 **/JavaLanguageLexer.tokens
