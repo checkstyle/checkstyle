@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.base;
 
@@ -62,13 +62,11 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     public enum ModuleCreationOption {
 
         /**
-         * Points that the module configurations
-         * has to be added under {@link TreeWalker}.
+         * Points that the module configurations has to be added under {@link TreeWalker}.
          */
         IN_TREEWALKER,
         /**
-         * Points that checker will be created as
-         * a root of default configuration.
+         * Points that checker will be created as a root of default configuration.
          */
         IN_CHECKER,
 
@@ -77,7 +75,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     protected static final String ROOT_MODULE_NAME = "root";
 
     private static final Pattern WARN_PATTERN = CommonUtil
-            .createPattern(".* *// *warn *|/[*]\\*?\\s?warn\\s?[*]/");
+        .createPattern(".* *// *warn *|/[*]\\*?\\s?warn\\s?[*]/");
 
     private final ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
@@ -99,8 +97,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     }
 
     /**
-     * Creates a default module configuration {@link DefaultConfiguration} for a given object
-     * of type {@link Class}.
+     * Creates a default module configuration {@link DefaultConfiguration} for a given object of
+     * type {@link Class}.
      *
      * @param clazz a {@link Class} type object.
      * @return default module configuration for the given {@link Class} instance.
@@ -110,18 +108,17 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     }
 
     /**
-     * Returns {@link Configuration} instance for the given module name pulled
-     * from the {@code masterConfig}.
+     * Returns {@link Configuration} instance for the given module name pulled from the
+     * {@code masterConfig}.
      *
      * @param masterConfig The master configuration to examine.
-     * @param moduleName module name.
-     * @param moduleId module id.
+     * @param moduleName   module name.
+     * @param moduleId     module id.
      * @return {@link Configuration} instance for the given module name.
-     * @throws IllegalStateException if there is a problem retrieving the module
-     *         or config.
+     * @throws IllegalStateException if there is a problem retrieving the module or config.
      */
     protected static Configuration getModuleConfig(Configuration masterConfig, String moduleName,
-            String moduleId) {
+                                                   String moduleId) {
         final Configuration result;
         final List<Configuration> configs = getModuleConfigs(masterConfig, moduleName);
         if (configs.size() == 1) {
@@ -135,8 +132,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         }
         else {
             result = configs.stream().filter(conf -> isSameModuleId(conf, moduleId))
-            .findFirst()
-            .orElseThrow(() -> new IllegalStateException("problem with module config"));
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("problem with module config"));
         }
 
         return result;
@@ -145,7 +142,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     /**
      * Verifies if the configuration's ID matches the expected {@code moduleId}.
      *
-     * @param conf The config to examine.
+     * @param conf     The config to examine.
      * @param moduleId The module ID to match against.
      * @return {@code true} if it matches.
      * @throws IllegalStateException If there is an issue with finding the ID.
@@ -164,12 +161,12 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * {@code masterConfig}.
      *
      * @param masterConfig The master configuration to pull results from.
-     * @param moduleIds module IDs.
+     * @param moduleIds    module IDs.
      * @return List of {@link Configuration} instances.
      * @throws CheckstyleException if there is an error with the config.
      */
     protected static List<Configuration> getModuleConfigsByIds(Configuration masterConfig,
-            String... moduleIds) throws CheckstyleException {
+                                                               String... moduleIds) throws CheckstyleException {
         final List<Configuration> result = new ArrayList<>();
         for (Configuration currentConfig : masterConfig.getChildren()) {
             if ("TreeWalker".equals(currentConfig.getName())) {
@@ -194,12 +191,12 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * Finds the specific property {@code name} in the {@code config}.
      *
      * @param config The configuration to examine.
-     * @param name The property name to find.
+     * @param name   The property name to find.
      * @return The property value or {@code null} if not found.
      * @throws CheckstyleException if there is an error with the config.
      */
     private static String getProperty(Configuration config, String name)
-            throws CheckstyleException {
+        throws CheckstyleException {
         String result = null;
 
         if (isIn(name, config.getPropertyNames())) {
@@ -230,15 +227,15 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     }
 
     /**
-     * Returns a list of all {@link Configuration} instances for the given
-     * module name pulled from the {@code masterConfig}.
+     * Returns a list of all {@link Configuration} instances for the given module name pulled from
+     * the {@code masterConfig}.
      *
      * @param masterConfig The master configuration to examine.
-     * @param moduleName module name.
+     * @param moduleName   module name.
      * @return {@link Configuration} instance for the given module name.
      */
     private static List<Configuration> getModuleConfigs(Configuration masterConfig,
-            String moduleName) {
+                                                        String moduleName) {
         final List<Configuration> result = new ArrayList<>();
         for (Configuration currentConfig : masterConfig.getChildren()) {
             if ("TreeWalker".equals(currentConfig.getName())) {
@@ -263,7 +260,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @throws Exception if an exception occurs during checker configuration.
      */
     protected final Checker createChecker(Configuration moduleConfig)
-            throws Exception {
+        throws Exception {
         final String name = moduleConfig.getName();
 
         return createChecker(moduleConfig, findModuleCreationOption(name));
@@ -272,15 +269,15 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     /**
      * Creates {@link Checker} instance based on the given {@link Configuration} instance.
      *
-     * @param moduleConfig {@link Configuration} instance.
+     * @param moduleConfig         {@link Configuration} instance.
      * @param moduleCreationOption {@code IN_TREEWALKER} if the {@code moduleConfig} should be added
-     *                                                  under {@link TreeWalker}.
+     *                             under {@link TreeWalker}.
      * @return {@link Checker} instance based on the given {@link Configuration} instance.
      * @throws Exception if an exception occurs during checker configuration.
      */
     protected final Checker createChecker(Configuration moduleConfig,
-                                 ModuleCreationOption moduleCreationOption)
-            throws Exception {
+                                          ModuleCreationOption moduleCreationOption)
+        throws Exception {
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         // make sure the tests always run with English error messages
@@ -294,7 +291,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
             checker.configure(config);
         }
         else if (ROOT_MODULE_NAME.equals(moduleConfig.getName())
-                || "Checker".equals(moduleConfig.getName())) {
+            || "Checker".equals(moduleConfig.getName())) {
             checker.configure(moduleConfig);
         }
         else {
@@ -306,16 +303,16 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     }
 
     /**
-     * Creates {@link DefaultConfiguration} for the {@link TreeWalker}
-     * based on the given {@link Configuration} instance.
+     * Creates {@link DefaultConfiguration} for the {@link TreeWalker} based on the given
+     * {@link Configuration} instance.
      *
      * @param config {@link Configuration} instance.
-     * @return {@link DefaultConfiguration} for the {@link TreeWalker}
-     *     based on the given {@link Configuration} instance.
+     * @return {@link DefaultConfiguration} for the {@link TreeWalker} based on the given
+     * {@link Configuration} instance.
      */
     protected static DefaultConfiguration createTreeWalkerConfig(Configuration config) {
         final DefaultConfiguration rootConfig =
-                new DefaultConfiguration(ROOT_MODULE_NAME);
+            new DefaultConfiguration(ROOT_MODULE_NAME);
         final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
         // make sure that the tests always run with this charset
         rootConfig.addProperty("charset", StandardCharsets.UTF_8.name());
@@ -325,14 +322,14 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     }
 
     /**
-     * Creates {@link DefaultConfiguration} or the Checker.
-     * based on the the list of {@link Configuration}.
+     * Creates {@link DefaultConfiguration} or the Checker. based on the the list of
+     * {@link Configuration}.
      *
      * @param configs list of {@link Configuration} instances.
      * @return {@link DefaultConfiguration} for the Checker.
      */
     protected static DefaultConfiguration createTreeWalkerConfig(
-            List<Configuration> configs) {
+        List<Configuration> configs) {
         DefaultConfiguration result = null;
 
         for (Configuration config : configs) {
@@ -360,8 +357,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     }
 
     /**
-     * Returns canonical path for the file with the given file name.
-     * The path is formed base on the non-compilable resources location.
+     * Returns canonical path for the file with the given file name. The path is formed base on the
+     * non-compilable resources location.
      *
      * @param filename file name.
      * @return canonical path for the file with the given file name.
@@ -369,47 +366,45 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      */
     protected final String getNonCompilablePath(String filename) throws IOException {
         return new File("src/" + getResourceLocation() + "/resources-noncompilable/"
-                + getPackageLocation() + "/" + filename).getCanonicalPath();
+            + getPackageLocation() + "/" + filename).getCanonicalPath();
     }
 
     /**
      * Performs verification of the file with the given file name. Uses specified configuration.
      * Expected messages are represented by the array of strings, warning line numbers are
-     * represented by the array of integers.
-     * This implementation uses overloaded
+     * represented by the array of integers. This implementation uses overloaded
      * {@link AbstractItModuleTestSupport#verify(Checker, File[], String, String[], Integer...)}
      * method inside.
      *
-     * @param config configuration.
-     * @param fileName file name to verify.
-     * @param expected an array of expected messages.
+     * @param config        configuration.
+     * @param fileName      file name to verify.
+     * @param expected      an array of expected messages.
      * @param warnsExpected an array of expected warning numbers.
      * @throws Exception if exception occurs during verification process.
      */
     protected final void verify(Configuration config, String fileName, String[] expected,
-            Integer... warnsExpected) throws Exception {
+                                Integer... warnsExpected) throws Exception {
         verify(createChecker(config),
-                new File[] {new File(fileName)},
-                fileName, expected, warnsExpected);
+            new File[] {new File(fileName)},
+            fileName, expected, warnsExpected);
     }
 
     /**
-     * Performs verification of files.
-     * Uses provided {@link Checker} instance.
+     * Performs verification of files. Uses provided {@link Checker} instance.
      *
-     * @param checker {@link Checker} instance.
-     * @param processedFiles files to process.
+     * @param checker         {@link Checker} instance.
+     * @param processedFiles  files to process.
      * @param messageFileName message file name.
-     * @param expected an array of expected messages.
-     * @param warnsExpected an array of expected warning line numbers.
+     * @param expected        an array of expected messages.
+     * @param warnsExpected   an array of expected warning line numbers.
      * @throws Exception if exception occurs during verification process.
      */
     protected final void verify(Checker checker,
-            File[] processedFiles,
-            String messageFileName,
-            String[] expected,
-            Integer... warnsExpected)
-            throws Exception {
+                                File[] processedFiles,
+                                String messageFileName,
+                                String[] expected,
+                                Integer... warnsExpected)
+        throws Exception {
         stream.flush();
         stream.reset();
         final List<File> theFiles = new ArrayList<>();
@@ -420,15 +415,15 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
         // process each of the lines
         try (ByteArrayInputStream inputStream =
-                new ByteArrayInputStream(stream.toByteArray());
-            LineNumberReader lnr = new LineNumberReader(
-                new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+                 new ByteArrayInputStream(stream.toByteArray());
+             LineNumberReader lnr = new LineNumberReader(
+                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             int previousLineNumber = 0;
             for (int index = 0; index < expected.length; index++) {
                 final String expectedResult = messageFileName + ":" + expected[index];
                 final String actual = lnr.readLine();
                 assertWithMessage("Error message at position %s of 'expected' does "
-                        + "not match actual message", index)
+                    + "not match actual message", index)
                     .that(actual)
                     .isEqualTo(expectedResult);
 
@@ -437,10 +432,10 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
                 parseInt = parseInt.substring(0, parseInt.indexOf(':'));
                 final int lineNumber = Integer.parseInt(parseInt);
                 assertWithMessage(
-                        "input file is expected to have a warning comment on line number %s",
-                        lineNumber)
+                    "input file is expected to have a warning comment on line number %s",
+                    lineNumber)
                     .that(previousLineNumber == lineNumber
-                            || theWarnings.remove((Integer) lineNumber))
+                        || theWarnings.remove((Integer) lineNumber))
                     .isTrue();
                 previousLineNumber = lineNumber;
             }
@@ -459,7 +454,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     /**
      * Performs the verification of the file with the given file path and config.
      *
-     * @param config config to check against.
+     * @param config   config to check against.
      * @param filePath input file path.
      * @throws Exception if exception occurs during verification process.
      */
@@ -475,18 +470,18 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * Tests the file with the check config.
      *
      * @param config check configuration.
-     * @param file input file path.
+     * @param file   input file path.
      * @return list of actual violations.
      * @throws Exception if exception occurs during verification process.
      */
     private List<String> getActualViolationsForFile(Configuration config,
-          String file) throws Exception {
+                                                    String file) throws Exception {
         stream.flush();
         stream.reset();
         final List<File> files = Collections.singletonList(new File(file));
         final Checker checker = createChecker(config);
         final Map<String, List<String>> actualViolations =
-                getActualViolations(checker.process(files));
+            getActualViolations(checker.process(files));
         checker.destroy();
         return actualViolations.getOrDefault(file, new ArrayList<>());
     }
@@ -503,9 +498,9 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     private Map<String, List<String>> getActualViolations(int errorCount) throws IOException {
         // process each of the lines
         try (ByteArrayInputStream inputStream =
-                     new ByteArrayInputStream(stream.toByteArray());
+                 new ByteArrayInputStream(stream.toByteArray());
              LineNumberReader lnr = new LineNumberReader(
-                     new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             final Map<String, List<String>> actualViolations = new HashMap<>();
             for (String line = lnr.readLine(); line != null && lnr.getLineNumber() <= errorCount;
                  line = lnr.readLine()) {
@@ -516,8 +511,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
                 final String actualViolationMessage = actualViolation[1];
 
                 actualViolations
-                        .computeIfAbsent(actualViolationFileName, key -> new ArrayList<>())
-                        .add(actualViolationMessage);
+                    .computeIfAbsent(actualViolationFileName, key -> new ArrayList<>())
+                    .add(actualViolationMessage);
             }
 
             return actualViolations;
@@ -527,58 +522,57 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     /**
      * Performs verification of violation lines.
      *
-     * @param file file path.
+     * @param file                file path.
      * @param testInputViolations List of TestInputViolation objects.
-     * @param actualViolations for a file
+     * @param actualViolations    for a file
      */
     private static void verifyViolations(String file, List<TestInputViolation> testInputViolations,
-          List<String> actualViolations) {
+                                         List<String> actualViolations) {
         final List<Integer> actualViolationLines = actualViolations.stream()
-                .map(violation -> violation.substring(0, violation.indexOf(':')))
-                .map(Integer::valueOf)
-                .collect(Collectors.toUnmodifiableList());
+            .map(violation -> violation.substring(0, violation.indexOf(':')))
+            .map(Integer::valueOf)
+            .collect(Collectors.toUnmodifiableList());
         final List<Integer> expectedViolationLines = testInputViolations.stream()
-                .map(TestInputViolation::getLineNo)
-                .collect(Collectors.toUnmodifiableList());
+            .map(TestInputViolation::getLineNo)
+            .collect(Collectors.toUnmodifiableList());
         assertWithMessage("Violation lines for %s differ.", file)
-                .that(actualViolationLines)
-                .isEqualTo(expectedViolationLines);
+            .that(actualViolationLines)
+            .isEqualTo(expectedViolationLines);
         for (int index = 0; index < actualViolations.size(); index++) {
             assertWithMessage("Actual and expected violations differ.")
-                    .that(actualViolations.get(index))
-                    .matches(testInputViolations.get(index).toRegex());
+                .that(actualViolations.get(index))
+                .matches(testInputViolations.get(index).toRegex());
         }
     }
 
     /**
-     * Gets the check message 'as is' from appropriate 'messages.properties'
-     * file.
+     * Gets the check message 'as is' from appropriate 'messages.properties' file.
      *
-     * @param aClass the package the message is located in.
+     * @param aClass     the package the message is located in.
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments  the arguments of message in 'messages.properties' file.
      * @return The message of the check with the arguments applied.
      * @throws IOException if there is a problem loading the property file.
      */
     protected static String getCheckMessage(Class<? extends AbstractViolationReporter> aClass,
-            String messageKey, Object... arguments) throws IOException {
+                                            String messageKey, Object... arguments) throws IOException {
         final Properties pr = new Properties();
         pr.load(aClass.getResourceAsStream("messages.properties"));
         final MessageFormat formatter = new MessageFormat(pr.getProperty(messageKey),
-                Locale.ROOT);
+            Locale.ROOT);
         return formatter.format(arguments);
     }
 
     /**
      * Gets the check message 'as is' from appropriate 'messages.properties' file.
      *
-     * @param messages the map of messages to scan.
+     * @param messages   the map of messages to scan.
      * @param messageKey the key of message in 'messages.properties' file.
-     * @param arguments the arguments of message in 'messages.properties' file.
+     * @param arguments  the arguments of message in 'messages.properties' file.
      * @return The message of the check with the arguments applied.
      */
     protected static String getCheckMessage(Map<String, String> messages, String messageKey,
-            Object... arguments) {
+                                            Object... arguments) {
         String checkMessage = null;
         for (Map.Entry<String, String> entry : messages.entrySet()) {
             if (messageKey.equals(entry.getKey())) {
@@ -606,8 +600,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     }
 
     /**
-     * Returns an array of integers which represents the warning line numbers in the file
-     * with the given file name.
+     * Returns an array of integers which represents the warning line numbers in the file with the
+     * given file name.
      *
      * @param fileName file name.
      * @return an array of integers which represents the warning line numbers.
@@ -616,7 +610,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     protected Integer[] getLinesWithWarn(String fileName) throws IOException {
         final List<Integer> result = new ArrayList<>();
         try (BufferedReader br = Files.newBufferedReader(
-                Path.of(fileName), StandardCharsets.UTF_8)) {
+            Path.of(fileName), StandardCharsets.UTF_8)) {
             int lineNumber = 1;
             while (true) {
                 final String line = br.readLine();

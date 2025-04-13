@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -51,7 +51,7 @@ public class XpathRegressionOuterTypeNumberTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
+            "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -61,10 +61,10 @@ public class XpathRegressionOuterTypeNumberTest extends AbstractXpathTestSupport
     @Test
     public void testMax() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathOuterTypeNumber.java"));
+            new File(getPath("InputXpathOuterTypeNumber.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(OuterTypeNumberCheck.class);
+            createModuleConfig(OuterTypeNumberCheck.class);
         moduleConfig.addProperty("max", "0");
 
         final String[] expectedViolation = {
@@ -73,10 +73,10 @@ public class XpathRegressionOuterTypeNumberTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
+            "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

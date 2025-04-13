@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -266,7 +266,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
         if (dot.getType() == TokenTypes.DOT) {
             final String methodName = dot.getLastChild().getText();
             if (EQUALS.equals(methodName)
-                    || !ignoreEqualsIgnoreCase && "equalsIgnoreCase".equals(methodName)) {
+                || !ignoreEqualsIgnoreCase && "equalsIgnoreCase".equals(methodName)) {
                 currentFrame.addMethodCall(methodCall);
             }
         }
@@ -304,7 +304,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
      * @param frame to check method calls in.
      */
     private void traverseFieldFrameTree(FieldFrame frame) {
-        for (FieldFrame child: frame.getChildren()) {
+        for (FieldFrame child : frame.getChildren()) {
             traverseFieldFrameTree(child);
 
             currentFrame = child;
@@ -324,8 +324,8 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
         }
         final DetailAST expr = methodCall.findFirstToken(TokenTypes.ELIST).getFirstChild();
         if (containsOneArgument(methodCall)
-                && containsAllSafeTokens(expr)
-                && isCalledOnStringFieldOrVariable(objCalledOn)) {
+            && containsAllSafeTokens(expr)
+            && isCalledOnStringFieldOrVariable(objCalledOn)) {
             final String methodName = methodCall.getFirstChild().getLastChild().getText();
             if (EQUALS.equals(methodName)) {
                 log(methodCall, MSG_EQUALS_AVOID_NULL);
@@ -362,16 +362,16 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
         if (arg.getType() == TokenTypes.PLUS) {
             DetailAST child = arg.getFirstChild();
             while (child != null
-                    && !argIsNotNull) {
+                && !argIsNotNull) {
                 argIsNotNull = child.getType() == TokenTypes.STRING_LITERAL
-                        || child.getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN
-                        || child.getType() == TokenTypes.IDENT;
+                    || child.getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN
+                    || child.getType() == TokenTypes.IDENT;
                 child = child.getNextSibling();
             }
         }
         else {
             argIsNotNull = arg.getType() == TokenTypes.STRING_LITERAL
-                    || arg.getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN;
+                || arg.getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN;
         }
 
         return argIsNotNull;
@@ -431,8 +431,8 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
         while (frame != null) {
             final DetailAST field = frame.findField(name);
             if (field != null
-                    && (frame.isClassOrEnumOrRecordDef()
-                            || CheckUtil.isBeforeInSource(field, objCalledOn))) {
+                && (frame.isClassOrEnumOrRecordDef()
+                || CheckUtil.isBeforeInSource(field, objCalledOn))) {
                 result = STRING.equals(getFieldType(field));
                 break;
             }
@@ -461,7 +461,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
      * @return true if the field or the variable from the specified class is of String type.
      */
     private boolean isStringFieldOrVariableFromClass(DetailAST objCalledOn,
-            final String className) {
+                                                     final String className) {
         boolean result = false;
         final String name = objCalledOn.getText();
         FieldFrame frame = currentFrame;
@@ -499,7 +499,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
     private static String getFieldType(DetailAST field) {
         String fieldType = null;
         final DetailAST identAst = field.findFirstToken(TokenTypes.TYPE)
-                .findFirstToken(TokenTypes.IDENT);
+            .findFirstToken(TokenTypes.IDENT);
         if (identAst != null) {
             fieldType = identAst.getText();
         }
@@ -514,8 +514,8 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
      */
     private static boolean astTypeIsClassOrEnumOrRecordDef(int tokenType) {
         return tokenType == TokenTypes.CLASS_DEF
-                || tokenType == TokenTypes.RECORD_DEF
-                || tokenType == TokenTypes.ENUM_DEF;
+            || tokenType == TokenTypes.RECORD_DEF
+            || tokenType == TokenTypes.ENUM_DEF;
     }
 
     /**

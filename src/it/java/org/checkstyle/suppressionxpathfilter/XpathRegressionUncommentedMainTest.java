@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
 public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport {
 
     private static final Class<UncommentedMainCheck> CLAZZ =
-            UncommentedMainCheck.class;
+        UncommentedMainCheck.class;
 
     @Override
     protected String getCheckName() {
@@ -41,61 +41,61 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathUncommentedMainDefault.java"));
+            new File(getPath("InputXpathUncommentedMainDefault.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(UncommentedMainCheck.class);
+            createModuleConfig(UncommentedMainCheck.class);
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(UncommentedMainCheck.class,
-                        UncommentedMainCheck.MSG_KEY),
+                UncommentedMainCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathUncommentedMainDefault']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathUncommentedMainDefault']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathUncommentedMainDefault']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS/LITERAL_PUBLIC"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathUncommentedMainDefault']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathUncommentedMainDefault']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathUncommentedMainDefault']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testInStaticClass() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathUncommentedMainInStaticClass.java"));
+            new File(getPath("InputXpathUncommentedMainInStaticClass.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(UncommentedMainCheck.class);
+            createModuleConfig(UncommentedMainCheck.class);
 
         final String[] expectedViolation = {
             "5:9: " + getCheckMessage(UncommentedMainCheck.class,
-                        UncommentedMainCheck.MSG_KEY),
+                UncommentedMainCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathUncommentedMainInStaticClass']]"
-                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Launcher']"
-                        + "]/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathUncommentedMainInStaticClass']]"
-                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Launcher']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathUncommentedMainInStaticClass']]"
-                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Launcher']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS/LITERAL_PUBLIC"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathUncommentedMainInStaticClass']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Launcher']"
+                + "]/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathUncommentedMainInStaticClass']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Launcher']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathUncommentedMainInStaticClass']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Launcher']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -37,7 +37,7 @@ public class TryHandler extends BlockParentHandler {
      * @param parent        the parent handler
      */
     public TryHandler(IndentationCheck indentCheck,
-        DetailAST ast, AbstractExpressionHandler parent) {
+                      DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck, "try", ast, parent);
     }
 
@@ -65,7 +65,7 @@ public class TryHandler extends BlockParentHandler {
         if (child instanceof CatchHandler
             || child instanceof FinallyHandler
             || child instanceof NewHandler
-                && isTryBlocksResourceSpecification(child)) {
+            && isTryBlocksResourceSpecification(child)) {
             result = getIndent();
         }
         else {
@@ -93,7 +93,7 @@ public class TryHandler extends BlockParentHandler {
      * @param subType       name to be used in log message
      */
     private void checkTryResParen(final DetailAST parenAst,
-                                    final String subType) {
+                                  final String subType) {
         if (isOnStartOfLine(parenAst)) {
             final IndentLevel expectedIdent = new IndentLevel(getIndent(), 0,
                 getIndentCheck().getLineWrappingIndentation());

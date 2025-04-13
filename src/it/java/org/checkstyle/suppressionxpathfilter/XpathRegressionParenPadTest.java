@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -42,14 +42,14 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
     @Test
     public void testLeftFollowed() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathParenPadLeftFollowed.java"));
+            new File(getPath("InputXpathParenPadLeftFollowed.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ParenPadCheck.class);
+            createModuleConfig(ParenPadCheck.class);
 
         final String[] expectedViolation = {
             "5:12: " + getCheckMessage(ParenPadCheck.class,
-                    AbstractParenPadCheck.MSG_WS_FOLLOWED, "("),
+                AbstractParenPadCheck.MSG_WS_FOLLOWED, "("),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -59,21 +59,21 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testLeftNotFollowed() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathParenPadLeftNotFollowed.java"));
+            new File(getPath("InputXpathParenPadLeftNotFollowed.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ParenPadCheck.class);
+            createModuleConfig(ParenPadCheck.class);
         moduleConfig.addProperty("option", PadOption.SPACE.toString());
 
         final String[] expectedViolation = {
             "5:12: " + getCheckMessage(ParenPadCheck.class,
-                    AbstractParenPadCheck.MSG_WS_NOT_FOLLOWED, "("),
+                AbstractParenPadCheck.MSG_WS_NOT_FOLLOWED, "("),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -83,20 +83,20 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testRightPreceded() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathParenPadRightPreceded.java"));
+            new File(getPath("InputXpathParenPadRightPreceded.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ParenPadCheck.class);
+            createModuleConfig(ParenPadCheck.class);
 
         final String[] expectedViolation = {
             "5:19: " + getCheckMessage(ParenPadCheck.class,
-                    AbstractParenPadCheck.MSG_WS_PRECEDED, ")"),
+                AbstractParenPadCheck.MSG_WS_PRECEDED, ")"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -106,21 +106,21 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testRightNotPreceded() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathParenPadRightNotPreceded.java"));
+            new File(getPath("InputXpathParenPadRightNotPreceded.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ParenPadCheck.class);
+            createModuleConfig(ParenPadCheck.class);
         moduleConfig.addProperty("option", PadOption.SPACE.toString());
 
         final String[] expectedViolation = {
             "5:19: " + getCheckMessage(ParenPadCheck.class,
-                    AbstractParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
+                AbstractParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -130,7 +130,7 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.meta;
 
@@ -54,17 +54,17 @@ public final class MetadataGeneratorUtil {
      * @throws CheckstyleException checkstyleException
      */
     public static void generate(String path, OutputStream out, String... moduleFolders)
-            throws IOException, CheckstyleException {
+        throws IOException, CheckstyleException {
         JavadocMetadataScraper.resetModuleDetailsStore();
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Checker.class.getClassLoader());
         final DefaultConfiguration scraperCheckConfig =
-                        new DefaultConfiguration(JavadocMetadataScraper.class.getName());
+            new DefaultConfiguration(JavadocMetadataScraper.class.getName());
         final DefaultConfiguration defaultConfiguration =
-                new DefaultConfiguration("configuration");
+            new DefaultConfiguration("configuration");
         final DefaultConfiguration treeWalkerConfig =
-                new DefaultConfiguration(TreeWalker.class.getName());
+            new DefaultConfiguration(TreeWalker.class.getName());
         defaultConfiguration.addProperty("charset", StandardCharsets.UTF_8.name());
         defaultConfiguration.addChild(treeWalkerConfig);
         treeWalkerConfig.addChild(scraperCheckConfig);
@@ -86,17 +86,17 @@ public final class MetadataGeneratorUtil {
      * @throws IOException ioException
      */
     private static List<File> getTargetFiles(String path, String... moduleFolders)
-            throws IOException {
+        throws IOException {
         final List<File> validFiles = new ArrayList<>();
         for (String folder : moduleFolders) {
             try (Stream<Path> files = Files.walk(Path.of(path + "/" + folder))) {
                 validFiles.addAll(
-                        files.map(Path::toFile)
+                    files.map(Path::toFile)
                         .filter(file -> {
                             final String fileName = file.getName();
                             return fileName.endsWith("SuppressWarningsHolder.java")
-                                    || fileName.endsWith("Check.java")
-                                    || fileName.endsWith("Filter.java");
+                                || fileName.endsWith("Check.java")
+                                || fileName.endsWith("Filter.java");
                         })
                         .collect(Collectors.toUnmodifiableList()));
             }

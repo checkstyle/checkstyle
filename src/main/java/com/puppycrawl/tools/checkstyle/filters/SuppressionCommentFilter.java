@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.filters;
 
@@ -314,7 +314,7 @@ public class SuppressionCommentFilter
             final int eventLine = event.getLine();
             if (tag.getLine() > eventLine
                 || tag.getLine() == eventLine
-                    && tag.getColumn() > event.getColumn()) {
+                && tag.getColumn() > event.getColumn()) {
                 break;
             }
             if (tag.isMatch(event)) {
@@ -336,7 +336,7 @@ public class SuppressionCommentFilter
         }
         if (checkC) {
             final Collection<List<TextBlock>> cComments = contents
-                    .getBlockComments().values();
+                .getBlockComments().values();
             cComments.forEach(this::tagSuppressions);
         }
         Collections.sort(tags);
@@ -432,7 +432,7 @@ public class SuppressionCommentFilter
          * @throws IllegalArgumentException if unable to parse expanded text.
          */
         private Tag(int line, int column, String text, TagType tagType,
-                   SuppressionCommentFilter filter) {
+                    SuppressionCommentFilter filter) {
             this.line = line;
             this.column = column;
             this.text = text;
@@ -451,7 +451,7 @@ public class SuppressionCommentFilter
             String format = "";
             try {
                 format = CommonUtil.fillTemplateWithStringsByRegexp(
-                        filter.checkFormat, text, commentFormat);
+                    filter.checkFormat, text, commentFormat);
                 tagCheckRegexp = Pattern.compile(format);
 
                 if (filter.messageFormat == null) {
@@ -459,7 +459,7 @@ public class SuppressionCommentFilter
                 }
                 else {
                     format = CommonUtil.fillTemplateWithStringsByRegexp(
-                            filter.messageFormat, text, commentFormat);
+                        filter.messageFormat, text, commentFormat);
                     tagMessageRegexp = Pattern.compile(format);
                 }
 
@@ -468,7 +468,7 @@ public class SuppressionCommentFilter
                 }
                 else {
                     format = CommonUtil.fillTemplateWithStringsByRegexp(
-                            filter.idFormat, text, commentFormat);
+                        filter.idFormat, text, commentFormat);
                     tagIdRegexp = Pattern.compile(format);
                 }
             }
@@ -547,18 +547,18 @@ public class SuppressionCommentFilter
             }
             final Tag tag = (Tag) other;
             return Objects.equals(line, tag.line)
-                    && Objects.equals(column, tag.column)
-                    && Objects.equals(tagType, tag.tagType)
-                    && Objects.equals(text, tag.text)
-                    && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
-                    && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp)
-                    && Objects.equals(tagIdRegexp, tag.tagIdRegexp);
+                && Objects.equals(column, tag.column)
+                && Objects.equals(tagType, tag.tagType)
+                && Objects.equals(text, tag.text)
+                && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
+                && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp)
+                && Objects.equals(tagIdRegexp, tag.tagIdRegexp);
         }
 
         @Override
         public int hashCode() {
             return Objects.hash(text, line, column, tagType, tagCheckRegexp, tagMessageRegexp,
-                    tagIdRegexp);
+                tagIdRegexp);
         }
 
         /**
@@ -621,12 +621,12 @@ public class SuppressionCommentFilter
         @Override
         public String toString() {
             return "Tag[text='" + text + '\''
-                    + ", line=" + line
-                    + ", column=" + column
-                    + ", type=" + tagType
-                    + ", tagCheckRegexp=" + tagCheckRegexp
-                    + ", tagMessageRegexp=" + tagMessageRegexp
-                    + ", tagIdRegexp=" + tagIdRegexp + ']';
+                + ", line=" + line
+                + ", column=" + column
+                + ", type=" + tagType
+                + ", tagCheckRegexp=" + tagCheckRegexp
+                + ", tagMessageRegexp=" + tagMessageRegexp
+                + ", tagIdRegexp=" + tagIdRegexp + ']';
         }
 
     }

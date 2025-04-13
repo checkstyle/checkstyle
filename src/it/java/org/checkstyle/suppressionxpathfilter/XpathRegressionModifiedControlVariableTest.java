@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableChec
 
 public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTestSupport {
     private static final Class<ModifiedControlVariableCheck> CLAZZ =
-            ModifiedControlVariableCheck.class;
+        ModifiedControlVariableCheck.class;
 
     @Override
     protected String getCheckName() {
@@ -40,18 +40,18 @@ public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTes
     @Test
     public void testDefaultForLoop() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathModifiedControlVariableWithFor.java"));
+            getPath("InputXpathModifiedControlVariableWithFor.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
         final String[] expectedViolation = {
             "6:14: " + getCheckMessage(CLAZZ,
-                    ModifiedControlVariableCheck.MSG_KEY, "i"),
+                ModifiedControlVariableCheck.MSG_KEY, "i"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathModifiedControlVariableWithFor']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_FOR/SLIST/EXPR",
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathModifiedControlVariableWithFor']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/LITERAL_FOR/SLIST/EXPR/POST_INC[./IDENT[@text='i']]");
@@ -62,17 +62,17 @@ public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTes
     @Test
     public void testDefaultForeach() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathModifiedControlVariableWithForeach.java"));
+            getPath("InputXpathModifiedControlVariableWithForeach.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
         final String[] expectedViolation = {
             "7:15: " + getCheckMessage(CLAZZ,
-                        ModifiedControlVariableCheck.MSG_KEY, "s"),
+                ModifiedControlVariableCheck.MSG_KEY, "s"),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathModifiedControlVariableWithForeach']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_FOR/SLIST/EXPR",
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathModifiedControlVariableWithForeach']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/LITERAL_FOR/SLIST/EXPR/PLUS_ASSIGN[./IDENT[@text='s']]"
@@ -83,19 +83,19 @@ public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTes
     @Test
     public void testSkipEnhancedForLoop() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathModifiedControlVariableSkipEnhancedForLoop.java"));
+            getPath("InputXpathModifiedControlVariableSkipEnhancedForLoop.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
         moduleConfig.addProperty("skipEnhancedForLoopVariable", "true");
         final String[] expectedViolation = {
             "10:14: " + getCheckMessage(CLAZZ,
-                        ModifiedControlVariableCheck.MSG_KEY, "i"),
+                ModifiedControlVariableCheck.MSG_KEY, "i"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathModifiedControlVariableSkipEnhancedForLoop']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_FOR/SLIST/EXPR",
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathModifiedControlVariableSkipEnhancedForLoop']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/LITERAL_FOR/SLIST/EXPR/POST_INC[./IDENT[@text='i']]"
@@ -106,19 +106,19 @@ public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTes
     @Test
     public void testDefaultNestedForLoop() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathModifiedControlVariableNestedWithFor.java"));
+            getPath("InputXpathModifiedControlVariableNestedWithFor.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
         final String[] expectedViolation = {
             "7:19: " + getCheckMessage(CLAZZ,
-                    ModifiedControlVariableCheck.MSG_KEY, "j"),
+                ModifiedControlVariableCheck.MSG_KEY, "j"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathModifiedControlVariableNestedWithFor']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/LITERAL_FOR/SLIST/LITERAL_FOR/SLIST/EXPR",
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathModifiedControlVariableNestedWithFor']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/LITERAL_FOR/SLIST"
@@ -130,19 +130,19 @@ public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTes
     @Test
     public void testForeachNested() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathModifiedControlVariableNestedWithForeach.java"));
+            getPath("InputXpathModifiedControlVariableNestedWithForeach.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
         final String[] expectedViolation = {
             "8:19: " + getCheckMessage(CLAZZ,
-                    ModifiedControlVariableCheck.MSG_KEY, "s"),
+                ModifiedControlVariableCheck.MSG_KEY, "s"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathModifiedControlVariableNestedWithForeach']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/LITERAL_FOR/SLIST/LITERAL_FOR/SLIST/EXPR",
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathModifiedControlVariableNestedWithForeach']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/LITERAL_FOR/SLIST/LITERAL_FOR/SLIST/EXPR"
@@ -154,19 +154,19 @@ public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTes
     @Test
     public void testSkipEnhancedForLoopNested() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathModifiedControlVariableNestedSkipEnhancedForLoop.java"));
+            getPath("InputXpathModifiedControlVariableNestedSkipEnhancedForLoop.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
         moduleConfig.addProperty("skipEnhancedForLoopVariable", "true");
         final String[] expectedViolation = {
             "10:15: " + getCheckMessage(CLAZZ,
-                    ModifiedControlVariableCheck.MSG_KEY, "i"),
+                ModifiedControlVariableCheck.MSG_KEY, "i"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathModifiedControlVariableNestedSkipEnhancedForLoop']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_FOR/SLIST/EXPR",
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathModifiedControlVariableNestedSkipEnhancedForLoop']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_FOR/SLIST/EXPR"
                 + "/PLUS_ASSIGN[./IDENT[@text='i']]");

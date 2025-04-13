@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
@@ -180,7 +180,7 @@ public class EmptyBlockCheck
                 if (leftCurlyAST.getType() == TokenTypes.LCURLY) {
                     final DetailAST nextSibling = leftCurlyAST.getNextSibling();
                     emptyBlock = nextSibling.getType() != TokenTypes.CASE_GROUP
-                            && nextSibling.getType() != TokenTypes.SWITCH_RULE;
+                        && nextSibling.getType() != TokenTypes.SWITCH_RULE;
                 }
                 else {
                     emptyBlock = leftCurlyAST.getChildCount() <= 1;
@@ -222,7 +222,7 @@ public class EmptyBlockCheck
         if (slistLineNo == rcurlyLineNo) {
             // Handle braces on the same line
             final int[] txt = Arrays.copyOfRange(getLineCodePoints(slistLineNo - 1),
-                    slistColNo + 1, rcurlyColNo);
+                slistColNo + 1, rcurlyColNo);
 
             if (!CodePointUtil.isBlank(txt)) {
                 returnValue = true;
@@ -231,12 +231,12 @@ public class EmptyBlockCheck
         else {
             final int[] codePointsFirstLine = getLineCodePoints(slistLineNo - 1);
             final int[] firstLine = Arrays.copyOfRange(codePointsFirstLine,
-                    slistColNo + 1, codePointsFirstLine.length);
+                slistColNo + 1, codePointsFirstLine.length);
             final int[] codePointsLastLine = getLineCodePoints(rcurlyLineNo - 1);
             final int[] lastLine = Arrays.copyOfRange(codePointsLastLine, 0, rcurlyColNo);
             // check if all lines are also only whitespace
             returnValue = !(CodePointUtil.isBlank(firstLine) && CodePointUtil.isBlank(lastLine))
-                    || !checkIsAllLinesAreWhitespace(slistLineNo, rcurlyLineNo);
+                || !checkIsAllLinesAreWhitespace(slistLineNo, rcurlyLineNo);
         }
         return returnValue;
     }
@@ -280,8 +280,8 @@ public class EmptyBlockCheck
         else if (parentType == TokenTypes.CASE_GROUP) {
             // get left curly of a case or default that is in switch statement
             leftCurly = Optional.ofNullable(ast.getNextSibling())
-                         .map(DetailAST::getFirstChild)
-                         .filter(node -> node.getType() == TokenTypes.SLIST);
+                .map(DetailAST::getFirstChild)
+                .filter(node -> node.getType() == TokenTypes.SLIST);
         }
         else if (ast.findFirstToken(TokenTypes.SLIST) != null) {
             // we have a left curly that is part of a statement list, but not in a case or default

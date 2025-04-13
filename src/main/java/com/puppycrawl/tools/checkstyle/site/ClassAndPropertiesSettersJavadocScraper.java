@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.site;
 
@@ -45,7 +45,7 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
      * The class javadoc is stored too, with the key being the module name.
      */
     private static final Map<String, DetailNode> JAVADOC_FOR_MODULE_OR_PROPERTY =
-            new LinkedHashMap<>();
+        new LinkedHashMap<>();
 
     /** Name of the module being scraped. */
     private static String moduleName = "";
@@ -82,8 +82,8 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
         if (BlockCommentPosition.isOnMethod(blockCommentAst)) {
             final DetailAST methodDef = getParentAst(blockCommentAst, TokenTypes.METHOD_DEF);
             if (methodDef != null
-                    && isSetterMethod(methodDef)
-                    && isMethodOfScrapedModule(methodDef)) {
+                && isSetterMethod(methodDef)
+                && isMethodOfScrapedModule(methodDef)) {
                 final String methodName = methodDef.findFirstToken(TokenTypes.IDENT).getText();
                 final String propertyName = getPropertyName(methodName);
                 JAVADOC_FOR_MODULE_OR_PROPERTY.put(propertyName, ast);

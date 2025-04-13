@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -108,7 +108,7 @@ public class DetailAstSet {
      * Get the ast corresponding to line number.
      *
      * @param lineNum   line number of ast.
-     * @return          ast with their corresponding line number or null if no mapping is present
+     * @return ast with their corresponding line number or null if no mapping is present
      */
     public DetailAST getAst(int lineNum) {
         return astLines.get(lineNum);

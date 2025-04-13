@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.site;
 
@@ -55,7 +55,7 @@ public class ViolationMessagesMacro extends AbstractMacro {
      * @param messageKeys the List of message keys to iterate through.
      */
     private static void createListOfMessages(
-            XdocSink sink, Class<?> clss, Set<String> messageKeys) {
+        XdocSink sink, Class<?> clss, Set<String> messageKeys) {
         final String indentLevel8 = SiteUtil.getNewlineAndIndentSpaces(8);
 
         // This is a hack to prevent a newline from being inserted by the default sink.
@@ -116,9 +116,9 @@ public class ViolationMessagesMacro extends AbstractMacro {
      */
     private static String constructMessageKeyUrl(Class<?> clss, String messageKey) {
         return "https://github.com/search?q="
-                + "path%3Asrc%2Fmain%2Fresources%2F"
-                + clss.getPackage().getName().replace(".", "%2F")
-                + "%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2F"
-                + "checkstyle+%22" + messageKey + "%22";
+            + "path%3Asrc%2Fmain%2Fresources%2F"
+            + clss.getPackage().getName().replace(".", "%2F")
+            + "%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2F"
+            + "checkstyle+%22" + messageKey + "%22";
     }
 }

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.api;
 
@@ -73,7 +73,7 @@ public abstract class AbstractFileSetCheck
      * @throws CheckstyleException if error condition within Checkstyle occurs.
      */
     protected abstract void processFiltered(File file, FileText fileText)
-            throws CheckstyleException;
+        throws CheckstyleException;
 
     @Override
     public void init() {
@@ -92,7 +92,7 @@ public abstract class AbstractFileSetCheck
 
     @Override
     public final SortedSet<Violation> process(File file, FileText fileText)
-            throws CheckstyleException {
+        throws CheckstyleException {
         final FileContext fileContext = context.get();
         fileContext.fileContents = new FileContents(fileText);
         fileContext.violations.clear();
@@ -216,32 +216,32 @@ public abstract class AbstractFileSetCheck
     @Override
     public final void log(int line, String key, Object... args) {
         context.get().violations.add(
-                new Violation(line,
-                        getMessageBundle(),
-                        key,
-                        args,
-                        getSeverityLevel(),
-                        getId(),
-                        getClass(),
-                        getCustomMessages().get(key)));
+            new Violation(line,
+                getMessageBundle(),
+                key,
+                args,
+                getSeverityLevel(),
+                getId(),
+                getClass(),
+                getCustomMessages().get(key)));
     }
 
     @Override
     public final void log(int lineNo, int colNo, String key,
-            Object... args) {
+                          Object... args) {
         final FileContext fileContext = context.get();
         final int col = 1 + CommonUtil.lengthExpandedTabs(
-                fileContext.fileContents.getLine(lineNo - 1), colNo, tabWidth);
+            fileContext.fileContents.getLine(lineNo - 1), colNo, tabWidth);
         fileContext.violations.add(
-                new Violation(lineNo,
-                        col,
-                        getMessageBundle(),
-                        key,
-                        args,
-                        getSeverityLevel(),
-                        getId(),
-                        getClass(),
-                        getCustomMessages().get(key)));
+            new Violation(lineNo,
+                col,
+                getMessageBundle(),
+                key,
+                args,
+                getSeverityLevel(),
+                getId(),
+                getClass(),
+                getCustomMessages().get(key)));
     }
 
     /**

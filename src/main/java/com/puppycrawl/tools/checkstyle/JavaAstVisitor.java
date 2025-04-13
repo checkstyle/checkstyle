@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -145,9 +145,9 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitPackageDeclaration(
-            JavaLanguageParser.PackageDeclarationContext ctx) {
+        JavaLanguageParser.PackageDeclarationContext ctx) {
         final DetailAstImpl packageDeclaration =
-                create(TokenTypes.PACKAGE_DEF, (Token) ctx.LITERAL_PACKAGE().getPayload());
+            create(TokenTypes.PACKAGE_DEF, (Token) ctx.LITERAL_PACKAGE().getPayload());
         packageDeclaration.addChild(visit(ctx.annotations()));
         packageDeclaration.addChild(visit(ctx.qualifiedName()));
         packageDeclaration.addChild(create(ctx.SEMI()));
@@ -192,7 +192,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         if (ctx.type == null) {
             typeDeclaration = create(ctx.semi.get(0));
             ctx.semi.subList(1, ctx.semi.size())
-                    .forEach(semi -> addLastSibling(typeDeclaration, create(semi)));
+                .forEach(semi -> addLastSibling(typeDeclaration, create(semi)));
         }
         else {
             typeDeclaration = visit(ctx.type);
@@ -222,7 +222,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitRecordComponentsList(
-            JavaLanguageParser.RecordComponentsListContext ctx) {
+        JavaLanguageParser.RecordComponentsListContext ctx) {
         final DetailAstImpl lparen = create(ctx.LPAREN());
 
         // We make a "RECORD_COMPONENTS" node whether components exist or not
@@ -252,7 +252,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitLastRecordComponent(
-            JavaLanguageParser.LastRecordComponentContext ctx) {
+        JavaLanguageParser.LastRecordComponentContext ctx) {
         final DetailAstImpl recordComponent = createImaginary(TokenTypes.RECORD_COMPONENT_DEF);
         processChildren(recordComponent, ctx.children);
         return recordComponent;
@@ -267,7 +267,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitCompactConstructorDeclaration(
-            JavaLanguageParser.CompactConstructorDeclarationContext ctx) {
+        JavaLanguageParser.CompactConstructorDeclarationContext ctx) {
         final DetailAstImpl compactConstructor = createImaginary(TokenTypes.COMPACT_CTOR_DEF);
         compactConstructor.addChild(createModifiers(ctx.mods));
         compactConstructor.addChild(visit(ctx.id()));
@@ -285,7 +285,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     @Override
     public DetailAstImpl visitImplementsClause(JavaLanguageParser.ImplementsClauseContext ctx) {
         final DetailAstImpl classImplements = create(TokenTypes.IMPLEMENTS_CLAUSE,
-                (Token) ctx.LITERAL_IMPLEMENTS().getPayload());
+            (Token) ctx.LITERAL_IMPLEMENTS().getPayload());
         classImplements.addChild(visit(ctx.typeList()));
         return classImplements;
     }
@@ -311,7 +311,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     public DetailAstImpl visitTypeUpperBounds(JavaLanguageParser.TypeUpperBoundsContext ctx) {
         // In this case, we call 'extends` TYPE_UPPER_BOUNDS
         final DetailAstImpl typeUpperBounds = create(TokenTypes.TYPE_UPPER_BOUNDS,
-                (Token) ctx.EXTENDS_CLAUSE().getPayload());
+            (Token) ctx.EXTENDS_CLAUSE().getPayload());
         // 'extends' is child[0]
         processChildren(typeUpperBounds, ctx.children.subList(1, ctx.children.size()));
         return typeUpperBounds;
@@ -321,10 +321,10 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     public DetailAstImpl visitTypeBound(JavaLanguageParser.TypeBoundContext ctx) {
         final DetailAstImpl typeBoundType = visit(ctx.typeBoundType(0));
         final Iterator<JavaLanguageParser.TypeBoundTypeContext> typeBoundTypeIterator =
-                ctx.typeBoundType().listIterator(1);
+            ctx.typeBoundType().listIterator(1);
         ctx.BAND().forEach(band -> {
             addLastSibling(typeBoundType, create(TokenTypes.TYPE_EXTENSION_AND,
-                                (Token) band.getPayload()));
+                (Token) band.getPayload()));
             addLastSibling(typeBoundType, visit(typeBoundTypeIterator.next()));
         });
         return typeBoundType;
@@ -355,20 +355,20 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     @Override
     public DetailAstImpl visitEnumConstant(JavaLanguageParser.EnumConstantContext ctx) {
         final DetailAstImpl enumConstant =
-                createImaginary(TokenTypes.ENUM_CONSTANT_DEF);
+            createImaginary(TokenTypes.ENUM_CONSTANT_DEF);
         processChildren(enumConstant, ctx.children);
         return enumConstant;
     }
 
     @Override
     public DetailAstImpl visitEnumBodyDeclarations(
-            JavaLanguageParser.EnumBodyDeclarationsContext ctx) {
+        JavaLanguageParser.EnumBodyDeclarationsContext ctx) {
         return flattenedTree(ctx);
     }
 
     @Override
     public DetailAstImpl visitInterfaceDeclaration(
-            JavaLanguageParser.InterfaceDeclarationContext ctx) {
+        JavaLanguageParser.InterfaceDeclarationContext ctx) {
         return createTypeDeclaration(ctx, TokenTypes.INTERFACE_DEF, ctx.mods);
     }
 
@@ -420,8 +420,8 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
         // Process all children except C style array declarators
         processChildren(methodDef, ctx.children.stream()
-                .filter(child -> !(child instanceof JavaLanguageParser.ArrayDeclaratorContext))
-                .collect(Collectors.toUnmodifiableList()));
+            .filter(child -> !(child instanceof JavaLanguageParser.ArrayDeclaratorContext))
+            .collect(Collectors.toUnmodifiableList()));
 
         // We add C style array declarator brackets to TYPE ast
         final DetailAstImpl typeAst = (DetailAstImpl) methodDef.findFirstToken(TokenTypes.TYPE);
@@ -444,7 +444,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitConstructorDeclaration(
-            JavaLanguageParser.ConstructorDeclarationContext ctx) {
+        JavaLanguageParser.ConstructorDeclarationContext ctx) {
         final DetailAstImpl constructorDeclaration = createImaginary(TokenTypes.CTOR_DEF);
         constructorDeclaration.addChild(createModifiers(ctx.mods));
         processChildren(constructorDeclaration, ctx.children);
@@ -464,7 +464,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitInterfaceBodyDeclaration(
-            JavaLanguageParser.InterfaceBodyDeclarationContext ctx) {
+        JavaLanguageParser.InterfaceBodyDeclarationContext ctx) {
         final DetailAstImpl returnTree;
         if (ctx.SEMI() == null) {
             returnTree = visit(ctx.interfaceMemberDeclaration());
@@ -477,15 +477,15 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitInterfaceMethodDeclaration(
-            JavaLanguageParser.InterfaceMethodDeclarationContext ctx) {
+        JavaLanguageParser.InterfaceMethodDeclarationContext ctx) {
         final DetailAstImpl methodDef = createImaginary(TokenTypes.METHOD_DEF);
         methodDef.addChild(createModifiers(ctx.mods));
 
         // Process all children except C style array declarators and modifiers
         final List<ParseTree> children = ctx.children
-                .stream()
-                .filter(child -> !(child instanceof JavaLanguageParser.ArrayDeclaratorContext))
-                .collect(Collectors.toUnmodifiableList());
+            .stream()
+            .filter(child -> !(child instanceof JavaLanguageParser.ArrayDeclaratorContext))
+            .collect(Collectors.toUnmodifiableList());
         processChildren(methodDef, children);
 
         // We add C style array declarator brackets to TYPE ast
@@ -497,13 +497,13 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitVariableDeclarators(
-            JavaLanguageParser.VariableDeclaratorsContext ctx) {
+        JavaLanguageParser.VariableDeclaratorsContext ctx) {
         return flattenedTree(ctx);
     }
 
     @Override
     public DetailAstImpl visitVariableDeclarator(
-            JavaLanguageParser.VariableDeclaratorContext ctx) {
+        JavaLanguageParser.VariableDeclaratorContext ctx) {
         final DetailAstImpl variableDef = createImaginary(TokenTypes.VARIABLE_DEF);
         variableDef.addChild(createModifiers(ctx.mods));
 
@@ -526,7 +526,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitVariableDeclaratorId(
-            JavaLanguageParser.VariableDeclaratorIdContext ctx) {
+        JavaLanguageParser.VariableDeclaratorIdContext ctx) {
         final DetailAstImpl root = new DetailAstImpl();
         root.addChild(createModifiers(ctx.mods));
         final DetailAstImpl type = visit(ctx.type);
@@ -561,7 +561,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitClassOrInterfaceType(
-            JavaLanguageParser.ClassOrInterfaceTypeContext ctx) {
+        JavaLanguageParser.ClassOrInterfaceTypeContext ctx) {
         final DetailAstPair currentAST = new DetailAstPair();
         DetailAstPair.addAstChild(currentAST, visit(ctx.id()));
         DetailAstPair.addAstChild(currentAST, visit(ctx.typeArguments()));
@@ -588,20 +588,20 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitSimpleTypeArgument(
-            JavaLanguageParser.SimpleTypeArgumentContext ctx) {
+        JavaLanguageParser.SimpleTypeArgumentContext ctx) {
         final DetailAstImpl typeArgument =
-                createImaginary(TokenTypes.TYPE_ARGUMENT);
+            createImaginary(TokenTypes.TYPE_ARGUMENT);
         typeArgument.addChild(visit(ctx.typeType()));
         return typeArgument;
     }
 
     @Override
     public DetailAstImpl visitWildCardTypeArgument(
-            JavaLanguageParser.WildCardTypeArgumentContext ctx) {
+        JavaLanguageParser.WildCardTypeArgumentContext ctx) {
         final DetailAstImpl typeArgument = createImaginary(TokenTypes.TYPE_ARGUMENT);
         typeArgument.addChild(visit(ctx.annotations()));
         typeArgument.addChild(create(TokenTypes.WILDCARD_TYPE,
-                (Token) ctx.QUESTION().getPayload()));
+            (Token) ctx.QUESTION().getPayload()));
 
         if (ctx.upperBound != null) {
             final DetailAstImpl upperBound = create(TokenTypes.TYPE_UPPER_BOUNDS, ctx.upperBound);
@@ -639,7 +639,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitFormalParameterList(
-            JavaLanguageParser.FormalParameterListContext ctx) {
+        JavaLanguageParser.FormalParameterListContext ctx) {
         final DetailAstImpl parameters = createImaginary(TokenTypes.PARAMETERS);
         processChildren(parameters, ctx.children);
         return parameters;
@@ -648,7 +648,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     @Override
     public DetailAstImpl visitFormalParameter(JavaLanguageParser.FormalParameterContext ctx) {
         final DetailAstImpl variableDeclaratorId =
-                visitVariableDeclaratorId(ctx.variableDeclaratorId());
+            visitVariableDeclaratorId(ctx.variableDeclaratorId());
         final DetailAstImpl parameterDef = createImaginary(TokenTypes.PARAMETER_DEF);
         parameterDef.addChild(variableDeclaratorId);
         return parameterDef;
@@ -656,9 +656,9 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitLastFormalParameter(
-            JavaLanguageParser.LastFormalParameterContext ctx) {
+        JavaLanguageParser.LastFormalParameterContext ctx) {
         final DetailAstImpl parameterDef =
-                createImaginary(TokenTypes.PARAMETER_DEF);
+            createImaginary(TokenTypes.PARAMETER_DEF);
         parameterDef.addChild(visit(ctx.variableDeclaratorId()));
         final DetailAstImpl ident = (DetailAstImpl) parameterDef.findFirstToken(TokenTypes.IDENT);
         ident.addPreviousSibling(create(ctx.ELLIPSIS()));
@@ -678,7 +678,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
             final DetailAstImpl dot = create(extendedContext.start);
             DetailAstPair.makeAstRoot(currentAst, dot);
             final List<ParseTree> childList = extendedContext
-                    .children.subList(1, extendedContext.children.size());
+                .children.subList(1, extendedContext.children.size());
             processChildren(dot, childList);
         }
         return currentAst.getRoot();
@@ -713,7 +713,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     public DetailAstImpl visitFloatLiteral(JavaLanguageParser.FloatLiteralContext ctx) {
         final DetailAstImpl floatLiteral;
         if (TokenUtil.isOfType(ctx.start.getType(),
-                JavaLanguageLexer.DOUBLE_LITERAL, JavaLanguageLexer.HEX_DOUBLE_LITERAL)) {
+            JavaLanguageLexer.DOUBLE_LITERAL, JavaLanguageLexer.HEX_DOUBLE_LITERAL)) {
             floatLiteral = create(TokenTypes.NUM_DOUBLE, ctx.start);
         }
         else {
@@ -762,7 +762,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     @Override
     public DetailAstImpl visitElementValuePair(JavaLanguageParser.ElementValuePairContext ctx) {
         final DetailAstImpl elementValuePair =
-                createImaginary(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
+            createImaginary(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
         processChildren(elementValuePair, ctx.children);
         return elementValuePair;
     }
@@ -774,22 +774,22 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitElementValueArrayInitializer(
-            JavaLanguageParser.ElementValueArrayInitializerContext ctx) {
+        JavaLanguageParser.ElementValueArrayInitializerContext ctx) {
         final DetailAstImpl arrayInit =
-                create(TokenTypes.ANNOTATION_ARRAY_INIT, (Token) ctx.LCURLY().getPayload());
+            create(TokenTypes.ANNOTATION_ARRAY_INIT, (Token) ctx.LCURLY().getPayload());
         processChildren(arrayInit, ctx.children.subList(1, ctx.children.size()));
         return arrayInit;
     }
 
     @Override
     public DetailAstImpl visitAnnotationTypeDeclaration(
-            JavaLanguageParser.AnnotationTypeDeclarationContext ctx) {
+        JavaLanguageParser.AnnotationTypeDeclarationContext ctx) {
         return createTypeDeclaration(ctx, TokenTypes.ANNOTATION_DEF, ctx.mods);
     }
 
     @Override
     public DetailAstImpl visitAnnotationTypeBody(
-            JavaLanguageParser.AnnotationTypeBodyContext ctx) {
+        JavaLanguageParser.AnnotationTypeBodyContext ctx) {
         final DetailAstImpl objBlock = createImaginary(TokenTypes.OBJBLOCK);
         processChildren(objBlock, ctx.children);
         return objBlock;
@@ -797,7 +797,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitAnnotationTypeElementDeclaration(
-            JavaLanguageParser.AnnotationTypeElementDeclarationContext ctx) {
+        JavaLanguageParser.AnnotationTypeElementDeclarationContext ctx) {
         final DetailAstImpl returnTree;
         if (ctx.SEMI() == null) {
             returnTree = visit(ctx.annotationTypeElementRest());
@@ -827,20 +827,20 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitAnnotationMethodRest(
-            JavaLanguageParser.AnnotationMethodRestContext ctx) {
+        JavaLanguageParser.AnnotationMethodRestContext ctx) {
         final DetailAstImpl annotationFieldDef =
-                createImaginary(TokenTypes.ANNOTATION_FIELD_DEF);
+            createImaginary(TokenTypes.ANNOTATION_FIELD_DEF);
         annotationFieldDef.addChild(createModifiers(ctx.mods));
         annotationFieldDef.addChild(visit(ctx.type));
 
         // Process all children except C style array declarators
         processChildren(annotationFieldDef, ctx.children.stream()
-                .filter(child -> !(child instanceof JavaLanguageParser.ArrayDeclaratorContext))
-                .collect(Collectors.toUnmodifiableList()));
+            .filter(child -> !(child instanceof JavaLanguageParser.ArrayDeclaratorContext))
+            .collect(Collectors.toUnmodifiableList()));
 
         // We add C style array declarator brackets to TYPE ast
         final DetailAstImpl typeAst =
-                (DetailAstImpl) annotationFieldDef.findFirstToken(TokenTypes.TYPE);
+            (DetailAstImpl) annotationFieldDef.findFirstToken(TokenTypes.TYPE);
         ctx.cStyleArrDec.forEach(child -> typeAst.addChild(visit(child)));
 
         return annotationFieldDef;
@@ -879,11 +879,11 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     @Override
     public DetailAstImpl visitPrimaryCtorCall(JavaLanguageParser.PrimaryCtorCallContext ctx) {
         final DetailAstImpl primaryCtorCall = create(TokenTypes.SUPER_CTOR_CALL,
-                (Token) ctx.LITERAL_SUPER().getPayload());
+            (Token) ctx.LITERAL_SUPER().getPayload());
         // filter 'LITERAL_SUPER'
         processChildren(primaryCtorCall, ctx.children.stream()
-                   .filter(child -> !child.equals(ctx.LITERAL_SUPER()))
-                   .collect(Collectors.toUnmodifiableList()));
+            .filter(child -> !child.equals(ctx.LITERAL_SUPER()))
+            .collect(Collectors.toUnmodifiableList()));
         return primaryCtorCall;
     }
 
@@ -959,7 +959,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitTryWithResourceStat(
-            JavaLanguageParser.TryWithResourceStatContext ctx) {
+        JavaLanguageParser.TryWithResourceStatContext ctx) {
         final DetailAstImpl tryWithResources = create(ctx.LITERAL_TRY());
         // child[0] is 'LITERAL_TRY'
         processChildren(tryWithResources, ctx.children.subList(1, ctx.children.size()));
@@ -1029,7 +1029,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     @Override
     public DetailAstImpl visitLabelStat(JavaLanguageParser.LabelStatContext ctx) {
         final DetailAstImpl labelStat = create(TokenTypes.LABELED_STAT,
-                (Token) ctx.COLON().getPayload());
+            (Token) ctx.COLON().getPayload());
         labelStat.addChild(visit(ctx.id()));
         labelStat.addChild(visit(ctx.statement()));
         return labelStat;
@@ -1037,7 +1037,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitSwitchExpressionOrStatement(
-            JavaLanguageParser.SwitchExpressionOrStatementContext ctx) {
+        JavaLanguageParser.SwitchExpressionOrStatementContext ctx) {
         final DetailAstImpl switchStat = create(ctx.LITERAL_SWITCH());
         switchStat.addChild(visit(ctx.parExpression()));
         switchStat.addChild(create(ctx.LCURLY()));
@@ -1066,7 +1066,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         // Add any empty switch labels to end of statement in one 'CASE_GROUP'
         if (!ctx.emptyLabels.isEmpty()) {
             final DetailAstImpl emptyLabelParent =
-                    createImaginary(TokenTypes.CASE_GROUP);
+                createImaginary(TokenTypes.CASE_GROUP);
             ctx.emptyLabels.forEach(label -> emptyLabelParent.addChild(visit(label)));
             dummyRoot.addChild(emptyLabelParent);
         }
@@ -1075,19 +1075,19 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitSwitchLabeledExpression(
-            JavaLanguageParser.SwitchLabeledExpressionContext ctx) {
+        JavaLanguageParser.SwitchLabeledExpressionContext ctx) {
         return flattenedTree(ctx);
     }
 
     @Override
     public DetailAstImpl visitSwitchLabeledBlock(
-            JavaLanguageParser.SwitchLabeledBlockContext ctx) {
+        JavaLanguageParser.SwitchLabeledBlockContext ctx) {
         return flattenedTree(ctx);
     }
 
     @Override
     public DetailAstImpl visitSwitchLabeledThrow(
-            JavaLanguageParser.SwitchLabeledThrowContext ctx) {
+        JavaLanguageParser.SwitchLabeledThrowContext ctx) {
         final DetailAstImpl switchLabel = visit(ctx.switchLabel());
         addLastSibling(switchLabel, create(ctx.LAMBDA()));
         final DetailAstImpl literalThrow = create(ctx.LITERAL_THROW());
@@ -1108,7 +1108,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     @Override
     public DetailAstImpl visitCatchClause(JavaLanguageParser.CatchClauseContext ctx) {
         final DetailAstImpl catchClause = create(TokenTypes.LITERAL_CATCH,
-                (Token) ctx.LITERAL_CATCH().getPayload());
+            (Token) ctx.LITERAL_CATCH().getPayload());
         // 'LITERAL_CATCH' is child[0]
         processChildren(catchClause, ctx.children.subList(1, ctx.children.size()));
         return catchClause;
@@ -1120,8 +1120,8 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         catchParameterDef.addChild(createModifiers(ctx.mods));
         // filter mods
         processChildren(catchParameterDef, ctx.children.stream()
-                .filter(child -> !(child instanceof JavaLanguageParser.VariableModifierContext))
-                .collect(Collectors.toUnmodifiableList()));
+            .filter(child -> !(child instanceof JavaLanguageParser.VariableModifierContext))
+            .collect(Collectors.toUnmodifiableList()));
         return catchParameterDef;
     }
 
@@ -1142,9 +1142,9 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitResourceSpecification(
-            JavaLanguageParser.ResourceSpecificationContext ctx) {
+        JavaLanguageParser.ResourceSpecificationContext ctx) {
         final DetailAstImpl resourceSpecification =
-                createImaginary(TokenTypes.RESOURCE_SPECIFICATION);
+            createImaginary(TokenTypes.RESOURCE_SPECIFICATION);
         processChildren(resourceSpecification, ctx.children);
         return resourceSpecification;
     }
@@ -1160,7 +1160,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitResourceDeclaration(
-            JavaLanguageParser.ResourceDeclarationContext ctx) {
+        JavaLanguageParser.ResourceDeclarationContext ctx) {
         final DetailAstImpl resource = createImaginary(TokenTypes.RESOURCE);
         resource.addChild(visit(ctx.variableDeclaratorId()));
 
@@ -1199,7 +1199,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitSwitchBlockStatementGroup(
-            JavaLanguageParser.SwitchBlockStatementGroupContext ctx) {
+        JavaLanguageParser.SwitchBlockStatementGroupContext ctx) {
         final DetailAstImpl caseGroup = createImaginary(TokenTypes.CASE_GROUP);
         processChildren(caseGroup, ctx.switchLabel());
         final DetailAstImpl sList = createImaginary(TokenTypes.SLIST);
@@ -1239,7 +1239,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     public DetailAstImpl visitEnhancedFor(JavaLanguageParser.EnhancedForContext ctx) {
         final DetailAstImpl leftParen = create(ctx.LPAREN());
         final DetailAstImpl enhancedForControl =
-                 visit(ctx.getChild(1));
+            visit(ctx.getChild(1));
         final DetailAstImpl forEachClause = createImaginary(TokenTypes.FOR_EACH_CLAUSE);
         forEachClause.addChild(enhancedForControl);
         addLastSibling(leftParen, forEachClause);
@@ -1254,7 +1254,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
         if (ctx.forInit() == null) {
             final DetailAstImpl imaginaryForInitParent =
-                    createImaginary(TokenTypes.FOR_INIT);
+                createImaginary(TokenTypes.FOR_INIT);
             dummyRoot.addChild(imaginaryForInitParent);
         }
         else {
@@ -1286,9 +1286,9 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitEnhancedForControl(
-            JavaLanguageParser.EnhancedForControlContext ctx) {
+        JavaLanguageParser.EnhancedForControlContext ctx) {
         final DetailAstImpl variableDeclaratorId =
-                 visit(ctx.variableDeclaratorId());
+            visit(ctx.variableDeclaratorId());
         final DetailAstImpl variableDef = createImaginary(TokenTypes.VARIABLE_DEF);
         variableDef.addChild(variableDeclaratorId);
 
@@ -1299,9 +1299,9 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitEnhancedForControlWithRecordPattern(
-            JavaLanguageParser.EnhancedForControlWithRecordPatternContext ctx) {
+        JavaLanguageParser.EnhancedForControlWithRecordPatternContext ctx) {
         final DetailAstImpl recordPattern =
-                 visit(ctx.pattern());
+            visit(ctx.pattern());
         addLastSibling(recordPattern, create(ctx.COLON()));
         addLastSibling(recordPattern, visit(ctx.expression()));
         return recordPattern;
@@ -1437,7 +1437,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     public DetailAstImpl visitIndexOp(JavaLanguageParser.IndexOpContext ctx) {
         // LBRACK -> INDEX_OP is root of this AST
         final DetailAstImpl indexOp = create(TokenTypes.INDEX_OP,
-                (Token) ctx.LBRACK().getPayload());
+            (Token) ctx.LBRACK().getPayload());
 
         // add expression(IDENT) on LHS
         indexOp.addChild(visit(ctx.expr(0)));
@@ -1462,15 +1462,15 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         DetailAstPair.makeAstRoot(currentAst, create(ctx.bop));
 
         DetailAstPair.addAstChild(currentAst,
-                 visit(ctx.nonWildcardTypeArguments()));
+            visit(ctx.nonWildcardTypeArguments()));
         DetailAstPair.addAstChild(currentAst, visit(ctx.id()));
         final DetailAstImpl lparen = create(TokenTypes.METHOD_CALL,
-                (Token) ctx.LPAREN().getPayload());
+            (Token) ctx.LPAREN().getPayload());
         DetailAstPair.makeAstRoot(currentAst, lparen);
 
         // We always add an 'ELIST' node
         final DetailAstImpl expressionList = Optional.ofNullable(visit(ctx.expressionList()))
-                .orElseGet(() -> createImaginary(TokenTypes.ELIST));
+            .orElseGet(() -> createImaginary(TokenTypes.ELIST));
 
         DetailAstPair.addAstChild(currentAst, expressionList);
         DetailAstPair.addAstChild(currentAst, create(ctx.RPAREN()));
@@ -1492,11 +1492,11 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     @Override
     public DetailAstImpl visitSimpleMethodCall(JavaLanguageParser.SimpleMethodCallContext ctx) {
         final DetailAstImpl methodCall = create(TokenTypes.METHOD_CALL,
-                (Token) ctx.LPAREN().getPayload());
+            (Token) ctx.LPAREN().getPayload());
         methodCall.addChild(visit(ctx.id()));
         // We always add an 'ELIST' node
         final DetailAstImpl expressionList = Optional.ofNullable(visit(ctx.expressionList()))
-                .orElseGet(() -> createImaginary(TokenTypes.ELIST));
+            .orElseGet(() -> createImaginary(TokenTypes.ELIST));
 
         methodCall.addChild(expressionList);
         methodCall.addChild(create((Token) ctx.RPAREN().getPayload()));
@@ -1553,10 +1553,10 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     @Override
     public DetailAstImpl visitMethodRef(JavaLanguageParser.MethodRefContext ctx) {
         final DetailAstImpl doubleColon = create(TokenTypes.METHOD_REF,
-                (Token) ctx.DOUBLE_COLON().getPayload());
+            (Token) ctx.DOUBLE_COLON().getPayload());
         final List<ParseTree> children = ctx.children.stream()
-                .filter(child -> !child.equals(ctx.DOUBLE_COLON()))
-                .collect(Collectors.toUnmodifiableList());
+            .filter(child -> !child.equals(ctx.DOUBLE_COLON()))
+            .collect(Collectors.toUnmodifiableList());
         processChildren(doubleColon, children);
         return doubleColon;
     }
@@ -1565,8 +1565,8 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     public DetailAstImpl visitTernaryOp(JavaLanguageParser.TernaryOpContext ctx) {
         final DetailAstImpl root = create(ctx.QUESTION());
         processChildren(root, ctx.children.stream()
-                .filter(child -> !child.equals(ctx.QUESTION()))
-                .collect(Collectors.toUnmodifiableList()));
+            .filter(child -> !child.equals(ctx.QUESTION()))
+            .collect(Collectors.toUnmodifiableList()));
         return root;
     }
 
@@ -1592,8 +1592,8 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
             // Map all descendants to individual AST's since we can parallelize this
             // operation
             final Queue<DetailAstImpl> descendantList = binOpList.parallelStream()
-                    .map(this::getInnerBopAst)
-                    .collect(Collectors.toCollection(ConcurrentLinkedQueue::new));
+                .map(this::getInnerBopAst)
+                .collect(Collectors.toCollection(ConcurrentLinkedQueue::new));
 
             bop.addChild(descendantList.poll());
             DetailAstImpl pointer = bop.getFirstChild();
@@ -1627,10 +1627,10 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     @Override
     public DetailAstImpl visitMethodCall(JavaLanguageParser.MethodCallContext ctx) {
         final DetailAstImpl methodCall = create(TokenTypes.METHOD_CALL,
-                (Token) ctx.LPAREN().getPayload());
+            (Token) ctx.LPAREN().getPayload());
         // We always add an 'ELIST' node
         final DetailAstImpl expressionList = Optional.ofNullable(visit(ctx.expressionList()))
-                .orElseGet(() -> createImaginary(TokenTypes.ELIST));
+            .orElseGet(() -> createImaginary(TokenTypes.ELIST));
 
         final DetailAstImpl dot = create(ctx.DOT());
         dot.addChild(visit(ctx.expr()));
@@ -1643,11 +1643,11 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitTypeCastParameters(
-            JavaLanguageParser.TypeCastParametersContext ctx) {
+        JavaLanguageParser.TypeCastParametersContext ctx) {
         final DetailAstImpl typeType = visit(ctx.typeType(0));
         for (int i = 0; i < ctx.BAND().size(); i++) {
             addLastSibling(typeType, create(TokenTypes.TYPE_EXTENSION_AND,
-                                (Token) ctx.BAND(i).getPayload()));
+                (Token) ctx.BAND(i).getPayload()));
             addLastSibling(typeType, visit(ctx.typeType(i + 1)));
         }
         return typeType;
@@ -1664,7 +1664,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
         // We add an 'PARAMETERS' node here whether it exists or not
         final DetailAstImpl parameters = Optional.ofNullable(visit(ctx.formalParameterList()))
-                .orElseGet(() -> createImaginary(TokenTypes.PARAMETERS));
+            .orElseGet(() -> createImaginary(TokenTypes.PARAMETERS));
         addLastSibling(lparen, parameters);
         addLastSibling(lparen, create(ctx.RPAREN()));
         return lparen;
@@ -1726,11 +1726,11 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         if (TokenUtil.isOfType(primaryTypeNoArray, TokenTypes.DOT)) {
             // We append '[]' to the qualified name 'TYPE' `ast
             ctx.arrayDeclarator()
-                    .forEach(child -> primaryTypeNoArray.addChild(visit(child)));
+                .forEach(child -> primaryTypeNoArray.addChild(visit(child)));
         }
         else {
             ctx.arrayDeclarator()
-                    .forEach(child -> addLastSibling(primaryTypeNoArray, visit(child)));
+                .forEach(child -> addLastSibling(primaryTypeNoArray, visit(child)));
         }
         dot.addChild(create(ctx.LITERAL_CLASS()));
         return dot;
@@ -1763,7 +1763,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
             final DetailAstImpl dot = create(extendedContext.start);
             DetailAstPair.makeAstRoot(currentAST, dot);
             final List<ParseTree> childList = extendedContext
-                    .children.subList(1, extendedContext.children.size());
+                .children.subList(1, extendedContext.children.size());
             processChildren(dot, childList);
         }
 
@@ -1772,7 +1772,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitCreatedNamePrimitive(
-            JavaLanguageParser.CreatedNamePrimitiveContext ctx) {
+        JavaLanguageParser.CreatedNamePrimitiveContext ctx) {
         return flattenedTree(ctx);
     }
 
@@ -1784,7 +1784,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     @Override
     public DetailAstImpl visitArrayCreatorRest(JavaLanguageParser.ArrayCreatorRestContext ctx) {
         final DetailAstImpl arrayDeclarator = create(TokenTypes.ARRAY_DECLARATOR,
-                (Token) ctx.LBRACK().getPayload());
+            (Token) ctx.LBRACK().getPayload());
         final JavaLanguageParser.ExpressionContext expression = ctx.expression();
         final TerminalNode rbrack = ctx.RBRACK();
         // child[0] is LBRACK
@@ -1808,7 +1808,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final DetailAstImpl dummyRoot = new DetailAstImpl();
         dummyRoot.addChild(visit(ctx.annotations()));
         final DetailAstImpl arrayDeclarator =
-                create(TokenTypes.ARRAY_DECLARATOR, (Token) ctx.LBRACK().getPayload());
+            create(TokenTypes.ARRAY_DECLARATOR, (Token) ctx.LBRACK().getPayload());
         arrayDeclarator.addChild(visit(ctx.expression()));
         arrayDeclarator.addChild(create(ctx.stop));
         dummyRoot.addChild(arrayDeclarator);
@@ -1823,11 +1823,11 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     @Override
     public DetailAstImpl visitDiamond(JavaLanguageParser.DiamondContext ctx) {
         final DetailAstImpl typeArguments =
-                createImaginary(TokenTypes.TYPE_ARGUMENTS);
+            createImaginary(TokenTypes.TYPE_ARGUMENTS);
         typeArguments.addChild(create(TokenTypes.GENERIC_START,
-                (Token) ctx.LT().getPayload()));
+            (Token) ctx.LT().getPayload()));
         typeArguments.addChild(create(TokenTypes.GENERIC_END,
-                (Token) ctx.GT().getPayload()));
+            (Token) ctx.GT().getPayload()));
         return typeArguments;
     }
 
@@ -1838,19 +1838,19 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitNonWildcardDiamond(
-            JavaLanguageParser.NonWildcardDiamondContext ctx) {
+        JavaLanguageParser.NonWildcardDiamondContext ctx) {
         final DetailAstImpl typeArguments =
-                createImaginary(TokenTypes.TYPE_ARGUMENTS);
+            createImaginary(TokenTypes.TYPE_ARGUMENTS);
         typeArguments.addChild(create(TokenTypes.GENERIC_START,
-                (Token) ctx.LT().getPayload()));
+            (Token) ctx.LT().getPayload()));
         typeArguments.addChild(create(TokenTypes.GENERIC_END,
-                (Token) ctx.GT().getPayload()));
+            (Token) ctx.GT().getPayload()));
         return typeArguments;
     }
 
     @Override
     public DetailAstImpl visitNonWildcardTypeArguments(
-            JavaLanguageParser.NonWildcardTypeArgumentsContext ctx) {
+        JavaLanguageParser.NonWildcardTypeArgumentsContext ctx) {
         final DetailAstImpl typeArguments = createImaginary(TokenTypes.TYPE_ARGUMENTS);
         typeArguments.addChild(create(TokenTypes.GENERIC_START, (Token) ctx.LT().getPayload()));
         typeArguments.addChild(visit(ctx.typeArgumentsTypeList()));
@@ -1860,7 +1860,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitTypeArgumentsTypeList(
-            JavaLanguageParser.TypeArgumentsTypeListContext ctx) {
+        JavaLanguageParser.TypeArgumentsTypeListContext ctx) {
         final DetailAstImpl firstIdent = visit(ctx.typeType(0));
         final DetailAstImpl firstTypeArgument = createImaginary(TokenTypes.TYPE_ARGUMENT);
         firstTypeArgument.addChild(firstIdent);
@@ -1898,7 +1898,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     @Override
     public DetailAstImpl visitArrayDeclarator(JavaLanguageParser.ArrayDeclaratorContext ctx) {
         final DetailAstImpl arrayDeclarator = create(TokenTypes.ARRAY_DECLARATOR,
-                (Token) ctx.LBRACK().getPayload());
+            (Token) ctx.LBRACK().getPayload());
         arrayDeclarator.addChild(create(ctx.RBRACK()));
 
         final DetailAstImpl returnTree;
@@ -1943,7 +1943,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
             root.addChild(dot);
 
             final DetailAstImpl expressionList = Optional.ofNullable(visit(ctx.expressionList()))
-                    .orElseGet(() -> createImaginary(TokenTypes.ELIST));
+                .orElseGet(() -> createImaginary(TokenTypes.ELIST));
             root.addChild(expressionList);
 
             root.addChild(create(ctx.RPAREN()));
@@ -1958,7 +1958,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
         // We always add an 'ELIST' node
         final DetailAstImpl expressionList = Optional.ofNullable(visit(ctx.expressionList()))
-                .orElseGet(() -> createImaginary(TokenTypes.ELIST));
+            .orElseGet(() -> createImaginary(TokenTypes.ELIST));
         addLastSibling(lparen, expressionList);
         addLastSibling(lparen, create(ctx.RPAREN()));
         return lparen;
@@ -1970,7 +1970,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final ParserRuleContext primaryPattern = innerPattern.primaryPattern();
         final ParserRuleContext recordPattern = innerPattern.recordPattern();
         final boolean isSimpleTypePattern = primaryPattern != null
-                && primaryPattern.getChild(0) instanceof JavaLanguageParser.TypePatternContext;
+            && primaryPattern.getChild(0) instanceof JavaLanguageParser.TypePatternContext;
 
         final DetailAstImpl pattern;
 
@@ -2017,7 +2017,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitTypePatternDef(
-            JavaLanguageParser.TypePatternDefContext ctx) {
+        JavaLanguageParser.TypePatternDefContext ctx) {
         final DetailAstImpl type = visit(ctx.type);
         final DetailAstImpl patternVariableDef = createImaginary(TokenTypes.PATTERN_VARIABLE_DEF);
         patternVariableDef.addChild(createModifiers(ctx.mods));
@@ -2036,24 +2036,24 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final DetailAstImpl recordPattern = createImaginary(TokenTypes.RECORD_PATTERN_DEF);
         recordPattern.addChild(createModifiers(ctx.mods));
         processChildren(recordPattern,
-                ctx.children.subList(ctx.mods.size(), ctx.children.size()));
+            ctx.children.subList(ctx.mods.size(), ctx.children.size()));
         return recordPattern;
     }
 
     @Override
     public DetailAstImpl visitRecordComponentPatternList(
-            JavaLanguageParser.RecordComponentPatternListContext ctx) {
+        JavaLanguageParser.RecordComponentPatternListContext ctx) {
         final DetailAstImpl recordComponents =
-                createImaginary(TokenTypes.RECORD_PATTERN_COMPONENTS);
+            createImaginary(TokenTypes.RECORD_PATTERN_COMPONENTS);
         processChildren(recordComponents, ctx.children);
         return recordComponents;
     }
 
     @Override
     public DetailAstImpl visitPermittedSubclassesAndInterfaces(
-            JavaLanguageParser.PermittedSubclassesAndInterfacesContext ctx) {
+        JavaLanguageParser.PermittedSubclassesAndInterfacesContext ctx) {
         final DetailAstImpl literalPermits =
-                create(TokenTypes.PERMITS_CLAUSE, (Token) ctx.LITERAL_PERMITS().getPayload());
+            create(TokenTypes.PERMITS_CLAUSE, (Token) ctx.LITERAL_PERMITS().getPayload());
         // 'LITERAL_PERMITS' is child[0]
         processChildren(literalPermits, ctx.children.subList(1, ctx.children.size()));
         return literalPermits;
@@ -2138,9 +2138,9 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     private DetailAstImpl create(Token token) {
         final int tokenIndex = token.getTokenIndex();
         final List<Token> tokensToLeft =
-                tokens.getHiddenTokensToLeft(tokenIndex, JavaLanguageLexer.COMMENTS);
+            tokens.getHiddenTokensToLeft(tokenIndex, JavaLanguageLexer.COMMENTS);
         final List<Token> tokensToRight =
-                tokens.getHiddenTokensToRight(tokenIndex, JavaLanguageLexer.COMMENTS);
+            tokens.getHiddenTokensToRight(tokenIndex, JavaLanguageLexer.COMMENTS);
 
         final DetailAstImpl detailAst = new DetailAstImpl();
         detailAst.initialize(token);

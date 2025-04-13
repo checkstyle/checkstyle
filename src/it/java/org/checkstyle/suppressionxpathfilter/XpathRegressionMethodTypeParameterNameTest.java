@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -42,25 +42,25 @@ public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTes
     @Test
     public void test1() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathMethodTypeParameterNameDefault.java"));
+            new File(getPath("InputXpathMethodTypeParameterNameDefault.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MethodTypeParameterNameCheck.class);
+            createModuleConfig(MethodTypeParameterNameCheck.class);
 
         final String[] expectedViolation = {
             "4:11: " + getCheckMessage(MethodTypeParameterNameCheck.class,
-                    MSG_INVALID_PATTERN, "TT", "^[A-Z]$"),
+                MSG_INVALID_PATTERN, "TT", "^[A-Z]$"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./"
-                  + "IDENT[@text='InputXpathMethodTypeParameterNameDefault']]"
-                  + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/TYPE_PARAMETERS"
-                  + "/TYPE_PARAMETER[./IDENT[@text='TT']]", "/COMPILATION_UNIT"
-                  + "/CLASS_DEF[./IDENT["
-                  + "@text='InputXpathMethodTypeParameterNameDefault']]"
-                  + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
-                  + "/TYPE_PARAMETERS/TYPE_PARAMETER/IDENT[@text='TT']"
+            "/COMPILATION_UNIT/CLASS_DEF[./"
+                + "IDENT[@text='InputXpathMethodTypeParameterNameDefault']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/TYPE_PARAMETERS"
+                + "/TYPE_PARAMETER[./IDENT[@text='TT']]", "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT["
+                + "@text='InputXpathMethodTypeParameterNameDefault']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
+                + "/TYPE_PARAMETERS/TYPE_PARAMETER/IDENT[@text='TT']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -69,28 +69,28 @@ public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTes
     @Test
     public void test2() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathMethodTypeParameterNameInner.java"));
+            new File(getPath("InputXpathMethodTypeParameterNameInner.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MethodTypeParameterNameCheck.class);
+            createModuleConfig(MethodTypeParameterNameCheck.class);
         moduleConfig.addProperty("format", "^foo$");
 
         final String[] expectedViolation = {
             "6:10: " + getCheckMessage(MethodTypeParameterNameCheck.class,
-                    MSG_INVALID_PATTERN, "fo_", "^foo$"),
+                MSG_INVALID_PATTERN, "fo_", "^foo$"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                  + "@text='InputXpathMethodTypeParameterNameInner']]"
-                  + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Junk']]/OBJBLOCK"
-                  + "/METHOD_DEF[./IDENT[@text='foo']]/TYPE_PARAMETERS"
-                  + "/TYPE_PARAMETER[./IDENT[@text='fo_']]", "/COMPILATION_UNIT"
-                  + "/CLASS_DEF[./IDENT[@text="
-                  + "'InputXpathMethodTypeParameterNameInner']]"
-                  + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Junk']]/OBJBLOCK"
-                  + "/METHOD_DEF[./IDENT[@text='foo']]/TYPE_PARAMETERS"
-                  + "/TYPE_PARAMETER/IDENT[@text='fo_']"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathMethodTypeParameterNameInner']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Junk']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='foo']]/TYPE_PARAMETERS"
+                + "/TYPE_PARAMETER[./IDENT[@text='fo_']]", "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text="
+                + "'InputXpathMethodTypeParameterNameInner']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Junk']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='foo']]/TYPE_PARAMETERS"
+                + "/TYPE_PARAMETER/IDENT[@text='fo_']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -99,26 +99,26 @@ public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTes
     @Test
     public void test3() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathMethodTypeParameterNameLowercase.java"));
+            new File(getPath("InputXpathMethodTypeParameterNameLowercase.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MethodTypeParameterNameCheck.class);
+            createModuleConfig(MethodTypeParameterNameCheck.class);
         moduleConfig.addProperty("format", "^[a-z]$");
 
         final String[] expectedViolation = {
             "7:6: " + getCheckMessage(MethodTypeParameterNameCheck.class,
-                        MSG_INVALID_PATTERN, "a_a", "^[a-z]$"),
+                MSG_INVALID_PATTERN, "a_a", "^[a-z]$"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                  + "[@text='InputXpathMethodTypeParameterNameLowercase']]"
-                  + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myMethod']]/TYPE_PARAMETERS"
-                  + "/TYPE_PARAMETER[./IDENT[@text='a_a']]", "/COMPILATION_UNIT"
-                  + "/CLASS_DEF[./IDENT[@text="
-                  + "'InputXpathMethodTypeParameterNameLowercase']]"
-                  + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myMethod']]"
-                  + "/TYPE_PARAMETERS/TYPE_PARAMETER/IDENT[@text='a_a']"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathMethodTypeParameterNameLowercase']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myMethod']]/TYPE_PARAMETERS"
+                + "/TYPE_PARAMETER[./IDENT[@text='a_a']]", "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text="
+                + "'InputXpathMethodTypeParameterNameLowercase']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myMethod']]"
+                + "/TYPE_PARAMETERS/TYPE_PARAMETER/IDENT[@text='a_a']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);

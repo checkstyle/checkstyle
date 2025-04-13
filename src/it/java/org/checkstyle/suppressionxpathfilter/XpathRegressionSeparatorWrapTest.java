@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -41,76 +41,76 @@ public class XpathRegressionSeparatorWrapTest extends AbstractXpathTestSupport {
     @Test
     public void testClass() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathSeparatorWrapClass.java"));
+            new File(getPath("InputXpathSeparatorWrapClass.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(SeparatorWrapCheck.class);
+            createModuleConfig(SeparatorWrapCheck.class);
 
         final String[] expectedViolation = {
             "10:17: " + getCheckMessage(SeparatorWrapCheck.class,
-                        SeparatorWrapCheck.MSG_LINE_PREVIOUS, ","),
+                SeparatorWrapCheck.MSG_LINE_PREVIOUS, ","),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathSeparatorWrapClass']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod']]"
-                        + "/PARAMETERS/COMMA"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathSeparatorWrapClass']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod']]"
+                + "/PARAMETERS/COMMA"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testInterface() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathSeparatorWrapInterface.java"));
+            new File(getPath("InputXpathSeparatorWrapInterface.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(SeparatorWrapCheck.class);
+            createModuleConfig(SeparatorWrapCheck.class);
         moduleConfig.addProperty("tokens", "ELLIPSIS");
         final String[] expectedViolation = {
             "9:13: " + getCheckMessage(SeparatorWrapCheck.class,
-                        SeparatorWrapCheck.MSG_LINE_PREVIOUS, "..."),
+                SeparatorWrapCheck.MSG_LINE_PREVIOUS, "..."),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/INTERFACE_DEF"
-                        + "[./IDENT[@text='InputXpathSeparatorWrapInterface']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod2']]"
-                        + "/PARAMETERS/PARAMETER_DEF"
-                        + "[./IDENT[@text='parameters']]/ELLIPSIS"
+            "/COMPILATION_UNIT/INTERFACE_DEF"
+                + "[./IDENT[@text='InputXpathSeparatorWrapInterface']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod2']]"
+                + "/PARAMETERS/PARAMETER_DEF"
+                + "[./IDENT[@text='parameters']]/ELLIPSIS"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testMethod() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathSeparatorWrapMethod.java"));
+            new File(getPath("InputXpathSeparatorWrapMethod.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(SeparatorWrapCheck.class);
+            createModuleConfig(SeparatorWrapCheck.class);
         moduleConfig.addProperty("tokens", "DOT");
 
         final String[] expectedViolation = {
             "9:13: " + getCheckMessage(SeparatorWrapCheck.class,
-                    SeparatorWrapCheck.MSG_LINE_PREVIOUS, "."),
+                SeparatorWrapCheck.MSG_LINE_PREVIOUS, "."),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'InputXpathSeparatorWrapMethod']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method1']]/SLIST"
-                        + "/VARIABLE_DEF[./IDENT[@text='stringLength']]"
-                        + "/ASSIGN/EXPR",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'InputXpathSeparatorWrapMethod']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method1']]/SLIST"
-                        + "/VARIABLE_DEF[./IDENT[@text='stringLength']]/ASSIGN"
-                        + "/EXPR/DOT[./IDENT[@text='stringArray']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
+                + "'InputXpathSeparatorWrapMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method1']]/SLIST"
+                + "/VARIABLE_DEF[./IDENT[@text='stringLength']]"
+                + "/ASSIGN/EXPR",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
+                + "'InputXpathSeparatorWrapMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method1']]/SLIST"
+                + "/VARIABLE_DEF[./IDENT[@text='stringLength']]/ASSIGN"
+                + "/EXPR/DOT[./IDENT[@text='stringArray']]"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

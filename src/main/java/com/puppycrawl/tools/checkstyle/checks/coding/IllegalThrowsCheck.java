@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -85,12 +85,12 @@ public final class IllegalThrowsCheck extends AbstractCheck {
 
     /** Specify names of methods to ignore. */
     private final Set<String> ignoredMethodNames =
-        Arrays.stream(new String[] {"finalize", }).collect(Collectors.toCollection(HashSet::new));
+        Arrays.stream(new String[] {"finalize",}).collect(Collectors.toCollection(HashSet::new));
 
     /** Specify throw class names to reject. */
     private final Set<String> illegalClassNames = Arrays.stream(
-        new String[] {"Error", "RuntimeException", "Throwable", "java.lang.Error",
-                      "java.lang.RuntimeException", "java.lang.Throwable", })
+            new String[] {"Error", "RuntimeException", "Throwable", "java.lang.Error",
+                "java.lang.RuntimeException", "java.lang.Throwable",})
         .collect(Collectors.toCollection(HashSet::new));
 
     /**
@@ -109,7 +109,7 @@ public final class IllegalThrowsCheck extends AbstractCheck {
     public void setIllegalClassNames(final String... classNames) {
         illegalClassNames.clear();
         illegalClassNames.addAll(
-                CheckUtil.parseClassNames(classNames));
+            CheckUtil.parseClassNames(classNames));
     }
 
     @Override
@@ -153,7 +153,7 @@ public final class IllegalThrowsCheck extends AbstractCheck {
     private boolean isIgnorableMethod(DetailAST methodDef) {
         return shouldIgnoreMethod(methodDef.findFirstToken(TokenTypes.IDENT).getText())
             || ignoreOverriddenMethods
-               && AnnotationUtil.hasOverrideAnnotation(methodDef);
+            && AnnotationUtil.hasOverrideAnnotation(methodDef);
     }
 
     /**

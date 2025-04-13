@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.api;
 
@@ -69,7 +69,7 @@ public abstract class AbstractViolationReporter
     /**
      *  Get the severity level's name.
      *
-     *  @return  the check's severity level name.
+     *  @return the check's severity level name.
      *  @noinspection WeakerAccess
      *  @noinspectionreason WeakerAccess - we avoid 'protected' when possible
      */
@@ -180,6 +180,6 @@ public abstract class AbstractViolationReporter
     // -@cs[CustomDeclarationOrder] CustomDeclarationOrder does not treat groups of
     // overloaded methods. See https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/414
     public abstract void log(int line, int col, String key,
-            Object... args);
+                             Object... args);
 
 }

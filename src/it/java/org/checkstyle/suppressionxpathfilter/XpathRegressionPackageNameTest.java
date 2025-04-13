@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -43,7 +43,7 @@ public class XpathRegressionPackageNameTest extends AbstractXpathTestSupport {
     public void testOne() throws Exception {
 
         final File fileToProcess =
-                new File(getPath("InputXpathPackageNameOne.java"));
+            new File(getPath("InputXpathPackageNameOne.java"));
 
         final String pattern = "[A-Z]+";
 
@@ -52,15 +52,15 @@ public class XpathRegressionPackageNameTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "1:9: " + getCheckMessage(PackageNameCheck.class, MSG_KEY,
-                    "org.checkstyle.suppressionxpathfilter.packagename",
-                    pattern),
+                "org.checkstyle.suppressionxpathfilter.packagename",
+                pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/PACKAGE_DEF/DOT"
-                        + "[./IDENT[@text='packagename']]/DOT"
-                        + "[./IDENT[@text='suppressionxpathfilter']]"
-                        + "/DOT/IDENT[@text='org']"
+            "/COMPILATION_UNIT/PACKAGE_DEF/DOT"
+                + "[./IDENT[@text='packagename']]/DOT"
+                + "[./IDENT[@text='suppressionxpathfilter']]"
+                + "/DOT/IDENT[@text='org']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -71,7 +71,7 @@ public class XpathRegressionPackageNameTest extends AbstractXpathTestSupport {
     public void testThree() throws Exception {
 
         final File fileToProcess =
-                new File(getNonCompilablePath("InputXpathPackageNameThree.java"));
+            new File(getNonCompilablePath("InputXpathPackageNameThree.java"));
 
         final String pattern = "^[a-z]+(\\.[a-z][a-z0-9]*)*$";
 
@@ -79,26 +79,26 @@ public class XpathRegressionPackageNameTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("format", pattern);
         final String[] expectedViolations = {
             "1:9: " + getCheckMessage(PackageNameCheck.class, MSG_KEY,
-                    "org.checkstyle.suppressionxpathfilter.PACKAGENAME",
-                    pattern),
+                "org.checkstyle.suppressionxpathfilter.PACKAGENAME",
+                pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/PACKAGE_DEF/DOT[./IDENT"
-                        + "[@text='PACKAGENAME']]/DOT[./IDENT"
-                        + "[@text='suppressionxpathfilter']]"
-                        + "/DOT/IDENT[@text='org']"
+            "/COMPILATION_UNIT/PACKAGE_DEF/DOT[./IDENT"
+                + "[@text='PACKAGENAME']]/DOT[./IDENT"
+                + "[@text='suppressionxpathfilter']]"
+                + "/DOT/IDENT[@text='org']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolations,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testTwo() throws Exception {
 
         final File fileToProcess =
-                new File(getPath("InputXpathPackageNameTwo.java"));
+            new File(getPath("InputXpathPackageNameTwo.java"));
 
         final String pattern = "[A-Z]+";
 
@@ -107,18 +107,18 @@ public class XpathRegressionPackageNameTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "2:9: " + getCheckMessage(PackageNameCheck.class, MSG_KEY,
-                    "org.checkstyle.suppressionxpathfilter.packagename",
-                    pattern),
+                "org.checkstyle.suppressionxpathfilter.packagename",
+                pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/PACKAGE_DEF/DOT"
-                        + "[./IDENT[@text='packagename']]/DOT"
-                        + "[./IDENT[@text='suppressionxpathfilter']]"
-                        + "/DOT/IDENT[@text='org']"
+            "/COMPILATION_UNIT/PACKAGE_DEF/DOT"
+                + "[./IDENT[@text='packagename']]/DOT"
+                + "[./IDENT[@text='suppressionxpathfilter']]"
+                + "/DOT/IDENT[@text='org']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

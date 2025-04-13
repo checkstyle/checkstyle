@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -263,14 +263,14 @@ public class HiddenFieldCheck
         // check.
         final DetailAST typeMods = ast.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isStaticInnerType =
-                typeMods != null
-                        && typeMods.findFirstToken(TokenTypes.LITERAL_STATIC) != null
-                        // inner record is implicitly static
-                        || ast.getType() == TokenTypes.RECORD_DEF;
+            typeMods != null
+                && typeMods.findFirstToken(TokenTypes.LITERAL_STATIC) != null
+                // inner record is implicitly static
+                || ast.getType() == TokenTypes.RECORD_DEF;
         final String frameName;
 
         if (type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.ENUM_DEF) {
+            || type == TokenTypes.ENUM_DEF) {
             frameName = ast.findFirstToken(TokenTypes.IDENT).getText();
         }
         else {
@@ -336,15 +336,15 @@ public class HiddenFieldCheck
         if (!ScopeUtil.isInInterfaceOrAnnotationBlock(ast)
             && !CheckUtil.isReceiverParameter(ast)
             && (ScopeUtil.isLocalVariableDef(ast)
-                || ast.getType() == TokenTypes.PARAMETER_DEF
-                || ast.getType() == TokenTypes.PATTERN_VARIABLE_DEF)) {
+            || ast.getType() == TokenTypes.PARAMETER_DEF
+            || ast.getType() == TokenTypes.PATTERN_VARIABLE_DEF)) {
             // local variable or parameter. Does it shadow a field?
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             final String name = nameAST.getText();
 
             if ((frame.containsStaticField(name) || isInstanceField(ast, name))
-                    && !isMatchingRegexp(name)
-                    && !isIgnoredParam(ast, name)) {
+                && !isMatchingRegexp(name)
+                && !isIgnoredParam(ast, name)) {
                 log(nameAST, MSG_KEY, name);
             }
         }
@@ -400,8 +400,8 @@ public class HiddenFieldCheck
                 inStatic = true;
             }
             else if (parent.getType() == TokenTypes.METHOD_DEF
-                        && !ScopeUtil.isInScope(parent, Scope.ANONINNER)
-                        || parent.getType() == TokenTypes.VARIABLE_DEF) {
+                && !ScopeUtil.isInScope(parent, Scope.ANONINNER)
+                || parent.getType() == TokenTypes.VARIABLE_DEF) {
                 final DetailAST mods =
                     parent.findFirstToken(TokenTypes.MODIFIERS);
                 inStatic = mods.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
@@ -463,7 +463,7 @@ public class HiddenFieldCheck
             final DetailAST typeAST = aMethodAST.findFirstToken(TokenTypes.TYPE);
             final String returnType = typeAST.getFirstChild().getText();
             if (typeAST.findFirstToken(TokenTypes.LITERAL_VOID) != null
-                    || setterCanReturnItsClass && frame.isEmbeddedIn(returnType)) {
+                || setterCanReturnItsClass && frame.isEmbeddedIn(returnType)) {
                 // this method has signature
                 //
                 //     void set${Name}(${anyType} ${name})
@@ -511,7 +511,7 @@ public class HiddenFieldCheck
     private boolean isIgnoredConstructorParam(DetailAST ast) {
         boolean result = false;
         if (ignoreConstructorParameter
-                && ast.getType() == TokenTypes.PARAMETER_DEF) {
+            && ast.getType() == TokenTypes.PARAMETER_DEF) {
             final DetailAST parametersAST = ast.getParent();
             final DetailAST constructorAST = parametersAST.getParent();
             result = constructorAST.getType() == TokenTypes.CTOR_DEF;

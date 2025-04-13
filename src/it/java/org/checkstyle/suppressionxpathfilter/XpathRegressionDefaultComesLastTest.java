@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -41,14 +41,14 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
     @Test
     public void testNonEmptyCase() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathDefaultComesLastNonEmptyCase.java"));
+            new File(getPath("InputXpathDefaultComesLastNonEmptyCase.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(DefaultComesLastCheck.class);
+            createModuleConfig(DefaultComesLastCheck.class);
 
         final String[] expectedViolation = {
             "8:13: " + getCheckMessage(DefaultComesLastCheck.class,
-                    DefaultComesLastCheck.MSG_KEY),
+                DefaultComesLastCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -63,16 +63,16 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testEmptyCase() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathDefaultComesLastEmptyCase.java"));
+            new File(getPath("InputXpathDefaultComesLastEmptyCase.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(DefaultComesLastCheck.class);
+            createModuleConfig(DefaultComesLastCheck.class);
         moduleConfig.addProperty("skipIfLastAndSharedWithCase", "true");
 
         final String[] expectedViolation = {
@@ -88,7 +88,7 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

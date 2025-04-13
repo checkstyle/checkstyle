@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
@@ -130,16 +130,16 @@ class TagParser {
         final String tagId = getTagId(text, position);
         // is this closed tag
         final boolean closedTag =
-                endTag.getLineNo() < nLines
-                 && text[endTag.getLineNo()]
-                 .charAt(endTag.getColumnNo() - 1) == '/';
+            endTag.getLineNo() < nLines
+                && text[endTag.getLineNo()]
+                .charAt(endTag.getColumnNo() - 1) == '/';
         // add new tag
         add(new HtmlTag(tagId,
-                        position.getLineNo() + lineNo,
-                        position.getColumnNo(),
-                        closedTag,
-                        incompleteTag,
-                        text[position.getLineNo()]));
+            position.getLineNo() + lineNo,
+            position.getColumnNo(),
+            closedTag,
+            incompleteTag,
+            text[position.getLineNo()]));
         return endTag;
     }
 
@@ -157,8 +157,8 @@ class TagParser {
         // Character.isJavaIdentifier... may not be a valid HTML
         // identifier but is valid for generics
         return column >= text.length()
-                || Character.isJavaIdentifierStart(text.charAt(column))
-                    || text.charAt(column) == '/';
+            || Character.isJavaIdentifierStart(text.charAt(column))
+            || text.charAt(column) == '/';
     }
 
     /**
@@ -182,7 +182,7 @@ class TagParser {
             // Character.isJavaIdentifier... may not be a valid HTML
             // identifier but is valid for generics
             while (position < text.length()
-                    && Character.isJavaIdentifierPart(text.charAt(position))) {
+                && Character.isJavaIdentifierPart(text.charAt(position))) {
                 position++;
             }
 
@@ -213,7 +213,7 @@ class TagParser {
     private static Point skipHtmlComment(String[] text, Point fromPoint) {
         Point toPoint = fromPoint;
         while (toPoint.getLineNo() < text.length && !text[toPoint.getLineNo()]
-                .substring(0, toPoint.getColumnNo() + 1).endsWith("-->")) {
+            .substring(0, toPoint.getColumnNo() + 1).endsWith("-->")) {
             toPoint = getNextPoint(text, toPoint);
         }
         return toPoint;
@@ -230,7 +230,7 @@ class TagParser {
     private static Point findChar(String[] text, char character, Point from) {
         Point curr = new Point(from.getLineNo(), from.getColumnNo());
         while (curr.getLineNo() < text.length
-               && text[curr.getLineNo()].charAt(curr.getColumnNo()) != character) {
+            && text[curr.getLineNo()].charAt(curr.getColumnNo()) != character) {
             curr = getNextPoint(text, curr);
         }
 

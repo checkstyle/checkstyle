@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,10 +40,10 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
     @Test
     public void testPrivateClassFields() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathJavadocVariablePrivateClassFields.java"));
+            new File(getPath("InputXpathJavadocVariablePrivateClassFields.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocVariableCheck.class);
+            createModuleConfig(JavadocVariableCheck.class);
 
         final String[] expectedViolation = {
             "5:5: " + getCheckMessage(JavadocVariableCheck.class,
@@ -63,16 +63,16 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testInnerClassFields() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathJavadocVariableInnerClassFields.java"));
+            new File(getPath("InputXpathJavadocVariableInnerClassFields.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocVariableCheck.class);
+            createModuleConfig(JavadocVariableCheck.class);
 
         final String[] expectedViolation = {
             "6:9: " + getCheckMessage(JavadocVariableCheck.class,
@@ -96,6 +96,6 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

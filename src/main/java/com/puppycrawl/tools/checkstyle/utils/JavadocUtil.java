@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.utils;
 
@@ -63,7 +63,7 @@ public final class JavadocUtil {
 
     /** Exception message for unknown JavaDoc token id. */
     private static final String UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE = "Unknown javadoc"
-            + " token id. Given id: ";
+        + " token id. Given id: ";
 
     /** Newline pattern. */
     private static final Pattern NEWLINE = Pattern.compile("\n");
@@ -94,15 +94,15 @@ public final class JavadocUtil {
      * @return all standalone validTags from the given javadoc.
      */
     public static JavadocTags getJavadocTags(TextBlock textBlock,
-            JavadocTagType tagType) {
+                                             JavadocTagType tagType) {
         final List<TagInfo> tags = new ArrayList<>();
         final boolean isBlockTags = tagType == JavadocTagType.ALL
-                                        || tagType == JavadocTagType.BLOCK;
+            || tagType == JavadocTagType.BLOCK;
         if (isBlockTags) {
             tags.addAll(BlockTagUtil.extractBlockTags(textBlock.getText()));
         }
         final boolean isInlineTags = tagType == JavadocTagType.ALL
-                                        || tagType == JavadocTagType.INLINE;
+            || tagType == JavadocTagType.INLINE;
         if (isInlineTags) {
             tags.addAll(InlineTagUtil.extractInlineTags(textBlock.getText()));
         }
@@ -316,7 +316,7 @@ public final class JavadocUtil {
         final String javadocTagName;
         if (javadocTagSection.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
             javadocTagName = getNextSibling(
-                    getFirstChild(javadocTagSection)).getText();
+                getFirstChild(javadocTagSection)).getText();
         }
         else {
             javadocTagName = getFirstChild(javadocTagSection).getText();
@@ -374,8 +374,8 @@ public final class JavadocUtil {
         }
         return sibling == null
             && (BlockCommentPosition.isOnType(blockComment)
-                || BlockCommentPosition.isOnMember(blockComment)
-                || BlockCommentPosition.isOnPackage(blockComment));
+            || BlockCommentPosition.isOnMember(blockComment)
+            || BlockCommentPosition.isOnPackage(blockComment));
     }
 
 }

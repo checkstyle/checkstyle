@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
@@ -68,7 +68,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 @StatelessCheck
 public final class InterfaceIsTypeCheck
-        extends AbstractCheck {
+    extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -97,13 +97,13 @@ public final class InterfaceIsTypeCheck
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST objBlock =
-                ast.findFirstToken(TokenTypes.OBJBLOCK);
+            ast.findFirstToken(TokenTypes.OBJBLOCK);
         final DetailAST methodDef =
-                objBlock.findFirstToken(TokenTypes.METHOD_DEF);
+            objBlock.findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST variableDef =
-                objBlock.findFirstToken(TokenTypes.VARIABLE_DEF);
+            objBlock.findFirstToken(TokenTypes.VARIABLE_DEF);
         final boolean methodRequired =
-                !allowMarkerInterfaces || variableDef != null;
+            !allowMarkerInterfaces || variableDef != null;
 
         if (methodDef == null && methodRequired) {
             log(ast, MSG_KEY);

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -42,44 +42,44 @@ public class XpathRegressionHideUtilityClassConstructorTest extends AbstractXpat
     @Test
     public void testDefaultConstructor() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathHideUtilityClassConstructorDefault.java"));
+            new File(getPath("InputXpathHideUtilityClassConstructorDefault.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(HideUtilityClassConstructorCheck.class);
+            createModuleConfig(HideUtilityClassConstructorCheck.class);
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(HideUtilityClassConstructorCheck.class, MSG_KEY),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                    + "InputXpathHideUtilityClassConstructorDefault']]",
+                + "InputXpathHideUtilityClassConstructorDefault']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                    + "InputXpathHideUtilityClassConstructorDefault']]/MODIFIERS",
+                + "InputXpathHideUtilityClassConstructorDefault']]/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                    + "InputXpathHideUtilityClassConstructorDefault']]/MODIFIERS/LITERAL_PUBLIC"
+                + "InputXpathHideUtilityClassConstructorDefault']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testPublicConstructor() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathHideUtilityClassConstructorPublic.java"));
+            new File(getPath("InputXpathHideUtilityClassConstructorPublic.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(HideUtilityClassConstructorCheck.class);
+            createModuleConfig(HideUtilityClassConstructorCheck.class);
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(HideUtilityClassConstructorCheck.class, MSG_KEY),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                    + "InputXpathHideUtilityClassConstructorPublic']]",
+                + "InputXpathHideUtilityClassConstructorPublic']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                    + "InputXpathHideUtilityClassConstructorPublic']]/MODIFIERS",
+                + "InputXpathHideUtilityClassConstructorPublic']]/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                    + "InputXpathHideUtilityClassConstructorPublic']]/MODIFIERS/LITERAL_PUBLIC"
+                + "InputXpathHideUtilityClassConstructorPublic']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

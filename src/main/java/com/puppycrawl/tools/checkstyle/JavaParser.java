@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -80,7 +80,7 @@ public final class JavaParser {
      * @throws CheckstyleException if the contents is not a valid Java source
      */
     public static DetailAST parse(FileContents contents)
-            throws CheckstyleException {
+        throws CheckstyleException {
         final String fullText = contents.getText().getFullText().toString();
         final CharStream codePointCharStream = CharStreams.fromString(fullText);
         final JavaLanguageLexer lexer = new JavaLanguageLexer(codePointCharStream, true);
@@ -88,7 +88,7 @@ public final class JavaParser {
 
         final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
         final JavaLanguageParser parser =
-                new JavaLanguageParser(tokenStream, JavaLanguageParser.CLEAR_DFA_LIMIT);
+            new JavaLanguageParser(tokenStream, JavaLanguageParser.CLEAR_DFA_LIMIT);
         parser.setErrorHandler(new CheckstyleParserErrorStrategy());
         parser.removeErrorListeners();
         parser.addErrorListener(new CheckstyleErrorListener());
@@ -116,7 +116,7 @@ public final class JavaParser {
      * @throws CheckstyleException if the text is not a valid Java source
      */
     public static DetailAST parseFileText(FileText text, Options options)
-            throws CheckstyleException {
+        throws CheckstyleException {
         final FileContents contents = new FileContents(text);
         final DetailAST ast = parse(contents);
         if (options == Options.WITH_COMMENTS) {
@@ -135,7 +135,7 @@ public final class JavaParser {
      * @throws CheckstyleException if the file is not a valid Java source file
      */
     public static DetailAST parseFile(File file, Options options)
-            throws IOException, CheckstyleException {
+        throws IOException, CheckstyleException {
         final FileText text = new FileText(file,
             StandardCharsets.UTF_8.name());
         return parseFileText(text, options);
@@ -161,12 +161,12 @@ public final class JavaParser {
                 DetailAST currentSibling = curNode;
 
                 final ListIterator<Token> reverseCommentsIterator =
-                        hiddenBefore.listIterator(hiddenBefore.size());
+                    hiddenBefore.listIterator(hiddenBefore.size());
 
                 while (reverseCommentsIterator.hasPrevious()) {
                     final DetailAST newCommentNode =
-                            createCommentAstFromToken((CommonToken)
-                                    reverseCommentsIterator.previous());
+                        createCommentAstFromToken((CommonToken)
+                            reverseCommentsIterator.previous());
                     ((DetailAstImpl) currentSibling).addPreviousSibling(newCommentNode);
 
                     currentSibling = newCommentNode;
@@ -186,7 +186,7 @@ public final class JavaParser {
                 DetailAST currentSibling = lastNode;
                 for (Token token : hiddenAfter) {
                     final DetailAST newCommentNode =
-                            createCommentAstFromToken((CommonToken) token);
+                        createCommentAstFromToken((CommonToken) token);
 
                     ((DetailAstImpl) currentSibling).addNextSibling(newCommentNode);
 

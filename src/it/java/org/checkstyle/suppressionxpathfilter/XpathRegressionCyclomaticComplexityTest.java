@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -41,15 +41,15 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
     public void testConditionals() throws Exception {
 
         final File fileToProcess =
-                new File(getPath("InputXpathCyclomaticComplexityConditionals.java"));
+            new File(getPath("InputXpathCyclomaticComplexityConditionals.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CyclomaticComplexityCheck.class);
+            createModuleConfig(CyclomaticComplexityCheck.class);
         moduleConfig.addProperty("max", "0");
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(CyclomaticComplexityCheck.class,
-                    CyclomaticComplexityCheck.MSG_KEY, 2, 0),
+                CyclomaticComplexityCheck.MSG_KEY, 2, 0),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -62,39 +62,39 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathCyclomaticComplexityConditionals']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PUBLIC"
-                );
+        );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testSwitchBlock() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathCyclomaticComplexitySwitchBlock.java"));
+            new File(getPath("InputXpathCyclomaticComplexitySwitchBlock.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CyclomaticComplexityCheck.class);
+            createModuleConfig(CyclomaticComplexityCheck.class);
         moduleConfig.addProperty("max", "0");
 
         final String[] expectedViolation = {
             "6:5: " + getCheckMessage(CyclomaticComplexityCheck.class,
-                    CyclomaticComplexityCheck.MSG_KEY, 5, 0),
+                CyclomaticComplexityCheck.MSG_KEY, 5, 0),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathCyclomaticComplexitySwitchBlock']]"
-                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo2']]",
+                + "[./IDENT[@text='InputXpathCyclomaticComplexitySwitchBlock']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo2']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathCyclomaticComplexitySwitchBlock']]"
-                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo2']]/MODIFIERS",
+                + "[./IDENT[@text='InputXpathCyclomaticComplexitySwitchBlock']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo2']]/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathCyclomaticComplexitySwitchBlock']]"
-                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo2']]/MODIFIERS/LITERAL_PUBLIC"
+                + "[./IDENT[@text='InputXpathCyclomaticComplexitySwitchBlock']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo2']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

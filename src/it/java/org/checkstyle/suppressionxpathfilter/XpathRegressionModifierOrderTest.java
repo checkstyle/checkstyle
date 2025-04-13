@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -47,18 +47,18 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "4:13: " + getCheckMessage(CLAZZ,
-                    ModifierOrderCheck.MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
+                ModifierOrderCheck.MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathModifierOrderMethod']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/MODIFIERS"
-                        + "/ANNOTATION[./IDENT[@text='MethodAnnotation']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathModifierOrderMethod']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/MODIFIERS"
-                        + "/ANNOTATION[./IDENT[@text='MethodAnnotation']]/AT");
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathModifierOrderMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/MODIFIERS"
+                + "/ANNOTATION[./IDENT[@text='MethodAnnotation']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathModifierOrderMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/MODIFIERS"
+                + "/ANNOTATION[./IDENT[@text='MethodAnnotation']]/AT");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
@@ -72,13 +72,13 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "3:12: " + getCheckMessage(CLAZZ,
-                    ModifierOrderCheck.MSG_MODIFIER_ORDER, "private"),
+                ModifierOrderCheck.MSG_MODIFIER_ORDER, "private"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathModifierOrderVariable']]"
-                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='var']]/MODIFIERS/LITERAL_PRIVATE");
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathModifierOrderVariable']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='var']]/MODIFIERS/LITERAL_PRIVATE");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
@@ -92,16 +92,16 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "3:8: " + getCheckMessage(CLAZZ,
-                    ModifierOrderCheck.MSG_ANNOTATION_ORDER, "@InterfaceAnnotation"),
+                ModifierOrderCheck.MSG_ANNOTATION_ORDER, "@InterfaceAnnotation"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/ANNOTATION_DEF[./IDENT"
-                        + "[@text='InputXpathModifierOrderAnnotation']]"
-                        + "/MODIFIERS/ANNOTATION[./IDENT[@text='InterfaceAnnotation']]",
-                "/COMPILATION_UNIT/ANNOTATION_DEF[./IDENT"
-                        + "[@text='InputXpathModifierOrderAnnotation']]"
-                        + "/MODIFIERS/ANNOTATION[./IDENT[@text='InterfaceAnnotation']]/AT");
+            "/COMPILATION_UNIT/ANNOTATION_DEF[./IDENT"
+                + "[@text='InputXpathModifierOrderAnnotation']]"
+                + "/MODIFIERS/ANNOTATION[./IDENT[@text='InterfaceAnnotation']]",
+            "/COMPILATION_UNIT/ANNOTATION_DEF[./IDENT"
+                + "[@text='InputXpathModifierOrderAnnotation']]"
+                + "/MODIFIERS/ANNOTATION[./IDENT[@text='InterfaceAnnotation']]/AT");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }

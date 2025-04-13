@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,10 +40,10 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
     @Test
     public void testClassFields() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathOneStatementPerLineClassFields.java"));
+            new File(getPath("InputXpathOneStatementPerLineClassFields.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(OneStatementPerLineCheck.class);
+            createModuleConfig(OneStatementPerLineCheck.class);
 
         final String[] expectedViolation = {
             "4:17: " + getCheckMessage(OneStatementPerLineCheck.class,
@@ -57,16 +57,16 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testForLoopBlock() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathOneStatementPerLineForLoopBlock.java"));
+            new File(getPath("InputXpathOneStatementPerLineForLoopBlock.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(OneStatementPerLineCheck.class);
+            createModuleConfig(OneStatementPerLineCheck.class);
 
         final String[] expectedViolation = {
             "9:39: " + getCheckMessage(OneStatementPerLineCheck.class,
@@ -80,6 +80,6 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

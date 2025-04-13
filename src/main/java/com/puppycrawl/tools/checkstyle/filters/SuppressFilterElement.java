@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.filters;
 
@@ -76,7 +76,7 @@ public class SuppressFilterElement
      * @param columns columns CSV values and ranges for column number filtering.
      */
     public SuppressFilterElement(String files, String checks,
-                           String message, String modId, String lines, String columns) {
+                                 String message, String modId, String lines, String columns) {
         if (files == null) {
             fileRegexp = null;
         }
@@ -123,7 +123,7 @@ public class SuppressFilterElement
      * @param columns CSV for columns
      */
     public SuppressFilterElement(Pattern files, Pattern checks, Pattern message, String moduleId,
-            String lines, String columns) {
+                                 String lines, String columns) {
         fileRegexp = files;
         checkRegexp = checks;
         messageRegexp = message;
@@ -149,8 +149,8 @@ public class SuppressFilterElement
     @Override
     public boolean accept(AuditEvent event) {
         return !isFileNameAndModuleNameMatching(event)
-                || !isMessageNameMatching(event)
-                || !isLineAndColumnMatching(event);
+            || !isMessageNameMatching(event)
+            || !isLineAndColumnMatching(event);
     }
 
     /**
@@ -161,10 +161,10 @@ public class SuppressFilterElement
      */
     private boolean isFileNameAndModuleNameMatching(AuditEvent event) {
         return event.getFileName() != null
-                && (fileRegexp == null || fileRegexp.matcher(event.getFileName()).find())
-                && event.getViolation() != null
-                && (moduleId == null || moduleId.equals(event.getModuleId()))
-                && (checkRegexp == null || checkRegexp.matcher(event.getSourceName()).find());
+            && (fileRegexp == null || fileRegexp.matcher(event.getFileName()).find())
+            && event.getViolation() != null
+            && (moduleId == null || moduleId.equals(event.getModuleId()))
+            && (checkRegexp == null || checkRegexp.matcher(event.getSourceName()).find());
     }
 
     /**
@@ -185,14 +185,14 @@ public class SuppressFilterElement
      */
     private boolean isLineAndColumnMatching(AuditEvent event) {
         return lineFilter == null && columnFilter == null
-                || lineFilter != null && lineFilter.accept(event.getLine())
-                || columnFilter != null && columnFilter.accept(event.getColumn());
+            || lineFilter != null && lineFilter.accept(event.getLine())
+            || columnFilter != null && columnFilter.accept(event.getColumn());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getPatternSafely(fileRegexp), getPatternSafely(checkRegexp),
-                getPatternSafely(messageRegexp), moduleId, linesCsv, columnsCsv);
+            getPatternSafely(messageRegexp), moduleId, linesCsv, columnsCsv);
     }
 
     @Override
@@ -205,14 +205,14 @@ public class SuppressFilterElement
         }
         final SuppressFilterElement suppressElement = (SuppressFilterElement) other;
         return Objects.equals(getPatternSafely(fileRegexp),
-                    getPatternSafely(suppressElement.fileRegexp))
-                && Objects.equals(getPatternSafely(checkRegexp),
-                    getPatternSafely(suppressElement.checkRegexp))
-                && Objects.equals(getPatternSafely(messageRegexp),
-                    getPatternSafely(suppressElement.messageRegexp))
-                && Objects.equals(moduleId, suppressElement.moduleId)
-                && Objects.equals(linesCsv, suppressElement.linesCsv)
-                && Objects.equals(columnsCsv, suppressElement.columnsCsv);
+            getPatternSafely(suppressElement.fileRegexp))
+            && Objects.equals(getPatternSafely(checkRegexp),
+            getPatternSafely(suppressElement.checkRegexp))
+            && Objects.equals(getPatternSafely(messageRegexp),
+            getPatternSafely(suppressElement.messageRegexp))
+            && Objects.equals(moduleId, suppressElement.moduleId)
+            && Objects.equals(linesCsv, suppressElement.linesCsv)
+            && Objects.equals(columnsCsv, suppressElement.columnsCsv);
     }
 
     /**

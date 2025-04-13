@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -193,7 +193,7 @@ public abstract class AbstractAutomaticBean
      */
     @Override
     public final void configure(Configuration config)
-            throws CheckstyleException {
+        throws CheckstyleException {
         configuration = config;
 
         final String[] attributes = config.getPropertyNames();
@@ -221,7 +221,7 @@ public abstract class AbstractAutomaticBean
      * @throws CheckstyleException when property defined incorrectly
      */
     private void tryCopyProperty(String key, Object value, boolean recheck)
-            throws CheckstyleException {
+        throws CheckstyleException {
         final BeanUtilsBean beanUtils = createBeanUtilsBean();
 
         try {
@@ -230,10 +230,10 @@ public abstract class AbstractAutomaticBean
                 // for key, so we have to go through great lengths here to
                 // figure out if the bean property really exists.
                 final PropertyDescriptor descriptor =
-                        PropertyUtils.getPropertyDescriptor(this, key);
+                    PropertyUtils.getPropertyDescriptor(this, key);
                 if (descriptor == null) {
                     final String message = String.format(Locale.ROOT, "Property '%s' "
-                            + "does not exist, please check the documentation", key);
+                        + "does not exist, please check the documentation", key);
                     throw new CheckstyleException(message);
                 }
             }
@@ -241,18 +241,18 @@ public abstract class AbstractAutomaticBean
             beanUtils.copyProperty(this, key, value);
         }
         catch (final InvocationTargetException | IllegalAccessException
-                | NoSuchMethodException ex) {
+                     | NoSuchMethodException ex) {
             // There is no way to catch IllegalAccessException | NoSuchMethodException
             // as we do PropertyUtils.getPropertyDescriptor before beanUtils.copyProperty,
             // so we have to join these exceptions with InvocationTargetException
             // to satisfy UTs coverage
             final String message = String.format(Locale.ROOT,
-                    "Cannot set property '%s' to '%s'", key, value);
+                "Cannot set property '%s' to '%s'", key, value);
             throw new CheckstyleException(message, ex);
         }
         catch (final IllegalArgumentException | ConversionException ex) {
             final String message = String.format(Locale.ROOT, "illegal value '%s' for property "
-                    + "'%s'", value, key);
+                + "'%s'", value, key);
             throw new CheckstyleException(message, ex);
         }
     }
@@ -264,7 +264,7 @@ public abstract class AbstractAutomaticBean
      */
     @Override
     public final void contextualize(Context context)
-            throws CheckstyleException {
+        throws CheckstyleException {
         final Collection<String> attributes = context.getAttributeNames();
 
         for (final String key : attributes) {
@@ -297,11 +297,11 @@ public abstract class AbstractAutomaticBean
      * @see Configuration#getChildren
      */
     protected void setupChild(Configuration childConf)
-            throws CheckstyleException {
+        throws CheckstyleException {
         if (childConf != null) {
             throw new CheckstyleException(childConf.getName() + " is not allowed as a child in "
-                    + configuration.getName() + ". Please review 'Parent Module' section "
-                    + "for this Check in web documentation if Check is standard.");
+                + configuration.getName() + ". Please review 'Parent Module' section "
+                + "for this Check in web documentation if Check is standard.");
         }
     }
 
@@ -323,7 +323,7 @@ public abstract class AbstractAutomaticBean
         @Override
         public Object convert(Class type, Object value) {
             final StringTokenizer tokenizer = new StringTokenizer(
-                    value.toString(), COMMA_SEPARATOR);
+                value.toString(), COMMA_SEPARATOR);
             final List<Pattern> result = new ArrayList<>();
 
             while (tokenizer.hasMoreTokens()) {
@@ -414,7 +414,7 @@ public abstract class AbstractAutomaticBean
 
         /** Constant for optimization. */
         private static final AccessModifierOption[] EMPTY_MODIFIER_ARRAY =
-                new AccessModifierOption[0];
+            new AccessModifierOption[0];
 
         @SuppressWarnings("unchecked")
         @Override

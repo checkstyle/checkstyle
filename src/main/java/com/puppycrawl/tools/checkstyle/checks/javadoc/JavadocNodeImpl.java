@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
@@ -95,8 +95,8 @@ public class JavadocNodeImpl implements DetailNode {
     @Override
     public DetailNode[] getChildren() {
         return Optional.ofNullable(children)
-                .map(array -> UnmodifiableCollectionUtil.copyOfArray(array, array.length))
-                .orElse(EMPTY_DETAIL_NODE_ARRAY);
+            .map(array -> UnmodifiableCollectionUtil.copyOfArray(array, array.length))
+            .orElse(EMPTY_DETAIL_NODE_ARRAY);
     }
 
     @Override
@@ -175,13 +175,13 @@ public class JavadocNodeImpl implements DetailNode {
     @Override
     public String toString() {
         return "JavadocNodeImpl["
-                + "index=" + index
-                + ", type=" + JavadocUtil.getTokenName(type)
-                + ", text='" + text + '\''
-                + ", lineNumber=" + lineNumber
-                + ", columnNumber=" + columnNumber
-                + ", children=" + Arrays.hashCode(children)
-                + ", parent=" + parent + ']';
+            + "index=" + index
+            + ", type=" + JavadocUtil.getTokenName(type)
+            + ", text='" + text + '\''
+            + ", lineNumber=" + lineNumber
+            + ", columnNumber=" + columnNumber
+            + ", children=" + Arrays.hashCode(children)
+            + ", parent=" + parent + ']';
     }
 
 }

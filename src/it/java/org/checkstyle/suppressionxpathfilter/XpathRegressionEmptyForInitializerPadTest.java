@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -41,27 +41,27 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
     @Test
     public void testPreceded() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathEmptyForInitializerPadPreceded.java"));
+            getPath("InputXpathEmptyForInitializerPadPreceded.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyForInitializerPadCheck.class);
+            createModuleConfig(EmptyForInitializerPadCheck.class);
 
         final String[] expectedViolation = {
             "5:15: " + getCheckMessage(EmptyForInitializerPadCheck.class,
-                    EmptyForInitializerPadCheck.MSG_PRECEDED, ";"),
+                EmptyForInitializerPadCheck.MSG_PRECEDED, ";"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathEmptyForInitializerPadPreceded']]"
+                + "[./IDENT[@text='InputXpathEmptyForInitializerPadPreceded']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/FOR_INIT",
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathEmptyForInitializerPadPreceded']]"
+                + "[./IDENT[@text='InputXpathEmptyForInitializerPadPreceded']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/SEMI[1]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
@@ -70,12 +70,12 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
             getPath("InputXpathEmptyForInitializerPadNotPreceded.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyForInitializerPadCheck.class);
+            createModuleConfig(EmptyForInitializerPadCheck.class);
         moduleConfig.addProperty("option", PadOption.SPACE.toString());
 
         final String[] expectedViolation = {
             "5:14: " + getCheckMessage(EmptyForInitializerPadCheck.class,
-                    EmptyForInitializerPadCheck.MSG_NOT_PRECEDED, ";"),
+                EmptyForInitializerPadCheck.MSG_NOT_PRECEDED, ";"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -88,7 +88,7 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.api;
 
@@ -241,7 +241,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
     @Override
     public final void log(int lineNo, int colNo, String key,
-            Object... args) {
+                          Object... args) {
         final int col = 1 + CommonUtil.lengthExpandedTabs(
             getLines()[lineNo - 1], colNo, tabWidth);
         context.get().violations.add(
@@ -273,20 +273,20 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
         // is increased by one.
 
         final int col = 1 + CommonUtil.lengthExpandedTabs(
-                getLines()[ast.getLineNo() - 1], ast.getColumnNo(), tabWidth);
+            getLines()[ast.getLineNo() - 1], ast.getColumnNo(), tabWidth);
         context.get().violations.add(
-                new Violation(
-                        ast.getLineNo(),
-                        col,
-                        ast.getColumnNo(),
-                        ast.getType(),
-                        getMessageBundle(),
-                        key,
-                        args,
-                        getSeverityLevel(),
-                        getId(),
-                        getClass(),
-                        getCustomMessages().get(key)));
+            new Violation(
+                ast.getLineNo(),
+                col,
+                ast.getColumnNo(),
+                ast.getType(),
+                getMessageBundle(),
+                key,
+                args,
+                getSeverityLevel(),
+                getId(),
+                getClass(),
+                getCustomMessages().get(key)));
     }
 
     /**

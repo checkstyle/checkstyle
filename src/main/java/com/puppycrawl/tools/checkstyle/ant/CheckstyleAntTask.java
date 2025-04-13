@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.ant;
 
@@ -255,6 +255,7 @@ public class CheckstyleAntTask extends Task {
 
     ////////////////////////////////////////////////////////////////////////////
     // The doers
+
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
@@ -268,11 +269,11 @@ public class CheckstyleAntTask extends Task {
 
             // Check for no arguments
             if (fileName == null
-                    && fileSets.isEmpty()
-                    && paths.isEmpty()) {
+                && fileSets.isEmpty()
+                && paths.isEmpty()) {
                 throw new BuildException(
-                        "Must specify at least one of 'file' or nested 'fileset' or 'path'.",
-                        getLocation());
+                    "Must specify at least one of 'file' or nested 'fileset' or 'path'.",
+                    getLocation());
             }
             if (config == null) {
                 throw new BuildException("Must specify 'config'.", getLocation());
@@ -325,7 +326,7 @@ public class CheckstyleAntTask extends Task {
      *     or if the build failed due to violations.
      */
     private void processFiles(RootModule rootModule, final SeverityLevelCounter warningCounter,
-            final String checkstyleVersion) {
+                              final String checkstyleVersion) {
         final long startTime = System.currentTimeMillis();
         final List<File> files = getFilesToCheck();
         final long endTime = System.currentTimeMillis();
@@ -333,9 +334,9 @@ public class CheckstyleAntTask extends Task {
             Project.MSG_VERBOSE);
 
         log("Running Checkstyle "
-                + Objects.toString(checkstyleVersion, "")
-                + " on " + files.size()
-                + " files", Project.MSG_INFO);
+            + Objects.toString(checkstyleVersion, "")
+            + " on " + files.size()
+            + " files", Project.MSG_INFO);
         log("Using configuration " + config, Project.MSG_VERBOSE);
 
         final int numErrs;
@@ -356,8 +357,8 @@ public class CheckstyleAntTask extends Task {
         // Handle the return status
         if (!okStatus) {
             final String failureMsg =
-                    "Got " + numErrs + " errors (max allowed: " + maxErrors + ") and "
-                            + numWarnings + " warnings.";
+                "Got " + numErrs + " errors (max allowed: " + maxErrors + ") and "
+                    + numWarnings + " warnings.";
             if (failureProperty != null) {
                 getProject().setProperty(failureProperty, failureMsg);
             }
@@ -379,7 +380,7 @@ public class CheckstyleAntTask extends Task {
         try {
             final Properties props = createOverridingProperties();
             final ThreadModeSettings threadModeSettings =
-                    ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
+                ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
             final ConfigurationLoader.IgnoredModulesOptions ignoredModulesOptions;
             if (executeIgnoredModules) {
                 ignoredModulesOptions = ConfigurationLoader.IgnoredModulesOptions.EXECUTE;
@@ -389,13 +390,13 @@ public class CheckstyleAntTask extends Task {
             }
 
             final Configuration configuration = ConfigurationLoader.loadConfiguration(config,
-                    new PropertiesExpander(props), ignoredModulesOptions, threadModeSettings);
+                new PropertiesExpander(props), ignoredModulesOptions, threadModeSettings);
 
             final ClassLoader moduleClassLoader =
                 Checker.class.getClassLoader();
 
             final ModuleFactory factory = new PackageObjectFactory(
-                    Checker.class.getPackage().getName() + ".", moduleClassLoader);
+                Checker.class.getPackage().getName() + ".", moduleClassLoader);
 
             rootModule = (RootModule) factory.createModule(configuration.getName());
             rootModule.setModuleClassLoader(moduleClassLoader);
@@ -403,7 +404,7 @@ public class CheckstyleAntTask extends Task {
         }
         catch (final CheckstyleException ex) {
             throw new BuildException(String.format(Locale.ROOT, "Unable to create Root Module: "
-                    + "config {%s}.", config), ex);
+                + "config {%s}.", config), ex);
         }
         return rootModule;
     }
@@ -425,7 +426,7 @@ public class CheckstyleAntTask extends Task {
             }
             catch (final IOException ex) {
                 throw new BuildException("Error loading Properties file '"
-                        + properties + "'", ex, getLocation());
+                    + properties + "'", ex, getLocation());
             }
         }
 
@@ -461,7 +462,7 @@ public class CheckstyleAntTask extends Task {
                 final OutputStream debug = new LogOutputStream(this, Project.MSG_DEBUG);
                 final OutputStream err = new LogOutputStream(this, Project.MSG_ERR);
                 listeners[0] = new DefaultLogger(debug, OutputStreamOptions.CLOSE,
-                        err, OutputStreamOptions.CLOSE);
+                    err, OutputStreamOptions.CLOSE);
             }
             else {
                 for (int i = 0; i < formatterCount; i++) {
@@ -472,7 +473,7 @@ public class CheckstyleAntTask extends Task {
         }
         catch (IOException ex) {
             throw new BuildException(String.format(Locale.ROOT, "Unable to create listeners: "
-                    + "formatters {%s}.", formatters), ex);
+                + "formatters {%s}.", formatters), ex);
         }
         return listeners;
     }
@@ -654,11 +655,11 @@ public class CheckstyleAntTask extends Task {
         public AuditListener createListener(Task task) throws IOException {
             final AuditListener listener;
             if (type != null
-                    && E_XML.equals(type.getValue())) {
+                && E_XML.equals(type.getValue())) {
                 listener = createXmlLogger(task);
             }
             else if (type != null
-                    && E_SARIF.equals(type.getValue())) {
+                && E_SARIF.equals(type.getValue())) {
                 listener = createSarifLogger(task);
             }
             else {
@@ -678,11 +679,11 @@ public class CheckstyleAntTask extends Task {
             final AuditListener sarifLogger;
             if (toFile == null || !useFile) {
                 sarifLogger = new SarifLogger(new LogOutputStream(task, Project.MSG_INFO),
-                        OutputStreamOptions.CLOSE);
+                    OutputStreamOptions.CLOSE);
             }
             else {
                 sarifLogger = new SarifLogger(Files.newOutputStream(toFile.toPath()),
-                        OutputStreamOptions.CLOSE);
+                    OutputStreamOptions.CLOSE);
             }
             return sarifLogger;
         }
@@ -695,21 +696,21 @@ public class CheckstyleAntTask extends Task {
          * @throws IOException if an error occurs
          */
         private AuditListener createDefaultLogger(Task task)
-                throws IOException {
+            throws IOException {
             final AuditListener defaultLogger;
             if (toFile == null || !useFile) {
                 defaultLogger = new DefaultLogger(
                     new LogOutputStream(task, Project.MSG_DEBUG),
-                        OutputStreamOptions.CLOSE,
-                        new LogOutputStream(task, Project.MSG_ERR),
-                        OutputStreamOptions.CLOSE
+                    OutputStreamOptions.CLOSE,
+                    new LogOutputStream(task, Project.MSG_ERR),
+                    OutputStreamOptions.CLOSE
                 );
             }
             else {
                 final OutputStream infoStream = Files.newOutputStream(toFile.toPath());
                 defaultLogger =
-                        new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
-                                infoStream, OutputStreamOptions.NONE);
+                    new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
+                        infoStream, OutputStreamOptions.NONE);
             }
             return defaultLogger;
         }
@@ -725,11 +726,11 @@ public class CheckstyleAntTask extends Task {
             final AuditListener xmlLogger;
             if (toFile == null || !useFile) {
                 xmlLogger = new XMLLogger(new LogOutputStream(task, Project.MSG_INFO),
-                        OutputStreamOptions.CLOSE);
+                    OutputStreamOptions.CLOSE);
             }
             else {
                 xmlLogger = new XMLLogger(Files.newOutputStream(toFile.toPath()),
-                        OutputStreamOptions.CLOSE);
+                    OutputStreamOptions.CLOSE);
             }
             return xmlLogger;
         }

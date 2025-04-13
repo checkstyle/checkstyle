@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -46,7 +46,7 @@ public class XpathRegressionIllegalTypeTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("tokens", "METHOD_DEF");
         final String[] expectedViolation = {
             "4:23: " + getCheckMessage(IllegalTypeCheck.class,
-                                      IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
+                IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT"
@@ -57,7 +57,7 @@ public class XpathRegressionIllegalTypeTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                         expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class XpathRegressionIllegalTypeTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "6:20: " + getCheckMessage(IllegalTypeCheck.class,
-                                      IllegalTypeCheck.MSG_KEY, "Boolean"),
+                IllegalTypeCheck.MSG_KEY, "Boolean"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathIllegalTypeTwo']"
@@ -80,6 +80,6 @@ public class XpathRegressionIllegalTypeTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                         expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

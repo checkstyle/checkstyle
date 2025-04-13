@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -90,10 +90,10 @@ public final class DetailNodeTreeStringPrinter {
      */
     private static String getParseErrorMessage(ParseErrorMessage parseErrorMessage) {
         final LocalizedMessage message = new LocalizedMessage(
-                "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
-                DetailNodeTreeStringPrinter.class,
-                parseErrorMessage.getMessageKey(),
-                parseErrorMessage.getMessageArguments());
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
+            DetailNodeTreeStringPrinter.class,
+            parseErrorMessage.getMessageKey(),
+            parseErrorMessage.getMessageArguments());
         return "[ERROR:" + parseErrorMessage.getLineNumber() + "] " + message.getMessage();
     }
 
@@ -116,11 +116,11 @@ public final class DetailNodeTreeStringPrinter {
                 messageBuilder.append(prefix);
             }
             messageBuilder.append(getIndentation(node))
-                    .append(JavadocUtil.getTokenName(node.getType())).append(" -> ")
-                    .append(JavadocUtil.escapeAllControlChars(node.getText())).append(" [")
-                    .append(node.getLineNumber()).append(':').append(node.getColumnNumber())
-                    .append(']').append(LINE_SEPARATOR)
-                    .append(printTree(JavadocUtil.getFirstChild(node), rootPrefix, prefix));
+                .append(JavadocUtil.getTokenName(node.getType())).append(" -> ")
+                .append(JavadocUtil.escapeAllControlChars(node.getText())).append(" [")
+                .append(node.getLineNumber()).append(':').append(node.getColumnNumber())
+                .append(']').append(LINE_SEPARATOR)
+                .append(printTree(JavadocUtil.getFirstChild(node), rootPrefix, prefix));
             node = JavadocUtil.getNextSibling(node);
         }
         return messageBuilder.toString();

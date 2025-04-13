@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
@@ -43,7 +43,7 @@ abstract class AbstractImportControl {
      * @param strategyOnMismatch strategy in a case if matching allow/disallow rule was not found.
      */
     protected AbstractImportControl(AbstractImportControl parent,
-            MismatchStrategy strategyOnMismatch) {
+                                    MismatchStrategy strategyOnMismatch) {
         this.parent = parent;
         this.strategyOnMismatch = strategyOnMismatch;
     }

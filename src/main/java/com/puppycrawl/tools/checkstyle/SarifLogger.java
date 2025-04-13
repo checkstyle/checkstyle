@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -88,7 +88,7 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
 
     /** A pattern to match a file with a Windows drive letter. */
     private static final Pattern WINDOWS_DRIVE_LETTER_PATTERN =
-            Pattern.compile("\\A[A-Z]:", Pattern.CASE_INSENSITIVE);
+        Pattern.compile("\\A[A-Z]:", Pattern.CASE_INSENSITIVE);
 
     /** Helper writer that allows easy encoding and printing. */
     private final PrintWriter writer;
@@ -253,9 +253,9 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
      */
     private static String renderFileNameUri(final String fileName) {
         String normalized =
-                A_SPACE_PATTERN
-                        .matcher(TWO_BACKSLASHES_PATTERN.matcher(fileName).replaceAll("/"))
-                        .replaceAll("%20");
+            A_SPACE_PATTERN
+                .matcher(TWO_BACKSLASHES_PATTERN.matcher(fileName).replaceAll("/"))
+                .replaceAll("%20");
         if (WINDOWS_DRIVE_LETTER_PATTERN.matcher(normalized).find()) {
             normalized = '/' + normalized;
         }
@@ -347,8 +347,8 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
     private static String escapeUnicode1F(char chr) {
         final String hexString = Integer.toHexString(chr);
         return "\\u"
-                + "0".repeat(UNICODE_LENGTH - hexString.length())
-                + hexString.toUpperCase(Locale.US);
+            + "0".repeat(UNICODE_LENGTH - hexString.length())
+            + hexString.toUpperCase(Locale.US);
     }
 
     /**

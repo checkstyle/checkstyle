@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.meta;
 
@@ -70,7 +70,7 @@ public final class XmlMetaWriter {
      * @throws ParserConfigurationException if a parser configuration exception occurs
      */
     public static void write(ModuleDetails moduleDetails) throws TransformerException,
-            ParserConfigurationException {
+        ParserConfigurationException {
         final DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         dbFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
         dbFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
@@ -88,7 +88,7 @@ public final class XmlMetaWriter {
 
         checkModule.setAttribute(XML_TAG_NAME, moduleDetails.getName());
         checkModule.setAttribute("fully-qualified-name",
-                moduleDetails.getFullQualifiedName());
+            moduleDetails.getFullQualifiedName());
         checkModule.setAttribute("parent", moduleDetails.getParent());
 
         final Element desc = doc.createElement(XML_TAG_DESCRIPTION);
@@ -137,7 +137,7 @@ public final class XmlMetaWriter {
                 }
                 final Element propertyDesc = doc.createElement(XML_TAG_DESCRIPTION);
                 propertyDesc.appendChild(doc.createCDATASection(
-                        modulePropertyDetails.getDescription()));
+                    modulePropertyDetails.getDescription()));
                 property.appendChild(propertyDesc);
             }
         }
@@ -151,7 +151,7 @@ public final class XmlMetaWriter {
      * @throws TransformerException if a transformer exception occurs
      */
     private static void writeToFile(Document document, ModuleDetails moduleDetails)
-            throws TransformerException {
+        throws TransformerException {
         String fileSeparator = DEFAULT_FILE_SEPARATOR;
         if (System.getProperty("os.name").toLowerCase(Locale.ENGLISH).contains("win")) {
             fileSeparator = "\\" + fileSeparator;
@@ -161,15 +161,15 @@ public final class XmlMetaWriter {
         final String rootOutputPath = System.getProperty("user.dir") + "/src/main/resources";
         if (moduleDetails.getFullQualifiedName().startsWith("com.puppycrawl.tools.checkstyle")) {
             final String moduleFilePath = FILEPATH_CONVERSION
-                    .matcher(moduleDetails.getFullQualifiedName())
-                    .replaceAll(fileSeparator);
+                .matcher(moduleDetails.getFullQualifiedName())
+                .replaceAll(fileSeparator);
             final String checkstyleString = "checkstyle";
             final int indexOfCheckstyle =
-                    moduleFilePath.indexOf(checkstyleString) + checkstyleString.length();
+                moduleFilePath.indexOf(checkstyleString) + checkstyleString.length();
 
             modifiedPath = rootOutputPath + DEFAULT_FILE_SEPARATOR
-                    + moduleFilePath.substring(0, indexOfCheckstyle) + "/meta/"
-                    + moduleFilePath.substring(indexOfCheckstyle + 1) + xmlExtension;
+                + moduleFilePath.substring(0, indexOfCheckstyle) + "/meta/"
+                + moduleFilePath.substring(indexOfCheckstyle + 1) + xmlExtension;
         }
         else {
             String moduleName = moduleDetails.getName();

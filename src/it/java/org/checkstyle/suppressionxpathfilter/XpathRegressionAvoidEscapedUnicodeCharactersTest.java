@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -44,7 +44,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
             "InputXpathAvoidEscapedUnicodeCharactersDefault.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
+            createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
 
         final String[] expectedViolation = {
             "4:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
@@ -62,7 +62,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
@@ -72,7 +72,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         );
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
+            createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
         moduleConfig.addProperty("allowEscapesForControlCharacters", "true");
 
         final String[] expectedViolation = {
@@ -82,18 +82,18 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text="
-                    + "'InputXpathAvoidEscapedUnicodeCharactersControlCharacters']]"
+                + "'InputXpathAvoidEscapedUnicodeCharactersControlCharacters']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
                 + "/ASSIGN/EXPR[./STRING_LITERAL[@text='\\u03bcs']]",
             "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text="
-                    + "'InputXpathAvoidEscapedUnicodeCharactersControlCharacters']]"
+                + "'InputXpathAvoidEscapedUnicodeCharactersControlCharacters']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
                 + "/ASSIGN/EXPR/STRING_LITERAL[@text='\\u03bcs']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
@@ -102,7 +102,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
             "InputXpathAvoidEscapedUnicodeCharactersTailComment.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
+            createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
         moduleConfig.addProperty("allowByTailComment", "true");
 
         final String[] expectedViolation = {
@@ -112,18 +112,18 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text="
-                    + "'InputXpathAvoidEscapedUnicodeCharactersTailComment']]"
+                + "'InputXpathAvoidEscapedUnicodeCharactersTailComment']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
                 + "/ASSIGN/EXPR[./STRING_LITERAL[@text='\\u03bcs']]",
             "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text="
-                    + "'InputXpathAvoidEscapedUnicodeCharactersTailComment']]"
+                + "'InputXpathAvoidEscapedUnicodeCharactersTailComment']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
                 + "/ASSIGN/EXPR/STRING_LITERAL[@text='\\u03bcs']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
@@ -132,7 +132,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
             "InputXpathAvoidEscapedUnicodeCharactersAllEscaped.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
+            createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
         moduleConfig.addProperty("allowIfAllCharactersEscaped", "true");
 
         final String[] expectedViolation = {
@@ -140,20 +140,20 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[."
-                    + "/IDENT[@text="
-                        + "'InputXpathAvoidEscapedUnicodeCharactersAllEscaped']]"
-                    + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
-                    + "/ASSIGN/EXPR[./STRING_LITERAL[@text='\\u03bcs']]",
-                "/COMPILATION_UNIT/CLASS_DEF[."
-                    + "/IDENT[@text="
-                        + "'InputXpathAvoidEscapedUnicodeCharactersAllEscaped']]"
-                    + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
-                    + "/ASSIGN/EXPR/STRING_LITERAL[@text='\\u03bcs']"
+            "/COMPILATION_UNIT/CLASS_DEF[."
+                + "/IDENT[@text="
+                + "'InputXpathAvoidEscapedUnicodeCharactersAllEscaped']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
+                + "/ASSIGN/EXPR[./STRING_LITERAL[@text='\\u03bcs']]",
+            "/COMPILATION_UNIT/CLASS_DEF[."
+                + "/IDENT[@text="
+                + "'InputXpathAvoidEscapedUnicodeCharactersAllEscaped']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
+                + "/ASSIGN/EXPR/STRING_LITERAL[@text='\\u03bcs']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
@@ -162,7 +162,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
             "InputXpathAvoidEscapedUnicodeCharactersNonPrintable.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
+            createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
         moduleConfig.addProperty("allowNonPrintableEscapes", "true");
 
         final String[] expectedViolation = {
@@ -172,17 +172,17 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text="
-                    + "'InputXpathAvoidEscapedUnicodeCharactersNonPrintable']]"
+                + "'InputXpathAvoidEscapedUnicodeCharactersNonPrintable']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
                 + "/ASSIGN/EXPR[./STRING_LITERAL[@text='\\u03bcs']]",
             "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text="
-                    + "'InputXpathAvoidEscapedUnicodeCharactersNonPrintable']]"
+                + "'InputXpathAvoidEscapedUnicodeCharactersNonPrintable']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
                 + "/ASSIGN/EXPR/STRING_LITERAL[@text='\\u03bcs']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

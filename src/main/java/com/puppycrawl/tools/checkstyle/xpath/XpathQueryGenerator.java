@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
@@ -98,7 +98,7 @@ public class XpathQueryGenerator {
      */
     public XpathQueryGenerator(TreeWalkerAuditEvent event, int tabWidth) {
         this(event.getRootAst(), event.getLine(), event.getColumn(), event.getTokenType(),
-                event.getFileContents().getText(), tabWidth);
+            event.getFileContents().getText(), tabWidth);
     }
 
     /**
@@ -157,7 +157,7 @@ public class XpathQueryGenerator {
     @Nullable
     private static DetailAST findChildWithTextAttribute(DetailAST root) {
         return TokenUtil.findFirstTokenByPredicate(root,
-                XpathUtil::supportsTextAttribute).orElse(null);
+            XpathUtil::supportsTextAttribute).orElse(null);
     }
 
     /**
@@ -225,8 +225,8 @@ public class XpathQueryGenerator {
      */
     private static boolean isXpathQueryForNodeIsAccurateEnough(DetailAST ast) {
         return !hasAtLeastOneSiblingWithSameTokenType(ast)
-                || XpathUtil.supportsTextAttribute(ast)
-                || findChildWithTextAttribute(ast) != null;
+            || XpathUtil.supportsTextAttribute(ast)
+            || findChildWithTextAttribute(ast) != null;
     }
 
     /**
@@ -265,18 +265,18 @@ public class XpathQueryGenerator {
         while (cur != root) {
             final StringBuilder curNodeQueryBuilder = new StringBuilder(256);
             curNodeQueryBuilder.append('/')
-                    .append(TokenUtil.getTokenName(cur.getType()));
+                .append(TokenUtil.getTokenName(cur.getType()));
             if (XpathUtil.supportsTextAttribute(cur)) {
                 curNodeQueryBuilder.append("[@text='")
-                        .append(encode(XpathUtil.getTextAttributeValue(cur)))
-                        .append("']");
+                    .append(encode(XpathUtil.getTextAttributeValue(cur)))
+                    .append("']");
             }
             else {
                 final DetailAST child = findChildWithTextAttribute(cur);
                 if (child != null && child != ast) {
                     curNodeQueryBuilder.append("[.")
-                            .append(getXpathQuery(cur, child))
-                            .append(']');
+                        .append(getXpathQuery(cur, child))
+                        .append(']');
                 }
             }
 
@@ -321,7 +321,7 @@ public class XpathQueryGenerator {
      */
     private int expandedTabColumn(DetailAST ast) {
         return 1 + CommonUtil.lengthExpandedTabs(fileText.get(lineNumber - 1),
-                ast.getColumnNo(), tabWidth);
+            ast.getColumnNo(), tabWidth);
     }
 
     /**
@@ -333,8 +333,8 @@ public class XpathQueryGenerator {
      */
     private boolean isMatchingByLineAndColumnAndTokenType(DetailAST ast) {
         return ast.getLineNo() == lineNumber
-                && expandedTabColumn(ast) == columnNumber
-                && (tokenType == 0 || tokenType == ast.getType());
+            && expandedTabColumn(ast) == columnNumber
+            && (tokenType == 0 || tokenType == ast.getType());
     }
 
     /**

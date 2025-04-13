@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -45,14 +45,14 @@ public class CaseHandler extends AbstractExpressionHandler {
      * @param parent        the parent handler
      */
     public CaseHandler(IndentationCheck indentCheck,
-        DetailAST expr, AbstractExpressionHandler parent) {
+                       DetailAST expr, AbstractExpressionHandler parent) {
         super(indentCheck, "case", expr, parent);
     }
 
     @Override
     protected IndentLevel getIndentImpl() {
         return new IndentLevel(getParent().getIndent(),
-                               getIndentCheck().getCaseIndent());
+            getIndentCheck().getCaseIndent());
     }
 
     /**

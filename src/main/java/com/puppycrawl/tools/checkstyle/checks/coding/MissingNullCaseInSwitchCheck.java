@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -108,7 +108,7 @@ public class MissingNullCaseInSwitchCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final List<DetailAST> caseLabels = getAllCaseLabels(ast);
         final boolean hasNullCaseLabel = caseLabels.stream()
-                .anyMatch(MissingNullCaseInSwitchCheck::hasLiteralNull);
+            .anyMatch(MissingNullCaseInSwitchCheck::hasLiteralNull);
         if (!hasNullCaseLabel) {
             final boolean hasPatternCaseLabel = caseLabels.stream()
                 .anyMatch(MissingNullCaseInSwitchCheck::hasPatternCaseLabel);
@@ -145,8 +145,8 @@ public class MissingNullCaseInSwitchCheck extends AbstractCheck {
      */
     private static boolean hasLiteralNull(DetailAST caseAST) {
         return Optional.ofNullable(caseAST.findFirstToken(TokenTypes.EXPR))
-                .map(exp -> exp.findFirstToken(TokenTypes.LITERAL_NULL))
-                .isPresent();
+            .map(exp -> exp.findFirstToken(TokenTypes.LITERAL_NULL))
+            .isPresent();
     }
 
     /**
@@ -158,8 +158,8 @@ public class MissingNullCaseInSwitchCheck extends AbstractCheck {
      */
     private static boolean hasPatternCaseLabel(DetailAST caseAST) {
         return caseAST.findFirstToken(TokenTypes.RECORD_PATTERN_DEF) != null
-               || caseAST.findFirstToken(TokenTypes.PATTERN_VARIABLE_DEF) != null
-               || caseAST.findFirstToken(TokenTypes.PATTERN_DEF) != null;
+            || caseAST.findFirstToken(TokenTypes.PATTERN_VARIABLE_DEF) != null
+            || caseAST.findFirstToken(TokenTypes.PATTERN_DEF) != null;
     }
 
     /**
@@ -186,7 +186,7 @@ public class MissingNullCaseInSwitchCheck extends AbstractCheck {
             }
             curNode = toVisit;
             exitCaseLabelExpression = TokenUtil.isOfType(curNode, TokenTypes.COLON,
-                                                                        TokenTypes.LAMBDA);
+                TokenTypes.LAMBDA);
         }
         return hasStringCaseLabel;
     }

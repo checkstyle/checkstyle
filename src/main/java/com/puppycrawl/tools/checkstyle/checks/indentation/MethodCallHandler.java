@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -43,7 +43,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
      * @param parent        the parent handler
      */
     public MethodCallHandler(IndentationCheck indentCheck,
-        DetailAST ast, AbstractExpressionHandler parent) {
+                             DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck, "method call", ast, parent);
         this.indentCheck = indentCheck;
     }
@@ -55,10 +55,10 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         // an expression, so get the previous line's start
         if (getParent() instanceof MethodCallHandler) {
             final MethodCallHandler container =
-                    (MethodCallHandler) getParent();
+                (MethodCallHandler) getParent();
             if (TokenUtil.areOnSameLine(container.getMainAst(), getMainAst())
-                    || isChainedMethodCallWrapped()
-                    || areMethodsChained(container.getMainAst(), getMainAst())) {
+                || isChainedMethodCallWrapped()
+                || areMethodsChained(container.getMainAst(), getMainAst())) {
                 indentLevel = container.getIndent();
             }
             // we should increase indentation only if this is the first
@@ -178,16 +178,16 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         IndentLevel suggestedLevel = new IndentLevel(getLineStart(ident));
         if (!TokenUtil.areOnSameLine(child.getMainAst().getFirstChild(), ident)) {
             suggestedLevel = new IndentLevel(suggestedLevel,
-                    getBasicOffset(),
-                    getIndentCheck().getLineWrappingIndentation());
+                getBasicOffset(),
+                getIndentCheck().getLineWrappingIndentation());
         }
 
         // If the right parenthesis is at the start of a line;
         // include line wrapping in suggested indent level.
         if (getLineStart(rparen) == rparen.getColumnNo()) {
             suggestedLevel = IndentLevel.addAcceptable(suggestedLevel, new IndentLevel(
-                    getParent().getSuggestedChildIndent(this),
-                    getIndentCheck().getLineWrappingIndentation()
+                getParent().getSuggestedChildIndent(this),
+                getIndentCheck().getLineWrappingIndentation()
             ));
         }
 

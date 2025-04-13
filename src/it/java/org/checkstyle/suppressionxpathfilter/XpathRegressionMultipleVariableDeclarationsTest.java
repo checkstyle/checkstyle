@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,10 +40,10 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
     @Test
     public void testCommaSeparator() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathMultipleVariableDeclarationsCommaSeparator.java"));
+            getPath("InputXpathMultipleVariableDeclarationsCommaSeparator.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MultipleVariableDeclarationsCheck.class);
+            createModuleConfig(MultipleVariableDeclarationsCheck.class);
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(MultipleVariableDeclarationsCheck.class,
@@ -78,16 +78,16 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testMultipleVariableDeclarations() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathMultipleVariableDeclarations.java"));
+            getPath("InputXpathMultipleVariableDeclarations.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MultipleVariableDeclarationsCheck.class);
+            createModuleConfig(MultipleVariableDeclarationsCheck.class);
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(MultipleVariableDeclarationsCheck.class,
@@ -110,6 +110,6 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -65,7 +65,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  */
 @FileStatefulCheck
 public class EqualsHashCodeCheck
-        extends AbstractCheck {
+    extends AbstractCheck {
 
     // implementation note: we have to use the following members to
     // keep track of definitions in different inner classes
@@ -130,9 +130,9 @@ public class EqualsHashCodeCheck
         final DetailAST parameters = ast.findFirstToken(TokenTypes.PARAMETERS);
 
         return CheckUtil.isEqualsMethod(ast)
-                && isObjectParam(parameters.getFirstChild())
-                && (ast.findFirstToken(TokenTypes.SLIST) != null
-                        || modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) != null);
+            && isObjectParam(parameters.getFirstChild())
+            && (ast.findFirstToken(TokenTypes.SLIST) != null
+            || modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) != null);
     }
 
     /**
@@ -147,9 +147,9 @@ public class EqualsHashCodeCheck
         final DetailAST parameters = ast.findFirstToken(TokenTypes.PARAMETERS);
 
         return "hashCode".equals(methodName.getText())
-                && parameters.getFirstChild() == null
-                && (ast.findFirstToken(TokenTypes.SLIST) != null
-                        || modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) != null);
+            && parameters.getFirstChild() == null
+            && (ast.findFirstToken(TokenTypes.SLIST) != null
+            || modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) != null);
     }
 
     /**

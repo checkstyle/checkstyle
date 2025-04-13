@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
@@ -230,9 +230,9 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     private static boolean shouldCheckWhitespaceAfter(DetailAST ast) {
         final DetailAST previousSibling = ast.getPreviousSibling();
         final boolean isSynchronizedMethod = ast.getType() == TokenTypes.LITERAL_SYNCHRONIZED
-                        && ast.getFirstChild() == null;
+            && ast.getFirstChild() == null;
         return !isSynchronizedMethod
-                && (previousSibling == null || previousSibling.getType() != TokenTypes.ANNOTATIONS);
+            && (previousSibling == null || previousSibling.getType() != TokenTypes.ANNOTATIONS);
     }
 
     /**
@@ -245,8 +245,8 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         final int after;
         // If target of possible redundant whitespace is in method definition.
         if (ast.getType() == TokenTypes.IDENT
-                && ast.getNextSibling() != null
-                && ast.getNextSibling().getType() == TokenTypes.LPAREN) {
+            && ast.getNextSibling() != null
+            && ast.getNextSibling().getType() == TokenTypes.LPAREN) {
             final DetailAST methodDef = ast.getParent();
             final DetailAST endOfParams = methodDef.findFirstToken(TokenTypes.RPAREN);
             after = endOfParams.getColumnNo() + 1;
@@ -269,7 +269,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      * @return true if whitespace found.
      */
     private boolean hasTrailingWhitespace(DetailAST ast,
-        int whitespaceColumnNo, int whitespaceLineNo) {
+                                          int whitespaceColumnNo, int whitespaceLineNo) {
         final boolean result;
         final int astLineNo = ast.getLineNo();
         final int[] line = getLineCodePoints(astLineNo - 1);
@@ -296,7 +296,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         final DetailAST previousElement;
 
         if (ast.getPreviousSibling() != null
-                && ast.getPreviousSibling().getType() == TokenTypes.ARRAY_DECLARATOR) {
+            && ast.getPreviousSibling().getType() == TokenTypes.ARRAY_DECLARATOR) {
             // Covers higher dimension array declarations and initializations
             previousElement = getPreviousElementOfMultiDimArray(ast);
         }
@@ -356,7 +356,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
 
         final DetailAST previousElement;
         if (ident.getColumnNo() > previousRightBracket.getColumnNo()
-                && ident.getColumnNo() < leftBracket.getColumnNo()) {
+            && ident.getColumnNo() < leftBracket.getColumnNo()) {
             // C style and Java style ' int[] arr []' in same construct
             previousElement = ident;
         }
@@ -419,12 +419,12 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         final DetailAST typeLastNode;
         final DetailAST parent = ast.getParent();
         final boolean isPrecededByTypeArgs =
-                parent.findFirstToken(TokenTypes.TYPE_ARGUMENTS) != null;
+            parent.findFirstToken(TokenTypes.TYPE_ARGUMENTS) != null;
         final Optional<DetailAST> objectArrayType = Optional.ofNullable(getIdentLastToken(ast));
 
         if (isPrecededByTypeArgs) {
             typeLastNode = parent.findFirstToken(TokenTypes.TYPE_ARGUMENTS)
-                    .findFirstToken(TokenTypes.GENERIC_END);
+                .findFirstToken(TokenTypes.GENERIC_END);
         }
         else if (objectArrayType.isPresent()) {
             typeLastNode = objectArrayType.orElseThrow();

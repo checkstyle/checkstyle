@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,56 +40,56 @@ public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
     @Test
     public void testMissingCtor() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathMissingCtor.java"));
+            "InputXpathMissingCtor.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingCtorCheck.class);
+            createModuleConfig(MissingCtorCheck.class);
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(MissingCtorCheck.class,
-                    MissingCtorCheck.MSG_KEY),
+                MissingCtorCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMissingCtor']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMissingCtor']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='InputXpathMissingCtor']]/MODIFIERS/LITERAL_PUBLIC"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingCtor']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingCtor']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathMissingCtor']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testInnerClass() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathMissingCtorInner.java"));
+            "InputXpathMissingCtorInner.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingCtorCheck.class);
+            createModuleConfig(MissingCtorCheck.class);
 
         final String[] expectedViolation = {
             "9:5: " + getCheckMessage(MissingCtorCheck.class,
-                    MissingCtorCheck.MSG_KEY),
+                MissingCtorCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='InputXpathMissingCtorInner']]"
-                    + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='InputXpathMissingCtorInner']]"
-                    + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='InputXpathMissingCtorInner']]"
-                    + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/LITERAL_CLASS"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathMissingCtorInner']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathMissingCtorInner']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathMissingCtorInner']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/LITERAL_CLASS"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

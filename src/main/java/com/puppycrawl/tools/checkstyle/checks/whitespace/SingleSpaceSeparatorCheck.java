@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
@@ -146,9 +146,9 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
             final int minSecondWhitespaceColumnNo = 2;
 
             if (columnNo >= minSecondWhitespaceColumnNo
-                    && !isTextSeparatedCorrectlyFromPrevious(
-                            getLineCodePoints(currentNode.getLineNo() - 1),
-                            columnNo)) {
+                && !isTextSeparatedCorrectlyFromPrevious(
+                getLineCodePoints(currentNode.getLineNo() - 1),
+                columnNo)) {
                 log(currentNode, MSG_KEY);
             }
             if (currentNode.hasChildren()) {
@@ -184,9 +184,9 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      */
     private boolean isTextSeparatedCorrectlyFromPrevious(int[] line, int columnNo) {
         return isSingleSpace(line, columnNo)
-                || !CommonUtil.isCodePointWhitespace(line, columnNo)
-                || isFirstInLine(line, columnNo)
-                || !validateComments && isBlockCommentEnd(line, columnNo);
+            || !CommonUtil.isCodePointWhitespace(line, columnNo)
+            || isFirstInLine(line, columnNo)
+            || !validateComments && isBlockCommentEnd(line, columnNo);
     }
 
     /**
@@ -236,7 +236,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      */
     private static boolean isBlockCommentEnd(int[] line, int columnNo) {
         final int[] strippedLine = CodePointUtil
-                .stripTrailing(Arrays.copyOfRange(line, 0, columnNo));
+            .stripTrailing(Arrays.copyOfRange(line, 0, columnNo));
         return CodePointUtil.endsWith(strippedLine, "*/");
     }
 

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.utils;
 
@@ -80,7 +80,7 @@ public final class CheckUtil {
         if (ast.getType() == TokenTypes.METHOD_DEF) {
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             final boolean staticOrAbstract =
-                    modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null
+                modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null
                     || modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;
 
             if (!staticOrAbstract) {
@@ -207,7 +207,7 @@ public final class CheckUtil {
     public static boolean isBeforeInSource(DetailAST ast1, DetailAST ast2) {
         return ast1.getLineNo() < ast2.getLineNo()
             || TokenUtil.areOnSameLine(ast1, ast2)
-                && ast1.getColumnNo() < ast2.getColumnNo();
+            && ast1.getColumnNo() < ast2.getColumnNo();
     }
 
     /**
@@ -225,13 +225,13 @@ public final class CheckUtil {
             final DetailAST typeParam =
                 typeParameters.findFirstToken(TokenTypes.TYPE_PARAMETER);
             typeParameterNames.add(
-                    typeParam.findFirstToken(TokenTypes.IDENT).getText());
+                typeParam.findFirstToken(TokenTypes.IDENT).getText());
 
             DetailAST sibling = typeParam.getNextSibling();
             while (sibling != null) {
                 if (sibling.getType() == TokenTypes.TYPE_PARAMETER) {
                     typeParameterNames.add(
-                            sibling.findFirstToken(TokenTypes.IDENT).getText());
+                        sibling.findFirstToken(TokenTypes.IDENT).getText());
                 }
                 sibling = sibling.getNextSibling();
             }
@@ -344,7 +344,7 @@ public final class CheckUtil {
      * @throws IllegalArgumentException when expected non-null modifiersToken with type 'MODIFIERS'
      */
     private static AccessModifierOption getAccessModifierFromModifiersTokenDirectly(
-            DetailAST modifiersToken) {
+        DetailAST modifiersToken) {
         if (modifiersToken == null) {
             throw new IllegalArgumentException("expected non-null AST-token with type 'MODIFIERS'");
         }
@@ -400,9 +400,9 @@ public final class CheckUtil {
      */
     public static Set<String> parseClassNames(String... classNames) {
         return Arrays.stream(classNames)
-                .flatMap(className -> Stream.of(className, CommonUtil.baseClassName(className)))
-                .filter(Predicate.not(String::isEmpty))
-                .collect(Collectors.toUnmodifiableSet());
+            .flatMap(className -> Stream.of(className, CommonUtil.baseClassName(className)))
+            .filter(Predicate.not(String::isEmpty))
+            .collect(Collectors.toUnmodifiableSet());
     }
 
     /**
@@ -423,8 +423,8 @@ public final class CheckUtil {
         final String suffix = "";
 
         return lines.stream()
-                .map(line -> stripIndentAndTrailingWhitespaceFromLine(line, indent))
-                .collect(Collectors.joining(System.lineSeparator(), suffix, suffix));
+            .map(line -> stripIndentAndTrailingWhitespaceFromLine(line, indent))
+            .collect(Collectors.joining(System.lineSeparator(), suffix, suffix));
     }
 
     /**

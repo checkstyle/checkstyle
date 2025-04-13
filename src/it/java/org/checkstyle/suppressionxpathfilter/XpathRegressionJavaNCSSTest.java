@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,26 +40,26 @@ public class XpathRegressionJavaNCSSTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathJavaNCSSOne.java"));
+            new File(getPath("InputXpathJavaNCSSOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavaNCSSCheck.class);
+            createModuleConfig(JavaNCSSCheck.class);
 
         final String[] expectedViolation = {
             "5:5: " + getCheckMessage(JavaNCSSCheck.class,
-                    JavaNCSSCheck.MSG_METHOD, 51, 50),
+                JavaNCSSCheck.MSG_METHOD, 51, 50),
         };
 
         final List<String> expectedXpathQueries = List.of(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathJavaNCSSOne']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathJavaNCSSOne']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathJavaNCSSOne']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PUBLIC"
         );
@@ -70,26 +70,26 @@ public class XpathRegressionJavaNCSSTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathJavaNCSSTwo.java"));
+            new File(getPath("InputXpathJavaNCSSTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavaNCSSCheck.class);
+            createModuleConfig(JavaNCSSCheck.class);
 
         moduleConfig.addProperty("classMaximum", "50");
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(JavaNCSSCheck.class,
-                    JavaNCSSCheck.MSG_CLASS, 51, 50),
+                JavaNCSSCheck.MSG_CLASS, 51, 50),
         };
 
         final List<String> expectedXpathQueries = List.of(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathJavaNCSSTwo']]",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathJavaNCSSTwo']]/MODIFIERS",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathJavaNCSSTwo']]"
                 + "/MODIFIERS/LITERAL_PUBLIC"
         );
@@ -100,21 +100,21 @@ public class XpathRegressionJavaNCSSTest extends AbstractXpathTestSupport {
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathJavaNCSSThree.java"));
+            new File(getPath("InputXpathJavaNCSSThree.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavaNCSSCheck.class);
+            createModuleConfig(JavaNCSSCheck.class);
 
         moduleConfig.addProperty("fileMaximum", "50");
 
         final String[] expectedViolation = {
             "1:1: " + getCheckMessage(JavaNCSSCheck.class,
-                    JavaNCSSCheck.MSG_FILE, 51, 50),
+                JavaNCSSCheck.MSG_FILE, 51, 50),
         };
 
         final List<String> expectedXpathQueries = List.of(
-                "/COMPILATION_UNIT",
-                "/COMPILATION_UNIT/PACKAGE_DEF"
+            "/COMPILATION_UNIT",
+            "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);

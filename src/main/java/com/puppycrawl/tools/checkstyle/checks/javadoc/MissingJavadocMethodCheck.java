@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
@@ -305,7 +305,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      */
     private boolean isMissingJavadocAllowed(final DetailAST ast) {
         return allowMissingPropertyJavadoc
-                && (isSetterMethod(ast) || isGetterMethod(ast))
+            && (isSetterMethod(ast) || isGetterMethod(ast))
             || matchesSkipRegex(ast)
             || isContentsAllowMissingJavadoc(ast);
     }
@@ -319,8 +319,8 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      */
     private boolean isContentsAllowMissingJavadoc(DetailAST ast) {
         return ast.getType() != TokenTypes.ANNOTATION_FIELD_DEF
-                && (getMethodsNumberOfLine(ast) <= minLineCount
-                    || AnnotationUtil.containsAnnotation(ast, allowedAnnotations));
+            && (getMethodsNumberOfLine(ast) <= minLineCount
+            || AnnotationUtil.containsAnnotation(ast, allowedAnnotations));
     }
 
     /**
@@ -355,9 +355,9 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
         final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
 
         return nodeScope != excludeScope
-                && surroundingScope != excludeScope
-                && nodeScope.isIn(scope)
-                && surroundingScope.isIn(scope);
+            && surroundingScope != excludeScope
+            && nodeScope.isIn(scope)
+            && surroundingScope.isIn(scope);
     }
 
     /**
@@ -373,7 +373,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
         // is allowed in a proper getter method which does not throw any
         // exceptions.
         if (ast.getType() == TokenTypes.METHOD_DEF
-                && ast.getChildCount() == SETTER_GETTER_MAX_CHILDREN) {
+            && ast.getChildCount() == SETTER_GETTER_MAX_CHILDREN) {
             final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
             final String name = type.getNextSibling().getText();
             final boolean matchesGetterFormat = GETTER_PATTERN.matcher(name).matches();
@@ -409,7 +409,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
         // is allowed in a proper setter method which does not throw any
         // exceptions.
         if (ast.getType() == TokenTypes.METHOD_DEF
-                && ast.getChildCount() == SETTER_GETTER_MAX_CHILDREN) {
+            && ast.getChildCount() == SETTER_GETTER_MAX_CHILDREN) {
             final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
             final String name = type.getNextSibling().getText();
             final boolean matchesSetterFormat = SETTER_PATTERN.matcher(name).matches();

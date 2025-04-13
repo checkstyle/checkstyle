@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,10 +40,10 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
     @Test
     public void testClass() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathMissingOverrideClass.java"));
+            "InputXpathMissingOverrideClass.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingOverrideCheck.class);
+            createModuleConfig(MissingOverrideCheck.class);
 
         final String[] expectedViolation = {
             "7:5: " + getCheckMessage(MissingOverrideCheck.class,
@@ -51,30 +51,30 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS/LITERAL_PUBLIC"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS/LITERAL_PUBLIC"
 
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
 
     }
 
     @Test
     public void testInterface() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathMissingOverrideInterface.java"));
+            "InputXpathMissingOverrideInterface.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingOverrideCheck.class);
+            createModuleConfig(MissingOverrideCheck.class);
 
         final String[] expectedViolation = {
             "7:5: " + getCheckMessage(MissingOverrideCheck.class,
@@ -82,33 +82,33 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='InputXpathMissingOverrideInterface']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
-                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='InputXpathMissingOverrideInterface']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
-                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='InputXpathMissingOverrideInterface']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE",
-                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='InputXpathMissingOverrideInterface']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/LITERAL_BOOLEAN"
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
+                + "[@text='InputXpathMissingOverrideInterface']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
+                + "[@text='InputXpathMissingOverrideInterface']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
+                + "[@text='InputXpathMissingOverrideInterface']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE",
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
+                + "[@text='InputXpathMissingOverrideInterface']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/LITERAL_BOOLEAN"
 
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
 
     }
 
     @Test
     public void testAnonymous() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathMissingOverrideAnonymous.java"));
+            "InputXpathMissingOverrideAnonymous.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingOverrideCheck.class);
+            createModuleConfig(MissingOverrideCheck.class);
 
         final String[] expectedViolation = {
             "8:9: " + getCheckMessage(MissingOverrideCheck.class,
@@ -116,36 +116,36 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathMissingOverrideAnonymous']]"
-                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/EXPR/"
-                        + "LITERAL_NEW[./IDENT[@text='Runnable']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='run']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMissingOverrideAnonymous']]"
-                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/EXPR/"
-                        + "LITERAL_NEW[./IDENT[@text='Runnable']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='run']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMissingOverrideAnonymous']]"
-                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/EXPR/"
-                        + "LITERAL_NEW[./IDENT[@text='Runnable']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='run']]/MODIFIERS/LITERAL_PUBLIC"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathMissingOverrideAnonymous']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/EXPR/"
+                + "LITERAL_NEW[./IDENT[@text='Runnable']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='run']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingOverrideAnonymous']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/EXPR/"
+                + "LITERAL_NEW[./IDENT[@text='Runnable']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='run']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingOverrideAnonymous']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/EXPR/"
+                + "LITERAL_NEW[./IDENT[@text='Runnable']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='run']]/MODIFIERS/LITERAL_PUBLIC"
 
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
 
     }
 
     @Test
     public void testInheritDocInvalidPrivateMethod() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathMissingOverrideInheritDocInvalidPrivateMethod.java"));
+            "InputXpathMissingOverrideInheritDocInvalidPrivateMethod.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingOverrideCheck.class);
+            createModuleConfig(MissingOverrideCheck.class);
 
         final String[] expectedViolation = {
             "7:5: " + getCheckMessage(MissingOverrideCheck.class,
@@ -153,30 +153,30 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathMissingOverrideInheritDocInvalidPrivateMethod']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathMissingOverrideInheritDocInvalidPrivateMethod']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathMissingOverrideInheritDocInvalidPrivateMethod']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PRIVATE"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathMissingOverrideInheritDocInvalidPrivateMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathMissingOverrideInheritDocInvalidPrivateMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathMissingOverrideInheritDocInvalidPrivateMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PRIVATE"
 
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
 
     }
 
     @Test
     public void testInheritDocInvalidPublicMethod() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathMissingOverrideInheritDocInvalidPublicMethod.java"));
+            "InputXpathMissingOverrideInheritDocInvalidPublicMethod.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingOverrideCheck.class);
+            createModuleConfig(MissingOverrideCheck.class);
 
         final String[] expectedViolation = {
             "7:5: " + getCheckMessage(MissingOverrideCheck.class,
@@ -184,87 +184,87 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathMissingOverrideInheritDocInvalidPublicMethod']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathMissingOverrideInheritDocInvalidPublicMethod']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathMissingOverrideInheritDocInvalidPublicMethod']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PUBLIC"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathMissingOverrideInheritDocInvalidPublicMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathMissingOverrideInheritDocInvalidPublicMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathMissingOverrideInheritDocInvalidPublicMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PUBLIC"
 
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
 
     }
 
     @Test
     public void testJavaFiveCompatibilityOne() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathMissingOverrideClass.java"));
+            "InputXpathMissingOverrideClass.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingOverrideCheck.class);
+            createModuleConfig(MissingOverrideCheck.class);
         moduleConfig.addProperty("javaFiveCompatibility", "true");
 
         final String[] expectedViolation = {
             "7:5: " + getCheckMessage(MissingOverrideCheck.class,
-                    MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+                MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS/LITERAL_PUBLIC"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS/LITERAL_PUBLIC"
 
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
 
     }
 
     @Test
     public void testJavaFiveCompatibilityTwo() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathMissingOverrideInterface.java"));
+            "InputXpathMissingOverrideInterface.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingOverrideCheck.class);
+            createModuleConfig(MissingOverrideCheck.class);
         moduleConfig.addProperty("javaFiveCompatibility", "true");
 
         final String[] expectedViolation = {
             "7:5: " + getCheckMessage(MissingOverrideCheck.class,
-                    MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+                MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='InputXpathMissingOverrideInterface']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
-                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='InputXpathMissingOverrideInterface']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
-                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='InputXpathMissingOverrideInterface']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE",
-                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='InputXpathMissingOverrideInterface']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/LITERAL_BOOLEAN"
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
+                + "[@text='InputXpathMissingOverrideInterface']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
+                + "[@text='InputXpathMissingOverrideInterface']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
+                + "[@text='InputXpathMissingOverrideInterface']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE",
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
+                + "[@text='InputXpathMissingOverrideInterface']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/LITERAL_BOOLEAN"
 
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
 
     }
 

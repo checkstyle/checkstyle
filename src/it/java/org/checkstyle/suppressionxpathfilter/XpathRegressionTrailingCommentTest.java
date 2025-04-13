@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -39,47 +39,47 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
     @Test
     public void testSingleLine() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathTrailingCommentSingleLine.java"));
+            "InputXpathTrailingCommentSingleLine.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(TrailingCommentCheck.class);
+            createModuleConfig(TrailingCommentCheck.class);
 
         final String[] expectedViolation = {
             "4:12: " + getCheckMessage(TrailingCommentCheck.class,
-                        TrailingCommentCheck.MSG_KEY),
+                TrailingCommentCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathTrailingCommentSingleLine']]/"
-                        + "OBJBLOCK/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' don&apos;"
-                        + "&apos;t use trailing comments :) // warn\\n']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathTrailingCommentSingleLine']]/"
+                + "OBJBLOCK/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' don&apos;"
+                + "&apos;t use trailing comments :) // warn\\n']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testBlock() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathTrailingCommentBlock.java"));
+            "InputXpathTrailingCommentBlock.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(TrailingCommentCheck.class);
+            createModuleConfig(TrailingCommentCheck.class);
 
         final String[] expectedViolation = {
             "4:40: " + getCheckMessage(TrailingCommentCheck.class,
-                        TrailingCommentCheck.MSG_KEY),
+                TrailingCommentCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathTrailingCommentBlock']]"
-                        + "/OBJBLOCK/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' warn\\n']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathTrailingCommentBlock']]"
+                + "/OBJBLOCK/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' warn\\n']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

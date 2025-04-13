@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
@@ -373,7 +373,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
                 if (TokenUtil.isOfType(child, TokenTypes.IDENT, TokenTypes.DOT)) {
                     final String fullTypeName = FullIdent.createFullIdent(child).getText();
                     final String trimmed = BRACKET_PATTERN
-                            .matcher(fullTypeName).replaceAll("");
+                        .matcher(fullTypeName).replaceAll("");
                     addReferencedClassName(trimmed);
                 }
                 child = child.getNextSibling();
@@ -403,7 +403,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
         private void addReferencedClassName(DetailAST ast) {
             final String fullIdentName = FullIdent.createFullIdent(ast).getText();
             final String trimmed = BRACKET_PATTERN
-                    .matcher(fullIdentName).replaceAll("");
+                .matcher(fullIdentName).replaceAll("");
             addReferencedClassName(trimmed);
         }
 
@@ -425,8 +425,8 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
 
             if (referencedClassNames.size() > max) {
                 log(classAst, getLogMessageId(),
-                        referencedClassNames.size(), max,
-                        referencedClassNames.toString());
+                    referencedClassNames.size(), max,
+                    referencedClassNames.toString());
             }
         }
 

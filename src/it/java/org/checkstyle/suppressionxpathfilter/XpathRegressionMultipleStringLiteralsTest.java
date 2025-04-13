@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -42,22 +42,22 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathMultipleStringLiteralsDefault.java"));
+            getPath("InputXpathMultipleStringLiteralsDefault.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MultipleStringLiteralsCheck.class);
+            createModuleConfig(MultipleStringLiteralsCheck.class);
 
         final String[] expectedViolations = {
             "4:16: " + getCheckMessage(MultipleStringLiteralsCheck.class,
-                    MSG_KEY, "\"StringContents\"", 2),
+                MSG_KEY, "\"StringContents\"", 2),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMultipleStringLiteralsDefault']]"
-                    + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a']]"
-                    + "/ASSIGN/EXPR[./STRING_LITERAL[@text='StringContents']]",
-                 "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMultipleStringLiteralsDefault']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a']]"
+                + "/ASSIGN/EXPR[./STRING_LITERAL[@text='StringContents']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathMultipleStringLiteralsDefault']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a']]"
                 + "/ASSIGN/EXPR/STRING_LITERAL[@text='StringContents']"
@@ -69,19 +69,19 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
     @Test
     public void testAllowDuplicates() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathMultipleStringLiteralsAllowDuplicates.java"));
+            getPath("InputXpathMultipleStringLiteralsAllowDuplicates.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MultipleStringLiteralsCheck.class);
+            createModuleConfig(MultipleStringLiteralsCheck.class);
         moduleConfig.addProperty("allowedDuplicates", "2");
 
         final String[] expectedViolations = {
             "8:19: " + getCheckMessage(MultipleStringLiteralsCheck.class,
-                    MSG_KEY, "\", \"", 3),
+                MSG_KEY, "\", \"", 3),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathMultipleStringLiteralsAllowDuplicates']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myTest']]/SLIST/VARIABLE_DEF"
                 + "[./IDENT[@text='a5']]/ASSIGN/EXPR/PLUS[./STRING_LITERAL[@text=', ']]"
@@ -94,19 +94,19 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
     @Test
     public void testIgnoreRegexp() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathMultipleStringLiteralsIgnoreRegexp.java"));
+            getPath("InputXpathMultipleStringLiteralsIgnoreRegexp.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MultipleStringLiteralsCheck.class);
+            createModuleConfig(MultipleStringLiteralsCheck.class);
         moduleConfig.addProperty("ignoreStringsRegexp", "((\"\")|(\", \"))$");
 
         final String[] expectedViolations = {
             "7:19: " + getCheckMessage(MultipleStringLiteralsCheck.class,
-                    MSG_KEY, "\"DoubleString\"", 2),
+                MSG_KEY, "\"DoubleString\"", 2),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathMultipleStringLiteralsIgnoreRegexp']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myTest']]/SLIST/VARIABLE_DEF"
                 + "[./IDENT[@text='a3']]/ASSIGN/EXPR/PLUS/STRING_LITERAL[@text='DoubleString']"
@@ -118,27 +118,27 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
     @Test
     public void testIgnoreOccurrenceContext() throws Exception {
         final String filePath =
-                "InputXpathMultipleStringLiteralsIgnoreOccurrenceContext.java";
+            "InputXpathMultipleStringLiteralsIgnoreOccurrenceContext.java";
         final File fileToProcess = new File(getPath(filePath));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MultipleStringLiteralsCheck.class);
+            createModuleConfig(MultipleStringLiteralsCheck.class);
         moduleConfig.addProperty("ignoreOccurrenceContext", "");
 
         final String[] expectedViolations = {
             "5:17: " + getCheckMessage(MultipleStringLiteralsCheck.class,
-                    MSG_KEY, "\"unchecked\"", 3),
+                MSG_KEY, "\"unchecked\"", 3),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-               "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-               + "'InputXpathMultipleStringLiteralsIgnoreOccurrenceContext']]"
-               + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a1']]"
-               + "/ASSIGN/EXPR[./STRING_LITERAL[@text='unchecked']]",
-               "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-               + "'InputXpathMultipleStringLiteralsIgnoreOccurrenceContext']]"
-               + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a1']]"
-               + "/ASSIGN/EXPR/STRING_LITERAL[@text='unchecked']"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
+                + "'InputXpathMultipleStringLiteralsIgnoreOccurrenceContext']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a1']]"
+                + "/ASSIGN/EXPR[./STRING_LITERAL[@text='unchecked']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
+                + "'InputXpathMultipleStringLiteralsIgnoreOccurrenceContext']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a1']]"
+                + "/ASSIGN/EXPR/STRING_LITERAL[@text='unchecked']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);

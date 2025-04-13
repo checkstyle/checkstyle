@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -37,7 +37,7 @@ public class DoWhileHandler extends BlockParentHandler {
      * @param parent        the parent handler
      */
     public DoWhileHandler(IndentationCheck indentCheck,
-            DetailAST ast, AbstractExpressionHandler parent) {
+                          DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck, "do..while", ast, parent);
     }
 
@@ -50,7 +50,7 @@ public class DoWhileHandler extends BlockParentHandler {
         final DetailAST whileAst = getMainAst().findFirstToken(TokenTypes.DO_WHILE);
 
         if (isOnStartOfLine(whileAst)
-                && !getIndent().isAcceptable(expandedTabsColumnNo(whileAst))) {
+            && !getIndent().isAcceptable(expandedTabsColumnNo(whileAst))) {
             logError(whileAst, "while", expandedTabsColumnNo(whileAst));
         }
 

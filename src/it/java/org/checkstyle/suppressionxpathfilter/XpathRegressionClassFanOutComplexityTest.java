@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -39,24 +39,24 @@ public class XpathRegressionClassFanOutComplexityTest extends AbstractXpathTestS
     @Test
     public void testInClass() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathClassFanOutComplexityClass.java")
+            getPath("InputXpathClassFanOutComplexityClass.java")
         );
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ClassFanOutComplexityCheck.class);
+            createModuleConfig(ClassFanOutComplexityCheck.class);
         moduleConfig.addProperty("max", "0");
 
         final String[] expectedViolation = {
             "6:1: " + getCheckMessage(ClassFanOutComplexityCheck.class,
-            ClassFanOutComplexityCheck.MSG_KEY, 4, 0),
+                ClassFanOutComplexityCheck.MSG_KEY, 4, 0),
         };
 
         final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
-            + "[./IDENT[@text='InputXpathClassFanOutComplexityClass']]",
+                + "[./IDENT[@text='InputXpathClassFanOutComplexityClass']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-            + "[./IDENT[@text='InputXpathClassFanOutComplexityClass']]/MODIFIERS",
+                + "[./IDENT[@text='InputXpathClassFanOutComplexityClass']]/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF"
-            + "[./IDENT[@text='InputXpathClassFanOutComplexityClass']]/MODIFIERS/LITERAL_PUBLIC"
+                + "[./IDENT[@text='InputXpathClassFanOutComplexityClass']]/MODIFIERS/LITERAL_PUBLIC"
 
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -65,24 +65,24 @@ public class XpathRegressionClassFanOutComplexityTest extends AbstractXpathTestS
     @Test
     public void testInInterface() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathClassFanOutComplexityInterface.java")
+            getPath("InputXpathClassFanOutComplexityInterface.java")
         );
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ClassFanOutComplexityCheck.class);
+            createModuleConfig(ClassFanOutComplexityCheck.class);
         moduleConfig.addProperty("max", "0");
 
         final String[] expectedViolation = {
             "7:1: " + getCheckMessage(ClassFanOutComplexityCheck.class,
-            ClassFanOutComplexityCheck.MSG_KEY, 1, 0),
+                ClassFanOutComplexityCheck.MSG_KEY, 1, 0),
         };
 
         final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/INTERFACE_DEF"
-            + "[./IDENT[@text='BadInterface']]",
+                + "[./IDENT[@text='BadInterface']]",
             "/COMPILATION_UNIT/INTERFACE_DEF"
-            + "[./IDENT[@text='BadInterface']]/MODIFIERS",
+                + "[./IDENT[@text='BadInterface']]/MODIFIERS",
             "/COMPILATION_UNIT/INTERFACE_DEF"
-            + "[./IDENT[@text='BadInterface']]/LITERAL_INTERFACE"
+                + "[./IDENT[@text='BadInterface']]/LITERAL_INTERFACE"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
@@ -90,24 +90,24 @@ public class XpathRegressionClassFanOutComplexityTest extends AbstractXpathTestS
     @Test
     public void testInEnum() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathClassFanOutComplexityEnum.java")
+            getPath("InputXpathClassFanOutComplexityEnum.java")
         );
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ClassFanOutComplexityCheck.class);
+            createModuleConfig(ClassFanOutComplexityCheck.class);
         moduleConfig.addProperty("max", "0");
 
         final String[] expectedViolation = {
             "9:1: " + getCheckMessage(ClassFanOutComplexityCheck.class,
-            ClassFanOutComplexityCheck.MSG_KEY, 1, 0),
+                ClassFanOutComplexityCheck.MSG_KEY, 1, 0),
         };
 
         final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/ENUM_DEF"
-            + "[./IDENT[@text='MyEnum']]",
+                + "[./IDENT[@text='MyEnum']]",
             "/COMPILATION_UNIT/ENUM_DEF"
-            + "[./IDENT[@text='MyEnum']]/MODIFIERS",
+                + "[./IDENT[@text='MyEnum']]/MODIFIERS",
             "/COMPILATION_UNIT/ENUM_DEF"
-            + "[./IDENT[@text='MyEnum']]/ENUM"
+                + "[./IDENT[@text='MyEnum']]/ENUM"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }

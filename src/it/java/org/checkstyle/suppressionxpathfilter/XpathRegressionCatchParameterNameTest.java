@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -43,18 +43,18 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
         final String pattern = "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$";
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CatchParameterNameCheck.class);
+            createModuleConfig(CatchParameterNameCheck.class);
 
         final File fileToProcess =
-                new File(getPath("InputXpathCatchParameterNameSimple.java"));
+            new File(getPath("InputXpathCatchParameterNameSimple.java"));
 
         final String[] expectedViolation = {
             "6:28: " + getCheckMessage(CatchParameterNameCheck.class,
-                    MSG_INVALID_PATTERN, "e1", pattern),
+                MSG_INVALID_PATTERN, "e1", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathCatchParameterNameSimple']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]"
                 + "/SLIST/LITERAL_TRY/LITERAL_CATCH/PARAMETER_DEF/IDENT[@text='e1']"
@@ -68,18 +68,18 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
         final String pattern = "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$";
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CatchParameterNameCheck.class);
+            createModuleConfig(CatchParameterNameCheck.class);
 
         final File fileToProcess =
-                new File(getPath("InputXpathCatchParameterNameNested.java"));
+            new File(getPath("InputXpathCatchParameterNameNested.java"));
 
         final String[] expectedViolation = {
             "9:40: " + getCheckMessage(CatchParameterNameCheck.class,
-                    MSG_INVALID_PATTERN, "i", pattern),
+                MSG_INVALID_PATTERN, "i", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathCatchParameterNameNested']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='NestedClass']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]"
@@ -95,19 +95,19 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
         final String pattern = "^[a-z][a-zA-Z0-9]+$";
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CatchParameterNameCheck.class);
+            createModuleConfig(CatchParameterNameCheck.class);
         moduleConfig.addProperty("format", pattern);
 
         final File fileToProcess =
-                new File(getPath("InputXpathCatchParameterNameStaticInit.java"));
+            new File(getPath("InputXpathCatchParameterNameStaticInit.java"));
 
         final String[] expectedViolation = {
             "7:32: " + getCheckMessage(CatchParameterNameCheck.class,
-                    MSG_INVALID_PATTERN, "Ex", pattern),
+                MSG_INVALID_PATTERN, "Ex", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathCatchParameterNameStaticInit']]"
                 + "/OBJBLOCK/STATIC_INIT/SLIST"
                 + "/LITERAL_DO/SLIST/LITERAL_TRY/LITERAL_CATCH/PARAMETER_DEF/IDENT[@text='Ex']"
@@ -121,19 +121,19 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
         final String pattern = "^[a-z][a-zA-Z0-9]+$";
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CatchParameterNameCheck.class);
+            createModuleConfig(CatchParameterNameCheck.class);
         moduleConfig.addProperty("format", pattern);
 
         final File fileToProcess =
-                new File(getPath("InputXpathCatchParameterNameAnonymous.java"));
+            new File(getPath("InputXpathCatchParameterNameAnonymous.java"));
 
         final String[] expectedViolation = {
             "12:40: " + getCheckMessage(CatchParameterNameCheck.class,
-                    MSG_INVALID_PATTERN, "E1", pattern),
+                MSG_INVALID_PATTERN, "E1", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathCatchParameterNameAnonymous']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]"
                 + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='InnerClass']]"
@@ -150,19 +150,19 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
         final String pattern = "^[A-Z][a-z]+$";
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CatchParameterNameCheck.class);
+            createModuleConfig(CatchParameterNameCheck.class);
         moduleConfig.addProperty("format", pattern);
 
         final File fileToProcess =
-                new File(getPath("InputXpathCatchParameterNameLambda.java"));
+            new File(getPath("InputXpathCatchParameterNameLambda.java"));
 
         final String[] expectedViolation = {
             "12:32: " + getCheckMessage(CatchParameterNameCheck.class,
-                    MSG_INVALID_PATTERN, "e", pattern),
+                MSG_INVALID_PATTERN, "e", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathCatchParameterNameLambda']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='lambdaFunction']]"
                 + "/ASSIGN/LAMBDA[./IDENT[@text='a']]"
@@ -178,19 +178,19 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
         final String pattern = "^[A-Z][a-z]+$";
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CatchParameterNameCheck.class);
+            createModuleConfig(CatchParameterNameCheck.class);
         moduleConfig.addProperty("format", pattern);
 
         final File fileToProcess =
-                new File(getPath("InputXpathCatchParameterNameEnum.java"));
+            new File(getPath("InputXpathCatchParameterNameEnum.java"));
 
         final String[] expectedViolation = {
             "10:40: " + getCheckMessage(CatchParameterNameCheck.class,
-                    MSG_INVALID_PATTERN, "eX", pattern),
+                MSG_INVALID_PATTERN, "eX", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/ENUM_DEF"
+            "/COMPILATION_UNIT/ENUM_DEF"
                 + "[./IDENT[@text='InputXpathCatchParameterNameEnum']]"
                 + "/OBJBLOCK/ENUM_CONSTANT_DEF[./IDENT[@text='VALUE']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]"
@@ -206,19 +206,19 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
         final String pattern = "^[A-Z][a-z]+$";
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CatchParameterNameCheck.class);
+            createModuleConfig(CatchParameterNameCheck.class);
         moduleConfig.addProperty("format", pattern);
 
         final File fileToProcess =
-                new File(getPath("InputXpathCatchParameterNameInterface.java"));
+            new File(getPath("InputXpathCatchParameterNameInterface.java"));
 
         final String[] expectedViolation = {
             "7:32: " + getCheckMessage(CatchParameterNameCheck.class,
-                    MSG_INVALID_PATTERN, "EX", pattern),
+                MSG_INVALID_PATTERN, "EX", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/INTERFACE_DEF"
+            "/COMPILATION_UNIT/INTERFACE_DEF"
                 + "[./IDENT[@text='InputXpathCatchParameterNameInterface']]"
                 + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='InnerInterface']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]"

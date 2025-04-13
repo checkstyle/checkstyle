@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -50,7 +50,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
     private static final String DELIMITER = " | \n";
 
     private static final Pattern LINE_COLUMN_NUMBER_REGEX =
-            Pattern.compile("(\\d+):(\\d+):");
+        Pattern.compile("(\\d+):(\\d+):");
 
     /**
      * The temporary folder to hold intermediate files.
@@ -68,7 +68,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
     @Override
     protected String getPackageLocation() {
         final String subpackage = getCheckName().toLowerCase(Locale.ENGLISH)
-                .replace("check", "");
+            .replace("check", "");
         return "org/checkstyle/suppressionxpathfilter/" + subpackage;
     }
 
@@ -76,20 +76,21 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
      * Returns a list of XPath queries to locate the violation nodes in a Java file.
      *
      * @param fileToProcess the Java file to be processed. {@link File} type object.
-     * @param position the position of violation in the file. {@link ViolationPosition} object.
+     * @param position      the position of violation in the file. {@link ViolationPosition}
+     *                      object.
      * @return a list of strings containing XPath queries for locating violation nodes.
      * @throws Exception can throw exceptions while accessing file contents.
      */
     private static List<String> generateXpathQueries(File fileToProcess,
                                                      ViolationPosition position)
-            throws Exception {
+        throws Exception {
         final FileText fileText = new FileText(fileToProcess,
-                StandardCharsets.UTF_8.name());
+            StandardCharsets.UTF_8.name());
         final DetailAST rootAst = JavaParser.parseFile(fileToProcess,
-                JavaParser.Options.WITH_COMMENTS);
+            JavaParser.Options.WITH_COMMENTS);
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst,
-                position.violationLineNumber, position.violationColumnNumber,
-                fileText, DEFAULT_TAB_WIDTH);
+            position.violationLineNumber, position.violationColumnNumber,
+            fileText, DEFAULT_TAB_WIDTH);
 
         return queryGenerator.generate();
     }
@@ -98,7 +99,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
      * Verify generated XPath queries by comparing with expected queries.
      *
      * @param generatedXpathQueries a list of generated XPath queries.
-     * @param expectedXpathQueries a list of expected XPath queries.
+     * @param expectedXpathQueries  a list of expected XPath queries.
      */
     private static void verifyXpathQueries(List<String> generatedXpathQueries,
                                            List<String> expectedXpathQueries) {
@@ -108,23 +109,23 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
     }
 
     /**
-     * Returns the path to the generated Suppressions XPath config file.
-     * This method creates a Suppressions config file containing the Xpath queries for
-     * any check and returns the path to that file.
+     * Returns the path to the generated Suppressions XPath config file. This method creates a
+     * Suppressions config file containing the Xpath queries for any check and returns the path to
+     * that file.
      *
-     * @param checkName the name of the check that is run.
+     * @param checkName    the name of the check that is run.
      * @param xpathQueries a list of generated XPath queries for violations in a file.
      * @return path(String) to the generated Suppressions config file.
      * @throws Exception can throw exceptions when writing/creating the config file.
      */
     private String createSuppressionsXpathConfigFile(String checkName,
                                                      List<String> xpathQueries)
-            throws Exception {
+        throws Exception {
         final String uniqueFileName =
-                "suppressions_xpath_config_" + UUID.randomUUID() + ".xml";
+            "suppressions_xpath_config_" + UUID.randomUUID() + ".xml";
         final File suppressionsXpathConfigPath = new File(temporaryFolder, uniqueFileName);
         try (Writer bw = Files.newBufferedWriter(suppressionsXpathConfigPath.toPath(),
-                StandardCharsets.UTF_8)) {
+            StandardCharsets.UTF_8)) {
             bw.write("<?xml version=\"1.0\"?>\n");
             bw.write("<!DOCTYPE suppressions PUBLIC\n");
             bw.write("    \"-//Checkstyle//DTD SuppressionXpathFilter ");
@@ -148,17 +149,17 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
     /**
      * Returns the config {@link DefaultConfiguration} for the created Suppression XPath filter.
      *
-     * @param checkName the name of the check that is run.
+     * @param checkName    the name of the check that is run.
      * @param xpathQueries a list of generated XPath queries for violations in a file.
      * @return the default config for Suppressions XPath filter based on check and xpath queries.
      * @throws Exception can throw exceptions when creating config.
      */
     private DefaultConfiguration createSuppressionXpathFilter(String checkName,
-                                           List<String> xpathQueries) throws Exception {
+                                                              List<String> xpathQueries) throws Exception {
         final DefaultConfiguration suppressionXpathFilterConfig =
-                createModuleConfig(SuppressionXpathFilter.class);
+            createModuleConfig(SuppressionXpathFilter.class);
         suppressionXpathFilterConfig.addProperty("file",
-                createSuppressionsXpathConfigFile(checkName, xpathQueries));
+            createSuppressionsXpathConfigFile(checkName, xpathQueries));
 
         return suppressionXpathFilterConfig;
     }
@@ -172,7 +173,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
     private static ViolationPosition extractLineAndColumnNumber(String... expectedViolations) {
         ViolationPosition violation = null;
         final Matcher matcher =
-                LINE_COLUMN_NUMBER_REGEX.matcher(expectedViolations[0]);
+            LINE_COLUMN_NUMBER_REGEX.matcher(expectedViolations[0]);
         if (matcher.find()) {
             final int violationLineNumber = Integer.parseInt(matcher.group(1));
             final int violationColumnNumber = Integer.parseInt(matcher.group(2));
@@ -182,42 +183,40 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
     }
 
     /**
-     * Runs three verifications:
-     * First one executes checker with defined module configuration and compares output with
-     * expected violations.
-     * Second one generates xpath queries based on violation message and compares them with expected
-     * xpath queries.
-     * Third one constructs new configuration with {@code SuppressionXpathFilter} using generated
-     * xpath queries, executes checker and checks if no violation occurred.
+     * Runs three verifications: First one executes checker with defined module configuration and
+     * compares output with expected violations. Second one generates xpath queries based on
+     * violation message and compares them with expected xpath queries. Third one constructs new
+     * configuration with {@code SuppressionXpathFilter} using generated xpath queries, executes
+     * checker and checks if no violation occurred.
      *
-     * @param moduleConfig module configuration.
-     * @param fileToProcess input class file.
-     * @param expectedViolation expected violation message.
+     * @param moduleConfig         module configuration.
+     * @param fileToProcess        input class file.
+     * @param expectedViolation    expected violation message.
      * @param expectedXpathQueries expected generated xpath queries.
-     * @throws Exception if an error occurs
+     * @throws Exception                if an error occurs
      * @throws IllegalArgumentException if length of expectedViolation is more than 1
      */
     protected void runVerifications(DefaultConfiguration moduleConfig,
-                                  File fileToProcess,
-                                  String[] expectedViolation,
-                                  List<String> expectedXpathQueries) throws Exception {
+                                    File fileToProcess,
+                                    String[] expectedViolation,
+                                    List<String> expectedXpathQueries) throws Exception {
         if (expectedViolation.length != 1) {
             throw new IllegalArgumentException(
-                    "Expected violations should contain exactly one element."
-                            + " Multiple violations are not supported."
+                "Expected violations should contain exactly one element."
+                    + " Multiple violations are not supported."
             );
         }
 
         final ViolationPosition position =
-                extractLineAndColumnNumber(expectedViolation);
+            extractLineAndColumnNumber(expectedViolation);
         final List<String> generatedXpathQueries =
-                generateXpathQueries(fileToProcess, position);
+            generateXpathQueries(fileToProcess, position);
 
         final DefaultConfiguration treeWalkerConfigWithXpath =
-                createModuleConfig(TreeWalker.class);
+            createModuleConfig(TreeWalker.class);
         treeWalkerConfigWithXpath.addChild(moduleConfig);
         treeWalkerConfigWithXpath.addChild(createSuppressionXpathFilter(moduleConfig.getName(),
-                generatedXpathQueries));
+            generatedXpathQueries));
 
         final Integer[] warnList = getLinesWithWarn(fileToProcess.getPath());
         verify(moduleConfig, fileToProcess.getPath(), expectedViolation, warnList);
@@ -232,11 +231,11 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
         /**
          * Constructor of the class.
          *
-         * @param violationLineNumber line no of the violation produced for the check.
+         * @param violationLineNumber   line no of the violation produced for the check.
          * @param violationColumnNumber column no of the violation produced for the check.
          */
         private ViolationPosition(int violationLineNumber,
-                              int violationColumnNumber) {
+                                  int violationColumnNumber) {
             this.violationLineNumber = violationLineNumber;
             this.violationColumnNumber = violationColumnNumber;
         }

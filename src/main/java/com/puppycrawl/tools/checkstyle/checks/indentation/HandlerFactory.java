@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -101,11 +101,11 @@ public class HandlerFactory {
      */
     private <T> void register(int type, Class<T> handlerClass) {
         final Constructor<T> ctor = CommonUtil.getConstructor(handlerClass,
-                IndentationCheck.class,
-                // current AST
-                DetailAST.class,
-                // parent
-                AbstractExpressionHandler.class
+            IndentationCheck.class,
+            // current AST
+            DetailAST.class,
+            // parent
+            AbstractExpressionHandler.class
         );
         typeHandlers.put(type, ctor);
     }
@@ -148,7 +148,7 @@ public class HandlerFactory {
      * @return the ExpressionHandler for ast
      */
     public AbstractExpressionHandler getHandler(IndentationCheck indentCheck,
-        DetailAST ast, AbstractExpressionHandler parent) {
+                                                DetailAST ast, AbstractExpressionHandler parent) {
         final AbstractExpressionHandler resultHandler;
         final AbstractExpressionHandler handler =
             createdHandlers.get(ast);
@@ -176,7 +176,7 @@ public class HandlerFactory {
      * @return new instance.
      */
     private AbstractExpressionHandler createMethodCallHandler(IndentationCheck indentCheck,
-        DetailAST ast, AbstractExpressionHandler parent) {
+                                                              DetailAST ast, AbstractExpressionHandler parent) {
         DetailAST astNode = ast.getFirstChild();
         while (astNode.getType() == TokenTypes.DOT) {
             astNode = astNode.getFirstChild();

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,90 +40,90 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
     @Test
     public void testClassNameTop() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathAbstractClassNameTop.java"));
+            new File(getPath("InputXpathAbstractClassNameTop.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(AbstractClassNameCheck.class);
+            createModuleConfig(AbstractClassNameCheck.class);
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(AbstractClassNameCheck.class,
                 AbstractClassNameCheck.MSG_ILLEGAL_ABSTRACT_CLASS_NAME,
-                    "InputXpathAbstractClassNameTop", "^Abstract.+$"),
+                "InputXpathAbstractClassNameTop", "^Abstract.+$"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathAbstractClassNameTop']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathAbstractClassNameTop']]"
-                        + "/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathAbstractClassNameTop']]"
-                        + "/MODIFIERS/LITERAL_PUBLIC"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathAbstractClassNameTop']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathAbstractClassNameTop']]"
+                + "/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathAbstractClassNameTop']]"
+                + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testClassNameInner() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathAbstractClassNameInner.java"));
+            new File(getPath("InputXpathAbstractClassNameInner.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(AbstractClassNameCheck.class);
+            createModuleConfig(AbstractClassNameCheck.class);
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(AbstractClassNameCheck.class,
                 AbstractClassNameCheck.MSG_ILLEGAL_ABSTRACT_CLASS_NAME,
-                    "MyClass", "^Abstract.+$"),
+                "MyClass", "^Abstract.+$"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathAbstractClassNameInner']]"
-                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='MyClass']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathAbstractClassNameInner']]"
-                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='MyClass']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathAbstractClassNameInner']]"
-                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='MyClass']]/MODIFIERS/ABSTRACT"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathAbstractClassNameInner']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='MyClass']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathAbstractClassNameInner']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='MyClass']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathAbstractClassNameInner']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='MyClass']]/MODIFIERS/ABSTRACT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testClassNameNoModifier() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathAbstractClassNameNoModifier.java"));
+            new File(getPath("InputXpathAbstractClassNameNoModifier.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(AbstractClassNameCheck.class);
+            createModuleConfig(AbstractClassNameCheck.class);
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(AbstractClassNameCheck.class,
                 AbstractClassNameCheck.MSG_NO_ABSTRACT_CLASS_MODIFIER,
-                    "AbstractMyClass"),
+                "AbstractMyClass"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                        + "InputXpathAbstractClassNameNoModifier']]"
-                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='AbstractMyClass']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                        + "InputXpathAbstractClassNameNoModifier']]"
-                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='AbstractMyClass']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                        + "InputXpathAbstractClassNameNoModifier']]"
-                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='AbstractMyClass']]/LITERAL_CLASS"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
+                + "InputXpathAbstractClassNameNoModifier']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='AbstractMyClass']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
+                + "InputXpathAbstractClassNameNoModifier']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='AbstractMyClass']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
+                + "InputXpathAbstractClassNameNoModifier']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='AbstractMyClass']]/LITERAL_CLASS"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

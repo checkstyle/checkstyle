@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.gui;
 
@@ -172,8 +172,8 @@ public class ParseTreeTableModel implements TreeModel {
      * @see EventListenerList
      */
     private void fireTreeStructureChanged(Object source, Object[] path,
-                                  int[] childIndices,
-                                  Object... children) {
+                                          int[] childIndices,
+                                          Object... children) {
         // Guaranteed to return a non-null array
         final Object[] listeners = listenerList.getListenerList();
         TreeModelEvent event = null;

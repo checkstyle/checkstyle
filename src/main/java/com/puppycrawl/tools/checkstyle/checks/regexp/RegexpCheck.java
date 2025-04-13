@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
@@ -192,7 +192,7 @@ public class RegexpCheck extends AbstractCheck {
     /** Error count exceeded message. */
     private static final String ERROR_LIMIT_EXCEEDED_MESSAGE =
         "The error limit has been exceeded, "
-        + "the check is aborting, there may be more unreported errors.";
+            + "the check is aborting, there may be more unreported errors.";
 
     /**
      * Specify message which is used to notify about violations,
@@ -328,7 +328,7 @@ public class RegexpCheck extends AbstractCheck {
             if (!ignore) {
                 matchCount++;
                 if (illegalPattern || checkForDuplicates
-                        && matchCount - 1 > duplicateLimit) {
+                    && matchCount - 1 > duplicateLimit) {
                     errorCount++;
                     logMessage(startLine, errorCount);
                 }

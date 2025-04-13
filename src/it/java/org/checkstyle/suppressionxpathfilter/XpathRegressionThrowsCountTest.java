@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,75 +40,75 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathThrowsCountDefault.java"));
+            new File(getPath("InputXpathThrowsCountDefault.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ThrowsCountCheck.class);
+            createModuleConfig(ThrowsCountCheck.class);
         final String[] expectedViolation = {
             "4:30: " + getCheckMessage(ThrowsCountCheck.class,
-                        ThrowsCountCheck.MSG_KEY, 5, 4),
+                ThrowsCountCheck.MSG_KEY, 5, 4),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='InputXpathThrowsCountDefault']]"
-                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
-                    + "/LITERAL_THROWS[./IDENT[@text='CloneNotSupportedException']]"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathThrowsCountDefault']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
+                + "/LITERAL_THROWS[./IDENT[@text='CloneNotSupportedException']]"
 
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testCustomMax() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathThrowsCountCustomMax.java"));
+            new File(getPath("InputXpathThrowsCountCustomMax.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ThrowsCountCheck.class);
+            createModuleConfig(ThrowsCountCheck.class);
 
         moduleConfig.addProperty("max", "2");
 
         final String[] expectedViolation = {
             "4:30: " + getCheckMessage(ThrowsCountCheck.class,
-                        ThrowsCountCheck.MSG_KEY, 3, 2),
+                ThrowsCountCheck.MSG_KEY, 3, 2),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                    + "/INTERFACE_DEF[./IDENT[@text='InputXpathThrowsCountCustomMax']]"
-                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
-                    + "/LITERAL_THROWS[./IDENT[@text='IllegalStateException']]"
+            "/COMPILATION_UNIT"
+                + "/INTERFACE_DEF[./IDENT[@text='InputXpathThrowsCountCustomMax']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
+                + "/LITERAL_THROWS[./IDENT[@text='IllegalStateException']]"
 
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testPrivateMethods() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathThrowsCountPrivateMethods.java"));
+            new File(getPath("InputXpathThrowsCountPrivateMethods.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ThrowsCountCheck.class);
+            createModuleConfig(ThrowsCountCheck.class);
 
         moduleConfig.addProperty("ignorePrivateMethods", "false");
 
         final String[] expectedViolation = {
             "9:40: " + getCheckMessage(ThrowsCountCheck.class,
-                        ThrowsCountCheck.MSG_KEY, 5, 4),
+                ThrowsCountCheck.MSG_KEY, 5, 4),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='InputXpathThrowsCountPrivateMethods']]"
-                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunc']]"
-                    + "/SLIST/VARIABLE_DEF[./IDENT[@text='foo']]"
-                    + "/ASSIGN/EXPR/LITERAL_NEW[./IDENT[@text='myClass']]"
-                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='privateFunc']]"
-                    + "/LITERAL_THROWS[./IDENT[@text='CloneNotSupportedException']]"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathThrowsCountPrivateMethods']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunc']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='foo']]"
+                + "/ASSIGN/EXPR/LITERAL_NEW[./IDENT[@text='myClass']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='privateFunc']]"
+                + "/LITERAL_THROWS[./IDENT[@text='CloneNotSupportedException']]"
 
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

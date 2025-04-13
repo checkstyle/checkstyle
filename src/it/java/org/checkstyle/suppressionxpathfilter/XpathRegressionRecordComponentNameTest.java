@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -41,15 +41,15 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-                "InputXpathRecordComponentNameDefault.java"));
+            "InputXpathRecordComponentNameDefault.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(RecordComponentNameCheck.class);
+            createModuleConfig(RecordComponentNameCheck.class);
 
         final String[] expectedViolation = {
             "6:56: " + getCheckMessage(RecordComponentNameCheck.class,
                 AbstractNameCheck.MSG_INVALID_PATTERN,
-                    "_value", "^[a-z][a-zA-Z0-9]*$"),
+                "_value", "^[a-z][a-zA-Z0-9]*$"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -58,22 +58,22 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testFormat() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-                "InputXpathRecordComponentNameFormat.java"));
+            "InputXpathRecordComponentNameFormat.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(RecordComponentNameCheck.class);
+            createModuleConfig(RecordComponentNameCheck.class);
         moduleConfig.addProperty("format", "^_[a-z][a-zA-Z0-9]*$");
 
         final String[] expectedViolation = {
             "9:32: " + getCheckMessage(RecordComponentNameCheck.class,
                 AbstractNameCheck.MSG_INVALID_PATTERN,
-                    "otherValue", "^_[a-z][a-zA-Z0-9]*$"),
+                "otherValue", "^_[a-z][a-zA-Z0-9]*$"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -84,6 +84,6 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

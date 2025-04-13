@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -37,7 +37,7 @@ public class MethodDefHandler extends BlockParentHandler {
      * @param parent        the parent handler
      */
     public MethodDefHandler(IndentationCheck indentCheck,
-        DetailAST ast, AbstractExpressionHandler parent) {
+                            DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck, getHandlerName(ast), ast, parent);
     }
 
@@ -65,7 +65,7 @@ public class MethodDefHandler extends BlockParentHandler {
         if (throwsAst != null) {
             checkWrappingIndentation(throwsAst, throwsAst.getNextSibling(), getIndentCheck()
                     .getThrowsIndent(), getLineStart(getMethodDefLineStart(getMainAst())),
-                    !isOnStartOfLine(throwsAst));
+                !isOnStartOfLine(throwsAst));
         }
     }
 
@@ -90,8 +90,8 @@ public class MethodDefHandler extends BlockParentHandler {
 
         // check if there is a modifier before the type
         for (DetailAST node = mainAst.findFirstToken(TokenTypes.MODIFIERS).getFirstChild();
-                node != null;
-                node = node.getNextSibling()) {
+             node != null;
+             node = node.getNextSibling()) {
             // skip annotations as we check them else where as outside the method
             if (node.getType() == TokenTypes.ANNOTATION) {
                 continue;

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks;
 
@@ -94,7 +94,7 @@ public class SuppressWarningsHolder
      * file parsed.
      */
     private static final ThreadLocal<List<Entry>> ENTRIES =
-            ThreadLocal.withInitial(LinkedList::new);
+        ThreadLocal.withInitial(LinkedList::new);
 
     /**
      * Compiled pattern used to match whitespace in text block content.
@@ -228,7 +228,7 @@ public class SuppressWarningsHolder
                     || getDefaultAlias(checkName).equalsIgnoreCase(checkAlias)
                     || getDefaultAlias(sourceName).equalsIgnoreCase(checkName);
             if (afterStart && beforeEnd
-                    && (nameMatches || checkName.equals(event.getModuleId()))) {
+                && (nameMatches || checkName.equals(event.getModuleId()))) {
                 suppressed = true;
                 break;
             }
@@ -265,7 +265,7 @@ public class SuppressWarningsHolder
     private static boolean isSuppressedBeforeEventEnd(int line, int column, Entry entry) {
         return entry.getLastLine() > line
             || entry.getLastLine() == line && entry
-                .getLastColumn() >= column;
+            .getLastColumn() >= column;
     }
 
     @Override
@@ -332,7 +332,7 @@ public class SuppressWarningsHolder
             // strip off the checkstyle-only prefix if present
             final String checkName = removeCheckstylePrefixIfExists(value);
             entries.add(new Entry(checkName, firstLine, firstColumn,
-                    lastLine, lastColumn));
+                lastLine, lastColumn));
         }
     }
 
@@ -509,7 +509,7 @@ public class SuppressWarningsHolder
                 break;
             default:
                 throw new IllegalArgumentException(
-                        "Expression or annotation array initializer AST expected: " + ast);
+                    "Expression or annotation array initializer AST expected: " + ast);
         }
         return annotationValues;
     }
@@ -574,7 +574,7 @@ public class SuppressWarningsHolder
          * @param lastColumn the last column of the suppression region
          */
         private Entry(String checkName, int firstLine, int firstColumn,
-            int lastLine, int lastColumn) {
+                      int lastLine, int lastColumn) {
             this.checkName = checkName;
             this.firstLine = firstLine;
             this.firstColumn = firstColumn;

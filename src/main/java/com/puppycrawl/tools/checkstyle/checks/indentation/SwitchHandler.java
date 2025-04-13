@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -38,7 +38,7 @@ public class SwitchHandler extends BlockParentHandler {
      * @param parent        the parent handler
      */
     public SwitchHandler(IndentationCheck indentCheck,
-        DetailAST ast, AbstractExpressionHandler parent) {
+                         DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck, "switch", ast, parent);
     }
 
@@ -82,9 +82,9 @@ public class SwitchHandler extends BlockParentHandler {
         IndentLevel indentLevel = super.getIndentImpl();
         // if switch is starting the line
         if (isOnStartOfLine(getMainAst())
-                && TokenUtil.isOfType(getMainAst().getParent().getParent(), TokenTypes.ASSIGN)) {
+            && TokenUtil.isOfType(getMainAst().getParent().getParent(), TokenTypes.ASSIGN)) {
             indentLevel = new IndentLevel(indentLevel,
-                    getIndentCheck().getLineWrappingIndentation());
+                getIndentCheck().getLineWrappingIndentation());
         }
         return indentLevel;
     }

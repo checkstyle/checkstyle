@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,10 +40,10 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
     @Test
     public void testFallThrough() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathFallThrough.java"));
+            new File(getPath("InputXpathFallThrough.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(FallThroughCheck.class);
+            createModuleConfig(FallThroughCheck.class);
 
         final String[] expectedViolation = {
             "11:13: " + getCheckMessage(FallThroughCheck.class,
@@ -61,16 +61,16 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testDefaultCase() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathFallThroughDefaultCase.java"));
+            new File(getPath("InputXpathFallThroughDefaultCase.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(FallThroughCheck.class);
+            createModuleConfig(FallThroughCheck.class);
         moduleConfig.addProperty("checkLastCaseGroup", "true");
 
         final String[] expectedViolation = {
@@ -90,6 +90,6 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.utils;
 
@@ -52,7 +52,7 @@ public final class CodePointUtil {
      */
     public static boolean hasWhitespaceBefore(int index, int... codePoints) {
         return Arrays.stream(codePoints, 0, index)
-                .allMatch(Character::isWhitespace);
+            .allMatch(Character::isWhitespace);
     }
 
     /**
@@ -80,7 +80,7 @@ public final class CodePointUtil {
     public static boolean endsWith(int[] codePoints, String suffix) {
         final int startIndex = codePoints.length - suffix.length();
         return startIndex > -1 && Arrays.equals(Arrays
-                    .copyOfRange(codePoints, startIndex, codePoints.length),
-                    suffix.codePoints().toArray());
+                .copyOfRange(codePoints, startIndex, codePoints.length),
+            suffix.codePoints().toArray());
     }
 }

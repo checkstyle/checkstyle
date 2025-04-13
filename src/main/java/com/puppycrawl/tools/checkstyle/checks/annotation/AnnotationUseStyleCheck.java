@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
@@ -289,7 +289,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * for annotation use.
      */
     private static final String ANNOTATION_ELEMENT_SINGLE_NAME =
-            "value";
+        "value";
 
     /**
      * Define the annotation element styles.
@@ -347,7 +347,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * @throws IllegalArgumentException when unable to parse value
      */
     private static <T extends Enum<T>> T getOption(final Class<T> enumClass,
-        final String value) {
+                                                   final String value) {
         try {
             return Enum.valueOf(enumClass, value.trim().toUpperCase(Locale.ENGLISH));
         }
@@ -445,7 +445,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
 
         if (valuePairCount == 1
             && ANNOTATION_ELEMENT_SINGLE_NAME.equals(
-                valuePair.getFirstChild().getText())) {
+            valuePair.getFirstChild().getText())) {
             log(annotation, MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyleOption.COMPACT);
         }

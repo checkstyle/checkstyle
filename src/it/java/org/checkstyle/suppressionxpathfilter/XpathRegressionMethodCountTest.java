@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -51,16 +51,16 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMethodCountDefault']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMethodCountDefault']]",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMethodCountDefault']]"
-                    + "/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMethodCountDefault']]"
+                + "/MODIFIERS",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMethodCountDefault']]"
-                    + "/LITERAL_CLASS"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMethodCountDefault']]"
+                + "/LITERAL_CLASS"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -82,16 +82,16 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMethodCountPrivate']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMethodCountPrivate']]",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMethodCountPrivate']]"
-                    + "/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMethodCountPrivate']]"
+                + "/MODIFIERS",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMethodCountPrivate']]"
-                    + "/LITERAL_CLASS"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMethodCountPrivate']]"
+                + "/LITERAL_CLASS"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -113,16 +113,16 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMethodCountDefault']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMethodCountDefault']]",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMethodCountDefault']]"
-                    + "/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMethodCountDefault']]"
+                + "/MODIFIERS",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMethodCountDefault']]"
-                    + "/LITERAL_CLASS"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMethodCountDefault']]"
+                + "/LITERAL_CLASS"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -144,16 +144,16 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMethodCountProtected']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMethodCountProtected']]",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMethodCountProtected']]"
-                    + "/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMethodCountProtected']]"
+                + "/MODIFIERS",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMethodCountProtected']]"
-                    + "/LITERAL_CLASS"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMethodCountProtected']]"
+                + "/LITERAL_CLASS"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -175,16 +175,16 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMethodCountPublic']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMethodCountPublic']]",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMethodCountPublic']]"
-                    + "/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMethodCountPublic']]"
+                + "/MODIFIERS",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMethodCountPublic']]"
-                    + "/LITERAL_CLASS"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMethodCountPublic']]"
+                + "/LITERAL_CLASS"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);

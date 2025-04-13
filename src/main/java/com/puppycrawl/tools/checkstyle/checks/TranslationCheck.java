@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks;
 
@@ -254,7 +254,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
         for (String code : languageCodes) {
             if (!isValidLanguageCode(code)) {
                 final LocalizedMessage msg = new LocalizedMessage(TRANSLATION_BUNDLE,
-                        getClass(), WRONG_LANGUAGE_CODE_KEY, code);
+                    getClass(), WRONG_LANGUAGE_CODE_KEY, code);
                 throw new IllegalArgumentException(msg.getMessage());
             }
         }
@@ -341,7 +341,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
         if (languageCode == null) {
             searchForDefaultTranslation = true;
             fileNameRegexp = String.format(Locale.ROOT, REGEXP_FORMAT_TO_CHECK_DEFAULT_TRANSLATIONS,
-                    baseName, extension);
+                baseName, extension);
         }
         else {
             searchForDefaultTranslation = false;
@@ -352,11 +352,11 @@ public class TranslationCheck extends AbstractFileSetCheck {
         if (!bundle.containsFile(fileNameRegexp)) {
             if (searchForDefaultTranslation) {
                 missingFileName = Optional.of(String.format(Locale.ROOT,
-                        DEFAULT_TRANSLATION_FILE_NAME_FORMATTER, baseName, extension));
+                    DEFAULT_TRANSLATION_FILE_NAME_FORMATTER, baseName, extension));
             }
             else {
                 missingFileName = Optional.of(String.format(Locale.ROOT,
-                        FILE_NAME_WITH_LANGUAGE_CODE_FORMATTER, baseName, languageCode, extension));
+                    FILE_NAME_WITH_LANGUAGE_CODE_FORMATTER, baseName, languageCode, extension));
             }
         }
         return missingFileName;
@@ -420,8 +420,8 @@ public class TranslationCheck extends AbstractFileSetCheck {
         Optional<ResourceBundle> result = Optional.empty();
         for (ResourceBundle currentBundle : bundles) {
             if (targetBundle.getBaseName().equals(currentBundle.getBaseName())
-                    && targetBundle.getExtension().equals(currentBundle.getExtension())
-                    && targetBundle.getPath().equals(currentBundle.getPath())) {
+                && targetBundle.getExtension().equals(currentBundle.getExtension())
+                && targetBundle.getPath().equals(currentBundle.getPath())) {
                 result = Optional.of(currentBundle);
                 break;
             }

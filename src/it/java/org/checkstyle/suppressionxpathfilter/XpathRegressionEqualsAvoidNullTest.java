@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -46,16 +46,16 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
 
         final String[] expectedViolation = {
             "6:26: " + getCheckMessage(CLAZZ,
-                    EqualsAvoidNullCheck.MSG_EQUALS_AVOID_NULL),
+                EqualsAvoidNullCheck.MSG_EQUALS_AVOID_NULL),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathEqualsAvoidNull']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/EXPR",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathEqualsAvoidNull']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/EXPR/METHOD_CALL");
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathEqualsAvoidNull']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/EXPR",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathEqualsAvoidNull']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/EXPR/METHOD_CALL");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
@@ -69,16 +69,16 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
 
         final String[] expectedViolation = {
             "6:36: " + getCheckMessage(CLAZZ,
-                    EqualsAvoidNullCheck.MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+                EqualsAvoidNullCheck.MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathEqualsAvoidNullIgnoreCase']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/EXPR",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathEqualsAvoidNullIgnoreCase']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/EXPR/METHOD_CALL");
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathEqualsAvoidNullIgnoreCase']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/EXPR",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathEqualsAvoidNullIgnoreCase']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/EXPR/METHOD_CALL");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }

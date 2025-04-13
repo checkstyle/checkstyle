@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -51,22 +51,22 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                    + "[@text='InputXpathMissingJavadocMethodCtor']]"
-                    + "/OBJBLOCK/CTOR_DEF[."
-                    + "/IDENT[@text='InputXpathMissingJavadocMethodCtor']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathMissingJavadocMethodCtor']]"
+                + "/OBJBLOCK/CTOR_DEF[."
+                + "/IDENT[@text='InputXpathMissingJavadocMethodCtor']]",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMissingJavadocMethodCtor']]"
-                    + "/OBJBLOCK/CTOR_DEF[."
-                    + "/IDENT[@text='InputXpathMissingJavadocMethodCtor']]"
-                    + "/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingJavadocMethodCtor']]"
+                + "/OBJBLOCK/CTOR_DEF[."
+                + "/IDENT[@text='InputXpathMissingJavadocMethodCtor']]"
+                + "/MODIFIERS",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMissingJavadocMethodCtor']]"
-                    + "/OBJBLOCK/CTOR_DEF[."
-                    + "/IDENT[@text='InputXpathMissingJavadocMethodCtor']]"
-                    + "/MODIFIERS/LITERAL_PUBLIC"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingJavadocMethodCtor']]"
+                + "/OBJBLOCK/CTOR_DEF[."
+                + "/IDENT[@text='InputXpathMissingJavadocMethodCtor']]"
+                + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -88,19 +88,19 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMissingJavadocMethod']]"
-                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingJavadocMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMissingJavadocMethod']]"
-                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
-                    + "/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingJavadocMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
+                + "/MODIFIERS",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMissingJavadocMethod']]"
-                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
-                    + "/MODIFIERS/LITERAL_PUBLIC"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingJavadocMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
+                + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);

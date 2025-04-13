@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -111,11 +111,11 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /** Operations which can change control variable in update part of the loop. */
     private static final BitSet MUTATION_OPERATIONS = TokenUtil.asBitSet(
-            TokenTypes.POST_INC,
-            TokenTypes.POST_DEC,
-            TokenTypes.DEC,
-            TokenTypes.INC,
-            TokenTypes.ASSIGN);
+        TokenTypes.POST_INC,
+        TokenTypes.POST_DEC,
+        TokenTypes.DEC,
+        TokenTypes.INC,
+        TokenTypes.ASSIGN);
 
     /** Stack of block parameters. */
     private final Deque<Deque<String>> variableStack = new ArrayDeque<>();
@@ -382,7 +382,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
              parameterDefAST = parameterDefAST.getNextSibling()) {
             if (parameterDefAST.getType() == TokenTypes.VARIABLE_DEF) {
                 final DetailAST param =
-                        parameterDefAST.findFirstToken(TokenTypes.IDENT);
+                    parameterDefAST.findFirstToken(TokenTypes.IDENT);
 
                 initializedVariables.add(param.getText());
             }

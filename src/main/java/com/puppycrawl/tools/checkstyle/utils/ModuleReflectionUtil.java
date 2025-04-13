@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.utils;
 
@@ -55,13 +55,13 @@ public final class ModuleReflectionUtil {
      * @see #isCheckstyleModule(Class)
      */
     public static Set<Class<?>> getCheckstyleModules(
-            Collection<String> packages, ClassLoader loader) throws IOException {
+        Collection<String> packages, ClassLoader loader) throws IOException {
         final ClassPath classPath = ClassPath.from(loader);
         return packages.stream()
-                .flatMap(pkg -> classPath.getTopLevelClasses(pkg).stream())
-                .map(ClassPath.ClassInfo::load)
-                .filter(ModuleReflectionUtil::isCheckstyleModule)
-                .collect(Collectors.toUnmodifiableSet());
+            .flatMap(pkg -> classPath.getTopLevelClasses(pkg).stream())
+            .map(ClassPath.ClassInfo::load)
+            .filter(ModuleReflectionUtil::isCheckstyleModule)
+            .collect(Collectors.toUnmodifiableSet());
     }
 
     /**
@@ -74,9 +74,9 @@ public final class ModuleReflectionUtil {
      */
     public static boolean isCheckstyleModule(Class<?> clazz) {
         return AbstractAutomaticBean.class.isAssignableFrom(clazz)
-                && !Modifier.isAbstract(clazz.getModifiers())
-                && hasDefaultConstructor(clazz)
-                && isNotXpathFileGenerator(clazz);
+            && !Modifier.isAbstract(clazz.getModifiers())
+            && hasDefaultConstructor(clazz)
+            && isNotXpathFileGenerator(clazz);
     }
 
     /**

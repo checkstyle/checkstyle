@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.api;
 
@@ -92,16 +92,16 @@ public final class Violation
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public Violation(int lineNo,
-                            int columnNo,
-                            int columnCharIndex,
-                            int tokenType,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            SeverityLevel severityLevel,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            String customMessage) {
+                     int columnNo,
+                     int columnCharIndex,
+                     int tokenType,
+                     String bundle,
+                     String key,
+                     Object[] args,
+                     SeverityLevel severityLevel,
+                     String moduleId,
+                     Class<?> sourceClass,
+                     String customMessage) {
         this.lineNo = lineNo;
         this.columnNo = columnNo;
         this.columnCharIndex = columnCharIndex;
@@ -140,17 +140,17 @@ public final class Violation
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public Violation(int lineNo,
-                            int columnNo,
-                            int tokenType,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            SeverityLevel severityLevel,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            String customMessage) {
+                     int columnNo,
+                     int tokenType,
+                     String bundle,
+                     String key,
+                     Object[] args,
+                     SeverityLevel severityLevel,
+                     String moduleId,
+                     Class<?> sourceClass,
+                     String customMessage) {
         this(lineNo, columnNo, columnNo, tokenType, bundle, key, args, severityLevel, moduleId,
-                sourceClass, customMessage);
+            sourceClass, customMessage);
     }
 
     /**
@@ -171,16 +171,16 @@ public final class Violation
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public Violation(int lineNo,
-                            int columnNo,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            SeverityLevel severityLevel,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            String customMessage) {
+                     int columnNo,
+                     String bundle,
+                     String key,
+                     Object[] args,
+                     SeverityLevel severityLevel,
+                     String moduleId,
+                     Class<?> sourceClass,
+                     String customMessage) {
         this(lineNo, columnNo, 0, bundle, key, args, severityLevel, moduleId, sourceClass,
-                customMessage);
+            customMessage);
     }
 
     /**
@@ -200,22 +200,22 @@ public final class Violation
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public Violation(int lineNo,
-                            int columnNo,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            String customMessage) {
+                     int columnNo,
+                     String bundle,
+                     String key,
+                     Object[] args,
+                     String moduleId,
+                     Class<?> sourceClass,
+                     String customMessage) {
         this(lineNo,
-                columnNo,
-             bundle,
-             key,
-             args,
-             DEFAULT_SEVERITY,
-             moduleId,
-             sourceClass,
-             customMessage);
+            columnNo,
+            bundle,
+            key,
+            args,
+            DEFAULT_SEVERITY,
+            moduleId,
+            sourceClass,
+            customMessage);
     }
 
     /**
@@ -235,15 +235,15 @@ public final class Violation
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public Violation(int lineNo,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            SeverityLevel severityLevel,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            String customMessage) {
+                     String bundle,
+                     String key,
+                     Object[] args,
+                     SeverityLevel severityLevel,
+                     String moduleId,
+                     Class<?> sourceClass,
+                     String customMessage) {
         this(lineNo, 0, bundle, key, args, severityLevel, moduleId,
-                sourceClass, customMessage);
+            sourceClass, customMessage);
     }
 
     /**
@@ -267,7 +267,7 @@ public final class Violation
         Class<?> sourceClass,
         String customMessage) {
         this(lineNo, 0, bundle, key, args, DEFAULT_SEVERITY, moduleId,
-                sourceClass, customMessage);
+            sourceClass, customMessage);
     }
 
     /**
@@ -362,26 +362,27 @@ public final class Violation
         }
         final Violation violation = (Violation) object;
         return Objects.equals(lineNo, violation.lineNo)
-                && Objects.equals(columnNo, violation.columnNo)
-                && Objects.equals(columnCharIndex, violation.columnCharIndex)
-                && Objects.equals(tokenType, violation.tokenType)
-                && Objects.equals(severityLevel, violation.severityLevel)
-                && Objects.equals(moduleId, violation.moduleId)
-                && Objects.equals(key, violation.key)
-                && Objects.equals(bundle, violation.bundle)
-                && Objects.equals(sourceClass, violation.sourceClass)
-                && Objects.equals(customMessage, violation.customMessage)
-                && Arrays.equals(args, violation.args);
+            && Objects.equals(columnNo, violation.columnNo)
+            && Objects.equals(columnCharIndex, violation.columnCharIndex)
+            && Objects.equals(tokenType, violation.tokenType)
+            && Objects.equals(severityLevel, violation.severityLevel)
+            && Objects.equals(moduleId, violation.moduleId)
+            && Objects.equals(key, violation.key)
+            && Objects.equals(bundle, violation.bundle)
+            && Objects.equals(sourceClass, violation.sourceClass)
+            && Objects.equals(customMessage, violation.customMessage)
+            && Arrays.equals(args, violation.args);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(lineNo, columnNo, columnCharIndex, tokenType, severityLevel, moduleId,
-                key, bundle, sourceClass, customMessage, Arrays.hashCode(args));
+            key, bundle, sourceClass, customMessage, Arrays.hashCode(args));
     }
 
     ////////////////////////////////////////////////////////////////////////////
     // Interface Comparable methods
+
     ////////////////////////////////////////////////////////////////////////////
 
     @Override

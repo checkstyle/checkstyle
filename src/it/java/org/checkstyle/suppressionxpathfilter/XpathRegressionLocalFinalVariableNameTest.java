@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -42,23 +42,23 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
     @Test
     public void testResource() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathLocalFinalVariableNameResource.java"));
+            new File(getPath("InputXpathLocalFinalVariableNameResource.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(LocalFinalVariableNameCheck.class);
+            createModuleConfig(LocalFinalVariableNameCheck.class);
         moduleConfig.addProperty("format", "^[A-Z][A-Z0-9]*$");
         moduleConfig.addProperty("tokens", "PARAMETER_DEF,RESOURCE");
 
         final String[] expectedViolation = {
             "7:21: " + getCheckMessage(LocalFinalVariableNameCheck.class,
-                    MSG_INVALID_PATTERN, "scanner", "^[A-Z][A-Z0-9]*$"),
+                MSG_INVALID_PATTERN, "scanner", "^[A-Z][A-Z0-9]*$"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathLocalFinalVariableNameResource']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyMethod']]/SLIST/LITERAL_TRY"
-                        + "/RESOURCE_SPECIFICATION/RESOURCES/RESOURCE/IDENT[@text='scanner']"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathLocalFinalVariableNameResource']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyMethod']]/SLIST/LITERAL_TRY"
+                + "/RESOURCE_SPECIFICATION/RESOURCES/RESOURCE/IDENT[@text='scanner']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -67,22 +67,22 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
     @Test
     public void testVariable() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathLocalFinalVariableNameVar.java"));
+            new File(getPath("InputXpathLocalFinalVariableNameVar.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(LocalFinalVariableNameCheck.class);
+            createModuleConfig(LocalFinalVariableNameCheck.class);
         moduleConfig.addProperty("format", "^[A-Z][a-z0-9]*$");
 
         final String[] expectedViolation = {
             "5:19: " + getCheckMessage(LocalFinalVariableNameCheck.class,
-                    MSG_INVALID_PATTERN, "VAR1", "^[A-Z][a-z0-9]*$"),
+                MSG_INVALID_PATTERN, "VAR1", "^[A-Z][a-z0-9]*$"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathLocalFinalVariableNameVar']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyMethod']]/SLIST/VARIABLE_DEF"
-                        + "/IDENT[@text='VAR1']"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathLocalFinalVariableNameVar']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyMethod']]/SLIST/VARIABLE_DEF"
+                + "/IDENT[@text='VAR1']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -91,23 +91,23 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
     @Test
     public void testInnerClass() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathLocalFinalVariableNameInner.java"));
+            new File(getPath("InputXpathLocalFinalVariableNameInner.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(LocalFinalVariableNameCheck.class);
+            createModuleConfig(LocalFinalVariableNameCheck.class);
         moduleConfig.addProperty("format", "^[A-Z][a-z0-9]*$");
 
         final String[] expectedViolation = {
             "8:23: " + getCheckMessage(LocalFinalVariableNameCheck.class,
-                        MSG_INVALID_PATTERN, "VAR1", "^[A-Z][a-z0-9]*$"),
+                MSG_INVALID_PATTERN, "VAR1", "^[A-Z][a-z0-9]*$"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathLocalFinalVariableNameInner']]"
-                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
-                        + "/METHOD_DEF[./IDENT[@text='MyMethod']]/SLIST/VARIABLE_DEF"
-                        + "/IDENT[@text='VAR1']"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathLocalFinalVariableNameInner']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='MyMethod']]/SLIST/VARIABLE_DEF"
+                + "/IDENT[@text='VAR1']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);

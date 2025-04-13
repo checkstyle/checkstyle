@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
@@ -136,18 +136,18 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
 
         if (!isJavadocStartingLine) {
             final Optional<Integer> leadingAsteriskColumnNumber =
-                                        getAsteriskColumnNumber(ast.getText());
+                getAsteriskColumnNumber(ast.getText());
 
             leadingAsteriskColumnNumber
-                    .map(columnNumber -> expandedTabs(ast.getText(), columnNumber))
-                    .filter(columnNumber -> {
-                        return !hasValidAlignment(expectedColumnNumberTabsExpanded, columnNumber);
-                    })
-                    .ifPresent(columnNumber -> {
-                        logViolation(ast.getLineNumber(),
-                                columnNumber,
-                                expectedColumnNumberTabsExpanded);
-                    });
+                .map(columnNumber -> expandedTabs(ast.getText(), columnNumber))
+                .filter(columnNumber -> {
+                    return !hasValidAlignment(expectedColumnNumberTabsExpanded, columnNumber);
+                })
+                .ifPresent(columnNumber -> {
+                    logViolation(ast.getLineNumber(),
+                        columnNumber,
+                        expectedColumnNumberTabsExpanded);
+                });
         }
     }
 
@@ -159,15 +159,15 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
         final Optional<Integer> endingBlockColumnNumber = getAsteriskColumnNumber(lastLine);
 
         endingBlockColumnNumber
-                .map(columnNumber -> expandedTabs(lastLine, columnNumber))
-                .filter(columnNumber -> {
-                    return !hasValidAlignment(expectedColumnNumberTabsExpanded, columnNumber);
-                })
-                .ifPresent(columnNumber -> {
-                    logViolation(javadocEndToken.getLineNo(),
-                            columnNumber,
-                            expectedColumnNumberTabsExpanded);
-                });
+            .map(columnNumber -> expandedTabs(lastLine, columnNumber))
+            .filter(columnNumber -> {
+                return !hasValidAlignment(expectedColumnNumberTabsExpanded, columnNumber);
+            })
+            .ifPresent(columnNumber -> {
+                logViolation(javadocEndToken.getLineNo(),
+                    columnNumber,
+                    expectedColumnNumberTabsExpanded);
+            });
     }
 
     /**
@@ -182,7 +182,7 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
     private int expandedTabs(String line, int columnNumber) {
         expectedColumnNumberWithoutExpandedTabs = columnNumber - 1;
         return CommonUtil.lengthExpandedTabs(
-                    line, columnNumber, getTabWidth());
+            line, columnNumber, getTabWidth());
     }
 
     /**
@@ -200,9 +200,9 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
         // a non-whitespace character or the javadoc line can be empty.
         // In such cases, there is no leading asterisk and Optional will be empty.
         return Optional.of(matcher)
-                .filter(Matcher::find)
-                .map(matcherInstance -> matcherInstance.group(1))
-                .map(groupLength -> groupLength.length() + 1);
+            .filter(Matcher::find)
+            .map(matcherInstance -> matcherInstance.group(1))
+            .map(groupLength -> groupLength.length() + 1);
     }
 
     /**

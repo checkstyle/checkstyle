@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.gui;
 
@@ -208,7 +208,7 @@ public class MainFrameModel {
                     parseTree = JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS);
                 }
                 else if (parseMode == ParseMode.JAVA_WITH_COMMENTS
-                        || parseMode == ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS) {
+                    || parseMode == ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS) {
                     parseTree = JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS);
                 }
                 else {
@@ -250,7 +250,7 @@ public class MainFrameModel {
      */
     private static FileText getFileText(File file) throws IOException {
         return new FileText(file.getAbsoluteFile(),
-                System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
+            System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
     }
 
 }

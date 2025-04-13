@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,10 +40,10 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathRequireThisOne.java"));
+            new File(getPath("InputXpathRequireThisOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(RequireThisCheck.class);
+            createModuleConfig(RequireThisCheck.class);
         moduleConfig.addProperty("validateOnlyOverlapping", "false");
 
         final String[] expectedViolation = {
@@ -59,16 +59,16 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathRequireThisTwo.java"));
+            new File(getPath("InputXpathRequireThisTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(RequireThisCheck.class);
+            createModuleConfig(RequireThisCheck.class);
         moduleConfig.addProperty("validateOnlyOverlapping", "false");
 
         final String[] expectedViolation = {
@@ -84,6 +84,6 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

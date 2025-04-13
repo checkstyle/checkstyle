@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
@@ -110,7 +110,7 @@ public final class MissingOverrideCheck extends AbstractCheck {
 
     /** Compiled regexp to match Javadoc tags with no argument and {}. */
     private static final Pattern MATCH_INHERIT_DOC =
-            CommonUtil.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
+        CommonUtil.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
 
     /**
      * Enable java 5 compatibility mode.
@@ -145,7 +145,7 @@ public final class MissingOverrideCheck extends AbstractCheck {
     @Override
     public int[] getRequiredTokens() {
         return new int[]
-        {TokenTypes.METHOD_DEF, };
+            {TokenTypes.METHOD_DEF,};
     }
 
     @Override
@@ -196,13 +196,13 @@ public final class MissingOverrideCheck extends AbstractCheck {
         final Optional<String> javadoc =
             Stream.iterate(startNode.getLastChild(), Objects::nonNull,
                     DetailAST::getPreviousSibling)
-            .filter(node -> node.getType() == TokenTypes.BLOCK_COMMENT_BEGIN)
-            .map(DetailAST::getFirstChild)
-            .map(DetailAST::getText)
-            .filter(JavadocUtil::isJavadocComment)
-            .findFirst();
+                .filter(node -> node.getType() == TokenTypes.BLOCK_COMMENT_BEGIN)
+                .map(DetailAST::getFirstChild)
+                .map(DetailAST::getText)
+                .filter(JavadocUtil::isJavadocComment)
+                .findFirst();
         return javadoc.isPresent()
-                && MATCH_INHERIT_DOC.matcher(javadoc.orElseThrow()).find();
+            && MATCH_INHERIT_DOC.matcher(javadoc.orElseThrow()).find();
     }
 
 }

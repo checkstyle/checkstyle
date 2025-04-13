@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
@@ -107,7 +107,7 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
         // Till https://github.com/checkstyle/checkstyle/issues/9005
         // Due to bug in the Javadoc parser there may be phantom description nodes.
         while (TokenUtil.isOfType(nextSibling.getType(),
-                JavadocTokenTypes.DESCRIPTION, JavadocTokenTypes.WS)) {
+            JavadocTokenTypes.DESCRIPTION, JavadocTokenTypes.WS)) {
             nextSibling = getNextNode(nextSibling);
         }
 

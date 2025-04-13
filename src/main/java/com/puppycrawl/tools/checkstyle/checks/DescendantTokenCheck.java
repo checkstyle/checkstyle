@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks;
 
@@ -219,11 +219,11 @@ public class DescendantTokenCheck extends AbstractCheck {
                     minimumMessage = MSG_KEY_MIN;
                 }
                 log(ast,
-                        minimumMessage,
-                        String.valueOf(tokenCount),
-                        String.valueOf(minimumNumber),
-                        name,
-                        descendantName);
+                    minimumMessage,
+                    String.valueOf(tokenCount),
+                    String.valueOf(minimumNumber),
+                    name,
+                    descendantName);
             }
             if (tokenCount > maximumNumber) {
                 final String descendantName = TokenUtil.getTokenName(element);
@@ -232,11 +232,11 @@ public class DescendantTokenCheck extends AbstractCheck {
                     maximumMessage = MSG_KEY_MAX;
                 }
                 log(ast,
-                        maximumMessage,
-                        String.valueOf(tokenCount),
-                        String.valueOf(maximumNumber),
-                        name,
-                        descendantName);
+                    maximumMessage,
+                    String.valueOf(tokenCount),
+                    String.valueOf(maximumNumber),
+                    name,
+                    descendantName);
             }
         }
     }
@@ -259,18 +259,18 @@ public class DescendantTokenCheck extends AbstractCheck {
                 minimumMessage = MSG_KEY_SUM_MIN;
             }
             log(ast,
-                    minimumMessage,
-                    String.valueOf(total),
-                    String.valueOf(minimumNumber), name);
+                minimumMessage,
+                String.valueOf(total),
+                String.valueOf(minimumNumber), name);
         }
         if (total > maximumNumber) {
             if (maximumMessage == null) {
                 maximumMessage = MSG_KEY_SUM_MAX;
             }
             log(ast,
-                    maximumMessage,
-                    String.valueOf(total),
-                    String.valueOf(maximumNumber), name);
+                maximumMessage,
+                String.valueOf(total),
+                String.valueOf(maximumNumber), name);
         }
     }
 

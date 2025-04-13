@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -41,28 +41,28 @@ public class XpathRegressionInterfaceTypeParameterNameTest extends AbstractXpath
     @Test
     public void testInsideClass() throws Exception {
         final File fileToCheck =
-                new File(getPath(
+            new File(getPath(
                 "InputXpathInterfaceTypeParameterNameInsideClass.java"
-                ));
+            ));
 
         final DefaultConfiguration configuration =
-                createModuleConfig(InterfaceTypeParameterNameCheck.class);
+            createModuleConfig(InterfaceTypeParameterNameCheck.class);
 
         final String[] expectedViolations = {
             "5:29: " + getCheckMessage(InterfaceTypeParameterNameCheck.class,
-                    MSG_INVALID_PATTERN,
-                    "t", "^[A-Z]$"),
+                MSG_INVALID_PATTERN,
+                "t", "^[A-Z]$"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathInterfaceTypeParameterNameInsideClass']]"
                 + "/OBJBLOCK/INTERFACE_DEF[./IDENT"
                 + "[@text='SecondInterface']]"
                 + "/TYPE_PARAMETERS/TYPE_PARAMETER[./IDENT"
                 + "[@text='t']]",
 
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathInterfaceTypeParameterNameInsideClass']]"
                 + "/OBJBLOCK/INTERFACE_DEF[./IDENT"
                 + "[@text='SecondInterface']]"
@@ -75,21 +75,21 @@ public class XpathRegressionInterfaceTypeParameterNameTest extends AbstractXpath
     @Test
     public void testInsideInnerClass() throws Exception {
         final File fileToCheck =
-                new File(getPath(
+            new File(getPath(
                 "InputXpathInterfaceTypeParameterNameInsideInnerClass.java"
-                ));
+            ));
 
         final DefaultConfiguration configuration =
-                createModuleConfig(InterfaceTypeParameterNameCheck.class);
+            createModuleConfig(InterfaceTypeParameterNameCheck.class);
 
         final String[] expectedViolations = {
             "5:37: " + getCheckMessage(InterfaceTypeParameterNameCheck.class,
-                    MSG_INVALID_PATTERN,
-                    "t", "^[A-Z]$"),
+                MSG_INVALID_PATTERN,
+                "t", "^[A-Z]$"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathInterfaceTypeParameterNameInsideInnerClass']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT"
                 + "[@text='InnerClass']]"
@@ -97,7 +97,7 @@ public class XpathRegressionInterfaceTypeParameterNameTest extends AbstractXpath
                 + "[@text='InnerInterface']]"
                 + "/TYPE_PARAMETERS/TYPE_PARAMETER[./IDENT[@text='t']]",
 
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathInterfaceTypeParameterNameInsideInnerClass']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT"
                 + "[@text='InnerClass']]"
@@ -112,25 +112,25 @@ public class XpathRegressionInterfaceTypeParameterNameTest extends AbstractXpath
     @Test
     public void testTopLevelPublic() throws Exception {
         final File fileToCheck =
-                new File(getPath(
-                        "InputXpathInterfaceTypeParameterNameTopLevelPublic.java"
-                ));
+            new File(getPath(
+                "InputXpathInterfaceTypeParameterNameTopLevelPublic.java"
+            ));
 
         final DefaultConfiguration configuration =
-                createModuleConfig(InterfaceTypeParameterNameCheck.class);
+            createModuleConfig(InterfaceTypeParameterNameCheck.class);
 
         final String[] expectedViolations = {
             "3:69: " + getCheckMessage(InterfaceTypeParameterNameCheck.class,
-                    MSG_INVALID_PATTERN,
-                    "t", "^[A-Z]$"),
+                MSG_INVALID_PATTERN,
+                "t", "^[A-Z]$"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                 + "[@text='InputXpathInterfaceTypeParameterNameTopLevelPublic']]"
                 + "/TYPE_PARAMETERS/TYPE_PARAMETER[./IDENT[@text='t']]",
 
-                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                 + "[@text='InputXpathInterfaceTypeParameterNameTopLevelPublic']]"
                 + "/TYPE_PARAMETERS/TYPE_PARAMETER/IDENT[@text='t']"
         );

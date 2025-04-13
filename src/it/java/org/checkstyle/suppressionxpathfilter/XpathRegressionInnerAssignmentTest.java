@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,7 +40,7 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
     @Test
     public void testInnerAssignment() throws Exception {
         final File fileToProcess = new
-                File(getPath("InputXpathInnerAssignment.java"));
+            File(getPath("InputXpathInnerAssignment.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(InnerAssignmentCheck.class);
 
@@ -49,10 +49,10 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = List.of(
-                "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text='InputXpathInnerAssignment']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod']]"
-                        + "/SLIST/EXPR/ASSIGN[./IDENT[@text='a']]/ASSIGN[./IDENT[@text='b']]"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathInnerAssignment']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod']]"
+                + "/SLIST/EXPR/ASSIGN[./IDENT[@text='a']]/ASSIGN[./IDENT[@text='b']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -61,7 +61,7 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
     @Test
     public void testArrays() throws Exception {
         final File fileToProcess = new
-                File(getPath("InputXpathInnerAssignmentArrays.java"));
+            File(getPath("InputXpathInnerAssignmentArrays.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(InnerAssignmentCheck.class);
 
@@ -70,12 +70,12 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT"
+            "/COMPILATION_UNIT"
                 + "/CLASS_DEF[./IDENT[@text='InputXpathInnerAssignmentArrays']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='doubleArray']]"
                 + "/ASSIGN/EXPR/LITERAL_NEW/ARRAY_INIT/EXPR[./ASSIGN/IDENT[@text='myDouble']]",
-                "/COMPILATION_UNIT"
+            "/COMPILATION_UNIT"
                 + "/CLASS_DEF[./IDENT[@text='InputXpathInnerAssignmentArrays']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod']]/"
                 + "SLIST/VARIABLE_DEF[./IDENT[@text='doubleArray']]"

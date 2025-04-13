@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.MissingNullCaseInSwitchCheck;
 
 public class XpathRegressionMissingNullCaseInSwitchTest
-        extends AbstractXpathTestSupport {
+    extends AbstractXpathTestSupport {
 
     @Override
     protected String getCheckName() {
@@ -40,20 +40,20 @@ public class XpathRegressionMissingNullCaseInSwitchTest
     @Test
     public void testSimple() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
-                        "InputXpathMissingNullCaseInSwitchSimple.java"));
+            new File(getNonCompilablePath(
+                "InputXpathMissingNullCaseInSwitchSimple.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingNullCaseInSwitchCheck.class);
+            createModuleConfig(MissingNullCaseInSwitchCheck.class);
         final String[] expectedViolation = {
             "8:9: " + getCheckMessage(MissingNullCaseInSwitchCheck.class,
-                    MissingNullCaseInSwitchCheck.MSG_KEY),
+                MissingNullCaseInSwitchCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathMissingNullCaseInSwitchSimple']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathMissingNullCaseInSwitchSimple']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
@@ -61,27 +61,27 @@ public class XpathRegressionMissingNullCaseInSwitchTest
     @Test
     public void testNestedExpression() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath("InputXpathMissingNullCaseInSwitchNested.java"));
+            new File(getNonCompilablePath("InputXpathMissingNullCaseInSwitchNested.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingNullCaseInSwitchCheck.class);
+            createModuleConfig(MissingNullCaseInSwitchCheck.class);
         final String[] expectedViolation = {
             "11:25: " + getCheckMessage(MissingNullCaseInSwitchCheck.class,
-                    MissingNullCaseInSwitchCheck.MSG_KEY),
+                MissingNullCaseInSwitchCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathMissingNullCaseInSwitchNested']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF"
-                        + "[./IDENT[@text='x']]/ASSIGN/EXPR/LITERAL_SWITCH/SWITCH_RULE/SLIST"
-                        + "/VARIABLE_DEF[./IDENT[@text='y']]/ASSIGN/EXPR",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathMissingNullCaseInSwitchNested']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF"
-                        + "[./IDENT[@text='x']]/ASSIGN/EXPR/LITERAL_SWITCH"
-                        + "/SWITCH_RULE/SLIST/VARIABLE_DEF"
-                        + "[./IDENT[@text='y']]/ASSIGN/EXPR/LITERAL_SWITCH"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathMissingNullCaseInSwitchNested']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF"
+                + "[./IDENT[@text='x']]/ASSIGN/EXPR/LITERAL_SWITCH/SWITCH_RULE/SLIST"
+                + "/VARIABLE_DEF[./IDENT[@text='y']]/ASSIGN/EXPR",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathMissingNullCaseInSwitchNested']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF"
+                + "[./IDENT[@text='x']]/ASSIGN/EXPR/LITERAL_SWITCH"
+                + "/SWITCH_RULE/SLIST/VARIABLE_DEF"
+                + "[./IDENT[@text='y']]/ASSIGN/EXPR/LITERAL_SWITCH"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }

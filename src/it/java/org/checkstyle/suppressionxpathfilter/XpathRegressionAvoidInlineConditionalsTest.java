@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -39,10 +39,10 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
     @Test
     public void testInlineConditionalsVariableDef() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathAvoidInlineConditionalsVariableDef.java"));
+            getPath("InputXpathAvoidInlineConditionalsVariableDef.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidInlineConditionalsCheck.class);
+            createModuleConfig(AvoidInlineConditionalsCheck.class);
 
         final String[] expectedViolation = {
             "5:50: " + getCheckMessage(AvoidInlineConditionalsCheck.class,
@@ -50,27 +50,27 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                        + "InputXpathAvoidInlineConditionalsVariableDef']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='substring']]/SLIST"
-                        + "/VARIABLE_DEF[./IDENT[@text='b']]/ASSIGN/EXPR",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                        + "InputXpathAvoidInlineConditionalsVariableDef']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='substring']]/SLIST"
-                        + "/VARIABLE_DEF[./IDENT[@text='b']]/ASSIGN/EXPR/QUESTION"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
+                + "InputXpathAvoidInlineConditionalsVariableDef']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='substring']]/SLIST"
+                + "/VARIABLE_DEF[./IDENT[@text='b']]/ASSIGN/EXPR",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
+                + "InputXpathAvoidInlineConditionalsVariableDef']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='substring']]/SLIST"
+                + "/VARIABLE_DEF[./IDENT[@text='b']]/ASSIGN/EXPR/QUESTION"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testInlineConditionalsAssign() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathAvoidInlineConditionalsAssign.java"));
+            getPath("InputXpathAvoidInlineConditionalsAssign.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidInlineConditionalsCheck.class);
+            createModuleConfig(AvoidInlineConditionalsCheck.class);
 
         final String[] expectedViolation = {
             "7:43: " + getCheckMessage(AvoidInlineConditionalsCheck.class,
@@ -78,23 +78,23 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                        + "InputXpathAvoidInlineConditionalsAssign']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='setB']]/SLIST"
-                        + "/EXPR/ASSIGN[./IDENT[@text='b']]/QUESTION"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
+                + "InputXpathAvoidInlineConditionalsAssign']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='setB']]/SLIST"
+                + "/EXPR/ASSIGN[./IDENT[@text='b']]/QUESTION"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testInlineConditionalsAssert() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathAvoidInlineConditionalsAssert.java"));
+            getPath("InputXpathAvoidInlineConditionalsAssert.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidInlineConditionalsCheck.class);
+            createModuleConfig(AvoidInlineConditionalsCheck.class);
 
         final String[] expectedViolation = {
             "8:31: " + getCheckMessage(AvoidInlineConditionalsCheck.class,
@@ -102,18 +102,18 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                        + "InputXpathAvoidInlineConditionalsAssert']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='assertA']]/SLIST"
-                        + "/LITERAL_ASSERT/EXPR[./QUESTION/METHOD_CALL/DOT/IDENT[@text='a']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                        + "InputXpathAvoidInlineConditionalsAssert']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='assertA']]/SLIST"
-                        + "/LITERAL_ASSERT/EXPR/QUESTION"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
+                + "InputXpathAvoidInlineConditionalsAssert']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='assertA']]/SLIST"
+                + "/LITERAL_ASSERT/EXPR[./QUESTION/METHOD_CALL/DOT/IDENT[@text='a']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
+                + "InputXpathAvoidInlineConditionalsAssert']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='assertA']]/SLIST"
+                + "/LITERAL_ASSERT/EXPR/QUESTION"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

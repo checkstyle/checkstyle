@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -41,10 +41,10 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
     @Test
     public void testSingleLine() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathTodoCommentSingleLine.java"));
+            new File(getPath("InputXpathTodoCommentSingleLine.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(TodoCommentCheck.class);
+            createModuleConfig(TodoCommentCheck.class);
         moduleConfig.addProperty("format", "FIXME:");
 
         final String[] expectedViolation = {
@@ -52,21 +52,21 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'InputXpathTodoCommentSingleLine']]/OBJBLOCK/"
-                        + "SINGLE_LINE_COMMENT/COMMENT_CONTENT[@text=' warn FIXME:\\n']");
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
+                + "'InputXpathTodoCommentSingleLine']]/OBJBLOCK/"
+                + "SINGLE_LINE_COMMENT/COMMENT_CONTENT[@text=' warn FIXME:\\n']");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testBlock() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathTodoCommentBlock.java"));
+            new File(getPath("InputXpathTodoCommentBlock.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(TodoCommentCheck.class);
+            createModuleConfig(TodoCommentCheck.class);
         moduleConfig.addProperty("format", "FIXME:");
 
         final String[] expectedViolation = {
@@ -74,13 +74,13 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'InputXpathTodoCommentBlock']]/"
-                        + "OBJBLOCK/BLOCK_COMMENT_BEGIN/COMMENT_CONTENT"
-                        + "[@text=' // warn\\n     * FIXME:\\n     * TODO\\n     ']"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
+                + "'InputXpathTodoCommentBlock']]/"
+                + "OBJBLOCK/BLOCK_COMMENT_BEGIN/COMMENT_CONTENT"
+                + "[@text=' // warn\\n     * FIXME:\\n     * TODO\\n     ']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

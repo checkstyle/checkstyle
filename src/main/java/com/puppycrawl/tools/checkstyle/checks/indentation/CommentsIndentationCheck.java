@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -153,7 +153,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
                 handleCommentAtTheEndOfTheCodeBlock(prevStmt, comment, nextStmt);
             }
             else if (nextStmt != null && !areSameLevelIndented(comment, nextStmt, nextStmt)
-                    && !areInSameMethodCallWithSameIndent(comment)) {
+                && !areInSameMethodCallWithSameIndent(comment)) {
                 log(comment, getMessageKey(comment), nextStmt.getLineNo(),
                     comment.getColumnNo(), nextStmt.getColumnNo());
             }
@@ -169,8 +169,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
     private static DetailAST getNextStmt(DetailAST comment) {
         DetailAST nextStmt = comment.getNextSibling();
         while (nextStmt != null
-                && isComment(nextStmt)
-                && comment.getColumnNo() != nextStmt.getColumnNo()) {
+            && isComment(nextStmt)
+            && comment.getColumnNo() != nextStmt.getColumnNo()) {
             nextStmt = nextStmt.getNextSibling();
         }
         return nextStmt;
@@ -221,7 +221,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
         boolean isDistributed = false;
         if (previousSibling != null) {
             if (previousSibling.getType() == TokenTypes.SEMI
-                    && isOnPreviousLineIgnoringComments(comment, previousSibling)) {
+                && isOnPreviousLineIgnoringComments(comment, previousSibling)) {
                 DetailAST currentToken = previousSibling.getPreviousSibling();
                 while (currentToken.getFirstChild() != null) {
                     currentToken = currentToken.getFirstChild();
@@ -273,7 +273,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     private static boolean isDistributedReturnStatement(DetailAST commentPreviousSibling) {
         boolean isDistributed = false;
         if (commentPreviousSibling != null
-                && commentPreviousSibling.getType() == TokenTypes.LITERAL_RETURN) {
+            && commentPreviousSibling.getType() == TokenTypes.LITERAL_RETURN) {
             final DetailAST firstChild = commentPreviousSibling.getFirstChild();
             final DetailAST nextSibling = firstChild.getNextSibling();
             if (nextSibling != null) {
@@ -292,7 +292,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     private static boolean isDistributedThrowStatement(DetailAST commentPreviousSibling) {
         boolean isDistributed = false;
         if (commentPreviousSibling != null
-                && commentPreviousSibling.getType() == TokenTypes.LITERAL_THROW) {
+            && commentPreviousSibling.getType() == TokenTypes.LITERAL_THROW) {
             final DetailAST firstChild = commentPreviousSibling.getFirstChild();
             final DetailAST nextSibling = firstChild.getNextSibling();
             if (!TokenUtil.areOnSameLine(nextSibling, commentPreviousSibling)) {
@@ -343,9 +343,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
         return prevStmt != null
             && nextStmt != null
             && (prevStmt.getType() == TokenTypes.LITERAL_CASE
-                || prevStmt.getType() == TokenTypes.CASE_GROUP)
+            || prevStmt.getType() == TokenTypes.CASE_GROUP)
             && (nextStmt.getType() == TokenTypes.LITERAL_CASE
-                || nextStmt.getType() == TokenTypes.LITERAL_DEFAULT);
+            || nextStmt.getType() == TokenTypes.LITERAL_DEFAULT);
     }
 
     /**
@@ -374,7 +374,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
             && nextStmt != null
             && prevStmt.getType() != TokenTypes.LITERAL_CASE
             && (nextStmt.getType() == TokenTypes.LITERAL_CASE
-                || nextStmt.getType() == TokenTypes.LITERAL_DEFAULT);
+            || nextStmt.getType() == TokenTypes.LITERAL_DEFAULT);
     }
 
     /**
@@ -409,9 +409,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
         return prevStmt != null
             && nextStmt != null
             && (prevStmt.getType() == TokenTypes.SLIST
-                || prevStmt.getType() == TokenTypes.LCURLY
-                || prevStmt.getType() == TokenTypes.ARRAY_INIT
-                || prevStmt.getType() == TokenTypes.OBJBLOCK)
+            || prevStmt.getType() == TokenTypes.LCURLY
+            || prevStmt.getType() == TokenTypes.ARRAY_INIT
+            || prevStmt.getType() == TokenTypes.OBJBLOCK)
             && nextStmt.getType() == TokenTypes.RCURLY;
     }
 
@@ -440,7 +440,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     private void handleCommentInEmptyCaseBlock(DetailAST prevStmt, DetailAST comment,
                                                DetailAST nextStmt) {
         if (comment.getColumnNo() < prevStmt.getColumnNo()
-                || comment.getColumnNo() < nextStmt.getColumnNo()) {
+            || comment.getColumnNo() < nextStmt.getColumnNo()) {
             logMultilineIndentation(prevStmt, comment, nextStmt);
         }
     }
@@ -510,8 +510,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
                                                      DetailAST nextStmt) {
         if (prevStmt != null) {
             if (prevStmt.getType() == TokenTypes.LITERAL_CASE
-                    || prevStmt.getType() == TokenTypes.CASE_GROUP
-                    || prevStmt.getType() == TokenTypes.LITERAL_DEFAULT) {
+                || prevStmt.getType() == TokenTypes.CASE_GROUP
+                || prevStmt.getType() == TokenTypes.LITERAL_DEFAULT) {
                 if (comment.getColumnNo() < nextStmt.getColumnNo()) {
                     log(comment, getMessageKey(comment), nextStmt.getLineNo(),
                         comment.getColumnNo(), nextStmt.getColumnNo());
@@ -525,7 +525,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
             else if (!areSameLevelIndented(comment, prevStmt, prevStmt)) {
                 final int prevStmtLineNo = prevStmt.getLineNo();
                 log(comment, getMessageKey(comment), prevStmtLineNo,
-                        comment.getColumnNo(), getLineStart(prevStmtLineNo));
+                    comment.getColumnNo(), getLineStart(prevStmtLineNo));
             }
         }
     }
@@ -543,9 +543,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
         final DetailAST catchAst = endBlockStmt.getParent().getParent();
         final DetailAST finallyAst = catchAst.getNextSibling();
         return nextBlock != null && nextBlock.getLineNo() == endBlockLineNo
-                || finallyAst != null
-                    && catchAst.getType() == TokenTypes.LITERAL_CATCH
-                    && finallyAst.getLineNo() == endBlockLineNo;
+            || finallyAst != null
+            && catchAst.getType() == TokenTypes.LITERAL_CATCH
+            && finallyAst.getLineNo() == endBlockLineNo;
     }
 
     /**
@@ -633,9 +633,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private static boolean isBlockStart(DetailAST root) {
         return root.getType() == TokenTypes.SLIST
-                || root.getType() == TokenTypes.OBJBLOCK
-                || root.getType() == TokenTypes.ARRAY_INIT
-                || root.getType() == TokenTypes.CASE_GROUP;
+            || root.getType() == TokenTypes.OBJBLOCK
+            || root.getType() == TokenTypes.ARRAY_INIT
+            || root.getType() == TokenTypes.CASE_GROUP;
     }
 
     /**
@@ -655,7 +655,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
         }
         final DetailAST tokenWhichBeginsTheLine;
         if (root.getType() == TokenTypes.EXPR
-                && root.getFirstChild().getFirstChild() != null) {
+            && root.getFirstChild().getFirstChild() != null) {
             if (root.getFirstChild().getType() == TokenTypes.LITERAL_NEW) {
                 tokenWhichBeginsTheLine = root.getFirstChild();
             }
@@ -670,8 +670,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
             tokenWhichBeginsTheLine = root;
         }
         if (tokenWhichBeginsTheLine != null
-                && !isComment(tokenWhichBeginsTheLine)
-                && isOnPreviousLineIgnoringComments(comment, tokenWhichBeginsTheLine)) {
+            && !isComment(tokenWhichBeginsTheLine)
+            && isOnPreviousLineIgnoringComments(comment, tokenWhichBeginsTheLine)) {
             previousStatement = tokenWhichBeginsTheLine;
         }
         return previousStatement;
@@ -714,7 +714,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     private static DetailAST findStartTokenOfMethodCallChain(DetailAST root) {
         DetailAST startOfMethodCallChain = root;
         while (startOfMethodCallChain.getFirstChild() != null
-                && TokenUtil.areOnSameLine(startOfMethodCallChain.getFirstChild(), root)) {
+            && TokenUtil.areOnSameLine(startOfMethodCallChain.getFirstChild(), root)) {
             startOfMethodCallChain = startOfMethodCallChain.getFirstChild();
         }
         if (startOfMethodCallChain.getFirstChild() != null) {
@@ -759,8 +759,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
     private DetailAST getNextToken(DetailAST checkedStatement) {
         DetailAST nextToken;
         if (checkedStatement.getType() == TokenTypes.SLIST
-                || checkedStatement.getType() == TokenTypes.ARRAY_INIT
-                || checkedStatement.getType() == TokenTypes.CASE_GROUP) {
+            || checkedStatement.getType() == TokenTypes.ARRAY_INIT
+            || checkedStatement.getType() == TokenTypes.CASE_GROUP) {
             nextToken = checkedStatement.getFirstChild();
         }
         else {
@@ -805,7 +805,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
             String.format(Locale.getDefault(), multilineNoTemplate, prevStmt.getLineNo(),
                 nextStmt.getLineNo()), comment.getColumnNo(),
             String.format(Locale.getDefault(), multilineNoTemplate,
-                    getLineStart(prevStmt.getLineNo()), getLineStart(nextStmt.getLineNo())));
+                getLineStart(prevStmt.getLineNo()), getLineStart(nextStmt.getLineNo())));
     }
 
     /**
@@ -890,8 +890,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
         final DetailAST prevCaseToken;
         final DetailAST parentBlock = parentStatement.getParent();
         if (parentBlock.getParent().getPreviousSibling() != null
-                && parentBlock.getParent().getPreviousSibling().getType()
-                    == TokenTypes.LITERAL_CASE) {
+            && parentBlock.getParent().getPreviousSibling().getType()
+            == TokenTypes.LITERAL_CASE) {
             prevCaseToken = parentBlock.getParent().getPreviousSibling();
         }
         else {
@@ -923,7 +923,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @return true if comment and next code statement are indented at the same level.
      */
     private boolean areSameLevelIndented(DetailAST comment, DetailAST prevStmt,
-                                                DetailAST nextStmt) {
+                                         DetailAST nextStmt) {
         return comment.getColumnNo() == getLineStart(nextStmt.getLineNo())
             || comment.getColumnNo() == getLineStart(prevStmt.getLineNo());
     }
@@ -1020,8 +1020,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private static boolean areInSameMethodCallWithSameIndent(DetailAST comment) {
         return comment.getParent().getType() == TokenTypes.METHOD_CALL
-                && comment.getColumnNo()
-                     == getFirstExpressionNodeFromMethodCall(comment.getParent()).getColumnNo();
+            && comment.getColumnNo()
+            == getFirstExpressionNodeFromMethodCall(comment.getParent()).getColumnNo();
     }
 
     /**

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
@@ -213,7 +213,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT, };
+        return new int[] {TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT,};
     }
 
     @Override
@@ -242,7 +242,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
             else if (currentImportControl != null) {
                 final String importText = getImportText(ast);
                 final AccessResult access = currentImportControl.checkAccess(packageName, fileName,
-                        importText);
+                    importText);
                 if (access != AccessResult.ALLOWED) {
                     log(ast, MSG_DISALLOWED, importText);
                 }
@@ -280,7 +280,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
         else {
             // know it is a static import
             imp = FullIdent.createFullIdent(ast
-                    .getFirstChild().getNextSibling());
+                .getFirstChild().getNextSibling());
         }
         return imp.getText();
     }

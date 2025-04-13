@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,53 +40,53 @@ public class XpathRegressionOperatorWrapTest extends AbstractXpathTestSupport {
     @Test
     public void testOperatorWrapNewLine() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathOperatorWrapNewLine.java"));
+            new File(getPath("InputXpathOperatorWrapNewLine.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(OperatorWrapCheck.class);
+            createModuleConfig(OperatorWrapCheck.class);
 
         final String[] expectedViolation = {
             "6:19: " + getCheckMessage(OperatorWrapCheck.class,
-                        OperatorWrapCheck.MSG_LINE_NEW, "+"),
+                OperatorWrapCheck.MSG_LINE_NEW, "+"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text"
-                        + "='InputXpathOperatorWrapNewLine']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
-                        + "/SLIST/VARIABLE_DEF[./IDENT[@text='x']]"
-                        + "/ASSIGN/EXPR/MINUS[./NUM_INT[@text='4']]"
-                        + "/MINUS[./NUM_INT[@text='3']]"
-                        + "/PLUS[./NUM_INT[@text='1']]"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text"
+                + "='InputXpathOperatorWrapNewLine']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='x']]"
+                + "/ASSIGN/EXPR/MINUS[./NUM_INT[@text='4']]"
+                + "/MINUS[./NUM_INT[@text='3']]"
+                + "/PLUS[./NUM_INT[@text='1']]"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testOperatorWrapPreviousLine() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathOperatorWrapPreviousLine.java"));
+            new File(getPath("InputXpathOperatorWrapPreviousLine.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(OperatorWrapCheck.class);
+            createModuleConfig(OperatorWrapCheck.class);
         moduleConfig.addProperty("tokens", "ASSIGN");
         moduleConfig.addProperty("option", "eol");
 
         final String[] expectedViolation = {
             "5:11: " + getCheckMessage(OperatorWrapCheck.class,
-                        OperatorWrapCheck.MSG_LINE_PREVIOUS, "="),
+                OperatorWrapCheck.MSG_LINE_PREVIOUS, "="),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-             "/COMPILATION_UNIT"
+            "/COMPILATION_UNIT"
                 + "/CLASS_DEF[./IDENT[@text='InputXpathOperatorWrapPreviousLine']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='b']]"
                 + "/ASSIGN"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

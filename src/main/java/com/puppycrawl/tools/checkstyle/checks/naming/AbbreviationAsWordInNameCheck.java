@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
@@ -161,7 +161,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * and methods names, ... ).
      */
     private int allowedAbbreviationLength =
-            DEFAULT_ALLOWED_ABBREVIATIONS_LENGTH;
+        DEFAULT_ALLOWED_ABBREVIATIONS_LENGTH;
 
     /**
      * Specify abbreviations that must be skipped for checking.
@@ -369,7 +369,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
         final DetailAST astParent2 = astBlock.getParent();
 
         if (astParent2.getType() == TokenTypes.INTERFACE_DEF
-                || astParent2.getType() == TokenTypes.ANNOTATION_DEF) {
+            || astParent2.getType() == TokenTypes.ANNOTATION_DEF) {
             result = true;
         }
         return result;

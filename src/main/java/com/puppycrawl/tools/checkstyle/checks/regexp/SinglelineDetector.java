@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
@@ -81,7 +81,7 @@ class SinglelineDetector {
         if (currentMatches < options.getMinimum()) {
             if (options.getMessage().isEmpty()) {
                 options.getReporter().log(1, MSG_REGEXP_MINIMUM,
-                        options.getMinimum(), options.getFormat());
+                    options.getMinimum(), options.getFormat());
             }
             else {
                 options.getReporter().log(1, options.getMessage());
@@ -107,7 +107,7 @@ class SinglelineDetector {
             // So we need to use (endCol - 1) here.
 
             if (options.getSuppressor()
-                    .shouldSuppress(lineNo, startCol, lineNo, endCol - 1)) {
+                .shouldSuppress(lineNo, startCol, lineNo, endCol - 1)) {
                 startPosition = endCol;
             }
             else {
@@ -115,7 +115,7 @@ class SinglelineDetector {
                 if (currentMatches > options.getMaximum()) {
                     if (options.getMessage().isEmpty()) {
                         options.getReporter().log(lineNo, MSG_REGEXP_EXCEEDED,
-                                matcher.pattern().toString());
+                            matcher.pattern().toString());
                     }
                     else {
                         options.getReporter().log(lineNo, options.getMessage());

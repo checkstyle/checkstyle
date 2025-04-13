@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,38 +40,38 @@ public class XpathRegressionEmptyStatementTest extends AbstractXpathTestSupport 
     @Test
     public void testForLoopEmptyStatement() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathEmptyStatementLoops.java"));
+            new File(getPath("InputXpathEmptyStatementLoops.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyStatementCheck.class);
+            createModuleConfig(EmptyStatementCheck.class);
         final String[] expectedViolation = {
             "5:36: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text='InputXpathEmptyStatementLoops']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
-                        + "/SLIST/LITERAL_FOR/EMPTY_STAT"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathEmptyStatementLoops']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
+                + "/SLIST/LITERAL_FOR/EMPTY_STAT"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testIfBlockEmptyStatement() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathEmptyStatementConditionals.java"));
+            new File(getPath("InputXpathEmptyStatementConditionals.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyStatementCheck.class);
+            createModuleConfig(EmptyStatementCheck.class);
         final String[] expectedViolation = {
             "6:19: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text='InputXpathEmptyStatementConditionals']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
-                        + "/SLIST/LITERAL_IF/EMPTY_STAT"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathEmptyStatementConditionals']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
+                + "/SLIST/LITERAL_IF/EMPTY_STAT"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

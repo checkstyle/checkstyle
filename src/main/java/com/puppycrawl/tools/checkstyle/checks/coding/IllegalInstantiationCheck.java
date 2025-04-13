@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -193,9 +193,9 @@ public class IllegalInstantiationCheck
      */
     private void processPackageDef(DetailAST ast) {
         final DetailAST packageNameAST = ast.getLastChild()
-                .getPreviousSibling();
+            .getPreviousSibling();
         final FullIdent packageIdent =
-                FullIdent.createFullIdent(packageNameAST);
+            FullIdent.createFullIdent(packageNameAST);
         pkgName = packageIdent.getText();
     }
 
@@ -255,7 +255,7 @@ public class IllegalInstantiationCheck
 
             for (String illegal : classes) {
                 if (isSamePackage(className, pkgNameLen, illegal)
-                        || isStandardClass(className, illegal)) {
+                    || isStandardClass(className, illegal)) {
                     fullClassName = illegal;
                 }
                 else {
@@ -283,10 +283,10 @@ public class IllegalInstantiationCheck
             String importArg = importLineText.getText();
             if (importArg.endsWith(".*")) {
                 importArg = importArg.substring(0, importArg.length() - 1)
-                        + className;
+                    + className;
             }
             if (CommonUtil.baseClassName(importArg).equals(className)
-                    && classes.contains(importArg)) {
+                && classes.contains(importArg)) {
                 illegalType = importArg;
                 break;
             }
@@ -311,10 +311,10 @@ public class IllegalInstantiationCheck
         // the test is the "no garbage" version of
         // illegal.equals(pkgName + "." + className)
         return pkgName != null
-                && className.length() == illegal.length() - pkgNameLen - 1
-                && illegal.charAt(pkgNameLen) == '.'
-                && illegal.endsWith(className)
-                && illegal.startsWith(pkgName);
+            && className.length() == illegal.length() - pkgNameLen - 1
+            && illegal.charAt(pkgNameLen) == '.'
+            && illegal.endsWith(className)
+            && illegal.startsWith(pkgName);
     }
 
     /**

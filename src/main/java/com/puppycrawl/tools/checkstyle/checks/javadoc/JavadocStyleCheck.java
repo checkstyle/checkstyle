@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
@@ -226,7 +226,7 @@ public class JavadocStyleCheck
 
     /** Specify the format for inline return Javadoc. */
     private static final Pattern INLINE_RETURN_TAG_PATTERN =
-            Pattern.compile("\\{@return.*?}\\s*");
+        Pattern.compile("\\{@return.*?}\\s*");
 
     /** Specify the format for first word in javadoc. */
     private static final Pattern SENTENCE_SEPARATOR = Pattern.compile("\\.(?=\\s|$)");
@@ -316,9 +316,9 @@ public class JavadocStyleCheck
             final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
 
             check = customScope.isIn(scope)
-                    && surroundingScope.isIn(scope)
-                    && (excludeScope == null || !customScope.isIn(excludeScope)
-                            || !surroundingScope.isIn(excludeScope));
+                && surroundingScope.isIn(scope)
+                && (excludeScope == null || !customScope.isIn(excludeScope)
+                || !surroundingScope.isIn(excludeScope));
         }
         return check;
     }
@@ -361,10 +361,10 @@ public class JavadocStyleCheck
     private void checkFirstSentenceEnding(final DetailAST ast, TextBlock comment) {
         final String commentText = getCommentText(comment.getText());
         final boolean hasInLineReturnTag = Arrays.stream(SENTENCE_SEPARATOR.split(commentText))
-                .findFirst()
-                .map(INLINE_RETURN_TAG_PATTERN::matcher)
-                .filter(Matcher::find)
-                .isPresent();
+            .findFirst()
+            .map(INLINE_RETURN_TAG_PATTERN::matcher)
+            .filter(Matcher::find)
+            .isPresent();
 
         if (!hasInLineReturnTag
             && !commentText.isEmpty()
@@ -453,7 +453,7 @@ public class JavadocStyleCheck
                 builder.deleteCharAt(index);
             }
             else if (index > 0 && builder.charAt(index) == '/'
-                    && builder.charAt(index - 1) == '*') {
+                && builder.charAt(index - 1) == '*') {
                 builder.deleteCharAt(index);
                 builder.deleteCharAt(index - 1);
                 index--;
@@ -533,7 +533,7 @@ public class JavadocStyleCheck
                 && !htmlTag.getId().equals(lastFound)
                 && !typeParameters.contains(htmlTag.getId())) {
                 log(htmlTag.getLineNo(), htmlTag.getPosition(),
-                        MSG_UNCLOSED_HTML, htmlTag.getText());
+                    MSG_UNCLOSED_HTML, htmlTag.getText());
                 lastFound = htmlTag.getId();
             }
         }

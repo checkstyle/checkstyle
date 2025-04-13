@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -119,25 +119,25 @@ public class JavadocDetailNodeParser {
             final DetailNode tree = convertParseTreeToDetailNode(javadocParseTree);
             // adjust first line to indent of /**
             adjustFirstLineToJavadocIndent(tree,
-                        javadocCommentAst.getColumnNo()
-                                + JAVADOC_START.length());
+                javadocCommentAst.getColumnNo()
+                    + JAVADOC_START.length());
             result.setTree(tree);
             result.firstNonTightHtmlTag = getFirstNonTightHtmlTag(javadocParser,
-                    errorListener.offset);
+                errorListener.offset);
         }
         catch (ParseCancellationException | IllegalArgumentException ex) {
             ParseErrorMessage parseErrorMessage = null;
 
             if (ex.getCause() instanceof FailedPredicateException
-                    || ex.getCause() instanceof NoViableAltException) {
+                || ex.getCause() instanceof NoViableAltException) {
                 final RecognitionException recognitionEx = (RecognitionException) ex.getCause();
                 if (recognitionEx.getCtx() instanceof JavadocParser.HtmlTagContext) {
                     final Token htmlTagNameStart = getMissedHtmlTag(recognitionEx);
                     parseErrorMessage = new ParseErrorMessage(
-                            errorListener.offset + htmlTagNameStart.getLine(),
-                            MSG_JAVADOC_MISSED_HTML_CLOSE,
-                            htmlTagNameStart.getCharPositionInLine(),
-                            htmlTagNameStart.getText());
+                        errorListener.offset + htmlTagNameStart.getLine(),
+                        MSG_JAVADOC_MISSED_HTML_CLOSE,
+                        htmlTagNameStart.getCharPositionInLine(),
+                        htmlTagNameStart.getText());
                 }
             }
 
@@ -163,7 +163,7 @@ public class JavadocDetailNodeParser {
      * @return parse tree
      */
     private static JavadocParser createJavadocParser(String blockComment,
-            DescriptiveErrorListener errorListener) {
+                                                     DescriptiveErrorListener errorListener) {
         final JavadocLexer lexer = new JavadocLexer(CharStreams.fromString(blockComment), true);
 
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -208,7 +208,7 @@ public class JavadocDetailNodeParser {
             }
 
             final JavadocNodeImpl[] children =
-                    (JavadocNodeImpl[]) currentJavadocParent.getChildren();
+                (JavadocNodeImpl[]) currentJavadocParent.getChildren();
 
             insertChildrenNodes(children, parseTreeParent);
 
@@ -218,13 +218,13 @@ public class JavadocDetailNodeParser {
             }
             else {
                 JavadocNodeImpl nextJavadocSibling = (JavadocNodeImpl) JavadocUtil
-                        .getNextSibling(currentJavadocParent);
+                    .getNextSibling(currentJavadocParent);
 
                 ParseTree nextParseTreeSibling = getNextSibling(parseTreeParent);
 
                 while (nextJavadocSibling == null) {
                     currentJavadocParent =
-                            (JavadocNodeImpl) currentJavadocParent.getParent();
+                        (JavadocNodeImpl) currentJavadocParent.getParent();
 
                     parseTreeParent = parseTreeParent.getParent();
 
@@ -233,7 +233,7 @@ public class JavadocDetailNodeParser {
                     }
 
                     nextJavadocSibling = (JavadocNodeImpl) JavadocUtil
-                            .getNextSibling(currentJavadocParent);
+                        .getNextSibling(currentJavadocParent);
 
                     nextParseTreeSibling = getNextSibling(parseTreeParent);
                 }
@@ -256,7 +256,7 @@ public class JavadocDetailNodeParser {
             final JavadocNodeImpl currentJavadocNode = nodes[i];
             final ParseTree currentParseTreeNodeChild = parseTreeParent.getChild(i);
             final JavadocNodeImpl[] subChildren =
-                    createChildrenNodes(currentJavadocNode, currentParseTreeNodeChild);
+                createChildrenNodes(currentJavadocNode, currentParseTreeNodeChild);
             currentJavadocNode.setChildren(subChildren);
         }
     }
@@ -269,13 +269,13 @@ public class JavadocDetailNodeParser {
      * @return array of Javadoc nodes
      */
     private JavadocNodeImpl[]
-            createChildrenNodes(DetailNode parentJavadocNode, ParseTree parseTreeNode) {
+    createChildrenNodes(DetailNode parentJavadocNode, ParseTree parseTreeNode) {
         final JavadocNodeImpl[] children =
-                new JavadocNodeImpl[parseTreeNode.getChildCount()];
+            new JavadocNodeImpl[parseTreeNode.getChildCount()];
 
         for (int j = 0; j < children.length; j++) {
             final JavadocNodeImpl child =
-                    createJavadocNode(parseTreeNode.getChild(j), parentJavadocNode, j);
+                createJavadocNode(parseTreeNode.getChild(j), parentJavadocNode, j);
 
             children[j] = child;
         }
@@ -296,7 +296,7 @@ public class JavadocDetailNodeParser {
 
         for (int i = 0; i < childCount; i++) {
             final JavadocNodeImpl child = createJavadocNode(parseTreeNode.getChild(i),
-                    rootJavadocNode, i);
+                rootJavadocNode, i);
             children[i] = child;
         }
         rootJavadocNode.setChildren(children);
@@ -314,7 +314,7 @@ public class JavadocDetailNodeParser {
     private JavadocNodeImpl createJavadocNode(ParseTree parseTree, DetailNode parent, int index) {
         final JavadocNodeImpl node = new JavadocNodeImpl();
         if (parseTree.getChildCount() == 0
-                || "Text".equals(getNodeClassNameWithoutContext(parseTree))) {
+            || "Text".equals(getNodeClassNameWithoutContext(parseTree))) {
             node.setText(parseTree.getText());
         }
         else {
@@ -487,13 +487,13 @@ public class JavadocDetailNodeParser {
         Token htmlTagNameStart = null;
         final Interval sourceInterval = exception.getCtx().getSourceInterval();
         final List<Token> tokenList = ((BufferedTokenStream) exception.getInputStream())
-                .getTokens(sourceInterval.a, sourceInterval.b);
+            .getTokens(sourceInterval.a, sourceInterval.b);
         final Deque<Token> stack = new ArrayDeque<>();
         int prevTokenType = JavadocTokenTypes.EOF;
         for (final Token token : tokenList) {
             final int tokenType = token.getType();
             if (tokenType == JavadocTokenTypes.HTML_TAG_NAME
-                    && prevTokenType == JavadocTokenTypes.START) {
+                && prevTokenType == JavadocTokenTypes.START) {
                 stack.push(token);
             }
             else if (tokenType == JavadocTokenTypes.HTML_TAG_NAME && !stack.isEmpty()) {
@@ -524,7 +524,7 @@ public class JavadocDetailNodeParser {
      * @return First non-tight HTML tag if one exists; null otherwise
      */
     private static Token getFirstNonTightHtmlTag(JavadocParser javadocParser,
-            int javadocLineOffset) {
+                                                 int javadocLineOffset) {
         final CommonToken offendingToken;
         final ParserRuleContext nonTightTagStartContext = javadocParser.nonTightTagStartContext;
         if (nonTightTagStartContext == null) {
@@ -532,7 +532,7 @@ public class JavadocDetailNodeParser {
         }
         else {
             final Token token = ((TerminalNode) nonTightTagStartContext.getChild(1))
-                    .getSymbol();
+                .getSymbol();
             offendingToken = new CommonToken(token);
             offendingToken.setLine(offendingToken.getLine() + javadocLineOffset);
         }
@@ -609,15 +609,15 @@ public class JavadocDetailNodeParser {
          */
         @Override
         public void syntaxError(
-                Recognizer<?, ?> recognizer, Object offendingSymbol,
-                int line, int charPositionInLine,
-                String msg, RecognitionException ex) {
+            Recognizer<?, ?> recognizer, Object offendingSymbol,
+            int line, int charPositionInLine,
+            String msg, RecognitionException ex) {
             final int lineNumber = offset + line;
 
             if (MSG_JAVADOC_WRONG_SINGLETON_TAG.equals(msg)) {
                 errorMessage = new ParseErrorMessage(lineNumber,
-                        MSG_JAVADOC_WRONG_SINGLETON_TAG, charPositionInLine,
-                        ((Token) offendingSymbol).getText());
+                    MSG_JAVADOC_WRONG_SINGLETON_TAG, charPositionInLine,
+                    ((Token) offendingSymbol).getText());
 
                 throw new IllegalArgumentException(msg);
             }
@@ -627,7 +627,7 @@ public class JavadocDetailNodeParser {
             final String upperCaseRuleName = convertUpperCamelToUpperUnderscore(ruleName);
 
             errorMessage = new ParseErrorMessage(lineNumber,
-                    MSG_JAVADOC_PARSE_RULE_ERROR, charPositionInLine, msg, upperCaseRuleName);
+                MSG_JAVADOC_PARSE_RULE_ERROR, charPositionInLine, msg, upperCaseRuleName);
 
         }
 
@@ -748,7 +748,7 @@ public class JavadocDetailNodeParser {
          * @param messageArguments message arguments
          */
         /* package */ ParseErrorMessage(int lineNumber, String messageKey,
-                Object... messageArguments) {
+                                        Object... messageArguments) {
             this.lineNumber = lineNumber;
             this.messageKey = messageKey;
             this.messageArguments = messageArguments.clone();

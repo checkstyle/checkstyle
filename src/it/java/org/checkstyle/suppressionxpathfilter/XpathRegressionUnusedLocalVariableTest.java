@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -39,71 +39,71 @@ public class XpathRegressionUnusedLocalVariableTest extends AbstractXpathTestSup
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathUnusedLocalVariableOne.java"));
+            "InputXpathUnusedLocalVariableOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedLocalVariableCheck.class);
+            createModuleConfig(UnusedLocalVariableCheck.class);
 
         final String[] expectedViolation = {
             "6:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
-                    UnusedLocalVariableCheck.MSG_UNUSED_NAMED_LOCAL_VARIABLE, "a"),
+                UnusedLocalVariableCheck.MSG_UNUSED_NAMED_LOCAL_VARIABLE, "a"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathUnusedLocalVariableOne']]/OBJBLOCK/"
-                        + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF[./IDENT[@text='a']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathUnusedLocalVariableOne']]/OBJBLOCK/"
-                        + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
-                        + "./IDENT[@text='a']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathUnusedLocalVariableOne']]/OBJBLOCK/"
-                        + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
-                        + "./IDENT[@text='a']]/TYPE",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathUnusedLocalVariableOne']]/OBJBLOCK/"
-                        + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
-                        + "./IDENT[@text='a']]/TYPE/LITERAL_INT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathUnusedLocalVariableOne']]/OBJBLOCK/"
+                + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF[./IDENT[@text='a']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathUnusedLocalVariableOne']]/OBJBLOCK/"
+                + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
+                + "./IDENT[@text='a']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathUnusedLocalVariableOne']]/OBJBLOCK/"
+                + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
+                + "./IDENT[@text='a']]/TYPE",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathUnusedLocalVariableOne']]/OBJBLOCK/"
+                + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
+                + "./IDENT[@text='a']]/TYPE/LITERAL_INT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathUnusedLocalVariableTwo.java"));
+            "InputXpathUnusedLocalVariableTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedLocalVariableCheck.class);
+            createModuleConfig(UnusedLocalVariableCheck.class);
         moduleConfig.addProperty("allowUnnamedVariables", "false");
 
         final String[] expectedViolation = {
             "10:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
-                    UnusedLocalVariableCheck.MSG_UNUSED_LOCAL_VARIABLE, "b"),
+                UnusedLocalVariableCheck.MSG_UNUSED_LOCAL_VARIABLE, "b"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathUnusedLocalVariableTwo']]/OBJBLOCK/"
-                        + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF[./IDENT[@text='b']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathUnusedLocalVariableTwo']]/OBJBLOCK/"
-                        + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
-                        + "./IDENT[@text='b']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathUnusedLocalVariableTwo']]/OBJBLOCK/"
-                        + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
-                        + "./IDENT[@text='b']]/TYPE", "/COMPILATION_UNIT/CLASS_DEF["
-                        + "./IDENT[@text='InputXpathUnusedLocalVariableTwo']]/"
-                        + "OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
-                        + "./IDENT[@text='b']]/TYPE/LITERAL_INT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathUnusedLocalVariableTwo']]/OBJBLOCK/"
+                + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF[./IDENT[@text='b']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathUnusedLocalVariableTwo']]/OBJBLOCK/"
+                + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
+                + "./IDENT[@text='b']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathUnusedLocalVariableTwo']]/OBJBLOCK/"
+                + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
+                + "./IDENT[@text='b']]/TYPE", "/COMPILATION_UNIT/CLASS_DEF["
+                + "./IDENT[@text='InputXpathUnusedLocalVariableTwo']]/"
+                + "OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
+                + "./IDENT[@text='b']]/TYPE/LITERAL_INT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
 
     }
 }

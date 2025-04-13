@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
@@ -61,12 +61,12 @@ public class InnerTypeLastCheck extends AbstractCheck {
 
     /** Set of class member tokens. */
     private static final BitSet CLASS_MEMBER_TOKENS = TokenUtil.asBitSet(
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.INSTANCE_INIT,
-            TokenTypes.STATIC_INIT,
-            TokenTypes.COMPACT_CTOR_DEF
+        TokenTypes.VARIABLE_DEF,
+        TokenTypes.METHOD_DEF,
+        TokenTypes.CTOR_DEF,
+        TokenTypes.INSTANCE_INIT,
+        TokenTypes.STATIC_INIT,
+        TokenTypes.COMPACT_CTOR_DEF
     );
 
     /** Meet a root class. */
@@ -106,7 +106,7 @@ public class InnerTypeLastCheck extends AbstractCheck {
             DetailAST nextSibling = ast;
             while (nextSibling != null) {
                 if (!ScopeUtil.isInCodeBlock(ast)
-                        && CLASS_MEMBER_TOKENS.get(nextSibling.getType())) {
+                    && CLASS_MEMBER_TOKENS.get(nextSibling.getType())) {
                     log(nextSibling, MSG_KEY);
                 }
                 nextSibling = nextSibling.getNextSibling();

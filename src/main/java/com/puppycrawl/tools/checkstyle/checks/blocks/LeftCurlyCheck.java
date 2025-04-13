@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
@@ -360,7 +360,7 @@ public class LeftCurlyCheck
     private static DetailAST findLastAnnotation(DetailAST modifiers) {
         DetailAST annotation = modifiers.findFirstToken(TokenTypes.ANNOTATION);
         while (annotation != null && annotation.getNextSibling() != null
-               && annotation.getNextSibling().getType() == TokenTypes.ANNOTATION) {
+            && annotation.getNextSibling().getType() == TokenTypes.ANNOTATION) {
             annotation = annotation.getNextSibling();
         }
         return annotation;
@@ -379,7 +379,7 @@ public class LeftCurlyCheck
 
         // Check for being told to ignore, or have '{}' which is a special case
         if (braceLine.length() <= brace.getColumnNo() + 1
-                || braceLine.charAt(brace.getColumnNo() + 1) != '}') {
+            || braceLine.charAt(brace.getColumnNo() + 1) != '}') {
             if (option == LeftCurlyOption.NL) {
                 if (!CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
                     log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
@@ -446,13 +446,13 @@ public class LeftCurlyCheck
         }
         else {
             if (!ignoreEnums
-                    && leftCurly.getParent().getParent().getType() == TokenTypes.ENUM_DEF) {
+                && leftCurly.getParent().getParent().getType() == TokenTypes.ENUM_DEF) {
                 nextToken = leftCurly.getNextSibling();
             }
         }
         return nextToken == null
-                || nextToken.getType() == TokenTypes.RCURLY
-                || !TokenUtil.areOnSameLine(leftCurly, nextToken);
+            || nextToken.getType() == TokenTypes.RCURLY
+            || !TokenUtil.areOnSameLine(leftCurly, nextToken);
     }
 
 }

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.WhenShouldBeUsedCheck;
 
 public class XpathRegressionWhenShouldBeUsedTest
-        extends AbstractXpathTestSupport {
+    extends AbstractXpathTestSupport {
 
     @Override
     protected String getCheckName() {
@@ -39,23 +39,23 @@ public class XpathRegressionWhenShouldBeUsedTest
     @Test
     public void testSimple() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
-                        "InputXpathWhenShouldBeUsedSimple.java"));
+            new File(getNonCompilablePath(
+                "InputXpathWhenShouldBeUsedSimple.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(WhenShouldBeUsedCheck.class);
+            createModuleConfig(WhenShouldBeUsedCheck.class);
         final String[] expectedViolation = {
             "7:13: " + getCheckMessage(WhenShouldBeUsedCheck.class,
-                    WhenShouldBeUsedCheck.MSG_KEY),
+                WhenShouldBeUsedCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-               "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathWhenShouldBeUsedSimple']]"
-               + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/SWITCH_RULE"
-               + "[./LITERAL_CASE/PATTERN_VARIABLE_DEF/IDENT[@text='s']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathWhenShouldBeUsedSimple']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
-                        + "LITERAL_SWITCH/SWITCH_RULE/LITERAL_CASE"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathWhenShouldBeUsedSimple']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/SWITCH_RULE"
+                + "[./LITERAL_CASE/PATTERN_VARIABLE_DEF/IDENT[@text='s']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathWhenShouldBeUsedSimple']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
+                + "LITERAL_SWITCH/SWITCH_RULE/LITERAL_CASE"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
@@ -63,24 +63,24 @@ public class XpathRegressionWhenShouldBeUsedTest
     @Test
     public void testNested() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
-                        "InputXpathWhenShouldBeUsedNested.java"));
+            new File(getNonCompilablePath(
+                "InputXpathWhenShouldBeUsedNested.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(WhenShouldBeUsedCheck.class);
+            createModuleConfig(WhenShouldBeUsedCheck.class);
         final String[] expectedViolation = {
             "10:21: " + getCheckMessage(WhenShouldBeUsedCheck.class,
-                    WhenShouldBeUsedCheck.MSG_KEY),
+                WhenShouldBeUsedCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathWhenShouldBeUsedNested']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathWhenShouldBeUsedNested']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
                 + "VARIABLE_DEF[./IDENT[@text='x']]/ASSIGN/EXPR/LITERAL_SWITCH"
                 + "/SWITCH_RULE/SLIST/"
                 + "LITERAL_SWITCH/SWITCH_RULE[./LITERAL_CASE/PATTERN_VARIABLE_DEF/"
                 + "IDENT[@text='_']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathWhenShouldBeUsedNested']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathWhenShouldBeUsedNested']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF"
                 + "[./IDENT[@text='x']]/ASSIGN/EXPR/LITERAL_SWITCH/"
                 + "SWITCH_RULE/SLIST/"

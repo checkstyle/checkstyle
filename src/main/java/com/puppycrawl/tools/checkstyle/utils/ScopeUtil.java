@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.utils;
 
@@ -71,8 +71,8 @@ public final class ScopeUtil {
      */
     public static Scope getScope(DetailAST ast) {
         return Optional.ofNullable(ast.findFirstToken(TokenTypes.MODIFIERS))
-                .map(ScopeUtil::getDeclaredScopeFromMods)
-                .orElseGet(() -> getDefaultScope(ast));
+            .map(ScopeUtil::getDeclaredScopeFromMods)
+            .orElseGet(() -> getDefaultScope(ast));
     }
 
     /**
@@ -85,7 +85,7 @@ public final class ScopeUtil {
      */
     public static Scope getScopeFromMods(DetailAST aMods) {
         return Optional.ofNullable(getDeclaredScopeFromMods(aMods))
-                .orElseGet(() -> getDefaultScope(aMods));
+            .orElseGet(() -> getDefaultScope(aMods));
     }
 
     /**
@@ -206,7 +206,7 @@ public final class ScopeUtil {
         for (DetailAST token = node.getParent();
              token != null; token = token.getParent()) {
             if (TokenUtil.isOfType(token, TokenTypes.LITERAL_NEW, tokenType)
-                    || TokenUtil.isTypeDeclaration(token.getType())) {
+                || TokenUtil.isTypeDeclaration(token.getType())) {
                 returnValue = token.getType() == tokenType;
                 break;
             }
@@ -314,7 +314,7 @@ public final class ScopeUtil {
         if (node.getType() == TokenTypes.VARIABLE_DEF) {
             final DetailAST parent = node.getParent();
             localVariableDef = TokenUtil.isOfType(parent, TokenTypes.SLIST,
-                                TokenTypes.FOR_INIT, TokenTypes.FOR_EACH_CLAUSE);
+                TokenTypes.FOR_INIT, TokenTypes.FOR_EACH_CLAUSE);
         }
 
         else if (node.getType() == TokenTypes.RESOURCE) {
@@ -344,7 +344,7 @@ public final class ScopeUtil {
      */
     public static boolean isClassFieldDef(DetailAST node) {
         return node.getType() == TokenTypes.VARIABLE_DEF
-                && !isLocalVariableDef(node);
+            && !isLocalVariableDef(node);
     }
 
     /**

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -130,40 +130,40 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
                 TokenUtil.forEachChild(parameters, TokenTypes.PARAMETER_DEF, parameter -> {
                     final DetailAST identifierAst = parameter.findFirstToken(TokenTypes.IDENT);
                     final LambdaParameterDetails lambdaParameter =
-                            new LambdaParameterDetails(ast, identifierAst);
+                        new LambdaParameterDetails(ast, identifierAst);
                     lambdaParameters.push(lambdaParameter);
                 });
             }
             else if (ast.getChildCount() != 0) {
                 // we are not switch rule and have a single parameter
                 final LambdaParameterDetails lambdaParameter =
-                            new LambdaParameterDetails(ast, ast.findFirstToken(TokenTypes.IDENT));
+                    new LambdaParameterDetails(ast, ast.findFirstToken(TokenTypes.IDENT));
                 lambdaParameters.push(lambdaParameter);
             }
         }
         else if (isLambdaParameterIdentifierCandidate(ast) && !isLeftHandOfAssignment(ast)) {
             // we do not count reassignment as usage
             lambdaParameters.stream()
-                    .filter(parameter -> parameter.getName().equals(ast.getText()))
-                    .findFirst()
-                    .ifPresent(LambdaParameterDetails::registerAsUsed);
+                .filter(parameter -> parameter.getName().equals(ast.getText()))
+                .findFirst()
+                .ifPresent(LambdaParameterDetails::registerAsUsed);
         }
     }
 
     @Override
     public void leaveToken(DetailAST ast) {
         while (lambdaParameters.peek() != null
-                    && ast.equals(lambdaParameters.peek().enclosingLambda)) {
+            && ast.equals(lambdaParameters.peek().enclosingLambda)) {
 
             final Optional<LambdaParameterDetails> unusedLambdaParameter =
-                    Optional.ofNullable(lambdaParameters.peek())
-                            .filter(parameter -> !parameter.isUsed())
-                            .filter(parameter -> !"_".equals(parameter.getName()));
+                Optional.ofNullable(lambdaParameters.peek())
+                    .filter(parameter -> !parameter.isUsed())
+                    .filter(parameter -> !"_".equals(parameter.getName()));
 
             unusedLambdaParameter.ifPresent(parameter -> {
                 log(parameter.getIdentifierAst(),
-                        MSG_UNUSED_LAMBDA_PARAMETER,
-                        parameter.getName());
+                    MSG_UNUSED_LAMBDA_PARAMETER,
+                    parameter.getName());
             });
             lambdaParameters.pop();
         }
@@ -179,11 +179,11 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
     private static boolean isLambdaParameterIdentifierCandidate(DetailAST identifierAst) {
         // we should ignore the ident if it is in the lambda parameters declaration
         final boolean isLambdaParameterDeclaration =
-                identifierAst.getParent().getType() == TokenTypes.LAMBDA
-                    || identifierAst.getParent().getType() == TokenTypes.PARAMETER_DEF;
+            identifierAst.getParent().getType() == TokenTypes.LAMBDA
+                || identifierAst.getParent().getType() == TokenTypes.PARAMETER_DEF;
 
         return !isLambdaParameterDeclaration
-                 && (hasValidParentToken(identifierAst) || isMethodInvocation(identifierAst));
+            && (hasValidParentToken(identifierAst) || isMethodInvocation(identifierAst));
     }
 
     /**
@@ -208,7 +208,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
     private static boolean isMethodInvocation(DetailAST identAst) {
         final DetailAST parent = identAst.getParent();
         return parent.getType() == TokenTypes.DOT
-                && identAst.equals(parent.getFirstChild());
+            && identAst.equals(parent.getFirstChild());
     }
 
     /**
@@ -220,7 +220,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
     private static boolean isLeftHandOfAssignment(DetailAST identAst) {
         final DetailAST parent = identAst.getParent();
         return parent.getType() == TokenTypes.ASSIGN
-                && !identAst.equals(parent.getLastChild());
+            && !identAst.equals(parent.getLastChild());
     }
 
     /**

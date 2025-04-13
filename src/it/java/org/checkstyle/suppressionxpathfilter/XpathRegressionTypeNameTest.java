@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -41,51 +41,51 @@ public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathTypeNameDefault.java"));
+            new File(getPath("InputXpathTypeNameDefault.java"));
 
         final String pattern = "^[A-Z][a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(TypeNameCheck.class);
+            createModuleConfig(TypeNameCheck.class);
 
         final String[] expectedViolation = {
             "5:19: " + getCheckMessage(TypeNameCheck.class,
-                        AbstractNameCheck.MSG_INVALID_PATTERN, "SecondName_", pattern),
+                AbstractNameCheck.MSG_INVALID_PATTERN, "SecondName_", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text"
-                        + "='InputXpathTypeNameDefault']]"
-                        + "/OBJBLOCK/CLASS_DEF/IDENT[@text='SecondName_']"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text"
+                + "='InputXpathTypeNameDefault']]"
+                + "/OBJBLOCK/CLASS_DEF/IDENT[@text='SecondName_']"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testInterfaceDef() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathTypeNameInterfaceDef.java"));
+            new File(getPath("InputXpathTypeNameInterfaceDef.java"));
 
         final String pattern = "^I_[a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(TypeNameCheck.class);
+            createModuleConfig(TypeNameCheck.class);
         moduleConfig.addProperty("format", "^I_[a-zA-Z0-9]*$");
         moduleConfig.addProperty("tokens", "INTERFACE_DEF");
 
         final String[] expectedViolation = {
             "6:15: " + getCheckMessage(TypeNameCheck.class,
-                        AbstractNameCheck.MSG_INVALID_PATTERN, "SecondName", pattern),
+                AbstractNameCheck.MSG_INVALID_PATTERN, "SecondName", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text"
-                        + "='InputXpathTypeNameInterfaceDef']]"
-                        + "/OBJBLOCK/INTERFACE_DEF/IDENT[@text='SecondName']"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text"
+                + "='InputXpathTypeNameInterfaceDef']]"
+                + "/OBJBLOCK/INTERFACE_DEF/IDENT[@text='SecondName']"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

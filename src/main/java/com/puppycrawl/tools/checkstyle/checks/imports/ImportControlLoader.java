@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
@@ -152,7 +152,7 @@ public final class ImportControlLoader extends XmlLoader {
      * @throws SAXException if an error occurs.
      */
     private ImportControlLoader() throws ParserConfigurationException,
-            SAXException {
+        SAXException {
         super(DTD_RESOURCE_BY_ID);
     }
 
@@ -161,7 +161,7 @@ public final class ImportControlLoader extends XmlLoader {
                              String localName,
                              String qName,
                              Attributes attributes)
-            throws SAXException {
+        throws SAXException {
         if ("import-control".equals(qName)) {
             final String pkg = safeGet(attributes, PKG_ATTRIBUTE_NAME);
             final MismatchStrategy strategyOnMismatch = getStrategyForImportControl(attributes);
@@ -174,7 +174,7 @@ public final class ImportControlLoader extends XmlLoader {
             final boolean regex = containsRegexAttribute(attributes);
             final PkgImportControl parentImportControl = (PkgImportControl) stack.peek();
             final AbstractImportControl importControl = new PkgImportControl(parentImportControl,
-                    name, regex, strategyOnMismatch);
+                name, regex, strategyOnMismatch);
             parentImportControl.addChild(importControl);
             stack.push(importControl);
         }
@@ -183,7 +183,7 @@ public final class ImportControlLoader extends XmlLoader {
             final boolean regex = containsRegexAttribute(attributes);
             final PkgImportControl parentImportControl = (PkgImportControl) stack.peek();
             final AbstractImportControl importControl = new FileImportControl(parentImportControl,
-                    name, regex);
+                name, regex);
             parentImportControl.addChild(importControl);
             stack.push(importControl);
         }
@@ -203,7 +203,7 @@ public final class ImportControlLoader extends XmlLoader {
      * @throws SAXException if an error occurs.
      */
     private static AbstractImportRule createImportRule(String qName, Attributes attributes)
-            throws SAXException {
+        throws SAXException {
         // Need to handle either "pkg" or "class" attribute.
         // May have "exact-match" for "pkg"
         // May have "local-only"
@@ -220,7 +220,7 @@ public final class ImportControlLoader extends XmlLoader {
         }
         else {
             final boolean exactMatch =
-                    attributes.getValue("exact-match") != null;
+                attributes.getValue("exact-match") != null;
             rule = new PkgImportRule(isAllow, isLocalOnly, pkg, exactMatch, regex);
         }
         return rule;
@@ -238,7 +238,7 @@ public final class ImportControlLoader extends XmlLoader {
 
     @Override
     public void endElement(String namespaceUri, String localName,
-        String qName) {
+                           String qName) {
         if (SUBPACKAGE_ELEMENT_NAME.equals(qName) || FILE_ELEMENT_NAME.equals(qName)) {
             stack.pop();
         }
@@ -264,7 +264,7 @@ public final class ImportControlLoader extends XmlLoader {
      * @throws CheckstyleException if an error occurs.
      */
     private static PkgImportControl load(InputSource source,
-        URI uri) throws CheckstyleException {
+                                         URI uri) throws CheckstyleException {
         try {
             final ImportControlLoader loader = new ImportControlLoader();
             loader.parseInputSource(source);
@@ -272,7 +272,7 @@ public final class ImportControlLoader extends XmlLoader {
         }
         catch (ParserConfigurationException | SAXException ex) {
             throw new CheckstyleException("unable to parse " + uri
-                    + " - " + ex.getMessage(), ex);
+                + " - " + ex.getMessage(), ex);
         }
         catch (IOException ex) {
             throw new CheckstyleException("unable to read " + uri, ex);
@@ -351,7 +351,7 @@ public final class ImportControlLoader extends XmlLoader {
      * @throws SAXException if the attribute does not exist.
      */
     private static String safeGet(Attributes attributes, String name)
-            throws SAXException {
+        throws SAXException {
         final String returnValue = attributes.getValue(name);
         if (returnValue == null) {
             // -@cs[IllegalInstantiation] SAXException is in the overridden method signature

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -41,12 +41,12 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
     @Test
     public void testEqualityTrue() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathStringLiteralEqualityTrue.java"));
+            new File(getPath("InputXpathStringLiteralEqualityTrue.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(StringLiteralEqualityCheck.class);
+            createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expectedViolation = {
             "6:17: " + getCheckMessage(StringLiteralEqualityCheck.class,
-                    StringLiteralEqualityCheck.MSG_KEY, "=="),
+                StringLiteralEqualityCheck.MSG_KEY, "=="),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT"
@@ -61,18 +61,18 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testEqualityFalse() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathStringLiteralEqualityFalse.java"));
+            new File(getPath("InputXpathStringLiteralEqualityFalse.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(StringLiteralEqualityCheck.class);
+            createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expectedViolation = {
             "6:20: " + getCheckMessage(StringLiteralEqualityCheck.class,
-                    StringLiteralEqualityCheck.MSG_KEY, "!="),
+                StringLiteralEqualityCheck.MSG_KEY, "!="),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT"
@@ -87,18 +87,18 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testEqualityExp() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathStringLiteralEqualityExp.java"));
+            new File(getPath("InputXpathStringLiteralEqualityExp.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(StringLiteralEqualityCheck.class);
+            createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expectedViolation = {
             "6:29: " + getCheckMessage(StringLiteralEqualityCheck.class,
-                    StringLiteralEqualityCheck.MSG_KEY, "=="),
+                StringLiteralEqualityCheck.MSG_KEY, "=="),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT"
@@ -110,6 +110,6 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

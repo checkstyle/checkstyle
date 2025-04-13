@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -44,133 +44,133 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathJavadocMethodOne.java"));
+            new File(getPath("InputXpathJavadocMethodOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocMethodCheck.class);
+            createModuleConfig(JavadocMethodCheck.class);
 
         final String[] expectedViolation = {
             "14:5: " + getCheckMessage(JavadocMethodCheck.class, MSG_INVALID_INHERIT_DOC),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathJavadocMethodOne']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='uninheritableMethod']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathJavadocMethodOne']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='uninheritableMethod']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathJavadocMethodOne']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='uninheritableMethod']]/MODIFIERS"
-                        + "/LITERAL_PRIVATE");
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathJavadocMethodOne']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='uninheritableMethod']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathJavadocMethodOne']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='uninheritableMethod']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathJavadocMethodOne']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='uninheritableMethod']]/MODIFIERS"
+                + "/LITERAL_PRIVATE");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathJavadocMethodTwo.java"));
+            new File(getPath("InputXpathJavadocMethodTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocMethodCheck.class);
+            createModuleConfig(JavadocMethodCheck.class);
 
         final String[] expectedViolation = {
             "13:31: " + getCheckMessage(JavadocMethodCheck.class, MSG_EXPECTED_TAG,
-                    "@param", "x"),
+                "@param", "x"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathJavadocMethodTwo']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='checkParam']]/PARAMETERS"
-                        + "/PARAMETER_DEF/IDENT[@text='x']");
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathJavadocMethodTwo']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='checkParam']]/PARAMETERS"
+                + "/PARAMETER_DEF/IDENT[@text='x']");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathJavadocMethodThree.java"));
+            new File(getPath("InputXpathJavadocMethodThree.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocMethodCheck.class);
+            createModuleConfig(JavadocMethodCheck.class);
 
         final String[] expectedViolation = {
             "14:13: " + getCheckMessage(JavadocMethodCheck.class, MSG_EXPECTED_TAG,
-                    "@param", "<T>"),
+                "@param", "<T>"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathJavadocMethodThree']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='checkTypeParam']]/TYPE_PARAMETERS"
-                        + "/TYPE_PARAMETER[./IDENT[@text='T']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathJavadocMethodThree']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='checkTypeParam']]/TYPE_PARAMETERS"
-                        + "/TYPE_PARAMETER/IDENT[@text='T']");
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathJavadocMethodThree']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='checkTypeParam']]/TYPE_PARAMETERS"
+                + "/TYPE_PARAMETER[./IDENT[@text='T']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathJavadocMethodThree']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='checkTypeParam']]/TYPE_PARAMETERS"
+                + "/TYPE_PARAMETER/IDENT[@text='T']");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testFour() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathJavadocMethodFour.java"));
+            new File(getPath("InputXpathJavadocMethodFour.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocMethodCheck.class);
+            createModuleConfig(JavadocMethodCheck.class);
 
         moduleConfig.addProperty("validateThrows", "true");
 
         final String[] expectedViolation = {
             "12:30: " + getCheckMessage(JavadocMethodCheck.class, MSG_EXPECTED_TAG,
-                    "@throws", "Exception"),
+                "@throws", "Exception"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathJavadocMethodFour']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
-                        + "/LITERAL_THROWS/IDENT[@text='Exception']");
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathJavadocMethodFour']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
+                + "/LITERAL_THROWS/IDENT[@text='Exception']");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testFive() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathJavadocMethodFive.java"));
+            new File(getPath("InputXpathJavadocMethodFive.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocMethodCheck.class);
+            createModuleConfig(JavadocMethodCheck.class);
 
         moduleConfig.addProperty("validateThrows", "true");
 
         final String[] expectedViolation = {
             "13:19: " + getCheckMessage(JavadocMethodCheck.class, MSG_EXPECTED_TAG,
-                    "@throws", "org.apache.tools.ant.BuildException"),
+                "@throws", "org.apache.tools.ant.BuildException"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathJavadocMethodFive']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bar']]/SLIST"
-                        + "/LITERAL_THROW/EXPR/LITERAL_NEW"
-                        + "/DOT[./IDENT[@text='BuildException']]"
-                        + "/DOT[./IDENT[@text='ant']]"
-                        + "/DOT[./IDENT[@text='tools']]"
-                        + "/DOT/IDENT[@text='org']");
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathJavadocMethodFive']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bar']]/SLIST"
+                + "/LITERAL_THROW/EXPR/LITERAL_NEW"
+                + "/DOT[./IDENT[@text='BuildException']]"
+                + "/DOT[./IDENT[@text='ant']]"
+                + "/DOT[./IDENT[@text='tools']]"
+                + "/DOT/IDENT[@text='org']");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

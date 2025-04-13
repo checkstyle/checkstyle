@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -486,7 +486,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
                     // quotes to make string consistent with STRING_LITERAL
                     final String logString = QUOTE
                         + NEWLINE.matcher(
-                            ast.getFirstChild().getText()).replaceAll("\\\\n")
+                        ast.getFirstChild().getText()).replaceAll("\\\\n")
                         + QUOTE;
                     log(ast, MSG_STRING, chopString(logString));
                 }
@@ -537,9 +537,9 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         final DetailAST prev = ast.getPreviousSibling();
         final DetailAST parent = ast.getParent();
         final boolean isPreviousSiblingLeftParenthesis = prev != null
-                && prev.getType() == TokenTypes.LPAREN;
+            && prev.getType() == TokenTypes.LPAREN;
         final boolean isMethodCallWithUnnecessaryParenthesis =
-                parent.getType() == TokenTypes.METHOD_CALL
+            parent.getType() == TokenTypes.METHOD_CALL
                 && parent.getPreviousSibling() != null
                 && parent.getPreviousSibling().getType() == TokenTypes.LPAREN;
         return isPreviousSiblingLeftParenthesis || isMethodCallWithUnnecessaryParenthesis;
@@ -592,7 +592,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     private static boolean unnecessaryParenAroundOperators(DetailAST ast) {
         final int type = ast.getType();
         final boolean isConditionalOrRelational = TokenUtil.isOfType(type, CONDITIONAL_OPERATOR)
-                        || TokenUtil.isOfType(type, RELATIONAL_OPERATOR);
+            || TokenUtil.isOfType(type, RELATIONAL_OPERATOR);
         final boolean isBitwise = TokenUtil.isOfType(type, BITWISE_BINARY_OPERATORS);
         final boolean hasUnnecessaryParentheses;
         if (isConditionalOrRelational) {
@@ -603,7 +603,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         }
         else {
             hasUnnecessaryParentheses = TokenUtil.isOfType(type, UNARY_AND_POSTFIX)
-                    && isBitWiseBinaryOrConditionalOrRelationalOperator(ast.getParent().getType());
+                && isBitWiseBinaryOrConditionalOrRelationalOperator(ast.getParent().getType());
         }
         return hasUnnecessaryParentheses;
     }
@@ -618,11 +618,11 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         final int type = ast.getType();
         final int parentType = ast.getParent().getType();
         final boolean isParentEqualityOperator =
-                TokenUtil.isOfType(parentType, TokenTypes.EQUAL, TokenTypes.NOT_EQUAL);
+            TokenUtil.isOfType(parentType, TokenTypes.EQUAL, TokenTypes.NOT_EQUAL);
         final boolean result;
         if (type == TokenTypes.LOR) {
             result = !TokenUtil.isOfType(parentType, TokenTypes.LAND)
-                    && !TokenUtil.isOfType(parentType, BITWISE_BINARY_OPERATORS);
+                && !TokenUtil.isOfType(parentType, BITWISE_BINARY_OPERATORS);
         }
         else if (type == TokenTypes.LAND) {
             result = !TokenUtil.isOfType(parentType, BITWISE_BINARY_OPERATORS);
@@ -631,7 +631,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             result = true;
         }
         return result && !isParentEqualityOperator
-                && isBitWiseBinaryOrConditionalOrRelationalOperator(parentType);
+            && isBitWiseBinaryOrConditionalOrRelationalOperator(parentType);
     }
 
     /**
@@ -646,11 +646,11 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         final boolean result;
         if (type == TokenTypes.BOR) {
             result = !TokenUtil.isOfType(parentType, TokenTypes.BAND, TokenTypes.BXOR)
-                    && !TokenUtil.isOfType(parentType, RELATIONAL_OPERATOR);
+                && !TokenUtil.isOfType(parentType, RELATIONAL_OPERATOR);
         }
         else if (type == TokenTypes.BXOR) {
             result = !TokenUtil.isOfType(parentType, TokenTypes.BAND)
-                    && !TokenUtil.isOfType(parentType, RELATIONAL_OPERATOR);
+                && !TokenUtil.isOfType(parentType, RELATIONAL_OPERATOR);
         }
         // we deal with bitwise AND here.
         else {
@@ -667,8 +667,8 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      */
     private static boolean isBitWiseBinaryOrConditionalOrRelationalOperator(int type) {
         return TokenUtil.isOfType(type, CONDITIONAL_OPERATOR)
-                || TokenUtil.isOfType(type, RELATIONAL_OPERATOR)
-                || TokenUtil.isOfType(type, BITWISE_BINARY_OPERATORS);
+            || TokenUtil.isOfType(type, RELATIONAL_OPERATOR)
+            || TokenUtil.isOfType(type, BITWISE_BINARY_OPERATORS);
     }
 
     /**
@@ -685,7 +685,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         if (TokenUtil.isOfType(firstChild, TokenTypes.LPAREN)) {
             final DetailAST parameters = firstChild.getNextSibling();
             if (parameters.getChildCount(TokenTypes.PARAMETER_DEF) == 1
-                    && !parameters.getFirstChild().findFirstToken(TokenTypes.TYPE).hasChildren()) {
+                && !parameters.getFirstChild().findFirstToken(TokenTypes.TYPE).hasChildren()) {
                 result = true;
             }
         }
@@ -705,7 +705,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         DetailAST directChild = questionToken.getFirstChild();
         while (directChild != null) {
             if (directChild.getType() == TokenTypes.LPAREN
-                    && !TokenUtil.isOfType(directChild.getNextSibling(), LITERALS)) {
+                && !TokenUtil.isOfType(directChild.getNextSibling(), LITERALS)) {
                 surroundedChildren.add(directChild);
             }
             directChild = directChild.getNextSibling();

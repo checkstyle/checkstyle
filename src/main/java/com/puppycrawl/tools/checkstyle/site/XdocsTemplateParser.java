@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.site;
 
@@ -110,9 +110,9 @@ public class XdocsTemplateParser extends XdocParser {
             sink.body_();
         }
         else if (macroName != null
-                && tagName.equals(MACRO_TAG.toString())
-                && !macroName.isEmpty()
-                && !isSecondParsing()) {
+            && tagName.equals(MACRO_TAG.toString())
+            && !macroName.isEmpty()
+            && !isSecondParsing()) {
             processMacroEnd(sink);
             setIgnorableWhitespace(false);
         }
@@ -132,8 +132,8 @@ public class XdocsTemplateParser extends XdocParser {
 
         if (macroName == null || macroName.isEmpty()) {
             final String message = String.format(Locale.ROOT,
-                    "The '%s' attribute for the '%s' tag is required.",
-                    Attribute.NAME, MACRO_TAG);
+                "The '%s' attribute for the '%s' tag is required.",
+                Attribute.NAME, MACRO_TAG);
             throw new MacroExecutionException(message);
         }
     }
@@ -148,18 +148,18 @@ public class XdocsTemplateParser extends XdocParser {
     private void processParamStart(XmlPullParser parser, Sink sink) throws MacroExecutionException {
         if (macroName != null && !macroName.isEmpty()) {
             final String paramName = parser
-                    .getAttributeValue(null, Attribute.NAME.toString());
+                .getAttributeValue(null, Attribute.NAME.toString());
             final String paramValue = parser
-                    .getAttributeValue(null, Attribute.VALUE.toString());
+                .getAttributeValue(null, Attribute.VALUE.toString());
 
             if (paramName == null
-                    || paramValue == null
-                    || paramName.isEmpty()
-                    || paramValue.isEmpty()) {
+                || paramValue == null
+                || paramName.isEmpty()
+                || paramValue.isEmpty()) {
                 final String message = String.format(Locale.ROOT,
-                        "'%s' and '%s' attributes for the '%s' tag are required"
-                                + " inside the '%s' tag.",
-                        Attribute.NAME, Attribute.VALUE, PARAM, MACRO_TAG);
+                    "'%s' and '%s' attributes for the '%s' tag are required"
+                        + " inside the '%s' tag.",
+                    Attribute.NAME, Attribute.VALUE, PARAM, MACRO_TAG);
                 throw new MacroExecutionException(message);
             }
 
@@ -180,8 +180,8 @@ public class XdocsTemplateParser extends XdocParser {
      */
     private void processMacroEnd(Sink sink) throws MacroExecutionException {
         final MacroRequest request = new MacroRequest(sourceContent,
-                new XdocsTemplateParser(), macroParameters,
-                new File(TEMP_DIR));
+            new XdocsTemplateParser(), macroParameters,
+            new File(TEMP_DIR));
 
         try {
             executeMacro(macroName, request, sink);

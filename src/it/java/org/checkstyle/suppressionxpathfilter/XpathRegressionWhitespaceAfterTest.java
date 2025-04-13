@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,14 +40,14 @@ public class XpathRegressionWhitespaceAfterTest extends AbstractXpathTestSupport
     @Test
     public void testWhitespaceAfterTypecast() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathWhitespaceAfterTypecast.java"));
+            new File(getPath("InputXpathWhitespaceAfterTypecast.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(WhitespaceAfterCheck.class);
+            createModuleConfig(WhitespaceAfterCheck.class);
 
         final String[] expectedViolation = {
             "4:25: " + getCheckMessage(WhitespaceAfterCheck.class,
-                    WhitespaceAfterCheck.MSG_WS_TYPECAST, "-"),
+                WhitespaceAfterCheck.MSG_WS_TYPECAST, "-"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -57,20 +57,20 @@ public class XpathRegressionWhitespaceAfterTest extends AbstractXpathTestSupport
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testWhitespaceAfterNotFollowed() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathWhitespaceAfterNotFollowed.java"));
+            new File(getPath("InputXpathWhitespaceAfterNotFollowed.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(WhitespaceAfterCheck.class);
+            createModuleConfig(WhitespaceAfterCheck.class);
 
         final String[] expectedViolation = {
             "4:19: " + getCheckMessage(WhitespaceAfterCheck.class,
-                    WhitespaceAfterCheck.MSG_WS_NOT_FOLLOWED, ","),
+                WhitespaceAfterCheck.MSG_WS_NOT_FOLLOWED, ","),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -80,7 +80,7 @@ public class XpathRegressionWhitespaceAfterTest extends AbstractXpathTestSupport
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

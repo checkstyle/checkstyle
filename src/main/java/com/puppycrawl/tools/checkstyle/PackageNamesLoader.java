@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -82,7 +82,7 @@ public final class PackageNamesLoader
      * @throws SAXException if an error occurs
      */
     private PackageNamesLoader()
-            throws ParserConfigurationException, SAXException {
+        throws ParserConfigurationException, SAXException {
         super(createIdToResourceNameMap());
     }
 
@@ -137,7 +137,7 @@ public final class PackageNamesLoader
      * @throws CheckstyleException if an error occurs.
      */
     public static Set<String> getPackageNames(ClassLoader classLoader)
-            throws CheckstyleException {
+        throws CheckstyleException {
         final Set<String> result;
         try {
             // create the loader outside the loop to prevent PackageObjectFactory
@@ -171,7 +171,7 @@ public final class PackageNamesLoader
      * @throws CheckstyleException if unable to open file
      */
     private static void processFile(URL packageFile, PackageNamesLoader namesLoader)
-            throws SAXException, CheckstyleException {
+        throws SAXException, CheckstyleException {
         try (InputStream stream = new BufferedInputStream(packageFile.openStream())) {
             final InputSource source = new InputSource(stream);
             namesLoader.parseInputSource(source);

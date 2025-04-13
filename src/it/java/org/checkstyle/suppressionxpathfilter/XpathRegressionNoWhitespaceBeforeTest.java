@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,14 +40,14 @@ public class XpathRegressionNoWhitespaceBeforeTest extends AbstractXpathTestSupp
     @Test
     public void testNoWhitespaceBefore() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathNoWhitespaceBefore.java"));
+            new File(getPath("InputXpathNoWhitespaceBefore.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoWhitespaceBeforeCheck.class);
+            createModuleConfig(NoWhitespaceBeforeCheck.class);
 
         final String[] expectedViolation = {
             "4:13: " + getCheckMessage(NoWhitespaceBeforeCheck.class,
-                    NoWhitespaceBeforeCheck.MSG_KEY, ";"),
+                NoWhitespaceBeforeCheck.MSG_KEY, ";"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -57,7 +57,7 @@ public class XpathRegressionNoWhitespaceBeforeTest extends AbstractXpathTestSupp
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test

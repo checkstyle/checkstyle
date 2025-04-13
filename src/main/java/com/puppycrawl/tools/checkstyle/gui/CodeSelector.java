@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,15 +15,15 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.gui;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.swing.JTextArea;
+import javax.swing.*;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -50,11 +50,11 @@ public class CodeSelector {
         this.editor = editor;
         if (node instanceof DetailAST) {
             pModel = new CodeSelectorPresentation((DetailAST) node,
-                    new ArrayList<>(lines2position));
+                new ArrayList<>(lines2position));
         }
         else {
             pModel = new CodeSelectorPresentation((DetailNode) node,
-                    new ArrayList<>(lines2position));
+                new ArrayList<>(lines2position));
         }
     }
 

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,47 +40,47 @@ public class XpathRegressionOuterTypeFilenameTest extends AbstractXpathTestSuppo
     @Test
     public void testNoPublic() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathOuterTypeFilenameOne.java"));
+            "InputXpathOuterTypeFilenameOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(OuterTypeFilenameCheck.class);
+            createModuleConfig(OuterTypeFilenameCheck.class);
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(OuterTypeFilenameCheck.class,
-                    OuterTypeFilenameCheck.MSG_KEY),
+                OuterTypeFilenameCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Class1']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Class1']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Class1']]/LITERAL_CLASS"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Class1']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Class1']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Class1']]/LITERAL_CLASS"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testNested() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathOuterTypeFilenameTwo.java"));
+            "InputXpathOuterTypeFilenameTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(OuterTypeFilenameCheck.class);
+            createModuleConfig(OuterTypeFilenameCheck.class);
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(OuterTypeFilenameCheck.class,
-                    OuterTypeFilenameCheck.MSG_KEY),
+                OuterTypeFilenameCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Test']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Test']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Test']]/LITERAL_CLASS"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Test']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Test']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Test']]/LITERAL_CLASS"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

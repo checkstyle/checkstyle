@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
@@ -212,8 +212,8 @@ public class RightCurlyCheck extends AbstractCheck {
     private static boolean shouldHaveLineBreakBefore(RightCurlyOption bracePolicy,
                                                      Details details) {
         return bracePolicy == RightCurlyOption.SAME
-                && !hasLineBreakBefore(details.rcurly)
-                && !TokenUtil.areOnSameLine(details.lcurly, details.rcurly);
+            && !hasLineBreakBefore(details.rcurly)
+            && !TokenUtil.areOnSameLine(details.lcurly, details.rcurly);
     }
 
     /**
@@ -225,8 +225,8 @@ public class RightCurlyCheck extends AbstractCheck {
      */
     private static boolean shouldBeOnSameLine(RightCurlyOption bracePolicy, Details details) {
         return bracePolicy == RightCurlyOption.SAME
-                && !details.shouldCheckLastRcurly
-                && !TokenUtil.areOnSameLine(details.rcurly, details.nextToken);
+            && !details.shouldCheckLastRcurly
+            && !TokenUtil.areOnSameLine(details.rcurly, details.nextToken);
     }
 
     /**
@@ -241,10 +241,10 @@ public class RightCurlyCheck extends AbstractCheck {
                                                Details details,
                                                String targetSrcLine) {
         return bracePolicy == RightCurlyOption.ALONE
-                    && shouldBeAloneOnLineWithAloneOption(details, targetSrcLine)
-                || (bracePolicy == RightCurlyOption.ALONE_OR_SINGLELINE
-                    || details.shouldCheckLastRcurly)
-                    && shouldBeAloneOnLineWithNotAloneOption(details, targetSrcLine);
+            && shouldBeAloneOnLineWithAloneOption(details, targetSrcLine)
+            || (bracePolicy == RightCurlyOption.ALONE_OR_SINGLELINE
+            || details.shouldCheckLastRcurly)
+            && shouldBeAloneOnLineWithNotAloneOption(details, targetSrcLine);
     }
 
     /**
@@ -270,7 +270,7 @@ public class RightCurlyCheck extends AbstractCheck {
     private static boolean shouldBeAloneOnLineWithNotAloneOption(Details details,
                                                                  String targetSrcLine) {
         return shouldBeAloneOnLineWithAloneOption(details, targetSrcLine)
-                && !isBlockAloneOnSingleLine(details);
+            && !isBlockAloneOnSingleLine(details);
     }
 
     /**
@@ -286,7 +286,7 @@ public class RightCurlyCheck extends AbstractCheck {
         return (nextToken == null || !TokenUtil.areOnSameLine(rcurly, nextToken)
             || skipDoubleBraceInstInit(details))
             && CommonUtil.hasWhitespaceBefore(details.rcurly.getColumnNo(),
-               targetSrcLine);
+            targetSrcLine);
     }
 
     /**
@@ -313,9 +313,9 @@ public class RightCurlyCheck extends AbstractCheck {
         if (tokenAfterNextToken != null) {
             final DetailAST rcurly = details.rcurly;
             skipDoubleBraceInstInit = rcurly.getParent().getParent()
-                    .getType() == TokenTypes.INSTANCE_INIT
-                    && details.nextToken.getType() == TokenTypes.RCURLY
-                    && !TokenUtil.areOnSameLine(rcurly, Details.getNextToken(tokenAfterNextToken));
+                .getType() == TokenTypes.INSTANCE_INIT
+                && details.nextToken.getType() == TokenTypes.RCURLY
+                && !TokenUtil.areOnSameLine(rcurly, Details.getNextToken(tokenAfterNextToken));
         }
         return skipDoubleBraceInstInit;
     }
@@ -347,7 +347,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
         return TokenUtil.areOnSameLine(details.lcurly, details.rcurly)
             && (nextToken == null || !TokenUtil.areOnSameLine(details.rcurly, nextToken)
-                || isRightcurlyFollowedBySemicolon(details));
+            || isRightcurlyFollowedBySemicolon(details));
     }
 
     /**
@@ -487,14 +487,14 @@ public class RightCurlyCheck extends AbstractCheck {
             else {
                 statementList = caseNode.getNextSibling();
                 lcurly = Optional.ofNullable(statementList)
-                         .map(DetailAST::getFirstChild)
-                         .filter(node -> node.getType() == TokenTypes.SLIST);
+                    .map(DetailAST::getFirstChild)
+                    .filter(node -> node.getType() == TokenTypes.SLIST);
             }
             final DetailAST rcurly = lcurly.map(DetailAST::getLastChild)
-                    .filter(child -> !isSwitchExpression(caseParent))
-                    .orElse(null);
+                .filter(child -> !isSwitchExpression(caseParent))
+                .orElse(null);
             final Optional<DetailAST> nextToken =
-                    Optional.ofNullable(lcurly.map(DetailAST::getNextSibling)
+                Optional.ofNullable(lcurly.map(DetailAST::getNextSibling)
                     .orElseGet(() -> getNextToken(caseParent)));
 
             return new Details(lcurly.orElse(null), rcurly, nextToken.orElse(null), true);

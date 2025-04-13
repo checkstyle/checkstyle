@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks;
 
@@ -164,7 +164,7 @@ public class UncommentedMainCheck
      */
     private void visitPackageDef(DetailAST packageDef) {
         packageName = FullIdent.createFullIdent(packageDef.getLastChild()
-                .getPreviousSibling());
+            .getPreviousSibling());
     }
 
     /**
@@ -190,12 +190,12 @@ public class UncommentedMainCheck
      */
     private void visitMethodDef(DetailAST method) {
         if (classDepth == 1
-                // method not in inner class or in interface definition
-                && checkClassName()
-                && checkName(method)
-                && checkModifiers(method)
-                && checkType(method)
-                && checkParams(method)) {
+            // method not in inner class or in interface definition
+            && checkClassName()
+            && checkName(method)
+            && checkModifiers(method)
+            && checkType(method)
+            && checkParams(method)) {
             log(method, MSG_KEY);
         }
     }

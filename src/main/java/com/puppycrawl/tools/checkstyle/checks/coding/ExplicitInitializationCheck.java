@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -132,18 +132,18 @@ public class ExplicitInitializationCheck extends AbstractCheck {
         final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
         final DetailAST assign = ast.findFirstToken(TokenTypes.ASSIGN);
         final DetailAST exprStart =
-                assign.getFirstChild().getFirstChild();
+            assign.getFirstChild().getFirstChild();
         final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
         final int primitiveType = type.getFirstChild().getType();
         if (primitiveType == TokenTypes.LITERAL_BOOLEAN
-                && exprStart.getType() == TokenTypes.LITERAL_FALSE) {
+            && exprStart.getType() == TokenTypes.LITERAL_FALSE) {
             log(ident, MSG_KEY, ident.getText(), "false");
         }
         if (isNumericType(primitiveType) && isZero(exprStart)) {
             log(ident, MSG_KEY, ident.getText(), "0");
         }
         if (primitiveType == TokenTypes.LITERAL_CHAR
-                && isZeroChar(exprStart)) {
+            && isZeroChar(exprStart)) {
             log(ident, MSG_KEY, ident.getText(), "\\0");
         }
     }
@@ -171,7 +171,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
         // do not check local variables and
         // fields declared in interface/annotations
         if (!ScopeUtil.isLocalVariableDef(ast)
-                && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
+            && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
             final DetailAST assign = ast.findFirstToken(TokenTypes.ASSIGN);
 
             if (assign != null) {
@@ -191,11 +191,11 @@ public class ExplicitInitializationCheck extends AbstractCheck {
      */
     private static boolean isNumericType(int type) {
         return type == TokenTypes.LITERAL_BYTE
-                || type == TokenTypes.LITERAL_SHORT
-                || type == TokenTypes.LITERAL_INT
-                || type == TokenTypes.LITERAL_FLOAT
-                || type == TokenTypes.LITERAL_LONG
-                || type == TokenTypes.LITERAL_DOUBLE;
+            || type == TokenTypes.LITERAL_SHORT
+            || type == TokenTypes.LITERAL_INT
+            || type == TokenTypes.LITERAL_FLOAT
+            || type == TokenTypes.LITERAL_LONG
+            || type == TokenTypes.LITERAL_DOUBLE;
     }
 
     /**

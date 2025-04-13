@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks;
 
@@ -173,7 +173,7 @@ public class NewlineAtEndOfFileCheck
         // Cannot use lines as the line separators have been removed!
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r")) {
             if (lineSeparator == LineSeparatorOption.LF
-                    && endsWithNewline(randomAccessFile, LineSeparatorOption.CRLF)) {
+                && endsWithNewline(randomAccessFile, LineSeparatorOption.CRLF)) {
                 log(1, MSG_KEY_WRONG_ENDING);
             }
             else if (!endsWithNewline(randomAccessFile, lineSeparator)) {
@@ -193,7 +193,7 @@ public class NewlineAtEndOfFileCheck
      *         provided reader
      */
     private static boolean endsWithNewline(RandomAccessFile file, LineSeparatorOption separator)
-            throws IOException {
+        throws IOException {
         final boolean result;
         final int len = separator.length();
         if (file.length() < len) {
@@ -205,7 +205,7 @@ public class NewlineAtEndOfFileCheck
             final int readBytes = file.read(lastBytes);
             if (readBytes != len) {
                 throw new IOException("Unable to read " + len + " bytes, got "
-                        + readBytes);
+                    + readBytes);
             }
             result = separator.matches(lastBytes);
         }

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -52,7 +52,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
         IndentLevel childIndent = getIndent();
         if (isLambdaCorrectlyIndented) {
             childIndent = IndentLevel.addAcceptable(childIndent, getLineStart(getMainAst()),
-                    getLineStart(getMainAst().getFirstChild()));
+                getLineStart(getMainAst().getFirstChild()));
         }
 
         return childIndent;
@@ -127,7 +127,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
     private boolean isNonAcceptableIndent(int astColumnNo, IndentLevel level) {
         return astColumnNo < level.getFirstIndentLevel()
             || getIndentCheck().isForceStrictCondition()
-               && !level.isAcceptable(astColumnNo);
+            && !level.isAcceptable(astColumnNo);
     }
 
     /**
@@ -150,7 +150,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
             final int previousLineStart = getLineStart(previousSibling);
 
             level = new IndentLevel(new IndentLevel(previousLineStart),
-                    getIndentCheck().getLineWrappingIndentation());
+                getIndentCheck().getLineWrappingIndentation());
         }
         else {
             level = new IndentLevel(getIndent(),

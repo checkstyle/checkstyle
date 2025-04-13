@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -192,7 +192,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         final DetailAST modifiers = ast.getFirstChild();
 
         if (parentType != TokenTypes.OBJBLOCK
-                && (!ignoreFinal || modifiers.findFirstToken(TokenTypes.FINAL) == null)) {
+            && (!ignoreFinal || modifiers.findFirstToken(TokenTypes.FINAL) == null)) {
             final DetailAST variable = ast.findFirstToken(TokenTypes.IDENT);
 
             if (!isVariableMatchesIgnorePattern(variable.getText())) {
@@ -207,7 +207,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 final DetailAST variableUsageAst = entry.getKey();
                 final int dist = entry.getValue();
                 if (dist > allowedDistance
-                        && !isInitializationSequence(variableUsageAst, variable.getText())) {
+                    && !isInitializationSequence(variableUsageAst, variable.getText())) {
                     if (ignoreFinal) {
                         log(ast, MSG_KEY_EXT, variable.getText(), dist, allowedDistance);
                     }
@@ -228,7 +228,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      */
     private static String getInstanceName(DetailAST methodCallAst) {
         final String methodCallName =
-                FullIdent.createFullIdentBelow(methodCallAst).getText();
+            FullIdent.createFullIdentBelow(methodCallAst).getText();
         final int lastDotIndex = methodCallName.lastIndexOf('.');
         String instanceName = "";
         if (lastDotIndex != -1) {
@@ -249,7 +249,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      *         initialization methods.
      */
     private static boolean isInitializationSequence(
-            DetailAST variableUsageAst, String variableName) {
+        DetailAST variableUsageAst, String variableName) {
         boolean result = true;
         boolean isUsedVariableDeclarationFound = false;
         DetailAST currentSiblingAst = variableUsageAst;
@@ -257,7 +257,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
         while (result && !isUsedVariableDeclarationFound && currentSiblingAst != null) {
             if (currentSiblingAst.getType() == TokenTypes.EXPR
-                    && currentSiblingAst.getFirstChild().getType() == TokenTypes.METHOD_CALL) {
+                && currentSiblingAst.getFirstChild().getType() == TokenTypes.METHOD_CALL) {
                 final DetailAST methodCallAst = currentSiblingAst.getFirstChild();
                 final String instanceName = getInstanceName(methodCallAst);
                 if (instanceName.isEmpty()) {
@@ -275,7 +275,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             }
             else if (currentSiblingAst.getType() == TokenTypes.VARIABLE_DEF) {
                 final String currentVariableName =
-                        currentSiblingAst.findFirstToken(TokenTypes.IDENT).getText();
+                    currentSiblingAst.findFirstToken(TokenTypes.IDENT).getText();
                 isUsedVariableDeclarationFound = variableName.equals(currentVariableName);
             }
             else {
@@ -300,7 +300,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      *         although the distance can be greater than zero.
      */
     private static Entry<DetailAST, Integer> calculateDistanceInSingleScope(
-            DetailAST semicolonAst, DetailAST variableIdentAst) {
+        DetailAST semicolonAst, DetailAST variableIdentAst) {
         int dist = 0;
         boolean firstUsageFound = false;
         DetailAST currentAst = semicolonAst;
@@ -375,13 +375,13 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @return entry which contains expression with variable usage and distance.
      */
     private static Entry<DetailAST, Integer> calculateDistanceBetweenScopes(
-            DetailAST ast, DetailAST variable) {
+        DetailAST ast, DetailAST variable) {
         int dist = 0;
         DetailAST currentScopeAst = ast;
         DetailAST variableUsageAst = null;
         while (currentScopeAst != null) {
             final Entry<List<DetailAST>, Integer> searchResult =
-                    searchVariableUsageExpressions(variable, currentScopeAst);
+                searchVariableUsageExpressions(variable, currentScopeAst);
 
             currentScopeAst = null;
 
@@ -392,7 +392,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             // this scope and count distance until variable usage.
             if (variableUsageExpressions.size() == 1) {
                 final DetailAST blockWithVariableUsage = variableUsageExpressions
-                        .get(0);
+                    .get(0);
                 DetailAST exprWithVariableUsage = null;
                 switch (blockWithVariableUsage.getType()) {
                     case TokenTypes.VARIABLE_DEF:
@@ -448,7 +448,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      *     and distance from specified statement to first found expression.
      */
     private static Entry<List<DetailAST>, Integer>
-        searchVariableUsageExpressions(final DetailAST variableAst, final DetailAST statementAst) {
+    searchVariableUsageExpressions(final DetailAST variableAst, final DetailAST statementAst) {
         final List<DetailAST> variableUsageExpressions = new ArrayList<>();
         int distance = 0;
         DetailAST currentStatementAst = statementAst;
@@ -459,7 +459,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 }
                 // If expression hasn't been met yet, then distance + 1.
                 else if (variableUsageExpressions.isEmpty()
-                        && !isZeroDistanceToken(currentStatementAst.getType())) {
+                    && !isZeroDistanceToken(currentStatementAst.getType())) {
                     distance++;
                 }
             }
@@ -481,7 +481,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      *         of this block, otherwise - null.
      */
     private static DetailAST getFirstNodeInsideForWhileDoWhileBlocks(
-            DetailAST block, DetailAST variable) {
+        DetailAST block, DetailAST variable) {
         DetailAST firstNodeInsideBlock = null;
 
         if (!isVariableInOperatorExpr(block, variable)) {
@@ -521,7 +521,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      *         of this block, otherwise - null.
      */
     private static DetailAST getFirstNodeInsideIfBlock(
-            DetailAST block, DetailAST variable) {
+        DetailAST block, DetailAST variable) {
         DetailAST firstNodeInsideBlock = null;
 
         if (!isVariableInOperatorExpr(block, variable)) {
@@ -572,9 +572,9 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      *         of this block, otherwise - null.
      */
     private static DetailAST getFirstNodeInsideSwitchBlock(
-            DetailAST block, DetailAST variable) {
+        DetailAST block, DetailAST variable) {
         final List<DetailAST> variableUsageExpressions =
-                getVariableUsageExpressionsInsideSwitchBlock(block, variable);
+            getVariableUsageExpressionsInsideSwitchBlock(block, variable);
 
         // If variable usage exists in several related blocks, then
         // firstNodeInsideBlock = null, otherwise if variable usage exists
@@ -597,10 +597,10 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @return List of usages or empty list if none are found.
      */
     private static List<DetailAST> getVariableUsageExpressionsInsideSwitchBlock(DetailAST block,
-                                                                            DetailAST variable) {
+                                                                                DetailAST variable) {
         final Optional<DetailAST> firstToken = TokenUtil.findFirstTokenByPredicate(block, child -> {
             return child.getType() == TokenTypes.SWITCH_RULE
-                    || child.getType() == TokenTypes.CASE_GROUP;
+                || child.getType() == TokenTypes.CASE_GROUP;
         });
 
         final List<DetailAST> variableUsageExpressions = new ArrayList<>();
@@ -630,10 +630,10 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      *         of this block, otherwise - null.
      */
     private static DetailAST getFirstNodeInsideTryCatchFinallyBlocks(
-            DetailAST block, DetailAST variable) {
+        DetailAST block, DetailAST variable) {
         DetailAST currentNode = block.getFirstChild();
         final List<DetailAST> variableUsageExpressions =
-                new ArrayList<>();
+            new ArrayList<>();
 
         // Checking variable usage inside TRY block.
         if (isChild(currentNode, variable)) {
@@ -645,7 +645,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
         // Checking variable usage inside all CATCH blocks.
         while (currentNode != null
-                && currentNode.getType() == TokenTypes.LITERAL_CATCH) {
+            && currentNode.getType() == TokenTypes.LITERAL_CATCH) {
             final DetailAST catchBlock = currentNode.getLastChild();
 
             if (isChild(catchBlock, variable)) {
@@ -692,7 +692,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      *         - false.
      */
     private static boolean isVariableInOperatorExpr(
-            DetailAST operator, DetailAST variable) {
+        DetailAST operator, DetailAST variable) {
         boolean isVarInOperatorDeclaration = false;
 
         DetailAST ast = operator.findFirstToken(TokenTypes.LPAREN);
@@ -783,11 +783,11 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      */
     private static boolean isZeroDistanceToken(int type) {
         return type == TokenTypes.VARIABLE_DEF
-                || type == TokenTypes.TYPE
-                || type == TokenTypes.MODIFIERS
-                || type == TokenTypes.RESOURCE
-                || type == TokenTypes.EXTENDS_CLAUSE
-                || type == TokenTypes.IMPLEMENTS_CLAUSE;
+            || type == TokenTypes.TYPE
+            || type == TokenTypes.MODIFIERS
+            || type == TokenTypes.RESOURCE
+            || type == TokenTypes.EXTENDS_CLAUSE
+            || type == TokenTypes.IMPLEMENTS_CLAUSE;
     }
 
 }

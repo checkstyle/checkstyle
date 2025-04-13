@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheck;
 
 public class XpathRegressionUnnecessarySemicolonAfterOuterTypeDeclarationTest
-        extends AbstractXpathTestSupport {
+    extends AbstractXpathTestSupport {
 
     private static final Class<UnnecessarySemicolonAfterOuterTypeDeclarationCheck> CLASS =
         UnnecessarySemicolonAfterOuterTypeDeclarationCheck.class;
@@ -50,7 +50,7 @@ public class XpathRegressionUnnecessarySemicolonAfterOuterTypeDeclarationTest
         };
 
         final List<String> expectedXpathQueries =
-                Collections.singletonList("/COMPILATION_UNIT/SEMI");
+            Collections.singletonList("/COMPILATION_UNIT/SEMI");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
@@ -59,7 +59,7 @@ public class XpathRegressionUnnecessarySemicolonAfterOuterTypeDeclarationTest
     public void testInnerTypes() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathUnnecessarySemicolonAfterOuterTypeDeclarationInnerTypes"
-                    + ".java"));
+                + ".java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         final String[] expectedViolation = {
             "21:2: " + getCheckMessage(CLASS,
@@ -67,7 +67,7 @@ public class XpathRegressionUnnecessarySemicolonAfterOuterTypeDeclarationTest
         };
 
         final List<String> expectedXpathQueries =
-                Collections.singletonList("/COMPILATION_UNIT/SEMI");
+            Collections.singletonList("/COMPILATION_UNIT/SEMI");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }

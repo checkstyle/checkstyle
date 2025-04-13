@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -71,30 +71,30 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
     public void testMaxLength() throws Exception {
         final int maxLen = 5;
         final File fileToProcess =
-                new File(getPath("InputXpathAnonInnerLength.java"));
+            new File(getPath("InputXpathAnonInnerLength.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnonInnerLengthCheck.class);
+            createModuleConfig(AnonInnerLengthCheck.class);
         moduleConfig.addProperty("max", String.valueOf(maxLen));
 
         final String[] expectedViolation = {
             "7:35: " + getCheckMessage(AnonInnerLengthCheck.class,
-                    AnonInnerLengthCheck.MSG_KEY, 6, maxLen),
+                AnonInnerLengthCheck.MSG_KEY, 6, maxLen),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathAnonInnerLength']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='compare']]/SLIST"
-                        + "/VARIABLE_DEF[./IDENT[@text='comp']]/ASSIGN/EXPR",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathAnonInnerLength']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='compare']]/SLIST"
-                        + "/VARIABLE_DEF[./IDENT[@text='comp']]/ASSIGN/EXPR"
-                        + "/LITERAL_NEW[./IDENT[@text='Comparator']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathAnonInnerLength']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='compare']]/SLIST"
+                + "/VARIABLE_DEF[./IDENT[@text='comp']]/ASSIGN/EXPR",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathAnonInnerLength']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='compare']]/SLIST"
+                + "/VARIABLE_DEF[./IDENT[@text='comp']]/ASSIGN/EXPR"
+                + "/LITERAL_NEW[./IDENT[@text='Comparator']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

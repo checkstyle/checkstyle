@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.site;
 
@@ -56,7 +56,7 @@ public class ParentModuleMacro extends AbstractMacro {
      * @throws MacroExecutionException if the parent module cannot be found.
      */
     private static void createParentModuleParagraph(XdocSink sink, Class<?> clss, String moduleName)
-            throws MacroExecutionException {
+        throws MacroExecutionException {
         final String parentModule = SiteUtil.getParentModule(clss);
         final String linkToParentModule = getLinkToParentModule(parentModule, moduleName);
 
@@ -82,21 +82,21 @@ public class ParentModuleMacro extends AbstractMacro {
      * @throws MacroExecutionException if link to the parent module cannot be constructed.
      */
     private static String getLinkToParentModule(String parentModule, String moduleName)
-            throws MacroExecutionException {
+        throws MacroExecutionException {
         final Path templatePath = SiteUtil.getTemplatePath(moduleName);
         if (templatePath == null) {
             throw new MacroExecutionException(
-                    String.format(Locale.ROOT, "Could not find template for %s", moduleName));
+                String.format(Locale.ROOT, "Could not find template for %s", moduleName));
         }
         final Path templatePathParent = templatePath.getParent();
         if (templatePathParent == null) {
             throw new MacroExecutionException("Failed to get parent path for " + templatePath);
         }
         return templatePathParent
-                .relativize(Path.of("src", "site/xdoc", "config.xml"))
-                .toString()
-                .replace(".xml", ".html")
-                .replace('\\', '/')
-                + "#" + parentModule;
+            .relativize(Path.of("src", "site/xdoc", "config.xml"))
+            .toString()
+            .replace(".xml", ".html")
+            .replace('\\', '/')
+            + "#" + parentModule;
     }
 }

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,10 +40,10 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
     @Test
     public void testRuntimeException() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathIllegalThrowsRuntimeException.java"));
+            new File(getPath("InputXpathIllegalThrowsRuntimeException.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalThrowsCheck.class);
+            createModuleConfig(IllegalThrowsCheck.class);
 
         final String[] expectedViolation = {
             "4:35: " + getCheckMessage(IllegalThrowsCheck.class,
@@ -58,16 +58,16 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testError() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathIllegalThrowsError.java"));
+            new File(getPath("InputXpathIllegalThrowsError.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalThrowsCheck.class);
+            createModuleConfig(IllegalThrowsCheck.class);
 
         final String[] expectedViolation = {
             "8:45: " + getCheckMessage(IllegalThrowsCheck.class,
@@ -82,6 +82,6 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

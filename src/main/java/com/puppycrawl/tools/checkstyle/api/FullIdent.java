@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.api;
 
@@ -89,9 +89,9 @@ public final class FullIdent {
 
             // Here we want type declaration, but not initialization
             final boolean isArrayTypeDeclarationStart = nextSibling != null
-                    && (nextSibling.getType() == TokenTypes.ARRAY_DECLARATOR
-                        || nextSibling.getType() == TokenTypes.ANNOTATIONS)
-                    && isArrayTypeDeclaration(nextSibling);
+                && (nextSibling.getType() == TokenTypes.ARRAY_DECLARATOR
+                || nextSibling.getType() == TokenTypes.ANNOTATIONS)
+                && isArrayTypeDeclaration(nextSibling);
 
             final int typeOfAst = currentAst.getType();
             bracketsExist = bracketsExist || isArrayTypeDeclarationStart;
@@ -107,7 +107,7 @@ public final class FullIdent {
             }
             else {
                 dotCounter = appendToFull(full, currentAst, dotCounter,
-                        bracketsExist, isArrayTypeDeclarationStart);
+                    bracketsExist, isArrayTypeDeclarationStart);
             }
         }
     }
@@ -123,7 +123,7 @@ public final class FullIdent {
      * @return updated value of dotCounter
      */
     private static int appendToFull(FullIdent full, DetailAST ast,
-                int dotCounter, boolean bracketsExist, boolean isArrayTypeDeclarationStart) {
+                                    int dotCounter, boolean bracketsExist, boolean isArrayTypeDeclarationStart) {
         int result = dotCounter;
         if (isArrayTypeDeclarationStart) {
             full.append(ast);
@@ -181,7 +181,7 @@ public final class FullIdent {
      */
     private static void appendBrackets(FullIdent full, DetailAST ast) {
         final int bracketCount =
-                ast.getParent().getChildCount(TokenTypes.ARRAY_DECLARATOR);
+            ast.getParent().getChildCount(TokenTypes.ARRAY_DECLARATOR);
         for (int i = 0; i < bracketCount; i++) {
             full.append("[]");
         }

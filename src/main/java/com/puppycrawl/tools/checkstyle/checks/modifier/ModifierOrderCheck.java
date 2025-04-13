@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
@@ -143,10 +143,10 @@ public class ModifierOrderCheck
             if (error != null) {
                 if (error.getType() == TokenTypes.ANNOTATION) {
                     log(error,
-                            MSG_ANNOTATION_ORDER,
-                             error.getFirstChild().getText()
-                             + error.getFirstChild().getNextSibling()
-                                .getText());
+                        MSG_ANNOTATION_ORDER,
+                        error.getFirstChild().getText()
+                            + error.getFirstChild().getNextSibling()
+                            .getText());
                 }
                 else {
                     log(error, MSG_MODIFIER_ORDER, error.getText());
@@ -176,7 +176,7 @@ public class ModifierOrderCheck
             int index = 0;
 
             while (modifier != null
-                    && offendingModifier == null) {
+                && offendingModifier == null) {
                 if (modifier.getType() == TokenTypes.ANNOTATION) {
                     if (!isAnnotationOnType(modifier)) {
                         // Annotation not at start of modifiers, bad
@@ -186,7 +186,7 @@ public class ModifierOrderCheck
                 }
 
                 while (index < JLS_ORDER.length
-                       && !JLS_ORDER[index].equals(modifier.getText())) {
+                    && !JLS_ORDER[index].equals(modifier.getText())) {
                     index++;
                 }
 
@@ -232,8 +232,8 @@ public class ModifierOrderCheck
         final DetailAST definition = modifiers.getParent();
         final int definitionType = definition.getType();
         if (definitionType == TokenTypes.VARIABLE_DEF
-                || definitionType == TokenTypes.PARAMETER_DEF
-                || definitionType == TokenTypes.CTOR_DEF) {
+            || definitionType == TokenTypes.PARAMETER_DEF
+            || definitionType == TokenTypes.CTOR_DEF) {
             annotationOnType = true;
         }
         else if (definitionType == TokenTypes.METHOD_DEF) {

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -83,7 +83,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  */
 @StatelessCheck
 public class InnerAssignmentCheck
-        extends AbstractCheck {
+    extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -101,10 +101,10 @@ public class InnerAssignmentCheck
         {TokenTypes.EXPR, TokenTypes.ELIST, TokenTypes.FOR_INIT},
         {TokenTypes.EXPR, TokenTypes.ELIST, TokenTypes.FOR_ITERATOR},
         {TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR}, {
-            TokenTypes.RESOURCE,
-            TokenTypes.RESOURCES,
-            TokenTypes.RESOURCE_SPECIFICATION,
-        },
+        TokenTypes.RESOURCE,
+        TokenTypes.RESOURCES,
+        TokenTypes.RESOURCE_SPECIFICATION,
+    },
         {TokenTypes.EXPR, TokenTypes.LAMBDA},
         {TokenTypes.EXPR, TokenTypes.SWITCH_RULE, TokenTypes.LITERAL_SWITCH, TokenTypes.SLIST},
     };
@@ -185,8 +185,8 @@ public class InnerAssignmentCheck
     @Override
     public void visitToken(DetailAST ast) {
         if (!isInContext(ast, ALLOWED_ASSIGNMENT_CONTEXT, CommonUtil.EMPTY_BIT_SET)
-                && !isInNoBraceControlStatement(ast)
-                && !isInLoopIdiom(ast)) {
+            && !isInNoBraceControlStatement(ast)
+            && !isInLoopIdiom(ast)) {
             log(ast, MSG_KEY);
         }
     }
@@ -252,9 +252,9 @@ public class InnerAssignmentCheck
      */
     private static boolean isInLoopIdiom(DetailAST ast) {
         return isComparison(ast.getParent())
-                    && isInContext(ast.getParent(),
-                            ALLOWED_ASSIGNMENT_IN_COMPARISON_CONTEXT,
-                            LOOP_IDIOM_IGNORED_PARENTS);
+            && isInContext(ast.getParent(),
+            ALLOWED_ASSIGNMENT_IN_COMPARISON_CONTEXT,
+            LOOP_IDIOM_IGNORED_PARENTS);
     }
 
     /**

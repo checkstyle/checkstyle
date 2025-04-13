@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.site;
 
@@ -62,8 +62,8 @@ public class ExampleMacro extends AbstractMacro {
 
     /** The pattern of xml code blocks. */
     private static final Pattern XML_PATTERN = Pattern.compile(
-            "^\\s*(<!DOCTYPE\\s+.*?>|<\\?xml\\s+.*?>|<module\\s+.*?>)\\s*",
-            Pattern.DOTALL
+        "^\\s*(<!DOCTYPE\\s+.*?>|<\\?xml\\s+.*?>|<module\\s+.*?>)\\s*",
+        Pattern.DOTALL
     );
 
     /** The path of the last file. */
@@ -89,8 +89,8 @@ public class ExampleMacro extends AbstractMacro {
 
             if (config.isBlank()) {
                 final String message = String.format(Locale.ROOT,
-                        "Empty config snippet from %s, check"
-                                + " for xml config snippet delimiters in input file.", path
+                    "Empty config snippet from %s, check"
+                        + " for xml config snippet delimiters in input file.", path
                 );
                 throw new MacroExecutionException(message);
             }
@@ -106,8 +106,8 @@ public class ExampleMacro extends AbstractMacro {
 
             if (code.isBlank()) {
                 final String message = String.format(Locale.ROOT,
-                        "Empty code snippet from %s, check"
-                                + " for code snippet delimiters in input file.", path
+                    "Empty code snippet from %s, check"
+                        + " for code snippet delimiters in input file.", path
                 );
                 throw new MacroExecutionException(message);
             }
@@ -152,10 +152,10 @@ public class ExampleMacro extends AbstractMacro {
      */
     private static String getConfigSnippet(Collection<String> lines) {
         return lines.stream()
-                .dropWhile(line -> !XML_CONFIG_START.equals(line))
-                .skip(1)
-                .takeWhile(line -> !XML_CONFIG_END.equals(line))
-                .collect(Collectors.joining(NEWLINE));
+            .dropWhile(line -> !XML_CONFIG_START.equals(line))
+            .skip(1)
+            .takeWhile(line -> !XML_CONFIG_END.equals(line))
+            .collect(Collectors.joining(NEWLINE));
     }
 
     /**
@@ -167,10 +167,10 @@ public class ExampleMacro extends AbstractMacro {
      */
     private static String getCodeSnippet(Collection<String> lines) {
         return lines.stream()
-                .dropWhile(line -> !line.contains(CODE_SNIPPET_START))
-                .skip(1)
-                .takeWhile(line -> !line.contains(CODE_SNIPPET_END))
-                .collect(Collectors.joining(NEWLINE));
+            .dropWhile(line -> !line.contains(CODE_SNIPPET_START))
+            .skip(1)
+            .takeWhile(line -> !line.contains(CODE_SNIPPET_END))
+            .collect(Collectors.joining(NEWLINE));
     }
 
     /**
@@ -204,8 +204,8 @@ public class ExampleMacro extends AbstractMacro {
      */
     private static String escapeHtml(String snippet) {
         return snippet.replace("&", "&amp;")
-                .replace("<", "&lt;")
-                .replace(">", "&gt;");
+            .replace("<", "&lt;")
+            .replace(">", "&gt;");
     }
 
     /**

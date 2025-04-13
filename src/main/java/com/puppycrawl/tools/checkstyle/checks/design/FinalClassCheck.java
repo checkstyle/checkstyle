@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
@@ -167,7 +167,7 @@ public class FinalClassCheck
 
             case TokenTypes.LITERAL_NEW:
                 if (ast.getFirstChild() != null
-                        && ast.getLastChild().getType() == TokenTypes.OBJBLOCK) {
+                    && ast.getLastChild().getType() == TokenTypes.OBJBLOCK) {
                     anonInnerClassToOuterTypeDecl
                         .put(ast, typeDeclarations.peek().getQualifiedName());
                 }
@@ -235,9 +235,9 @@ public class FinalClassCheck
         final boolean shouldBeFinal;
 
         final boolean skipClass = classDesc.isDeclaredAsFinal()
-                    || classDesc.isDeclaredAsAbstract()
-                    || classDesc.isSuperClassOfAnonymousInnerClass()
-                    || classDesc.isWithNestedSubclass();
+            || classDesc.isDeclaredAsAbstract()
+            || classDesc.isSuperClassOfAnonymousInnerClass()
+            || classDesc.isWithNestedSubclass();
 
         if (skipClass) {
             shouldBeFinal = false;
@@ -264,7 +264,7 @@ public class FinalClassCheck
         if (superClassName != null) {
             final ToIntFunction<ClassDesc> nestedClassCountProvider = classDesc -> {
                 return CheckUtil.typeDeclarationNameMatchingCount(qualifiedClassName,
-                                                                  classDesc.getQualifiedName());
+                    classDesc.getQualifiedName());
             };
             getNearestClassWithSameName(superClassName, nestedClassCountProvider)
                 .or(() -> Optional.ofNullable(innerClasses.get(superClassName)))
@@ -333,13 +333,13 @@ public class FinalClassCheck
      *      pitest to fail
      */
     private Optional<ClassDesc> getNearestClassWithSameName(String className,
-        ToIntFunction<ClassDesc> countProvider) {
+                                                            ToIntFunction<ClassDesc> countProvider) {
         final String dotAndClassName = PACKAGE_SEPARATOR.concat(className);
         final Comparator<ClassDesc> longestMatch = Comparator.comparingInt(countProvider);
         return innerClasses.entrySet().stream()
-                .filter(entry -> entry.getKey().endsWith(dotAndClassName))
-                .map(Map.Entry::getValue)
-                .min(longestMatch.reversed().thenComparingInt(ClassDesc::getDepth));
+            .filter(entry -> entry.getKey().endsWith(dotAndClassName))
+            .map(Map.Entry::getValue)
+            .min(longestMatch.reversed().thenComparingInt(ClassDesc::getDepth));
     }
 
     /**
@@ -355,8 +355,8 @@ public class FinalClassCheck
             outerTypeDeclarationQualifiedName = typeDeclarations.peek().getQualifiedName();
         }
         return CheckUtil.getQualifiedTypeDeclarationName(packageName,
-                                                         outerTypeDeclarationQualifiedName,
-                                                         className);
+            outerTypeDeclarationQualifiedName,
+            className);
     }
 
     /**
@@ -394,7 +394,7 @@ public class FinalClassCheck
      * @return type declaration matching count
      */
     private static int getAnonSuperTypeMatchingCount(String patternTypeDeclaration,
-                                                    String typeDeclarationToBeMatched) {
+                                                     String typeDeclarationToBeMatched) {
         final int typeDeclarationToBeMatchedLength = typeDeclarationToBeMatched.length();
         final int minLength = Math
             .min(typeDeclarationToBeMatchedLength, patternTypeDeclaration.length());
@@ -451,7 +451,7 @@ public class FinalClassCheck
          * @param typeDeclarationAst Type declaration ast node
          */
         private TypeDeclarationDescription(String qualifiedName, int depth,
-                                          DetailAST typeDeclarationAst) {
+                                           DetailAST typeDeclarationAst) {
             this.qualifiedName = qualifiedName;
             this.depth = depth;
             this.typeDeclarationAst = typeDeclarationAst;
@@ -526,7 +526,7 @@ public class FinalClassCheck
             declaredAsAbstract = modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;
             declaredAsPrivate = modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
             hasDeclaredConstructor =
-                    classAst.getLastChild().findFirstToken(TokenTypes.CTOR_DEF) == null;
+                classAst.getLastChild().findFirstToken(TokenTypes.CTOR_DEF) == null;
         }
 
         /** Adds non-private ctor. */

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -220,7 +220,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
             checkResourceVariable(ast);
         }
         else if (!inForHeader && isOnTheSameLine(currentStatement, lastStatementEnd,
-                forStatementEnd, lambdaStatementEnd)) {
+            forStatementEnd, lambdaStatementEnd)) {
             log(ast, MSG_KEY);
         }
     }
@@ -236,9 +236,9 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         countOfSemiInCurrentLambda++;
         countOfSemiInLambda.push(countOfSemiInCurrentLambda);
         if (!inForHeader && countOfSemiInCurrentLambda > 1
-                && isOnTheSameLine(currentStatement,
-                lastStatementEnd, forStatementEnd,
-                lambdaStatementEnd)) {
+            && isOnTheSameLine(currentStatement,
+            lastStatementEnd, forStatementEnd,
+            lambdaStatementEnd)) {
             log(ast, MSG_KEY);
         }
     }
@@ -251,7 +251,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
      */
     private static boolean isResource(DetailAST ast) {
         return ast.getType() == TokenTypes.RESOURCES
-                 || ast.getType() == TokenTypes.RESOURCE_SPECIFICATION;
+            || ast.getType() == TokenTypes.RESOURCE_SPECIFICATION;
     }
 
     /**
@@ -286,7 +286,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     private static boolean isOnTheSameLine(DetailAST ast, int lastStatementEnd,
                                            int forStatementEnd, int lambdaStatementEnd) {
         return lastStatementEnd == ast.getLineNo() && forStatementEnd != ast.getLineNo()
-                && lambdaStatementEnd != ast.getLineNo();
+            && lambdaStatementEnd != ast.getLineNo();
     }
 
 }

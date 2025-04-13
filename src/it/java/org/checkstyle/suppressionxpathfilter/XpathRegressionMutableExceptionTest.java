@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -51,15 +51,15 @@ public class XpathRegressionMutableExceptionTest extends AbstractXpathTestSuppor
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathMutableExceptionDefault']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='FooException']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='code']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathMutableExceptionDefault']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='FooException']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='code']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathMutableExceptionDefault']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='FooException']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='code']]/MODIFIERS/LITERAL_PRIVATE"
@@ -73,66 +73,66 @@ public class XpathRegressionMutableExceptionTest extends AbstractXpathTestSuppor
     public void testClassName() throws Exception {
         final String classFormat = "^.*ExceptionClassName$";
         final File fileToProcess =
-                new File(getPath("InputXpathMutableExceptionClassName.java"));
+            new File(getPath("InputXpathMutableExceptionClassName.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MutableExceptionCheck.class);
+            createModuleConfig(MutableExceptionCheck.class);
         moduleConfig.addProperty("format", classFormat);
 
         final String[] expectedViolation = {
             "4:3: " + getCheckMessage(MutableExceptionCheck.class,
-                    MutableExceptionCheck.MSG_KEY, "code"),
+                MutableExceptionCheck.MSG_KEY, "code"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathMutableExceptionClassName']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='code']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathMutableExceptionClassName']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='code']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathMutableExceptionClassName']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='code']]/TYPE",
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathMutableExceptionClassName']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='code']]/TYPE/LITERAL_INT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testExtendedClassName() throws Exception {
         final String extendedClassNameFormat = "^.*Throwable$";
         final File fileToProcess =
-                new File(getPath("InputXpathMutableExceptionExtendedClassName.java"));
+            new File(getPath("InputXpathMutableExceptionExtendedClassName.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MutableExceptionCheck.class);
+            createModuleConfig(MutableExceptionCheck.class);
         moduleConfig.addProperty("extendedClassNameFormat", extendedClassNameFormat);
 
         final String[] expectedViolation = {
             "6:9: " + getCheckMessage(MutableExceptionCheck.class,
-                    MutableExceptionCheck.MSG_KEY, "code"),
+                MutableExceptionCheck.MSG_KEY, "code"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathMutableExceptionExtendedClassName']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='FooException']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='code']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathMutableExceptionExtendedClassName']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='FooException']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='code']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathMutableExceptionExtendedClassName']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='FooException']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='code']]/MODIFIERS/LITERAL_PRIVATE");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

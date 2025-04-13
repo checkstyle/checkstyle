@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -29,10 +29,10 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInEnumerationCheck;
 
 public class XpathRegressionUnnecessarySemicolonInEnumerationTest
-        extends AbstractXpathTestSupport {
+    extends AbstractXpathTestSupport {
 
     private final String checkName =
-            UnnecessarySemicolonInEnumerationCheck.class.getSimpleName();
+        UnnecessarySemicolonInEnumerationCheck.class.getSimpleName();
 
     @Override
     protected String getCheckName() {
@@ -42,10 +42,10 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
     @Test
     public void testSimple() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathUnnecessarySemicolonInEnumerationSimple.java"));
+            getPath("InputXpathUnnecessarySemicolonInEnumerationSimple.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnnecessarySemicolonInEnumerationCheck.class);
+            createModuleConfig(UnnecessarySemicolonInEnumerationCheck.class);
 
         final String[] expectedViolation = {
             "11:10: " + getCheckMessage(UnnecessarySemicolonInEnumerationCheck.class,
@@ -53,7 +53,7 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/ENUM_DEF[./IDENT[@text='Bad']]/OBJBLOCK/SEMI"
+            "/COMPILATION_UNIT/ENUM_DEF[./IDENT[@text='Bad']]/OBJBLOCK/SEMI"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -66,7 +66,7 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
         ));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnnecessarySemicolonInEnumerationCheck.class);
+            createModuleConfig(UnnecessarySemicolonInEnumerationCheck.class);
 
         final String[] expectedViolation = {
             "4:52: " + getCheckMessage(UnnecessarySemicolonInEnumerationCheck.class,

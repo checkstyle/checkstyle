@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
@@ -130,10 +130,10 @@ public class NoWhitespaceBeforeCheck
         final boolean isFirstToken = columnNoBeforeToken == -1;
 
         if ((isFirstToken || CommonUtil.isCodePointWhitespace(line, columnNoBeforeToken))
-                && !isInEmptyForInitializerOrCondition(ast)) {
+            && !isInEmptyForInitializerOrCondition(ast)) {
             final boolean isViolation = !allowLineBreaks
-                    || !isFirstToken
-                    && !CodePointUtil.hasWhitespaceBefore(columnNoBeforeToken, line);
+                || !isFirstToken
+                && !CodePointUtil.hasWhitespaceBefore(columnNoBeforeToken, line);
 
             if (isViolation) {
                 log(ast, MSG_KEY, ast.getText());
@@ -151,9 +151,9 @@ public class NoWhitespaceBeforeCheck
         boolean result = false;
         final DetailAST sibling = semicolonAst.getPreviousSibling();
         if (sibling != null
-                && (sibling.getType() == TokenTypes.FOR_INIT
-                        || sibling.getType() == TokenTypes.FOR_CONDITION)
-                && !sibling.hasChildren()) {
+            && (sibling.getType() == TokenTypes.FOR_INIT
+            || sibling.getType() == TokenTypes.FOR_CONDITION)
+            && !sibling.hasChildren()) {
             result = true;
         }
         return result;

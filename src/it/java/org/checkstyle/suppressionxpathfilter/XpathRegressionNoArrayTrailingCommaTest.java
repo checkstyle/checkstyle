@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,10 +40,10 @@ public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSu
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathNoArrayTrailingCommaOne.java"));
+            new File(getPath("InputXpathNoArrayTrailingCommaOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoArrayTrailingCommaCheck.class);
+            createModuleConfig(NoArrayTrailingCommaCheck.class);
 
         final String[] expectedViolation = {
             "5:37: " + getCheckMessage(NoArrayTrailingCommaCheck.class,
@@ -52,22 +52,22 @@ public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                    + "[@text='InputXpathNoArrayTrailingCommaOne']]"
-                    + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='t1']]/ASSIGN/EXPR"
-                    + "/LITERAL_NEW/ARRAY_INIT/COMMA[4]"
+                + "[@text='InputXpathNoArrayTrailingCommaOne']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='t1']]/ASSIGN/EXPR"
+                + "/LITERAL_NEW/ARRAY_INIT/COMMA[4]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathNoArrayTrailingCommaTwo.java"));
+            new File(getPath("InputXpathNoArrayTrailingCommaTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoArrayTrailingCommaCheck.class);
+            createModuleConfig(NoArrayTrailingCommaCheck.class);
 
         final String[] expectedViolation = {
             "4:28: " + getCheckMessage(NoArrayTrailingCommaCheck.class,
@@ -76,12 +76,12 @@ public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathNoArrayTrailingCommaTwo']]"
-                    + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='t4']]"
-                    + "/ASSIGN/EXPR/LITERAL_NEW/ARRAY_INIT/COMMA"
+                + "[./IDENT[@text='InputXpathNoArrayTrailingCommaTwo']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='t4']]"
+                + "/ASSIGN/EXPR/LITERAL_NEW/ARRAY_INIT/COMMA"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,10 +40,10 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathIllegalCatchOne.java"));
+            new File(getPath("InputXpathIllegalCatchOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalCatchCheck.class);
+            createModuleConfig(IllegalCatchCheck.class);
 
         final String[] expectedViolation = {
             "6:11: " + getCheckMessage(IllegalCatchCheck.class,
@@ -58,16 +58,16 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathIllegalCatchTwo.java"));
+            new File(getPath("InputXpathIllegalCatchTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalCatchCheck.class);
+            createModuleConfig(IllegalCatchCheck.class);
 
         final String[] expectedViolation = {
             "16:11: " + getCheckMessage(IllegalCatchCheck.class,
@@ -82,6 +82,6 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

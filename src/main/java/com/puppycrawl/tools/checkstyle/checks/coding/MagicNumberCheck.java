@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -260,10 +260,10 @@ public class MagicNumberCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (shouldTestAnnotationArgs(ast)
-                && shouldTestAnnotationDefaults(ast)
-                && !isInIgnoreList(ast)
-                && shouldCheckHashCodeMethod(ast)
-                && shouldCheckFieldDeclaration(ast)) {
+            && shouldTestAnnotationDefaults(ast)
+            && !isInIgnoreList(ast)
+            && shouldCheckHashCodeMethod(ast)
+            && shouldCheckFieldDeclaration(ast)) {
             final DetailAST constantDefAST = findContainingConstantDef(ast);
             if (isMagicNumberExists(ast, constantDefAST)) {
                 reportMagicNumber(ast);
@@ -343,8 +343,8 @@ public class MagicNumberCheck extends AbstractCheck {
     private static DetailAST findContainingConstantDef(DetailAST ast) {
         DetailAST varDefAST = ast;
         while (varDefAST != null
-                && varDefAST.getType() != TokenTypes.VARIABLE_DEF
-                && varDefAST.getType() != TokenTypes.ENUM_CONSTANT_DEF) {
+            && varDefAST.getType() != TokenTypes.VARIABLE_DEF
+            && varDefAST.getType() != TokenTypes.ENUM_CONSTANT_DEF) {
             varDefAST = varDefAST.getParent();
         }
         DetailAST constantDef = null;
@@ -353,7 +353,7 @@ public class MagicNumberCheck extends AbstractCheck {
         if (varDefAST != null) {
             // implicit constant?
             if (ScopeUtil.isInInterfaceOrAnnotationBlock(varDefAST)
-                    || varDefAST.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+                || varDefAST.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
                 constantDef = varDefAST;
             }
             else {
@@ -386,8 +386,8 @@ public class MagicNumberCheck extends AbstractCheck {
             text = "+" + text;
         }
         log(reportAST,
-                MSG_KEY,
-                text);
+            MSG_KEY,
+            text);
     }
 
     /**
@@ -404,7 +404,7 @@ public class MagicNumberCheck extends AbstractCheck {
         // find the method definition AST
         DetailAST currentAST = ast;
         while (currentAST != null
-                && currentAST.getType() != TokenTypes.METHOD_DEF) {
+            && currentAST.getType() != TokenTypes.METHOD_DEF) {
             currentAST = currentAST.getParent();
         }
         final DetailAST methodDefAST = currentAST;
@@ -462,9 +462,9 @@ public class MagicNumberCheck extends AbstractCheck {
         // contains variable declaration
         // and it is directly inside class or record declaration
         return varDefAST != null
-                && (varDefAST.getParent().getParent().getType() == TokenTypes.CLASS_DEF
-                || varDefAST.getParent().getParent().getType() == TokenTypes.RECORD_DEF
-                || varDefAST.getParent().getParent().getType() == TokenTypes.LITERAL_NEW);
+            && (varDefAST.getParent().getParent().getType() == TokenTypes.CLASS_DEF
+            || varDefAST.getParent().getParent().getType() == TokenTypes.RECORD_DEF
+            || varDefAST.getParent().getParent().getType() == TokenTypes.LITERAL_NEW);
 
     }
 

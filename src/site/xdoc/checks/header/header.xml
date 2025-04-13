@@ -111,7 +111,7 @@ public class Example1 { }
 </code></pre></div>
         <p id="java-raw">content of &quot;java.header&quot; file:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 20XX-20XX the original author or authors.
 //
@@ -128,7 +128,7 @@ public class Example1 { }
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 </code></pre></div>
         <p id="Example2-code">Example2:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">

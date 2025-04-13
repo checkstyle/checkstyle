@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
@@ -195,11 +195,11 @@ public class JavadocTypeCheck
 
     /** Pattern to match type name within angle brackets in javadoc param tag. */
     private static final Pattern TYPE_NAME_IN_JAVADOC_TAG =
-            Pattern.compile("^<([^>]+)");
+        Pattern.compile("^<([^>]+)");
 
     /** Pattern to split type name field in javadoc param tag. */
     private static final Pattern TYPE_NAME_IN_JAVADOC_TAG_SPLITTER =
-            Pattern.compile("\\s+");
+        Pattern.compile("\\s+");
 
     /** Specify the visibility scope where Javadoc comments are checked. */
     private Scope scope = Scope.PRIVATE;
@@ -329,9 +329,9 @@ public class JavadocTypeCheck
                 if (ScopeUtil.isOuterMostType(ast)) {
                     // don't check author/version for inner classes
                     checkTag(ast, tags, JavadocTagInfo.AUTHOR.getName(),
-                            authorFormat);
+                        authorFormat);
                     checkTag(ast, tags, JavadocTagInfo.VERSION.getName(),
-                            versionFormat);
+                        versionFormat);
                 }
 
                 final List<String> typeParamNames =
@@ -365,8 +365,8 @@ public class JavadocTypeCheck
         final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
 
         return surroundingScope.isIn(scope)
-                && (excludeScope == null || !surroundingScope.isIn(excludeScope))
-                && !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);
+            && (excludeScope == null || !surroundingScope.isIn(excludeScope))
+            && !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);
     }
 
     /**
@@ -400,7 +400,7 @@ public class JavadocTypeCheck
             boolean hasTag = false;
             final String tagPrefix = "@";
 
-            for (final JavadocTag tag :tags) {
+            for (final JavadocTag tag : tags) {
                 if (tag.getTagName().equals(tagName)) {
                     hasTag = true;
                     if (!formatPattern.matcher(tag.getFirstArg()).find()) {
@@ -446,7 +446,7 @@ public class JavadocTypeCheck
      * @param typeParamName the name of the type parameter
      */
     private void checkTypeParamTag(DetailAST ast,
-            Collection<JavadocTag> tags, String typeParamName) {
+                                   Collection<JavadocTag> tags, String typeParamName) {
         final String typeParamNameWithBrackets =
             OPEN_ANGLE_BRACKET + typeParamName + CLOSE_ANGLE_BRACKET;
 
@@ -473,11 +473,11 @@ public class JavadocTypeCheck
         List<String> typeParamNames,
         List<String> recordComponentNames) {
 
-        for (final JavadocTag tag: tags) {
+        for (final JavadocTag tag : tags) {
             if (tag.isParamTag()) {
                 final String paramName = extractParamNameFromTag(tag);
                 final boolean found = typeParamNames.contains(paramName)
-                        || recordComponentNames.contains(paramName);
+                    || recordComponentNames.contains(paramName);
 
                 if (!found) {
                     if (paramName.isEmpty()) {
@@ -505,7 +505,7 @@ public class JavadocTypeCheck
     private static String extractParamNameFromTag(JavadocTag tag) {
         final String typeParamName;
         final Matcher matchInAngleBrackets =
-                TYPE_NAME_IN_JAVADOC_TAG.matcher(tag.getFirstArg());
+            TYPE_NAME_IN_JAVADOC_TAG.matcher(tag.getFirstArg());
         if (matchInAngleBrackets.find()) {
             typeParamName = matchInAngleBrackets.group(1).trim();
         }

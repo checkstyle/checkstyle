@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -44,17 +44,17 @@ public class XpathRegressionSimplifyBooleanExpressionTest extends AbstractXpathT
         final File fileToProcess = new File(getPath(fileName));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(SimplifyBooleanExpressionCheck.class);
+            createModuleConfig(SimplifyBooleanExpressionCheck.class);
 
         final String[] expectedViolations = {
             "8:13: " + getCheckMessage(SimplifyBooleanExpressionCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQuery = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathSimplifyBooleanExpressionSimple']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_IF/EXPR",
-                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathSimplifyBooleanExpressionSimple']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_IF/EXPR/LNOT"
         );
@@ -65,22 +65,22 @@ public class XpathRegressionSimplifyBooleanExpressionTest extends AbstractXpathT
     @Test
     public void testAnonymous() throws Exception {
         final String fileName =
-                "InputXpathSimplifyBooleanExpressionAnonymous.java";
+            "InputXpathSimplifyBooleanExpressionAnonymous.java";
         final File fileToProcess = new File(getPath(fileName));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(SimplifyBooleanExpressionCheck.class);
+            createModuleConfig(SimplifyBooleanExpressionCheck.class);
 
         final String[] expectedViolations = {
             "8:19: " + getCheckMessage(SimplifyBooleanExpressionCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQuery = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathSimplifyBooleanExpressionAnonymous']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]/OBJBLOCK/METHOD_DEF"
                 + "[./IDENT[@text='test']]/SLIST/LITERAL_IF/EXPR",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathSimplifyBooleanExpressionAnonymous']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]/OBJBLOCK/METHOD_DEF"
                 + "[./IDENT[@text='test']]/SLIST/LITERAL_IF/EXPR/EQUAL[./IDENT[@text='a']]"
@@ -92,18 +92,18 @@ public class XpathRegressionSimplifyBooleanExpressionTest extends AbstractXpathT
     @Test
     public void testInterface() throws Exception {
         final String fileName =
-                "InputXpathSimplifyBooleanExpressionInterface.java";
+            "InputXpathSimplifyBooleanExpressionInterface.java";
         final File fileToProcess = new File(getPath(fileName));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(SimplifyBooleanExpressionCheck.class);
+            createModuleConfig(SimplifyBooleanExpressionCheck.class);
 
         final String[] expectedViolations = {
             "7:20: " + getCheckMessage(SimplifyBooleanExpressionCheck.class, MSG_KEY),
         };
 
         final List<String> expectedXpathQuery = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathSimplifyBooleanExpressionInterface']]"
                 + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Inner']]/OBJBLOCK/METHOD_DEF[./IDENT"
                 + "[@text='test']]/SLIST/LITERAL_IF/EXPR/LNOT/NOT_EQUAL[./IDENT[@text='b']]"

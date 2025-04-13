@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -120,7 +120,7 @@ public final class ConfigurationLoader {
 
     /** Prefix for the exception when unable to parse resource. */
     private static final String UNABLE_TO_PARSE_EXCEPTION_PREFIX = "unable to parse"
-            + " configuration stream";
+        + " configuration stream";
 
     /** Dollar sign literal. */
     private static final char DOLLAR_SIGN = '$';
@@ -152,7 +152,7 @@ public final class ConfigurationLoader {
     private ConfigurationLoader(final PropertyResolver overrideProps,
                                 final boolean omitIgnoredModules,
                                 final ThreadModeSettings threadModeSettings)
-            throws ParserConfigurationException, SAXException {
+        throws ParserConfigurationException, SAXException {
         saxHandler = new InternalLoader();
         overridePropsResolver = overrideProps;
         this.omitIgnoredModules = omitIgnoredModules;
@@ -191,7 +191,7 @@ public final class ConfigurationLoader {
      * @throws SAXException if an error occurs
      */
     private Configuration parseInputSource(InputSource source)
-            throws IOException, SAXException {
+        throws IOException, SAXException {
         saxHandler.parseInputSource(source);
         return saxHandler.configuration;
     }
@@ -205,7 +205,7 @@ public final class ConfigurationLoader {
      * @throws CheckstyleException if an error occurs
      */
     public static Configuration loadConfiguration(String config,
-            PropertyResolver overridePropsResolver) throws CheckstyleException {
+                                                  PropertyResolver overridePropsResolver) throws CheckstyleException {
         return loadConfiguration(config, overridePropsResolver, IgnoredModulesOptions.EXECUTE);
     }
 
@@ -219,10 +219,10 @@ public final class ConfigurationLoader {
      * @throws CheckstyleException if an error occurs
      */
     public static Configuration loadConfiguration(String config,
-            PropertyResolver overridePropsResolver, ThreadModeSettings threadModeSettings)
-            throws CheckstyleException {
+                                                  PropertyResolver overridePropsResolver, ThreadModeSettings threadModeSettings)
+        throws CheckstyleException {
         return loadConfiguration(config, overridePropsResolver,
-                IgnoredModulesOptions.EXECUTE, threadModeSettings);
+            IgnoredModulesOptions.EXECUTE, threadModeSettings);
     }
 
     /**
@@ -238,9 +238,9 @@ public final class ConfigurationLoader {
     public static Configuration loadConfiguration(String config,
                                                   PropertyResolver overridePropsResolver,
                                                   IgnoredModulesOptions ignoredModulesOptions)
-            throws CheckstyleException {
+        throws CheckstyleException {
         return loadConfiguration(config, overridePropsResolver, ignoredModulesOptions,
-                ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE);
+            ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE);
     }
 
     /**
@@ -258,9 +258,9 @@ public final class ConfigurationLoader {
                                                   PropertyResolver overridePropsResolver,
                                                   IgnoredModulesOptions ignoredModulesOptions,
                                                   ThreadModeSettings threadModeSettings)
-            throws CheckstyleException {
+        throws CheckstyleException {
         return loadConfiguration(CommonUtil.sourceFromFilename(config), overridePropsResolver,
-                ignoredModulesOptions, threadModeSettings);
+            ignoredModulesOptions, threadModeSettings);
     }
 
     /**
@@ -278,9 +278,9 @@ public final class ConfigurationLoader {
     public static Configuration loadConfiguration(InputSource configSource,
                                                   PropertyResolver overridePropsResolver,
                                                   IgnoredModulesOptions ignoredModulesOptions)
-            throws CheckstyleException {
+        throws CheckstyleException {
         return loadConfiguration(configSource, overridePropsResolver,
-                ignoredModulesOptions, ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE);
+            ignoredModulesOptions, ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE);
     }
 
     /**
@@ -302,18 +302,18 @@ public final class ConfigurationLoader {
                                                   PropertyResolver overridePropsResolver,
                                                   IgnoredModulesOptions ignoredModulesOptions,
                                                   ThreadModeSettings threadModeSettings)
-            throws CheckstyleException {
+        throws CheckstyleException {
         try {
             final boolean omitIgnoreModules = ignoredModulesOptions == IgnoredModulesOptions.OMIT;
             final ConfigurationLoader loader =
-                    new ConfigurationLoader(overridePropsResolver,
-                            omitIgnoreModules, threadModeSettings);
+                new ConfigurationLoader(overridePropsResolver,
+                    omitIgnoreModules, threadModeSettings);
             return loader.parseInputSource(configSource);
         }
         catch (final SAXParseException ex) {
             final String message = String.format(Locale.ROOT, SAX_PARSE_EXCEPTION_FORMAT,
-                    UNABLE_TO_PARSE_EXCEPTION_PREFIX,
-                    ex.getMessage(), ex.getLineNumber(), ex.getColumnNumber());
+                UNABLE_TO_PARSE_EXCEPTION_PREFIX,
+                ex.getMessage(), ex.getLineNumber(), ex.getColumnNumber());
             throw new CheckstyleException(message, ex);
         }
         catch (final ParserConfigurationException | IOException | SAXException ex) {
@@ -344,8 +344,8 @@ public final class ConfigurationLoader {
      *                           {@code }}
      */
     private static String replaceProperties(
-            String value, PropertyResolver props, String defaultValue)
-            throws CheckstyleException {
+        String value, PropertyResolver props, String defaultValue)
+        throws CheckstyleException {
 
         final List<String> fragments = new ArrayList<>();
         final List<String> propertyRefs = new ArrayList<>();
@@ -397,9 +397,9 @@ public final class ConfigurationLoader {
      *                           {@code }}
      */
     private static void parsePropertyString(String value,
-                                           Collection<String> fragments,
-                                           Collection<String> propertyRefs)
-            throws CheckstyleException {
+                                            Collection<String> fragments,
+                                            Collection<String> propertyRefs)
+        throws CheckstyleException {
         int prev = 0;
         // search for the next instance of $ from the 'prev' position
         int pos = value.indexOf(DOLLAR_SIGN, prev);
@@ -419,7 +419,7 @@ public final class ConfigurationLoader {
                 final int endName = value.indexOf('}', pos);
                 if (endName == -1) {
                     throw new CheckstyleException("Syntax error in property: "
-                                                    + value);
+                        + value);
                 }
                 final String propertyName = value.substring(pos + 2, endName);
                 fragments.add(null);
@@ -487,7 +487,7 @@ public final class ConfigurationLoader {
          * @throws ParserConfigurationException if an error occurs
          */
         private InternalLoader()
-                throws SAXException, ParserConfigurationException {
+            throws SAXException, ParserConfigurationException {
             super(createIdToResourceNameMap());
         }
 
@@ -496,7 +496,7 @@ public final class ConfigurationLoader {
                                  String localName,
                                  String qName,
                                  Attributes attributes)
-                throws SAXException {
+            throws SAXException {
             if (MODULE.equals(qName)) {
                 // create configuration
                 final String originalName = attributes.getValue(NAME);
@@ -574,8 +574,8 @@ public final class ConfigurationLoader {
                         // -@cs[IllegalInstantiation] SAXException is in the overridden
                         // method signature
                         throw new SAXException(
-                                "Problem during accessing '" + SEVERITY + "' attribute for "
-                                        + recentModule.getName(), ex);
+                            "Problem during accessing '" + SEVERITY + "' attribute for "
+                                + recentModule.getName(), ex);
                     }
                 }
 
@@ -602,7 +602,7 @@ public final class ConfigurationLoader {
         private boolean containsAttribute(Configuration module, String attributeName) {
             final String[] names = module.getPropertyNames();
             final Optional<String> result = Arrays.stream(names)
-                    .filter(name -> name.equals(attributeName)).findFirst();
+                .filter(name -> name.equals(attributeName)).findFirst();
             return result.isPresent();
         }
 

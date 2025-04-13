@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
@@ -135,18 +135,18 @@ public class SeparatorWrapCheck
         final int lineNo = ast.getLineNo();
         final int[] currentLine = getLineCodePoints(lineNo - 1);
         final boolean isLineEmptyAfterToken = CodePointUtil.isBlank(
-                Arrays.copyOfRange(currentLine, colNo + text.length(), currentLine.length)
+            Arrays.copyOfRange(currentLine, colNo + text.length(), currentLine.length)
         );
         final boolean isLineEmptyBeforeToken = CodePointUtil.isBlank(
-                Arrays.copyOfRange(currentLine, 0, colNo)
+            Arrays.copyOfRange(currentLine, 0, colNo)
         );
 
         if (option == WrapOption.NL
-                 && isLineEmptyAfterToken) {
+            && isLineEmptyAfterToken) {
             log(ast, MSG_LINE_NEW, text);
         }
         else if (option == WrapOption.EOL
-                && isLineEmptyBeforeToken) {
+            && isLineEmptyBeforeToken) {
             log(ast, MSG_LINE_PREVIOUS, text);
         }
     }

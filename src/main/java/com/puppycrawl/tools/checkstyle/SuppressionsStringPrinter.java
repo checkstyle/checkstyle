@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -40,7 +40,7 @@ public final class SuppressionsStringPrinter {
 
     /** Line and column number config value pattern. */
     private static final Pattern VALID_SUPPRESSION_LINE_COLUMN_NUMBER_REGEX =
-            Pattern.compile("^(\\d+):(\\d+)$");
+        Pattern.compile("^(\\d+):(\\d+)$");
 
     /** OS specific line separator. */
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
@@ -64,17 +64,17 @@ public final class SuppressionsStringPrinter {
     public static String printSuppressions(File file, String suppressionLineColumnNumber,
                                            int tabWidth) throws IOException, CheckstyleException {
         final Matcher matcher =
-                VALID_SUPPRESSION_LINE_COLUMN_NUMBER_REGEX.matcher(suppressionLineColumnNumber);
+            VALID_SUPPRESSION_LINE_COLUMN_NUMBER_REGEX.matcher(suppressionLineColumnNumber);
         if (!matcher.matches()) {
             final String exceptionMsg = String.format(Locale.ROOT,
-                    "%s does not match valid format 'line:column'.",
-                    suppressionLineColumnNumber);
+                "%s does not match valid format 'line:column'.",
+                suppressionLineColumnNumber);
             throw new IllegalStateException(exceptionMsg);
         }
 
         final FileText fileText = new FileText(file, System.getProperty("file.encoding"));
         final DetailAST detailAST =
-                JavaParser.parseFileText(fileText, JavaParser.Options.WITH_COMMENTS);
+            JavaParser.parseFileText(fileText, JavaParser.Options.WITH_COMMENTS);
         final int lineNumber = Integer.parseInt(matcher.group(1));
         final int columnNumber = Integer.parseInt(matcher.group(2));
         return generate(fileText, detailAST, lineNumber, columnNumber, tabWidth);
@@ -93,10 +93,10 @@ public final class SuppressionsStringPrinter {
     private static String generate(FileText fileText, DetailAST detailAST, int lineNumber,
                                    int columnNumber, int tabWidth) {
         final XpathQueryGenerator queryGenerator =
-                new XpathQueryGenerator(detailAST, lineNumber, columnNumber, fileText,
-                        tabWidth);
+            new XpathQueryGenerator(detailAST, lineNumber, columnNumber, fileText,
+                tabWidth);
         final List<String> suppressions = queryGenerator.generate();
         return suppressions.stream().collect(Collectors.joining(LINE_SEPARATOR,
-                "", LINE_SEPARATOR));
+            "", LINE_SEPARATOR));
     }
 }

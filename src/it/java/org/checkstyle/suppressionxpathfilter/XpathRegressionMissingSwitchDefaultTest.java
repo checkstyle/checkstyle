@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -41,7 +41,7 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
     @Test
     public void testSimple() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathMissingSwitchDefaultSimple.java"));
+            new File(getPath("InputXpathMissingSwitchDefaultSimple.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
         final String[] expectedViolation = {
@@ -49,10 +49,10 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMissingSwitchDefaultSimple']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test1']]"
-                        + "/SLIST/LITERAL_SWITCH"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingSwitchDefaultSimple']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test1']]"
+                + "/SLIST/LITERAL_SWITCH"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -61,7 +61,7 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
     @Test
     public void testNested() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathMissingSwitchDefaultNested.java"));
+            new File(getPath("InputXpathMissingSwitchDefaultNested.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
@@ -70,15 +70,15 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMissingSwitchDefaultNested']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test2']]"
-                        + "/SLIST/LITERAL_SWITCH/CASE_GROUP/SLIST",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMissingSwitchDefaultNested']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test2']]"
-                        + "/SLIST/LITERAL_SWITCH/CASE_GROUP/SLIST/"
-                        + "LITERAL_SWITCH"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingSwitchDefaultNested']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test2']]"
+                + "/SLIST/LITERAL_SWITCH/CASE_GROUP/SLIST",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingSwitchDefaultNested']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test2']]"
+                + "/SLIST/LITERAL_SWITCH/CASE_GROUP/SLIST/"
+                + "LITERAL_SWITCH"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);

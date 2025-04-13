@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,45 +40,45 @@ public class XpathRegressionIllegalTokenTest extends AbstractXpathTestSupport {
     @Test
     public void testLabel() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathIllegalTokenLabel.java"));
+            new File(getPath("InputXpathIllegalTokenLabel.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenCheck.class);
+            createModuleConfig(IllegalTokenCheck.class);
         final String[] expectedViolation = {
             "5:10: " + getCheckMessage(IllegalTokenCheck.class,
-                        IllegalTokenCheck.MSG_KEY, "outer:"),
+                IllegalTokenCheck.MSG_KEY, "outer:"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenLabel']]"
-                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myTest']]"
-                    + "/SLIST/LABELED_STAT[./IDENT[@text='outer']]"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenLabel']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myTest']]"
+                + "/SLIST/LABELED_STAT[./IDENT[@text='outer']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testNative() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathIllegalTokenNative.java"));
+            new File(getPath("InputXpathIllegalTokenNative.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenCheck.class);
+            createModuleConfig(IllegalTokenCheck.class);
 
         moduleConfig.addProperty("tokens", "LITERAL_NATIVE");
 
         final String[] expectedViolation = {
             "4:10: " + getCheckMessage(IllegalTokenCheck.class,
-                        IllegalTokenCheck.MSG_KEY, "native"),
+                IllegalTokenCheck.MSG_KEY, "native"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenNative']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myTest']]"
-                        + "/MODIFIERS/LITERAL_NATIVE"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenNative']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myTest']]"
+                + "/MODIFIERS/LITERAL_NATIVE"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

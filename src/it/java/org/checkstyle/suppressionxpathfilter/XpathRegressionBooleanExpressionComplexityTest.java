@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck;
 
 public class XpathRegressionBooleanExpressionComplexityTest
-        extends AbstractXpathTestSupport {
+    extends AbstractXpathTestSupport {
 
     @Override
     protected String getCheckName() {
@@ -39,72 +39,72 @@ public class XpathRegressionBooleanExpressionComplexityTest
     @Test
     public void testCatchBlock() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathBooleanExpressionComplexityCatchBlock.java"));
+            new File(getPath("InputXpathBooleanExpressionComplexityCatchBlock.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(BooleanExpressionComplexityCheck.class);
+            createModuleConfig(BooleanExpressionComplexityCheck.class);
 
         final String[] expectedViolationMessages = {
             "10:23: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
-                    BooleanExpressionComplexityCheck.MSG_KEY, 11, 3),
+                BooleanExpressionComplexityCheck.MSG_KEY, 11, 3),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathBooleanExpressionComplexityCatchBlock']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodOne']]/SLIST"
-                        + "/LITERAL_TRY/LITERAL_CATCH/SLIST/VARIABLE_DEF"
-                        + "[./IDENT[@text='d']]/ASSIGN"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathBooleanExpressionComplexityCatchBlock']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodOne']]/SLIST"
+                + "/LITERAL_TRY/LITERAL_CATCH/SLIST/VARIABLE_DEF"
+                + "[./IDENT[@text='d']]/ASSIGN"
         );
 
         runVerifications(moduleConfig, fileToProcess,
-                expectedViolationMessages, expectedXpathQueries);
+            expectedViolationMessages, expectedXpathQueries);
     }
 
     @Test
     public void testClassFields() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathBooleanExpressionComplexityClassFields.java"));
+            new File(getPath("InputXpathBooleanExpressionComplexityClassFields.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(BooleanExpressionComplexityCheck.class);
+            createModuleConfig(BooleanExpressionComplexityCheck.class);
 
         final String[] expectedViolationMessages = {
             "9:19: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
-                    BooleanExpressionComplexityCheck.MSG_KEY, 11, 3),
+                BooleanExpressionComplexityCheck.MSG_KEY, 11, 3),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathBooleanExpressionComplexityClassFields']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodTwo']]/SLIST/VARIABLE_DEF"
-                        + "[./IDENT[@text='d']]/ASSIGN"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathBooleanExpressionComplexityClassFields']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodTwo']]/SLIST/VARIABLE_DEF"
+                + "[./IDENT[@text='d']]/ASSIGN"
         );
 
         runVerifications(moduleConfig, fileToProcess,
-                expectedViolationMessages, expectedXpathQueries);
+            expectedViolationMessages, expectedXpathQueries);
     }
 
     @Test
     public void testConditionals() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathBooleanExpressionComplexityConditionals.java"));
+            new File(getPath("InputXpathBooleanExpressionComplexityConditionals.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(BooleanExpressionComplexityCheck.class);
+            createModuleConfig(BooleanExpressionComplexityCheck.class);
 
         final String[] expectedViolationMessages = {
             "9:9: " + getCheckMessage(BooleanExpressionComplexityCheck.class,
-                    BooleanExpressionComplexityCheck.MSG_KEY, 4, 3),
+                BooleanExpressionComplexityCheck.MSG_KEY, 4, 3),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathBooleanExpressionComplexityConditionals']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodThree']]/SLIST/LITERAL_IF"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathBooleanExpressionComplexityConditionals']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodThree']]/SLIST/LITERAL_IF"
         );
 
         runVerifications(moduleConfig, fileToProcess,
-                expectedViolationMessages, expectedXpathQueries);
+            expectedViolationMessages, expectedXpathQueries);
     }
 }

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -40,29 +40,29 @@ public class XpathRegressionDesignForExtensionTest extends AbstractXpathTestSupp
     @Test
     public void test() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathDesignForExtensionClass.java"));
+            new File(getPath("InputXpathDesignForExtensionClass.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(DesignForExtensionCheck.class);
+            createModuleConfig(DesignForExtensionCheck.class);
         moduleConfig.addProperty("ignoredAnnotations", "Override");
 
         final String[] expected = {
             "7:5: " + getCheckMessage(DesignForExtensionCheck.class,
-                    DesignForExtensionCheck.MSG_KEY,
-                    "InputXpathDesignForExtensionClass",
-                    "calculateValue"),
+                DesignForExtensionCheck.MSG_KEY,
+                "InputXpathDesignForExtensionClass",
+                "calculateValue"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-               + "[@text='InputXpathDesignForExtensionClass']]/OBJBLOCK"
-               + "/METHOD_DEF[./IDENT[@text='calculateValue']]",
+                + "[@text='InputXpathDesignForExtensionClass']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='calculateValue']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-               + "[@text='InputXpathDesignForExtensionClass']]/OBJBLOCK"
-               + "/METHOD_DEF[./IDENT[@text='calculateValue']]/MODIFIERS",
+                + "[@text='InputXpathDesignForExtensionClass']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='calculateValue']]/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-               + "[@text='InputXpathDesignForExtensionClass']]/OBJBLOCK"
-               + "/METHOD_DEF[./IDENT[@text='calculateValue']]/MODIFIERS/LITERAL_PUBLIC"
+                + "[@text='InputXpathDesignForExtensionClass']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='calculateValue']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         // Run the verifications
@@ -73,30 +73,30 @@ public class XpathRegressionDesignForExtensionTest extends AbstractXpathTestSupp
     @Test
     public void test2() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathDesignForExtensionWithEnum.java"));
+            new File(getPath("InputXpathDesignForExtensionWithEnum.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(DesignForExtensionCheck.class);
+            createModuleConfig(DesignForExtensionCheck.class);
         moduleConfig.addProperty("ignoredAnnotations", "Override");
         moduleConfig.addProperty("requiredJavadocPhrase", "This[\\s\\S]*implementation");
 
         final String[] expected = {
             "23:5: " + getCheckMessage(DesignForExtensionCheck.class,
-                    DesignForExtensionCheck.MSG_KEY,
-                    "InputXpathDesignForExtensionWithEnum",
-                    "processData"),
+                DesignForExtensionCheck.MSG_KEY,
+                "InputXpathDesignForExtensionWithEnum",
+                "processData"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-               + "[@text='InputXpathDesignForExtensionWithEnum']]/OBJBLOCK"
-               + "/METHOD_DEF[./IDENT[@text='processData']]",
+                + "[@text='InputXpathDesignForExtensionWithEnum']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='processData']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-               + "[@text='InputXpathDesignForExtensionWithEnum']]/OBJBLOCK"
-               + "/METHOD_DEF[./IDENT[@text='processData']]/MODIFIERS",
+                + "[@text='InputXpathDesignForExtensionWithEnum']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='processData']]/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-               + "[@text='InputXpathDesignForExtensionWithEnum']]/OBJBLOCK"
-               + "/METHOD_DEF[./IDENT[@text='processData']]/MODIFIERS/LITERAL_PUBLIC"
+                + "[@text='InputXpathDesignForExtensionWithEnum']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='processData']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         // Run the verifications

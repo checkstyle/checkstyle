@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package org.checkstyle.suppressionxpathfilter;
 
@@ -41,12 +41,12 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathImportControlOne.java"));
+            new File(getPath("InputXpathImportControlOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ImportControlCheck.class);
+            createModuleConfig(ImportControlCheck.class);
         moduleConfig.addProperty("file", getPath(
-                "InputXpathImportControlOne.xml"));
+            "InputXpathImportControlOne.xml"));
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(ImportControlCheck.class,
@@ -58,18 +58,18 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathImportControlTwo.java"));
+            new File(getPath("InputXpathImportControlTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ImportControlCheck.class);
+            createModuleConfig(ImportControlCheck.class);
         moduleConfig.addProperty("file", getPath(
-                "InputXpathImportControlTwo.xml"));
+            "InputXpathImportControlTwo.xml"));
 
         final String[] expectedViolation = {
             "1:1: " + getCheckMessage(ImportControlCheck.class,
@@ -77,20 +77,20 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
+            "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathImportControlThree.java"));
+            new File(getPath("InputXpathImportControlThree.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ImportControlCheck.class);
+            createModuleConfig(ImportControlCheck.class);
 
         final String[] expectedViolation = {
             "1:1: " + getCheckMessage(ImportControlCheck.class,
@@ -98,22 +98,22 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
+            "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testFour() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathImportControlFour.java"));
+            new File(getPath("InputXpathImportControlFour.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ImportControlCheck.class);
+            createModuleConfig(ImportControlCheck.class);
         moduleConfig.addProperty("file",
-                getPath("InputXpathImportControlFour.xml"));
+            getPath("InputXpathImportControlFour.xml"));
 
         final String[] expectedViolation = {
             "4:1: " + getCheckMessage(ImportControlCheck.class,
@@ -125,6 +125,6 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }
