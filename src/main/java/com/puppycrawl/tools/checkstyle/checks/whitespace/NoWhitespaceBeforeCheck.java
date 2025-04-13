@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * Checks that there is no whitespace before specific tokens.
  */
-@GlobalStatefulCheck
+@StatelessCheck
 public class NoWhitespaceBeforeCheck extends AbstractFileSetCheck {
 
     /**

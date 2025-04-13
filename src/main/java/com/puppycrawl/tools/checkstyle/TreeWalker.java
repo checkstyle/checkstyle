@@ -145,20 +145,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     public void setupChild(Configuration childConf)
             throws CheckstyleException {
         final String name = childConf.getName();
-        final Object module;
-
-        try {
-            module = moduleFactory.createModule(name);
-            if (module instanceof AbstractAutomaticBean) {
-                final AbstractAutomaticBean bean = (AbstractAutomaticBean) module;
-                bean.contextualize(childContext);
-                bean.configure(childConf);
-            }
-        }
-        catch (final CheckstyleException ex) {
-            throw new CheckstyleException("cannot initialize module " + name
-                    + " - " + ex.getMessage(), ex);
-        }
+        final Object module = moduleDiscovery(childConf, name);
         if (module instanceof AbstractCheck) {
             final AbstractCheck check = (AbstractCheck) module;
             check.init();
@@ -174,6 +161,23 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
                         + " Please review 'Parent Module' section for this Check in web"
                         + " documentation if Check is standard.");
         }
+    }
+
+    private Object moduleDiscovery(Configuration childConf, String name) throws CheckstyleException {
+        final Object module;
+        try {
+            module = moduleFactory.createModule(name);
+            if (module instanceof AbstractAutomaticBean) {
+                final AbstractAutomaticBean bean = (AbstractAutomaticBean) module;
+                bean.contextualize(childContext);
+                bean.configure(childConf);
+            }
+        }
+        catch (final CheckstyleException ex) {
+            throw new CheckstyleException("cannot initialize module " + name
+                    + " - " + ex.getMessage(), ex);
+        }
+        return module;
     }
 
     /**
