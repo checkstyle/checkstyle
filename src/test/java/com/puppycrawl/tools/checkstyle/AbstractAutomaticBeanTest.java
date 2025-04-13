@@ -107,6 +107,22 @@ public class AbstractAutomaticBeanTest {
     }
 
     @Test
+    public void testNullConfiguration() throws CheckstyleException {
+        final TestBean testBean = new TestBean();
+        testBean.setupChild(null);
+
+        try {
+            testBean.getConfiguration();
+            assertWithMessage("Exception is expected").fail();
+        }
+        catch (IllegalArgumentException ex) {
+            assertWithMessage("Configuration should be null")
+                    .that(ex.getMessage())
+                    .isNotNull();
+        }
+    }
+
+    @Test
     public void testSetupInvalidChildFromBaseClass() {
         final TestBean testBean = new TestBean();
         final DefaultConfiguration parentConf = new DefaultConfiguration("parentConf");
