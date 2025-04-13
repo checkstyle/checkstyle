@@ -602,6 +602,13 @@
       -->
       <property name="severity" value="ignore"/>
     </module>
+    <module name="UnusedTryResourceShouldBeUnnamed">
+      <!--
+        Unnamed try parameters will not compile on java versions before 21. As
+        we migrate to jdk 21 we will use this check.
+      -->
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="UnusedLocalVariable"/>
     <module name="VariableDeclarationUsageDistance"/>
     <module name="WhenShouldBeUsed">

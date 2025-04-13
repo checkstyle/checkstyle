@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -141,7 +142,8 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
                 lambdaParameters.push(lambdaParameter);
             }
         }
-        else if (isLambdaParameterIdentifierCandidate(ast) && !isLeftHandOfAssignment(ast)) {
+        else if (isLambdaParameterIdentifierCandidate(ast)
+                && !CheckUtil.isLeftHandOfAssignment(ast)) {
             // we do not count reassignment as usage
             lambdaParameters.stream()
                     .filter(parameter -> parameter.getName().equals(ast.getText()))
@@ -183,7 +185,8 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
                     || identifierAst.getParent().getType() == TokenTypes.PARAMETER_DEF;
 
         return !isLambdaParameterDeclaration
-                 && (hasValidParentToken(identifierAst) || isMethodInvocation(identifierAst));
+                 && (hasValidParentToken(identifierAst)
+                 || CheckUtil.isMethodInvocation(identifierAst));
     }
 
     /**
@@ -195,32 +198,6 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
      */
     private static boolean hasValidParentToken(DetailAST identifierAst) {
         return !TokenUtil.isOfType(identifierAst.getParent(), INVALID_LAMBDA_PARAM_IDENT_PARENTS);
-    }
-
-    /**
-     * Check if the given {@link TokenTypes#IDENT} is a child of a dot operator
-     * and is a candidate for lambda parameter.
-     *
-     * @param identAst token representing {@link TokenTypes#IDENT}
-     * @return true if the given {@link TokenTypes#IDENT} is a child of a dot operator
-     *     and a candidate for lambda parameter.
-     */
-    private static boolean isMethodInvocation(DetailAST identAst) {
-        final DetailAST parent = identAst.getParent();
-        return parent.getType() == TokenTypes.DOT
-                && identAst.equals(parent.getFirstChild());
-    }
-
-    /**
-     * Check if the given {@link TokenTypes#IDENT} is a left hand side value.
-     *
-     * @param identAst token representing {@link TokenTypes#IDENT}
-     * @return true if the given {@link TokenTypes#IDENT} is a left hand side value.
-     */
-    private static boolean isLeftHandOfAssignment(DetailAST identAst) {
-        final DetailAST parent = identAst.getParent();
-        return parent.getType() == TokenTypes.ASSIGN
-                && !identAst.equals(parent.getLastChild());
     }
 
     /**
