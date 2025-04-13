@@ -142,37 +142,45 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      * @noinspectionreason ChainOfInstanceofChecks - we treat checks and filters differently
      */
     @Override
-    public void setupChild(Configuration childConf)
-            throws CheckstyleException {
-        final String name = childConf.getName();
-        final Object module;
-
-        try {
-            module = moduleFactory.createModule(name);
-            if (module instanceof AbstractAutomaticBean) {
-                final AbstractAutomaticBean bean = (AbstractAutomaticBean) module;
-                bean.contextualize(childContext);
-                bean.configure(childConf);
-            }
-        }
-        catch (final CheckstyleException ex) {
-            throw new CheckstyleException("cannot initialize module " + name
-                    + " - " + ex.getMessage(), ex);
-        }
+    public void setupChild(Configuration childConf) throws CheckstyleException {
+        final Object module = moduleDiscovery(childConf);
         if (module instanceof AbstractCheck) {
             final AbstractCheck check = (AbstractCheck) module;
             check.init();
             registerCheck(check);
         }
         else if (module instanceof TreeWalkerFilter) {
-            final TreeWalkerFilter filter = (TreeWalkerFilter) module;
-            filters.add(filter);
+            filters.add((TreeWalkerFilter) module);
         }
         else {
-            throw new CheckstyleException(
-                "TreeWalker is not allowed as a parent of " + name
-                        + " Please review 'Parent Module' section for this Check in web"
-                        + " documentation if Check is standard.");
+            throw new CheckstyleException("TreeWalker is not allowed as a parent of "
+                    + childConf.getName() + ". Please review 'Parent Module' section "
+                    + "(parent=\"com.puppycrawl.tools.checkstyle.TreeWalker\") "
+                    + "(parent=\"com.puppycrawl.tools.checkstyle.Checker\") "
+                    + "for this Check in web documentation if Check is standard.");
+        }
+    }
+
+    /**
+     * Discovers and initializes a Checkstyle module based on the given configuration.
+     *
+     * @param childConf the configuration for the module to be discovered
+     * @return the initialized module object
+     * @throws CheckstyleException if there is an error during module creation or configuration
+     */
+    private Object moduleDiscovery(Configuration childConf) throws CheckstyleException {
+        try {
+            final Object module = moduleFactory.createModule(childConf.getName());
+            if (module instanceof AbstractAutomaticBean) {
+                final AbstractAutomaticBean bean = (AbstractAutomaticBean) module;
+                bean.contextualize(childContext);
+                bean.configure(childConf);
+            }
+            return module;
+        }
+        catch (final CheckstyleException ex) {
+            throw new CheckstyleException("cannot initialize module " + childConf.getName()
+                    + " - " + ex.getMessage(), ex);
         }
     }
 
