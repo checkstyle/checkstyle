@@ -40,14 +40,14 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
     @Test
     public void testSingleSpaceSeparator() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathSingleSpaceSeparator.java"));
+            new File(getPath("InputXpathSingleSpaceSeparator.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(SingleSpaceSeparatorCheck.class);
+            createModuleConfig(SingleSpaceSeparatorCheck.class);
 
         final String[] expectedViolation = {
             "4:11: " + getCheckMessage(SingleSpaceSeparatorCheck.class,
-                    SingleSpaceSeparatorCheck.MSG_KEY),
+                SingleSpaceSeparatorCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -57,7 +57,7 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
@@ -67,12 +67,12 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
         ));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(SingleSpaceSeparatorCheck.class);
+            createModuleConfig(SingleSpaceSeparatorCheck.class);
         moduleConfig.addProperty("validateComments", "true");
 
         final String[] expectedViolation = {
             "4:17: " + getCheckMessage(SingleSpaceSeparatorCheck.class,
-                    SingleSpaceSeparatorCheck.MSG_KEY),
+                SingleSpaceSeparatorCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -83,6 +83,6 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

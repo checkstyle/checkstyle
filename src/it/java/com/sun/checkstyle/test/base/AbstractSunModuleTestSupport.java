@@ -42,7 +42,7 @@ public abstract class AbstractSunModuleTestSupport extends AbstractItModuleTestS
     static {
         try {
             CONFIGURATION = ConfigurationLoader.loadConfiguration(XML_NAME,
-                    new PropertiesExpander(System.getProperties()));
+                new PropertiesExpander(System.getProperties()));
         }
         catch (CheckstyleException ex) {
             throw new IllegalStateException(ex);
@@ -61,9 +61,9 @@ public abstract class AbstractSunModuleTestSupport extends AbstractItModuleTestS
 
         for (Class<?> moduleClass : CHECKSTYLE_MODULES) {
             if (moduleClass.getSimpleName().equals(moduleName)
-                    || moduleClass.getSimpleName().equals(moduleName + "Check")) {
+                || moduleClass.getSimpleName().equals(moduleName + "Check")) {
                 if (ModuleReflectionUtil.isCheckstyleTreeWalkerCheck(moduleClass)
-                        || ModuleReflectionUtil.isTreeWalkerFilterModule(moduleClass)) {
+                    || ModuleReflectionUtil.isTreeWalkerFilterModule(moduleClass)) {
                     moduleCreationOption = ModuleCreationOption.IN_TREEWALKER;
                 }
                 break;
@@ -74,8 +74,8 @@ public abstract class AbstractSunModuleTestSupport extends AbstractItModuleTestS
     }
 
     /**
-     * Returns {@link Configuration} instance for the given module name.
-     * This implementation uses {@link #getModuleConfig(String, String)} method inside.
+     * Returns {@link Configuration} instance for the given module name. This implementation uses
+     * {@link #getModuleConfig(String, String)} method inside.
      *
      * @param moduleName module name.
      * @return {@link Configuration} instance for the given module name.
@@ -85,11 +85,11 @@ public abstract class AbstractSunModuleTestSupport extends AbstractItModuleTestS
     }
 
     /**
-     * Returns {@link Configuration} instance for the given module name.
-     * This implementation uses {@link #getModuleConfig(String)} method inside.
+     * Returns {@link Configuration} instance for the given module name. This implementation uses
+     * {@link #getModuleConfig(String)} method inside.
      *
      * @param moduleName module name.
-     * @param moduleId module id.
+     * @param moduleId   module id.
      * @return {@link Configuration} instance for the given module name.
      * @throws IllegalStateException if there is a problem retrieving the module or config.
      */

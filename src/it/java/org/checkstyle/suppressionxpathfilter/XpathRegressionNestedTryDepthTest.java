@@ -40,10 +40,10 @@ public class XpathRegressionNestedTryDepthTest extends AbstractXpathTestSupport 
     @Test
     public void testCorrect() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathNestedTryDepth.java"));
+            new File(getPath("InputXpathNestedTryDepth.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NestedTryDepthCheck.class);
+            createModuleConfig(NestedTryDepthCheck.class);
 
         final String[] expectedViolation = {
             "7:17: " + getCheckMessage(NestedTryDepthCheck.class,
@@ -58,7 +58,7 @@ public class XpathRegressionNestedTryDepthTest extends AbstractXpathTestSupport 
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test

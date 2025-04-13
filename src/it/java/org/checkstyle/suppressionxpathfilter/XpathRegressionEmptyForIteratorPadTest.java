@@ -41,14 +41,14 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
     @Test
     public void testFollowed() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathEmptyForIteratorPadFollowed.java"));
+            new File(getPath("InputXpathEmptyForIteratorPadFollowed.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyForIteratorPadCheck.class);
+            createModuleConfig(EmptyForIteratorPadCheck.class);
 
         final String[] expectedViolation = {
             "5:34: " + getCheckMessage(EmptyForIteratorPadCheck.class,
-                    EmptyForIteratorPadCheck.MSG_WS_FOLLOWED, ";"),
+                EmptyForIteratorPadCheck.MSG_WS_FOLLOWED, ";"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -61,21 +61,21 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testNotFollowed() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathEmptyForIteratorPadNotFollowed.java"));
+            new File(getPath("InputXpathEmptyForIteratorPadNotFollowed.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyForIteratorPadCheck.class);
+            createModuleConfig(EmptyForIteratorPadCheck.class);
         moduleConfig.addProperty("option", PadOption.SPACE.toString());
 
         final String[] expectedViolation = {
             "5:33: " + getCheckMessage(EmptyForIteratorPadCheck.class,
-                    EmptyForIteratorPadCheck.MSG_WS_NOT_FOLLOWED, ";"),
+                EmptyForIteratorPadCheck.MSG_WS_NOT_FOLLOWED, ";"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -88,7 +88,7 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

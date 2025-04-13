@@ -40,59 +40,59 @@ public class XpathRegressionNoCloneTest extends AbstractXpathTestSupport {
     @Test
     public void testMethod() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathNoCloneMethod.java"));
+            new File(getPath("InputXpathNoCloneMethod.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoCloneCheck.class);
+            createModuleConfig(NoCloneCheck.class);
 
         final String[] expectedViolation = {
             "5:5: " + getCheckMessage(NoCloneCheck.class, NoCloneCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathNoCloneMethod']]/OBJBLOCK"
-                    + "/METHOD_DEF[./IDENT[@text='clone']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathNoCloneMethod']]/OBJBLOCK"
-                    + "/METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathNoCloneMethod']]/OBJBLOCK"
-                    + "/METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS/LITERAL_PUBLIC"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathNoCloneMethod']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='clone']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathNoCloneMethod']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathNoCloneMethod']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathNoCloneInnerClass.java"));
+            new File(getPath("InputXpathNoCloneInnerClass.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoCloneCheck.class);
+            createModuleConfig(NoCloneCheck.class);
 
         final String[] expectedViolation = {
             "6:5: " + getCheckMessage(NoCloneCheck.class, NoCloneCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathNoCloneInnerClass']]"
-                        + "/OBJBLOCK"
-                        + "/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
-                        + "/METHOD_DEF[./IDENT[@text='clone']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathNoCloneInnerClass']]"
-                        + "/OBJBLOCK"
-                        + "/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
-                        + "METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathNoCloneInnerClass']]"
-                        + "/OBJBLOCK"
-                        + "/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
-                        + "/METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS/LITERAL_PUBLIC"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathNoCloneInnerClass']]"
+                + "/OBJBLOCK"
+                + "/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='clone']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathNoCloneInnerClass']]"
+                + "/OBJBLOCK"
+                + "/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
+                + "METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathNoCloneInnerClass']]"
+                + "/OBJBLOCK"
+                + "/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

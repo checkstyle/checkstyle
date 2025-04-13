@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheck;
 
 public class XpathRegressionUnnecessarySemicolonAfterOuterTypeDeclarationTest
-        extends AbstractXpathTestSupport {
+    extends AbstractXpathTestSupport {
 
     private static final Class<UnnecessarySemicolonAfterOuterTypeDeclarationCheck> CLASS =
         UnnecessarySemicolonAfterOuterTypeDeclarationCheck.class;
@@ -50,7 +50,7 @@ public class XpathRegressionUnnecessarySemicolonAfterOuterTypeDeclarationTest
         };
 
         final List<String> expectedXpathQueries =
-                Collections.singletonList("/COMPILATION_UNIT/SEMI");
+            Collections.singletonList("/COMPILATION_UNIT/SEMI");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
@@ -59,7 +59,7 @@ public class XpathRegressionUnnecessarySemicolonAfterOuterTypeDeclarationTest
     public void testInnerTypes() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathUnnecessarySemicolonAfterOuterTypeDeclarationInnerTypes"
-                    + ".java"));
+                + ".java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         final String[] expectedViolation = {
             "21:2: " + getCheckMessage(CLASS,
@@ -67,7 +67,7 @@ public class XpathRegressionUnnecessarySemicolonAfterOuterTypeDeclarationTest
         };
 
         final List<String> expectedXpathQueries =
-                Collections.singletonList("/COMPILATION_UNIT/SEMI");
+            Collections.singletonList("/COMPILATION_UNIT/SEMI");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }

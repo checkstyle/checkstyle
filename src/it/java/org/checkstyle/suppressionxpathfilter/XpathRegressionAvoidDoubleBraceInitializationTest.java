@@ -76,12 +76,12 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                    + "'InputXpathAvoidDoubleBraceInitializationMethodDef']]"
+                + "'InputXpathAvoidDoubleBraceInitializationMethodDef']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/EXPR/LITERAL_NEW[./IDENT[@text='HashSet']]"
                 + "/OBJBLOCK",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                    + "'InputXpathAvoidDoubleBraceInitializationMethodDef']]"
+                + "'InputXpathAvoidDoubleBraceInitializationMethodDef']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/EXPR/LITERAL_NEW[./IDENT[@text='HashSet']]"
                 + "/OBJBLOCK/LCURLY"

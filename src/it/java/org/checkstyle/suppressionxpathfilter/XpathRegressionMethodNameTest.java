@@ -41,78 +41,78 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathMethodNameDefault.java"));
+            new File(getPath("InputXpathMethodNameDefault.java"));
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MethodNameCheck.class);
+            createModuleConfig(MethodNameCheck.class);
 
         final String[] expectedViolation = {
             "6:16: " + getCheckMessage(MethodNameCheck.class,
-                        AbstractNameCheck.MSG_INVALID_PATTERN, "SecondMethod", pattern),
+                AbstractNameCheck.MSG_INVALID_PATTERN, "SecondMethod", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text"
-                        + "='InputXpathMethodNameDefault']]"
-                        + "/OBJBLOCK/METHOD_DEF/IDENT[@text='SecondMethod']"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text"
+                + "='InputXpathMethodNameDefault']]"
+                + "/OBJBLOCK/METHOD_DEF/IDENT[@text='SecondMethod']"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testInnerClass() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathMethodNameInner.java"));
+            new File(getPath("InputXpathMethodNameInner.java"));
 
         final String pattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MethodNameCheck.class);
+            createModuleConfig(MethodNameCheck.class);
         moduleConfig.addProperty("format", "^[a-z](_?[a-zA-Z0-9]+)*$");
 
         final String[] expectedViolation = {
             "7:21: " + getCheckMessage(MethodNameCheck.class,
-                        AbstractNameCheck.MSG_INVALID_PATTERN, "MyMethod2", pattern),
+                AbstractNameCheck.MSG_INVALID_PATTERN, "MyMethod2", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text"
-                        + "='InputXpathMethodNameInner']]"
-                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
-                        + "/OBJBLOCK/METHOD_DEF/IDENT[@text='MyMethod2']"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text"
+                + "='InputXpathMethodNameInner']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
+                + "/OBJBLOCK/METHOD_DEF/IDENT[@text='MyMethod2']"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testCustomProperties() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathMethodNameCustomProperties.java"));
+            new File(getPath("InputXpathMethodNameCustomProperties.java"));
 
         final String pattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MethodNameCheck.class);
+            createModuleConfig(MethodNameCheck.class);
         moduleConfig.addProperty("format", "^[a-z](_?[a-zA-Z0-9]+)*$");
         moduleConfig.addProperty("applyToPublic", "false");
         moduleConfig.addProperty("applyToProtected", "false");
 
         final String[] expectedViolation = {
             "7:19: " + getCheckMessage(MethodNameCheck.class,
-                        AbstractNameCheck.MSG_INVALID_PATTERN,
-                        "ThirdMethod", pattern),
+                AbstractNameCheck.MSG_INVALID_PATTERN,
+                "ThirdMethod", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                        + "/INTERFACE_DEF[./IDENT[@text='Check']]"
-                        + "/OBJBLOCK/METHOD_DEF/IDENT[@text='ThirdMethod']"
+            "/COMPILATION_UNIT"
+                + "/INTERFACE_DEF[./IDENT[@text='Check']]"
+                + "/OBJBLOCK/METHOD_DEF/IDENT[@text='ThirdMethod']"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

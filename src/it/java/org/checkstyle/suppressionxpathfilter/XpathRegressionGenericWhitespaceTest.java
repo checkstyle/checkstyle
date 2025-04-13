@@ -41,14 +41,14 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
     @Test
     public void testProcessEnd() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathGenericWhitespaceEnd.java"));
+            getPath("InputXpathGenericWhitespaceEnd.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(GenericWhitespaceCheck.class);
+            createModuleConfig(GenericWhitespaceCheck.class);
 
         final String[] expectedViolation = {
             "6:22: " + getCheckMessage(GenericWhitespaceCheck.class,
-                    GenericWhitespaceCheck.MSG_WS_PRECEDED, ">"),
+                GenericWhitespaceCheck.MSG_WS_PRECEDED, ">"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -60,20 +60,20 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testProcessNestedGenericsOne() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathGenericWhitespaceNestedOne.java"));
+            getPath("InputXpathGenericWhitespaceNestedOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(GenericWhitespaceCheck.class);
+            createModuleConfig(GenericWhitespaceCheck.class);
 
         final String[] expectedViolation = {
             "6:22: " + getCheckMessage(GenericWhitespaceCheck.class,
-                    GenericWhitespaceCheck.MSG_WS_NOT_PRECEDED, "&"),
+                GenericWhitespaceCheck.MSG_WS_NOT_PRECEDED, "&"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -85,20 +85,20 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testProcessNestedGenericsTwo() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathGenericWhitespaceNestedTwo.java"));
+            getPath("InputXpathGenericWhitespaceNestedTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(GenericWhitespaceCheck.class);
+            createModuleConfig(GenericWhitespaceCheck.class);
 
         final String[] expectedViolation = {
             "6:22: " + getCheckMessage(GenericWhitespaceCheck.class,
-                    GenericWhitespaceCheck.MSG_WS_FOLLOWED, ">"),
+                GenericWhitespaceCheck.MSG_WS_FOLLOWED, ">"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -110,20 +110,20 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testProcessNestedGenericsThree() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathGenericWhitespaceNestedThree.java"));
+            getPath("InputXpathGenericWhitespaceNestedThree.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(GenericWhitespaceCheck.class);
+            createModuleConfig(GenericWhitespaceCheck.class);
 
         final String[] expectedViolation = {
             "6:22: " + getCheckMessage(GenericWhitespaceCheck.class,
-                    GenericWhitespaceCheck.MSG_WS_FOLLOWED, ">"),
+                GenericWhitespaceCheck.MSG_WS_FOLLOWED, ">"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -135,20 +135,20 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testProcessSingleGenericOne() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathGenericWhitespaceSingleOne.java"));
+            getPath("InputXpathGenericWhitespaceSingleOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(GenericWhitespaceCheck.class);
+            createModuleConfig(GenericWhitespaceCheck.class);
 
         final String[] expectedViolation = {
             "6:37: " + getCheckMessage(GenericWhitespaceCheck.class,
-                    GenericWhitespaceCheck.MSG_WS_FOLLOWED, ">"),
+                GenericWhitespaceCheck.MSG_WS_FOLLOWED, ">"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -160,20 +160,20 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testProcessSingleGenericTwo() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathGenericWhitespaceSingleTwo.java"));
+            getPath("InputXpathGenericWhitespaceSingleTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(GenericWhitespaceCheck.class);
+            createModuleConfig(GenericWhitespaceCheck.class);
 
         final String[] expectedViolation = {
             "6:7: " + getCheckMessage(GenericWhitespaceCheck.class,
-                    GenericWhitespaceCheck.MSG_WS_ILLEGAL_FOLLOW, ">"),
+                GenericWhitespaceCheck.MSG_WS_ILLEGAL_FOLLOW, ">"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -183,46 +183,46 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testProcessStartOne() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathGenericWhitespaceStartOne.java"));
+            getPath("InputXpathGenericWhitespaceStartOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(GenericWhitespaceCheck.class);
+            createModuleConfig(GenericWhitespaceCheck.class);
 
         final String[] expectedViolation = {
             "6:11: " + getCheckMessage(GenericWhitespaceCheck.class,
-                    GenericWhitespaceCheck.MSG_WS_NOT_PRECEDED, "<"),
+                GenericWhitespaceCheck.MSG_WS_NOT_PRECEDED, "<"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                    + "[@text='InputXpathGenericWhitespaceStartOne']]"
+                + "[@text='InputXpathGenericWhitespaceStartOne']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bad']]/TYPE_PARAMETERS",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                    + "[@text='InputXpathGenericWhitespaceStartOne']]"
+                + "[@text='InputXpathGenericWhitespaceStartOne']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bad']]/TYPE_PARAMETERS/GENERIC_START"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testProcessStartTwo() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathGenericWhitespaceStartTwo.java"));
+            getPath("InputXpathGenericWhitespaceStartTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(GenericWhitespaceCheck.class);
+            createModuleConfig(GenericWhitespaceCheck.class);
 
         final String[] expectedViolation = {
             "6:34: " + getCheckMessage(GenericWhitespaceCheck.class,
-                    GenericWhitespaceCheck.MSG_WS_PRECEDED, "<"),
+                GenericWhitespaceCheck.MSG_WS_PRECEDED, "<"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -239,20 +239,20 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testProcessStartThree() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathGenericWhitespaceStartThree.java"));
+            getPath("InputXpathGenericWhitespaceStartThree.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(GenericWhitespaceCheck.class);
+            createModuleConfig(GenericWhitespaceCheck.class);
 
         final String[] expectedViolation = {
             "6:5: " + getCheckMessage(GenericWhitespaceCheck.class,
-                    GenericWhitespaceCheck.MSG_WS_FOLLOWED, "<"),
+                GenericWhitespaceCheck.MSG_WS_FOLLOWED, "<"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -271,7 +271,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

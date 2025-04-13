@@ -39,42 +39,42 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
     @Test
     public void testEmptyForLoopEmptyBlock() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathEmptyBlockEmpty.java"));
+            new File(getPath("InputXpathEmptyBlockEmpty.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyBlockCheck.class);
+            createModuleConfig(EmptyBlockCheck.class);
         moduleConfig.addProperty("option", "TEXT");
         final String[] expectedViolation = {
             "5:38: " + getCheckMessage(EmptyBlockCheck.class,
                 EmptyBlockCheck.MSG_KEY_BLOCK_EMPTY, "for"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='InputXpathEmptyBlockEmpty']]"
-                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='emptyLoop']]"
-                    + "/SLIST/LITERAL_FOR/SLIST"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathEmptyBlockEmpty']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='emptyLoop']]"
+                + "/SLIST/LITERAL_FOR/SLIST"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testEmptyForLoopEmptyStatement() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathEmptyBlockEmpty.java"));
+            new File(getPath("InputXpathEmptyBlockEmpty.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(EmptyBlockCheck.class);
+            createModuleConfig(EmptyBlockCheck.class);
         final String[] expectedViolation = {
             "5:38: " + getCheckMessage(EmptyBlockCheck.class,
                 EmptyBlockCheck.MSG_KEY_BLOCK_NO_STATEMENT),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text='InputXpathEmptyBlockEmpty']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='emptyLoop']]"
-                        + "/SLIST/LITERAL_FOR/SLIST"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathEmptyBlockEmpty']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='emptyLoop']]"
+                + "/SLIST/LITERAL_FOR/SLIST"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

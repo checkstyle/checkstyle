@@ -42,76 +42,76 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathLambdaParameterNameDefault.java"));
+            new File(getPath("InputXpathLambdaParameterNameDefault.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(LambdaParameterNameCheck.class);
+            createModuleConfig(LambdaParameterNameCheck.class);
         final String defaultPattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expectedViolation = {
             "7:44: " + getCheckMessage(LambdaParameterNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "S", defaultPattern),
+                AbstractNameCheck.MSG_INVALID_PATTERN, "S", defaultPattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-               "/COMPILATION_UNIT/CLASS_DEF"
-                       + "[./IDENT[@text='InputXpathLambdaParameterNameDefault']]"
-                       + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF["
-                       + "./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/IDENT[@text='S']"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathLambdaParameterNameDefault']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF["
+                + "./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/IDENT[@text='S']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testNonDefaultPattern() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathLambdaParameterNameNonDefaultPattern.java"));
+            new File(getPath("InputXpathLambdaParameterNameNonDefaultPattern.java"));
 
         final String nonDefaultPattern = "^_[a-zA-Z0-9]*$";
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(LambdaParameterNameCheck.class);
+            createModuleConfig(LambdaParameterNameCheck.class);
         moduleConfig.addProperty("format", nonDefaultPattern);
 
         final String[] expectedViolation = {
             "7:45: " + getCheckMessage(LambdaParameterNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "s", nonDefaultPattern),
+                AbstractNameCheck.MSG_INVALID_PATTERN, "s", nonDefaultPattern),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathLambdaParameterNameNonDefaultPattern']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
-                        + "VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathLambdaParameterNameNonDefaultPattern']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
+                + "VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathLambdaParameterNameNonDefaultPattern']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
-                        + "VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS"
-                        + "/PARAMETER_DEF[./IDENT[@text='s']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathLambdaParameterNameNonDefaultPattern']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
+                + "VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS"
+                + "/PARAMETER_DEF[./IDENT[@text='s']]",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathLambdaParameterNameNonDefaultPattern']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST"
-                        + "/VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS"
-                        + "/PARAMETER_DEF[./IDENT[@text='s']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathLambdaParameterNameNonDefaultPattern']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST"
+                + "/VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS"
+                + "/PARAMETER_DEF[./IDENT[@text='s']]/MODIFIERS",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathLambdaParameterNameNonDefaultPattern']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
-                        + "VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS"
-                        + "/PARAMETER_DEF[./IDENT[@text='s']]/TYPE",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathLambdaParameterNameNonDefaultPattern']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
+                + "VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS"
+                + "/PARAMETER_DEF[./IDENT[@text='s']]/TYPE",
 
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathLambdaParameterNameNonDefaultPattern']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
-                        + "VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS"
-                        + "/PARAMETER_DEF/IDENT[@text='s']"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathLambdaParameterNameNonDefaultPattern']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
+                + "VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS"
+                + "/PARAMETER_DEF/IDENT[@text='s']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

@@ -40,48 +40,48 @@ public class XpathRegressionPackageDeclarationTest extends AbstractXpathTestSupp
     @Test
     public void testWrongPackage() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath("InputXpathWrongPackage.java"));
+            new File(getNonCompilablePath("InputXpathWrongPackage.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(PackageDeclarationCheck.class);
+            createModuleConfig(PackageDeclarationCheck.class);
 
         final String[] expectedViolation = {
             "2:1: " + getCheckMessage(PackageDeclarationCheck.class,
-                    PackageDeclarationCheck.MSG_KEY_MISMATCH),
+                PackageDeclarationCheck.MSG_KEY_MISMATCH),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
+            "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testMissingPackage() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath("InputXpathMissingPackage.java"));
+            new File(getNonCompilablePath("InputXpathMissingPackage.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(PackageDeclarationCheck.class);
+            createModuleConfig(PackageDeclarationCheck.class);
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(PackageDeclarationCheck.class,
-                    PackageDeclarationCheck.MSG_KEY_MISSING),
+                PackageDeclarationCheck.MSG_KEY_MISSING),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathMissingPackage']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMissingPackage']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMissingPackage']]/MODIFIERS/LITERAL_PUBLIC"
+            "/COMPILATION_UNIT",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathMissingPackage']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingPackage']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMissingPackage']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

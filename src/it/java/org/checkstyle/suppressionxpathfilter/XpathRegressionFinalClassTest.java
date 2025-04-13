@@ -19,14 +19,14 @@
 
 package org.checkstyle.suppressionxpathfilter;
 
-import java.io.File;
-import java.util.Arrays;
-import java.util.List;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck;
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 
 public class XpathRegressionFinalClassTest extends AbstractXpathTestSupport {
     private final String checkName = FinalClassCheck.class.getSimpleName();
@@ -39,56 +39,56 @@ public class XpathRegressionFinalClassTest extends AbstractXpathTestSupport {
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathFinalClassDefault.java"));
+            "InputXpathFinalClassDefault.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(FinalClassCheck.class);
+            createModuleConfig(FinalClassCheck.class);
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(FinalClassCheck.class,
-                    FinalClassCheck.MSG_KEY, "InputXpathFinalClassDefault"),
+                FinalClassCheck.MSG_KEY, "InputXpathFinalClassDefault"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathFinalClassDefault']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathFinalClassDefault']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathFinalClassDefault']]/MODIFIERS/LITERAL_PUBLIC"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathFinalClassDefault']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathFinalClassDefault']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathFinalClassDefault']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testInnerClass() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathFinalClassInnerClass.java"));
+            "InputXpathFinalClassInnerClass.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(FinalClassCheck.class);
+            createModuleConfig(FinalClassCheck.class);
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(FinalClassCheck.class,
-                    FinalClassCheck.MSG_KEY, "Test"),
+                FinalClassCheck.MSG_KEY, "Test"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathFinalClassInnerClass']]"
-                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathFinalClassInnerClass']]"
-                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathFinalClassInnerClass']]"
-                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]/LITERAL_CLASS"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathFinalClassInnerClass']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathFinalClassInnerClass']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathFinalClassInnerClass']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]/LITERAL_CLASS"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }
 

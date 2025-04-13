@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterTypeMemberDeclarationCheck;
 
 public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
-        extends AbstractXpathTestSupport {
+    extends AbstractXpathTestSupport {
 
     private static final Class<UnnecessarySemicolonAfterTypeMemberDeclarationCheck> CLASS =
         UnnecessarySemicolonAfterTypeMemberDeclarationCheck.class;
@@ -75,7 +75,7 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text='InputXpathUnnecessarySemicolonAfterTypeMember"
-                    + "DeclarationTokens']]"
+                + "DeclarationTokens']]"
                 + "/OBJBLOCK/SEMI[1]"
         );
 

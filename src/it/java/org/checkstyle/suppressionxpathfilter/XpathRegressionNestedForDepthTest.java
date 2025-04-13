@@ -40,10 +40,10 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport 
     @Test
     public void testCorrect() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathNestedForDepth.java"));
+            new File(getPath("InputXpathNestedForDepth.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NestedForDepthCheck.class);
+            createModuleConfig(NestedForDepthCheck.class);
 
         final String[] expectedViolation = {
             "7:17: " + getCheckMessage(NestedForDepthCheck.class,
@@ -58,16 +58,16 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport 
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testMax() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathNestedForDepthMax.java"));
+            new File(getPath("InputXpathNestedForDepthMax.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NestedForDepthCheck.class);
+            createModuleConfig(NestedForDepthCheck.class);
         moduleConfig.addProperty("max", "2");
 
         final String[] expectedViolation = {
@@ -86,6 +86,6 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport 
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

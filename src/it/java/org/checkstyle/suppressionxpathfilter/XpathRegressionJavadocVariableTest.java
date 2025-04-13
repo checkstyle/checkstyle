@@ -40,10 +40,10 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
     @Test
     public void testPrivateClassFields() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathJavadocVariablePrivateClassFields.java"));
+            new File(getPath("InputXpathJavadocVariablePrivateClassFields.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocVariableCheck.class);
+            createModuleConfig(JavadocVariableCheck.class);
 
         final String[] expectedViolation = {
             "5:5: " + getCheckMessage(JavadocVariableCheck.class,
@@ -63,16 +63,16 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testInnerClassFields() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathJavadocVariableInnerClassFields.java"));
+            new File(getPath("InputXpathJavadocVariableInnerClassFields.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocVariableCheck.class);
+            createModuleConfig(JavadocVariableCheck.class);
 
         final String[] expectedViolation = {
             "6:9: " + getCheckMessage(JavadocVariableCheck.class,
@@ -96,6 +96,6 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

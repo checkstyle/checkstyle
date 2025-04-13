@@ -40,14 +40,14 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
     @Test
     public void testUpperEllOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathUpperEllOne.java"));
+            new File(getPath("InputXpathUpperEllOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(UpperEllCheck.class);
+            createModuleConfig(UpperEllCheck.class);
 
         final String[] expectedViolation = {
             "4:16: " + getCheckMessage(UpperEllCheck.class,
-                    UpperEllCheck.MSG_KEY),
+                UpperEllCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -61,7 +61,7 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
@@ -74,7 +74,7 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "6:21: " + getCheckMessage(UpperEllCheck.class,
-                                       UpperEllCheck.MSG_KEY),
+                UpperEllCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -89,6 +89,6 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                         expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

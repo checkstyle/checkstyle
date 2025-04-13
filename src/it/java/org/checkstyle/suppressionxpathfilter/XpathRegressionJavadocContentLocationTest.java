@@ -40,14 +40,14 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathJavadocContentLocationOne.java"));
+            new File(getPath("InputXpathJavadocContentLocationOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocContentLocationCheck.class);
+            createModuleConfig(JavadocContentLocationCheck.class);
 
         final String[] expectedViolation = {
             "5:5: " + getCheckMessage(JavadocContentLocationCheck.class,
-                    JavadocContentLocationCheck.MSG_JAVADOC_CONTENT_SECOND_LINE),
+                JavadocContentLocationCheck.MSG_JAVADOC_CONTENT_SECOND_LINE),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -58,33 +58,33 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathJavadocContentLocationTwo.java"));
+            new File(getPath("InputXpathJavadocContentLocationTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocContentLocationCheck.class);
+            createModuleConfig(JavadocContentLocationCheck.class);
 
         moduleConfig.addProperty("location", "first_line");
 
         final String[] expectedViolation = {
             "5:16: " + getCheckMessage(JavadocContentLocationCheck.class,
-                    JavadocContentLocationCheck.MSG_JAVADOC_CONTENT_FIRST_LINE),
+                JavadocContentLocationCheck.MSG_JAVADOC_CONTENT_FIRST_LINE),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                    + "[@text='InputXpathJavadocContentLocationTwo']]"
-                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/BLOCK_COMMENT_BEGIN"
-                    + "[./COMMENT_CONTENT[@text='*\\n     * Text.\\n     ']]"
+                + "[@text='InputXpathJavadocContentLocationTwo']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/BLOCK_COMMENT_BEGIN"
+                + "[./COMMENT_CONTENT[@text='*\\n     * Text.\\n     ']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

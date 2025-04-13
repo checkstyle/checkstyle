@@ -40,11 +40,11 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
     @Test
     public void testDefaultConfig() throws Exception {
         final String filePath =
-                getPath("InputXpathExecutableStatementCountDefault.java");
+            getPath("InputXpathExecutableStatementCountDefault.java");
         final File fileToProcess = new File(filePath);
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ExecutableStatementCountCheck.class);
+            createModuleConfig(ExecutableStatementCountCheck.class);
 
         moduleConfig.addProperty("max", "0");
 
@@ -54,16 +54,16 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='InputXpathExecutableStatementCountDefault']]"
-            + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='ElseIfLadder']]",
+                + "@text='InputXpathExecutableStatementCountDefault']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='ElseIfLadder']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='InputXpathExecutableStatementCountDefault']]"
-            + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='ElseIfLadder']]"
-            + "/MODIFIERS",
+                + "@text='InputXpathExecutableStatementCountDefault']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='ElseIfLadder']]"
+                + "/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='InputXpathExecutableStatementCountDefault']]"
-            + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='ElseIfLadder']]"
-            + "/MODIFIERS/LITERAL_PUBLIC"
+                + "@text='InputXpathExecutableStatementCountDefault']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='ElseIfLadder']]"
+                + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
@@ -73,11 +73,11 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
     @Test
     public void testCustomMax() throws Exception {
         final String filePath =
-                getPath("InputXpathExecutableStatementCountCustomMax.java");
+            getPath("InputXpathExecutableStatementCountCustomMax.java");
         final File fileToProcess = new File(filePath);
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ExecutableStatementCountCheck.class);
+            createModuleConfig(ExecutableStatementCountCheck.class);
 
         moduleConfig.addProperty("max", "0");
         moduleConfig.addProperty("tokens", "CTOR_DEF");
@@ -88,19 +88,19 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='InputXpathExecutableStatementCountCustomMax']]"
-            + "/OBJBLOCK/CTOR_DEF[./IDENT["
-            + "@text='InputXpathExecutableStatementCountCustomMax']]",
+                + "@text='InputXpathExecutableStatementCountCustomMax']]"
+                + "/OBJBLOCK/CTOR_DEF[./IDENT["
+                + "@text='InputXpathExecutableStatementCountCustomMax']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='InputXpathExecutableStatementCountCustomMax']]"
-            + "/OBJBLOCK/CTOR_DEF[./IDENT["
-            + "@text='InputXpathExecutableStatementCountCustomMax']]"
-            + "/MODIFIERS",
+                + "@text='InputXpathExecutableStatementCountCustomMax']]"
+                + "/OBJBLOCK/CTOR_DEF[./IDENT["
+                + "@text='InputXpathExecutableStatementCountCustomMax']]"
+                + "/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='InputXpathExecutableStatementCountCustomMax']]"
-            + "/OBJBLOCK/CTOR_DEF[./IDENT["
-            + "@text='InputXpathExecutableStatementCountCustomMax']]"
-            + "/MODIFIERS/LITERAL_PUBLIC"
+                + "@text='InputXpathExecutableStatementCountCustomMax']]"
+                + "/OBJBLOCK/CTOR_DEF[./IDENT["
+                + "@text='InputXpathExecutableStatementCountCustomMax']]"
+                + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
@@ -109,11 +109,11 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
     @Test
     public void testLambdas() throws Exception {
         final String filePath =
-                getPath("InputXpathExecutableStatementCountLambdas.java");
+            getPath("InputXpathExecutableStatementCountLambdas.java");
         final File fileToProcess = new File(filePath);
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ExecutableStatementCountCheck.class);
+            createModuleConfig(ExecutableStatementCountCheck.class);
 
         moduleConfig.addProperty("max", "1");
         moduleConfig.addProperty("tokens", "LAMBDA");
@@ -123,9 +123,9 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
         };
 
         final List<String> expectedXpathQueries = List.of(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathExecutableStatementCountLambdas']]"
-                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='c']]/ASSIGN/LAMBDA"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathExecutableStatementCountLambdas']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='c']]/ASSIGN/LAMBDA"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);

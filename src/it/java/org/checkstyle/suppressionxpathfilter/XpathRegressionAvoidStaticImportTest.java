@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStaticImportCheck;
 
 public class XpathRegressionAvoidStaticImportTest
-        extends AbstractXpathTestSupport {
+    extends AbstractXpathTestSupport {
 
     private static final Class<AvoidStaticImportCheck> CLASS =
         AvoidStaticImportCheck.class;
@@ -45,7 +45,7 @@ public class XpathRegressionAvoidStaticImportTest
             "InputXpathAvoidStaticImportOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
+            createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
             "3:42: " + getCheckMessage(CLASS,
@@ -53,7 +53,7 @@ public class XpathRegressionAvoidStaticImportTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/STATIC_IMPORT/DOT"
+            "/COMPILATION_UNIT/STATIC_IMPORT/DOT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -65,7 +65,7 @@ public class XpathRegressionAvoidStaticImportTest
             "InputXpathAvoidStaticImportTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
+            createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
             "3:27: " + getCheckMessage(CLASS,
@@ -73,7 +73,7 @@ public class XpathRegressionAvoidStaticImportTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/STATIC_IMPORT/DOT[./IDENT[@text='createTempFile']]"
+            "/COMPILATION_UNIT/STATIC_IMPORT/DOT[./IDENT[@text='createTempFile']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);

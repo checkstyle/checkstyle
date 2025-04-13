@@ -40,10 +40,10 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
     @Test
     public void testRuntimeException() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathIllegalThrowsRuntimeException.java"));
+            new File(getPath("InputXpathIllegalThrowsRuntimeException.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalThrowsCheck.class);
+            createModuleConfig(IllegalThrowsCheck.class);
 
         final String[] expectedViolation = {
             "4:35: " + getCheckMessage(IllegalThrowsCheck.class,
@@ -58,16 +58,16 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testError() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathIllegalThrowsError.java"));
+            new File(getPath("InputXpathIllegalThrowsError.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalThrowsCheck.class);
+            createModuleConfig(IllegalThrowsCheck.class);
 
         final String[] expectedViolation = {
             "8:45: " + getCheckMessage(IllegalThrowsCheck.class,
@@ -82,6 +82,6 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

@@ -38,10 +38,10 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
     @Test
     public void testVariable() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathMagicNumberVariable.java"));
+            new File(getPath("InputXpathMagicNumberVariable.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MagicNumberCheck.class);
+            createModuleConfig(MagicNumberCheck.class);
 
         final String[] expectedViolation = {
             "5:13: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "5"),
@@ -49,13 +49,13 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMagicNumberVariable']]"
-                    + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='d']]"
-                    + "/ASSIGN/EXPR[./NUM_INT[@text='5']]",
+                + "[./IDENT[@text='InputXpathMagicNumberVariable']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='d']]"
+                + "/ASSIGN/EXPR[./NUM_INT[@text='5']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathMagicNumberVariable']]"
-                    + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='d']]"
-                    + "/ASSIGN/EXPR/NUM_INT[@text='5']"
+                + "[./IDENT[@text='InputXpathMagicNumberVariable']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='d']]"
+                + "/ASSIGN/EXPR/NUM_INT[@text='5']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -65,52 +65,52 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
     @Test
     public void testMethodDef() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathMagicNumberMethodDef.java"));
+            new File(getPath("InputXpathMagicNumberMethodDef.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MagicNumberCheck.class);
+            createModuleConfig(MagicNumberCheck.class);
 
         final String[] expectedViolation = {
             "5:17: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "20"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMagicNumberMethodDef']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodWithMagicNumber']]"
-                        + "/SLIST/VARIABLE_DEF[./IDENT[@text='x']]/ASSIGN/EXPR[./"
-                        + "NUM_INT[@text='20']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMagicNumberMethodDef']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodWithMagicNumber']]"
-                        + "/SLIST/VARIABLE_DEF[./IDENT[@text='x']]/ASSIGN/EXPR/NU"
-                        + "M_INT[@text='20']"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMagicNumberMethodDef']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodWithMagicNumber']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='x']]/ASSIGN/EXPR[./"
+                + "NUM_INT[@text='20']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMagicNumberMethodDef']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodWithMagicNumber']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='x']]/ASSIGN/EXPR/NU"
+                + "M_INT[@text='20']"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testAnotherVariable() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathMagicNumberAnotherVariable.java"));
+            new File(getPath("InputXpathMagicNumberAnotherVariable.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MagicNumberCheck.class);
+            createModuleConfig(MagicNumberCheck.class);
 
         final String[] expectedViolation = {
             "13:21: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "20"),
         };
 
         final List<String> expectedXpathQueries = List.of(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathMagicNumberAnotherVariable']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='performOperation']]"
-                        + "/SLIST/LITERAL_TRY/LITERAL_CATCH/SLIST/LITERAL_IF"
-                        + "/LITERAL_ELSE/SLIST/EXPR/ASSIGN"
-                        + "[./IDENT[@text='a']]/NUM_INT[@text='20']"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathMagicNumberAnotherVariable']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='performOperation']]"
+                + "/SLIST/LITERAL_TRY/LITERAL_CATCH/SLIST/LITERAL_IF"
+                + "/LITERAL_ELSE/SLIST/EXPR/ASSIGN"
+                + "[./IDENT[@text='a']]/NUM_INT[@text='20']"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

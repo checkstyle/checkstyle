@@ -29,10 +29,10 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnusedLambdaParameterShouldBeUnnamedCheck;
 
 public class XpathRegressionUnusedLambdaParameterShouldBeUnnamedTest
-                    extends AbstractXpathTestSupport {
+    extends AbstractXpathTestSupport {
 
     private final String checkName = UnusedLambdaParameterShouldBeUnnamedCheck.class
-                                                .getSimpleName();
+        .getSimpleName();
 
     @Override
     protected String getCheckName() {
@@ -42,16 +42,16 @@ public class XpathRegressionUnusedLambdaParameterShouldBeUnnamedTest
     @Test
     public void testSimple() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
-                        "InputXpathUnusedLambdaParameterShouldBeUnnamedSimple.java"));
+            new File(getNonCompilablePath(
+                "InputXpathUnusedLambdaParameterShouldBeUnnamedSimple.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedLambdaParameterShouldBeUnnamedCheck.class);
+            createModuleConfig(UnusedLambdaParameterShouldBeUnnamedCheck.class);
 
         final String[] expectedViolation = {
             "9:41: " + getCheckMessage(UnusedLambdaParameterShouldBeUnnamedCheck.class,
-                    UnusedLambdaParameterShouldBeUnnamedCheck.MSG_UNUSED_LAMBDA_PARAMETER,
-                    "x"),
+                UnusedLambdaParameterShouldBeUnnamedCheck.MSG_UNUSED_LAMBDA_PARAMETER,
+                "x"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -80,22 +80,22 @@ public class XpathRegressionUnusedLambdaParameterShouldBeUnnamedTest
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testNested() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
-                        "InputXpathUnusedLambdaParameterShouldBeUnnamedNested.java"));
+            new File(getNonCompilablePath(
+                "InputXpathUnusedLambdaParameterShouldBeUnnamedNested.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnusedLambdaParameterShouldBeUnnamedCheck.class);
+            createModuleConfig(UnusedLambdaParameterShouldBeUnnamedCheck.class);
 
         final String[] expectedViolation = {
             "10:45: " + getCheckMessage(UnusedLambdaParameterShouldBeUnnamedCheck.class,
-                    UnusedLambdaParameterShouldBeUnnamedCheck.MSG_UNUSED_LAMBDA_PARAMETER,
-                    "y"),
+                UnusedLambdaParameterShouldBeUnnamedCheck.MSG_UNUSED_LAMBDA_PARAMETER,
+                "y"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -126,6 +126,6 @@ public class XpathRegressionUnusedLambdaParameterShouldBeUnnamedTest
                 + "./IDENT[@text='f']]/ASSIGN/LAMBDA/PARAMETERS/PARAMETER_DEF/IDENT[@text='y']"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

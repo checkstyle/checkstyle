@@ -52,9 +52,9 @@ public class XpathRegressionLocalVariableNameTest extends AbstractXpathTestSuppo
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-              + "@text='InputXpathLocalVariableNameMethod']]"
-              + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyMethod']]"
-              + "/SLIST/VARIABLE_DEF/IDENT[@text='VAR']"
+                + "@text='InputXpathLocalVariableNameMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyMethod']]"
+                + "/SLIST/VARIABLE_DEF/IDENT[@text='VAR']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
@@ -75,9 +75,9 @@ public class XpathRegressionLocalVariableNameTest extends AbstractXpathTestSuppo
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-              + "@text='InputXpathLocalVariableNameIteration']]"
-              + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyMethod']]/"
-              + "SLIST/LITERAL_FOR/FOR_INIT/VARIABLE_DEF/IDENT[@text='var_1']"
+                + "@text='InputXpathLocalVariableNameIteration']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyMethod']]/"
+                + "SLIST/LITERAL_FOR/FOR_INIT/VARIABLE_DEF/IDENT[@text='var_1']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
@@ -98,9 +98,9 @@ public class XpathRegressionLocalVariableNameTest extends AbstractXpathTestSuppo
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-              + "@text='InputXpathLocalVariableNameInnerClass']]"
-              + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
-              + "METHOD_DEF[./IDENT[@text='myMethod']]/SLIST/VARIABLE_DEF/IDENT[@text='VAR']"
+                + "@text='InputXpathLocalVariableNameInnerClass']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
+                + "METHOD_DEF[./IDENT[@text='myMethod']]/SLIST/VARIABLE_DEF/IDENT[@text='VAR']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);

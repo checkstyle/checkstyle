@@ -41,10 +41,10 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathRightCurlyOne.java"));
+            new File(getPath("InputXpathRightCurlyOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(RightCurlyCheck.class);
+            createModuleConfig(RightCurlyCheck.class);
 
         final String[] expectedViolation = {
             "8:9: " + getCheckMessage(RightCurlyCheck.class,
@@ -58,16 +58,16 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathRightCurlyTwo.java"));
+            new File(getPath("InputXpathRightCurlyTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(RightCurlyCheck.class);
+            createModuleConfig(RightCurlyCheck.class);
         moduleConfig.addProperty("option", RightCurlyOption.ALONE.toString());
 
         final String[] expectedViolation = {
@@ -82,16 +82,16 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathRightCurlyThree.java"));
+            new File(getPath("InputXpathRightCurlyThree.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(RightCurlyCheck.class);
+            createModuleConfig(RightCurlyCheck.class);
         moduleConfig.addProperty("option", RightCurlyOption.ALONE.toString());
 
         final String[] expectedViolation = {
@@ -106,16 +106,16 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testFour() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathRightCurlyFour.java"));
+            new File(getPath("InputXpathRightCurlyFour.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(RightCurlyCheck.class);
+            createModuleConfig(RightCurlyCheck.class);
         moduleConfig.addProperty("option", RightCurlyOption.SAME.toString());
 
         final String[] expectedViolation = {
@@ -130,6 +130,6 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

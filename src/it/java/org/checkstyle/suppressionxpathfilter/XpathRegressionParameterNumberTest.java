@@ -40,7 +40,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathParameterNumberDefault.java"));
+            new File(getPath("InputXpathParameterNumberDefault.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(ParameterNumberCheck.class);
 
@@ -49,7 +49,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathParameterNumberDefault']]"
                 + "/OBJBLOCK/METHOD_DEF/IDENT[@text='myMethod']"
         );
@@ -61,7 +61,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
     @Test
     public void testMethods() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathParameterNumberMethods.java"));
+            new File(getPath("InputXpathParameterNumberMethods.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(ParameterNumberCheck.class);
         moduleConfig.addProperty("max", "10");
@@ -72,9 +72,9 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-               "/COMPILATION_UNIT/CLASS_DEF"
-               + "[./IDENT[@text='InputXpathParameterNumberMethods']]"
-               + "/OBJBLOCK/METHOD_DEF/IDENT[@text='myMethod']"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathParameterNumberMethods']]"
+                + "/OBJBLOCK/METHOD_DEF/IDENT[@text='myMethod']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
@@ -83,7 +83,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
     @Test
     public void testIgnoreOverriddenMethods() throws Exception {
         final String filePath =
-                getPath("InputXpathParameterNumberIgnoreOverriddenMethods.java");
+            getPath("InputXpathParameterNumberIgnoreOverriddenMethods.java");
         final File fileToProcess = new File(filePath);
 
         final DefaultConfiguration moduleConfig = createModuleConfig(ParameterNumberCheck.class);
@@ -94,7 +94,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathParameterNumberIgnoreOverriddenMethods']]"
                 + "/OBJBLOCK/CTOR_DEF/IDENT"
                 + "[@text='InputXpathParameterNumberIgnoreOverriddenMethods']"
@@ -106,7 +106,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
     @Test
     public void testIgnoreAnnotatedBy() throws Exception {
         final String filePath =
-                getPath("InputXpathParameterNumberIgnoreAnnotatedBy.java");
+            getPath("InputXpathParameterNumberIgnoreAnnotatedBy.java");
         final File fileToProcess = new File(filePath);
 
         final DefaultConfiguration moduleConfig = createModuleConfig(ParameterNumberCheck.class);
@@ -118,7 +118,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathParameterNumberIgnoreAnnotatedBy']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]"
                 + "/OBJBLOCK/STATIC_INIT/SLIST/EXPR/LITERAL_NEW[./IDENT[@text='Object']]"

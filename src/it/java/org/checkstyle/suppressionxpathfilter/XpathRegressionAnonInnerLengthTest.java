@@ -71,30 +71,30 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
     public void testMaxLength() throws Exception {
         final int maxLen = 5;
         final File fileToProcess =
-                new File(getPath("InputXpathAnonInnerLength.java"));
+            new File(getPath("InputXpathAnonInnerLength.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(AnonInnerLengthCheck.class);
+            createModuleConfig(AnonInnerLengthCheck.class);
         moduleConfig.addProperty("max", String.valueOf(maxLen));
 
         final String[] expectedViolation = {
             "7:35: " + getCheckMessage(AnonInnerLengthCheck.class,
-                    AnonInnerLengthCheck.MSG_KEY, 6, maxLen),
+                AnonInnerLengthCheck.MSG_KEY, 6, maxLen),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathAnonInnerLength']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='compare']]/SLIST"
-                        + "/VARIABLE_DEF[./IDENT[@text='comp']]/ASSIGN/EXPR",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathAnonInnerLength']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='compare']]/SLIST"
-                        + "/VARIABLE_DEF[./IDENT[@text='comp']]/ASSIGN/EXPR"
-                        + "/LITERAL_NEW[./IDENT[@text='Comparator']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathAnonInnerLength']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='compare']]/SLIST"
+                + "/VARIABLE_DEF[./IDENT[@text='comp']]/ASSIGN/EXPR",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathAnonInnerLength']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='compare']]/SLIST"
+                + "/VARIABLE_DEF[./IDENT[@text='comp']]/ASSIGN/EXPR"
+                + "/LITERAL_NEW[./IDENT[@text='Comparator']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

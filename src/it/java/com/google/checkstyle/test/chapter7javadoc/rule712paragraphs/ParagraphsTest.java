@@ -58,7 +58,7 @@ public class ParagraphsTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testRequireEmptyLineBeforeBlockTagGroupCorrectFormatted() throws Exception {
         verifyWithWholeConfig(
-                getPath("InputFormattedCorrectRequireEmptyLineBeforeBlockTagGroup.java"));
+            getPath("InputFormattedCorrectRequireEmptyLineBeforeBlockTagGroup.java"));
     }
 
     @Test
@@ -69,7 +69,7 @@ public class ParagraphsTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testRequireEmptyLineBeforeBlockTagGroupIncorrectFormatted() throws Exception {
         verifyWithWholeConfig(
-                getPath("InputFormattedIncorrectRequireEmptyLineBeforeBlockTagGroup.java"));
+            getPath("InputFormattedIncorrectRequireEmptyLineBeforeBlockTagGroup.java"));
     }
 
 }

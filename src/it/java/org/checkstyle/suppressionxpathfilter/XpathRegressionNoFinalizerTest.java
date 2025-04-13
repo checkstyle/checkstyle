@@ -38,60 +38,60 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
     @Test
     public void testMain() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathNoFinalizerMain.java"));
+            getPath("InputXpathNoFinalizerMain.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoFinalizerCheck.class);
+            createModuleConfig(NoFinalizerCheck.class);
 
         final String[] expectedViolation = {
             "8:5: " + getCheckMessage(NoFinalizerCheck.class,
-                    NoFinalizerCheck.MSG_KEY),
+                NoFinalizerCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathNoFinalizerMain']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='finalize']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathNoFinalizerMain']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathNoFinalizerMain']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS/LITERAL_PROTECTED"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testInner() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathNoFinalizerInner.java"));
+            getPath("InputXpathNoFinalizerInner.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoFinalizerCheck.class);
+            createModuleConfig(NoFinalizerCheck.class);
 
         final String[] expectedViolation = {
             "10:9: " + getCheckMessage(NoFinalizerCheck.class,
-                    NoFinalizerCheck.MSG_KEY),
+                NoFinalizerCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathNoFinalizerInner']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
                 + "METHOD_DEF[./IDENT[@text='finalize']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathNoFinalizerInner']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
                 + "METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathNoFinalizerInner']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
                 + "METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS/"
                 + "ANNOTATION[./IDENT[@text='Override']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathNoFinalizerInner']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
                 + "METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS/"
@@ -99,7 +99,7 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

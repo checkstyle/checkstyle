@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.AvoidNoArgumentSuperConstructorCallCheck;
 
 public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
-        extends AbstractXpathTestSupport {
+    extends AbstractXpathTestSupport {
 
     private static final Class<AvoidNoArgumentSuperConstructorCallCheck> CLASS =
         AvoidNoArgumentSuperConstructorCallCheck.class;
@@ -45,7 +45,7 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
             "InputXpathAvoidNoArgumentSuperConstructorCallDefault.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
+            createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
             "5:9: " + getCheckMessage(CLASS,
@@ -53,11 +53,11 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                    + "[@text='InputXpathAvoidNoArgumentSuperConstructorCallDefault']]"
-                    + "/OBJBLOCK/CTOR_DEF[./IDENT["
-                    + "@text='InputXpathAvoidNoArgumentSuperConstructorCallDefault']]"
-                    + "/SLIST/SUPER_CTOR_CALL"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathAvoidNoArgumentSuperConstructorCallDefault']]"
+                + "/OBJBLOCK/CTOR_DEF[./IDENT["
+                + "@text='InputXpathAvoidNoArgumentSuperConstructorCallDefault']]"
+                + "/SLIST/SUPER_CTOR_CALL"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -70,7 +70,7 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
         ));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
+            createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
             "7:17: " + getCheckMessage(CLASS,

@@ -40,14 +40,14 @@ public class XpathRegressionCovariantEqualsTest extends AbstractXpathTestSupport
     @Test
     public void testCovariantEqualsInClass() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathCovariantEqualsInClass.java"));
+            new File(getPath("InputXpathCovariantEqualsInClass.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CovariantEqualsCheck.class);
+            createModuleConfig(CovariantEqualsCheck.class);
 
         final String[] expectedViolation = {
             "5:20: " + getCheckMessage(CovariantEqualsCheck.class,
-                        CovariantEqualsCheck.MSG_KEY),
+                CovariantEqualsCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -57,52 +57,52 @@ public class XpathRegressionCovariantEqualsTest extends AbstractXpathTestSupport
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testCovariantEqualsInEnum() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathCovariantEqualsInEnum.java"));
+            new File(getPath("InputXpathCovariantEqualsInEnum.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CovariantEqualsCheck.class);
+            createModuleConfig(CovariantEqualsCheck.class);
 
         final String[] expectedViolation = {
             "7:20: " + getCheckMessage(CovariantEqualsCheck.class,
-                        CovariantEqualsCheck.MSG_KEY),
+                CovariantEqualsCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/ENUM_DEF"
+            "/COMPILATION_UNIT/ENUM_DEF"
                 + "[./IDENT[@text='InputXpathCovariantEqualsInEnum']]"
-                        + "/OBJBLOCK/METHOD_DEF/IDENT[@text='equals']");
+                + "/OBJBLOCK/METHOD_DEF/IDENT[@text='equals']");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testCovariantEqualsInRecord() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
-                        "InputXpathCovariantEqualsInRecord.java"));
+            new File(getNonCompilablePath(
+                "InputXpathCovariantEqualsInRecord.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CovariantEqualsCheck.class);
+            createModuleConfig(CovariantEqualsCheck.class);
 
         final String[] expectedViolation = {
             "7:20: " + getCheckMessage(CovariantEqualsCheck.class,
-                        CovariantEqualsCheck.MSG_KEY),
+                CovariantEqualsCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/RECORD_DEF"
+            "/COMPILATION_UNIT/RECORD_DEF"
                 + "[./IDENT[@text='InputXpathCovariantEqualsInRecord']]"
-                        + "/OBJBLOCK/METHOD_DEF/IDENT[@text='equals']");
+                + "/OBJBLOCK/METHOD_DEF/IDENT[@text='equals']");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

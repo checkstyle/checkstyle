@@ -33,7 +33,7 @@ public class LocalVariableNamesTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testPatternVariableName() throws Exception {
         verifyWithWholeConfig(getNonCompilablePath(
-                "InputPatternVariableNameEnhancedInstanceofTestDefault.java"));
+            "InputPatternVariableNameEnhancedInstanceofTestDefault.java"));
     }
 
     @Test

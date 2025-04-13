@@ -41,53 +41,53 @@ public class XpathRegressionMemberNameTest extends AbstractXpathTestSupport {
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathMemberNameDefault.java"));
+            new File(getPath("InputXpathMemberNameDefault.java"));
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MemberNameCheck.class);
+            createModuleConfig(MemberNameCheck.class);
 
         final String[] expectedViolation = {
             "5:17: " + getCheckMessage(MemberNameCheck.class,
-                        AbstractNameCheck.MSG_INVALID_PATTERN, "NUM2", pattern),
+                AbstractNameCheck.MSG_INVALID_PATTERN, "NUM2", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text"
-                        + "='InputXpathMemberNameDefault']]"
-                        + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM2']"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text"
+                + "='InputXpathMemberNameDefault']]"
+                + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM2']"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testIgnoreProtected() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathMemberNameIgnoreProtected.java"));
+            new File(getPath("InputXpathMemberNameIgnoreProtected.java"));
 
         final String pattern = "^m[A-Z][a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MemberNameCheck.class);
+            createModuleConfig(MemberNameCheck.class);
         moduleConfig.addProperty("format", "^m[A-Z][a-zA-Z0-9]*$");
         moduleConfig.addProperty("applyToProtected", "false");
         moduleConfig.addProperty("applyToPackage", "false");
 
         final String[] expectedViolation = {
             "6:20: " + getCheckMessage(MemberNameCheck.class,
-                        AbstractNameCheck.MSG_INVALID_PATTERN, "NUM1", pattern),
+                AbstractNameCheck.MSG_INVALID_PATTERN, "NUM1", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text"
-                        + "='InputXpathMemberNameIgnoreProtected']]"
-                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
-                        + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM1']"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text"
+                + "='InputXpathMemberNameIgnoreProtected']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
+                + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM1']"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

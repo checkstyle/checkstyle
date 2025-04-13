@@ -29,10 +29,10 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheck;
 
 public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
-        extends AbstractXpathTestSupport {
+    extends AbstractXpathTestSupport {
 
     private final String checkName =
-            UnnecessarySemicolonInTryWithResourcesCheck.class.getSimpleName();
+        UnnecessarySemicolonInTryWithResourcesCheck.class.getSimpleName();
 
     @Override
     protected String getCheckName() {
@@ -42,18 +42,18 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathUnnecessarySemicolonInTryWithResourcesDefault.java"));
+            getPath("InputXpathUnnecessarySemicolonInTryWithResourcesDefault.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
+            createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
         final String[] expectedViolation = {
             "11:76: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
                 UnnecessarySemicolonInTryWithResourcesCheck.MSG_SEMI),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'InputXpathUnnecessarySemicolonInTryWithResourcesDefault']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='m']]/SLIST/LITERAL_TRY"
-                        + "/RESOURCE_SPECIFICATION/SEMI"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
+                + "'InputXpathUnnecessarySemicolonInTryWithResourcesDefault']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='m']]/SLIST/LITERAL_TRY"
+                + "/RESOURCE_SPECIFICATION/SEMI"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
@@ -75,7 +75,7 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                    + "'InputXpathUnnecessarySemicolonInTryWithResourcesNoBrace']]"
+                + "'InputXpathUnnecessarySemicolonInTryWithResourcesNoBrace']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/LITERAL_TRY/RESOURCE_SPECIFICATION/SEMI"
         );

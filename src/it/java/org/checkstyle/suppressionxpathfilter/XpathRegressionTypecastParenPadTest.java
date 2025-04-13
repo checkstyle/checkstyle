@@ -43,14 +43,14 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
     @Test
     public void testLeftFollowed() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathTypecastParenPadLeftFollowed.java"));
+            new File(getPath("InputXpathTypecastParenPadLeftFollowed.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(TypecastParenPadCheck.class);
+            createModuleConfig(TypecastParenPadCheck.class);
 
         final String[] expectedViolation = {
             "4:18: " + getCheckMessage(TypecastParenPadCheck.class,
-                    AbstractParenPadCheck.MSG_WS_FOLLOWED, "("),
+                AbstractParenPadCheck.MSG_WS_FOLLOWED, "("),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -63,21 +63,21 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testLeftNotFollowed() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathTypecastParenPadLeftNotFollowed.java"));
+            new File(getPath("InputXpathTypecastParenPadLeftNotFollowed.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(TypecastParenPadCheck.class);
+            createModuleConfig(TypecastParenPadCheck.class);
         moduleConfig.addProperty("option", PadOption.SPACE.toString());
 
         final String[] expectedViolation = {
             "4:18: " + getCheckMessage(TypecastParenPadCheck.class,
-                    AbstractParenPadCheck.MSG_WS_NOT_FOLLOWED, "("),
+                AbstractParenPadCheck.MSG_WS_NOT_FOLLOWED, "("),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -90,20 +90,20 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testRightPreceded() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathTypecastParenPadRightPreceded.java"));
+            new File(getPath("InputXpathTypecastParenPadRightPreceded.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(TypecastParenPadCheck.class);
+            createModuleConfig(TypecastParenPadCheck.class);
 
         final String[] expectedViolation = {
             "4:26: " + getCheckMessage(TypecastParenPadCheck.class,
-                    AbstractParenPadCheck.MSG_WS_PRECEDED, ")"),
+                AbstractParenPadCheck.MSG_WS_PRECEDED, ")"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -113,21 +113,21 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testRightNotPreceded() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathTypecastParenPadRightNotPreceded.java"));
+            getPath("InputXpathTypecastParenPadRightNotPreceded.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(TypecastParenPadCheck.class);
+            createModuleConfig(TypecastParenPadCheck.class);
         moduleConfig.addProperty("option", PadOption.SPACE.toString());
 
         final String[] expectedViolation = {
             "4:26: " + getCheckMessage(TypecastParenPadCheck.class,
-                    AbstractParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
+                AbstractParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -137,7 +137,7 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

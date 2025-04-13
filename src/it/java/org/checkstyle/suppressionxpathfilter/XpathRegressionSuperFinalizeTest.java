@@ -45,7 +45,7 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "4:17: " + getCheckMessage(SuperFinalizeCheck.class,
-                                        AbstractSuperCheck.MSG_KEY, "finalize"),
+                AbstractSuperCheck.MSG_KEY, "finalize"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -59,12 +59,12 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
     @Test
     public void testInnerClass() throws Exception {
         final File fileToProcess =
-                            new File(getPath("InputXpathSuperFinalizeInnerClass.java"));
+            new File(getPath("InputXpathSuperFinalizeInnerClass.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(SuperFinalizeCheck.class);
 
         final String[] expectedViolation = {
             "5:17: " + getCheckMessage(SuperFinalizeCheck.class,
-                                        AbstractSuperCheck.MSG_KEY, "finalize"),
+                AbstractSuperCheck.MSG_KEY, "finalize"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -78,12 +78,12 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
     @Test
     public void testAnonymousClass() throws Exception {
         final File fileToProcess =
-                            new File(getPath("InputXpathSuperFinalizeAnonymousClass.java"));
+            new File(getPath("InputXpathSuperFinalizeAnonymousClass.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(SuperFinalizeCheck.class);
 
         final String[] expectedViolation = {
             "9:28: " + getCheckMessage(SuperFinalizeCheck.class,
-                                        AbstractSuperCheck.MSG_KEY, "finalize"),
+                AbstractSuperCheck.MSG_KEY, "finalize"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(

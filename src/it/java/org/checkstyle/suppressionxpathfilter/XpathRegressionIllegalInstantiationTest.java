@@ -42,27 +42,27 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
         final File fileToProcess = new File(getNonCompilablePath(fileName));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalInstantiationCheck.class);
+            createModuleConfig(IllegalInstantiationCheck.class);
         moduleConfig.addProperty("classes", "java.lang.Boolean");
 
         final String[] expectedViolation = {
             "8:21: " + getCheckMessage(IllegalInstantiationCheck.class, MSG_KEY,
-                    "java.lang.Boolean"),
+                "java.lang.Boolean"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathIllegalInstantiationSimple']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
                 + "VARIABLE_DEF[./IDENT[@text='x']]/ASSIGN/EXPR",
-                "/COMPILATION_UNIT/CLASS_DEF"
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathIllegalInstantiationSimple']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF"
                 + "[./IDENT[@text='x']]/ASSIGN/EXPR/LITERAL_NEW[./IDENT[@text='Boolean']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
@@ -71,20 +71,20 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
         final File fileToProcess = new File(getNonCompilablePath(fileName));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalInstantiationCheck.class);
+            createModuleConfig(IllegalInstantiationCheck.class);
         moduleConfig.addProperty("classes", "java.lang.Integer");
 
         final String[] expectedViolation = {
             "10:25: " + getCheckMessage(IllegalInstantiationCheck.class, MSG_KEY,
-                    "java.lang.Integer"),
+                "java.lang.Integer"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathIllegalInstantiationAnonymous']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]/OBJBLOCK/METHOD_DEF"
                 + "[./IDENT[@text='test']]/SLIST/VARIABLE_DEF[./IDENT[@text='e']]/ASSIGN/EXPR",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathIllegalInstantiationAnonymous']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]/OBJBLOCK/METHOD_DEF"
                 + "[./IDENT[@text='test']]/SLIST/VARIABLE_DEF[./IDENT[@text='e']]"
@@ -92,7 +92,7 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
@@ -101,21 +101,21 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
         final File fileToProcess = new File(getNonCompilablePath(fileName));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalInstantiationCheck.class);
+            createModuleConfig(IllegalInstantiationCheck.class);
         moduleConfig.addProperty("classes", "java.lang.String");
 
         final String[] expectedViolation = {
             "10:24: " + getCheckMessage(IllegalInstantiationCheck.class, MSG_KEY,
-                    "java.lang.String"),
+                "java.lang.String"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathIllegalInstantiationInterface']]"
                 + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Inner']]/"
                 + "OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
                 + "VARIABLE_DEF[./IDENT[@text='s']]/ASSIGN/EXPR",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathIllegalInstantiationInterface']]"
                 + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Inner']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF"
@@ -123,6 +123,6 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

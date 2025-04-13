@@ -40,10 +40,10 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathMethodParamPadOne.java"));
+            new File(getPath("InputXpathMethodParamPadOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MethodParamPadCheck.class);
+            createModuleConfig(MethodParamPadCheck.class);
 
         final String[] expectedViolation = {
             "4:37: " + getCheckMessage(MethodParamPadCheck.class,
@@ -57,16 +57,16 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathMethodParamPadTwo.java"));
+            new File(getPath("InputXpathMethodParamPadTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MethodParamPadCheck.class);
+            createModuleConfig(MethodParamPadCheck.class);
 
         final String[] expectedViolation = {
             "5:13: " + getCheckMessage(MethodParamPadCheck.class,
@@ -80,16 +80,16 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathMethodParamPadThree.java"));
+            new File(getPath("InputXpathMethodParamPadThree.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MethodParamPadCheck.class);
+            createModuleConfig(MethodParamPadCheck.class);
         moduleConfig.addProperty("option", "space");
 
         final String[] expectedViolation = {
@@ -104,6 +104,6 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

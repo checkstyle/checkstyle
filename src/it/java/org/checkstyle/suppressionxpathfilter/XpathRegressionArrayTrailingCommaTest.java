@@ -41,10 +41,10 @@ public class XpathRegressionArrayTrailingCommaTest extends AbstractXpathTestSupp
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathArrayTrailingCommaLinear.java"));
+            new File(getPath("InputXpathArrayTrailingCommaLinear.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ArrayTrailingCommaCheck.class);
+            createModuleConfig(ArrayTrailingCommaCheck.class);
 
         final String[] expectedViolation = {
             "16:9: " + getCheckMessage(ArrayTrailingCommaCheck.class,
@@ -63,16 +63,16 @@ public class XpathRegressionArrayTrailingCommaTest extends AbstractXpathTestSupp
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathArrayTrailingCommaMatrix.java"));
+            new File(getPath("InputXpathArrayTrailingCommaMatrix.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ArrayTrailingCommaCheck.class);
+            createModuleConfig(ArrayTrailingCommaCheck.class);
 
         final String[] expectedViolation = {
             "17:9: " + getCheckMessage(ArrayTrailingCommaCheck.class,
@@ -87,7 +87,7 @@ public class XpathRegressionArrayTrailingCommaTest extends AbstractXpathTestSupp
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCaseDefaultColonCheck;
 
 public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
-        extends AbstractXpathTestSupport {
+    extends AbstractXpathTestSupport {
 
     private final String checkName = NoWhitespaceBeforeCaseDefaultColonCheck.class.getSimpleName();
 
@@ -41,99 +41,99 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath(
-                        "InputXpathNoWhitespaceBeforeCaseDefaultColonOne.java"));
+            new File(getPath(
+                "InputXpathNoWhitespaceBeforeCaseDefaultColonOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
+            createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
 
         final String[] expectedViolation = {
             "6:20: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
-                    NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
+                NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                    + "'InputXpathNoWhitespaceBeforeCaseDefaultColonOne']]"
-                    + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_CASE/COLON"
+                + "'InputXpathNoWhitespaceBeforeCaseDefaultColonOne']]"
+                + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_CASE/COLON"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath(
-                        "InputXpathNoWhitespaceBeforeCaseDefaultColonTwo.java"));
+            new File(getPath(
+                "InputXpathNoWhitespaceBeforeCaseDefaultColonTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
+            createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
 
         final String[] expectedViolation = {
             "10:21: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
-                    NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
+                NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                    + "'InputXpathNoWhitespaceBeforeCaseDefaultColonTwo']]"
-                    + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP"
-                    + "/LITERAL_DEFAULT/COLON"
+                + "'InputXpathNoWhitespaceBeforeCaseDefaultColonTwo']]"
+                + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP"
+                + "/LITERAL_DEFAULT/COLON"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath(
-                        "InputXpathNoWhitespaceBeforeCaseDefaultColonThree.java"));
+            new File(getPath(
+                "InputXpathNoWhitespaceBeforeCaseDefaultColonThree.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
+            createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
 
         final String[] expectedViolation = {
             "7:21: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
-                        NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
+                NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                    + "'InputXpathNoWhitespaceBeforeCaseDefaultColonThree']]"
-                    + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP"
-                    + "/LITERAL_CASE/COLON"
+                + "'InputXpathNoWhitespaceBeforeCaseDefaultColonThree']]"
+                + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP"
+                + "/LITERAL_CASE/COLON"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testFour() throws Exception {
         final File fileToProcess =
-                new File(getPath(
-                        "InputXpathNoWhitespaceBeforeCaseDefaultColonFour.java"));
+            new File(getPath(
+                "InputXpathNoWhitespaceBeforeCaseDefaultColonFour.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
+            createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
 
         final String[] expectedViolation = {
             "11:21: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
-                        NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
+                NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                    + "'InputXpathNoWhitespaceBeforeCaseDefaultColonFour']]"
-                    + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP"
-                    + "/LITERAL_DEFAULT/COLON"
+                + "'InputXpathNoWhitespaceBeforeCaseDefaultColonFour']]"
+                + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP"
+                + "/LITERAL_DEFAULT/COLON"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

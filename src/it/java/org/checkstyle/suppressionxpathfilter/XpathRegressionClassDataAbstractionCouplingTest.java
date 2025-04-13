@@ -40,10 +40,10 @@ public class XpathRegressionClassDataAbstractionCouplingTest extends AbstractXpa
     @Test
     public void testClassDataAbstractCouplingClass() throws Exception {
         final File classPath =
-                new File(getPath("InputXpathClassDataAbstractionCouplingClass.java"));
+            new File(getPath("InputXpathClassDataAbstractionCouplingClass.java"));
 
         final DefaultConfiguration configuration =
-                createModuleConfig(ClassDataAbstractionCouplingCheck.class);
+            createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
         final String expectedClasses = List.of(
             "AtomicInteger",
@@ -63,26 +63,26 @@ public class XpathRegressionClassDataAbstractionCouplingTest extends AbstractXpa
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-            + "[@text='InputXpathClassDataAbstractionCouplingClass']]",
+                + "[@text='InputXpathClassDataAbstractionCouplingClass']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-            + "[@text='InputXpathClassDataAbstractionCouplingClass']]"
-            + "/MODIFIERS",
+                + "[@text='InputXpathClassDataAbstractionCouplingClass']]"
+                + "/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-            + "[@text='InputXpathClassDataAbstractionCouplingClass']]"
-            + "/MODIFIERS/LITERAL_PUBLIC"
+                + "[@text='InputXpathClassDataAbstractionCouplingClass']]"
+                + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(configuration, classPath, expectedViolations,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testClassDataAbstractCouplingEnum() throws Exception {
         final File classPath =
-                new File(getPath("InputXpathClassDataAbstractionCouplingEnum.java"));
+            new File(getPath("InputXpathClassDataAbstractionCouplingEnum.java"));
 
         final DefaultConfiguration configuration =
-                createModuleConfig(ClassDataAbstractionCouplingCheck.class);
+            createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
         final String expectedClasses = List.of(
             "BigDecimal",
@@ -102,26 +102,26 @@ public class XpathRegressionClassDataAbstractionCouplingTest extends AbstractXpa
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/ENUM_DEF[./IDENT"
-            + "[@text='InputXpathClassDataAbstractionCouplingEnum']]",
+                + "[@text='InputXpathClassDataAbstractionCouplingEnum']]",
             "/COMPILATION_UNIT/ENUM_DEF[./IDENT"
-            + "[@text='InputXpathClassDataAbstractionCouplingEnum']]"
-            + "/MODIFIERS",
+                + "[@text='InputXpathClassDataAbstractionCouplingEnum']]"
+                + "/MODIFIERS",
             "/COMPILATION_UNIT/ENUM_DEF[./IDENT"
-            + "[@text='InputXpathClassDataAbstractionCouplingEnum']]"
-            + "/MODIFIERS/LITERAL_PUBLIC"
+                + "[@text='InputXpathClassDataAbstractionCouplingEnum']]"
+                + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(configuration, classPath, expectedViolations,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testClassDataAbstractCouplingInterface() throws Exception {
         final File classPath =
-                new File(getPath("InputXpathClassDataAbstractionCouplingInterface.java"));
+            new File(getPath("InputXpathClassDataAbstractionCouplingInterface.java"));
 
         final DefaultConfiguration configuration =
-                createModuleConfig(ClassDataAbstractionCouplingCheck.class);
+            createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
         final String expectedClasses = List.of(
             "BigDecimal",
@@ -141,16 +141,16 @@ public class XpathRegressionClassDataAbstractionCouplingTest extends AbstractXpa
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-            + "[@text='InputXpathClassDataAbstractionCouplingInterface']]",
+                + "[@text='InputXpathClassDataAbstractionCouplingInterface']]",
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-            + "[@text='InputXpathClassDataAbstractionCouplingInterface']]"
-            + "/MODIFIERS",
+                + "[@text='InputXpathClassDataAbstractionCouplingInterface']]"
+                + "/MODIFIERS",
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-            + "[@text='InputXpathClassDataAbstractionCouplingInterface']]"
-            + "/MODIFIERS/LITERAL_PUBLIC"
+                + "[@text='InputXpathClassDataAbstractionCouplingInterface']]"
+                + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(configuration, classPath, expectedViolations,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

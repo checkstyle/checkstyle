@@ -38,33 +38,10 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
     @Test
     public void testVariable() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathArrayTypeStyleVariable.java"));
+            new File(getPath("InputXpathArrayTypeStyleVariable.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ArrayTypeStyleCheck.class);
-
-        final String[] expectedViolation = {
-            "4:19: " + getCheckMessage(ArrayTypeStyleCheck.class, ArrayTypeStyleCheck.MSG_KEY),
-        };
-
-        final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathArrayTypeStyleVariable']]"
-                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='strings']]/TYPE["
-                        + "./IDENT[@text='String']]/ARRAY_DECLARATOR"
-        );
-
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
-    }
-
-    @Test
-    public void testMethodDef() throws Exception {
-        final File fileToProcess =
-                new File(getPath("InputXpathArrayTypeStyleMethodDef.java"));
-
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(ArrayTypeStyleCheck.class);
+            createModuleConfig(ArrayTypeStyleCheck.class);
 
         final String[] expectedViolation = {
             "4:19: " + getCheckMessage(ArrayTypeStyleCheck.class, ArrayTypeStyleCheck.MSG_KEY),
@@ -72,12 +49,35 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathArrayTypeStyleMethodDef']]"
-                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getData']]/TYPE/ARRAY_DECLARATOR"
+                + "[./IDENT[@text='InputXpathArrayTypeStyleVariable']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='strings']]/TYPE["
+                + "./IDENT[@text='String']]/ARRAY_DECLARATOR"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
+    }
+
+    @Test
+    public void testMethodDef() throws Exception {
+        final File fileToProcess =
+            new File(getPath("InputXpathArrayTypeStyleMethodDef.java"));
+
+        final DefaultConfiguration moduleConfig =
+            createModuleConfig(ArrayTypeStyleCheck.class);
+
+        final String[] expectedViolation = {
+            "4:19: " + getCheckMessage(ArrayTypeStyleCheck.class, ArrayTypeStyleCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathArrayTypeStyleMethodDef']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getData']]/TYPE/ARRAY_DECLARATOR"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+            expectedXpathQueries);
     }
 
 }

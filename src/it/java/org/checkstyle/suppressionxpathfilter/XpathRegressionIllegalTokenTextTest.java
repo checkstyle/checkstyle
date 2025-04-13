@@ -41,79 +41,79 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
     @Test
     public void testField() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathIllegalTokenTextField.java"));
+            new File(getPath("InputXpathIllegalTokenTextField.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenTextCheck.class);
+            createModuleConfig(IllegalTokenTextCheck.class);
         moduleConfig.addProperty("format", "12345");
         moduleConfig.addProperty("tokens", "NUM_INT");
         final String[] expectedViolation = {
             "4:33: " + getCheckMessage(IllegalTokenTextCheck.class,
-                        IllegalTokenTextCheck.MSG_KEY, "12345"),
+                IllegalTokenTextCheck.MSG_KEY, "12345"),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenTextField']]"
-                    + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='illegalNumber']]"
-                    + "/ASSIGN/EXPR[./NUM_INT[@text='12345']]",
-                "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenTextField']]"
-                    + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='illegalNumber']]"
-                    + "/ASSIGN/EXPR/NUM_INT[@text='12345']"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenTextField']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='illegalNumber']]"
+                + "/ASSIGN/EXPR[./NUM_INT[@text='12345']]",
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenTextField']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='illegalNumber']]"
+                + "/ASSIGN/EXPR/NUM_INT[@text='12345']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testMethod() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathIllegalTokenTextMethod.java"));
+            new File(getPath("InputXpathIllegalTokenTextMethod.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenTextCheck.class);
+            createModuleConfig(IllegalTokenTextCheck.class);
         moduleConfig.addProperty("format", "forbiddenText");
         moduleConfig.addProperty("tokens", "STRING_LITERAL");
         final String[] expectedViolation = {
             "5:32: " + getCheckMessage(IllegalTokenTextCheck.class,
-                        IllegalTokenTextCheck.MSG_KEY, "forbiddenText"),
+                IllegalTokenTextCheck.MSG_KEY, "forbiddenText"),
         };
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenTextMethod']]"
-                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myMethod']]"
-                    + "/SLIST/VARIABLE_DEF[./IDENT[@text='illegalString']]"
-                    + "/ASSIGN/EXPR[./STRING_LITERAL[@text='forbiddenText']]",
-                "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenTextMethod']]"
-                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myMethod']]"
-                    + "/SLIST/VARIABLE_DEF[./IDENT[@text='illegalString']]"
-                    + "/ASSIGN/EXPR/STRING_LITERAL[@text='forbiddenText']"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenTextMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myMethod']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='illegalString']]"
+                + "/ASSIGN/EXPR[./STRING_LITERAL[@text='forbiddenText']]",
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenTextMethod']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myMethod']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='illegalString']]"
+                + "/ASSIGN/EXPR/STRING_LITERAL[@text='forbiddenText']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testInterface() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathIllegalTokenTextInterface.java"));
+            new File(getPath("InputXpathIllegalTokenTextInterface.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalTokenTextCheck.class);
+            createModuleConfig(IllegalTokenTextCheck.class);
         moduleConfig.addProperty("format", "invalidIdentifier");
         moduleConfig.addProperty("tokens", "IDENT");
         final String[] expectedViolation = {
             "4:10: " + getCheckMessage(IllegalTokenTextCheck.class,
-                        IllegalTokenTextCheck.MSG_KEY, "invalidIdentifier"),
+                IllegalTokenTextCheck.MSG_KEY, "invalidIdentifier"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                    + "/INTERFACE_DEF[./IDENT[@text='InputXpathIllegalTokenTextInterface']]"
-                    + "/OBJBLOCK/METHOD_DEF/IDENT[@text='invalidIdentifier']"
+            "/COMPILATION_UNIT"
+                + "/INTERFACE_DEF[./IDENT[@text='InputXpathIllegalTokenTextInterface']]"
+                + "/OBJBLOCK/METHOD_DEF/IDENT[@text='invalidIdentifier']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

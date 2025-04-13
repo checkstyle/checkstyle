@@ -38,7 +38,7 @@ public class BlockCommentStyleTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testCommentIsAtTheEndOfBlockFormatted() throws Exception {
         verifyWithWholeConfig(
-                getPath("InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock.java"));
+            getPath("InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock.java"));
     }
 
     @Test

@@ -40,10 +40,10 @@ public class XpathRegressionOneTopLevelClassTest extends AbstractXpathTestSuppor
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathOneTopLevelClassFirst.java"));
+            new File(getPath("InputXpathOneTopLevelClassFirst.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
+            createModuleConfig(OneTopLevelClassCheck.class);
 
         final String[] expectedViolation = {
             "7:1: " + getCheckMessage(OneTopLevelClassCheck.class,
@@ -51,13 +51,13 @@ public class XpathRegressionOneTopLevelClassTest extends AbstractXpathTestSuppor
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='ViolatingSecondClass']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='ViolatingSecondClass']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='ViolatingSecondClass']]/LITERAL_CLASS"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='ViolatingSecondClass']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='ViolatingSecondClass']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='ViolatingSecondClass']]/LITERAL_CLASS"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class XpathRegressionOneTopLevelClassTest extends AbstractXpathTestSuppor
 
         final String[] expectedViolation = {
             "7:1: " + getCheckMessage(OneTopLevelClassCheck.class,
-                                      OneTopLevelClassCheck.MSG_KEY, "ViolationClass"),
+                OneTopLevelClassCheck.MSG_KEY, "ViolationClass"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -80,6 +80,6 @@ public class XpathRegressionOneTopLevelClassTest extends AbstractXpathTestSuppor
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                         expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

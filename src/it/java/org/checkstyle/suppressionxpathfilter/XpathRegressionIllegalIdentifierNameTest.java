@@ -51,7 +51,7 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
         final String[] expectedViolation = {
             "10:20: " + getCheckMessage(IllegalIdentifierNameCheck.class,
                 AbstractNameCheck.MSG_INVALID_PATTERN, "var", format),
-            };
+        };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/RECORD_DEF"
@@ -76,7 +76,7 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
         final String[] expectedViolation = {
             "9:17: " + getCheckMessage(IllegalIdentifierNameCheck.class,
                 AbstractNameCheck.MSG_INVALID_PATTERN, "te$t", format),
-            };
+        };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"

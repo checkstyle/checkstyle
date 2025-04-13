@@ -44,10 +44,10 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
     @Test
     public void testMissingTag() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathJavadocTypeMissingTag.java"));
+            new File(getPath("InputXpathJavadocTypeMissingTag.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
 
         moduleConfig.addProperty("authorFormat", "\\S");
 
@@ -57,26 +57,26 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathJavadocTypeMissingTag']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathJavadocTypeMissingTag']]"
-                        + "/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathJavadocTypeMissingTag']]"
-                        + "/MODIFIERS/LITERAL_PUBLIC");
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathJavadocTypeMissingTag']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathJavadocTypeMissingTag']]"
+                + "/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathJavadocTypeMissingTag']]"
+                + "/MODIFIERS/LITERAL_PUBLIC");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testWrongFormat() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathJavadocTypeWrongFormat.java"));
+            new File(getPath("InputXpathJavadocTypeWrongFormat.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
 
         moduleConfig.addProperty("authorFormat", "foo");
 
@@ -86,25 +86,25 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathJavadocTypeWrongFormat']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathJavadocTypeWrongFormat']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathJavadocTypeWrongFormat']]"
-                        + "/MODIFIERS/LITERAL_PUBLIC");
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathJavadocTypeWrongFormat']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathJavadocTypeWrongFormat']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathJavadocTypeWrongFormat']]"
+                + "/MODIFIERS/LITERAL_PUBLIC");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testIncomplete() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathJavadocTypeIncomplete.java"));
+            new File(getPath("InputXpathJavadocTypeIncomplete.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(JavadocTypeCheck.class);
+            createModuleConfig(JavadocTypeCheck.class);
 
         final String[] expectedViolation = {
             "8:1: " + getCheckMessage(JavadocTypeCheck.class,
@@ -112,16 +112,16 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathJavadocTypeIncomplete']]",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathJavadocTypeIncomplete']]"
-                        + "/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathJavadocTypeIncomplete']]"
-                        + "/MODIFIERS/LITERAL_PUBLIC");
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathJavadocTypeIncomplete']]",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathJavadocTypeIncomplete']]"
+                + "/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathJavadocTypeIncomplete']]"
+                + "/MODIFIERS/LITERAL_PUBLIC");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

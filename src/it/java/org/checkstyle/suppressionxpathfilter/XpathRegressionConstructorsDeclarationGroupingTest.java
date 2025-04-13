@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.ConstructorsDeclarationGrou
 public class XpathRegressionConstructorsDeclarationGroupingTest extends AbstractXpathTestSupport {
 
     private static final Class<ConstructorsDeclarationGroupingCheck> CLAZZ =
-            ConstructorsDeclarationGroupingCheck.class;
+        ConstructorsDeclarationGroupingCheck.class;
 
     @Override
     protected String getCheckName() {
@@ -41,29 +41,29 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
     @Test
     public void testClass() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathConstructorsDeclarationGroupingClass.java"));
+            getPath("InputXpathConstructorsDeclarationGroupingClass.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
             "10:5: " + getCheckMessage(CLAZZ,
-                    ConstructorsDeclarationGroupingCheck.MSG_KEY, 6),
+                ConstructorsDeclarationGroupingCheck.MSG_KEY, 6),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathConstructorsDeclarationGroupingClass']]"
-                        + "/OBJBLOCK/CTOR_DEF[./IDENT"
-                        + "[@text='InputXpathConstructorsDeclarationGroupingClass']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathConstructorsDeclarationGroupingClass']]"
-                        + "/OBJBLOCK/CTOR_DEF[./IDENT"
-                        + "[@text='InputXpathConstructorsDeclarationGroupingClass']]"
-                        + "/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathConstructorsDeclarationGroupingClass']]"
-                        + "/OBJBLOCK/CTOR_DEF/IDENT"
-                        + "[@text='InputXpathConstructorsDeclarationGroupingClass']"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathConstructorsDeclarationGroupingClass']]"
+                + "/OBJBLOCK/CTOR_DEF[./IDENT"
+                + "[@text='InputXpathConstructorsDeclarationGroupingClass']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathConstructorsDeclarationGroupingClass']]"
+                + "/OBJBLOCK/CTOR_DEF[./IDENT"
+                + "[@text='InputXpathConstructorsDeclarationGroupingClass']]"
+                + "/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathConstructorsDeclarationGroupingClass']]"
+                + "/OBJBLOCK/CTOR_DEF/IDENT"
+                + "[@text='InputXpathConstructorsDeclarationGroupingClass']"
 
         );
 
@@ -73,31 +73,31 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
     @Test
     public void testEnum() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathConstructorsDeclarationGroupingEnum.java"));
+            getPath("InputXpathConstructorsDeclarationGroupingEnum.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
             "12:5: " + getCheckMessage(CLAZZ,
-                    ConstructorsDeclarationGroupingCheck.MSG_KEY, 8),
+                ConstructorsDeclarationGroupingCheck.MSG_KEY, 8),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/ENUM_DEF[./IDENT"
-                        + "[@text='InputXpathConstructorsDeclarationGroupingEnum']]"
-                        + "/OBJBLOCK/CTOR_DEF"
-                        + "[./IDENT[@text='InputXpathConstructorsDeclarationGroupingEnum']]",
+            "/COMPILATION_UNIT/ENUM_DEF[./IDENT"
+                + "[@text='InputXpathConstructorsDeclarationGroupingEnum']]"
+                + "/OBJBLOCK/CTOR_DEF"
+                + "[./IDENT[@text='InputXpathConstructorsDeclarationGroupingEnum']]",
 
-                "/COMPILATION_UNIT/ENUM_DEF[./IDENT"
-                        + "[@text='InputXpathConstructorsDeclarationGroupingEnum']]"
-                        + "/OBJBLOCK/CTOR_DEF"
-                        + "[./IDENT[@text='InputXpathConstructorsDeclarationGroupingEnum']]"
-                        + "/MODIFIERS",
+            "/COMPILATION_UNIT/ENUM_DEF[./IDENT"
+                + "[@text='InputXpathConstructorsDeclarationGroupingEnum']]"
+                + "/OBJBLOCK/CTOR_DEF"
+                + "[./IDENT[@text='InputXpathConstructorsDeclarationGroupingEnum']]"
+                + "/MODIFIERS",
 
-                "/COMPILATION_UNIT/ENUM_DEF[./IDENT"
-                        + "[@text='InputXpathConstructorsDeclarationGroupingEnum']]"
-                        + "/OBJBLOCK/CTOR_DEF/IDENT"
-                        + "[@text='InputXpathConstructorsDeclarationGroupingEnum']"
+            "/COMPILATION_UNIT/ENUM_DEF[./IDENT"
+                + "[@text='InputXpathConstructorsDeclarationGroupingEnum']]"
+                + "/OBJBLOCK/CTOR_DEF/IDENT"
+                + "[@text='InputXpathConstructorsDeclarationGroupingEnum']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -106,31 +106,31 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
     @Test
     public void testRecords() throws Exception {
         final File fileToProcess = new File(
-                getNonCompilablePath("InputXpathConstructorsDeclarationGroupingRecords.java"));
+            getNonCompilablePath("InputXpathConstructorsDeclarationGroupingRecords.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 
         final String[] expectedViolation = {
             "14:5: " + getCheckMessage(CLAZZ,
-                    ConstructorsDeclarationGroupingCheck.MSG_KEY, 8),
+                ConstructorsDeclarationGroupingCheck.MSG_KEY, 8),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathConstructorsDeclarationGroupingRecords']]"
-                        + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]"
-                        + "/OBJBLOCK/COMPACT_CTOR_DEF[./IDENT[@text='MyRecord']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathConstructorsDeclarationGroupingRecords']]"
+                + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]"
+                + "/OBJBLOCK/COMPACT_CTOR_DEF[./IDENT[@text='MyRecord']]",
 
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathConstructorsDeclarationGroupingRecords']]"
-                        + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]"
-                        + "/OBJBLOCK/COMPACT_CTOR_DEF[./IDENT[@text='MyRecord']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathConstructorsDeclarationGroupingRecords']]"
+                + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]"
+                + "/OBJBLOCK/COMPACT_CTOR_DEF[./IDENT[@text='MyRecord']]/MODIFIERS",
 
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathConstructorsDeclarationGroupingRecords']]"
-                        + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]"
-                        + "/OBJBLOCK/COMPACT_CTOR_DEF[./IDENT[@text='MyRecord']]"
-                        + "/MODIFIERS/LITERAL_PUBLIC"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathConstructorsDeclarationGroupingRecords']]"
+                + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]"
+                + "/OBJBLOCK/COMPACT_CTOR_DEF[./IDENT[@text='MyRecord']]"
+                + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);

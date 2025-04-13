@@ -51,7 +51,7 @@ public class XpathRegressionOuterTypeNumberTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
+            "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -61,10 +61,10 @@ public class XpathRegressionOuterTypeNumberTest extends AbstractXpathTestSupport
     @Test
     public void testMax() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathOuterTypeNumber.java"));
+            new File(getPath("InputXpathOuterTypeNumber.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(OuterTypeNumberCheck.class);
+            createModuleConfig(OuterTypeNumberCheck.class);
         moduleConfig.addProperty("max", "0");
 
         final String[] expectedViolation = {
@@ -73,10 +73,10 @@ public class XpathRegressionOuterTypeNumberTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
+            "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

@@ -31,7 +31,7 @@ public abstract class AbstractCheckstyleModuleTestSupport extends AbstractItModu
             try {
                 final Class<?> moduleClass = Class.forName(moduleName);
                 if (ModuleReflectionUtil.isCheckstyleTreeWalkerCheck(moduleClass)
-                        || ModuleReflectionUtil.isTreeWalkerFilterModule(moduleClass)) {
+                    || ModuleReflectionUtil.isTreeWalkerFilterModule(moduleClass)) {
                     moduleCreationOption = ModuleCreationOption.IN_TREEWALKER;
                 }
             }

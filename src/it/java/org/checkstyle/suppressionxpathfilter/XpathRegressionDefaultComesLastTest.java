@@ -41,14 +41,14 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
     @Test
     public void testNonEmptyCase() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathDefaultComesLastNonEmptyCase.java"));
+            new File(getPath("InputXpathDefaultComesLastNonEmptyCase.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(DefaultComesLastCheck.class);
+            createModuleConfig(DefaultComesLastCheck.class);
 
         final String[] expectedViolation = {
             "8:13: " + getCheckMessage(DefaultComesLastCheck.class,
-                    DefaultComesLastCheck.MSG_KEY),
+                DefaultComesLastCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -63,16 +63,16 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testEmptyCase() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathDefaultComesLastEmptyCase.java"));
+            new File(getPath("InputXpathDefaultComesLastEmptyCase.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(DefaultComesLastCheck.class);
+            createModuleConfig(DefaultComesLastCheck.class);
         moduleConfig.addProperty("skipIfLastAndSharedWithCase", "true");
 
         final String[] expectedViolation = {
@@ -88,7 +88,7 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

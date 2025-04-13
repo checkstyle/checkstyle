@@ -41,77 +41,77 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
     @Test
     public void testStaticVariableName() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathStaticVariableName.java"));
+            new File(getPath("InputXpathStaticVariableName.java"));
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(StaticVariableNameCheck.class);
+            createModuleConfig(StaticVariableNameCheck.class);
 
         final String[] expectedViolation = {
             "6:24: " + getCheckMessage(StaticVariableNameCheck.class,
-                        AbstractNameCheck.MSG_INVALID_PATTERN, "NUM2", pattern),
+                AbstractNameCheck.MSG_INVALID_PATTERN, "NUM2", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text"
-                        + "='InputXpathStaticVariableName']]"
-                        + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM2']"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text"
+                + "='InputXpathStaticVariableName']]"
+                + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM2']"
 
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testInnerClassField() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
-                        "InputXpathStaticVariableNameInnerClassField.java"));
+            new File(getNonCompilablePath(
+                "InputXpathStaticVariableNameInnerClassField.java"));
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(StaticVariableNameCheck.class);
+            createModuleConfig(StaticVariableNameCheck.class);
 
         final String[] expectedViolation = {
             "14:24: " + getCheckMessage(StaticVariableNameCheck.class,
-                        AbstractNameCheck.MSG_INVALID_PATTERN, "NUM3", pattern),
+                AbstractNameCheck.MSG_INVALID_PATTERN, "NUM3", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text"
-                        + "='InputXpathStaticVariableNameInnerClassField']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='outerMethod']]"
-                        + "/SLIST/CLASS_DEF[./IDENT[@text='MyLocalClass']]"
-                        + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM3']"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text"
+                + "='InputXpathStaticVariableNameInnerClassField']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='outerMethod']]"
+                + "/SLIST/CLASS_DEF[./IDENT[@text='MyLocalClass']]"
+                + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM3']"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testNoAccessModifier() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
-                        "InputXpathStaticVariableNameNoAccessModifier.java"));
+            new File(getNonCompilablePath(
+                "InputXpathStaticVariableNameNoAccessModifier.java"));
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(StaticVariableNameCheck.class);
+            createModuleConfig(StaticVariableNameCheck.class);
 
         final String[] expectedViolation = {
             "6:19: " + getCheckMessage(StaticVariableNameCheck.class,
-                        AbstractNameCheck.MSG_INVALID_PATTERN, "NUM3", pattern),
+                AbstractNameCheck.MSG_INVALID_PATTERN, "NUM3", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text"
-                        + "='InputXpathStaticVariableNameNoAccessModifier']]"
-                        + "/OBJBLOCK/INSTANCE_INIT/SLIST/VARIABLE_DEF/IDENT[@text='NUM3']"
+            "/COMPILATION_UNIT"
+                + "/CLASS_DEF[./IDENT[@text"
+                + "='InputXpathStaticVariableNameNoAccessModifier']]"
+                + "/OBJBLOCK/INSTANCE_INIT/SLIST/VARIABLE_DEF/IDENT[@text='NUM3']"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

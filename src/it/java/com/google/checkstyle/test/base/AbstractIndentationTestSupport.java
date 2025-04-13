@@ -38,22 +38,22 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
     private static final int TAB_WIDTH = 4;
 
     private static final Pattern NONEMPTY_LINE_REGEX =
-            Pattern.compile(".*?\\S+.*?");
+        Pattern.compile(".*?\\S+.*?");
 
     private static final Pattern LINE_WITH_COMMENT_REGEX =
-            Pattern.compile(".*?\\S+.*?(//indent:(\\d+) exp:((>=\\d+)|(\\d+(,\\d+)*?))( warn)?)");
+        Pattern.compile(".*?\\S+.*?(//indent:(\\d+) exp:((>=\\d+)|(\\d+(,\\d+)*?))( warn)?)");
 
     private static final Pattern GET_INDENT_FROM_COMMENT_REGEX =
-            Pattern.compile("//indent:(\\d+).*?");
+        Pattern.compile("//indent:(\\d+).*?");
 
     private static final Pattern MULTILEVEL_COMMENT_REGEX =
-            Pattern.compile("//indent:\\d+ exp:(\\d+(,\\d+)+?)( warn)?");
+        Pattern.compile("//indent:\\d+ exp:(\\d+(,\\d+)+?)( warn)?");
 
     private static final Pattern SINGLE_LEVEL_COMMENT_REGEX =
-            Pattern.compile("//indent:\\d+ exp:(\\d+)( warn)?");
+        Pattern.compile("//indent:\\d+ exp:(\\d+)( warn)?");
 
     private static final Pattern NON_STRICT_LEVEL_COMMENT_REGEX =
-            Pattern.compile("//indent:\\d+ exp:>=(\\d+)( warn)?");
+        Pattern.compile("//indent:\\d+ exp:>=(\\d+)( warn)?");
 
     @Override
     protected Integer[] getLinesWithWarn(String fileName) throws IOException {
@@ -64,18 +64,18 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
      * Returns line numbers for lines with 'warn' comments.
      *
      * @param aFileName file name.
-     * @param tabWidth tab width.
+     * @param tabWidth  tab width.
      * @return array of line numbers containing 'warn' comments ('warn').
-     * @throws IOException while reading the file for checking lines.
-     * @throws IllegalStateException if file has incorrect indentation in comment or
-     *     comment is inconsistent or if file has no indentation comment.
+     * @throws IOException           while reading the file for checking lines.
+     * @throws IllegalStateException if file has incorrect indentation in comment or comment is
+     *                               inconsistent or if file has no indentation comment.
      */
     private static Integer[] getLinesWithWarnAndCheckComments(String aFileName,
-            final int tabWidth)
-                    throws IOException {
+                                                              final int tabWidth)
+        throws IOException {
         final List<Integer> result = new ArrayList<>();
         try (BufferedReader br = Files.newBufferedReader(
-                Path.of(aFileName), StandardCharsets.UTF_8)) {
+            Path.of(aFileName), StandardCharsets.UTF_8)) {
             int lineNumber = 1;
             for (String line = br.readLine(); line != null; line = br.readLine()) {
                 final Matcher match = LINE_WITH_COMMENT_REGEX.matcher(line);
@@ -86,12 +86,12 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
 
                     if (actualIndent != indentInComment) {
                         throw new IllegalStateException(String.format(Locale.ROOT,
-                                        "File \"%1$s\" has incorrect indentation in comment."
-                                                        + "Line %2$d: comment:%3$d, actual:%4$d.",
-                                        aFileName,
-                                        lineNumber,
-                                        indentInComment,
-                                        actualIndent));
+                            "File \"%1$s\" has incorrect indentation in comment."
+                                + "Line %2$d: comment:%3$d, actual:%4$d.",
+                            aFileName,
+                            lineNumber,
+                            indentInComment,
+                            actualIndent));
                     }
 
                     if (isWarnComment(comment)) {
@@ -100,18 +100,18 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
 
                     if (!isCommentConsistent(comment)) {
                         throw new IllegalStateException(String.format(Locale.ROOT,
-                                        "File \"%1$s\" has inconsistent comment on line %2$d",
-                                        aFileName,
-                                        lineNumber));
+                            "File \"%1$s\" has inconsistent comment on line %2$d",
+                            aFileName,
+                            lineNumber));
                     }
                 }
                 else if (NONEMPTY_LINE_REGEX.matcher(line).matches()) {
                     throw new IllegalStateException(String.format(Locale.ROOT,
-                                    "File \"%1$s\" has no indentation comment or its format "
-                                                    + "malformed. Error on line: %2$d(%3$s)",
-                                    aFileName,
-                                    lineNumber,
-                                    line));
+                        "File \"%1$s\" has no indentation comment or its format "
+                            + "malformed. Error on line: %2$d(%3$s)",
+                        aFileName,
+                        lineNumber,
+                        line));
                 }
                 lineNumber++;
             }
@@ -145,10 +145,12 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
      * Checks if a comment of comment type is consistent or not.
      *
      * @param comment the comment to be checked.
-     * @return true if comment is consistent based on expected indent level, actual indent level
-     *     and if comment is a warn comment else it returns false.
-     * @throws IllegalArgumentException if comment type is unknown and cannot determine consistency.
-     * @throws IllegalStateException if cannot determine that comment is consistent(default case).
+     * @return true if comment is consistent based on expected indent level, actual indent level and
+     * if comment is a warn comment else it returns false.
+     * @throws IllegalArgumentException if comment type is unknown and cannot determine
+     *                                  consistency.
+     * @throws IllegalStateException    if cannot determine that comment is consistent(default
+     *                                  case).
      */
     private static boolean isCommentConsistent(String comment) {
         final int indentInComment = getIndentFromComment(comment);
@@ -181,63 +183,63 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
     /**
      * Checks if a Non Strict Comment is consistent or not.
      *
-     * @param comment the comment to be checked.
+     * @param comment         the comment to be checked.
      * @param indentInComment the actual indentation in that comment.
-     * @param isWarnComment if comment is Warn comment or not.
+     * @param isWarnComment   if comment is Warn comment or not.
      * @return true if Non Strict comment is consistent else returns false.
      */
     private static boolean isNonStrictCommentConsistent(String comment,
-            int indentInComment, boolean isWarnComment) {
+                                                        int indentInComment, boolean isWarnComment) {
         final Matcher nonStrictLevelMatch = NON_STRICT_LEVEL_COMMENT_REGEX.matcher(comment);
         nonStrictLevelMatch.matches();
         final int expectedMinimalIndent = Integer.parseInt(nonStrictLevelMatch.group(1));
 
         return indentInComment >= expectedMinimalIndent && !isWarnComment
-                || indentInComment < expectedMinimalIndent && isWarnComment;
+            || indentInComment < expectedMinimalIndent && isWarnComment;
     }
 
     /**
      * Checks if a Single Level comment is consistent or not.
      *
-     * @param comment the comment to be checked.
+     * @param comment         the comment to be checked.
      * @param indentInComment the actual indentation in that comment.
-     * @param isWarnComment if comment is Warn comment or not.
+     * @param isWarnComment   if comment is Warn comment or not.
      * @return true if Single Level comment is consistent or not else returns false.
      */
     private static boolean isSingleLevelCommentConsistent(String comment,
-            int indentInComment, boolean isWarnComment) {
+                                                          int indentInComment, boolean isWarnComment) {
         final Matcher singleLevelMatch = SINGLE_LEVEL_COMMENT_REGEX.matcher(comment);
         singleLevelMatch.matches();
         final int expectedLevel = Integer.parseInt(singleLevelMatch.group(1));
 
         return expectedLevel == indentInComment && !isWarnComment
-                || expectedLevel != indentInComment && isWarnComment;
+            || expectedLevel != indentInComment && isWarnComment;
     }
 
     /**
      * Checks if a Multi-Level comment is consistent or not.
      *
-     * @param comment the comment to be checked.
+     * @param comment         the comment to be checked.
      * @param indentInComment the actual indentation in that comment.
-     * @param isWarnComment if comment is Warn comment or not.
+     * @param isWarnComment   if comment is Warn comment or not.
      * @return true if Multi-Level comment is consistent or not else returns false.
      */
     private static boolean isMultiLevelCommentConsistent(String comment,
-            int indentInComment, boolean isWarnComment) {
+                                                         int indentInComment, boolean isWarnComment) {
         final Matcher multilevelMatch = MULTILEVEL_COMMENT_REGEX.matcher(comment);
         multilevelMatch.matches();
         final String[] levels = multilevelMatch.group(1).split(",");
         final String indentInCommentStr = String.valueOf(indentInComment);
         final boolean containsActualLevel =
-                Arrays.asList(levels).contains(indentInCommentStr);
+            Arrays.asList(levels).contains(indentInCommentStr);
 
         return containsActualLevel && !isWarnComment
-                || !containsActualLevel && isWarnComment;
+            || !containsActualLevel && isWarnComment;
     }
 
     /**
-     * Returns the type of Comment by matching with specific regex for each type.
-     * Possible types include {@link CommentType#MULTILEVEL}, {@link CommentType#SINGLE_LEVEL},
+     * Returns the type of Comment by matching with specific regex for each type. Possible types
+     * include {@link CommentType#MULTILEVEL}, {@link CommentType#SINGLE_LEVEL},
      * {@link CommentType#NON_STRICT_LEVEL}, and {@link CommentType#UNKNOWN}.
      *
      * @param comment the comment whose type is to be returned.
@@ -267,7 +269,7 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
     /**
      * Returns starting position of a Line.
      *
-     * @param line the line whose starting position is required.
+     * @param line     the line whose starting position is required.
      * @param tabWidth tab width (passed value is 4 to this method).
      * @return starting position of given line.
      */

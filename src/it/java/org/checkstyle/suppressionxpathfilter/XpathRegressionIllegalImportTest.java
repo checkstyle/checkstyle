@@ -40,34 +40,34 @@ public class XpathRegressionIllegalImportTest extends AbstractXpathTestSupport {
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathIllegalImportDefault.java"));
+            new File(getPath("InputXpathIllegalImportDefault.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalImportCheck.class);
+            createModuleConfig(IllegalImportCheck.class);
         moduleConfig.addProperty("illegalPkgs", "java.util");
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(IllegalImportCheck.class,
-                        IllegalImportCheck.MSG_KEY, "java.util.List"),
+                IllegalImportCheck.MSG_KEY, "java.util.List"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/IMPORT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testStatic() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathIllegalImportStatic.java"));
+            new File(getPath("InputXpathIllegalImportStatic.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(IllegalImportCheck.class);
+            createModuleConfig(IllegalImportCheck.class);
 
         moduleConfig.addProperty("illegalPkgs", "java.lang");
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(IllegalImportCheck.class,
-                        IllegalImportCheck.MSG_KEY, "java.lang.Math.pow"),
+                IllegalImportCheck.MSG_KEY, "java.lang.Math.pow"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/STATIC_IMPORT"
@@ -75,6 +75,6 @@ public class XpathRegressionIllegalImportTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

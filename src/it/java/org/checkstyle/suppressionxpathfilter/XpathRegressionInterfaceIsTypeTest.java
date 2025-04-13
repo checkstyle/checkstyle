@@ -40,56 +40,56 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
     @Test
     public void testAllowMarker() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathInterfaceIsTypeAllowMarker.java"));
+            "InputXpathInterfaceIsTypeAllowMarker.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(InterfaceIsTypeCheck.class);
+            createModuleConfig(InterfaceIsTypeCheck.class);
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(InterfaceIsTypeCheck.class,
-                    InterfaceIsTypeCheck.MSG_KEY),
+                InterfaceIsTypeCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='InputXpathInterfaceIsTypeAllowMarker']]",
-                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='InputXpathInterfaceIsTypeAllowMarker']]/MODIFIERS",
-                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='InputXpathInterfaceIsTypeAllowMarker']]"
-                    + "/MODIFIERS/LITERAL_PUBLIC"
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
+                + "@text='InputXpathInterfaceIsTypeAllowMarker']]",
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
+                + "@text='InputXpathInterfaceIsTypeAllowMarker']]/MODIFIERS",
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
+                + "@text='InputXpathInterfaceIsTypeAllowMarker']]"
+                + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testAllowMarkerFalse() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathInterfaceIsType.java"));
+            "InputXpathInterfaceIsType.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(InterfaceIsTypeCheck.class);
+            createModuleConfig(InterfaceIsTypeCheck.class);
 
         moduleConfig.addProperty("allowMarkerInterfaces", "false");
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(InterfaceIsTypeCheck.class,
-                    InterfaceIsTypeCheck.MSG_KEY),
+                InterfaceIsTypeCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='InputXpathInterfaceIsType']]",
-                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='InputXpathInterfaceIsType']]/MODIFIERS",
-                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='InputXpathInterfaceIsType']]"
-                    + "/MODIFIERS/LITERAL_PUBLIC"
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
+                + "@text='InputXpathInterfaceIsType']]",
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
+                + "@text='InputXpathInterfaceIsType']]/MODIFIERS",
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
+                + "@text='InputXpathInterfaceIsType']]"
+                + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

@@ -40,11 +40,11 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
     @Test
     public void testMethods() throws Exception {
         final String filePath =
-                getPath("InputXpathParameterAssignmentMethods.java");
+            getPath("InputXpathParameterAssignmentMethods.java");
         final File fileToProcess = new File(filePath);
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ParameterAssignmentCheck.class);
+            createModuleConfig(ParameterAssignmentCheck.class);
 
         final String[] expectedViolations = {
             "9:15: " + getCheckMessage(ParameterAssignmentCheck.class, MSG_KEY, "field"),
@@ -52,13 +52,13 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='InputXpathParameterAssignmentMethods']]"
-            + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='Test1']]/SLIST/EXPR"
-            + "[./PLUS_ASSIGN/IDENT[@text='field']]",
+                + "@text='InputXpathParameterAssignmentMethods']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='Test1']]/SLIST/EXPR"
+                + "[./PLUS_ASSIGN/IDENT[@text='field']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='InputXpathParameterAssignmentMethods']]"
-            + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='Test1']]"
-            + "/SLIST/EXPR/PLUS_ASSIGN[./IDENT[@text='field']]"
+                + "@text='InputXpathParameterAssignmentMethods']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='Test1']]"
+                + "/SLIST/EXPR/PLUS_ASSIGN[./IDENT[@text='field']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
@@ -68,11 +68,11 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
     @Test
     public void testLambdas() throws Exception {
         final String filePath =
-                getPath("InputXpathParameterAssignmentLambdas.java");
+            getPath("InputXpathParameterAssignmentLambdas.java");
         final File fileToProcess = new File(filePath);
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ParameterAssignmentCheck.class);
+            createModuleConfig(ParameterAssignmentCheck.class);
 
         final String[] expectedViolations = {
             "9:32: " + getCheckMessage(ParameterAssignmentCheck.class, MSG_KEY, "q"),
@@ -80,13 +80,13 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='InputXpathParameterAssignmentLambdas']]"
-            + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='obj1']]"
-            + "/ASSIGN/LAMBDA[./IDENT[@text='q']]/EXPR",
+                + "@text='InputXpathParameterAssignmentLambdas']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='obj1']]"
+                + "/ASSIGN/LAMBDA[./IDENT[@text='q']]/EXPR",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='InputXpathParameterAssignmentLambdas']]"
-            + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='obj1']]/ASSIGN/LAMBDA[./IDENT["
-            + "@text='q']]/EXPR/POST_INC[./IDENT[@text='q']]"
+                + "@text='InputXpathParameterAssignmentLambdas']]"
+                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='obj1']]/ASSIGN/LAMBDA[./IDENT["
+                + "@text='q']]/EXPR/POST_INC[./IDENT[@text='q']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
@@ -95,11 +95,11 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
     @Test
     public void testCtor() throws Exception {
         final String filePath =
-                getPath("InputXpathParameterAssignmentCtor.java");
+            getPath("InputXpathParameterAssignmentCtor.java");
         final File fileToProcess = new File(filePath);
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ParameterAssignmentCheck.class);
+            createModuleConfig(ParameterAssignmentCheck.class);
 
         final String[] expectedViolations = {
             "9:15: " + getCheckMessage(ParameterAssignmentCheck.class, MSG_KEY, "field"),
@@ -107,15 +107,15 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='InputXpathParameterAssignmentCtor']]"
-            + "/OBJBLOCK/CTOR_DEF[./IDENT["
-            + "@text='InputXpathParameterAssignmentCtor']]"
-            + "/SLIST/EXPR[./PLUS_ASSIGN/IDENT[@text='field']]",
+                + "@text='InputXpathParameterAssignmentCtor']]"
+                + "/OBJBLOCK/CTOR_DEF[./IDENT["
+                + "@text='InputXpathParameterAssignmentCtor']]"
+                + "/SLIST/EXPR[./PLUS_ASSIGN/IDENT[@text='field']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='InputXpathParameterAssignmentCtor']]"
-            + "/OBJBLOCK/CTOR_DEF[./IDENT["
-            + "@text='InputXpathParameterAssignmentCtor']]"
-            + "/SLIST/EXPR/PLUS_ASSIGN[./IDENT[@text='field']]"
+                + "@text='InputXpathParameterAssignmentCtor']]"
+                + "/OBJBLOCK/CTOR_DEF[./IDENT["
+                + "@text='InputXpathParameterAssignmentCtor']]"
+                + "/SLIST/EXPR/PLUS_ASSIGN[./IDENT[@text='field']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);

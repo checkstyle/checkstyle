@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LambdaBodyLengthCheck;
 
 public class XpathRegressionLambdaBodyLengthTest
-        extends AbstractXpathTestSupport {
+    extends AbstractXpathTestSupport {
 
     private static final Class<LambdaBodyLengthCheck> CLASS =
         LambdaBodyLengthCheck.class;

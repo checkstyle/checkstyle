@@ -40,10 +40,10 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
     @Test
     public void testLambdaExpInMethodCall() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathHiddenFieldLambdaExpInMethodCall.java"));
+            new File(getPath("InputXpathHiddenFieldLambdaExpInMethodCall.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(HiddenFieldCheck.class);
+            createModuleConfig(HiddenFieldCheck.class);
 
         final String[] expectedViolation = {
             "10:34: " + getCheckMessage(HiddenFieldCheck.class,
@@ -58,16 +58,16 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testMethodParam() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathHiddenFieldMethodParam.java"));
+            new File(getPath("InputXpathHiddenFieldMethodParam.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(HiddenFieldCheck.class);
+            createModuleConfig(HiddenFieldCheck.class);
 
         final String[] expectedViolation = {
             "8:45: " + getCheckMessage(HiddenFieldCheck.class,
@@ -82,6 +82,6 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

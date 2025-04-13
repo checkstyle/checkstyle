@@ -40,10 +40,10 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
     @Test
     public void testClassFields() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathOneStatementPerLineClassFields.java"));
+            new File(getPath("InputXpathOneStatementPerLineClassFields.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(OneStatementPerLineCheck.class);
+            createModuleConfig(OneStatementPerLineCheck.class);
 
         final String[] expectedViolation = {
             "4:17: " + getCheckMessage(OneStatementPerLineCheck.class,
@@ -57,16 +57,16 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testForLoopBlock() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathOneStatementPerLineForLoopBlock.java"));
+            new File(getPath("InputXpathOneStatementPerLineForLoopBlock.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(OneStatementPerLineCheck.class);
+            createModuleConfig(OneStatementPerLineCheck.class);
 
         final String[] expectedViolation = {
             "9:39: " + getCheckMessage(OneStatementPerLineCheck.class,
@@ -80,6 +80,6 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

@@ -42,10 +42,10 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
     @Test
     public void testMethod() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathNPathComplexityMethod.java"));
+            new File(getPath("InputXpathNPathComplexityMethod.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NPathComplexityCheck.class);
+            createModuleConfig(NPathComplexityCheck.class);
         moduleConfig.addProperty("max", "0");
 
         final String[] expectedViolation = {
@@ -66,16 +66,16 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testStaticBlock() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathNPathComplexityStaticBlock.java"));
+            new File(getPath("InputXpathNPathComplexityStaticBlock.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NPathComplexityCheck.class);
+            createModuleConfig(NPathComplexityCheck.class);
         moduleConfig.addProperty("max", "0");
 
         final String[] expectedViolation = {
@@ -90,6 +90,6 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

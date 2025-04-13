@@ -39,128 +39,128 @@ public class XpathRegressionAvoidNestedBlocksTest extends AbstractXpathTestSuppo
     @Test
     public void testEmpty() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathAvoidNestedBlocksEmpty.java"));
+            getPath("InputXpathAvoidNestedBlocksEmpty.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidNestedBlocksCheck.class);
+            createModuleConfig(AvoidNestedBlocksCheck.class);
 
         final String[] expectedViolation = {
             "6:9: " + getCheckMessage(AvoidNestedBlocksCheck.class,
-                    AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED),
+                AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathAvoidNestedBlocksEmpty']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='empty']]/SLIST/SLIST"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathAvoidNestedBlocksEmpty']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='empty']]/SLIST/SLIST"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testVariableAssignment() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathAvoidNestedBlocksVariable.java"));
+            getPath("InputXpathAvoidNestedBlocksVariable.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidNestedBlocksCheck.class);
+            createModuleConfig(AvoidNestedBlocksCheck.class);
 
         final String[] expectedViolation = {
             "7:9: " + getCheckMessage(AvoidNestedBlocksCheck.class,
-                    AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED),
+                AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathAvoidNestedBlocksVariable']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='varAssign']]/SLIST/SLIST"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathAvoidNestedBlocksVariable']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='varAssign']]/SLIST/SLIST"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testSwitchAllowInSwitchCaseFalse() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathAvoidNestedBlocksNotAllowedInSwitchCase.java"));
+            "InputXpathAvoidNestedBlocksNotAllowedInSwitchCase.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidNestedBlocksCheck.class);
+            createModuleConfig(AvoidNestedBlocksCheck.class);
 
         final String[] expectedViolation = {
             "9:21: " + getCheckMessage(AvoidNestedBlocksCheck.class,
-                    AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED),
+                AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathAvoidNestedBlocksNotAllowedInSwitchCase"
-                        + "']]/OBJBLOCK/METHOD_DEF"
-                        + "[./IDENT[@text='s']]/SLIST/LITERAL_SWITCH/CASE_GROUP/SLIST",
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathAvoidNestedBlocksNotAllowedInSwitchCase"
-                        + "']]/OBJBLOCK/METHOD_DEF"
-                        + "[./IDENT[@text='s']]/SLIST/LITERAL_SWITCH/CASE_GROUP/SLIST/SLIST"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathAvoidNestedBlocksNotAllowedInSwitchCase"
+                + "']]/OBJBLOCK/METHOD_DEF"
+                + "[./IDENT[@text='s']]/SLIST/LITERAL_SWITCH/CASE_GROUP/SLIST",
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathAvoidNestedBlocksNotAllowedInSwitchCase"
+                + "']]/OBJBLOCK/METHOD_DEF"
+                + "[./IDENT[@text='s']]/SLIST/LITERAL_SWITCH/CASE_GROUP/SLIST/SLIST"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testSwitchAllowInSwitchCaseTrue() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathAvoidNestedBlocksAllowedInSwitchCase.java"));
+            getPath("InputXpathAvoidNestedBlocksAllowedInSwitchCase.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidNestedBlocksCheck.class);
+            createModuleConfig(AvoidNestedBlocksCheck.class);
         moduleConfig.addProperty("allowInSwitchCase", "true");
 
         final String[] expectedViolation = {
             "11:13: " + getCheckMessage(AvoidNestedBlocksCheck.class,
-                    AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED),
+                AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathAvoidNestedBlocksAllowedInSwitchCase"
-                        + "']]/OBJBLOCK/METHOD_DEF[./IDENT[@text='s']]"
-                        + "/SLIST/LITERAL_SWITCH/CASE_GROUP/SLIST/SLIST"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathAvoidNestedBlocksAllowedInSwitchCase"
+                + "']]/OBJBLOCK/METHOD_DEF[./IDENT[@text='s']]"
+                + "/SLIST/LITERAL_SWITCH/CASE_GROUP/SLIST/SLIST"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testSwitchWithBreakOutside() throws Exception {
         final File fileToProcess = new File(
-                getPath("InputXpathAvoidNestedBlocksBreakOutside.java"));
+            getPath("InputXpathAvoidNestedBlocksBreakOutside.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(AvoidNestedBlocksCheck.class);
+            createModuleConfig(AvoidNestedBlocksCheck.class);
 
         final String[] expectedViolation = {
             "8:21: " + getCheckMessage(AvoidNestedBlocksCheck.class,
-                    AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED),
+                AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathAvoidNestedBlocksBreakOutside']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='s']]"
-                        + "/SLIST/LITERAL_SWITCH/CASE_GROUP/SLIST",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='InputXpathAvoidNestedBlocksBreakOutside']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='s']]"
-                        + "/SLIST/LITERAL_SWITCH/CASE_GROUP/SLIST/SLIST"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathAvoidNestedBlocksBreakOutside']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='s']]"
+                + "/SLIST/LITERAL_SWITCH/CASE_GROUP/SLIST",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathAvoidNestedBlocksBreakOutside']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='s']]"
+                + "/SLIST/LITERAL_SWITCH/CASE_GROUP/SLIST/SLIST"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

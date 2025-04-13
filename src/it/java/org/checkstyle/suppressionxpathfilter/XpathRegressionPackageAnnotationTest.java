@@ -40,11 +40,11 @@ public class XpathRegressionPackageAnnotationTest extends AbstractXpathTestSuppo
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
-                        "InputXpathPackageAnnotationOne.java"));
+            new File(getNonCompilablePath(
+                "InputXpathPackageAnnotationOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(PackageAnnotationCheck.class);
+            createModuleConfig(PackageAnnotationCheck.class);
 
         final String[] expectedViolation = {
             "4:1: " + getCheckMessage(PackageAnnotationCheck.class,
@@ -52,20 +52,20 @@ public class XpathRegressionPackageAnnotationTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries =
-                Arrays.asList("/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF");
+            Arrays.asList("/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
-                        "InputXpathPackageAnnotationTwo.java"));
+            new File(getNonCompilablePath(
+                "InputXpathPackageAnnotationTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(PackageAnnotationCheck.class);
+            createModuleConfig(PackageAnnotationCheck.class);
 
         final String[] expectedViolation = {
             "4:1: " + getCheckMessage(PackageAnnotationCheck.class,
@@ -73,9 +73,9 @@ public class XpathRegressionPackageAnnotationTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries =
-                Arrays.asList("/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF");
+            Arrays.asList("/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

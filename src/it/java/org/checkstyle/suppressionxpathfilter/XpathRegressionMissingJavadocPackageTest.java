@@ -40,10 +40,10 @@ public class XpathRegressionMissingJavadocPackageTest extends AbstractXpathTestS
     @Test
     public void testBlockComment() throws Exception {
         final File fileToProcess = new File(getPath(
-                "blockcomment/package-info.java"));
+            "blockcomment/package-info.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingJavadocPackageCheck.class);
+            createModuleConfig(MissingJavadocPackageCheck.class);
 
         final String[] expectedViolation = {
             "4:1: " + getCheckMessage(MissingJavadocPackageCheck.class,
@@ -54,16 +54,16 @@ public class XpathRegressionMissingJavadocPackageTest extends AbstractXpathTestS
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testNoJavadoc() throws Exception {
         final File fileToProcess = new File(getPath(
-                "nojavadoc/package-info.java"));
+            "nojavadoc/package-info.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(MissingJavadocPackageCheck.class);
+            createModuleConfig(MissingJavadocPackageCheck.class);
 
         final String[] expectedViolation = {
             "1:1: " + getCheckMessage(MissingJavadocPackageCheck.class,
@@ -75,7 +75,7 @@ public class XpathRegressionMissingJavadocPackageTest extends AbstractXpathTestS
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

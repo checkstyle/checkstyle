@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
 
 public class XpathRegressionAvoidStarImportTest
-        extends AbstractXpathTestSupport {
+    extends AbstractXpathTestSupport {
 
     private static final Class<AvoidStarImportCheck> CLASS =
         AvoidStarImportCheck.class;
@@ -45,7 +45,7 @@ public class XpathRegressionAvoidStarImportTest
             "InputXpathAvoidStarImportOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
+            createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
             "3:42: " + getCheckMessage(CLASS,
@@ -53,7 +53,7 @@ public class XpathRegressionAvoidStarImportTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/STATIC_IMPORT/DOT"
+            "/COMPILATION_UNIT/STATIC_IMPORT/DOT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -65,7 +65,7 @@ public class XpathRegressionAvoidStarImportTest
             "InputXpathAvoidStarImportTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CLASS);
+            createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
             "4:15: " + getCheckMessage(CLASS,
@@ -73,7 +73,7 @@ public class XpathRegressionAvoidStarImportTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/IMPORT/DOT"
+            "/COMPILATION_UNIT/IMPORT/DOT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);

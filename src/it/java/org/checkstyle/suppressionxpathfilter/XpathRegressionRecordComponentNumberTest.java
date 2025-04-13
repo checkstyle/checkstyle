@@ -40,55 +40,55 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-                "InputXpathRecordComponentNumberDefault.java"));
+            "InputXpathRecordComponentNumberDefault.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(RecordComponentNumberCheck.class);
+            createModuleConfig(RecordComponentNumberCheck.class);
 
         final String[] expectedViolation = {
             "8:1: " + getCheckMessage(RecordComponentNumberCheck.class,
-                    RecordComponentNumberCheck.MSG_KEY,
-                    15, 8),
+                RecordComponentNumberCheck.MSG_KEY,
+                15, 8),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='InputXpathRecordComponentNumberDefault']]",
             "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='InputXpathRecordComponentNumberDefault']]"
-                    + "/MODIFIERS",
+                + "/MODIFIERS",
             "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='InputXpathRecordComponentNumberDefault']]"
-                    + "/MODIFIERS/LITERAL_PUBLIC"
+                + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testCustomMax() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-                "InputXpathRecordComponentNumberCustomMax.java"));
+            "InputXpathRecordComponentNumberCustomMax.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(RecordComponentNumberCheck.class);
+            createModuleConfig(RecordComponentNumberCheck.class);
         moduleConfig.addProperty("max", "1");
 
         final String[] expectedViolation = {
             "9:5: " + getCheckMessage(RecordComponentNumberCheck.class,
-                    RecordComponentNumberCheck.MSG_KEY,
-                    2, 1),
+                RecordComponentNumberCheck.MSG_KEY,
+                2, 1),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathRecordComponentNumberCustomMax']]"
-                    + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]",
+                + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathRecordComponentNumberCustomMax']]"
-                    + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]/MODIFIERS",
+                + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathRecordComponentNumberCustomMax']]"
-                    + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]/MODIFIERS"
-                    + "/LITERAL_PUBLIC"
+                + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]/MODIFIERS"
+                + "/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

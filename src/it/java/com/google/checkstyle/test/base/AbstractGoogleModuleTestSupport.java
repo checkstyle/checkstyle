@@ -46,7 +46,7 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
             properties.put("org.checkstyle.google.severity", "error");
             final PropertiesExpander expander = new PropertiesExpander(properties);
             CONFIGURATION = ConfigurationLoader.loadConfiguration(XML_NAME,
-                    expander);
+                expander);
         }
         catch (CheckstyleException ex) {
             throw new IllegalStateException(ex);
@@ -65,9 +65,9 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
 
         for (Class<?> moduleClass : CHECKSTYLE_MODULES) {
             if (moduleClass.getSimpleName().equals(moduleName)
-                    || moduleClass.getSimpleName().equals(moduleName + "Check")) {
+                || moduleClass.getSimpleName().equals(moduleName + "Check")) {
                 if (ModuleReflectionUtil.isCheckstyleTreeWalkerCheck(moduleClass)
-                        || ModuleReflectionUtil.isTreeWalkerFilterModule(moduleClass)) {
+                    || ModuleReflectionUtil.isTreeWalkerFilterModule(moduleClass)) {
                     moduleCreationOption = ModuleCreationOption.IN_TREEWALKER;
                 }
                 break;

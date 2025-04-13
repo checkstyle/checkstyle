@@ -41,15 +41,15 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-                "InputXpathRecordComponentNameDefault.java"));
+            "InputXpathRecordComponentNameDefault.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(RecordComponentNameCheck.class);
+            createModuleConfig(RecordComponentNameCheck.class);
 
         final String[] expectedViolation = {
             "6:56: " + getCheckMessage(RecordComponentNameCheck.class,
                 AbstractNameCheck.MSG_INVALID_PATTERN,
-                    "_value", "^[a-z][a-zA-Z0-9]*$"),
+                "_value", "^[a-z][a-zA-Z0-9]*$"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -58,22 +58,22 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testFormat() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-                "InputXpathRecordComponentNameFormat.java"));
+            "InputXpathRecordComponentNameFormat.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(RecordComponentNameCheck.class);
+            createModuleConfig(RecordComponentNameCheck.class);
         moduleConfig.addProperty("format", "^_[a-z][a-zA-Z0-9]*$");
 
         final String[] expectedViolation = {
             "9:32: " + getCheckMessage(RecordComponentNameCheck.class,
                 AbstractNameCheck.MSG_INVALID_PATTERN,
-                    "otherValue", "^_[a-z][a-zA-Z0-9]*$"),
+                "otherValue", "^_[a-z][a-zA-Z0-9]*$"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -84,6 +84,6 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

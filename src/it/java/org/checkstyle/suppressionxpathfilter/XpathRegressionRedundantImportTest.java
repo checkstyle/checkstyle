@@ -40,53 +40,53 @@ public class XpathRegressionRedundantImportTest extends AbstractXpathTestSupport
     @Test
     public void testInternal() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathRedundantImportInternal.java"));
+            new File(getPath("InputXpathRedundantImportInternal.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(RedundantImportCheck.class);
+            createModuleConfig(RedundantImportCheck.class);
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(RedundantImportCheck.class,
-                        RedundantImportCheck.MSG_SAME, "org.checkstyle.suppressionxpathfilter"
-                                + ".redundantimport.InputXpathRedundantImportInternal"),
+                RedundantImportCheck.MSG_SAME, "org.checkstyle.suppressionxpathfilter"
+                    + ".redundantimport.InputXpathRedundantImportInternal"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/IMPORT");
+            "/COMPILATION_UNIT/IMPORT");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testLibrary() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathRedundantImportLibrary.java"));
+            new File(getPath("InputXpathRedundantImportLibrary.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(RedundantImportCheck.class);
+            createModuleConfig(RedundantImportCheck.class);
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(RedundantImportCheck.class,
-                        RedundantImportCheck.MSG_LANG, "java.lang.String"),
+                RedundantImportCheck.MSG_LANG, "java.lang.String"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/IMPORT");
+            "/COMPILATION_UNIT/IMPORT");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testDuplicate() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathRedundantImportDuplicate.java"));
+            new File(getPath("InputXpathRedundantImportDuplicate.java"));
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(RedundantImportCheck.class);
+            createModuleConfig(RedundantImportCheck.class);
         final String[] expectedViolation = {
             "4:1: " + getCheckMessage(RedundantImportCheck.class,
-                        RedundantImportCheck.MSG_DUPLICATE, 3, "java.util.Scanner"),
+                RedundantImportCheck.MSG_DUPLICATE, 3, "java.util.Scanner"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='Scanner']]");
+            "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='Scanner']]");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
 }

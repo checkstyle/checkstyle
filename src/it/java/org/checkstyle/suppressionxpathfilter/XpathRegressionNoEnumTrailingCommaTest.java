@@ -40,20 +40,20 @@ public class XpathRegressionNoEnumTrailingCommaTest extends AbstractXpathTestSup
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathNoEnumTrailingCommaOne.java"));
+            "InputXpathNoEnumTrailingCommaOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoEnumTrailingCommaCheck.class);
+            createModuleConfig(NoEnumTrailingCommaCheck.class);
 
         final String[] expectedViolation = {
             "7:12: " + getCheckMessage(NoEnumTrailingCommaCheck.class,
-                    NoEnumTrailingCommaCheck.MSG_KEY),
+                NoEnumTrailingCommaCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathNoEnumTrailingCommaOne']]"
-                    + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Foo3']]/OBJBLOCK/COMMA[2]"
+                + "[./IDENT[@text='InputXpathNoEnumTrailingCommaOne']]"
+                + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Foo3']]/OBJBLOCK/COMMA[2]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -62,20 +62,20 @@ public class XpathRegressionNoEnumTrailingCommaTest extends AbstractXpathTestSup
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathNoEnumTrailingCommaTwo.java"));
+            "InputXpathNoEnumTrailingCommaTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoEnumTrailingCommaCheck.class);
+            createModuleConfig(NoEnumTrailingCommaCheck.class);
 
         final String[] expectedViolation = {
             "5:25: " + getCheckMessage(NoEnumTrailingCommaCheck.class,
-                    NoEnumTrailingCommaCheck.MSG_KEY),
+                NoEnumTrailingCommaCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathNoEnumTrailingCommaTwo']]"
-                    + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Foo6']]/OBJBLOCK/COMMA[2]"
+                + "[./IDENT[@text='InputXpathNoEnumTrailingCommaTwo']]"
+                + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Foo6']]/OBJBLOCK/COMMA[2]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);

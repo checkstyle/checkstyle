@@ -41,32 +41,32 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
     @Test
     public void testDo() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathNeedBracesDo.java"));
+            "InputXpathNeedBracesDo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NeedBracesCheck.class);
+            createModuleConfig(NeedBracesCheck.class);
 
         final String[] expectedViolation = {
             "13:9: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "do"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathNeedBracesDo']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_DO"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathNeedBracesDo']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_DO"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testSingleLine() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathNeedBracesSingleLine.java"));
+            "InputXpathNeedBracesSingleLine.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NeedBracesCheck.class);
+            createModuleConfig(NeedBracesCheck.class);
         moduleConfig.addProperty("allowSingleLineStatement", "true");
 
         final String[] expectedViolation = {
@@ -80,16 +80,16 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testSingleLineLambda() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathNeedBracesSingleLineLambda.java"));
+            "InputXpathNeedBracesSingleLineLambda.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NeedBracesCheck.class);
+            createModuleConfig(NeedBracesCheck.class);
         moduleConfig.addProperty("tokens", "LAMBDA");
         moduleConfig.addProperty("allowSingleLineStatement", "true");
 
@@ -104,16 +104,16 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testEmptyLoopBody() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathNeedBracesEmptyLoopBody.java"));
+            "InputXpathNeedBracesEmptyLoopBody.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NeedBracesCheck.class);
+            createModuleConfig(NeedBracesCheck.class);
 
         final String[] expectedViolation = {
             "9:9: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "while"),
@@ -126,6 +126,6 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

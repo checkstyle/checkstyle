@@ -40,10 +40,10 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
     @Test
     public void testInterface() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathClassMemberImpliedModifierInterface.java"));
+            new File(getPath("InputXpathClassMemberImpliedModifierInterface.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ClassMemberImpliedModifierCheck.class);
+            createModuleConfig(ClassMemberImpliedModifierCheck.class);
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(ClassMemberImpliedModifierCheck.class,
@@ -51,28 +51,28 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathClassMemberImpliedModifierInterface']]"
-                        + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Foo']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathClassMemberImpliedModifierInterface']]"
-                        + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Foo']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='InputXpathClassMemberImpliedModifierInterface']]"
-                        + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Foo']]/MODIFIERS/LITERAL_PUBLIC"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathClassMemberImpliedModifierInterface']]"
+                + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Foo']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathClassMemberImpliedModifierInterface']]"
+                + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Foo']]/MODIFIERS",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
+                + "@text='InputXpathClassMemberImpliedModifierInterface']]"
+                + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Foo']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testEnum() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathClassMemberImpliedModifierEnum.java"));
+            new File(getPath("InputXpathClassMemberImpliedModifierEnum.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(ClassMemberImpliedModifierCheck.class);
+            createModuleConfig(ClassMemberImpliedModifierCheck.class);
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(ClassMemberImpliedModifierCheck.class,
@@ -81,17 +81,17 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathClassMemberImpliedModifierEnum']]"
-                    + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Count']]",
+                + "[./IDENT[@text='InputXpathClassMemberImpliedModifierEnum']]"
+                + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Count']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathClassMemberImpliedModifierEnum']]"
-                    + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Count']]/MODIFIERS",
+                + "[./IDENT[@text='InputXpathClassMemberImpliedModifierEnum']]"
+                + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Count']]/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathClassMemberImpliedModifierEnum']]"
-                    + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Count']]/MODIFIERS/LITERAL_PUBLIC"
+                + "[./IDENT[@text='InputXpathClassMemberImpliedModifierEnum']]"
+                + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Count']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

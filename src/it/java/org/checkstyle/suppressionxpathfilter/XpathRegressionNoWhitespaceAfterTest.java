@@ -41,14 +41,14 @@ public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSuppo
     @Test
     public void testNoWhitespaceAfter() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathNoWhitespaceAfter.java"));
+            new File(getPath("InputXpathNoWhitespaceAfter.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoWhitespaceAfterCheck.class);
+            createModuleConfig(NoWhitespaceAfterCheck.class);
 
         final String[] expectedViolation = {
             "4:15: " + getCheckMessage(NoWhitespaceAfterCheck.class,
-                    NoWhitespaceAfterCheck.MSG_KEY, "-"),
+                NoWhitespaceAfterCheck.MSG_KEY, "-"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -62,21 +62,21 @@ public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSuppo
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testTokens() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathNoWhitespaceAfterTokens.java"));
+            new File(getPath("InputXpathNoWhitespaceAfterTokens.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(NoWhitespaceAfterCheck.class);
+            createModuleConfig(NoWhitespaceAfterCheck.class);
         moduleConfig.addProperty("tokens", "DOT");
 
         final String[] expectedViolation = {
             "4:16: " + getCheckMessage(NoWhitespaceAfterCheck.class,
-                    NoWhitespaceAfterCheck.MSG_KEY, "."),
+                NoWhitespaceAfterCheck.MSG_KEY, "."),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -88,7 +88,7 @@ public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSuppo
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test

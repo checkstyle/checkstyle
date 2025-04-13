@@ -40,10 +40,10 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     @Test
     public void testSingleLine() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathCommentsIndentationSingleLine.java"));
+            new File(getPath("InputXpathCommentsIndentationSingleLine.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CommentsIndentationCheck.class);
+            createModuleConfig(CommentsIndentationCheck.class);
 
         final String[] expectedViolation = {
             "5:9: " + getCheckMessage(CommentsIndentationCheck.class,
@@ -57,16 +57,16 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testBlock() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathCommentsIndentationBlock.java"));
+            new File(getPath("InputXpathCommentsIndentationBlock.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CommentsIndentationCheck.class);
+            createModuleConfig(CommentsIndentationCheck.class);
 
         final String[] expectedViolation = {
             "4:11: " + getCheckMessage(CommentsIndentationCheck.class,
@@ -81,16 +81,16 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testSeparator() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathCommentsIndentationSeparator.java"));
+            new File(getPath("InputXpathCommentsIndentationSeparator.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CommentsIndentationCheck.class);
+            createModuleConfig(CommentsIndentationCheck.class);
 
         final String[] expectedViolation = {
             "8:13: " + getCheckMessage(CommentsIndentationCheck.class,
@@ -105,16 +105,16 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testDistributedStatement() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathCommentsIndentationDistributedStatement.java"));
+            new File(getPath("InputXpathCommentsIndentationDistributedStatement.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CommentsIndentationCheck.class);
+            createModuleConfig(CommentsIndentationCheck.class);
 
         final String[] expectedViolation = {
             "10:25: " + getCheckMessage(CommentsIndentationCheck.class,
@@ -129,16 +129,16 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testSingleLineBlock() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathCommentsIndentationSingleLineBlock.java"));
+            new File(getPath("InputXpathCommentsIndentationSingleLineBlock.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CommentsIndentationCheck.class);
+            createModuleConfig(CommentsIndentationCheck.class);
 
         final String[] expectedViolation = {
             "6:1: " + getCheckMessage(CommentsIndentationCheck.class,
@@ -153,16 +153,16 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testNonEmptyCase() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathCommentsIndentationNonEmptyCase.java"));
+            new File(getPath("InputXpathCommentsIndentationNonEmptyCase.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CommentsIndentationCheck.class);
+            createModuleConfig(CommentsIndentationCheck.class);
 
         final String[] expectedViolation = {
             "10:20: " + getCheckMessage(CommentsIndentationCheck.class,
@@ -177,16 +177,16 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testEmptyCase() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathCommentsIndentationEmptyCase.java"));
+            new File(getPath("InputXpathCommentsIndentationEmptyCase.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CommentsIndentationCheck.class);
+            createModuleConfig(CommentsIndentationCheck.class);
 
         final String[] expectedViolation = {
             "9:1: " + getCheckMessage(CommentsIndentationCheck.class,
@@ -201,16 +201,16 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testWithinBlockStatement() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathCommentsIndentationWithinBlockStatement.java"));
+            new File(getPath("InputXpathCommentsIndentationWithinBlockStatement.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(CommentsIndentationCheck.class);
+            createModuleConfig(CommentsIndentationCheck.class);
 
         final String[] expectedViolation = {
             "6:9: " + getCheckMessage(CommentsIndentationCheck.class,
@@ -226,6 +226,6 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

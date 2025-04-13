@@ -39,68 +39,68 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
     @Test
     public void testInnerClone() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathSuperCloneInnerClone.java"));
+            new File(getPath("InputXpathSuperCloneInnerClone.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(SuperCloneCheck.class);
+            createModuleConfig(SuperCloneCheck.class);
 
         final String[] expectedViolation = {
             "6:23: " + getCheckMessage(SuperCloneCheck.class, AbstractSuperCheck.MSG_KEY, "clone"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathSuperCloneInnerClone']]"
-                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClone']]"
-                        + "/OBJBLOCK/METHOD_DEF/IDENT[@text='clone']"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathSuperCloneInnerClone']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClone']]"
+                + "/OBJBLOCK/METHOD_DEF/IDENT[@text='clone']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testNoSuperClone() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathSuperCloneNoSuperClone.java"));
+            new File(getPath("InputXpathSuperCloneNoSuperClone.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(SuperCloneCheck.class);
+            createModuleConfig(SuperCloneCheck.class);
 
         final String[] expectedViolation = {
             "6:23: " + getCheckMessage(SuperCloneCheck.class, AbstractSuperCheck.MSG_KEY, "clone"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathSuperCloneNoSuperClone']]"
-                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='NoSuperClone']]"
-                        + "/OBJBLOCK/METHOD_DEF/IDENT[@text='clone']"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathSuperCloneNoSuperClone']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='NoSuperClone']]"
+                + "/OBJBLOCK/METHOD_DEF/IDENT[@text='clone']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testPlainAndSubclasses() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathSuperClonePlainAndSubclasses.java"));
+            new File(getPath("InputXpathSuperClonePlainAndSubclasses.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(SuperCloneCheck.class);
+            createModuleConfig(SuperCloneCheck.class);
 
         final String[] expectedViolation = {
             "4:19: " + getCheckMessage(SuperCloneCheck.class, AbstractSuperCheck.MSG_KEY, "clone"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='InputXpathSuperClonePlainAndSubclasses']]"
-                        + "/OBJBLOCK/METHOD_DEF/IDENT[@text='clone']"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathSuperClonePlainAndSubclasses']]"
+                + "/OBJBLOCK/METHOD_DEF/IDENT[@text='clone']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

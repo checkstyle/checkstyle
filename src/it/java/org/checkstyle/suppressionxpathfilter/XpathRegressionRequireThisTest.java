@@ -40,10 +40,10 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathRequireThisOne.java"));
+            new File(getPath("InputXpathRequireThisOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(RequireThisCheck.class);
+            createModuleConfig(RequireThisCheck.class);
         moduleConfig.addProperty("validateOnlyOverlapping", "false");
 
         final String[] expectedViolation = {
@@ -59,16 +59,16 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathRequireThisTwo.java"));
+            new File(getPath("InputXpathRequireThisTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(RequireThisCheck.class);
+            createModuleConfig(RequireThisCheck.class);
         moduleConfig.addProperty("validateOnlyOverlapping", "false");
 
         final String[] expectedViolation = {
@@ -84,6 +84,6 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }

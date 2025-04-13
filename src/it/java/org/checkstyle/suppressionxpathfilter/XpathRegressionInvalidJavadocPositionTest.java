@@ -40,10 +40,10 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathInvalidJavadocPositionOne.java"));
+            new File(getPath("InputXpathInvalidJavadocPositionOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(InvalidJavadocPositionCheck.class);
+            createModuleConfig(InvalidJavadocPositionCheck.class);
 
         final String[] expectedViolation = {
             "4:1: " + getCheckMessage(InvalidJavadocPositionCheck.class,
@@ -52,22 +52,22 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathInvalidJavadocPositionOne']]"
-                    + "/MODIFIERS/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
-                    + "[@text='* // warn\\n * Javadoc Comment\\n ']]"
+                + "[./IDENT[@text='InputXpathInvalidJavadocPositionOne']]"
+                + "/MODIFIERS/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
+                + "[@text='* // warn\\n * Javadoc Comment\\n ']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathInvalidJavadocPositionTwo.java"));
+            new File(getPath("InputXpathInvalidJavadocPositionTwo.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(InvalidJavadocPositionCheck.class);
+            createModuleConfig(InvalidJavadocPositionCheck.class);
 
         final String[] expectedViolation = {
             "5:1: " + getCheckMessage(InvalidJavadocPositionCheck.class,
@@ -76,22 +76,22 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                    + "[@text='InputXpathInvalidJavadocPositionTwo']]"
-                    + "/OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
-                    + "[@text='* // warn\\n * Javadoc comment\\n ']]"
+                + "[@text='InputXpathInvalidJavadocPositionTwo']]"
+                + "/OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
+                + "[@text='* // warn\\n * Javadoc comment\\n ']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathInvalidJavadocPositionThree.java"));
+            new File(getPath("InputXpathInvalidJavadocPositionThree.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(InvalidJavadocPositionCheck.class);
+            createModuleConfig(InvalidJavadocPositionCheck.class);
 
         final String[] expectedViolation = {
             "6:5: " + getCheckMessage(InvalidJavadocPositionCheck.class,
@@ -100,22 +100,22 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathInvalidJavadocPositionThree']]/"
-                    + "OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
-                    + "[@text='* // warn\\n     * Javadoc comment\\n     ']]"
+                + "[./IDENT[@text='InputXpathInvalidJavadocPositionThree']]/"
+                + "OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
+                + "[@text='* // warn\\n     * Javadoc comment\\n     ']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testFour() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathInvalidJavadocPositionFour.java"));
+            new File(getPath("InputXpathInvalidJavadocPositionFour.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(InvalidJavadocPositionCheck.class);
+            createModuleConfig(InvalidJavadocPositionCheck.class);
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(InvalidJavadocPositionCheck.class,
@@ -130,16 +130,16 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testFive() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathInvalidJavadocPositionFive.java"));
+            new File(getPath("InputXpathInvalidJavadocPositionFive.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(InvalidJavadocPositionCheck.class);
+            createModuleConfig(InvalidJavadocPositionCheck.class);
 
         final String[] expectedViolation = {
             "5:9: " + getCheckMessage(InvalidJavadocPositionCheck.class,
@@ -155,16 +155,16 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 
     @Test
     public void testSix() throws Exception {
         final File fileToProcess =
-                new File(getPath("InputXpathInvalidJavadocPositionSix.java"));
+            new File(getPath("InputXpathInvalidJavadocPositionSix.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig(InvalidJavadocPositionCheck.class);
+            createModuleConfig(InvalidJavadocPositionCheck.class);
 
         final String[] expectedViolation = {
             "5:5: " + getCheckMessage(InvalidJavadocPositionCheck.class,
@@ -179,6 +179,6 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+            expectedXpathQueries);
     }
 }
