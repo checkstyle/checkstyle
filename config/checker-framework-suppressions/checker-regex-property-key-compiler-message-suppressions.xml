@@ -201,6 +201,17 @@
       required: @Regex String
     </details>
   </checkerFrameworkError>
+  
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/MultiFileRegexpHeaderCheck.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return input;</lineContent>
+    <details>
+      type of expression: String
+      method return type: @Regex String
+    </details>
+  </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/RegexpHeaderCheck.java</fileName>
