@@ -3,6 +3,7 @@
 
 # Windows files always have CRLF eol
 *.bat eol=crlf
+*.cmd eol=crlf
 
 # Binary files need to be listed explicitly as first rule makes all files text files
 *.gif binary
@@ -21,3 +22,6 @@ src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/xpath/xpathquer
 src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/InputCrAsNewlineMultiline.javadoc -text
 src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/InputDosLineEndingAsNewlineMultiline.javadoc eol=crlf
 src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example3.java eol=crlf
+
+# This prevents repeated git diff output showing old mode 100644 → new mode 100755.
+/mvnw eol=lf text executable
