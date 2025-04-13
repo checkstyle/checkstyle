@@ -197,34 +197,44 @@ public class MethodCallHandler extends AbstractExpressionHandler {
     @Override
     public void checkIndentation() {
         DetailAST lparen = null;
+    
         if (getMainAst().getType() == TokenTypes.METHOD_CALL) {
             final DetailAST exprNode = getMainAst().getParent();
+    
             if (exprNode.getParent().getType() == TokenTypes.SLIST) {
-                checkExpressionSubtree(getMainAst().getFirstChild(), getIndent(), false, false);
-                lparen = getMainAst();
+                // Traverse method call children, skipping array access (INDEX_OP)
+                for (DetailAST child = getMainAst().getFirstChild(); child != null; child = child.getNextSibling()) {
+                    if (child.getType() == TokenTypes.INDEX_OP) {
+                        continue;
+                    }
+    
+                    checkExpressionSubtree(child, getIndent(), false, false);
+                }
             }
-        }
-        else {
-            // TokenTypes.CTOR_CALL|TokenTypes.SUPER_CTOR_CALL
+    
+            lparen = getMainAst(); // This should be outside the for-loop, after it's done
+        } else {
+            // TokenTypes.CTOR_CALL | TokenTypes.SUPER_CTOR_CALL
             lparen = getMainAst().getFirstChild();
         }
-
+    
         if (lparen != null) {
             final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
             checkLeftParen(lparen);
-
+    
             if (!TokenUtil.areOnSameLine(rparen, lparen)) {
                 checkExpressionSubtree(
                     getMainAst().findFirstToken(TokenTypes.ELIST),
                     new IndentLevel(getIndent(), getBasicOffset()),
                     false, true);
-
+    
                 checkRightParen(lparen, rparen);
                 checkWrappingIndentation(getMainAst(), getCallLastNode(getMainAst()));
             }
         }
     }
-
+    
+    
     @Override
     protected boolean shouldIncreaseIndent() {
         return false;
