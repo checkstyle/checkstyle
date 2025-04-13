@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.ant;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.io.File;
 import java.io.IOException;
@@ -976,6 +977,17 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final Matcher matcher = Pattern.compile("(\\d+)").matcher(line);
         matcher.find();
         return Long.parseLong(matcher.group(1));
+    }
+
+    @Test
+    public void testMaxWarningDefault() throws IOException {
+        final CheckstyleAntTask antTask = getCheckstyleAntTask();
+        final File inputFile = new File(getPath(WARNING_INPUT));
+        final Location fileLocation = new Location("build.xml", 42, 10);
+
+        antTask.setFile(inputFile);
+        antTask.setLocation(fileLocation);
+        assertDoesNotThrow(antTask::execute, "BuildException is not expected");
     }
 
 }
