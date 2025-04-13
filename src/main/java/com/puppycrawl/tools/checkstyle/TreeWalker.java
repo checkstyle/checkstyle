@@ -144,8 +144,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     @Override
     public void setupChild(Configuration childConf)
             throws CheckstyleException {
-        final String name = childConf.getName();
-        final Object module = moduleDiscovery(childConf, name);
+        final Object module = moduleDiscovery(childConf);
         if (module instanceof AbstractCheck) {
             final AbstractCheck check = (AbstractCheck) module;
             check.init();
@@ -155,18 +154,17 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             final TreeWalkerFilter filter = (TreeWalkerFilter) module;
             filters.add(filter);
         }
-        else {
-            throw new CheckstyleException(
-                "TreeWalker is not allowed as a parent of " + name
-                        + " Please review 'Parent Module' section for this Check in web"
-                        + " documentation if Check is standard.");
-        }
+        throw new CheckstyleException("TreeWalker is not allowed as a parent of "
+            + childConf.getName() + ". Please review 'Parent Module' section " +
+            "(parent=\"com.puppycrawl.tools.checkstyle.TreeWalker\") " +
+            "(parent=\"com.puppycrawl.tools.checkstyle.Checker\") " +
+            "for this Check in web documentation if Check is standard.");
     }
 
-    private Object moduleDiscovery(Configuration childConf, String name) throws CheckstyleException {
+    private Object moduleDiscovery(Configuration childConf) throws CheckstyleException {
         final Object module;
         try {
-            module = moduleFactory.createModule(name);
+            module = moduleFactory.createModule(childConf.getName());
             if (module instanceof AbstractAutomaticBean) {
                 final AbstractAutomaticBean bean = (AbstractAutomaticBean) module;
                 bean.contextualize(childContext);
@@ -174,7 +172,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             }
         }
         catch (final CheckstyleException ex) {
-            throw new CheckstyleException("cannot initialize module " + name
+            throw new CheckstyleException("cannot initialize module " + childConf.getName()
                     + " - " + ex.getMessage(), ex);
         }
         return module;
