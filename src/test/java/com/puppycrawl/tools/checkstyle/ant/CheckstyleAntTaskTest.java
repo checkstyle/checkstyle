@@ -978,4 +978,19 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         return Long.parseLong(matcher.group(1));
     }
 
+    @Test
+    public void testMaxWarningDefault() throws IOException {
+        final CheckstyleAntTask antTask = getCheckstyleAntTask();
+        final File inputFile = new File(getPath(WARNING_INPUT));
+        final Location fileLocation = new Location("build.xml", 42, 10);
+
+        antTask.setFile(inputFile);
+        antTask.setLocation(fileLocation);
+        antTask.execute();
+
+        assertWithMessage("File location should be valid")
+                .that(antTask.getLocation())
+                .isNotNull();
+    }
+
 }
