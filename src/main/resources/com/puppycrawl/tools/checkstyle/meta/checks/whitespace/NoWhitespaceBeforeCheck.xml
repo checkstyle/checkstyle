@@ -3,7 +3,7 @@
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck"
              name="NoWhitespaceBefore"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+             parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;div&gt;
  Checks that there is no whitespace before a token.
  More specifically, it checks that it is not preceded with whitespace,
@@ -12,18 +12,6 @@
  {@code allowLineBreaks} to {@code true}. No check occurs before semicolons in empty
  for loop initializers or conditions.
  &lt;/div&gt;</description>
-         <properties>
-            <property default-value="false" name="allowLineBreaks" type="boolean">
-               <description>Control whether whitespace is allowed
- if the token is at a linebreak.</description>
-            </property>
-            <property default-value="COMMA,SEMI,POST_INC,POST_DEC,ELLIPSIS,LABELED_STAT"
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
-               <description>tokens to check</description>
-            </property>
-         </properties>
          <message-keys>
             <message-key key="ws.preceded"/>
          </message-keys>

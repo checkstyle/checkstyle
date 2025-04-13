@@ -1,8 +1,6 @@
 /*xml
 <module name="Checker">
-  <module name="TreeWalker">
-    <module name="NoWhitespaceBefore"/>
-  </module>
+  <module name="NoWhitespaceBefore"/>
 </module>
 
 
@@ -17,6 +15,8 @@ class Example1 {
   int foo = 5;
   void example() {
     foo ++; // violation 'is preceded with whitespace'
+     foo++; // violation 'is preceded with whitespace'
+    foo++ ; // violation '';' is preceded with whitespace'
     foo++;
     for (int i = 0 ; i < 5; i++) {}  // violation '';' is preceded with whitespace'
     for (int i = 0; i < 5; i++) {}

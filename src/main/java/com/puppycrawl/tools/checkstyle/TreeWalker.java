@@ -19,32 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.*;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+
 import java.io.File;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
-import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.Context;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-import com.puppycrawl.tools.checkstyle.api.Violation;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Responsible for walking an abstract syntax tree and notifying interested
@@ -144,21 +125,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     @Override
     public void setupChild(Configuration childConf)
             throws CheckstyleException {
-        final String name = childConf.getName();
-        final Object module;
-
-        try {
-            module = moduleFactory.createModule(name);
-            if (module instanceof AbstractAutomaticBean) {
-                final AbstractAutomaticBean bean = (AbstractAutomaticBean) module;
-                bean.contextualize(childContext);
-                bean.configure(childConf);
-            }
-        }
-        catch (final CheckstyleException ex) {
-            throw new CheckstyleException("cannot initialize module " + name
-                    + " - " + ex.getMessage(), ex);
-        }
+        final Object module = moduleDiscovery(childConf);
         if (module instanceof AbstractCheck) {
             final AbstractCheck check = (AbstractCheck) module;
             check.init();
@@ -167,13 +134,30 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         else if (module instanceof TreeWalkerFilter) {
             final TreeWalkerFilter filter = (TreeWalkerFilter) module;
             filters.add(filter);
+        } else {
+            throw new CheckstyleException("TreeWalker is not allowed as a parent of "
+                    + childConf.getName() + ". Please review 'Parent Module' section " +
+                    "(parent=\"com.puppycrawl.tools.checkstyle.TreeWalker\") " +
+                    "(parent=\"com.puppycrawl.tools.checkstyle.Checker\") " +
+                    "for this Check in web documentation if Check is standard.");
         }
-        else {
-            throw new CheckstyleException(
-                "TreeWalker is not allowed as a parent of " + name
-                        + " Please review 'Parent Module' section for this Check in web"
-                        + " documentation if Check is standard.");
+    }
+
+    private Object moduleDiscovery(Configuration childConf) throws CheckstyleException {
+        final Object module;
+        try {
+            module = moduleFactory.createModule(childConf.getName());
+            if (module instanceof AbstractAutomaticBean) {
+                final AbstractAutomaticBean bean = (AbstractAutomaticBean) module;
+                bean.contextualize(childContext);
+                bean.configure(childConf);
+            }
         }
+        catch (final CheckstyleException ex) {
+            throw new CheckstyleException("cannot initialize module " + childConf.getName()
+                    + " - " + ex.getMessage(), ex);
+        }
+        return module;
     }
 
     /**
