@@ -2,6 +2,8 @@
 
 set -e
 
+chmod +x ./mvnw
+
 # Get the baseline seconds and config file from arguments
 if [ "$#" -ne 2 ]; then
   echo "Missing arguments!"
@@ -90,7 +92,7 @@ compare_results() {
 }
 
 # package patch
-mvn -e --no-transfer-progress -Passembly,no-validations package
+./mvnw -e --no-transfer-progress -Passembly,no-validations package
 
 # start benchmark
 echo "Benchmark launching..."

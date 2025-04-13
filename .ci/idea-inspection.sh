@@ -10,6 +10,8 @@
 # export IDEA_PATH=$HOME/java/idea-IU-172.4574.11 && ./.ci/idea-inspection.sh
 #################################################
 
+chmod +x ./mvnw
+
 PROJECT_DIR=$PWD/
 INSPECTIONS_PATH=$PWD/config/intellij-idea-inspections.xml
 RESULTS_DIR=$PWD/target/inspection-results
@@ -30,7 +32,7 @@ fi
 
 # Execute compilation of Checkstyle to generate all source files
 # YOU MUST BUILD PROJECT BEFORE INSPECTION EXECUTION!!!
-mvn -e --no-transfer-progress clean compile
+./mvnw -e --no-transfer-progress clean compile
 
 echo ""
 for i in {1..100}; do echo -n "#"; done

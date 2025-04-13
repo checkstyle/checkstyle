@@ -2,6 +2,8 @@
 # Attention, there is no "-x" to avoid problems on CircleCI
 set -e
 
+chmod +x ./mvnw
+
 function list_profiles() {
   POM_PATH="$(dirname "${0}")/../pom.xml"
   cat "$POM_PATH" | sed -E -n 's/^.*<id>(pitest-[^<]+)<\/id>.*$/\1/p' | sort
@@ -19,7 +21,8 @@ case $1 in
 
   if [[ $(echo "$PROFILES" | grep -w -- "${1}" | cat) != "" ]]; then
     set +e
-    mvn -e --no-transfer-progress -P"$1" clean test-compile org.pitest:pitest-maven:mutationCoverage
+    ./mvnw -e --no-transfer-progress -P"$1" \
+      clean test-compile org.pitest:pitest-maven:mutationCoverage
     EXIT_CODE=$?
     set -e
     groovy ./.ci/pitest-survival-check-xml.groovy "$1"

@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+chmod +x ./mvnw
+
 source ./.ci/util.sh
 checkForVariable "READ_ONLY_TOKEN"
 
@@ -16,7 +18,7 @@ echo TARGET_VERSION="$TARGET_VERSION"
 checkout_from https://github.com/checkstyle/contribution
 
 cd .ci-temp/contribution/releasenotes-builder
-mvn -e --no-transfer-progress clean compile package
+./mvnw -e --no-transfer-progress clean compile package
 cd ../../../
 
 if [ -d .ci-temp/checkstyle ]; then

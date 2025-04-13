@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+chmod +x ./mvnw
+
 source ./.ci/util.sh
 
 case $1 in
@@ -226,7 +228,7 @@ no-exception-only-javadoc)
 no-exception-samples-ant)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress -B install -Pno-validations
+  ./mvnw -e --no-transfer-progress -B install -Pno-validations
   checkout_from https://github.com/sevntu-checkstyle/checkstyle-samples
   cd .ci-temp/checkstyle-samples/ant-project
 
@@ -243,7 +245,7 @@ no-exception-samples-ant)
 no-exception-samples-gradle)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress -B install -Pno-validations
+  ./mvnw -e --no-transfer-progress -B install -Pno-validations
   checkout_from https://github.com/sevntu-checkstyle/checkstyle-samples
   cd .ci-temp/checkstyle-samples/gradle-project
 
@@ -261,7 +263,7 @@ no-exception-samples-gradle)
 no-exception-samples-maven)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress -B install -Pno-validations
+  ./mvnw -e --no-transfer-progress -B install -Pno-validations
 
   checkout_from https://github.com/sevntu-checkstyle/checkstyle-samples
   cd .ci-temp/checkstyle-samples/maven-project
@@ -271,7 +273,7 @@ no-exception-samples-maven)
 
 
   echo "Building Maven project..."
-  mvn -e --no-transfer-progress -B verify
+  ./mvnw -e --no-transfer-progress -B verify
 
   cd ../..
   removeFolderWithProtectedFiles checkstyle-samples
