@@ -1,0 +1,41 @@
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+insert_final_newline = true
+
+[*.java]
+ij_continuation_indent_size = 4
+ij_java_binary_operation_sign_on_next_line = true
+ij_java_block_brace_style = end_of_line
+ij_java_catch_on_new_line = true
+ij_java_class_brace_style = end_of_line
+ij_java_class_count_to_use_import_on_demand = 999
+ij_java_do_while_brace_force = always
+ij_java_else_on_new_line = true
+ij_java_finally_on_new_line = true
+ij_java_for_brace_force = always
+ij_java_if_brace_force = always
+ij_java_imports_layout = $*, |, java.**, |, javax.**, |, org.**, |, com.**, |, *
+ij_java_keep_blank_lines_before_right_brace = 1
+ij_java_keep_blank_lines_between_package_declaration_and_header = 1
+ij_java_keep_blank_lines_in_code = 1
+ij_java_keep_blank_lines_in_declarations = 1
+ij_java_lambda_brace_style = end_of_line
+ij_java_method_brace_style = end_of_line
+ij_java_names_count_to_use_import_on_demand = 999
+ij_java_space_before_array_initializer_left_brace = true
+ij_java_space_within_empty_array_initializer_braces = false
+ij_java_spaces_within_array_initializer_braces = false
+ij_java_while_brace_force = always
+ij_java_wrap_comments = true
+indent_size = 4
+max_line_length = 100
+
+[*.xml]
+ij_continuation_indent_size = 2
+indent_size = 2
+max_line_length = 160
+
+[**spotbugs-exclude.xml]
+max_line_length = 100
