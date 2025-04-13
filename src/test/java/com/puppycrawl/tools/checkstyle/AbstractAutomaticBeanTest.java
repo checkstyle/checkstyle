@@ -33,6 +33,7 @@ import org.apache.commons.beanutils.Converter;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
@@ -103,6 +104,22 @@ public class AbstractAutomaticBeanTest {
                     .that(ex)
                     .hasMessageThat()
                     .isEqualTo(expectedMessage);
+        }
+    }
+
+    @Test
+    public void testNullConfiguration() throws CheckstyleException {
+        final TestBean testBean = new TestBean();
+        testBean.setupChild(null);
+
+        try {
+            final Configuration config = testBean.getConfiguration();
+            assertWithMessage("Exception is expected due to %s config", config).fail();
+        }
+        catch (IllegalArgumentException ex) {
+            assertWithMessage("Configuration should be null")
+                    .that(ex.getMessage())
+                    .isNotNull();
         }
     }
 
