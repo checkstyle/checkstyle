@@ -547,7 +547,7 @@ public class InputDeclaredWhenNeeded {
   }
 
   /** Some javadoc. */
-  public int testIssue3211(String toDir) throws Exception {
+  public int testIssue3211(String target) throws Exception {
     int count = 0;
     // violation above 'Distance between variable 'count' .* first usage is 4, but allowed 3.'
     String[] files = {};
