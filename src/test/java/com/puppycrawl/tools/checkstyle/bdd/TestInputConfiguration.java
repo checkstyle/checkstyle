@@ -46,6 +46,7 @@ public final class TestInputConfiguration {
             "com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter",
             "com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck",
             "com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck",
+            "com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck",
             "com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck",
             "com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck",
