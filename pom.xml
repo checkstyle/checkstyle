@@ -231,7 +231,7 @@
     <pitest.junit5.plugin.version>1.2.2</pitest.junit5.plugin.version>
     <pitest.accelerator.junit5.plugin.version>1.0.6</pitest.accelerator.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
-    <junit.version>5.12.1</junit.version>
+    <junit.version>5.12.2</junit.version>
     <forbiddenapis.version>3.9</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <checkerframework.version>3.49.2</checkerframework.version>
@@ -2214,8 +2214,6 @@
             <excludedLink>https://opencollective.com/*</excludedLink>
             <!-- 405 Not Allowed, link present in generated website only -->
             <excludedLink>https://oss.sonatype.org/service/local/staging/deploy/maven2/</excludedLink>
-            <!-- site is too unstable, it might improve in future -->
-            <excludedLink>https://freedomsponsors.org/*</excludedLink>
             <!-- site works fine in browser but for plugin always return 500  -->
             <excludedLink>https://liberapay.com/checkstyle/</excludedLink>
             <!-- CertPathValidatorException: validity check failed  -->
@@ -2840,7 +2838,6 @@
                 </path>
               </annotationProcessorPaths>
               <annotationProcessors>
-                <annotationProcessor>org.checkerframework.checker.formatter.FormatterChecker</annotationProcessor>
                 <annotationProcessor>org.checkerframework.checker.i18nformatter.I18nFormatterChecker</annotationProcessor>
               </annotationProcessors>
               <compilerArgs combine.children="append">

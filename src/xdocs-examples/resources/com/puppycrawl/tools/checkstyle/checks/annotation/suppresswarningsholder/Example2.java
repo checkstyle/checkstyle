@@ -1,11 +1,11 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-  <module name="ParameterNumber"/>
-  <module name="SuppressWarningsHolder">
-    <property name="aliasList" value=
-      "com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum"/>
-  </module>
+    <module name="ParameterNumber"/>
+    <module name="SuppressWarningsHolder">
+      <property name="aliasList"
+        value="com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum"/>
+    </module>
   </module>
   <module name="SuppressWarningsFilter"/>
 </module>

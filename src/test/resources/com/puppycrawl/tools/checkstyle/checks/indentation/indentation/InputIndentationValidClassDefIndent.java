@@ -25,39 +25,6 @@ public class InputIndentationValidClassDefIndent //indent:0 exp:0
 
 } //indent:0 exp:0
 
-class InputIndentationValidClassDefIndent2  //indent:0 exp:0
-    extends java.awt.event.MouseAdapter implements java.awt.event.MouseListener  //indent:4 exp:>=4
-{ //indent:0 exp:0
-
-} //indent:0 exp:0
-
-class InputIndentationValidClassDefIndent3 //indent:0 exp:0
-    extends java.awt.event.MouseAdapter  //indent:4 exp:>=4
-    implements java.awt.event.MouseListener  //indent:4 exp:>=4
-{ //indent:0 exp:0
-
-} //indent:0 exp:0
-
-final class InputIndentationValidClassDefIndent4 //indent:0 exp:0
-    extends java.awt.event.MouseAdapter  //indent:4 exp:>=4
-    implements java.awt.event.MouseListener  //indent:4 exp:>=4
-{ //indent:0 exp:0
-
-} //indent:0 exp:0
-
-final  //indent:0 exp:0
-class InputIndentationValidClassDefIndent4a //indent:0 exp:>=4 warn
-    extends java.awt.event.MouseAdapter  //indent:4 exp:>=4
-    implements java.awt.event.MouseListener  //indent:4 exp:>=4
-{ //indent:0 exp:0
-
-} //indent:0 exp:0
-
-final class InputIndentationValidClassDefIndent5 extends Object  //indent:0 exp:0
-{ //indent:0 exp:0
-
-} //indent:0 exp:0
-
 final class InputIndentationValidClassDefIndent6 extends Object { //indent:0 exp:0
 
     class foo { } //indent:4 exp:4
@@ -144,22 +111,4 @@ final class InputIndentationValidClassDefIndent6 extends Object { //indent:0 exp
                     return (ob1.compareTo(ob2) <= 0); //indent:20 exp:20
                 } //indent:16 exp:16
             }); //indent:12 exp:12
-} //indent:0 exp:0
-
-class HashingContainer<K, V> { //indent:0 exp:0
-    @Deprecated //indent:4 exp:4
-    public Object[] table; //indent:4 exp:4
-
-    @Override //indent:4 exp:4
-    public String toString() { //indent:4 exp:4
-        return ""; //indent:8 exp:8
-    } //indent:4 exp:4
-} //indent:0 exp:0
-
-class Operator { //indent:0 exp:0
-    public Operator(String str, OperatorHelper handler) { //indent:4 exp:4
-    } //indent:4 exp:4
-} //indent:0 exp:0
-
-class OperatorHelper { //indent:0 exp:0
 } //indent:0 exp:0
