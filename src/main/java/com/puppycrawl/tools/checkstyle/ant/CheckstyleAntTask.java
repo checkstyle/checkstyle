@@ -631,7 +631,7 @@ public class CheckstyleAntTask extends Task {
          *
          * @param destination destination the file to output to
          */
-        public void setTofile(File destination) {
+        public void setToFile(File destination) {
             toFile = destination;
         }
 

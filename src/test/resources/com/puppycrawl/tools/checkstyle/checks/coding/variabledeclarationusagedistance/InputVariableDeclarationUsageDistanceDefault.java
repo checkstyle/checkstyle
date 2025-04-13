@@ -510,7 +510,7 @@ public class InputVariableDeclarationUsageDistanceDefault {
     }
 
 
-    public int testIssue32_11(String toDir)
+    public int testIssue32_11(String target)
             throws Exception
     {
         int count = 0;  // violation 'Distance .* is 4.'
