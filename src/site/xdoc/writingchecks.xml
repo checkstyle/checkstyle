@@ -691,6 +691,11 @@ public class MethodLimitCheck extends AbstractCheck
         <li>You cannot determine the type of an expression.
         Example: "getValue() + getValue2()"</li>
         <li>You cannot determine the full inheritance hierarchy of type.</li>
+        <li>We do not support any libraries that generates code in compile time using
+          annotations like <code>@Getter</code> or <code>@Data</code>. see
+          <a href="https://github.com/checkstyle/checkstyle/issues/13538#issuecomment-2799910922">issue #13538</a>
+          for more details on workarounds.
+        </li>
       </ul>
       <p>
         In addition to Java files, there are similar limitations that apply to all
@@ -724,7 +729,6 @@ public class MethodLimitCheck extends AbstractCheck
         - a Check that validate that user custom Exception class inherited from
           java.lang.Exception class.
       </p>
-
     </section>
 
     <section name="Writing FileSetChecks">
