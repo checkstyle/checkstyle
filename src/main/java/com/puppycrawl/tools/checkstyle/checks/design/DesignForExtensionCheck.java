@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
@@ -206,7 +206,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * Specify annotations which allow the check to skip the method from validation.
      */
     private Set<String> ignoredAnnotations = Arrays.stream(new String[] {"Test", "Before", "After",
-        "BeforeClass", "AfterClass", }).collect(Collectors.toUnmodifiableSet());
+        "BeforeClass", "AfterClass",}).collect(Collectors.toUnmodifiableSet());
 
     /**
      * Specify the comment text pattern which qualifies a method as designed for extension.
@@ -262,11 +262,11 @@ public class DesignForExtensionCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (!hasJavadocComment(ast)
-                && canBeOverridden(ast)
-                && (isNativeMethod(ast)
-                    || !hasEmptyImplementation(ast))
-                && !hasIgnoredAnnotation(ast, ignoredAnnotations)
-                && !ScopeUtil.isInRecordBlock(ast)) {
+            && canBeOverridden(ast)
+            && (isNativeMethod(ast)
+            || !hasEmptyImplementation(ast))
+            && !hasIgnoredAnnotation(ast, ignoredAnnotations)
+            && !ScopeUtil.isInRecordBlock(ast)) {
             final DetailAST classDef = getNearestClassOrEnumDefinition(ast);
             if (canBeSubclassed(classDef)) {
                 final String className = classDef.findFirstToken(TokenTypes.IDENT).getText();
@@ -284,7 +284,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
      */
     private boolean hasJavadocComment(DetailAST methodDef) {
         return hasJavadocCommentOnToken(methodDef, TokenTypes.MODIFIERS)
-                || hasJavadocCommentOnToken(methodDef, TokenTypes.TYPE);
+            || hasJavadocCommentOnToken(methodDef, TokenTypes.TYPE);
     }
 
     /**
@@ -310,7 +310,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
         DetailAST curNode = token;
         while (curNode != null) {
             if (curNode.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
-                    && JavadocUtil.isJavadocComment(curNode)) {
+                && JavadocUtil.isJavadocComment(curNode)) {
                 result = hasValidJavadocComment(curNode);
                 break;
             }
@@ -438,7 +438,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
     private static DetailAST getNearestClassOrEnumDefinition(DetailAST ast) {
         DetailAST searchAST = ast;
         while (searchAST.getType() != TokenTypes.CLASS_DEF
-               && searchAST.getType() != TokenTypes.ENUM_DEF) {
+            && searchAST.getType() != TokenTypes.ENUM_DEF) {
             searchAST = searchAST.getParent();
         }
         return searchAST;
@@ -477,7 +477,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
                 hasDefaultConstructor = false;
 
                 final DetailAST ctorMods =
-                        candidate.findFirstToken(TokenTypes.MODIFIERS);
+                    candidate.findFirstToken(TokenTypes.MODIFIERS);
                 if (ctorMods.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null) {
                     hasExplicitNonPrivateCtor = true;
                     break;

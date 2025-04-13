@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
@@ -143,7 +143,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
                 while (!isMatch && isMultiLine(headerLineNo)) {
                     headerLineNo++;
                     isMatch = headerLineNo == headerSize
-                            || isMatch(line, headerLineNo);
+                        || isMatch(line, headerLineNo);
                 }
                 if (!isMatch) {
                     log(index + 1, MSG_HEADER_MISMATCH, getHeaderLine(headerLineNo));
@@ -226,9 +226,9 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
             }
             catch (final PatternSyntaxException ex) {
                 throw new IllegalArgumentException("line "
-                        + (headerRegexps.size() + 1)
-                        + " in header specification"
-                        + " is not a regular expression", ex);
+                    + (headerRegexps.size() + 1)
+                    + " in header specification"
+                    + " is not a regular expression", ex);
             }
         }
     }

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
@@ -150,7 +150,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
             final boolean hasPublicCtor = details.isHasPublicCtor();
             final boolean hasNonStaticMethodOrField = details.isHasNonStaticMethodOrField();
             final boolean hasNonPrivateStaticMethodOrField =
-                    details.isHasNonPrivateStaticMethodOrField();
+                details.isHasNonPrivateStaticMethodOrField();
 
             final boolean hasAccessibleCtor = hasDefaultCtor || hasPublicCtor;
 
@@ -272,7 +272,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
             while (child != null) {
                 final int type = child.getType();
                 if (type == TokenTypes.METHOD_DEF
-                        || type == TokenTypes.VARIABLE_DEF) {
+                    || type == TokenTypes.VARIABLE_DEF) {
                     final DetailAST modifiers =
                         child.findFirstToken(TokenTypes.MODIFIERS);
                     final boolean isStatic =
@@ -280,7 +280,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
                     if (isStatic) {
                         final boolean isPrivate =
-                                modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
+                            modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
 
                         if (!isPrivate) {
                             hasNonPrivateStaticMethodOrField = true;

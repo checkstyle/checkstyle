@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
@@ -83,17 +83,17 @@ public abstract class AbstractAccessControlNameCheck
      */
     protected boolean shouldCheckInScope(DetailAST modifiers) {
         final boolean isProtected = modifiers
-                .findFirstToken(TokenTypes.LITERAL_PROTECTED) != null;
+            .findFirstToken(TokenTypes.LITERAL_PROTECTED) != null;
         final boolean isPrivate = modifiers
-                .findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
+            .findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
         final boolean isPublic = isPublic(modifiers);
 
         final boolean isPackage = !(isPublic || isProtected || isPrivate);
 
         return applyToPublic && isPublic
-                || applyToProtected && isProtected
-                || applyToPackage && isPackage
-                || applyToPrivate && isPrivate;
+            || applyToProtected && isProtected
+            || applyToPackage && isPackage
+            || applyToPrivate && isPrivate;
     }
 
     /**
@@ -106,10 +106,10 @@ public abstract class AbstractAccessControlNameCheck
      */
     private static boolean isPublic(DetailAST modifiers) {
         return modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
-                || ScopeUtil.isInAnnotationBlock(modifiers)
-                || ScopeUtil.isInInterfaceBlock(modifiers)
-                    // interface methods can be private
-                    && modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null;
+            || ScopeUtil.isInAnnotationBlock(modifiers)
+            || ScopeUtil.isInInterfaceBlock(modifiers)
+            // interface methods can be private
+            && modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null;
     }
 
     /**

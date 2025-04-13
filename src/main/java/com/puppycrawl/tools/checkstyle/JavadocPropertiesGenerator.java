@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -102,7 +103,7 @@ public final class JavadocPropertiesGenerator {
     private static void writePropertiesFile(CliOptions options) throws CheckstyleException {
         try (PrintWriter writer = new PrintWriter(options.outputFile, StandardCharsets.UTF_8)) {
             final DetailAST top = JavaParser.parseFile(options.inputFile,
-                    JavaParser.Options.WITH_COMMENTS).getFirstChild();
+                JavaParser.Options.WITH_COMMENTS).getFirstChild();
             final DetailAST objBlock = getClassBody(top);
             if (objBlock != null) {
                 iteratePublicStaticIntFields(objBlock, writer::println);
@@ -110,7 +111,7 @@ public final class JavadocPropertiesGenerator {
         }
         catch (IOException ex) {
             throw new CheckstyleException("Failed to write javadoc properties of '"
-                    + options.inputFile + "' to '" + options.outputFile + "'", ex);
+                + options.inputFile + "' to '" + options.outputFile + "'", ex);
         }
     }
 
@@ -123,9 +124,9 @@ public final class JavadocPropertiesGenerator {
      * @throws CheckstyleException if failed to parse a javadoc comment
      */
     private static void iteratePublicStaticIntFields(DetailAST objBlock, Consumer<String> consumer)
-            throws CheckstyleException {
+        throws CheckstyleException {
         for (DetailAST member = objBlock.getFirstChild(); member != null;
-                member = member.getNextSibling()) {
+             member = member.getNextSibling()) {
             if (isPublicStaticFinalIntField(member)) {
                 final DetailAST modifiers = member.findFirstToken(TokenTypes.MODIFIERS);
                 final String firstJavadocSentence = getFirstJavadocSentence(modifiers);
@@ -166,7 +167,7 @@ public final class JavadocPropertiesGenerator {
             final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
             final DetailAST arrayDeclarator = type.getFirstChild().getNextSibling();
             result = arrayDeclarator == null
-                    && type.getFirstChild().getType() == TokenTypes.LITERAL_INT;
+                && type.getFirstChild().getType() == TokenTypes.LITERAL_INT;
             if (result) {
                 final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
                 result = modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
@@ -202,14 +203,14 @@ public final class JavadocPropertiesGenerator {
     private static String getFirstJavadocSentence(DetailAST ast) throws CheckstyleException {
         String firstSentence = null;
         for (DetailAST child = ast.getFirstChild(); child != null && firstSentence == null;
-                child = child.getNextSibling()) {
+             child = child.getNextSibling()) {
             // If there is an annotation, the javadoc comment will be a child of it.
             if (child.getType() == TokenTypes.ANNOTATION) {
                 firstSentence = getFirstJavadocSentence(child);
             }
             // Otherwise, the javadoc comment will be right here.
             else if (child.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
-                    && JavadocUtil.isJavadocComment(child)) {
+                && JavadocUtil.isJavadocComment(child)) {
                 final DetailNode tree = DetailNodeTreeStringPrinter.parseJavadocAsDetailNode(child);
                 firstSentence = getFirstJavadocSentence(tree);
             }
@@ -261,7 +262,7 @@ public final class JavadocPropertiesGenerator {
      * @throws CheckstyleException if the inline javadoc tag is not a literal nor a code tag
      */
     private static void formatInlineCodeTag(StringBuilder builder, DetailNode inlineTag)
-            throws CheckstyleException {
+        throws CheckstyleException {
         boolean wrapWithCodeTag = false;
         for (DetailNode node : inlineTag.getChildren()) {
             switch (node.getType()) {
@@ -317,7 +318,7 @@ public final class JavadocPropertiesGenerator {
      * Helper class encapsulating the command line options and positional parameters.
      */
     @Command(name = "java com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator",
-            mixinStandardHelpOptions = true)
+        mixinStandardHelpOptions = true)
     private static final class CliOptions {
 
         /**

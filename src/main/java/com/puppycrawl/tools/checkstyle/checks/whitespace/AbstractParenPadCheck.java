@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
@@ -91,12 +91,12 @@ public abstract class AbstractParenPadCheck
 
         if (after < line.length) {
             final boolean hasWhitespaceAfter =
-                    CommonUtil.isCodePointWhitespace(line, after);
+                CommonUtil.isCodePointWhitespace(line, after);
             if (option == PadOption.NOSPACE && hasWhitespaceAfter) {
                 log(ast, MSG_WS_FOLLOWED, OPEN_PARENTHESIS);
             }
             else if (option == PadOption.SPACE && !hasWhitespaceAfter
-                     && line[after] != CLOSE_PARENTHESIS) {
+                && line[after] != CLOSE_PARENTHESIS) {
                 log(ast, MSG_WS_NOT_FOLLOWED, OPEN_PARENTHESIS);
             }
         }
@@ -112,7 +112,7 @@ public abstract class AbstractParenPadCheck
         if (before >= 0) {
             final int[] line = getLineCodePoints(ast.getLineNo() - 1);
             final boolean hasPrecedingWhitespace =
-                    CommonUtil.isCodePointWhitespace(line, before);
+                CommonUtil.isCodePointWhitespace(line, before);
 
             if (option == PadOption.NOSPACE && hasPrecedingWhitespace
                 && !CodePointUtil.hasWhitespaceBefore(before, line)) {

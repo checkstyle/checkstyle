@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
@@ -145,7 +145,7 @@ public class AvoidStaticImportCheck
 
         for (String exclude : excludes) {
             if (classOrStaticMember.equals(exclude)
-                    || isStarImportOfPackage(classOrStaticMember, exclude)) {
+                || isStarImportOfPackage(classOrStaticMember, exclude)) {
                 exempt = true;
                 break;
             }
@@ -170,9 +170,9 @@ public class AvoidStaticImportCheck
             final String excludeMinusDotStar =
                 exclude.substring(0, exclude.length() - 2);
             if (classOrStaticMember.startsWith(excludeMinusDotStar)
-                    && !classOrStaticMember.equals(excludeMinusDotStar)) {
+                && !classOrStaticMember.equals(excludeMinusDotStar)) {
                 final String member = classOrStaticMember.substring(
-                        excludeMinusDotStar.length() + 1);
+                    excludeMinusDotStar.length() + 1);
                 // if it contains a dot then it is not a member but a package
                 if (member.indexOf('.') == -1) {
                     result = true;

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
@@ -348,8 +348,8 @@ public final class NPathComplexityCheck extends AbstractCheck {
         int expressionValue = basicBranchingFactor;
         DetailAST bracketed;
         for (bracketed = ast.findFirstToken(TokenTypes.LPAREN);
-                bracketed.getType() != TokenTypes.RPAREN;
-                bracketed = bracketed.getNextSibling()) {
+             bracketed.getType() != TokenTypes.RPAREN;
+             bracketed = bracketed.getNextSibling()) {
             expressionValue += countConditionalOperators(bracketed);
         }
         processingTokenEnd.setToken(bracketed);
@@ -427,8 +427,8 @@ public final class NPathComplexityCheck extends AbstractCheck {
             currentRangeValue = BigInteger.ONE;
         }
         currentRangeValue = currentRangeValue.subtract(BigInteger.ONE)
-                .add(basicRangeValue)
-                .add(expressionValue);
+            .add(basicRangeValue)
+            .add(expressionValue);
     }
 
     /**
@@ -475,7 +475,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
     /** Leaves try. */
     private void leaveMultiplyingConditional() {
         currentRangeValue = currentRangeValue.add(BigInteger.ONE)
-                .multiply(popValue().getRangeValue().add(BigInteger.ONE));
+            .multiply(popValue().getRangeValue().add(BigInteger.ONE));
     }
 
     /**
@@ -493,7 +493,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
     private static int countConditionalOperators(DetailAST ast) {
         int number = 0;
         for (DetailAST child = ast.getFirstChild(); child != null;
-                child = child.getNextSibling()) {
+             child = child.getNextSibling()) {
             final int type = child.getType();
             if (type == TokenTypes.LOR || type == TokenTypes.LAND) {
                 number++;
@@ -533,7 +533,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
     private static int countCaseTokens(DetailAST ast) {
         int counter = 0;
         for (DetailAST iterator = ast.getFirstChild(); iterator != null;
-                iterator = iterator.getNextSibling()) {
+             iterator = iterator.getNextSibling()) {
             if (iterator.getType() == TokenTypes.LITERAL_CASE) {
                 counter++;
             }
@@ -552,7 +552,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
         final DetailAST literalCase = ast.getFirstChild();
 
         for (DetailAST node = literalCase.getFirstChild(); node != null;
-                    node = node.getNextSibling()) {
+             node = node.getNextSibling()) {
             if (TokenUtil.isOfType(node, CASE_LABEL_TOKENS)) {
                 counter.getAndIncrement();
             }

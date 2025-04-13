@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -67,9 +67,9 @@ public class XmlLoader
      * @throws ParserConfigurationException if an error occurs
      */
     protected XmlLoader(Map<String, String> publicIdToResourceNameMap)
-            throws SAXException, ParserConfigurationException {
+        throws SAXException, ParserConfigurationException {
         this.publicIdToResourceNameMap =
-                UnmodifiableCollectionUtil.copyOfMap(publicIdToResourceNameMap);
+            UnmodifiableCollectionUtil.copyOfMap(publicIdToResourceNameMap);
         parser = createXmlReader(this);
     }
 
@@ -81,7 +81,7 @@ public class XmlLoader
      * @throws SAXException in an error occurs
      */
     public void parseInputSource(InputSource inputSource)
-            throws IOException, SAXException {
+        throws IOException, SAXException {
         parser.parse(inputSource);
     }
 
@@ -114,7 +114,7 @@ public class XmlLoader
      * @throws SAXException for SAX errors
      */
     private static XMLReader createXmlReader(DefaultHandler handler)
-            throws SAXException, ParserConfigurationException {
+        throws SAXException, ParserConfigurationException {
         final SAXParserFactory factory = SAXParserFactory.newInstance();
         LoadExternalDtdFeatureProvider.setFeaturesBySystemProperty(factory);
         factory.setValidating(true);
@@ -136,13 +136,13 @@ public class XmlLoader
 
         /** Feature that enables loading external DTD when loading XML files. */
         public static final String LOAD_EXTERNAL_DTD =
-                "http://apache.org/xml/features/nonvalidating/load-external-dtd";
+            "http://apache.org/xml/features/nonvalidating/load-external-dtd";
         /** Feature that enables including external general entities in XML files. */
         public static final String EXTERNAL_GENERAL_ENTITIES =
-                "http://xml.org/sax/features/external-general-entities";
+            "http://xml.org/sax/features/external-general-entities";
         /** Feature that enables including external parameter entities in XML files. */
         public static final String EXTERNAL_PARAMETER_ENTITIES =
-                "http://xml.org/sax/features/external-parameter-entities";
+            "http://xml.org/sax/features/external-parameter-entities";
 
         /** Stop instances being created. **/
         private LoadExternalDtdFeatureProvider() {
@@ -159,7 +159,7 @@ public class XmlLoader
          * @throws ParserConfigurationException if an error occurs
          */
         public static void setFeaturesBySystemProperty(SAXParserFactory factory)
-                throws SAXException, ParserConfigurationException {
+            throws SAXException, ParserConfigurationException {
 
             final boolean enableExternalDtdLoad = Boolean.parseBoolean(
                 System.getProperty(ENABLE_EXTERNAL_DTD_LOAD, "false"));

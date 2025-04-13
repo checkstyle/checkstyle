@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -270,7 +270,7 @@ public final class PropertyCacheFile {
                 final byte[] content = loadExternalResource(location);
                 final String contentHashSum = getHashCodeBasedOnObjectContent(content);
                 resources.add(new ExternalResource(EXTERNAL_RESOURCE_KEY_PREFIX + location,
-                        contentHashSum));
+                    contentHashSum));
             }
             catch (CheckstyleException | IOException ex) {
                 // if exception happened (configuration resource was not found, connection is not
@@ -279,7 +279,7 @@ public final class PropertyCacheFile {
                 // and/or the configuration is changed.
                 final String contentHashSum = getHashCodeBasedOnObjectContent(ex);
                 resources.add(new ExternalResource(EXTERNAL_RESOURCE_KEY_PREFIX + location,
-                        contentHashSum));
+                    contentHashSum));
             }
         }
         return resources;
@@ -294,7 +294,7 @@ public final class PropertyCacheFile {
      * @throws CheckstyleException if error while loading occurs.
      */
     private static byte[] loadExternalResource(String location)
-            throws IOException, CheckstyleException {
+        throws IOException, CheckstyleException {
         final URI uri = CommonUtil.getUriByFilename(location);
 
         try (InputStream is = uri.toURL().openStream()) {

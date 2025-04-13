@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,9 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle;
+
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
 
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -25,16 +28,13 @@ import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AuditListener;
-
 /**
  * Generates <b>suppressions.xml</b> file, based on violations occurred.
  * See issue <a href="https://github.com/checkstyle/checkstyle/issues/102">#102</a>
  */
 public class XpathFileGeneratorAuditListener
-        extends AbstractAutomaticBean
-        implements AuditListener {
+    extends AbstractAutomaticBean
+    implements AuditListener {
 
     /** The " quote character. */
     private static final String QUOTE_CHAR = "\"";
@@ -105,7 +105,7 @@ public class XpathFileGeneratorAuditListener
 
             if (event.getModuleId() == null) {
                 final String checkName =
-                        PackageObjectFactory.getShortFromFullModuleNames(event.getSourceName());
+                    PackageObjectFactory.getShortFromFullModuleNames(event.getSourceName());
                 writer.print("       checks=\"");
                 writer.print(checkName);
             }
@@ -135,9 +135,9 @@ public class XpathFileGeneratorAuditListener
             writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
             writer.println("<!DOCTYPE suppressions PUBLIC");
             writer.println("    \"-//Checkstyle//DTD SuppressionXpathFilter Experimental "
-                    + "Configuration 1.2//EN\"");
+                + "Configuration 1.2//EN\"");
             writer.println("    \"https://checkstyle.org/dtds/"
-                    + "suppressions_1_2_xpath_experimental.dtd\">");
+                + "suppressions_1_2_xpath_experimental.dtd\">");
             writer.println("<suppressions>");
             isXmlHeaderPrinted = true;
         }

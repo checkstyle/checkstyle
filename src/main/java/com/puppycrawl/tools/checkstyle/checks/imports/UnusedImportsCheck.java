@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
@@ -123,13 +123,13 @@ public class UnusedImportsCheck extends AbstractCheck {
 
     /** Regex to match class names. */
     private static final Pattern CLASS_NAME = CommonUtil.createPattern(
-           "((:?[\\p{L}_$][\\p{L}\\p{N}_$]*\\.)*[\\p{L}_$][\\p{L}\\p{N}_$]*)");
+        "((:?[\\p{L}_$][\\p{L}\\p{N}_$]*\\.)*[\\p{L}_$][\\p{L}\\p{N}_$]*)");
     /** Regex to match the first class name. */
     private static final Pattern FIRST_CLASS_NAME = CommonUtil.createPattern(
-           "^" + CLASS_NAME);
+        "^" + CLASS_NAME);
     /** Regex to match argument names. */
     private static final Pattern ARGUMENT_NAME = CommonUtil.createPattern(
-           "[(,]\\s*" + CLASS_NAME.pattern());
+        "[(,]\\s*" + CLASS_NAME.pattern());
 
     /** Regexp pattern to match java.lang package. */
     private static final Pattern JAVA_LANG_PACKAGE_PATTERN =
@@ -137,14 +137,14 @@ public class UnusedImportsCheck extends AbstractCheck {
 
     /** Reference pattern. */
     private static final Pattern REFERENCE = Pattern.compile(
-            "^([a-z_$][a-z\\d_$<>.]*)?(#(.*))?$",
-            Pattern.CASE_INSENSITIVE
+        "^([a-z_$][a-z\\d_$<>.]*)?(#(.*))?$",
+        Pattern.CASE_INSENSITIVE
     );
 
     /** Method pattern. */
     private static final Pattern METHOD = Pattern.compile(
-            "^([a-z_$#][a-z\\d_$]*)(\\([^)]*\\))?$",
-            Pattern.CASE_INSENSITIVE
+        "^([a-z_$#][a-z\\d_$]*)(\\([^)]*\\))?$",
+        Pattern.CASE_INSENSITIVE
     );
 
     /** Suffix for the star import. */
@@ -281,7 +281,7 @@ public class UnusedImportsCheck extends AbstractCheck {
         final int parentType = parent.getType();
 
         final boolean isClassOrMethod = parentType == TokenTypes.DOT
-                || parentType == TokenTypes.METHOD_DEF || parentType == TokenTypes.METHOD_REF;
+            || parentType == TokenTypes.METHOD_DEF || parentType == TokenTypes.METHOD_REF;
 
         if (TokenUtil.isTypeDeclaration(parentType)) {
             currentFrame.addDeclaredType(ast.getText());
@@ -302,10 +302,10 @@ public class UnusedImportsCheck extends AbstractCheck {
         final int parentType = parent.getType();
 
         final boolean isQualifiedIdent = parentType == TokenTypes.DOT
-                && !TokenUtil.isOfType(ast.getPreviousSibling(), TokenTypes.DOT)
-                && ast.getNextSibling() != null;
+            && !TokenUtil.isOfType(ast.getPreviousSibling(), TokenTypes.DOT)
+            && ast.getNextSibling() != null;
         final boolean isQualifiedIdentFromMethodRef = parentType == TokenTypes.METHOD_REF
-                && ast.getNextSibling() != null;
+            && ast.getNextSibling() != null;
         return isQualifiedIdent || isQualifiedIdentFromMethodRef;
     }
 
@@ -361,12 +361,12 @@ public class UnusedImportsCheck extends AbstractCheck {
     private static Set<String> collectReferencesFromJavadoc(TextBlock textBlock) {
         // Process INLINE tags
         final List<JavadocTag> inlineTags = getTargetTags(textBlock,
-                JavadocUtil.JavadocTagType.INLINE);
+            JavadocUtil.JavadocTagType.INLINE);
         // Process BLOCK tags
         final List<JavadocTag> blockTags = getTargetTags(textBlock,
-                JavadocUtil.JavadocTagType.BLOCK);
+            JavadocUtil.JavadocTagType.BLOCK);
         final List<JavadocTag> targetTags = Stream.concat(inlineTags.stream(), blockTags.stream())
-                .collect(Collectors.toUnmodifiableList());
+            .collect(Collectors.toUnmodifiableList());
 
         final Set<String> references = new HashSet<>();
 
@@ -386,7 +386,7 @@ public class UnusedImportsCheck extends AbstractCheck {
      * @return the list of tags
      */
     private static List<JavadocTag> getTargetTags(TextBlock cmt,
-            JavadocUtil.JavadocTagType javadocTagType) {
+                                                  JavadocUtil.JavadocTagType javadocTagType) {
         return JavadocUtil.getJavadocTags(cmt, javadocTagType)
             .getValidTags()
             .stream()
@@ -406,7 +406,7 @@ public class UnusedImportsCheck extends AbstractCheck {
         final Set<String> references = new HashSet<>();
         final String identifier = tag.getFirstArg();
         for (Pattern pattern : new Pattern[]
-        {FIRST_CLASS_NAME, ARGUMENT_NAME}) {
+            {FIRST_CLASS_NAME, ARGUMENT_NAME}) {
             references.addAll(matchPattern(identifier, pattern));
         }
         return references;
@@ -492,7 +492,7 @@ public class UnusedImportsCheck extends AbstractCheck {
                 final int methodIndex = 3;
                 final String methodPart = matcher.group(methodIndex);
                 final boolean isValid = methodPart == null
-                        || METHOD.matcher(methodPart).matches();
+                    || METHOD.matcher(methodPart).matches();
                 if (isValid) {
                     validTag = Optional.of(tag);
                 }
@@ -508,7 +508,7 @@ public class UnusedImportsCheck extends AbstractCheck {
      * @return -1 if parentheses are unbalanced, 0 if no method is found,
      *         or the index of the first space outside parentheses.
      */
-    private static @IndexOrLow("#1")int extractReferencePart(String input) {
+    private static @IndexOrLow("#1") int extractReferencePart(String input) {
         int parenthesesCount = 0;
         int firstSpaceOutsideParens = -1;
         for (int index = 0; index < input.length(); index++) {

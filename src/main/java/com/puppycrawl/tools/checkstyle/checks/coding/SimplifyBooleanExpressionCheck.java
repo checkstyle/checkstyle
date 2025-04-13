@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -54,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  */
 @StatelessCheck
 public class SimplifyBooleanExpressionCheck
-        extends AbstractCheck {
+    extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -91,9 +91,9 @@ public class SimplifyBooleanExpressionCheck
             case TokenTypes.QUESTION:
                 final DetailAST nextSibling = ast.getNextSibling();
                 if (TokenUtil.isBooleanLiteralType(parent.getFirstChild().getType())
-                        || nextSibling != null && nextSibling.getNextSibling() != null
-                        && TokenUtil.isBooleanLiteralType(
-                        nextSibling.getNextSibling().getType())) {
+                    || nextSibling != null && nextSibling.getNextSibling() != null
+                    && TokenUtil.isBooleanLiteralType(
+                    nextSibling.getNextSibling().getType())) {
                     log(parent, MSG_KEY);
                 }
                 break;

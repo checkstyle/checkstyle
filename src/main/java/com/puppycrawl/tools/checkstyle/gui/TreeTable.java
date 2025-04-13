@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,13 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.gui;
 
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FontMetrics;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -33,13 +31,7 @@ import java.util.EventObject;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.JTree;
-import javax.swing.KeyStroke;
-import javax.swing.LookAndFeel;
+import javax.swing.*;
 import javax.swing.table.TableCellEditor;
 import javax.swing.tree.TreePath;
 
@@ -48,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
 import com.puppycrawl.tools.checkstyle.xpath.ElementNode;
 import com.puppycrawl.tools.checkstyle.xpath.RootNode;
 import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
+
 import net.sf.saxon.trans.XPathException;
 
 /**
@@ -91,7 +84,7 @@ public final class TreeTable extends JTable {
 
         // Force the JTable and JTree to share their row selection models.
         final ListToTreeSelectionModelWrapper selectionWrapper = new
-                ListToTreeSelectionModelWrapper(this);
+            ListToTreeSelectionModelWrapper(this);
         tree.setSelectionModel(selectionWrapper);
         setSelectionModel(selectionWrapper.getListSelectionModel());
 
@@ -187,15 +180,15 @@ public final class TreeTable extends JTable {
         // visible in table header.
         final int padding = 10;
         final int widthOfColumnContainingSixCharacterString =
-                widthOfSixCharacterString + padding;
+            widthOfSixCharacterString + padding;
         getColumn("Line").setMaxWidth(widthOfColumnContainingSixCharacterString);
         getColumn("Column").setMaxWidth(widthOfColumnContainingSixCharacterString);
         final int preferredTreeColumnWidth =
-                Math.toIntExact(Math.round(getPreferredSize().getWidth() * 0.6));
+            Math.toIntExact(Math.round(getPreferredSize().getWidth() * 0.6));
         getColumn("Tree").setPreferredWidth(preferredTreeColumnWidth);
         // Twenty-eight character string to contain "Type" column
         final int widthOfTwentyEightCharacterString =
-                fontMetrics.stringWidth("XXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            fontMetrics.stringWidth("XXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         final int preferredTypeColumnWidth = widthOfTwentyEightCharacterString + padding;
         getColumn("Type").setPreferredWidth(preferredTypeColumnWidth);
     }
@@ -210,11 +203,11 @@ public final class TreeTable extends JTable {
 
             try {
                 final Deque<DetailAST> nodes =
-                        XpathUtil.getXpathItems(xpath, new RootNode(rootAST))
-                              .stream()
-                              .map(ElementNode.class::cast)
-                              .map(ElementNode::getUnderlyingNode)
-                              .collect(Collectors.toCollection(ArrayDeque::new));
+                    XpathUtil.getXpathItems(xpath, new RootNode(rootAST))
+                        .stream()
+                        .map(ElementNode.class::cast)
+                        .map(ElementNode::getUnderlyingNode)
+                        .collect(Collectors.toCollection(ArrayDeque::new));
                 updateTreeTable(xpath, nodes);
             }
             catch (XPathException exception) {
@@ -236,7 +229,7 @@ public final class TreeTable extends JTable {
     private void updateTreeTable(String xpath, Deque<DetailAST> nodes) {
         if (nodes.isEmpty()) {
             xpathEditor.setText("No elements matching XPath query '"
-                    + xpath + "' found.");
+                + xpath + "' found.");
         }
         else {
             for (DetailAST node : nodes) {
@@ -271,8 +264,8 @@ public final class TreeTable extends JTable {
      */
     private static String getAllMatchingXpathQueriesText(Deque<DetailAST> nodes) {
         return nodes.stream()
-                .map(XpathQueryGenerator::generateXpathQuery)
-                .collect(Collectors.joining(NEWLINE, "", NEWLINE));
+            .map(XpathQueryGenerator::generateXpathQuery)
+            .collect(Collectors.joining(NEWLINE, "", NEWLINE));
     }
 
     /**
@@ -289,7 +282,7 @@ public final class TreeTable extends JTable {
         // Use the tree's default foreground and background colors in the
         // table.
         LookAndFeel.installColorsAndFont(this, "Tree.background",
-                "Tree.foreground", "Tree.font");
+            "Tree.foreground", "Tree.font");
     }
 
     /* Workaround for BasicTableUI anomaly. Make sure the UI never tries to
@@ -360,13 +353,13 @@ public final class TreeTable extends JTable {
      * JTree.
      */
     private final class TreeTableCellEditor extends BaseCellEditor implements
-            TableCellEditor {
+        TableCellEditor {
 
         @Override
         public Component getTableCellEditorComponent(JTable table,
-                Object value,
-                boolean isSelected,
-                int row, int column) {
+                                                     Object value,
+                                                     boolean isSelected,
+                                                     int row, int column) {
             return tree;
         }
 
@@ -400,10 +393,10 @@ public final class TreeTable extends JTable {
                     if (getColumnClass(counter) == ParseTreeTableModel.class) {
                         final MouseEvent mouseEvent = (MouseEvent) event;
                         final MouseEvent newMouseEvent = new MouseEvent(tree, mouseEvent.getID(),
-                                mouseEvent.getWhen(), mouseEvent.getModifiersEx(),
-                                mouseEvent.getX() - getCellRect(0, counter, true).x,
-                                mouseEvent.getY(), mouseEvent.getClickCount(),
-                                mouseEvent.isPopupTrigger());
+                            mouseEvent.getWhen(), mouseEvent.getModifiersEx(),
+                            mouseEvent.getX() - getCellRect(0, counter, true).x,
+                            mouseEvent.getY(), mouseEvent.getClickCount(),
+                            mouseEvent.isPopupTrigger());
                         tree.dispatchEvent(newMouseEvent);
                         break;
                     }

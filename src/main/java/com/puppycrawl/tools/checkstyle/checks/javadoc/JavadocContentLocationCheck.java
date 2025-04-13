@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
@@ -175,11 +175,11 @@ public class JavadocContentLocationCheck extends AbstractCheck {
             final int indexOfFirstNonBlankLine = findIndexOfFirstNonBlankLine(commentContent);
             if (indexOfFirstNonBlankLine >= 0) {
                 if (location == JavadocContentLocationOption.FIRST_LINE
-                        && indexOfFirstNonBlankLine != 0) {
+                    && indexOfFirstNonBlankLine != 0) {
                     log(ast, MSG_JAVADOC_CONTENT_FIRST_LINE);
                 }
                 else if (location == JavadocContentLocationOption.SECOND_LINE
-                        && indexOfFirstNonBlankLine != 1) {
+                    && indexOfFirstNonBlankLine != 1) {
                     log(ast, MSG_JAVADOC_CONTENT_SECOND_LINE);
                 }
             }

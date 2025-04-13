@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -59,7 +59,7 @@ public class SlistHandler extends BlockParentHandler {
      * @param parent        the parent handler
      */
     public SlistHandler(IndentationCheck indentCheck,
-        DetailAST ast, AbstractExpressionHandler parent) {
+                        DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck, "block", ast, parent);
     }
 
@@ -77,9 +77,9 @@ public class SlistHandler extends BlockParentHandler {
         final IndentLevel result;
         // if our parent is a block handler we want to be transparent
         if (getParent() instanceof BlockParentHandler
-                && !(getParent() instanceof SlistHandler)
+            && !(getParent() instanceof SlistHandler)
             || child instanceof SlistHandler
-                && getParent() instanceof CaseHandler) {
+            && getParent() instanceof CaseHandler) {
             result = getParent().getSuggestedChildIndent(child);
         }
         else {

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
@@ -202,9 +202,9 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
     private boolean isVerifiable(DetailAST emptyCatchAst, String commentContent) {
         final String variableName = getExceptionVariableName(emptyCatchAst);
         final boolean isMatchingVariableName = exceptionVariableName
-                .matcher(variableName).find();
+            .matcher(variableName).find();
         final boolean isMatchingCommentContent = !commentContent.isEmpty()
-                 && commentFormat.matcher(commentContent).find();
+            && commentFormat.matcher(commentContent).find();
         return !isMatchingVariableName && !isMatchingCommentContent;
     }
 
@@ -220,7 +220,7 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
         DetailAST catchBlockStmt = slistToken.getFirstChild();
         while (catchBlockStmt.getType() != TokenTypes.RCURLY) {
             if (catchBlockStmt.getType() != TokenTypes.SINGLE_LINE_COMMENT
-                 && catchBlockStmt.getType() != TokenTypes.BLOCK_COMMENT_BEGIN) {
+                && catchBlockStmt.getType() != TokenTypes.BLOCK_COMMENT_BEGIN) {
                 result = false;
                 break;
             }

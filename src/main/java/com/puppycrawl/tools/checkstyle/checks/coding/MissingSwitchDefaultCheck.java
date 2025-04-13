@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -94,13 +94,13 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
      * Represents the possible parent tokens of a switch statement.
      */
     private static final Set<Integer> SWITCH_STATEMENT_PARENTS = Set.of(
-            TokenTypes.SLIST,
-            TokenTypes.LITERAL_IF,
-            TokenTypes.LITERAL_ELSE,
-            TokenTypes.LITERAL_DO,
-            TokenTypes.LITERAL_WHILE,
-            TokenTypes.LITERAL_FOR,
-            TokenTypes.LABELED_STAT
+        TokenTypes.SLIST,
+        TokenTypes.LITERAL_IF,
+        TokenTypes.LITERAL_ELSE,
+        TokenTypes.LITERAL_DO,
+        TokenTypes.LITERAL_WHILE,
+        TokenTypes.LITERAL_FOR,
+        TokenTypes.LABELED_STAT
     );
 
     @Override
@@ -121,10 +121,10 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (!containsDefaultLabel(ast)
-                && !containsPatternCaseLabelElement(ast)
-                && !containsDefaultCaseLabelElement(ast)
-                && !containsNullCaseLabelElement(ast)
-                && !isSwitchExpression(ast)) {
+            && !containsPatternCaseLabelElement(ast)
+            && !containsDefaultCaseLabelElement(ast)
+            && !containsNullCaseLabelElement(ast)
+            && !isSwitchExpression(ast)) {
             log(ast, MSG_KEY);
         }
     }
@@ -137,7 +137,7 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
      */
     private static boolean containsDefaultLabel(DetailAST detailAst) {
         return TokenUtil.findFirstTokenByPredicate(detailAst,
-                ast -> ast.findFirstToken(TokenTypes.LITERAL_DEFAULT) != null
+            ast -> ast.findFirstToken(TokenTypes.LITERAL_DEFAULT) != null
         ).isPresent();
     }
 
@@ -153,8 +153,8 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
     private static boolean containsPatternCaseLabelElement(DetailAST detailAst) {
         return TokenUtil.findFirstTokenByPredicate(detailAst, ast -> {
             return ast.getFirstChild() != null
-                    && (ast.getFirstChild().findFirstToken(TokenTypes.PATTERN_VARIABLE_DEF) != null
-                    || ast.getFirstChild().findFirstToken(TokenTypes.RECORD_PATTERN_DEF) != null);
+                && (ast.getFirstChild().findFirstToken(TokenTypes.PATTERN_VARIABLE_DEF) != null
+                || ast.getFirstChild().findFirstToken(TokenTypes.RECORD_PATTERN_DEF) != null);
         }).isPresent();
     }
 
@@ -167,7 +167,7 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
     private static boolean containsDefaultCaseLabelElement(DetailAST detailAst) {
         return TokenUtil.findFirstTokenByPredicate(detailAst, ast -> {
             return ast.getFirstChild() != null
-                    && ast.getFirstChild().findFirstToken(TokenTypes.LITERAL_DEFAULT) != null;
+                && ast.getFirstChild().findFirstToken(TokenTypes.LITERAL_DEFAULT) != null;
         }).isPresent();
     }
 
@@ -180,7 +180,7 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
     private static boolean containsNullCaseLabelElement(DetailAST detailAst) {
         return TokenUtil.findFirstTokenByPredicate(detailAst, ast -> {
             return ast.getFirstChild() != null
-                     && hasNullCaseLabel(ast.getFirstChild());
+                && hasNullCaseLabel(ast.getFirstChild());
         }).isPresent();
     }
 

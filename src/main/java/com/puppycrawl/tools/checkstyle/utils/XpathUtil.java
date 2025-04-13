@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.utils;
 
@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
 import com.puppycrawl.tools.checkstyle.xpath.ElementNode;
 import com.puppycrawl.tools.checkstyle.xpath.RootNode;
+
 import net.sf.saxon.Configuration;
 import net.sf.saxon.om.Item;
 import net.sf.saxon.om.NodeInfo;
@@ -103,10 +104,10 @@ public final class XpathUtil {
      * These token types are listed below.
      */
     private static final BitSet TOKEN_TYPES_WITH_TEXT_ATTRIBUTE = TokenUtil.asBitSet(
-            TokenTypes.IDENT, TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL,
-            TokenTypes.NUM_LONG, TokenTypes.NUM_INT, TokenTypes.NUM_DOUBLE, TokenTypes.NUM_FLOAT,
-            TokenTypes.TEXT_BLOCK_CONTENT, TokenTypes.COMMENT_CONTENT
-        );
+        TokenTypes.IDENT, TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL,
+        TokenTypes.NUM_LONG, TokenTypes.NUM_INT, TokenTypes.NUM_DOUBLE, TokenTypes.NUM_FLOAT,
+        TokenTypes.TEXT_BLOCK_CONTENT, TokenTypes.COMMENT_CONTENT
+    );
 
     /**
      * This regexp is used to convert new line to newline tag.
@@ -182,7 +183,7 @@ public final class XpathUtil {
      * @throws IOException if an error occurs
      */
     public static String printXpathBranch(String xpath, File file) throws CheckstyleException,
-            IOException {
+        IOException {
         try {
             final RootNode rootNode = new RootNode(JavaParser.parseFile(file,
                 JavaParser.Options.WITH_COMMENTS));
@@ -208,11 +209,11 @@ public final class XpathUtil {
      * @throws XPathException if Xpath cannot be parsed
      */
     public static List<NodeInfo> getXpathItems(String xpath, AbstractNode rootNode)
-            throws XPathException {
+        throws XPathException {
         final XPathEvaluator xpathEvaluator = new XPathEvaluator(Configuration.newConfiguration());
         final XPathExpression xpathExpression = xpathEvaluator.createExpression(xpath);
         final XPathDynamicContext xpathDynamicContext = xpathExpression
-                .createDynamicContext(rootNode);
+            .createDynamicContext(rootNode);
         final List<Item> items = xpathExpression.evaluate(xpathDynamicContext);
         return UnmodifiableCollectionUtil.unmodifiableList(items, NodeInfo.class);
     }

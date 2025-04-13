@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
@@ -235,7 +235,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         // ignore variable def tokens that are not field definitions
         if (ast.getType() != TokenTypes.VARIABLE_DEF
-                || ast.getParent().getType() == TokenTypes.OBJBLOCK) {
+            || ast.getParent().getType() == TokenTypes.OBJBLOCK) {
             DetailAST node = ast.findFirstToken(TokenTypes.MODIFIERS);
             if (node == null) {
                 node = ast.findFirstToken(TokenTypes.ANNOTATIONS);
@@ -271,7 +271,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
 
             if (!isCorrectLocation(annotation, hasParameters)) {
                 log(annotation,
-                        MSG_KEY_ANNOTATION_LOCATION_ALONE, getAnnotationName(annotation));
+                    MSG_KEY_ANNOTATION_LOCATION_ALONE, getAnnotationName(annotation));
             }
             else if (annotation.getColumnNo() != correctIndentation && !hasNodeBefore(annotation)) {
                 log(annotation, MSG_KEY_ANNOTATION_LOCATION,

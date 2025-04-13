@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -73,7 +73,7 @@ public class LocalizedMessage {
      * @param args arguments for the translation.
      */
     public LocalizedMessage(String bundle, Class<?> sourceClass, String key,
-            Object... args) {
+                            Object... args) {
         this.bundle = bundle;
         this.sourceClass = sourceClass;
         this.key = key;
@@ -135,7 +135,7 @@ public class LocalizedMessage {
      */
     private ResourceBundle getBundle() {
         return ResourceBundle.getBundle(bundle, sLocale, sourceClass.getClassLoader(),
-                new Utf8Control());
+            new Utf8Control());
     }
 
     /**
@@ -146,7 +146,7 @@ public class LocalizedMessage {
 
         @Override
         public ResourceBundle newBundle(String baseName, Locale locale, String format,
-                 ClassLoader loader, boolean reload) throws IOException {
+                                        ClassLoader loader, boolean reload) throws IOException {
             // The below is a copy of the default implementation.
             final String bundleName = toBundleName(baseName, locale);
             final String resourceName = toResourceName(bundleName, "properties");
@@ -157,7 +157,7 @@ public class LocalizedMessage {
                 if (connection != null) {
                     connection.setUseCaches(!reload);
                     try (Reader streamReader = new InputStreamReader(connection.getInputStream(),
-                            StandardCharsets.UTF_8)) {
+                        StandardCharsets.UTF_8)) {
                         // Only this line is changed to make it read property files as UTF-8.
                         resourceBundle = new PropertyResourceBundle(streamReader);
                     }

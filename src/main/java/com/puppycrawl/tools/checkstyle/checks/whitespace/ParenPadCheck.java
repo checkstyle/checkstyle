@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
@@ -326,7 +326,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
         if (ast.getParent().getType() == TokenTypes.TYPECAST) {
             final DetailAST firstRparen = ast.getParent().findFirstToken(TokenTypes.RPAREN);
             if (TokenUtil.areOnSameLine(firstRparen, ast)
-                    && firstRparen.getColumnNo() == ast.getColumnNo()) {
+                && firstRparen.getColumnNo() == ast.getColumnNo()) {
                 result = true;
             }
         }
@@ -363,7 +363,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
         // Only traditional for statements are examined, not for-each statements
         if (parent.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null) {
             final DetailAST forIterator =
-                    parent.findFirstToken(TokenTypes.FOR_INIT);
+                parent.findFirstToken(TokenTypes.FOR_INIT);
             result = !forIterator.hasChildren();
         }
         return result;

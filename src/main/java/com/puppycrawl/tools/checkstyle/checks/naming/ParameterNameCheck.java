@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
@@ -142,11 +142,11 @@ public class ParameterNameCheck extends AbstractNameCheck {
         boolean checkName = true;
         final DetailAST parent = ast.getParent();
         if (ignoreOverridden && isOverriddenMethod(ast)
-                || parent.getType() == TokenTypes.LITERAL_CATCH
-                || parent.getParent().getType() == TokenTypes.LAMBDA
-                || CheckUtil.isReceiverParameter(ast)
-                || !matchAccessModifiers(
-                        CheckUtil.getAccessModifierFromModifiersToken(parent.getParent()))) {
+            || parent.getType() == TokenTypes.LITERAL_CATCH
+            || parent.getParent().getType() == TokenTypes.LAMBDA
+            || CheckUtil.isReceiverParameter(ast)
+            || !matchAccessModifiers(
+            CheckUtil.getAccessModifierFromModifiersToken(parent.getParent()))) {
             checkName = false;
         }
         return checkName;
@@ -160,7 +160,7 @@ public class ParameterNameCheck extends AbstractNameCheck {
      */
     private boolean matchAccessModifiers(final AccessModifierOption accessModifier) {
         return Arrays.stream(accessModifiers)
-                .anyMatch(modifier -> modifier == accessModifier);
+            .anyMatch(modifier -> modifier == accessModifier);
     }
 
     /**

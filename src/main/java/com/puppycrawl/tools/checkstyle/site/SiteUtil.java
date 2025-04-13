@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.site;
 
@@ -98,10 +98,10 @@ public final class SiteUtil {
     public static final String TOKEN_TYPES = "TokenTypes";
     /** The path to the TokenTypes.html file. */
     public static final String PATH_TO_TOKEN_TYPES =
-            "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html";
+        "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html";
     /** The path to the JavadocTokenTypes.html file. */
     public static final String PATH_TO_JAVADOC_TOKEN_TYPES =
-            "apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html";
+        "apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html";
     /** The url of the checkstyle website. */
     private static final String CHECKSTYLE_ORG_URL = "https://checkstyle.org/";
     /** The string 'charset'. */
@@ -131,15 +131,15 @@ public final class SiteUtil {
 
     /** Set of properties that every check has. */
     private static final Set<String> CHECK_PROPERTIES =
-            getProperties(AbstractCheck.class);
+        getProperties(AbstractCheck.class);
 
     /** Set of properties that every Javadoc check has. */
     private static final Set<String> JAVADOC_CHECK_PROPERTIES =
-            getProperties(AbstractJavadocCheck.class);
+        getProperties(AbstractJavadocCheck.class);
 
     /** Set of properties that every FileSet check has. */
     private static final Set<String> FILESET_PROPERTIES =
-            getProperties(AbstractFileSetCheck.class);
+        getProperties(AbstractFileSetCheck.class);
 
     /**
      * Check and property name.
@@ -309,28 +309,28 @@ public final class SiteUtil {
 
     /** Map of all superclasses properties and their javadocs. */
     private static final Map<String, DetailNode> SUPER_CLASS_PROPERTIES_JAVADOCS =
-            new HashMap<>();
+        new HashMap<>();
 
     /** Path to main source code folder. */
     private static final String MAIN_FOLDER_PATH = Path.of(
-            SRC, "main", "java", "com", "puppycrawl", "tools", "checkstyle").toString();
+        SRC, "main", "java", "com", "puppycrawl", "tools", "checkstyle").toString();
 
     /** List of files who are superclasses and contain certain properties that checks inherit. */
     private static final List<File> MODULE_SUPER_CLASS_FILES = List.of(
         new File(Path.of(MAIN_FOLDER_PATH,
-                CHECKS, NAMING, "AbstractAccessControlNameCheck.java").toString()),
+            CHECKS, NAMING, "AbstractAccessControlNameCheck.java").toString()),
         new File(Path.of(MAIN_FOLDER_PATH,
-                CHECKS, NAMING, "AbstractNameCheck.java").toString()),
+            CHECKS, NAMING, "AbstractNameCheck.java").toString()),
         new File(Path.of(MAIN_FOLDER_PATH,
-                CHECKS, "javadoc", "AbstractJavadocCheck.java").toString()),
+            CHECKS, "javadoc", "AbstractJavadocCheck.java").toString()),
         new File(Path.of(MAIN_FOLDER_PATH,
-                "api", "AbstractFileSetCheck.java").toString()),
+            "api", "AbstractFileSetCheck.java").toString()),
         new File(Path.of(MAIN_FOLDER_PATH,
-                CHECKS, "header", "AbstractHeaderCheck.java").toString()),
+            CHECKS, "header", "AbstractHeaderCheck.java").toString()),
         new File(Path.of(MAIN_FOLDER_PATH,
-                CHECKS, "metrics", "AbstractClassCouplingCheck.java").toString()),
+            CHECKS, "metrics", "AbstractClassCouplingCheck.java").toString()),
         new File(Path.of(MAIN_FOLDER_PATH,
-                CHECKS, "whitespace", "AbstractParenPadCheck.java").toString())
+            CHECKS, "whitespace", "AbstractParenPadCheck.java").toString())
     );
 
     /**
@@ -347,7 +347,7 @@ public final class SiteUtil {
      * @throws MacroExecutionException if extraction of message keys fails.
      */
     public static Set<String> getMessageKeys(Class<?> module)
-            throws MacroExecutionException {
+        throws MacroExecutionException {
         final Set<Field> messageKeyFields = getCheckMessageKeys(module);
         // We use a TreeSet to sort the message keys alphabetically
         final Set<String> messageKeys = new TreeSet<>();
@@ -369,7 +369,7 @@ public final class SiteUtil {
      *
      */
     private static Set<Field> getCheckMessageKeys(Class<?> module)
-            throws MacroExecutionException {
+        throws MacroExecutionException {
         try {
             final Set<Field> checkstyleMessages = new HashSet<>();
 
@@ -395,7 +395,7 @@ public final class SiteUtil {
                     .forName("com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector")));
             }
             else if (module == RegexpSinglelineCheck.class
-                    || module == RegexpSinglelineJavaCheck.class) {
+                || module == RegexpSinglelineJavaCheck.class) {
                 checkstyleMessages.addAll(getCheckMessageKeys(Class
                     .forName("com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector")));
             }
@@ -404,7 +404,7 @@ public final class SiteUtil {
         }
         catch (ClassNotFoundException ex) {
             final String message = String.format(Locale.ROOT, "Couldn't find class: %s",
-                    module.getName());
+                module.getName());
             throw new MacroExecutionException(message, ex);
         }
     }
@@ -418,7 +418,7 @@ public final class SiteUtil {
      * @throws MacroExecutionException if the value could not be retrieved.
      */
     public static Object getFieldValue(Field field, Object instance)
-            throws MacroExecutionException {
+        throws MacroExecutionException {
         try {
             // required for package/private classes
             field.trySetAccessible();
@@ -487,7 +487,7 @@ public final class SiteUtil {
      */
     public static Path getTemplatePath(String moduleName) throws MacroExecutionException {
         final String fileNamePattern = ".*[\\\\/]"
-                + moduleName.toLowerCase(Locale.ROOT) + "\\..*";
+            + moduleName.toLowerCase(Locale.ROOT) + "\\..*";
         return getXdocsTemplatesFilePaths()
             .stream()
             .filter(path -> path.toString().matches(fileNamePattern))
@@ -506,10 +506,10 @@ public final class SiteUtil {
     public static Set<Path> getXdocsTemplatesFilePaths() throws MacroExecutionException {
         final Path directory = Path.of("src/site/xdoc");
         try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
-                (path, attr) -> {
-                    return attr.isRegularFile()
-                            && path.toString().endsWith(".xml.template");
-                })) {
+            (path, attr) -> {
+                return attr.isRegularFile()
+                    && path.toString().endsWith(".xml.template");
+            })) {
             return stream.collect(Collectors.toUnmodifiableSet());
         }
         catch (IOException ioException) {
@@ -526,7 +526,7 @@ public final class SiteUtil {
      * @throws MacroExecutionException if the parent module cannot be found.
      */
     public static String getParentModule(Class<?> moduleClass)
-                throws MacroExecutionException {
+        throws MacroExecutionException {
         String parentModuleName = "";
         Class<?> parentClass = moduleClass.getSuperclass();
 
@@ -551,7 +551,7 @@ public final class SiteUtil {
 
         if (parentModuleName == null || parentModuleName.isEmpty()) {
             final String message = String.format(Locale.ROOT,
-                    "Failed to find parent module for %s", moduleClass.getSimpleName());
+                "Failed to find parent module for %s", moduleClass.getSimpleName());
             throw new MacroExecutionException(message);
         }
 
@@ -567,11 +567,11 @@ public final class SiteUtil {
      */
     public static Set<String> getPropertiesForDocumentation(Class<?> clss, Object instance) {
         final Set<String> properties =
-                getProperties(clss).stream()
-                    .filter(prop -> {
-                        return !isGlobalProperty(clss, prop) && !isUndocumentedProperty(clss, prop);
-                    })
-                    .collect(Collectors.toCollection(HashSet::new));
+            getProperties(clss).stream()
+                .filter(prop -> {
+                    return !isGlobalProperty(clss, prop) && !isUndocumentedProperty(clss, prop);
+                })
+                .collect(Collectors.toCollection(HashSet::new));
         properties.addAll(getNonExplicitProperties(instance, clss));
         return new TreeSet<>(properties);
     }
@@ -588,7 +588,7 @@ public final class SiteUtil {
      */
     public static Map<String, DetailNode> getPropertiesJavadocs(Set<String> properties,
                                                                 String moduleName, File moduleFile)
-            throws MacroExecutionException {
+        throws MacroExecutionException {
         // lazy initialization
         if (SUPER_CLASS_PROPERTIES_JAVADOCS.isEmpty()) {
             processSuperclasses();
@@ -597,12 +597,12 @@ public final class SiteUtil {
         processModule(moduleName, moduleFile);
 
         final Map<String, DetailNode> unmodifiableJavadocs =
-                ClassAndPropertiesSettersJavadocScraper.getJavadocsForModuleOrProperty();
+            ClassAndPropertiesSettersJavadocScraper.getJavadocsForModuleOrProperty();
         final Map<String, DetailNode> javadocs = new LinkedHashMap<>(unmodifiableJavadocs);
 
         properties.forEach(property -> {
             final DetailNode superClassPropertyJavadoc =
-                    SUPER_CLASS_PROPERTIES_JAVADOCS.get(property);
+                SUPER_CLASS_PROPERTIES_JAVADOCS.get(property);
             if (superClassPropertyJavadoc != null) {
                 javadocs.putIfAbsent(property, superClassPropertyJavadoc);
             }
@@ -624,15 +624,15 @@ public final class SiteUtil {
      * @throws MacroExecutionException if an error occurs during processing.
      */
     private static void assertAllPropertySetterJavadocsAreFound(
-            Set<String> properties, String moduleName, Map<String, DetailNode> javadocs)
-            throws MacroExecutionException {
+        Set<String> properties, String moduleName, Map<String, DetailNode> javadocs)
+        throws MacroExecutionException {
         for (String property : properties) {
             final boolean isPropertySetterJavadocFound = javadocs.containsKey(property)
-                       || TOKENS.equals(property) || JAVADOC_TOKENS.equals(property);
+                || TOKENS.equals(property) || JAVADOC_TOKENS.equals(property);
             if (!isPropertySetterJavadocFound) {
                 final String message = String.format(Locale.ROOT,
-                        "%s: Failed to find setter javadoc for property '%s'",
-                        moduleName, property);
+                    "%s: Failed to find setter javadoc for property '%s'",
+                    moduleName, property);
                 throw new MacroExecutionException(message);
             }
         }
@@ -646,10 +646,10 @@ public final class SiteUtil {
     private static void processSuperclasses() throws MacroExecutionException {
         for (File superclassFile : MODULE_SUPER_CLASS_FILES) {
             final String superclassName = CommonUtil
-                    .getFileNameWithoutExtension(superclassFile.getName());
+                .getFileNameWithoutExtension(superclassFile.getName());
             processModule(superclassName, superclassFile);
             final Map<String, DetailNode> superclassJavadocs =
-                    ClassAndPropertiesSettersJavadocScraper.getJavadocsForModuleOrProperty();
+                ClassAndPropertiesSettersJavadocScraper.getJavadocsForModuleOrProperty();
             SUPER_CLASS_PROPERTIES_JAVADOCS.putAll(superclassJavadocs);
         }
     }
@@ -663,22 +663,22 @@ public final class SiteUtil {
      * @throws MacroExecutionException if an error occurs during processing.
      */
     private static void processModule(String moduleName, File moduleFile)
-            throws MacroExecutionException {
+        throws MacroExecutionException {
         if (!moduleFile.isFile()) {
             final String message = String.format(Locale.ROOT,
-                    "File %s is not a file. Please check the 'modulePath' property.", moduleFile);
+                "File %s is not a file. Please check the 'modulePath' property.", moduleFile);
             throw new MacroExecutionException(message);
         }
         ClassAndPropertiesSettersJavadocScraper.initialize(moduleName);
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Checker.class.getClassLoader());
         final DefaultConfiguration scraperCheckConfig =
-                        new DefaultConfiguration(
-                                ClassAndPropertiesSettersJavadocScraper.class.getName());
+            new DefaultConfiguration(
+                ClassAndPropertiesSettersJavadocScraper.class.getName());
         final DefaultConfiguration defaultConfiguration =
-                new DefaultConfiguration("configuration");
+            new DefaultConfiguration("configuration");
         final DefaultConfiguration treeWalkerConfig =
-                new DefaultConfiguration(TreeWalker.class.getName());
+            new DefaultConfiguration(TreeWalker.class.getName());
         defaultConfiguration.addProperty(CHARSET, StandardCharsets.UTF_8.name());
         defaultConfiguration.addChild(treeWalkerConfig);
         treeWalkerConfig.addChild(scraperCheckConfig);
@@ -723,11 +723,11 @@ public final class SiteUtil {
      */
     private static boolean isGlobalProperty(Class<?> clss, String propertyName) {
         return AbstractCheck.class.isAssignableFrom(clss)
-                    && CHECK_PROPERTIES.contains(propertyName)
-                || AbstractJavadocCheck.class.isAssignableFrom(clss)
-                    && JAVADOC_CHECK_PROPERTIES.contains(propertyName)
-                || AbstractFileSetCheck.class.isAssignableFrom(clss)
-                    && FILESET_PROPERTIES.contains(propertyName);
+            && CHECK_PROPERTIES.contains(propertyName)
+            || AbstractJavadocCheck.class.isAssignableFrom(clss)
+            && JAVADOC_CHECK_PROPERTIES.contains(propertyName)
+            || AbstractFileSetCheck.class.isAssignableFrom(clss)
+            && FILESET_PROPERTIES.contains(propertyName);
     }
 
     /**
@@ -750,7 +750,7 @@ public final class SiteUtil {
      * @return the non explicit properties.
      */
     private static Set<String> getNonExplicitProperties(
-            Object instance, Class<?> clss) {
+        Object instance, Class<?> clss) {
         final Set<String> result = new TreeSet<>();
         if (AbstractCheck.class.isAssignableFrom(clss)) {
             final AbstractCheck check = (AbstractCheck) instance;
@@ -763,7 +763,7 @@ public final class SiteUtil {
             Arrays.sort(requiredTokens);
 
             if (!Arrays.equals(acceptableTokens, defaultTokens)
-                    || !Arrays.equals(acceptableTokens, requiredTokens)) {
+                || !Arrays.equals(acceptableTokens, requiredTokens)) {
                 result.add(TOKENS);
             }
         }
@@ -780,7 +780,7 @@ public final class SiteUtil {
             Arrays.sort(requiredJavadocTokens);
 
             if (!Arrays.equals(acceptableJavadocTokens, defaultJavadocTokens)
-                    || !Arrays.equals(acceptableJavadocTokens, requiredJavadocTokens)) {
+                || !Arrays.equals(acceptableJavadocTokens, requiredJavadocTokens)) {
                 result.add(JAVADOC_TOKENS);
             }
         }
@@ -801,8 +801,8 @@ public final class SiteUtil {
      * @throws MacroExecutionException if the description could not be extracted.
      */
     public static String getPropertyDescription(
-            String propertyName, DetailNode javadoc, String moduleName)
-            throws MacroExecutionException {
+        String propertyName, DetailNode javadoc, String moduleName)
+        throws MacroExecutionException {
         final String description;
         if (TOKENS.equals(propertyName)) {
             description = "tokens to check";
@@ -813,10 +813,10 @@ public final class SiteUtil {
         else {
             final String descriptionString = SETTER_PATTERN.matcher(
                     DescriptionExtractor.getDescriptionFromJavadoc(javadoc, moduleName))
-                    .replaceFirst("");
+                .replaceFirst("");
 
             final String firstLetterCapitalized = descriptionString.substring(0, 1)
-                    .toUpperCase(Locale.ROOT);
+                .toUpperCase(Locale.ROOT);
             description = firstLetterCapitalized + descriptionString.substring(1);
         }
         return description;
@@ -834,15 +834,15 @@ public final class SiteUtil {
      */
     public static String getSinceVersion(String moduleName, DetailNode moduleJavadoc,
                                          String propertyName, DetailNode propertyJavadoc)
-            throws MacroExecutionException {
+        throws MacroExecutionException {
         final String sinceVersion;
         final String superClassSinceVersion = SINCE_VERSION_FOR_INHERITED_PROPERTY
-                   .get(moduleName + DOT + propertyName);
+            .get(moduleName + DOT + propertyName);
         if (superClassSinceVersion != null) {
             sinceVersion = superClassSinceVersion;
         }
         else if (TOKENS.equals(propertyName)
-                        || JAVADOC_TOKENS.equals(propertyName)) {
+            || JAVADOC_TOKENS.equals(propertyName)) {
             // Use module's since version for inherited properties
             sinceVersion = getSinceVersionFromJavadoc(moduleJavadoc);
         }
@@ -852,8 +852,8 @@ public final class SiteUtil {
 
         if (sinceVersion == null) {
             final String message = String.format(Locale.ROOT,
-                    "Failed to find '@since' version for '%s' property"
-                            + " in '%s' and all parent classes.", propertyName, moduleName);
+                "Failed to find '@since' version for '%s' property"
+                    + " in '%s' and all parent classes.", propertyName, moduleName);
             throw new MacroExecutionException(message);
         }
 
@@ -888,7 +888,7 @@ public final class SiteUtil {
         for (final DetailNode child : children) {
             if (child.getType() == JavadocTokenTypes.JAVADOC_TAG) {
                 final DetailNode sinceNode = JavadocUtil.findFirstToken(
-                        child, JavadocTokenTypes.SINCE_LITERAL);
+                    child, JavadocTokenTypes.SINCE_LITERAL);
                 if (sinceNode != null) {
                     javadocTagWithSince = child;
                     break;
@@ -910,12 +910,12 @@ public final class SiteUtil {
      */
     public static String getType(Field field, String propertyName,
                                  String moduleName, Object instance)
-            throws MacroExecutionException {
+        throws MacroExecutionException {
         final Class<?> fieldClass = getFieldClass(field, propertyName, moduleName, instance);
         return Optional.ofNullable(field)
-                .map(nonNullField -> nonNullField.getAnnotation(XdocsPropertyType.class))
-                .map(propertyType -> propertyType.value().getDescription())
-                .orElseGet(fieldClass::getSimpleName);
+            .map(nonNullField -> nonNullField.getAnnotation(XdocsPropertyType.class))
+            .map(propertyType -> propertyType.value().getDescription())
+            .orElseGet(fieldClass::getSimpleName);
     }
 
     /**
@@ -934,13 +934,13 @@ public final class SiteUtil {
     // -@cs[CyclomaticComplexity] Splitting would not make the code more readable
     public static String getDefaultValue(String propertyName, Field field,
                                          Object classInstance, String moduleName)
-            throws MacroExecutionException {
+        throws MacroExecutionException {
         final Object value = getFieldValue(field, classInstance);
         final Class<?> fieldClass = getFieldClass(field, propertyName, moduleName, classInstance);
         String result = null;
         if (CHARSET.equals(propertyName)) {
             result = "the charset property of the parent"
-                    + " <a href=\"https://checkstyle.org/config.html#Checker\">Checker</a> module";
+                + " <a href=\"https://checkstyle.org/config.html#Checker\">Checker</a> module";
         }
         else if (classInstance instanceof PropertyCacheFile) {
             result = "null (no cache file)";
@@ -971,7 +971,7 @@ public final class SiteUtil {
         else if (fieldClass == Pattern.class) {
             if (value != null) {
                 result = '"' + value.toString().replace("\n", "\\n").replace("\t", "\\t")
-                        .replace("\r", "\\r").replace("\f", "\\f") + '"';
+                    .replace("\r", "\\r").replace("\f", "\\f") + '"';
             }
         }
         else if (fieldClass == Pattern[].class) {
@@ -987,7 +987,7 @@ public final class SiteUtil {
         }
         else {
             final String message = String.format(Locale.ROOT,
-                    "Unknown property type: %s", fieldClass.getSimpleName());
+                "Unknown property type: %s", fieldClass.getSimpleName());
             throw new MacroExecutionException(message);
         }
 
@@ -1010,14 +1010,14 @@ public final class SiteUtil {
             final Collection<?> collection = (Collection<?>) value;
 
             value = collection.stream()
-                    .map(Pattern.class::cast)
-                    .toArray(Pattern[]::new);
+                .map(Pattern.class::cast)
+                .toArray(Pattern[]::new);
         }
 
         String result = "";
         if (value != null && Array.getLength(value) > 0) {
             result = removeSquareBrackets(
-                    Arrays.stream((Pattern[]) value)
+                Arrays.stream((Pattern[]) value)
                     .map(Pattern::pattern)
                     .collect(Collectors.joining(COMMA_SPACE)));
         }
@@ -1036,8 +1036,8 @@ public final class SiteUtil {
      */
     private static String removeSquareBrackets(String value) {
         return value
-                .replace("[", "")
-                .replace("]", "");
+            .replace("[", "")
+            .replace("]", "");
     }
 
     /**
@@ -1100,9 +1100,9 @@ public final class SiteUtil {
     private static String getIntArrayPropertyValue(Object value) {
         try (IntStream stream = getIntStream(value)) {
             String result = stream
-                    .mapToObj(TokenUtil::getTokenName)
-                    .sorted()
-                    .collect(Collectors.joining(COMMA_SPACE));
+                .mapToObj(TokenUtil::getTokenName)
+                .sorted()
+                .collect(Collectors.joining(COMMA_SPACE));
             if (result.isEmpty()) {
                 result = CURLY_BRACKETS;
             }
@@ -1121,7 +1121,7 @@ public final class SiteUtil {
         if (value instanceof Collection) {
             final Collection<?> collection = (Collection<?>) value;
             stream = collection.stream()
-                    .mapToInt(int.class::cast);
+                .mapToInt(int.class::cast);
         }
         else if (value instanceof BitSet) {
             stream = ((BitSet) value).stream();
@@ -1145,11 +1145,11 @@ public final class SiteUtil {
     // -@cs[CyclomaticComplexity] Splitting would not make the code more readable
     private static Class<?> getFieldClass(Field field, String propertyName,
                                           String moduleName, Object instance)
-            throws MacroExecutionException {
+        throws MacroExecutionException {
         Class<?> result = null;
 
         if (PROPERTIES_ALLOWED_GET_TYPES_FROM_METHOD
-                .contains(moduleName + DOT + propertyName)) {
+            .contains(moduleName + DOT + propertyName)) {
             result = getPropertyClass(propertyName, instance);
         }
         if (field != null && result == null) {
@@ -1157,7 +1157,7 @@ public final class SiteUtil {
         }
         if (result == null) {
             throw new MacroExecutionException(
-                    "Could not find field " + propertyName + " in class " + moduleName);
+                "Could not find field " + propertyName + " in class " + moduleName);
         }
         if (field != null && (result == List.class || result == Set.class)) {
             final ParameterizedType type = (ParameterizedType) field.getGenericType();
@@ -1174,7 +1174,7 @@ public final class SiteUtil {
             }
             else {
                 final String message = "Unknown parameterized type: "
-                        + parameterClass.getSimpleName();
+                    + parameterClass.getSimpleName();
                 throw new MacroExecutionException(message);
             }
         }
@@ -1195,11 +1195,11 @@ public final class SiteUtil {
      */
     // -@cs[ForbidWildcardAsReturnType] Object is received as param, no prediction on type of field
     public static Class<?> getPropertyClass(String propertyName, Object instance)
-            throws MacroExecutionException {
+        throws MacroExecutionException {
         final Class<?> result;
         try {
             final PropertyDescriptor descriptor = PropertyUtils.getPropertyDescriptor(instance,
-                    propertyName);
+                propertyName);
             result = descriptor.getPropertyType();
         }
         catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException exc) {
@@ -1217,12 +1217,12 @@ public final class SiteUtil {
      */
     public static List<Integer> getDifference(int[] tokens, int... subtractions) {
         final Set<Integer> subtractionsSet = Arrays.stream(subtractions)
-                .boxed()
-                .collect(Collectors.toUnmodifiableSet());
+            .boxed()
+            .collect(Collectors.toUnmodifiableSet());
         return Arrays.stream(tokens)
-                .boxed()
-                .filter(token -> !subtractionsSet.contains(token))
-                .collect(Collectors.toUnmodifiableList());
+            .boxed()
+            .filter(token -> !subtractionsSet.contains(token))
+            .collect(Collectors.toUnmodifiableList());
     }
 
     /**
@@ -1259,22 +1259,22 @@ public final class SiteUtil {
      * @throws MacroExecutionException if link to the document cannot be constructed.
      */
     public static String getLinkToDocument(String moduleName, String document)
-            throws MacroExecutionException {
+        throws MacroExecutionException {
         final Path templatePath = getTemplatePath(moduleName.replace("Check", ""));
         if (templatePath == null) {
             throw new MacroExecutionException(
-                    String.format(Locale.ROOT,
-                            "Could not find template for %s", moduleName));
+                String.format(Locale.ROOT,
+                    "Could not find template for %s", moduleName));
         }
         final Path templatePathParent = templatePath.getParent();
         if (templatePathParent == null) {
             throw new MacroExecutionException("Failed to get parent path for " + templatePath);
         }
         return templatePathParent
-                .relativize(Path.of(SRC, "site/xdoc", document))
-                .toString()
-                .replace(".xml", ".html")
-                .replace('\\', '/');
+            .relativize(Path.of(SRC, "site/xdoc", document))
+            .toString()
+            .replace(".xml", ".html")
+            .replace('\\', '/');
     }
 
     /** Utility class for extracting description from a method's Javadoc. */
@@ -1294,7 +1294,7 @@ public final class SiteUtil {
         // -@cs[NPathComplexity] Splitting would not make the code more readable
         // -@cs[CyclomaticComplexity] Splitting would not make the code more readable.
         private static String getDescriptionFromJavadoc(DetailNode javadoc, String moduleName)
-                throws MacroExecutionException {
+            throws MacroExecutionException {
             boolean isInCodeLiteral = false;
             boolean isInHtmlElement = false;
             boolean isInHrefAttribute = false;
@@ -1309,7 +1309,7 @@ public final class SiteUtil {
                 Lists.reverse(Arrays.asList(node.getChildren())).forEach(queue::push);
 
                 if (node.getType() == JavadocTokenTypes.HTML_TAG_NAME
-                        && "href".equals(node.getText())) {
+                    && "href".equals(node.getText())) {
                     isInHrefAttribute = true;
                 }
                 if (isInHrefAttribute && node.getType() == JavadocTokenTypes.ATTR_VALUE) {
@@ -1328,15 +1328,15 @@ public final class SiteUtil {
                     isInHtmlElement = true;
                 }
                 if (node.getType() == JavadocTokenTypes.END
-                        && node.getParent().getType() == JavadocTokenTypes.HTML_ELEMENT_END) {
+                    && node.getParent().getType() == JavadocTokenTypes.HTML_ELEMENT_END) {
                     description.append(node.getText());
                     isInHtmlElement = false;
                 }
                 if (node.getType() == JavadocTokenTypes.TEXT
-                        // If a node has children, its text is not part of the description
-                        || isInHtmlElement && node.getChildren().length == 0
-                            // Some HTML elements span multiple lines, so we avoid the asterisk
-                            && node.getType() != JavadocTokenTypes.LEADING_ASTERISK) {
+                    // If a node has children, its text is not part of the description
+                    || isInHtmlElement && node.getChildren().length == 0
+                    // Some HTML elements span multiple lines, so we avoid the asterisk
+                    && node.getType() != JavadocTokenTypes.LEADING_ASTERISK) {
                     description.append(node.getText());
                 }
                 if (node.getType() == JavadocTokenTypes.CODE_LITERAL) {
@@ -1344,7 +1344,7 @@ public final class SiteUtil {
                     description.append("<code>");
                 }
                 if (isInCodeLiteral
-                        && node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG_END) {
+                    && node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG_END) {
                     isInCodeLiteral = false;
                     description.append("</code>");
                 }
@@ -1363,7 +1363,7 @@ public final class SiteUtil {
          */
         private static void handleInternalLink(StringBuilder description,
                                                String moduleName, String value)
-                throws MacroExecutionException {
+            throws MacroExecutionException {
             String href = value;
             href = href.replace(CHECKSTYLE_ORG_URL, "");
             // Remove first and last characters, they are always double quotes
@@ -1407,9 +1407,9 @@ public final class SiteUtil {
             final DetailNode thirdNextSibling = JavadocUtil.getNextSibling(secondNextSibling);
 
             return child.getType() == JavadocTokenTypes.NEWLINE
-                        && nextSibling.getType() == JavadocTokenTypes.LEADING_ASTERISK
-                        && secondNextSibling.getType() == JavadocTokenTypes.NEWLINE
-                        && thirdNextSibling.getType() == JavadocTokenTypes.LEADING_ASTERISK;
+                && nextSibling.getType() == JavadocTokenTypes.LEADING_ASTERISK
+                && secondNextSibling.getType() == JavadocTokenTypes.NEWLINE
+                && thirdNextSibling.getType() == JavadocTokenTypes.LEADING_ASTERISK;
         }
     }
 }

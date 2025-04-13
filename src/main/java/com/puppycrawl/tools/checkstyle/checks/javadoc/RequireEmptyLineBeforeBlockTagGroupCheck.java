@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
@@ -88,9 +88,9 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
      * </pre>
      */
     private static final List<Integer> ONLY_TAG_VARIATION_1 = Arrays.asList(
-            JavadocTokenTypes.WS,
-            JavadocTokenTypes.LEADING_ASTERISK,
-            JavadocTokenTypes.NEWLINE);
+        JavadocTokenTypes.WS,
+        JavadocTokenTypes.LEADING_ASTERISK,
+        JavadocTokenTypes.NEWLINE);
 
     /**
      * Case when no space separates the tag and the asterisk like in the below example.
@@ -100,8 +100,8 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
      * </pre>
      */
     private static final List<Integer> ONLY_TAG_VARIATION_2 = Arrays.asList(
-            JavadocTokenTypes.LEADING_ASTERISK,
-            JavadocTokenTypes.NEWLINE);
+        JavadocTokenTypes.LEADING_ASTERISK,
+        JavadocTokenTypes.NEWLINE);
 
     /**
      * Returns only javadoc tags so visitJavadocToken only receives javadoc tags.
@@ -130,11 +130,11 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
         // No need to filter token because overridden getDefaultJavadocTokens ensures that we only
         // receive JAVADOC_TAG DetailNode.
         if (!isAnotherTagBefore(tagNode)
-                && !isOnlyTagInWholeJavadoc(tagNode)
-                && hasInsufficientConsecutiveNewlines(tagNode)) {
+            && !isOnlyTagInWholeJavadoc(tagNode)
+            && hasInsufficientConsecutiveNewlines(tagNode)) {
             log(tagNode.getLineNumber(),
-                    MSG_JAVADOC_TAG_LINE_BEFORE,
-                    tagNode.getChildren()[0].getText());
+                MSG_JAVADOC_TAG_LINE_BEFORE,
+                tagNode.getChildren()[0].getText());
         }
     }
 
@@ -198,7 +198,7 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
             currentNode = JavadocUtil.getPreviousSibling(currentNode);
         }
         return ONLY_TAG_VARIATION_1.equals(previousNodeTypes)
-                || ONLY_TAG_VARIATION_2.equals(previousNodeTypes);
+            || ONLY_TAG_VARIATION_2.equals(previousNodeTypes);
     }
 
     /**
@@ -215,9 +215,9 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
         int count = 0;
         DetailNode currentNode = JavadocUtil.getPreviousSibling(tagNode);
         while (currentNode != null
-                && (currentNode.getType() == JavadocTokenTypes.NEWLINE
-                || currentNode.getType() == JavadocTokenTypes.WS
-                || currentNode.getType() == JavadocTokenTypes.LEADING_ASTERISK)) {
+            && (currentNode.getType() == JavadocTokenTypes.NEWLINE
+            || currentNode.getType() == JavadocTokenTypes.WS
+            || currentNode.getType() == JavadocTokenTypes.LEADING_ASTERISK)) {
             if (currentNode.getType() == JavadocTokenTypes.NEWLINE) {
                 count++;
             }

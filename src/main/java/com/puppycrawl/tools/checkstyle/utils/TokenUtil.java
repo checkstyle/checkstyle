@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.utils;
 
@@ -194,9 +194,9 @@ public final class TokenUtil {
      */
     public static boolean isCommentType(int type) {
         return type == TokenTypes.SINGLE_LINE_COMMENT
-                || type == TokenTypes.BLOCK_COMMENT_BEGIN
-                || type == TokenTypes.BLOCK_COMMENT_END
-                || type == TokenTypes.COMMENT_CONTENT;
+            || type == TokenTypes.BLOCK_COMMENT_BEGIN
+            || type == TokenTypes.BLOCK_COMMENT_END
+            || type == TokenTypes.COMMENT_CONTENT;
     }
 
     /**
@@ -269,10 +269,10 @@ public final class TokenUtil {
      */
     public static boolean isTypeDeclaration(int type) {
         return type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.INTERFACE_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.ENUM_DEF
-                || type == TokenTypes.RECORD_DEF;
+            || type == TokenTypes.INTERFACE_DEF
+            || type == TokenTypes.ANNOTATION_DEF
+            || type == TokenTypes.ENUM_DEF
+            || type == TokenTypes.RECORD_DEF;
     }
 
     /**
@@ -349,7 +349,7 @@ public final class TokenUtil {
      */
     public static BitSet asBitSet(int... tokens) {
         return IntStream.of(tokens)
-                .collect(BitSet::new, BitSet::set, BitSet::or);
+            .collect(BitSet::new, BitSet::set, BitSet::or);
     }
 
     /**
@@ -360,10 +360,10 @@ public final class TokenUtil {
      */
     public static BitSet asBitSet(String... tokens) {
         return Arrays.stream(tokens)
-                .map(String::trim)
-                .filter(Predicate.not(String::isEmpty))
-                .mapToInt(TokenUtil::getTokenId)
-                .collect(BitSet::new, BitSet::set, BitSet::or);
+            .map(String::trim)
+            .filter(Predicate.not(String::isEmpty))
+            .mapToInt(TokenUtil::getTokenId)
+            .collect(BitSet::new, BitSet::set, BitSet::or);
     }
 
 }

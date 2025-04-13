@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -130,7 +130,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
 
     /** Assigned variables of current scope. */
     private final Deque<Deque<DetailAST>> currentScopeAssignedVariables =
-            new ArrayDeque<>();
+        new ArrayDeque<>();
 
     /**
      * Control whether to check
@@ -238,21 +238,21 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 break;
             case TokenTypes.PARAMETER_DEF:
                 if (!isInLambda(ast)
-                        && ast.findFirstToken(TokenTypes.MODIFIERS)
-                            .findFirstToken(TokenTypes.FINAL) == null
-                        && !isInMethodWithoutBody(ast)
-                        && !isMultipleTypeCatch(ast)
-                        && !CheckUtil.isReceiverParameter(ast)) {
+                    && ast.findFirstToken(TokenTypes.MODIFIERS)
+                    .findFirstToken(TokenTypes.FINAL) == null
+                    && !isInMethodWithoutBody(ast)
+                    && !isMultipleTypeCatch(ast)
+                    && !CheckUtil.isReceiverParameter(ast)) {
                     insertParameter(ast);
                 }
                 break;
             case TokenTypes.VARIABLE_DEF:
                 if (ast.getParent().getType() != TokenTypes.OBJBLOCK
-                        && ast.findFirstToken(TokenTypes.MODIFIERS)
-                            .findFirstToken(TokenTypes.FINAL) == null
-                        && !isVariableInForInit(ast)
-                        && shouldCheckEnhancedForLoopVariable(ast)
-                        && shouldCheckUnnamedVariable(ast)) {
+                    && ast.findFirstToken(TokenTypes.MODIFIERS)
+                    .findFirstToken(TokenTypes.FINAL) == null
+                    && !isVariableInForInit(ast)
+                    && shouldCheckEnhancedForLoopVariable(ast)
+                    && shouldCheckUnnamedVariable(ast)) {
                     insertVariable(ast);
                 }
                 break;
@@ -328,9 +328,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private void updateCurrentScopeAssignedVariables() {
         // -@cs[MoveVariableInsideIf] assignment value is a modification call, so it can't be moved
         final Deque<DetailAST> poppedScopeAssignedVariableData =
-                currentScopeAssignedVariables.pop();
+            currentScopeAssignedVariables.pop();
         final Deque<DetailAST> currentScopeAssignedVariableData =
-                currentScopeAssignedVariables.peek();
+            currentScopeAssignedVariables.peek();
         if (currentScopeAssignedVariableData != null) {
             currentScopeAssignedVariableData.addAll(poppedScopeAssignedVariableData);
         }
@@ -402,7 +402,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private void storePrevScopeUninitializedVariableData() {
         final ScopeData scopeData = scopeStack.peek();
         final Deque<DetailAST> prevScopeUninitializedVariableData =
-                new ArrayDeque<>();
+            new ArrayDeque<>();
         scopeData.uninitializedVariables.forEach(prevScopeUninitializedVariableData::push);
         scopeData.prevScopeUninitializedVariables = prevScopeUninitializedVariableData;
     }
@@ -438,7 +438,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                         storedVariable = candidate.variableIdent;
                     }
                     if (storedVariable != null
-                            && isSameVariables(assignedVariable, variable)) {
+                        && isSameVariables(assignedVariable, variable)) {
                         scopeData.uninitializedVariables.push(variable);
                         shouldRemove = true;
                     }
@@ -507,7 +507,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private boolean shouldCheckEnhancedForLoopVariable(DetailAST ast) {
         return validateEnhancedForLoopVariable
-                || ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE;
+            || ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE;
     }
 
     /**
@@ -518,7 +518,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private boolean shouldCheckUnnamedVariable(DetailAST ast) {
         return validateUnnamedVariables
-                 || !"_".equals(ast.findFirstToken(TokenTypes.IDENT).getText());
+            || !"_".equals(ast.findFirstToken(TokenTypes.IDENT).getText());
     }
 
     /**
@@ -707,8 +707,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private static DetailAST findFirstUpperNamedBlock(DetailAST ast) {
         DetailAST astTraverse = ast;
         while (!TokenUtil.isOfType(astTraverse, TokenTypes.METHOD_DEF, TokenTypes.CLASS_DEF,
-                TokenTypes.ENUM_DEF, TokenTypes.CTOR_DEF, TokenTypes.COMPACT_CTOR_DEF)
-                && !ScopeUtil.isClassFieldDef(astTraverse)) {
+            TokenTypes.ENUM_DEF, TokenTypes.CTOR_DEF, TokenTypes.COMPACT_CTOR_DEF)
+            && !ScopeUtil.isClassFieldDef(astTraverse)) {
             astTraverse = astTraverse.getParent();
         }
         return astTraverse;

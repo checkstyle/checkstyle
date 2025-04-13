@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
@@ -118,7 +118,7 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
      */
     private static boolean isEmptyTag(DetailNode tagNode) {
         final DetailNode tagDescription =
-                JavadocUtil.findFirstToken(tagNode, JavadocTokenTypes.DESCRIPTION);
+            JavadocUtil.findFirstToken(tagNode, JavadocTokenTypes.DESCRIPTION);
         return tagDescription == null
             || hasOnlyEmptyText(tagDescription);
     }
@@ -133,7 +133,7 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
         boolean result = true;
         for (DetailNode child : description.getChildren()) {
             if (child.getType() != JavadocTokenTypes.LEADING_ASTERISK
-                    && !CommonUtil.isBlank(child.getText())) {
+                && !CommonUtil.isBlank(child.getText())) {
                 result = false;
                 break;
             }

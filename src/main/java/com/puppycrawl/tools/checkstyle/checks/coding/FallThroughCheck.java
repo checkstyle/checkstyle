@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -160,7 +160,7 @@ public class FallThroughCheck extends AbstractCheck {
             final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
 
             if (slist != null && !isTerminated(slist, true, true, new HashSet<>())
-                    && !hasFallThroughComment(ast)) {
+                && !hasFallThroughComment(ast)) {
                 if (isLastGroup) {
                     log(ast, MSG_FALL_THROUGH_LAST);
                 }
@@ -195,19 +195,19 @@ public class FallThroughCheck extends AbstractCheck {
                 break;
             case TokenTypes.LITERAL_BREAK:
                 terminated =
-                        useBreak || hasLabel(ast, labelsForCurrentSwitchScope);
+                    useBreak || hasLabel(ast, labelsForCurrentSwitchScope);
                 break;
             case TokenTypes.LITERAL_CONTINUE:
                 terminated =
-                        useContinue || hasLabel(ast, labelsForCurrentSwitchScope);
+                    useContinue || hasLabel(ast, labelsForCurrentSwitchScope);
                 break;
             case TokenTypes.SLIST:
                 terminated =
-                        checkSlist(ast, useBreak, useContinue, labelsForCurrentSwitchScope);
+                    checkSlist(ast, useBreak, useContinue, labelsForCurrentSwitchScope);
                 break;
             case TokenTypes.LITERAL_IF:
                 terminated =
-                        checkIf(ast, useBreak, useContinue, labelsForCurrentSwitchScope);
+                    checkIf(ast, useBreak, useContinue, labelsForCurrentSwitchScope);
                 break;
             case TokenTypes.LITERAL_FOR:
             case TokenTypes.LITERAL_WHILE:
@@ -216,21 +216,21 @@ public class FallThroughCheck extends AbstractCheck {
                 break;
             case TokenTypes.LITERAL_TRY:
                 terminated =
-                        checkTry(ast, useBreak, useContinue, labelsForCurrentSwitchScope);
+                    checkTry(ast, useBreak, useContinue, labelsForCurrentSwitchScope);
                 break;
             case TokenTypes.LITERAL_SWITCH:
                 terminated =
-                        checkSwitch(ast, useContinue, labelsForCurrentSwitchScope);
+                    checkSwitch(ast, useContinue, labelsForCurrentSwitchScope);
                 break;
             case TokenTypes.LITERAL_SYNCHRONIZED:
                 terminated =
-                        checkSynchronized(ast, useBreak, useContinue, labelsForCurrentSwitchScope);
+                    checkSynchronized(ast, useBreak, useContinue, labelsForCurrentSwitchScope);
                 break;
             case TokenTypes.LABELED_STAT:
                 labelsForCurrentSwitchScope.add(ast.getFirstChild().getText());
                 terminated =
-                        isTerminated(ast.getLastChild(), useBreak, useContinue,
-                                labelsForCurrentSwitchScope);
+                    isTerminated(ast.getLastChild(), useBreak, useContinue,
+                        labelsForCurrentSwitchScope);
                 break;
             default:
                 terminated = false;
@@ -247,11 +247,11 @@ public class FallThroughCheck extends AbstractCheck {
      */
     private static boolean hasLabel(DetailAST statement, Set<String> labelsForCurrentSwitchScope) {
         return Optional.ofNullable(statement)
-                .map(DetailAST::getFirstChild)
-                .filter(child -> child.getType() == TokenTypes.IDENT)
-                .map(DetailAST::getText)
-                .filter(label -> !labelsForCurrentSwitchScope.contains(label))
-                .isPresent();
+            .map(DetailAST::getFirstChild)
+            .filter(child -> child.getType() == TokenTypes.IDENT)
+            .map(DetailAST::getText)
+            .filter(label -> !labelsForCurrentSwitchScope.contains(label))
+            .isPresent();
     }
 
     /**
@@ -273,7 +273,7 @@ public class FallThroughCheck extends AbstractCheck {
         }
 
         while (TokenUtil.isOfType(lastStmt, TokenTypes.SINGLE_LINE_COMMENT,
-                TokenTypes.BLOCK_COMMENT_BEGIN)) {
+            TokenTypes.BLOCK_COMMENT_BEGIN)) {
             lastStmt = lastStmt.getPreviousSibling();
         }
 
@@ -298,8 +298,8 @@ public class FallThroughCheck extends AbstractCheck {
         final DetailAST elseStmt = getNextNonCommentAst(thenStmt);
 
         return elseStmt != null
-                && isTerminated(thenStmt, useBreak, useContinue, labels)
-                && isTerminated(elseStmt.getLastChild(), useBreak, useContinue, labels);
+            && isTerminated(thenStmt, useBreak, useContinue, labels)
+            && isTerminated(elseStmt.getLastChild(), useBreak, useContinue, labels);
     }
 
     /**
@@ -311,7 +311,7 @@ public class FallThroughCheck extends AbstractCheck {
     private static DetailAST getNextNonCommentAst(DetailAST ast) {
         DetailAST nextSibling = ast.getNextSibling();
         while (TokenUtil.isOfType(nextSibling, TokenTypes.SINGLE_LINE_COMMENT,
-                TokenTypes.BLOCK_COMMENT_BEGIN)) {
+            TokenTypes.BLOCK_COMMENT_BEGIN)) {
             nextSibling = nextSibling.getNextSibling();
         }
         return nextSibling;
@@ -352,8 +352,8 @@ public class FallThroughCheck extends AbstractCheck {
                              boolean useContinue, Set<String> labels) {
         final DetailAST finalStmt = ast.getLastChild();
         boolean isTerminated = finalStmt.getType() == TokenTypes.LITERAL_FINALLY
-                && isTerminated(finalStmt.findFirstToken(TokenTypes.SLIST),
-                useBreak, useContinue, labels);
+            && isTerminated(finalStmt.findFirstToken(TokenTypes.SLIST),
+            useBreak, useContinue, labels);
 
         if (!isTerminated) {
             DetailAST firstChild = ast.getFirstChild();
@@ -363,14 +363,14 @@ public class FallThroughCheck extends AbstractCheck {
             }
 
             isTerminated = isTerminated(firstChild,
-                    useBreak, useContinue, labels);
+                useBreak, useContinue, labels);
 
             DetailAST catchStmt = ast.findFirstToken(TokenTypes.LITERAL_CATCH);
             while (catchStmt != null
-                    && isTerminated
-                    && catchStmt.getType() == TokenTypes.LITERAL_CATCH) {
+                && isTerminated
+                && catchStmt.getType() == TokenTypes.LITERAL_CATCH) {
                 final DetailAST catchBody =
-                        catchStmt.findFirstToken(TokenTypes.SLIST);
+                    catchStmt.findFirstToken(TokenTypes.SLIST);
                 isTerminated = isTerminated(catchBody, useBreak, useContinue, labels);
                 catchStmt = catchStmt.getNextSibling();
             }
@@ -395,7 +395,7 @@ public class FallThroughCheck extends AbstractCheck {
             final DetailAST caseBody =
                 caseGroup.findFirstToken(TokenTypes.SLIST);
             isTerminated = caseBody != null
-                    && isTerminated(caseBody, false, useContinue, labels);
+                && isTerminated(caseBody, false, useContinue, labels);
             caseGroup = caseGroup.getNextSibling();
         }
         return isTerminated;
@@ -466,12 +466,12 @@ public class FallThroughCheck extends AbstractCheck {
         if (nonCommentAst != null) {
             final int prevLineNumber = nonCommentAst.getPreviousSibling().getLineNo();
             result = Stream.iterate(nonCommentAst.getPreviousSibling(),
-                            Objects::nonNull,
-                            DetailAST::getPreviousSibling)
-                    .takeWhile(sibling -> sibling.getLineNo() == prevLineNumber)
-                    .map(DetailAST::getFirstChild)
-                    .filter(Objects::nonNull)
-                    .anyMatch(firstChild -> reliefPattern.matcher(firstChild.getText()).find());
+                    Objects::nonNull,
+                    DetailAST::getPreviousSibling)
+                .takeWhile(sibling -> sibling.getLineNo() == prevLineNumber)
+                .map(DetailAST::getFirstChild)
+                .filter(Objects::nonNull)
+                .anyMatch(firstChild -> reliefPattern.matcher(firstChild.getText()).find());
         }
         return result;
     }

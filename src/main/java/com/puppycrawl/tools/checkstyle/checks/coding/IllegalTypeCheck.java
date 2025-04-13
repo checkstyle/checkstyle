@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -335,7 +335,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
         boolean result = true;
         if (!memberModifiers.isEmpty()) {
             final DetailAST modifiersAst = methodOrVariableDef
-                    .findFirstToken(TokenTypes.MODIFIERS);
+                .findFirstToken(TokenTypes.MODIFIERS);
             result = isContainVerifiableType(modifiersAst);
         }
         return result;
@@ -351,7 +351,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
     private boolean isContainVerifiableType(DetailAST modifiers) {
         boolean result = false;
         for (DetailAST modifier = modifiers.getFirstChild(); modifier != null;
-                 modifier = modifier.getNextSibling()) {
+             modifier = modifier.getNextSibling()) {
             if (memberModifiers.get(modifier.getType())) {
                 result = true;
                 break;
@@ -570,10 +570,10 @@ public final class IllegalTypeCheck extends AbstractCheck {
     private boolean isMatchingClassName(String className) {
         final String shortName = className.substring(className.lastIndexOf('.') + 1);
         return illegalClassNames.contains(className)
-                || illegalShortClassNames.contains(shortName)
-                || validateAbstractClassNames
-                    && !legalAbstractClassNames.contains(className)
-                    && illegalAbstractClassNameFormat.matcher(className).find();
+            || illegalShortClassNames.contains(shortName)
+            || validateAbstractClassNames
+            && !legalAbstractClassNames.contains(className)
+            && illegalAbstractClassNameFormat.matcher(className).find();
     }
 
     /**
@@ -624,7 +624,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      *        method returns null
      */
     private static DetailAST
-        getNextSubTreeNode(DetailAST currentNodeAst, DetailAST subTreeRootAst) {
+    getNextSubTreeNode(DetailAST currentNodeAst, DetailAST subTreeRootAst) {
         DetailAST currentNode = currentNodeAst;
         DetailAST toVisitAst = currentNode.getFirstChild();
         while (toVisitAst == null) {
@@ -647,7 +647,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
         final String methodName =
             ast.findFirstToken(TokenTypes.IDENT).getText();
         return isVerifiable(ast) && !ignoredMethodNames.contains(methodName)
-                && !AnnotationUtil.hasOverrideAnnotation(ast);
+            && !AnnotationUtil.hasOverrideAnnotation(ast);
     }
 
     /**

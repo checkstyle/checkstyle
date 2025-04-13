@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
@@ -165,7 +165,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
         final int after = ast.getColumnNo() + 1;
 
         if (before >= 0 && CommonUtil.isCodePointWhitespace(line, before)
-                && !containsWhitespaceBefore(before, line)) {
+            && !containsWhitespaceBefore(before, line)) {
             log(ast, MSG_WS_PRECEDED, CLOSE_ANGLE_BRACKET);
         }
 
@@ -198,9 +198,9 @@ public class GenericWhitespaceCheck extends AbstractCheck {
         //   should be whitespace if followed by & -+
         //
         final int indexOfAmp = IntStream.range(after, line.length)
-                .filter(index -> line[index] == '&')
-                .findFirst()
-                .orElse(-1);
+            .filter(index -> line[index] == '&')
+            .findFirst()
+            .orElse(-1);
         if (indexOfAmp >= 1
             && containsWhitespaceBetween(after, indexOfAmp, line)) {
             if (indexOfAmp - after == 0) {
@@ -225,8 +225,8 @@ public class GenericWhitespaceCheck extends AbstractCheck {
     private void processSingleGeneric(DetailAST ast, int[] line, int after) {
         final char charAfter = Character.toChars(line[after])[0];
         if (isGenericBeforeMethod(ast)
-                || isGenericBeforeCtorInvocation(ast)
-                || isGenericBeforeRecordHeader(ast)) {
+            || isGenericBeforeCtorInvocation(ast)
+            || isGenericBeforeRecordHeader(ast)) {
             if (Character.isWhitespace(charAfter)) {
                 log(ast, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
             }
@@ -249,7 +249,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
     private static boolean isGenericBeforeRecordHeader(DetailAST ast) {
         final DetailAST grandParent = ast.getParent().getParent();
         return grandParent.getType() == TokenTypes.RECORD_DEF
-                || grandParent.getParent().getType() == TokenTypes.RECORD_PATTERN_DEF;
+            || grandParent.getParent().getType() == TokenTypes.RECORD_PATTERN_DEF;
     }
 
     /**
@@ -265,7 +265,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
     private static boolean isGenericBeforeCtorInvocation(DetailAST ast) {
         final DetailAST grandParent = ast.getParent().getParent();
         return grandParent.getType() == TokenTypes.LITERAL_NEW
-                || grandParent.getParent().getType() == TokenTypes.LITERAL_NEW;
+            || grandParent.getParent().getType() == TokenTypes.LITERAL_NEW;
     }
 
     /**
@@ -282,9 +282,9 @@ public class GenericWhitespaceCheck extends AbstractCheck {
     private static boolean isGenericAfterNew(DetailAST ast) {
         final DetailAST parent = ast.getParent();
         return parent.getParent().getType() == TokenTypes.LITERAL_NEW
-                && (parent.getNextSibling().getType() == TokenTypes.IDENT
-                    || parent.getNextSibling().getType() == TokenTypes.DOT
-                    || parent.getNextSibling().getType() == TokenTypes.ANNOTATIONS);
+            && (parent.getNextSibling().getType() == TokenTypes.IDENT
+            || parent.getNextSibling().getType() == TokenTypes.DOT
+            || parent.getNextSibling().getType() == TokenTypes.ANNOTATIONS);
     }
 
     /**
@@ -295,7 +295,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      */
     private static boolean isGenericBeforeMethod(DetailAST ast) {
         return ast.getParent().getParent().getParent().getType() == TokenTypes.METHOD_CALL
-                || isAfterMethodReference(ast);
+            || isAfterMethodReference(ast);
     }
 
     /**
@@ -334,8 +334,8 @@ public class GenericWhitespaceCheck extends AbstractCheck {
             final DetailAST grandparent = parent.getParent();
             // cases (1, 3) where whitespace is required:
             if (grandparent.getType() == TokenTypes.CTOR_DEF
-                    || grandparent.getType() == TokenTypes.METHOD_DEF
-                    || isGenericAfterNew(ast)) {
+                || grandparent.getType() == TokenTypes.METHOD_DEF
+                || isGenericAfterNew(ast)) {
 
                 if (!CommonUtil.isCodePointWhitespace(line, before)) {
                     log(ast, MSG_WS_NOT_PRECEDED, OPEN_ANGLE_BRACKET);
@@ -349,7 +349,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
         }
 
         if (after < line.length
-                && CommonUtil.isCodePointWhitespace(line, after)) {
+            && CommonUtil.isCodePointWhitespace(line, after)) {
             log(ast, MSG_WS_FOLLOWED, OPEN_ANGLE_BRACKET);
         }
     }

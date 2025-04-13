@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,11 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
 import com.puppycrawl.tools.checkstyle.xpath.iterators.DescendantIterator;
+
 import net.sf.saxon.Configuration;
 import net.sf.saxon.om.AxisInfo;
 import net.sf.saxon.om.GenericTreeInfo;
@@ -140,7 +141,7 @@ public abstract class AbstractRootNode extends AbstractNode {
             case AxisInfo.CHILD:
                 if (hasChildNodes()) {
                     result = new ArrayIterator.OfNodes<>(
-                            getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));
+                        getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));
                 }
                 else {
                     result = EmptyIterator.ofNodes();

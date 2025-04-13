@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -281,7 +281,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
             }
         }
         else if (state.currentScopeState > STATE_INSTANCE_VARIABLE_DEF
-                || state.currentScopeState > STATE_STATIC_VARIABLE_DEF && !ignoreModifiers) {
+            || state.currentScopeState > STATE_STATIC_VARIABLE_DEF && !ignoreModifiers) {
             isStateValid = false;
             log(modifierAst, MSG_STATIC);
         }
@@ -302,8 +302,8 @@ public class DeclarationOrderCheck extends AbstractCheck {
         final Scope access = ScopeUtil.getScopeFromMods(modifiersAst);
         if (state.declarationAccess.compareTo(access) > 0) {
             if (isStateValid
-                    && !ignoreModifiers
-                    && !isForwardReference(modifiersAst.getParent())) {
+                && !ignoreModifiers
+                && !isForwardReference(modifiersAst.getParent())) {
                 log(modifiersAst, MSG_ACCESS);
             }
         }

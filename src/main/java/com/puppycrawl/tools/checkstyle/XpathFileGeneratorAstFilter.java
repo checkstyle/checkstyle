@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -74,7 +74,7 @@ public class XpathFileGeneratorAstFilter extends AbstractAutomaticBean implement
     public boolean accept(TreeWalkerAuditEvent event) {
         if (event.getTokenType() != 0) {
             final XpathQueryGenerator xpathQueryGenerator =
-                    new XpathQueryGenerator(event, tabWidth);
+                new XpathQueryGenerator(event, tabWidth);
             final List<String> xpathQueries = xpathQueryGenerator.generate();
             if (!xpathQueries.isEmpty()) {
                 final String query = String.join(DELIMITER, xpathQueries);

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.api;
 
@@ -5678,7 +5678,7 @@ public final class TokenTypes {
      * </pre>
      */
     public static final int SINGLE_LINE_COMMENT =
-            JavaLanguageLexer.SINGLE_LINE_COMMENT;
+        JavaLanguageLexer.SINGLE_LINE_COMMENT;
 
     /**
      * Beginning of block comment: '/*'.
@@ -5697,7 +5697,7 @@ public final class TokenTypes {
      * </pre>
      */
     public static final int BLOCK_COMMENT_BEGIN =
-            JavaLanguageLexer.BLOCK_COMMENT_BEGIN;
+        JavaLanguageLexer.BLOCK_COMMENT_BEGIN;
 
     /**
      * End of block comment: '&#42;/'.
@@ -5716,7 +5716,7 @@ public final class TokenTypes {
      *
      */
     public static final int BLOCK_COMMENT_END =
-            JavaLanguageLexer.BLOCK_COMMENT_END;
+        JavaLanguageLexer.BLOCK_COMMENT_END;
 
     /**
      * Text of single-line or block comment.
@@ -5741,7 +5741,7 @@ public final class TokenTypes {
      *
      */
     public static final int COMMENT_CONTENT =
-            JavaLanguageLexer.COMMENT_CONTENT;
+        JavaLanguageLexer.COMMENT_CONTENT;
 
     /**
      * A pattern variable definition; when conditionally matched,
@@ -5772,7 +5772,7 @@ public final class TokenTypes {
      * @since 8.35
      */
     public static final int PATTERN_VARIABLE_DEF =
-            JavaLanguageLexer.PATTERN_VARIABLE_DEF;
+        JavaLanguageLexer.PATTERN_VARIABLE_DEF;
 
     /**
      * The {@code record} keyword.  This element appears
@@ -5803,7 +5803,7 @@ public final class TokenTypes {
      * @since 8.35
      **/
     public static final int LITERAL_RECORD =
-            JavaLanguageLexer.LITERAL_RECORD;
+        JavaLanguageLexer.LITERAL_RECORD;
 
     /**
      * A declaration of a record specifies a name, a header, and a body.
@@ -5835,7 +5835,7 @@ public final class TokenTypes {
      * @since 8.35
      */
     public static final int RECORD_DEF =
-            JavaLanguageLexer.RECORD_DEF;
+        JavaLanguageLexer.RECORD_DEF;
 
     /**
      * Record components are a (possibly empty) list containing the components of a record, which
@@ -5875,7 +5875,7 @@ public final class TokenTypes {
      * @since 8.36
      */
     public static final int RECORD_COMPONENTS =
-            JavaLanguageLexer.RECORD_COMPONENTS;
+        JavaLanguageLexer.RECORD_COMPONENTS;
 
     /**
      * A record component is a variable that comprises the state of a record.  Record components
@@ -5919,7 +5919,7 @@ public final class TokenTypes {
      * @since 8.36
      */
     public static final int RECORD_COMPONENT_DEF =
-            JavaLanguageLexer.RECORD_COMPONENT_DEF;
+        JavaLanguageLexer.RECORD_COMPONENT_DEF;
 
     /**
      * A compact canonical constructor eliminates the list of formal parameters; they are
@@ -5956,7 +5956,7 @@ public final class TokenTypes {
      * @since 8.36
      */
     public static final int COMPACT_CTOR_DEF =
-            JavaLanguageLexer.COMPACT_CTOR_DEF;
+        JavaLanguageLexer.COMPACT_CTOR_DEF;
 
     /**
      * Text blocks are a new feature added to to Java SE 15 and later
@@ -5989,7 +5989,7 @@ public final class TokenTypes {
      * @since 8.36
      */
     public static final int TEXT_BLOCK_LITERAL_BEGIN =
-            JavaLanguageLexer.TEXT_BLOCK_LITERAL_BEGIN;
+        JavaLanguageLexer.TEXT_BLOCK_LITERAL_BEGIN;
 
     /**
      * Content of a Java 15 text block. This is a
@@ -6021,7 +6021,7 @@ public final class TokenTypes {
      * @since 8.36
      */
     public static final int TEXT_BLOCK_CONTENT =
-            JavaLanguageLexer.TEXT_BLOCK_CONTENT;
+        JavaLanguageLexer.TEXT_BLOCK_CONTENT;
 
     /**
      * End of a Java 15 text block literal, delimited by three
@@ -6052,7 +6052,7 @@ public final class TokenTypes {
      * @since 8.36
      */
     public static final int TEXT_BLOCK_LITERAL_END =
-            JavaLanguageLexer.TEXT_BLOCK_LITERAL_END;
+        JavaLanguageLexer.TEXT_BLOCK_LITERAL_END;
 
     /**
      * The {@code yield} keyword.  This element appears
@@ -6126,7 +6126,7 @@ public final class TokenTypes {
      * @since 8.36
      */
     public static final int LITERAL_YIELD =
-            JavaLanguageLexer.LITERAL_YIELD;
+        JavaLanguageLexer.LITERAL_YIELD;
 
     /**
      * Switch Expressions.
@@ -6181,7 +6181,7 @@ public final class TokenTypes {
      * @since 8.36
      */
     public static final int SWITCH_RULE =
-            JavaLanguageLexer.SWITCH_RULE;
+        JavaLanguageLexer.SWITCH_RULE;
 
     /**
      * The {@code non-sealed} keyword.  This element appears
@@ -6646,7 +6646,7 @@ public final class TokenTypes {
      * @since 10.12.0
      */
     public static final int RECORD_PATTERN_COMPONENTS =
-            JavaLanguageLexer.RECORD_PATTERN_COMPONENTS;
+        JavaLanguageLexer.RECORD_PATTERN_COMPONENTS;
 
     /**
      * An unnamed pattern variable definition. Appears as part of a pattern definition.
@@ -6688,7 +6688,7 @@ public final class TokenTypes {
      * @since 10.14.0
      */
     public static final int UNNAMED_PATTERN_DEF =
-            JavaLanguageLexer.UNNAMED_PATTERN_DEF;
+        JavaLanguageLexer.UNNAMED_PATTERN_DEF;
 
     /** Prevent instantiation. */
     private TokenTypes() {

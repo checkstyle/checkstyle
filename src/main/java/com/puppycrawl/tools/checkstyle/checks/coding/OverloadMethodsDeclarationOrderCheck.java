@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -110,17 +110,17 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
             if (currentToken.getType() == TokenTypes.METHOD_DEF) {
                 currentIndex++;
                 final String methodName =
-                        currentToken.findFirstToken(TokenTypes.IDENT).getText();
+                    currentToken.findFirstToken(TokenTypes.IDENT).getText();
                 final Integer previousIndex = methodIndexMap.get(methodName);
                 final DetailAST previousSibling = currentToken.getPreviousSibling();
                 final boolean isMethod = previousSibling.getType() == TokenTypes.METHOD_DEF;
 
                 if (previousIndex != null
-                        && (!isMethod || currentIndex - previousIndex > allowedDistance)) {
+                    && (!isMethod || currentIndex - previousIndex > allowedDistance)) {
                     final int previousLineWithOverloadMethod =
-                            methodLineNumberMap.get(methodName);
+                        methodLineNumberMap.get(methodName);
                     log(currentToken, MSG_KEY,
-                            previousLineWithOverloadMethod);
+                        previousLineWithOverloadMethod);
                 }
                 methodIndexMap.put(methodName, currentIndex);
                 methodLineNumberMap.put(methodName, currentToken.getLineNo());

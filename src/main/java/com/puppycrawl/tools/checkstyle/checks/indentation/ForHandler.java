@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -37,7 +37,7 @@ public class ForHandler extends BlockParentHandler {
      * @param parent        the parent handler
      */
     public ForHandler(IndentationCheck indentCheck,
-        DetailAST ast, AbstractExpressionHandler parent) {
+                      DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck, "for", ast, parent);
     }
 
@@ -52,18 +52,18 @@ public class ForHandler extends BlockParentHandler {
         if (init == null) {
             // for each
             final DetailAST forEach =
-                    getMainAst().findFirstToken(TokenTypes.FOR_EACH_CLAUSE);
+                getMainAst().findFirstToken(TokenTypes.FOR_EACH_CLAUSE);
             checkExpressionSubtree(forEach, expected, false, false);
         }
         else {
             checkExpressionSubtree(init, expected, false, false);
 
             final DetailAST cond =
-                    getMainAst().findFirstToken(TokenTypes.FOR_CONDITION);
+                getMainAst().findFirstToken(TokenTypes.FOR_CONDITION);
             checkExpressionSubtree(cond, expected, false, false);
 
             final DetailAST forIterator =
-                    getMainAst().findFirstToken(TokenTypes.FOR_ITERATOR);
+                getMainAst().findFirstToken(TokenTypes.FOR_ITERATOR);
             checkExpressionSubtree(forIterator, expected, false, false);
         }
     }

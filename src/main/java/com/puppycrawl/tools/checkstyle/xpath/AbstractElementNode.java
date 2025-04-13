@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.xpath.iterators.DescendantIterator;
 import com.puppycrawl.tools.checkstyle.xpath.iterators.FollowingIterator;
 import com.puppycrawl.tools.checkstyle.xpath.iterators.PrecedingIterator;
 import com.puppycrawl.tools.checkstyle.xpath.iterators.ReverseListIterator;
+
 import net.sf.saxon.om.AxisInfo;
 import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.om.NodeInfo;
@@ -75,7 +76,7 @@ public abstract class AbstractElementNode extends AbstractNode {
      * @param indexAmongSiblings the current node index among the parent children nodes
      */
     protected AbstractElementNode(AbstractNode root, AbstractNode parent,
-            int depth, int indexAmongSiblings) {
+                                  int depth, int indexAmongSiblings) {
         super(root.getTreeInfo());
         this.parent = parent;
         this.root = root;
@@ -219,7 +220,7 @@ public abstract class AbstractElementNode extends AbstractNode {
             case AxisInfo.CHILD:
                 if (hasChildNodes()) {
                     result = new ArrayIterator.OfNodes<>(
-                            getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));
+                        getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));
                 }
                 else {
                     result = EmptyIterator.ofNodes();
@@ -299,7 +300,7 @@ public abstract class AbstractElementNode extends AbstractNode {
         }
         else {
             result = new ArrayIterator.OfNodes<>(
-                    getFollowingSiblings().toArray(EMPTY_ABSTRACT_NODE_ARRAY));
+                getFollowingSiblings().toArray(EMPTY_ABSTRACT_NODE_ARRAY));
         }
         return result;
     }

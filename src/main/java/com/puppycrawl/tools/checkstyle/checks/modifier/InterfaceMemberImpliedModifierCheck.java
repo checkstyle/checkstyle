@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
@@ -356,15 +356,15 @@ public class InterfaceMemberImpliedModifierCheck
     private void processMethod(DetailAST ast) {
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
         if (violateImpliedPublicMethod
-                && modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null
-                && modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) == null) {
+            && modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null
+            && modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) == null) {
             log(ast, MSG_KEY, PUBLIC_ACCESS_MODIFIER);
         }
         if (violateImpliedAbstractMethod
-                && modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null
-                && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null
-                && modifiers.findFirstToken(TokenTypes.LITERAL_DEFAULT) == null
-                && modifiers.findFirstToken(TokenTypes.ABSTRACT) == null) {
+            && modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null
+            && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null
+            && modifiers.findFirstToken(TokenTypes.LITERAL_DEFAULT) == null
+            && modifiers.findFirstToken(TokenTypes.ABSTRACT) == null) {
             log(ast, MSG_KEY, ABSTRACT_KEYWORD);
         }
     }
@@ -377,15 +377,15 @@ public class InterfaceMemberImpliedModifierCheck
     private void processField(DetailAST ast) {
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
         if (violateImpliedPublicField
-                && modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) == null) {
+            && modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) == null) {
             log(ast, MSG_KEY, PUBLIC_ACCESS_MODIFIER);
         }
         if (violateImpliedStaticField
-                && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
+            && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
             log(ast, MSG_KEY, STATIC_KEYWORD);
         }
         if (violateImpliedFinalField
-                && modifiers.findFirstToken(TokenTypes.FINAL) == null) {
+            && modifiers.findFirstToken(TokenTypes.FINAL) == null) {
             log(ast, MSG_KEY, FINAL_KEYWORD);
         }
     }
@@ -398,11 +398,11 @@ public class InterfaceMemberImpliedModifierCheck
     private void processNestedType(DetailAST ast) {
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
         if (violateImpliedPublicNested
-                && modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) == null) {
+            && modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) == null) {
             log(ast, MSG_KEY, PUBLIC_ACCESS_MODIFIER);
         }
         if (violateImpliedStaticNested
-                && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
+            && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
             log(ast, MSG_KEY, STATIC_KEYWORD);
         }
     }

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
@@ -64,7 +64,7 @@ class PkgImportControl extends AbstractImportControl {
      * @param strategyOnMismatch strategy in a case if matching allow/disallow rule was not found.
      */
     /* package */ PkgImportControl(String packageName, boolean regex,
-            MismatchStrategy strategyOnMismatch) {
+                                   MismatchStrategy strategyOnMismatch) {
         super(null, strategyOnMismatch);
 
         this.regex = regex;
@@ -91,12 +91,12 @@ class PkgImportControl extends AbstractImportControl {
      * @param strategyOnMismatch strategy in a case if matching allow/disallow rule was not found.
      */
     /* package */ PkgImportControl(PkgImportControl parent, String subPackageName, boolean regex,
-            MismatchStrategy strategyOnMismatch) {
+                                   MismatchStrategy strategyOnMismatch) {
         super(parent, strategyOnMismatch);
         if (regex || parent.regex) {
             // regex gets inherited
             final String parentRegex = ensureSelfContainedRegex(parent.fullPackageName,
-                    parent.regex);
+                parent.regex);
             final String thisRegex = ensureSelfContainedRegex(subPackageName, regex);
             fullPackageName = parentRegex + DOT_REGEX + thisRegex;
             patternForPartialMatch = createPatternForPartialMatch(fullPackageName);
@@ -244,7 +244,7 @@ class PkgImportControl extends AbstractImportControl {
     private boolean matchesAtFrontNoRegex(String pkg) {
         final int length = fullPackageName.length();
         return pkg.startsWith(fullPackageName)
-                && (pkg.length() == length || pkg.charAt(length) == '.');
+            && (pkg.length() == length || pkg.charAt(length) == '.');
     }
 
     @Override

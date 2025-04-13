@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
@@ -404,7 +404,7 @@ public class VisibilityModifierCheck
      */
     private void visitVariableDef(DetailAST variableDef) {
         final boolean inInterfaceOrAnnotationBlock =
-                ScopeUtil.isInInterfaceOrAnnotationBlock(variableDef);
+            ScopeUtil.isInInterfaceOrAnnotationBlock(variableDef);
 
         if (!inInterfaceOrAnnotationBlock && !hasIgnoreAnnotation(variableDef)) {
             final DetailAST varNameAST = variableDef.findFirstToken(TokenTypes.TYPE)
@@ -424,7 +424,7 @@ public class VisibilityModifierCheck
      */
     private boolean hasIgnoreAnnotation(DetailAST variableDef) {
         final DetailAST firstIgnoreAnnotation =
-                 findMatchingAnnotation(variableDef);
+            findMatchingAnnotation(variableDef);
         return firstIgnoreAnnotation != null;
     }
 
@@ -492,10 +492,10 @@ public class VisibilityModifierCheck
         if (!PRIVATE_ACCESS_MODIFIER.equals(variableScope)) {
             result =
                 isStaticFinalVariable(variableDef)
-                || packageAllowed && PACKAGE_ACCESS_MODIFIER.equals(variableScope)
-                || protectedAllowed && PROTECTED_ACCESS_MODIFIER.equals(variableScope)
-                || isIgnoredPublicMember(variableName, variableScope)
-                || isAllowedPublicField(variableDef);
+                    || packageAllowed && PACKAGE_ACCESS_MODIFIER.equals(variableScope)
+                    || protectedAllowed && PROTECTED_ACCESS_MODIFIER.equals(variableScope)
+                    || isIgnoredPublicMember(variableName, variableScope)
+                    || isAllowedPublicField(variableDef);
         }
 
         return result;
@@ -510,7 +510,7 @@ public class VisibilityModifierCheck
     private static boolean isStaticFinalVariable(DetailAST variableDef) {
         final Set<String> modifiers = getModifiers(variableDef);
         return modifiers.contains(STATIC_KEYWORD)
-                && modifiers.contains(FINAL_KEYWORD);
+            && modifiers.contains(FINAL_KEYWORD);
     }
 
     /**
@@ -546,7 +546,7 @@ public class VisibilityModifierCheck
         final DetailAST classDef = variableDef.getParent().getParent();
         final Set<String> classModifiers = getModifiers(classDef);
         return (classModifiers.contains(FINAL_KEYWORD) || classDef.getType() == TokenTypes.ENUM_DEF)
-                && isImmutableField(variableDef);
+            && isImmutableField(variableDef);
     }
 
     /**
@@ -603,7 +603,7 @@ public class VisibilityModifierCheck
             final boolean isCanonicalName = isCanonicalName(type);
             final String typeName = getCanonicalName(type);
             if (immutableClassShortNames.contains(typeName)
-                    || isCanonicalName && immutableClassCanonicalNames.contains(typeName)) {
+                || isCanonicalName && immutableClassCanonicalNames.contains(typeName)) {
                 final DetailAST typeArgs = getGenericTypeArgs(type, isCanonicalName);
 
                 if (typeArgs == null) {
@@ -728,7 +728,7 @@ public class VisibilityModifierCheck
                 canonicalNameBuilder.append(toVisit.getText());
                 final DetailAST nextSubTreeNode = getNextSubTreeNode(toVisit, type);
                 if (nextSubTreeNode != null
-                        && nextSubTreeNode.getType() == TokenTypes.TYPE_ARGUMENTS) {
+                    && nextSubTreeNode.getType() == TokenTypes.TYPE_ARGUMENTS) {
                     break;
                 }
             }
@@ -746,7 +746,7 @@ public class VisibilityModifierCheck
      *        method returns null
      */
     private static DetailAST
-        getNextSubTreeNode(DetailAST currentNodeAst, DetailAST subTreeRootAst) {
+    getNextSubTreeNode(DetailAST currentNodeAst, DetailAST subTreeRootAst) {
         DetailAST currentNode = currentNodeAst;
         DetailAST toVisitAst = currentNode.getFirstChild();
         while (toVisitAst == null) {
@@ -779,7 +779,7 @@ public class VisibilityModifierCheck
      */
     private static String getClassShortName(String canonicalClassName) {
         return canonicalClassName
-                .substring(canonicalClassName.lastIndexOf('.') + 1);
+            .substring(canonicalClassName.lastIndexOf('.') + 1);
     }
 
     /**
@@ -811,13 +811,13 @@ public class VisibilityModifierCheck
         final DetailAST holder = AnnotationUtil.getAnnotationHolder(variableDef);
 
         for (DetailAST child = holder.getFirstChild();
-            child != null; child = child.getNextSibling()) {
+             child != null; child = child.getNextSibling()) {
             if (child.getType() == TokenTypes.ANNOTATION) {
                 final DetailAST ast = child.getFirstChild();
                 final String name =
                     FullIdent.createFullIdent(ast.getNextSibling()).getText();
                 if (ignoreAnnotationCanonicalNames.contains(name)
-                         || ignoreAnnotationShortNames.contains(name)) {
+                    || ignoreAnnotationShortNames.contains(name)) {
                     matchingAnnotation = child;
                     break;
                 }

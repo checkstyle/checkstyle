@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks;
 
@@ -103,11 +103,11 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
         }
         catch (IOException ex) {
             log(1, MSG_IO_EXCEPTION_KEY, file.getPath(),
-                    ex.getLocalizedMessage());
+                ex.getLocalizedMessage());
         }
 
         for (Entry<String, AtomicInteger> duplication : properties
-                .getDuplicatedKeys().entrySet()) {
+            .getDuplicatedKeys().entrySet()) {
             final String keyName = duplication.getKey();
             final int lineNumber = getLineNumber(fileText, keyName);
             // Number of occurrences is number of duplications + 1
@@ -155,7 +155,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
      */
     private static Pattern getKeyPattern(String keyName) {
         final String keyPatternString = "^" + SPACE_PATTERN.matcher(keyName)
-                .replaceAll(Matcher.quoteReplacement("\\\\ ")) + "[\\s:=].*$";
+            .replaceAll(Matcher.quoteReplacement("\\\\ ")) + "[\\s:=].*$";
         return Pattern.compile(keyPatternString);
     }
 
@@ -186,7 +186,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
                 final String keyString = (String) key;
 
                 duplicatedKeys.computeIfAbsent(keyString, empty -> new AtomicInteger(0))
-                        .incrementAndGet();
+                    .incrementAndGet();
             }
             return oldValue;
         }

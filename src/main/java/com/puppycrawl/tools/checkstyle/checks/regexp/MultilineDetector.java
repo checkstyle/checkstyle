@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
@@ -101,11 +101,11 @@ class MultilineDetector {
                     final LineColumn start = text.lineColumn(matcher.start());
                     if (options.getMessage().isEmpty()) {
                         options.getReporter().log(start.getLine(),
-                                MSG_REGEXP_EXCEEDED, matcher.pattern().toString());
+                            MSG_REGEXP_EXCEEDED, matcher.pattern().toString());
                     }
                     else {
                         options.getReporter()
-                                .log(start.getLine(), options.getMessage());
+                            .log(start.getLine(), options.getMessage());
                     }
                 }
                 foundMatch = matcher.find();
@@ -125,7 +125,7 @@ class MultilineDetector {
         if (currentMatches < options.getMinimum()) {
             if (options.getMessage().isEmpty()) {
                 options.getReporter().log(1, MSG_REGEXP_MINIMUM,
-                        options.getMinimum(), options.getFormat());
+                    options.getMinimum(), options.getFormat());
             }
             else {
                 options.getReporter().log(1, options.getMessage());

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
 import com.puppycrawl.tools.checkstyle.xpath.RootNode;
+
 import net.sf.saxon.Configuration;
 import net.sf.saxon.om.Item;
 import net.sf.saxon.sxpath.XPathDynamicContext;
@@ -108,7 +109,7 @@ public class MatchXpathCheck extends AbstractCheck {
         if (!query.isEmpty()) {
             try {
                 final XPathEvaluator xpathEvaluator =
-                        new XPathEvaluator(Configuration.newConfiguration());
+                    new XPathEvaluator(Configuration.newConfiguration());
                 xpathExpression = xpathEvaluator.createExpression(query);
             }
             catch (XPathException ex) {
@@ -156,11 +157,11 @@ public class MatchXpathCheck extends AbstractCheck {
         try {
             final RootNode rootNode = new RootNode(rootAST);
             final XPathDynamicContext xpathDynamicContext =
-                    xpathExpression.createDynamicContext(rootNode);
+                xpathExpression.createDynamicContext(rootNode);
             final List<Item> matchingItems = xpathExpression.evaluate(xpathDynamicContext);
             return matchingItems.stream()
-                    .map(item -> (DetailAST) ((AbstractNode) item).getUnderlyingNode())
-                    .collect(Collectors.toUnmodifiableList());
+                .map(item -> (DetailAST) ((AbstractNode) item).getUnderlyingNode())
+                .collect(Collectors.toUnmodifiableList());
         }
         catch (XPathException ex) {
             throw new IllegalStateException("Evaluation of Xpath query failed: " + query, ex);

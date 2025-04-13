@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,16 +15,13 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.gui;
 
-import java.awt.Component;
-import java.awt.Graphics;
+import java.awt.*;
 
-import javax.swing.JTable;
-import javax.swing.JTree;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeCellRenderer;
@@ -34,7 +31,7 @@ import javax.swing.tree.TreeModel;
  * A TreeCellRenderer that displays a JTree.
  */
 class TreeTableCellRenderer extends JTree implements
-        TableCellRenderer {
+    TableCellRenderer {
 
     /**
      * Serial ID.
@@ -81,9 +78,9 @@ class TreeTableCellRenderer extends JTree implements
             final DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tcr;
             renderer.setBorderSelectionColor(null);
             renderer.setTextSelectionColor(
-                    UIManager.getColor(COLOR_KEY_TABLE_SELECTION_FOREGROUND));
+                UIManager.getColor(COLOR_KEY_TABLE_SELECTION_FOREGROUND));
             renderer.setBackgroundSelectionColor(
-                    UIManager.getColor(COLOR_KEY_TABLE_SELECTION_BACKGROUND));
+                UIManager.getColor(COLOR_KEY_TABLE_SELECTION_BACKGROUND));
         }
     }
 
@@ -96,7 +93,7 @@ class TreeTableCellRenderer extends JTree implements
         if (newRowHeight > 0) {
             super.setRowHeight(newRowHeight);
             if (treeTable != null
-                    && treeTable.getRowHeight() != newRowHeight) {
+                && treeTable.getRowHeight() != newRowHeight) {
                 treeTable.setRowHeight(getRowHeight());
             }
         }
@@ -127,10 +124,10 @@ class TreeTableCellRenderer extends JTree implements
      */
     @Override
     public Component getTableCellRendererComponent(JTable table,
-            Object value,
-            boolean isSelected,
-            boolean hasFocus,
-            int row, int column) {
+                                                   Object value,
+                                                   boolean isSelected,
+                                                   boolean hasFocus,
+                                                   int row, int column) {
         final String colorKey;
         if (isSelected) {
             colorKey = COLOR_KEY_TABLE_SELECTION_BACKGROUND;

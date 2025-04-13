@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
@@ -147,7 +147,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
     @Override
     public void visitJavadocToken(DetailNode ast) {
         if (isSingleLineJavadoc(getBlockCommentAst())
-                && (hasJavadocTags(ast) || !ignoreInlineTags && hasJavadocInlineTags(ast))) {
+            && (hasJavadocTags(ast) || !ignoreInlineTags && hasJavadocInlineTags(ast))) {
             log(ast.getLineNumber(), MSG_KEY);
         }
     }
@@ -176,7 +176,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      */
     private boolean hasJavadocTags(DetailNode javadocRoot) {
         final DetailNode javadocTagSection =
-                JavadocUtil.findFirstToken(javadocRoot, JavadocTokenTypes.JAVADOC_TAG);
+            JavadocUtil.findFirstToken(javadocRoot, JavadocTokenTypes.JAVADOC_TAG);
         return javadocTagSection != null && !isTagIgnored(javadocTagSection);
     }
 
@@ -191,7 +191,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      */
     private boolean hasJavadocInlineTags(DetailNode javadocRoot) {
         DetailNode javadocTagSection =
-                JavadocUtil.findFirstToken(javadocRoot, JavadocTokenTypes.JAVADOC_INLINE_TAG);
+            JavadocUtil.findFirstToken(javadocRoot, JavadocTokenTypes.JAVADOC_INLINE_TAG);
         boolean foundTag = false;
         while (javadocTagSection != null) {
             if (!isTagIgnored(javadocTagSection)) {
@@ -199,7 +199,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
                 break;
             }
             javadocTagSection = JavadocUtil.getNextSibling(
-                    javadocTagSection, JavadocTokenTypes.JAVADOC_INLINE_TAG);
+                javadocTagSection, JavadocTokenTypes.JAVADOC_INLINE_TAG);
         }
         return foundTag;
     }

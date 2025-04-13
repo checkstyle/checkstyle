@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -130,9 +130,9 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
         else if (isCatchParameterIdentifierCandidate(ast) && !isLeftHandOfAssignment(ast)) {
             // we do not count reassignment as usage
             catchParameters.stream()
-                    .filter(parameter -> parameter.getName().equals(ast.getText()))
-                    .findFirst()
-                    .ifPresent(CatchParameterDetails::registerAsUsed);
+                .filter(parameter -> parameter.getName().equals(ast.getText()))
+                .findFirst()
+                .ifPresent(CatchParameterDetails::registerAsUsed);
         }
     }
 
@@ -140,14 +140,14 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
     public void leaveToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.LITERAL_CATCH) {
             final Optional<CatchParameterDetails> unusedCatchParameter =
-                    Optional.ofNullable(catchParameters.peek())
-                            .filter(parameter -> !parameter.isUsed())
-                            .filter(parameter -> !"_".equals(parameter.getName()));
+                Optional.ofNullable(catchParameters.peek())
+                    .filter(parameter -> !parameter.isUsed())
+                    .filter(parameter -> !"_".equals(parameter.getName()));
 
             unusedCatchParameter.ifPresent(parameter -> {
                 log(parameter.getParameterDefinition(),
-                        MSG_UNUSED_CATCH_PARAMETER,
-                        parameter.getName());
+                    MSG_UNUSED_CATCH_PARAMETER,
+                    parameter.getName());
             });
             catchParameters.pop();
         }
@@ -164,7 +164,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
         // we should ignore the ident if it is in the exception declaration
         return identifierAst.getParent().getParent().getType() != TokenTypes.LITERAL_CATCH
             && (!TokenUtil.isOfType(identifierAst.getParent(), INVALID_CATCH_PARAM_IDENT_PARENTS)
-                 || isMethodInvocation(identifierAst));
+            || isMethodInvocation(identifierAst));
     }
 
     /**
@@ -178,7 +178,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
     private static boolean isMethodInvocation(DetailAST identAst) {
         final DetailAST parent = identAst.getParent();
         return parent.getType() == TokenTypes.DOT
-                && identAst.equals(parent.getFirstChild());
+            && identAst.equals(parent.getFirstChild());
     }
 
     /**
@@ -190,7 +190,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
     private static boolean isLeftHandOfAssignment(DetailAST identAst) {
         final DetailAST parent = identAst.getParent();
         return parent.getType() == TokenTypes.ASSIGN
-                && !identAst.equals(parent.getLastChild());
+            && !identAst.equals(parent.getLastChild());
     }
 
     /**
@@ -220,7 +220,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
          */
         private CatchParameterDetails(DetailAST enclosingCatchClause) {
             parameterDefinition =
-                    enclosingCatchClause.findFirstToken(TokenTypes.PARAMETER_DEF);
+                enclosingCatchClause.findFirstToken(TokenTypes.PARAMETER_DEF);
             name = parameterDefinition.findFirstToken(TokenTypes.IDENT).getText();
         }
 

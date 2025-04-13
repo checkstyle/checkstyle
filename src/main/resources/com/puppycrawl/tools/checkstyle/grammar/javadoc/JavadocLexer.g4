@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 lexer grammar JavadocLexer;
 
@@ -152,9 +152,9 @@ LITERAL_EXCLUDE: 'exclude' {previousToPreviousTokenType==SERIAL_LITERAL}?;
 
 CHAR        :   . ;
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 //////////////////////////  JAVADOC TAG MODES  ///////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 mode param;
 Space0: WS -> type(WS);
 PARAMETER_NAME: [a-zA-Z0-9<>_$]+ -> mode(DEFAULT_MODE);
@@ -162,7 +162,7 @@ Char1: .
       {
             skipCurrentTokenConsuming();
       } -> skip, mode(DEFAULT_MODE);
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 mode seeLink;
 Space1: WS
       {
@@ -202,7 +202,7 @@ Char2: .
             referenceCatched = false;
       } -> skip, mode(DEFAULT_MODE);
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 mode classMember;
 MEMBER: [a-zA-Z0-9_$]+ {!insideReferenceArguments}?;
 LEFT_BRACE: '(' {insideReferenceArguments=true;};
@@ -248,7 +248,7 @@ Char20: .
             referenceCatched = false;
             insideReferenceArguments = false;
       } -> skip, mode(DEFAULT_MODE);
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 mode serialField;
 Space2: WS -> type(WS);
 FIELD_NAME: [a-zA-Z0-9_$]+ -> mode(serialFieldFieldType);
@@ -258,7 +258,7 @@ Char3: .
             referenceCatched = false;
 
       } -> skip, mode(DEFAULT_MODE);
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 mode serialFieldFieldType;
 Space3: WS -> type(WS);
 FIELD_TYPE: [a-zA-Z0-9_$]+ -> mode(DEFAULT_MODE);
@@ -266,7 +266,7 @@ Char4: .
       {
             skipCurrentTokenConsuming();
       } -> skip, mode(DEFAULT_MODE);
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 mode exception;
 Space4: WS -> type(WS);
 CLASS_NAME: ([a-zA-Z0-9_$] | '.')+ -> mode(DEFAULT_MODE);
@@ -277,9 +277,9 @@ Char5: .
 
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 //////////////////////////  JAVADOC INLINE TAG MODES  ////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 mode javadocInlineTag;
 CODE_LITERAL : '@code' {recognizeXmlTags=false;} -> mode(code);
 DOC_ROOT_LITERAL : '@docRoot' -> mode(DEFAULT_MODE);
@@ -291,7 +291,7 @@ VALUE_LITERAL : '@value' -> pushMode(value);
 CustomName1: '@' [a-zA-Z0-9:._-]+ {recognizeXmlTags=false;}
                                       -> type(CUSTOM_NAME), mode(DEFAULT_MODE);
 Char6: . -> type(CHAR), mode(DEFAULT_MODE);
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 mode code;
 Space7: WS -> type(WS), mode(codeText);
 Newline2: NEWLINE -> type(NEWLINE), mode(codeText);
@@ -301,7 +301,7 @@ Char7: .
             skipCurrentTokenConsuming();
       } -> skip, mode(DEFAULT_MODE);
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 mode codeText;
 Leading_asterisk5: LEADING_ASTERISK -> type(LEADING_ASTERISK);
 Brackets: '{' (~[}] | Brackets)* '}' -> type(CHAR);
@@ -311,7 +311,7 @@ Char8: .
             skipCurrentTokenConsuming();
       } -> skip, mode(DEFAULT_MODE);
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 mode value;
 Leading_asterisk2: LEADING_ASTERISK -> type(LEADING_ASTERISK);
 Space6: WS -> type(WS);
@@ -333,9 +333,9 @@ fragment Identifier: JavaLetter (JavaLetterOrDigit)*;
 
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 //////////////////////////  HTML TAG MODES  //////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 mode xmlTagDefinition;
 
 END       :   '>' {htmlTagNameCatched = false;} -> mode(DEFAULT_MODE) ;
@@ -432,7 +432,7 @@ fragment W:('w'|'W');
 fragment X:('x'|'X');
 fragment Y:('y'|'Y');
 fragment Z:('z'|'Z');
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 mode htmlAttr;
 Leading_asterisk7: LEADING_ASTERISK -> type(LEADING_ASTERISK);
 NewLine8: NEWLINE -> type(NEWLINE);
@@ -451,7 +451,7 @@ Char12: . {attributeCatched}?
             attributeCatched = false;
       } -> skip, mode(xmlTagDefinition);
 WhiteSpace2: WS -> type(WS);
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 mode htmlComment;
 HTML_COMMENT_END: '-->' -> mode(DEFAULT_MODE);
 LeadingAst: LEADING_ASTERISK -> type(LEADING_ASTERISK);

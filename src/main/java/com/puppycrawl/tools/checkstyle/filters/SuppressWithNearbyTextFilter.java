@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.filters;
 
@@ -207,7 +207,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
             }
 
             final Optional<Suppression> nearestSuppression =
-                    getNearestSuppression(suppressions, event);
+                getNearestSuppression(suppressions, event);
             accepted = nearestSuppression.isEmpty();
         }
         return accepted;
@@ -290,9 +290,9 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
     private static Optional<Suppression> getNearestSuppression(Collection<Suppression> suppressions,
                                                                AuditEvent event) {
         return suppressions
-                .stream()
-                .filter(suppression -> suppression.isMatch(event))
-                .findFirst();
+            .stream()
+            .filter(suppression -> suppression.isMatch(event))
+            .findFirst();
     }
 
     /** The class which represents the suppression. */
@@ -322,29 +322,29 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
          * @throws IllegalArgumentException if there is an error in the filter regex syntax.
          */
         private Suppression(
-                String text,
-                int lineNo,
-                SuppressWithNearbyTextFilter filter
+            String text,
+            int lineNo,
+            SuppressWithNearbyTextFilter filter
         ) {
             final Pattern nearbyTextPattern = filter.nearbyTextPattern;
             final String lineRange = filter.lineRange;
             String format = "";
             try {
                 format = CommonUtil.fillTemplateWithStringsByRegexp(
-                        filter.checkPattern, text, nearbyTextPattern);
+                    filter.checkPattern, text, nearbyTextPattern);
                 eventSourceRegexp = Pattern.compile(format);
                 if (filter.messagePattern != null) {
                     format = CommonUtil.fillTemplateWithStringsByRegexp(
-                            filter.messagePattern, text, nearbyTextPattern);
+                        filter.messagePattern, text, nearbyTextPattern);
                     eventMessageRegexp = Pattern.compile(format);
                 }
                 if (filter.idPattern != null) {
                     format = CommonUtil.fillTemplateWithStringsByRegexp(
-                            filter.idPattern, text, nearbyTextPattern);
+                        filter.idPattern, text, nearbyTextPattern);
                     eventIdRegexp = Pattern.compile(format);
                 }
                 format = CommonUtil.fillTemplateWithStringsByRegexp(lineRange,
-                                                                    text, nearbyTextPattern);
+                    text, nearbyTextPattern);
 
                 final int range = parseRange(format, lineRange, text);
 
@@ -372,7 +372,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
             }
             catch (final NumberFormatException ex) {
                 throw new IllegalArgumentException("unable to parse line range from '" + text
-                        + "' using " + lineRange, ex);
+                    + "' using " + lineRange, ex);
             }
         }
 
@@ -385,9 +385,9 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
          */
         private boolean isMatch(AuditEvent event) {
             return isInScopeOfSuppression(event)
-                    && isCheckMatch(event)
-                    && isIdMatch(event)
-                    && isMessageMatch(event);
+                && isCheckMatch(event)
+                && isIdMatch(event)
+                && isMessageMatch(event);
         }
 
         /**

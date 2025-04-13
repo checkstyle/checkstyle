@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
@@ -41,7 +41,7 @@ class PkgImportRule extends AbstractImportRule {
      *        expression.
      */
     /* package */ PkgImportRule(final boolean allow, final boolean localOnly,
-        final String pkgName, final boolean exactMatch, final boolean regExp) {
+                                final String pkgName, final boolean exactMatch, final boolean regExp) {
         super(allow, localOnly, regExp);
         this.pkgName = pkgName;
         this.exactMatch = exactMatch;
@@ -74,7 +74,7 @@ class PkgImportRule extends AbstractImportRule {
 
             if (pkgMatch && exactMatch) {
                 pkgMatch = forImport.indexOf('.',
-                        pkgName.length() + 1) == -1;
+                    pkgName.length() + 1) == -1;
             }
         }
 

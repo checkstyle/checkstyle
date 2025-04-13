@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
@@ -119,14 +119,14 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
      * file.
      */
     public static final String MSG_KEY_ANNOTATION_MISSING_DEPRECATED =
-            "annotation.missing.deprecated";
+        "annotation.missing.deprecated";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
     public static final String MSG_KEY_JAVADOC_DUPLICATE_TAG =
-            "javadoc.duplicateTag";
+        "javadoc.duplicateTag";
 
     /** {@link Deprecated Deprecated} annotation name. */
     private static final String DEPRECATED = "Deprecated";
@@ -136,9 +136,9 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
 
     /** Token types to find parent of. */
     private static final BitSet TYPES_HASH_SET = TokenUtil.asBitSet(
-            TokenTypes.TYPE, TokenTypes.MODIFIERS, TokenTypes.ANNOTATION,
-            TokenTypes.ANNOTATIONS, TokenTypes.ARRAY_DECLARATOR,
-            TokenTypes.TYPE_PARAMETERS, TokenTypes.DOT);
+        TokenTypes.TYPE, TokenTypes.MODIFIERS, TokenTypes.ANNOTATION,
+        TokenTypes.ANNOTATIONS, TokenTypes.ARRAY_DECLARATOR,
+        TokenTypes.TYPE_PARAMETERS, TokenTypes.DOT);
 
     @Override
     public int[] getDefaultJavadocTokens() {
@@ -158,7 +158,7 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
 
         final boolean containsAnnotation =
             AnnotationUtil.containsAnnotation(parentAst, DEPRECATED)
-            || AnnotationUtil.containsAnnotation(parentAst, FQ_DEPRECATED);
+                || AnnotationUtil.containsAnnotation(parentAst, FQ_DEPRECATED);
 
         final boolean containsJavadocTag = containsDeprecatedTag(ast);
 
@@ -177,10 +177,10 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
         boolean found = false;
         for (DetailNode child : javadoc.getChildren()) {
             if (child.getType() == JavadocTokenTypes.JAVADOC_TAG
-                    && child.getChildren()[0].getType() == JavadocTokenTypes.DEPRECATED_LITERAL) {
+                && child.getChildren()[0].getType() == JavadocTokenTypes.DEPRECATED_LITERAL) {
                 if (found) {
                     log(child.getLineNumber(), MSG_KEY_JAVADOC_DUPLICATE_TAG,
-                            JavadocTagInfo.DEPRECATED.getText());
+                        JavadocTagInfo.DEPRECATED.getText());
                 }
                 found = true;
             }

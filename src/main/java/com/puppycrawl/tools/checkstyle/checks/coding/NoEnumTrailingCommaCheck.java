@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -93,7 +93,7 @@ public class NoEnumTrailingCommaCheck extends AbstractCheck {
     public void visitToken(DetailAST detailAST) {
         final DetailAST enumBlock = detailAST.findFirstToken(TokenTypes.OBJBLOCK);
         TokenUtil.findFirstTokenByPredicate(enumBlock,
-            node -> TokenUtil.isOfType(node, TokenTypes.SEMI, TokenTypes.RCURLY))
+                node -> TokenUtil.isOfType(node, TokenTypes.SEMI, TokenTypes.RCURLY))
             .map(DetailAST::getPreviousSibling)
             .filter(token -> token.getType() == TokenTypes.COMMA)
             .ifPresent(comma -> log(comma, MSG_KEY));

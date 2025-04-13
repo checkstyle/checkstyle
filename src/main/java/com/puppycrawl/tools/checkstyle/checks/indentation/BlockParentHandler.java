@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -72,7 +72,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
      */
     public BlockParentHandler(IndentationCheck indentCheck,
-        String name, DetailAST ast, AbstractExpressionHandler parent) {
+                              String name, DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck, name, ast, parent);
     }
 
@@ -101,8 +101,8 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         final DetailAST topLevel = getTopLevelAst();
 
         if (topLevel != null
-                && !getIndent().isAcceptable(expandedTabsColumnNo(topLevel))
-                && isOnStartOfLine(topLevel)) {
+            && !getIndent().isAcceptable(expandedTabsColumnNo(topLevel))
+            && isOnStartOfLine(topLevel)) {
             logError(topLevel, "", expandedTabsColumnNo(topLevel));
         }
     }
@@ -182,7 +182,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         final int rcurlyPos = expandedTabsColumnNo(rcurly);
 
         if (!curlyIndent().isAcceptable(rcurlyPos)
-                && isOnStartOfLine(rcurly)) {
+            && isOnStartOfLine(rcurly)) {
             logError(rcurly, "rcurly", rcurlyPos, curlyIndent());
         }
     }
@@ -257,10 +257,10 @@ public class BlockParentHandler extends AbstractExpressionHandler {
             // NOTE: switch statements usually don't have curlies
             if (!hasCurlies() || !TokenUtil.areOnSameLine(getLeftCurly(), getRightCurly())) {
                 checkChildren(listChild,
-                        getCheckedChildren(),
-                        getChildrenExpectedIndent(),
-                        true,
-                        canChildrenBeNested());
+                    getCheckedChildren(),
+                    getChildrenExpectedIndent(),
+                    true,
+                    canChildrenBeNested());
             }
         }
     }
@@ -278,17 +278,17 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         if (getIndent().isMultiLevel() && hasCurlies()) {
             if (isOnStartOfLine(getLeftCurly())) {
                 indentLevel = new IndentLevel(expandedTabsColumnNo(getLeftCurly())
-                        + getBasicOffset());
+                    + getBasicOffset());
             }
             else if (isOnStartOfLine(getRightCurly())) {
                 final IndentLevel level = new IndentLevel(curlyIndent(), getBasicOffset());
                 indentLevel = IndentLevel.addAcceptable(level, level.getFirstIndentLevel()
-                        + getLineWrappingIndent());
+                    + getLineWrappingIndent());
             }
         }
         if (hasCurlies() && isOnStartOfLine(getLeftCurly())) {
             indentLevel = IndentLevel.addAcceptable(indentLevel,
-                    curlyIndent().getFirstIndentLevel() + getBasicOffset());
+                curlyIndent().getFirstIndentLevel() + getBasicOffset());
         }
         return indentLevel;
     }

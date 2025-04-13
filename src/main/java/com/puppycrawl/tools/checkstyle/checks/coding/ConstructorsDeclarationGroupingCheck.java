@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -96,42 +96,42 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
 
         // find first constructor
         final DetailAST firstConstructor = children.stream()
-                .filter(ConstructorsDeclarationGroupingCheck::isConstructor)
-                .findFirst()
-                .orElse(null);
+            .filter(ConstructorsDeclarationGroupingCheck::isConstructor)
+            .findFirst()
+            .orElse(null);
 
         if (firstConstructor != null) {
 
             // get all children AST after the first constructor
             final List<DetailAST> childrenAfterFirstConstructor =
-                    children.subList(children.indexOf(firstConstructor), children.size());
+                children.subList(children.indexOf(firstConstructor), children.size());
 
             // find the first index of non-constructor AST after the first constructor, if present
             final Optional<Integer> indexOfFirstNonConstructor = childrenAfterFirstConstructor
-                    .stream()
-                    .filter(currAst -> !isConstructor(currAst))
-                    .findFirst()
-                    .map(children::indexOf);
+                .stream()
+                .filter(currAst -> !isConstructor(currAst))
+                .findFirst()
+                .map(children::indexOf);
 
             // list of all children after first non-constructor AST
             final List<DetailAST> childrenAfterFirstNonConstructor = indexOfFirstNonConstructor
-                    .map(index -> children.subList(index, children.size()))
-                    .orElseGet(ArrayList::new);
+                .map(index -> children.subList(index, children.size()))
+                .orElseGet(ArrayList::new);
 
             // create a list of all constructors that are not grouped to log
             final List<DetailAST> constructorsToLog = childrenAfterFirstNonConstructor.stream()
-                    .filter(ConstructorsDeclarationGroupingCheck::isConstructor)
-                    .collect(Collectors.toUnmodifiableList());
+                .filter(ConstructorsDeclarationGroupingCheck::isConstructor)
+                .collect(Collectors.toUnmodifiableList());
 
             // find the last grouped constructor
             final DetailAST lastGroupedConstructor = childrenAfterFirstConstructor.stream()
-                    .takeWhile(ConstructorsDeclarationGroupingCheck::isConstructor)
-                    .reduce((first, second) -> second)
-                    .orElse(firstConstructor);
+                .takeWhile(ConstructorsDeclarationGroupingCheck::isConstructor)
+                .reduce((first, second) -> second)
+                .orElse(firstConstructor);
 
             // log all constructors that are not grouped
             constructorsToLog
-                    .forEach(ctor -> log(ctor, MSG_KEY, lastGroupedConstructor.getLineNo()));
+                .forEach(ctor -> log(ctor, MSG_KEY, lastGroupedConstructor.getLineNo()));
         }
     }
 
@@ -159,6 +159,6 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
      */
     private static boolean isConstructor(DetailAST ast) {
         return ast.getType() == TokenTypes.CTOR_DEF
-                || ast.getType() == TokenTypes.COMPACT_CTOR_DEF;
+            || ast.getType() == TokenTypes.COMPACT_CTOR_DEF;
     }
 }

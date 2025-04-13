@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
@@ -282,13 +282,13 @@ public final class MethodCountCheck extends AbstractCheck {
      */
     private void checkCounters(MethodCounter counter, DetailAST ast) {
         checkMax(maxPrivate, counter.value(Scope.PRIVATE),
-                 MSG_PRIVATE_METHODS, ast);
+            MSG_PRIVATE_METHODS, ast);
         checkMax(maxPackage, counter.value(Scope.PACKAGE),
-                 MSG_PACKAGE_METHODS, ast);
+            MSG_PACKAGE_METHODS, ast);
         checkMax(maxProtected, counter.value(Scope.PROTECTED),
-                 MSG_PROTECTED_METHODS, ast);
+            MSG_PROTECTED_METHODS, ast);
         checkMax(maxPublic, counter.value(Scope.PUBLIC),
-                 MSG_PUBLIC_METHODS, ast);
+            MSG_PUBLIC_METHODS, ast);
         checkMax(maxTotal, counter.getTotal(), MSG_MANY_METHODS, ast);
     }
 

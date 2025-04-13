@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.utils;
 
@@ -76,7 +76,7 @@ public final class AnnotationUtil {
      * @return true if contains the annotation
      */
     public static boolean containsAnnotation(final DetailAST ast,
-        String annotation) {
+                                             String annotation) {
         return getAnnotation(ast, annotation) != null;
     }
 
@@ -206,7 +206,7 @@ public final class AnnotationUtil {
      * @throws IllegalArgumentException when ast or annotations are null; when annotation is blank
      */
     public static DetailAST getAnnotation(final DetailAST ast,
-        String annotation) {
+                                          String annotation) {
         if (ast == null) {
             throw new IllegalArgumentException(THE_AST_IS_NULL);
         }
@@ -217,13 +217,13 @@ public final class AnnotationUtil {
 
         if (CommonUtil.isBlank(annotation)) {
             throw new IllegalArgumentException(
-                    "the annotation is empty or spaces");
+                "the annotation is empty or spaces");
         }
 
         return findFirstAnnotation(ast, annotationNode -> {
             final DetailAST firstChild = annotationNode.findFirstToken(TokenTypes.AT);
             final String name =
-                    FullIdent.createFullIdent(firstChild.getNextSibling()).getText();
+                FullIdent.createFullIdent(firstChild.getNextSibling()).getText();
             return annotation.equals(name);
         });
     }
@@ -247,7 +247,7 @@ public final class AnnotationUtil {
         final DetailAST holder = getAnnotationHolder(ast);
         DetailAST result = null;
         for (DetailAST child = holder.getFirstChild();
-            child != null; child = child.getNextSibling()) {
+             child != null; child = child.getNextSibling()) {
             if (child.getType() == TokenTypes.ANNOTATION && predicate.test(child)) {
                 result = child;
                 break;

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.gui;
 
@@ -187,8 +187,8 @@ public class ParseTreeTablePresentation {
         }
         else {
             if (parseMode == ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS
-                    && ((DetailAST) parent).getType() == TokenTypes.COMMENT_CONTENT
-                    && JavadocUtil.isJavadocComment(((DetailAST) parent).getParent())) {
+                && ((DetailAST) parent).getType() == TokenTypes.COMMENT_CONTENT
+                && JavadocUtil.isJavadocComment(((DetailAST) parent).getParent())) {
                 // getChildCount return 0 on COMMENT_CONTENT,
                 // but we need to attach javadoc tree, that is separate tree
                 result = 1;
@@ -265,8 +265,8 @@ public class ParseTreeTablePresentation {
     private Object getChildAtDetailAst(DetailAST parent, int index) {
         final Object result;
         if (parseMode == ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS
-                && parent.getType() == TokenTypes.COMMENT_CONTENT
-                && JavadocUtil.isJavadocComment(parent.getParent())) {
+            && parent.getType() == TokenTypes.COMMENT_CONTENT
+            && JavadocUtil.isJavadocComment(parent.getParent())) {
             result = getJavadocTree(parent.getParent());
         }
         else {
@@ -358,7 +358,7 @@ public class ParseTreeTablePresentation {
      */
     private DetailNode getJavadocTree(DetailAST blockComment) {
         return blockCommentToJavadocTree.computeIfAbsent(blockComment,
-                ParseTreeTablePresentation::parseJavadocTree);
+            ParseTreeTablePresentation::parseJavadocTree);
     }
 
     /**

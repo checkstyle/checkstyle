@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
@@ -148,14 +148,14 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * in "messages.properties" file.
      */
     public static final String MSG_MULTIPLE_LINES_AFTER =
-            "empty.line.separator.multiple.lines.after";
+        "empty.line.separator.multiple.lines.after";
 
     /**
      * A key is pointing to the warning message empty.line.separator.multiple.lines.inside
      * in "messages.properties" file.
      */
     public static final String MSG_MULTIPLE_LINES_INSIDE =
-            "empty.line.separator.multiple.lines.inside";
+        "empty.line.separator.multiple.lines.inside";
 
     /** Allow no empty line between fields. */
     private boolean allowNoEmptyLineBetweenFields;
@@ -275,7 +275,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
                 if (nextToken.getType() == TokenTypes.RCURLY) {
                     if (hasNotAllowedTwoEmptyLinesBefore(nextToken)) {
                         final DetailAST result = getLastElementBeforeEmptyLines(ast,
-                                nextToken.getLineNo());
+                            nextToken.getLineNo());
                         log(result, MSG_MULTIPLE_LINES_AFTER, result.getText());
                     }
                 }
@@ -327,7 +327,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (ast.getFirstChild().getLineNo() <= line) {
             result = ast.getFirstChild();
             while (result.getNextSibling() != null
-                    && result.getNextSibling().getLineNo() <= line) {
+                && result.getNextSibling().getLineNo() <= line) {
                 result = result.getNextSibling();
             }
             if (result.hasChildren()) {
@@ -432,7 +432,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private boolean hasMultipleLinesBefore(DetailAST ast) {
         return (ast.getType() != TokenTypes.VARIABLE_DEF || isTypeField(ast))
-                && hasNotAllowedTwoEmptyLinesBefore(ast);
+            && hasNotAllowedTwoEmptyLinesBefore(ast);
     }
 
     /**
@@ -471,7 +471,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         DetailAST nextElement = ast;
         final int lastChildLineNo = ast.getLastChild().getLineNo();
         while (nextElement.getLineNo() < lastChildLineNo + 1
-                && nextElement.getNextSibling() != null) {
+            && nextElement.getNextSibling() != null) {
             nextElement = nextElement.getNextSibling();
         }
         return nextElement.getLineNo() == lastChildLineNo + 1;
@@ -513,9 +513,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private void processVariableDef(DetailAST ast, DetailAST nextToken) {
         if (isTypeField(ast) && !hasEmptyLineAfter(ast)
-                && isViolatingEmptyLineBetweenFieldsPolicy(nextToken)) {
+            && isViolatingEmptyLineBetweenFieldsPolicy(nextToken)) {
             log(nextToken, MSG_SHOULD_BE_SEPARATED,
-                    nextToken.getText());
+                nextToken.getText());
         }
     }
 
@@ -527,8 +527,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private boolean isViolatingEmptyLineBetweenFieldsPolicy(DetailAST detailAST) {
         return detailAST.getType() != TokenTypes.RCURLY
-                && (!allowNoEmptyLineBetweenFields
-                    || !TokenUtil.isOfType(detailAST, TokenTypes.COMMA, TokenTypes.VARIABLE_DEF));
+            && (!allowNoEmptyLineBetweenFields
+            || !TokenUtil.isOfType(detailAST, TokenTypes.COMMA, TokenTypes.VARIABLE_DEF));
     }
 
     /**
@@ -539,7 +539,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private boolean hasNotAllowedTwoEmptyLinesBefore(DetailAST token) {
         return !allowMultipleEmptyLines && hasEmptyLineBefore(token)
-                && isPrePreviousLineEmpty(token);
+            && isPrePreviousLineEmpty(token);
     }
 
     /**
@@ -578,8 +578,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         while (childNode != null) {
             if (childNode.getType() == TokenTypes.MODIFIERS) {
                 for (DetailAST node = token.getFirstChild().getLastChild();
-                         node != null;
-                         node = node.getPreviousSibling()) {
+                     node != null;
+                     node = node.getPreviousSibling()) {
                     if (isCommentInBeginningOfLine(node)) {
                         childNodes.add(node);
                     }
@@ -717,7 +717,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         boolean result = false;
         final DetailAST previous = token.getPreviousSibling();
         if (previous.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
-                && JavadocUtil.isJavadocComment(previous.getFirstChild().getText())) {
+            && JavadocUtil.isJavadocComment(previous.getFirstChild().getText())) {
             result = true;
         }
         return result;

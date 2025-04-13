@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.filters;
 
@@ -353,14 +353,14 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
             String format = "";
             try {
                 format = CommonUtil.fillTemplateWithStringsByRegexp(
-                        filter.checkFormat, text, commentFormat);
+                    filter.checkFormat, text, commentFormat);
                 eventSourceRegexp = Pattern.compile(format);
                 if (filter.messageFormat == null) {
                     eventMessageRegexp = null;
                 }
                 else {
                     format = CommonUtil.fillTemplateWithStringsByRegexp(
-                            filter.messageFormat, text, commentFormat);
+                        filter.messageFormat, text, commentFormat);
                     eventMessageRegexp = Pattern.compile(format);
                 }
                 if (filter.idFormat == null) {
@@ -368,7 +368,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
                 }
                 else {
                     format = CommonUtil.fillTemplateWithStringsByRegexp(
-                            filter.idFormat, text, commentFormat);
+                        filter.idFormat, text, commentFormat);
                     eventIdRegexp = Pattern.compile(format);
                 }
             }
@@ -395,10 +395,10 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
             }
             final Suppression suppression = (Suppression) other;
             return Objects.equals(lineNo, suppression.lineNo)
-                    && Objects.equals(suppressionType, suppression.suppressionType)
-                    && Objects.equals(eventSourceRegexp, suppression.eventSourceRegexp)
-                    && Objects.equals(eventMessageRegexp, suppression.eventMessageRegexp)
-                    && Objects.equals(eventIdRegexp, suppression.eventIdRegexp);
+                && Objects.equals(suppressionType, suppression.suppressionType)
+                && Objects.equals(eventSourceRegexp, suppression.eventSourceRegexp)
+                && Objects.equals(eventMessageRegexp, suppression.eventMessageRegexp)
+                && Objects.equals(eventIdRegexp, suppression.eventIdRegexp);
         }
 
         @Override
@@ -416,9 +416,9 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
          */
         private boolean isMatch(AuditEvent event) {
             return isInScopeOfSuppression(event)
-                    && isCheckMatch(event)
-                    && isIdMatch(event)
-                    && isMessageMatch(event);
+                && isCheckMatch(event)
+                && isIdMatch(event)
+                && isMessageMatch(event);
         }
 
         /**

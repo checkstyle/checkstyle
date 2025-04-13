@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
@@ -205,7 +205,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
                 findWarningsHolder(annotation);
 
             final DetailAST token =
-                    warningHolder.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
+                warningHolder.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
 
             // case like '@SuppressWarnings(value = UNUSED)'
             final DetailAST parent = Objects.requireNonNullElse(token, warningHolder);
@@ -278,7 +278,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
         final Matcher matcher = format.matcher(warningText);
         if (matcher.matches()) {
             log(ast,
-                    MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, warningText);
+                MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, warningText);
         }
     }
 
@@ -294,7 +294,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
 
         final DetailAST annArrayInitParent = Objects.requireNonNullElse(annValuePair, annotation);
         final DetailAST annArrayInit = annArrayInitParent
-                .findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
+            .findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
         return Objects.requireNonNullElse(annArrayInit, annotation);
     }
 

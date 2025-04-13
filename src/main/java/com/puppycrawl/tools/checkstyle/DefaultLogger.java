@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -108,7 +108,7 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
                          OutputStream errorStream,
                          OutputStreamOptions errorStreamOptions) {
         this(infoStream, infoStreamOptions, errorStream, errorStreamOptions,
-                new AuditEventDefaultFormatter());
+            new AuditEventDefaultFormatter());
     }
 
     /**
@@ -144,7 +144,7 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
         }
         else {
             final Writer errorStreamWriter = new OutputStreamWriter(errorStream,
-                    StandardCharsets.UTF_8);
+                StandardCharsets.UTF_8);
             errorWriter = new PrintWriter(errorStreamWriter);
         }
         formatter = messageFormatter;
@@ -173,8 +173,8 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
     @Override
     public void addException(AuditEvent event, Throwable throwable) {
         final LocalizedMessage exceptionMessage = new LocalizedMessage(
-                Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.class,
-                ADD_EXCEPTION_MESSAGE, event.getFileName());
+            Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.class,
+            ADD_EXCEPTION_MESSAGE, event.getFileName());
         errorWriter.println(exceptionMessage.getMessage());
         throwable.printStackTrace(errorWriter);
     }
@@ -182,8 +182,8 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
     @Override
     public void auditStarted(AuditEvent event) {
         final LocalizedMessage auditStartMessage = new LocalizedMessage(
-                Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.class,
-                AUDIT_STARTED_MESSAGE);
+            Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.class,
+            AUDIT_STARTED_MESSAGE);
         infoWriter.println(auditStartMessage.getMessage());
         infoWriter.flush();
     }
@@ -191,8 +191,8 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
     @Override
     public void auditFinished(AuditEvent event) {
         final LocalizedMessage auditFinishMessage = new LocalizedMessage(
-                Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.class,
-                AUDIT_FINISHED_MESSAGE);
+            Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.class,
+            AUDIT_FINISHED_MESSAGE);
         infoWriter.println(auditFinishMessage.getMessage());
         closeStreams();
     }

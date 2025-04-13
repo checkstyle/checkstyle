@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks;
 
@@ -106,17 +106,17 @@ public class AvoidEscapedUnicodeCharactersCheck
      *     Appendix:Control characters</a>
      */
     private static final Pattern UNICODE_CONTROL = Pattern.compile("\\\\u+"
-            + "(00[0-1][\\dA-Fa-f]"
-            + "|00[8-9][\\dA-Fa-f]"
-            + "|00[aA][dD]"
-            + "|034[fF]"
-            + "|070[fF]"
-            + "|180[eE]"
-            + "|200[b-fB-F]"
-            + "|202[a-eA-E]"
-            + "|206[0-4a-fA-F]"
-            + "|[fF]{3}[9a-bA-B]"
-            + "|[fF][eE][fF]{2})");
+        + "(00[0-1][\\dA-Fa-f]"
+        + "|00[8-9][\\dA-Fa-f]"
+        + "|00[aA][dD]"
+        + "|034[fF]"
+        + "|070[fF]"
+        + "|180[eE]"
+        + "|200[b-fB-F]"
+        + "|202[a-eA-E]"
+        + "|206[0-4a-fA-F]"
+        + "|[fF]{3}[9a-bA-B]"
+        + "|[fF][eE][fF]{2})");
 
     /**
      * Regular expression for all escaped chars.
@@ -124,93 +124,93 @@ public class AvoidEscapedUnicodeCharactersCheck
      * EscapeSequence</a>
      */
     private static final Pattern ALL_ESCAPED_CHARS = Pattern.compile("^("
-            + UNICODE_REGEXP.pattern()
-            + "|\""
-            + "|'"
-            + "|\\\\"
-            + "|\\\\b"
-            + "|\\\\f"
-            + "|\\\\n"
-            + "|\\R"
-            + "|\\\\r"
-            + "|\\\\s"
-            + "|\\\\t"
-            + ")+$");
+        + UNICODE_REGEXP.pattern()
+        + "|\""
+        + "|'"
+        + "|\\\\"
+        + "|\\\\b"
+        + "|\\\\f"
+        + "|\\\\n"
+        + "|\\R"
+        + "|\\\\r"
+        + "|\\\\s"
+        + "|\\\\t"
+        + ")+$");
 
     /** Regular expression for escaped backslash. */
     private static final Pattern ESCAPED_BACKSLASH = Pattern.compile("\\\\\\\\");
 
     /** Regular expression for non-printable unicode chars. */
     private static final Pattern NON_PRINTABLE_CHARS = Pattern.compile("\\\\u0000"
-            + "|\\\\u0009"
-            + "|\\\\u000[bB]"
-            + "|\\\\u000[cC]"
-            + "|\\\\u0020"
-            + "|\\\\u007[fF]"
-            + "|\\\\u0085"
-            + "|\\\\u009[fF]"
-            + "|\\\\u00[aA]0"
-            + "|\\\\u00[aA][dD]"
-            + "|\\\\u04[fF]9"
-            + "|\\\\u05[bB][eE]"
-            + "|\\\\u05[dD]0"
-            + "|\\\\u05[eE][aA]"
-            + "|\\\\u05[fF]3"
-            + "|\\\\u05[fF]4"
-            + "|\\\\u0600"
-            + "|\\\\u0604"
-            + "|\\\\u061[cC]"
-            + "|\\\\u06[dD]{2}"
-            + "|\\\\u06[fF]{2}"
-            + "|\\\\u070[fF]"
-            + "|\\\\u0750"
-            + "|\\\\u077[fF]"
-            + "|\\\\u0[eE]00"
-            + "|\\\\u0[eE]7[fF]"
-            + "|\\\\u1680"
-            + "|\\\\u180[eE]"
-            + "|\\\\u1[eE]00"
-            + "|\\\\u2000"
-            + "|\\\\u2001"
-            + "|\\\\u2002"
-            + "|\\\\u2003"
-            + "|\\\\u2004"
-            + "|\\\\u2005"
-            + "|\\\\u2006"
-            + "|\\\\u2007"
-            + "|\\\\u2008"
-            + "|\\\\u2009"
-            + "|\\\\u200[aA]"
-            + "|\\\\u200[fF]"
-            + "|\\\\u2025"
-            + "|\\\\u2028"
-            + "|\\\\u2029"
-            + "|\\\\u202[fF]"
-            + "|\\\\u205[fF]"
-            + "|\\\\u2064"
-            + "|\\\\u2066"
-            + "|\\\\u2067"
-            + "|\\\\u2068"
-            + "|\\\\u2069"
-            + "|\\\\u206[aA]"
-            + "|\\\\u206[fF]"
-            + "|\\\\u20[aA][fF]"
-            + "|\\\\u2100"
-            + "|\\\\u213[aA]"
-            + "|\\\\u3000"
-            + "|\\\\u[dD]800"
-            + "|\\\\u[fF]8[fF]{2}"
-            + "|\\\\u[fF][bB]50"
-            + "|\\\\u[fF][dD][fF]{2}"
-            + "|\\\\u[fF][eE]70"
-            + "|\\\\u[fF][eE][fF]{2}"
-            + "|\\\\u[fF]{2}0[eE]"
-            + "|\\\\u[fF]{2}61"
-            + "|\\\\u[fF]{2}[dD][cC]"
-            + "|\\\\u[fF]{3}9"
-            + "|\\\\u[fF]{3}[aA]"
-            + "|\\\\u[fF]{3}[bB]"
-            + "|\\\\u[fF]{4}");
+        + "|\\\\u0009"
+        + "|\\\\u000[bB]"
+        + "|\\\\u000[cC]"
+        + "|\\\\u0020"
+        + "|\\\\u007[fF]"
+        + "|\\\\u0085"
+        + "|\\\\u009[fF]"
+        + "|\\\\u00[aA]0"
+        + "|\\\\u00[aA][dD]"
+        + "|\\\\u04[fF]9"
+        + "|\\\\u05[bB][eE]"
+        + "|\\\\u05[dD]0"
+        + "|\\\\u05[eE][aA]"
+        + "|\\\\u05[fF]3"
+        + "|\\\\u05[fF]4"
+        + "|\\\\u0600"
+        + "|\\\\u0604"
+        + "|\\\\u061[cC]"
+        + "|\\\\u06[dD]{2}"
+        + "|\\\\u06[fF]{2}"
+        + "|\\\\u070[fF]"
+        + "|\\\\u0750"
+        + "|\\\\u077[fF]"
+        + "|\\\\u0[eE]00"
+        + "|\\\\u0[eE]7[fF]"
+        + "|\\\\u1680"
+        + "|\\\\u180[eE]"
+        + "|\\\\u1[eE]00"
+        + "|\\\\u2000"
+        + "|\\\\u2001"
+        + "|\\\\u2002"
+        + "|\\\\u2003"
+        + "|\\\\u2004"
+        + "|\\\\u2005"
+        + "|\\\\u2006"
+        + "|\\\\u2007"
+        + "|\\\\u2008"
+        + "|\\\\u2009"
+        + "|\\\\u200[aA]"
+        + "|\\\\u200[fF]"
+        + "|\\\\u2025"
+        + "|\\\\u2028"
+        + "|\\\\u2029"
+        + "|\\\\u202[fF]"
+        + "|\\\\u205[fF]"
+        + "|\\\\u2064"
+        + "|\\\\u2066"
+        + "|\\\\u2067"
+        + "|\\\\u2068"
+        + "|\\\\u2069"
+        + "|\\\\u206[aA]"
+        + "|\\\\u206[fF]"
+        + "|\\\\u20[aA][fF]"
+        + "|\\\\u2100"
+        + "|\\\\u213[aA]"
+        + "|\\\\u3000"
+        + "|\\\\u[dD]800"
+        + "|\\\\u[fF]8[fF]{2}"
+        + "|\\\\u[fF][bB]50"
+        + "|\\\\u[fF][dD][fF]{2}"
+        + "|\\\\u[fF][eE]70"
+        + "|\\\\u[fF][eE][fF]{2}"
+        + "|\\\\u[fF]{2}0[eE]"
+        + "|\\\\u[fF]{2}61"
+        + "|\\\\u[fF]{2}[dD][cC]"
+        + "|\\\\u[fF]{3}9"
+        + "|\\\\u[fF]{3}[aA]"
+        + "|\\\\u[fF]{3}[bB]"
+        + "|\\\\u[fF]{4}");
 
     /** Cpp style comments. */
     private Map<Integer, TextBlock> singlelineComments;
@@ -302,11 +302,11 @@ public class AvoidEscapedUnicodeCharactersCheck
             CheckUtil.stripIndentAndInitialNewLineFromTextBlock(ast.getText());
 
         if (hasUnicodeChar(literal) && !(allowByTailComment && hasTrailComment(ast)
-                || isAllCharactersEscaped(literal)
-                || allowEscapesForControlCharacters
-                        && isOnlyUnicodeValidChars(literal, UNICODE_CONTROL)
-                || allowNonPrintableEscapes
-                        && isOnlyUnicodeValidChars(literal, NON_PRINTABLE_CHARS))) {
+            || isAllCharactersEscaped(literal)
+            || allowEscapesForControlCharacters
+            && isOnlyUnicodeValidChars(literal, UNICODE_CONTROL)
+            || allowNonPrintableEscapes
+            && isOnlyUnicodeValidChars(literal, NON_PRINTABLE_CHARS))) {
             log(ast, MSG_KEY);
         }
     }
@@ -319,7 +319,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      */
     private static boolean hasUnicodeChar(String literal) {
         final String literalWithoutEscapedBackslashes =
-                ESCAPED_BACKSLASH.matcher(literal).replaceAll("");
+            ESCAPED_BACKSLASH.matcher(literal).replaceAll("");
         return UNICODE_REGEXP.matcher(literalWithoutEscapedBackslashes).find();
     }
 
@@ -332,9 +332,9 @@ public class AvoidEscapedUnicodeCharactersCheck
      */
     private static boolean isOnlyUnicodeValidChars(String literal, Pattern pattern) {
         final int unicodeMatchesCounter =
-                countMatches(UNICODE_REGEXP, literal);
+            countMatches(UNICODE_REGEXP, literal);
         final int unicodeValidMatchesCounter =
-                countMatches(pattern, literal);
+            countMatches(pattern, literal);
         return unicodeMatchesCounter - unicodeValidMatchesCounter == 0;
     }
 
@@ -377,7 +377,7 @@ public class AvoidEscapedUnicodeCharactersCheck
     private static boolean isTrailingBlockComment(TextBlock comment, int... codePoints) {
         return comment.getText().length != 1
             || CodePointUtil.isBlank(Arrays.copyOfRange(codePoints,
-                comment.getEndColNo() + 1, codePoints.length));
+            comment.getEndColNo() + 1, codePoints.length));
     }
 
     /**
@@ -404,7 +404,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      */
     private boolean isAllCharactersEscaped(String literal) {
         return allowIfAllCharactersEscaped
-                && ALL_ESCAPED_CHARS.matcher(literal).find();
+            && ALL_ESCAPED_CHARS.matcher(literal).find();
     }
 
 }

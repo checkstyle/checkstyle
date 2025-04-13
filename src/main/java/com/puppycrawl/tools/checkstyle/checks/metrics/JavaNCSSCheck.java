@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
@@ -372,7 +372,7 @@ public class JavaNCSSCheck extends AbstractCheck {
             // This is done because multiple assignment on one line are counted
             // as 1
             countable = prevSibling == null
-                    || prevSibling.getType() != TokenTypes.COMMA;
+                || prevSibling.getType() != TokenTypes.COMMA;
         }
 
         return countable;
@@ -419,10 +419,10 @@ public class JavaNCSSCheck extends AbstractCheck {
      */
     private static boolean isMethodOrCtorOrInitDefinition(int tokenType) {
         return tokenType == TokenTypes.METHOD_DEF
-                || tokenType == TokenTypes.COMPACT_CTOR_DEF
-                || tokenType == TokenTypes.CTOR_DEF
-                || tokenType == TokenTypes.STATIC_INIT
-                || tokenType == TokenTypes.INSTANCE_INIT;
+            || tokenType == TokenTypes.COMPACT_CTOR_DEF
+            || tokenType == TokenTypes.CTOR_DEF
+            || tokenType == TokenTypes.STATIC_INIT
+            || tokenType == TokenTypes.INSTANCE_INIT;
     }
 
     /**

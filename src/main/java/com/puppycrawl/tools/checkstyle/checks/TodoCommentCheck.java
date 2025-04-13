@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks;
 
@@ -63,7 +63,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 @StatelessCheck
 public class TodoCommentCheck
-        extends AbstractCheck {
+    extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -104,7 +104,7 @@ public class TodoCommentCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.COMMENT_CONTENT };
+        return new int[] {TokenTypes.COMMENT_CONTENT};
     }
 
     @Override

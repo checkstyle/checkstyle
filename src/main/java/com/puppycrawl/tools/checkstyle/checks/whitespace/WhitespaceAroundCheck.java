@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
@@ -508,14 +508,14 @@ public class WhitespaceAroundCheck extends AbstractCheck {
             final int after = ast.getColumnNo() + ast.getText().length();
 
             if (before >= 0 && shouldCheckSeparationFromPreviousToken(ast)
-                        && !CommonUtil.isCodePointWhitespace(line, before)) {
+                && !CommonUtil.isCodePointWhitespace(line, before)) {
                 log(ast, MSG_WS_NOT_PRECEDED, ast.getText());
             }
 
             if (after < line.length) {
                 final char nextChar = Character.toChars(line[after])[0];
                 if (shouldCheckSeparationFromNextToken(ast, nextChar)
-                        && !Character.isWhitespace(nextChar)) {
+                    && !Character.isWhitespace(nextChar)) {
                     log(ast, MSG_WS_NOT_FOLLOWED, ast.getText());
                 }
             }
@@ -591,11 +591,11 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {
         return !isEmptyCtorBlockCheckedFromSlist(ast)
-                && !(ast.getType() == TokenTypes.LITERAL_RETURN
-                && ast.getFirstChild().getType() == TokenTypes.SEMI)
-                && ast.getType() != TokenTypes.ARRAY_INIT
-                && !isAnonymousInnerClassEnd(ast.getType(), nextChar)
-                && !isPartOfDoubleBraceInitializerForNextToken(ast);
+            && !(ast.getType() == TokenTypes.LITERAL_RETURN
+            && ast.getFirstChild().getType() == TokenTypes.SEMI)
+            && ast.getType() != TokenTypes.ARRAY_INIT
+            && !isAnonymousInnerClassEnd(ast.getType(), nextChar)
+            && !isPartOfDoubleBraceInitializerForNextToken(ast);
     }
 
     /**
@@ -607,10 +607,10 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private static boolean isAnonymousInnerClassEnd(int currentType, char nextChar) {
         return currentType == TokenTypes.RCURLY
-                && (nextChar == ')'
-                        || nextChar == ';'
-                        || nextChar == ','
-                        || nextChar == '.');
+            && (nextChar == ')'
+            || nextChar == ';'
+            || nextChar == ','
+            || nextChar == '.');
     }
 
     /**
@@ -622,11 +622,11 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean isEmptyBlock(DetailAST ast, int parentType) {
         return isEmptyMethodBlock(ast, parentType)
-                || isEmptyCtorBlockCheckedFromRcurly(ast)
-                || isEmptyLoop(ast, parentType)
-                || isEmptyLambda(ast, parentType)
-                || isEmptyCatch(ast, parentType)
-                || isEmptySwitchBlockStatement(ast);
+            || isEmptyCtorBlockCheckedFromRcurly(ast)
+            || isEmptyLoop(ast, parentType)
+            || isEmptyLambda(ast, parentType)
+            || isEmptyCatch(ast, parentType)
+            || isEmptySwitchBlockStatement(ast);
     }
 
     /**
@@ -649,7 +649,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
             final DetailAST parent = ast.getParent();
             final DetailAST grandParent = ast.getParent().getParent();
             result = parent.getFirstChild().getType() == TokenTypes.RCURLY
-                    && grandParent.getType() == match;
+                && grandParent.getType() == match;
         }
         else {
             result = type == TokenTypes.SLIST
@@ -670,7 +670,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean isEmptyMethodBlock(DetailAST ast, int parentType) {
         return allowEmptyMethods
-                && isEmptyBlock(ast, parentType, TokenTypes.METHOD_DEF);
+            && isEmptyBlock(ast, parentType, TokenTypes.METHOD_DEF);
     }
 
     /**
@@ -685,9 +685,9 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         final DetailAST parent = ast.getParent();
         final DetailAST grandParent = ast.getParent().getParent();
         return allowEmptyConstructors
-                && parent.getFirstChild().getType() == TokenTypes.RCURLY
-                && (grandParent.getType() == TokenTypes.CTOR_DEF
-                        || grandParent.getType() == TokenTypes.COMPACT_CTOR_DEF);
+            && parent.getFirstChild().getType() == TokenTypes.RCURLY
+            && (grandParent.getType() == TokenTypes.CTOR_DEF
+            || grandParent.getType() == TokenTypes.COMPACT_CTOR_DEF);
 
     }
 
@@ -701,9 +701,9 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean isEmptyCtorBlockCheckedFromSlist(DetailAST ast) {
         return allowEmptyConstructors
-                && (ast.getParent().getType() == TokenTypes.CTOR_DEF
-                        || ast.getParent().getType() == TokenTypes.COMPACT_CTOR_DEF)
-                && ast.getFirstChild().getType() == TokenTypes.RCURLY;
+            && (ast.getParent().getType() == TokenTypes.CTOR_DEF
+            || ast.getParent().getType() == TokenTypes.COMPACT_CTOR_DEF)
+            && ast.getFirstChild().getType() == TokenTypes.RCURLY;
     }
 
     /**
@@ -716,9 +716,9 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean isEmptyLoop(DetailAST ast, int parentType) {
         return allowEmptyLoops
-                && (isEmptyBlock(ast, parentType, TokenTypes.LITERAL_FOR)
-                        || isEmptyBlock(ast, parentType, TokenTypes.LITERAL_WHILE)
-                        || isEmptyBlock(ast, parentType, TokenTypes.LITERAL_DO));
+            && (isEmptyBlock(ast, parentType, TokenTypes.LITERAL_FOR)
+            || isEmptyBlock(ast, parentType, TokenTypes.LITERAL_WHILE)
+            || isEmptyBlock(ast, parentType, TokenTypes.LITERAL_DO));
     }
 
     /**
@@ -763,17 +763,17 @@ public class WhitespaceAroundCheck extends AbstractCheck {
             final DetailAST grandParent = parent.getParent();
 
             final boolean isEmptyCaseInSwitchRule =
-                    isEmptyBlock(ast, parent.getType(), TokenTypes.SWITCH_RULE);
+                isEmptyBlock(ast, parent.getType(), TokenTypes.SWITCH_RULE);
 
             final boolean isEmptyCaseGroupCheckedFromLcurly =
-                    isEmptyBlock(ast, grandParent.getType(), TokenTypes.CASE_GROUP);
+                isEmptyBlock(ast, grandParent.getType(), TokenTypes.CASE_GROUP);
 
             final boolean isEmptyCaseGroupCheckedFromRcurly =
-                    parent.getFirstChild().getType() == TokenTypes.RCURLY
-                      && grandParent.getParent().getType() == TokenTypes.CASE_GROUP;
+                parent.getFirstChild().getType() == TokenTypes.RCURLY
+                    && grandParent.getParent().getType() == TokenTypes.CASE_GROUP;
 
             isEmptySwitchBlockStatement = isEmptyCaseInSwitchRule
-                    || isEmptyCaseGroupCheckedFromLcurly || isEmptyCaseGroupCheckedFromRcurly;
+                || isEmptyCaseGroupCheckedFromLcurly || isEmptyCaseGroupCheckedFromRcurly;
         }
         else {
             isEmptySwitchBlockStatement = false;
@@ -797,9 +797,9 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         final DetailAST nextSibling = ast.getNextSibling();
         final DetailAST previousSibling = ast.getPreviousSibling();
         return type == TokenTypes.LCURLY
-                    && nextSibling.getType() == TokenTypes.RCURLY
-                || previousSibling != null
-                    && previousSibling.getType() == TokenTypes.LCURLY;
+            && nextSibling.getType() == TokenTypes.RCURLY
+            || previousSibling != null
+            && previousSibling.getType() == TokenTypes.LCURLY;
     }
 
     /**
@@ -811,9 +811,9 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private static boolean isPartOfDoubleBraceInitializerForPreviousToken(DetailAST ast) {
         final boolean initializerBeginsAfterClassBegins =
-                ast.getParent().getType() == TokenTypes.INSTANCE_INIT;
+            ast.getParent().getType() == TokenTypes.INSTANCE_INIT;
         final boolean classEndsAfterInitializerEnds = ast.getPreviousSibling() != null
-                && ast.getPreviousSibling().getType() == TokenTypes.INSTANCE_INIT;
+            && ast.getPreviousSibling().getType() == TokenTypes.INSTANCE_INIT;
         return initializerBeginsAfterClassBegins || classEndsAfterInitializerEnds;
     }
 
@@ -831,7 +831,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
             && ast.getNextSibling().getType() == TokenTypes.INSTANCE_INIT;
         final boolean initializerEndsBeforeClassEnds =
             ast.getParent().getParent().getType() == TokenTypes.INSTANCE_INIT
-            && ast.getParent().getParent().getNextSibling().getType() == TokenTypes.RCURLY;
+                && ast.getParent().getParent().getNextSibling().getType() == TokenTypes.RCURLY;
         return classBeginBeforeInitializerBegin || initializerEndsBeforeClassEnds;
     }
 

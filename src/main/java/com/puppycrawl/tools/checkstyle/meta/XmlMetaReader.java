@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.meta;
 
@@ -71,15 +71,15 @@ public final class XmlMetaReader {
      * @throws IllegalStateException if there was a problem reading the module metadata files
      */
     public static List<ModuleDetails> readAllModulesIncludingThirdPartyIfAny(
-            String... thirdPartyPackages) {
+        String... thirdPartyPackages) {
         final Set<String> standardModuleFileNames = new Reflections(
-                "com.puppycrawl.tools.checkstyle.meta", Scanners.Resources)
-                .getResources(Pattern.compile(".*\\.xml"));
+            "com.puppycrawl.tools.checkstyle.meta", Scanners.Resources)
+            .getResources(Pattern.compile(".*\\.xml"));
         final Set<String> allMetadataSources = new HashSet<>(standardModuleFileNames);
         for (String packageName : thirdPartyPackages) {
             final Set<String> thirdPartyModuleFileNames =
-                    new Reflections(packageName, Scanners.Resources)
-                            .getResources(Pattern.compile(".*checkstylemeta-.*\\.xml"));
+                new Reflections(packageName, Scanners.Resources)
+                    .getResources(Pattern.compile(".*checkstylemeta-.*\\.xml"));
             allMetadataSources.addAll(thirdPartyModuleFileNames);
         }
 
@@ -98,11 +98,11 @@ public final class XmlMetaReader {
             final ModuleDetails moduleDetails;
             try {
                 moduleDetails = read(XmlMetaReader.class.getResourceAsStream("/" + fileName),
-                        moduleType);
+                    moduleType);
             }
             catch (ParserConfigurationException | IOException | SAXException ex) {
                 throw new IllegalStateException("Problem to read all modules including third "
-                        + "party if any. Problem detected at file: " + fileName, ex);
+                    + "party if any. Problem detected at file: " + fileName, ex);
             }
             result.add(moduleDetails);
         }
@@ -121,7 +121,7 @@ public final class XmlMetaReader {
      * @throws SAXException if a SAX exception occurs during parsing the XML file
      */
     public static ModuleDetails read(InputStream moduleMetadataStream, ModuleType moduleType)
-            throws ParserConfigurationException, IOException, SAXException {
+        throws ParserConfigurationException, IOException, SAXException {
         ModuleDetails result = null;
         if (moduleType != null) {
             final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -151,16 +151,16 @@ public final class XmlMetaReader {
         moduleDetails.setFullQualifiedName(getAttributeValue(mod, "fully-qualified-name"));
         moduleDetails.setParent(getAttributeValue(mod, "parent"));
         moduleDetails.setDescription(getDirectChildsByTag(mod, XML_TAG_DESCRIPTION).get(0)
-                .getFirstChild().getNodeValue());
+            .getFirstChild().getNodeValue());
         final List<Element> properties = getDirectChildsByTag(mod, "properties");
         if (!properties.isEmpty()) {
             final List<ModulePropertyDetails> modulePropertyDetailsList =
-                    createProperties(properties.get(0));
+                createProperties(properties.get(0));
             moduleDetails.addToProperties(modulePropertyDetailsList);
         }
         final List<String> messageKeys =
-                getListContentByAttribute(mod,
-                        "message-keys", "message-key", "key");
+            getListContentByAttribute(mod,
+                "message-keys", "message-key", "key");
         if (messageKeys != null) {
             moduleDetails.addToViolationMessages(messageKeys);
         }
@@ -190,7 +190,7 @@ public final class XmlMetaReader {
                 propertyDetails.setValidationType(getAttributeValue(prop, validationTypeTag));
             }
             propertyDetails.setDescription(getDirectChildsByTag(prop, XML_TAG_DESCRIPTION)
-                    .get(0).getFirstChild().getNodeValue());
+                .get(0).getFirstChild().getNodeValue());
             result.add(propertyDetails);
         }
         return result;
@@ -206,7 +206,7 @@ public final class XmlMetaReader {
      * @return list of strings containing the XML list data
      */
     private static List<String> getListContentByAttribute(Element element, String listParent,
-                                                         String listOption, String attribute) {
+                                                          String listOption, String attribute) {
         final List<Element> children = getDirectChildsByTag(element, listParent);
         List<String> result = null;
         if (!children.isEmpty()) {

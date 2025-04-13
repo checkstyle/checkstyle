@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -61,7 +61,7 @@ public final class AstTreeStringPrinter {
      * @throws CheckstyleException if the file is not a Java source.
      */
     public static String printFileAst(File file, JavaParser.Options options)
-            throws IOException, CheckstyleException {
+        throws IOException, CheckstyleException {
         return printTree(JavaParser.parseFile(file, options));
     }
 
@@ -74,7 +74,7 @@ public final class AstTreeStringPrinter {
      * @throws CheckstyleException error while parsing the file
      */
     public static String printJavaAndJavadocTree(File file)
-            throws IOException, CheckstyleException {
+        throws IOException, CheckstyleException {
         final DetailAST tree = JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS);
         return printJavaAndJavadocTree(tree);
     }
@@ -93,7 +93,7 @@ public final class AstTreeStringPrinter {
                 .append(getNodeInfo(node))
                 .append(LINE_SEPARATOR);
             if (node.getType() == TokenTypes.COMMENT_CONTENT
-                    && JavadocUtil.isJavadocComment(node.getParent())) {
+                && JavadocUtil.isJavadocComment(node.getParent())) {
                 final String javadocTree = parseAndPrintJavadocTree(node);
                 messageBuilder.append(javadocTree);
             }
@@ -131,7 +131,7 @@ public final class AstTreeStringPrinter {
      * @throws CheckstyleException if the file is not a Java source.
      */
     public static String printAst(FileText text, JavaParser.Options options)
-            throws CheckstyleException {
+        throws CheckstyleException {
         final DetailAST ast = JavaParser.parseFileText(text, options);
         return printTree(ast);
     }
@@ -167,9 +167,9 @@ public final class AstTreeStringPrinter {
         DetailAST node = ast;
         while (node != null) {
             messageBuilder.append(getIndentation(node))
-                    .append(getNodeInfo(node))
-                    .append(LINE_SEPARATOR)
-                    .append(printTree(node.getFirstChild()));
+                .append(getNodeInfo(node))
+                .append(LINE_SEPARATOR)
+                .append(printTree(node.getFirstChild()));
             node = node.getNextSibling();
         }
         return messageBuilder.toString();
@@ -184,8 +184,8 @@ public final class AstTreeStringPrinter {
      */
     private static String getNodeInfo(DetailAST node) {
         return TokenUtil.getTokenName(node.getType())
-                + " -> " + escapeAllControlChars(node.getText())
-                + " [" + node.getLineNo() + ':' + node.getColumnNo() + ']';
+            + " -> " + escapeAllControlChars(node.getText())
+            + " [" + node.getLineNo() + ':' + node.getColumnNo() + ']';
     }
 
     /**

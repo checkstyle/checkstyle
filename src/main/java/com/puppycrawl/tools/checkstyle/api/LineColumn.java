@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.api;
 
@@ -84,7 +84,7 @@ public class LineColumn implements Comparable<LineColumn> {
         }
         final LineColumn lineColumn = (LineColumn) other;
         return Objects.equals(line, lineColumn.line)
-                && Objects.equals(column, lineColumn.column);
+            && Objects.equals(column, lineColumn.column);
     }
 
     @Override

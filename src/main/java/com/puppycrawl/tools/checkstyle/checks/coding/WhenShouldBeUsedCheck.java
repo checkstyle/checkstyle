@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -103,11 +103,11 @@ public class WhenShouldBeUsedCheck extends AbstractCheck {
             final List<DetailAST> blockStatements = getBlockStatements(statementList);
 
             final boolean hasAcceptableStatementsOnly = blockStatements.stream()
-                    .allMatch(WhenShouldBeUsedCheck::isAcceptableStatement);
+                .allMatch(WhenShouldBeUsedCheck::isAcceptableStatement);
 
             final boolean hasSingleIfWithNoElse = blockStatements.stream()
-                    .filter(WhenShouldBeUsedCheck::isSingleIfWithNoElse)
-                    .count() == 1;
+                .filter(WhenShouldBeUsedCheck::isSingleIfWithNoElse)
+                .count() == 1;
 
             if (hasAcceptableStatementsOnly && hasSingleIfWithNoElse) {
                 log(ast, MSG_KEY);
@@ -170,8 +170,8 @@ public class WhenShouldBeUsedCheck extends AbstractCheck {
      */
     private static boolean hasPatternLabel(DetailAST caseAST) {
         return caseAST.findFirstToken(TokenTypes.PATTERN_VARIABLE_DEF) != null
-                || caseAST.findFirstToken(TokenTypes.RECORD_PATTERN_DEF) != null
-                || caseAST.findFirstToken(TokenTypes.PATTERN_DEF) != null;
+            || caseAST.findFirstToken(TokenTypes.RECORD_PATTERN_DEF) != null
+            || caseAST.findFirstToken(TokenTypes.PATTERN_DEF) != null;
     }
 
     /**
@@ -182,7 +182,7 @@ public class WhenShouldBeUsedCheck extends AbstractCheck {
      */
     private static boolean isSingleIfWithNoElse(DetailAST statement) {
         return statement.getType() == TokenTypes.LITERAL_IF
-                && statement.findFirstToken(TokenTypes.LITERAL_ELSE) == null;
+            && statement.findFirstToken(TokenTypes.LITERAL_ELSE) == null;
     }
 
 }

@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -74,7 +74,7 @@ public class DefaultComesLastCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE =
-            "default.comes.last.in.casegroup";
+        "default.comes.last.in.casegroup";
 
     /** Control whether to allow {@code default} along with {@code case} if they are not last. */
     private boolean skipIfLastAndSharedWithCase;
@@ -120,14 +120,14 @@ public class DefaultComesLastCheck extends AbstractCheck {
             }
             else if (ast.getPreviousSibling() == null
                 && isNextSiblingOf(defaultGroupAST,
-                                                   TokenTypes.CASE_GROUP)) {
+                TokenTypes.CASE_GROUP)) {
                 log(ast, MSG_KEY);
             }
         }
         else if (isNextSiblingOf(defaultGroupAST,
-                                            TokenTypes.CASE_GROUP)
-                    || isNextSiblingOf(defaultGroupAST,
-                                            TokenTypes.SWITCH_RULE)) {
+            TokenTypes.CASE_GROUP)
+            || isNextSiblingOf(defaultGroupAST,
+            TokenTypes.SWITCH_RULE)) {
             log(ast, MSG_KEY);
         }
     }

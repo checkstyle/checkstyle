@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks;
 
@@ -191,7 +191,7 @@ public class FinalParametersCheck extends AbstractCheck {
 
         // ignore abstract and native methods
         if (modifiers.findFirstToken(TokenTypes.ABSTRACT) == null
-                && modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) == null) {
+            && modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) == null) {
             final DetailAST parameters =
                 method.findFirstToken(TokenTypes.PARAMETERS);
             TokenUtil.forEachChild(parameters, TokenTypes.PARAMETER_DEF, this::checkParam);
@@ -223,9 +223,9 @@ public class FinalParametersCheck extends AbstractCheck {
      */
     private void checkParam(final DetailAST param) {
         if (param.findFirstToken(TokenTypes.MODIFIERS).findFirstToken(TokenTypes.FINAL) == null
-                && !isIgnoredPrimitiveParam(param)
-                && !isIgnoredUnnamedParam(param)
-                && !CheckUtil.isReceiverParameter(param)) {
+            && !isIgnoredPrimitiveParam(param)
+            && !isIgnoredUnnamedParam(param)
+            && !CheckUtil.isReceiverParameter(param)) {
             final DetailAST paramName = param.findFirstToken(TokenTypes.IDENT);
             final DetailAST firstNode = CheckUtil.getFirstNode(param);
             log(firstNode,
@@ -245,9 +245,9 @@ public class FinalParametersCheck extends AbstractCheck {
             final DetailAST type = paramDef.findFirstToken(TokenTypes.TYPE);
             final DetailAST parameterType = type.getFirstChild();
             final DetailAST arrayDeclarator = type
-                    .findFirstToken(TokenTypes.ARRAY_DECLARATOR);
+                .findFirstToken(TokenTypes.ARRAY_DECLARATOR);
             if (arrayDeclarator == null
-                    && primitiveDataTypes.get(parameterType.getType())) {
+                && primitiveDataTypes.get(parameterType.getType())) {
                 result = true;
             }
         }

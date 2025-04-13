@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.api;
 
@@ -51,7 +51,7 @@ public class Comment implements TextBlock {
      * @param lastCol number of the last column of the comment.
      */
     public Comment(final String[] text, final int firstCol,
-            final int lastLine, final int lastCol) {
+                   final int lastLine, final int lastCol) {
         this.text = text.clone();
         startLineNo = lastLine - text.length + 1;
         endLineNo = lastLine;
@@ -101,10 +101,10 @@ public class Comment implements TextBlock {
     @Override
     public String toString() {
         return "Comment[text=" + Arrays.toString(text)
-                + ", startLineNo=" + startLineNo
-                + ", endLineNo=" + endLineNo
-                + ", startColNo=" + startColNo
-                + ", endColNo=" + endColNo + ']';
+            + ", startLineNo=" + startLineNo
+            + ", endLineNo=" + endLineNo
+            + ", startColNo=" + startColNo
+            + ", endColNo=" + endColNo + ']';
     }
 
 }

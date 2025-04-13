@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
@@ -57,7 +57,7 @@ class HtmlTag {
      * @param text the line of comment text for this tag.
      */
     /* package */ HtmlTag(String id, int lineNo, int position, boolean closedTag,
-            boolean incomplete, String text) {
+                          boolean incomplete, String text) {
         this.id = id;
         this.lineNo = lineNo;
         this.position = position;
@@ -125,11 +125,11 @@ class HtmlTag {
     @Override
     public String toString() {
         return "HtmlTag[id='" + id + '\''
-                + ", lineNo=" + lineNo
-                + ", position=" + position
-                + ", text='" + text + '\''
-                + ", closedTag=" + closedTag
-                + ", incompleteTag=" + incompleteTag + ']';
+            + ", lineNo=" + lineNo
+            + ", position=" + position
+            + ", text='" + text + '\''
+            + ", closedTag=" + closedTag
+            + ", incompleteTag=" + incompleteTag + ']';
     }
 
     /**

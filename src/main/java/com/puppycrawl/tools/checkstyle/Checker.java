@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -73,7 +73,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
     /** Maintains error count. */
     private final SeverityLevelCounter counter = new SeverityLevelCounter(
-            SeverityLevel.ERROR);
+        SeverityLevel.ERROR);
 
     /** Vector of listeners. */
     private final List<AuditListener> listeners = new ArrayList<>();
@@ -83,7 +83,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
     /** The audit event before execution file filters. */
     private final BeforeExecutionFileFilterSet beforeExecutionFileFilters =
-            new BeforeExecutionFileFilterSet();
+        new BeforeExecutionFileFilterSet();
 
     /** The audit event filters. */
     private final FilterSet filters = new FilterSet();
@@ -221,8 +221,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         }
 
         final List<File> targetFiles = files.stream()
-                .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
-                .collect(Collectors.toUnmodifiableList());
+            .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
+            .collect(Collectors.toUnmodifiableList());
         processFiles(targetFiles);
 
         // Finish up
@@ -249,7 +249,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             .filter(ExternalResourceHolder.class::isInstance)
             .flatMap(resource -> {
                 return ((ExternalResourceHolder) resource)
-                        .getExternalResourceLocations().stream();
+                    .getExternalResourceLocations().stream();
             })
             .collect(Collectors.toUnmodifiableSet());
     }
@@ -289,7 +289,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 fileName = file.getAbsolutePath();
                 final long timestamp = file.lastModified();
                 if (cacheFile != null && cacheFile.isInCache(fileName, timestamp)
-                        || !acceptFileStarted(fileName)) {
+                    || !acceptFileStarted(fileName)) {
                     continue;
                 }
                 if (cacheFile != null) {
@@ -309,7 +309,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
                 // We need to catch all exceptions to put a reason failure (file name) in exception
                 throw new CheckstyleException(
-                        getLocalizedMessage("Checker.processFilesException", filePath), ex);
+                    getLocalizedMessage("Checker.processFilesException", filePath), ex);
             }
             catch (Error error) {
                 if (fileName != null && cacheFile != null) {
@@ -343,8 +343,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         catch (final IOException ioe) {
             log.debug("IOException occurred.", ioe);
             fileMessages.add(new Violation(1,
-                    Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
-                    new String[] {ioe.getMessage()}, null, getClass(), null));
+                Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
+                new String[] {ioe.getMessage()}, null, getClass(), null));
         }
         // -@cs[IllegalCatch] There is no other way to obey haltOnException field
         catch (Exception ex) {
@@ -360,9 +360,9 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             ex.printStackTrace(pw);
 
             fileMessages.add(new Violation(1,
-                    Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
-                    new String[] {sw.getBuffer().toString()},
-                    null, getClass(), null));
+                Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
+                new String[] {sw.getBuffer().toString()},
+                null, getClass(), null));
         }
         return fileMessages;
     }
@@ -444,9 +444,9 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             }
 
             final Set<String> packageNames = PackageNamesLoader
-                    .getPackageNames(moduleClassLoader);
+                .getPackageNames(moduleClassLoader);
             moduleFactory = new PackageObjectFactory(packageNames,
-                    moduleClassLoader);
+                moduleClassLoader);
         }
 
         final DefaultContext context = new DefaultContext();
@@ -466,7 +466,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      */
     @Override
     protected void setupChild(Configuration childConf)
-            throws CheckstyleException {
+        throws CheckstyleException {
         final String name = childConf.getName();
         final Object child;
 
@@ -481,7 +481,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         }
         catch (final CheckstyleException ex) {
             throw new CheckstyleException(
-                    getLocalizedMessage("Checker.setupChildModule", name, ex.getMessage()), ex);
+                getLocalizedMessage("Checker.setupChildModule", name, ex.getMessage()), ex);
         }
         if (child instanceof FileSetCheck) {
             final FileSetCheck fsc = (FileSetCheck) child;
@@ -502,7 +502,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         }
         else {
             throw new CheckstyleException(
-                    getLocalizedMessage("Checker.setupChildNotAllowed", name));
+                getLocalizedMessage("Checker.setupChildNotAllowed", name));
         }
     }
 
@@ -612,10 +612,10 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @throws UnsupportedEncodingException if charset is unsupported.
      */
     public void setCharset(String charset)
-            throws UnsupportedEncodingException {
+        throws UnsupportedEncodingException {
         if (!Charset.isSupported(charset)) {
             throw new UnsupportedEncodingException(
-                    getLocalizedMessage("Checker.setCharset", charset));
+                getLocalizedMessage("Checker.setCharset", charset));
         }
         this.charset = charset;
     }
@@ -657,7 +657,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     private String getLocalizedMessage(String messageKey, Object... args) {
         final LocalizedMessage localizedMessage = new LocalizedMessage(
             Definitions.CHECKSTYLE_BUNDLE, getClass(),
-                    messageKey, args);
+            messageKey, args);
 
         return localizedMessage.getMessage();
     }

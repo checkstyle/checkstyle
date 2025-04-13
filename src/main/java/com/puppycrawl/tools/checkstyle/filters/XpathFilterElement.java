@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.filters;
 
@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
 import com.puppycrawl.tools.checkstyle.xpath.RootNode;
+
 import net.sf.saxon.Configuration;
 import net.sf.saxon.om.Item;
 import net.sf.saxon.sxpath.XPathDynamicContext;
@@ -76,12 +77,12 @@ public class XpathFilterElement implements TreeWalkerFilter {
      * @throws IllegalArgumentException if the xpath query is not expected.
      */
     public XpathFilterElement(String files, String checks,
-                       String message, String moduleId, String query) {
+                              String message, String moduleId, String query) {
         this(Optional.ofNullable(files).map(Pattern::compile).orElse(null),
-             Optional.ofNullable(checks).map(CommonUtil::createPattern).orElse(null),
-             Optional.ofNullable(message).map(Pattern::compile).orElse(null),
-             moduleId,
-             query);
+            Optional.ofNullable(checks).map(CommonUtil::createPattern).orElse(null),
+            Optional.ofNullable(message).map(Pattern::compile).orElse(null),
+            moduleId,
+            query);
     }
 
     /**
@@ -95,7 +96,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
      * @throws IllegalArgumentException if the xpath query is not correct.
      */
     public XpathFilterElement(Pattern files, Pattern checks, Pattern message,
-                           String moduleId, String query) {
+                              String moduleId, String query) {
         fileRegexp = files;
         checkRegexp = checks;
         messageRegexp = message;
@@ -106,7 +107,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
         }
         else {
             final XPathEvaluator xpathEvaluator = new XPathEvaluator(
-                    Configuration.newConfiguration());
+                Configuration.newConfiguration());
             try {
                 xpathExpression = xpathEvaluator.createExpression(xpathQuery);
             }
@@ -115,18 +116,18 @@ public class XpathFilterElement implements TreeWalkerFilter {
             }
         }
         isEmptyConfig = fileRegexp == null
-                             && checkRegexp == null
-                             && messageRegexp == null
-                             && moduleId == null
-                             && xpathExpression == null;
+            && checkRegexp == null
+            && messageRegexp == null
+            && moduleId == null
+            && xpathExpression == null;
     }
 
     @Override
     public boolean accept(TreeWalkerAuditEvent event) {
         return isEmptyConfig
-                || !isFileNameAndModuleAndModuleNameMatching(event)
-                || !isMessageNameMatching(event)
-                || !isXpathQueryMatching(event);
+            || !isFileNameAndModuleAndModuleNameMatching(event)
+            || !isMessageNameMatching(event)
+            || !isXpathQueryMatching(event);
     }
 
     /**
@@ -137,10 +138,10 @@ public class XpathFilterElement implements TreeWalkerFilter {
      */
     private boolean isFileNameAndModuleAndModuleNameMatching(TreeWalkerAuditEvent event) {
         return event.getFileName() != null
-                && (fileRegexp == null || fileRegexp.matcher(event.getFileName()).find())
-                && event.getViolation() != null
-                && (moduleId == null || moduleId.equals(event.getModuleId()))
-                && (checkRegexp == null || checkRegexp.matcher(event.getSourceName()).find());
+            && (fileRegexp == null || fileRegexp.matcher(event.getFileName()).find())
+            && event.getViolation() != null
+            && (moduleId == null || moduleId.equals(event.getModuleId()))
+            && (checkRegexp == null || checkRegexp.matcher(event.getSourceName()).find());
     }
 
     /**
@@ -171,8 +172,8 @@ public class XpathFilterElement implements TreeWalkerFilter {
                 .collect(Collectors.toUnmodifiableList());
             for (AbstractNode abstractNode : nodes) {
                 isMatching = abstractNode.getTokenType() == event.getTokenType()
-                        && abstractNode.getLineNumber() == event.getLine()
-                        && abstractNode.getColumnNumber() == event.getColumnCharIndex();
+                    && abstractNode.getLineNumber() == event.getLine()
+                    && abstractNode.getColumnNumber() == event.getColumnCharIndex();
                 if (isMatching) {
                     break;
                 }
@@ -199,12 +200,12 @@ public class XpathFilterElement implements TreeWalkerFilter {
         final List<Item> items;
         try {
             final XPathDynamicContext xpathDynamicContext =
-                    xpathExpression.createDynamicContext(rootNode);
+                xpathExpression.createDynamicContext(rootNode);
             items = xpathExpression.evaluate(xpathDynamicContext);
         }
         catch (XPathException ex) {
             throw new IllegalStateException("Cannot initialize context and evaluate query: "
-                    + xpathQuery, ex);
+                + xpathQuery, ex);
         }
         return items;
     }
@@ -212,7 +213,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
     @Override
     public int hashCode() {
         return Objects.hash(getPatternSafely(fileRegexp), getPatternSafely(checkRegexp),
-                getPatternSafely(messageRegexp), moduleId, xpathQuery);
+            getPatternSafely(messageRegexp), moduleId, xpathQuery);
     }
 
     @Override
@@ -225,13 +226,13 @@ public class XpathFilterElement implements TreeWalkerFilter {
         }
         final XpathFilterElement xpathFilter = (XpathFilterElement) other;
         return Objects.equals(getPatternSafely(fileRegexp),
-                    getPatternSafely(xpathFilter.fileRegexp))
-                && Objects.equals(getPatternSafely(checkRegexp),
-                    getPatternSafely(xpathFilter.checkRegexp))
-                && Objects.equals(getPatternSafely(messageRegexp),
-                    getPatternSafely(xpathFilter.messageRegexp))
-                && Objects.equals(moduleId, xpathFilter.moduleId)
-                && Objects.equals(xpathQuery, xpathFilter.xpathQuery);
+            getPatternSafely(xpathFilter.fileRegexp))
+            && Objects.equals(getPatternSafely(checkRegexp),
+            getPatternSafely(xpathFilter.checkRegexp))
+            && Objects.equals(getPatternSafely(messageRegexp),
+            getPatternSafely(xpathFilter.messageRegexp))
+            && Objects.equals(moduleId, xpathFilter.moduleId)
+            && Objects.equals(xpathQuery, xpathFilter.xpathQuery);
     }
 
     /**

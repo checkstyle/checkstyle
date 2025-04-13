@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
@@ -107,10 +107,10 @@ public class ConstantNameCheck
         final boolean isStaticFinal =
             modifiersAST.findFirstToken(TokenTypes.LITERAL_STATIC) != null
                 && modifiersAST.findFirstToken(TokenTypes.FINAL) != null
-            || ScopeUtil.isInAnnotationBlock(ast)
-            || ScopeUtil.isInInterfaceBlock(ast);
+                || ScopeUtil.isInAnnotationBlock(ast)
+                || ScopeUtil.isInInterfaceBlock(ast);
         if (isStaticFinal && shouldCheckInScope(modifiersAST)
-                        && !ScopeUtil.isInCodeBlock(ast)) {
+            && !ScopeUtil.isInCodeBlock(ast)) {
             // Handle the serialVersionUID and serialPersistentFields constants
             // which are used for Serialization. Cannot enforce rules on it. :-)
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);

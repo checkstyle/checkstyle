@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.api;
 
@@ -1595,7 +1595,7 @@ public final class JavadocTokenTypes {
 
     /** `rp` tag name. */
     public static final int RP_HTML_TAG_NAME = JavadocParser.RP_HTML_TAG_NAME;
-    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///
 
     /////////////////////// SINGLETON HTML TAGS  //////////////////////////////////////////////////
     /**
@@ -1786,7 +1786,7 @@ public final class JavadocTokenTypes {
     public static final int TRACK_HTML_TAG_NAME = JavadocParser.TRACK_HTML_TAG_NAME;
     /** "wbr" tag name. */
     public static final int WBR_HTML_TAG_NAME = JavadocParser.WBR_HTML_TAG_NAME;
-    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///
 
     /**
      * HTML comment start symbol '&lt;&#33;--'.
@@ -1997,7 +1997,7 @@ public final class JavadocTokenTypes {
      *      replaced with Javadoc tag
      */
     public static final int JAVADOC_INLINE_TAG = JavadocParser.RULE_javadocInlineTag
-            + RULE_TYPES_OFFSET;
+        + RULE_TYPES_OFFSET;
 
     /**
      * Parameter of the Javadoc tags listed below.
@@ -2089,19 +2089,19 @@ public final class JavadocTokenTypes {
      * Parent node for all html tags.
      */
     public static final int HTML_ELEMENT = JavadocParser.RULE_htmlElement
-            + RULE_TYPES_OFFSET;
+        + RULE_TYPES_OFFSET;
 
     /**
      * Start html tag: &lt;XXXX&gt;.
      */
     public static final int HTML_ELEMENT_START = JavadocParser.RULE_htmlElementStart
-            + RULE_TYPES_OFFSET;
+        + RULE_TYPES_OFFSET;
 
     /**
      * End html tag: &lt;XXXX&gt;.
      */
     public static final int HTML_ELEMENT_END = JavadocParser.RULE_htmlElementEnd
-            + RULE_TYPES_OFFSET;
+        + RULE_TYPES_OFFSET;
 
     /**
      * Non-special HTML tag.
@@ -2137,7 +2137,7 @@ public final class JavadocTokenTypes {
      * </pre>
      */
     public static final int ATTRIBUTE = JavadocParser.RULE_attribute
-            + RULE_TYPES_OFFSET;
+        + RULE_TYPES_OFFSET;
 
     /////////////////////// HTML TAGS WITH OPTIONAL END TAG /////////////////////////////////////
     /**
@@ -2465,10 +2465,10 @@ public final class JavadocTokenTypes {
     public static final int COLGROUP = JavadocParser.RULE_colgroup + RULE_TYPES_OFFSET;
     /** Start colgroup tag. */
     public static final int COLGROUP_TAG_START = JavadocParser.RULE_colgroupTagStart
-            + RULE_TYPES_OFFSET;
+        + RULE_TYPES_OFFSET;
     /** End colgroup tag. */
     public static final int COLGROUP_TAG_END = JavadocParser.RULE_colgroupTagEnd
-            + RULE_TYPES_OFFSET;
+        + RULE_TYPES_OFFSET;
 
     /**
      * DD html tag.
@@ -2544,10 +2544,10 @@ public final class JavadocTokenTypes {
     public static final int OPTION = JavadocParser.RULE_option + RULE_TYPES_OFFSET;
     /** Start option tag. */
     public static final int OPTION_TAG_START =
-            JavadocParser.RULE_optionTagStart + RULE_TYPES_OFFSET;
+        JavadocParser.RULE_optionTagStart + RULE_TYPES_OFFSET;
     /** End option tag. */
     public static final int OPTION_TAG_END = JavadocParser.RULE_optionTagEnd
-            + RULE_TYPES_OFFSET;
+        + RULE_TYPES_OFFSET;
 
     /**
      * Table body html tag.
@@ -2611,59 +2611,59 @@ public final class JavadocTokenTypes {
     public static final int OPTGROUP = JavadocParser.RULE_optgroup + RULE_TYPES_OFFSET;
     /** `optgroup` tag start. */
     public static final int OPTGROUP_TAG_START =
-            JavadocParser.RULE_optgroupTagStart + RULE_TYPES_OFFSET;
+        JavadocParser.RULE_optgroupTagStart + RULE_TYPES_OFFSET;
     /** `optgroup` tag end. */
     public static final int OPTGROUP_TAG_END =
-            JavadocParser.RULE_optgroupTagEnd + RULE_TYPES_OFFSET;
+        JavadocParser.RULE_optgroupTagEnd + RULE_TYPES_OFFSET;
 
     /** `rb` html tag. */
     public static final int RB = JavadocParser.RULE_rb + RULE_TYPES_OFFSET;
     /** `rb` tag start. */
     public static final int RB_TAG_START =
-            JavadocParser.RULE_rbTagStart + RULE_TYPES_OFFSET;
+        JavadocParser.RULE_rbTagStart + RULE_TYPES_OFFSET;
     /** `rb` tag end. */
     public static final int RB_TAG_END =
-            JavadocParser.RULE_rbTagEnd + RULE_TYPES_OFFSET;
+        JavadocParser.RULE_rbTagEnd + RULE_TYPES_OFFSET;
 
     /** `rt` html tag. */
     public static final int RT = JavadocParser.RULE_rt + RULE_TYPES_OFFSET;
     /** `rt` tag start. */
     public static final int RT_TAG_START =
-            JavadocParser.RULE_rtTagStart + RULE_TYPES_OFFSET;
+        JavadocParser.RULE_rtTagStart + RULE_TYPES_OFFSET;
     /** `rt` tag end. */
     public static final int RT_TAG_END =
-            JavadocParser.RULE_rtTagEnd + RULE_TYPES_OFFSET;
+        JavadocParser.RULE_rtTagEnd + RULE_TYPES_OFFSET;
 
     /** `rtc` html tag. */
     public static final int RTC = JavadocParser.RULE_rtc + RULE_TYPES_OFFSET;
     /** `rtc` tag start. */
     public static final int RTC_TAG_START =
-            JavadocParser.RULE_rtcTagStart + RULE_TYPES_OFFSET;
+        JavadocParser.RULE_rtcTagStart + RULE_TYPES_OFFSET;
     /** `rtc` tag end. */
     public static final int RTC_TAG_END =
-            JavadocParser.RULE_rtcTagEnd + RULE_TYPES_OFFSET;
+        JavadocParser.RULE_rtcTagEnd + RULE_TYPES_OFFSET;
 
     /** `rp` html tag. */
     public static final int RP = JavadocParser.RULE_rp + RULE_TYPES_OFFSET;
     /** `rp` tag start. */
     public static final int RP_TAG_START =
-            JavadocParser.RULE_rpTagStart + RULE_TYPES_OFFSET;
+        JavadocParser.RULE_rpTagStart + RULE_TYPES_OFFSET;
     /** `rp` tag end. */
     public static final int RP_TAG_END =
-            JavadocParser.RULE_rpTagEnd + RULE_TYPES_OFFSET;
+        JavadocParser.RULE_rpTagEnd + RULE_TYPES_OFFSET;
 
     /////////////////////// SINGLETON HTML TAGS  //////////////////////////////////////////////////
     /**
      * Parent node for all singleton html tags.
      */
     public static final int SINGLETON_ELEMENT = JavadocParser.RULE_singletonElement
-            + RULE_TYPES_OFFSET;
+        + RULE_TYPES_OFFSET;
 
     /**
      * Non-special empty html tag.
      */
     public static final int EMPTY_TAG = JavadocParser.RULE_emptyTag
-            + RULE_TYPES_OFFSET;
+        + RULE_TYPES_OFFSET;
 
     /**
      * Area html tag.
@@ -2934,7 +2934,7 @@ public final class JavadocTokenTypes {
      */
     public static final int WBR_TAG = JavadocParser.RULE_wbrTag + RULE_TYPES_OFFSET;
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///
 
     /**
      * Html comment: <code>&lt;&#33;-- --&gt;</code>.
@@ -2944,7 +2944,7 @@ public final class JavadocTokenTypes {
      *      replaced with Javadoc tag
      */
     public static final int HTML_COMMENT = JavadocParser.RULE_htmlComment
-            + RULE_TYPES_OFFSET;
+        + RULE_TYPES_OFFSET;
     /**
      * CHAR and WS sequence.
      */

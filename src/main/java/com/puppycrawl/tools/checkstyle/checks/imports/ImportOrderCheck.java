@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
+////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
 //
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
+///
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
@@ -444,7 +444,7 @@ public class ImportOrderCheck
         }
         else {
             ident = FullIdent.createFullIdent(ast.getFirstChild()
-                    .getNextSibling());
+                .getNextSibling());
             isStatic = true;
         }
 
@@ -464,7 +464,7 @@ public class ImportOrderCheck
         }
         else {
             throw new IllegalStateException(
-                    "Unexpected option for static imports: " + option);
+                "Unexpected option for static imports: " + option);
         }
 
         lastImportLine = ast.findFirstToken(TokenTypes.SEMI).getLineNo();
@@ -560,7 +560,7 @@ public class ImportOrderCheck
      * @param ast node of the AST.
      */
     private void doVisitTokenInSameGroup(boolean isStatic,
-            boolean previous, String name, DetailAST ast) {
+                                         boolean previous, String name, DetailAST ast) {
         if (ordered) {
             if (option == ImportOrderOption.INFLOW) {
                 if (isWrongOrder(name, isStatic)) {
@@ -577,7 +577,7 @@ public class ImportOrderCheck
                         // current and previous static or current and
                         // previous non-static
                         lastImportStatic == isStatic
-                    && isWrongOrder(name, isStatic);
+                            && isWrongOrder(name, isStatic);
 
                 if (shouldFireError) {
                     log(ast, MSG_ORDERING, name);
@@ -754,7 +754,7 @@ public class ImportOrderCheck
      *         string1 is lexicographically greater than string2
      */
     private static int compare(String string1, String string2,
-            boolean caseSensitive) {
+                               boolean caseSensitive) {
         final int result;
         if (caseSensitive) {
             result = string1.compareTo(string2);
