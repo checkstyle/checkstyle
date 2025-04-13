@@ -314,21 +314,27 @@ public final class CheckUtil {
      * @return the access modifier of the method/constructor.
      */
     public static AccessModifierOption getAccessModifierFromModifiersToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
-            // Enum constants don't have modifiers - implicitly public but validate against parent(s)
-            while (ast.getType() != TokenTypes.ENUM_DEF) {
-                ast = ast.getParent();
+        // In some scenarios we want to investigate a parent AST instead
+        DetailAST selectedAst = ast;
+
+        if (selectedAst.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+            // Enum constants don't have modifiers
+            // implicitly public but validate against parent(s)
+            while (selectedAst.getType() != TokenTypes.ENUM_DEF) {
+                selectedAst = selectedAst.getParent();
             }
         }
 
-        final DetailAST modsToken = ast.findFirstToken(TokenTypes.MODIFIERS);
-        AccessModifierOption accessModifier = getAccessModifierFromModifiersTokenDirectly(modsToken);
+        final DetailAST modsToken = selectedAst.findFirstToken(TokenTypes.MODIFIERS);
+        AccessModifierOption accessModifier =
+                getAccessModifierFromModifiersTokenDirectly(modsToken);
 
         if (accessModifier == AccessModifierOption.PACKAGE) {
-            if (ScopeUtil.isInEnumBlock(ast) && ast.getType() == TokenTypes.CTOR_DEF) {
+            if (ScopeUtil.isInEnumBlock(selectedAst)
+                    && selectedAst.getType() == TokenTypes.CTOR_DEF) {
                 accessModifier = AccessModifierOption.PRIVATE;
             }
-            else if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
+            else if (ScopeUtil.isInInterfaceOrAnnotationBlock(selectedAst)) {
                 accessModifier = AccessModifierOption.PUBLIC;
             }
         }
