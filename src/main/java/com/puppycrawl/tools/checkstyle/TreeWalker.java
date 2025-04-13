@@ -169,10 +169,11 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             filters.add(filter);
         }
         else {
-            throw new CheckstyleException(
-                "TreeWalker is not allowed as a parent of " + name
-                        + " Please review 'Parent Module' section for this Check in web"
-                        + " documentation if Check is standard.");
+            throw new CheckstyleException("TreeWalker is not allowed as a parent of "
+                    + childConf.getName() + ". Please review 'Parent Module' section "
+                    + "(parent=\"com.puppycrawl.tools.checkstyle.TreeWalker\") "
+                    + "(parent=\"com.puppycrawl.tools.checkstyle.Checker\") "
+                    + "for this Check in web documentation if Check is standard.");
         }
     }
 
