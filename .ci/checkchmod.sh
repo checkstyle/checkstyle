@@ -2,8 +2,7 @@
 
 set -e
 
-# On Travis, after clone, all files are with 644 permission, on local they are 664,
-# so we check only executable bit
+# Ensure non '.sh' files are not executable and have mode 664
 CHMOD=$(find -type f -not -path '*/\.git/*' \
           -a -type f -not -name '*.sh' \
           -a -type f -not -name '*.pl' \
@@ -18,7 +17,7 @@ if [[ -n $CHMOD ]]; then
     exit 1;
 fi
 
-# On Travis, after clone, all 'sh' files have executable bit
+# Ensure all '.sh' files have executable bit set
 CHMOD=$(find -type f -not -path '*/\.git/*' -a -type f -name '*.sh' -a -not -executable)
 if [[ -n $CHMOD ]]; then
     echo "Expected mode for '.sh' files is 755.";

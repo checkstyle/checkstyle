@@ -298,14 +298,12 @@ detailast
 detailnodetreestringprinter
 devops
 Dexec
-Dexpression
 dfa
 DFFF
 Dfile
 dfn
 Dfoo
 Dforbiddenapis
-Dforce
 Dgpg
 Dhttp
 Diachenko
@@ -850,7 +848,6 @@ mozilla
 MRELEASE
 mstudman
 MTAGLIST
-mtime
 multicharacter
 multiline
 Multimap
@@ -995,7 +992,7 @@ ORELSEGET
 orm
 Osgi
 oss
-osx
+OSX
 otechie
 outertypefilename
 outertypenumber
@@ -1070,7 +1067,6 @@ Pointcut
 POJO
 Popup
 Postgresql
-ppc
 prebuilts
 PRESIZE
 prettyprint
