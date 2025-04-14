@@ -207,8 +207,8 @@ public class CheckstyleAntTask extends Task {
      * @noinspectionreason DeprecatedIsStillUsed - until #12556
      */
     @Deprecated(since = "10.7.0")
-    public Path createClasspath() {
-        return new Path(getProject());
+    public org.apache.tools.ant.types.Path createClasspath() {
+        return new org.apache.tools.ant.types.Path(getProject());
     }
 
     /**
