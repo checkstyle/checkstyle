@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -195,7 +196,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     private final Log log;
 
     /** The files to process. */
-    private final Set<File> filesToProcess = ConcurrentHashMap.newKeySet();
+    private final Set<Path> filesToProcess = ConcurrentHashMap.newKeySet();
 
     /**
      * Specify
@@ -284,7 +285,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     }
 
     @Override
-    protected void processFiltered(File file, FileText fileText) {
+    protected void processFiltered(Path file, FileText fileText) {
         // We are just collecting files for processing at finishProcessing()
         filesToProcess.add(file);
     }
@@ -384,16 +385,16 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * @param baseNameRegexp base name regexp pattern.
      * @return set of ResourceBundles.
      */
-    private static Set<ResourceBundle> groupFilesIntoBundles(Set<File> files,
+    private static Set<ResourceBundle> groupFilesIntoBundles(Set<Path> files,
                                                              Pattern baseNameRegexp) {
         final Set<ResourceBundle> resourceBundles = new HashSet<>();
-        for (File currentFile : files) {
-            final String fileName = currentFile.getName();
+        for (Path currentFile : files) {
+            final String fileName = currentFile.getFileName().toString(); // Changed currentFile.getName() to currentFile.getFileName().toString()
             final String baseName = extractBaseName(fileName);
             final Matcher baseNameMatcher = baseNameRegexp.matcher(baseName);
             if (baseNameMatcher.matches()) {
                 final String extension = CommonUtil.getFileExtension(fileName);
-                final String path = getPath(currentFile.getAbsolutePath());
+                final String path = currentFile.getParent() != null ? currentFile.getParent().toString() : ""; // Changed getPath(currentFile.getAbsolutePath()) to currentFile.getParent() != null ? currentFile.getParent().toString() : ""
                 final ResourceBundle newBundle = new ResourceBundle(baseName, path, extension);
                 final Optional<ResourceBundle> bundle = findBundle(resourceBundles, newBundle);
                 if (bundle.isPresent()) {
@@ -482,11 +483,11 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * @param bundle resource bundle.
      */
     private void checkTranslationKeys(ResourceBundle bundle) {
-        final Set<File> filesInBundle = bundle.getFiles();
+        final Set<Path> filesInBundle = bundle.getFiles();
         // build a map from files to the keys they contain
         final Set<String> allTranslationKeys = new HashSet<>();
-        final Map<File, Set<String>> filesAssociatedWithKeys = new TreeMap<>();
-        for (File currentFile : filesInBundle) {
+        final Map<Path, Set<String>> filesAssociatedWithKeys = new TreeMap<>();
+        for (Path currentFile : filesInBundle) {
             final Set<String> keysInCurrentFile = getTranslationKeys(currentFile);
             allTranslationKeys.addAll(keysInCurrentFile);
             filesAssociatedWithKeys.put(currentFile, keysInCurrentFile);
@@ -501,16 +502,16 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * @param fileKeys a Map from translation files to their key sets.
      * @param keysThatMustExist the set of keys to compare with.
      */
-    private void checkFilesForConsistencyRegardingTheirKeys(Map<File, Set<String>> fileKeys,
+    private void checkFilesForConsistencyRegardingTheirKeys(Map<Path, Set<String>> fileKeys,
                                                             Set<String> keysThatMustExist) {
-        for (Entry<File, Set<String>> fileKey : fileKeys.entrySet()) {
+        for (Entry<Path, Set<String>> fileKey : fileKeys.entrySet()) {
             final Set<String> currentFileKeys = fileKey.getValue();
             final Set<String> missingKeys = keysThatMustExist.stream()
                 .filter(key -> !currentFileKeys.contains(key))
                 .collect(Collectors.toUnmodifiableSet());
             if (!missingKeys.isEmpty()) {
                 final MessageDispatcher dispatcher = getMessageDispatcher();
-                final String path = fileKey.getKey().getAbsolutePath();
+                final String path = fileKey.getKey().toAbsolutePath().toString();
                 dispatcher.fireFileStarted(path);
                 for (Object key : missingKeys) {
                     log(1, MSG_KEY, key);
@@ -527,9 +528,9 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * @param file translation file.
      * @return a Set object which holds the loaded keys.
      */
-    private Set<String> getTranslationKeys(File file) {
+    private Set<String> getTranslationKeys(Path file) {
         Set<String> keys = new HashSet<>();
-        try (InputStream inStream = Files.newInputStream(file.toPath())) {
+        try (InputStream inStream = Files.newInputStream(file)) {
             final Properties translations = new Properties();
             translations.load(inStream);
             keys = translations.stringPropertyNames();
@@ -548,7 +549,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * @param exception the exception that occurred
      * @param file the file that could not be processed
      */
-    private void logException(Exception exception, File file) {
+    private void logException(Exception exception, Path file) {
         final String[] args;
         final String key;
         if (exception instanceof NoSuchFileException) {
@@ -569,7 +570,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
                 getClass(), null);
         final SortedSet<Violation> messages = new TreeSet<>();
         messages.add(message);
-        getMessageDispatcher().fireErrors(file.getPath(), messages);
+        getMessageDispatcher().fireErrors(file.getFileName().toString(), messages);
         log.debug("Exception occurred.", exception);
     }
 
@@ -583,7 +584,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
         /** Common path of files which are included in the resource bundle. */
         private final String path;
         /** Set of files which are included in the resource bundle. */
-        private final Set<File> files;
+        private final Set<Path> files;
 
         /**
          * Creates a ResourceBundle object with specific base name, common files extension.
@@ -631,7 +632,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
          *
          * @return the set of files
          */
-        public Set<File> getFiles() {
+        public Set<Path> getFiles() {
             return Collections.unmodifiableSet(files);
         }
 
@@ -640,7 +641,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
          *
          * @param file file which should be added into resource bundle.
          */
-        public void addFile(File file) {
+        public void addFile(Path file) {
             files.add(file);
         }
 
@@ -652,8 +653,8 @@ public class TranslationCheck extends AbstractFileSetCheck {
          */
         public boolean containsFile(String fileNameRegexp) {
             boolean containsFile = false;
-            for (File currentFile : files) {
-                if (Pattern.matches(fileNameRegexp, currentFile.getName())) {
+            for (Path currentFile : files) {
+                if (Pattern.matches(fileNameRegexp, currentFile.getFileName().toString())) {
                     containsFile = true;
                     break;
                 }

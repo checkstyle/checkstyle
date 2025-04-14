@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -188,7 +188,7 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
     }
 
     @Override
-    protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
+    protected void processFiltered(Path file, FileText fileText) throws CheckstyleException {
         final String fileName = getFileName(file);
         final String folderPath = getFolderPath(file);
 
@@ -203,8 +203,8 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
      * @param file Input file to examine.
      * @return The file name.
      */
-    private String getFileName(File file) {
-        String fileName = file.getName();
+    private String getFileName(Path file) {
+        String fileName = file.getFileName().toString();
 
         if (ignoreFileNameExtensions) {
             fileName = CommonUtil.getFileNameWithoutExtension(fileName);
@@ -221,13 +221,13 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
      * @throws CheckstyleException if there is an error getting the canonical
      *         path of the {@code file}.
      */
-    private static String getFolderPath(File file) throws CheckstyleException {
+    private static String getFolderPath(Path file) throws CheckstyleException {
         try {
-            return file.getCanonicalFile().getParent();
+            return file.toFile().getCanonicalFile().getParent();
         }
         catch (IOException ex) {
             throw new CheckstyleException("unable to create canonical path names for "
-                    + file.getAbsolutePath(), ex);
+                + file.toAbsolutePath(), ex);
         }
     }
 

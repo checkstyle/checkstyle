@@ -26,12 +26,16 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -209,7 +213,40 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     }
 
     @Override
-    public int process(List<File> files) throws CheckstyleException {
+    public int processs(List<File> files) throws CheckstyleException {
+        return processFilesInternal(files.stream()
+            .map(File::toPath)
+            .collect(Collectors.toUnmodifiableList()));
+    }
+
+    @Override
+    public int process(Collection<Path> files) throws CheckstyleException {
+        return processFilesInternal(files);
+    }
+
+    /**
+     * Processes a list of files through the checkstyle verification pipeline.
+     *
+     * <p>This method handles the complete processing lifecycle including:
+     * <ol>
+     *   <li>Initializing cache resources (if caching is enabled)</li>
+     *   <li>Starting the audit process</li>
+     *   <li>Filtering files by extension</li>
+     *   <li>Processing each file through all registered FileSetChecks</li>
+     *   <li>Finalizing the audit process</li>
+     *   <li>Cleaning up resources</li>
+     * </ol>
+     *
+     * @param files List of files to be processed. Should not be null but may be empty.
+     * @return Total count of errors found during processing
+     * @throws CheckstyleException   if an error occurs during processing that should halt
+     *                               execution
+     * @throws IllegalStateException if cache operations fail
+     * @see #process(Collection)
+     * @see FileSetCheck
+     * @see PropertyCacheFile
+     */
+    private int processFilesInternal(Collection<Path> files) throws CheckstyleException {
         if (cacheFile != null) {
             cacheFile.putExternalResources(getExternalResourceLocations());
         }
@@ -220,21 +257,16 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             fsc.beginProcessing(charset);
         }
 
-        final List<File> targetFiles = files.stream()
-                .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
-                .collect(Collectors.toUnmodifiableList());
-        processFiles(targetFiles);
-
+        processFiles(files.stream()
+            .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
+            .collect(Collectors.toUnmodifiableList()));
         // Finish up
         // It may also log!!!
         fileSetChecks.forEach(FileSetCheck::finishProcessing);
-
-        // It may also log!!!
         fileSetChecks.forEach(FileSetCheck::destroy);
 
-        final int errorCount = counter.getCount();
         fireAuditFinished();
-        return errorCount;
+        return counter.getCount();
     }
 
     /**
@@ -281,13 +313,13 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      *      deliver filename that was under processing.
      */
     // -@cs[CyclomaticComplexity] no easy way to split this logic of processing the file
-    private void processFiles(List<File> files) throws CheckstyleException {
-        for (final File file : files) {
+    private void processFiles(List<Path> files) throws CheckstyleException {
+        for (final Path file : files) {
             String fileName = null;
-            final String filePath = file.getPath();
+            final String filePath = file.toAbsolutePath().toString();
             try {
-                fileName = file.getAbsolutePath();
-                final long timestamp = file.lastModified();
+                fileName = file.getFileName().toString();
+                final long timestamp = Files.getLastModifiedTime(file).to(TimeUnit.MILLISECONDS);
                 if (cacheFile != null && cacheFile.isInCache(fileName, timestamp)
                         || !acceptFileStarted(fileName)) {
                     continue;
@@ -332,10 +364,10 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @noinspectionreason ProhibitedExceptionThrown - there is no other way to obey
      *      haltOnException field
      */
-    private SortedSet<Violation> processFile(File file) throws CheckstyleException {
+    private SortedSet<Violation> processFile(Path file) throws CheckstyleException {
         final SortedSet<Violation> fileMessages = new TreeSet<>();
         try {
-            final FileText theText = new FileText(file.getAbsoluteFile(), charset);
+            final FileText theText = new FileText(file.toFile(), charset);
             for (final FileSetCheck fsc : fileSetChecks) {
                 fileMessages.addAll(fsc.process(file, theText));
             }

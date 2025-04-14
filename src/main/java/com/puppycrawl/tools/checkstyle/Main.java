@@ -38,6 +38,7 @@ import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -51,6 +52,7 @@ import com.puppycrawl.tools.checkstyle.api.RootModule;
 import com.puppycrawl.tools.checkstyle.utils.ChainedPropertyUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
+
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -195,7 +197,7 @@ public final class Main {
         final int exitStatus;
 
         // return error if something is wrong in arguments
-        final List<File> filesToProcess = getFilesToProcess(options);
+        final List<Path> filesToProcess = getFilesToProcess(options);
         final List<String> messages = options.validateCli(parseResult, filesToProcess);
         final boolean hasMessages = !messages.isEmpty();
         if (hasMessages) {
@@ -214,11 +216,11 @@ public final class Main {
      * @param options the user-specified options
      * @return list of files to process
      */
-    private static List<File> getFilesToProcess(CliOptions options) {
+    private static List<Path> getFilesToProcess(CliOptions options) {
         final List<Pattern> patternsToExclude = options.getExclusions();
 
-        final List<File> result = new LinkedList<>();
-        for (File file : options.files) {
+        final List<Path> result = new LinkedList<>();
+        for (Path file : options.files) {
             result.addAll(listFiles(file, patternsToExclude));
         }
         return result;
@@ -234,22 +236,19 @@ public final class Main {
      *        files.
      * @return found files
      */
-    private static List<File> listFiles(File node, List<Pattern> patternsToExclude) {
-        // could be replaced with org.apache.commons.io.FileUtils.list() method
-        // if only we add commons-io library
-        final List<File> result = new LinkedList<>();
+    private static List<Path> listFiles(Path node, List<Pattern> patternsToExclude) {
+        final List<Path> result = new LinkedList<>();
 
-        if (node.canRead() && !isPathExcluded(node.getAbsolutePath(), patternsToExclude)) {
-            if (node.isDirectory()) {
-                final File[] files = node.listFiles();
-                // listFiles() can return null, so we need to check it
-                if (files != null) {
-                    for (File element : files) {
-                        result.addAll(listFiles(element, patternsToExclude));
-                    }
+        if (Files.isReadable(node) && !isPathExcluded(node.toString(), patternsToExclude)) {
+            if (Files.isDirectory(node)) {
+                try (Stream<Path> files = Files.walk(node)) {
+                    files.filter(Files::isRegularFile)
+                        .forEach(result::add);
+                }
+                catch (IOException ignored) {
                 }
             }
-            else if (node.isFile()) {
+            else if (Files.isRegularFile(node)) {
                 result.add(node);
             }
         }
@@ -290,44 +289,44 @@ public final class Main {
      * @noinspectionreason UseOfSystemOutOrSystemErr - driver class for Checkstyle requires
      *      usage of System.out and System.err
      */
-    private static int runCli(CliOptions options, List<File> filesToProcess)
-            throws IOException, CheckstyleException {
+    private static int runCli(CliOptions options, List<Path> filesToProcess)
+        throws IOException, CheckstyleException {
         int result = 0;
         final boolean hasSuppressionLineColumnNumber = options.suppressionLineColumnNumber != null;
 
         // create config helper object
         if (options.printAst) {
             // print AST
-            final File file = filesToProcess.get(0);
-            final String stringAst = AstTreeStringPrinter.printFileAst(file,
-                    JavaParser.Options.WITHOUT_COMMENTS);
+            final Path file = filesToProcess.get(0);
+            final String stringAst = AstTreeStringPrinter.printFileAst(file.toFile(),
+                JavaParser.Options.WITHOUT_COMMENTS);
             System.out.print(stringAst);
         }
         else if (Objects.nonNull(options.xpath)) {
-            final String branch = XpathUtil.printXpathBranch(options.xpath, filesToProcess.get(0));
-            System.out.print(branch);
+            System.out.print(
+                XpathUtil.printXpathBranch(options.xpath, filesToProcess.get(0).toFile()));
         }
         else if (options.printAstWithComments) {
-            final File file = filesToProcess.get(0);
-            final String stringAst = AstTreeStringPrinter.printFileAst(file,
-                    JavaParser.Options.WITH_COMMENTS);
+            final Path file = filesToProcess.get(0);
+            final String stringAst = AstTreeStringPrinter.printFileAst(file.toFile(),
+                JavaParser.Options.WITH_COMMENTS);
             System.out.print(stringAst);
         }
         else if (options.printJavadocTree) {
-            final File file = filesToProcess.get(0);
-            final String stringAst = DetailNodeTreeStringPrinter.printFileAst(file);
+            final Path file = filesToProcess.get(0);
+            final String stringAst = DetailNodeTreeStringPrinter.printFileAst(file.toFile());
             System.out.print(stringAst);
         }
         else if (options.printTreeWithJavadoc) {
-            final File file = filesToProcess.get(0);
-            final String stringAst = AstTreeStringPrinter.printJavaAndJavadocTree(file);
+            final Path file = filesToProcess.get(0);
+            final String stringAst = AstTreeStringPrinter.printJavaAndJavadocTree(file.toFile());
             System.out.print(stringAst);
         }
         else if (hasSuppressionLineColumnNumber) {
-            final File file = filesToProcess.get(0);
+            final Path file = filesToProcess.get(0);
             final String stringSuppressions =
-                    SuppressionsStringPrinter.printSuppressions(file,
-                            options.suppressionLineColumnNumber, options.tabWidth);
+                SuppressionsStringPrinter.printSuppressions(file.toFile(),
+                    options.suppressionLineColumnNumber, options.tabWidth);
             System.out.print(stringSuppressions);
         }
         else {
@@ -361,7 +360,7 @@ public final class Main {
      * @throws CheckstyleException
      *         when properties file could not be loaded
      */
-    private static int runCheckstyle(CliOptions options, List<File> filesToProcess)
+    private static int runCheckstyle(CliOptions options, List<Path> filesToProcess)
             throws CheckstyleException, IOException {
         // setup the properties
         final Properties props;
@@ -667,7 +666,7 @@ public final class Main {
 
         /** List of file to validate. */
         @Parameters(arity = "1..*", description = "One or more source files to verify")
-        private List<File> files;
+        private List<Path> files;
 
         /** Config file location. */
         @Option(names = "-c", description = "Specifies the location of the file that defines"
@@ -776,7 +775,7 @@ public final class Main {
                 description = "Directory/file to exclude from CheckStyle. The path can be the "
                         + "full, absolute path, or relative to the current path. Multiple "
                         + "excludes are allowed.")
-        private List<File> exclude = new ArrayList<>();
+        private List<Path> exclude = new ArrayList<>();
 
         /**
          * Option that allows users to specify a regex of paths to exclude.
@@ -807,10 +806,11 @@ public final class Main {
          */
         private List<Pattern> getExclusions() {
             final List<Pattern> result = exclude.stream()
-                    .map(File::getAbsolutePath)
-                    .map(Pattern::quote)
-                    .map(pattern -> Pattern.compile("^" + pattern + "$"))
-                    .collect(Collectors.toCollection(ArrayList::new));
+                .map(Path::toAbsolutePath)
+                .map(Path::toString)
+                .map(Pattern::quote)
+                .map(pattern -> Pattern.compile("^" + pattern + "$"))
+                .collect(Collectors.toCollection(ArrayList::new));
             result.addAll(excludeRegex);
             return result;
         }
@@ -823,7 +823,7 @@ public final class Main {
          * @return list of violations
          */
         // -@cs[CyclomaticComplexity] Breaking apart will damage encapsulation
-        private List<String> validateCli(ParseResult parseResult, List<File> filesToProcess) {
+        private List<String> validateCli(ParseResult parseResult, List<Path> filesToProcess) {
             final List<String> result = new ArrayList<>();
             final boolean hasConfigurationFile = configurationFile != null;
             final boolean hasSuppressionLineColumnNumber = suppressionLineColumnNumber != null;

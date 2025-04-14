@@ -122,7 +122,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
      * <pre>
      *     if (filters.isEmpty())
      * </pre>
-     * in {@link TreeWalker#processFiltered(File, FileText)} to survive with Pitest mutations.
+     * in {@link TreeWalker#processFiltered(Path, FileText)} to survive with Pitest mutations.
      *
      * @throws Exception if an error occurs
      */

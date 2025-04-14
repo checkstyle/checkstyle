@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.file.Path;
 import java.util.Locale;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -139,12 +139,12 @@ public class NewlineAtEndOfFileCheck
     private LineSeparatorOption lineSeparator = LineSeparatorOption.LF_CR_CRLF;
 
     @Override
-    protected void processFiltered(File file, FileText fileText) {
+    protected void processFiltered(Path file, FileText fileText) {
         try {
             readAndCheckFile(file);
         }
         catch (final IOException ignored) {
-            log(1, MSG_KEY_UNABLE_OPEN, file.getPath());
+            log(1, MSG_KEY_UNABLE_OPEN, file.toString()); // Changed file.getPath() to file.toString()
         }
     }
 
@@ -169,9 +169,9 @@ public class NewlineAtEndOfFileCheck
      * @throws IOException When an IO error occurred while reading from the
      *         file provided
      */
-    private void readAndCheckFile(File file) throws IOException {
+    private void readAndCheckFile(Path file) throws IOException {
         // Cannot use lines as the line separators have been removed!
-        try (RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r")) {
+        try (RandomAccessFile randomAccessFile = new RandomAccessFile(file.toFile(), "r")) {
             if (lineSeparator == LineSeparatorOption.LF
                     && endsWithNewline(randomAccessFile, LineSeparatorOption.CRLF)) {
                 log(1, MSG_KEY_WRONG_ENDING);

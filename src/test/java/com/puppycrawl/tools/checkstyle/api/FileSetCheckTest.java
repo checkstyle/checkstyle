@@ -21,12 +21,12 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
-import java.io.File;
-
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+
+import java.nio.file.Path;
 
 public class FileSetCheckTest
     extends AbstractModuleTestSupport {
@@ -76,7 +76,7 @@ public class FileSetCheckTest
         }
 
         @Override
-        protected void processFiltered(File file, FileText fileText) {
+        protected void processFiltered(Path file, FileText fileText) {
             contents = new FileContents(fileText);
         }
 

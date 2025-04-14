@@ -769,7 +769,7 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
   }
 
   @Override
-  public void processFiltered(File file, List&lt;String&gt; aLines)
+        public void processFiltered(Path file, List&lt;String&gt; aLines)
   {
     this.fileCount++;
 

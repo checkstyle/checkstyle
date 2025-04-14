@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import java.io.File;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
@@ -184,7 +184,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      *     skipFileOnJavaParseException field
      */
     @Override
-    protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
+    protected void processFiltered(Path file, FileText fileText) throws CheckstyleException {
         // check if already checked and passed the file
         if (!ordinaryChecks.isEmpty() || !commentChecks.isEmpty()) {
             final FileContents contents = getFileContents();
@@ -219,7 +219,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
                 }
                 else {
                     final SortedSet<Violation> filteredViolations =
-                            getFilteredViolations(file.getAbsolutePath(), contents, rootAST);
+                        getFilteredViolations(file.toAbsolutePath().toString(), contents, rootAST);
                     addViolations(filteredViolations);
                 }
             }

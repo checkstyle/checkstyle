@@ -19,15 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
-import java.io.File;
-
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+
+import java.nio.file.Path;
 
 public class VerifyPositionAfterLastTabFileSet extends AbstractFileSetCheck {
 
     @Override
-    protected void processFiltered(File file, FileText fileText) {
+    protected void processFiltered(Path file, FileText fileText) {
         int lineNumber = 0;
         for (String line : getFileContents().getLines()) {
             final int position = line.lastIndexOf('\t');
