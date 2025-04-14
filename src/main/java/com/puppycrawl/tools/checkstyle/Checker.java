@@ -210,8 +210,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
     @Override
     public int process(List<File> files) throws CheckstyleException {
-        if (cacheFile != null) {
-            cacheFile.putExternalResources(getExternalResourceLocations());
+                    if (cacheFile != null) {
+                     cacheFile.putExternalResources(getExternalResourceLocations());
         }
 
         // Prepare to start
