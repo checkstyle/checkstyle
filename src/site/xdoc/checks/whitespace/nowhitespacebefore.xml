@@ -89,9 +89,7 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="NoWhitespaceBefore"/&gt;
-  &lt;/module&gt;
+  &lt;module name="NoWhitespaceBefore"/&gt;
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
@@ -129,11 +127,7 @@ class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="NoWhitespaceBefore"&gt;
-      &lt;property name="allowLineBreaks" value="true"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
+  &lt;module name="NoWhitespaceBefore"/&gt;
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
@@ -158,11 +152,7 @@ class Example2 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="NoWhitespaceBefore"&gt;
-      &lt;property name="tokens" value="METHOD_REF, DOT"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
+  &lt;module name="NoWhitespaceBefore"/&gt;
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example:</p>
@@ -183,12 +173,7 @@ class Example3 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="NoWhitespaceBefore"&gt;
-      &lt;property name="tokens" value="METHOD_REF, DOT"/&gt;
-      &lt;property name="allowLineBreaks" value="true"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
+  &lt;module name="NoWhitespaceBefore"/&gt;
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example:</p>
@@ -245,11 +230,6 @@ class Example4 {
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
-        <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
     </section>
   </body>
 </document>
