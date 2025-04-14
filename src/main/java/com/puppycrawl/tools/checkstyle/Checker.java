@@ -221,6 +221,29 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             .collect(Collectors.toUnmodifiableList()));
     }
 
+    /**
+     * Processes a list of files through the checkstyle verification pipeline.
+     *
+     * <p>This method handles the complete processing lifecycle including:
+     * <ol>
+     *   <li>Initializing cache resources (if caching is enabled)</li>
+     *   <li>Starting the audit process</li>
+     *   <li>Filtering files by extension</li>
+     *   <li>Processing each file through all registered FileSetChecks</li>
+     *   <li>Finalizing the audit process</li>
+     *   <li>Cleaning up resources</li>
+     * </ol>
+     *
+     * @param files List of files to be processed. Should not be null but may be empty.
+     * @return Total count of errors found during processing
+     * @throws CheckstyleException   if an error occurs during processing that should halt
+     *                               execution
+     * @throws IllegalStateException if cache operations fail
+     * @see #process(List)
+     * @see #processPath(List)
+     * @see FileSetCheck
+     * @see PropertyCacheFile
+     */
     private int processFilesInternal(List<File> files) throws CheckstyleException {
         if (cacheFile != null) {
             cacheFile.putExternalResources(getExternalResourceLocations());
