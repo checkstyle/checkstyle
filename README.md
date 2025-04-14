@@ -18,7 +18,6 @@
 [![][pitest img]][pitest]
 [![][checker framework img]][checker framework]
 [![][dependabot img]][dependabot]
-[![][sonar img]][sonar]
 [![][release notes/version img]][release notes/version]
 [![][closed issues img]][closed issues]
 [![][link check img]][link check]
@@ -145,9 +144,6 @@ Checkstyle uses libraries:
 
 [appveyor]:https://ci.appveyor.com/project/checkstyle/checkstyle/history
 [appveyor img]:https://ci.appveyor.com/api/projects/status/rw6bw3dl9kph6ucc?svg=true
-
-[sonar]:https://sonarcloud.io/dashboard?id=org.checkstyle%3Acheckstyle
-[sonar img]:https://sonarcloud.io/api/project_badges/measure?project=org.checkstyle%3Acheckstyle&metric=sqale_index
 
 [coverage]:https://codecov.io/github/checkstyle/checkstyle?branch=master
 [coverage img]:https://codecov.io/github/checkstyle/checkstyle/coverage.svg?branch=master
