@@ -26,7 +26,9 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -210,6 +212,40 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
     @Override
     public int process(List<File> files) throws CheckstyleException {
+        return processFilesInternal(files);
+    }
+
+    @Override
+    public int process(Collection<Path> files) throws CheckstyleException {
+        return processFilesInternal(files.stream()
+            .map(Path::toFile)
+            .collect(Collectors.toUnmodifiableList()));
+    }
+
+    /**
+     * Processes a list of files through the checkstyle verification pipeline.
+     *
+     * <p>This method handles the complete processing lifecycle including:
+     * <ol>
+     *   <li>Initializing cache resources (if caching is enabled)</li>
+     *   <li>Starting the audit process</li>
+     *   <li>Filtering files by extension</li>
+     *   <li>Processing each file through all registered FileSetChecks</li>
+     *   <li>Finalizing the audit process</li>
+     *   <li>Cleaning up resources</li>
+     * </ol>
+     *
+     * @param files List of files to be processed. Should not be null but may be empty.
+     * @return Total count of errors found during processing
+     * @throws CheckstyleException   if an error occurs during processing that should halt
+     *                               execution
+     * @throws IllegalStateException if cache operations fail
+     * @see #process(List)
+     * @see #process(List)
+     * @see FileSetCheck
+     * @see PropertyCacheFile
+     */
+    private int processFilesInternal(List<File> files) throws CheckstyleException {
         if (cacheFile != null) {
             cacheFile.putExternalResources(getExternalResourceLocations());
         }
@@ -220,21 +256,16 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             fsc.beginProcessing(charset);
         }
 
-        final List<File> targetFiles = files.stream()
-                .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
-                .collect(Collectors.toUnmodifiableList());
-        processFiles(targetFiles);
-
+        processFiles(files.stream()
+            .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
+            .collect(Collectors.toUnmodifiableList()));
         // Finish up
         // It may also log!!!
         fileSetChecks.forEach(FileSetCheck::finishProcessing);
-
-        // It may also log!!!
         fileSetChecks.forEach(FileSetCheck::destroy);
 
-        final int errorCount = counter.getCount();
         fireAuditFinished();
-        return errorCount;
+        return counter.getCount();
     }
 
     /**
