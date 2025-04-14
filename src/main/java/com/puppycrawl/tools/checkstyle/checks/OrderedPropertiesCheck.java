@@ -113,11 +113,12 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
     @Override
     protected void processFiltered(Path file, FileText fileText) {
         final SequencedProperties properties = new SequencedProperties();
-        try (InputStream inputStream = Files.newInputStream(file.toPath())) {
+        try (InputStream inputStream = Files.newInputStream(file)) {
             properties.load(inputStream);
         }
         catch (IOException | IllegalArgumentException ex) {
-            log(1, MSG_IO_EXCEPTION_KEY, file.getPath(), ex.getLocalizedMessage());
+            log(1, MSG_IO_EXCEPTION_KEY, file.toString(), ex.getLocalizedMessage());
+            return;
         }
 
         String previousProp = "";
