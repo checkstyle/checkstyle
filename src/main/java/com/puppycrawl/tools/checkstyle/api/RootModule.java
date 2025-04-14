@@ -40,7 +40,7 @@ public interface RootModule extends Configurable {
      * @param files the list of files to be audited.
      * @return the total number of audit events with error severity found
      * @throws CheckstyleException if error condition within Checkstyle occurs
-     * @deprecated use {processPath}
+     * @deprecated use {@link #processPath(List)}
      * @see #destroy()
      */
     int process(List<File> files) throws CheckstyleException;
