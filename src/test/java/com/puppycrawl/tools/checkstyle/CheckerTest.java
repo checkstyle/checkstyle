@@ -370,9 +370,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addListener(auditAdapter);
 
         final List<Path> files = new ArrayList<>();
-        final File file = new File("file.pdf");
+        final Path file = new File("file.pdf");
         files.add(file);
-        final File otherFile = new File("file.java");
+        final Path otherFile = new File("file.java");
         files.add(otherFile);
         final String[] fileExtensions = {"java", "xml", "properties"};
         checker.setFileExtensions(fileExtensions);
@@ -400,7 +400,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testIgnoredFileExtensions() throws Exception {
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
         checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
-        final File tempFile = createTempFile();
+        final Path tempFile = createTempFile();
         checkerConfig.addProperty("cacheFile", tempFile.getPath());
 
         final Checker checker = new Checker();
@@ -411,7 +411,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addListener(auditAdapter);
 
         final List<Path> allIgnoredFiles = new ArrayList<>();
-        final File ignoredFile = new File("file.pdf");
+        final Path ignoredFile = new File("file.pdf");
         allIgnoredFiles.add(ignoredFile);
         final String[] fileExtensions = {"java", "xml", "properties"};
         checker.setFileExtensions(fileExtensions);
@@ -619,10 +619,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
         checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
 
-        final File cacheFile = createTempFile();
+        final Path cacheFile = createTempFile();
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-        final File tmpFile = createTempFile("file", ".java");
+        final Path tmpFile = createTempFile("file", ".java");
 
         execute(checkerConfig, tmpFile.getPath());
         final Properties cacheAfterFirstRun = new Properties();
@@ -650,11 +650,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleFactory(factory);
         checker.configure(createModuleConfig(TranslationCheck.class));
 
-        final File cacheFile = createTempFile();
+        final Path cacheFile = createTempFile();
         checker.setCacheFile(cacheFile.getPath());
 
         checker.setupChild(createModuleConfig(TranslationCheck.class));
-        final File tmpFile = createTempFile("file", ".java");
+        final Path tmpFile = createTempFile("file", ".java");
         final List<Path> files = new ArrayList<>(1);
         files.add(tmpFile);
         checker.process(files);
@@ -687,7 +687,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testClearExistingCache() throws Exception {
         final DefaultConfiguration checkerConfig = createRootConfig(null);
         checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
-        final File cacheFile = createTempFile();
+        final Path cacheFile = createTempFile();
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final Checker checker = new Checker();
@@ -739,7 +739,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 createModuleConfig(DummyFileSetViolationCheck.class);
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("myConfig");
         checkerConfig.addProperty("charset", "UTF-8");
-        final File cacheFile = createTempFile();
+        final Path cacheFile = createTempFile();
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
         checkerConfig.addChild(violationCheck);
         final Checker checker = new Checker();
@@ -799,7 +799,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final File mock = new File("testFile") {
+        final Path mock = new File("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -853,7 +853,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final File mock = new File("testFile") {
+        final Path mock = new File("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -913,7 +913,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration filterConfig = createModuleConfig(DummyFilter.class);
 
         final DefaultConfiguration checkerConfig = createRootConfig(filterConfig);
-        final File cacheFile = createTempFile();
+        final Path cacheFile = createTempFile();
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final String pathToEmptyFile = createTempFile("file", ".java").getPath();
@@ -968,7 +968,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         check.setFirstExternalResourceLocation(firstExternalResourceLocation);
 
         final DefaultConfiguration checkerConfig = createRootConfig(null);
-        final File cacheFile = createTempFile();
+        final Path cacheFile = createTempFile();
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final Checker checker = new Checker();
@@ -1044,7 +1044,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCacheOnViolationSuppression() throws Exception {
-        final File cacheFile = createTempFile();
+        final Path cacheFile = createTempFile();
         final DefaultConfiguration violationCheck =
                 createModuleConfig(DummyFileSetViolationCheck.class);
 
@@ -1087,7 +1087,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testExceptionWithCache() throws Exception {
-        final File cacheFile = createTempFile();
+        final Path cacheFile = createTempFile();
 
         final DefaultConfiguration checkConfig =
                 createModuleConfig(CheckWhichThrowsError.class);
@@ -1139,7 +1139,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testCatchErrorWithCache() throws Exception {
-        final File cacheFile = createTempFile();
+        final Path cacheFile = createTempFile();
 
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
         checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
@@ -1149,7 +1149,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final File mock = new File("testFile") {
+        final Path mock = new File("testFile") {
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -1217,7 +1217,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testCatchErrorWithCacheWithNoFileName() throws Exception {
-        final File cacheFile = createTempFile();
+        final Path cacheFile = createTempFile();
 
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
         checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
@@ -1227,7 +1227,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final File mock = new File("testFile") {
+        final Path mock = new File("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1291,7 +1291,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String errorMessage = "Security Exception";
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
-        final File mock = new File("testFile") {
+        final Path mock = new File("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1336,7 +1336,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testExceptionWithCacheAndNoFileName() throws Exception {
-        final File cacheFile = createTempFile();
+        final Path cacheFile = createTempFile();
 
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
         checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
@@ -1345,7 +1345,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String errorMessage = "Security Exception";
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
-        final File mock = new File("testFile") {
+        final Path mock = new File("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1530,7 +1530,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             checker.addListener(new DefaultLogger(testInfoOutputStream,
                 OutputStreamOptions.CLOSE, testErrorOutputStream, OutputStreamOptions.CLOSE));
 
-            final File tmpFile = createTempFile("file", ".java");
+            final Path tmpFile = createTempFile("file", ".java");
 
             execute(checker, tmpFile.getPath());
 
@@ -1558,7 +1558,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
             checker.addListener(new XMLLogger(testInfoOutputStream, OutputStreamOptions.CLOSE));
 
-            final File tmpFile = createTempFile("file", ".java");
+            final Path tmpFile = createTempFile("file", ".java");
 
             execute(checker, tmpFile.getPath(), tmpFile.getPath());
 
@@ -1640,10 +1640,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
             new DefaultLoggerWithCounter(infoStream, OutputStreamOptions.CLOSE,
                                          errorStream, OutputStreamOptions.CLOSE);
         checker.addListener(loggerWithCounter);
-        final File cacheFile = createTempFile("cacheFile", ".txt");
+        final Path cacheFile = createTempFile("cacheFile", ".txt");
         checker.setCacheFile(cacheFile.getAbsolutePath());
 
-        final File testFile = createTempFile("testFile", ".java");
+        final Path testFile = createTempFile("testFile", ".java");
         final List<Path> files = List.of(testFile, testFile);
         checker.process(files);
 
@@ -1684,7 +1684,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkerConfig.addChild(treeWalkerConfig);
 
         checkerConfig.addProperty("haltOnException", "false");
-        final File file = new File("InputNonChecker.java");
+        final Path file = new File("InputNonChecker.java");
         final String filePath = file.getAbsolutePath();
         final String[] expected = {
             "1: " + getCheckMessage(EXCEPTION_MSG, filePath
@@ -1728,7 +1728,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             "1: " + violationMessage,
         };
 
-        final File tempFile = createTempFile("InputCheckerTestExcludeRelativizedFile", ".java");
+        final Path tempFile = createTempFile("InputCheckerTestExcludeRelativizedFile", ".java");
 
         final File[] processedFiles = {tempFile};
 
