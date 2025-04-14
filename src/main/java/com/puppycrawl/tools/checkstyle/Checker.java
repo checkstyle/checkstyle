@@ -28,6 +28,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -215,7 +216,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     }
 
     @Override
-    public int processPath(List<Path> files) throws CheckstyleException {
+    public int process(Collection<Path> files) throws CheckstyleException {
         return processFilesInternal(files.stream()
             .map(Path::toFile)
             .collect(Collectors.toUnmodifiableList()));
@@ -240,7 +241,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      *                               execution
      * @throws IllegalStateException if cache operations fail
      * @see #process(List)
-     * @see #processPath(List)
+     * @see #process(List)
      * @see FileSetCheck
      * @see PropertyCacheFile
      */

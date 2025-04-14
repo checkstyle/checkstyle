@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.io.File;
 import java.nio.file.Path;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -40,7 +41,7 @@ public interface RootModule extends Configurable {
      * @param files the list of files to be audited.
      * @return the total number of audit events with error severity found
      * @throws CheckstyleException if error condition within Checkstyle occurs
-     * @deprecated use {@link #processPath(List)}
+     * @deprecated use {@link #process(List)}
      * @see #destroy()
      */
     int process(List<File> files) throws CheckstyleException;
@@ -55,7 +56,7 @@ public interface RootModule extends Configurable {
      * @throws CheckstyleException if error condition within Checkstyle occurs
      * @see #destroy()
      */
-    int processPath(List<Path> files) throws CheckstyleException;
+    int process(Collection<Path> files) throws CheckstyleException;
 
     /**
      * Add the listener that will be used to receive events from the audit.

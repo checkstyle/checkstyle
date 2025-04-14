@@ -149,7 +149,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.destroy();
 
         final File tempFile = createTempFile("junit");
-        checker.processPath(Collections.singletonList(tempFile));
+        checker.process(Collections.singletonList(tempFile));
         final SortedSet<Violation> violations = new TreeSet<>();
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
@@ -290,7 +290,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addBeforeExecutionFileFilter(filter);
 
         filter.resetFilter();
-        checker.processPath(Collections.singletonList(new File("dummy.java")));
+        checker.process(Collections.singletonList(new File("dummy.java")));
         assertWithMessage("Checker.acceptFileStarted() doesn't call filter")
                 .that(filter.wasCalled())
                 .isTrue();
@@ -306,7 +306,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.removeBeforeExecutionFileFilter(filter);
 
         f2.resetFilter();
-        checker.processPath(Collections.singletonList(new File("dummy.java")));
+        checker.process(Collections.singletonList(new File("dummy.java")));
         assertWithMessage("Checker.acceptFileStarted() doesn't call filter")
                 .that(f2.wasCalled())
                 .isTrue();
@@ -375,7 +375,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String[] fileExtensions = {"java", "xml", "properties"};
         checker.setFileExtensions(fileExtensions);
         checker.setCacheFile(createTempFile("junit").getPath());
-        final int counter = checker.processPath(files);
+        final int counter = checker.process(files);
 
         // comparing to 1 as there is only one legal file in input
         final int numLegalFiles = 1;
@@ -414,7 +414,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String[] fileExtensions = {"java", "xml", "properties"};
         checker.setFileExtensions(fileExtensions);
         checker.setCacheFile(createTempFile("junit").getPath());
-        final int counter = checker.processPath(allIgnoredFiles);
+        final int counter = checker.process(allIgnoredFiles);
 
         // comparing to 0 as there is no legal file in input
         final int numLegalFiles = 0;
@@ -655,7 +655,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final File tmpFile = createTempFile("file", ".java");
         final List<File> files = new ArrayList<>(1);
         files.add(tmpFile);
-        checker.processPath(files);
+        checker.process(files);
 
         // invoke destroy to persist cache
         checker.destroy();
@@ -745,7 +745,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.configure(checkerConfig);
         checker.addListener(getBriefUtLogger());
 
-        checker.processPath(Collections.singletonList(new File("dummy.java")));
+        checker.process(Collections.singletonList(new File("dummy.java")));
         checker.clearCache();
         // invoke destroy to persist cache
         final PropertyCacheFile cache = TestUtil.getInternalState(checker, "cacheFile");
@@ -817,7 +817,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final List<File> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
         try {
-            checker.processPath(filesToProcess);
+            checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
@@ -876,7 +876,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final List<File> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
         try {
-            checker.processPath(filesToProcess);
+            checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
@@ -1103,7 +1103,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final String filePath = getPath("InputChecker.java");
         try {
-            checker.processPath(Collections.singletonList(new File(filePath)));
+            checker.process(Collections.singletonList(new File(filePath)));
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
@@ -1174,7 +1174,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final List<File> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
         try {
-            checker.processPath(filesToProcess);
+            checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
@@ -1247,7 +1247,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final List<File> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
         try {
-            checker.processPath(filesToProcess);
+            checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
@@ -1309,7 +1309,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final List<File> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
         try {
-            checker.processPath(filesToProcess);
+            checker.process(filesToProcess);
             assertWithMessage("SecurityException is expected!").fail();
         }
         catch (CheckstyleException ex) {
@@ -1365,7 +1365,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final List<File> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
         try {
-            checker.processPath(filesToProcess);
+            checker.process(filesToProcess);
             assertWithMessage("SecurityException is expected!").fail();
         }
         catch (CheckstyleException ex) {
@@ -1428,7 +1428,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DummyFileSet fileSet = new DummyFileSet();
         final Checker checker = new Checker();
         checker.addFileSetCheck(fileSet);
-        checker.processPath(Collections.singletonList(new File("dummy.java")));
+        checker.process(Collections.singletonList(new File("dummy.java")));
         final List<String> expected =
             Arrays.asList("beginProcessing", "finishProcessing", "destroy");
         assertWithMessage("Method calls were not expected")
@@ -1464,7 +1464,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleFactory(factory);
         checker.setupChild(createModuleConfig(DebugAuditAdapter.class));
         // Let's try fire some events
-        checker.processPath(Collections.singletonList(new File("dummy.java")));
+        checker.process(Collections.singletonList(new File("dummy.java")));
         assertWithMessage("Checker.fireAuditStarted() doesn't call listener")
                 .that(auditAdapter.wasCalled())
                 .isTrue();
@@ -1487,7 +1487,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         };
         checker.setModuleFactory(factory);
         checker.setupChild(createModuleConfig(TestBeforeExecutionFileFilter.class));
-        checker.processPath(Collections.singletonList(new File("dummy.java")));
+        checker.process(Collections.singletonList(new File("dummy.java")));
         assertWithMessage("Checker.acceptFileStarted() doesn't call listener")
                 .that(fileFilter.wasCalled())
                 .isTrue();
@@ -1600,7 +1600,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         // super.verify does not work here, for we change the logger
         out.flush();
-        final int errs = checker.processPath(Collections.singletonList(new File(path)));
+        final int errs = checker.process(Collections.singletonList(new File(path)));
         try (ByteArrayInputStream inputStream =
                 new ByteArrayInputStream(out.toByteArray());
             LineNumberReader lnr = new LineNumberReader(
@@ -1643,7 +1643,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final File testFile = createTempFile("testFile", ".java");
         final List<File> files = List.of(testFile, testFile);
-        checker.processPath(files);
+        checker.process(files);
 
         assertWithMessage("Cached file should not be processed twice")
             .that(loggerWithCounter.fileStartedCount)
