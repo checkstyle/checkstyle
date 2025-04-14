@@ -211,7 +211,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     }
 
     @Override
-    public int process(List<File> files) throws CheckstyleException {
+    public int processs(List<File> files) throws CheckstyleException {
         return processFilesInternal(files);
     }
 
