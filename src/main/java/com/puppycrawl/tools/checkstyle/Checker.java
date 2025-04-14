@@ -214,14 +214,14 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
     @Override
     public int processs(List<File> files) throws CheckstyleException {
-        return processs(files);
+        return processFilesInternal(files.stream()
+            .map(File::toPath)
+            .collect(Collectors.toUnmodifiableList()));
     }
 
     @Override
     public int process(Collection<Path> files) throws CheckstyleException {
-        return processFilesInternal(files.stream()
-            .map(Path::toFile)
-            .collect(Collectors.toUnmodifiableList()));
+        return processFilesInternal(files);
     }
 
     /**
@@ -242,12 +242,11 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @throws CheckstyleException   if an error occurs during processing that should halt
      *                               execution
      * @throws IllegalStateException if cache operations fail
-     * @see #process(List)
-     * @see #process(List)
+     * @see #process(Collection)
      * @see FileSetCheck
      * @see PropertyCacheFile
      */
-    private int processFilesInternal(List<Path> files) throws CheckstyleException {
+    private int processFilesInternal(Collection<Path> files) throws CheckstyleException {
         if (cacheFile != null) {
             cacheFile.putExternalResources(getExternalResourceLocations());
         }
@@ -365,10 +364,10 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @noinspectionreason ProhibitedExceptionThrown - there is no other way to obey
      *      haltOnException field
      */
-    private SortedSet<Violation> processFile(File file) throws CheckstyleException {
+    private SortedSet<Violation> processFile(Path file) throws CheckstyleException {
         final SortedSet<Violation> fileMessages = new TreeSet<>();
         try {
-            final FileText theText = new FileText(file.getAbsoluteFile(), charset);
+            final FileText theText = new FileText(file.toFile(), charset);
             for (final FileSetCheck fsc : fileSetChecks) {
                 fileMessages.addAll(fsc.process(file, theText));
             }
