@@ -23,9 +23,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -40,7 +44,6 @@ import org.apache.tools.ant.Task;
 import org.apache.tools.ant.taskdefs.LogOutputStream;
 import org.apache.tools.ant.types.EnumeratedAttribute;
 import org.apache.tools.ant.types.FileSet;
-import org.apache.tools.ant.types.Path;
 
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.Checker;
@@ -488,7 +491,7 @@ public class CheckstyleAntTask extends Task {
             // oops, we've got an additional one to process, don't
             // forget it. No sweat, it's fully resolved via the setter.
             log("Adding standalone file for audit", Project.MSG_VERBOSE);
-            allFiles.add(new File(fileName));
+            allFiles.add(Paths.get(fileName)); // Use Paths.get() to create a Path
         }
 
         final List<Path> filesFromFileSets = scanFileSets();
@@ -525,24 +528,28 @@ public class CheckstyleAntTask extends Task {
      * @return A list of files, extracted from the given path.
      */
     private List<Path> scanPath(Path path, int pathIndex) {
-        final String[] resources = path.list();
         log(pathIndex + ") Scanning path " + path, Project.MSG_VERBOSE);
         final List<Path> allFiles = new ArrayList<>();
         int concreteFilesCount = 0;
 
-        for (String resource : resources) {
-            final File file = new File(resource);
-            if (file.isFile()) {
-                concreteFilesCount++;
-                allFiles.add(file);
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)) {
+            for (Path resource : stream) {
+                if (Files.isRegularFile(resource)) {
+                    concreteFilesCount++;
+                    allFiles.add(resource);
+                }
+                else if (Files.isDirectory(resource)) {
+                    final DirectoryScanner scanner = new DirectoryScanner();
+                    scanner.setBasedir(resource.toFile()); // DirectoryScanner still uses File
+                    scanner.scan();
+                    final List<Path> scannedFiles = retrieveAllScannedFiles(scanner, pathIndex);
+                    allFiles.addAll(scannedFiles);
+                }
             }
-            else {
-                final DirectoryScanner scanner = new DirectoryScanner();
-                scanner.setBasedir(file);
-                scanner.scan();
-                final List<Path> scannedFiles = retrieveAllScannedFiles(scanner, pathIndex);
-                allFiles.addAll(scannedFiles);
-            }
+        }
+        catch (IOException e) {
+            log("Error scanning path: " + path + " - " + e.getMessage(), Project.MSG_ERR);
+            return Collections.emptyList(); // Or handle the error as appropriate for your case
         }
 
         if (concreteFilesCount > 0) {
@@ -581,12 +588,12 @@ public class CheckstyleAntTask extends Task {
      */
     private List<Path> retrieveAllScannedFiles(DirectoryScanner scanner, int logIndex) {
         final String[] fileNames = scanner.getIncludedFiles();
+        File basedir = scanner.getBasedir();
         log(String.format(Locale.ROOT, "%d) Adding %d files from directory %s",
-            logIndex, fileNames.length, scanner.getBasedir()), Project.MSG_VERBOSE);
+            logIndex, fileNames.length, basedir), Project.MSG_VERBOSE);
 
         return Arrays.stream(fileNames)
-            .map(name -> scanner.getBasedir() + File.separator + name)
-            .map(File::new)
+            .map(name -> basedir.toPath().resolve(name))
             .collect(Collectors.toUnmodifiableList());
     }
 
