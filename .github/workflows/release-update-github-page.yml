@@ -24,7 +24,7 @@ concurrency:
 jobs:
   update-github-page:
     name: Update GitHub Page ${{ inputs.version }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
     steps:
