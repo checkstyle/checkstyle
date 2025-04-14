@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.meta;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
@@ -72,7 +71,7 @@ public final class MetadataGeneratorUtil {
 
         checker.addListener(new MetadataGeneratorLogger(out, OutputStreamOptions.NONE));
 
-        final List<File> moduleFiles = getTargetFiles(path, moduleFolders);
+        final List<Path> moduleFiles = getTargetFiles(path, moduleFolders);
 
         checker.process(moduleFiles);
     }
@@ -85,18 +84,17 @@ public final class MetadataGeneratorUtil {
      * @return files for scrapping javadoc and generation of metadata files
      * @throws IOException ioException
      */
-    private static List<File> getTargetFiles(String path, String... moduleFolders)
-            throws IOException {
-        final List<File> validFiles = new ArrayList<>();
+    private static List<Path> getTargetFiles(String path, String... moduleFolders)
+        throws IOException {
+        final List<Path> validFiles = new ArrayList<>();
         for (String folder : moduleFolders) {
-            try (Stream<Path> files = Files.walk(Path.of(path + "/" + folder))) {
+            try (Stream<Path> files = Files.walk(Path.of(path, folder))) {
                 validFiles.addAll(
-                        files.map(Path::toFile)
-                        .filter(file -> {
-                            final String fileName = file.getName();
+                    files.filter(file -> {
+                            String fileName = file.getFileName().toString();
                             return fileName.endsWith("SuppressWarningsHolder.java")
-                                    || fileName.endsWith("Check.java")
-                                    || fileName.endsWith("Filter.java");
+                                || fileName.endsWith("Check.java")
+                                || fileName.endsWith("Filter.java");
                         })
                         .collect(Collectors.toUnmodifiableList()));
             }

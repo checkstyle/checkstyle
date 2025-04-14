@@ -219,7 +219,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
                 }
                 else {
                     final SortedSet<Violation> filteredViolations =
-                            getFilteredViolations(file.getAbsolutePath(), contents, rootAST);
+                        getFilteredViolations(file.toAbsolutePath().toString(), contents, rootAST);
                     addViolations(filteredViolations);
                 }
             }

@@ -377,7 +377,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * Expected messages are represented by the array of strings, warning line numbers are
      * represented by the array of integers.
      * This implementation uses overloaded
-     * {@link AbstractItModuleTestSupport#verify(Checker, File[], String, String[], Integer...)}
+     * {@link AbstractItModuleTestSupport#verify(Checker, Path[], String, String[], Integer...)}
      * method inside.
      *
      * @param config configuration.
@@ -387,10 +387,10 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @throws Exception if exception occurs during verification process.
      */
     protected final void verify(Configuration config, String fileName, String[] expected,
-            Integer... warnsExpected) throws Exception {
+                                Integer... warnsExpected) throws Exception {
         verify(createChecker(config),
-                new File[] {new File(fileName)},
-                fileName, expected, warnsExpected);
+            new Path[] {Path.of(fileName)},
+            fileName, expected, warnsExpected);
     }
 
     /**
@@ -405,14 +405,14 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @throws Exception if exception occurs during verification process.
      */
     protected final void verify(Checker checker,
-            File[] processedFiles,
-            String messageFileName,
-            String[] expected,
-            Integer... warnsExpected)
-            throws Exception {
+                                Path[] processedFiles,
+                                String messageFileName,
+                                String[] expected,
+                                Integer... warnsExpected)
+        throws Exception {
         stream.flush();
         stream.reset();
-        final List<File> theFiles = new ArrayList<>();
+        final List<Path> theFiles = new ArrayList<>();
         Collections.addAll(theFiles, processedFiles);
         final List<Integer> theWarnings = new ArrayList<>();
         Collections.addAll(theWarnings, warnsExpected);
@@ -420,15 +420,15 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
         // process each of the lines
         try (ByteArrayInputStream inputStream =
-                new ByteArrayInputStream(stream.toByteArray());
-            LineNumberReader lnr = new LineNumberReader(
-                new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+                 new ByteArrayInputStream(stream.toByteArray());
+             LineNumberReader lnr = new LineNumberReader(
+                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             int previousLineNumber = 0;
             for (int index = 0; index < expected.length; index++) {
                 final String expectedResult = messageFileName + ":" + expected[index];
                 final String actual = lnr.readLine();
                 assertWithMessage("Error message at position %s of 'expected' does "
-                        + "not match actual message", index)
+                    + "not match actual message", index)
                     .that(actual)
                     .isEqualTo(expectedResult);
 
@@ -437,10 +437,10 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
                 parseInt = parseInt.substring(0, parseInt.indexOf(':'));
                 final int lineNumber = Integer.parseInt(parseInt);
                 assertWithMessage(
-                        "input file is expected to have a warning comment on line number %s",
-                        lineNumber)
+                    "input file is expected to have a warning comment on line number %s",
+                    lineNumber)
                     .that(previousLineNumber == lineNumber
-                            || theWarnings.remove((Integer) lineNumber))
+                        || theWarnings.remove((Integer) lineNumber))
                     .isTrue();
                 previousLineNumber = lineNumber;
             }
@@ -480,13 +480,13 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @throws Exception if exception occurs during verification process.
      */
     private List<String> getActualViolationsForFile(Configuration config,
-          String file) throws Exception {
+                                                    String file) throws Exception {
         stream.flush();
         stream.reset();
-        final List<File> files = Collections.singletonList(new File(file));
+        final List<Path> files = Collections.singletonList(Path.of(file));
         final Checker checker = createChecker(config);
         final Map<String, List<String>> actualViolations =
-                getActualViolations(checker.process(files));
+            getActualViolations(checker.process(files));
         checker.destroy();
         return actualViolations.getOrDefault(file, new ArrayList<>());
     }
