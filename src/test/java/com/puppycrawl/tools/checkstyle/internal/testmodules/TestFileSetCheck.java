@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
-import java.io.File;
-
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+
+import java.nio.file.Path;
 
 /**
  * TestFileSetCheck.
@@ -35,12 +35,12 @@ public class TestFileSetCheck extends AbstractFileSetCheck {
     private boolean called;
 
     @Override
-    protected void processFiltered(File file, FileText fileText) {
+    protected void processFiltered(Path file, FileText fileText) {
         called = true;
     }
 
     /**
-     * Checks if {@link #processFiltered(File, FileText)} was called.
+     * Checks if {@link #processFiltered(Path, FileText)} was called.
      *
      * @return {@code true} if it was called.
      */

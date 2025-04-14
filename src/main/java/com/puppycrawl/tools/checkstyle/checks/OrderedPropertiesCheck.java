@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -111,7 +111,7 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
      * @param fileText the contents of the file.
      */
     @Override
-    protected void processFiltered(File file, FileText fileText) {
+    protected void processFiltered(Path file, FileText fileText) {
         final SequencedProperties properties = new SequencedProperties();
         try (InputStream inputStream = Files.newInputStream(file.toPath())) {
             properties.load(inputStream);

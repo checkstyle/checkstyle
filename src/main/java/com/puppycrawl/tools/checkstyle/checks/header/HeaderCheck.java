@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
-import java.io.File;
+import java.nio.file.Path;
 import java.util.BitSet;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -141,7 +141,7 @@ public class HeaderCheck extends AbstractHeaderCheck {
     }
 
     @Override
-    protected void processFiltered(File file, FileText fileText) {
+    protected void processFiltered(Path file, FileText fileText) {
         if (getHeaderLines().size() > fileText.size()) {
             log(1, MSG_MISSING);
         }

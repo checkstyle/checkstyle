@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.io.File;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -72,8 +72,8 @@ public abstract class AbstractFileSetCheck
      * @param fileText the contents of the file.
      * @throws CheckstyleException if error condition within Checkstyle occurs.
      */
-    protected abstract void processFiltered(File file, FileText fileText)
-            throws CheckstyleException;
+    protected abstract void processFiltered(Path file, FileText fileText)
+        throws CheckstyleException;
 
     @Override
     public void init() {
@@ -91,7 +91,7 @@ public abstract class AbstractFileSetCheck
     }
 
     @Override
-    public final SortedSet<Violation> process(File file, FileText fileText)
+    public final SortedSet<Violation> process(Path file, FileText fileText)
             throws CheckstyleException {
         final FileContext fileContext = context.get();
         fileContext.fileContents = new FileContents(fileText);

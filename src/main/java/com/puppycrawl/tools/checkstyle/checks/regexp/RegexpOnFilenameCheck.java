@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -188,7 +189,7 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
     }
 
     @Override
-    protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
+    protected void processFiltered(Path file, FileText fileText) throws CheckstyleException {
         final String fileName = getFileName(file);
         final String folderPath = getFolderPath(file);
 

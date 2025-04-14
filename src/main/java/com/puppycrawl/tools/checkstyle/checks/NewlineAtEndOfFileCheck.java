@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.file.Path;
 import java.util.Locale;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -139,7 +140,7 @@ public class NewlineAtEndOfFileCheck
     private LineSeparatorOption lineSeparator = LineSeparatorOption.LF_CR_CRLF;
 
     @Override
-    protected void processFiltered(File file, FileText fileText) {
+    protected void processFiltered(Path file, FileText fileText) {
         try {
             readAndCheckFile(file);
         }

@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
-import java.io.File;
+import java.nio.file.Path;
 
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -124,7 +124,7 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck {
     }
 
     @Override
-    protected void processFiltered(File file, FileText fileText) {
+    protected void processFiltered(Path file, FileText fileText) {
         detector.processLines(fileText);
     }
 

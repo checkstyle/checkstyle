@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import java.io.File;
-
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+
+import java.nio.file.Path;
 
 /**
  * <div>
@@ -101,7 +101,7 @@ public class FileTabCharacterCheck extends AbstractFileSetCheck {
     private boolean eachLine;
 
     @Override
-    protected void processFiltered(File file, FileText fileText) {
+    protected void processFiltered(Path file, FileText fileText) {
         int lineNum = 0;
         for (int index = 0; index < fileText.size(); index++) {
             final String line = fileText.get(index);

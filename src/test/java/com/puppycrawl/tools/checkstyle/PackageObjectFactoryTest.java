@@ -33,10 +33,10 @@ import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.UNABLE_TO_INS
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mockStatic;
 
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -595,7 +595,7 @@ public class PackageObjectFactoryTest {
         }
 
         @Override
-        protected void processFiltered(File file, FileText fileText) {
+        protected void processFiltered(Path file, FileText fileText) {
             // not used
         }
 

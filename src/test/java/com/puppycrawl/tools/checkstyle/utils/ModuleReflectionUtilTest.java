@@ -251,7 +251,7 @@ public class ModuleReflectionUtilTest {
     private static final class FileSetModuleClass extends AbstractFileSetCheck {
 
         @Override
-        protected void processFiltered(File file, FileText fileText) {
+        protected void processFiltered(Path file, FileText fileText) {
             // dummy method
         }
 

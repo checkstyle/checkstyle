@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
-import java.io.File;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
@@ -127,7 +127,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
     }
 
     @Override
-    protected void processFiltered(File file, FileText fileText) {
+    protected void processFiltered(Path file, FileText fileText) {
         final int headerSize = getHeaderLines().size();
         final int fileSize = fileText.size();
 

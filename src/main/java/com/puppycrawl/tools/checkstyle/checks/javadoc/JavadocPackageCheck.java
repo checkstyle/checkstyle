@@ -103,7 +103,7 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
     }
 
     @Override
-    protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
+    protected void processFiltered(Path file, FileText fileText) throws CheckstyleException {
         // Check if already processed directory
         final File dir;
         try {
