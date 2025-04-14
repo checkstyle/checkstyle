@@ -327,7 +327,7 @@ public class CheckstyleAntTask extends Task {
     private void processFiles(RootModule rootModule, final SeverityLevelCounter warningCounter,
             final String checkstyleVersion) {
         final long startTime = System.currentTimeMillis();
-        final List<File> files = getFilesToCheck();
+        final List<Path> files = getFilesToCheck();
         final long endTime = System.currentTimeMillis();
         log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
             Project.MSG_VERBOSE);
@@ -482,8 +482,8 @@ public class CheckstyleAntTask extends Task {
      *
      * @return the list of files included via the fileName, filesets and paths.
      */
-    private List<File> getFilesToCheck() {
-        final List<File> allFiles = new ArrayList<>();
+    private List<Path> getFilesToCheck() {
+        final List<Path> allFiles = new ArrayList<>();
         if (fileName != null) {
             // oops, we've got an additional one to process, don't
             // forget it. No sweat, it's fully resolved via the setter.
@@ -491,10 +491,10 @@ public class CheckstyleAntTask extends Task {
             allFiles.add(new File(fileName));
         }
 
-        final List<File> filesFromFileSets = scanFileSets();
+        final List<Path> filesFromFileSets = scanFileSets();
         allFiles.addAll(filesFromFileSets);
 
-        final List<File> filesFromPaths = scanPaths();
+        final List<Path> filesFromPaths = scanPaths();
         allFiles.addAll(filesFromPaths);
 
         return allFiles;
@@ -505,12 +505,12 @@ public class CheckstyleAntTask extends Task {
      *
      * @return a list of files defined via paths.
      */
-    private List<File> scanPaths() {
-        final List<File> allFiles = new ArrayList<>();
+    private List<Path> scanPaths() {
+        final List<Path> allFiles = new ArrayList<>();
 
         for (int i = 0; i < paths.size(); i++) {
             final Path currentPath = paths.get(i);
-            final List<File> pathFiles = scanPath(currentPath, i + 1);
+            final List<Path> pathFiles = scanPath(currentPath, i + 1);
             allFiles.addAll(pathFiles);
         }
 
@@ -524,10 +524,10 @@ public class CheckstyleAntTask extends Task {
      * @param pathIndex The index of the given path. Used in log messages only.
      * @return A list of files, extracted from the given path.
      */
-    private List<File> scanPath(Path path, int pathIndex) {
+    private List<Path> scanPath(Path path, int pathIndex) {
         final String[] resources = path.list();
         log(pathIndex + ") Scanning path " + path, Project.MSG_VERBOSE);
-        final List<File> allFiles = new ArrayList<>();
+        final List<Path> allFiles = new ArrayList<>();
         int concreteFilesCount = 0;
 
         for (String resource : resources) {
@@ -540,7 +540,7 @@ public class CheckstyleAntTask extends Task {
                 final DirectoryScanner scanner = new DirectoryScanner();
                 scanner.setBasedir(file);
                 scanner.scan();
-                final List<File> scannedFiles = retrieveAllScannedFiles(scanner, pathIndex);
+                final List<Path> scannedFiles = retrieveAllScannedFiles(scanner, pathIndex);
                 allFiles.addAll(scannedFiles);
             }
         }
@@ -558,13 +558,13 @@ public class CheckstyleAntTask extends Task {
      *
      * @return the list of files included via the filesets.
      */
-    protected List<File> scanFileSets() {
-        final List<File> allFiles = new ArrayList<>();
+    protected List<Path> scanFileSets() {
+        final List<Path> allFiles = new ArrayList<>();
 
         for (int i = 0; i < fileSets.size(); i++) {
             final FileSet fileSet = fileSets.get(i);
             final DirectoryScanner scanner = fileSet.getDirectoryScanner(getProject());
-            final List<File> scannedFiles = retrieveAllScannedFiles(scanner, i);
+            final List<Path> scannedFiles = retrieveAllScannedFiles(scanner, i);
             allFiles.addAll(scannedFiles);
         }
 
@@ -579,7 +579,7 @@ public class CheckstyleAntTask extends Task {
      * @param logIndex A log entry index. Used only for log messages.
      * @return A list of files, retrieved from the given scanner.
      */
-    private List<File> retrieveAllScannedFiles(DirectoryScanner scanner, int logIndex) {
+    private List<Path> retrieveAllScannedFiles(DirectoryScanner scanner, int logIndex) {
         final String[] fileNames = scanner.getIncludedFiles();
         log(String.format(Locale.ROOT, "%d) Adding %d files from directory %s",
             logIndex, fileNames.length, scanner.getBasedir()), Project.MSG_VERBOSE);
