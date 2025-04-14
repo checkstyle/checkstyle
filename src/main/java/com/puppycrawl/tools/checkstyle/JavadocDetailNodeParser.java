@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
+import java.util.Objects;
 
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.BufferedTokenStream;
@@ -151,7 +152,7 @@ public class JavadocDetailNodeParser {
             result.setParseErrorMessage(parseErrorMessage);
         }
 
-        return result;
+        return Objects.requireNonNull(result);
     }
 
     /**
