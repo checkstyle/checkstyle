@@ -98,16 +98,16 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
     @Override
     protected void processFiltered(Path file, FileText fileText) {
         final UniqueProperties properties = new UniqueProperties();
-        try (InputStream inputStream = Files.newInputStream(file.toPath())) {
+        try (InputStream inputStream = Files.newInputStream(file)) { // Changed file.toPath() to file
             properties.load(inputStream);
         }
         catch (IOException ex) {
-            log(1, MSG_IO_EXCEPTION_KEY, file.getPath(),
-                    ex.getLocalizedMessage());
+            log(1, MSG_IO_EXCEPTION_KEY, file.toString(), // Changed file.getPath() to file.toString()
+                ex.getLocalizedMessage());
         }
 
         for (Entry<String, AtomicInteger> duplication : properties
-                .getDuplicatedKeys().entrySet()) {
+            .getDuplicatedKeys().entrySet()) {
             final String keyName = duplication.getKey();
             final int lineNumber = getLineNumber(fileText, keyName);
             // Number of occurrences is number of duplications + 1
