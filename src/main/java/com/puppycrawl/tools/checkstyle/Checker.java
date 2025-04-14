@@ -26,6 +26,7 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,6 +35,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -212,7 +214,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
     @Override
     public int processs(List<File> files) throws CheckstyleException {
-        return processFilesInternal(files);
+        return processs(files);
     }
 
     @Override
@@ -245,7 +247,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @see FileSetCheck
      * @see PropertyCacheFile
      */
-    private int processFilesInternal(List<File> files) throws CheckstyleException {
+    private int processFilesInternal(List<Path> files) throws CheckstyleException {
         if (cacheFile != null) {
             cacheFile.putExternalResources(getExternalResourceLocations());
         }
@@ -312,13 +314,13 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      *      deliver filename that was under processing.
      */
     // -@cs[CyclomaticComplexity] no easy way to split this logic of processing the file
-    private void processFiles(List<File> files) throws CheckstyleException {
-        for (final File file : files) {
+    private void processFiles(List<Path> files) throws CheckstyleException {
+        for (final Path file : files) {
             String fileName = null;
-            final String filePath = file.getPath();
+            final String filePath = file.toAbsolutePath().toString();
             try {
-                fileName = file.getAbsolutePath();
-                final long timestamp = file.lastModified();
+                fileName = file.getFileName().toString();
+                final long timestamp = Files.getLastModifiedTime(file).to(TimeUnit.MILLISECONDS);
                 if (cacheFile != null && cacheFile.isInCache(fileName, timestamp)
                         || !acceptFileStarted(fileName)) {
                     continue;

@@ -119,7 +119,7 @@ public final class CommonUtil {
      *            files extensions, empty property in config makes it matches to all.
      * @return whether there is a match.
      */
-    public static boolean matchesFileExtension(File file, String... fileExtensions) {
+    public static boolean matchesFileExtension(Path file, String... fileExtensions) {
         boolean result = false;
         if (fileExtensions == null || fileExtensions.length == 0) {
             result = true;
@@ -137,7 +137,7 @@ public final class CommonUtil {
                 }
             }
 
-            final String fileName = file.getName();
+            final String fileName = file.getFileName().toString();
             for (final String fileExtension : withDotExtensions) {
                 if (fileName.endsWith(fileExtension)) {
                     result = true;
