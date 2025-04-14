@@ -33,6 +33,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
@@ -418,7 +419,6 @@ public class CheckstyleAntTask extends Task {
      */
     private Properties createOverridingProperties() {
         final Properties returnValue = new Properties();
-
         // Load the properties file if specified
         if (properties != null) {
             try (InputStream inStream = Files.newInputStream(properties)) {
@@ -429,19 +429,14 @@ public class CheckstyleAntTask extends Task {
                         + properties + "'", ex, getLocation());
             }
         }
-
         // override with Ant properties like ${basedir}
-        final Map<String, Object> antProps = getProject().getProperties();
-        for (Map.Entry<String, Object> entry : antProps.entrySet()) {
-            final String value = String.valueOf(entry.getValue());
-            returnValue.setProperty(entry.getKey(), value);
+        for (Map.Entry<String, Object> entry : getProject().getProperties().entrySet()) {
+            returnValue.setProperty(entry.getKey(), String.valueOf(entry.getValue()));
         }
-
         // override with properties specified in subelements
-        for (Property p : overrideProps) {
-            returnValue.setProperty(p.getKey(), p.getValue());
+        for (Property prop : overrideProps) {
+            returnValue.setProperty(prop.getKey(), prop.getValue());
         }
-
         return returnValue;
     }
 
@@ -562,18 +557,16 @@ public class CheckstyleAntTask extends Task {
      * @return the list of files included via the filesets.
      */
     protected List<File> scanFileSets() {
-        final List<Path> allFiles = new ArrayList<>();
-
-        for (int i = 0; i < fileSets.size(); i++) {
-            final FileSet fileSet = fileSets.get(i);
-            final DirectoryScanner scanner = fileSet.getDirectoryScanner(getProject());
-            final List<Path> scannedFiles = retrieveAllScannedFiles(scanner, i);
-            allFiles.addAll(scannedFiles);
-        }
-
-        return allFiles.stream()
-            .map(Path::toFile)
-            .collect(Collectors.toUnmodifiableList());
+        return IntStream
+                .range(0, fileSets.size())
+                .mapToObj(index -> {
+                    return retrieveAllScannedFiles(
+                            fileSets.get(index).getDirectoryScanner(getProject()),
+                            index);
+                })
+                .flatMap(List::stream)
+                .map(Path::toFile)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     /**
@@ -585,13 +578,18 @@ public class CheckstyleAntTask extends Task {
      * @return A list of files, retrieved from the given scanner.
      */
     private List<Path> retrieveAllScannedFiles(FileScanner scanner, int logIndex) {
-        final String[] fileNames = scanner.getIncludedFiles();
-        log(String.format(Locale.ROOT, "%d) Adding %d files from directory %s",
-                logIndex, fileNames.length, scanner.getBasedir()), Project.MSG_VERBOSE);
+        log(String.format(
+                Locale.ROOT,
+                "%d) Adding %d files from directory %s",
+                logIndex,
+                scanner.getIncludedFiles().length,
+                scanner.getBasedir()),
+            Project.MSG_VERBOSE);
 
-        return Arrays.stream(fileNames)
-          .map(scanner.getBasedir().toPath()::resolve)
-          .collect(Collectors.toUnmodifiableList());
+        return Arrays
+            .stream(scanner.getIncludedFiles())
+            .map(name -> scanner.getBasedir().toPath().resolve(name))
+            .collect(Collectors.toUnmodifiableList());
     }
 
     /**
