@@ -104,15 +104,16 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @TempDir
     public File temporaryFolder;
 
-    private File createTempFile(String prefix) throws IOException {
-        return createTempFile(prefix, ".tmp");
+    private Path createTempFile(String prefix) throws IOException {
+        return createTempFile(prefix, ".tmp").toPath();
     }
 
     private File createTempFile(String prefix, String suffix) throws IOException {
-        final String name = Objects.requireNonNull(prefix)
-                + UUID.randomUUID()
-                + Objects.requireNonNull(suffix);
-        return Files.createFile(temporaryFolder.toPath().resolve(name)).toFile();
+        return Files.createFile(
+                temporaryFolder.toPath().resolve(Objects.requireNonNull(prefix)
+                    + UUID.randomUUID()
+                    + Objects.requireNonNull(suffix)))
+            .toFile();
     }
 
     private static Method getFireAuditFinished() throws NoSuchMethodException {
@@ -149,7 +150,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // should remove all listeners, file sets, and filters
         checker.destroy();
 
-        final File tempFile = createTempFile("junit");
+        final Path tempFile = createTempFile("junit");
         checker.process(Collections.singletonList(tempFile));
         final SortedSet<Violation> violations = new TreeSet<>();
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
