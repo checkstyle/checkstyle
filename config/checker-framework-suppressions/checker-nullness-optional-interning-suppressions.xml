@@ -280,17 +280,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
-    <lineContent>return returnValue;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable DetailAST
-      method return type: @Initialized @NonNull DetailAST
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
     <lineContent>return returnList;</lineContent>
     <details>
       type of expression: @Initialized @Nullable List&lt;@Initialized @NonNull Token&gt;
