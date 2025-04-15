@@ -25,13 +25,10 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsCla
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import com.puppycrawl.tools.checkstyle.api.*;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
@@ -39,6 +36,14 @@ import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.XpathFileGeneratorAstFilter;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
+import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.Filter;
+import com.puppycrawl.tools.checkstyle.api.RootModule;
 
 public class ModuleReflectionUtilTest {
 
@@ -293,11 +298,6 @@ public class ModuleReflectionUtilTest {
 
         @Override
         public int process(List<File> files) {
-            return 0;
-        }
-
-        @Override
-        public int process(Collection<Path> files)  {
             return 0;
         }
 

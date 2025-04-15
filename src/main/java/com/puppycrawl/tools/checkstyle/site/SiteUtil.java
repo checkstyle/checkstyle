@@ -19,21 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.site;
 
-import com.google.common.collect.Lists;
-import com.puppycrawl.tools.checkstyle.*;
-import com.puppycrawl.tools.checkstyle.api.*;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
-import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
-import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
-import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
-import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
-import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.maven.doxia.macro.MacroExecutionException;
-
-import javax.annotation.Nullable;
 import java.beans.PropertyDescriptor;
 import java.io.File;
 import java.io.IOException;
@@ -45,11 +30,56 @@ import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.BitSet;
+import java.util.Collection;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import javax.annotation.Nullable;
+
+import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.maven.doxia.macro.MacroExecutionException;
+
+import com.google.common.collect.Lists;
+import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.ModuleFactory;
+import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
+import com.puppycrawl.tools.checkstyle.PackageObjectFactory;
+import com.puppycrawl.tools.checkstyle.PropertyCacheFile;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
+import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
+import com.puppycrawl.tools.checkstyle.api.Filter;
+import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
+import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
+import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
+import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Utility class for site generation.
@@ -654,7 +684,8 @@ public final class SiteUtil {
         treeWalkerConfig.addChild(scraperCheckConfig);
         try {
             checker.configure(defaultConfiguration);
-            checker.process(List.of(moduleFile.toPath()));
+            final List<File> filesToProcess = List.of(moduleFile);
+            checker.process(filesToProcess);
             checker.destroy();
         }
         catch (CheckstyleException checkstyleException) {

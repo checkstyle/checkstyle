@@ -19,22 +19,23 @@
 
 package com.puppycrawl.tools.checkstyle.meta;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /** Class which handles all the metadata generation and writing calls. */
 public final class MetadataGeneratorUtil {
@@ -53,7 +54,7 @@ public final class MetadataGeneratorUtil {
      * @throws CheckstyleException checkstyleException
      */
     public static void generate(String path, OutputStream out, String... moduleFolders)
-            throws CheckstyleException {
+            throws IOException, CheckstyleException {
         JavadocMetadataScraper.resetModuleDetailsStore();
 
         final Checker checker = new Checker();
@@ -71,7 +72,9 @@ public final class MetadataGeneratorUtil {
 
         checker.addListener(new MetadataGeneratorLogger(out, OutputStreamOptions.NONE));
 
-        checker.process(getTargetFiles(path, moduleFolders));
+        final List<File> moduleFiles = getTargetFiles(path, moduleFolders);
+
+        checker.process(moduleFiles);
     }
 
     /**
@@ -80,27 +83,25 @@ public final class MetadataGeneratorUtil {
      * @param moduleFolders folders to check
      * @param path          rootPath
      * @return files for scrapping javadoc and generation of metadata files
+     * @throws IOException ioException
      */
-    private static List<Path> getTargetFiles(String path, String... moduleFolders) {
-        return Arrays.stream(moduleFolders)
-                .map(folder -> Paths.get(path).resolve(folder))
-                .flatMap(folderPath -> {
-                    try {
-                        return Files.walk(folderPath);
-                    } catch (IOException e) {
-                        throw new IllegalStateException(e);
-                    }
-                })
-                .filter(file -> {
-                    Path fileNamePath = file.getFileName();
-                    if (fileNamePath == null) {
-                        return false;
-                    }
-                    String fileName = fileNamePath.toString();
-                    return fileName.endsWith("SuppressWarningsHolder.java")
-                            || fileName.endsWith("Check.java")
-                            || fileName.endsWith("Filter.java");
-                })
-                .collect(Collectors.toUnmodifiableList());
+    private static List<File> getTargetFiles(String path, String... moduleFolders)
+            throws IOException {
+        final List<File> validFiles = new ArrayList<>();
+        for (String folder : moduleFolders) {
+            try (Stream<Path> files = Files.walk(Path.of(path + "/" + folder))) {
+                validFiles.addAll(
+                        files.map(Path::toFile)
+                        .filter(file -> {
+                            final String fileName = file.getName();
+                            return fileName.endsWith("SuppressWarningsHolder.java")
+                                    || fileName.endsWith("Check.java")
+                                    || fileName.endsWith("Filter.java");
+                        })
+                        .collect(Collectors.toUnmodifiableList()));
+            }
+        }
+
+        return validFiles;
     }
 }
