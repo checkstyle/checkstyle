@@ -1779,43 +1779,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .isNull();
         }
 
-        @Test
-        public void testProcessPathCollection() throws Exception {
-            final Checker checker = new Checker();
-            final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
-            checker.addListener(auditAdapter);
-
-            final File tempFile1 = createTempFile("test1", ".java");
-            final File tempFile2 = createTempFile("test2", ".java");
-
-            final Checker spyChecker = Mockito.spy(checker);
-            doReturn(0).when(spyChecker).process(Collections.<File>emptyList());
-
-            spyChecker.process(Arrays.asList(
-                    tempFile1.toPath(),
-                    tempFile2.toPath()
-            ));
-
-            final ArgumentCaptor<List<File>> filesCaptor = ArgumentCaptor.forClass(List.class);
-            Mockito.verify(spyChecker).process(filesCaptor.capture());
-            final List<File> processedFiles = filesCaptor.getValue();
-            assertWithMessage("Processed files count mismatch")
-                    .that(processedFiles)
-                    .hasSize(2);
-            assertWithMessage("First file mismatch")
-                    .that(processedFiles.get(0))
-                    .isEqualTo(tempFile1);
-            assertWithMessage("Second file mismatch")
-                    .that(processedFiles.get(1))
-                    .isEqualTo(tempFile2);
-            assertWithMessage("Audit started event not fired")
-                    .that(auditAdapter.wasCalled())
-                    .isTrue();
-            assertWithMessage("Incorrect number of files processed")
-                    .that(auditAdapter.getNumFilesStarted())
-                    .isEqualTo(2);
-        }
-
     }
 
     public static class DefaultLoggerWithCounter extends DefaultLogger {

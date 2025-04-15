@@ -212,6 +212,44 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
     @Override
     public int process(List<File> files) throws CheckstyleException {
+        return processFilesAudition(files);
+    }
+
+    @Override
+    public int process(Collection<Path> paths) throws CheckstyleException {
+        return processFilesAudition(paths.stream()
+                .map(Path::toFile)
+                .collect(Collectors.toUnmodifiableList()));
+    }
+
+    /**
+     * Core method that processes files through all configured checks.
+     *
+     * <p>This method:
+     * <ol>
+     *   <li>Updates cache with external resources if caching is enabled</li>
+     *   <li>Notifies listeners that audit is starting</li>
+     *   <li>Initializes all file set checks</li>
+     *   <li>Processes only files matching configured extensions</li>
+     *   <li>Performs cleanup of file set checks</li>
+     *   <li>Notifies listeners that audit is complete</li>
+     * </ol>
+     *
+     * <p>The actual file processing is handled by {@link #processFiles(List)} which:
+     * <ul>
+     *   <li>Applies before-execution file filters</li>
+     *   <li>Handles caching of file timestamps</li>
+     *   <li>Processes each file through all checks</li>
+     *   <li>Manages error reporting</li>
+     * </ul>
+     *
+     * @param files List of files to process (non-null, may be empty)
+     * @return Total count of errors found
+     * @throws CheckstyleException if an error occurs during processing
+     * @see #process(List)
+     * @see #process(Collection)
+     */
+    private int processFilesAudition(List<File> files) throws CheckstyleException {
         if (cacheFile != null) {
             cacheFile.putExternalResources(getExternalResourceLocations());
         }
@@ -222,29 +260,18 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             fsc.beginProcessing(charset);
         }
 
-        final List<File> targetFiles = files.stream()
+        processFiles(files.stream()
                 .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
-                .collect(Collectors.toUnmodifiableList());
-        processFiles(targetFiles);
+                .collect(Collectors.toUnmodifiableList()));
 
         // Finish up
         // It may also log!!!
         fileSetChecks.forEach(FileSetCheck::finishProcessing);
-
-        // It may also log!!!
         fileSetChecks.forEach(FileSetCheck::destroy);
-
-        final int errorCount = counter.getCount();
         fireAuditFinished();
-        return errorCount;
+        return counter.getCount();
     }
 
-    @Override
-    public int process(Collection<Path> paths) throws CheckstyleException {
-        return process(paths.stream()
-                .map(Path::toFile)
-                .collect(Collectors.toUnmodifiableList()));
-    }
 
     /**
      * Returns a set of external configuration resource locations which are used by all file set
