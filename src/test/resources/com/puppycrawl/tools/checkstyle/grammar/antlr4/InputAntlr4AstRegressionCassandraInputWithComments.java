@@ -65,11 +65,17 @@ public class InputAntlr4AstRegressionCassandraInputWithComments
     private static final String SYSTEM_ERR = "";
 
     private static DocumentBuilder getDocumentBuilder() {
-        try {
-            return DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        } catch (final Exception exc) {
-            throw new ExceptionInInitializerError(exc);
-        }
+      final DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+      docFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+      docFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+      try
+      {
+         return docFactory.newDocumentBuilder();
+      }
+      catch (ParserConfigurationException e)
+      {
+          throw new RuntimeException(e);
+      }
     }
 
     private static final String tag = System.getProperty("cassandra.testtag", "");
