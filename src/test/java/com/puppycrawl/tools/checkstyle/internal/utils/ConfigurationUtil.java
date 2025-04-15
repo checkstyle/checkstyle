@@ -42,6 +42,8 @@ public final class ConfigurationUtil {
         props.setProperty("checkstyle.suppressions-xpath.file", "file");
         props.setProperty("checkstyle.header.file", "file");
         props.setProperty("checkstyle.regexp.header.file", "file");
+        props.setProperty("checkstyle.regexp.header.file.01", "file");
+        props.setProperty("checkstyle.regexp.header.file.02", "file");
         props.setProperty("checkstyle.importcontrol.file", "file");
         props.setProperty("checkstyle.importcontroltest.file", "file");
         props.setProperty("checkstyle.java.version", "value");
