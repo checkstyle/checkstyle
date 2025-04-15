@@ -335,4 +335,78 @@
     <Class name="com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck"/>
     <Bug pattern="AT_STALE_THREAD_WRITE_OF_PRIMITIVE"/>
   </Match>
+    <!-- New Suppressions -->
+  <!-- Suppress PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.utils.JavadocUtil" />
+    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinter" />
+    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor" />
+    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor$DetailAstPair" />
+    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler" />
+    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck" />
+    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.meta.XmlMetaWriter" />
+    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
+  </Match>
+
+  <!-- Suppress AFBR_ABNORMAL_FINALLY_BLOCK_RETURN -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.Main" />
+    <Bug pattern="AFBR_ABNORMAL_FINALLY_BLOCK_RETURN" />
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask" />
+    <Bug pattern="AFBR_ABNORMAL_FINALLY_BLOCK_RETURN" />
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper" />
+    <Bug pattern="AFBR_ABNORMAL_FINALLY_BLOCK_RETURN" />
+  </Match>
+
+  <!-- Suppress CC_CYCLOMATIC_COMPLEXITY -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck" />
+    <Method name="visitToken" />
+    <Bug pattern="CC_CYCLOMATIC_COMPLEXITY" />
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck" />
+    <Method name="getClassFrameWhereViolationIsFound" />
+    <Bug pattern="CC_CYCLOMATIC_COMPLEXITY" />
+  </Match>
+
+  <!-- Suppress PSC_PRESIZE_COLLECTIONS -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck" />
+    <Method name="findTokensInAstByType" />
+    <Bug pattern="PSC_PRESIZE_COLLECTIONS" />
+  </Match>
+
+  <!-- Suppress RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.site.SiteUtil" />
+    <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtil" />
+    <Method name="getTargetFiles" />
+    <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
+  </Match>
 </FindBugsFilter>
