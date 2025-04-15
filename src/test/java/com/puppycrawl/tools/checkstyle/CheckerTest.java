@@ -726,25 +726,25 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testClearCache() throws Exception {
         final DefaultConfiguration violationCheck =
-                createModuleConfig(DummyFileSetViolationCheck.class);
+            createModuleConfig(DummyFileSetViolationCheck.class);
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("myConfig");
         checkerConfig.addProperty("charset", "UTF-8");
-        final File cacheFile = createTempFile();
-        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
+        final Path cacheFile = createTempFile();
+        checkerConfig.addProperty("cacheFile", cacheFile.toString());
         checkerConfig.addChild(violationCheck);
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         checker.addListener(getBriefUtLogger());
 
-        checker.process(Collections.singletonList(new File("dummy.java")));
+        checker.process(Collections.singletonList(Paths.get("dummy.java")));
         checker.clearCache();
         // invoke destroy to persist cache
         final PropertyCacheFile cache = TestUtil.getInternalState(checker, "cacheFile");
         cache.persist();
 
         final Properties cacheAfterClear = new Properties();
-        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile)) {
             cacheAfterClear.load(reader);
         }
 
@@ -752,7 +752,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .that(cacheAfterClear)
             .hasSize(1);
     }
-
     @Test
     public void setFileExtension() {
         final Checker checker = new Checker();
@@ -896,39 +895,43 @@ public class CheckerTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testCacheAndFilterWhichDoesNotImplementExternalResourceHolderInterface()
-            throws Exception {
+        throws Exception {
         assertWithMessage("ExternalResourceHolder has changed its parent")
-                .that(ExternalResourceHolder.class.isAssignableFrom(DummyFilter.class))
-                .isFalse();
+            .that(ExternalResourceHolder.class.isAssignableFrom(DummyFilter.class))
+            .isFalse();
         final DefaultConfiguration filterConfig = createModuleConfig(DummyFilter.class);
 
         final DefaultConfiguration checkerConfig = createRootConfig(filterConfig);
-        final File cacheFile = createTempFile();
-        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
+        final Path cacheFilePath = createTempFile();
+        checkerConfig.addProperty("cacheFile", cacheFilePath.toString());
 
-        final String pathToEmptyFile = createTempFile("file", ".java").toAbsolutePath().toString();
+        final Path pathToEmptyFile = createTempFile("file", ".java");
+        final String absolutePathToEmptyFile = pathToEmptyFile.toAbsolutePath().toString();
 
-        execute(checkerConfig, pathToEmptyFile);
+        execute(checkerConfig, absolutePathToEmptyFile);
+
         final Properties cacheAfterFirstRun = new Properties();
-        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+        try (BufferedReader reader = Files.newBufferedReader(cacheFilePath)) {
             cacheAfterFirstRun.load(reader);
         }
 
-        // One more time to use cache.
-        execute(checkerConfig, pathToEmptyFile);
+        execute(checkerConfig, absolutePathToEmptyFile);
+
         final Properties cacheAfterSecondRun = new Properties();
-        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+        try (BufferedReader reader = Files.newBufferedReader(cacheFilePath)) {
             cacheAfterSecondRun.load(reader);
         }
 
-        final String cacheFilePath = cacheAfterSecondRun.getProperty(pathToEmptyFile);
+        final String cacheFilePathString = cacheAfterSecondRun.getProperty(absolutePathToEmptyFile);
         assertWithMessage("Cache file has changed its path")
-            .that(cacheFilePath)
-            .isEqualTo(cacheAfterFirstRun.getProperty(pathToEmptyFile));
+            .that(cacheFilePathString)
+            .isEqualTo(cacheAfterFirstRun.getProperty(absolutePathToEmptyFile));
+
         final String cacheHash = cacheAfterSecondRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY);
         assertWithMessage("Cache has changed its hash")
             .that(cacheHash)
             .isEqualTo(cacheAfterFirstRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY));
+
         final int expectedNumberOfObjectsInCache = 2;
         assertWithMessage("Number of items in cache differs from expected")
             .that(cacheAfterFirstRun)
