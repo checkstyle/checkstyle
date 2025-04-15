@@ -26,9 +26,7 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -212,44 +210,6 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
     @Override
     public int process(List<File> files) throws CheckstyleException {
-        return auditFileProcess(files);
-    }
-
-    @Override
-    public int process(Collection<Path> paths) throws CheckstyleException {
-        return auditFileProcess(paths.stream()
-                .map(Path::toFile)
-                .collect(Collectors.toUnmodifiableList()));
-    }
-
-    /**
-     * Core method that processes files through all configured checks.
-     *
-     * <p>This method:
-     * <ol>
-     *   <li>Updates cache with external resources if caching is enabled</li>
-     *   <li>Notifies listeners that audit is starting</li>
-     *   <li>Initializes all file set checks</li>
-     *   <li>Processes only files matching configured extensions</li>
-     *   <li>Performs cleanup of file set checks</li>
-     *   <li>Notifies listeners that audit is complete</li>
-     * </ol>
-     *
-     * <p>The actual file processing is handled by {@link #processFiles(List)} which:
-     * <ul>
-     *   <li>Applies before-execution file filters</li>
-     *   <li>Handles caching of file timestamps</li>
-     *   <li>Processes each file through all checks</li>
-     *   <li>Manages error reporting</li>
-     * </ul>
-     *
-     * @param files List of files to process (non-null, may be empty)
-     * @return Total count of errors found
-     * @throws CheckstyleException if an error occurs during processing
-     * @see #process(List)
-     * @see #process(Collection)
-     */
-    private int auditFileProcess(List<File> files) throws CheckstyleException {
         if (cacheFile != null) {
             cacheFile.putExternalResources(getExternalResourceLocations());
         }
