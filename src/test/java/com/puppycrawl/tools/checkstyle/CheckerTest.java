@@ -677,8 +677,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testClearExistingCache() throws Exception {
         final DefaultConfiguration checkerConfig = createRootConfig(null);
         checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
-        final File cacheFile = createTempFile();
-        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
+        final Path cacheFile = createTempFile(); // using Path, not File
+        checkerConfig.addProperty("cacheFile", cacheFile.toString());
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -690,7 +690,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.destroy();
 
         final Properties cacheAfterClear = new Properties();
-        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile)) {
             cacheAfterClear.load(reader);
         }
 
@@ -701,20 +701,20 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .that(cacheAfterClear.getProperty(PropertyCacheFile.CONFIG_HASH_KEY))
             .isNotNull();
 
-        final String pathToEmptyFile = createTempFile("file", ".java").getPath();
+        final Path pathToEmptyFile = createTempFile("file", ".java"); // using Path, not File
 
         // file that should be audited is not in cache
-        execute(checkerConfig, pathToEmptyFile);
+        execute(checkerConfig, pathToEmptyFile.toString());
         final Properties cacheAfterSecondRun = new Properties();
-        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile)) {
             cacheAfterSecondRun.load(reader);
         }
 
         assertWithMessage("Cache has null path")
-            .that(cacheAfterSecondRun.getProperty(pathToEmptyFile))
+            .that(cacheAfterSecondRun.getProperty(pathToEmptyFile.toRealPath().toString()))
             .isNotNull();
         final String cacheHash = cacheAfterSecondRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertWithMessage("Cash have changed it hash")
+        assertWithMessage("Cache has changed its hash")
             .that(cacheHash)
             .isEqualTo(cacheAfterClear.getProperty(PropertyCacheFile.CONFIG_HASH_KEY));
         final int expectedNumberOfObjectsInCacheAfterSecondRun = 2;
@@ -906,7 +906,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final File cacheFile = createTempFile();
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-        final String pathToEmptyFile = createTempFile("file", ".java").getPath();
+        final String pathToEmptyFile = createTempFile("file", ".java").toAbsolutePath().toString();
 
         execute(checkerConfig, pathToEmptyFile);
         final Properties cacheAfterFirstRun = new Properties();
@@ -968,7 +968,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.configure(checkerConfig);
         checker.addListener(getBriefUtLogger());
 
-        final String pathToEmptyFile = createTempFile("file", ".java").getPath();
+        final String pathToEmptyFile = createTempFile("file", ".java").toAbsolutePath().toString();
 
         execute(checker, pathToEmptyFile);
         final Properties cacheAfterFirstRun = new Properties();
@@ -1045,7 +1045,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
         checkerConfig.addChild(filterConfig);
 
-        final String fileViolationPath = createTempFile("ViolationFile", ".java").getPath();
+        final String fileViolationPath = createTempFile("ViolationFile", ".java").toAbsolutePath().toString();
 
         execute(checkerConfig, fileViolationPath);
 
@@ -1582,7 +1582,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 OutputStreamOptions.NONE, new AuditEventDefaultFormatter());
         checker.addListener(logger);
 
-        final String path = createTempFile("file", ".java").getPath();
+        final String path = createTempFile("file", ".java").toAbsolutePath().toString();
         final String violationMessage =
                 getCheckMessage(NewlineAtEndOfFileCheck.class, MSG_KEY_NO_NEWLINE_EOF);
         final String[] expected = {
