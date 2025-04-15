@@ -66,7 +66,7 @@ public class PropertiesMacro extends AbstractMacro {
                 "IllegalType - memberModifiers",
                 "MagicNumber - constantWaiverParentToken",
                 "MultipleStringLiterals - ignoreOccurrenceContext",
-            }).collect(Collectors.toSet()));
+            }).collect(Collectors.toUnmodifiableSet()));
 
     /** The precompiled pattern for a comma followed by a space. */
     private static final Pattern COMMA_SPACE_PATTERN = Pattern.compile(", ");

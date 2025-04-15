@@ -387,8 +387,7 @@ public final class CheckUtil {
                         crFound[0] = true;
                     }
                 })
-                .filter(character -> character == '\n')
-                .findFirst();
+                .anyMatch(character -> character == '\n');
 
         final String result;
         if (crFound[0]) {
