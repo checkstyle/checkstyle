@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import de.thetaphi.forbiddenapis.SuppressForbidden;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.mockito.Mockito;
 
 import java.io.*;
 import java.lang.reflect.Field;
@@ -61,6 +62,8 @@ import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_K
  */
 public class CheckerTest extends AbstractModuleTestSupport {
 
+    public static final Path MOCK_PATH = Mockito.mock(Path.class);
+    public static final File MOCK_FILE = Mockito.mock(File.class);
     @TempDir
     public File temporaryFolder;
 
@@ -747,25 +750,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final Path mock = new File("testFile") {
-            private static final long serialVersionUID = 1L;
-
-            /**
-             * Test is checking catch clause when exception is thrown.
-             *
-             * @noinspection ProhibitedExceptionThrown
-             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-             *      throw exception as part of test
-             */
-            @Override
-            public long lastModified() {
-                throw expectedError;
-            }
-        };
+        Mockito.when(MOCK_PATH.toFile()).thenReturn(MOCK_FILE);
+        Mockito.when(MOCK_FILE.lastModified()).thenThrow(expectedError);
 
         final Checker checker = new Checker();
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(mock);
+        filesToProcess.add(MOCK_PATH);
         try {
             checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();
@@ -801,30 +791,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final Path mock = new File("testFile") {
-            private static final long serialVersionUID = 1L;
-
-            /**
-             * Test is checking catch clause when exception is thrown.
-             *
-             * @noinspection ProhibitedExceptionThrown
-             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-             *      throw exception as part of test
-             */
-            @Override
-            public long lastModified() {
-                throw expectedError;
-            }
-
-            @Override
-            public String getAbsolutePath() {
-                return null;
-            }
-        };
-
         final Checker checker = new Checker();
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(mock);
+        filesToProcess.add(MOCK_PATH);
         try {
             checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();
@@ -1102,32 +1071,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final Path mock = new File("testFile") {
-            private static final long serialVersionUID = 1L;
-
-            @Override
-            public String getAbsolutePath() {
-                return "testFile";
-            }
-
-            /**
-             * Test is checking catch clause when exception is thrown.
-             *
-             * @noinspection ProhibitedExceptionThrown
-             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-             *      throw exception as part of test
-             */
-            @Override
-            public File getAbsoluteFile() {
-                throw expectedError;
-            }
-        };
-
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(mock);
+        filesToProcess.add(MOCK_PATH);
         try {
             checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();
@@ -1180,27 +1128,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final Path mock = new File("testFile") {
-            private static final long serialVersionUID = 1L;
-
-            /**
-             * Test is checking catch clause when exception is thrown.
-             *
-             * @noinspection ProhibitedExceptionThrown
-             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-             *      throw exception as part of test
-             */
-            @Override
-            public String getAbsolutePath() {
-                throw expectedError;
-            }
-        };
-
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(mock);
+        filesToProcess.add(MOCK_PATH);
         try {
             checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();
@@ -1244,25 +1176,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String errorMessage = "Security Exception";
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
-        final Path mock = new File("testFile") {
-            private static final long serialVersionUID = 1L;
-
-            /**
-             * Test is checking catch clause when exception is thrown.
-             *
-             * @noinspection ProhibitedExceptionThrown
-             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-             *      throw exception as part of test
-             */
-            @Override
-            public String getAbsolutePath() {
-                throw expectedError;
-            }
-        };
-
         final Checker checker = new Checker();
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(mock);
+        filesToProcess.add(MOCK_PATH);
         try {
             checker.process(filesToProcess);
             assertWithMessage("SecurityException is expected!").fail();
@@ -1298,27 +1214,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String errorMessage = "Security Exception";
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
-        final Path mock = new File("testFile") {
-            private static final long serialVersionUID = 1L;
-
-            /**
-             * Test is checking catch clause when exception is thrown.
-             *
-             * @noinspection ProhibitedExceptionThrown
-             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-             *      throw exception as part of test
-             */
-            @Override
-            public String getAbsolutePath() {
-                throw expectedError;
-            }
-        };
-
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(mock);
+        filesToProcess.add(MOCK_PATH);
         try {
             checker.process(filesToProcess);
             assertWithMessage("SecurityException is expected!").fail();
