@@ -788,7 +788,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final File mock = new File("testFile") {
+        final Path mock = new File("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -806,7 +806,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final Checker checker = new Checker();
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(mock);
+        filesToProcess.add(omck);
         try {
             checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();
@@ -842,7 +842,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final File mock = new File("testFile") {
+        final Path mock = new File("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1143,7 +1143,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final File mock = new File("testFile") {
+        final Path mock = new File("testFile") {
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -1221,7 +1221,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final File mock = new File("testFile") {
+        final Path mock = new File("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1285,7 +1285,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String errorMessage = "Security Exception";
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
-        final File mock = new File("testFile") {
+        final Path mock = new File("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1339,7 +1339,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String errorMessage = "Security Exception";
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
-        final File mock = new File("testFile") {
+        final Path mock = new File("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1640,7 +1640,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Path cacheFile = createTempFile("cacheFile", ".txt");
         checker.setCacheFile(cacheFile.getAbsolutePath());
 
-        final File testFile = createTempFile("testFile", ".java");
+        final Path testFile = createTempFile("testFile", ".java");
         final List<Path> files = List.of(testFile, testFile);
         checker.process(files);
 
@@ -1681,7 +1681,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkerConfig.addChild(treeWalkerConfig);
 
         checkerConfig.addProperty("haltOnException", "false");
-        final File file = new File("InputNonChecker.java");
+        final Path file = new File("InputNonChecker.java");
         final String filePath = file.getAbsolutePath();
         final String[] expected = {
             "1: " + getCheckMessage(EXCEPTION_MSG, filePath
@@ -1725,9 +1725,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             "1: " + violationMessage,
         };
 
-        final File tempFile = createTempFile("InputCheckerTestExcludeRelativizedFile", ".java");
+        final Path tempFile = createTempFile("InputCheckerTestExcludeRelativizedFile", ".java");
 
-        final File[] processedFiles = {tempFile};
+        final Path[] processedFiles = {tempFile};
 
         verify(createChecker(checkerConfig), processedFiles,
                 tempFile.getName(), expected);
