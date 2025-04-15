@@ -97,6 +97,8 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         getAllowedDirectoryAndChecks();
 
     private static final Set<String> INTERNAL_MODULES = getInternalModules();
+    private static final DirectoryStream.Filter<Path> IS_DIRECTORY = path
+            -> path.toFile().isDirectory();
 
     private Path javaDir;
     private Path inputDir;
@@ -164,7 +166,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     public void validateIntegrationTestClassNames() throws Exception {
         final Set<String> compatibleChecks = new HashSet<>();
         final Pattern pattern = Pattern.compile("^XpathRegression(.+)Test\\.java$");
-        try (DirectoryStream<Path> javaPaths = Files.newDirectoryStream(javaDir)) {
+        try (DirectoryStream<Path> javaPaths = Files.newDirectoryStream(javaDir, IS_DIRECTORY)) {
             for (Path path : javaPaths) {
                 assertWithMessage(path + " is not a regular file")
                         .that(Files.isRegularFile(path))
@@ -212,7 +214,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     @Test
     public void validateInputFiles() throws Exception {
-        try (DirectoryStream<Path> dirs = Files.newDirectoryStream(inputDir)) {
+        try (DirectoryStream<Path> dirs = Files.newDirectoryStream(inputDir, IS_DIRECTORY)) {
             for (Path dir : dirs) {
                 // input directory must be named in lower case
                 assertWithMessage(dir + " is not a directory")
