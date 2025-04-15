@@ -1,0 +1,24 @@
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+insert_final_newline = true
+
+[*.java]
+ij_continuation_indent_size = 4
+ij_java_catch_on_new_line = true
+ij_java_class_count_to_use_import_on_demand = 999
+ij_java_else_on_new_line = true
+ij_java_imports_layout = $*, |, java.**, |, javax.**, |, org.**, |, net.**, |, com.**, |, *
+ij_java_names_count_to_use_import_on_demand = 999
+ij_java_space_before_array_initializer_left_brace = true
+indent_size = 4
+max_line_length = 100
+
+[*.xml]
+ij_continuation_indent_size = 2
+indent_size = 2
+max_line_length = 160
+
+[**spotbugs-exclude.xml]
+max_line_length = 100
