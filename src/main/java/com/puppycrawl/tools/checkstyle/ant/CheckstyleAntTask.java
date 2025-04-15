@@ -328,7 +328,7 @@ public class CheckstyleAntTask extends Task {
     private void processFiles(RootModule rootModule, final SeverityLevelCounter warningCounter,
             final String checkstyleVersion) {
         final long startTime = System.currentTimeMillis();
-        final List<File> files = getFilesToCheck();
+        final List<Path> files = getFilesToCheck();
         final long endTime = System.currentTimeMillis();
         log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
             Project.MSG_VERBOSE);
@@ -483,23 +483,16 @@ public class CheckstyleAntTask extends Task {
      *
      * @return the list of files included via the fileName, filesets and paths.
      */
-    private List<File> getFilesToCheck() {
-        final List<File> allFiles = new ArrayList<>();
+    private List<Path> getFilesToCheck() {
+        final List<Path> allFiles = new ArrayList<>();
         if (fileName != null) {
             // oops, we've got an additional one to process, don't
             // forget it. No sweat, it's fully resolved via the setter.
             log("Adding standalone file for audit", Project.MSG_VERBOSE);
-            allFiles.add(Path.of(fileName).toFile());
+            allFiles.add(Path.of(fileName));
         }
-
-        final List<File> filesFromFileSets = scanFileSets();
-        allFiles.addAll(filesFromFileSets);
-
-        final List<Path> filesFromPaths = scanPaths();
-        allFiles.addAll(filesFromPaths.stream()
-            .map(Path::toFile)
-            .collect(Collectors.toUnmodifiableList()));
-
+        allFiles.addAll(scanFileSets());
+        allFiles.addAll(scanPaths().stream().collect(Collectors.toUnmodifiableList()));
         return allFiles;
     }
 
@@ -561,18 +554,13 @@ public class CheckstyleAntTask extends Task {
      *
      * @return the list of files included via the filesets.
      */
-    protected List<File> scanFileSets() {
-        final List<Path> allFiles = new ArrayList<>();
-
-        for (int i = 0; i < fileSets.size(); i++) {
-            final FileSet fileSet = fileSets.get(i);
-            final DirectoryScanner scanner = fileSet.getDirectoryScanner(getProject());
-            final List<Path> scannedFiles = retrieveAllScannedFiles(scanner, i);
-            allFiles.addAll(scannedFiles);
-        }
-
-        return allFiles.stream()
-            .map(Path::toFile)
+    protected List<Path> scanFileSets() {
+        return fileSets.stream()
+            .flatMap(fileSet -> {
+                return retrieveAllScannedFiles(
+                    fileSet.getDirectoryScanner(getProject()),
+                    fileSets.indexOf(fileSet)).stream();
+            })
             .collect(Collectors.toUnmodifiableList());
     }
 
