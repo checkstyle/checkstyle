@@ -26,12 +26,8 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.nio.file.Path;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -235,6 +231,11 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         final int errorCount = counter.getCount();
         fireAuditFinished();
         return errorCount;
+    }
+
+    @Override
+    public int process(Collection<Path> files) throws CheckstyleException {
+        return 0;
     }
 
     /**
