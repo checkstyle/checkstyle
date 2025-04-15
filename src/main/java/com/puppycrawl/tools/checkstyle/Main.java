@@ -134,7 +134,7 @@ public final class Main {
         catch (ParameterException ex) {
             exitStatus = EXIT_WITH_INVALID_USER_INPUT_CODE;
             System.err.println(ex.getMessage());
-            System.err.println("Usage: checkstyle [OPTIONS]... FILES...");
+            System.err.println("Usage: checkstyle [OPTIONS]... FILES or FOLDERS...");
             System.err.println("Try 'checkstyle --help' for more information.");
         }
         catch (CheckstyleException ex) {
@@ -666,7 +666,8 @@ public final class Main {
         private static final int TREE_WALKER_THREADS_NUMBER = DEFAULT_THREAD_COUNT;
 
         /** List of file to validate. */
-        @Parameters(arity = "1..*", description = "One or more source files to verify")
+        @Parameters(arity = "1..*", paramLabel = "<files or folders>",
+                description = "One or more source files to verify")
         private List<File> files;
 
         /** Config file location. */
