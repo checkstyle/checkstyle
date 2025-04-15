@@ -213,28 +213,17 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         if (cacheFile != null) {
             cacheFile.putExternalResources(getExternalResourceLocations());
         }
-
         // Prepare to start
         fireAuditStarted();
-        for (final FileSetCheck fsc : fileSetChecks) {
-            fsc.beginProcessing(charset);
-        }
-
-        final List<File> targetFiles = files.stream()
+        processFiles(files.stream()
                 .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
-                .collect(Collectors.toUnmodifiableList());
-        processFiles(targetFiles);
-
+                .collect(Collectors.toUnmodifiableList()));
         // Finish up
         // It may also log!!!
         fileSetChecks.forEach(FileSetCheck::finishProcessing);
-
-        // It may also log!!!
         fileSetChecks.forEach(FileSetCheck::destroy);
-
-        final int errorCount = counter.getCount();
         fireAuditFinished();
-        return errorCount;
+        return counter.getCount();
     }
 
     /**
@@ -256,10 +245,10 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
     /** Notify all listeners about the audit start. */
     private void fireAuditStarted() {
-        final AuditEvent event = new AuditEvent(this);
-        for (final AuditListener listener : listeners) {
-            listener.auditStarted(event);
+        for (final FileSetCheck fsc : fileSetChecks) {
+            fsc.beginProcessing(charset);
         }
+        listeners.forEach(auditListener -> auditListener.auditStarted(new AuditEvent(this)));
     }
 
     /** Notify all listeners about the audit end. */
