@@ -19,44 +19,44 @@ package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 public class InputMagicNumberDefault3 {
 
     public int hashCode() {
-        return 31; // violation
+        return 31; // violation ''31' is a magic number'
     }
 
 
     public int hashCode(int val) {
-        return 42; // violation
+        return 42; // violation ''42' is a magic number'
     }
 
 
     public int hashcode() {
-        return 13; // violation
+        return 13; // violation ''13' is a magic number'
     }
 
     static {
-        int x=21; // violation
+        int x=21; // violation ''21' is a magic number'
     }
 
     {
-        int y=37; // violation
+        int y=37; // violation ''37' is a magic number'
     }
 
     public InputMagicNumberDefault3() {
-        int z=101; // violation
+        int z=101; // violation ''101' is a magic number'
     }
 
-    @InputMagicNumberIntMethodAnnotation(42) // violation
+    @InputMagicNumberIntMethodAnnotation(42) // violation ''42' is a magic number'
     public void another() {
     }
 
-    @InputMagicNumberIntMethodAnnotation(value=43) // violation
+    @InputMagicNumberIntMethodAnnotation(value=43) // violation ''43' is a magic number'
     public void another2() {
     }
 
-    @InputMagicNumberIntMethodAnnotation(-44) // violation
+    @InputMagicNumberIntMethodAnnotation(-44) // violation ''-44' is a magic number'
     public void anotherNegative() {
     }
 
-    @InputMagicNumberIntMethodAnnotation(value=-45) // violation
+    @InputMagicNumberIntMethodAnnotation(value=-45) // violation ''-45' is a magic number'
     public void anotherNegative2() {
     }
 }
@@ -73,8 +73,8 @@ class TestMethodCallDefault3 {
 }
 
 class BinaryDefault3 {
-    int intValue = 0b101; // violation
-    long l = 0b1010000101000101101000010100010110100001010001011010000101000101L; // violation
+    int intValue = 0b101; // violation ''0b101' is a magic number'
+    long l = 0b1010000101000101101000010100010110100001010001011010000101000101L; // violation ''0b1010000101000101101000010100010110100001010001011010000101000101L' is a magic number'
 }
 @interface AnnotationWithDefaultValueDefault3 {
     int value() default 101;
@@ -84,7 +84,7 @@ class ADefault3 {
     {
         switch (Blah2Default1.LOW) {
         default:
-            int b = 122; // violation
+            int b = 122; // violation ''122' is a magic number'
         }
     }
 }
