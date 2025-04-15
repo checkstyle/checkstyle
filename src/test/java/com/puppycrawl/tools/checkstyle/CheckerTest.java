@@ -319,7 +319,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testFileExtensions() throws Exception {
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
         checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
-        checkerConfig.addProperty("cacheFile", createTempFile("junit").getPath());
+        checkerConfig.addProperty("cacheFile", Files.createTempFile("junit", null).toString());
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -328,31 +328,25 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         checker.addListener(auditAdapter);
 
-        final List<File> files = new ArrayList<>();
-        final File file = new File("file.pdf");
-        files.add(file);
-        final File otherFile = new File("file.java");
-        files.add(otherFile);
+        final List<Path> files = List.of(Paths.get("file.pdf"), Paths.get("file.java"));
         final String[] fileExtensions = {"java", "xml", "properties"};
         checker.setFileExtensions(fileExtensions);
-        checker.setCacheFile(createTempFile("junit").getPath());
-        final int counter = checker.process(files);
+        checker.setCacheFile(Files.createTempFile("junit", null).toString());
 
-        // comparing to 1 as there is only one legal file in input
         final int numLegalFiles = 1;
         final PropertyCacheFile cache = TestUtil.getInternalState(checker, "cacheFile");
         assertWithMessage("There were more legal files than expected")
-            .that(counter)
-            .isEqualTo(numLegalFiles);
+                .that(checker.process(new ArrayList<>(files)))
+                .isEqualTo(numLegalFiles);
         assertWithMessage("Audit was started on larger amount of files than expected")
-            .that(auditAdapter.getNumFilesStarted())
-            .isEqualTo(numLegalFiles);
+                .that(auditAdapter.getNumFilesStarted())
+                .isEqualTo(numLegalFiles);
         assertWithMessage("Audit was finished on larger amount of files than expected")
-            .that(auditAdapter.getNumFilesFinished())
-            .isEqualTo(numLegalFiles);
-        assertWithMessage("Cache shout not contain any file")
-            .that(cache.get(new File("file.java").getCanonicalPath()))
-            .isNull();
+                .that(auditAdapter.getNumFilesFinished())
+                .isEqualTo(numLegalFiles);
+        assertWithMessage("Cache should not contain any file")
+                .that(cache.get(Paths.get("file.java").toRealPath().toString()))
+                .isNull();
     }
 
     @Test
