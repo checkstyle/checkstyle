@@ -19,7 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
-import static com.google.common.truth.Truth.assertWithMessage;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.Definitions;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.*;
+import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -34,17 +39,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.Definitions;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
-import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 public class XpathRegressionTest extends AbstractModuleTestSupport {
 
@@ -97,6 +92,8 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         getAllowedDirectoryAndChecks();
 
     private static final Set<String> INTERNAL_MODULES = getInternalModules();
+    private static final DirectoryStream.Filter<Path> IS_DIRECTORY = path
+            -> path.toFile().isDirectory();
 
     private Path javaDir;
     private Path inputDir;
@@ -212,7 +209,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     @Test
     public void validateInputFiles() throws Exception {
-        try (DirectoryStream<Path> dirs = Files.newDirectoryStream(inputDir)) {
+        try (DirectoryStream<Path> dirs = Files.newDirectoryStream(inputDir, IS_DIRECTORY)) {
             for (Path dir : dirs) {
                 // input directory must be named in lower case
                 assertWithMessage(dir + " is not a directory")
