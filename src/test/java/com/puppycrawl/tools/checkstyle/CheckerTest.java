@@ -1638,7 +1638,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                                          errorStream, OutputStreamOptions.CLOSE);
         checker.addListener(loggerWithCounter);
         final Path cacheFile = createTempFile("cacheFile", ".txt");
-        checker.setCacheFile(cacheFile.getAbsolutePath());
+        checker.setCacheFile(cacheFile.toAbsolutePath().toString());
 
         final Path testFile = createTempFile("testFile", ".java");
         final List<Path> files = List.of(testFile, testFile);
@@ -1681,8 +1681,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkerConfig.addChild(treeWalkerConfig);
 
         checkerConfig.addProperty("haltOnException", "false");
-        final Path file = new File("InputNonChecker.java");
-        final String filePath = file.getAbsolutePath();
+        final Path file = Path.of("InputNonChecker.java");
+        final String filePath = file.toAbsolutePath().toString();
         final String[] expected = {
             "1: " + getCheckMessage(EXCEPTION_MSG, filePath
                         + " (No such file or directory)"),
@@ -1715,8 +1715,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkerConfig.addChild(beforeExecutionExclusionFileFilterConfig);
 
         // -@cs[CheckstyleTestMakeup] Needs to be fixed.
-        checkerConfig.addProperty("basedir",
-                temporaryFolder.getPath());
+        checkerConfig.addProperty("basedir", temporaryFolder.getPath());
 
         final String violationMessage =
                 getCheckMessage(NewlineAtEndOfFileCheck.class, MSG_KEY_NO_NEWLINE_EOF);
@@ -1727,10 +1726,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final Path tempFile = createTempFile("InputCheckerTestExcludeRelativizedFile", ".java");
 
-        final Path[] processedFiles = {tempFile};
+        final File[] processedFiles = {tempFile.toFile()};
 
         verify(createChecker(checkerConfig), processedFiles,
-                tempFile.getName(), expected);
+                tempFile.getFileName().toString(), expected);
     }
 
     public static class DefaultLoggerWithCounter extends DefaultLogger {
