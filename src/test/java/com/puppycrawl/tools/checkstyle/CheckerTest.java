@@ -19,76 +19,38 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.Checker.EXCEPTION_MSG;
-import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_FINISHED_MESSAGE;
-import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_STARTED_MESSAGE;
-import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
-import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
-
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOError;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.Properties;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
-import java.util.UUID;
-import java.util.stream.Collectors;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
-import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.Context;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
-import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.Filter;
-import com.puppycrawl.tools.checkstyle.api.FilterSet;
-import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.api.*;
 import com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck;
 import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
-import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckWhichThrowsError;
-import com.puppycrawl.tools.checkstyle.internal.testmodules.DebugAuditAdapter;
-import com.puppycrawl.tools.checkstyle.internal.testmodules.DebugFilter;
-import com.puppycrawl.tools.checkstyle.internal.testmodules.TestBeforeExecutionFileFilter;
-import com.puppycrawl.tools.checkstyle.internal.testmodules.TestFileSetCheck;
+import com.puppycrawl.tools.checkstyle.internal.testmodules.*;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import de.thetaphi.forbiddenapis.SuppressForbidden;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.io.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.Checker.EXCEPTION_MSG;
+import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_FINISHED_MESSAGE;
+import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_STARTED_MESSAGE;
+import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
+import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
 /**
  * CheckerTest.
@@ -289,7 +251,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addBeforeExecutionFileFilter(filter);
 
         filter.resetFilter();
-        checker.process(Collections.singletonList(new File("dummy.java")));
+        checker.process(Collections.singletonList(Paths.get("dummy.java")));
         assertWithMessage("Checker.acceptFileStarted() doesn't call filter")
                 .that(filter.wasCalled())
                 .isTrue();
@@ -305,7 +267,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.removeBeforeExecutionFileFilter(filter);
 
         f2.resetFilter();
-        checker.process(Collections.singletonList(new File("dummy.java")));
+        checker.process(Collections.singletonList(Paths.get("dummy.java")));
         assertWithMessage("Checker.acceptFileStarted() doesn't call filter")
                 .that(f2.wasCalled())
                 .isTrue();
@@ -397,8 +359,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testIgnoredFileExtensions() throws Exception {
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
         checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
-        final File tempFile = createTempFile("junit");
-        checkerConfig.addProperty("cacheFile", tempFile.getPath());
+        final Path tempFile = Files.createTempFile("junit", null);
+        checkerConfig.addProperty("cacheFile", tempFile.toString());
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -407,25 +369,21 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         checker.addListener(auditAdapter);
 
-        final List<File> allIgnoredFiles = new ArrayList<>();
-        final File ignoredFile = new File("file.pdf");
-        allIgnoredFiles.add(ignoredFile);
+        final List<Path> allIgnoredFiles = List.of(Paths.get("file.pdf"));
         final String[] fileExtensions = {"java", "xml", "properties"};
         checker.setFileExtensions(fileExtensions);
-        checker.setCacheFile(createTempFile("junit").getPath());
-        final int counter = checker.process(allIgnoredFiles);
+        checker.setCacheFile(Files.createTempFile("junit", null).toString());
 
-        // comparing to 0 as there is no legal file in input
         final int numLegalFiles = 0;
         assertWithMessage("There were more legal files than expected")
-            .that(counter)
-            .isEqualTo(numLegalFiles);
+                .that(checker.process(new ArrayList<>(allIgnoredFiles)))
+                .isEqualTo(numLegalFiles);
         assertWithMessage("Audit was started on larger amount of files than expected")
-            .that(auditAdapter.getNumFilesStarted())
-            .isEqualTo(numLegalFiles);
+                .that(auditAdapter.getNumFilesStarted())
+                .isEqualTo(numLegalFiles);
         assertWithMessage("Audit was finished on larger amount of files than expected")
-            .that(auditAdapter.getNumFilesFinished())
-            .isEqualTo(numLegalFiles);
+                .that(auditAdapter.getNumFilesFinished())
+                .isEqualTo(numLegalFiles);
     }
 
     @Test
