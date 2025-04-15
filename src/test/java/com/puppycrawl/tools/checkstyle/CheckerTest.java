@@ -597,10 +597,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testCacheAndCheckWhichDoesNotImplementExternalResourceHolderInterface()
-            throws Exception {
+        throws Exception {
         assertWithMessage("ExternalResourceHolder has changed his parent")
-                .that(ExternalResourceHolder.class.isAssignableFrom(HiddenFieldCheck.class))
-                .isFalse();
+            .that(ExternalResourceHolder.class.isAssignableFrom(HiddenFieldCheck.class))
+            .isFalse();
+
         final DefaultConfiguration checkConfig = createModuleConfig(HiddenFieldCheck.class);
 
         final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
@@ -609,21 +610,21 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
         checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
 
-        final File cacheFile = createTempFile();
-        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
+        final Path cacheFile = createTempFile();
+        checkerConfig.addProperty("cacheFile", cacheFile.toString());
 
-        final File tmpFile = createTempFile("file", ".java");
+        final Path tmpFile = createTempFile("file", ".java");
 
-        execute(checkerConfig, tmpFile.getPath());
+        execute(checkerConfig, tmpFile.toString());
         final Properties cacheAfterFirstRun = new Properties();
-        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile)) {
             cacheAfterFirstRun.load(reader);
         }
 
         // one more time to reuse cache
-        execute(checkerConfig, tmpFile.getPath());
+        execute(checkerConfig, tmpFile.toString());
         final Properties cacheAfterSecondRun = new Properties();
-        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile)) {
             cacheAfterSecondRun.load(reader);
         }
 
@@ -668,7 +669,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .isEqualTo(expectedConfigHash);
 
         assertWithMessage("Cache file has null path")
-            .that(cache.getProperty(tmpFile.getPath()))
+            .that(cache.getProperty(tmpFile.toAbsolutePath().toString()))
             .isNotNull();
     }
 
