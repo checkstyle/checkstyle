@@ -662,14 +662,19 @@ jobs:
   send_message:
     runs-on: ubuntu-latest
     needs: [
+      handle_existing_config_bundle,
       handle_generated_config_bundle,
+      handle_configs_in_pr_description,
       download_configs,
-      make_report ]
+      make_report
+    ]
     if: always()
       && (needs.make_report.result == 'failure'
-          || needs.make_report.outputs.message != ''
-          || needs.download_configs.result == 'failure'
-          || needs.handle_generated_config_bundle.result == 'failure')
+      || needs.make_report.outputs.message != ''
+      || needs.download_configs.result == 'failure'
+      || needs.handle_existing_config_bundle.result == 'failure'
+      || needs.handle_generated_config_bundle.result == 'failure'
+      || needs.handle_configs_in_pr_description.result == 'failure')
     steps:
       - name: Restore cache
         uses: actions/cache/restore@v4
@@ -683,7 +688,9 @@ jobs:
           MSG: ${{ needs.make_report.outputs.message }}
           DOWNLOAD_RESULT: ${{ needs.download_configs.result }}
           MAKE_REPORT_RESULT: ${{ needs.make_report.result }}
+          EXISTING_CONFIG_RESULT: ${{ needs.handle_existing_config_bundle.result }}
           GENERATED_CONFIG_RESULT: ${{ needs.handle_generated_config_bundle.result }}
+          CONFIGS_IN_PR_RESULT: ${{ needs.handle_configs_in_pr_description.result }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p .ci-temp
@@ -704,6 +711,19 @@ jobs:
               echo "Failed to generate config from the specified file."
               echo "Please ensure the file exists and the path is correct."
               echo "<br>Usage: 'GitHub, generate report by config from <file_path>'"
+              echo "<br>Link: $JOBS_LINK"
+            } > .ci-temp/message
+          elif [ "$EXISTING_CONFIG_RESULT" == "failure" ]; then
+            {
+              echo "Failed to process existing config bundle."
+              echo "Please verify the config bundle path is correct."
+              echo "<br>Usage: 'GitHub, generate report for <config_bundle_path>'"
+              echo "<br>Link: $JOBS_LINK"
+            } > .ci-temp/message
+          elif [ "$CONFIGS_IN_PR_RESULT" == "failure" ]; then
+            {
+              echo "Failed to process configs in PR description."
+              echo "Please check the PR description format and config links."
               echo "<br>Link: $JOBS_LINK"
             } > .ci-temp/message
           elif [ "$MAKE_REPORT_RESULT" == "failure" ]; then
