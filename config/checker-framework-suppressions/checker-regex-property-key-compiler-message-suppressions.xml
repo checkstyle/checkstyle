@@ -201,6 +201,28 @@
       required: @Regex String
     </details>
   </checkerFrameworkError>
+  
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/MultiFileRegexpHeaderCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
+    <lineContent>Pattern.compile(input);</lineContent>
+    <details>
+      found   : String
+      required: @Regex String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/MultiFileRegexpHeaderCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
+    <lineContent>result = Pattern.compile(validateRegex(line));</lineContent>
+    <details>
+      found   : String
+      required: @Regex String
+    </details>
+  </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/RegexpHeaderCheck.java</fileName>
