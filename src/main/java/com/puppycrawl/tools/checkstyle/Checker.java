@@ -212,12 +212,12 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
     @Override
     public int process(List<File> files) throws CheckstyleException {
-        return processFilesAudition(files);
+        return auditFileProcess(files);
     }
 
     @Override
     public int process(Collection<Path> paths) throws CheckstyleException {
-        return processFilesAudition(paths.stream()
+        return auditFileProcess(paths.stream()
                 .map(Path::toFile)
                 .collect(Collectors.toUnmodifiableList()));
     }
@@ -249,21 +249,15 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @see #process(List)
      * @see #process(Collection)
      */
-    private int processFilesAudition(List<File> files) throws CheckstyleException {
+    private int auditFileProcess(List<File> files) throws CheckstyleException {
         if (cacheFile != null) {
             cacheFile.putExternalResources(getExternalResourceLocations());
         }
-
         // Prepare to start
         fireAuditStarted();
-        for (final FileSetCheck fsc : fileSetChecks) {
-            fsc.beginProcessing(charset);
-        }
-
         processFiles(files.stream()
                 .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
                 .collect(Collectors.toUnmodifiableList()));
-
         // Finish up
         // It may also log!!!
         fileSetChecks.forEach(FileSetCheck::finishProcessing);
@@ -292,9 +286,11 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
     /** Notify all listeners about the audit start. */
     private void fireAuditStarted() {
-        final AuditEvent event = new AuditEvent(this);
+        for (final FileSetCheck fsc : fileSetChecks) {
+            fsc.beginProcessing(charset);
+        }
         for (final AuditListener listener : listeners) {
-            listener.auditStarted(event);
+            listener.auditStarted(new AuditEvent(this));
         }
     }
 
