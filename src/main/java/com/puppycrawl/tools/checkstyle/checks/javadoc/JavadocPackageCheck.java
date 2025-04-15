@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -87,7 +88,7 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
     public static final String MSG_PACKAGE_INFO = "javadoc.packageInfo";
 
     /** The directories checked. */
-    private final Set<Path> directoriesChecked = ConcurrentHashMap.newKeySet();
+    private final Set<File> directoriesChecked = ConcurrentHashMap.newKeySet();
 
     /** Allow legacy {@code package.html} file to be used. */
     private boolean allowLegacy;
@@ -102,20 +103,21 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
     }
 
     @Override
-    protected void processFiltered(Path file, FileText fileText) throws CheckstyleException {
-        final Path dir;
+    protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
+        // Check if already processed directory
+        final File dir;
         try {
-            dir = file.toRealPath().getParent();
+            dir = file.getCanonicalFile().getParentFile();
         }
         catch (IOException ex) {
             throw new CheckstyleException(
-                "Exception while getting real path to file " + file, ex);
+                    "Exception while getting canonical path to file " + file.getPath(), ex);
         }
-
         final boolean isDirChecked = !directoriesChecked.add(dir);
         if (!isDirChecked) {
-            final Path packageInfo = dir.resolve("package-info.java");
-            final Path packageHtml = dir.resolve("package.html");
+            // Check for the preferred file.
+            final Path packageInfo = Path.of(dir.getPath(), "package-info.java");
+            final Path packageHtml = Path.of(dir.getPath(), "package.html");
 
             if (Files.exists(packageInfo)) {
                 if (Files.exists(packageHtml)) {

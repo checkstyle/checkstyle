@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -281,7 +280,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         private static final String MSG_KEY = "File should not be empty.";
 
         @Override
-        protected void processFiltered(Path file, FileText fileText) {
+        protected void processFiltered(File file, FileText fileText) {
             if (fileText.size() == 0) {
                 log(1, MSG_KEY);
             }
@@ -294,7 +293,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         private static final String MSG_KEY = "Violation.";
 
         @Override
-        protected void processFiltered(Path file, FileText fileText) {
+        protected void processFiltered(File file, FileText fileText) {
             log(1, 0, MSG_KEY);
         }
 
@@ -306,7 +305,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         private int finishProcessingCount;
 
         @Override
-        protected void processFiltered(Path file, FileText fileText) {
+        protected void processFiltered(File file, FileText fileText) {
             // no code needed
         }
 
@@ -328,7 +327,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         private int count = 1;
 
         @Override
-        protected void processFiltered(Path file, FileText fileText) {
+        protected void processFiltered(File file, FileText fileText) {
             log(count, MSG_KEY);
             count++;
             throw new IllegalArgumentException("Test");

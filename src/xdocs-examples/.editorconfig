@@ -1,5 +1,0 @@
-root = true
-
-[*.java]
-ij_continuation_indent_size = 2
-indent_size = 2

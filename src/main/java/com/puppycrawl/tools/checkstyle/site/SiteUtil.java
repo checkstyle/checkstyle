@@ -684,7 +684,7 @@ public final class SiteUtil {
         treeWalkerConfig.addChild(scraperCheckConfig);
         try {
             checker.configure(defaultConfiguration);
-            final List<Path> filesToProcess = List.of(moduleFile.toPath());
+            final List<File> filesToProcess = List.of(moduleFile);
             checker.process(filesToProcess);
             checker.destroy();
         }

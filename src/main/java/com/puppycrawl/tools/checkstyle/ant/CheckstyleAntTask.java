@@ -23,13 +23,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -39,6 +36,7 @@ import java.util.stream.Collectors;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
+import org.apache.tools.ant.FileScanner;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.Task;
 import org.apache.tools.ant.taskdefs.LogOutputStream;
@@ -79,7 +77,7 @@ public class CheckstyleAntTask extends Task {
     private static final String TIME_SUFFIX = " ms.";
 
     /** Contains the paths to process. */
-    private final List<Path> paths = new ArrayList<>();
+    private final List<org.apache.tools.ant.types.Path> paths = new ArrayList<>();
 
     /** Contains the filesets to process. */
     private final List<FileSet> fileSets = new ArrayList<>();
@@ -103,7 +101,7 @@ public class CheckstyleAntTask extends Task {
     private String failureProperty;
 
     /** The name of the properties file. */
-    private File properties;
+    private Path properties;
 
     /** The maximum number of errors that are tolerated. */
     private int maxErrors;
@@ -166,7 +164,7 @@ public class CheckstyleAntTask extends Task {
      *
      * @param path the path to add.
      */
-    public void addPath(Path path) {
+    public void addPath(org.apache.tools.ant.types.Path path) {
         paths.add(path);
     }
 
@@ -253,7 +251,7 @@ public class CheckstyleAntTask extends Task {
      * @param props the properties File to use
      */
     public void setProperties(File props) {
-        properties = props;
+        properties = props.toPath();
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -330,7 +328,7 @@ public class CheckstyleAntTask extends Task {
     private void processFiles(RootModule rootModule, final SeverityLevelCounter warningCounter,
             final String checkstyleVersion) {
         final long startTime = System.currentTimeMillis();
-        final List<Path> files = getFilesToCheck();
+        final List<File> files = getFilesToCheck();
         final long endTime = System.currentTimeMillis();
         log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
             Project.MSG_VERBOSE);
@@ -423,7 +421,7 @@ public class CheckstyleAntTask extends Task {
 
         // Load the properties file if specified
         if (properties != null) {
-            try (InputStream inStream = Files.newInputStream(properties.toPath())) {
+            try (InputStream inStream = Files.newInputStream(properties)) {
                 returnValue.load(inStream);
             }
             catch (final IOException ex) {
@@ -485,20 +483,22 @@ public class CheckstyleAntTask extends Task {
      *
      * @return the list of files included via the fileName, filesets and paths.
      */
-    private List<Path> getFilesToCheck() {
-        final List<Path> allFiles = new ArrayList<>();
+    private List<File> getFilesToCheck() {
+        final List<File> allFiles = new ArrayList<>();
         if (fileName != null) {
             // oops, we've got an additional one to process, don't
             // forget it. No sweat, it's fully resolved via the setter.
             log("Adding standalone file for audit", Project.MSG_VERBOSE);
-            allFiles.add(Paths.get(fileName)); // Use Paths.get() to create a Path
+            allFiles.add(Path.of(fileName).toFile());
         }
 
-        final List<Path> filesFromFileSets = scanFileSets();
+        final List<File> filesFromFileSets = scanFileSets();
         allFiles.addAll(filesFromFileSets);
 
         final List<Path> filesFromPaths = scanPaths();
-        allFiles.addAll(filesFromPaths);
+        allFiles.addAll(filesFromPaths.stream()
+            .map(Path::toFile)
+            .collect(Collectors.toUnmodifiableList()));
 
         return allFiles;
     }
@@ -512,7 +512,7 @@ public class CheckstyleAntTask extends Task {
         final List<Path> allFiles = new ArrayList<>();
 
         for (int i = 0; i < paths.size(); i++) {
-            final Path currentPath = paths.get(i);
+            final org.apache.tools.ant.types.Path currentPath = paths.get(i);
             final List<Path> pathFiles = scanPath(currentPath, i + 1);
             allFiles.addAll(pathFiles);
         }
@@ -527,29 +527,25 @@ public class CheckstyleAntTask extends Task {
      * @param pathIndex The index of the given path. Used in log messages only.
      * @return A list of files, extracted from the given path.
      */
-    private List<Path> scanPath(Path path, int pathIndex) {
+    private List<Path> scanPath(org.apache.tools.ant.types.Path path, int pathIndex) {
+        final String[] resources = path.list();
         log(pathIndex + ") Scanning path " + path, Project.MSG_VERBOSE);
         final List<Path> allFiles = new ArrayList<>();
         int concreteFilesCount = 0;
 
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)) {
-            for (Path resource : stream) {
-                if (Files.isRegularFile(resource)) {
-                    concreteFilesCount++;
-                    allFiles.add(resource);
-                }
-                else if (Files.isDirectory(resource)) {
-                    final DirectoryScanner scanner = new DirectoryScanner();
-                    scanner.setBasedir(resource.toFile()); // DirectoryScanner still uses File
-                    scanner.scan();
-                    final List<Path> scannedFiles = retrieveAllScannedFiles(scanner, pathIndex);
-                    allFiles.addAll(scannedFiles);
-                }
+        for (String resource : resources) {
+            final Path file = Path.of(resource);
+            if (Files.isRegularFile(file)) {
+                concreteFilesCount++;
+                allFiles.add(file);
             }
-        }
-        catch (IOException e) {
-            log("Error scanning path: " + path + " - " + e.getMessage(), Project.MSG_ERR);
-            return Collections.emptyList(); // Or handle the error as appropriate for your case
+            else {
+                final DirectoryScanner scanner = new DirectoryScanner();
+                scanner.setBasedir(file.toFile());
+                scanner.scan();
+                final List<Path> scannedFiles = retrieveAllScannedFiles(scanner, pathIndex);
+                allFiles.addAll(scannedFiles);
+            }
         }
 
         if (concreteFilesCount > 0) {
@@ -565,7 +561,7 @@ public class CheckstyleAntTask extends Task {
      *
      * @return the list of files included via the filesets.
      */
-    protected List<Path> scanFileSets() {
+    protected List<File> scanFileSets() {
         final List<Path> allFiles = new ArrayList<>();
 
         for (int i = 0; i < fileSets.size(); i++) {
@@ -575,7 +571,9 @@ public class CheckstyleAntTask extends Task {
             allFiles.addAll(scannedFiles);
         }
 
-        return allFiles;
+        return allFiles.stream()
+            .map(Path::toFile)
+            .collect(Collectors.toUnmodifiableList());
     }
 
     /**
@@ -586,15 +584,14 @@ public class CheckstyleAntTask extends Task {
      * @param logIndex A log entry index. Used only for log messages.
      * @return A list of files, retrieved from the given scanner.
      */
-    private List<Path> retrieveAllScannedFiles(DirectoryScanner scanner, int logIndex) {
+    private List<Path> retrieveAllScannedFiles(FileScanner scanner, int logIndex) {
         final String[] fileNames = scanner.getIncludedFiles();
-        File basedir = scanner.getBasedir();
         log(String.format(Locale.ROOT, "%d) Adding %d files from directory %s",
-            logIndex, fileNames.length, basedir), Project.MSG_VERBOSE);
+                logIndex, fileNames.length, scanner.getBasedir()), Project.MSG_VERBOSE);
 
         return Arrays.stream(fileNames)
-            .map(name -> basedir.toPath().resolve(name))
-            .collect(Collectors.toUnmodifiableList());
+          .map(scanner.getBasedir().toPath()::resolve)
+          .collect(Collectors.toUnmodifiableList());
     }
 
     /**
