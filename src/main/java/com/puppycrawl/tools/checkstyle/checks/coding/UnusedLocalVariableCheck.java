@@ -469,18 +469,12 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static DetailAST getBlockContainingLocalAnonInnerClass(DetailAST literalNewAst) {
         DetailAST currentAst = literalNewAst;
         DetailAST result = null;
-        DetailAST topMostLambdaAst = null;
         while (currentAst != null && !TokenUtil.isOfType(currentAst,
                 ANONYMOUS_CLASS_PARENT_TOKENS)) {
-            if (currentAst.getType() == TokenTypes.LAMBDA) {
-                topMostLambdaAst = currentAst;
-            }
             currentAst = currentAst.getParent();
-            result = currentAst;
-        }
-
-        if (currentAst == null) {
-            result = topMostLambdaAst;
+            if (currentAst != null) {
+                result = currentAst;
+            }
         }
         return result;
     }
