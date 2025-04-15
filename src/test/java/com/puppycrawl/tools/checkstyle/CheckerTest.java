@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_FINISHED_MESSA
 import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_STARTED_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
+import static org.mockito.Mockito.doReturn;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -57,6 +58,8 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Mockito;
 
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -896,6 +899,43 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .hasMessageThat()
                     .isEqualTo(errorMessage);
         }
+    }
+
+    @Test
+    public void testProcessPathCollection() throws Exception {
+        final Checker checker = new Checker();
+        final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
+        checker.addListener(auditAdapter);
+
+        final File tempFile1 = createTempFile("test1", ".java");
+        final File tempFile2 = createTempFile("test2", ".java");
+
+        final Checker spyChecker = Mockito.spy(checker);
+        doReturn(0).when(spyChecker).process(Collections.<File>emptyList());
+
+        spyChecker.process(Arrays.asList(
+            tempFile1.toPath(),
+            tempFile2.toPath()
+        ));
+
+        final ArgumentCaptor<List<File>> filesCaptor = ArgumentCaptor.forClass(List.class);
+        Mockito.verify(spyChecker).process(filesCaptor.capture());
+        final List<File> processedFiles = filesCaptor.getValue();
+        assertWithMessage("Processed files count mismatch")
+            .that(processedFiles)
+            .hasSize(2);
+        assertWithMessage("First file mismatch")
+            .that(processedFiles.get(0))
+            .isEqualTo(tempFile1);
+        assertWithMessage("Second file mismatch")
+            .that(processedFiles.get(1))
+            .isEqualTo(tempFile2);
+        assertWithMessage("Audit started event not fired")
+            .that(auditAdapter.wasCalled())
+            .isTrue();
+        assertWithMessage("Incorrect number of files processed")
+            .that(auditAdapter.getNumFilesStarted())
+            .isEqualTo(2);
     }
 
     /**
