@@ -30,12 +30,16 @@ import java.util.Set;
 import org.apache.maven.doxia.parser.Parser;
 import org.apache.maven.doxia.sink.Sink;
 import org.apache.maven.doxia.sink.SinkFactory;
+import org.codehaus.plexus.DefaultContainerConfiguration;
 import org.codehaus.plexus.DefaultPlexusContainer;
 import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.util.ReaderFactory;
 
 import com.puppycrawl.tools.checkstyle.site.XdocsTemplateParser;
 import com.puppycrawl.tools.checkstyle.site.XdocsTemplateSinkFactory;
+import org.eclipse.sisu.space.SpaceModule;
+import org.eclipse.sisu.space.URLClassSpace;
+import org.eclipse.sisu.wire.WireModule;
 
 /**
  * Generates xdoc content from xdoc templates.
@@ -49,7 +53,10 @@ public final class XdocGenerator {
     }
 
     public static void generateXdocContent(File temporaryFolder) throws Exception {
-        final PlexusContainer plexus = new DefaultPlexusContainer();
+        final PlexusContainer plexus = new DefaultPlexusContainer(new DefaultContainerConfiguration(),
+                new WireModule(new SpaceModule(
+                        new URLClassSpace(XdocGenerator.class.getClassLoader())
+                )));
         final Set<Path> templatesFilePaths = XdocUtil.getXdocsTemplatesFilePaths();
 
         for (Path path : templatesFilePaths) {
@@ -59,11 +66,11 @@ public final class XdocGenerator {
             final File tempFile = new File(temporaryFolder, outputFile.getName());
             tempFile.deleteOnExit();
             final XdocsTemplateSinkFactory sinkFactory = (XdocsTemplateSinkFactory)
-                    plexus.lookup(SinkFactory.ROLE, XDOCS_TEMPLATE_HINT);
+                    plexus.lookup(SinkFactory.class, XDOCS_TEMPLATE_HINT);
             final Sink sink = sinkFactory.createSink(tempFile.getParentFile(),
                     tempFile.getName(), String.valueOf(StandardCharsets.UTF_8));
             final XdocsTemplateParser parser = (XdocsTemplateParser)
-                    plexus.lookup(Parser.ROLE, XDOCS_TEMPLATE_HINT);
+                    plexus.lookup(Parser.class, XDOCS_TEMPLATE_HINT);
             try (Reader reader = ReaderFactory.newReader(inputFile,
                     String.valueOf(StandardCharsets.UTF_8))) {
                 parser.parse(reader, sink);

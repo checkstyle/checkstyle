@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.inject.Named;
 import javax.swing.text.html.HTML.Attribute;
 
 import org.apache.maven.doxia.macro.MacroExecutionException;
@@ -35,9 +36,7 @@ import org.apache.maven.doxia.macro.MacroRequest;
 import org.apache.maven.doxia.macro.manager.MacroNotFoundException;
 import org.apache.maven.doxia.module.xdoc.XdocParser;
 import org.apache.maven.doxia.parser.ParseException;
-import org.apache.maven.doxia.parser.Parser;
 import org.apache.maven.doxia.sink.Sink;
-import org.codehaus.plexus.component.annotations.Component;
 import org.codehaus.plexus.util.IOUtil;
 import org.codehaus.plexus.util.xml.pull.XmlPullParser;
 
@@ -53,7 +52,7 @@ import org.codehaus.plexus.util.xml.pull.XmlPullParser;
  *
  * @see ExampleMacro
  */
-@Component(role = Parser.class, hint = "xdocs-template")
+@Named("xdocs-template")
 public class XdocsTemplateParser extends XdocParser {
 
     /** User working directory. */

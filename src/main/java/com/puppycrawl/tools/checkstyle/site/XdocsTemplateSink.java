@@ -57,7 +57,7 @@ public class XdocsTemplateSink extends XdocSink {
      * Place the XML declaration at the top of the file.
      */
     @Override
-    public void body() {
+    public void body(SinkEventAttributes attributes) {
         write("<?xml version=\"1.0\" encoding=\"" + encoding + "\"?>");
         writeEOL();
     }
@@ -79,8 +79,7 @@ public class XdocsTemplateSink extends XdocSink {
      * @param href the link.
      */
     @Override
-    public void link(String href) {
-        final MutableAttributeSet attributes = new SinkEventAttributeSet();
+    public void link(String href, SinkEventAttributes attributes) {
         attributes.addAttribute(SinkEventAttributes.HREF, href);
         writeStartTag(HtmlMarkup.A, attributes);
     }
@@ -90,7 +89,7 @@ public class XdocsTemplateSink extends XdocSink {
      * adds a {@code align="top"} attribute to the row which we don't want.
      */
     @Override
-    public void tableRow() {
+    public void tableRow(SinkEventAttributes attributes) {
         writeStartTag(TR);
     }
 
