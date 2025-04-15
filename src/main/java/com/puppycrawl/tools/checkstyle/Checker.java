@@ -266,7 +266,6 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         return counter.getCount();
     }
 
-
     /**
      * Returns a set of external configuration resource locations which are used by all file set
      * checks and filters.
