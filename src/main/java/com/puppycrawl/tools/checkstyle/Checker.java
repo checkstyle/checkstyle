@@ -26,7 +26,9 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -220,22 +222,25 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             fsc.beginProcessing(charset);
         }
 
-        final List<File> targetFiles = files.stream()
+        processFiles(files.stream()
                 .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
-                .collect(Collectors.toUnmodifiableList());
-        processFiles(targetFiles);
+                .collect(Collectors.toUnmodifiableList()));
 
         // Finish up
         // It may also log!!!
         fileSetChecks.forEach(FileSetCheck::finishProcessing);
-
-        // It may also log!!!
         fileSetChecks.forEach(FileSetCheck::destroy);
-
-        final int errorCount = counter.getCount();
         fireAuditFinished();
-        return errorCount;
+        return counter.getCount();
     }
+
+    @Override
+    public int process(Collection<Path> paths) throws CheckstyleException {
+        return process(paths.stream()
+                .map(Path::toFile)
+                .collect(Collectors.toUnmodifiableList()));
+    }
+
 
     /**
      * Returns a set of external configuration resource locations which are used by all file set
