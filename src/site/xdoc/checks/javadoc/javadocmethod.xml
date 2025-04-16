@@ -101,6 +101,13 @@ public int checkReturnTag(final int aTagIndex,
               <td>8.42</td>
             </tr>
             <tr>
+              <td>allowInlineReturn</td>
+              <td>Control whether to allow inline return tags.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>10.23.0</td>
+            </tr>
+            <tr>
               <td>allowMissingParamTags</td>
               <td>Control whether to ignore violations when a method has parameters but does not have matching <code>param</code> tags in the javadoc.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
@@ -481,6 +488,37 @@ public class Example7 {
       System.out.println(s);
     };
   }
+}
+</code></pre></div>
+
+        <p id="Example8-config">
+          To configure the check to allow inline <code>return</code> tags,
+          you can use following config.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocMethod"&gt;
+        &lt;property name="allowInlineReturn" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code"> Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example8 {
+
+  /**
+   * {@return the foo}
+   */
+  public int getFoo() { return 0; }
+
+  /**
+   * Returns the bar
+   * @return the bar
+   */
+  public int getBar() { return 0; }
+
 }
 </code></pre></div>
       </subsection>

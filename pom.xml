@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.22.0-SNAPSHOT</version>
+  <version>10.23.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -211,7 +211,7 @@
     <maven.spotbugs.plugin.version>4.9.3.0</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.26.0</maven.pmd.plugin.version>
     <pmd.version>7.12.0</pmd.version>
-    <maven.jacoco.plugin.version>0.8.12</maven.jacoco.plugin.version>
+    <maven.jacoco.plugin.version>0.8.13</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
     <saxon.version>12.5</saxon.version>
     <maven.checkstyle.plugin.version>3.6.0</maven.checkstyle.plugin.version>
@@ -223,7 +223,7 @@
     <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
     <java.version>11</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
-    <pitest.plugin.version>1.19.0</pitest.plugin.version>
+    <pitest.plugin.version>1.19.1</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
@@ -231,10 +231,10 @@
     <pitest.junit5.plugin.version>1.2.2</pitest.junit5.plugin.version>
     <pitest.accelerator.junit5.plugin.version>1.0.6</pitest.accelerator.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
-    <junit.version>5.12.1</junit.version>
-    <forbiddenapis.version>3.8</forbiddenapis.version>
+    <junit.version>5.12.2</junit.version>
+    <forbiddenapis.version>3.9</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
-    <checkerframework.version>3.49.1</checkerframework.version>
+    <checkerframework.version>3.49.2</checkerframework.version>
     <error-prone.version>2.31.0</error-prone.version>
     <error-prone-support.version>0.15.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
@@ -308,7 +308,7 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>33.4.6-jre</version>
+      <version>33.4.8-jre</version>
       <exclusions>
         <exclusion>
           <groupId>org.checkerframework</groupId>
@@ -386,7 +386,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.19.2</version>
+      <version>3.19.3</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -398,7 +398,7 @@
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>2.18.0</version>
+      <version>2.19.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -1535,7 +1535,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
-        <version>3.5.2</version>
+        <version>3.5.3</version>
         <configuration>
           <includes>
             <include>com/google/**/*.java</include>
@@ -1562,7 +1562,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.5.2</version>
+        <version>3.5.3</version>
         <configuration>
           <argLine>-Dfile.encoding=UTF-8 ${surefire.options}</argLine>
           <systemPropertyVariables>
@@ -1964,7 +1964,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-report-plugin</artifactId>
-        <version>3.5.2</version>
+        <version>3.5.3</version>
         <reportSets>
           <reportSet>
             <reports>
@@ -2133,10 +2133,6 @@
             <!-- Excluded due to linkcheck's issue #22:
                  https://issues.apache.org/jira/browse/MLINKCHECK-22 -->
             <excludedLink>https://twitter.com/checkstyle_java/</excludedLink>
-            <!-- linkcheck plugin can not resolve &amps; inside url -->
-            <excludedLink>https://flattr.com/submit/</excludedLink>
-            <!-- 403 forbidden for linkcheck, works in the browser -->
-            <excludedLink>https://button.flattr.com/flattr-badge-large.png</excludedLink>
             <!-- Too unstable sites to keep validate them -->
             <excludedLink>http://tide.olympe.in/*</excludedLink>
             <excludedLink>http://dl.acm.org/*</excludedLink>
@@ -2175,8 +2171,6 @@
             <excludedLink>https://opencollective.com/*</excludedLink>
             <!-- 405 Not Allowed, link present in generated website only -->
             <excludedLink>https://oss.sonatype.org/service/local/staging/deploy/maven2/</excludedLink>
-            <!-- site is too unstable, it might improve in future -->
-            <excludedLink>https://freedomsponsors.org/*</excludedLink>
             <!-- site works fine in browser but for plugin always return 500  -->
             <excludedLink>https://liberapay.com/checkstyle/</excludedLink>
             <!-- CertPathValidatorException: validity check failed  -->
@@ -2801,7 +2795,6 @@
                 </path>
               </annotationProcessorPaths>
               <annotationProcessors>
-                <annotationProcessor>org.checkerframework.checker.formatter.FormatterChecker</annotationProcessor>
                 <annotationProcessor>org.checkerframework.checker.i18nformatter.I18nFormatterChecker</annotationProcessor>
               </annotationProcessors>
               <compilerArgs combine.children="append">

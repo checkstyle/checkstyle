@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -73,8 +72,7 @@ public final class SuppressionsStringPrinter {
             throw new IllegalStateException(exceptionMsg);
         }
 
-        final FileText fileText = new FileText(file,
-                System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
+        final FileText fileText = new FileText(file, System.getProperty("file.encoding"));
         final DetailAST detailAST =
                 JavaParser.parseFileText(fileText, JavaParser.Options.WITH_COMMENTS);
         final int lineNumber = Integer.parseInt(matcher.group(1));
