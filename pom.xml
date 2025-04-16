@@ -968,6 +968,13 @@
                     <exclude>com.puppycrawl.tools.checkstyle.meta.XmlMeta*</exclude>
                     <!-- OS specific utility providing class -->
                     <exclude>com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil</exclude>
+                    <!-- Checks related classes -->
+                    <exclude>
+                             com.puppycrawl.tools.checkstyle.checks.indentation.ArrayInitHandler
+                    </exclude>
+                    <exclude>
+                             com.puppycrawl.tools.checkstyle.checks.indentation.AnnotationArrayInitHandler
+                    </exclude>
                   </excludes>
                   <limits>
                     <limit>
@@ -1345,6 +1352,47 @@
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>0.93</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <!-- Checks related classes -->
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>
+                      com.puppycrawl.tools.checkstyle.checks.indentation.ArrayInitHandler
+                    </include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.97</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.81</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>
+                      com.puppycrawl.tools.checkstyle.checks.indentation.AnnotationArrayInitHandler
+                    </include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.92</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.57</minimum>
                     </limit>
                   </limits>
                 </rule>
