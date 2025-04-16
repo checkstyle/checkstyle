@@ -212,13 +212,13 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
     @Override
     public int process(Collection<Path> paths) throws CheckstyleException {
-        return process(paths.stream()
+        return processs(paths.stream()
                 .map(Path::toFile)
                 .collect(Collectors.toUnmodifiableList()));
     }
 
     @Override
-    public int process(List<File> files) throws CheckstyleException {
+    public int processs(List<File> files) throws CheckstyleException {
         if (cacheFile != null) {
             cacheFile.putExternalResources(getExternalResourceLocations());
         }
