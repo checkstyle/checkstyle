@@ -41,6 +41,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -55,6 +57,7 @@ import java.util.TreeSet;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -1731,6 +1734,48 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         verify(createChecker(checkerConfig), processedFiles,
                 tempFile.getName(), expected);
+    }
+
+    @Nested
+    public class TestProcessPathCollection {
+
+        @Test
+        public void testFileExtensionsPath() throws Exception {
+            final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
+            checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
+            checkerConfig.addProperty("cacheFile", createTempFile("junit").getAbsolutePath());
+
+            final Checker checker = new Checker();
+            checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+            checker.configure(checkerConfig);
+
+            final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
+            checker.addListener(auditAdapter);
+
+            final List<Path> files = new ArrayList<>();
+            files.add(Paths.get("file.pdf"));
+            files.add(Paths.get("file.java"));
+            checker.setFileExtensions("java", "xml", "properties");
+            checker.setCacheFile(createTempFile("junit").getAbsolutePath());
+            final int counter = checker.process(files);
+
+            // comparing to 1 as there is only one legal file in input
+            final int numLegalFiles = 1;
+            assertWithMessage("There were more legal files than expected")
+                    .that(counter)
+                    .isEqualTo(numLegalFiles);
+            assertWithMessage("Audit was started on larger amount of files than expected")
+                    .that(auditAdapter.getNumFilesStarted())
+                    .isEqualTo(numLegalFiles);
+            assertWithMessage("Audit was finished on larger amount of files than expected")
+                    .that(auditAdapter.getNumFilesFinished())
+                    .isEqualTo(numLegalFiles);
+            assertWithMessage("Cache should not contain any file")
+                    .that(TestUtil.<PropertyCacheFile>getInternalState(checker, "cacheFile")
+                            .get(Paths.get("file.java").toAbsolutePath().toString()))
+                    .isNull();
+        }
+
     }
 
     public static class DefaultLoggerWithCounter extends DefaultLogger {
