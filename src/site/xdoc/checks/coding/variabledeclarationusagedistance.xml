@@ -98,42 +98,54 @@ public class Example1 {
 }
 </code></pre></div>
         <p>
-          Check can detect a block of initialization methods. If a variable is used in
-          such a block and there are no other statements after variable declaration,
-          then distance = 1.
+          Check is smart to detect a block of initialization methods as a single point for distance.
+          If a variable is used in such a block and there are no other statements after
+          variable declaration, then distance = 1.
         </p>
-        <p>
-          Case #1:
+        <p id="Example6-config">
+          configure the check to default:
         </p>
-        <source>
-int minutes = 5;
-Calendar cal = Calendar.getInstance();
-cal.setTimeInMillis(timeNow);
-cal.set(Calendar.SECOND, 0);
-cal.set(Calendar.MILLISECOND, 0);
-cal.set(Calendar.HOUR_OF_DAY, hh);
-cal.set(Calendar.MINUTE, minutes);
-        </source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VariableDeclarationUsageDistance"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example6 {
+
+    public void calSet(long timeNow, int hh, int min) {
+        int minutes = min + 5; // Ok,  block of initialization methods equals to distance = 1
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(timeNow);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        cal.set(Calendar.HOUR_OF_DAY, hh);
+        cal.set(Calendar.MINUTE, minutes);
+    }
+
+    public void calSetAgain(long timeNow, int hh, int min){
+        int minutes = min + 5000;  // violation, distance = 6
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(timeNow);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        cal.set(Calendar.HOUR_OF_DAY, hh);
+        System.out.println("Hello World");
+        cal.set(Calendar.MINUTE, minutes);
+    }
+}
+</code></pre></div>
         <p>
-          The distance for the variable &quot;minutes&quot; is 1 even
+          The distance for the variable "minutes" in the method <code>calSet</code> is 1 even
           though this variable is used in the fifth method's call.
         </p>
         <p>
-          Case #2:
-        </p>
-        <source>
-int minutes = 5;
-Calendar cal = Calendar.getInstance();
-cal.setTimeInMillis(timeNow);
-cal.set(Calendar.SECOND, 0);
-cal.set(Calendar.MILLISECOND, 0);
-System.out.println(cal);
-cal.set(Calendar.HOUR_OF_DAY, hh);
-cal.set(Calendar.MINUTE, minutes);
-        </source>
-        <p>
-          The distance for the variable &quot;minutes&quot; is 6 because there is one more expression
-          (except the initialization block) between the declaration of this variable and its usage.
+          The distance for the variable "minutes" in the method <code>calSetAgain</code> is 6
+          because there is one more expression (except the initialization block) between the
+          declaration of this variable and its usage.
         </p>
         <p id="Example2-config">
             To configure the check to set allowed distance:
