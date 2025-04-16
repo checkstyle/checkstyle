@@ -19,17 +19,22 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.Arrays;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.puppycrawl.tools.checkstyle.StatelessCheck;
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+
+import static com.puppycrawl.tools.checkstyle.utils.JavadocUtil.isJavadocComment;
+import static com.puppycrawl.tools.checkstyle.utils.JavadocUtil.getBlockCommentContent;
 
 /**
  * <div>
@@ -69,7 +74,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
  * ANNOTATION_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
- * RECORD_DEF</a>.
+ * RECORD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
+ * BLOCK_COMMENT_BEGIN</a>.
  * </li>
  * </ul>
  *
@@ -94,7 +101,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * @since 4.2
  */
-@StatelessCheck
+@FileStatefulCheck
 public class WriteTagCheck
     extends AbstractCheck {
 
@@ -121,10 +128,16 @@ public class WriteTagCheck
     /** Specify the regexp to match tag content. */
     private Pattern tagFormat;
 
+    /** Line split pattern. */
+    private static final Pattern LINE_SPLIT_PATTERN = Pattern.compile("\\R");
+
     /** Specify the name of tag. */
     private String tag;
     /** Specify the severity level when tag is found and printed. */
     private SeverityLevel tagSeverity = SeverityLevel.INFO;
+
+    /** Holds the last processed Type Def. */
+    private DetailAST lastTypeOrMemberDefinition;
 
     /**
      * Setter to specify the name of tag.
@@ -166,6 +179,7 @@ public class WriteTagCheck
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.BLOCK_COMMENT_BEGIN
         };
     }
 
@@ -182,7 +196,13 @@ public class WriteTagCheck
             TokenTypes.ANNOTATION_FIELD_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.BLOCK_COMMENT_BEGIN
         };
+    }
+
+    @Override
+    public boolean isCommentNodesRequired() {
+        return true;
     }
 
     @Override
@@ -190,26 +210,114 @@ public class WriteTagCheck
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     @Override
     public void visitToken(DetailAST ast) {
-        final FileContents contents = getFileContents();
-        final int lineNo = ast.getLineNo();
-        final TextBlock cmt =
-            contents.getJavadocBefore(lineNo);
-        if (cmt != null) {
-            checkTag(lineNo, cmt.getText());
+        if (isTypeOrMember(ast.getType())) {
+            lastTypeOrMemberDefinition = ast;
+        }
+        else if (ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                        && isJavadocComment(ast)) {
+            int type = associatedTypeDef(ast);
+            if (!isTokenConfigured(type)) {
+                return;
+            }
+
+            if (lastTypeOrMemberDefinition != null
+                    && ast.getLineNo() + countCommentLines(ast) >= lastTypeOrMemberDefinition.getLineNo()) {
+                final String commentContent = getBlockCommentContent(ast);
+                final String[] cmtLines = LINE_SPLIT_PATTERN.split(commentContent);
+                checkTag(ast.getLineNo(), lastTypeOrMemberDefinition.getLineNo(), cmtLines);
+            }
         }
     }
 
     /**
-     * Verifies that a type definition has a required tag.
+     * Checks for associated type def of javadoc.
      *
-     * @param lineNo the line number for the type definition.
-     * @param comment the Javadoc comment for the type definition.
+     * @param ast It's a type def.
+     * @return type ID of ast.
      */
-    private void checkTag(int lineNo, String... comment) {
+    private int associatedTypeDef(DetailAST ast) {
+        int type = 0;
+
+        if (BlockCommentPosition.isOnMethod(ast)) {
+            type = TokenTypes.METHOD_DEF;
+        } else if (BlockCommentPosition.isOnClass(ast)) {
+            type = TokenTypes.CLASS_DEF;
+        } else if (BlockCommentPosition.isOnPackage(ast)) {
+            type = TokenTypes.PACKAGE_DEF;
+        } else if (BlockCommentPosition.isOnEnum(ast)) {
+            type = TokenTypes.ENUM_DEF;
+        } else if (BlockCommentPosition.isOnRecord(ast)) {
+            type = TokenTypes.RECORD_DEF;
+        } else if (BlockCommentPosition.isOnAnnotationDef(ast)) {
+            type = TokenTypes.ANNOTATION_DEF;
+        } else if (BlockCommentPosition.isOnConstructor(ast)) {
+            type = TokenTypes.CTOR_DEF;
+        } else if (BlockCommentPosition.isOnInterface(ast)) {
+            type = TokenTypes.INTERFACE_DEF;
+        } else if (BlockCommentPosition.isOnAnnotationField(ast)) {
+            type = TokenTypes.ANNOTATION_FIELD_DEF;
+        } else if (BlockCommentPosition.isOnEnumConstant(ast)) {
+            type = TokenTypes.ENUM_CONSTANT_DEF;
+        } else if (BlockCommentPosition.isOnCompactConstructor(ast)) {
+            type = TokenTypes.COMPACT_CTOR_DEF;
+        }
+
+        return type;
+    }
+
+    /**
+     * Checks for configured tokens.
+     *
+     * @param type ID of ast.
+     * @return true if configured else false.
+     */
+    private boolean isTokenConfigured(int type) {
+        final Set<String> tokens = getTokenNames();
+        return tokens.isEmpty()
+                ? Arrays.stream(getDefaultTokens()).anyMatch(t -> t == type)
+                : tokens.contains(TokenUtil.getTokenName(type));
+    }
+
+    /**
+     * Counts Comment lines.
+     *
+     * @param blockComment ast of BlockComment.
+     * @return number of lines.
+     */
+    private int countCommentLines(DetailAST blockComment) {
+        final String content = getBlockCommentContent(blockComment);
+        return LINE_SPLIT_PATTERN.split(content).length;
+    }
+
+    /**
+     * Checks whether member or type.
+     *
+     * @param type ID of ast.
+     * @return true if member and false if not.
+     */
+    private boolean isTypeOrMember(int type) {
+        return type == TokenTypes.CLASS_DEF
+                || type == TokenTypes.INTERFACE_DEF
+                || type == TokenTypes.ENUM_DEF
+                || type == TokenTypes.ANNOTATION_DEF
+                || type == TokenTypes.METHOD_DEF
+                || type == TokenTypes.CTOR_DEF
+                || type == TokenTypes.ENUM_CONSTANT_DEF
+                || type == TokenTypes.ANNOTATION_FIELD_DEF
+                || type == TokenTypes.RECORD_DEF
+                || type == TokenTypes.COMPACT_CTOR_DEF;
+    }
+
+    /**
+     * Validates the Javadoc comment against the configured requirements.
+     *
+     * @param javadocLineNo the starting line number of the Javadoc comment block.
+     * @param astLineNo the line number of the type definition.
+     * @param comment the lines of the Javadoc comment block.
+     */
+    private void checkTag(int astLineNo, int javadocLineNo, String... comment) {
         if (tagRegExp != null) {
             boolean hasTag = false;
             for (int i = 0; i < comment.length; i++) {
@@ -220,15 +328,15 @@ public class WriteTagCheck
                     final int contentStart = matcher.start(1);
                     final String content = commentValue.substring(contentStart);
                     if (tagFormat == null || tagFormat.matcher(content).find()) {
-                        logTag(lineNo + i - comment.length, tag, content);
+                        logTag(astLineNo + i, tag, content);
                     }
                     else {
-                        log(lineNo + i - comment.length, MSG_TAG_FORMAT, tag, tagFormat.pattern());
+                        log(astLineNo + i, MSG_TAG_FORMAT, tag, tagFormat.pattern());
                     }
                 }
             }
             if (!hasTag) {
-                log(lineNo, MSG_MISSING_TAG, tag);
+                log(javadocLineNo, MSG_MISSING_TAG, tag);
             }
         }
     }
@@ -250,5 +358,4 @@ public class WriteTagCheck
 
         setSeverity(originalSeverity);
     }
-
 }
