@@ -1,10 +1,11 @@
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent:0 exp:0
 
-import java.util.Map; //indent:0 exp:0
-import java.util.Map.Entry; //indent:0 exp:0
-
-import com.google.common.collect.Range; //indent:0 exp:0
-import com.google.common.collect.RangeMap; //indent:0 exp:0
+import static com.puppycrawl.tools.checkstyle.checks.indentation.indentation. //indent:0 exp:0
+        InputIndentationFromGuava.ReferenceEntry; //indent:8 exp:8
+import static com.puppycrawl.tools.checkstyle.checks.indentation.indentation. //indent:0 exp:0
+        InputIndentationFromGuava.Segment; //indent:8 exp:8
+import static com.puppycrawl.tools.checkstyle.checks.indentation.indentation. //indent:0 exp:0
+        InputIndentationFromGuava.StrongAccessEntry; //indent:8 exp:8
 
 /**                                                                           //indent:0 exp:0
  * This test-input is intended to be checked using following configuration:   //indent:1 exp:1
@@ -20,107 +21,100 @@ import com.google.common.collect.RangeMap; //indent:0 exp:0
  *                                                                            //indent:1 exp:1
  *                                                                            //indent:1 exp:1
  */                                                                           //indent:1 exp:1
-public abstract class InputIndentationFromGuava2<K extends Comparable<?>, V> { //indent:0 exp:0
+public class InputIndentationFromGuava2 { //indent:0 exp:0
 
-  public InputIndentationFromGuava2<K, V> subRangeMap1(final Range<K> range) { //indent:2 exp:2
-    Range<K> ranges = null; //indent:4 exp:4
-    if (checkNotNull(range).isEmpty()) { //indent:4 exp:4
-    } else if (ranges.isEmpty() || range.encloses(span())) { //indent:4 exp:4
-      return this; //indent:6 exp:6
-    } //indent:4 exp:4
-    int lowerIndex = SortedLists.binarySearch(); //indent:4 exp:4
-    int upperIndex = SortedLists.binarySearch(); //indent:4 exp:4
-    if (lowerIndex >= upperIndex) { //indent:4 exp:4
-      return null; //indent:6 exp:6
-    } //indent:4 exp:4
-    final int off = lowerIndex; //indent:4 exp:4
-    final int len = upperIndex - lowerIndex; //indent:4 exp:4
-    InputIndentationFromGuava2<K, V> outer = null; //indent:4 exp:4
-    return outer; //indent:4 exp:4
+  /**                        //indent:2 exp:2
+   * Creates new entries.    //indent:3 exp:3
+   */                        //indent:3 exp:3
+  enum EntryFactory { //indent:2 exp:2
+    STRONG { //indent:4 exp:4
+      <K, V> StrongEntry<K, V> newEntry( //indent:6 exp:6
+          Segment<K, V> s, K k, int h, @XmlElement ReferenceEntry<K, V> next) { //indent:10 exp:>=10
+        return new StrongEntry<K, V>(); //indent:8 exp:8
+      } //indent:6 exp:6
+    }, //indent:4 exp:4
+    STRONG_ACCESS { //indent:4 exp:4
+      <K, V> StrongAccessEntry<K, V> newEntry( //indent:6 exp:6
+          Segment<K, V> s, K k, int h, @XmlElement ReferenceEntry<K, V> next) { //indent:10 exp:>=10
+        return new StrongAccessEntry<K, V>(k, h, next); //indent:8 exp:8
+      } //indent:6 exp:6
+
+      <K, V> ReferenceEntry<K, V> copyEntry( //indent:6 exp:6
+          Segment<K, V> s, ReferenceEntry<K, V> o, ReferenceEntry<K, V> newT) { //indent:10 exp:>=10
+        return newT; //indent:8 exp:8
+      } //indent:6 exp:6
+      {; //indent:6 exp:6
+      } //indent:6 exp:6
+     }, //indent:5 exp:5
+    STRONG_WRITE { //indent:4 exp:4
+      <K, V> StrongEntry<K, V> newEntry( //indent:6 exp:6
+          Segment<K, V> s, K k, int h, @XmlElement ReferenceEntry<K, V> next) { //indent:10 exp:>=10
+        return new StrongEntry<K, V>(); //indent:8 exp:8
+      } //indent:6 exp:6
+
+      <K, V> ReferenceEntry<K, V> copyEntry( //indent:6 exp:6
+          Segment<K, V> s, ReferenceEntry<K, V> o, ReferenceEntry<K, V> newN) { //indent:10 exp:>=10
+        return newN; //indent:8 exp:8
+      } //indent:6 exp:6
+    }, //indent:4 exp:4
+    STRONG_ACCESS_WRITE { //indent:4 exp:4
+      <K, V> StrongEntry<K, V> newEntry( //indent:6 exp:6
+          Segment<K, V> s, K k, int h, @XmlElement ReferenceEntry<K, V> next) { //indent:10 exp:>=10
+        return new StrongEntry<K, V>(); //indent:8 exp:8
+      } //indent:6 exp:6
+
+      <K, V> ReferenceEntry<K, V> copyEntry( //indent:6 exp:6
+          Segment<K, V> s, ReferenceEntry<K, V> o, ReferenceEntry<K, V> newN) { //indent:10 exp:>=10
+        return newN; //indent:8 exp:8
+      } //indent:6 exp:6
+    }, //indent:4 exp:4
+
+    WEAK { //indent:4 exp:4
+      <K, V> StrongEntry<K, V> newEntry( //indent:6 exp:6
+          Segment<K, V> s, K k, int h, @XmlElement ReferenceEntry<K, V> next) { //indent:10 exp:>=10
+        return new StrongEntry<K, V>(); //indent:8 exp:8
+      } //indent:6 exp:6
+    }, //indent:4 exp:4
+    WEAK_ACCESS { //indent:4 exp:4
+      <K, V> StrongEntry<K, V> newEntry( //indent:6 exp:6
+          Segment<K, V> s, K k, int h, @XmlElement ReferenceEntry<K, V> next) { //indent:10 exp:>=10
+        return new StrongEntry<K, V>(); //indent:8 exp:8
+      } //indent:6 exp:6
+
+      <K, V> ReferenceEntry<K, V> copyEntry( //indent:6 exp:6
+          Segment<K, V> s, ReferenceEntry<K, V> o, ReferenceEntry<K, V> newN) { //indent:10 exp:>=10
+        return newN; //indent:8 exp:8
+      } //indent:6 exp:6
+    }, //indent:4 exp:4
+    WEAK_WRITE { //indent:4 exp:4
+      <K, V> StrongEntry<K, V> newEntry( //indent:6 exp:6
+          Segment<K, V> s, K k, int h, @XmlElement ReferenceEntry<K, V> next) { //indent:10 exp:>=10
+        return new StrongEntry<K, V>(); //indent:8 exp:8
+      } //indent:6 exp:6
+
+      <K, V> ReferenceEntry<K, V> copyEntry( //indent:6 exp:6
+          Segment<K, V> s, ReferenceEntry<K, V> o, ReferenceEntry<K, V> newN) { //indent:10 exp:>=10
+        return newN; //indent:8 exp:8
+      } //indent:6 exp:6
+    }, //indent:4 exp:4
+    WEAK_ACCESS_WRITE { //indent:4 exp:4
+      <K, V> StrongEntry<K, V> newEntry( //indent:6 exp:6
+          Segment<K, V> s, K k, int h, @XmlElement ReferenceEntry<K, V> next) { //indent:10 exp:>=10
+        return new StrongEntry<K, V>(); //indent:8 exp:8
+      } //indent:6 exp:6
+
+      <K, V> ReferenceEntry<K, V> copyEntry( //indent:6 exp:6
+          Segment<K, V> s, ReferenceEntry<K, V> o, ReferenceEntry<K, V> newN) { //indent:10 exp:>=10
+        return newN; //indent:8 exp:8
+      } //indent:6 exp:6
+    }; //indent:4 exp:4
   } //indent:2 exp:2
 
-  public V get(int index) { //indent:2 exp:2
-    K key = null; //indent:4 exp:4
-    int len = 0; //indent:4 exp:4
-    checkElementIndex(index, len); //indent:4 exp:4
-    int off; //indent:4 exp:4
-    RangeMap<K, V> ranges = null; //indent:4 exp:4
-    if (index == 0 || index == len - 1) { //indent:4 exp:4
-      Object range; //indent:6 exp:6
-      return ranges.get(key); //indent:6 exp:6
-    } else { //indent:4 exp:4
-      return ranges.get(key); //indent:6 exp:6
-    } //indent:4 exp:4
-  } //indent:2 exp:2
-
-  private void checkElementIndex(int index, Object len) //indent:2 exp:2
-  { //indent:2 exp:2
+  private static class StrongEntry<T1, T2> { //indent:2 exp:2
 
   } //indent:2 exp:2
 
-  boolean isPartialView() { //indent:2 exp:2
-    return true; //indent:4 exp:4
+  public @interface XmlElement { //indent:2 exp:2
   } //indent:2 exp:2
 
-  private Range<K> checkNotNull(Range<K> range) //indent:2 exp:2
-  { //indent:2 exp:2
-    return null; //indent:4 exp:4
-  } //indent:2 exp:2
-
-  @Deprecated //indent:2 exp:2
-  public V get(K key) //indent:2 exp:2
-  { //indent:2 exp:2
-    return null; //indent:4 exp:4
-  } //indent:2 exp:2
-
-  public Range<K> span() //indent:2 exp:2
-  { //indent:2 exp:2
-    return null; //indent:4 exp:4
-  } //indent:2 exp:2
-
-  @Deprecated //indent:2 exp:2
-  public void put(Range<K> range, V value) //indent:2 exp:2
-  { //indent:2 exp:2
-
-  } //indent:2 exp:2
-
-  @Deprecated //indent:2 exp:2
-  public void putAll(RangeMap<K, V> rangeMap) //indent:2 exp:2
-  { //indent:2 exp:2
-
-  } //indent:2 exp:2
-
-  @Deprecated //indent:2 exp:2
-  public void clear() //indent:2 exp:2
-  { //indent:2 exp:2
-
-  } //indent:2 exp:2
-
-  @Deprecated //indent:2 exp:2
-  public void remove(Range<K> range) //indent:2 exp:2
-  { //indent:2 exp:2
-
-  } //indent:2 exp:2
-
-  @Deprecated //indent:2 exp:2
-  public Map<Range<K>, V> asMapOfRanges() //indent:2 exp:2
-  { //indent:2 exp:2
-    return null; //indent:4 exp:4
-  } //indent:2 exp:2
-
-  @Deprecated //indent:2 exp:2
-  public RangeMap<K, V> subRangeMap(Range<K> range) //indent:2 exp:2
-  { //indent:2 exp:2
-    return null; //indent:4 exp:4
-  } //indent:2 exp:2
-
-  @Deprecated //indent:2 exp:2
-  public Entry<Range<K>, V> getEntry(K key) //indent:2 exp:2
-  { //indent:2 exp:2
-    return null; //indent:4 exp:4
-  } //indent:2 exp:2
-
-  private static class SortedLists { //indent:2 exp:2
-    public static int binarySearch() { return 4; } //indent:4 exp:4
-  } //indent:2 exp:2
 } //indent:0 exp:0

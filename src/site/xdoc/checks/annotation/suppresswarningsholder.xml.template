@@ -52,8 +52,9 @@
         </p>
         <p id="Example2-config">
           If <code>aliasList</code> property was provided you can use your own names e.g. below
-          code will work if there was provided a <code>ParameterNumberCheck=paramnum</code> in
-          the <code>aliasList</code>:
+          code will work if there was provided a
+          <code>com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum</code>
+          in the <code>aliasList</code>:
         </p>
         <macro name="example">
           <param name="path"
@@ -64,6 +65,36 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+          You can also use simple check name like <code>ParameterNumberCheck=paramnum</code>
+          instead to use fully qualified name of check in the <code>aliasList</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
+          The check can also be used without suffix of &quot;Check&quot; like
+          <code>ParameterNumber=paramnum</code> in the <code>aliasList</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
 

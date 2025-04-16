@@ -14,10 +14,9 @@
 package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 // xdoc section -- start
 public class Example8 {
-  // filtered violation 'more than 5 parameters'
+  // filtered violation below 'More than 5 parameters (found 6)'
   public void exampleMethod(
-    int param1, int param2, int param3, int param4,
-    int param5
+    int param1, int param2, int param3, int param4, int param5, int param6
   ) {}
 }
 // xdoc section -- end

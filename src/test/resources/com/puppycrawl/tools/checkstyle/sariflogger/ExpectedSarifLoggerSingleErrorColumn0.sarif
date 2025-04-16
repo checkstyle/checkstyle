@@ -24,18 +24,18 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file:Test.java"
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerErrorColumn0.java"
                 },
                 "region": {
-                  "startLine": 1
+                  "startLine": 13
                 }
               }
             }
           ],
           "message": {
-            "text": "found an error\nplease try again"
+            "text": "Copyright comment found. \\n try again"
           },
-          "ruleId": "ruleId"
+          "ruleId": "Copyright comment found. \n try again"
         }
       ]
     }
