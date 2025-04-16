@@ -44,7 +44,7 @@ public interface RootModule extends Configurable {
      * @see #destroy()
      * @deprecated Use {@link #process(Collection)}
      */
-    @Deprecated(since = "9.3")
+    @Deprecated(since = "10.23.0")
     int process(List<File> files) throws CheckstyleException;
 
     /**

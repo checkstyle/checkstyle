@@ -211,8 +211,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     }
 
     @Override
-    public int process(Collection<Path> paths) throws CheckstyleException {
-        return process(paths.stream()
+    public int process(Collection<Path> files) throws CheckstyleException {
+        return process(files.stream()
                 .map(Path::toFile)
                 .collect(Collectors.toUnmodifiableList()));
     }
