@@ -195,6 +195,22 @@ public int checkReturnTag(final int aTagIndex,
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example7.java"/>
           <param name="type" value="code"/>
         </macro>
+
+        <p id="Example8-config">
+          To configure the check to allow inline <code>return</code> tags,
+          you can use following config.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example8.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code"> Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example8.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

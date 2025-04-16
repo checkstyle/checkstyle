@@ -1,14 +1,13 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-  <module name="MemberName"/>
-  <module name="ConstantName"/>
-  <module name="ParameterNumber">
-    <property name="id" value="ParamNumberId"/>
-  </module>
-  <module name=
-    "NoWhitespaceAfter"/>
-  <module name="SuppressWarningsHolder"/>
+    <module name="MemberName"/>
+    <module name="ConstantName"/>
+    <module name="ParameterNumber">
+      <property name="id" value="ParamNumberId"/>
+    </module>
+    <module name="NoWhitespaceAfter"/>
+    <module name="SuppressWarningsHolder"/>
   </module>
   <module name="SuppressWarningsFilter"/>
 </module>

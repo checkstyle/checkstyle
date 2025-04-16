@@ -10,6 +10,55 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.23.0">
+      <div class="releaseDate">02.04.2025</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            JavadocMethod: new property &#39;allowInlineReturn&#39; to support for Javadoc return
+            tag as inline.
+            Author: Konstantinos Koutsilis
+            <a href="https://github.com/checkstyle/checkstyle/issues/9745">#9745</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            False negative in UnusedImportCheck.
+            Author: Ziad Ahmed
+            <a href="https://github.com/checkstyle/checkstyle/issues/14697">#14697</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            SuppressionSingleFilterExamplesTest methods should use:
+            `verifyFilterWithInlineConfigParser`.
+            Author: Prarthana-Ramesh
+            <a href="https://github.com/checkstyle/checkstyle/issues/16332">#16332</a>
+          </li>
+          <li>
+            XMLLoggerTest.java to use verifyWithInlineConfigParserAndXmlLogger.
+            Author: Priyambada Roul
+            <a href="https://github.com/checkstyle/checkstyle/issues/16360">#16360</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: Simran, Brijeshthummar02, ZaeemSheikh
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            use new nio jdk api instead of all api.
+            Author: Priyambada Roul
+            <a href="https://github.com/checkstyle/checkstyle/issues/16155">#16155</a>
+          </li>
+          <li>
+            CircleCI is failing on xwiki validation..
+            Author: MD. Zaid
+            <a href="https://github.com/checkstyle/checkstyle/issues/16671">#16671</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.22.0">
       <div class="releaseDate">30.03.2025</div>
       <p>Breaking backward compatibility:</p>

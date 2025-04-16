@@ -10,8 +10,7 @@
 package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 // xdoc section -- start
 public class Example6 {
-
-  // filtered violation 'Name 'myConstant' must match pattern'
+  // filtered violation below 'Name 'myConstant' must match pattern'
   private static final int myConstant = 42;
 
 }
