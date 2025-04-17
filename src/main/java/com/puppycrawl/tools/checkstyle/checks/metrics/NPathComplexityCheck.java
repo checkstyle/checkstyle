@@ -548,19 +548,18 @@ public final class NPathComplexityCheck extends AbstractCheck {
      * @return number of case constant tokens.
      */
     private static int countCaseConstants(DetailAST ast) {
-    final int[] counter = {0};
-    final DetailAST literalCase = ast.getFirstChild();
+        final AtomicInteger counter = new AtomicInteger();
+        final DetailAST literalCase = ast.getFirstChild();
 
-    for (DetailAST node = literalCase.getFirstChild(); node != null;
-            node = node.getNextSibling()) {
-        if (TokenUtil.isOfType(node, CASE_LABEL_TOKENS)) {
-            counter[0]++;
+        for (DetailAST node = literalCase.getFirstChild(); node != null;
+                    node = node.getNextSibling()) {
+            if (TokenUtil.isOfType(node, CASE_LABEL_TOKENS)) {
+                counter.getAndIncrement();
+            }
         }
+
+        return counter.get();
     }
-
-    return counter[0];
-}
-
 
     /**
      * Coordinates of token end. Used to prevent inline ternary

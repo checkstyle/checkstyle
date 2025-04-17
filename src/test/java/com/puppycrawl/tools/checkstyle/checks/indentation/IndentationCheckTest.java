@@ -1277,7 +1277,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "55:9: " + getCheckMessage(MSG_ERROR, "\"\"\"", 8, 12),
             "73:15: " + getCheckMessage(MSG_ERROR, "\"\"\"", 14, 12),
         };
-        verify(checkConfig, getNonCompilablePath("InputIndentationTextBlock.java"),
+        verifyWarns(checkConfig, getNonCompilablePath("InputIndentationTextBlock.java"),
             expected);
     }
 
@@ -1531,7 +1531,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         };
 
         // Test input for this test case is not checked due to issue #693.
-        verify(checkConfig, fileName, expected);
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test
@@ -1573,7 +1573,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         };
 
         // Test input for this test case is not checked due to issue #693.
-        verify(checkConfig, fileName, expected);
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test
@@ -2754,7 +2754,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tabWidth", "4");
         final String fileName = getPath("InputIndentationSeparatedStatementWithSpaces.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, fileName, expected);
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test
@@ -2814,7 +2814,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String fileName =
             getPath("InputIndentationMethodPrecededByAnnotationWithParameterOnSeparateLine.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, fileName, expected);
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test
@@ -2831,7 +2831,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "14:9: " + getCheckMessage(MSG_ERROR, "(", 8, 12),
             "19:5: " + getCheckMessage(MSG_ERROR, "(", 4, 8),
         };
-        verify(checkConfig, fileName, expected);
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test
