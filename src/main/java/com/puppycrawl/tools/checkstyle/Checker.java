@@ -213,28 +213,17 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         if (cacheFile != null) {
             cacheFile.putExternalResources(getExternalResourceLocations());
         }
-
         // Prepare to start
         fireAuditStarted();
-        for (final FileSetCheck fsc : fileSetChecks) {
-            fsc.beginProcessing(charset);
-        }
-
-        final List<File> targetFiles = files.stream()
+        processFiles(files.stream()
                 .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
-                .collect(Collectors.toUnmodifiableList());
-        processFiles(targetFiles);
-
+                .collect(Collectors.toUnmodifiableList()));
         // Finish up
         // It may also log!!!
         fileSetChecks.forEach(FileSetCheck::finishProcessing);
-
-        // It may also log!!!
         fileSetChecks.forEach(FileSetCheck::destroy);
-
-        final int errorCount = counter.getCount();
         fireAuditFinished();
-        return errorCount;
+        return counter.getCount();
     }
 
     /**
@@ -256,18 +245,13 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
     /** Notify all listeners about the audit start. */
     private void fireAuditStarted() {
-        final AuditEvent event = new AuditEvent(this);
-        for (final AuditListener listener : listeners) {
-            listener.auditStarted(event);
-        }
+        fileSetChecks.forEach(fsc -> fsc.beginProcessing(charset));
+        listeners.forEach(auditListener -> auditListener.auditStarted(new AuditEvent(this)));
     }
 
     /** Notify all listeners about the audit end. */
     private void fireAuditFinished() {
-        final AuditEvent event = new AuditEvent(this);
-        for (final AuditListener listener : listeners) {
-            listener.auditFinished(event);
-        }
+        listeners.forEach(auditListener -> auditListener.auditFinished(new AuditEvent(this)));
     }
 
     /**
@@ -284,7 +268,6 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     private void processFiles(List<File> files) throws CheckstyleException {
         for (final File file : files) {
             String fileName = null;
-            final String filePath = file.getPath();
             try {
                 fileName = file.getAbsolutePath();
                 final long timestamp = file.lastModified();
@@ -296,8 +279,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                     cacheFile.put(fileName, timestamp);
                 }
                 fireFileStarted(fileName);
-                final SortedSet<Violation> fileMessages = processFile(file);
-                fireErrors(fileName, fileMessages);
+                fireErrors(fileName, processFile(file));
                 fireFileFinished(fileName);
             }
             // -@cs[IllegalCatch] There is no other way to deliver filename that was under
@@ -306,18 +288,16 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 if (fileName != null && cacheFile != null) {
                     cacheFile.remove(fileName);
                 }
-
-                // We need to catch all exceptions to put a reason failure (file name) in exception
+                // put all failure reason (file name) in exception
                 throw new CheckstyleException(
-                        getLocalizedMessage("Checker.processFilesException", filePath), ex);
+                        getLocalizedMessage("Checker.processFilesException", file), ex);
             }
             catch (Error error) {
                 if (fileName != null && cacheFile != null) {
                     cacheFile.remove(fileName);
                 }
-
-                // We need to catch all errors to put a reason failure (file name) in error
-                throw new Error("Error was thrown while processing " + filePath, error);
+                // put all failure reason (file name) in error
+                throw new Error("Error was thrown while processing " + file, error);
             }
         }
     }
@@ -336,7 +316,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         final SortedSet<Violation> fileMessages = new TreeSet<>();
         try {
             final FileText theText = new FileText(file.getAbsoluteFile(), charset);
-            for (final FileSetCheck fsc : fileSetChecks) {
+            for (FileSetCheck fsc : fileSetChecks) {
                 fileMessages.addAll(fsc.process(file, theText));
             }
         }
@@ -375,8 +355,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @return {@code true} if the file is accepted.
      */
     private boolean acceptFileStarted(String fileName) {
-        final String stripped = CommonUtil.relativizePath(basedir, fileName);
-        return beforeExecutionFileFilters.accept(stripped);
+        return beforeExecutionFileFilters.accept(CommonUtil.relativizePath(basedir, fileName));
     }
 
     /**
@@ -387,11 +366,12 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      */
     @Override
     public void fireFileStarted(String fileName) {
-        final String stripped = CommonUtil.relativizePath(basedir, fileName);
-        final AuditEvent event = new AuditEvent(this, stripped);
-        for (final AuditListener listener : listeners) {
-            listener.fileStarted(event);
-        }
+        listeners.forEach(listener -> {
+            listener.fileStarted(new AuditEvent(
+                this,
+                CommonUtil.relativizePath(basedir, fileName)));
+            }
+        );
     }
 
     /**
@@ -408,9 +388,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             final AuditEvent event = new AuditEvent(this, stripped, element);
             if (filters.accept(event)) {
                 hasNonFilteredViolations = true;
-                for (final AuditListener listener : listeners) {
-                    listener.addError(event);
-                }
+                listeners.forEach(listener -> listener.addError(event));
             }
         }
         if (hasNonFilteredViolations && cacheFile != null) {
@@ -428,9 +406,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     public void fireFileFinished(String fileName) {
         final String stripped = CommonUtil.relativizePath(basedir, fileName);
         final AuditEvent event = new AuditEvent(this, stripped);
-        for (final AuditListener listener : listeners) {
-            listener.fileFinished(event);
-        }
+        listeners.forEach(listener -> listener.fileFinished(event));
     }
 
     @Override
