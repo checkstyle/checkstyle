@@ -421,7 +421,8 @@ public final class Main {
             rootModule.addListener(listener);
 
             // run RootModule
-            errorCounter = rootModule.process(filesToProcess);
+            errorCounter = rootModule.process(
+                    filesToProcess.stream().map(File::toPath).collect(Collectors.toUnmodifiableList()));
         }
         finally {
             rootModule.destroy();

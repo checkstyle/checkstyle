@@ -25,6 +25,8 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsCla
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -296,8 +298,12 @@ public class ModuleReflectionUtilTest {
             // dummy method
         }
 
-        @Override
         public int process(List<File> files) {
+            return 0;
+        }
+
+        @Override
+        public int process(Collection<Path> files) {
             return 0;
         }
 

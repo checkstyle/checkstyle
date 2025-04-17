@@ -389,13 +389,12 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 InlineConfigParser.parse(inputFile);
         final DefaultConfiguration parsedConfig =
                 testInputConfiguration.createConfiguration();
-        final List<File> filesToCheck = Collections.singletonList(new File(inputFile));
         final String basePath = Path.of("").toAbsolutePath().toString();
 
         final Checker checker = createChecker(parsedConfig);
         checker.setBasedir(basePath);
         checker.addListener(logger);
-        checker.process(filesToCheck);
+        checker.process(Collections.singletonList(new File(inputFile).toPath()));
 
         verifyContent(expectedReportFile, outputStream);
     }
@@ -492,7 +491,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         stream.reset();
         final List<File> theFiles = new ArrayList<>();
         Collections.addAll(theFiles, processedFiles);
-        final int errs = checker.process(theFiles);
+        final int errs = checker.process(theFiles.stream().map(File::toPath)
+                .collect(Collectors.toUnmodifiableList()));
 
         // process each of the lines
         final Map<String, List<String>> actualViolations = getActualViolations(errs);
@@ -540,10 +540,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     protected final void execute(Configuration config, String... filenames) throws Exception {
         final Checker checker = createChecker(config);
-        final List<File> files = Arrays.stream(filenames)
+        checker.process(Arrays.stream(filenames)
                 .map(File::new)
-                .collect(Collectors.toUnmodifiableList());
-        checker.process(files);
+                .map(File::toPath)
+                .collect(Collectors.toUnmodifiableList()));
         checker.destroy();
     }
 
@@ -555,10 +555,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @throws Exception if there is a problem during checker configuration
      */
     protected static void execute(Checker checker, String... filenames) throws Exception {
-        final List<File> files = Arrays.stream(filenames)
+        checker.process(Arrays.stream(filenames)
                 .map(File::new)
-                .collect(Collectors.toUnmodifiableList());
-        checker.process(files);
+                .map(File::toPath)
+                .collect(Collectors.toUnmodifiableList()));
         checker.destroy();
     }
 
@@ -649,7 +649,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                                                     String file) throws Exception {
         stream.flush();
         stream.reset();
-        final List<File> files = Collections.singletonList(new File(file));
+        final List<Path> files = Collections.singletonList(Path.of(file));
         final Checker checker = createChecker(config);
         final Map<String, List<String>> actualViolations =
                 getActualViolations(checker.process(files));

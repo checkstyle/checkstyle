@@ -30,6 +30,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.function.BiPredicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -290,8 +292,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
         final XMLLogger logger = new XMLLogger(actualXmlOutput,
                 AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         checker.addListener(logger);
-        final List<File> filesToCheck = Collections.singletonList(new File(configFilePath));
-        checker.process(filesToCheck);
+        checker.process(Stream.of(new File(configFilePath)).map(File::toPath)
+                .collect(Collectors.toUnmodifiableList()));
 
         verifyXml(getPath(expectedXmlReportPath), actualXmlOutput);
     }
@@ -326,7 +328,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
             filesToCheck.add(new File(getPath(path)));
         }
 
-        checker.process(filesToCheck);
+        checker.process(filesToCheck.stream().map(File::toPath)
+                .collect(Collectors.toUnmodifiableList()));
         verifyXml(getPath(expectedXmlReportPath), actualXmlOutput);
     }
 }

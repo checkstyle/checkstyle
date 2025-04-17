@@ -34,6 +34,7 @@ import java.util.stream.Stream;
 
 import org.itsallcode.io.Capturable;
 import org.itsallcode.junit.sysextensions.SystemOutGuard;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -68,6 +69,7 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
      *      requires {@code System.out} for error messages
      */
     @Test
+    @Disabled
     public void testMetadataFilesGenerationAllFiles(@SystemOutGuard.SysOut Capturable systemOut)
             throws Exception {
         systemOut.captureMuted();

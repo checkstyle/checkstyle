@@ -37,6 +37,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -290,7 +291,8 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         getStream().flush();
         final List<File> theFiles = new ArrayList<>();
         Collections.addAll(theFiles, processedFiles);
-        final int errs = checker.process(theFiles);
+        final int errs = checker.process(theFiles.stream().map(File::toPath)
+                .collect(Collectors.toUnmodifiableList()));
 
         // process each of the lines
         try (ByteArrayInputStream localStream =
