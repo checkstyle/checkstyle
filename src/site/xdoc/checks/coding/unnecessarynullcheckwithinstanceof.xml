@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>UnnecessaryNullCheckWithInstanceOf</title>
+  </head>
+  <body>
+    <section name="UnnecessaryNullCheckWithInstanceOf">
+      <p>Since Checkstyle 10.22.0</p>
+      <subsection name="Description" id="Description">
+        <div>
+            Checks for redundant null checks with the instanceof operator.
+        </div>
+
+        <p>
+           The instanceof operator inherently returns false when the left operand is null,
+           making explicit null checks redundant in boolean expressions with instanceof.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnnecessaryNullCheckWithInstanceOf"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Examples of violations:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+
+  public void methodWithUnnecessaryNullCheck1(Object obj) {
+    // violation below, 'Unnecessary nullity check'
+    if (obj != null &amp;&amp; obj instanceof String) {
+      String str = (String) obj;
+    }
+    // violation below, 'Unnecessary nullity check'
+    boolean isValid = obj != null &amp;&amp; obj instanceof String;
+  }
+
+  interface Validator {
+    boolean validate(Object obj);
+  }
+
+  public void anonymousClassImplementation() {
+    Validator v = new Validator() {
+      @Override
+      public boolean validate(Object obj) {
+        // violation below, 'Unnecessary nullity check'
+        return obj != null &amp;&amp; obj instanceof String;
+      }
+    };
+  }
+
+  private final List&lt;Object&gt; objects = new ArrayList&lt;&gt;();
+  public void simpleLambdas() {
+    objects.forEach(obj -&gt; {
+      // violation below, 'Unnecessary nullity check'
+      if (obj != null &amp;&amp; obj instanceof String) {
+        String str = (String) obj;
+      }
+    });
+  }
+
+  public String basicTernary(Object obj) {
+    // violation below, 'Unnecessary nullity check'
+    return obj != null &amp;&amp; obj instanceof String ? ((String) obj) : "";
+  }
+
+  public void methodWithValidNullCheck(Object obj) {
+    if (obj != null) {
+      CharSequence cs = (CharSequence) obj;
+    }
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessaryNullCheckWithInstanceOf">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.nullcheck.with.instanceof%22">
+              unnecessary.nullcheck.with.instanceof
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
