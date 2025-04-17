@@ -26,7 +26,6 @@ import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_STARTED_MESSAG
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.times;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -828,7 +827,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testCatchErrorInProcessFilesMethod() throws Exception {
         // Assume that I/O error is happened when we try to invoke 'lastModified()' method.
         try {
-            new Checker().process(List.of(throwWhenToAbsolutePath()));
+            new Checker().process(List.of(throwErrorOnToAbsolutePath()));
             assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
@@ -859,7 +858,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testCatchErrorWithNoFileName() throws Exception {
         // Assume that I/O error is happened when we try to invoke 'lastModified()' method.
         try {
-            new Checker().process(List.of(throwWhenToAbsolutePath()));
+            new Checker().process(List.of(throwErrorOnToAbsolutePath()));
             assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
@@ -1128,7 +1127,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         try {
-            checker.process(List.of(throwWhenToAbsolutePath()));
+            checker.process(List.of(throwErrorOnToAbsolutePath()));
             assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
@@ -1222,7 +1221,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         try {
-            checker.process(List.of(throwWhenToAbsolutePath()));
+            checker.process(List.of(throwErrorOnToAbsolutePath()));
             assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
@@ -1252,7 +1251,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
     }
 
-    private static Path throwWhenToAbsolutePath() {
+    private static Path throwErrorOnToAbsolutePath() {
         final Path mock = Mockito.spy(Path.of("dummy.java"));
         Mockito.when(mock.toAbsolutePath()).thenThrow(new IOError(new InternalError(ERROR_MESSAGE)));
         return mock;
