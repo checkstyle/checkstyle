@@ -510,7 +510,7 @@ public class InputVariableDeclarationUsageDistanceRegExp {
     }
 
 
-    public int testIssue32_11(String toDir)
+    public int testIssue32_11(String target)
             throws Exception
     {
         int count = 0; // violation 'Distance between .* declaration and its first usage is 4.'
