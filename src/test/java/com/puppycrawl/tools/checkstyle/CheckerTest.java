@@ -827,7 +827,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testCatchErrorInProcessFilesMethod() throws Exception {
         // Assume that I/O error is happened when we try to invoke 'lastModified()' method.
         try {
-            new Checker().process(List.of(throwErrorOnToAbsolutePath()));
+            new Checker().process(List.of(throwIOErrorOnToAbsolutePath()));
             assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
@@ -858,7 +858,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testCatchErrorWithNoFileName() throws Exception {
         // Assume that I/O error is happened when we try to invoke 'lastModified()' method.
         try {
-            new Checker().process(List.of(throwErrorOnToAbsolutePath()));
+            new Checker().process(List.of(throwIOErrorOnToAbsolutePath()));
             assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
@@ -1127,7 +1127,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         try {
-            checker.process(List.of(throwErrorOnToAbsolutePath()));
+            checker.process(List.of(throwIOErrorOnToAbsolutePath()));
             assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
@@ -1171,7 +1171,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         try {
-            checker.process(List.of(throwWhenToFile()));
+            checker.process(List.of(throwErrorOnToFile()));
             assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
@@ -1221,7 +1221,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         try {
-            checker.process(List.of(throwErrorOnToAbsolutePath()));
+            checker.process(List.of(throwIOErrorOnToAbsolutePath()));
             assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
@@ -1251,17 +1251,23 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
     }
 
-    private static Path throwErrorOnToAbsolutePath() {
+    private static Path throwIOErrorOnToAbsolutePath() {
         final Path mock = Mockito.spy(Path.of("dummy.java"));
         Mockito.when(mock.toAbsolutePath()).thenThrow(new IOError(new InternalError(ERROR_MESSAGE)));
         return mock;
     }
 
-    private static Path throwWhenToFile() {
+    private static Path throwErrorOnToFile() {
         final Path path = Path.of("dummy.java");
         final Path mock = Mockito.spy(path);
         Mockito.when(mock.toAbsolutePath()).thenReturn(path);
-        Mockito.when(mock.toFile()).thenReturn(path.toFile()).thenThrow(new Error(new InternalError(ERROR_MESSAGE)));
+        Mockito.when(mock.toFile())
+                // pass for:
+                // .filter(path -> CommonUtil.matchesFileExtension(path.toFile(), fileExtensions))
+                .thenReturn(path.toFile())
+                // throw on:
+                // final long timestamp = file.toFile().lastModified();
+                .thenThrow(new Error(new InternalError(ERROR_MESSAGE)));
         return mock;
     }
 
