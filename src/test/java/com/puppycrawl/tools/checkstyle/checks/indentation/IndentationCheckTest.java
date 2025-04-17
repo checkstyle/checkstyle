@@ -151,18 +151,18 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final int tabWidth = Integer.parseInt(config.getProperty("tabWidth"));
         final IndentComment[] linesWithWarn =
                         getLinesWithWarnAndCheckComments(filePath, tabWidth);
-        verify(config, filePath, expected, linesWithWarn);
+        verifyWarns(config, filePath, expected, linesWithWarn);
         assertWithMessage("Expected warning count in UT does not match warn comment count "
                 + "in input file")
             .that(expected.length)
             .isEqualTo(linesWithWarn.length);
     }
 
-    private void verify(Configuration config, String filePath, String[] expected,
+    private void verifyWarns(Configuration config, String filePath, String[] expected,
             final IndentComment... linesWithWarn) throws Exception {
         final Checker checker = createChecker(config);
         checker.addListener(new IndentAudit(linesWithWarn));
-        verify(checker, filePath, expected);
+        verifyWarns(checker, filePath, expected);
     }
 
     @Override
