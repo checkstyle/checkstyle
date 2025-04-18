@@ -1,12 +1,16 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="JavadocMethod"/>
-    <module name="EqualsAvoidNull"/>
+    <module name="JavadocMethod">
+      <property name="id" value="javadocMethod"/>
+    </module>
+    <module name="EqualsAvoidNull">
+      <property name="id" value="equalsAvoidNull"/>
+    </module>
   </module>
   <module name="SuppressionSingleFilter">
     <property name="files" value="Example2.java"/>
-    <property name="checks" value="JavadocMethod|EqualsAvoidNull"/>
+    <property name="id" value="javadocMethod"/>
   </module>
 </module>
 */
