@@ -402,9 +402,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
         final DetailAST forUpdateListAST = forIteratorAST.findFirstToken(TokenTypes.ELIST);
 
         findChildrenOfExpressionType(forUpdateListAST).stream()
-            .filter(iteratingExpressionAST -> {
-                return MUTATION_OPERATIONS.get(iteratingExpressionAST.getType());
-            }).forEach(iteratingExpressionAST -> {
+            .filter(iteratingExpressionAST -> MUTATION_OPERATIONS.get(iteratingExpressionAST.getType())).forEach(iteratingExpressionAST -> {
                 final DetailAST oneVariableOperatorChild = iteratingExpressionAST.getFirstChild();
                 iteratorVariables.add(oneVariableOperatorChild.getText());
             });

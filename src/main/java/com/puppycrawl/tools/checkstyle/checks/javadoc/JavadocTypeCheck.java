@@ -341,13 +341,11 @@ public class JavadocTypeCheck
 
                 if (!allowMissingParamTags) {
 
-                    typeParamNames.forEach(typeParamName -> {
-                        checkTypeParamTag(ast, tags, typeParamName);
-                    });
+                    typeParamNames.forEach(typeParamName ->
+                        checkTypeParamTag(ast, tags, typeParamName));
 
-                    recordComponentNames.forEach(componentName -> {
-                        checkComponentParamTag(ast, tags, componentName);
-                    });
+                    recordComponentNames.forEach(componentName ->
+                        checkComponentParamTag(ast, tags, componentName));
                 }
 
                 checkUnusedParamTags(tags, typeParamNames, recordComponentNames);
@@ -379,9 +377,8 @@ public class JavadocTypeCheck
         final JavadocTags tags = JavadocUtil.getJavadocTags(textBlock,
             JavadocUtil.JavadocTagType.BLOCK);
         if (!allowUnknownTags) {
-            tags.getInvalidTags().forEach(tag -> {
-                log(tag.getLine(), tag.getCol(), MSG_UNKNOWN_TAG, tag.getName());
-            });
+            tags.getInvalidTags().forEach(tag ->
+                log(tag.getLine(), tag.getCol(), MSG_UNKNOWN_TAG, tag.getName()));
         }
         return tags.getValidTags();
     }

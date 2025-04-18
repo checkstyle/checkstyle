@@ -93,10 +93,8 @@ public final class TestUtil {
                 field.setAccessible(true);
                 return field;
             })
-            .orElseThrow(() -> {
-                return new IllegalStateException(String.format(Locale.ROOT,
-                        "Field '%s' not found in '%s'", fieldName, clss.getCanonicalName()));
-            });
+            .orElseThrow(() -> new IllegalStateException(String.format(Locale.ROOT,
+                        "Field '%s' not found in '%s'", fieldName, clss.getCanonicalName())));
     }
 
     /**
@@ -110,20 +108,16 @@ public final class TestUtil {
     public static Method getClassDeclaredMethod(Class<?> clss, String methodName, int parameters) {
         return Stream.<Class<?>>iterate(clss, Class::getSuperclass)
             .flatMap(cls -> Arrays.stream(cls.getDeclaredMethods()))
-            .filter(method -> {
-                return methodName.equals(method.getName())
-                    && parameters == method.getParameterCount();
-            })
+            .filter(method -> methodName.equals(method.getName())
+                    && parameters == method.getParameterCount())
             .findFirst()
             .map(method -> {
                 method.setAccessible(true);
                 return method;
             })
-            .orElseThrow(() -> {
-                return new IllegalStateException(String.format(Locale.ROOT,
+            .orElseThrow(() -> new IllegalStateException(String.format(Locale.ROOT,
                         "Method '%s' with %d parameters not found in '%s'",
-                        methodName, parameters, clss.getCanonicalName()));
-            });
+                        methodName, parameters, clss.getCanonicalName())));
     }
 
     /**

@@ -140,14 +140,11 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
 
             leadingAsteriskColumnNumber
                     .map(columnNumber -> expandedTabs(ast.getText(), columnNumber))
-                    .filter(columnNumber -> {
-                        return !hasValidAlignment(expectedColumnNumberTabsExpanded, columnNumber);
-                    })
-                    .ifPresent(columnNumber -> {
+                    .filter(columnNumber -> !hasValidAlignment(expectedColumnNumberTabsExpanded, columnNumber))
+                    .ifPresent(columnNumber ->
                         logViolation(ast.getLineNumber(),
                                 columnNumber,
-                                expectedColumnNumberTabsExpanded);
-                    });
+                                expectedColumnNumberTabsExpanded));
         }
     }
 
@@ -160,14 +157,11 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
 
         endingBlockColumnNumber
                 .map(columnNumber -> expandedTabs(lastLine, columnNumber))
-                .filter(columnNumber -> {
-                    return !hasValidAlignment(expectedColumnNumberTabsExpanded, columnNumber);
-                })
-                .ifPresent(columnNumber -> {
+                .filter(columnNumber -> !hasValidAlignment(expectedColumnNumberTabsExpanded, columnNumber))
+                .ifPresent(columnNumber ->
                     logViolation(javadocEndToken.getLineNo(),
                             columnNumber,
-                            expectedColumnNumberTabsExpanded);
-                });
+                            expectedColumnNumberTabsExpanded));
     }
 
     /**

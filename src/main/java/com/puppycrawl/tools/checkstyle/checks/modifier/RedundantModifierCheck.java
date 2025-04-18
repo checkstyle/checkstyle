@@ -516,9 +516,8 @@ public class RedundantModifierCheck
      */
     private void processAbstractMethodParameters(DetailAST ast) {
         final DetailAST parameters = ast.findFirstToken(TokenTypes.PARAMETERS);
-        TokenUtil.forEachChild(parameters, TokenTypes.PARAMETER_DEF, paramDef -> {
-            checkForRedundantModifier(paramDef, TokenTypes.FINAL);
-        });
+        TokenUtil.forEachChild(parameters, TokenTypes.PARAMETER_DEF, paramDef ->
+            checkForRedundantModifier(paramDef, TokenTypes.FINAL));
     }
 
     /**

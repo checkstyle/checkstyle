@@ -506,10 +506,8 @@ public final class SiteUtil {
     public static Set<Path> getXdocsTemplatesFilePaths() throws MacroExecutionException {
         final Path directory = Path.of("src/site/xdoc");
         try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
-                (path, attr) -> {
-                    return attr.isRegularFile()
-                            && path.toString().endsWith(".xml.template");
-                })) {
+                (path, attr) -> attr.isRegularFile()
+                            && path.toString().endsWith(".xml.template"))) {
             return stream.collect(Collectors.toUnmodifiableSet());
         }
         catch (IOException ioException) {
@@ -568,9 +566,7 @@ public final class SiteUtil {
     public static Set<String> getPropertiesForDocumentation(Class<?> clss, Object instance) {
         final Set<String> properties =
                 getProperties(clss).stream()
-                    .filter(prop -> {
-                        return !isGlobalProperty(clss, prop) && !isUndocumentedProperty(clss, prop);
-                    })
+                    .filter(prop -> !isGlobalProperty(clss, prop) && !isUndocumentedProperty(clss, prop))
                     .collect(Collectors.toCollection(HashSet::new));
         properties.addAll(getNonExplicitProperties(instance, clss));
         return new TreeSet<>(properties);

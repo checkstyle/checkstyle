@@ -89,11 +89,10 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
     @Test
     public void testPropertyMisplacedDefaultValueCheck() {
         JavadocMetadataScraper.resetModuleDetailsStore();
-        final CheckstyleException exc = assertThrows(CheckstyleException.class, () -> {
+        final CheckstyleException exc = assertThrows(CheckstyleException.class, () ->
             verifyWithInlineConfigParser(
                     getPath("InputJavadocMetadataScraperPropertyMisplacedDefaultValueCheck.java"),
-                    CommonUtil.EMPTY_STRING_ARRAY);
-        });
+                    CommonUtil.EMPTY_STRING_ARRAY));
         assertThat(exc.getCause()).isInstanceOf(MetadataGenerationException.class);
         assertThat(exc.getCause().getMessage())
                 .isEqualTo("Default value for property 'misplacedDefaultValue' is missing");

@@ -639,11 +639,9 @@ public final class InlineConfigParser {
             final double[] arr = (double[]) value;
             result = Arrays.stream(arr)
                            .boxed()
-                           .map(number -> {
-                               return BigDecimal.valueOf(number)
+                           .map(number -> BigDecimal.valueOf(number)
                                                 .stripTrailingZeros()
-                                                .toPlainString();
-                           })
+                                                .toPlainString())
                            .collect(Collectors.joining(","));
         }
         else if (value instanceof int[]) {
@@ -1022,24 +1020,21 @@ public final class InlineConfigParser {
         else if (multipleViolationsMatcher.matches()) {
             Collections
                     .nCopies(Integer.parseInt(multipleViolationsMatcher.group(1)), lineNo + 1)
-                    .forEach(actualLineNumber -> {
-                        inputConfigBuilder.addViolation(actualLineNumber, null);
-                    });
+                    .forEach(actualLineNumber ->
+                        inputConfigBuilder.addViolation(actualLineNumber, null));
         }
         else if (multipleViolationsAboveMatcher.matches()) {
             Collections
                     .nCopies(Integer.parseInt(multipleViolationsAboveMatcher.group(1)), lineNo)
-                    .forEach(actualLineNumber -> {
-                        inputConfigBuilder.addViolation(actualLineNumber, null);
-                    });
+                    .forEach(actualLineNumber ->
+                        inputConfigBuilder.addViolation(actualLineNumber, null));
         }
         else if (multipleViolationsBelowMatcher.matches()) {
             Collections
                     .nCopies(Integer.parseInt(multipleViolationsBelowMatcher.group(1)),
                             lineNo + 2)
-                    .forEach(actualLineNumber -> {
-                        inputConfigBuilder.addViolation(actualLineNumber, null);
-                    });
+                    .forEach(actualLineNumber ->
+                        inputConfigBuilder.addViolation(actualLineNumber, null));
         }
         else if (useFilteredViolations) {
             setFilteredViolation(inputConfigBuilder, lineNo + 1,

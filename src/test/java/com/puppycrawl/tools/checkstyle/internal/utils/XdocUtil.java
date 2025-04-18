@@ -59,11 +59,9 @@ public final class XdocUtil {
     public static Set<Path> getXdocsFilePaths() throws IOException {
         final Path directory = Path.of(DIRECTORY_PATH);
         try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
-                (path, attr) -> {
-                    return attr.isRegularFile()
+                (path, attr) -> attr.isRegularFile()
                             && (path.toString().endsWith(".xml")
-                            || path.toString().endsWith(".xml.vm"));
-                })) {
+                            || path.toString().endsWith(".xml.vm")))) {
             return stream.collect(Collectors.toUnmodifiableSet());
         }
     }
@@ -79,10 +77,8 @@ public final class XdocUtil {
     public static Set<Path> getXdocsTemplatesFilePaths() throws IOException {
         final Path directory = Path.of(DIRECTORY_PATH);
         try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
-                (path, attr) -> {
-                    return attr.isRegularFile()
-                            && path.toString().endsWith(".xml.template");
-                })) {
+                (path, attr) -> attr.isRegularFile()
+                            && path.toString().endsWith(".xml.template"))) {
             return stream.collect(Collectors.toUnmodifiableSet());
         }
     }

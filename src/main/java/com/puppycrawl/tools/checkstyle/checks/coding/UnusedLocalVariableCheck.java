@@ -444,9 +444,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * cast a shadow on local variables.
      */
     private void leaveCompilationUnit() {
-        anonInnerClassHolders.forEach(holder -> {
-            iterateOverBlockContainingLocalAnonInnerClass(holder, new ArrayDeque<>());
-        });
+        anonInnerClassHolders.forEach(holder ->
+            iterateOverBlockContainingLocalAnonInnerClass(holder, new ArrayDeque<>()));
     }
 
     /**
@@ -551,9 +550,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             final Optional<TypeDeclDesc> classWithCompletePackageName =
                     typeDeclAstToTypeDeclDesc.values()
                     .stream()
-                    .filter(typeDeclDesc -> {
-                        return typeDeclDesc.getQualifiedName().equals(shortNameOfClass);
-                    })
+                    .filter(typeDeclDesc -> typeDeclDesc.getQualifiedName().equals(shortNameOfClass))
                     .findFirst();
             if (classWithCompletePackageName.isPresent()) {
                 obtainedClass = classWithCompletePackageName.orElseThrow();
@@ -597,9 +594,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private List<TypeDeclDesc> typeDeclWithSameName(String superClassName) {
         return typeDeclAstToTypeDeclDesc.values().stream()
-                .filter(typeDeclDesc -> {
-                    return hasSameNameAsSuperClass(superClassName, typeDeclDesc);
-                })
+                .filter(typeDeclDesc -> hasSameNameAsSuperClass(superClassName, typeDeclDesc))
                 .collect(Collectors.toUnmodifiableList());
     }
 
@@ -633,9 +628,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private static TypeDeclDesc getClosestMatchingTypeDeclaration(String outerTypeDeclName,
             List<TypeDeclDesc> typeDeclWithSameName) {
-        return Collections.min(typeDeclWithSameName, (first, second) -> {
-            return calculateTypeDeclarationDistance(outerTypeDeclName, first, second);
-        });
+        return Collections.min(typeDeclWithSameName, (first, second) -> calculateTypeDeclarationDistance(outerTypeDeclName, first, second));
     }
 
     /**
@@ -788,10 +781,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static boolean shouldCheckIdentTokenNestedUnderDot(DetailAST dotAst) {
 
         return TokenUtil.findFirstTokenByPredicate(dotAst,
-                        childAst -> {
-                            return TokenUtil.isOfType(childAst,
-                                    UNACCEPTABLE_CHILD_OF_DOT);
-                        })
+                        childAst -> TokenUtil.isOfType(childAst,
+                                    UNACCEPTABLE_CHILD_OF_DOT))
                 .isEmpty();
     }
 
