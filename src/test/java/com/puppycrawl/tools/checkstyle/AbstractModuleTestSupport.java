@@ -490,9 +490,11 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             throws Exception {
         stream.flush();
         stream.reset();
-        final List<File> theFiles = new ArrayList<>();
-        Collections.addAll(theFiles, processedFiles);
-        final int errs = checker.process(theFiles);
+        final List<File> files = new ArrayList<>();
+        Collections.addAll(files, processedFiles);
+        final int errs = checker
+                .process(files.stream()
+                        .map(File::toPath).collect(Collectors.toUnmodifiableList()));
 
         // process each of the lines
         final Map<String, List<String>> actualViolations = getActualViolations(errs);
