@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalMethodCheck.MSG_UNUSED_LOCAL_METHOD;
-import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck.MSG_UNUSED_LOCAL_VARIABLE;
 
 import java.util.List;
 
@@ -38,28 +37,29 @@ public class UnusedLocalMethodCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void chain() throws Exception {
-        verifyWithInlineConfigParser(
-            getPath("InputUnusedLocalMethodChainUnused.java"), new String[] {
-                "15:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused2"),
-            });
+        verifyWithInlineConfigParser(getPath("InputUnusedLocalMethodChainUnused.java"),
+                List.of("15:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused2")));
     }
 
     @Test
     public void usageWithInComment() throws Exception {
+        verifyWithInlineConfigParser(getPath("InputUnusedLocalMethodCheckUsageWithInComment.java"),
+                List.of("29:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused2")));
+
         verifyWithInlineConfigParser(
-            getPath("InputUnusedLocalMethodCheckUsageWithInComment.java"), new String[] {
-                "29:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused2"),
-            });
+                getPath("InputUnusedLocalMethodCheckUsageWithInComment.java"), new String[] {
+                        "29:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused2"),
+                });
     }
 
     @Test
     public void multi() throws Exception {
         verifyWithInlineConfigParser(getPath("InputUnusedLocalMethodMulti.java"),
-            new String[] {
-                "15:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused1"),
-                "18:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused2"),
-                "21:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused3")
-            });
+                List.of(
+                        "15:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused1"),
+                        "18:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused2"),
+                        "21:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused3")
+                ));
     }
 
     @Test
@@ -80,19 +80,18 @@ public class UnusedLocalMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void onlyOnPrivate() throws Exception {
         verifyWithInlineConfigParser(getPath("InputUnusedLocalMethodOnlyOnPrivate.java"),
-            new String[] {
-                "17:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "_private"),
-                "29:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "_privateStatic")
-            });
+                List.of(
+                        "17:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "_private"),
+                        "29:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "_privateStatic")
+                ));
     }
 
     @Test
     // https://github.com/checkstyle/checkstyle/issues/16375#issuecomment-2671577546
     @Disabled
     public void methodOverload() throws Exception {
-        verifyWithInlineConfigParser(
-            getPath("InputUnusedLocalMethodMethodOverload.java"), new String[] {
-                "23:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused"),
-            });
+        verifyWithInlineConfigParser(getPath("InputUnusedLocalMethodMethodOverload.java"),
+                List.of("23:5: " + getCheckMessage(MSG_UNUSED_LOCAL_METHOD, "unused")));
     }
 }
+
