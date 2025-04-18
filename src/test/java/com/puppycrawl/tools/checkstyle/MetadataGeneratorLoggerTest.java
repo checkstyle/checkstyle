@@ -109,4 +109,38 @@ public class MetadataGeneratorLoggerTest {
                     .isEqualTo(3);
         }
     }
+
+    @Test
+    public void testAddErrorWithSeverity() {
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
+                OutputStreamOptions.CLOSE);
+
+        final AuditEvent event = new AuditEvent(this, "TestFile.java",
+                new Violation(10, 5, "bundle", "key", null, SeverityLevel.ERROR, null, getClass(), "customViolation"));
+
+        logger.finishLocalSetup();
+        logger.addError(event);
+        logger.auditFinished(event);
+
+        final String logOutput = outputStream.toString();
+        assertWithMessage("Should contain formatted violation output")
+                .that(logOutput)
+                .contains("TestFile.java");
+    }
+
+    @Test
+    public void testFileStartedFlush() {
+        final CloseAndFlushTestByteArrayOutputStream outputStream = new CloseAndFlushTestByteArrayOutputStream();
+        final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
+                OutputStreamOptions.NONE);
+
+        final AuditEvent event = new AuditEvent(this, "SomeFile.java");
+
+        logger.fileStarted(event);
+        assertWithMessage("Flush should be triggered by fileStarted")
+                .that(outputStream.getFlushCount())
+                .isEqualTo(0);
+    }
+
 }

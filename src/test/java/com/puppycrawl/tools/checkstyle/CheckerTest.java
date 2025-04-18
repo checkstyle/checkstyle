@@ -847,6 +847,33 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
     }
 
+    @Test
+    public void testCatchErrorWithNoCache() throws Exception {
+        try {
+            new Checker().process(List.of(throwErrorOnLastModified()));
+            assertWithMessage("IOError is expected!").fail();
+        }
+        // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
+        catch (Error error) {
+//            assertWithMessage("Error cause differs from IOError")
+//                    .that(error)
+//                    .hasCauseThat()
+//                    .hasCauseThat()
+//                    .isInstanceOf(IOError.class);
+            assertWithMessage("Error cause is not InternalError")
+                    .that(error)
+                    .hasCauseThat()
+                    .hasCauseThat()
+                    .isInstanceOf(InternalError.class);
+            assertWithMessage("Error message is not expected")
+                    .that(error)
+                    .hasCauseThat()
+                    .hasCauseThat()
+                    .hasMessageThat()
+                    .isEqualTo(ERROR_MESSAGE);
+        }
+    }
+
     /**
      * Test doesn't need to be serialized.
      *
@@ -1268,6 +1295,14 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 // throw on:
                 // final long timestamp = file.toFile().lastModified();
                 .thenThrow(new Error(new InternalError(ERROR_MESSAGE)));
+        return mock;
+    }
+
+    private static Path throwErrorOnLastModified() {
+        final Path mock = Mockito.spy(Path.of("dummy.java"));
+        final File file = Mockito.mock(File.class);
+        Mockito.when(file.lastModified()).thenThrow(new Error(new InternalError(ERROR_MESSAGE)));
+        Mockito.when(mock.toFile()).thenReturn(file);
         return mock;
     }
 
