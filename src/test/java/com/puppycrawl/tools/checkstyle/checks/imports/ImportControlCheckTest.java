@@ -465,9 +465,8 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testImportControlTestException() {
         final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class,
-                () -> {
-                    verifyWithInlineConfigParser(getPath("InputImportControlTestException.java"));
-                });
+                () ->
+                    verifyWithInlineConfigParser(getPath("InputImportControlTestException.java")));
 
         assertThat(ex.getCause().getCause().getCause().getCause().getCause().getMessage())
                 .startsWith("unable to parse file:");

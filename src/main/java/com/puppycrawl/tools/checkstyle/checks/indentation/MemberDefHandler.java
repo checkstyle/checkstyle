@@ -69,11 +69,9 @@ public class MemberDefHandler extends AbstractExpressionHandler {
      */
     private static Optional<DetailAST> getArrayInitNode(DetailAST firstNode) {
         return Optional.ofNullable(firstNode.findFirstToken(TokenTypes.ASSIGN))
-            .map(assign -> {
-                return Optional.ofNullable(assign.findFirstToken(TokenTypes.EXPR))
+            .map(assign -> Optional.ofNullable(assign.findFirstToken(TokenTypes.EXPR))
                     .map(expr -> expr.findFirstToken(TokenTypes.LITERAL_NEW))
-                    .orElse(assign);
-            })
+                    .orElse(assign))
             .map(node -> node.findFirstToken(TokenTypes.ARRAY_INIT));
     }
 

@@ -78,10 +78,6 @@
     <module name="NoLineWrap">
       <property name="tokens" value="PACKAGE_DEF, IMPORT, STATIC_IMPORT"/>
     </module>
-    <module name="NeedBraces">
-      <property name="tokens"
-               value="LITERAL_DO, LITERAL_ELSE, LITERAL_FOR, LITERAL_IF, LITERAL_WHILE"/>
-    </module>
     <module name="LeftCurly">
       <property name="id" value="LeftCurlyEol"/>
       <property name="tokens"

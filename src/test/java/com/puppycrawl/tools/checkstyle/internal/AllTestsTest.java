@@ -48,37 +48,32 @@ public class AllTestsTest {
     public void testAllInputsHaveTest() throws Exception {
         final Map<String, List<String>> allTests = new HashMap<>();
 
-        walkVisible(Path.of("src/test/java"), filePath -> {
-            grabAllTests(allTests, filePath.toFile());
-        });
+        walkVisible(Path.of("src/test/java"), filePath ->
+            grabAllTests(allTests, filePath.toFile()));
 
         assertWithMessage("found tests")
             .that(allTests.keySet())
             .isNotEmpty();
 
-        walkVisible(Path.of("src/test/resources/com/puppycrawl"), filePath -> {
-            verifyInputFile(allTests, filePath.toFile());
-        });
-        walkVisible(Path.of("src/test/resources-noncompilable/com/puppycrawl"), filePath -> {
-            verifyInputFile(allTests, filePath.toFile());
-        });
+        walkVisible(Path.of("src/test/resources/com/puppycrawl"), filePath ->
+            verifyInputFile(allTests, filePath.toFile()));
+        walkVisible(Path.of("src/test/resources-noncompilable/com/puppycrawl"), filePath ->
+            verifyInputFile(allTests, filePath.toFile()));
     }
 
     @Test
     public void testAllTestsHaveProductionCode() throws Exception {
         final Map<String, List<String>> allTests = new HashMap<>();
 
-        walkVisible(Path.of("src/main/java"), filePath -> {
-            grabAllFiles(allTests, filePath.toFile());
-        });
+        walkVisible(Path.of("src/main/java"), filePath ->
+            grabAllFiles(allTests, filePath.toFile()));
 
         assertWithMessage("found tests")
             .that(allTests.keySet())
             .isNotEmpty();
 
-        walkVisible(Path.of("src/test/java"), filePath -> {
-            verifyHasProductionFile(allTests, filePath.toFile());
-        });
+        walkVisible(Path.of("src/test/java"), filePath ->
+            verifyHasProductionFile(allTests, filePath.toFile()));
     }
 
     /**

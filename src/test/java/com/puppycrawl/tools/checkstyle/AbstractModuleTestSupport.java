@@ -503,11 +503,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             .that(actualViolations.keySet())
             .isEqualTo(realExpectedViolations.keySet());
 
-        realExpectedViolations.forEach((fileName, violationList) -> {
+        realExpectedViolations.forEach((fileName, violationList) ->
             assertWithMessage("Violations for %s differ.", fileName)
                 .that(actualViolations.get(fileName))
-                .containsExactlyElementsIn(violationList);
-        });
+                .containsExactlyElementsIn(violationList));
 
         checker.destroy();
     }

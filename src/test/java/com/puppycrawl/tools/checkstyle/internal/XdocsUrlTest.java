@@ -71,10 +71,8 @@ public class XdocsUrlTest {
         final Map<String, List<String>> checksNamesMap = new HashMap<>();
         final Set<Class<?>> checkSet = CheckUtil.getCheckstyleModules();
         final Set<Class<?>> treeWalkerOrFileSetCheckSet = checkSet.stream()
-                .filter(clazz -> {
-                    return AbstractCheck.class.isAssignableFrom(clazz)
-                            || AbstractFileSetCheck.class.isAssignableFrom(clazz);
-                })
+                .filter(clazz -> AbstractCheck.class.isAssignableFrom(clazz)
+                            || AbstractFileSetCheck.class.isAssignableFrom(clazz))
                 .collect(Collectors.toUnmodifiableSet());
         for (Class<?> check : treeWalkerOrFileSetCheckSet) {
             final String checkName = check.getSimpleName();

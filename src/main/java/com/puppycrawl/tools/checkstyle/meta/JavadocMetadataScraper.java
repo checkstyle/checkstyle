@@ -301,11 +301,9 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
             final String propertyName = getTextFromTag(propertyNameTag);
 
             final DetailNode propertyType = getFirstChildOfMatchingText(nodeLi, TYPE_TAG)
-                .orElseThrow(() -> {
-                    return new MetadataGenerationException(String.format(
+                .orElseThrow(() -> new MetadataGenerationException(String.format(
                         Locale.ROOT, PROP_TYPE_MISSING, propertyName)
-                    );
-                });
+                    ));
             final String propertyDesc = DESC_CLEAN.matcher(
                     constructSubTreeText(nodeLi, propertyNameTag.getIndex() + 1,
                             propertyType.getIndex() - 1))
@@ -325,11 +323,9 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
 
             final String defaultValue = getFirstChildOfMatchingText(nodeLi, DEFAULT_VALUE_TAG)
                 .map(defaultValueNode -> getPropertyDefaultText(nodeLi, defaultValueNode))
-                .orElseThrow(() -> {
-                    return new MetadataGenerationException(String.format(
+                .orElseThrow(() -> new MetadataGenerationException(String.format(
                         Locale.ROOT, PROP_DEFAULT_VALUE_MISSING, propertyName)
-                    );
-                });
+                    ));
             if (!PROPERTIES_TO_NOT_WRITE.contains(defaultValue)) {
                 modulePropertyDetails.setDefaultValue(defaultValue);
             }
@@ -639,10 +635,8 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
     private boolean isTopLevelClassJavadoc() {
         final DetailAST parent = getParent(getBlockCommentAst());
         final Optional<DetailAST> className = TokenUtil
-                .findFirstTokenByPredicate(parent, child -> {
-                    return parent.getType() == TokenTypes.CLASS_DEF
-                            && child.getType() == TokenTypes.IDENT;
-                });
+                .findFirstTokenByPredicate(parent, child -> parent.getType() == TokenTypes.CLASS_DEF
+                            && child.getType() == TokenTypes.IDENT);
         return className.isPresent()
                 && getModuleSimpleName().equals(className.orElseThrow().getText());
     }

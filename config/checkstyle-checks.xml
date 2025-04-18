@@ -318,11 +318,6 @@
     </module>
     <module name="EmptyCatchBlock"/>
     <module name="LeftCurly"/>
-    <module name="NeedBraces"/>
-    <module name="NeedBraces">
-      <property name="tokens" value="LAMBDA"/>
-      <property name="allowSingleLineStatement" value="true"/>
-    </module>
     <module name="RightCurly">
       <property name="tokens" value="METHOD_DEF"/>
       <property name="tokens" value="CTOR_DEF"/>

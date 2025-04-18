@@ -142,10 +142,8 @@ public class ArchUnitTest {
             .resideInAnyPackage(utilPackages);
 
         final EvaluationResult result = classShouldNotDependOnUtilPackages.evaluate(apiPackage);
-        final EvaluationResult filtered = result.filterDescriptionsMatching(description -> {
-            return API_PACKAGE_SUPPRESSION_DETAILS.stream()
-                .noneMatch(description::startsWith);
-        });
+        final EvaluationResult filtered = result.filterDescriptionsMatching(description -> API_PACKAGE_SUPPRESSION_DETAILS.stream()
+                .noneMatch(description::startsWith));
 
         assertWithMessage("api package: " + classShouldNotDependOnUtilPackages.getDescription())
             .that(filtered.getFailureReport().getDetails())

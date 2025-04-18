@@ -293,9 +293,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private void checkCommentInModifiers(DetailAST packageDef) {
         final Optional<DetailAST> comment = findCommentUnder(packageDef);
-        comment.ifPresent(commentValue -> {
-            log(commentValue, MSG_SHOULD_BE_SEPARATED, commentValue.getText());
-        });
+        comment.ifPresent(commentValue ->
+            log(commentValue, MSG_SHOULD_BE_SEPARATED, commentValue.getText()));
     }
 
     /**

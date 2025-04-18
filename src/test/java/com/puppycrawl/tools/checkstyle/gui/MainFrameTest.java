@@ -91,10 +91,9 @@ public class MainFrameTest extends AbstractGuiTestSupport {
         final File file = new File(getPath(NON_EXISTENT_FILE_NAME));
         try (MockedStatic<JOptionPane> optionPane = mockStatic(JOptionPane.class)) {
             mainFrame.openFile(file);
-            optionPane.verify(() -> {
+            optionPane.verify(() ->
                 JOptionPane.showMessageDialog(any(Component.class),
-                        startsWith("FileNotFoundException occurred while opening file"));
-            });
+                        startsWith("FileNotFoundException occurred while opening file")));
         }
         final MainFrameModel model = TestUtil.getInternalState(mainFrame, "model");
         assertWithMessage("Unexpected current file")

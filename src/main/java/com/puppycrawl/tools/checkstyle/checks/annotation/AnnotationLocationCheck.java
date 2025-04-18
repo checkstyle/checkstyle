@@ -288,10 +288,8 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * @return true if the annotation has parameters.
      */
     private static boolean isParameterized(DetailAST annotation) {
-        return TokenUtil.findFirstTokenByPredicate(annotation, ast -> {
-            return ast.getType() == TokenTypes.EXPR
-                || ast.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR;
-        }).isPresent();
+        return TokenUtil.findFirstTokenByPredicate(annotation, ast -> ast.getType() == TokenTypes.EXPR
+                || ast.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR).isPresent();
     }
 
     /**
