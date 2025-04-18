@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import java.math.BigInteger;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -548,17 +547,17 @@ public final class NPathComplexityCheck extends AbstractCheck {
      * @return number of case constant tokens.
      */
     private static int countCaseConstants(DetailAST ast) {
-        final AtomicInteger counter = new AtomicInteger();
+        int counter = 0;
         final DetailAST literalCase = ast.getFirstChild();
 
         for (DetailAST node = literalCase.getFirstChild(); node != null;
                     node = node.getNextSibling()) {
             if (TokenUtil.isOfType(node, CASE_LABEL_TOKENS)) {
-                counter.getAndIncrement();
+                counter++;
             }
         }
 
-        return counter.get();
+        return counter;
     }
 
     /**
