@@ -122,9 +122,6 @@ public class UnusedLocalMethodCheck extends AbstractCheck {
      * @param type the token type of the AST node
      * @param ast the AST node to process
      * @throws IllegalArgumentException if ast is null
-     * @see #processMethodDef(DetailAST, DetailAST)
-     * @see #processMethodCall(DetailAST)
-     * @see #processMethodRef(DetailAST)
      */
     private void processMethod(int type, DetailAST ast) {
         if (type == TokenTypes.METHOD_DEF) {
@@ -134,7 +131,7 @@ public class UnusedLocalMethodCheck extends AbstractCheck {
             processMethodCall(ast);
         }
         else {
-            processMethodRef(ast);
+            calls.add(ast.getNextSibling().getText());
         }
     }
 
@@ -143,12 +140,12 @@ public class UnusedLocalMethodCheck extends AbstractCheck {
      *
      * <p>Records private methods in the methods map for later verification.</p>
      *
-     * @param modifiersAST the MODIFIERS node of the method
-     * @param methodDefAST the METHOD_DEF node
+     * @param ast the MODIFIERS node of the method
+     * @param parentAst the METHOD_DEF node
      */
-    private void processMethodDef(DetailAST modifiersAST, DetailAST methodDefAST) {
-        if (modifiersAST.findFirstToken(TokenTypes.LITERAL_PRIVATE) != null) {
-            methods.put(methodDefAST.findFirstToken(TokenTypes.IDENT).getText(), methodDefAST);
+    private void processMethodDef(DetailAST ast, DetailAST parentAst) {
+        if (ast.findFirstToken(TokenTypes.LITERAL_PRIVATE) != null) {
+            methods.put(parentAst.findFirstToken(TokenTypes.IDENT).getText(), parentAst);
         }
     }
 
@@ -157,26 +154,15 @@ public class UnusedLocalMethodCheck extends AbstractCheck {
      *
      * <p>Records called method names in the calls set.</p>
      *
-     * @param methodCallAST the METHOD_CALL node
+     * @param ast the METHOD_CALL node
      */
-    private void processMethodCall(DetailAST methodCallAST) {
-        if (methodCallAST.getFirstChild() == null) {
-            calls.add(methodCallAST.getText());
+    private void processMethodCall(DetailAST ast) {
+        if (ast.getFirstChild() == null) {
+            calls.add(ast.getText());
         }
         else {
-            calls.add(methodCallAST.getFirstChild().getNextSibling().getText());
+            calls.add(ast.getFirstChild().getNextSibling().getText());
         }
-    }
-
-    /**
-     * Processes a method reference node.
-     *
-     * <p>Records referenced method names in the calls set.</p>
-     *
-     * @param methodRefAST the METHOD_REF node
-     */
-    private void processMethodRef(DetailAST methodRefAST) {
-        calls.add(methodRefAST.getNextSibling().getText());
     }
 
     /**
