@@ -1355,7 +1355,54 @@ public final class JavadocTokenTypes {
      */
     public static final int TH_HTML_TAG_NAME = JavadocParser.TH_HTML_TAG_NAME;
 
-    /** Body tag name. */
+    /**
+     * Body tag name.
+     *
+     *  <p><b>Example:</b></p>
+     *  <pre>{@code
+     *  &lt;body&gt;
+     *     &lt;p&gt;Body Content&lt;/p&gt;
+     *  &lt;/body&gt;
+     *  }</pre>
+     *  <b>Tree:</b>
+     *  <pre>
+     *  {@code
+     *  HTML_ELEMENT -> HTML_ELEMENT
+     *   `--BODY -> BODY
+     *       |--BODY_TAG_START -> BODY_TAG_START
+     *       |   |--START -> <
+     *       |   |--BODY_HTML_TAG_NAME -> body
+     *       |   `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--PARAGRAPH -> PARAGRAPH
+     *       |   |--P_TAG_START -> P_TAG_START
+     *       |   |   |--START -> <
+     *       |   |   |--P_HTML_TAG_NAME -> p
+     *       |   |   `--END -> >
+     *       |   |--TEXT -> Body Content
+     *       |   `--P_TAG_END -> P_TAG_END
+     *       |       |--START -> <
+     *       |       |--SLASH -> /
+     *       |       |--P_HTML_TAG_NAME -> p
+     *       |       `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       `--BODY_TAG_END -> BODY_TAG_END
+     *           |--START -> <
+     *           |--SLASH -> /
+     *           |--BODY_HTML_TAG_NAME -> body
+     *           `--END -> >
+     *  }
+     *  </pre>
+     *
+     *  @see
+     *  <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
+     *      comments are written in HTML</a>
+     *  @see #BODY_HTML_TAG_NAME
+     */
     public static final int BODY_HTML_TAG_NAME = JavadocParser.BODY_HTML_TAG_NAME;
 
     /**
@@ -2703,7 +2750,34 @@ public final class JavadocTokenTypes {
     /** Basefont html tag. */
     public static final int BASEFONT_TAG = JavadocParser.RULE_basefontTag + RULE_TYPES_OFFSET;
 
-    /** Br html tag. */
+    /**
+     * Br html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <br> line breaks<br/>}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * JAVADOC -> JAVADOC
+     * |--NEWLINE -> \r\n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--HTML_ELEMENT -> HTML_ELEMENT
+     * |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     * |       `--BR_TAG -> BR_TAG
+     * |           |--START -> <
+     * |           |--BR_HTML_TAG_NAME -> br
+     * |           `--END -> >
+     * |--TEXT ->  line breaks
+     * |--HTML_ELEMENT -> HTML_ELEMENT
+     * |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     * |       `--BR_TAG -> BR_TAG
+     * |           |--START -> <
+     * |           |--BR_HTML_TAG_NAME -> br
+     * |           `--SLASH_END -> />
+     * }
+     * </pre>
+     */
     public static final int BR_TAG = JavadocParser.RULE_brTag + RULE_TYPES_OFFSET;
 
     /** Col html tag. */
@@ -2821,7 +2895,50 @@ public final class JavadocTokenTypes {
      */
     public static final int INPUT_TAG = JavadocParser.RULE_inputTag + RULE_TYPES_OFFSET;
 
-    /** Isindex html tag. */
+    /**
+     * Isindex tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * &lt;head&gt;
+     *    &lt;isindex prompt="search"&gt;
+     * &lt;/head&gt;
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   |--HTML_ELEMENT -> HTML_ELEMENT
+     *   |   `--HEAD -> HEAD
+     *   |       |--HEAD_TAG_START -> HEAD_TAG_START
+     *   |       |   |--START -> <
+     *   |       |   |--HEAD_HTML_TAG_NAME -> head
+     *   |       |   `--END -> >
+     *   |       |--NEWLINE -> \r\n
+     *   |       |--LEADING_ASTERISK ->  *
+     *   |       |--TEXT ->
+     *   |       |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *   |       |   `--ISINDEX_TAG -> ISINDEX_TAG
+     *   |       |       |--START -> <
+     *   |       |       |--ISINDEX_HTML_TAG_NAME -> isindex
+     *   |       |       |--WS ->
+     *   |       |       |--ATTRIBUTE -> ATTRIBUTE
+     *   |       |       |   |--HTML_TAG_NAME -> prompt
+     *   |       |       |   |--EQUALS -> =
+     *   |       |       |   `--ATTR_VALUE -> "search"
+     *   |       |       `--END -> >
+     *   |       |--NEWLINE -> \r\n
+     *   |       |--LEADING_ASTERISK ->  *
+     *   |       |--TEXT ->
+     *   |       `--HEAD_TAG_END -> HEAD_TAG_END
+     *   |           |--START -> <
+     *   |           |--SLASH -> /
+     *   |           |--HEAD_HTML_TAG_NAME -> head
+     *   |           `--END -> >
+     *   |--NEWLINE -> \r\n
+     *   |--TEXT ->
+     * }
+     * </pre>
+     */
     public static final int ISINDEX_TAG = JavadocParser.RULE_isindexTag + RULE_TYPES_OFFSET;
 
     /** Link html tag. */
