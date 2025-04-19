@@ -3,23 +3,15 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on getOutputStream(options.outputPath) or any of its aliases.</message>
-    <lineContent>listener = new XpathFileGeneratorAuditListener(getOutputStream(options.outputPath),</lineContent>
-    <details>
-      The type of object is: java.io.OutputStream.
-      Reason for going out of scope: regular method exit
-    </details>
+    <message>(required.method.not.called)</message>
+    <lineContent>final OutputStream out = getOutputStream(outputLocation);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on out or any of its aliases.</message>
-    <lineContent>final OutputStream out = getOutputStream(outputLocation);</lineContent>
-    <details>
-      The type of object is: java.io.OutputStream.
-      Reason for going out of scope: possible exceptional exit due to format.createListener(out, closeOutputStreamOption) with exception type java.io.IOException
-    </details>
+    <message>(required.method.not.called)</message>
+    <lineContent>listener = new XpathFileGeneratorAuditListener(getOutputStream(options.outputPath),</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -36,111 +28,71 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on dtdIs or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
     <lineContent>final InputStream dtdIs = loader.getResourceAsStream(dtdResourceName);</lineContent>
-    <details>
-      The type of object is: java.io.InputStream.
-      Reason for going out of scope: regular method exit
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on Files.newOutputStream(toFile.toPath()) or any of its aliases.</message>
-    <lineContent>sarifLogger = new SarifLogger(Files.newOutputStream(toFile.toPath()),</lineContent>
-    <details>
-      The type of object is: java.io.OutputStream.
-      Reason for going out of scope: possible exceptional exit due to new SarifLogger(Files.newOutputStream(toFile.toPath()), OutputStreamOptions.CLOSE) with exception type java.io.IOException
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
-    <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on Files.newOutputStream(toFile.toPath()) or any of its aliases.</message>
-    <lineContent>xmlLogger = new XMLLogger(Files.newOutputStream(toFile.toPath()),</lineContent>
-    <details>
-      The type of object is: java.io.OutputStream.
-      Reason for going out of scope: regular method exit
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
-    <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on debug or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
     <lineContent>final OutputStream debug = new LogOutputStream(this, Project.MSG_DEBUG);</lineContent>
-    <details>
-      The type of object is: java.io.OutputStream.
-      Reason for going out of scope: regular method exit
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on err or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
     <lineContent>final OutputStream err = new LogOutputStream(this, Project.MSG_ERR);</lineContent>
-    <details>
-      The type of object is: java.io.OutputStream.
-      Reason for going out of scope: regular method exit
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on infoStream or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
     <lineContent>final OutputStream infoStream = Files.newOutputStream(toFile.toPath());</lineContent>
-    <details>
-      The type of object is: java.io.OutputStream.
-      Reason for going out of scope: regular method exit
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on new LogOutputStream(task, Project.MSG_DEBUG) or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
     <lineContent>new LogOutputStream(task, Project.MSG_DEBUG),</lineContent>
-    <details>
-      The type of object is: org.apache.tools.ant.taskdefs.LogOutputStream.
-      Reason for going out of scope: regular method exit
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on new LogOutputStream(task, Project.MSG_ERR) or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
     <lineContent>new LogOutputStream(task, Project.MSG_ERR),</lineContent>
-    <details>
-      The type of object is: org.apache.tools.ant.taskdefs.LogOutputStream.
-      Reason for going out of scope: regular method exit
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on new LogOutputStream(task, Project.MSG_INFO) or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
+    <lineContent>sarifLogger = new SarifLogger(Files.newOutputStream(toFile.toPath()),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>(required.method.not.called)</message>
     <lineContent>sarifLogger = new SarifLogger(new LogOutputStream(task, Project.MSG_INFO),</lineContent>
-    <details>
-      The type of object is: org.apache.tools.ant.taskdefs.LogOutputStream.
-      Reason for going out of scope: possible exceptional exit due to new SarifLogger(new LogOutputStream(task, Project.MSG_INFO), OutputStreamOptions.CLOSE) with exception type java.io.IOException
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on new LogOutputStream(task, Project.MSG_INFO) or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
+    <lineContent>xmlLogger = new XMLLogger(Files.newOutputStream(toFile.toPath()),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>(required.method.not.called)</message>
     <lineContent>xmlLogger = new XMLLogger(new LogOutputStream(task, Project.MSG_INFO),</lineContent>
-    <details>
-      The type of object is: org.apache.tools.ant.taskdefs.LogOutputStream.
-      Reason for going out of scope: regular method exit
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -168,12 +120,8 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on XmlMetaReader.class.getResourceAsStream(&quot;/&quot; + fileName) or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
     <lineContent>moduleDetails = read(XmlMetaReader.class.getResourceAsStream(&quot;/&quot; + fileName),</lineContent>
-    <details>
-      The type of object is: java.io.InputStream.
-      Reason for going out of scope: possible exceptional exit due to throw new IllegalStateException(&quot;Problem to read all modules including third party if any. Problem detected at file: &quot; + fileName, ex); with exception type java.lang.IllegalStateException
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -198,6 +146,8 @@
     <lineContent>.map(Pattern.class::cast)</lineContent>
     <details>
       unsatisfiable constraint: capture extends @FenumTop Object &lt;: @FenumUnqualified Object
+      Pattern.class::cast -&gt; inference type: java.util.function.Function&lt;? super capture of ?,? extends R&gt;
+      From: Argument constraint
     </details>
   </checkerFrameworkError>
 
@@ -208,18 +158,16 @@
     <lineContent>.map(String.class::cast)</lineContent>
     <details>
       unsatisfiable constraint: capture extends @FenumTop Object &lt;: @FenumUnqualified Object
+      String.class::cast -&gt; inference type: java.util.function.Function&lt;? super capture of ?,? extends R&gt;
+      From: Argument constraint
     </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateSink.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on new CustomPrintWriter(writer) or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
     <lineContent>super(new CustomPrintWriter(writer));</lineContent>
-    <details>
-      The type of object is: com.puppycrawl.tools.checkstyle.site.XdocsTemplateSink.CustomPrintWriter.
-      Reason for going out of scope: regular method exit
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -229,160 +177,106 @@
     <lineContent>.map(elementType::cast)</lineContent>
     <details>
       unsatisfiable constraint: S extends @FenumTop Object &lt;: @FenumUnqualified Object
+      elementType::cast -&gt; inference type: java.util.function.Function&lt;? super S,? extends R&gt;
+      From: Argument constraint
     </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractNode.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on axisIterator or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
     <lineContent>AxisIterator axisIterator = iterateAxis(axisNumber);</lineContent>
-    <details>
-      The type of object is: net.sf.saxon.tree.iter.AxisIterator.
-      Reason for going out of scope: variable overwritten by assignment axisIterator = new Navigator.AxisFilter(axisIterator, nodeTest)
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/DescendantIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on SingleNodeIterator.makeIterator(start) or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
     <lineContent>descendantEnum = SingleNodeIterator.makeIterator(start);</lineContent>
-    <details>
-      The type of object is: net.sf.saxon.tree.iter.AxisIterator.
-      Reason for going out of scope: regular method exit
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/DescendantIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on queue.poll().iterateAxis(AxisInfo.CHILD) or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
     <lineContent>descendantEnum = queue.poll().iterateAxis(AxisInfo.CHILD);</lineContent>
-    <details>
-      The type of object is: net.sf.saxon.tree.iter.AxisIterator.
-      Reason for going out of scope: regular method exit
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/DescendantIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on start.iterateAxis(AxisInfo.CHILD) or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
     <lineContent>descendantEnum = start.iterateAxis(AxisInfo.CHILD);</lineContent>
-    <details>
-      The type of object is: net.sf.saxon.tree.iter.AxisIterator.
-      Reason for going out of scope: regular method exit
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on parent.iterateAxis(AxisInfo.FOLLOWING_SIBLING) or any of its aliases.</message>
-    <lineContent>siblingEnum = parent.iterateAxis(AxisInfo.FOLLOWING_SIBLING);</lineContent>
-    <details>
-      The type of object is: net.sf.saxon.tree.iter.AxisIterator.
-      Reason for going out of scope: regular method exit
-    </details>
+    <message>(required.method.not.called)</message>
+    <lineContent>ancestorEnum = start.iterateAxis(AxisInfo.ANCESTOR);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on result.iterateAxis(AxisInfo.DESCENDANT) or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
     <lineContent>descendantEnum = result.iterateAxis(AxisInfo.DESCENDANT);</lineContent>
-    <details>
-      The type of object is: net.sf.saxon.tree.iter.AxisIterator.
-      Reason for going out of scope: regular method exit
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on start.iterateAxis(AxisInfo.ANCESTOR) or any of its aliases.</message>
-    <lineContent>ancestorEnum = start.iterateAxis(AxisInfo.ANCESTOR);</lineContent>
-    <details>
-      The type of object is: net.sf.saxon.tree.iter.AxisIterator.
-      Reason for going out of scope: regular method exit
-    </details>
+    <message>(required.method.not.called)</message>
+    <lineContent>siblingEnum = parent.iterateAxis(AxisInfo.FOLLOWING_SIBLING);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on start.iterateAxis(AxisInfo.FOLLOWING_SIBLING) or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
     <lineContent>siblingEnum = start.iterateAxis(AxisInfo.FOLLOWING_SIBLING);</lineContent>
-    <details>
-      The type of object is: net.sf.saxon.tree.iter.AxisIterator.
-      Reason for going out of scope: regular method exit
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on new ReverseDescendantIterator(result) or any of its aliases.</message>
-    <lineContent>descendantEnum = new ReverseDescendantIterator(result);</lineContent>
-    <details>
-      The type of object is: com.puppycrawl.tools.checkstyle.xpath.iterators.ReverseDescendantIterator.
-      Reason for going out of scope: regular method exit
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
-    <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on result.iterateAxis(AxisInfo.PRECEDING_SIBLING) or any of its aliases.</message>
-    <lineContent>previousSiblingEnum = result.iterateAxis(AxisInfo.PRECEDING_SIBLING);</lineContent>
-    <details>
-      The type of object is: net.sf.saxon.tree.iter.AxisIterator.
-      Reason for going out of scope: regular method exit
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
-    <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on start.iterateAxis(AxisInfo.ANCESTOR) or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
     <lineContent>ancestorEnum = start.iterateAxis(AxisInfo.ANCESTOR);</lineContent>
-    <details>
-      The type of object is: net.sf.saxon.tree.iter.AxisIterator.
-      Reason for going out of scope: regular method exit
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on start.iterateAxis(AxisInfo.PRECEDING_SIBLING) or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
+    <lineContent>descendantEnum = new ReverseDescendantIterator(result);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>(required.method.not.called)</message>
+    <lineContent>previousSiblingEnum = result.iterateAxis(AxisInfo.PRECEDING_SIBLING);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>(required.method.not.called)</message>
     <lineContent>previousSiblingEnum = start.iterateAxis(AxisInfo.PRECEDING_SIBLING);</lineContent>
-    <details>
-      The type of object is: net.sf.saxon.tree.iter.AxisIterator.
-      Reason for going out of scope: regular method exit
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseDescendantIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on queue.poll().iterateAxis(AxisInfo.CHILD) or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
     <lineContent>pushToStack(queue.poll().iterateAxis(AxisInfo.CHILD));</lineContent>
-    <details>
-      The type of object is: net.sf.saxon.tree.iter.AxisIterator.
-      Reason for going out of scope: regular method exit
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseDescendantIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on start.iterateAxis(AxisInfo.CHILD) or any of its aliases.</message>
+    <message>(required.method.not.called)</message>
     <lineContent>pushToStack(start.iterateAxis(AxisInfo.CHILD));</lineContent>
-    <details>
-      The type of object is: net.sf.saxon.tree.iter.AxisIterator.
-      Reason for going out of scope: regular method exit
-    </details>
   </checkerFrameworkError>
 </suppressedErrors>

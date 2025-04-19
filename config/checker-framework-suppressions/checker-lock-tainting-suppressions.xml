@@ -437,6 +437,9 @@
     <lineContent>Stream.iterate(startNode.getLastChild(), Objects::nonNull,</lineContent>
     <details>
       unsatisfiable constraint: @GuardedBy DetailAST &lt;: @GuardSatisfied Object
+      use of T from Stream.iterate(startNode.getLastChild(), Objects::nonNull, DetailAST::getPreviousSibling) &lt;: @GuardSatisfied Object
+      From complementary bound.: Objects::nonNull -&gt; inference type: java.util.function.Predicate&lt;? super T&gt;
+      From: Argument constraint
     </details>
   </checkerFrameworkError>
 
@@ -447,6 +450,8 @@
     <lineContent>.map(children::indexOf);</lineContent>
     <details>
       unsatisfiable constraint: @GuardedBy DetailAST &lt;: @GuardSatisfied Object
+      children::indexOf -&gt; inference type: java.util.function.Function&lt;? super com.puppycrawl.tools.checkstyle.api.DetailAST,? extends U&gt;
+      From: Argument constraint
     </details>
   </checkerFrameworkError>
 
@@ -472,6 +477,9 @@
     <lineContent>result = Stream.iterate(nonCommentAst.getPreviousSibling(),</lineContent>
     <details>
       unsatisfiable constraint: @GuardedBy DetailAST &lt;: @GuardSatisfied Object
+      use of T from Stream.iterate(nonCommentAst.getPreviousSibling(), Objects::nonNull, DetailAST::getPreviousSibling) &lt;: @GuardSatisfied Object
+      From complementary bound.: Objects::nonNull -&gt; inference type: java.util.function.Predicate&lt;? super T&gt;
+      From: Argument constraint
     </details>
   </checkerFrameworkError>
 
@@ -571,6 +579,9 @@
     <lineContent>.collect(Collectors.joining(&quot;, &quot;)),</lineContent>
     <details>
       unsatisfiable constraint: @GuardedBy String &lt;: @GuardSatisfied Object
+      use of R from missingRequiredTokenNames.stream().map(String::valueOf).collect(Collectors.joining(&quot;, &quot;)) &lt;: @GuardSatisfied Object
+      From complementary bound.: use of R from missingRequiredTokenNames.stream().map(String::valueOf).collect(Collectors.joining(&quot;, &quot;)) -&gt; @GuardSatisfied Object
+      From: Constraint between method call type and target type for method call:missingRequiredTokenNames.stream().map(String::valueOf).collect(Collectors.joining(&quot;, &quot;))
     </details>
   </checkerFrameworkError>
 
@@ -677,6 +688,9 @@
     <lineContent>Stream.iterate(</lineContent>
     <details>
       unsatisfiable constraint: @GuardedBy DetailAST &lt;: @GuardSatisfied Object
+      use of T from Stream.iterate(node.getLastChild(), Objects::nonNull, DetailAST::getPreviousSibling) &lt;: @GuardSatisfied Object
+      From complementary bound.: Objects::nonNull -&gt; inference type: java.util.function.Predicate&lt;? super T&gt;
+      From: Argument constraint
     </details>
   </checkerFrameworkError>
 
@@ -1360,6 +1374,10 @@
     <lineContent>.collect(BitSet::new, BitSet::set, BitSet::or);</lineContent>
     <details>
       unsatisfiable constraint: @GuardedBy BitSet &lt;: @GuardSatisfied BitSet
+      @GuardedBy BitSet &lt;: use of R from Arrays.stream(tokens).map(String::trim).filter(Predicate.not(String::isEmpty)).mapToInt(TokenUtil::getTokenId).collect(BitSet::new, BitSet::set, BitSet::or)
+      From complementary bound.: @GuardedBy BitSet -&gt; use of R from Arrays.stream(tokens).map(String::trim).filter(Predicate.not(String::isEmpty)).mapToInt(TokenUtil::getTokenId).collect(BitSet::new, BitSet::set, BitSet::or)
+      BitSet::new -&gt; inference type: java.util.function.Supplier&lt;R&gt;
+      From: Argument constraint
     </details>
   </checkerFrameworkError>
 
@@ -1370,6 +1388,10 @@
     <lineContent>.collect(BitSet::new, BitSet::set, BitSet::or);</lineContent>
     <details>
       unsatisfiable constraint: @GuardedBy BitSet &lt;: @GuardSatisfied BitSet
+      @GuardedBy BitSet &lt;: use of R from IntStream.of(tokens).collect(BitSet::new, BitSet::set, BitSet::or)
+      From complementary bound.: @GuardedBy BitSet -&gt; use of R from IntStream.of(tokens).collect(BitSet::new, BitSet::set, BitSet::or)
+      BitSet::new -&gt; inference type: java.util.function.Supplier&lt;R&gt;
+      From: Argument constraint
     </details>
   </checkerFrameworkError>
 
@@ -1380,6 +1402,12 @@
     <lineContent>.collect(Collectors.toUnmodifiableMap(</lineContent>
     <details>
       unsatisfiable constraint: @GuardedBy Field &lt;: @GuardSatisfied Field
+      @GuardedBy Field &lt;: use of T from Collectors.toUnmodifiableMap(Field::getName, (fld)-&gt;getIntFromField(fld, null))
+      From complementary bound.: @GuardedBy Field &lt;: use of captured T from Collectors.toUnmodifiableMap(Field::getName, (fld)-&gt;getIntFromField(fld, null))
+      From complementary bound.: use of captured T from Collectors.toUnmodifiableMap(Field::getName, (fld)-&gt;getIntFromField(fld, null)) &lt;= ? extends @GuardedBy Object super @GuardedBy Field
+      inference type: java.util.stream.Collector&lt;T,A,R&gt; &lt;: inference type: java.util.stream.Collector&lt;? super java.lang.reflect.Field,A,R&gt;
+      inference type: java.util.stream.Collector&lt;T,A,R&gt; -&gt; inference type: java.util.stream.Collector&lt;? super java.lang.reflect.Field,A,R&gt;
+      From: Captured constraint from method call: Collectors.toUnmodifiableMap(Field::getName, (fld)-&gt;getIntFromField(fld, null))
     </details>
   </checkerFrameworkError>
 </suppressedErrors>

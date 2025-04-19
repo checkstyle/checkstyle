@@ -15,4 +15,12 @@ public class InputJavadocStyleAboveComments {
         field
      */
     public String field;
+
+    // violation below, 'First sentence should end with a period'
+    /**
+     * A Javadoc comment
+     */
+    /* package */ String field2;
+
+    private String field3;
 }

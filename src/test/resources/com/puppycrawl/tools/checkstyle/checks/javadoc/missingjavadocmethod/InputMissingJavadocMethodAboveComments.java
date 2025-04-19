@@ -15,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
 public class InputMissingJavadocMethodAboveComments {
 
-    public InputMissingJavadocMethodAboveComments() { }// violation
+    public InputMissingJavadocMethodAboveComments() { } // violation, 'Missing a Javadoc comment.'
 
     /**
      *
@@ -24,5 +24,16 @@ public class InputMissingJavadocMethodAboveComments {
      */
     public InputMissingJavadocMethodAboveComments(String p1) {
 
+    }
+
+
+    /**
+     * A Javadoc comment.
+     * @return 0
+     */
+    public int method() /* comment */ { return 0;}
+
+    public int method2() { // violation, 'Missing a Javadoc comment.'
+        return 0;
     }
 }

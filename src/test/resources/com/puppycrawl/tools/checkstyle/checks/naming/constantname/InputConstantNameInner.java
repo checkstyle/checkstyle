@@ -28,7 +28,7 @@ class InputConstantNameInner
     interface InnerInterface2
     {
         // Ignore - should be all upper case
-        String data = "zxzc"; // violation
+        String data = "zxzc"; // violation 'Name 'data' must match pattern'
 
         // Ignore
         class InnerInterfaceInnerClass
@@ -68,7 +68,7 @@ class InputConstantNameInner
     @interface InnerAnnotation
     {
         /** Ignore - should be all upper case. */
-        String data = "zxzc"; // violation
+        String data = "zxzc"; // violation 'Name 'data' must match pattern'
     }
 
     /** enum with public member variable */

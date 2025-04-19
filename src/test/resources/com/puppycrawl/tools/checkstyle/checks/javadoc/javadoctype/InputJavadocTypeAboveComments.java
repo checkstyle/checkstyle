@@ -26,3 +26,18 @@ public class InputJavadocTypeAboveComments {
 class MyClass {
 
 }
+
+/**
+ * Test class for variable naming in for each clause.*
+ * @author Mohamed Mahfouz
+ */
+class MyClass2 /* Comment */{
+
+}
+
+/**
+ * Test class for variable naming in for each clause.*
+ */
+/* Comment */ class MyClass3 {
+// violation above, 'Type Javadoc comment is missing @author tag'
+}

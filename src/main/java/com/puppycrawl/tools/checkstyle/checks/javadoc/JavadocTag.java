@@ -163,4 +163,13 @@ public class JavadocTag {
                 || tagInfo == JavadocTagInfo.EXCEPTION;
     }
 
+    /**
+     * Checks that the tag is a inline tag.
+     *
+     * @return whether the tag is a inline tag
+     */
+    public boolean isInlineTag() {
+        return tagInfo.getType() == JavadocTagInfo.Type.INLINE;
+    }
+
 }

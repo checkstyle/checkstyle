@@ -475,6 +475,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testJavadocTypeAboveComments() throws Exception {
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "41:15: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeAboveComments.java"), expected);

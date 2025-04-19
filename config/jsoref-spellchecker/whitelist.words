@@ -88,7 +88,6 @@ Awarns
 aws
 awt
 azurewebsites
-backport
 Backquote
 backticks
 BADN
@@ -456,7 +455,6 @@ FIXME
 Fjava
 Fjavadoc
 Flas
-flattr
 fluido
 Fmain
 Fmessages
@@ -468,7 +466,6 @@ forbiddenapis
 Foreach
 Fpuppycrawl
 fq
-freedomsponsors
 freemarker
 Fregexp
 Fresources
@@ -746,7 +743,6 @@ KDoc
 keygen
 keyname
 keyscan
-kkoutsilis
 konstantinos
 Kordas
 Kotlin
@@ -819,6 +815,7 @@ methodsandconstructorsannotations
 methodtypeparametername
 MEZk
 mfussenegger
+MHTML
 Micha
 microsoft
 minimalistic
@@ -1164,6 +1161,7 @@ rp
 rparen
 rpmfind
 rq
+Rr
 Rrridden
 RRRR
 Rsa
@@ -1249,7 +1247,6 @@ spotbugs
 spotbugsreports
 spotify
 springframework
-sqale
 sqe
 sql
 src
