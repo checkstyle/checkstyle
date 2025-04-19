@@ -559,6 +559,13 @@ java -D&lt;property&gt;=&lt;value&gt;  \
             Executing Ignored Modules (-E, --executeIgnoredModules)
         </a>
     </li>
+
+    <li>
+       <a href="#Handling_Folder_and_File_Inputs">
+            Handling Folder and Individual File Inputs
+       </a>
+   </li>
+
 </ol>
 <h4 id="Using_Configuration_File"><span>
 1. Using Configuration File (<span class="no-transform">-c, --configurationFile</span>)
@@ -1712,11 +1719,11 @@ Usage: checkstyle [-dEghjJtTV] [-b=&lt;xpath&gt;] [-c=&lt;configurationFile&gt;]
                   [-f=&lt;format&gt;] [-o=&lt;outputPath&gt;] [-p=&lt;propertiesFile&gt;]
                   [-s=&lt;suppressionLineColumnNumber&gt;] [-w=&lt;tabWidth&gt;]
                   [-e=&lt;exclude&gt;]...[-x=&lt;excludeRegex&gt;]...
-                  &lt;files&gt;...
+                  &lt;files or folders&gt;...
 Checkstyle verifies that the specified source code files adhere to the specified rules.
 By default, violations are reported to standard out in plain format.
 Checkstyle requires a configuration XML file that configures the checks to apply.
-      &lt;files&gt;...            One or more source files to verify
+      &lt;files or folders&gt;...            One or more source files to verify
   -b, --branch-matching-xpath=&lt;xpath&gt;
                             Shows Abstract Syntax Tree(AST) branches that match given XPath query.
   -c=&lt;configurationFile&gt;    Specifies the location of the file that defines the
@@ -1838,6 +1845,100 @@ Starting audit...
 Audit done.
   </code></pre>
 </div>
+
+<h4 id="Handling_Folder_and_File_Inputs"><span>
+19. Handling Folder and File Inputs (<span class="no-transform">folder and file</span>)
+</span></h4>
+<p><strong>Goal:</strong> Run Checkstyle on both a folder and an individual file in one execution,
+demonstrating that folders are processed recursively and that no trailing slash is needed.</p>
+
+<span class ="inline-command" ><strong>Command:</strong> <code class="prettyprint">
+java -jar checkstyle-${projectVersion}-all.jar -c config.xml src2 src1\Test.java
+</code></span>
+
+<p><strong>Directory Structure:</strong></p>
+<div class="wrapper">
+<pre style="font-size: 12px !important;" class="prettyprint">
+src2
+└── Other.java
+src1
+└── Test.java
+</pre>
+</div>
+
+<p><strong>Content of config.xml:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE module PUBLIC
+  "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+  "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="FallThrough"/&gt;
+    &lt;module name="UnnecessaryParenthesesCheck"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+  </code></pre>
+</div>
+
+<p><strong>Content of Other.java (in src2):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-java">
+/**
+ * Javadoc summary.
+ *
+ * Some description.
+ */
+public class Other {
+    public void testMethod() {
+        int a = (5); // violation expected: unnecessary parentheses
+    }
+}
+  </code></pre>
+</div>
+
+<p><strong>Content of Test.java (in src1):</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-java">
+/**
+ * Javadoc summary.
+ *
+ * Some description.
+ */
+public class Test {
+  /**
+   * Some summary on method.
+   */
+    public void foo() {
+        int i = 0;
+        while (i >= 0) {
+            switch (i) {
+                case 1:
+                case 2:
+                    i++;
+                case 3: // violation expected: fall through from previous branch
+                    i++;
+            }
+        }
+    }
+}
+  </code></pre>
+</div>
+
+<p><strong>Output:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-bash">
+Starting audit...
+[ERROR] C:\Users\checkstyle\src2\Other.java:6:18: Unnecessary parentheses
+around literal '5'. [UnnecessaryParentheses]
+[ERROR] C:\Users\checkstyle\src1\Test.java:12:17: Fall through from
+previous branch of the switch statement. [FallThrough]
+Audit done.
+Checkstyle ends with 2 errors.
+  </code></pre>
+</div>
+
 </section>
 
     <section name="Run after compilation">

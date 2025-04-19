@@ -69,7 +69,7 @@ import com.puppycrawl.tools.checkstyle.utils.ChainedPropertyUtil;
 public class MainTest {
 
     private static final String SHORT_USAGE = String.format(Locale.ROOT,
-            "Usage: checkstyle [OPTIONS]... FILES...%n"
+            "Usage: checkstyle [OPTIONS]... FILES or FOLDERS...%n"
             + "Try 'checkstyle --help' for more information.%n");
 
     private static final String USAGE = String.format(Locale.ROOT,
@@ -78,13 +78,13 @@ public class MainTest {
                   + "                  [-o=<outputPath>] [-p=<propertiesFile>] "
                   + "[-s=<suppressionLineColumnNumber>]%n"
                   + "                  [-w=<tabWidth>] [-e=<exclude>]... [-x=<excludeRegex>]... "
-                  + "<files>...%n"
+                  + "<files or folders>...%n"
                   + "Checkstyle verifies that the specified source code files adhere to the"
                   + " specified rules. By default,%n"
                   + "violations are reported to standard out in plain format. Checkstyle requires"
                   + " a configuration XML%n"
                   + "file that configures the checks to apply.%n"
-                  + "      <files>...            One or more source files to verify%n"
+                  + "      <files or folders>... One or more source files to verify%n"
                   + "  -b, --branch-matching-xpath=<xpath>%n"
                   + "                            Shows Abstract Syntax Tree(AST) branches that"
                   + " match given XPath query.%n"
@@ -292,7 +292,7 @@ public class MainTest {
         assertMainReturnCode(-1, "-q");
         // files is defined as a required positional param;
         // picocli verifies required parameters before checking unknown options
-        final String usage = "Missing required parameter: '<files>'" + EOL + SHORT_USAGE;
+        final String usage = "Missing required parameter: '<files or folders>'" + EOL + SHORT_USAGE;
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("");
@@ -1763,7 +1763,7 @@ public class MainTest {
     @Test
     public void testMissingFiles(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         assertMainReturnCode(-1);
-        final String usage = "Missing required parameter: '<files>'" + EOL + SHORT_USAGE;
+        final String usage = "Missing required parameter: '<files or folders>'" + EOL + SHORT_USAGE;
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("");
