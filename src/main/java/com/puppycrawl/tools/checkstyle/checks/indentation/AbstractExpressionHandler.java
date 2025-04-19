@@ -23,7 +23,9 @@ import java.util.Arrays;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Abstract base class for all handlers.
@@ -248,7 +250,12 @@ public abstract class AbstractExpressionHandler {
      *         false otherwise
      */
     protected boolean shouldIncreaseIndent() {
-        return true;
+        boolean result = true;
+        if (TokenUtil.isOfType(mainAst, TokenTypes.LITERAL_CATCH)) {
+            final DetailAST parameterAst = mainAst.findFirstToken(TokenTypes.PARAMETER_DEF);
+            result = !AnnotationUtil.containsAnnotation(parameterAst);
+        }
+        return result;
     }
 
     /**
@@ -290,9 +297,9 @@ public abstract class AbstractExpressionHandler {
             // indentation is absorbed by the nesting
 
             IndentLevel theLevel = indentLevel;
-            if (firstLineMatches
-                || firstLine > mainAst.getLineNo() && shouldIncreaseIndent()) {
-                theLevel = new IndentLevel(indentLevel, getBasicOffset());
+            if ((firstLineMatches || firstLine > mainAst.getLineNo())
+                    && shouldIncreaseIndent()) {
+                theLevel = new IndentLevel(indentLevel, indentCheck.getLineWrappingIndentation());
             }
 
             // check following lines
