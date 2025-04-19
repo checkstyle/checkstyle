@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -28,7 +27,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
@@ -156,11 +154,14 @@ public class RecordComponentNumberCheck extends AbstractCheck {
      * @return the number of record components in this record definition
      */
     private static int countComponents(DetailAST recordComponents) {
-        final AtomicInteger count = new AtomicInteger(0);
-        TokenUtil.forEachChild(recordComponents,
-            TokenTypes.RECORD_COMPONENT_DEF,
-            node -> count.getAndIncrement());
-        return count.get();
+        int count = 0;
+        for (DetailAST child = recordComponents.getFirstChild();
+             child != null; child = child.getNextSibling()) {
+            if (child.getType() == TokenTypes.RECORD_COMPONENT_DEF) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
