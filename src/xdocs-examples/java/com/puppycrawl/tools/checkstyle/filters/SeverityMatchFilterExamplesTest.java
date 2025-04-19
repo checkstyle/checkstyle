@@ -41,6 +41,6 @@ public class SeverityMatchFilterExamplesTest extends AbstractExamplesModuleTestS
 
         verifyFilterWithInlineConfigParser(getPath("InputSeverityMatchFilterExample1.java"), expected);
 
-
+// dummy change to test patch generation
     }
 }
