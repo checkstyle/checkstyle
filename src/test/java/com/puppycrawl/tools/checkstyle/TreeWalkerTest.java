@@ -43,6 +43,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -666,7 +667,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final Checker checker = createChecker(treeWalkerConfig);
 
         try {
-            checker.process(files);
+            checker.process(files.stream().map(File::toPath)
+                    .collect(Collectors.toUnmodifiableList()));
             assertWithMessage("exception is expected").fail();
         }
         catch (CheckstyleException exception) {

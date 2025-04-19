@@ -416,7 +416,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         Collections.addAll(theFiles, processedFiles);
         final List<Integer> theWarnings = new ArrayList<>();
         Collections.addAll(theWarnings, warnsExpected);
-        final int errs = checker.process(theFiles);
+        final int errs = checker.process(theFiles.stream().map(File::toPath)
+                .collect(Collectors.toUnmodifiableList()));
 
         // process each of the lines
         try (ByteArrayInputStream inputStream =
@@ -486,7 +487,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         final List<File> files = Collections.singletonList(new File(file));
         final Checker checker = createChecker(config);
         final Map<String, List<String>> actualViolations =
-                getActualViolations(checker.process(files));
+                getActualViolations(checker.process(files.stream().map(File::toPath)
+                        .collect(Collectors.toUnmodifiableList())));
         checker.destroy();
         return actualViolations.getOrDefault(file, new ArrayList<>());
     }
