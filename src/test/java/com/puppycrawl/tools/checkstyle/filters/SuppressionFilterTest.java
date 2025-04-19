@@ -237,7 +237,6 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
                     break;
                 }
                 catch (IOException ex) {
-                    // for some reason Travis CI failed sometimes (unstable) on reading the file
                     if (attemptCount < attemptLimit && ex.getMessage().contains("Unable to read")) {
                         attemptCount++;
                         available = false;
