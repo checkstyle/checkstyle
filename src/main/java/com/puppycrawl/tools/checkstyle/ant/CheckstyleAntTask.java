@@ -25,13 +25,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Properties;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.apache.tools.ant.BuildException;
@@ -328,7 +322,7 @@ public class CheckstyleAntTask extends Task {
     private void processFiles(RootModule rootModule, final SeverityLevelCounter warningCounter,
             final String checkstyleVersion) {
         final long startTime = System.currentTimeMillis();
-        final List<File> files = getFilesToCheck();
+        final List<Path> files = getFilesToCheck();
         final long endTime = System.currentTimeMillis();
         log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
             Project.MSG_VERBOSE);
@@ -343,7 +337,8 @@ public class CheckstyleAntTask extends Task {
 
         try {
             final long processingStartTime = System.currentTimeMillis();
-            numErrs = rootModule.process(files);
+            numErrs = rootModule.process(files.stream().map(File::toPath)
+                    .collect(Collectors.toUnmodifiableList()));
             final long processingEndTime = System.currentTimeMillis();
             log("To process the files took " + (processingEndTime - processingStartTime)
                 + TIME_SUFFIX, Project.MSG_VERBOSE);
@@ -483,24 +478,24 @@ public class CheckstyleAntTask extends Task {
      *
      * @return the list of files included via the fileName, filesets and paths.
      */
-    private List<File> getFilesToCheck() {
-        final List<File> allFiles = new ArrayList<>();
+    private List<Path> getFilesToCheck() {
+        final List<Path> allFiles = new ArrayList<>();
+
         if (fileName != null) {
             // oops, we've got an additional one to process, don't
             // forget it. No sweat, it's fully resolved via the setter.
             log("Adding standalone file for audit", Project.MSG_VERBOSE);
-            allFiles.add(Path.of(fileName).toFile());
+            allFiles.add(Path.of(fileName));
         }
 
         final List<File> filesFromFileSets = scanFileSets();
-        allFiles.addAll(filesFromFileSets);
+        allFiles.addAll(filesFromFileSets.stream()
+                .map(File::toPath)
+                .collect(Collectors.toList()));
 
         final List<Path> filesFromPaths = scanPaths();
-        allFiles.addAll(filesFromPaths.stream()
-            .map(Path::toFile)
-            .collect(Collectors.toUnmodifiableList()));
-
-        return allFiles;
+        allFiles.addAll(filesFromPaths);
+        return Collections.unmodifiableList(allFiles);
     }
 
     /**

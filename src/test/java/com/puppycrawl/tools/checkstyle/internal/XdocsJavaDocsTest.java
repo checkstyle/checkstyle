@@ -170,11 +170,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
         assertCheckSectionChildren(section);
 
-        final List<File> files = new ArrayList<>();
-        files.add(new File("src/main/java/" + instance.getClass().getName().replace(".", "/")
-                + ".java"));
-
-        checker.process(files);
+        checker.process(List.of(Path.of(
+                "src/main/java/" + instance.getClass().getName().replace(".", "/") + ".java")));
     }
 
     private static void assertCheckSectionChildren(Node section) {

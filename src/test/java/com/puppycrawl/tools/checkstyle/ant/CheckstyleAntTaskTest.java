@@ -930,7 +930,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertWithMessage("Error message is unexpected")
                 .that(ex)
                 .hasMessageThat()
-                        .startsWith("Unable to process files:");
+                        .startsWith("Got 2 errors (max allowed: 0) and 0 warnings.");
     }
 
     @Test
