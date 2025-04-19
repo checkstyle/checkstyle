@@ -924,13 +924,12 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setConfig(getPath(CONFIG_FILE));
         antTask.setProject(new Project());
         antTask.setFile(new File(""));
-        final BuildException ex = getExpectedThrowable(BuildException.class,
-                antTask::execute,
-                "BuildException is expected");
         assertWithMessage("Error message is unexpected")
-                .that(ex)
+                .that(getExpectedThrowable(BuildException.class,
+                        antTask::execute,
+                        "BuildException is expected"))
                 .hasMessageThat()
-                        .startsWith("Unable to process files:");
+                        .isEqualTo("Got 2 errors (max allowed: 0) and 0 warnings.");
     }
 
     @Test

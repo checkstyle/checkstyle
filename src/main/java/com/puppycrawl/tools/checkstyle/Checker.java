@@ -19,14 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -209,7 +207,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     }
 
     @Override
-    public int process(List<File> files) throws CheckstyleException {
+    public int process(Collection<Path> files) throws CheckstyleException {
         if (cacheFile != null) {
             cacheFile.putExternalResources(getExternalResourceLocations());
         }
@@ -220,10 +218,9 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             fsc.beginProcessing(charset);
         }
 
-        final List<File> targetFiles = files.stream()
-                .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
-                .collect(Collectors.toUnmodifiableList());
-        processFiles(targetFiles);
+        processFiles(files.stream()
+                .filter(path -> CommonUtil.matchesFileExtension(path.toFile(), fileExtensions))
+                .collect(Collectors.toUnmodifiableList()));
 
         // Finish up
         // It may also log!!!
@@ -237,6 +234,13 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         return errorCount;
     }
 
+    @Override
+    public int process(List<File> files) throws CheckstyleException {
+        return process(files.stream()
+                .map(File::toPath)
+                .collect(Collectors.toUnmodifiableList()));
+    }
+
     /**
      * Returns a set of external configuration resource locations which are used by all file set
      * checks and filters.
@@ -246,12 +250,12 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      */
     private Set<String> getExternalResourceLocations() {
         return Stream.concat(fileSetChecks.stream(), filters.getFilters().stream())
-            .filter(ExternalResourceHolder.class::isInstance)
-            .flatMap(resource -> {
-                return ((ExternalResourceHolder) resource)
-                        .getExternalResourceLocations().stream();
-            })
-            .collect(Collectors.toUnmodifiableSet());
+                .filter(ExternalResourceHolder.class::isInstance)
+                .flatMap(resource -> {
+                    return ((ExternalResourceHolder) resource)
+                            .getExternalResourceLocations().stream();
+                })
+                .collect(Collectors.toUnmodifiableSet());
     }
 
     /** Notify all listeners about the audit start. */
@@ -281,23 +285,23 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      *      deliver filename that was under processing.
      */
     // -@cs[CyclomaticComplexity] no easy way to split this logic of processing the file
-    private void processFiles(List<File> files) throws CheckstyleException {
-        for (final File file : files) {
+    private void processFiles(List<Path> files) throws CheckstyleException {
+        for (final Path file : files) {
             String fileName = null;
-            final String filePath = file.getPath();
+            final String filePath = file.toString();
             try {
-                fileName = file.getAbsolutePath();
-                final long timestamp = file.lastModified();
-                if (cacheFile != null && cacheFile.isInCache(fileName, timestamp)
-                        || !acceptFileStarted(fileName)) {
+                fileName = file.toAbsolutePath().toString();
+                final long timestamp = file.toFile().lastModified();
+                if (!acceptFileStarted(fileName)
+                        || cacheFile != null
+                        && cacheFile.isInCache(fileName, timestamp)) {
                     continue;
                 }
                 if (cacheFile != null) {
                     cacheFile.put(fileName, timestamp);
                 }
                 fireFileStarted(fileName);
-                final SortedSet<Violation> fileMessages = processFile(file);
-                fireErrors(fileName, fileMessages);
+                fireErrors(fileName, processFile(file));
                 fireFileFinished(fileName);
             }
             // -@cs[IllegalCatch] There is no other way to deliver filename that was under
@@ -332,12 +336,12 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @noinspectionreason ProhibitedExceptionThrown - there is no other way to obey
      *      haltOnException field
      */
-    private SortedSet<Violation> processFile(File file) throws CheckstyleException {
+    private SortedSet<Violation> processFile(Path file) throws CheckstyleException {
         final SortedSet<Violation> fileMessages = new TreeSet<>();
         try {
-            final FileText theText = new FileText(file.getAbsoluteFile(), charset);
+            final FileText theText = new FileText(file.toFile().getAbsoluteFile(), charset);
             for (final FileSetCheck fsc : fileSetChecks) {
-                fileMessages.addAll(fsc.process(file, theText));
+                fileMessages.addAll(fsc.process(file.toFile(), theText));
             }
         }
         catch (final IOException ioe) {
@@ -375,8 +379,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @return {@code true} if the file is accepted.
      */
     private boolean acceptFileStarted(String fileName) {
-        final String stripped = CommonUtil.relativizePath(basedir, fileName);
-        return beforeExecutionFileFilters.accept(stripped);
+        return beforeExecutionFileFilters.accept(CommonUtil.relativizePath(basedir, fileName));
     }
 
     /**
@@ -656,10 +659,9 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      */
     private String getLocalizedMessage(String messageKey, Object... args) {
         final LocalizedMessage localizedMessage = new LocalizedMessage(
-            Definitions.CHECKSTYLE_BUNDLE, getClass(),
-                    messageKey, args);
+                Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                messageKey, args);
 
         return localizedMessage.getMessage();
     }
-
 }
