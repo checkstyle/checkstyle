@@ -327,11 +327,6 @@
   </Match>
   <Match>
     <!-- we are single thread tool for now -->
-    <Class name="com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck"/>
-    <Bug pattern="AT_STALE_THREAD_WRITE_OF_PRIMITIVE"/>
-  </Match>
-  <Match>
-    <!-- we are single thread tool for now -->
     <Class name="com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck"/>
     <Bug pattern="AT_STALE_THREAD_WRITE_OF_PRIMITIVE"/>
   </Match>

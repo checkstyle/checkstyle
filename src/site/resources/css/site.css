@@ -48,7 +48,6 @@ section p {
   position: relative;
   top: 0;
   left: 40px;
-
 }
 
 #bannerLeft h1 {
@@ -232,12 +231,7 @@ pre {
   margin: 3px 0;
 }
 
-#bodyColumn {
-  margin-left: 286px;
-}
-
 #leftColumn {
-  min-width: 250px;
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
@@ -327,6 +321,11 @@ span.wrapper.inline {
 }
 
 @media screen and (max-width: 823px) {
+  body {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   #leftColumn {
     float: none;
     width: auto;
@@ -352,11 +351,6 @@ span.wrapper.inline {
     top: 0;
     z-index: 10;
     box-shadow: 0 5px 10px -3px rgba(0,0,0,0.5);
-  }
-
-  .container-fluid {
-    padding-left: 0;
-    padding-right: 0;
   }
 
   #bodyColumn {
