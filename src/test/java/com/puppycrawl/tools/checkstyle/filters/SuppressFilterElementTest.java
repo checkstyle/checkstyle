@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
+import java.util.regex.Pattern;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -292,6 +294,47 @@ public class SuppressFilterElementTest {
         assertWithMessage("Error: " + ev.getMessage())
                 .that(ev.isSuccessful())
                 .isTrue();
+    }
+
+    @Test
+    public void testEquals2() {
+        // Test for matching patterns and CSV values
+        final Pattern filePattern = Pattern.compile("TestFile");
+        final Pattern checkPattern = Pattern.compile("TestCheck");
+        final Pattern messagePattern = Pattern.compile("TestMessage");
+
+        final SuppressFilterElement filterBased =
+                new SuppressFilterElement(filePattern, checkPattern, messagePattern,
+                        "module1", "1-10", "3,4");
+
+        final SuppressFilterElement filter2 =
+                new SuppressFilterElement(filePattern, checkPattern, messagePattern,
+                        "module1", "1-10", "3,4");
+        assertWithMessage("filter, filter2")
+                .that(filter2)
+                .isEqualTo(filterBased);
+
+        final Pattern differentMessagePattern = Pattern.compile("DifferentMessage");
+        final SuppressFilterElement filter3 =
+                new SuppressFilterElement(filePattern, checkPattern, differentMessagePattern,
+                        "module1", "1-10", "3,4");
+        assertWithMessage("filter, filter3")
+                .that(filter3)
+                .isNotEqualTo(filterBased);
+
+        final SuppressFilterElement filter4 =
+                new SuppressFilterElement(filePattern, checkPattern, messagePattern,
+                        "module1", "11-20", "3,4");
+        assertWithMessage("filter, filter4")
+                .that(filter4)
+                .isNotEqualTo(filterBased);
+
+        final SuppressFilterElement filter5 =
+                new SuppressFilterElement(filePattern, checkPattern, messagePattern,
+                        "module1", "1-10", "5,6");
+        assertWithMessage("filter, filter5")
+                .that(filter5)
+                .isNotEqualTo(filterBased);
     }
 
 }
