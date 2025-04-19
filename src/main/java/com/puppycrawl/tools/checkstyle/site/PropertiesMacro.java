@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.site;
 
 import java.io.File;
 import java.lang.reflect.Field;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -112,7 +114,7 @@ public class PropertiesMacro extends AbstractMacro {
     private static String currentModuleName = "";
 
     /** The file of the current module being processed. */
-    private static File currentModuleFile = new File("");
+    private static File currentModuleFile = Paths.get("").toFile();
 
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
@@ -132,11 +134,21 @@ public class PropertiesMacro extends AbstractMacro {
      * Configures the global properties for the current module.
      *
      * @param modulePath the path of the current module processed.
+     * @throws MacroExecutionException if the module path is invalid.
      */
-    private static void configureGlobalProperties(String modulePath) {
-        final File moduleFile = new File(modulePath);
-        currentModuleFile = moduleFile;
-        currentModuleName = CommonUtil.getFileNameWithoutExtension(moduleFile.getName());
+    private static void configureGlobalProperties(String modulePath)
+            throws MacroExecutionException {
+        final Path modulePathObj = Paths.get(modulePath);
+        currentModuleFile = modulePathObj.toFile();
+        final Path fileNamePath = modulePathObj.getFileName();
+
+        if (fileNamePath == null) {
+            throw new MacroExecutionException(
+                "Invalid modulePath '" + modulePath + "': No file name present.");
+        }
+
+        currentModuleName = CommonUtil.getFileNameWithoutExtension(
+            fileNamePath.toString());
     }
 
     /**
