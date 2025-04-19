@@ -66,7 +66,6 @@ public class TestRootModuleChecker implements RootModule {
         return 0;
     }
 
-
     @Override
     public void addListener(AuditListener listener) {
         // not used
