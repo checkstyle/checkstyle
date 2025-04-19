@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 /**
  * An audit listener that counts how many {@link AuditEvent AuditEvents}
  * of a given severity have been generated.
@@ -32,7 +30,7 @@ public final class SeverityLevelCounter implements AuditListener {
     private final SeverityLevel level;
 
     /** Keeps track of the number of counted events. */
-    private final AtomicInteger count = new AtomicInteger();
+    private int count;
 
     /**
      * Creates a new counter.
@@ -50,20 +48,20 @@ public final class SeverityLevelCounter implements AuditListener {
     @Override
     public void addError(AuditEvent event) {
         if (level == event.getSeverityLevel()) {
-            count.incrementAndGet();
+            count++;
         }
     }
 
     @Override
     public void addException(AuditEvent event, Throwable throwable) {
         if (level == SeverityLevel.ERROR) {
-            count.incrementAndGet();
+            count++;
         }
     }
 
     @Override
     public void auditStarted(AuditEvent event) {
-        count.set(0);
+        count = 0;
     }
 
     @Override
@@ -87,7 +85,7 @@ public final class SeverityLevelCounter implements AuditListener {
      * @return the number of counted events since audit started.
      */
     public int getCount() {
-        return count.get();
+        return count;
     }
 
 }
