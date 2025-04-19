@@ -88,7 +88,7 @@ Point(int x, int y) //indent:0 exp:16 warn
 when          //indent:0 exp:16 warn
 x > 0 && y > 0          //indent:0 exp:16 warn
 ->        //indent:0 exp:16 warn
-System.out.println(x + y); //indent:0 exp:0
+System.out.println(x + y); //indent:0 exp:20 warn
             case Point(int x, int y) -> System.out.println("error"); //indent:12 exp:12
         } //indent:8 exp:8
     } //indent:4 exp:4
