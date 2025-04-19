@@ -456,7 +456,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             final DetailAST elementAst = getViolationAstForPackage(ast);
             log(elementAst, MSG_SHOULD_BE_SEPARATED, elementAst.getText());
         }
-        else if (!hasEmptyLineAfter(ast)) {
+        else if (ast.getLineNo() > 1 && !hasEmptyLineAfter(ast)) {
             log(nextToken, MSG_SHOULD_BE_SEPARATED, nextToken.getText());
         }
     }
@@ -610,9 +610,55 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         final int number = 3;
         if (lineNo >= number) {
             final String prePreviousLine = getLine(lineNo - number);
+
             result = CommonUtil.isBlank(prePreviousLine);
+            final boolean straightPreviousLineIsEmpty = CommonUtil.isBlank(getLine(lineNo - 2));
+
+            if (straightPreviousLineIsEmpty && result) {
+                result = true;
+            }
+            else if (token.findFirstToken(TokenTypes.TYPE) != null) {
+
+                boolean upToPrePreviousLinesEmpty = false;
+
+                for (DetailAST typeChild = token.findFirstToken(TokenTypes.TYPE).getLastChild();
+                     typeChild != null; typeChild = typeChild.getPreviousSibling()) {
+
+                    if ((typeChild.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                        || typeChild.getType() == TokenTypes.SINGLE_LINE_COMMENT)
+                        && typeChild.getLineNo() != token.getPreviousSibling().getLineNo()
+                        && typeChild.getLineNo() != getLastestChild(token.getPreviousSibling())
+                                                    .getLineNo()) {
+
+                        final String commentBeginningPreviousLine =
+                            getLine(typeChild.getLineNo() - 2);
+                        final String commentBeginningPrePreviousLine =
+                            getLine(typeChild.getLineNo() - 3);
+
+                        if (CommonUtil.isBlank(commentBeginningPreviousLine)
+                            && CommonUtil.isBlank(commentBeginningPrePreviousLine)) {
+                            upToPrePreviousLinesEmpty = true;
+                            break;
+                        }
+
+                    }
+                }
+
+                result = upToPrePreviousLinesEmpty;
+            }
         }
+
         return result;
+    }
+
+    private DetailAST getLastestChild(DetailAST token) {
+        DetailAST lastestChild = token;
+        for (DetailAST tokenChild = token.getLastChild(); tokenChild != null;
+             tokenChild = tokenChild.getLastChild()) {
+            lastestChild = tokenChild;
+        }
+
+        return lastestChild;
     }
 
     /**
@@ -685,7 +731,24 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (lineNo != 1) {
             // [lineNo - 2] is the number of the previous line as the numbering starts from zero.
             final String lineBefore = getLine(lineNo - 2);
-            result = CommonUtil.isBlank(lineBefore);
+
+            if (CommonUtil.isBlank(lineBefore)) {
+                result = true;
+            }
+            else if (token.findFirstToken(TokenTypes.TYPE) != null) {
+                for (DetailAST typeChild = token.findFirstToken(TokenTypes.TYPE).getLastChild();
+                     typeChild != null && !result; typeChild = typeChild.getPreviousSibling()) {
+
+                    if ((typeChild.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                        || typeChild.getType() == TokenTypes.SINGLE_LINE_COMMENT)
+                        && typeChild.getLineNo() != token.getPreviousSibling().getLineNo()) {
+
+                        final String commentBeginningPreviousLine =
+                            getLine(typeChild.getLineNo() - 2);
+                        result = CommonUtil.isBlank(commentBeginningPreviousLine);
+                    }
+                }
+            }
         }
         return result;
     }
