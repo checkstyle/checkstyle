@@ -13,7 +13,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedi
 public class Example4 {
 
   public void foo1() {
-    int num;        // violation, distance = 4
+    // violation below, 'variable 'num' declaration and its first usage is 4.'
+    int num;
     final double PI;   // OK, final variables not checked
     System.out.println("Statement 1");
     System.out.println("Statement 2");
@@ -25,7 +26,8 @@ public class Example4 {
   public void foo2() {
     int a;          // OK, distance = 2
     int b;          // OK, distance = 3
-    int count = 0;  // violation, distance = 4
+    // violation below, 'variable 'count' declaration and its first usage is 4.'
+    int count = 0;
 
     {
       System.out.println("Inside inner scope");
