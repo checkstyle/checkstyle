@@ -32,7 +32,8 @@ else
   cd ../
 fi
 cd .ci-temp/contribution/releasenotes-builder
-mvn -e --no-transfer-progress clean compile package
+chmod +x mvnw
+./mvnw -e --no-transfer-progress clean compile package
 cd ../../../
 
 # we need to do full clone as Travis do "git clone --depth=50"
