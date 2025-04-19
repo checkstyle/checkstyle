@@ -23,8 +23,8 @@ init-m2-repo)
     fi
     if [[ $USE_MAVEN_REPO == 'true' && ! -d "$HOME/.m2" ]]; then
      echo "Maven local repo cache is not found, initializing it ..."
-     mvn -e --no-transfer-progress -B install -Pno-validations;
-     mvn -e --no-transfer-progress clean;
+     ./mvnw -e --no-transfer-progress -B install -Pno-validations;
+     ./mvnw -e --no-transfer-progress clean;
     fi
   else
     echo "$1 is skipped";
@@ -67,7 +67,7 @@ deploy-snapshot)
           && $SKIP_DEPLOY == 'false'
      ]];
   then
-      mvn -e --no-transfer-progress -s config/deploy-settings.xml -Pno-validations deploy;
+      ./mvnw -e --no-transfer-progress -s config/deploy-settings.xml -Pno-validations deploy;
       echo "deploy to maven snapshot repository is finished";
   fi
   ;;

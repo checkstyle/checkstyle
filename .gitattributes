@@ -3,6 +3,7 @@
 
 # Windows files always have CRLF eol
 *.bat eol=crlf
+*.cmd eol=crlf
 
 # Binary files need to be listed explicitly as first rule makes all files text files
 *.gif binary
