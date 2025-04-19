@@ -22,7 +22,8 @@ function checkForVariable() {
 
 function getMavenProperty {
   property="\${$1}"
-  mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
+  chmod +x mvnw
+  ./mvnw -e --no-transfer-progress -q -Dexec.executable='echo' \
                       -Dexec.args="${property}" \
                       --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec
 }

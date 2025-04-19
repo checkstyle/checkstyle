@@ -19,7 +19,8 @@ echo TARGET_VERSION="$TARGET_VERSION"
 git checkout checkstyle-"$TARGET_VERSION"
 
 echo "Generating uber jar ...(no clean to keep site resources just in case)"
-mvn -e --no-transfer-progress -Passembly,no-validations package
+chmod +x mvnw
+./mvnw -e --no-transfer-progress -Passembly,no-validations package
 
 echo "Publishing 'all' jar to Github"
 UPLOAD_LINK=https://uploads.github.com/repos/"$REPOSITORY_OWNER"/checkstyle/releases

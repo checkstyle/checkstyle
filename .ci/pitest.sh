@@ -19,7 +19,8 @@ case $1 in
 
   if [[ $(echo "$PROFILES" | grep -w -- "${1}" | cat) != "" ]]; then
     set +e
-    mvn -e --no-transfer-progress -P"$1" clean test-compile org.pitest:pitest-maven:mutationCoverage
+    chmod +x mvnw
+    ./mvnw -e --no-transfer-progress -P"$1" clean test-compile org.pitest:pitest-maven:mutationCoverage
     EXIT_CODE=$?
     set -e
     groovy ./.ci/pitest-survival-check-xml.groovy "$1"
