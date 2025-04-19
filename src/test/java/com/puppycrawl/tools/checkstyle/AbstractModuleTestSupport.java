@@ -44,6 +44,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
@@ -385,18 +386,11 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                                                          AuditListener logger,
                                                          ByteArrayOutputStream outputStream)
             throws Exception {
-        final TestInputConfiguration testInputConfiguration =
-                InlineConfigParser.parse(inputFile);
-        final DefaultConfiguration parsedConfig =
-                testInputConfiguration.createConfiguration();
-        final List<File> filesToCheck = Collections.singletonList(new File(inputFile));
-        final String basePath = Path.of("").toAbsolutePath().toString();
-
-        final Checker checker = createChecker(parsedConfig);
-        checker.setBasedir(basePath);
+        final Checker checker = createChecker(
+                InlineConfigParser.parse(inputFile).createConfiguration());
+        checker.setBasedir(Path.of("").toAbsolutePath().toString());
         checker.addListener(logger);
-        checker.process(filesToCheck);
-
+        checker.process(Collections.singletonList(Path.of(inputFile)));
         verifyContent(expectedReportFile, outputStream);
     }
 
@@ -486,32 +480,59 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     protected final void verify(Checker checker,
                           File[] processedFiles,
-                          Map<String, List<String>> expectedViolations)
-            throws Exception {
+                          Map<String, List<String>> expectedViolations) throws Exception {
         stream.flush();
         stream.reset();
-        final List<File> files = new ArrayList<>();
-        Collections.addAll(files, processedFiles);
-        final int errs = checker
-                .process(files.stream()
-                        .map(File::toPath).collect(Collectors.toUnmodifiableList()));
-
         // process each of the lines
-        final Map<String, List<String>> actualViolations = getActualViolations(errs);
-        final Map<String, List<String>> realExpectedViolations =
-                Maps.filterValues(expectedViolations, input -> !input.isEmpty());
+        verify(getActualViolations(
+            checker
+                .process(Arrays.stream(processedFiles)
+                .map(File::toPath).collect(Collectors.toUnmodifiableList()))
+        ),
+        Maps.filterValues(expectedViolations, input -> !input.isEmpty()));
+        checker.destroy();
+    }
 
+    /**
+     * Verifies that actual violations match expected violations for all files.
+     *
+     * <p>This helper method performs two key validations:
+     * <ol>
+     *   <li>Verifies the same set of files have violations in both actual and expected results
+     *   <li>For each file, verifies that the actual violations exactly match the expected violations
+     *       (both content and order)
+     * </ol>
+     *
+     * <p>Assertion messages will clearly indicate whether the mismatch is in:
+     * <ul>
+     *   <li>The set of files with violations (keys in the maps differ)
+     *   <li>The violation messages for a specific file (values in the maps differ)
+     * </ul>
+     *
+     * <p><b>Note:</b> This method assumes the input maps have already been filtered to remove
+     * any files with empty violation lists (non-violating files).
+     *
+     * @param actualViolations Map containing actual violations detected, where:
+     *        - Key: String representing the file path/name
+     *        - Value: List of violation messages found in that file
+     * @param realExpectedViolations Map containing expected violations, where:
+     *        - Key: String representing the file path/name
+     *        - Value: List of expected violation messages for that file
+     *
+     * @throws AssertionError if either verification fails, with detailed message about:
+     *         - Which files differed between actual and expected
+     *         - For file-specific mismatches, which violation messages differed
+     */
+    private void verify(Map<String, List<String>> actualViolations,
+                        Map<String, List<String>> realExpectedViolations) {
         assertWithMessage("Files with expected violations and actual violations differ.")
             .that(actualViolations.keySet())
             .isEqualTo(realExpectedViolations.keySet());
-
         realExpectedViolations.forEach((fileName, violationList) -> {
             assertWithMessage("Violations for %s differ.", fileName)
                 .that(actualViolations.get(fileName))
                 .containsExactlyElementsIn(violationList);
         });
-
-        checker.destroy();
     }
 
     /**
@@ -542,10 +563,9 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     protected final void execute(Configuration config, String... filenames) throws Exception {
         final Checker checker = createChecker(config);
-        final List<File> files = Arrays.stream(filenames)
-                .map(File::new)
-                .collect(Collectors.toUnmodifiableList());
-        checker.process(files);
+        checker.process(Arrays.stream(filenames)
+                .map(Path::of)
+                .collect(Collectors.toUnmodifiableList()));
         checker.destroy();
     }
 
@@ -557,10 +577,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @throws Exception if there is a problem during checker configuration
      */
     protected static void execute(Checker checker, String... filenames) throws Exception {
-        final List<File> files = Arrays.stream(filenames)
-                .map(File::new)
-                .collect(Collectors.toUnmodifiableList());
-        checker.process(files);
+        checker.process(Arrays.stream(filenames).map(Path::of)
+                .collect(Collectors.toUnmodifiableList()));
         checker.destroy();
     }
 
@@ -651,12 +669,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                                                     String file) throws Exception {
         stream.flush();
         stream.reset();
-        final List<File> files = Collections.singletonList(new File(file));
         final Checker checker = createChecker(config);
-        final Map<String, List<String>> actualViolations =
-                getActualViolations(checker.process(files));
         checker.destroy();
-        return actualViolations.getOrDefault(file, new ArrayList<>());
+        return getActualViolations(checker.process(Collections.singletonList(Path.of(file))))
+                .getOrDefault(file, new ArrayList<>());
     }
 
     /**
