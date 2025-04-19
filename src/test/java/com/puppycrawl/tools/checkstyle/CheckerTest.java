@@ -92,7 +92,7 @@ import de.thetaphi.forbiddenapis.SuppressForbidden;
 public class CheckerTest extends AbstractModuleTestSupport {
 
     public static final String ERROR_MESSAGE = "Java Virtual Machine is broken"
-        + " or has run out of resources necessary for it to continue operating.";
+            + " or has run out of resources necessary for it to continue operating.";
     @TempDir
     public File temporaryFolder;
 
@@ -373,17 +373,17 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final int numLegalFiles = 1;
         final PropertyCacheFile cache = TestUtil.getInternalState(checker, "cacheFile");
         assertWithMessage("There were more legal files than expected")
-            .that(counter)
-            .isEqualTo(numLegalFiles);
+                .that(counter)
+                .isEqualTo(numLegalFiles);
         assertWithMessage("Audit was started on larger amount of files than expected")
-            .that(auditAdapter.getNumFilesStarted())
-            .isEqualTo(numLegalFiles);
+                .that(auditAdapter.getNumFilesStarted())
+                .isEqualTo(numLegalFiles);
         assertWithMessage("Audit was finished on larger amount of files than expected")
-            .that(auditAdapter.getNumFilesFinished())
-            .isEqualTo(numLegalFiles);
+                .that(auditAdapter.getNumFilesFinished())
+                .isEqualTo(numLegalFiles);
         assertWithMessage("Cache shout not contain any file")
-            .that(cache.get(new File("file.java").getCanonicalPath()))
-            .isNull();
+                .that(cache.get(new File("file.java").getCanonicalPath()))
+                .isNull();
     }
 
     @Test
@@ -414,17 +414,17 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final int numLegalFiles = 1;
         final PropertyCacheFile cache = TestUtil.getInternalState(checker, "cacheFile");
         assertWithMessage("There were more legal files than expected")
-            .that(counter)
-            .isEqualTo(numLegalFiles);
+                .that(counter)
+                .isEqualTo(numLegalFiles);
         assertWithMessage("Audit was started on larger amount of files than expected")
-            .that(auditAdapter.getNumFilesStarted())
-            .isEqualTo(numLegalFiles);
+                .that(auditAdapter.getNumFilesStarted())
+                .isEqualTo(numLegalFiles);
         assertWithMessage("Audit was finished on larger amount of files than expected")
-            .that(auditAdapter.getNumFilesFinished())
-            .isEqualTo(numLegalFiles);
+                .that(auditAdapter.getNumFilesFinished())
+                .isEqualTo(numLegalFiles);
         assertWithMessage("Cache shout not contain any file")
-            .that(cache.get(new File("file.java").getCanonicalPath()))
-            .isNull();
+                .that(cache.get(new File("file.java").getCanonicalPath()))
+                .isNull();
     }
 
     @Test
@@ -452,14 +452,14 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // comparing to 0 as there is no legal file in input
         final int numLegalFiles = 0;
         assertWithMessage("There were more legal files than expected")
-            .that(counter)
-            .isEqualTo(numLegalFiles);
+                .that(counter)
+                .isEqualTo(numLegalFiles);
         assertWithMessage("Audit was started on larger amount of files than expected")
-            .that(auditAdapter.getNumFilesStarted())
-            .isEqualTo(numLegalFiles);
+                .that(auditAdapter.getNumFilesStarted())
+                .isEqualTo(numLegalFiles);
         assertWithMessage("Audit was finished on larger amount of files than expected")
-            .that(auditAdapter.getNumFilesFinished())
-            .isEqualTo(numLegalFiles);
+                .that(auditAdapter.getNumFilesFinished())
+                .isEqualTo(numLegalFiles);
     }
 
     @Test
@@ -470,7 +470,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setSeverity("ignore");
 
         final PackageObjectFactory factory = new PackageObjectFactory(
-            new HashSet<>(), Thread.currentThread().getContextClassLoader());
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
 
         checker.setFileExtensions((String[]) null);
@@ -482,8 +482,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
         catch (UnsupportedEncodingException ex) {
             assertWithMessage("Error message is not expected")
-                .that(ex.getMessage())
-                .isEqualTo("unsupported charset: 'UNKNOWN-CHARSET'");
+                    .that(ex.getMessage())
+                    .isEqualTo("unsupported charset: 'UNKNOWN-CHARSET'");
         }
     }
 
@@ -504,9 +504,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Error message is not expected")
-                .that(ex.getMessage())
-                .isEqualTo("if no custom moduleFactory is set,"
-                    + " moduleClassLoader must be specified");
+                    .that(ex.getMessage())
+                    .isEqualTo("if no custom moduleFactory is set,"
+                            + " moduleClassLoader must be specified");
         }
     }
 
@@ -520,8 +520,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Context actualCtx = TestUtil.getInternalState(checker, "childContext");
 
         assertWithMessage("Default module factory should be created when it is not specified")
-            .that(actualCtx.get("moduleFactory"))
-            .isNotNull();
+                .that(actualCtx.get("moduleFactory"))
+                .isNotNull();
     }
 
     @Test
@@ -530,7 +530,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
         checker.setModuleClassLoader(contextClassLoader);
         final PackageObjectFactory factory = new PackageObjectFactory(
-            new HashSet<>(), contextClassLoader);
+                new HashSet<>(), contextClassLoader);
         checker.setModuleFactory(factory);
         checker.setBasedir("testBaseDir");
         checker.setLocaleLanguage("it");
@@ -540,28 +540,28 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Context context = TestUtil.getInternalState(checker, "childContext");
         final String encoding = StandardCharsets.UTF_8.name();
         assertWithMessage("Charset was different than expected")
-            .that(context.get("charset"))
-            .isEqualTo(encoding);
+                .that(context.get("charset"))
+                .isEqualTo(encoding);
         assertWithMessage("Severity is set to unexpected value")
-            .that(context.get("severity"))
-            .isEqualTo("error");
+                .that(context.get("severity"))
+                .isEqualTo("error");
         assertWithMessage("Basedir is set to unexpected value")
-            .that(context.get("basedir"))
-            .isEqualTo("testBaseDir");
+                .that(context.get("basedir"))
+                .isEqualTo("testBaseDir");
 
         final Field sLocale = LocalizedMessage.class.getDeclaredField("sLocale");
         sLocale.setAccessible(true);
         final Locale locale = (Locale) sLocale.get(null);
         assertWithMessage("Locale is set to unexpected value")
-            .that(locale)
-            .isEqualTo(Locale.ITALY);
+                .that(locale)
+                .isEqualTo(Locale.ITALY);
     }
 
     @Test
     public void testSetupChildExceptions() {
         final Checker checker = new Checker();
         final PackageObjectFactory factory = new PackageObjectFactory(
-            new HashSet<>(), Thread.currentThread().getContextClassLoader());
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
 
         final Configuration config = new DefaultConfiguration("java.lang.String");
@@ -571,8 +571,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Error message is not expected")
-                .that(ex.getMessage())
-                .isEqualTo("java.lang.String is not allowed as a child in Checker");
+                    .that(ex.getMessage())
+                    .isEqualTo("java.lang.String is not allowed as a child in Checker");
         }
     }
 
@@ -586,11 +586,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Error message is not expected")
-                .that(ex.getMessage())
-                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker"
-                        + " - cannot initialize module " + checkConfig.getName()
-                        + " - Property '$$No such property'"
-                        + " does not exist, please check the documentation");
+                    .that(ex.getMessage())
+                    .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker"
+                            + " - cannot initialize module " + checkConfig.getName()
+                            + " - Property '$$No such property'"
+                            + " does not exist, please check the documentation");
         }
     }
 
@@ -598,11 +598,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testSetupChildListener() throws Exception {
         final Checker checker = new Checker();
         final PackageObjectFactory factory = new PackageObjectFactory(
-            new HashSet<>(), Thread.currentThread().getContextClassLoader());
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
 
         final Configuration config = new DefaultConfiguration(
-            DebugAuditAdapter.class.getCanonicalName());
+                DebugAuditAdapter.class.getCanonicalName());
         checker.setupChild(config);
 
         final List<AuditListener> listeners = TestUtil.getInternalState(checker, "listeners");
@@ -615,7 +615,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testDestroyCheckerWithWrongCacheFileNameLength() throws Exception {
         final Checker checker = new Checker();
         final PackageObjectFactory factory = new PackageObjectFactory(
-            new HashSet<>(), Thread.currentThread().getContextClassLoader());
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
         checker.configure(new DefaultConfiguration("default config"));
         // We set wrong file name length in order to reproduce IOException on OS Linux, OS Windows.
@@ -669,15 +669,15 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
 
         assertWithMessage("Cache from first run differs from second run cache")
-            .that(cacheAfterSecondRun)
-            .isEqualTo(cacheAfterFirstRun);
+                .that(cacheAfterSecondRun)
+                .isEqualTo(cacheAfterFirstRun);
     }
 
     @Test
     public void testWithCacheWithNoViolation() throws Exception {
         final Checker checker = new Checker();
         final PackageObjectFactory factory = new PackageObjectFactory(
-            new HashSet<>(), Thread.currentThread().getContextClassLoader());
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
         checker.configure(createModuleConfig(TranslationCheck.class));
 
@@ -701,17 +701,17 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // There should 2 objects in cache: processed file (file.java) and checker configuration.
         final int expectedNumberOfObjectsInCache = 2;
         assertWithMessage("Cache has unexpected size")
-            .that(cache)
-            .hasSize(expectedNumberOfObjectsInCache);
+                .that(cache)
+                .hasSize(expectedNumberOfObjectsInCache);
 
         final String expectedConfigHash = "D581D4A2BD482D4E1EF1F82459356BA2D8A3B" + "FC3";
         assertWithMessage("Cache has unexpected hash")
-            .that(cache.getProperty(PropertyCacheFile.CONFIG_HASH_KEY))
-            .isEqualTo(expectedConfigHash);
+                .that(cache.getProperty(PropertyCacheFile.CONFIG_HASH_KEY))
+                .isEqualTo(expectedConfigHash);
 
         assertWithMessage("Cache file has null path")
-            .that(cache.getProperty(tmpFile.toFile().getPath()))
-            .isNotNull();
+                .that(cache.getProperty(tmpFile.toFile().getPath()))
+                .isNotNull();
     }
 
     @Test
@@ -736,11 +736,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
 
         assertWithMessage("Cache has unexpected size")
-            .that(cacheAfterClear)
-            .hasSize(1);
+                .that(cacheAfterClear)
+                .hasSize(1);
         assertWithMessage("Cache has null hash")
-            .that(cacheAfterClear.getProperty(PropertyCacheFile.CONFIG_HASH_KEY))
-            .isNotNull();
+                .that(cacheAfterClear.getProperty(PropertyCacheFile.CONFIG_HASH_KEY))
+                .isNotNull();
 
         final String pathToEmptyFile = createTempFile("file", ".java").getPath();
 
@@ -752,16 +752,16 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
 
         assertWithMessage("Cache has null path")
-            .that(cacheAfterSecondRun.getProperty(pathToEmptyFile))
-            .isNotNull();
+                .that(cacheAfterSecondRun.getProperty(pathToEmptyFile))
+                .isNotNull();
         final String cacheHash = cacheAfterSecondRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY);
         assertWithMessage("Cash have changed it hash")
-            .that(cacheHash)
-            .isEqualTo(cacheAfterClear.getProperty(PropertyCacheFile.CONFIG_HASH_KEY));
+                .that(cacheHash)
+                .isEqualTo(cacheAfterClear.getProperty(PropertyCacheFile.CONFIG_HASH_KEY));
         final int expectedNumberOfObjectsInCacheAfterSecondRun = 2;
         assertWithMessage("Cache has changed number of items")
-            .that(cacheAfterSecondRun)
-            .hasSize(expectedNumberOfObjectsInCacheAfterSecondRun);
+                .that(cacheAfterSecondRun)
+                .hasSize(expectedNumberOfObjectsInCacheAfterSecondRun);
     }
 
     @Test
@@ -790,8 +790,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
 
         assertWithMessage("Cache has unexpected size")
-            .that(cacheAfterClear)
-            .hasSize(1);
+                .that(cacheAfterClear)
+                .hasSize(1);
     }
 
     @Test
@@ -800,8 +800,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setFileExtensions(".test1", "test2");
         final String[] actual = TestUtil.getInternalState(checker, "fileExtensions");
         assertWithMessage("Extensions are not expected")
-            .that(actual)
-            .isEqualTo(new String[] {".test1", ".test2"});
+                .that(actual)
+                .isEqualTo(new String[] {".test1", ".test2"});
     }
 
     @Test
@@ -812,8 +812,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.clearCache();
         final PropertyCacheFile cache = TestUtil.getInternalState(checker, "cacheFile");
         assertWithMessage("If cache file is not set the cache should default to null")
-            .that(cache)
-            .isNull();
+                .that(cache)
+                .isNull();
     }
 
     /**
@@ -940,19 +940,19 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final String cacheFilePath = cacheAfterSecondRun.getProperty(pathToEmptyFile);
         assertWithMessage("Cache file has changed its path")
-            .that(cacheFilePath)
-            .isEqualTo(cacheAfterFirstRun.getProperty(pathToEmptyFile));
+                .that(cacheFilePath)
+                .isEqualTo(cacheAfterFirstRun.getProperty(pathToEmptyFile));
         final String cacheHash = cacheAfterSecondRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY);
         assertWithMessage("Cache has changed its hash")
-            .that(cacheHash)
-            .isEqualTo(cacheAfterFirstRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY));
+                .that(cacheHash)
+                .isEqualTo(cacheAfterFirstRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY));
         final int expectedNumberOfObjectsInCache = 2;
         assertWithMessage("Number of items in cache differs from expected")
-            .that(cacheAfterFirstRun)
-            .hasSize(expectedNumberOfObjectsInCache);
+                .that(cacheAfterFirstRun)
+                .hasSize(expectedNumberOfObjectsInCache);
         assertWithMessage("Number of items in cache differs from expected")
-            .that(cacheAfterSecondRun)
-            .hasSize(expectedNumberOfObjectsInCache);
+                .that(cacheAfterSecondRun)
+                .hasSize(expectedNumberOfObjectsInCache);
     }
 
     /**
@@ -995,8 +995,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final int expectedNumberOfObjectsInCacheAfterFirstRun = 4;
         assertWithMessage("Number of items in cache differs from expected")
-            .that(cacheAfterFirstRun)
-            .hasSize(expectedNumberOfObjectsInCacheAfterFirstRun);
+                .that(cacheAfterFirstRun)
+                .hasSize(expectedNumberOfObjectsInCacheAfterFirstRun);
 
         // Change a list of external resources which are used by the check
         final String secondExternalResourceLocation = "InputCheckerImportControlTwo.xml";
@@ -1015,29 +1015,29 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final String cacheFilePath = cacheAfterSecondRun.getProperty(pathToEmptyFile);
         assertWithMessage("Cache file has changed its path")
-            .that(cacheFilePath)
-            .isEqualTo(cacheAfterFirstRun.getProperty(pathToEmptyFile));
+                .that(cacheFilePath)
+                .isEqualTo(cacheAfterFirstRun.getProperty(pathToEmptyFile));
         final String cacheHash = cacheAfterSecondRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY);
         assertWithMessage("Cache has changed its hash")
-            .that(cacheHash)
-            .isEqualTo(cacheAfterFirstRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY));
+                .that(cacheHash)
+                .isEqualTo(cacheAfterFirstRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY));
         final String resourceKey = cacheAfterSecondRun.getProperty(firstExternalResourceKey);
         assertWithMessage("Cache has changed its resource key")
-            .that(resourceKey)
-            .isEqualTo(cacheAfterFirstRun.getProperty(firstExternalResourceKey));
+                .that(resourceKey)
+                .isEqualTo(cacheAfterFirstRun.getProperty(firstExternalResourceKey));
         assertWithMessage("Cache has null as a resource key")
-            .that(cacheAfterFirstRun.getProperty(firstExternalResourceKey))
-            .isNotNull();
+                .that(cacheAfterFirstRun.getProperty(firstExternalResourceKey))
+                .isNotNull();
         final int expectedNumberOfObjectsInCacheAfterSecondRun = 4;
         assertWithMessage("Number of items in cache differs from expected")
-            .that(cacheAfterSecondRun)
-            .hasSize(expectedNumberOfObjectsInCacheAfterSecondRun);
+                .that(cacheAfterSecondRun)
+                .hasSize(expectedNumberOfObjectsInCacheAfterSecondRun);
         assertWithMessage("Cache has not null as a resource key")
-            .that(cacheAfterFirstRun.getProperty(secondExternalResourceKey))
-            .isNull();
+                .that(cacheAfterFirstRun.getProperty(secondExternalResourceKey))
+                .isNull();
         assertWithMessage("Cache has null as a resource key")
-            .that(cacheAfterSecondRun.getProperty(secondExternalResourceKey))
-            .isNotNull();
+                .that(cacheAfterSecondRun.getProperty(secondExternalResourceKey))
+                .isNotNull();
     }
 
     @Test
@@ -1071,8 +1071,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
             details.load(input);
 
             assertWithMessage("suppressed violation file saved in cache")
-                .that(details.getProperty(fileViolationPath))
-                .isNotNull();
+                    .that(details.getProperty(fileViolationPath))
+                    .isNotNull();
         }
     }
 
@@ -1085,8 +1085,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Error message is not expected")
-                .that(ex.getMessage())
-                .isEqualTo("Exception was thrown while processing " + filePath);
+                    .that(ex.getMessage())
+                    .isEqualTo("Exception was thrown while processing " + filePath);
         }
     }
 
@@ -1115,8 +1115,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Error message is not expected")
-                .that(ex.getMessage())
-                .isEqualTo("Exception was thrown while processing " + filePath);
+                    .that(ex.getMessage())
+                    .isEqualTo("Exception was thrown while processing " + filePath);
 
             // destroy is called by Main
             checker.destroy();
@@ -1127,11 +1127,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
             }
 
             assertWithMessage("Cache has unexpected size")
-                .that(cache)
-                .hasSize(1);
+                    .that(cache)
+                    .hasSize(1);
             assertWithMessage("testFile is not in cache")
-                .that(cache.getProperty(filePath))
-                .isNull();
+                    .that(cache.getProperty(filePath))
+                    .isNull();
         }
     }
 
@@ -1181,8 +1181,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .that(cache)
                     .hasSize(1);
             assertWithMessage("testFile is not in cache")
-                .that(cache.getProperty("testFile"))
-                .isNull();
+                    .that(cache.getProperty("testFile"))
+                    .isNull();
         }
     }
 
@@ -1224,8 +1224,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .that(cache)
                     .hasSize(1);
             assertWithMessage("testFile is not in cache")
-                .that(cache.getProperty("testFile"))
-                .isNull();
+                    .that(cache.getProperty("testFile"))
+                    .isNull();
         }
     }
 
@@ -1469,7 +1469,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testHaltOnExceptionOff() throws Exception {
         final String filePath = getPath("InputChecker.java");
         final String[] expected = {
-            "1: " + getCheckMessage(EXCEPTION_MSG, "java.lang.IndexOutOfBoundsException: test"),
+                "1: " + getCheckMessage(EXCEPTION_MSG, "java.lang.IndexOutOfBoundsException: test"),
         };
 
         verifyWithInlineXmlConfig(filePath, expected);
@@ -1478,18 +1478,18 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testTabViolationDefault() throws Exception {
         final String[] expected = {
-            "17:17: violation",
-            "21:49: violation",
+                "17:17: violation",
+                "21:49: violation",
         };
         verifyWithInlineConfigParser(getPath("InputCheckerTabCharacter.java"),
-            expected);
+                expected);
     }
 
     @Test
     public void testTabViolationCustomWidth() throws Exception {
         final String[] expected = {
-            "18:17: violation",
-            "22:37: violation",
+                "18:17: violation",
+                "22:37: violation",
         };
 
         verifyWithInlineXmlConfig(getPath("InputCheckerTabCharacterCustomWidth.java"), expected);
@@ -1502,10 +1502,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addFileSetCheck(fileSet);
         checker.process(Collections.singletonList(new File("dummy.java").toPath()));
         final List<String> expected =
-            Arrays.asList("beginProcessing", "finishProcessing", "destroy");
+                Arrays.asList("beginProcessing", "finishProcessing", "destroy");
         assertWithMessage("Method calls were not expected")
-            .that(fileSet.getMethodCalls())
-            .isEqualTo(expected);
+                .that(fileSet.getMethodCalls())
+                .isEqualTo(expected);
     }
 
     @Test
@@ -1514,8 +1514,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Checker checker = new Checker();
         checker.addFileSetCheck(fileSet);
         assertWithMessage("Message dispatcher was not expected")
-            .that(fileSet.getInternalMessageDispatcher())
-            .isEqualTo(checker);
+                .that(fileSet.getInternalMessageDispatcher())
+                .isEqualTo(checker);
     }
 
     @Test
@@ -1593,12 +1593,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testDefaultLoggerClosesItStreams() throws Exception {
         final Checker checker = new Checker();
         try (CloseAndFlushTestByteArrayOutputStream testInfoOutputStream =
-                new CloseAndFlushTestByteArrayOutputStream();
-            CloseAndFlushTestByteArrayOutputStream testErrorOutputStream =
-                new CloseAndFlushTestByteArrayOutputStream()) {
+                     new CloseAndFlushTestByteArrayOutputStream();
+             CloseAndFlushTestByteArrayOutputStream testErrorOutputStream =
+                     new CloseAndFlushTestByteArrayOutputStream()) {
             checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
             checker.addListener(new DefaultLogger(testInfoOutputStream,
-                OutputStreamOptions.CLOSE, testErrorOutputStream, OutputStreamOptions.CLOSE));
+                    OutputStreamOptions.CLOSE, testErrorOutputStream, OutputStreamOptions.CLOSE));
 
             final File tmpFile = createTempFile("file", ".java");
 
@@ -1624,7 +1624,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testXmlLoggerClosesItStreams() throws Exception {
         final Checker checker = new Checker();
         try (CloseAndFlushTestByteArrayOutputStream testInfoOutputStream =
-                new CloseAndFlushTestByteArrayOutputStream()) {
+                     new CloseAndFlushTestByteArrayOutputStream()) {
             checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
             checker.addListener(new XMLLogger(testInfoOutputStream, OutputStreamOptions.CLOSE));
 
@@ -1666,17 +1666,17 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String violationMessage =
                 getCheckMessage(NewlineAtEndOfFileCheck.class, MSG_KEY_NO_NEWLINE_EOF);
         final String[] expected = {
-            "1: " + violationMessage + " [NewlineAtEndOfFile]",
-            "1: " + violationMessage + " [ModuleId]",
+                "1: " + violationMessage + " [NewlineAtEndOfFile]",
+                "1: " + violationMessage + " [ModuleId]",
         };
 
         // super.verify does not work here, for we change the logger
         out.flush();
         final int errs = checker.process(Collections.singletonList(new File(path).toPath()));
         try (ByteArrayInputStream inputStream =
-                new ByteArrayInputStream(out.toByteArray());
-            LineNumberReader lnr = new LineNumberReader(
-                new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+                     new ByteArrayInputStream(out.toByteArray());
+             LineNumberReader lnr = new LineNumberReader(
+                     new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             // we need to ignore the unrelated lines
             final List<String> actual = lnr.lines()
                     .filter(line -> !getCheckMessage(AUDIT_STARTED_MESSAGE).equals(line))
@@ -1707,8 +1707,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final OutputStream errorStream = new ByteArrayOutputStream();
         final DefaultLoggerWithCounter loggerWithCounter =
-            new DefaultLoggerWithCounter(infoStream, OutputStreamOptions.CLOSE,
-                                         errorStream, OutputStreamOptions.CLOSE);
+                new DefaultLoggerWithCounter(infoStream, OutputStreamOptions.CLOSE,
+                        errorStream, OutputStreamOptions.CLOSE);
         checker.addListener(loggerWithCounter);
         final File cacheFile = createTempFile("cacheFile", ".txt");
         checker.setCacheFile(cacheFile.getAbsolutePath());
@@ -1718,8 +1718,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 .collect(Collectors.toUnmodifiableList()));
 
         assertWithMessage("Cached file should not be processed twice")
-            .that(loggerWithCounter.fileStartedCount)
-            .isEqualTo(1);
+                .that(loggerWithCounter.fileStartedCount)
+                .isEqualTo(1);
 
         checker.destroy();
     }
@@ -1727,7 +1727,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testUnmappableCharacters() throws Exception {
         final String[] expected = {
-            "14: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 80, 225),
+                "14: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 80, 225),
         };
 
         verifyWithInlineXmlConfig(getPath("InputCheckerTestCharset.java"),
@@ -1757,7 +1757,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final File file = new File("InputNonChecker.java");
         final String filePath = file.getAbsolutePath();
         final String[] expected = {
-            "1: " + getCheckMessage(EXCEPTION_MSG, filePath
+                "1: " + getCheckMessage(EXCEPTION_MSG, filePath
                         + " (No such file or directory)"),
         };
 
@@ -1781,7 +1781,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 createModuleConfig(BeforeExecutionExclusionFileFilter.class);
 
         beforeExecutionExclusionFileFilterConfig.addProperty("fileNamePattern",
-                        "^(?!InputCheckerTestExcludeRelativizedFile.*\\.java).*");
+                "^(?!InputCheckerTestExcludeRelativizedFile.*\\.java).*");
 
         final DefaultConfiguration checkerConfig = createRootConfig(null);
         checkerConfig.addChild(newLineAtEndOfFileConfig);
@@ -1795,7 +1795,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 getCheckMessage(NewlineAtEndOfFileCheck.class, MSG_KEY_NO_NEWLINE_EOF);
 
         final String[] expected = {
-            "1: " + violationMessage,
+                "1: " + violationMessage,
         };
 
         final File tempFile = createTempFile("InputCheckerTestExcludeRelativizedFile", ".java");
@@ -1875,7 +1875,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     public static class DummyFileSetViolationCheck extends AbstractFileSetCheck
-        implements ExternalResourceHolder {
+            implements ExternalResourceHolder {
 
         @Override
         protected void processFiltered(File file, FileText fileText) {
@@ -1903,7 +1903,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     public static final class DynamicalResourceHolderCheck extends AbstractFileSetCheck
-        implements ExternalResourceHolder {
+            implements ExternalResourceHolder {
 
         private String firstExternalResourceLocation;
         private String secondExternalResourceLocation;
@@ -1959,15 +1959,15 @@ public class CheckerTest extends AbstractModuleTestSupport {
             if (ast.findFirstToken(TokenTypes.MODIFIERS).findFirstToken(
                     TokenTypes.BLOCK_COMMENT_BEGIN) != null) {
                 log(ast, "AST has incorrect structure structure."
-                    + " The check does not require comment nodes but there were comment nodes"
-                    + " in the AST.");
+                        + " The check does not require comment nodes but there were comment nodes"
+                        + " in the AST.");
             }
             final int childCount = ast.getChildCount();
             if (childCount != METHOD_DEF_CHILD_COUNT) {
                 final String msg = String.format(Locale.ENGLISH,
-                    "AST node in no comment tree has wrong number of children. "
-                            + "Expected is %d but was %d",
-                    METHOD_DEF_CHILD_COUNT, childCount);
+                        "AST node in no comment tree has wrong number of children. "
+                                + "Expected is %d but was %d",
+                        METHOD_DEF_CHILD_COUNT, childCount);
                 log(ast, msg);
             }
             // count children where comment lives
@@ -2023,9 +2023,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             final int childCount = ast.getChildCount();
             if (childCount != METHOD_DEF_CHILD_COUNT) {
                 final String msg = String.format(Locale.ENGLISH,
-                    "AST node in comment tree has wrong number of children. "
-                            + "Expected is %d but was %d",
-                    METHOD_DEF_CHILD_COUNT, childCount);
+                        "AST node in comment tree has wrong number of children. "
+                                + "Expected is %d but was %d",
+                        METHOD_DEF_CHILD_COUNT, childCount);
                 log(ast, msg);
             }
             // count children where comment lives
