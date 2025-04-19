@@ -83,7 +83,7 @@ public class A {
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/declarationorder/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to ignore validation of constructors:
         </p>
@@ -97,7 +97,7 @@ public class A {
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/declarationorder/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to ignore modifiers:
         </p>

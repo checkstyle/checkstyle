@@ -90,7 +90,7 @@ class Example1 {
   final static int MYSELF = 100;
   protected final static int myselfConstant = 1; // violation 'must match pattern'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           The following configuration apart from names allowed by default allows <code>log</code>
           or <code>logger</code>:
@@ -119,7 +119,7 @@ class Example2 {
   final static int MYSELF = 100;
   protected final static int myselfConstant = 1; // violation 'must match pattern'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           The following configuration skip validation on
           public constant field and protected constant field.

@@ -98,7 +98,7 @@ enum C {
 @interface D {
 
 }; // violation 'Unnecessary semicolon'
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
            To configure the check to detect unnecessary semicolon only after top level class
            definitions:

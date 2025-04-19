@@ -98,7 +98,7 @@ class Example1
     int result=foo(1,2); // violation, 'Variable 'result' should be declared final'
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that it checks local variables and
           parameters:
@@ -140,7 +140,7 @@ class Example2
         <p>
           Option 'validateEnhancedForLoopVariable' could be used to make Check to validate
           even variable from Enhanced For Loop.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example3-config">
           An example of how to configure the check so that it also validates enhanced For Loop
           Variable is:
@@ -172,7 +172,7 @@ class Example3
     int result=foo(1,2); // violation, 'Variable 'result' should be declared final'
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           An example of how to configure check on local variables and parameters
           but do not validate loop variables:

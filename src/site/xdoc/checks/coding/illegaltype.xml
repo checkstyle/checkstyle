@@ -246,7 +246,7 @@ public class Example1 extends TreeSet {
     var message = "Hello, World!";
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the Check so that particular tokens are checked:
         </p>
@@ -318,7 +318,7 @@ public class Example2 extends TreeSet {
     var message = "Hello, World!";
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the Check so that it ignores function() methods:
         </p>
@@ -391,7 +391,7 @@ public class Example3 extends TreeSet {
     var message = "Hello, World!";
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the Check so that it validates abstract class names:
         </p>
@@ -465,7 +465,7 @@ public class Example4 extends TreeSet {
     var message = "Hello, World!";
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           To configure the Check so that it verifies only public, protected or static
            methods and fields:
@@ -540,7 +540,7 @@ public class Example5 extends TreeSet {
     var message = "Hello, World!";
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example6-config">
           To configure the check so that it verifies usage of types Boolean and Foo:
         </p>
@@ -614,7 +614,7 @@ public class Example6 extends TreeSet {
     var message = "Hello, World!";
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example7-config">
           To configure the check to target fields types only:
         </p>
@@ -692,7 +692,7 @@ public class Example7 extends TreeSet {
     var message = "Hello, World!";
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example8-config">
           To configure the check so that it violates usage of var:
         </p>

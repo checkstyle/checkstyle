@@ -81,7 +81,7 @@ class Example1 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-code">
           Example of correct code:
         </p>
@@ -110,7 +110,7 @@ class Example2 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-code">
           Example of correct code which does not require default labels:
         </p>

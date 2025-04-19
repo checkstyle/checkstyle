@@ -73,7 +73,7 @@ public class Example1 {
           validations near code that has  <code>@SuppressWarnings(&quot;checkstyle:&lt;ID&gt;&quot;)</code> or
           just <code>@SuppressWarnings(&quot;&lt;ID&gt;&quot;)</code> annotation, where ID is the ID of checks
           you want to suppress.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example2-config">Example of suppression by prefix &quot;checkstyle:&quot;:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;

@@ -80,7 +80,7 @@ class Example1 {
   void method1(int v1) {}
   void method2(int V2) {} // violation
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters, digits, and underscores:
@@ -101,7 +101,7 @@ class Example2 {
   void method2(int v_2) {}
   void method3(int V3) {} // violation
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example3-config">
             An example of how to configure the check to skip methods with Override annotation from
@@ -126,7 +126,7 @@ class Example3 {
     return true;
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           An example of how to configure the check for names that begin with
           a lower case letter, followed by letters and digits is:
@@ -147,7 +147,7 @@ class Example4 {
   void method2(int v_2) {} // violation
   void method3(int V3) {} // violation
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           The following configuration checks that the parameters always start with two
           lowercase characters and, in addition, that public method parameters cannot be one

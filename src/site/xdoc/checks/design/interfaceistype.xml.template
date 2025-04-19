@@ -52,7 +52,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/design/interfaceistype/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to report violation so that it doesn't allow Marker Interfaces:
         </p>

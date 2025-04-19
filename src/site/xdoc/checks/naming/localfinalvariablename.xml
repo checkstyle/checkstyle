@@ -91,7 +91,7 @@ class Example1{
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check for names that are only upper case letters and
           digits is:
@@ -118,7 +118,7 @@ class Example2 {
     }
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           An example of how to configure the check for names of local final parameters and
           resources in try statements (without checks on variables):

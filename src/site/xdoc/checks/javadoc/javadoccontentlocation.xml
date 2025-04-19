@@ -126,8 +126,7 @@ class Example1 {
   private int field3;
 
 }
-</code></pre></div>
-
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To ensure that Javadoc content starts from the first line:
         </p>

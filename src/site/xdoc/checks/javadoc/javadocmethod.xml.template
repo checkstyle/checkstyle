@@ -106,7 +106,7 @@ public int checkReturnTag(final int aTagIndex,
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check for only <code>public</code>
           modifier, ignoring any missing param tags is:
@@ -122,7 +122,7 @@ public int checkReturnTag(final int aTagIndex,
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
             To configure the check for methods which are in <code>private</code> and
           <code>package</code>, but not any other modifier:
@@ -137,7 +137,7 @@ public int checkReturnTag(final int aTagIndex,
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
               To configure the check to ignore any missing return tags:
         </p>
@@ -151,7 +151,7 @@ public int checkReturnTag(final int aTagIndex,
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example4.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example5-config">
               To configure the check to ignore Methods with annotation <code>Deprecated</code>:
         </p>
@@ -165,7 +165,7 @@ public int checkReturnTag(final int aTagIndex,
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example5.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example6-config">
               To configure the check only for tokens which are Constructor Definitions:
         </p>
@@ -179,8 +179,7 @@ public int checkReturnTag(final int aTagIndex,
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example6.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example7-config">
           To configure the check to validate <code>throws</code> tags, you can use following config.
         </p>
@@ -194,8 +193,7 @@ public int checkReturnTag(final int aTagIndex,
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example7.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example8-config">
           To configure the check to allow inline <code>return</code> tags,
           you can use following config.

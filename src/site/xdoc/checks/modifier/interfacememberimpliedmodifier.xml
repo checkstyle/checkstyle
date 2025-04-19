@@ -188,7 +188,7 @@ public interface Example1 {
     //    'Implied modifier 'public' should be explicit'
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p>
           This example checks that all implicit modifiers on methods and fields are
           explicitly specified, but nested types do not need to be.

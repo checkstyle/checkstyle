@@ -165,7 +165,7 @@ class Example1 {
     int var5 = 5;
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To check empty line before
           <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
@@ -207,7 +207,7 @@ class Example2 {
     int var5 = 5;
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example3-config">
           To allow no empty line between fields:
@@ -250,7 +250,7 @@ class Example3 {
     int var5 = 5;
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           To disallow multiple empty lines between class members:
         </p>
@@ -290,7 +290,7 @@ class Example4 {
     int var5 = 5;
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           To disallow multiple empty lines inside constructor,
             initialization block and method:

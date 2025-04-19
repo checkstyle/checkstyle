@@ -69,7 +69,7 @@
               then "org" and then all other imports</li>
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
-        </ul>
+        </ul><hr class="example-separator"/>
         <p id="Example2-config">Notes:</p>
         <ul>
           <li>"com" package is not mentioned on configuration, because it is
@@ -89,7 +89,7 @@
           <param name="path"
                  value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check so that it matches default Eclipse formatter configuration
           (tested on Mars release):
@@ -134,7 +134,7 @@
           ImportOrder has a limitation by design to enforce an empty line between groups
           ("java", "javax"). There is no flexibility to enforce empty lines between some
           groups and no empty lines between other groups.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example4-config">
           Note: "separated" option is disabled because IDEA default has blank line
           between "java" and static imports, and no blank line between "javax" and "java".
@@ -151,7 +151,7 @@
           <param name="path"
                  value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example4.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example5-config">
           To configure the check so that it matches default NetBeans formatter configuration
           (tested on v8):
@@ -194,7 +194,7 @@
           not, default value is <b>false</b>. It is applied to static imports grouped
           with <b>top</b> or <b>bottom</b> options. This option is helping in reconciling
           of this Check and other tools like Eclipse's Organize Imports feature.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example6-config">
           To configure the Check allows static imports grouped to the <b>top</b> being sorted
           alphabetically:
@@ -212,8 +212,7 @@
           <param name="path"
                  value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example6.java"/>
           <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example7-config">
           To configure the Check with groups of static imports:
         </p>
@@ -251,7 +250,7 @@ import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
         </source>
         <p>
           According to this logic, HttpHeaders.Names should come after HttpHeaders.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example8-config">
           Example for <code>useContainerOrderingForStatic=true</code>
         </p>
@@ -267,7 +266,7 @@ import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
           <param name="path"
                  value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example8.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example9-config">
           Example for <code>useContainerOrderingForStatic=false</code>
         </p>
@@ -289,7 +288,7 @@ public class Example9 { }
         </source>
         <p>
           To configure the check to enforce static import group separation
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example10-config">
           Example for <code>separatedStaticGroups=true</code>
         </p>
@@ -305,7 +304,7 @@ public class Example9 { }
           <param name="path"
                  value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example10.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example11-config">
           To configure the Check with groups of static imports when staticGroups=""
           represents all imports as {@code everything else} group:
@@ -322,7 +321,7 @@ public class Example9 { }
           <param name="path"
                  value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example11.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example12-config">
           To configure the Check with groups of static imports when
           staticGroups="java, javax" represents three groups i.e java*, javax*

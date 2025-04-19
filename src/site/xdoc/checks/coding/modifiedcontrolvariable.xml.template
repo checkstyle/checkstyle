@@ -77,7 +77,7 @@ for (int a[]={0};a[0] &lt; 10;a[0]++) {
         <p>
           Option 'skipEnhancedForLoopVariable' could be used to skip check of variable
           from Enhanced For Loop.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check so that it skips enhanced For Loop Variable is:
         </p>

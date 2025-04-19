@@ -40,7 +40,7 @@
           <param name="path"
                  value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespaceafter/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example2-config">
           To configure the check for whitespace only after COMMA and SEMI

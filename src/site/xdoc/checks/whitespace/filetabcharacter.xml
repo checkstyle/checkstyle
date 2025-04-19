@@ -84,7 +84,7 @@ class Example1 {
     a = arg; // OK, indented using spaces
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">To configure the check to report each instance in each file:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -102,7 +102,7 @@ class Example2 {
     a = arg; // OK, indented using spaces
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to report instances on only certain file types:
         </p>
@@ -122,7 +122,7 @@ class Example3 {
     a = arg; // OK, indented using spaces
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-code">Example - Test.xml:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
@@ -130,7 +130,7 @@ class Example3 {
   &lt;FirstName&gt;John&lt;/FirstName&gt; // violation 'File contains tab characters'
   &lt;LastName&gt;Doe&lt;/LastName&gt;    &lt;!-- OK, only first occurrence in file reported --&gt;
 &lt;/UserAccount&gt;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-code">Example - Test.html:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;head&gt;

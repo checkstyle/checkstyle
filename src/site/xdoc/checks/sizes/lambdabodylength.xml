@@ -92,7 +92,7 @@ class Example1 {
                 .concat("10")
                 .concat("11"); // line 11
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to accept lambda bodies with max 5 lines:
         </p>

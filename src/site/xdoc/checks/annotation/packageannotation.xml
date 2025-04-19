@@ -47,13 +47,13 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
 // violation above, 'Package annotations must be in the package-info.java info.'
 
 class Example1 {}
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-code">Example of class without violation:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
 
 class Example2 {}
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="package-info-code">Example of validating package-info.java:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 @Deprecated

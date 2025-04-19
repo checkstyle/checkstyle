@@ -53,7 +53,7 @@ class Example1 {
   Function&lt;String, String&gt; function2 =
           S -&gt; S.toLowerCase(); // violation 'Name 'S' must match pattern'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters is:

@@ -57,7 +57,7 @@ class Example1 {
   HashSet&lt;Integer&gt; set;
   record License&lt;T&gt;() {}
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-code">
           Examples with incorrect spacing:
         </p>

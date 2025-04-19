@@ -73,7 +73,7 @@ if ((condition1 &amp;&amp; condition2)
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to enforce the indentation style recommended by
           Oracle:
@@ -92,7 +92,7 @@ if ((condition1 &amp;&amp; condition2)
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the Check to enforce strict condition in line-wrapping validation.
         </p>
@@ -109,7 +109,7 @@ if ((condition1 &amp;&amp; condition2)
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example4-code">
           But if forceStrictCondition = false, this code is valid:
         </p>

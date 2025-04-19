@@ -65,7 +65,7 @@
         <p>
           To configure to include static variables and
           methods tagged with <code>@Override</code> annotation.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example2-config">Configuration:</p>
         <macro name="example">
           <param name="path"
@@ -83,7 +83,7 @@
           (including ones with the static modifier) and enforce
           no abbreviations (essentially camel case) except for
           words like 'XML' and 'URL'.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example3-config">Configuration:</p>
         <macro name="example">
           <param name="path"
@@ -100,7 +100,7 @@
           To configure to check variables, excluding fields with
           the static modifier, and allow abbreviations up to 2
           consecutive capital letters ignoring the longer word 'CSV'.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example4-config">Configuration:</p>
         <macro name="example">
           <param name="path"
@@ -116,7 +116,7 @@
         <p>
           To configure to check variables, enforcing no abbreviations
           except for variables that are both static and final.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example5-config">Configuration:</p>
         <macro name="example">
           <param name="path"
@@ -132,7 +132,7 @@
         <p>
           To configure to check variables, enforcing no abbreviations
           and ignoring static (but non-final) variables only.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example6-config">Configuration:</p>
         <macro name="example">
           <param name="path"
@@ -149,7 +149,7 @@
           To configure to check variables, enforce
           no abbreviations (essentially camel case) except for
           words like 'ALLOWED'.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example7-config">Configuration:</p>
         <macro name="example">
           <param name="path"

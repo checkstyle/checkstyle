@@ -108,8 +108,7 @@
           <param name="path"
                    value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/Example1.java"/>
             <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to enforce an <code>expanded</code> style,
           with a closing parenthesis and a trailing array comma set to <code>never</code>.
@@ -124,8 +123,7 @@
           <param name="path"
                    value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/Example2.java"/>
             <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to enforce an <code>expanded</code> style,
           with a closing parenthesis and a trailing array comma set to <code>never</code>.
@@ -140,8 +138,7 @@
           <param name="path"
                    value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/Example3.java"/>
             <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the check to enforce a trailing array comma,
           with ignoring the elementStyle and a closing parenthesis.

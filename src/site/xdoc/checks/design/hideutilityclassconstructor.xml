@@ -115,8 +115,7 @@ class Application1 {
   public static void main(String[] args) {
   }
 }
-</code></pre></div>
-
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to ignore classes annotated with <code>SpringBootApplication</code>
           or <code>java.lang.Deprecated</code>.
