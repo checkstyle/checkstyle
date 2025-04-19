@@ -605,6 +605,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.UnusedCatchParameterShouldBeUnnamedCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnusedLambdaParameterShouldBeUnnamedCheck",
                 BASE_PACKAGE + ".checks.coding.UnusedLambdaParameterShouldBeUnnamedCheck");
+        NAME_TO_FULL_MODULE_NAME.put("UnnecessaryNullCheckWithInstanceOfCheck",
+                BASE_PACKAGE + ".checks.coding.UnnecessaryNullCheckWithInstanceOfCheck");
     }
 
     /**
