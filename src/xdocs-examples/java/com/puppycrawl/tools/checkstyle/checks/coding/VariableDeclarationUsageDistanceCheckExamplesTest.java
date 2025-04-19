@@ -79,4 +79,13 @@ public class VariableDeclarationUsageDistanceCheckExamplesTest
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expected = {
+            "27:5: " + getCheckMessage(MSG_KEY_EXT, "minutes", 6, 3),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+    }
 }
