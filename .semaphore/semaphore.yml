@@ -29,7 +29,7 @@ blocks:
       jobs:
         - name: sevntu
           commands:
-            - mvn -e --no-transfer-progress compile antrun:run@ant-phase-verify-sevntu -Psevntu
+            - ./mvnw -e --no-transfer-progress compile antrun:run@ant-phase-verify-sevntu -Psevntu
 
         - name: codenarc analysis
           commands:
@@ -57,7 +57,7 @@ blocks:
                 # permanently disabled as it is very unstable in execution
                 # - .ci/validation.sh nondex
                 # until https://github.com/checkstyle/checkstyle/issues/9807
-                # - mvn -e --no-transfer-progress clean package -Passembly,no-validations
+                # - ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
                 #    && .ci/validation.sh no-violation-test-josm
           commands:
             - sem-version java 11
@@ -110,7 +110,7 @@ blocks:
               values:
                 - "true"
                 # until https://github.com/checkstyle/checkstyle/issues/9248
-                # - mvn -e clean install -Pno-validations
+                # - ./mvnw -e clean install -Pno-validations
                 #    && .ci/validation.sh no-violation-test-configurate
           commands:
             - sem-version java 11
