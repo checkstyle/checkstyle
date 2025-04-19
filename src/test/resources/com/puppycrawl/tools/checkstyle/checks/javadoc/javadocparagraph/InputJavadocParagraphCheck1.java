@@ -57,7 +57,7 @@ class Check {
      */
     public void foo() {}
 
-    // violation 5 lines below '<p> tag should be preceded with an empty line.'
+
     /**
      * Some summary.
      *
