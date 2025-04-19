@@ -3,7 +3,7 @@ WriteTag
 tag = @incomplete
 tagFormat = .*
 tagSeverity = (default)info
-tokens = ANNOTATION_DEF, ENUM_DEF, ANNOTATION_FIELD_DEF, ENUM_CONSTANT_DEF
+tokens = ANNOTATION_DEF, ENUM_DEF, ANNOTATION_FIELD_DEF, ENUM_CONSTANT_DEF, BLOCK_COMMENT_BEGIN
 
 
 */

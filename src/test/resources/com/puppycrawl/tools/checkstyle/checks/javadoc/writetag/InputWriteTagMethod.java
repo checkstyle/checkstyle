@@ -2,7 +2,7 @@
 WriteTag
 tag = @todo
 tagFormat = \\S
-tokens = INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF
+tokens = INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF, BLOCK_COMMENT_BEGIN
 severity = ignore
 
 */

@@ -5022,6 +5022,9 @@
                   com.puppycrawl.tools.checkstyle.xpath.ElementNodeTest
                 </param>
                 <param>
+                  com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheckTest
+                </param>
+                <param>
                   com.puppycrawl.tools.checkstyle.checks.FinalParametersCheckTest
                 </param>
                 <param>
