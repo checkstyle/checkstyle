@@ -34,6 +34,8 @@ import java.util.Objects;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
+import javax.annotation.Nullable;
+
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
 import org.apache.tools.ant.FileScanner;
@@ -290,9 +292,9 @@ public class CheckstyleAntTask extends Task {
     /**
      * Helper implementation to perform execution.
      *
-     * @param checkstyleVersion Checkstyle compile version.
+     * @param checkstyleVersion Checkstyle compile version, may be null.
      */
-    private void realExecute(String checkstyleVersion) {
+    private void realExecute(@Nullable String checkstyleVersion) {
         // Create the root module
         RootModule rootModule = null;
         try {
@@ -321,12 +323,12 @@ public class CheckstyleAntTask extends Task {
      *
      * @param rootModule Root module to process files
      * @param warningCounter Root Module's counter of warnings
-     * @param checkstyleVersion Checkstyle compile version
+     * @param checkstyleVersion Checkstyle compile version, may be null.
      * @throws BuildException if the files could not be processed,
      *     or if the build failed due to violations.
      */
     private void processFiles(RootModule rootModule, final SeverityLevelCounter warningCounter,
-            final String checkstyleVersion) {
+            @Nullable final String checkstyleVersion) {
         final long startTime = System.currentTimeMillis();
         final List<File> files = getFilesToCheck();
         final long endTime = System.currentTimeMillis();
