@@ -37,7 +37,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
      [-t | --tree] [-T | --treeWithComments] [-J | --treeWithJavadoc] [-j | --javadocTree] \
      [-V | --version] [-b | --branch-matching-xpath &lt;xpathQuery&gt;] [-h | --help] \
      [-e | --exclude &lt;excludedPath&gt;] [-E | --executeIgnoredModules] [-d | --debug] \
-     [-x | --exclude-regexp &lt;excludedPathPattern&gt;] \
+     [-x | --exclude-regexp &lt;excludedPathPattern&gt;] [-G | --generate-suppression] \
      file(s) or folder(s) ...
         </code></pre></div>
       </p>
@@ -168,6 +168,26 @@ java -D&lt;property&gt;=&lt;value&gt;  \
                 </td>
                 <td>
                   <code>-g--generate-xpath-suppression</code>
+                </td>
+                <td>
+                  Generates to output a xpath suppression xml to use to suppress all violations from
+                  user's config. Instead of printing every violation, all violations will be
+                  catched and single suppressions xml file will be printed out. Used only with
+                  <code>-c</code> option. Output location can be specified
+                  with <code>-o</code> option.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a name="G"/>
+                  <a href="#G">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <code>-G--generate-suppression</code>
                 </td>
                 <td>
                   Generates to output a suppression xml to use to suppress all violations from
@@ -487,6 +507,12 @@ java -D&lt;property&gt;=&lt;value&gt;  \
             Generating Suppressions XML (-g, --generate-xpath-suppression)
         </a>
     </li>
+
+    <li>
+      <a href="#Generating_Suppressions_XML">
+          Generating Suppressions XML (-G, --generate-suppression)
+      </a>
+  </li>
 
     <li>
         <a href="#Setting_Tab_Width">
