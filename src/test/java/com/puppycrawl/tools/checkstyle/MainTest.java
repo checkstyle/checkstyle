@@ -73,7 +73,7 @@ public class MainTest {
             + "Try 'checkstyle --help' for more information.%n");
 
     private static final String USAGE = String.format(Locale.ROOT,
-          "Usage: checkstyle [-dEghjJtTV] [-b=<xpath>] [-c=<configurationFile>] "
+          "Usage: checkstyle [-dEgGhjJtTV] [-b=<xpath>] [-c=<configurationFile>] "
                   + "[-f=<format>]%n"
                   + "                  [-o=<outputPath>] [-p=<propertiesFile>] "
                   + "[-s=<suppressionLineColumnNumber>]%n"
@@ -108,6 +108,16 @@ public class MainTest {
                   + "DefaultLogger respectively. Defaults to%n"
                   + "                              plain.%n"
                   + "  -g, --generate-xpath-suppression%n"
+                  + "                            Generates to output a xpath suppression xml to use"
+                  + " to suppress all%n"
+                  + "                              violations from user's config. Instead of"
+                  + " printing every violation,%n"
+                  + "                              all violations will be catched and single"
+                  + " suppressions xml file will%n"
+                  + "                              be printed out. Used only with -c option. Output"
+                  + " location can be%n"
+                  + "                              specified with -o option.%n"
+                  + "  -G, --generate-suppression%n"
                   + "                            Generates to output a suppression xml to use"
                   + " to suppress all violations%n"
                   + "                              from user's config. Instead of printing every"
@@ -1496,6 +1506,170 @@ public class MainTest {
 
         assertMainReturnCode(0, "-c", getPath("InputMainConfig-xpath-suppressions.xml"),
                 "--generate-xpath-suppression", "--tabWidth", "20",
+                getPath("InputMainGenerateXpathSuppressionsTabWidth.java"));
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+    }
+
+    @Test
+    public void testGenerateSuppressionOptionOne(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) {
+        final String expected = addEndOfLine(
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                "<!DOCTYPE suppressions PUBLIC",
+                "    \"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2"
+                    + "//EN\"",
+                "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">",
+                "<suppressions>",
+                "<suppress",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"MissingJavadocMethodCheck\"",
+                "\"/>",
+                "<suppress",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       id=\"LeftCurlyEol\"",
+                "\"/>",
+                "</suppressions>");
+
+        assertMainReturnCode(0, "-c", "/google_checks.xml", "--generate-suppression",
+                getPath("InputMainComplexityOverflow.java"));
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+    }
+
+    @Test
+    public void testGenerateSuppressionOptionTwo(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) {
+        final String expected = addEndOfLine(
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE suppressions PUBLIC",
+            "    \"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2"
+                + "//EN\"",
+            "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">",
+            "<suppressions>",
+            "<suppress",
+            "       files=\"InputMainGenerateXpathSuppressions.java\"",
+            "       checks=\"ExplicitInitializationCheck\"",
+            "\"/>",
+            "<suppress",
+            "       files=\"InputMainGenerateXpathSuppressions.java\"",
+            "       checks=\"IllegalThrowsCheck\"",
+            "\"/>",
+            "<suppress",
+            "       files=\"InputMainGenerateXpathSuppressions.java\"",
+            "       checks=\"NestedForDepthCheck\"",
+            "\"/>",
+            "</suppressions>");
+
+        assertMainReturnCode(0, "-c", getPath("InputMainConfig-xpath-suppressions.xml"),
+                "--generate-suppression",
+                getPath("InputMainGenerateXpathSuppressions.java"));
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+    }
+
+    @Test
+    public void testGenerateSuppressionOptionEmptyConfig(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) {
+        final String expected = "";
+
+        assertMainReturnCode(0, "-c", getPath("InputMainConfig-empty.xml"),
+                "--generate-suppression", getPath("InputMainComplexityOverflow.java"));
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+    }
+
+    @Test
+    public void testGenerateSuppressionOptionCustomOutput(@SysErr Capturable systemErr)
+            throws IOException {
+        final String expected = addEndOfLine(
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                "<!DOCTYPE suppressions PUBLIC",
+                "    \"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2"
+                    + "//EN\"",
+                "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">",
+                "<suppressions>",
+                "<suppress",
+                "       files=\"InputMainGenerateXpathSuppressionsTabWidth.java\"",
+                "       checks=\"ExplicitInitializationCheck\"",
+                "\"/>",
+                "</suppressions>");
+        final File file = new File(temporaryFolder, "file.output");
+        assertMainReturnCode(0, "-c", getPath("InputMainConfig-xpath-suppressions.xml"), "-o",
+                file.getPath(), "--generate-suppression",
+                getPath("InputMainGenerateXpathSuppressionsTabWidth.java"));
+        try (BufferedReader br = Files.newBufferedReader(file.toPath())) {
+            final String fileContent = br.lines().collect(Collectors.joining(EOL, "", EOL));
+            assertWithMessage("Unexpected output log")
+                .that(fileContent)
+                .isEqualTo(expected);
+            assertWithMessage("Unexpected system error log")
+                .that(systemErr.getCapturedData())
+                .isEqualTo("");
+        }
+    }
+
+    @Test
+    public void testGenerateSuppressionOptionDefaultTabWidth(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) {
+        final String expected = addEndOfLine(
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                "<!DOCTYPE suppressions PUBLIC",
+                "    \"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2"
+                    + "//EN\"",
+                "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">",
+                "<suppressions>",
+                "<suppress",
+                "       files=\"InputMainGenerateXpathSuppressionsTabWidth.java\"",
+                "       checks=\"ExplicitInitializationCheck\"",
+                "\"/>",
+                "</suppressions>");
+
+        assertMainReturnCode(0, "-c", getPath("InputMainConfig-xpath-suppressions.xml"),
+                "--generate-suppression",
+                getPath("InputMainGenerateXpathSuppressionsTabWidth.java"));
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+    }
+
+    @Test
+    public void testGenerateSuppressionOptionCustomTabWidth(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) {
+        final String expected = addEndOfLine(
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                "<!DOCTYPE suppressions PUBLIC",
+                "    \"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2"
+                    + "//EN\"",
+                "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">",
+                "<suppressions>",
+                "<suppress",
+                "       files=\"InputMainGenerateXpathSuppressionsTabWidth.java\"",
+                "       checks=\"ExplicitInitializationCheck\"",
+                "\"/>",
+                "</suppressions>");
+
+        assertMainReturnCode(0, "-c", getPath("InputMainConfig-xpath-suppressions.xml"),
+                "--generate-suppression", "--tabWidth", "20",
                 getPath("InputMainGenerateXpathSuppressionsTabWidth.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
