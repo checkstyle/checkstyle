@@ -47,7 +47,7 @@ task:
     - set
     - ant -version
     - java --version
-    - mvn --version
+    - mvnw --version
     # - xsltproc --version
     # - xml --version
   sevntu_script:

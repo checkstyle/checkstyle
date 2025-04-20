@@ -65,7 +65,7 @@ This project and everyone participating in it is governed by the
   for information on how to submit a pull request.
 - **Follow the template.** Please follow the [CheckStyle Pull Request Template](https://github.com/checkstyle/checkstyle/blob/master/.github/PULL_REQUEST_TEMPLATE.md)
   that is provided in the pull request description when submitting a pull request.
-- **Run maven build locally.** `mvn clean verify` should pass on your local before
+- **Run maven build locally.** `mvnw clean verify` should pass on your local before
   submitting a pull request.
 - **Keep the PR small.** If you are working on a large feature, consider breaking it up into
   smaller PRs that can be reviewed and merged independently. This makes it easier for

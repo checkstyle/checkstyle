@@ -40,7 +40,7 @@ mkdir .idea\scopes
 copy config\intellij-idea-inspection-scope.xml .idea\scopes
 
 ::Execute compilation of Checkstyle to generate all source files
-call mvn -e compile
+call mvnw -e compile
 
 ::Launch inspections
 call "%IDEA_LOCATION%" inspect %PROJECT_DIR% %INSPECTIONS_PATH% %RESULTS_DIR% -%NOISE_LVL%

@@ -1848,7 +1848,7 @@ Audit done.
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
           git clone https://github.com/checkstyle/checkstyle.git
           cd checkstyle
-          mvn clean compile
+          mvnw clean compile
         </code></pre></div>
       </div>
       <p>
@@ -1856,7 +1856,7 @@ Audit done.
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-          mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.Main" \
+          mvnw exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.Main" \
           &#xa0;&#xa0;&#xa0;&#xa0;-Dexec.args="-c /sun_checks.xml src/main/java"
         </code></pre></div>
       </div>
@@ -1865,7 +1865,7 @@ Audit done.
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-          mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.gui.Main" -Dexec.args=\
+          mvnw exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.gui.Main" -Dexec.args=\
           &#xa0;&#xa0;&#xa0;&#xa0;"src/main/java/com/puppycrawl/tools/checkstyle/Checker.java"
         </code></pre></div>
       </div>
@@ -1874,7 +1874,7 @@ Audit done.
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-          mvn clean package -Passembly,no-validations
+          mvnw clean package -Passembly,no-validations
           java -jar target/checkstyle-X.X-SNAPSHOT-all.jar -c /sun_checks.xml MyClass.java
         </code></pre></div>
       </div>

@@ -21,7 +21,7 @@ install:
   - cmd: SET M2_HOME=C:\maven\apache-maven-3.8.8
   - cmd: SET PATH=%M2_HOME%\bin;%JAVA_HOME%\bin;%PATH%
   - cmd: git config core.autocrlf
-  - cmd: mvn --version
+  - cmd: mvnw --version
   - cmd: java -version
 
 cache:
@@ -36,7 +36,7 @@ environment:
     CMD: " "
     # https://stackoverflow.com/questions/42024619/maven-build-gets-connection-reset-when-downloading-artifacts
     MAVEN_OPTS: "-Dhttp.keepAlive=false -Dmaven.wagon.http.retryHandler.count=3"
-  # We do matrix as AppVeyor could fail to finish simple "mvn -e verify"
+  # We do matrix as AppVeyor could fail to finish simple "mvnw -e verify"
   #    if he loose maven cache (happens from time to time)
   matrix:
     # sevntu (JDK11)

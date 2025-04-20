@@ -494,7 +494,7 @@
       <plugins>
         <!-- from super-pom https://maven.apache.org/ref/3.5.2/maven-model-builder/super-pom.html
              BEGIN -->
-        <!-- we need to override just make "mvn versions:plugin-updates-report"
+        <!-- we need to override just make "mvnw versions:plugin-updates-report"
              see no old versions -->
         <plugin>
           <artifactId>maven-antrun-plugin</artifactId>
@@ -2210,7 +2210,7 @@
 
     <profile>
       <!-- To be used during development. Run the command -->
-      <!-- mvn -Pno-validations site -->
+      <!-- mvnw -Pno-validations site -->
       <id>no-validations</id>
       <properties>
         <skipTests>true</skipTests>
@@ -2296,7 +2296,7 @@
 
     <profile>
       <!-- To be used during development. Run the command -->
-      <!-- mvn -Passembly,no-validations package -->
+      <!-- mvnw -Passembly,no-validations package -->
       <id>assembly</id>
       <properties>
         <maven.site.skip>true</maven.site.skip>

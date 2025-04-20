@@ -12,7 +12,7 @@ jobs:
           name: Print versions
           command: |
             echo "Maven version:"
-            mvn --version
+            mvnw --version
             echo "Java version:"
             java --version
             echo "IDEA version:"

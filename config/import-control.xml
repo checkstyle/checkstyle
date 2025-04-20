@@ -11,8 +11,6 @@
   <disallow class="java.io.FileInputStream"/>
   <disallow class="java.io.FileOutputStream"/>
 
-  <disallow pkg="java.util.concurrent"/>
-
   <!-- guava causes issues with other libraries since not everyone is on the same version -->
   <disallow pkg="com\.google.*" regex="true"/>
 

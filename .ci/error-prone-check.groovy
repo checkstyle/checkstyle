@@ -82,7 +82,7 @@ private static int checkErrorProneReport(String profile, String flag) {
  */
 private static List<String> getErrorProneErrors(String profile) {
     final List<String> errorProneErrors = [] as ArrayList
-    final String command = "mvn -e --no-transfer-progress clean" +
+    final String command = "mvnw -e --no-transfer-progress clean" +
             " ${profile} -Perror-prone-${profile}"
     final Process process = getOsSpecificCmd(command).execute()
     process.in.eachLine { line ->

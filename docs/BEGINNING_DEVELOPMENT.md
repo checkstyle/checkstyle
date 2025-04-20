@@ -49,7 +49,7 @@ This allows you to pull changes from the main repository into your local reposit
 To build the project, navigate to the root directory of the project and run the following command:
 
 ```bash
-mvn clean verify
+mvnw clean verify
 ```
 
 This will build the project and run all the tests. Congratulations, you have
@@ -92,7 +92,7 @@ git add .
 git commit -m "Issue #1234: Fixing the issue"
 ```
 
-Run `mvn clean verify` to ensure that your changes have not broken the build and that all tests
+Run `mvnw clean verify` to ensure that your changes have not broken the build and that all tests
 are still passing. If the build does not succeed, carefully read the error messages and try to
 fix the issue. If you are unable to fix the issue, reach out in our
 [Contributors Chat](https://app.element.io/#/room/#checkstyle_checkstyle:gitter.im) or in the
@@ -199,7 +199,7 @@ fixup 9i0j1k2l Issue #1234: Fixing the issue
 
 Now, save the file and close the text editor. This will squash the commits into one commit.
 
-Run `mvn clean verify` on your local before pushing to make sure that your changes have not
+Run `mvnw clean verify` on your local before pushing to make sure that your changes have not
 broken the build and that all tests are still passing, as above.
 
 Push your changes to your forked repository using the following command:
@@ -258,6 +258,6 @@ guide to help you through it:
   `>>>>>>>` markers and make the necessary changes to the code.
 - Run `git add .` to stage the changes.
 - Run `git rebase --continue` to continue the rebase process.
-- Run `mvn clean verify` to ensure that your changes have not broken the build and that all tests
+- Run `mvnw clean verify` to ensure that your changes have not broken the build and that all tests
   are still passing.
 - Run `git push origin issue-1234 --force` to push your changes to your forked repository.

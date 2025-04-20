@@ -96,7 +96,7 @@ jobs:
         run: |
           bash
           cd .ci-temp/checkstyle
-          mvn -e --no-transfer-progress clean site -Pno-validations -Dmaven.javadoc.skip=false
+          mvnw -e --no-transfer-progress clean site -Pno-validations -Dmaven.javadoc.skip=false
 
       - name: Setup local maven cache
         uses: actions/cache/save@v4

@@ -16,6 +16,6 @@ echo TARGET_VERSION="$TARGET_VERSION"
 git checkout "checkstyle-$TARGET_VERSION"
 
 echo "Generating web site"
-mvn -e --no-transfer-progress site -Pno-validations -Dmaven.javadoc.skip=false
+mvnw -e --no-transfer-progress site -Pno-validations -Dmaven.javadoc.skip=false
 
 git checkout origin/master

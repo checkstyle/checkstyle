@@ -86,8 +86,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * Generates xdocs pages from templates and performs validations.
  * Before running this test, the following commands have to be executed:
- * - mvn clean compile - Required for next command
- * - mvn plexus-component-metadata:generate-metadata - Required to find custom macros and parser
+ * - mvnw clean compile - Required for next command
+ * - mvnw plexus-component-metadata:generate-metadata - Required to find custom macros and parser
  */
 public class XdocsPagesTest {
     private static final Path SITE_PATH = Path.of("src/site/site.xml");

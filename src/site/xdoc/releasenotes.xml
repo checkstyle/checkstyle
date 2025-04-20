@@ -8402,7 +8402,7 @@ Azure.
             <a href="https://github.com/checkstyle/checkstyle/issues/7583">#7583</a>
           </li>
           <li>
-            update CircleCi to try one more time execution of mvn dependency:go-offline.
+            update CircleCi to try one more time execution of mvnw dependency:go-offline.
             Author: Roman Ivanov
             <a href="https://github.com/checkstyle/checkstyle/issues/9115">#9115</a>
           </li>

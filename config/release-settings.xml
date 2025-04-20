@@ -9,7 +9,7 @@
 
   <profiles>
     <profile>
-      <!-- "mvn release:prepare .... -Pgpg"
+      <!-- "mvnw release:prepare .... -Pgpg"
            and it is possible to skip " -Dgpg.passphrase=...." at "-Darguments"
            Use "gpg \-\-list-keys", "pub   1024D/C6XXXX57A 2010-01-13"
                 to get "gpg.keyname" in example it is  value "C6XXXX57A"

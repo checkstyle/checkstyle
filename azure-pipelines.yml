@@ -88,17 +88,17 @@ strategy:
     # OpenJDK11 verify
     'OpenJDK11 verify':
       image: 'ubuntu-24.04'
-      cmd: "mvn -e --no-transfer-progress verify"
+      cmd: "mvnw -e --no-transfer-progress verify"
 
     # MacOS JDK11 verify
     'MacOS JDK11 verify':
       image: 'macOS-14'
-      cmd: "JAVA_HOME=$JAVA_HOME_11_X64 mvn -e --no-transfer-progress verify"
+      cmd: "JAVA_HOME=$JAVA_HOME_11_X64 mvnw -e --no-transfer-progress verify"
 
     # MacOS JDK17 verify
     'MacOS JDK17 verify':
       image: 'macOS-14'
-      cmd: "JAVA_HOME=$JAVA_HOME_17_X64 mvn -e --no-transfer-progress verify"
+      cmd: "JAVA_HOME=$JAVA_HOME_17_X64 mvnw -e --no-transfer-progress verify"
 
     # versions to update
     'versions':
@@ -157,7 +157,7 @@ steps:
 
   - bash: |
       set -e
-      mvn --version
+      mvnw --version
       echo "ON_CRON_ONLY:"$ON_CRON_ONLY
       echo "BUILD_REASON:"$BUILD_REASON
       echo "cmd: "$(cmd)

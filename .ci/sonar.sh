@@ -5,11 +5,11 @@ curl --fail-with-body -X POST -u admin:admin \
     -F 'backup=@config/default_sonar_profile.xml' -v http://localhost:9000/api/profiles/restore
 
 # execute inspection
-mvn -e --no-transfer-progress sonar:sonar -P sonar -Dsonar.language=java \
+mvnw -e --no-transfer-progress sonar:sonar -P sonar -Dsonar.language=java \
   -Dsonar.profile=checkstyle-profile
 
 # Uncomment following to get HTML report.
-# mvn -e sonar:sonar -Dsonar.analysis.mode=preview -Dsonar.issuesReport.html.enable=true \
+# mvnw -e sonar:sonar -Dsonar.analysis.mode=preview -Dsonar.issuesReport.html.enable=true \
 #        -Dsonar.language=java -Dsonar.profile=checkstyle-profile
 
 

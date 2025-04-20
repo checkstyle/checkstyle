@@ -40,7 +40,7 @@ jobs:
       # Require to compile again in case previous step fails and sources are not compiled
       - name: Do a clean compile
         if: always()
-        run: mvn -e --no-transfer-progress clean compile
+        run: mvnw -e --no-transfer-progress clean compile
 
       - name: Execute Error-Prone on test-compile phase
         if: always()
