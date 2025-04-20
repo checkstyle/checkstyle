@@ -610,8 +610,63 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         final int number = 3;
         if (lineNo >= number) {
             final String prePreviousLine = getLine(lineNo - number);
+
             result = CommonUtil.isBlank(prePreviousLine);
+            final boolean straightPreviousLineIsEmpty = CommonUtil.isBlank(getLine(lineNo - 2));
+
+            if (straightPreviousLineIsEmpty && result) {
+                result = true;
+            }
+            else if (token.findFirstToken(TokenTypes.TYPE) != null) {
+
+                boolean upToPrePreviousLinesEmpty = false;
+
+                for (DetailAST typeChild = token.findFirstToken(TokenTypes.TYPE).getLastChild();
+                     typeChild != null; typeChild = typeChild.getPreviousSibling()) {
+
+                    if (isCommentNotOnPrevSiblingLines(typeChild, token)) {
+
+                        final String commentBeginningPreviousLine =
+                            getLine(typeChild.getLineNo() - 2);
+                        final String commentBeginningPrePreviousLine =
+                            getLine(typeChild.getLineNo() - 3);
+
+                        if (CommonUtil.isBlank(commentBeginningPreviousLine)
+                            && CommonUtil.isBlank(commentBeginningPrePreviousLine)) {
+                            upToPrePreviousLinesEmpty = true;
+                            break;
+                        }
+
+                    }
+                }
+
+                result = upToPrePreviousLinesEmpty;
+            }
         }
+
+        return result;
+    }
+
+    /**
+     * Checks if child token is one of the comment types and is not placed
+     * on the realm of a previous sibling of main token.
+     *
+     * @param child child token.
+     * @param token main token.
+     * @return true, if child token is comment and doesn't occupy main token's previous sibling.
+     */
+    private boolean isCommentNotOnPrevSiblingLines(DetailAST child, DetailAST token) {
+        DetailAST prevSiblingLastestChild = token.getPreviousSibling();
+        for (DetailAST tokenChild = prevSiblingLastestChild.getLastChild(); tokenChild != null;
+             tokenChild = tokenChild.getLastChild()) {
+            prevSiblingLastestChild = tokenChild;
+        }
+
+        final boolean result = (child.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+            || child.getType() == TokenTypes.SINGLE_LINE_COMMENT)
+            && child.getLineNo() != token.getPreviousSibling().getLineNo()
+            && child.getLineNo() != prevSiblingLastestChild.getLineNo();
+
         return result;
     }
 
@@ -685,7 +740,22 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (lineNo != 1) {
             // [lineNo - 2] is the number of the previous line as the numbering starts from zero.
             final String lineBefore = getLine(lineNo - 2);
-            result = CommonUtil.isBlank(lineBefore);
+
+            if (CommonUtil.isBlank(lineBefore)) {
+                result = true;
+            }
+            else if (token.findFirstToken(TokenTypes.TYPE) != null) {
+                for (DetailAST typeChild = token.findFirstToken(TokenTypes.TYPE).getLastChild();
+                     typeChild != null && !result; typeChild = typeChild.getPreviousSibling()) {
+
+                    if (isCommentNotOnPrevSiblingLines(typeChild, token)) {
+
+                        final String commentBeginningPreviousLine =
+                            getLine(typeChild.getLineNo() - 2);
+                        result = CommonUtil.isBlank(commentBeginningPreviousLine);
+                    }
+                }
+            }
         }
         return result;
     }
