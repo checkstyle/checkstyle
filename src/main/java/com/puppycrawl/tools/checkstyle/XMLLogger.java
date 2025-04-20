@@ -26,9 +26,9 @@ import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
@@ -62,7 +62,7 @@ public class XMLLogger
 
     /** Holds all messages for the given file. */
     private final Map<String, FileMessages> fileMessages =
-            new ConcurrentHashMap<>();
+            new HashMap<>();
 
     /**
      * Helper writer that allows easy encoding and printing.
@@ -184,12 +184,12 @@ public class XMLLogger
     public void addError(AuditEvent event) {
         if (event.getSeverityLevel() != SeverityLevel.IGNORE) {
             final String fileName = event.getFileName();
-            if (fileName == null || !fileMessages.containsKey(fileName)) {
-                writeFileError(event);
+            final FileMessages messages = fileMessages.get(fileName);
+            if (messages != null) {
+                messages.addError(event);
             }
             else {
-                final FileMessages messages = fileMessages.get(fileName);
-                messages.addError(event);
+                writeFileError(event);
             }
         }
     }
@@ -225,12 +225,12 @@ public class XMLLogger
     @Override
     public void addException(AuditEvent event, Throwable throwable) {
         final String fileName = event.getFileName();
-        if (fileName == null || !fileMessages.containsKey(fileName)) {
-            writeException(throwable);
+        final FileMessages messages = fileMessages.get(fileName);
+        if (messages != null) {
+            messages.addException(throwable);
         }
         else {
-            final FileMessages messages = fileMessages.get(fileName);
-            messages.addException(throwable);
+            writeException(throwable);
         }
     }
 
