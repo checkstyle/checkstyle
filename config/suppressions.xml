@@ -201,4 +201,10 @@
   <!-- Uses non-ascii symbols intentionally -->
   <suppress id="checkASCII"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]ConfigurationLoaderTest.java"/>
+  <suppress checks="ImportControl" files="[\\/]JavaAstVisitor.java$"/>
+  <suppress checks="ImportControl" files="[\\/]JavadocPackageCheck.java$"/>
+  <suppress checks="ImportControl" files="[\\/]SeverityLevelCounter.java$"/>
+  <suppress checks="ImportControl" files="[\\/]TranslationCheck.java$"/>
+  <suppress checks="ImportControl" files="[\\/]UniquePropertiesCheck.java$"/>
+  <suppress checks="ImportControl" files="[\\/]XMLLogger.java$"/>
 </suppressions>
