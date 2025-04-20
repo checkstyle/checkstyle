@@ -781,7 +781,7 @@
                        FileNotFoundException, TestException, Log, Sets, Multimap,
                        TokenStreamRecognitionException, RecognitionException,
                        TokenStreamException, IOException, Override, Deprecated, SafeVarargs,
-                       SuppressWarnings, FunctionalInterface, NoSuchMethodException,
+                       SuppressWarnings, FunctionalInterface, NoSuchMethodException, Nullable,
                        InvocationTargetException, IllegalAccessException"/>
     </module>
     <module name="CyclomaticComplexity">
