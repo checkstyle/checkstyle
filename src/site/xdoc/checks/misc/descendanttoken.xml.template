@@ -49,7 +49,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example2-config">
           To configure the check to produce a violation on a switch with too many cases:
@@ -66,7 +66,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example3-config">
           To configure the check to produce a violation on a switch that is
@@ -84,7 +84,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example4-config">
           To configure the check to produce a violation on a
@@ -102,7 +102,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example4.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example5-config">
           To configure the check to produce a violation on an initializer in
@@ -121,7 +121,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example5.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example6-config">
           To configure the check to produce a violation on a return statement
@@ -139,7 +139,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example6.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example7-config">
           To configure the check to produce a violation on a try statement
@@ -157,7 +157,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example7.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example8-config">
           To configure the check to produce a violation on a method with
@@ -175,7 +175,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example8.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example9-config">
           To configure the check to produce a violation on a method
@@ -193,7 +193,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example9.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example10-config">
           To configure the check to produce a violation on a method
@@ -211,7 +211,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example10.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example11-config">
           To configure the check to produce a violation on a method
@@ -229,7 +229,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example11.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example12-config">
           To configure the check to produce a violation on an empty statement:
@@ -246,7 +246,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example12.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example13-config">
           To configure the check to produce a violation on a class or interface
@@ -264,7 +264,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example13.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example14-config">
           To configure the check to produce a violation on
@@ -282,7 +282,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example14.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example15-config">
           To configure the check to produce a violation on a <code>String</code>
@@ -300,7 +300,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example15.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example16-config">
           To configure the check to produce a violation on an assert statement

@@ -48,6 +48,15 @@
   <mutation unstable="false">
     <sourceFile>CheckstyleAntTask.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
+    <mutatedMethod>createOverridingProperties</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::valueOf</description>
+    <lineContent>throw new BuildException(&quot;Error loading Properties file &apos;&quot;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CheckstyleAntTask.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
     <mutatedMethod>createRootModule</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/lang/Package::getName</description>
@@ -84,9 +93,27 @@
   <mutation unstable="false">
     <sourceFile>CheckstyleAntTask.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
+    <mutatedMethod>processFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::valueOf</description>
+    <lineContent>throw new BuildException(&quot;Unable to process files: &quot; + files, ex);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CheckstyleAntTask.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
     <mutatedMethod>retrieveAllScannedFiles</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/lang/Integer::valueOf</description>
     <lineContent>logIndex, fileNames.length, scanner.getBasedir()), Project.MSG_VERBOSE);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CheckstyleAntTask.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
+    <mutatedMethod>scanPath</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::valueOf</description>
+    <lineContent>log(pathIndex + &quot;) Scanning path &quot; + path, Project.MSG_VERBOSE);</lineContent>
   </mutation>
 </suppressedMutations>

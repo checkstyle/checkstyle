@@ -48,7 +48,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/packagedeclaration/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           Example of how the check works when matchDirectoryStructure option is set to false.
         </p>

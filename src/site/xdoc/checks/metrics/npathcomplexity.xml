@@ -189,7 +189,7 @@ public abstract class Example1 {
   public abstract String buzz();
   public abstract void print(String str);
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check with a threshold of 100:
         </p>

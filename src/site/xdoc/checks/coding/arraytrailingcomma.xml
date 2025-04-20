@@ -149,8 +149,7 @@ public class Example1 {
     2
   ,};
 }
-</code></pre></div>
-
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">To configure check to always validate trailing comma:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>AbstractHeaderCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck</mutatedClass>
+    <mutatedMethod>loadHeaderFile</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::valueOf</description>
+    <lineContent>throw new CheckstyleException(</lineContent>
+  </mutation>
+</suppressedMutations>

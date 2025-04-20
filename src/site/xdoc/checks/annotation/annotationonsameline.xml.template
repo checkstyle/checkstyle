@@ -39,8 +39,7 @@
           <param name="path"
                    value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationonsameline/Example1.java"/>
             <param name="type" value="code"/>
-        </macro>
-
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to check for annotations applied on
           interfaces, variables and constructors:
