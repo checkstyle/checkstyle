@@ -26,9 +26,9 @@ import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
@@ -62,7 +62,7 @@ public class XMLLogger
 
     /** Holds all messages for the given file. */
     private final Map<String, FileMessages> fileMessages =
-            new ConcurrentHashMap<>();
+            new HashMap<>();
 
     /**
      * Helper writer that allows easy encoding and printing.
