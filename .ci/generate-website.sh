@@ -2,6 +2,8 @@
 
 set -e
 
+chmod +x mvnw
+
 source ./.ci/util.sh
 
 if [[ -z $1 ]]; then
@@ -16,6 +18,6 @@ echo TARGET_VERSION="$TARGET_VERSION"
 git checkout "checkstyle-$TARGET_VERSION"
 
 echo "Generating web site"
-mvn -e --no-transfer-progress site -Pno-validations -Dmaven.javadoc.skip=false
+./mvnw -e --no-transfer-progress site -Pno-validations -Dmaven.javadoc.skip=false
 
 git checkout origin/master

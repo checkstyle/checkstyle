@@ -2,6 +2,8 @@
 
 set -e
 
+chmod +x ./mvnw
+
 source ./.ci/util.sh
 
 if [[ -z $1 ]]; then
@@ -32,5 +34,5 @@ SKIP_CHECKSTYLE="-Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
 SKIP_OTHERS="-Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dxml.skip=true -Dgpg.skip"
 
 echo "Version bump in pom.xml (release:prepare) ..."
-mvn -e --no-transfer-progress release:prepare -B -DpushChanges=false \
+./mvnw -e --no-transfer-progress release:prepare -B -DpushChanges=false \
     -Darguments="$SKIP_TEST $SKIP_CHECKSTYLE $SKIP_OTHERS"

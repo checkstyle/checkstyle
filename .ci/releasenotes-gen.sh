@@ -6,6 +6,8 @@
 
 set -e
 
+chmod +x ./mvnw
+
 if [ -z "$READ_ONLY_TOKEN" ]; then
   echo "'READ_ONLY_TOKEN' not found, exiting..."
   sleep 5s;
@@ -32,7 +34,7 @@ else
   cd ../
 fi
 cd .ci-temp/contribution/releasenotes-builder
-mvn -e --no-transfer-progress clean compile package
+./mvnw -e --no-transfer-progress clean compile package
 cd ../../../
 
 # we need to do full clone as Travis do "git clone --depth=50"
@@ -52,7 +54,7 @@ LATEST_RELEASE_TAG=$(git describe "$(git rev-list --tags --max-count=1)")
 cd ../../
 
 # shellcheck disable=2016 # we do not want to expand properties in this command
-CS_RELEASE_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
+CS_RELEASE_VERSION=$(./mvnw -e --no-transfer-progress -q -Dexec.executable='echo' \
               -Dexec.args='${project.version}' \
               --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec | sed 's/-SNAPSHOT//')
 echo LATEST_RELEASE_TAG="$LATEST_RELEASE_TAG"
