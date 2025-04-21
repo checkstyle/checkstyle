@@ -44,7 +44,7 @@
           Imagine we want to define different requirements for test sources
           than for main code.
         </p>
-        <p>
+        <p id="Example1-config">
           Common part <code>checkstyle-common.xml</code>:
           <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name=&quot;FileLength&quot;&gt;
@@ -52,7 +52,7 @@
 &lt;/module&gt;
           </code></pre></div>
         </p>
-        <p>
+        <p id="Example1Main-config">
           Main config <code>checkstyle.xml</code>:
           <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;?xml version=&quot;1.0&quot;?&gt;
@@ -74,7 +74,7 @@
 &lt;/module&gt;
           </code></pre></div>
         </p>
-        <p>
+        <p id="Example1Test-config">
           Test config <code>checkstyle-test.xml</code>:
           <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;?xml version=&quot;1.0&quot;?&gt;
@@ -96,7 +96,7 @@
 &lt;/module&gt;
           </code></pre></div>
         </p>
-        <p>
+        <p id="Example1-code">
           Target file for validation <code>Test.java</code>:
           <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Test {
@@ -104,7 +104,7 @@ class Test {
 }
           </code></pre></div>
         </p>
-        <p>
+        <p id="Example1-output1">
           Example of execution for <code>checkstyle.xml</code>. Violation from Check of
           <code>common.xml</code> is expected, validation of field name is done by main code rules:
           <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -117,7 +117,7 @@ Audit done.
 Checkstyle ends with 2 errors.
           </code></pre></div>
         </p>
-        <p>
+        <p id="Example1-output2">
           Example of execution for <code>checkstyle-test.xml</code>. Violation from Check of
           <code>common.xml</code> is expected, validation of field name is done by test code rules:
           <div class="wrapper"><pre class="prettyprint"><code class="language-java">

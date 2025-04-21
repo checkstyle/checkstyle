@@ -332,14 +332,9 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      */
     private static int getDistToVariableUsageInChildNode(DetailAST childNode,
                                                          int currentDistToVarUsage) {
-        DetailAST examineNode = childNode;
-        if (examineNode.getType() == TokenTypes.LABELED_STAT) {
-            examineNode = examineNode.getFirstChild().getNextSibling();
-        }
-
         int resultDist = currentDistToVarUsage;
 
-        switch (examineNode.getType()) {
+        switch (childNode.getType()) {
             case TokenTypes.SLIST:
                 resultDist = 0;
                 break;
@@ -347,7 +342,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             case TokenTypes.LITERAL_WHILE:
             case TokenTypes.LITERAL_DO:
             case TokenTypes.LITERAL_IF:
-            case TokenTypes.LITERAL_SWITCH:
                 // variable usage is in inner scope, treated as 1 block
                 // or in operator expression, then distance + 1
                 resultDist++;
