@@ -955,7 +955,7 @@ nrmancuso
 ntokens
 NTU
 nullcase
-NULLCHECK
+nullcheck
 nullness
 numberperline
 numericliterals
@@ -1072,6 +1072,7 @@ Popup
 Postgresql
 ppc
 prebuilts
+prefs
 PRESIZE
 prettyprint
 printf
@@ -1387,6 +1388,7 @@ uninterned
 uniq
 uniqueproperties
 Unitless
+unnecessarynullcheckwithinstanceof
 unnecessaryparentheses
 unnecessarysemicolonafteroutertypedeclaration
 unnecessarysemicolonaftertypememberdeclaration
