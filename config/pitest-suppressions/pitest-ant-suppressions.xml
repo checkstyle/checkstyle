@@ -9,6 +9,7 @@
     <lineContent>overrideProps.add(property);</lineContent>
   </mutation>
 
+
   <mutation unstable="false">
     <sourceFile>CheckstyleAntTask.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
