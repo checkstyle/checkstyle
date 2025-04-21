@@ -35,7 +35,6 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -195,7 +194,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     private final Log log;
 
     /** The files to process. */
-    private final Set<File> filesToProcess = ConcurrentHashMap.newKeySet();
+    private final Set<File> filesToProcess = new HashSet<>();
 
     /**
      * Specify

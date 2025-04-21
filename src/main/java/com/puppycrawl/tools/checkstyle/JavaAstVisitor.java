@@ -19,13 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 
 import org.antlr.v4.runtime.BufferedTokenStream;
@@ -1593,7 +1593,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
             // operation
             final Queue<DetailAstImpl> descendantList = binOpList.parallelStream()
                     .map(this::getInnerBopAst)
-                    .collect(Collectors.toCollection(ConcurrentLinkedQueue::new));
+                    .collect(Collectors.toCollection(ArrayDeque::new));
 
             bop.addChild(descendantList.poll());
             DetailAstImpl pointer = bop.getFirstChild();
