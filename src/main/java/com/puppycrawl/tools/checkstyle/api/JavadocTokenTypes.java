@@ -2820,9 +2820,6 @@ public final class JavadocTokenTypes {
      *     |--NEWLINE -> \r\n
      *     |--LEADING_ASTERISK ->  *
      *     |--TEXT ->
-     *     |--NEWLINE -> \r\n
-     *     |--LEADING_ASTERISK ->  *
-     *     |--TEXT ->
      *     `--HTML_ELEMENT_END -> HTML_ELEMENT_END
      *         |--START -> <
      *         |--SLASH -> /
