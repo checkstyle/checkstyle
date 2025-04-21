@@ -14,7 +14,7 @@ public class InputCovariantEqualsOne
 {
     private class Inner
     {
-        public boolean equals(Inner aInner) // violation
+        public boolean equals(Inner aInner) // violation 'Covariant Equals'
         {
             return false;
         }
@@ -33,7 +33,7 @@ public class InputCovariantEqualsOne
         }
     }
 
-    public boolean equals(InputCovariantEqualsOne aInputCovariantEquals) // violation
+    public boolean equals(InputCovariantEqualsOne obj) // violation 'Covariant Equals'
     {
         return false;
     }
@@ -67,7 +67,7 @@ class InputCovariant3
 
 class InputCovariant4
 {
-    public boolean equals(int i) // violation
+    public boolean equals(int i) // violation 'Covariant Equals'
     {
         return false;
     }
@@ -81,7 +81,7 @@ class InputAnonymousIC
             {
                 return 0;
             }
-            public boolean equals(String aString) // violation
+            public boolean equals(String aString) // violation 'Covariant Equals'
             {
                 return false;
             }
