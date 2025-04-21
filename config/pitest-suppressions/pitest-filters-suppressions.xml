@@ -5,28 +5,9 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable checkRegexp</description>
-    <lineContent>checkRegexp = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SuppressFilterElement.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable columnFilter</description>
     <lineContent>columnFilter = null;</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SuppressFilterElement.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable columnsCsv</description>
-    <lineContent>columnsCsv = columns;</lineContent>
-  </mutation>
-
   <mutation unstable="false">
     <sourceFile>SuppressFilterElement.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
@@ -34,15 +15,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable columnsCsv</description>
     <lineContent>columnsCsv = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SuppressFilterElement.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable fileRegexp</description>
-    <lineContent>fileRegexp = null;</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -60,25 +32,7 @@
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable linesCsv</description>
-    <lineContent>linesCsv = lines;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SuppressFilterElement.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable linesCsv</description>
     <lineContent>linesCsv = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SuppressFilterElement.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable messageRegexp</description>
-    <lineContent>messageRegexp = null;</lineContent>
   </mutation>
 
   <mutation unstable="false">

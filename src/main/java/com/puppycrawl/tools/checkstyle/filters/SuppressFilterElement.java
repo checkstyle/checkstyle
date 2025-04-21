@@ -65,54 +65,6 @@ public class SuppressFilterElement
     private final String columnsCsv;
 
     /**
-     * Constructs a {@code SuppressFilterElement} for a
-     * file name pattern.
-     *
-     * @param files   regular expression for names of filtered files.
-     * @param checks  regular expression for filtered check classes.
-     * @param message regular expression for messages.
-     * @param modId   the id
-     * @param lines   lines CSV values and ranges for line number filtering.
-     * @param columns columns CSV values and ranges for column number filtering.
-     */
-    public SuppressFilterElement(String files, String checks,
-                           String message, String modId, String lines, String columns) {
-        if (files == null) {
-            fileRegexp = null;
-        }
-        else {
-            fileRegexp = Pattern.compile(files);
-        }
-        if (checks == null) {
-            checkRegexp = null;
-        }
-        else {
-            checkRegexp = Pattern.compile(checks);
-        }
-        if (message == null) {
-            messageRegexp = null;
-        }
-        else {
-            messageRegexp = Pattern.compile(message);
-        }
-        moduleId = modId;
-        linesCsv = lines;
-        if (lines == null) {
-            lineFilter = null;
-        }
-        else {
-            lineFilter = new CsvFilterElement(lines);
-        }
-        columnsCsv = columns;
-        if (columns == null) {
-            columnFilter = null;
-        }
-        else {
-            columnFilter = new CsvFilterElement(columns);
-        }
-    }
-
-    /**
      * Creates a {@code SuppressFilterElement} instance.
      *
      * @param files regular expression for filtered file names
@@ -144,6 +96,42 @@ public class SuppressFilterElement
             columnsCsv = columns;
             columnFilter = new CsvFilterElement(columns);
         }
+    }
+
+    /**
+     * Constructs a {@code SuppressFilterElement} using regular expressions
+     * as {@code String}s. These are internally compiled into {@code Pattern}
+     * objects and passed to the main constructor.
+     *
+     * @param files   regular expression for names of filtered files.
+     * @param checks  regular expression for filtered check classes.
+     * @param message regular expression for messages.
+     * @param modId   the id
+     * @param lines   lines CSV values and ranges for line number filtering.
+     * @param columns columns CSV values and ranges for column number filtering.
+     */
+    public SuppressFilterElement(String files, String checks, String message,
+                                 String modId, String lines, String columns) {
+        this(toPattern(files), toPattern(checks), toPattern(message),
+                modId, lines, columns);
+    }
+
+    /**
+     * Converts a string into a compiled {@code Pattern}, or returns {@code null}
+     * if the input is {@code null}.
+     *
+     * @param regex the regular expression as a string, may be {@code null}.
+     * @return the compiled {@code Pattern}, or {@code null} if input is {@code null}.
+     */
+    private static Pattern toPattern(String regex) {
+        final Pattern result;
+        if (regex != null) {
+            result = Pattern.compile(regex);
+        }
+        else {
+            result = null;
+        }
+        return result;
     }
 
     @Override
