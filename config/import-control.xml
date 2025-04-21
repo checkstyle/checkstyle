@@ -4,7 +4,7 @@
     "https://checkstyle.org/dtds/import_control_1_4.dtd">
 
 <import-control pkg="com.puppycrawl.tools.checkstyle">
-
+  <disallow pkg="java.util.concurrent"/>
   <!-- java.io.FileInputStream and java.io.FileOutputStream are disallowed in favor of
          Files.newInputStream and Files.newOutputStream.
          See https://github.com/checkstyle/checkstyle/issues/5638 -->
