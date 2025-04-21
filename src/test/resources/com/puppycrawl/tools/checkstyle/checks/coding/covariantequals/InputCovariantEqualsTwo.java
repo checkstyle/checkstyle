@@ -38,11 +38,11 @@ public class InputCovariantEqualsTwo {
   enum InputEnumCovariant {
     EQUALS;
 
-    public boolean equals(InputEnumCovariant inputEnumCovariant) { // violation
+    public boolean equals(InputEnumCovariant obj) { // violation 'Covariant Equals'
         return false;
     }
 
-    int equals(Integer integer) { // violation
+    int equals(Integer integer) { // violation 'Covariant Equals'
         return 0;
     }
   }
