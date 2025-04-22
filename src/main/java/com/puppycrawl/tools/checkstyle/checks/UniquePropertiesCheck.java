@@ -27,7 +27,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -106,12 +105,11 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
                     ex.getLocalizedMessage());
         }
 
-        for (Entry<String, AtomicInteger> duplication : properties
-                .getDuplicatedKeys().entrySet()) {
+        for (Entry<String, Integer> duplication : properties.getDuplicatedKeys().entrySet()) {
             final String keyName = duplication.getKey();
             final int lineNumber = getLineNumber(fileText, keyName);
             // Number of occurrences is number of duplications + 1
-            log(lineNumber, MSG_KEY, keyName, duplication.getValue().get() + 1);
+            log(lineNumber, MSG_KEY, keyName, duplication.getValue() + 1);
         }
     }
 
@@ -174,7 +172,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
          * Map, holding duplicated keys and their count. Keys are added here only if they
          * already exist in Properties' inner map.
          */
-        private final Map<String, AtomicInteger> duplicatedKeys = new HashMap<>();
+        private final Map<String, Integer> duplicatedKeys = new HashMap<>();
 
         /**
          * Puts the value into properties by the key specified.
@@ -184,9 +182,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
             final Object oldValue = super.put(key, value);
             if (oldValue != null && key instanceof String) {
                 final String keyString = (String) key;
-
-                duplicatedKeys.computeIfAbsent(keyString, empty -> new AtomicInteger(0))
-                        .incrementAndGet();
+                duplicatedKeys.put(keyString, duplicatedKeys.getOrDefault(keyString, 0) + 1);
             }
             return oldValue;
         }
@@ -196,10 +192,11 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
          *
          * @return A collection of duplicated keys.
          */
-        public Map<String, AtomicInteger> getDuplicatedKeys() {
+        public Map<String, Integer> getDuplicatedKeys() {
             return new HashMap<>(duplicatedKeys);
         }
 
     }
 
 }
+
