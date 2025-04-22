@@ -168,7 +168,7 @@ class Example1 {
         }
     }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to enforce the indentation style recommended by
           Oracle:
@@ -230,7 +230,7 @@ class Example2 {
         }
     }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the Check to enforce strict condition in line-wrapping validation.
         </p>
@@ -290,7 +290,7 @@ class Example3 {
         }
     }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-code">
           But if forceStrictCondition = false, this code is valid:
         </p>

@@ -100,7 +100,7 @@ messages_es.properties
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check to validate only bundles which base names
           start with &quot;ButtonLabels&quot;:
@@ -132,7 +132,7 @@ ButtonLabels_fr.properties
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to check only files which have '.properties' and '.translations'
           extensions:

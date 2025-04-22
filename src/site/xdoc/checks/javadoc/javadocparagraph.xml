@@ -140,7 +140,7 @@ public class Example1 {
    */
   void foo3() {}
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To not allow newlines and spaces immediately after the &lt;p&gt; tag:
         </p>

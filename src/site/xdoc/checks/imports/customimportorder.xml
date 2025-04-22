@@ -194,7 +194,7 @@ import java.time.*;
 import static java.io.File.separator;
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that it checks in the order
           (static imports,standard java packages,third party package):
@@ -223,7 +223,7 @@ import static java.io.File.separator; // violation, 'wrong order'
 import org.apache.commons.io.FileUtils;
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check such that only java packages are included in standard java packages
         </p>
@@ -253,7 +253,7 @@ import javax.net.*; // violation, 'should be separated'
 import org.apache.commons.io.FileUtils; // violation, 'Extra separation'
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the check to include only &quot;com&quot; packages
           as third party group imports:
@@ -284,7 +284,7 @@ import javax.net.*;
 import org.apache.commons.io.FileUtils; // violation, 'should be placed at the end'
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation, 'should be separated'
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           To configure the check to force some packages in special import group:
         </p>
@@ -314,7 +314,7 @@ import java.time.*;
 import javax.net.*;
 
 import org.apache.commons.io.FileUtils; // violation, 'wrong order'
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example6-config">
           To configure the check such that empty line separator between two groups is enabled:
         </p>
@@ -345,7 +345,7 @@ import javax.net.*;
 import org.apache.commons.io.FileUtils; // violation, 'should be separated'
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation, 'should be separated'
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example7-config">
           To configure the check such that import groups are forced to be sorted alphabetically:
         </p>
@@ -386,7 +386,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
               then &quot;org&quot; and then all other imports</li>
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by single blank line</li>
-        </ul>
+        </ul><hr class="example-separator"/>
         <p id="Example8-config">Notes:</p>
         <ul>
           <li>&quot;com&quot; package is not mentioned on configuration, because it is
@@ -422,7 +422,7 @@ import org.apache.commons.io.FileUtils; // violation, 'should be separated'
 
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example9-config">
           To configure the check so that it matches default Eclipse formatter configuration
            (tested on Mars release):</p>
@@ -472,8 +472,7 @@ import org.apache.commons.io.FileUtils;
               &quot;java&quot;, then &quot;javax&quot; and &quot;java&quot;</li>
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by one blank line</li>
-        </ul>
-
+        </ul><hr class="example-separator"/>
         <p id="Example10-config">
         Note: &quot;separated&quot; option is disabled because IDEA default has blank line
         between &quot;java&quot; and static imports, and no blank line between
@@ -511,7 +510,7 @@ import org.apache.commons.io.FileUtils; // violation, should be in THIRD PARTY P
 
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation, 'wrong order'
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // violation, 'wrong order'
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example11-config">
           To configure the check so that it matches default NetBeans formatter configuration
            (tested on v8):</p>
@@ -542,7 +541,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
 
 import org.apache.commons.io.FileUtils; // violation, 'Extra separation'
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example12-config">
           To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
           thirdPartyPackageRegExp and standardPackageRegExp options.
@@ -574,7 +573,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
 
 import org.apache.commons.io.FileUtils;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example13-config">
           Also, this check can be configured to force empty line separator between
           import groups. For example.
@@ -601,7 +600,7 @@ import javax.net.*;
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
 import org.apache.commons.io.FileUtils;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example14-config">
           It is possible to enforce <a href="https://en.wikipedia.org/wiki/ASCII#Order">
           ASCII sort order</a>
@@ -643,7 +642,7 @@ import static java.util.Collections.emptyList;
 import com.google.common.annotations.GwtCompatible; // violation, 'wrong order'
 
 import java.lang.String;
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example15-config">
           configure as follows:
         </p>

@@ -76,7 +76,7 @@ public class ExampleClass {
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to allow no more than 5 methods per type declaration:
         </p>
@@ -90,7 +90,7 @@ public class ExampleClass {
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to allow no more than 2 public methods per
           type declaration, and 6 methods in total:

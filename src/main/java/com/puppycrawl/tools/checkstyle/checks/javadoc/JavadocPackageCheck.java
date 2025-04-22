@@ -23,8 +23,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 
 import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
@@ -88,7 +88,7 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
     public static final String MSG_PACKAGE_INFO = "javadoc.packageInfo";
 
     /** The directories checked. */
-    private final Set<File> directoriesChecked = ConcurrentHashMap.newKeySet();
+    private final Set<File> directoriesChecked = new HashSet<>();
 
     /** Allow legacy {@code package.html} file to be used. */
     private boolean allowLegacy;

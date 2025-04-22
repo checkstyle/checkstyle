@@ -9,8 +9,7 @@ allowNewlineParagraph = false
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
 public class InputJavadocParagraphIncorrect5 {
-    // violation 3 lines below 'tag should be preceded with an empty line.'
-    // violation 4 lines below 'tag should be preceded with an empty line.'
+
     /**
      * <h1><p>Testing....</h1>
      *
@@ -22,14 +21,9 @@ public class InputJavadocParagraphIncorrect5 {
      *
      * </table>
      */
-    // 2 violations 5 lines above:
-    //  '<p> tag should be placed immediately before the first word'
-    //  '<p> tag should be preceded with an empty line.'
     void fooooo() {}
 
-    // violation 4 lines below 'tag should be preceded with an empty line.'
-    // violation 7 lines below 'tag should be preceded with an empty line.'
-    // violation 12 lines below 'tag should be preceded with an empty line.'
+
     /**
      * <b><p>testtttt.....</b>
      *
@@ -68,7 +62,6 @@ public class InputJavadocParagraphIncorrect5 {
      *  </ul>
      * </ul>
      */
-    // violation 4 lines above 'tag should be preceded with an empty line.'
     void fooooooo() {}
 
     // 2 violations 6 lines below:

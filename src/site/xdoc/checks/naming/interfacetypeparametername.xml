@@ -52,7 +52,7 @@ class Example1 {
   interface FirstInterface&lt;T&gt; {}
   interface SecondInterface&lt;t&gt; {} // violation 'Name 't' must match pattern'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check for names that are only a single
           letter is:
