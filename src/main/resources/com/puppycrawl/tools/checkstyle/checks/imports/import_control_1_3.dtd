@@ -90,3 +90,6 @@
 <!ELEMENT disallow EMPTY>
 <!ATTLIST disallow
   %attlist.importrule;>
+<!ELEMENT forbid EMPTY>
+<!ATTLIST forbid
+  %attlist.importrule;>
