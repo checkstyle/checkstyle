@@ -664,7 +664,7 @@ public class MethodLimitCheck extends AbstractCheck
         specifically, as well as regular text files.
       </p>
       <p>
-        For Java,
+        For Java:
       </p>
       <ul>
         <li>

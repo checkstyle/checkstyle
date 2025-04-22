@@ -5,4 +5,5 @@
 
 <import-control pkg="wrong">
   <disallow pkg="java.util"/>
+  <forbid pkg="java.util"/>
 </import-control>
