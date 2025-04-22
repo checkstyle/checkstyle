@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-// violation above 'only filenames in camelcase is allowed'
+<!-- violation above 'only filenames in camelcase is allowed' -->
+<module name="IllegalImport">
+  <property name="illegalPkgs" value="java.util.concurrent"/>
+</module>
+
