@@ -15,10 +15,12 @@ import java.lang.annotation.Documented;
 @SuppressWarnings(value={"unchecked", "unused"})
 public class InputSuppressWarningsExpanded1
 {
-    @SuppressWarnings(value={"   "}) // violation
+    // violation below, 'The warning '   ' cannot be suppressed at this location'
+    @SuppressWarnings(value={"   "})
     class Empty {
 
-        @SuppressWarnings(value={"unchecked", ""}) // violation
+        // violation below, 'The warning '' cannot be suppressed at this location'
+        @SuppressWarnings(value={"unchecked", ""})
         public Empty() {
 
         }
@@ -51,7 +53,8 @@ public class InputSuppressWarningsExpanded1
     }
 
     @Documented
-    @SuppressWarnings(value={}) // violation
+    @SuppressWarnings(value={})
+    // violation above, 'The warning '' cannot be suppressed at this location'
     @interface MoreSweetness {
 
         @SuppressWarnings(value={"unused", "bleh"})
@@ -60,7 +63,8 @@ public class InputSuppressWarningsExpanded1
 
     public class Junk {
 
-        @SuppressWarnings(value={}) // violation
+        // violation below, 'The warning '' cannot be suppressed at this location'
+        @SuppressWarnings(value={})
         int a = 1;
 
         @SuppressWarnings(value={"unchecked"})

@@ -15,5 +15,5 @@ package com.puppycrawl.tools.checkstyle.grammar;
  */
 public class InputGrammar
 {
-    int ÃЯ = 1; // illegal, unless UTF-8 // violation
+    int ÃЯ = 1; // illegal, unless UTF-8 // violation 'Name 'ÃЯ' must match pattern'
 }

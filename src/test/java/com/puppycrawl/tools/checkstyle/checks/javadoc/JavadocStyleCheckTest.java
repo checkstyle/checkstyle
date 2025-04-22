@@ -822,4 +822,16 @@ public class JavadocStyleCheckTest
                 getPath("InputJavadocStyleCheck5.java"),
                 expected);
     }
+
+    @Test
+    public void testJavadocStyleAboveComments() throws Exception {
+        final String[] expected = {
+            "13: " + getCheckMessage(MSG_NO_PERIOD),
+            "20: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleAboveComments.java"),
+                expected);
+    }
 }

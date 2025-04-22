@@ -101,6 +101,13 @@ public int checkReturnTag(final int aTagIndex,
               <td>8.42</td>
             </tr>
             <tr>
+              <td>allowInlineReturn</td>
+              <td>Control whether to allow inline return tags.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>10.23.0</td>
+            </tr>
+            <tr>
               <td>allowMissingParamTags</td>
               <td>Control whether to ignore violations when a method has parameters but does not have matching <code>param</code> tags in the javadoc.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
@@ -194,7 +201,7 @@ public class Example1 {
   void m3(int p1) {}
   // violation above, 'Expected @param tag for 'p1''
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check for only <code>public</code>
           modifier, ignoring any missing param tags is:
@@ -234,7 +241,7 @@ public class Example2 {
   void m3(int p1) {}
 
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
             To configure the check for methods which are in <code>private</code> and
           <code>package</code>, but not any other modifier:
@@ -272,7 +279,7 @@ public class Example3 {
   void m3(int p1) {}
 
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
               To configure the check to ignore any missing return tags:
         </p>
@@ -309,7 +316,7 @@ public class Example4 {
   void m3(int p1) {}
   // violation above, 'Expected @param tag for 'p1''
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
               To configure the check to ignore Methods with annotation <code>Deprecated</code>:
         </p>
@@ -346,7 +353,7 @@ public class Example5 {
   void m3(int p1) {}
   // violation above, 'Expected @param tag for 'p1''
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example6-config">
               To configure the check only for tokens which are Constructor Definitions:
         </p>
@@ -383,8 +390,7 @@ public class Example6 {
   void m3(int p1) {}
 
 }
-</code></pre></div>
-
+</code></pre></div><hr class="example-separator"/>
         <p id="Example7-config">
           To configure the check to validate <code>throws</code> tags, you can use following config.
         </p>
@@ -481,6 +487,36 @@ public class Example7 {
       System.out.println(s);
     };
   }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure the check to allow inline <code>return</code> tags,
+          you can use following config.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocMethod"&gt;
+        &lt;property name="allowInlineReturn" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code"> Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example8 {
+
+  /**
+   * {@return the foo}
+   */
+  public int getFoo() { return 0; }
+
+  /**
+   * Returns the bar
+   * @return the bar
+   */
+  public int getBar() { return 0; }
+
 }
 </code></pre></div>
       </subsection>

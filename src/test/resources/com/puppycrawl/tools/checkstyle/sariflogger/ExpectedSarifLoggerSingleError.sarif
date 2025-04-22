@@ -24,19 +24,19 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file:Test.java"
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerSingleError.java"
                 },
                 "region": {
-                  "startColumn": 1,
-                  "startLine": 1
+                  "startColumn": 8,
+                  "startLine": 11
                 }
               }
             }
           ],
           "message": {
-            "text": "found an error"
+            "text": "Unused import - java.util.List."
           },
-          "ruleId": "ruleId"
+          "ruleId": "import.unused"
         }
       ]
     }

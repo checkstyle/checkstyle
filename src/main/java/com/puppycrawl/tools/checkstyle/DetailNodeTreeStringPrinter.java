@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseStatus;
@@ -169,8 +168,7 @@ public final class DetailNodeTreeStringPrinter {
      * @throws IOException if the file could not be read.
      */
     private static DetailNode parseFile(File file) throws IOException {
-        final FileText text = new FileText(file.getAbsoluteFile(),
-            System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
+        final FileText text = new FileText(file, System.getProperty("file.encoding"));
         return parseJavadocAsDetailNode(text.getFullText().toString());
     }
 

@@ -15,10 +15,12 @@ import java.lang.annotation.Documented;
 @SuppressWarnings("unchecked")
 public class InputSuppressWarningsSingle1
 {
-    @SuppressWarnings("   ") // violation
+    // violation below, 'The warning '   ' cannot be suppressed at this location'
+    @SuppressWarnings("   ")
     class Empty {
 
-        @SuppressWarnings("") // violation
+        // violation below, 'The warning '' cannot be suppressed at this location'
+        @SuppressWarnings("")
         public Empty() {
 
         }
@@ -60,7 +62,8 @@ public class InputSuppressWarningsSingle1
 
     public class Junk {
 
-        @SuppressWarnings("") // violation
+        // violation below, 'The warning '' cannot be suppressed at this location'
+        @SuppressWarnings("")
         int a = 1;
 
         @SuppressWarnings("unchecked")
@@ -71,20 +74,24 @@ public class InputSuppressWarningsSingle1
         }
     }
 
-    @SuppressWarnings((false) ? "unchecked" : "") // violation
+    // violation below, 'The warning '' cannot be suppressed at this location'
+    @SuppressWarnings((false) ? "unchecked" : "")
     class Cond {
 
-        @SuppressWarnings((false) ? "" : "unchecked") // violation
+        // violation below, 'The warning '' cannot be suppressed at this location'
+        @SuppressWarnings((false) ? "" : "unchecked")
         public Cond() {
 
         }
 
-        @SuppressWarnings((false) ? (true) ? "   " : "unused" : "unchecked") // violation
+        // violation below, 'The warning '   ' cannot be suppressed at this location'
+        @SuppressWarnings((false) ? (true) ? "   " : "unused" : "unchecked")
         public void aCond1() {
 
         }
 
-        @SuppressWarnings((false) ? "unchecked" : (true) ? "   " : "unused") // violation
+        // violation below, 'The warning '   ' cannot be suppressed at this location'
+        @SuppressWarnings((false) ? "unchecked" : (true) ? "   " : "unused")
         public void aCond2() {
 
         }

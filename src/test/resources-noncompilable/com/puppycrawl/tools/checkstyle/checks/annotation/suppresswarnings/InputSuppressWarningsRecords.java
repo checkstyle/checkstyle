@@ -27,7 +27,8 @@ public record InputSuppressWarningsRecords
 
     @SuppressWarnings(value = {"unchecked", ""}) // 2 violations
     public InputSuppressWarningsRecords{}
-    @SuppressWarnings(value = {"   "}) // violation
+    // violation below, 'The warning '   ' cannot be suppressed at this location'
+    @SuppressWarnings(value = {"   "})
     class Empty {
 
         @SuppressWarnings(value = {"unchecked", ""}) // 2 violations
@@ -36,7 +37,8 @@ public record InputSuppressWarningsRecords
         }
     }
 
-    @SuppressWarnings(value = {"unused"}) // violation
+    // violation below, 'The warning 'unused' cannot be suppressed at this location'
+    @SuppressWarnings(value = {"unused"})
     enum Duh {
 
         @SuppressWarnings(value = {"unforgiven", "    un"}) // 2 violations
@@ -45,19 +47,22 @@ public record InputSuppressWarningsRecords
         public static void foo() {
 
             Object myHashMap;
-            @SuppressWarnings(value = {"unused"}) int x = 42;  // violation
+            // violation below, 'The warning 'unused' cannot be suppressed at this location'
+            @SuppressWarnings(value = {"unused"}) int x = 42;
 
         }
     }
 
-    @SuppressWarnings(value = {"abcun"}) // violation
+    // violation below, 'The warning 'abcun' cannot be suppressed at this location'
+    @SuppressWarnings(value = {"abcun"})
     @Documented
     @interface inter {
         int cool();
     }
 
     @Documented
-    @SuppressWarnings(value = {}) // violation
+    @SuppressWarnings(value = {})
+    // violation above, 'The warning '' cannot be suppressed at this location'
     @interface MoreSweetness {
 
         @SuppressWarnings(value = {"unused", "something else"}) // 2 violations
@@ -66,14 +71,17 @@ public record InputSuppressWarningsRecords
 
     public record MyRecord() {
 
-        @SuppressWarnings(value = {}) // violation
+        // violation below, 'The warning '' cannot be suppressed at this location'
+        @SuppressWarnings(value = {})
         static int a = 1;
 
-        @SuppressWarnings(value = {"unchecked"}) // violation
+        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        @SuppressWarnings(value = {"unchecked"})
         @Deprecated
         static int b = 1;
 
-        void doFoo(String s, @SuppressWarnings(value = {"unchecked"}) String y) { // violation
+        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        void doFoo(String s, @SuppressWarnings(value = {"unchecked"}) String y) {
 
         }
     }

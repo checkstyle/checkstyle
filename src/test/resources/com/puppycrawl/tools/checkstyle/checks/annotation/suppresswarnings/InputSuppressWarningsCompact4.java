@@ -10,7 +10,8 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 
 import java.lang.annotation.Documented;
 
-@SuppressWarnings({"unchecked", "unused"}) // violation
+// violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+@SuppressWarnings({"unchecked", "unused"})
 public class InputSuppressWarningsCompact4
 {
     @SuppressWarnings({"   "})

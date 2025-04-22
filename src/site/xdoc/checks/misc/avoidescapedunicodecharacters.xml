@@ -96,7 +96,7 @@ public class Example1 {
     return '\ufeff' + content;
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check to allow using escapes
           for non-printable, control characters:
@@ -131,7 +131,7 @@ public class Example2 {
     return '\ufeff' + content;
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           An example of how to configure the check to allow using escapes
           if trail comment is present:
@@ -166,7 +166,7 @@ public class Example3 {
     return '\ufeff' + content;
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           An example of how to configure the check to allow if
           all characters in literal are escaped.
@@ -199,7 +199,7 @@ public class Example4 {
     return '\ufeff' + content;
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           An example of how to configure the check to allow using escapes
           for non-printable whitespace characters:

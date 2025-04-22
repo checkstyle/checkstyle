@@ -50,9 +50,9 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   interface FirstInterface&lt;T&gt; {}
-  interface SecondInterface&lt;t&gt; {} // violation
+  interface SecondInterface&lt;t&gt; {} // violation 'Name 't' must match pattern'
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check for names that are only a single
           letter is:
@@ -71,7 +71,7 @@ class Example1 {
 class Example2 {
   interface FirstInterface&lt;T&gt; {}
   interface SecondInterface&lt;t&gt; {}
-  interface ThirdInterface&lt;type&gt; {} // violation
+  interface ThirdInterface&lt;type&gt; {} // violation 'Name 'type' must match pattern'
 }
 </code></pre></div>
       </subsection>

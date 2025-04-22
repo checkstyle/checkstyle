@@ -59,7 +59,7 @@
           validations near code that has  <code>@SuppressWarnings("checkstyle:&lt;ID&gt;")</code> or
           just <code>@SuppressWarnings("&lt;ID&gt;")</code> annotation, where ID is the ID of checks
           you want to suppress.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example2-config">Example of suppression by prefix "checkstyle:":</p>
         <macro name="example">
           <param name="path"

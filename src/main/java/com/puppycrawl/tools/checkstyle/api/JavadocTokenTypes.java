@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParser;
  * Syntax Tree for the javadoc grammar.
  *
  * @see <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
- * javadoc - The Java API Documentation Generator</a>
+ *     javadoc - The Java API Documentation Generator</a>
  */
 public final class JavadocTokenTypes {
 
@@ -52,7 +52,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCDBGG">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int RETURN_LITERAL = JavadocParser.RETURN_LITERAL;
@@ -75,7 +75,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#deprecated">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int DEPRECATED_LITERAL = JavadocParser.DEPRECATED_LITERAL;
@@ -98,7 +98,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHGJGD">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int SINCE_LITERAL = JavadocParser.SINCE_LITERAL;
@@ -122,7 +122,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDJBFDB">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int SERIAL_DATA_LITERAL = JavadocParser.SERIAL_DATA_LITERAL;
@@ -154,7 +154,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGHIDG">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int SERIAL_FIELD_LITERAL = JavadocParser.SERIAL_FIELD_LITERAL;
@@ -183,7 +183,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHJECF">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int PARAM_LITERAL = JavadocParser.PARAM_LITERAL;
@@ -212,7 +212,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDIEDI">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int SEE_LITERAL = JavadocParser.SEE_LITERAL;
@@ -246,7 +246,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int SERIAL_LITERAL = JavadocParser.SERIAL_LITERAL;
@@ -269,7 +269,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCHBAE">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int VERSION_LITERAL = JavadocParser.VERSION_LITERAL;
@@ -294,7 +294,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCEAHH">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int EXCEPTION_LITERAL = JavadocParser.EXCEPTION_LITERAL;
@@ -321,7 +321,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCHAHD">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int THROWS_LITERAL = JavadocParser.THROWS_LITERAL;
@@ -345,7 +345,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCBAHA">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_TAG
      */
     public static final int AUTHOR_LITERAL = JavadocParser.AUTHOR_LITERAL;
@@ -437,7 +437,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDFHHBB">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
      * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
@@ -484,7 +484,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDBACBF">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
      * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
@@ -523,7 +523,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDIECH">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
      * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
@@ -552,7 +552,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGJCHC">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
      * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
@@ -593,7 +593,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGBICD">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
      * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
@@ -627,7 +627,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCFJDG">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
      * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
@@ -663,7 +663,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDCDHH">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
      * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
@@ -921,21 +921,22 @@ public final class JavadocTokenTypes {
      * <pre>{@code @param T The bar.}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code JAVADOC_TAG -&gt JAVADOC_TAG
-     *         |--PARAM_LITERAL -&gt @param
-     *         |--WS -&gt
-     *         |--PARAMETER_NAME -&gt T
-     *         |--WS -&gt
-     *         `--DESCRIPTION -&gt DESCRIPTION
-     *             |--TEXT -&gt The bar.
-     *             |--NEWLINE -&gt \r\n
-     *             `--TEXT -&gt
+     * {@code
+     *   --JAVADOC_TAG -> JAVADOC_TAG
+     *      |--PARAM_LITERAL -> @param
+     *      |--WS ->
+     *      |--PARAMETER_NAME -> T
+     *      |--WS ->
+     *      `--DESCRIPTION -> DESCRIPTION
+     *          |--TEXT -> The bar.
+     *          |--NEWLINE -> \r\n
+     *          `--TEXT ->
      * }
      * </pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHJECF">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #PARAM_LITERAL
      */
     public static final int PARAMETER_NAME = JavadocParser.PARAMETER_NAME;
@@ -961,7 +962,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #SERIAL_LITERAL
      */
     public static final int LITERAL_EXCLUDE = JavadocParser.LITERAL_EXCLUDE;
@@ -986,7 +987,7 @@ public final class JavadocTokenTypes {
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #SERIAL_LITERAL
      */
     public static final int LITERAL_INCLUDE = JavadocParser.LITERAL_INCLUDE;
@@ -999,22 +1000,21 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     *   JAVADOC_TAG ->; JAVADOC_TAG
-     *    |--SERIAL_FIELD_LITERAL ->; @serialField
-     *    |--WS ->;
-     *    |--FIELD_NAME ->; counter
-     *    |--WS ->;
-     *    |--FIELD_TYPE ->; Integer
-     *    |--WS ->;
-     *    `--DESCRIPTION ->; DESCRIPTION
-     *        |--TEXT ->; objects counter
-     *        |--NEWLINE ->; \r\n
-     *        `--TEXT ->;
+     *   --JAVADOC_TAG -> JAVADOC_TAG
+     *   |--SERIAL_FIELD_LITERAL -> @serialField
+     *   |--WS ->
+     *   |--LITERAL_INCLUDE -> include
+     *   |--NEWLINE -> \r\n
+     *   `--WS ->
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        |--TEXT -> objects counter
+     *        |--NEWLINE -> \r\n
+     *        `--TEXT ->
      * }</pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #SERIAL_FIELD_LITERAL
      */
     public static final int FIELD_NAME = JavadocParser.FIELD_NAME;
@@ -1026,22 +1026,24 @@ public final class JavadocTokenTypes {
      * <pre>{@code @serialField counter Integer objects counter}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code JAVADOC_TAG -&gt JAVADOC_TAG
-     *         |--SERIAL_FIELD_LITERAL -&gt @serialField
-     *         |--WS -&gt
-     *         |--FIELD_NAME -&gt counter
-     *         |--WS -&gt
-     *         |--FIELD_TYPE -&gt Integer
-     *         |--WS -&gt
-     *         `--DESCRIPTION -&gt DESCRIPTION
-     *             |--TEXT -&gt objects counter
-     *             `--NEWLINE -&gt \n
+     * {@code
+     *   --JAVADOC_TAG -> JAVADOC_TAG
+     *      |--SERIAL_FIELD_LITERAL -> @serialField
+     *      |--WS ->
+     *      |--FIELD_NAME -> counter
+     *      |--WS ->
+     *      |--FIELD_TYPE -> Integer
+     *      |--WS ->
+     *      `--DESCRIPTION -> DESCRIPTION
+     *          |--TEXT -> objects counter
+     *          |--NEWLINE -> \r\n
+     *          `--TEXT ->
      * }
      * </pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">
-     * Oracle Docs</a>
+     *     Oracle Docs</a>
      * @see #SERIAL_FIELD_LITERAL
      */
     public static final int FIELD_TYPE = JavadocParser.FIELD_TYPE;
@@ -1128,57 +1130,487 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     *  JAVADOC ->; JAVADOC
-     *     |--NEWLINE ->; \r\n
-     *     |--LEADING_ASTERISK ->;      *
-     *     |--TEXT ->;
-     *     |--HTML_ELEMENT ->; HTML_ELEMENT
-     *         `--PARAGRAPH ->; PARAGRAPH
-     *             |--P_TAG_START ->; P_TAG_START
-     *             |   |--START ->; <;
-     *             |   |--P_HTML_TAG_NAME ->; p
-     *             |   `--END ->; >;
-     *             |--TEXT ->; Paragraph Tag.
-     *             `--P_TAG_END ->; P_TAG_END
-     *                 |--START ->; <;
-     *                 |--SLASH ->; /
-     *                 |--P_HTML_TAG_NAME ->; p
-     *                 `--END ->; >;
+     *      `--HTML_ELEMENT -> HTML_ELEMENT
+     *          `--PARAGRAPH -> PARAGRAPH
+     *              |--P_TAG_START -> P_TAG_START
+     *              |   |--START -> <
+     *              |   |--P_HTML_TAG_NAME -> p
+     *              |   `--END -> >
+     *              |--TEXT -> Paragraph Tag.
+     *              `--P_TAG_END -> P_TAG_END
+     *                  |--START -> <
+     *                  |--SLASH -> /
+     *                  |--P_HTML_TAG_NAME -> p
+     *                  `--END -> >
      * }
      * </pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
-     * Comments are written in HTML</a>
+     *     Comments are written in HTML</a>
      * @see #P_HTML_TAG_NAME
      */
     public static final int P_HTML_TAG_NAME = JavadocParser.P_HTML_TAG_NAME;
 
-    /** List item tag name. */
+    /**
+     * List item tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     *  <ol>
+     *    <li>banana</li>
+     *  </ol>
+     *  }</pre>
+     *  <b>Tree:</b>
+     *  <pre>
+     *  {@code
+     *   HTML_ELEMENT -> HTML_ELEMENT
+     *    `--HTML_TAG -> HTML_TAG
+     *       |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *       |   |--START -> <
+     *       |   |--HTML_TAG_NAME -> ol
+     *       |   `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--HTML_ELEMENT -> HTML_ELEMENT
+     *       |   `--LI -> LI
+     *       |       |--LI_TAG_START -> LI_TAG_START
+     *       |       |   |--START -> <
+     *       |       |   |--LI_HTML_TAG_NAME -> li
+     *       |       |   `--END -> >
+     *       |       |--TEXT -> banana
+     *       |       `--LI_TAG_END -> LI_TAG_END
+     *       |           |--START -> <
+     *       |           |--SLASH -> /
+     *       |           |--LI_HTML_TAG_NAME -> li
+     *       |           `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *           |--START -> <
+     *           |--SLASH -> /
+     *           |--HTML_TAG_NAME -> ol
+     *           `--END -> >
+     *  }
+     *  </pre>
+     *
+     * @see
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
+     *     comments are written in HTML</a>
+     * @see #LI_HTML_TAG_NAME
+     */
     public static final int LI_HTML_TAG_NAME = JavadocParser.LI_HTML_TAG_NAME;
 
-    /** Table row tag name. */
+    /**
+     * Table row tag name.
+     *
+     *  <p><b>Example:</b></p>
+     *  <pre>{@code
+     *  <table>
+     *     <tr>Table Row</tr>
+     *  </table>
+     *  }</pre>
+     *  <b>Tree:</b>
+     *  <pre>
+     *  {@code
+     *  HTML_ELEMENT -> HTML_ELEMENT
+     *   `--HTML_TAG -> HTML_TAG
+     *       |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *       |   |--START -> <
+     *       |   |--HTML_TAG_NAME -> table
+     *       |   `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--HTML_ELEMENT -> HTML_ELEMENT
+     *       |   `--TR -> TR
+     *       |       |--TR_TAG_START -> TR_TAG_START
+     *       |       |   |--START -> <
+     *       |       |   |--TR_HTML_TAG_NAME -> tr
+     *       |       |   `--END -> >
+     *       |       |--TEXT -> Table Row
+     *       |       `--TR_TAG_END -> TR_TAG_END
+     *       |           |--START -> <
+     *       |           |--SLASH -> /
+     *       |           |--TR_HTML_TAG_NAME -> tr
+     *       |           `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *           |--START -> <
+     *           |--SLASH -> /
+     *           |--HTML_TAG_NAME -> table
+     *           `--END -> >
+     *  }
+     *  </pre>
+     *
+     *  @see
+     *  <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
+     *      comments are written in HTML</a>
+     *  @see #TR_HTML_TAG_NAME
+     */
     public static final int TR_HTML_TAG_NAME = JavadocParser.TR_HTML_TAG_NAME;
 
-    /** Table cell tag name. */
+    /**
+     * Table cell tag name.
+     *
+     *  <p><b>Example:</b></p>
+     *  <pre>{@code
+     *  <tr>
+     *     <td>Cell 1</td>
+     *  </tr>
+     *  }</pre>
+     *  <b>Tree:</b>
+     *  <pre>
+     *  {@code
+     *  HTML_ELEMENT -> HTML_ELEMENT
+     *   `--TR -> TR
+     *       |--TR_TAG_START -> TR_TAG_START
+     *       |   |--START -> <
+     *       |   |--TR_HTML_TAG_NAME -> tr
+     *       |   `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--TD -> TD
+     *       |   |--TD_TAG_START -> TD_TAG_START
+     *       |   |   |--START -> <
+     *       |   |   |--TD_HTML_TAG_NAME -> td
+     *       |   |   `--END -> >
+     *       |   |--TEXT -> Cell 1
+     *       |   `--TD_TAG_END -> TD_TAG_END
+     *       |       |--START -> <
+     *       |       |--SLASH -> /
+     *       |       |--TD_HTML_TAG_NAME -> td
+     *       |       `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       `--TR_TAG_END -> TR_TAG_END
+     *           |--START -> <
+     *           |--SLASH -> /
+     *           |--TR_HTML_TAG_NAME -> tr
+     *           `--END -> >
+     *  }
+     *  </pre>
+     *
+     *  @see
+     *  <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
+     *      comments are written in HTML</a>
+     *  @see #TD_HTML_TAG_NAME
+     */
     public static final int TD_HTML_TAG_NAME = JavadocParser.TD_HTML_TAG_NAME;
 
-    /** Table header cell tag name. */
+    /**
+     * Table header cell tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <tr>
+     *     <th>Table Head</th>
+     * </tr>
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *  HTML_ELEMENT -> HTML_ELEMENT
+     *   `--TR -> TR
+     *       |--TR_TAG_START -> TR_TAG_START
+     *       |   |--START -> <
+     *       |   |--TR_HTML_TAG_NAME -> tr
+     *       |   `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--TH -> TH
+     *       |   |--TH_TAG_START -> TH_TAG_START
+     *       |   |   |--START -> <
+     *       |   |   |--TH_HTML_TAG_NAME -> th
+     *       |   |   `--END -> >
+     *       |   |--TEXT -> Table Head
+     *       |   `--TH_TAG_END -> TH_TAG_END
+     *       |       |--START -> <
+     *       |       |--SLASH -> /
+     *       |       |--TH_HTML_TAG_NAME -> th
+     *       |       `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       `--TR_TAG_END -> TR_TAG_END
+     *           |--START -> <
+     *           |--SLASH -> /
+     *           |--TR_HTML_TAG_NAME -> tr
+     *           `--END -> >
+     *  }
+     *  </pre>
+     *
+     *  @see
+     *  <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
+     *      comments are written in HTML</a>
+     *  @see #TH_HTML_TAG_NAME
+     */
     public static final int TH_HTML_TAG_NAME = JavadocParser.TH_HTML_TAG_NAME;
 
-    /** Body tag name. */
+    /**
+     * Body tag name.
+     *
+     *  <p><b>Example:</b></p>
+     *  <pre>{@code
+     *  &lt;body&gt;
+     *     &lt;p&gt;Body Content&lt;/p&gt;
+     *  &lt;/body&gt;
+     *  }</pre>
+     *  <b>Tree:</b>
+     *  <pre>
+     *  {@code
+     *  HTML_ELEMENT -> HTML_ELEMENT
+     *   `--BODY -> BODY
+     *       |--BODY_TAG_START -> BODY_TAG_START
+     *       |   |--START -> <
+     *       |   |--BODY_HTML_TAG_NAME -> body
+     *       |   `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--PARAGRAPH -> PARAGRAPH
+     *       |   |--P_TAG_START -> P_TAG_START
+     *       |   |   |--START -> <
+     *       |   |   |--P_HTML_TAG_NAME -> p
+     *       |   |   `--END -> >
+     *       |   |--TEXT -> Body Content
+     *       |   `--P_TAG_END -> P_TAG_END
+     *       |       |--START -> <
+     *       |       |--SLASH -> /
+     *       |       |--P_HTML_TAG_NAME -> p
+     *       |       `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       `--BODY_TAG_END -> BODY_TAG_END
+     *           |--START -> <
+     *           |--SLASH -> /
+     *           |--BODY_HTML_TAG_NAME -> body
+     *           `--END -> >
+     *  }
+     *  </pre>
+     *
+     *  @see
+     *  <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
+     *      comments are written in HTML</a>
+     *  @see #BODY_HTML_TAG_NAME
+     */
     public static final int BODY_HTML_TAG_NAME = JavadocParser.BODY_HTML_TAG_NAME;
 
-    /** Colgroup tag name. */
+    /**
+     * Colgroup tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <colgroup><col span="2"></colgroup>}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   |--HTML_ELEMENT -> HTML_ELEMENT
+     *   |   `--COLGROUP -> COLGROUP
+     *   |       |--COLGROUP_TAG_START -> COLGROUP_TAG_START
+     *   |       |   |--START -> <
+     *   |       |   |--COLGROUP_HTML_TAG_NAME -> colgroup
+     *   |       |   `--END -> >
+     *   |       |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *   |       |   `--COL_TAG -> COL_TAG
+     *   |       |       |--START -> <
+     *   |       |       |--COL_HTML_TAG_NAME -> col
+     *   |       |       |--WS ->
+     *   |       |       |--ATTRIBUTE -> ATTRIBUTE
+     *   |       |       |   |--HTML_TAG_NAME -> span
+     *   |       |       |   |--EQUALS -> =
+     *   |       |       |   `--ATTR_VALUE -> "2"
+     *   |       |       `--END -> >
+     *   |       `--COLGROUP_TAG_END -> COLGROUP_TAG_END
+     *   |           |--START -> <
+     *   |           |--SLASH -> /
+     *   |           |--COLGROUP_HTML_TAG_NAME -> colgroup
+     *   |           `--END -> >
+     *   |--TEXT ->
+     *   `--EOF -> <EOF>
+     * }
+     * </pre>
+     *
+     * @see #COLGROUP_HTML_TAG_NAME
+     */
     public static final int COLGROUP_HTML_TAG_NAME = JavadocParser.COLGROUP_HTML_TAG_NAME;
 
-    /** Description of a term tag name. */
+    /**
+     * Description of a term tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <dl>
+     *     <dt>Java</dt>
+     *     <dd>A high-level programming language.</dd>
+     * </dl>
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *  HTML_ELEMENT -> HTML_ELEMENT
+     *   `--HTML_TAG -> HTML_TAG
+     *       |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *       |   |--START -> <
+     *       |   |--HTML_TAG_NAME -> dl
+     *       |   `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--HTML_ELEMENT -> HTML_ELEMENT
+     *       |   `--DT -> DT
+     *       |       |--DT_TAG_START -> DT_TAG_START
+     *       |       |   |--START -> <
+     *       |       |   |--DT_HTML_TAG_NAME -> dt
+     *       |       |   `--END -> >
+     *       |       |--TEXT -> Java
+     *       |       `--DT_TAG_END -> DT_TAG_END
+     *       |           |--START -> <
+     *       |           |--SLASH -> /
+     *       |           |--DT_HTML_TAG_NAME -> dt
+     *       |           `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--HTML_ELEMENT -> HTML_ELEMENT
+     *       |   `--DD -> DD
+     *       |       |--DD_TAG_START -> DD_TAG_START
+     *       |       |   |--START -> <
+     *       |       |   |--DD_HTML_TAG_NAME -> dd
+     *       |       |   `--END -> >
+     *       |       |--TEXT -> A high-level programming language.
+     *       |       `--DD_TAG_END -> DD_TAG_END
+     *       |           |--START -> <
+     *       |           |--SLASH -> /
+     *       |           |--DD_HTML_TAG_NAME -> dd
+     *       |           `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *           |--START -> <
+     *           |--SLASH -> /
+     *           |--HTML_TAG_NAME -> dl
+     *           `--END -> >
+     * }
+     * </pre>
+     *
+     * @see #DD_HTML_TAG_NAME
+     */
     public static final int DD_HTML_TAG_NAME = JavadocParser.DD_HTML_TAG_NAME;
 
-    /** Description term tag name. */
+    /**
+     * Description term tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <dl>
+     *     <dt>Java</dt>
+     * </dl>
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *  HTML_ELEMENT -> HTML_ELEMENT
+     *   `--HTML_TAG -> HTML_TAG
+     *       |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *       |   |--START -> <
+     *       |   |--HTML_TAG_NAME -> dl
+     *       |   `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       |--HTML_ELEMENT -> HTML_ELEMENT
+     *       |   `--DT -> DT
+     *       |       |--DT_TAG_START -> DT_TAG_START
+     *       |       |   |--START -> <
+     *       |       |   |--DT_HTML_TAG_NAME -> dt
+     *       |       |   `--END -> >
+     *       |       |--TEXT -> Java
+     *       |       `--DT_TAG_END -> DT_TAG_END
+     *       |           |--START -> <
+     *       |           |--SLASH -> /
+     *       |           |--DT_HTML_TAG_NAME -> dt
+     *       |           `--END -> >
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->
+     *       `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *           |--START -> <
+     *           |--SLASH -> /
+     *           |--HTML_TAG_NAME -> dl
+     *           `--END -> >
+     * }
+     * </pre>
+     *
+     * @see #DT_HTML_TAG_NAME
+     */
     public static final int DT_HTML_TAG_NAME = JavadocParser.DT_HTML_TAG_NAME;
 
-    /** Head tag name. */
+    /**
+     * Head tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * &lt;head&gt;
+     *   &lt;title&gt;Page Title&lt;/title&gt;
+     *   &lt;meta charset="UTF-8"&gt;
+     * &lt;/head&gt;
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>{@code
+     *  HEAD -> HEAD
+     *   |--HEAD_TAG_START -> HEAD_TAG_START
+     *   |   |--START -> <
+     *   |   |--HEAD_HTML_TAG_NAME -> head
+     *   |   `--END -> >
+     *   |--NEWLINE -> \r\n
+     *   |--LEADING_ASTERISK ->  *
+     *   |--TEXT ->
+     *   |--HTML_TAG -> HTML_TAG
+     *   |   |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *   |   |   |--START -> <
+     *   |   |   |--HTML_TAG_NAME -> title
+     *   |   |   `--END -> >
+     *   |   |--TEXT -> Page Title
+     *   |   `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *   |       |--START -> <
+     *   |       |--SLASH -> /
+     *   |       |--HTML_TAG_NAME -> title
+     *   |       `--END -> >
+     *   |--NEWLINE -> \r\n
+     *   |--LEADING_ASTERISK ->  *
+     *   |--TEXT ->
+     *   |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *   |   `--META_TAG -> META_TAG
+     *   |       |--START -> <
+     *   |       |--META_HTML_TAG_NAME -> meta
+     *   |       |--WS ->
+     *   |       |--ATTRIBUTE -> ATTRIBUTE
+     *   |       |   |--HTML_TAG_NAME -> charset
+     *   |       |   |--EQUALS -> =
+     *   |       |   `--ATTR_VALUE -> "UTF-8"
+     *   |       `--END -> >
+     *   |--NEWLINE -> \r\n
+     *   |--LEADING_ASTERISK ->  *
+     *   |--TEXT ->
+     *   `--HEAD_TAG_END -> HEAD_TAG_END
+     *       |--START -> <
+     *       |--SLASH -> /
+     *       |--HEAD_HTML_TAG_NAME -> head
+     *       `--END -> >
+     * }
+     * </pre>
+     *
+     * @see #HEAD_HTML_TAG_NAME
+     */
     public static final int HEAD_HTML_TAG_NAME = JavadocParser.HEAD_HTML_TAG_NAME;
 
     /** Html tag name. */
@@ -1259,19 +1691,19 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     *   JAVADOC ->; JAVADOC
-     *        |--NEWLINE ->; \r\n
-     *        |--LEADING_ASTERISK ->;  *
-     *        |--TEXT ->;  text before break
-     *        |--HTML_ELEMENT ->; HTML_ELEMENT
-     *        |   `--SINGLETON_ELEMENT ->; SINGLETON_ELEMENT
-     *        |       `--BR_TAG ->; BR_TAG
-     *        |           |--START ->; -<;
-     *        |           |--BR_HTML_TAG_NAME ->; br
-     *        |           `--END ->; >;
-     *        |--TEXT ->;  text after break
-     *        |--NEWLINE ->; \r\n
-     *        |--TEXT ->;
+     *   `--JAVADOC -> JAVADOC
+     *       |--NEWLINE -> \r\n
+     *       |--LEADING_ASTERISK ->  *
+     *       |--TEXT ->  text before break
+     *       |--HTML_ELEMENT -> HTML_ELEMENT
+     *       |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *       |       `--BR_TAG -> BR_TAG
+     *       |           |--START -> <
+     *       |           |--BR_HTML_TAG_NAME -> br
+     *       |           `--END -> >
+     *       |--TEXT ->  text after break
+     *       |--NEWLINE -> \r\n
+     *       |--TEXT ->
      * }
      * </pre>
      */
@@ -1284,19 +1716,106 @@ public final class JavadocTokenTypes {
     /** Frame tag name. */
     public static final int FRAME_HTML_TAG_NAME = JavadocParser.FRAME_HTML_TAG_NAME;
 
-    /** Hr tag name. */
+    /**
+     * Hr tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code text before horizontal rule < hr > text after horizontal rule}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *  |--TEXT ->  text before horizontal rule
+     *  |--HTML_ELEMENT -> HTML_ELEMENT
+     *  |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *  |       `--HR_TAG -> HR_TAG
+     *  |           |--START -> <
+     *  |           |--HR_HTML_TAG_NAME -> hr
+     *  |           `--END -> >
+     *  |--TEXT ->  text after horizontal rule
+     *  |--NEWLINE -> \r\n
+     * }
+     * </pre>
+     */
+
     public static final int HR_HTML_TAG_NAME = JavadocParser.HR_HTML_TAG_NAME;
 
     /** Img tag name. */
     public static final int IMG_HTML_TAG_NAME = JavadocParser.IMG_HTML_TAG_NAME;
 
-    /** Input tag name. */
+    /**
+     * Input tag name.
+     *
+     *  <p><b>Example:</b></p>
+     *  <pre>{@code <input name="Name" type="text" placeholder="Enter your name"/>}</pre>
+     *  <b>Tree:</b>
+     *  <pre>
+     *  {@code
+     *    HTML_ELEMENT -> HTML_ELEMENT
+     *       `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *         `--INPUT_TAG -> INPUT_TAG
+     *             |--START -> <
+     *             |--INPUT_HTML_TAG_NAME -> input
+     *             |--WS ->
+     *             |--ATTRIBUTE -> ATTRIBUTE
+     *             |   |--HTML_TAG_NAME -> name
+     *             |   |--EQUALS -> =
+     *             |   `--ATTR_VALUE -> "Name"
+     *             |--WS ->
+     *             |--ATTRIBUTE -> ATTRIBUTE
+     *             |   |--HTML_TAG_NAME -> type
+     *             |   |--EQUALS -> =
+     *             |   `--ATTR_VALUE -> "text"
+     *             |--WS ->
+     *             |--ATTRIBUTE -> ATTRIBUTE
+     *             |   |--HTML_TAG_NAME -> placeholder
+     *             |   |--EQUALS -> =
+     *             |   `--ATTR_VALUE -> "Enter your name"
+     *              `--SLASH_END -> />
+     *  }
+     *  </pre>
+     *
+     *   @see
+     *   <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
+     *      comments are written in HTML</a>
+     *     @see #INPUT_HTML_TAG_NAME
+     */
     public static final int INPUT_HTML_TAG_NAME = JavadocParser.INPUT_HTML_TAG_NAME;
 
     /** Isindex tag name. */
     public static final int ISINDEX_HTML_TAG_NAME = JavadocParser.ISINDEX_HTML_TAG_NAME;
 
-    /** Link tag name. */
+    /**
+     *  Link tag name.
+     *
+     *  <p><b>Example:</b></p>
+     *  <pre>{@code <link rel="stylesheet" href="Style.css">}</pre>
+     *  <b>Tree:</b>
+     *  <pre>
+     *  {@code
+     *  HTML_ELEMENT -> HTML_ELEMENT
+     *  `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *      `--LINK_TAG -> LINK_TAG
+     *          |--START -> <
+     *          |--LINK_HTML_TAG_NAME -> link
+     *          |--WS ->
+     *          |--ATTRIBUTE -> ATTRIBUTE
+     *          |   |--HTML_TAG_NAME -> rel
+     *          |   |--EQUALS -> =
+     *          |   `--ATTR_VALUE -> "stylesheet"
+     *          |--WS ->
+     *          |--ATTRIBUTE -> ATTRIBUTE
+     *          |   |--HTML_TAG_NAME -> href
+     *          |   |--EQUALS -> =
+     *          |   `--ATTR_VALUE -> "Style.css"
+     *          `--END -> >
+     *  }
+     *  </pre>
+     *
+     *  @see
+     *  <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#JSSOR647">
+     *      comments are written in HTML</a>
+     *  @see #LINK_HTML_TAG_NAME
+     */
     public static final int LINK_HTML_TAG_NAME = JavadocParser.LINK_HTML_TAG_NAME;
 
     /** Meta tag name. */
@@ -1318,11 +1837,61 @@ public final class JavadocTokenTypes {
 
     /**
      * HTML comment start symbol '&lt;&#33;--'.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * &lt;!--
+     * This is an HTML multi-line comment:
+     * This is another comment
+     * --&gt;
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * HTML_COMMENT -> HTML_COMMENT
+     *    |--HTML_COMMENT_START -> <!--
+     *    |--NEWLINE -> \n
+     *    |--LEADING_ASTERISK ->  *
+     *    |--TEXT ->  This is an HTML multi-line comment:
+     *    |--NEWLINE -> \n
+     *    |--LEADING_ASTERISK ->  *
+     *    |--TEXT ->  This is another comment
+     *    |--NEWLINE -> \n
+     *    |--LEADING_ASTERISK ->  *
+     *    |--TEXT ->
+     *    `--HTML_COMMENT_END -> -->
+     * }
+     * </pre>
      */
     public static final int HTML_COMMENT_START = JavadocParser.HTML_COMMENT_START;
 
     /**
      * HTML comment end symbol '--&gt;'.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * &lt;!--
+     * This is an HTML multi-line comment:
+     * This is another comment
+     * --&gt;
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * HTML_COMMENT -> HTML_COMMENT
+     *    |--HTML_COMMENT_START -> <!--
+     *    |--NEWLINE -> \n
+     *    |--LEADING_ASTERISK ->  *
+     *    |--TEXT ->  This is an HTML multi-line comment:
+     *    |--NEWLINE -> \n
+     *    |--LEADING_ASTERISK ->  *
+     *    |--TEXT ->  This is another comment
+     *    |--NEWLINE -> \n
+     *    |--LEADING_ASTERISK ->  *
+     *    |--TEXT ->
+     *    `--HTML_COMMENT_END -> -->
+     * }
+     * </pre>
      */
     public static final int HTML_COMMENT_END = JavadocParser.HTML_COMMENT_END;
 
@@ -1588,6 +2157,31 @@ public final class JavadocTokenTypes {
 
     /**
      * Html tag attribute. Parent node for: {@code HTML_TAG_IDENT, EQUALS, ATTR_VALUE}.
+     *
+     * <p><b>Example</b></p>
+     * <pre>{@code <p class="highlight">Sample text</p>}</pre>
+     * <b>Tree</b>
+     * <pre>
+     * {@code
+     *   HTML_ELEMENT -> HTML_ELEMENT
+     *      `--PARAGRAPH -> PARAGRAPH
+     *          |--P_TAG_START -> P_TAG_START
+     *          |   |--START -> <
+     *          |   |--P_HTML_TAG_NAME -> p
+     *          |   |--WS ->
+     *          |   |--ATTRIBUTE -> ATTRIBUTE
+     *          |   |   |--HTML_TAG_NAME -> class
+     *          |   |   |--EQUALS -> =
+     *          |   |   `--ATTR_VALUE -> "highlight"
+     *          |   `--END -> >
+     *          |--TEXT -> Sample text
+     *          `--P_TAG_END -> P_TAG_END
+     *              |--START -> <
+     *              |--SLASH -> /
+     *              |--P_HTML_TAG_NAME -> p
+     *              `--END -> >
+     * }
+     * </pre>
      */
     public static final int ATTRIBUTE = JavadocParser.RULE_attribute
             + RULE_TYPES_OFFSET;
@@ -1729,15 +2323,15 @@ public final class JavadocTokenTypes {
      * HTML_ELEMENT -> HTML_ELEMENT
      *    `--TD -> TD
      *        |--TD_TAG_START -> TD_TAG_START
-     *        |   |--START -> &lt;
+     *        |   |--START -> <
      *        |   |--TD_HTML_TAG_NAME -> td
-     *        |   `--END -> &gt;
+     *        |   `--END -> >
      *        |--TEXT -> Cell Content
      *        `--TD_TAG_END -> TD_TAG_END
-     *            |--START -> &lt;
+     *            |--START -> <
      *            |--SLASH -> /
      *            |--TD_HTML_TAG_NAME -> td
-     *            `--END -> &gt;
+     *            `--END -> >
      * }
      * </pre>
      */
@@ -1791,14 +2385,14 @@ public final class JavadocTokenTypes {
      *        |             |--SLASH -> /
      *        |             |--BODY_HTML_TAG_NAME -> body
      *        |             `--END -> >
-     *          |--NEWLINE -> \n
-     *          |--LEADING_ASTERISK ->  *
-     *          |--TEXT -> /
-     *          |--NEWLINE -> \n
-     *          |--TEXT -> public class Test {
-     *          |--NEWLINE -> \n
-     *          |--TEXT -> }
-     *          |--NEWLINE -> \n
+     *        |--NEWLINE -> \n
+     *        |--LEADING_ASTERISK ->  *
+     *        |--TEXT -> /
+     *        |--NEWLINE -> \n
+     *        |--TEXT -> public class Test {
+     *        |--NEWLINE -> \n
+     *        |--TEXT -> }
+     *        |--NEWLINE -> \n
      * }
      * </pre>
      */
@@ -1923,14 +2517,56 @@ public final class JavadocTokenTypes {
     public static final int COLGROUP_TAG_END = JavadocParser.RULE_colgroupTagEnd
             + RULE_TYPES_OFFSET;
 
-    /** Description of a term html tag: {@code <dd></dd>}. */
+    /**
+     * DD html tag.
+     *
+     * <p><b>Example AST:</b></p>
+     * <pre>{@code <dd>Description content</dd>}</pre>
+     * <pre>
+     * {@code
+     *   --HTML_ELEMENT -> HTML_ELEMENT
+     *      `--DD -> DD
+     *          |--DD_TAG_START -> DD_TAG_START
+     *          |   |--START -> <
+     *          |   |--DD_HTML_TAG_NAME -> dd
+     *          |   `--END -> >
+     *          |--TEXT -> "Description content"
+     *          `--DD_TAG_END -> DD_TAG_END
+     *              |--START -> <
+     *              |--SLASH -> /
+     *              |--DD_HTML_TAG_NAME -> dd
+     *              `--END -> >
+     * }
+     * </pre>
+     */
     public static final int DD = JavadocParser.RULE_dd + RULE_TYPES_OFFSET;
     /** Start description of a term tag. */
     public static final int DD_TAG_START = JavadocParser.RULE_ddTagStart + RULE_TYPES_OFFSET;
     /** End description of a term tag. */
     public static final int DD_TAG_END = JavadocParser.RULE_ddTagEnd + RULE_TYPES_OFFSET;
 
-    /** Description term html tag: {@code <dt></dt>}. */
+    /**
+     * DT html tag.
+     *
+     * <p><b>Example AST:</b></p>
+     * <pre>{@code <dd>Description Term</dd>}</pre>
+     * <pre>
+     * {@code
+     *   --HTML_ELEMENT -> HTML_ELEMENT
+     *      `--DT -> DT
+     *          |--DT_TAG_START -> DT_TAG_START
+     *          |   |--START -> <
+     *          |   |--DT_HTML_TAG_NAME -> dt
+     *          |   `--END -> >
+     *          |--TEXT -> "Description term"
+     *          `--DT_TAG_END -> DT_TAG_END
+     *              |--START -> <
+     *              |--SLASH -> /
+     *              |--DT_HTML_TAG_NAME -> dt
+     *              `--END -> >
+     * }
+     * </pre>
+     */
     public static final int DT = JavadocParser.RULE_dt + RULE_TYPES_OFFSET;
     /** Start description term tag. */
     public static final int DT_TAG_START = JavadocParser.RULE_dtTagStart + RULE_TYPES_OFFSET;
@@ -2113,7 +2749,34 @@ public final class JavadocTokenTypes {
     /** Basefont html tag. */
     public static final int BASEFONT_TAG = JavadocParser.RULE_basefontTag + RULE_TYPES_OFFSET;
 
-    /** Br html tag. */
+    /**
+     * Br html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <br> line breaks<br/>}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * JAVADOC -> JAVADOC
+     * |--NEWLINE -> \r\n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--HTML_ELEMENT -> HTML_ELEMENT
+     * |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     * |       `--BR_TAG -> BR_TAG
+     * |           |--START -> <
+     * |           |--BR_HTML_TAG_NAME -> br
+     * |           `--END -> >
+     * |--TEXT ->  line breaks
+     * |--HTML_ELEMENT -> HTML_ELEMENT
+     * |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     * |       `--BR_TAG -> BR_TAG
+     * |           |--START -> <
+     * |           |--BR_HTML_TAG_NAME -> br
+     * |           `--SLASH_END -> />
+     * }
+     * </pre>
+     */
     public static final int BR_TAG = JavadocParser.RULE_brTag + RULE_TYPES_OFFSET;
 
     /** Col html tag. */
@@ -2181,10 +2844,73 @@ public final class JavadocTokenTypes {
      */
     public static final int FRAME_TAG = JavadocParser.RULE_frameTag + RULE_TYPES_OFFSET;
 
-    /** Hr html tag. */
+    /**
+     * Hr html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code text above line<hr> test after line}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   |--LEADING_ASTERISK ->  *
+     *   |--TEXT ->  text above line
+     *   |--HTML_ELEMENT -> HTML_ELEMENT
+     *   |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *   |       `--HR_TAG -> HR_TAG
+     *   |           |--START -> <
+     *   |           |--HR_HTML_TAG_NAME -> hr
+     *   |           `--END -> >
+     *   |--TEXT ->  test after line
+     *   |--NEWLINE -> \r\n
+     *   |--TEXT ->
+     * }
+     * </pre>
+     */
     public static final int HR_TAG = JavadocParser.RULE_hrTag + RULE_TYPES_OFFSET;
 
-    /** Img html tag. */
+    /**
+     * Img html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <img src="./image.png" alt="image description" width="200" height="100"> }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   `--JAVADOC -> JAVADOC
+     *        |--NEWLINE -> \r\n
+     *        |--LEADING_ASTERISK ->  *
+     *        |--TEXT ->
+     *        |--HTML_ELEMENT -> HTML_ELEMENT
+     *        |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *        |       `--IMG_TAG -> IMG_TAG
+     *        |           |--START -> <
+     *        |           |--IMG_HTML_TAG_NAME -> img
+     *        |           |--WS ->
+     *        |           |--ATTRIBUTE -> ATTRIBUTE
+     *        |           |   |--HTML_TAG_NAME -> src
+     *        |           |   |--EQUALS -> =
+     *        |           |   `--ATTR_VALUE -> "./image.png"
+     *        |           |--WS ->
+     *        |           |--ATTRIBUTE -> ATTRIBUTE
+     *        |           |   |--HTML_TAG_NAME -> alt
+     *        |           |   |--EQUALS -> =
+     *        |           |   `--ATTR_VALUE -> "image description"
+     *        |           |--WS ->
+     *        |           |--ATTRIBUTE -> ATTRIBUTE
+     *        |           |   |--HTML_TAG_NAME -> width
+     *        |           |   |--EQUALS -> =
+     *        |           |   `--ATTR_VALUE -> "200"
+     *        |           |--WS ->
+     *        |           |--ATTRIBUTE -> ATTRIBUTE
+     *        |           |   |--HTML_TAG_NAME -> height
+     *        |           |   |--EQUALS -> =
+     *        |           |   `--ATTR_VALUE -> "100"
+     *        |           `--END -> >
+     *        |--NEWLINE -> \r\n
+     *        |--TEXT ->
+     * }
+     * </pre>
+     */
     public static final int IMG_TAG = JavadocParser.RULE_imgTag + RULE_TYPES_OFFSET;
 
     /**
@@ -2227,22 +2953,120 @@ public final class JavadocTokenTypes {
      */
     public static final int INPUT_TAG = JavadocParser.RULE_inputTag + RULE_TYPES_OFFSET;
 
-    /** Isindex html tag. */
+    /**
+     * Isindex tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * &lt;head&gt;
+     *    &lt;isindex prompt="search"&gt;
+     * &lt;/head&gt;
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   |--HTML_ELEMENT -> HTML_ELEMENT
+     *   |   `--HEAD -> HEAD
+     *   |       |--HEAD_TAG_START -> HEAD_TAG_START
+     *   |       |   |--START -> <
+     *   |       |   |--HEAD_HTML_TAG_NAME -> head
+     *   |       |   `--END -> >
+     *   |       |--NEWLINE -> \r\n
+     *   |       |--LEADING_ASTERISK ->  *
+     *   |       |--TEXT ->
+     *   |       |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *   |       |   `--ISINDEX_TAG -> ISINDEX_TAG
+     *   |       |       |--START -> <
+     *   |       |       |--ISINDEX_HTML_TAG_NAME -> isindex
+     *   |       |       |--WS ->
+     *   |       |       |--ATTRIBUTE -> ATTRIBUTE
+     *   |       |       |   |--HTML_TAG_NAME -> prompt
+     *   |       |       |   |--EQUALS -> =
+     *   |       |       |   `--ATTR_VALUE -> "search"
+     *   |       |       `--END -> >
+     *   |       |--NEWLINE -> \r\n
+     *   |       |--LEADING_ASTERISK ->  *
+     *   |       |--TEXT ->
+     *   |       `--HEAD_TAG_END -> HEAD_TAG_END
+     *   |           |--START -> <
+     *   |           |--SLASH -> /
+     *   |           |--HEAD_HTML_TAG_NAME -> head
+     *   |           `--END -> >
+     *   |--NEWLINE -> \r\n
+     *   |--TEXT ->
+     * }
+     * </pre>
+     */
     public static final int ISINDEX_TAG = JavadocParser.RULE_isindexTag + RULE_TYPES_OFFSET;
 
     /** Link html tag. */
     public static final int LINK_TAG = JavadocParser.RULE_linkTag + RULE_TYPES_OFFSET;
 
-    /** Meta html tag. */
+    /**
+     * Meta html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <meta charset="UTF-8"> }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *   `--JAVADOC -> JAVADOC
+     *        |--NEWLINE -> \r\n
+     *        |--LEADING_ASTERISK ->  *
+     *        |--TEXT ->
+     *        |--HTML_ELEMENT -> HTML_ELEMENT
+     *        |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *        |       `--META_TAG -> META_TAG
+     *        |           |--START -> <
+     *        |           |--META_HTML_TAG_NAME -> meta
+     *        |           |--WS ->
+     *        |           |--ATTRIBUTE -> ATTRIBUTE
+     *        |           |   |--HTML_TAG_NAME -> charset
+     *        |           |   |--EQUALS -> =
+     *        |           |   `--ATTR_VALUE -> "UTF-8"
+     *        |           `--END -> >
+     *        |--NEWLINE -> \r\n
+     *        |--TEXT ->
+     * }
+     * </pre>
+     */
     public static final int META_TAG = JavadocParser.RULE_metaTag + RULE_TYPES_OFFSET;
 
     /** Param html tag. */
     public static final int PARAM_TAG = JavadocParser.RULE_paramTag + RULE_TYPES_OFFSET;
 
     /**
-     * HTML void element {@code <embed>}.
+     * HTML void element.
      *
-     * @see #SINGLETON_ELEMENT
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <embed src="URL" type="MIME_type">
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *    |--HTML_ELEMENT -> HTML_ELEMENT
+     *    |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *    |       `--EMBED_TAG -> EMBED_TAG
+     *    |           |--START -> <
+     *    |           |--EMBED_HTML_TAG_NAME -> embed
+     *    |           |--WS ->
+     *    |           |--ATTRIBUTE -> ATTRIBUTE
+     *    |           |   |--HTML_TAG_NAME -> src
+     *    |           |   |--EQUALS -> =
+     *    |           |   `--ATTR_VALUE -> "URL"
+     *    |           |--WS ->
+     *    |           |--ATTRIBUTE -> ATTRIBUTE
+     *    |           |   |--HTML_TAG_NAME -> type
+     *    |           |   |--EQUALS -> =
+     *    |           |   `--ATTR_VALUE -> "MIME_type"
+     *    |           `--END -> >
+     *    |--NEWLINE -> \r\n
+     *    |--TEXT ->
+     * }
+     * </pre>
+     *
+     * @see #EMBED_TAG
      * @see <a href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-embed">
      *     W3 docs</a>
      */

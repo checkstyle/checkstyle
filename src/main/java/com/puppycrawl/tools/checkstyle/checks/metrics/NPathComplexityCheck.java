@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import java.math.BigInteger;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -484,11 +483,11 @@ public final class NPathComplexityCheck extends AbstractCheck {
      * @param ast inspected token.
      * @return number of conditional operators.
      * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.23">
-     * Java Language Specification, &sect;15.23</a>
+     *     Java Language Specification, &sect;15.23</a>
      * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.24">
-     * Java Language Specification, &sect;15.24</a>
+     *     Java Language Specification, &sect;15.24</a>
      * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.25">
-     * Java Language Specification, &sect;15.25</a>
+     *     Java Language Specification, &sect;15.25</a>
      */
     private static int countConditionalOperators(DetailAST ast) {
         int number = 0;
@@ -548,17 +547,17 @@ public final class NPathComplexityCheck extends AbstractCheck {
      * @return number of case constant tokens.
      */
     private static int countCaseConstants(DetailAST ast) {
-        final AtomicInteger counter = new AtomicInteger();
+        int counter = 0;
         final DetailAST literalCase = ast.getFirstChild();
 
         for (DetailAST node = literalCase.getFirstChild(); node != null;
                     node = node.getNextSibling()) {
             if (TokenUtil.isOfType(node, CASE_LABEL_TOKENS)) {
-                counter.getAndIncrement();
+                counter++;
             }
         }
 
-        return counter.get();
+        return counter;
     }
 
     /**

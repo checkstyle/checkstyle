@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * The base class for checks.
  *
  * @see <a href="{@docRoot}/../writingchecks.html" target="_top">Writing
- * your own checks</a>
+ *     your own checks</a>
  * @noinspection NoopMethodInAbstractClass
  * @noinspectionreason NoopMethodInAbstractClass - we allow each check to
  *      define these methods, as needed. They should be overridden only

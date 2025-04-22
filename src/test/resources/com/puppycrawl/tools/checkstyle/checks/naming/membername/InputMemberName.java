@@ -18,8 +18,8 @@ public class InputMemberName
     int mPackage;//comment
     private int mPrivate;
 
-    public int _public; // violation
-    protected int _protected; // violation
-    int _package; // violation
-    private int _private; // violation
+    public int _public; // violation 'Name '_public' must match pattern'
+    protected int _protected; // violation 'Name '_protected' must match pattern'
+    int _package; // violation 'Name '_package' must match pattern'
+    private int _private; // violation 'Name '_private' must match pattern'
 }
