@@ -78,13 +78,13 @@ public final class ImportControlLoader extends XmlLoader {
     private static final String DTD_PUBLIC_ID_1_4 =
         "-//Puppy Crawl//DTD Import Control 1.4//EN";
 
-    /** The public ID for the configuration dtd. */
-    private static final String DTD_PUBLIC_ID_1_5 =
-        "-//Puppy Crawl//DTD Import Control 1.5//EN";
-
     /** The new public ID for version 1_4 of the configuration dtd. */
     private static final String DTD_PUBLIC_CS_ID_1_4 =
         "-//Checkstyle//DTD ImportControl Configuration 1.4//EN";
+
+    /** The public ID for the configuration dtd. */
+    private static final String DTD_PUBLIC_ID_1_5 =
+        "-//Puppy Crawl//DTD Import Control 1.5//EN";
 
     /** The new public ID for version 1_5 of the configuration dtd. */
     private static final String DTD_PUBLIC_CS_ID_1_5 =
@@ -129,8 +129,14 @@ public final class ImportControlLoader extends XmlLoader {
     /** Value "allowed" for attribute 'strategyOnMismatch'. */
     private static final String STRATEGY_ON_MISMATCH_ALLOWED_VALUE = "allowed";
 
-    /** Value "disallowed" for attribute 'strategyOnMismatch'. */
-    private static final String STRATEGY_ON_MISMATCH_FORBID_VALUE = "forbid";
+    //    /** Value "disallowed" for attribute 'strategyOnMismatch'.
+    //     * @deprecated Use {@link #STRATEGY_ON_MISMATCH_FORBIDDEN_VALUE}
+    //     */
+    //    @Deprecated(since = "10.23.1")
+    //    private static final String STRATEGY_ON_MISMATCH_DISALLOWED_VALUE = "disallowed";
+
+    /** Value "forbidden" for attribute 'strategyOnMismatch'. */
+    private static final String STRATEGY_ON_MISMATCH_FORBIDDEN_VALUE = "forbidden";
 
     /** Qualified name for element 'subpackage'. */
     private static final String SUBPACKAGE_ELEMENT_NAME = "subpackage";
@@ -330,7 +336,7 @@ public final class ImportControlLoader extends XmlLoader {
      */
     private static MismatchStrategy getStrategyForImportControl(Attributes attributes) {
         final String returnValue = attributes.getValue(STRATEGY_ON_MISMATCH_ATTRIBUTE_NAME);
-        MismatchStrategy strategyOnMismatch = MismatchStrategy.FORBID;
+        MismatchStrategy strategyOnMismatch = MismatchStrategy.FORBIDDEN;
         if (STRATEGY_ON_MISMATCH_ALLOWED_VALUE.equals(returnValue)) {
             strategyOnMismatch = MismatchStrategy.ALLOWED;
         }
@@ -349,8 +355,11 @@ public final class ImportControlLoader extends XmlLoader {
         if (STRATEGY_ON_MISMATCH_ALLOWED_VALUE.equals(returnValue)) {
             strategyOnMismatch = MismatchStrategy.ALLOWED;
         }
-        else if (STRATEGY_ON_MISMATCH_FORBID_VALUE.equals(returnValue)) {
-            strategyOnMismatch = MismatchStrategy.FORBID;
+        else if (STRATEGY_ON_MISMATCH_FORBIDDEN_VALUE.equals(returnValue)
+        // how to test this?
+        // || STRATEGY_ON_MISMATCH_DISALLOWED_VALUE.equals(returnValue)
+        ) {
+            strategyOnMismatch = MismatchStrategy.FORBIDDEN;
         }
         return strategyOnMismatch;
     }

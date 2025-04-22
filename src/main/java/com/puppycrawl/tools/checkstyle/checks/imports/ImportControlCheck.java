@@ -80,7 +80,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * <li>
  * If there is matching allow/disallow rule inside the current file/subpackage
- * then the Check returns the first "allowed" or "disallowed" message.
+ * then the Check returns the first "allowed" or "forbidden" message.
  * </li>
  * <li>
  * If there is no matching allow/disallow rule inside the current file/subpackage
@@ -88,7 +88,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * <li>
  * If there is no matching allow/disallow rule in any of the files/subpackages,
- * including the root level (import-control), then the import is disallowed by default.
+ * including the root level (import-control), then the import is forbidden by default.
  * </li>
  * </ul>
  *
@@ -105,7 +105,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <pre>
  * &lt;!DOCTYPE import-control PUBLIC
- *     "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
+ *     "-//Checkstyle//DTD ImportControl Configuration 1.5//EN"
  *     "https://checkstyle.org/dtds/import_control_1_5.dtd"&gt;
  * </pre>
  * <ul>
@@ -134,7 +134,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <ul>
  * <li>
- * {@code import.control.disallowed}
+ * {@code import.control.forbidden}
  * </li>
  * <li>
  * {@code import.control.missing.file}
@@ -165,7 +165,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_DISALLOWED = "import.control.disallowed";
+    public static final String MSG_DISALLOWED = "import.control.forbidden";
 
     /**
      * A part of message for exception.

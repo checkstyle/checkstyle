@@ -5,7 +5,7 @@
 
 <import-control pkg="com.puppycrawl.tools.checkstyle">
 
-  <!-- java.io.FileInputStream and java.io.FileOutputStream are disallowed in favor of
+  <!-- java.io.FileInputStream and java.io.FileOutputStream are forbidden in favor of
          Files.newInputStream and Files.newOutputStream.
          See https://github.com/checkstyle/checkstyle/issues/5638 -->
   <forbid class="java.io.FileInputStream"/>
@@ -232,7 +232,7 @@
     <allow class="java.nio.charset.StandardCharsets" local-only="true"/>
   </subpackage>
 
-  <subpackage name="gui" strategyOnMismatch="forbid">
+  <subpackage name="gui" strategyOnMismatch="forbidden">
     <allow class="com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator" />
 
 

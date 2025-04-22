@@ -42,7 +42,16 @@ public enum MismatchStrategy {
     /**
      * In a case if matching allow/disallow rule was not found,
      * import will be disallowed by default.
+     *
+     * @deprecated Use {@link #FORBIDDEN}
      */
-    FORBID,
+    @Deprecated(since = "10.23.1")
+    DISALLOWED,
+
+    /**
+     * In a case if matching allow/disallow rule was not found,
+     * import will be forbidden by default.
+     */
+    FORBIDDEN,
 
 }
