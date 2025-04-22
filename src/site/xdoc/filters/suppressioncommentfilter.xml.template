@@ -70,7 +70,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure a filter so that <code>// stop constant
           check</code> and <code>// resume constant check</code> marks
@@ -86,7 +86,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure a filter so that <code>UNUSED OFF:<i>var</i></code>
           and <code>UNUSED ON: <i>var</i></code> marks a
@@ -103,7 +103,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           To configure a filter so that name of suppressed check mentioned
           in comment <code>CSOFF: <i>regexp</i></code>
@@ -119,7 +119,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example4.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example5-config">
           To configure a filter to suppress all audit events between a comment
           containing <code>CHECKSTYLE_OFF: ALMOST_ALL</code> and a comment containing
@@ -135,7 +135,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example5.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example6-config">
           It is possible to specify an ID of checks, so that it can be leveraged by the
           SuppressionCommentFilter to skip validations. The following examples show how to skip
@@ -155,7 +155,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example6.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example7-config">
           Example of how to configure the check to suppress checks by name defined in comment.
         </p>
@@ -169,7 +169,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example7.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example8-config">
           Example depicting use of checkC and checkCPP style comments
         </p>

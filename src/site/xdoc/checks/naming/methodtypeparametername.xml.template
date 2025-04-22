@@ -37,7 +37,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodtypeparametername/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check for names that are only a single letter is:
         </p>
