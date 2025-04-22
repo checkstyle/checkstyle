@@ -70,8 +70,8 @@
         </ul>
 
         <p>
-          The DTD for an import control XML document is at <a href="/dtds/import_control_1_4.dtd">
-          https://checkstyle.org/dtds/import_control_1_4.dtd</a>. It
+          The DTD for an import control XML document is at <a href="/dtds/import_control_1_5.dtd">
+          https://checkstyle.org/dtds/import_control_1_5.dtd</a>. It
           contains documentation on each of the elements and attributes.
         </p>
 
@@ -85,7 +85,7 @@
           <pre>
 &lt;!DOCTYPE import-control PUBLIC
     "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
-    "https://checkstyle.org/dtds/import_control_1_4.dtd"&gt;
+    "https://checkstyle.org/dtds/import_control_1_5.dtd"&gt;
           </pre>
         </div>
       </subsection>
@@ -227,7 +227,7 @@
         <source>
 &lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"
   strategyOnMismatch="allowed"&gt;
-  &lt;subpackage name="imports" strategyOnMismatch="disallowed"&gt;
+  &lt;subpackage name="imports" strategyOnMismatch="forbid"&gt;
     &lt;allow pkg="javax.swing"/&gt;
     &lt;allow class="java.io.File"/&gt;
   &lt;/subpackage&gt;
