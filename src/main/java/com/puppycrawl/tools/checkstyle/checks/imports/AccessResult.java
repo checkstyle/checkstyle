@@ -27,8 +27,15 @@ enum AccessResult {
 
     /** Represents that access is allowed. */
     ALLOWED,
-    /** Represents that access is disallowed. */
+    /**
+     * Represents that access is disallowed.
+     *
+     * @deprecated Use {@link #FORBIDDEN}
+     */
+    @Deprecated(since = "10.23.1")
     DISALLOWED,
+    /** Represents that access is forbidden. */
+    FORBIDDEN,
     /** Represents that access is unknown. */
     UNKNOWN,
 
