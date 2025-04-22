@@ -105,8 +105,8 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
                     ex.getLocalizedMessage());
         }
 
-        for (Entry<String, Integer> duplication : properties
-                .getDuplicatedKeys().entrySet()) {
+        for (Entry<String, Integer> duplication : properties.getDuplicatedKeys().entrySet()) {
+
             final String keyName = duplication.getKey();
             final int lineNumber = getLineNumber(fileText, keyName);
             // Number of occurrences is number of duplications + 1
@@ -184,8 +184,8 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
             if (oldValue != null && key instanceof String) {
                 final String keyString = (String) key;
 
-                duplicatedKeys.put(keyString,
-                        duplicatedKeys.getOrDefault(keyString, 0) + 1);
+                duplicatedKeys.put(keyString, duplicatedKeys.getOrDefault(keyString, 0) + 1);
+
             }
             return oldValue;
         }
@@ -202,3 +202,4 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
     }
 
 }
+
