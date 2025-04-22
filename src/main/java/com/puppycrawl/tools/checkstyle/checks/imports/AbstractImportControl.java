@@ -98,15 +98,18 @@ abstract class AbstractImportControl {
                 result = AccessResult.ALLOWED;
             }
             else {
-                result = AccessResult.DISALLOWED;
+                result = AccessResult.FORBIDDEN;
             }
         }
         else {
             if (strategyOnMismatch == MismatchStrategy.ALLOWED) {
                 result = AccessResult.ALLOWED;
             }
-            else if (strategyOnMismatch == MismatchStrategy.DISALLOWED) {
-                result = AccessResult.DISALLOWED;
+            else if (strategyOnMismatch == MismatchStrategy.FORBIDDEN
+            // how to test this?
+            // || strategyOnMismatch == MismatchStrategy.DISALLOWED
+            ) {
+                result = AccessResult.FORBIDDEN;
             }
             else {
                 result = parent.checkAccess(inPkg, inFileName, forImport);

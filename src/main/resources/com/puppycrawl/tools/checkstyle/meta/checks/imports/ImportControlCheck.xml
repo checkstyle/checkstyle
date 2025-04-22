@@ -51,7 +51,7 @@
  &lt;/li&gt;
  &lt;li&gt;
  If there is matching allow/disallow rule inside the current file/subpackage
- then the Check returns the first "allowed" or "disallowed" message.
+ then the Check returns the first "allowed" or "forbidden" message.
  &lt;/li&gt;
  &lt;li&gt;
  If there is no matching allow/disallow rule inside the current file/subpackage
@@ -59,14 +59,14 @@
  &lt;/li&gt;
  &lt;li&gt;
  If there is no matching allow/disallow rule in any of the files/subpackages,
- including the root level (import-control), then the import is disallowed by default.
+ including the root level (import-control), then the import is forbidden by default.
  &lt;/li&gt;
  &lt;/ul&gt;
 
  &lt;p&gt;
  The DTD for an import control XML document is at
- &lt;a href="https://checkstyle.org/dtds/import_control_1_4.dtd"&gt;
- https://checkstyle.org/dtds/import_control_1_4.dtd&lt;/a&gt;.
+ &lt;a href="https://checkstyle.org/dtds/import_control_1_5.dtd"&gt;
+ https://checkstyle.org/dtds/import_control_1_5.dtd&lt;/a&gt;.
  It contains documentation on each of the elements and attributes.
  &lt;/p&gt;
 
@@ -76,8 +76,8 @@
  &lt;/p&gt;
  &lt;pre&gt;
  &amp;lt;!DOCTYPE import-control PUBLIC
-     "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
-     "https://checkstyle.org/dtds/import_control_1_4.dtd"&amp;gt;
+     "-//Checkstyle//DTD ImportControl Configuration 1.5//EN"
+     "https://checkstyle.org/dtds/import_control_1_5.dtd"&amp;gt;
  &lt;/pre&gt;</description>
          <properties>
             <property name="file" type="java.net.URI">
@@ -92,7 +92,7 @@
             </property>
          </properties>
          <message-keys>
-            <message-key key="import.control.disallowed"/>
+            <message-key key="import.control.forbidden"/>
             <message-key key="import.control.missing.file"/>
             <message-key key="import.control.unknown.pkg"/>
          </message-keys>
