@@ -94,8 +94,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <p>
  * The DTD for an import control XML document is at
- * <a href="https://checkstyle.org/dtds/import_control_1_4.dtd">
- * https://checkstyle.org/dtds/import_control_1_4.dtd</a>.
+ * <a href="https://checkstyle.org/dtds/import_control_1_5.dtd">
+ * https://checkstyle.org/dtds/import_control_1_5.dtd</a>.
  * It contains documentation on each of the elements and attributes.
  * </p>
  *
@@ -106,7 +106,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;!DOCTYPE import-control PUBLIC
  *     "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
- *     "https://checkstyle.org/dtds/import_control_1_4.dtd"&gt;
+ *     "https://checkstyle.org/dtds/import_control_1_5.dtd"&gt;
  * </pre>
  * <ul>
  * <li>
