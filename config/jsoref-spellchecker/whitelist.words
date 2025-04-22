@@ -466,6 +466,7 @@ forbiddenapis
 Foreach
 Fpuppycrawl
 fq
+frametag
 freemarker
 Fregexp
 Fresources
