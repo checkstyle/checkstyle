@@ -19,7 +19,7 @@ public class InputSimplifyBooleanExpression
         boolean even = System.currentTimeMillis() % 2 == 0;
 
         // can be simplified to "if (even)"
-        if (even == true) { // violation
+        if (even == true) { // violation, 'Expression can be simplified'
             return false;
         }
         else {
@@ -40,8 +40,8 @@ public class InputSimplifyBooleanExpression
 
     public static boolean giveMeTrue()
     {
-        boolean tt = isOddMillis() || true; // violation
-        boolean ff = isOddMillis() && false; // violation
+        boolean tt = isOddMillis() || true; // violation, 'Expression can be simplified'
+        boolean ff = isOddMillis() && false; // violation, 'Expression can be simplified'
         return !false || (true != false); // 2 violations
     }
 
@@ -92,23 +92,23 @@ public class InputSimplifyBooleanExpression
         boolean a = false;
         boolean b = true;
         int c = 13;
-        boolean m = c > 1 ? true : false; // violation
-        boolean e = (a == true) // violation
+        boolean m = c > 1 ? true : false; // violation, 'Expression can be simplified'
+        boolean e = (a == true) // violation, 'Expression can be simplified'
                 ? c > 1 : false;
-        boolean h = false ? c > 13 : c < 21; // violation
+        boolean h = false ? c > 13 : c < 21; // violation, 'Expression can be simplified'
         boolean f = a == b ? false : c > 1;
         boolean q = c > 1 ? (c < 15
                 ? false : b)
                 : a != b;
         boolean v = c > 0 ? true :
-                c < 0 ? false : true; // violation
+                c < 0 ? false : true; // violation, 'Expression can be simplified'
         boolean g = (c > 0 ? true : c < 0)
-                ? false : false; // violation
+                ? false : false; // violation, 'Expression can be simplified'
         Boolean value = null;
         boolean temp = value != null ? value : false;
-        temp = true ? a() : b(); // violation
-        int d = false ? 1 : 2; // violation
-        temp = a() ? true : true; // violation
+        temp = true ? a() : b(); // violation, 'Expression can be simplified'
+        int d = false ? 1 : 2; // violation, 'Expression can be simplified'
+        temp = a() ? true : true; // violation, 'Expression can be simplified'
         temp = value != null ? value : (false);
     }
 }

@@ -10,7 +10,8 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 
 import java.lang.annotation.Documented;
 
-@SuppressWarnings("unchecked") // violation
+// violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+@SuppressWarnings("unchecked")
 public class InputSuppressWarningsSingle4
 {
     @SuppressWarnings("   ")
@@ -34,7 +35,8 @@ public class InputSuppressWarningsSingle4
             Object o = new InputSuppressWarningsSingle4() {
 
                 @Override
-                @SuppressWarnings("unchecked") // violation
+                @SuppressWarnings("unchecked")
+                // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
                 public String toString() {
                     return "";
                 }
@@ -69,7 +71,8 @@ public class InputSuppressWarningsSingle4
         }
     }
 
-    @SuppressWarnings((false) ? "unchecked" : "") // violation
+    // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+    @SuppressWarnings((false) ? "unchecked" : "")
     class Cond {
 
         @SuppressWarnings((false) ? "" : "unchecked")
@@ -77,17 +80,20 @@ public class InputSuppressWarningsSingle4
 
         }
 
-        @SuppressWarnings((false) ? (true) ? "   " : "unused" : "unchecked") // violation
+        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        @SuppressWarnings((false) ? (true) ? "   " : "unused" : "unchecked")
         public void aCond1() {
 
         }
 
-        @SuppressWarnings((false) ? "unchecked" : (true) ? "   " : "unused") // violation
+        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        @SuppressWarnings((false) ? "unchecked" : (true) ? "   " : "unused")
         public void aCond2() {
 
         }
 
-        @java.lang.SuppressWarnings((false) ? "unchecked" : // violation
+        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        @java.lang.SuppressWarnings((false) ? "unchecked" :
                 ("" == "") ? (false) ? (true) ? "" : "foo" : "    " : "unused")
         public void seriously() {
 

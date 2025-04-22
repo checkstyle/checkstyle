@@ -37,7 +37,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to allow 10 parameters for a method:
         </p>
@@ -55,7 +55,7 @@
         <p>
           To configure the check to ignore number of parameters for methods with
           <code>@Override</code> or <code>@java.lang.Override annotation</code>.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example3-config">
           Rationale: developer may need to override method with many parameters from
           3-rd party library.
@@ -71,7 +71,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the check to ignore methods and constructors annotated with
           <code>JsonCreator</code> annotation:

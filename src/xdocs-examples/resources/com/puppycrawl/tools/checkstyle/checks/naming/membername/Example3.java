@@ -13,9 +13,9 @@ package com.puppycrawl.tools.checkstyle.checks.naming.membername;
 // xdoc section -- start
 class Example3 {
   public int NUM1;
-  protected int NUM2; // violation
+  protected int NUM2; // violation 'Name 'NUM2' must match pattern'
 
-  int NUM3; // violation
+  int NUM3; // violation 'Name 'NUM3' must match pattern'
 
   private int NUM4;
 }

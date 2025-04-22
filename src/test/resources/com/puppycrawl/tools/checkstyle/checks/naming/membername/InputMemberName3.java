@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.membername;
 
 public class InputMemberName3
 {
-    public int mPublic; // violation
+    public int mPublic; // violation 'Name 'mPublic' must match pattern'
     protected int mProtected;
     int mPackage;//comment
     private int mPrivate;

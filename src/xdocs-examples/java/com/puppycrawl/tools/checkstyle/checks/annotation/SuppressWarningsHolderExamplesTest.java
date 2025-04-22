@@ -39,13 +39,13 @@ public class SuppressWarningsHolderExamplesTest extends AbstractExamplesModuleTe
         final String pattern1 = "^[a-z][a-zA-Z0-9]*$";
         final String pattern2 = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
         final String[] expected = {
-            "21:15: " + getCheckMessage(MemberNameCheck.class,
+            "20:15: " + getCheckMessage(MemberNameCheck.class,
                         AbstractNameCheck.MSG_INVALID_PATTERN, "K", pattern1),
-            "25:28: " + getCheckMessage(ConstantNameCheck.class,
+            "24:28: " + getCheckMessage(ConstantNameCheck.class,
                         AbstractNameCheck.MSG_INVALID_PATTERN, "i", pattern2),
-            "35:15: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+            "34:15: " + getCheckMessage(NoWhitespaceAfterCheck.class,
                         NoWhitespaceAfterCheck.MSG_KEY, "int"),
-            "35:18: " + getCheckMessage(MemberNameCheck.class,
+            "34:18: " + getCheckMessage(MemberNameCheck.class,
                         AbstractNameCheck.MSG_INVALID_PATTERN, "ARR", pattern1),
 
         };
@@ -62,5 +62,25 @@ public class SuppressWarningsHolderExamplesTest extends AbstractExamplesModuleTe
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "18:15: " + getCheckMessage(ParameterNumberCheck.class,
+                        ParameterNumberCheck.MSG_KEY, 7, 8),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "18:15: " + getCheckMessage(ParameterNumberCheck.class,
+                        ParameterNumberCheck.MSG_KEY, 7, 8),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 }

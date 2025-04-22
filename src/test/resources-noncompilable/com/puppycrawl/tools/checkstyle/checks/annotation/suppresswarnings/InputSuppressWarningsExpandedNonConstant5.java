@@ -18,25 +18,30 @@ public class InputSuppressWarningsExpandedNonConstant5
     @SuppressWarnings(value={"   "})
     class Empty {
 
-        @SuppressWarnings(value={"unchecked", ""}) // violation
+        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        @SuppressWarnings(value={"unchecked", ""})
         public Empty() {
 
         }
     }
 
-    @SuppressWarnings(value={"unused"}) // violation
+    // violation below, 'The warning 'unused' cannot be suppressed at this location'
+    @SuppressWarnings(value={"unused"})
     enum Duh {
 
-        @SuppressWarnings(value={"unforgiven", "    un"}) // violation
+        // violation below, 'The warning 'unforgiven' cannot be suppressed at this location'
+        @SuppressWarnings(value={"unforgiven", "    un"})
         D;
 
         public static void foo() {
 
-            @SuppressWarnings(value={"unused"}) // violation
+            // violation below, 'The warning 'unused' cannot be suppressed at this location'
+            @SuppressWarnings(value={"unused"})
             Object o = new InputSuppressWarningsExpandedNonConstant5() {
 
                 @Override
-                @SuppressWarnings(value={"unchecked"}) // violation
+                @SuppressWarnings(value={"unchecked"})
+                // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
                 public String toString() {
                     return "";
                 }
@@ -54,7 +59,8 @@ public class InputSuppressWarningsExpandedNonConstant5
     @SuppressWarnings(value={})
     @interface MoreSweetness {
 
-        @SuppressWarnings(value={"unused", "bleh"}) // violation
+        // violation below, 'The warning 'unused' cannot be suppressed at this location'
+        @SuppressWarnings(value={"unused", "bleh"})
         int cool();
     }
 
@@ -63,18 +69,23 @@ public class InputSuppressWarningsExpandedNonConstant5
         @SuppressWarnings(value={})
         int a = 1;
 
-        @SuppressWarnings(value={"unchecked"}) // violation
+        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        @SuppressWarnings(value={"unchecked"})
         @Deprecated
         int b = 1;
-        void doFoo(String s, @SuppressWarnings(value={"unchecked"})String y) { // violation
+        void doFoo(String s, @SuppressWarnings(value={"unchecked"})String y) {
+            // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
 
         }
     }
 
-    @SuppressWarnings(value={(false) ? "unchecked" : "", (false) ? "unchecked" : ""}) // violation
-    class Cond { // violation above
+    // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+    @SuppressWarnings(value={(false) ? "unchecked" : "", (false) ? "unchecked" : ""})
+    // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
+    class Cond {
 
-        @SuppressWarnings(value={(false) ? "" : "unchecked"}) // violation
+        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        @SuppressWarnings(value={(false) ? "" : "unchecked"})
         public Cond() {
 
         }
@@ -90,10 +101,14 @@ public class InputSuppressWarningsExpandedNonConstant5
 
         }
 
-        @java.lang.SuppressWarnings(value={(false) ? "unchecked" : // violation
-                    ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused", // violation
-                (false) ? "unchecked" : // violation
-                    ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused"}) // violation
+        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        @java.lang.SuppressWarnings(value={(false) ? "unchecked" :
+                // violation below, 'The warning 'unused' cannot be suppressed at this location'
+                    ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused",
+                // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+                (false) ? "unchecked" :
+                // violation below, 'The warning 'unused' cannot be suppressed at this location'
+                    ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused"})
         public void seriously() {
 
         }

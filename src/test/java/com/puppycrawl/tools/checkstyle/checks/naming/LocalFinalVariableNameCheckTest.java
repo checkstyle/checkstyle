@@ -101,11 +101,11 @@ public class LocalFinalVariableNameCheckTest
         final String pattern = "[A-Z]+";
 
         final String[] expected = {
-            "31:30: " + getCheckMessage(MSG_INVALID_PATTERN, "br", pattern),
-            "41:29: " + getCheckMessage(MSG_INVALID_PATTERN, "br", pattern),
-            "61:22: " + getCheckMessage(MSG_INVALID_PATTERN, "zf", pattern),
-            "79:30: " + getCheckMessage(MSG_INVALID_PATTERN, "fis8859_1", pattern),
-            "82:32: " + getCheckMessage(MSG_INVALID_PATTERN, "isrutf8", pattern),
+            "32:30: " + getCheckMessage(MSG_INVALID_PATTERN, "br", pattern),
+            "43:29: " + getCheckMessage(MSG_INVALID_PATTERN, "br", pattern),
+            "63:22: " + getCheckMessage(MSG_INVALID_PATTERN, "zf", pattern),
+            "82:30: " + getCheckMessage(MSG_INVALID_PATTERN, "fis8859_1", pattern),
+            "86:32: " + getCheckMessage(MSG_INVALID_PATTERN, "isrutf8", pattern),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLocalFinalVariableNameTryResources.java"), expected);

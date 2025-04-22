@@ -88,7 +88,6 @@ Awarns
 aws
 awt
 azurewebsites
-backport
 Backquote
 backticks
 BADN
@@ -300,7 +299,6 @@ detailnodetreestringprinter
 devops
 Dexec
 Dexpression
-df
 dfa
 DFFF
 Dfile
@@ -410,7 +408,6 @@ Fannotation
 favicon
 Fblocks
 FCBL
-fcc
 FCCD
 Fchecks
 Fcheckstyle
@@ -458,7 +455,6 @@ FIXME
 Fjava
 Fjavadoc
 Flas
-flattr
 fluido
 Fmain
 Fmessages
@@ -749,7 +745,6 @@ KDoc
 keygen
 keyname
 keyscan
-kkoutsilis
 konstantinos
 Kordas
 Kotlin
@@ -822,6 +817,7 @@ methodsandconstructorsannotations
 methodtypeparametername
 MEZk
 mfussenegger
+MHTML
 Micha
 microsoft
 minimalistic
@@ -1167,6 +1163,7 @@ rp
 rparen
 rpmfind
 rq
+Rr
 Rrridden
 RRRR
 Rsa
@@ -1222,6 +1219,7 @@ sivakumar
 Slawinski
 slf
 slist
+SLL
 SLo
 Slurper
 slurpersupport
@@ -1251,7 +1249,6 @@ spotbugs
 spotbugsreports
 spotify
 springframework
-sqale
 sqe
 sql
 src
@@ -1278,6 +1275,7 @@ STT
 Studman
 Styleable
 styleguide
+stylesheet
 subdir
 subelements
 subext
@@ -1398,6 +1396,7 @@ unnecessarysemicoloninenumeration
 unnecessarysemicolonintrywithresources
 Unproxyable
 unregister
+unstale
 unsubscribe
 unusedcatchparametershouldbeunnamed
 unusedimports

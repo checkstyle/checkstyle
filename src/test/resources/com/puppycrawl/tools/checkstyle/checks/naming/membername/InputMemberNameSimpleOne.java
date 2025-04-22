@@ -38,7 +38,7 @@ final class InputMemberNameSimpleOne
     private static int sNumCreated = 0;
 
     /** Invalid format **/
-    private int badMember = 2; // violation
+    private int badMember = 2; // violation 'Name 'badMember' must match pattern'
     /** Valid format **/
     private int mNumCreated1 = 0;
     /** Valid format **/

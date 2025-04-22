@@ -20,7 +20,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  VERSION: 1.25.2
+  VERSION: 1.26.0
 
 jobs:
   test:

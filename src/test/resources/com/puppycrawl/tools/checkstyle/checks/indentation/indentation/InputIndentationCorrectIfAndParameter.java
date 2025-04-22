@@ -16,67 +16,42 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent
  */                                                                           //indent:1 exp:1
 class InputIndentationCorrectIfAndParameter { //indent:0 exp:0
 
-  String getString(int someInt, String someString) { //indent:2 exp:2
+  static String getString(int someInt, String someString) { //indent:2 exp:2
     return "String"; //indent:4 exp:4
   } //indent:2 exp:2
 
-  void fooMethodWithIf() { //indent:2 exp:2
-
-    if (conditionFirst("Loooooooooooooooooong", new //indent:4 exp:4
-        SecondClassLongNam7("Loooooooooooooooooog"). //indent:8 exp:8
-        getInteger(new InputIndentationCorrectIfAndParameter(), "Looooog"), //indent:8 exp:8
-        new InnerClassFoo())) {} //indent:8 exp:8
-
-    if (conditionSecond(10000000000.0, new //indent:4 exp:4
-        SecondClassLongNam7("Looooooooooooo" //indent:8 exp:8
-        + "oooooooooooong").getString(new InputIndentationCorrectIfAndParameter(), //indent:8 exp:8
-        new SecondClassLongNam7("loooooooooong"). //indent:8 exp:10,12 warn
-        getInteger(new InputIndentationCorrectIfAndParameter(), "long")), "loong") //indent:8 exp:8
-        || conditionThird(2048) || conditionFourth(new //indent:8 exp:8
-        SecondClassLongNam7("Looooooooooooooo" //indent:8 exp:8
-        + "oo").gB(new InputIndentationCorrectIfAndParameter(), false)) || //indent:8 exp:8
-        conditionFifth(true, new SecondClassLongNam7(getString(2048, "Looo" //indent:8 exp:8
-        + "ooooooooooooooooooooooooooooooooooooooooooong")).gB( //indent:8 exp:8
-        new InputIndentationCorrectIfAndParameter(), true)) //indent:8 exp:10,12 warn
-        || co(false, new //indent:8 exp:8
-        SecondClassLongNam7(getString(100000, "Loooooong" //indent:8 exp:8
-        + "Fooooooo><"))) || conditionNoArg() //indent:8 exp:8
-        || conditionNoArg() || //indent:8 exp:8
-        conditionNoArg() || conditionNoArg()) {} //indent:8 exp:8
-  } //indent:2 exp:2
-
-  private boolean conditionFirst(String longString, int //indent:2 exp:2
+  static boolean conditionFirst(String longString, int //indent:2 exp:2
       integer, InnerClassFoo someInstance) { //indent:6 exp:6
     return false; //indent:4 exp:4
   } //indent:2 exp:2
 
-  private boolean conditionSecond(double longLongLongDoubleValue, //indent:2 exp:2
+  static boolean conditionSecond(double longLongLongDoubleValue, //indent:2 exp:2
       String longLongLongString, String secondLongLongString) { //indent:6 exp:6
     return false; //indent:4 exp:4
   } //indent:2 exp:2
 
-  private boolean conditionThird(long veryLongValue) { //indent:2 exp:2
+  static boolean conditionThird(long veryLongValue) { //indent:2 exp:2
     return false; //indent:4 exp:4
   } //indent:2 exp:2
 
-  private boolean conditionFourth(boolean flag) { //indent:2 exp:2
+  static boolean conditionFourth(boolean flag) { //indent:2 exp:2
     return false; //indent:4 exp:4
   } //indent:2 exp:2
 
-  private boolean conditionFifth(boolean flag1, boolean flag2) { //indent:2 exp:2
+  static boolean conditionFifth(boolean flag1, boolean flag2) { //indent:2 exp:2
     return false; //indent:4 exp:4
   } //indent:2 exp:2
 
-  private boolean co(boolean flag, //indent:2 exp:2
+  static boolean co(boolean flag, //indent:2 exp:2
       SecondClassLongNam7 instance) { //indent:6 exp:6
     return false; //indent:4 exp:4
   } //indent:2 exp:2
 
-  private boolean conditionNoArg() { //indent:2 exp:2
+  static boolean conditionNoArg() { //indent:2 exp:2
     return false; //indent:4 exp:4
   } //indent:2 exp:2
 
-  class InnerClassFoo { //indent:2 exp:2
+  static class InnerClassFoo { //indent:2 exp:2
 
     void fooMethodWithIf() { //indent:4 exp:4
       if (conditionFirst("Loooooooooooooooooong", new //indent:6 exp:6
@@ -132,29 +107,5 @@ class InputIndentationCorrectIfAndParameter { //indent:0 exp:0
                      && fooooooooobooleanBooleanVeryLongName) {} //indent:21 exp:>=12
       } //indent:6 exp:6
     }; //indent:4 exp:4
-  } //indent:2 exp:2
-} //indent:0 exp:0
-
-class SecondClassLongNam7 { //indent:0 exp:0
-
-  public SecondClassLongNam7(String string) { //indent:2 exp:2
-
-  } //indent:2 exp:2
-
-  String getString(InputIndentationCorrectIfAndParameter instance, int integer) { //indent:2 exp:2
-    return "String"; //indent:4 exp:4
-  } //indent:2 exp:2
-
-  int getInteger(InputIndentationCorrectIfAndParameter instance, String string) { //indent:2 exp:2
-    return -1;   //indent:4 exp:4
-  } //indent:2 exp:2
-
-  boolean gB(InputIndentationCorrectIfAndParameter instance,boolean flag){ //indent:2 exp:2
-    return false; //indent:4 exp:4
-  } //indent:2 exp:2
-
-  SecondClassLongNam7 getInstance() { //indent:2 exp:2
-    return new SecondClassLongNam7("VeryLoooooooooo" //indent:4 exp:4
-        + "oongString"); //indent:8 exp:8
   } //indent:2 exp:2
 } //indent:0 exp:0
