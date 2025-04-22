@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 public class PkgImportControlTest {
 
     private final PkgImportControl icRoot = new PkgImportControl(
-            "com.kazgroup.courtlink", false, MismatchStrategy.DISALLOWED);
+            "com.kazgroup.courtlink", false, MismatchStrategy.FORBID);
     private final PkgImportControl icCommon = new PkgImportControl(icRoot,
             "common", false, MismatchStrategy.DELEGATE_TO_PARENT);
     private final PkgImportControl icUncommon = new PkgImportControl(icRoot,
@@ -254,7 +254,7 @@ public class PkgImportControlTest {
     public void testRegExpParentAlternationInParentIsHandledCorrectly() {
         // the regular expression has to be adjusted to (com\.foo|com\.bar)
         final PkgImportControl root = new PkgImportControl("com\\.foo|com\\.bar", true,
-                MismatchStrategy.DISALLOWED);
+                MismatchStrategy.FORBID);
         final PkgImportControl common = new PkgImportControl(root, "common", false,
                 MismatchStrategy.DELEGATE_TO_PARENT);
         root.addChild(common);
@@ -276,7 +276,7 @@ public class PkgImportControlTest {
     public void testRegExpParentAlternationInParentIfUserCaresForIt() {
         // the regular expression has to be adjusted to (com\.foo|com\.bar)
         final PkgImportControl root = new PkgImportControl("(com\\.foo|com\\.bar)", true,
-                MismatchStrategy.DISALLOWED);
+                MismatchStrategy.FORBID);
         final PkgImportControl common = new PkgImportControl(root, "common", false,
                 MismatchStrategy.DELEGATE_TO_PARENT);
         root.addChild(common);
@@ -297,7 +297,7 @@ public class PkgImportControlTest {
     @Test
     public void testRegExpParentAlternationInSubpackageIsHandledCorrectly() {
         final PkgImportControl root = new PkgImportControl("org.somewhere", false,
-                MismatchStrategy.DISALLOWED);
+                MismatchStrategy.FORBID);
         // the regular expression has to be adjusted to (foo|bar)
         final PkgImportControl subpackages = new PkgImportControl(root, "foo|bar", true,
                 MismatchStrategy.DELEGATE_TO_PARENT);
