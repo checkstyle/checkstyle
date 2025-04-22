@@ -470,6 +470,7 @@ forbiddenapis
 Foreach
 Fpuppycrawl
 fq
+frameTag
 freedomsponsors
 freemarker
 Fregexp
