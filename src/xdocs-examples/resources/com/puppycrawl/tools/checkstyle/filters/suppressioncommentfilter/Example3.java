@@ -40,7 +40,8 @@ class Example3
     //ILLEGAL OFF: Exception
 
     try {}
-    catch(Exception ex) {} // suppressed violation
+    catch(Exception ex) {}
+    // filtered violation above 'Catching 'Exception' is not allowed'
     catch(Error err) {} // violation, Catching 'Error' is not allowed
 
     //ILLEGAL ON: Exception
