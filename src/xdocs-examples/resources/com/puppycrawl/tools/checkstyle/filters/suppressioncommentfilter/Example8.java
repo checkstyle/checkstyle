@@ -25,7 +25,7 @@ class Example8
   // violation above, Name 'must match pattern'
 
   /*CHECKSTYLE:OFF*/
-  public static final int var4 = 1; // suppressed violation
+  public static final int var4 = 1; // filtered violation 'must match pattern'
   /*CHECKSTYLE:ON*/
 
   public void method1()
