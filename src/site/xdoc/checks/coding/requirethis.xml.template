@@ -73,7 +73,7 @@
         <p>
           Note that method call foo(5) does not raise a violation
           because methods cannot be overlapped in java.
-        </p>
+        </p><hr class="example-separator"/>
         <p id="Example4-config">
             To configure the check demand methods and fields to have 'this.'
         </p>
@@ -87,7 +87,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example4.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check demand fields only to have 'this.'
         </p>
@@ -101,7 +101,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
             To configure the check demand methods only to have 'this.'
         </p>

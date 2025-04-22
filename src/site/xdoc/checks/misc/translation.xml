@@ -126,7 +126,7 @@ name=Nom
 messages.properties     // violation 'Key 'age', 'name' and 'greeting' missing.'
 messages_fr.properties  // violation 'Key 'age', 'cancel' and 'hello' missing.'
 messages_es.properties  // violation 'Key 'cancel', 'name' and 'hello' missing.'
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check to validate only bundles which base names
           start with &quot;ButtonLabels&quot;:
@@ -158,7 +158,7 @@ name=Nom
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 ButtonLabels.properties     // violation 'Key 'name' is missing.'
 ButtonLabels_fr.properties  // violation 'Key 'cancel' is missing.'
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to check only files which have '.properties' and '.translations'
           extensions:
