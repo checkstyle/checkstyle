@@ -131,14 +131,14 @@ class Example1
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
   //CHECKSTYLE:OFF
-  int VAR2; // suppressed violation
+  int VAR2; // filtered violation 'must match pattern'
   //CHECKSTYLE:ON
 
   public static final int var3 = 1;
   // violation above, 'must match pattern'
 
   //CHECKSTYLE:OFF
-  public static final int var4 = 1; // suppressed violation
+  public static final int var4 = 1; // filtered violation 'must match pattern'
   //CHECKSTYLE:ON
 
   public void method1()
@@ -149,8 +149,10 @@ class Example1
     //CHECKSTYLE:OFF
 
     try {}
-    catch(Exception ex) {} // suppressed violation
-    catch(Error err) {} // suppressed violation
+    catch(Exception ex) {}
+    // filtered violation above 'Catching 'Exception' is not allowed'
+    catch(Error err) {}
+    // filtered violation above 'Catching 'Error' is not allowed'
 
     //CHECKSTYLE:ON
   }
@@ -189,7 +191,7 @@ class Example2
   // violation above, Name 'must match pattern'
 
   //stop constant check
-  public static final int var4 = 1; // suppressed violation
+  public static final int var4 = 1; // filtered violation 'must match pattern'
   //resume constant check
 
   public void method1()
@@ -254,7 +256,8 @@ class Example3
     //ILLEGAL OFF: Exception
 
     try {}
-    catch(Exception ex) {} // suppressed violation
+    catch(Exception ex) {}
+    // filtered violation above 'Catching 'Exception' is not allowed'
     catch(Error err) {} // violation, Catching 'Error' is not allowed
 
     //ILLEGAL ON: Exception
@@ -287,14 +290,14 @@ class Example4
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
   //CSOFF: MemberName
-  int VAR2; // suppressed violation
+  int VAR2; // filtered violation 'must match pattern'
   //CSON: MemberName
 
   public static final int var3 = 1;
   // violation above, 'must match pattern'
 
   //CSOFF: ConstantName
-  public static final int var4 = 1; // suppressed violation
+  public static final int var4 = 1; // filtered violation 'must match pattern'
   //CSON: ConstantName
 
   public void method1()
@@ -305,8 +308,10 @@ class Example4
     //CSOFF: IllegalCatch
 
     try {}
-    catch(Exception ex) {} // suppressed violation
-    catch(Error err) {} // suppressed violation
+    catch(Exception ex) {}
+    // filtered violation above 'Catching 'Exception' is not allowed'
+    catch(Error err) {}
+    // filtered violation above 'Catching 'Error' is not allowed'
 
     //CSON: IllegalCatch
   }
@@ -338,7 +343,7 @@ class Example5
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
   //CHECKSTYLE_OFF: ALMOST_ALL
-  int VAR2; // suppressed violation
+  int VAR2; // filtered violation 'must match pattern'
   //CHECKSTYLE_ON: ALMOST_ALL
 
   public static final int var3 = 1;
@@ -357,8 +362,10 @@ class Example5
     //CHECKSTYLE_OFF: ALMOST_ALL
 
     try {}
-    catch(Exception ex) {} // suppressed violation
-    catch(Error err) {} // suppressed violation
+    catch(Exception ex) {}
+    // filtered violation above 'Catching 'Exception' is not allowed'
+    catch(Error err) {}
+    // filtered violation above 'Catching 'Error' is not allowed'
 
     //CHECKSTYLE_ON: ALMOST_ALL
   }
@@ -400,14 +407,14 @@ class Example6
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
   //CSOFF MemberID
-  int VAR2; // suppressed violation
+  int VAR2; // filtered violation 'must match pattern'
   //CSON: MemberID
 
   public static final int var3 = 1;
   // violation above, 'must match pattern'
 
   //CSOFF ConstantID
-  public static final int var4 = 1; // suppressed violation
+  public static final int var4 = 1; // filtered violation 'must match pattern'
   //CSON ConstantID
 
   public void method1()
@@ -418,8 +425,10 @@ class Example6
     //CSOFF IllegalID
 
     try {}
-    catch(Exception ex) {} // suppressed violation
-    catch(Error err) {} // suppressed violation
+    catch(Exception ex) {}
+    // filtered violation above 'Catching 'Exception' is not allowed'
+    catch(Error err) {}
+    // filtered violation above 'Catching 'Error' is not allowed'
 
     //CSON IllegalID
   }
@@ -449,7 +458,7 @@ class Example7
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
   //csoff MemberName
-  int VAR2; // suppressed violation
+  int VAR2; // filtered violation 'must match pattern'
   //cson MemberName
 
   public static final int var3 = 1;
@@ -458,16 +467,19 @@ class Example7
   //csoff ConstantName
   //csoff IllegalCatch
 
-  public static final int var4 = 1; // suppressed violation
+  public static final int var4 = 1; // filtered violation 'must match pattern'
 
   public void method1()
   {
     try {}
-    catch(Exception ex) {} // suppressed violation
+    catch(Exception ex) {}
+    // filtered violation above 'Catching 'Exception' is not allowed'
 
     try {}
-    catch(Exception ex) {} // suppressed violation
-    catch(Error err) {} // suppressed violation
+    catch(Exception ex) {}
+    // filtered violation above 'Catching 'Exception' is not allowed'
+    catch(Error err) {}
+    // filtered violation above 'Catching 'Error' is not allowed'
   }
 
   //cson ConstantName
@@ -505,7 +517,7 @@ class Example8
   // violation above, Name 'must match pattern'
 
   /*CHECKSTYLE:OFF*/
-  public static final int var4 = 1; // suppressed violation
+  public static final int var4 = 1; // filtered violation 'must match pattern'
   /*CHECKSTYLE:ON*/
 
   public void method1()
