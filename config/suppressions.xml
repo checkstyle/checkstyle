@@ -198,6 +198,10 @@
   <suppress checks="FileTabCharacter"
     files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]whitespace[\\/]filetabcharacter\.xml"/>
 
+  <!-- Apart from a complex logic there is a lot of small methods for a better readability. -->
+  <suppress checks="MethodCount"
+            files="src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]whitespace[\\/]EmptyLineSeparatorCheck.java"/>
+
   <!-- Uses non-ascii symbols intentionally -->
   <suppress id="checkASCII"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]ConfigurationLoaderTest.java"/>
