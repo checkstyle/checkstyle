@@ -100,7 +100,7 @@ public final class ImportControlLoader extends XmlLoader {
 
     /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_4 =
-        "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_4.dtd";
+        "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_5.dtd";
 
     /** The map to look up the resource name by the id. */
     private static final Map<String, String> DTD_RESOURCE_BY_ID = new HashMap<>();
