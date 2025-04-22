@@ -82,6 +82,14 @@ public final class ImportControlLoader extends XmlLoader {
     private static final String DTD_PUBLIC_CS_ID_1_4 =
         "-//Checkstyle//DTD ImportControl Configuration 1.4//EN";
 
+    /** The public ID for the configuration dtd. */
+    private static final String DTD_PUBLIC_ID_1_5 =
+        "-//Puppy Crawl//DTD Import Control 1.5//EN";
+
+    /** The new public ID for version 1_5 of the configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_5 =
+        "-//Checkstyle//DTD ImportControl Configuration 1.5//EN";
+
     /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_0 =
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_0.dtd";
@@ -102,6 +110,10 @@ public final class ImportControlLoader extends XmlLoader {
     private static final String DTD_RESOURCE_NAME_1_4 =
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_4.dtd";
 
+    /** The resource for the configuration dtd. */
+    private static final String DTD_RESOURCE_NAME_1_5 =
+        "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_5.dtd";
+
     /** The map to look up the resource name by the id. */
     private static final Map<String, String> DTD_RESOURCE_BY_ID = new HashMap<>();
 
@@ -117,8 +129,16 @@ public final class ImportControlLoader extends XmlLoader {
     /** Value "allowed" for attribute 'strategyOnMismatch'. */
     private static final String STRATEGY_ON_MISMATCH_ALLOWED_VALUE = "allowed";
 
-    /** Value "disallowed" for attribute 'strategyOnMismatch'. */
+    /**
+     * Value "disallowed" for attribute 'strategyOnMismatch'.
+     *
+     * @deprecated Use {@link #STRATEGY_ON_MISMATCH_FORBIDDEN_VALUE}
+     */
+    @Deprecated(since = "10.23.1")
     private static final String STRATEGY_ON_MISMATCH_DISALLOWED_VALUE = "disallowed";
+
+    /** Value "forbidden" for attribute 'strategyOnMismatch'. */
+    private static final String STRATEGY_ON_MISMATCH_FORBIDDEN_VALUE = "forbidden";
 
     /** Qualified name for element 'subpackage'. */
     private static final String SUBPACKAGE_ELEMENT_NAME = "subpackage";
@@ -138,11 +158,13 @@ public final class ImportControlLoader extends XmlLoader {
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_2, DTD_RESOURCE_NAME_1_2);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_3, DTD_RESOURCE_NAME_1_3);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_4, DTD_RESOURCE_NAME_1_4);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_5, DTD_RESOURCE_NAME_1_5);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_0, DTD_RESOURCE_NAME_1_0);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_1, DTD_RESOURCE_NAME_1_1);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_2, DTD_RESOURCE_NAME_1_2);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_3, DTD_RESOURCE_NAME_1_3);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_4, DTD_RESOURCE_NAME_1_4);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_5, DTD_RESOURCE_NAME_1_5);
     }
 
     /**
@@ -316,7 +338,7 @@ public final class ImportControlLoader extends XmlLoader {
      */
     private static MismatchStrategy getStrategyForImportControl(Attributes attributes) {
         final String returnValue = attributes.getValue(STRATEGY_ON_MISMATCH_ATTRIBUTE_NAME);
-        MismatchStrategy strategyOnMismatch = MismatchStrategy.DISALLOWED;
+        MismatchStrategy strategyOnMismatch = MismatchStrategy.FORBIDDEN;
         if (STRATEGY_ON_MISMATCH_ALLOWED_VALUE.equals(returnValue)) {
             strategyOnMismatch = MismatchStrategy.ALLOWED;
         }
@@ -335,8 +357,10 @@ public final class ImportControlLoader extends XmlLoader {
         if (STRATEGY_ON_MISMATCH_ALLOWED_VALUE.equals(returnValue)) {
             strategyOnMismatch = MismatchStrategy.ALLOWED;
         }
-        else if (STRATEGY_ON_MISMATCH_DISALLOWED_VALUE.equals(returnValue)) {
-            strategyOnMismatch = MismatchStrategy.DISALLOWED;
+        else if (STRATEGY_ON_MISMATCH_FORBIDDEN_VALUE.equals(returnValue)
+            || STRATEGY_ON_MISMATCH_DISALLOWED_VALUE.equals(returnValue)
+        ) {
+            strategyOnMismatch = MismatchStrategy.FORBIDDEN;
         }
         return strategyOnMismatch;
     }
