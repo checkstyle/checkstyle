@@ -27,7 +27,7 @@ class Example2 {
                      int aFooInt) {
 
         boolean cond1,cond2,cond3,cond4,cond5,cond6;
-        cond1=cond2=cond3=cond4=cond5=cond6=false;
+        cond1=cond2=cond3=cond4=cond5=cond6 = false;
 
         if (cond1
             || cond2) {

@@ -4,9 +4,7 @@ AvoidInlineConditionals
 
 */
 
-package com . puppycrawl
-    .tools.
-    checkstyle.checks.coding.avoidinlineconditionals;
+package com.puppycrawl.tools.checkstyle.checks.coding.avoidinlineconditionals;
 
 /**
  * Class for testing inline conditionals.
@@ -18,9 +16,9 @@ class InputAvoidInlineConditionals
     void method1()
     {
         final int a = 1;
-        int b= 1; // Ignore 1
-        b=1; // Ignore 1
-        b+=1; // Ignore 1
+        int b = 1; // Ignore 1
+        b = 1; // Ignore 1
+        b += 1; // Ignore 1
         b -=- 1 + (+ b); // Ignore 2
         b = b ++ + b --; // Ignore 1
         b = ++ b - -- b; // Ignore 1
@@ -31,7 +29,7 @@ class InputAvoidInlineConditionals
     /** test questions **/
     private void testQuestions()
     {
-        boolean b = (1 == 2)?true:false; // violation 'Avoid inline conditionals'
+        boolean b = (1 == 2) ? true : false; // violation 'Avoid inline conditionals'
         b = (1==2) ? false : true; // violation 'Avoid inline conditionals'
     }
 

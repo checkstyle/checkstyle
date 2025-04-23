@@ -25,7 +25,7 @@ class Example4 {
                      int aFooInt) {            // indent:8 ; expected: > 4
 
         boolean cond1,cond2,cond3,cond4,cond5,cond6;
-        cond1=cond2=cond3=cond4=cond5=cond6=false;
+        cond1=cond2=cond3=cond4=cond5=cond6 = false;
 
         if (cond1
             || cond2) {
