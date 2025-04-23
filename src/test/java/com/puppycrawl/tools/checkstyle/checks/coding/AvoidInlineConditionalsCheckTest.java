@@ -38,9 +38,9 @@ public class AvoidInlineConditionalsCheckTest
     public void testDefault()
             throws Exception {
         final String[] expected = {
-            "34:29: " + getCheckMessage(MSG_KEY),
-            "35:20: " + getCheckMessage(MSG_KEY),
-            "48:34: " + getCheckMessage(MSG_KEY),
+            "32:29: " + getCheckMessage(MSG_KEY),
+            "33:20: " + getCheckMessage(MSG_KEY),
+            "46:34: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAvoidInlineConditionals.java"), expected);
