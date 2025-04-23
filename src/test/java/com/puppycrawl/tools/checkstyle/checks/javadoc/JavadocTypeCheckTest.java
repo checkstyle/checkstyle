@@ -135,7 +135,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAuthorRequired() throws Exception {
         final String[] expected = {
-            "23:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "21:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeWhitespace.java"), expected);
@@ -175,7 +175,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testVersionRequired()
             throws Exception {
         final String[] expected = {
-            "23:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
+            "21:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeWhitespace_1.java"), expected);

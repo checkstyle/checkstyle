@@ -18,9 +18,7 @@ tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, B
 
 */
 
-package com . puppycrawl
-    .tools.
-    checkstyle.checks.whitespace.whitespacearound;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 /**
  * Class for testing whitespace issues.
