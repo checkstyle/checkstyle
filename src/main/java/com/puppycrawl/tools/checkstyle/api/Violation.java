@@ -108,12 +108,9 @@ public final class Violation
         this.tokenType = tokenType;
         this.key = key;
 
-        if (args == null) {
-            this.args = null;
-        }
-        else {
-            this.args = UnmodifiableCollectionUtil.copyOfArray(args, args.length);
-        }
+        this.args = args == null
+                ? null
+                : UnmodifiableCollectionUtil.copyOfArray(args, args.length);
         this.bundle = bundle;
         this.severityLevel = severityLevel;
         this.moduleId = moduleId;
