@@ -84,9 +84,9 @@ public class NoWhitespaceAfterCheckTest
     @Test
     public void testTypecast() throws Exception {
         final String[] expected = {
-            "87:20: " + getCheckMessage(MSG_KEY, ")"),
-            "89:13: " + getCheckMessage(MSG_KEY, ")"),
-            "241:17: " + getCheckMessage(MSG_KEY, ")"),
+            "85:20: " + getCheckMessage(MSG_KEY, ")"),
+            "87:13: " + getCheckMessage(MSG_KEY, ")"),
+            "239:17: " + getCheckMessage(MSG_KEY, ")"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestTypecast.java"), expected);
