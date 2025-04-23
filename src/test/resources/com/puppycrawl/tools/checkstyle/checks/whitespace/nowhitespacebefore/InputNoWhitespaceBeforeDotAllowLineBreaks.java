@@ -7,8 +7,7 @@ tokens = DOT
 */
 
 package com . puppycrawl // violation
-    .tools.
-    checkstyle.checks.whitespace.nowhitespacebefore;
+    .tools.checkstyle.checks.whitespace.nowhitespacebefore;
 
 /**
  * Class for testing whitespace issues.
