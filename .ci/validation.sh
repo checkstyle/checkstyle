@@ -842,16 +842,24 @@ no-error-spotbugs)
 
 no-error-kafka)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
-  echo CS_version: "${CS_POM_VERSION}"
+  echo "########## Show env variables: START ########### "
+  echo "CS_version: ${CS_POM_VERSION}"
+  echo "Circle job name is: ${CIRCLE_JOB}"
+  echo "_JAVA_OPTIONS are = ${_JAVA_OPTIONS}"
+  echo "JAVA_TOOL_OPTIONS are = ${JAVA_TOOL_OPTIONS}"
+  echo "GRADLE_OPTS are = ${GRADLE_OPTS}"
+  echo "JAVA_OPTS = ${JAVA_OPTS}"
+  echo "########## Show env variables: END ########### "
   mvn -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  checkout_from https://github.com/apache/kafka
+  checkout_from https://github.com/dejan2609/kafka
   cd .ci-temp/kafka
-  echo "allprojects { repositories { mavenLocal() } tasks.withType(ScalaCompile) { configure(scalaCompileOptions.forkOptions) { jvmArgs = ['-Xss4m', '-Xmx2048m'] } }}" > localRepo.gradle
+  git status
+  git log -3 --oneline
+  # echo "allprojects { repositories { mavenLocal() } tasks.withType(ScalaCompile) { configure(scalaCompileOptions.forkOptions) { jvmArgs = ['-Xss4m', '-Xmx2048m'] } }}" > localRepo.gradle
   ./gradlew --stacktrace --info --console=plain --no-daemon checkstyleMain checkstyleTest -x test \
     -PcheckstyleVersion="${CS_POM_VERSION}" \
-    -I localRepo.gradle \
-    "-Dorg.gradle.jvmargs=-Xmx8192M"
+    -I localRepo.gradle
   cd ../
   removeFolderWithProtectedFiles kafka
   ;;

@@ -30,6 +30,9 @@ jobs:
 
   validate-with-maven-script:
     description: "Runs a maven script using the job name as the argument."
+    environment:
+      GRADLE_OPTS: -Dorg.gradle.parallel=true -Dorg.gradle.jvmargs='-Xmx8g -Xss4m -XX:+UseParallelGC'
+      #_JAVA_OPTIONS: -XX:ActiveProcessorCount=4 -XX:MaxRAM=8g -XX:+CrashOnOutOfMemoryError -XX:ErrorFile=/home/circleci/artifacts/hs_err_pid%p.log -XX:HeapDumpPath=/home/circleci/artifacts
     parameters: &script_parameters
       image-name:
         type: string
