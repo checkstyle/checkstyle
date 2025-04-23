@@ -470,18 +470,21 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         DetailAST currentAst = literalNewAst;
         DetailAST result = null;
         DetailAST topMostLambdaAst = null;
-        while (currentAst != null && !TokenUtil.isOfType(currentAst,
-                ANONYMOUS_CLASS_PARENT_TOKENS)) {
+        while (currentAst != null) {
             if (currentAst.getType() == TokenTypes.LAMBDA) {
                 topMostLambdaAst = currentAst;
             }
+            if (TokenUtil.isOfType(currentAst, ANONYMOUS_CLASS_PARENT_TOKENS)) {
+                result = currentAst;
+                break;
+            }
             currentAst = currentAst.getParent();
-            result = currentAst;
         }
 
-        if (currentAst == null) {
+        if (result == null) {
             result = topMostLambdaAst;
         }
+
         return result;
     }
 
