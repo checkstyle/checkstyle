@@ -6,9 +6,7 @@ tokens = TYPECAST
 
 */
 
-package com . puppycrawl
-    .tools.
-    checkstyle.checks.whitespace.nowhitespaceafter;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 
 class InputNoWhitespaceAfterTestTypecast
 {

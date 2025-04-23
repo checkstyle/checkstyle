@@ -5,9 +5,7 @@ tokens = TYPECAST
 
 */
 
-package com . puppycrawl
-    .tools.
-    checkstyle.checks.whitespace.whitespaceafter;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 
 /**
  * Class for testing whitespace issues.
