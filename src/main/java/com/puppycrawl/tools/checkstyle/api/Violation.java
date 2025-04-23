@@ -108,10 +108,7 @@ public final class Violation
         this.tokenType = tokenType;
         this.key = key;
 
-        if (args == null) {
-            this.args = null;
-        }
-        else {
+        if (args != null) {
             this.args = UnmodifiableCollectionUtil.copyOfArray(args, args.length);
         }
         this.bundle = bundle;
@@ -268,6 +265,20 @@ public final class Violation
         String customMessage) {
         this(lineNo, 0, bundle, key, args, DEFAULT_SEVERITY, moduleId,
                 sourceClass, customMessage);
+    }
+
+    public Violation() {
+        this.lineNo = lineNo;
+        this.columnNo = columnNo;
+        this.columnCharIndex = columnCharIndex;
+        this.tokenType = tokenType;
+        this.severityLevel = severityLevel;
+        this.moduleId = moduleId;
+        this.key = key;
+        this.bundle = bundle;
+        this.sourceClass = sourceClass;
+        this.customMessage = customMessage;
+        this.args = null;
     }
 
     /**
