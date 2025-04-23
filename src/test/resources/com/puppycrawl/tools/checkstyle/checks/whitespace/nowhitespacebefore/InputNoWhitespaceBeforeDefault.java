@@ -6,9 +6,7 @@ tokens = (default)COMMA, SEMI, POST_INC, POST_DEC, ELLIPSIS, LABELED_STAT
 
 */
 
-package com . puppycrawl
-        .tools.
-        checkstyle.checks.whitespace.nowhitespacebefore;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebefore;
 
 /**
  * Class for testing whitespace issues.

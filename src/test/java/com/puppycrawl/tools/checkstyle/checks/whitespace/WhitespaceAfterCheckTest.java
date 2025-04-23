@@ -59,7 +59,7 @@ public class WhitespaceAfterCheckTest
     @Test
     public void testCast() throws Exception {
         final String[] expected = {
-            "91:20: " + getCheckMessage(MSG_WS_TYPECAST),
+            "89:20: " + getCheckMessage(MSG_WS_TYPECAST),
         };
         verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAfterTypeCast.java"),

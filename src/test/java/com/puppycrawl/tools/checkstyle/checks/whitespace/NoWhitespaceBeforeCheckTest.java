@@ -37,19 +37,19 @@ public class NoWhitespaceBeforeCheckTest
     @Test
     public void testDefault() throws Exception {
         final String[] expected = {
-            "34:15: " + getCheckMessage(MSG_KEY, "++"),
-            "34:22: " + getCheckMessage(MSG_KEY, "--"),
-            "180:19: " + getCheckMessage(MSG_KEY, ";"),
-            "182:24: " + getCheckMessage(MSG_KEY, ";"),
-            "189:19: " + getCheckMessage(MSG_KEY, ";"),
-            "191:28: " + getCheckMessage(MSG_KEY, ";"),
-            "199:27: " + getCheckMessage(MSG_KEY, ";"),
-            "215:16: " + getCheckMessage(MSG_KEY, ";"),
-            "270:1: " + getCheckMessage(MSG_KEY, ";"),
-            "274:16: " + getCheckMessage(MSG_KEY, ";"),
-            "288:1: " + getCheckMessage(MSG_KEY, ";"),
-            "291:62: " + getCheckMessage(MSG_KEY, "..."),
-            "295:16: " + getCheckMessage(MSG_KEY, ":"),
+            "32:15: " + getCheckMessage(MSG_KEY, "++"),
+            "32:22: " + getCheckMessage(MSG_KEY, "--"),
+            "178:19: " + getCheckMessage(MSG_KEY, ";"),
+            "180:24: " + getCheckMessage(MSG_KEY, ";"),
+            "187:19: " + getCheckMessage(MSG_KEY, ";"),
+            "189:28: " + getCheckMessage(MSG_KEY, ";"),
+            "197:27: " + getCheckMessage(MSG_KEY, ";"),
+            "213:16: " + getCheckMessage(MSG_KEY, ";"),
+            "268:1: " + getCheckMessage(MSG_KEY, ";"),
+            "272:16: " + getCheckMessage(MSG_KEY, ";"),
+            "286:1: " + getCheckMessage(MSG_KEY, ";"),
+            "289:62: " + getCheckMessage(MSG_KEY, "..."),
+            "293:16: " + getCheckMessage(MSG_KEY, ":"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceBeforeDefault.java"), expected);
@@ -73,8 +73,8 @@ public class NoWhitespaceBeforeCheckTest
     public void testDotAllowLineBreaks() throws Exception {
         final String[] expected = {
             "9:13: " + getCheckMessage(MSG_KEY, "."),
-            "133:18: " + getCheckMessage(MSG_KEY, "."),
-            "140:11: " + getCheckMessage(MSG_KEY, "."),
+            "132:18: " + getCheckMessage(MSG_KEY, "."),
+            "139:11: " + getCheckMessage(MSG_KEY, "."),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceBeforeDotAllowLineBreaks.java"), expected);

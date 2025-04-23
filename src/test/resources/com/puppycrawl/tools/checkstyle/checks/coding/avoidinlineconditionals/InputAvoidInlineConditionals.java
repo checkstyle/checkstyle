@@ -4,9 +4,7 @@ AvoidInlineConditionals
 
 */
 
-package com . puppycrawl
-    .tools.
-    checkstyle.checks.coding.avoidinlineconditionals;
+package com.puppycrawl.tools.checkstyle.checks.coding.avoidinlineconditionals;
 
 /**
  * Class for testing inline conditionals.
