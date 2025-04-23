@@ -34,4 +34,6 @@
           uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_3.dtd"/>
   <system systemId="https://checkstyle.org/dtds/import_control_1_4.dtd"
           uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_4.dtd"/>
+  <system systemId="https://checkstyle.org/dtds/import_control_1_5.dtd"
+          uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_5.dtd"/>
 </catalog>
