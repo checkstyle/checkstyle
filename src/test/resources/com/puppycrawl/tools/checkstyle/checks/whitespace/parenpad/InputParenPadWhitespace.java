@@ -9,9 +9,7 @@ tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
 
 */
 
-package com . puppycrawl
-    .tools.
-    checkstyle.checks.whitespace.parenpad;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 /**
  * Class for testing whitespace issues.

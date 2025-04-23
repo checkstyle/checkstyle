@@ -10,11 +10,11 @@ package com.puppycrawl.tools.checkstyle.checks.coding.simplifybooleanexpression;
 // xdoc section -- start
 class Example1 {
   void InvalidExample() {
-    boolean a=true;
-    boolean b=true;
-    Object c=null;
-    Object d=null;
-    Object e=null;
+    boolean a = true;
+    boolean b = true;
+    Object c = null;
+    Object d = null;
+    Object e = null;
     if (!false) {}; // violation, can be simplified to true
     if (a == true) {}; // violation, can be simplified to a
     if (a == b) {};
