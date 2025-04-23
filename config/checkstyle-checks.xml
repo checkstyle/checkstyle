@@ -74,8 +74,13 @@
   </module>
   <module name="RegexpHeader">
     <property name="id" value="regexpHeader"/>
-    <property name="headerFile" value="${checkstyle.regexp.header.file}"/>
     <property name="fileExtensions" value="java, g4"/>
+    <property name="headerFile" value="${checkstyle.regexp.header.file}"/>
+  </module>
+  <module name="MultiFileRegexpHeader">
+    <property name="id" value="multiFileRegexpHeader"/>
+    <property name="fileExtensions" value="java,g4"/>
+    <property name="headerFiles" value="${checkstyle.regexp.header.file},${checkstyle.regexp.header.file}"/>
   </module>
 
   <!-- Javadoc Comments -->
