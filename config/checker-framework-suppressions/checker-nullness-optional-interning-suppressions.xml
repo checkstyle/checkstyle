@@ -46,28 +46,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter customMessage of Violation constructor.</message>
-    <lineContent>new String[] {ioe.getMessage()}, null, getClass(), null));</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter customMessage of Violation constructor.</message>
-    <lineContent>null, getClass(), null));</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter moduleId of Violation constructor.</message>
     <lineContent>new String[] {ioe.getMessage()}, null, getClass(), null));</lineContent>
     <details>
@@ -905,17 +883,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter customMessage of Violation constructor.</message>
-    <lineContent>getClass(), null));</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter moduleId of Violation constructor.</message>
     <lineContent>new Object[] {ex.getMessage()}, javaParseExceptionSeverity, null,</lineContent>
     <details>
@@ -1153,39 +1120,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter customMessage of Violation constructor.</message>
-    <lineContent>getCustomMessages().get(key)));</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter customMessage of Violation constructor.</message>
-    <lineContent>getCustomMessages().get(key)));</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter customMessage of Violation constructor.</message>
-    <lineContent>getCustomMessages().get(key)));</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractCheck.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field fileContents</message>
     <lineContent>private FileContents fileContents;</lineContent>
@@ -1199,28 +1133,6 @@
     <details>
       found   : @Initialized @NonNull FileContext
       required: [extends @Initialized @Nullable Object super null (NullType)]
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter customMessage of Violation constructor.</message>
-    <lineContent>getCustomMessages().get(key)));</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter customMessage of Violation constructor.</message>
-    <lineContent>getCustomMessages().get(key)));</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
     </details>
   </checkerFrameworkError>
 
@@ -1550,17 +1462,6 @@
     <details>
       found   : @Initialized @NonNull String @Initialized @Nullable []
       required: @Initialized @NonNull Object @Initialized @NonNull []
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/TranslationCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter customMessage of Violation constructor.</message>
-    <lineContent>getClass(), null);</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull String
     </details>
   </checkerFrameworkError>
 
