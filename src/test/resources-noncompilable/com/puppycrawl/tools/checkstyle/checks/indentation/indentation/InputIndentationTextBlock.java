@@ -10,38 +10,38 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;       //
 
 
 public class InputIndentationTextBlock {                      //indent:0 exp:0
-    private static final String EXAMPLE = """
+    private static final String EXAMPLE = """                 //indent:4 exp:4
         Example string""";                                    //indent:8 exp:8
 
-    private static final String GO1 = """
+    private static final String GO1 = """                     //indent:4 exp:4
     GO                                                        //indent:4 exp:4
 """;                                                          //indent:0 exp:8 warn
 
-    private static final String GO2 = """
+    private static final String GO2 = """                     //indent:4 exp:4
     GO                                                        //indent:4 exp:4
         """;                                                  //indent:8 exp:8
 
     public void textBlockNoIndent() {                         //indent:4 exp:4
-        String contentW = ("""
+        String contentW = ("""                                //indent:8 exp:8
                 -----1234--                                   //indent:16 exp:16
                 -----1234--h-hh                               //indent:16 exp:16
                 """);                                         //indent:16 exp:12 warn
 
-        String contentR = ("""
+        String contentR = ("""                                //indent:8 exp:8
                 -----1234--                                   //indent:16 exp:16
                 -----1234----                                 //indent:16 exp:16
             """);                                             //indent:12 exp:12
 
-        if ("""
+        if ("""                                               //indent:8 exp:8
               one more string""".equals(contentR)) {          //indent:14 exp:14
             System.out.println("This is string");             //indent:12 exp:12
         }                                                     //indent:8 exp:8
-        if (contentR.equals("""
+        if (contentR.equals("""                               //indent:8 exp:8
           stuff""")) {                                        //indent:10 exp:10
         }                                                     //indent:8 exp:8
 
         String a =                                            //indent:8 exp:8
-"""
+"""                                                           //indent:0 exp:12 warn
           3                                                   //indent:10 exp:10
           4                                                   //indent:10 exp:10
           5                                                   //indent:10 exp:10
@@ -52,7 +52,7 @@ public class InputIndentationTextBlock {                      //indent:0 exp:0
     }                                                         //indent:4 exp:4
     private static void fooBlockAsArgument() {                //indent:4 exp:4
         String main =                                         //indent:8 exp:8
-        """
+        """                                                   //indent:8 exp:12 warn
         public class Main {                                   //indent:8 exp:8
           public void kit(String args) {                      //indent:10 exp:10
             System.out.println("hello, world!");              //indent:12 exp:12
@@ -63,35 +63,35 @@ public class InputIndentationTextBlock {                      //indent:0 exp:0
           }                                                   //indent:10 exp:10
         }                                                     //indent:8 exp:8
             """;                                              //indent:12 exp:12
-        LOG.warn("""
+        LOG.warn("""                                          //indent:8 exp:8
                     The following settings                    //indent:20 exp:20
                     {}                                        //indent:20 exp:20
                     Therefore returning error result.""",     //indent:20 exp:20
             GO2);                                             //indent:12 exp:12
 
         LOG.warn(                                             //indent:8 exp:8
-              """
+              """                                             //indent:14 exp:12 warn
               Failed to lidation; will ignore for now,        //indent:14 exp:14
               but it may fail later during runtime""",        //indent:14 exp:14
             GO1);                                             //indent:12 exp:12
     }                                                         //indent:4 exp:4
 
     public void fooBlockAsCondition() {                       //indent:4 exp:4
-        if (GO1.equalsIgnoreCase("""
-              my other string""" + """
-              plus this string""" + """
+        if (GO1.equalsIgnoreCase("""                          //indent:8 exp:8
+              my other string""" + """                        //indent:14 exp:14
+              plus this string""" + """                       //indent:14 exp:14
               and also this one.""")) {                       //indent:14 exp:14
             System.out.println("this is my other string");}   //indent:12 exp:12
-        if ("""
+        if ("""                                               //indent:8 exp:8
               one more string""".equals(GO2)) {               //indent:14 exp:14
             System.out.println("This is one more string");}   //indent:12 exp:12
 
-        if ("""
-                  a""" + """
+        if ("""                                               //indent:8 exp:8
+                  a""" + """                                  //indent:18 exp:18
                   bc""" == GO2) {                             //indent:18 exp:18
         }                                                     //indent:8 exp:8
         else {                                                //indent:8 exp:8
-            System.out.printf("""
+            System.out.printf("""                             //indent:12 exp:12
           day of the week                                     //indent:10 exp:10
               successfully got: "%s"},                        //indent:14 exp:14
                 """, LOG.getNumberOfErrors());                //indent:16 exp:16
