@@ -24,6 +24,8 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Objects;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
@@ -70,7 +72,7 @@ public final class Violation
     private final Class<?> sourceClass;
 
     /** A custom violation overriding the default violation from the bundle. */
-    private final String customMessage;
+    private @Nullable final String customMessage;
 
     /**
      * Creates a new {@code Violation} instance.
@@ -101,7 +103,7 @@ public final class Violation
                             SeverityLevel severityLevel,
                             String moduleId,
                             Class<?> sourceClass,
-                            String customMessage) {
+                            @Nullable String customMessage) {
         this.lineNo = lineNo;
         this.columnNo = columnNo;
         this.columnCharIndex = columnCharIndex;
@@ -148,7 +150,7 @@ public final class Violation
                             SeverityLevel severityLevel,
                             String moduleId,
                             Class<?> sourceClass,
-                            String customMessage) {
+                            @Nullable String customMessage) {
         this(lineNo, columnNo, columnNo, tokenType, bundle, key, args, severityLevel, moduleId,
                 sourceClass, customMessage);
     }
@@ -178,7 +180,7 @@ public final class Violation
                             SeverityLevel severityLevel,
                             String moduleId,
                             Class<?> sourceClass,
-                            String customMessage) {
+                            @Nullable String customMessage) {
         this(lineNo, columnNo, 0, bundle, key, args, severityLevel, moduleId, sourceClass,
                 customMessage);
     }
@@ -206,7 +208,7 @@ public final class Violation
                             Object[] args,
                             String moduleId,
                             Class<?> sourceClass,
-                            String customMessage) {
+                            @Nullable String customMessage) {
         this(lineNo,
                 columnNo,
              bundle,
@@ -241,7 +243,7 @@ public final class Violation
                             SeverityLevel severityLevel,
                             String moduleId,
                             Class<?> sourceClass,
-                            String customMessage) {
+                            @Nullable String customMessage) {
         this(lineNo, 0, bundle, key, args, severityLevel, moduleId,
                 sourceClass, customMessage);
     }
@@ -265,7 +267,7 @@ public final class Violation
         Object[] args,
         String moduleId,
         Class<?> sourceClass,
-        String customMessage) {
+        @Nullable String customMessage) {
         this(lineNo, 0, bundle, key, args, DEFAULT_SEVERITY, moduleId,
                 sourceClass, customMessage);
     }
