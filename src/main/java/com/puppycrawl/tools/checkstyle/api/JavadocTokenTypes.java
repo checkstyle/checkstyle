@@ -2788,7 +2788,6 @@ public final class JavadocTokenTypes {
      * <p><b>Example:</b></p>
      * <pre>{@code &lt;frameset cols="50%,50%"&gt;
      * &lt;frame src="page1.html"&gt;
-     * &lt;frame src="page2.html"&gt;
      * &lt;/frameset&gt;}</pre>
      * <b>Tree:</b>
      * <pre>
