@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
-  <!-- until https://github.com/checkstyle/checkstyle/issues/14894 -->
+  <mutation unstable="false">
+    <sourceFile>IllegalInstantiationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::valueOf</description>
+    <lineContent>throw new IllegalArgumentException(&quot;Unknown type &quot; + ast);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ModifiedControlVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
+    <mutatedMethod>leaveToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::valueOf</description>
+    <lineContent>throw new IllegalStateException(ILLEGAL_TYPE_OF_TOKEN + ast);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ModifiedControlVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::valueOf</description>
+    <lineContent>throw new IllegalStateException(ILLEGAL_TYPE_OF_TOKEN + ast);</lineContent>
+  </mutation>
+
   <mutation unstable="false">
     <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
