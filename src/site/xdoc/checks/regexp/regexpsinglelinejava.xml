@@ -35,28 +35,28 @@
               <td>Specify the format of the regular expression to match.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;$.&quot;</code></td>
-              <td>5.0</td>
+              <td>6.0</td>
             </tr>
             <tr>
               <td>ignoreCase</td>
               <td>Control whether to ignore case when searching.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
-              <td>5.0</td>
+              <td>6.0</td>
             </tr>
             <tr>
               <td>ignoreComments</td>
               <td>Control whether to ignore text in comments when searching.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
-              <td>5.0</td>
+              <td>6.0</td>
             </tr>
             <tr>
               <td>maximum</td>
               <td>Specify the maximum number of matches required in each file.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>0</code></td>
-              <td>5.0</td>
+              <td>6.0</td>
             </tr>
             <tr>
               <td>message</td>
@@ -70,7 +70,7 @@
               <td>Specify the minimum number of matches required in each file.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>0</code></td>
-              <td>5.0</td>
+              <td>6.0</td>
             </tr>
           </table>
         </div>
