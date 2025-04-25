@@ -14,7 +14,7 @@
         </div>
         <source>
 String a = getParameter(&quot;a&quot;);
-String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
+String b = (a == null || a.length() &lt; 1) ? null : a.substring(1);
         </source>
 
         <p>
@@ -40,7 +40,7 @@ public class Example1 {
   public void InvalidExample( String str) {
     int x = 5;
     boolean foobar = (x == 5);
-    String text=null;
+    String text = null;
     text = (text == null) ? "" : text; // violation, 'Avoid inline conditionals'
     String b;
     if (str != null &amp;&amp; str.length() &gt;= 1) {
