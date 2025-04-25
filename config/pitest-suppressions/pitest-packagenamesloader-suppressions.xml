@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>PackageNamesLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.PackageNamesLoader</mutatedClass>
+    <mutatedMethod>processFile</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::valueOf</description>
+    <lineContent>throw new CheckstyleException(&quot;unable to open &quot; + packageFile, ex);</lineContent>
+  </mutation>
+</suppressedMutations>
