@@ -614,6 +614,7 @@ INNERR
 innertypelast
 inplace
 instanceof
+instanceoff
 Intelli
 intellij
 intercell
@@ -800,6 +801,7 @@ lombok
 lookaround
 Loughran
 lparen
+lsit
 lucene
 lui
 luiframework
@@ -991,6 +993,7 @@ nvuillam
 nx
 OAuth
 objblock
+Objectg
 oburn
 OCP
 octocat
@@ -1061,6 +1064,7 @@ Passembly
 passphrase
 pathcomplexity
 patreon
+patternvariableassignment
 patternvariablename
 Paulicke
 paypal
@@ -1423,6 +1427,7 @@ uninterned
 uniq
 uniqueproperties
 Unitless
+unnecessarynullcheckwithinstanceof
 unnecessaryparentheses
 unnecessarysemicolonafteroutertypedeclaration
 unnecessarysemicolonaftertypememberdeclaration
