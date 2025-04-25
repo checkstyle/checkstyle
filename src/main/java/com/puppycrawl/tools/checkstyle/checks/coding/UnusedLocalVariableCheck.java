@@ -479,7 +479,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             result = currentAst;
         }
 
-        if (currentAst == null) {
+        if (result == null) {
             result = topMostLambdaAst;
         }
         return result;
