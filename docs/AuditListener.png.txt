@@ -1,0 +1,50 @@
+This diagram represents the class relationship of the AuditListener interface within Checkstyle.
+
+It replaces an older, low-resolution image that was difficult to read and understand (previous version attached for reference). The updated diagram was recreated using https://www.mermaidchart.com/ for clarity and readability.
+
+Details of the diagram:
+- **AuditListener** is an interface extending **EventListener**, and it declares methods to handle various audit phases: `auditStarted`, `auditFinished`, `fileStarted`, `fileFinished`, `addError`, and `addException`, all accepting an **AuditEvent** as a parameter.
+- **AuditEvent** is a subclass of **EventObject** and provides methods like `getFileName()`, `getLine()`, `getMessage()`, `getColumn()`, `getSeverityLevel()`, `getSourceName()`, and `getLocalizedMessage()` to access event-related information.
+
+Purpose of update:
+- The new version improves visual clarity, aiding users in understanding how audit events are structured and propagated within Checkstyle.
+
+Direct access to the diagram: [AuditListener Diagram on MermaidChart](https://www.mermaidchart.com/app/projects/39d0649c-6c6e-4135-bf24-dbbe2f13f8a0/diagrams/50621826-f5d1-4013-aae7-406b16d969ab/version/v0.1/edit)
+
+Code snippet for the diagram:
+
+```mermaid
+%%{init: {"theme":"default", "themeVariables": {
+  "primaryColor": "#ffffff",
+  "primaryBorderColor": "#000000",
+  "primaryTextColor": "#000000",
+  "shadow1": "2px 2px 4px #888888"
+}}}%%
+
+classDiagram
+    class EventListener
+    class EventObject
+
+    class AuditListener {
+        <<interface>>
+        +auditStarted(aEvt: AuditEvent): void
+        +auditFinished(aEvt: AuditEvent): void
+        +fileStarted(aEvt: AuditEvent): void
+        +fileFinished(aEvt: AuditEvent): void
+        +addError(aEvt: AuditEvent): void
+        +addException(aEvt: AuditEvent, aThrowable: Throwable): void
+    }
+
+    class AuditEvent {
+        +getFileName(): String
+        +getLine(): int
+        +getMessage(): String
+        +getColumn(): int
+        +getSeverityLevel(): SeverityLevel
+        +getSourceName(): String
+        +getLocalizedMessage(): LocalizedMessage
+    }
+
+    AuditListener ..|> EventListener
+    AuditListener ..> AuditEvent
+    AuditEvent --|> EventObject
