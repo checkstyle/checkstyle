@@ -72,7 +72,8 @@ jobs:
 
       - name: Generate pitest-${{ matrix.profile }} report
         run: |
-          ./.ci/pitest.sh "pitest-${{ matrix.profile }}"
+          ./.ci/pitest.sh "pitest-${{ matrix.profile }}" \
+          -DargLine="--add-opens java.base/java.lang=ALL-UNNAMED"
 
       - name: Patch command for pitest-${{ matrix.profile }}
         if: failure()
