@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.covariantequals;
 public class InputCovariantEqualsRecords {
 
     public record MyRecord1() {
-        public boolean equals(String str) { // violation
+        public boolean equals(String str) { // violation 'covariant equals'
             return str.equals(this);
         }
     }
@@ -26,7 +26,7 @@ public class InputCovariantEqualsRecords {
 
     public record MyRecord3() {
         record MyInnerRecord() {
-            public boolean equals(String str) { // violation
+            public boolean equals(String str) { // violation 'covariant equals'
                 return str.equals(this);
             }
         }
