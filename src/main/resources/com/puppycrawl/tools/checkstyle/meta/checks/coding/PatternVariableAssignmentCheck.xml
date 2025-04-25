@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheck"
+             name="PatternVariableAssignment"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks for assignment of pattern variables.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Pattern variable assignment is considered bad programming practice. The pattern variable
+ is meant to be a direct reference to the object being matched. Reassigning it can break this
+ connection and mislead readers.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="pattern.variable.assignment"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
