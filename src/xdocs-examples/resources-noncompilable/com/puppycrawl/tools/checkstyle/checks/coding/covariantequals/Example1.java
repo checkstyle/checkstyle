@@ -10,12 +10,12 @@ package com.puppycrawl.tools.checkstyle.checks.coding.covariantequals;
 
 // xdoc section -- start
 public class Example1 {
-  public boolean equals(Example1 same) {  // violation
+  public boolean equals(Example1 same) {  // violation 'Covariant Equals'
     return false;
   }
 
   record Test(String str) {
-    public boolean equals(Test same) {  // violation
+    public boolean equals(Test same) {  // violation 'Covariant Equals'
       return false;
     }
   }
