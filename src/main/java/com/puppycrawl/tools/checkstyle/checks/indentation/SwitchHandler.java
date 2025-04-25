@@ -30,6 +30,16 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class SwitchHandler extends BlockParentHandler {
 
     /**
+     * Token types that, when appearing as a parent or grandparent of an expression,
+     * indicate that the expression is likely line-wrapped and should be indented.
+     */
+    private static final int[] LINE_WRAPPING_INDENT_TRIGGERS = {
+        TokenTypes.ASSIGN,
+        TokenTypes.SWITCH_RULE,
+        TokenTypes.LAMBDA,
+    };
+
+    /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
      *
@@ -81,10 +91,19 @@ public class SwitchHandler extends BlockParentHandler {
     protected IndentLevel getIndentImpl() {
         IndentLevel indentLevel = super.getIndentImpl();
         // if switch is starting the line
-        if (isOnStartOfLine(getMainAst())
-                && TokenUtil.isOfType(getMainAst().getParent().getParent(), TokenTypes.ASSIGN)) {
-            indentLevel = new IndentLevel(indentLevel,
+        if (isOnStartOfLine(getMainAst())) {
+            final DetailAST mainAst = getMainAst();
+            final DetailAST parent = mainAst.getParent();
+            final DetailAST grandParent = parent.getParent();
+
+            final boolean shouldIndentDueToWrapping =
+                    TokenUtil.isOfType(parent, LINE_WRAPPING_INDENT_TRIGGERS)
+                    || TokenUtil.isOfType(grandParent, LINE_WRAPPING_INDENT_TRIGGERS);
+
+            if (shouldIndentDueToWrapping) {
+                indentLevel = new IndentLevel(indentLevel,
                     getIndentCheck().getLineWrappingIndentation());
+            }
         }
         return indentLevel;
     }
