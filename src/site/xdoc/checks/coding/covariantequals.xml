@@ -80,12 +80,12 @@ public boolean equals(Foo obj) {...}
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  public boolean equals(Example1 same) {  // violation
+  public boolean equals(Example1 same) {  // violation 'covariant equals'
     return false;
   }
 
   record Test(String str) {
-    public boolean equals(Test same) {  // violation
+    public boolean equals(Test same) {  // violation 'covariant equals'
       return false;
     }
   }
