@@ -6,37 +6,9 @@ CovariantEquals
 
 package com.puppycrawl.tools.checkstyle.checks.coding.covariantequals;
 
-/**
- * Test file for covariant equals methods.
- * @author Rick Giles
- */
-public class InputCovariantEqualsOne
+interface InputCovariant6
 {
-    private class Inner
-    {
-        public boolean equals(Inner aInner) // violation
-        {
-            return false;
-        }
-    }
-
-    private class Inner2
-    {
-        public boolean equals(Inner2 aInner2)
-        {
-            return false;
-        }
-
-        public boolean equals(Object aObj)
-        {
-            return false;
-        }
-    }
-
-    public boolean equals(InputCovariantEqualsOne aInputCovariantEquals) // violation
-    {
-        return false;
-    }
+    boolean equals(InputCovariant5 aInputCovariant5);
 }
 
 class InputCovariant2
@@ -52,6 +24,38 @@ class InputCovariant2
     }
 }
 
+/**
+ * Test file for covariant equals methods.
+ * @author Rick Giles
+ */
+public class InputCovariantEqualsOne
+{
+    public boolean equals(InputCovariantEqualsOne obj) // violation 'covariant equals'
+    {
+        return false;
+    }
+
+    private class Inner2
+    {
+        public boolean equals(Inner2 aInner2)
+        {
+            return false;
+        }
+
+        public boolean equals(Object aObj)
+        {
+            return false;
+        }
+    }
+
+    private class Inner {
+        public boolean equals(Inner aInner) // violation 'covariant equals'
+        {
+            return false;
+        }
+    }
+}
+
 class InputCovariant3
 {
     public boolean equals(InputCovariant3 aInputCovariant3)
@@ -59,7 +63,7 @@ class InputCovariant3
         return false;
     }
 
-    public boolean equals(java.lang.Object aObject)
+    public boolean equals(Object aObject)
     {
         return false;
     }
@@ -67,21 +71,28 @@ class InputCovariant3
 
 class InputCovariant4
 {
-    public boolean equals(int i) // violation
+    public boolean equals(int i) // violation 'covariant equals'
     {
         return false;
     }
+}
+
+abstract class InputCovariant5
+{
+    public abstract boolean equals(InputCovariant4 aInputCovariant4);
 }
 
 class InputAnonymousIC
 {
     Comparable comp = new Comparable()
         {
+            @Override
             public int compareTo(Object aObject)
             {
                 return 0;
             }
-            public boolean equals(String aString) // violation
+
+            public boolean equals(String aString) // violation 'covariant equals'
             {
                 return false;
             }
@@ -96,15 +107,5 @@ class InputAnonymousIC
     {
         Double d = new Double(1);
     }
-}
-
-abstract class InputCovariant5
-{
-    public abstract boolean equals(InputCovariant4 aInputCovariant4);
-}
-
-interface InputCovariant6
-{
-    public boolean equals(InputCovariant5 aInputCovariant5);
 }
 
