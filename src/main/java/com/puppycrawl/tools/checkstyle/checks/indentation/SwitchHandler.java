@@ -81,10 +81,19 @@ public class SwitchHandler extends BlockParentHandler {
     protected IndentLevel getIndentImpl() {
         IndentLevel indentLevel = super.getIndentImpl();
         // if switch is starting the line
-        if (isOnStartOfLine(getMainAst())
-                && TokenUtil.isOfType(getMainAst().getParent().getParent(), TokenTypes.ASSIGN)) {
-            indentLevel = new IndentLevel(indentLevel,
+        if (isOnStartOfLine(getMainAst())) {
+            final DetailAST mainAst = getMainAst();
+            final DetailAST parent = mainAst.getParent();
+            final DetailAST grandParent = parent.getParent();
+
+            final boolean isAssignOrSwitchRule =
+                    TokenUtil.isOfType(parent, TokenTypes.ASSIGN, TokenTypes.SWITCH_RULE)
+                    || TokenUtil.isOfType(grandParent, TokenTypes.ASSIGN, TokenTypes.SWITCH_RULE);
+
+            if (isAssignOrSwitchRule) {
+                indentLevel = new IndentLevel(indentLevel,
                     getIndentCheck().getLineWrappingIndentation());
+            }
         }
         return indentLevel;
     }
