@@ -161,6 +161,8 @@
                 href="checks/coding/overloadmethodsdeclarationorder.html"/>
           <item name="PackageDeclaration" href="checks/coding/packagedeclaration.html"/>
           <item name="ParameterAssignment" href="checks/coding/parameterassignment.html"/>
+          <item name="PatternVariableAssignment"
+                href="checks/coding/patternvariableassignment.html"/>
           <item name="RequireThis" href="checks/coding/requirethis.html"/>
           <item name="ReturnCount" href="checks/coding/returncount.html"/>
           <item name="SimplifyBooleanExpression"
