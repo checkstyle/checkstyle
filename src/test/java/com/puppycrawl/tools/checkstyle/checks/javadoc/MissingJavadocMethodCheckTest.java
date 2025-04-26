@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck.MSG_JAVADOC_MISSING;
 
-import java.io.File;
+import java.nio.file.Path;
 
 import org.junit.jupiter.api.Test;
 
@@ -474,10 +474,9 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIsGetterMethod() throws Exception {
-        final File testFile =
-                new File(getPath("InputMissingJavadocMethodSetterGetter3.java"));
-        final DetailAST notGetterMethod =
-                CheckUtilTest.getNode(testFile, TokenTypes.METHOD_DEF);
+        final Path testFile = Path.of(getPath("InputMissingJavadocMethodSetterGetter3.java"));
+        final DetailAST notGetterMethod = CheckUtilTest.getNode(testFile, TokenTypes.METHOD_DEF);
+
         final DetailAST getterMethod = notGetterMethod.getNextSibling().getNextSibling();
 
         assertWithMessage("Invalid result: AST provided is getter method")
@@ -490,10 +489,9 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIsSetterMethod() throws Exception {
-        final File testFile =
-            new File(getPath("InputMissingJavadocMethodSetterGetter3.java"));
-        final DetailAST firstClassMethod =
-            CheckUtilTest.getNode(testFile, TokenTypes.METHOD_DEF);
+        final Path testFile = Path.of(getPath("InputMissingJavadocMethodSetterGetter3.java"));
+        final DetailAST firstClassMethod = CheckUtilTest.getNode(testFile, TokenTypes.METHOD_DEF);
+
         final DetailAST setterMethod =
             firstClassMethod.getNextSibling().getNextSibling().getNextSibling();
         final DetailAST notSetterMethod = setterMethod.getNextSibling();
