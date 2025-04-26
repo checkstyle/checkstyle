@@ -493,8 +493,12 @@ public class CheckstyleAntTask extends Task {
             allFiles.add(Path.of(fileName));
         }
 
-        allFiles.addAll(scanFileSets());
-        allFiles.addAll(scanPaths().stream().collect(Collectors.toUnmodifiableList()));
+        final List<Path> filesFromFileSets = scanFileSets();
+        allFiles.addAll(filesFromFileSets);
+
+        final List<Path> filesFromPaths = scanPaths();
+        allFiles.addAll(filesFromPaths.stream()
+            .collect(Collectors.toUnmodifiableList()));
 
         return allFiles;
     }
