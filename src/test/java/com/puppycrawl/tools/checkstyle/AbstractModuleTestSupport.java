@@ -389,7 +389,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 InlineConfigParser.parse(inputFile).createConfiguration());
         checker.setBasedir(Path.of("").toAbsolutePath().toString());
         checker.addListener(logger);
-        checker.process(Collections.singletonList(Path.of(inputFile)));
+        checker.process(Collections.singletonList(Path.of(inputFile).toFile()));
         verifyContent(expectedReportFile, outputStream);
     }
 
@@ -486,7 +486,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         assertMessages(getActualViolations(
                 checker
                     .process(Arrays.stream(processedFiles)
-                    .map(File::toPath).collect(Collectors.toUnmodifiableList()))
+                    .collect(Collectors.toUnmodifiableList()))
             ),
             Maps.filterValues(expectedViolations, input -> !input.isEmpty())
         );
@@ -557,7 +557,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     protected final void execute(Configuration config, String... filenames) throws Exception {
         final Checker checker = createChecker(config);
         checker.process(Arrays.stream(filenames)
-                .map(Path::of)
+                .map(File::new)
                 .collect(Collectors.toUnmodifiableList()));
         checker.destroy();
     }
@@ -570,7 +570,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @throws Exception if there is a problem during checker configuration
      */
     protected static void execute(Checker checker, String... filenames) throws Exception {
-        checker.process(Arrays.stream(filenames).map(Path::of)
+        checker.process(Arrays.stream(filenames).map(File::new)
                 .collect(Collectors.toUnmodifiableList()));
         checker.destroy();
     }
@@ -676,7 +676,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     private List<String> processChecker(Checker checker, String file) throws Exception {
         return getActualViolations(
-                checker.process(Collections.singletonList(Path.of(file)))
+                checker.process(Collections.singletonList(Path.of(file).toFile()))
         ).getOrDefault(file, Collections.emptyList())
                 .stream().peek(ignored -> checker.destroy())
                 .collect(Collectors.toUnmodifiableList());
