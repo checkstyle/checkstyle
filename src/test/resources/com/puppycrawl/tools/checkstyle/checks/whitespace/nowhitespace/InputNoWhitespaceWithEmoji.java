@@ -1,0 +1,20 @@
+/*
+NoWhitespace
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespace;
+
+public class InputNoWhitespaceWithEmoji {
+    private String[] _mVar0 = {
+        "😃😉🙈" ,  // violation
+        "😃 😉 🙈" ,  // violation
+        "😃 😉 🙈",
+        "😃😉🙈"
+    };
+    private String _mVar1 = "😃😉🙈";
+    private String _mVar2 = "😃 😉 🙈";
+    private String _mVar3 = "😃 😉 🙈" ; // violation
+    private String _mVar4 = "a b c" ; // violation
+}

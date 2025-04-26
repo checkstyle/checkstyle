@@ -26,9 +26,7 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -208,13 +206,6 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      */
     public void setBasedir(String basedir) {
         this.basedir = basedir;
-    }
-
-    @Override
-    public int process(Collection<Path> files) throws CheckstyleException {
-        return process(files.stream()
-                .map(Path::toFile)
-                .collect(Collectors.toUnmodifiableList()));
     }
 
     @Override
