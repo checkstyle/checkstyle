@@ -592,12 +592,11 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 .map(violation -> violation.substring(0, violation.indexOf(':')))
                 .map(Integer::valueOf)
                 .collect(Collectors.toUnmodifiableList());
-        final List<Integer> expectedViolationLines = testInputViolations.stream()
-                .map(TestInputViolation::getLineNo)
-                .collect(Collectors.toUnmodifiableList());
         assertWithMessage("Violation lines for %s differ.", file)
                 .that(actualViolationLines)
-                .isEqualTo(expectedViolationLines);
+                .isEqualTo(testInputViolations.stream()
+                        .map(TestInputViolation::getLineNo)
+                        .collect(Collectors.toUnmodifiableList()));
         for (int index = 0; index < actualViolations.size(); index++) {
             assertWithMessage("Actual and expected violations differ.")
                     .that(actualViolations.get(index))
@@ -615,16 +614,14 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     private static void verifyViolations(String file,
                                   List<TestInputViolation> testInputViolations,
                                   List<String> actualViolations) {
-        final List<Integer> actualViolationLines = actualViolations.stream()
-                .map(violation -> violation.substring(0, violation.indexOf(':')))
-                .map(Integer::valueOf)
-                .collect(Collectors.toUnmodifiableList());
-        final List<Integer> expectedViolationLines = testInputViolations.stream()
-                .map(TestInputViolation::getLineNo)
-                .collect(Collectors.toUnmodifiableList());
         assertWithMessage("Violation lines for %s differ.", file)
-                .that(actualViolationLines)
-                .isEqualTo(expectedViolationLines);
+                .that(actualViolations.stream()
+                        .map(violation -> violation.substring(0, violation.indexOf(':')))
+                        .map(Integer::valueOf)
+                        .collect(Collectors.toUnmodifiableList()))
+                .isEqualTo(testInputViolations.stream()
+                        .map(TestInputViolation::getLineNo)
+                        .collect(Collectors.toUnmodifiableList()));
         for (int index = 0; index < actualViolations.size(); index++) {
             assertWithMessage("Actual and expected violations differ.")
                     .that(actualViolations.get(index))
@@ -639,15 +636,11 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param outputStream output stream containing the actual logger output
      * @throws IOException if an exception occurs while reading the file
      */
-    private static void verifyContent(
-            String expectedOutputFile,
+    private static void verifyContent(String expectedOutputFile,
             ByteArrayOutputStream outputStream) throws IOException {
-        final String expectedContent = readFile(expectedOutputFile);
-        final String actualContent =
-                toLfLineEnding(outputStream.toString(StandardCharsets.UTF_8));
         assertWithMessage("Content should match")
-                .that(actualContent)
-                .isEqualTo(expectedContent);
+                .that(toLfLineEnding(outputStream.toString(StandardCharsets.UTF_8)))
+                .isEqualTo(readFile(expectedOutputFile));
     }
 
     /**
