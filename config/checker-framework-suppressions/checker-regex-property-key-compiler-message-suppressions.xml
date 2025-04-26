@@ -411,29 +411,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter regex of Pattern.compile.</message>
-    <lineContent>checkRegexp = Pattern.compile(checks);</lineContent>
-    <details>
-      found   : String
-      required: @Regex String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of Pattern.compile.</message>
-    <lineContent>fileRegexp = Pattern.compile(files);</lineContent>
-    <details>
-      found   : String
-      required: @Regex String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of Pattern.compile.</message>
-    <lineContent>messageRegexp = Pattern.compile(message);</lineContent>
+    <lineContent>result = Pattern.compile(regex);</lineContent>
     <details>
       found   : String
       required: @Regex String
