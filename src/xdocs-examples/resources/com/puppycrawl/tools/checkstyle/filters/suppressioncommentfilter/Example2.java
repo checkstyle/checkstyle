@@ -28,7 +28,7 @@ class Example2
   // violation above, Name 'must match pattern'
 
   //stop constant check
-  public static final int var4 = 1; // suppressed violation
+  public static final int var4 = 1; // filtered violation 'must match pattern'
   //resume constant check
 
   public void method1()
