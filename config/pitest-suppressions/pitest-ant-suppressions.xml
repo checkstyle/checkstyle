@@ -75,15 +75,6 @@
   <mutation unstable="false">
     <sourceFile>CheckstyleAntTask.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
-    <mutatedMethod>getListeners</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/List::size</description>
-    <lineContent>final int formatterCount = Math.max(1, formatters.size());</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckstyleAntTask.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
     <mutatedMethod>processFiles</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
     <description>replaced call to java/util/Objects::toString with argument</description>
