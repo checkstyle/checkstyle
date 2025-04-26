@@ -2820,20 +2820,6 @@ public final class JavadocTokenTypes {
      *     |--NEWLINE -> \r\n
      *     |--LEADING_ASTERISK ->  *
      *     |--TEXT ->
-     *     |--HTML_ELEMENT -> HTML_ELEMENT
-     *     |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
-     *     |       `--FRAME_TAG -> FRAME_TAG
-     *     |           |--START -> <
-     *     |           |--FRAME_HTML_TAG_NAME -> frame
-     *     |           |--WS ->
-     *     |           |--ATTRIBUTE -> ATTRIBUTE
-     *     |           |   |--HTML_TAG_NAME -> src
-     *     |           |   |--EQUALS -> =
-     *     |           |   `--ATTR_VALUE -> "page2.html"
-     *     |           `--END -> >
-     *     |--NEWLINE -> \r\n
-     *     |--LEADING_ASTERISK ->  *
-     *     |--TEXT ->
      *     `--HTML_ELEMENT_END -> HTML_ELEMENT_END
      *         |--START -> <
      *         |--SLASH -> /
