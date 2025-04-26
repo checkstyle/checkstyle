@@ -490,9 +490,12 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             throws Exception {
         stream.flush();
         stream.reset();
-        final List<File> theFiles = new ArrayList<>();
-        Collections.addAll(theFiles, processedFiles);
-        final int errs = checker.process(theFiles);
+
+        final int errs = checker.process(
+            Arrays.stream(processedFiles)
+                .map(File::toPath)
+                .collect(Collectors.toUnmodifiableList())
+        );
 
         // process each of the lines
         final Map<String, List<String>> actualViolations = getActualViolations(errs);
@@ -540,8 +543,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     protected final void execute(Configuration config, String... filenames) throws Exception {
         final Checker checker = createChecker(config);
-        final List<File> files = Arrays.stream(filenames)
-                .map(File::new)
+        final List<Path> files = Arrays.stream(filenames)
+                .map(Path::of)
                 .collect(Collectors.toUnmodifiableList());
         checker.process(files);
         checker.destroy();
@@ -555,8 +558,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @throws Exception if there is a problem during checker configuration
      */
     protected static void execute(Checker checker, String... filenames) throws Exception {
-        final List<File> files = Arrays.stream(filenames)
-                .map(File::new)
+        final List<Path> files = Arrays.stream(filenames)
+                .map(Path::of)
                 .collect(Collectors.toUnmodifiableList());
         checker.process(files);
         checker.destroy();
@@ -649,7 +652,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                                                     String file) throws Exception {
         stream.flush();
         stream.reset();
-        final List<File> files = Collections.singletonList(new File(file));
+        final List<Path> files = Collections.singletonList(Path.of(file));
         final Checker checker = createChecker(config);
         final Map<String, List<String>> actualViolations =
                 getActualViolations(checker.process(files));
