@@ -486,8 +486,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     protected final void verify(Checker checker,
                           File[] processedFiles,
-                          Map<String, List<String>> expectedViolations)
-            throws Exception {
+                          Map<String, List<String>> expectedViolations) throws Exception {
         stream.flush();
         stream.reset();
 
