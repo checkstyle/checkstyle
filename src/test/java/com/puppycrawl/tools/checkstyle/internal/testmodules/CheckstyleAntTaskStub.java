@@ -19,17 +19,22 @@
 
 package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
+import com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask;
+import org.mockito.Mockito;
+
 import java.io.File;
+import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
 
-import com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask;
-
 public class CheckstyleAntTaskStub extends CheckstyleAntTask {
 
+    @SuppressWarnings("MockitoMockClassReference")
     @Override
-    protected List<File> scanFileSets() {
-        return Collections.singletonList(new MockFile());
+    protected List<Path> scanFileSets() {
+        final Path path = Mockito.mock(Path.class);
+        Mockito.when(path.toFile()).thenReturn(new MockFile());
+        return Collections.singletonList(path);
     }
 
     private static final class MockFile extends File {
