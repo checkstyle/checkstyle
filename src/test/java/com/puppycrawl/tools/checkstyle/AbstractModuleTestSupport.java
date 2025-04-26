@@ -385,18 +385,11 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                                                          AuditListener logger,
                                                          ByteArrayOutputStream outputStream)
             throws Exception {
-        final TestInputConfiguration testInputConfiguration =
-                InlineConfigParser.parse(inputFile);
-        final DefaultConfiguration parsedConfig =
-                testInputConfiguration.createConfiguration();
-        final List<File> filesToCheck = Collections.singletonList(new File(inputFile));
-        final String basePath = Path.of("").toAbsolutePath().toString();
-
-        final Checker checker = createChecker(parsedConfig);
-        checker.setBasedir(basePath);
+        final Checker checker = createChecker(
+                InlineConfigParser.parse(inputFile).createConfiguration());
+        checker.setBasedir(Path.of("").toAbsolutePath().toString());
         checker.addListener(logger);
-        checker.process(filesToCheck);
-
+        checker.process(Collections.singletonList(Path.of(inputFile).toFile()));
         verifyContent(expectedReportFile, outputStream);
     }
 
@@ -486,30 +479,53 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     protected final void verify(Checker checker,
                           File[] processedFiles,
-                          Map<String, List<String>> expectedViolations)
-            throws Exception {
+                          Map<String, List<String>> expectedViolations) throws Exception {
         stream.flush();
         stream.reset();
-        final List<File> theFiles = new ArrayList<>();
-        Collections.addAll(theFiles, processedFiles);
-        final int errs = checker.process(theFiles);
-
         // process each of the lines
-        final Map<String, List<String>> actualViolations = getActualViolations(errs);
-        final Map<String, List<String>> realExpectedViolations =
-                Maps.filterValues(expectedViolations, input -> !input.isEmpty());
+        assertMessages(getActualViolations(
+                checker
+                    .process(Arrays.stream(processedFiles)
+                    .collect(Collectors.toUnmodifiableList()))
+            ),
+            Maps.filterValues(expectedViolations, input -> !input.isEmpty())
+        );
+        checker.destroy();
+    }
 
+    /**
+     * Verifies that actual violations match expected violations for all files.
+     *
+     * <p>This helper method performs two key validations:
+     * <ol>
+     * <li>Verifies the same set of files have violations in both actual and expected results
+     * <li>For each file, verifies that the actual violations exactly match the expected violations
+     * (both content and order)
+     * </ol>
+     *
+     * <p>Assertion messages will clearly indicate whether the mismatch is in:
+     * <ul>
+     * <li>The set of files with violations (keys in the maps differ)
+     * <li>The violation messages for a specific file (values in the maps differ)
+     * </ul>
+     *
+     * <p><b>Note:</b> This method assumes the input maps have already been filtered to remove
+     * any files with empty violation lists (non-violating files).
+     *
+     * @param actualViolations actual violations detected
+     * @param realExpectedViolations expected violations
+     * @throws AssertionError if either verification fails, with detailed message about:
+     */
+    private void assertMessages(Map<String, List<String>> actualViolations,
+                        Map<String, List<String>> realExpectedViolations) {
         assertWithMessage("Files with expected violations and actual violations differ.")
-            .that(actualViolations.keySet())
-            .isEqualTo(realExpectedViolations.keySet());
-
+                .that(actualViolations.keySet())
+                .isEqualTo(realExpectedViolations.keySet());
         realExpectedViolations.forEach((fileName, violationList) -> {
             assertWithMessage("Violations for %s differ.", fileName)
-                .that(actualViolations.get(fileName))
-                .containsExactlyElementsIn(violationList);
+                    .that(actualViolations.get(fileName))
+                    .containsExactlyElementsIn(violationList);
         });
-
-        checker.destroy();
     }
 
     /**
@@ -540,10 +556,9 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     protected final void execute(Configuration config, String... filenames) throws Exception {
         final Checker checker = createChecker(config);
-        final List<File> files = Arrays.stream(filenames)
+        checker.process(Arrays.stream(filenames)
                 .map(File::new)
-                .collect(Collectors.toUnmodifiableList());
-        checker.process(files);
+                .collect(Collectors.toUnmodifiableList()));
         checker.destroy();
     }
 
@@ -555,10 +570,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @throws Exception if there is a problem during checker configuration
      */
     protected static void execute(Checker checker, String... filenames) throws Exception {
-        final List<File> files = Arrays.stream(filenames)
-                .map(File::new)
-                .collect(Collectors.toUnmodifiableList());
-        checker.process(files);
+        checker.process(Arrays.stream(filenames).map(File::new)
+                .collect(Collectors.toUnmodifiableList()));
         checker.destroy();
     }
 
@@ -579,12 +592,11 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 .map(violation -> violation.substring(0, violation.indexOf(':')))
                 .map(Integer::valueOf)
                 .collect(Collectors.toUnmodifiableList());
-        final List<Integer> expectedViolationLines = testInputViolations.stream()
-                .map(TestInputViolation::getLineNo)
-                .collect(Collectors.toUnmodifiableList());
         assertWithMessage("Violation lines for %s differ.", file)
                 .that(actualViolationLines)
-                .isEqualTo(expectedViolationLines);
+                .isEqualTo(testInputViolations.stream()
+                        .map(TestInputViolation::getLineNo)
+                        .collect(Collectors.toUnmodifiableList()));
         for (int index = 0; index < actualViolations.size(); index++) {
             assertWithMessage("Actual and expected violations differ.")
                     .that(actualViolations.get(index))
@@ -602,16 +614,14 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     private static void verifyViolations(String file,
                                   List<TestInputViolation> testInputViolations,
                                   List<String> actualViolations) {
-        final List<Integer> actualViolationLines = actualViolations.stream()
-                .map(violation -> violation.substring(0, violation.indexOf(':')))
-                .map(Integer::valueOf)
-                .collect(Collectors.toUnmodifiableList());
-        final List<Integer> expectedViolationLines = testInputViolations.stream()
-                .map(TestInputViolation::getLineNo)
-                .collect(Collectors.toUnmodifiableList());
         assertWithMessage("Violation lines for %s differ.", file)
-                .that(actualViolationLines)
-                .isEqualTo(expectedViolationLines);
+                .that(actualViolations.stream()
+                        .map(violation -> violation.substring(0, violation.indexOf(':')))
+                        .map(Integer::valueOf)
+                        .collect(Collectors.toUnmodifiableList()))
+                .isEqualTo(testInputViolations.stream()
+                        .map(TestInputViolation::getLineNo)
+                        .collect(Collectors.toUnmodifiableList()));
         for (int index = 0; index < actualViolations.size(); index++) {
             assertWithMessage("Actual and expected violations differ.")
                     .that(actualViolations.get(index))
@@ -626,15 +636,11 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param outputStream output stream containing the actual logger output
      * @throws IOException if an exception occurs while reading the file
      */
-    private static void verifyContent(
-            String expectedOutputFile,
+    private static void verifyContent(String expectedOutputFile,
             ByteArrayOutputStream outputStream) throws IOException {
-        final String expectedContent = readFile(expectedOutputFile);
-        final String actualContent =
-                toLfLineEnding(outputStream.toString(StandardCharsets.UTF_8));
         assertWithMessage("Content should match")
-                .that(actualContent)
-                .isEqualTo(expectedContent);
+                .that(toLfLineEnding(outputStream.toString(StandardCharsets.UTF_8)))
+                .isEqualTo(readFile(expectedOutputFile));
     }
 
     /**
@@ -649,12 +655,24 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                                                     String file) throws Exception {
         stream.flush();
         stream.reset();
-        final List<File> files = Collections.singletonList(new File(file));
-        final Checker checker = createChecker(config);
-        final Map<String, List<String>> actualViolations =
-                getActualViolations(checker.process(files));
-        checker.destroy();
-        return actualViolations.getOrDefault(file, new ArrayList<>());
+        return processChecker(createChecker(config), file);
+    }
+
+    /**
+     * Processes a single file using the provided checker and returns a list of violations.
+     * After processing, it ensures the checker's resources are released.
+     *
+     * @param checker The Checker instance to use for processing the file.
+     * @param file The path to the file to be checked.
+     * @return A read-only list of violation messages found in the file by the checker.
+     * @throws Exception If an error occurs during the checking process.
+     */
+    private List<String> processChecker(Checker checker, String file) throws Exception {
+        return getActualViolations(
+                checker.process(Collections.singletonList(Path.of(file).toFile()))
+        ).getOrDefault(file, Collections.emptyList())
+                .stream().peek(ignored -> checker.destroy())
+                .collect(Collectors.toUnmodifiableList());
     }
 
     /**
