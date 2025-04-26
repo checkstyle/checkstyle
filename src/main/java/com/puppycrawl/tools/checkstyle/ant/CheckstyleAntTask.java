@@ -343,7 +343,8 @@ public class CheckstyleAntTask extends Task {
 
         try {
             final long processingStartTime = System.currentTimeMillis();
-            numErrs = rootModule.process(files);
+            numErrs = rootModule.process(files.stream()
+                    .collect(Collectors.toUnmodifiableList()));
             final long processingEndTime = System.currentTimeMillis();
             log("To process the files took " + (processingEndTime - processingStartTime)
                 + TIME_SUFFIX, Project.MSG_VERBOSE);
