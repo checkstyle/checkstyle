@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalMethodCheck"
+             name="UnusedLocalMethod"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that a local method is declared but not used, except for overloaded ones.
+ &lt;/div&gt;</description>
+         <message-keys>
+            <message-key key="unused.local.method"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
