@@ -64,7 +64,7 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalImport"/&gt;
@@ -74,7 +74,7 @@
         <p id="Example1-code">
             The following example shows class with no illegal imports
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 import java.io.*;
 import java.lang.ArithmeticException;
 import java.sql.Connection;
@@ -90,7 +90,7 @@ public class Example1 {}
           To configure the check so that it rejects packages <code>java.io.*</code>
           and <code>java.sql.*</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalImport"&gt;
@@ -106,7 +106,7 @@ public class Example1 {}
           <li><b>java.io.*</b>, illegalPkgs property contains this package</li>
           <li><b>java.sql.Connection</b> is inside java.sql package</li>
         </ul>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 import java.io.*; // violation, 'Illegal import'
 import java.lang.ArithmeticException;
 import java.sql.Connection; // violation, 'Illegal import'
@@ -122,7 +122,7 @@ public class Example2 {}
           To configure the check so that it rejects classes <code>java.util.Date</code> and
           <code>java.sql.Connection</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalImport"&gt;
@@ -139,7 +139,7 @@ public class Example2 {}
           <li><b>java.sql.Connection</b>, illegalClasses property contains this class</li>
           <li><b>java.util.Date</b>, illegalClasses property contains this class</li>
         </ul>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 import java.io.*;
 import java.lang.ArithmeticException;
 import java.sql.Connection; // violation, 'Illegal import'
@@ -155,7 +155,7 @@ public class Example3 {}
           To configure the check so that it rejects packages not satisfying to regular
           expression <code>java\.util</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalImport"&gt;
@@ -177,7 +177,7 @@ public class Example3 {}
         <p id="Example4-code">
           All four imports match &quot;java\.util&quot; regular expression
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 import java.io.*;
 import java.lang.ArithmeticException;
 import java.sql.Connection;
@@ -194,7 +194,7 @@ public class Example4 {}
           expression <code>^java\.util\.(List|Arrays)</code> and
           <code>^java\.sql\.Connection</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalImport"&gt;
@@ -213,7 +213,7 @@ public class Example4 {}
           <li><b>java.util.List</b> matches &quot;^java\.util\.(List|Arrays)&quot; regular expression</li>
           <li><b>java.util.Arrays</b> matches &quot;^java\.util\.(List|Arrays)&quot; regular expression</li>
         </ul>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 import java.io.*;
 import java.lang.ArithmeticException;
 import java.sql.Connection; // violation, 'Illegal import'

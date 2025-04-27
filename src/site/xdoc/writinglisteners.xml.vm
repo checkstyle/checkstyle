@@ -97,7 +97,7 @@
         <code>setFile(String)</code>.
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+      <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 package com.mycompany.listeners;
 
 import java.io.FileNotFoundException;
@@ -221,7 +221,7 @@ public class VerboseListener
         Here is a truncated example of audit output from a <code> VerboseListener</code>:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+      <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 Audit started.
 Started checking file 'CommonsLoggingListener.java'.
 Finished checking file 'CommonsLoggingListener.java'. Errors: 0
@@ -299,7 +299,7 @@ Audit finished. Total errors: 1
         in the current directory:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+      <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 # Set root logger level to INFO and its only appender to A1.
 log4j.rootLogger=INFO, A1
 
@@ -316,7 +316,7 @@ log4j.appender.A1.layout.ConversionPattern=%-5p %c %x- %m%n
         (abbreviated) output:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+      <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 INFO  com.puppycrawl...Checker  - Audit started.
 INFO  com.puppycrawl...Checker  - File "CommonsLoggingListener.java" started.
 INFO  com.puppycrawl...Checker  - File "CommonsLoggingListener.java" finished.
