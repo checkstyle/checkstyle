@@ -78,7 +78,7 @@ class Example1 {
         <p id="Example2-code">
           Example of exclusion
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 class Example2 {
   void method() throws IOException {
     try (Reader r1 = new PipedReader();) {} // violation, 'Unnecessary semicolon'

@@ -152,7 +152,7 @@ public class Example5 { // ⤶
 </code></pre></div><hr class="example-separator"/>
 
         <p id="Example6-code">Text file <code>Example6.txt</code>:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 Sample txt file. // ok, this file is not specified in the config.
 </code></pre></div>
       </subsection>
