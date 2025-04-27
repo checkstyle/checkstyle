@@ -97,7 +97,7 @@
           <code>MagicNumber</code> checks in <code>Example1.java</code> for specific line ranges
           using <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocStyle"/&gt;
@@ -115,7 +115,7 @@
 </code></pre></div>
         <p id="Example1-code">
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 public class Example1 {
   public void exampleMethod() {
     int value = 100; // filtered violation ''100' is a magic number'
@@ -127,7 +127,7 @@ public class Example1 {
           <code>EqualsAvoidNull</code> checks in <code>Example2.java</code> using
           <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocMethod"/&gt;
@@ -141,7 +141,7 @@ public class Example1 {
 </code></pre></div>
         <p id="Example2-code">
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 public class Example2 {
 
   public void checkStringEquality(String s) {
@@ -159,7 +159,7 @@ public class Example2 {
           To configure a filter to suppress violations of <code>RegexpSinglelineCheck</code>
           in <code>Example3.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="RegexpSingleline"&gt;
     &lt;property name="format" value="example"/&gt;
@@ -172,7 +172,7 @@ public class Example2 {
 </code></pre></div>
         <p id="Example3-code">
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 public class Example3 {
 
   public void printExample() {
@@ -193,7 +193,7 @@ public class Example3 {
           To configure a filter to suppress violations of <code>NoWhitespaceAfter</code>
           in <code>Example4.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NoWhitespaceAfter"/&gt;
@@ -206,7 +206,7 @@ public class Example3 {
 </code></pre></div>
         <p id="Example4-code">
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 public class Example4 {
 
   public void exampleMethod(int a, int b) {
@@ -224,7 +224,7 @@ public class Example4 {
           To configure a filter to suppress violations of <code>MethodName</code>
           in <code>Example5.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="MethodName"/&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
@@ -235,7 +235,7 @@ public class Example4 {
 </code></pre></div>
         <p id="Example5-code">
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 public class Example5 {
   // filtered violation below 'Name 'example_Method' must match pattern'
   public void example_Method() {
@@ -249,7 +249,7 @@ public class Example5 {
           To configure a filter to suppress violations of <code>ConstantName</code>
           in <code>Example6.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="ConstantName"/&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
@@ -260,7 +260,7 @@ public class Example5 {
 </code></pre></div>
         <p id="Example6-code">
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 public class Example6 {
   // filtered violation below 'Name 'myConstant' must match pattern'
   private static final int myConstant = 42;
@@ -272,7 +272,7 @@ public class Example6 {
           and <code>MethodName</code> in <code>Example7.java</code> using
           <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="MemberName"/&gt;
   &lt;module name="MethodName"/&gt;
@@ -284,7 +284,7 @@ public class Example6 {
 </code></pre></div>
         <p id="Example7-code">
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 public class Example7 {
   // filtered violation below 'Name 'MyVariable' must match pattern'
   private int MyVariable = 5;
@@ -297,7 +297,7 @@ public class Example7 {
           To configure a filter to suppress <code>ParameterNumber</code> violations
           in <code>Example8.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ParameterNumber"&gt;
@@ -312,7 +312,7 @@ public class Example7 {
 </code></pre></div>
         <p id="Example8-code">
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 public class Example8 {
   // filtered violation below 'More than 5 parameters (found 6)'
   public void exampleMethod(
@@ -324,7 +324,7 @@ public class Example8 {
           To configure a filter to suppress <code>FileLength</code> violations
           in <code>Example9.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="FileLength"&gt;
@@ -339,7 +339,7 @@ public class Example8 {
 </code></pre></div>
         <p id="Example9-code">
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 /* filtered violation on 1st line  'File length is 4 lines (max allowed is 1)' */
 public class Example9 {
 
@@ -349,7 +349,7 @@ public class Example9 {
           To configure a filter to suppress <code>MemberName</code> violations
           in <code>Example10.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="MemberName"&gt;
     &lt;property name="format" value="^[A-Z][a-zA-Z0-9]*$"/&gt;
@@ -362,7 +362,7 @@ public class Example9 {
 </code></pre></div>
         <p id="Example10-code">
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 public class Example10 {
   // filtered violation below 'Name 'log' must match pattern'
   private String log = "Some log message";
