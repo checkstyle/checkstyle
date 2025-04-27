@@ -203,7 +203,7 @@ class Example2 {
           Use the following configuration to allow only one and only parameterized annotation
           on the same line:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AnnotationLocation"&gt;

@@ -62,7 +62,7 @@
         <p id="Example1-config">
           To configure the default check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocVariable"/&gt;
@@ -73,7 +73,7 @@
           By default, this setting will report a violation if
           there is no javadoc for a field with any access modifier.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 public class Example1 {
   private int a; // violation, 'Missing a Javadoc comment'
 
@@ -92,7 +92,7 @@ public class Example1 {
           access modifier:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocVariable"&gt;
@@ -105,7 +105,7 @@ public class Example1 {
           This setting will report a violation if there
           is no javadoc for <code>public</code> field.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 public class Example2 {
   private int a;
 
@@ -123,7 +123,7 @@ public class Example2 {
           <code>package</code> access modifier:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocVariable"&gt;
@@ -136,7 +136,7 @@ public class Example2 {
           This setting will report a violation if there is no
           javadoc for <code>private</code>  or <code>package</code> field.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 public class Example3 {
   private int a; // violation, 'Missing a Javadoc comment'
 
@@ -154,7 +154,7 @@ public class Example3 {
           <code>logger</code>:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocVariable"&gt;
@@ -168,7 +168,7 @@ public class Example3 {
           javadoc for any scope field and ignores fields with
           name <code>log</code> or <code>logger</code>.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 public class Example4 {
   private int a; // violation, 'Missing a Javadoc comment'
 
@@ -186,7 +186,7 @@ public class Example4 {
           This check will not report a violation for local and
            anonymous inner classes with any configuration.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 public class Example5 {
   public int variablePublic; // violation, 'Missing a Javadoc comment'
   protected int variableProtected; // violation, 'Missing a Javadoc comment'
