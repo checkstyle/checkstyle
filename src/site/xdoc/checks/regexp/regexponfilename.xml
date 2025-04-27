@@ -108,7 +108,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example1:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 .../checkstyle.xml
 .../Test Example1.xml // violation, 'File match folder pattern '' and file pattern '\s'.'
 .../TestExample2.xml
@@ -128,7 +128,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example2:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 .../checkstyle.xml
 .../Test Example1.xml
 .../TestExample2.xml // violation, 'xml files should not match '^TestExample\d+\.xml$''
@@ -151,7 +151,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example3:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 .../checkstyle.xml
 .../Test Example1.xml
 .../TestExample2.xml
@@ -173,7 +173,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example4:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 .../checkstyle.xml
 .../Test Example1.xml
 .../TestExample2.xml
@@ -195,7 +195,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example5-code">Example5:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 .../checkstyle.xml    // violation, 'only filenames in camelcase is allowed'
 .../Test Example1.xml // violation, 'only filenames in camelcase is allowed'
 .../TestExample2.xml
