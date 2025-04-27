@@ -132,7 +132,7 @@ class Example3 {
 &lt;/UserAccount&gt;
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-code">Example - Test.html:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;head&gt;
   &lt;title&gt;Page Title&lt;/title&gt; &lt;!-- OK, no check performed on html file extension --&gt;
 &lt;/head&gt;                       &lt;!-- not specified in check config --&gt;
