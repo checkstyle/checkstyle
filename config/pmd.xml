@@ -8,14 +8,7 @@
     PMD common ruleset for Checkstyle main/test sourcesets
   </description>
 
-  <rule ref="category/java/bestpractices.xml">
-    <!-- The PMD mistakes the AbstractViolationReporter::log() as a debug log. -->
-    <exclude name="GuardLogStatement"/>
-    <!-- too much false-positives from 6.18.0 -->
-    <exclude name="UnusedPrivateMethod"/>
-    <!-- until https://github.com/pmd/pmd/issues/5514 -->
-    <exclude name="ExhaustiveSwitchHasDefault"/>
-  </rule>
+  <rule ref="category/java/bestpractices.xml/"/>
   <rule ref="category/java/bestpractices.xml/UnusedLocalVariable">
     <properties>
       <!-- until https://github.com/checkstyle/checkstyle/issues/14870 -->
