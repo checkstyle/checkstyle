@@ -419,7 +419,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         An example of run would be:
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           java -jar checkstyle-${projectVersion}-all.jar -c /sun_checks.xml MyClass.java
           java -jar checkstyle-${projectVersion}-all.jar -c /google_checks.xml MyClass.java
         </code></pre></div>
@@ -443,7 +443,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         An example of run would be (path to java file is optional):
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gui.Main \
           &#xa0;&#xa0;&#xa0;&#xa0;MyClass.java
         </code></pre></div>
@@ -594,7 +594,7 @@ java -jar checkstyle-${projectVersion}-all.jar -c config.xml Test.java
 
 <p><strong>Content of Test.java:</strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-java">
+  <pre class="prettyprint"><code class="language-bash">
 /**
  * Javadoc summary.
  *
@@ -658,7 +658,7 @@ java -jar checkstyle-${projectVersion}-all.jar -c config.xml -f xml Test.java
 
 <p><strong>Content of Test.java:</strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-java">
+  <pre class="prettyprint"><code class="language-bash">
 /**
  * Javadoc summary.
  *
@@ -748,7 +748,7 @@ checkstyle.header.charset=UTF-8
 
 <p><strong>Content of Test.java:</strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-java">
+  <pre class="prettyprint"><code class="language-bash">
 /**
  * Javadoc summary.
  *
@@ -804,7 +804,7 @@ java -jar checkstyle-${projectVersion}-all.jar -c config.xml -o results.txt Test
 
 <p><strong>Content of Test.java:</strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-java">
+  <pre class="prettyprint"><code class="language-bash">
 /**
  * Javadoc summary.
  *
@@ -852,7 +852,7 @@ java -jar checkstyle-${projectVersion}-all.jar -s 17:17 Test.java
 
 <p><strong>Content of Test.java:</strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-java">
+  <pre class="prettyprint"><code class="language-bash">
 /**
  * Javadoc summary.
  *
@@ -917,7 +917,7 @@ java -jar checkstyle-${projectVersion}-all.jar -c config.xml -g -o suppressions.
 
 <p><strong>Content of Test.java:</strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-java">
+  <pre class="prettyprint"><code class="language-bash">
 /**
  * Javadoc summary.
  *
@@ -975,7 +975,7 @@ java -jar checkstyle-${projectVersion}-all.jar -s 17:17 --tabWidth 4 Test.java
 
 <p><strong>Content of Test.java:</strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-java">
+  <pre class="prettyprint"><code class="language-bash">
 /**
  * Javadoc summary.
  *
@@ -1024,7 +1024,7 @@ java -jar checkstyle-${projectVersion}-all.jar -t Test.java
 
 <p><strong>Content of Test.java:</strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-java">
+  <pre class="prettyprint"><code class="language-bash">
 /**
  * Javadoc summary.
  *
@@ -1137,7 +1137,7 @@ java -jar checkstyle-${projectVersion}-all.jar --treeWithComments Test.java
 
 <p><strong>Content of Test.java:</strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-java">
+  <pre class="prettyprint"><code class="language-bash">
 /**
  * Javadoc summary.
  *
@@ -1258,7 +1258,7 @@ java -jar checkstyle-${projectVersion}-all.jar --treeWithJavadoc Test.java
 
 <p><strong>Content of Test.java:</strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-java">
+  <pre class="prettyprint"><code class="language-bash">
 /**
  * Javadoc summary.
  *
@@ -1398,7 +1398,7 @@ java -jar checkstyle-${projectVersion}-all.jar --javadocTree Javadoc.txt
 
 <p><strong>Content of Javadoc.txt:</strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-java">
+  <pre class="prettyprint"><code class="language-bash">
 /**
  * This is a sample Javadoc comment.
  * It spans multiple lines and includes tags.
@@ -1472,7 +1472,7 @@ java -jar checkstyle-${projectVersion}-all.jar --debug -c config.xml Test.java
 
 <p><strong>Content of Test.java:</strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-java">
+  <pre class="prettyprint"><code class="language-bash">
 /**
  * Javadoc summary.
  *
@@ -1541,7 +1541,7 @@ java -jar checkstyle-${projectVersion}-all.jar -c config.xml -e Test.java Other.
 
 <p><strong>Content of Test.java:</strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-java">
+  <pre class="prettyprint"><code class="language-bash">
 /**
  * Javadoc summary.
  *
@@ -1606,7 +1606,7 @@ java -jar checkstyle-${projectVersion}-all.jar -c config.xml --exclude-regexp ".
 
 <p><strong>Content of Test.java:</strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-java">
+  <pre class="prettyprint"><code class="language-bash">
 /**
  * Javadoc summary.
  *
@@ -1672,7 +1672,7 @@ java -jar checkstyle-${projectVersion}-all.jar --branch-matching-xpath"/COMPILAT
 
 <p><strong>Content of Test.java:</strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-java">
+  <pre class="prettyprint"><code class="language-bash">
 /**
  * Javadoc summary.
  *
@@ -1812,7 +1812,7 @@ java -jar checkstyle-${projectVersion}-all.jar -c config.xml --executeIgnoredMod
 
 <p><strong>Content of Test.java:</strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-java">
+  <pre class="prettyprint"><code class="language-bash">
 /**
  * Javadoc summary.
  *
@@ -1884,7 +1884,7 @@ src1
 
 <p><strong>Content of Other.java (in src2):</strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-java">
+  <pre class="prettyprint"><code class="language-bash">
 /**
  * Javadoc summary.
  *
@@ -1900,7 +1900,7 @@ public class Other {
 
 <p><strong>Content of Test.java (in src1):</strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-java">
+  <pre class="prettyprint"><code class="language-bash">
 /**
  * Javadoc summary.
  *
@@ -1956,7 +1956,7 @@ Checkstyle ends with 2 errors.
         Run validation with arguments:
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.Main" \
           &#xa0;&#xa0;&#xa0;&#xa0;-Dexec.args="-c /sun_checks.xml src/main/java"
         </code></pre></div>
@@ -2005,7 +2005,7 @@ Checkstyle ends with 2 errors.
         </b>
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml Check.java
         </code></pre></div>
       </div>
@@ -2017,7 +2017,7 @@ Checkstyle ends with 2 errors.
         </b>
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml src/
         </code></pre></div>
       </div>
@@ -2030,7 +2030,7 @@ Checkstyle ends with 2 errors.
         </b>
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           java -Dcheckstyle.cache.file=target/cachefile com.puppycrawl.tools.checkstyle.Main \
           &#xa0;&#xa0;&#xa0;&#xa0;-c /sun_checks.xml Check.java
         </code></pre></div>
@@ -2044,7 +2044,7 @@ Checkstyle ends with 2 errors.
         </b>
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml \
           &#xa0;&#xa0;&#xa0;&#xa0;-p myCheckstyle.properties Check.java
         </code></pre></div>
@@ -2058,7 +2058,7 @@ Checkstyle ends with 2 errors.
         </b>
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml -f xml \
           &#xa0;&#xa0;&#xa0;&#xa0;-o build/checkstyle_errors.xml Check.java
         </code></pre></div>
@@ -2071,7 +2071,7 @@ Checkstyle ends with 2 errors.
         </b>
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           java -classpath MyCustom.jar;checkstyle-${projectVersion}-all.jar \
           &#xa0;&#xa0;&#xa0;&#xa0;com.puppycrawl.tools.checkstyle.Main -c config.xml Check.java
         </code></pre></div>
