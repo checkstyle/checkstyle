@@ -315,22 +315,17 @@ public final class SiteUtil {
     private static final String MAIN_FOLDER_PATH = Path.of(
             SRC, "main", "java", "com", "puppycrawl", "tools", "checkstyle").toString();
 
-    /** List of files who are superclasses and contain certain properties that checks inherit. */
-    private static final List<File> MODULE_SUPER_CLASS_FILES = List.of(
-        new File(Path.of(MAIN_FOLDER_PATH,
-                CHECKS, NAMING, "AbstractAccessControlNameCheck.java").toString()),
-        new File(Path.of(MAIN_FOLDER_PATH,
-                CHECKS, NAMING, "AbstractNameCheck.java").toString()),
-        new File(Path.of(MAIN_FOLDER_PATH,
-                CHECKS, "javadoc", "AbstractJavadocCheck.java").toString()),
-        new File(Path.of(MAIN_FOLDER_PATH,
-                "api", "AbstractFileSetCheck.java").toString()),
-        new File(Path.of(MAIN_FOLDER_PATH,
-                CHECKS, "header", "AbstractHeaderCheck.java").toString()),
-        new File(Path.of(MAIN_FOLDER_PATH,
-                CHECKS, "metrics", "AbstractClassCouplingCheck.java").toString()),
-        new File(Path.of(MAIN_FOLDER_PATH,
-                CHECKS, "whitespace", "AbstractParenPadCheck.java").toString())
+    /**
+     * List of file paths who are superclasses and contain certain properties that checks inherit.
+     */
+    private static final List<Path> MODULE_SUPER_CLASS_FILES = List.of(
+        Path.of(MAIN_FOLDER_PATH, CHECKS, NAMING, "AbstractAccessControlNameCheck.java"),
+        Path.of(MAIN_FOLDER_PATH, CHECKS, NAMING, "AbstractNameCheck.java"),
+        Path.of(MAIN_FOLDER_PATH, CHECKS, "javadoc", "AbstractJavadocCheck.java"),
+        Path.of(MAIN_FOLDER_PATH, "api", "AbstractFileSetCheck.java"),
+        Path.of(MAIN_FOLDER_PATH, CHECKS, "header", "AbstractHeaderCheck.java"),
+        Path.of(MAIN_FOLDER_PATH, CHECKS, "metrics", "AbstractClassCouplingCheck.java"),
+        Path.of(MAIN_FOLDER_PATH, CHECKS, "whitespace", "AbstractParenPadCheck.java")
     );
 
     /**
@@ -644,10 +639,15 @@ public final class SiteUtil {
      * @throws MacroExecutionException if an error occurs during processing.
      */
     private static void processSuperclasses() throws MacroExecutionException {
-        for (File superclassFile : MODULE_SUPER_CLASS_FILES) {
+        for (Path superclassPath : MODULE_SUPER_CLASS_FILES) {
+            final Path fileNameComponent = superclassPath.getFileName();
+            if (fileNameComponent == null) {
+                throw new MacroExecutionException(
+                        "Path '" + superclassPath + "' has no file name component.");
+            }
             final String superclassName = CommonUtil
-                    .getFileNameWithoutExtension(superclassFile.getName());
-            processModule(superclassName, superclassFile);
+                    .getFileNameWithoutExtension(fileNameComponent.toString());
+            processModule(superclassName, superclassPath.toFile());
             final Map<String, DetailNode> superclassJavadocs =
                     ClassAndPropertiesSettersJavadocScraper.getJavadocsForModuleOrProperty();
             SUPER_CLASS_PROPERTIES_JAVADOCS.putAll(superclassJavadocs);
