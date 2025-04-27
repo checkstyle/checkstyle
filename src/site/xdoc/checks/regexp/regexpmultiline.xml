@@ -346,7 +346,7 @@ class Example5 {
           Example of violation from the above config:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 /var/tmp$ cat -n Test.java
 1
 2

@@ -67,7 +67,7 @@
           To configure the default check to validate that first sentence is not empty and first
           sentence is not missing:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SummaryJavadoc"/&gt;
@@ -75,7 +75,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code"> Example1: </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 class Example1 {
 
   /**
@@ -127,7 +127,7 @@ class Example1 {
           To ensure that summary does not contain phrase like &quot;This method returns&quot;, use
           following config:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SummaryJavadoc"&gt;
@@ -138,7 +138,7 @@ class Example1 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code"> Example2: </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 class Example2 {
 
   /**
@@ -189,7 +189,7 @@ class Example2 {
         <p id="Example3-config">
           To specify period symbol at the end of first javadoc sentence:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SummaryJavadoc"&gt;
@@ -199,7 +199,7 @@ class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code"> Example3: </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 class Example3 {
 
   /**
