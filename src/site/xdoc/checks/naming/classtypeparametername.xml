@@ -90,7 +90,7 @@ class Example2 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 class Example3 {
   class MyClass1&lt;T&gt; {}
   class MyClass2&lt;t&gt; {}        // violation 'Name 't' must match pattern'

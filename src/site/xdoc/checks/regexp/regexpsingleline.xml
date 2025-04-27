@@ -149,7 +149,7 @@ public class Example3 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 /**
 * This file is copyrighted under CC.
 */
@@ -200,14 +200,14 @@ public class Example5 {}
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example6-raw">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 /*
  AP 2.0 License. // Ok, Check ignores the case of the term.
 */
 CREATE DATABASE MyDB;
 </code></pre></div><hr class="example-separator"/>
         <p id="Example7-raw">Example with violation:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 /* // violation, file doesn't contain the term.
  Example sql file.
 */
