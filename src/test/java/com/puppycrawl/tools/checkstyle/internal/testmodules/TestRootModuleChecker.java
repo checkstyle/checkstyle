@@ -20,9 +20,12 @@
 package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -53,6 +56,13 @@ public class TestRootModuleChecker implements RootModule {
         processed = true;
         filesToCheck = new ArrayList<>(files);
         return 0;
+    }
+
+    @Override
+    public int process(Collection<Path> files) {
+        return process(files.stream()
+                .map(Path::toFile)
+                .collect(Collectors.toUnmodifiableList()));
     }
 
     @Override
