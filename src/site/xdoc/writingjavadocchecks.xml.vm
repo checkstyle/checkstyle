@@ -531,14 +531,14 @@ JAVADOC -> JAVADOC [0:0]
 
           <tr>
             <td>
-              <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
+              <div class="wrapper"><pre class="prettyprint"><code class="language-xml"><![CDATA[
 <p> First
 <p> Second
 ]]>
               </code></pre></div>
             </td>
             <td>
-              <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
+              <div class="wrapper"><pre class="prettyprint"><code class="language-xml"><![CDATA[
 <p> First </p>
 <p> Second </p>
 ]]>
@@ -618,7 +618,7 @@ JAVADOC -> JAVADOC [0:0]
         Input:
       </p>
 
-      <div class="wrapper"><pre class="prettyprint"><code class="language-text"><![CDATA[
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java"><![CDATA[
 /**
   * <body>
   * <p> This class is only meant for testing. </p>
@@ -676,7 +676,7 @@ JAVADOC -> JAVADOC [0:0]
             </td>
 
             <td>
-              <div class="wrapper"><pre class="prettyprint"><code class="language-xml"><![CDATA[
+              <div class="wrapper"><pre class="prettyprint"><code class="language-bash"><![CDATA[
 Starting audit...
 [ERROR] Test.java:11: Redundant <p> tag. [JavadocParagraph]
 Audit done.
@@ -710,7 +710,7 @@ Checkstyle ends with 1 errors.
             </td>
 
             <td>
-              <div class="wrapper"><pre class="prettyprint"><code class="language-xml"><![CDATA[
+              <div class="wrapper"><pre class="prettyprint"><code class="language-bash"><![CDATA[
 Starting audit...
 [ERROR] Test.java:4: Unclosed HTML tag found: p [JavadocParagraph]
 [ERROR] Test.java:11: Redundant <p> tag. [JavadocParagraph]
