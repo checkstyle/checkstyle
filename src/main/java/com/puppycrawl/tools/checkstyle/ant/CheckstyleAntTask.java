@@ -328,7 +328,7 @@ public class CheckstyleAntTask extends Task {
     private void processFiles(RootModule rootModule, final SeverityLevelCounter warningCounter,
             final String checkstyleVersion) {
         final long startTime = System.currentTimeMillis();
-        final List<File> files = getFilesToCheck();
+        final List<Path> files = getFilesToCheck();
         final long endTime = System.currentTimeMillis();
         log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
             Project.MSG_VERBOSE);
@@ -343,7 +343,7 @@ public class CheckstyleAntTask extends Task {
 
         try {
             final long processingStartTime = System.currentTimeMillis();
-            numErrs = rootModule.process(files);
+            numErrs = rootModule.process(files.stream().collect(Collectors.toUnmodifiableList()));
             final long processingEndTime = System.currentTimeMillis();
             log("To process the files took " + (processingEndTime - processingStartTime)
                 + TIME_SUFFIX, Project.MSG_VERBOSE);
@@ -483,21 +483,20 @@ public class CheckstyleAntTask extends Task {
      *
      * @return the list of files included via the fileName, filesets and paths.
      */
-    private List<File> getFilesToCheck() {
-        final List<File> allFiles = new ArrayList<>();
+    private List<Path> getFilesToCheck() {
+        final List<Path> allFiles = new ArrayList<>();
         if (fileName != null) {
             // oops, we've got an additional one to process, don't
             // forget it. No sweat, it's fully resolved via the setter.
             log("Adding standalone file for audit", Project.MSG_VERBOSE);
-            allFiles.add(Path.of(fileName).toFile());
+            allFiles.add(Path.of(fileName));
         }
 
-        final List<File> filesFromFileSets = scanFileSets();
+        final List<Path> filesFromFileSets = scanFileSets();
         allFiles.addAll(filesFromFileSets);
 
         final List<Path> filesFromPaths = scanPaths();
         allFiles.addAll(filesFromPaths.stream()
-            .map(Path::toFile)
             .collect(Collectors.toUnmodifiableList()));
 
         return allFiles;
@@ -561,7 +560,7 @@ public class CheckstyleAntTask extends Task {
      *
      * @return the list of files included via the filesets.
      */
-    protected List<File> scanFileSets() {
+    protected List<Path> scanFileSets() {
         final List<Path> allFiles = new ArrayList<>();
 
         for (int i = 0; i < fileSets.size(); i++) {
@@ -572,7 +571,6 @@ public class CheckstyleAntTask extends Task {
         }
 
         return allFiles.stream()
-            .map(Path::toFile)
             .collect(Collectors.toUnmodifiableList());
     }
 
