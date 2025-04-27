@@ -479,7 +479,7 @@ public class Example13 {
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example14-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 .../src/myApplication.java // violation, Name 'myApplication' must match pattern.
 .../src/myApplicationTests.java // filtered violation 'must match pattern'
 .../src/test/java/insidePackage.java // filtered violation 'must match pattern'
