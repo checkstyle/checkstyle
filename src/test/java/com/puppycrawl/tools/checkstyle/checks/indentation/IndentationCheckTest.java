@@ -1262,6 +1262,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         verifyWarns(checkConfig, getPath("InputIndentationNew.java"), expected);
     }
 
+    // we can not use verifyWarns() due to usage of multi line string syntax in input
     @Test
     public void testTextBlockLiteral() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
@@ -2915,7 +2916,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tabWidth", "4");
         final String fileName = getPath("InputIndentationSeparatedStatementWithSpaces.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, fileName, expected);
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test
@@ -2992,7 +2993,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "14:9: " + getCheckMessage(MSG_ERROR, "(", 8, 12),
             "19:5: " + getCheckMessage(MSG_ERROR, "(", 4, 8),
         };
-        verify(checkConfig, fileName, expected);
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test
