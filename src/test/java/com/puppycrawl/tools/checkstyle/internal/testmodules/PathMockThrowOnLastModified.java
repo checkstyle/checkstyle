@@ -36,6 +36,7 @@ public class PathMockThrowOnLastModified implements Path, Serializable {
         this.expectedThrowable = expectedThrowable;
         this.filemock = new FileMock(expectedThrowable);
     }
+
     public PathMockThrowOnLastModified() {
         this.expectedThrowable = new SecurityException("mock");
         this.filemock = new FileMock(expectedThrowable);
