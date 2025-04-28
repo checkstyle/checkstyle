@@ -299,7 +299,7 @@ public class ModuleReflectionUtilTest {
         }
 
         @Override
-        public int processx(List<File> files) {
+        public int process(List<File> files) {
             return 0;
         }
 
