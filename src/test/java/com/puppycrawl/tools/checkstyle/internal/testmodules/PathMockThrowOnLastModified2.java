@@ -31,12 +31,8 @@ public class PathMockThrowOnLastModified2 implements Path, Serializable {
     private static final long serialVersionUID = -7801807253540916684L;
 
     private final FileMock filemock;
-    private final Throwable expectedThrowable;
-    private final String errorMessage;
 
-    public PathMockThrowOnLastModified2(String errorMessage) {
-        this.expectedThrowable = new SecurityException("mock");
-        this.errorMessage = errorMessage;
+    public PathMockThrowOnLastModified2(IOError errorMessage) {
         this.filemock = new FileMock(errorMessage);
     }
 
@@ -127,14 +123,7 @@ public class PathMockThrowOnLastModified2 implements Path, Serializable {
 
     @Override
     public Path toAbsolutePath() {
-        if (expectedThrowable instanceof Error) {
-            throw (Error) expectedThrowable;
-        } else if (expectedThrowable instanceof RuntimeException) {
-            throw (RuntimeException) expectedThrowable;
-        } else if (expectedThrowable != null) {
-            throw new RuntimeException(expectedThrowable); // Wrap checked exceptions
-        }
-        return null; // Should not reach here if an exception was provided
+        return null;
     }
 
     @Override
@@ -156,9 +145,9 @@ public class PathMockThrowOnLastModified2 implements Path, Serializable {
 
     private final class FileMock extends File {
         private static final long serialVersionUID = 1L;
-        private final String errorMessage;
+        private final IOError errorMessage;
 
-        private FileMock(String errorMessage) {
+        private FileMock(IOError errorMessage) {
             super(""); // Call super constructor
             this.errorMessage = errorMessage;
         }
@@ -172,7 +161,7 @@ public class PathMockThrowOnLastModified2 implements Path, Serializable {
          */
         @Override
         public long lastModified() {
-            throw new IOError(new InternalError(errorMessage));
+            throw errorMessage;
         }
 
         @Override
