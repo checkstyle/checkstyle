@@ -20,14 +20,14 @@ public class Example2 {
   public int m1(int p1) { return p1; }
   // 1 violations above:
   //    '@return tag should be present'
-  // OK, No missing param tag violation
+  // ok, No missing param tag violation
 
   /**
    * @param p1 The first number
    */
   @Deprecated
   private int m2(int p1) { return p1; }
-  // OK, only public methods are checked
+  // ok, only public methods are checked
 
   /** */
   void m3(int p1) {}

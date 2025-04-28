@@ -12,7 +12,7 @@ public interface InputRedundantModifierNestedClassInInt {
     interface PublicInnerInterface {
         interface PublicInnerInnerInterface {
             class PublicInnerClassInNestedPublicInterfaces {
-                public PublicInnerClassInNestedPublicInterfaces() { } // OK in public class
+                public PublicInnerClassInNestedPublicInterfaces() { } // ok in public class
             }
         }
     }
@@ -29,7 +29,7 @@ public interface InputRedundantModifierNestedClassInInt {
         }
         public interface PublicInnerInnerPublicInterface {
             class PublicInnerClassInNestedPublicInterfaces {
-                public PublicInnerClassInNestedPublicInterfaces() { } // OK in public class
+                public PublicInnerClassInNestedPublicInterfaces() { } // ok in public class
             }
         }
         protected interface PublicInnerInnerProtectedInterface {
@@ -39,7 +39,7 @@ public interface InputRedundantModifierNestedClassInInt {
         }
     }
     class PublicNestedClassInInterfaceWithPublicConst {
-        public PublicNestedClassInInterfaceWithPublicConst() { } // OK in public class
+        public PublicNestedClassInInterfaceWithPublicConst() { } // ok in public class
         private class PrivateClassInPublicNestedClass {
             public class PublicInPrivateClass {
                 public PublicInPrivateClass() { } // violation

@@ -15,7 +15,7 @@ public class Example3 {
 
   public int a;
   protected int b;
-  public int c;            // OK, access modifiers not considered while validating
+  public int c;            // ok, access modifiers not considered while validating
 
   Example3() {
     this.a = 0;

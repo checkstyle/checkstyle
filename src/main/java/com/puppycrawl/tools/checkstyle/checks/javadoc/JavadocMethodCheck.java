@@ -964,8 +964,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      */
     private void checkReturnTag(List<JavadocTag> tags, int lineNo,
         boolean reportExpectedTags) {
-        // Loop over tags finding return tags. After the first one, report a
-        // violation.
+        // Loop over tags finding return tags. After the first one, report a violation
         boolean found = false;
         final ListIterator<JavadocTag> it = tags.listIterator();
         while (it.hasNext()) {

@@ -14,6 +14,6 @@ public class InputWhitespaceAfterLiteralFinally {
      try {} finally{} // violation ''finally' is not followed by whitespace'
 
      try {} catch (Error e){} finally {}
-     try {} catch (Error e){} finally{} // violation''finally' is not followed by whitespace'
+     try {} catch (Error e){} finally{} // violation ''finally' is not followed by whitespace'
     }
 }

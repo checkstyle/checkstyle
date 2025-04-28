@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.avoidescapedunicodecharacters;
 
 // xdoc section -- start
 public class Example1 {
-  // OK, perfectly clear even without a comment.
+  // ok, perfectly clear even without a comment.
   String unitAbbrev = "μs";
   // violation below, the reader has no idea what this is. 'should be avoided.'
   String unitAbbrev1 = "\u03bcs";
