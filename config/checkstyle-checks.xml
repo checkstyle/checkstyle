@@ -200,6 +200,14 @@
     <property name="message"
               value="@since tag must follow the X.Y.Z version format after version 10.5.0."/>
   </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="okViolationCommentFormat"/>
+    <property name="format"
+              value="^\s*//(?=\s*(?:ok|violation)\b)(?!\s+(?:ok|violation)\b(?:[ ,].*)?$).*$"/>
+    <property name="message"
+              value="Comments must be '// ok' or '// violation' (lowercase) with optional comma/explanation."/>
+  </module>
+
   <module name="RegexpOnFilename">
     <property name="id" value="regexpOnFilenameWithSpace"/>
   </module>
