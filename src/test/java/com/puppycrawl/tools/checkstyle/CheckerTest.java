@@ -1227,7 +1227,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final Path mock = Path.of("testFile") {
+        final File mock = new File("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
