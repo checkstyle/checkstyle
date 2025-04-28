@@ -290,7 +290,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addBeforeExecutionFileFilter(filter);
 
         filter.resetFilter();
-        checker.process(Collections.singletonList(new File("dummy.java")));
+        checker.process(Collections.singletonList(Path.of("dummy.java")));
         assertWithMessage("Checker.acceptFileStarted() doesn't call filter")
                 .that(filter.wasCalled())
                 .isTrue();
@@ -306,7 +306,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.removeBeforeExecutionFileFilter(filter);
 
         f2.resetFilter();
-        checker.process(Collections.singletonList(new File("dummy.java")));
+        checker.process(Collections.singletonList(Path.of("dummy.java")));
         assertWithMessage("Checker.acceptFileStarted() doesn't call filter")
                 .that(f2.wasCalled())
                 .isTrue();
@@ -368,9 +368,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addListener(auditAdapter);
 
         final List<File> files = new ArrayList<>();
-        final File file = new File("file.pdf");
+        final File file = Path.of("file.pdf");
         files.add(file);
-        final File otherFile = new File("file.java");
+        final File otherFile = Path.of("file.java");
         files.add(otherFile);
         final String[] fileExtensions = {"java", "xml", "properties"};
         checker.setFileExtensions(fileExtensions);
@@ -390,7 +390,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .that(auditAdapter.getNumFilesFinished())
             .isEqualTo(numLegalFiles);
         assertWithMessage("Cache shout not contain any file")
-            .that(cache.get(new File("file.java").getCanonicalPath()))
+            .that(cache.get(Path.of("file.java").getCanonicalPath()))
             .isNull();
     }
 
@@ -409,7 +409,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addListener(auditAdapter);
 
         final List<File> allIgnoredFiles = new ArrayList<>();
-        final File ignoredFile = new File("file.pdf");
+        final File ignoredFile = Path.of("file.pdf");
         allIgnoredFiles.add(ignoredFile);
         final String[] fileExtensions = {"java", "xml", "properties"};
         checker.setFileExtensions(fileExtensions);
@@ -745,7 +745,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.configure(checkerConfig);
         checker.addListener(getBriefUtLogger());
 
-        checker.process(Collections.singletonList(new File("dummy.java")));
+        checker.process(Collections.singletonList(Path.of("dummy.java")));
         checker.clearCache();
         // invoke destroy to persist cache
         final PropertyCacheFile cache = TestUtil.getInternalState(checker, "cacheFile");
@@ -797,7 +797,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final File mock = new File("testFile") {
+        final File mock = Path.of("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -851,7 +851,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final File mock = new File("testFile") {
+        final File mock = Path.of("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1147,7 +1147,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final File mock = new File("testFile") {
+        final File mock = Path.of("testFile") {
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -1225,7 +1225,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final File mock = new File("testFile") {
+        final File mock = Path.of("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1289,7 +1289,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String errorMessage = "Security Exception";
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
-        final File mock = new File("testFile") {
+        final File mock = Path.of("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1343,7 +1343,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String errorMessage = "Security Exception";
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
-        final File mock = new File("testFile") {
+        final File mock = Path.of("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1428,7 +1428,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DummyFileSet fileSet = new DummyFileSet();
         final Checker checker = new Checker();
         checker.addFileSetCheck(fileSet);
-        checker.process(Collections.singletonList(new File("dummy.java")));
+        checker.process(Collections.singletonList(Path.of("dummy.java")));
         final List<String> expected =
             Arrays.asList("beginProcessing", "finishProcessing", "destroy");
         assertWithMessage("Method calls were not expected")
@@ -1464,7 +1464,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleFactory(factory);
         checker.setupChild(createModuleConfig(DebugAuditAdapter.class));
         // Let's try fire some events
-        checker.process(Collections.singletonList(new File("dummy.java")));
+        checker.process(Collections.singletonList(Path.of("dummy.java")));
         assertWithMessage("Checker.fireAuditStarted() doesn't call listener")
                 .that(auditAdapter.wasCalled())
                 .isTrue();
@@ -1487,7 +1487,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         };
         checker.setModuleFactory(factory);
         checker.setupChild(createModuleConfig(TestBeforeExecutionFileFilter.class));
-        checker.process(Collections.singletonList(new File("dummy.java")));
+        checker.process(Collections.singletonList(Path.of("dummy.java")));
         assertWithMessage("Checker.acceptFileStarted() doesn't call listener")
                 .that(fileFilter.wasCalled())
                 .isTrue();
@@ -1682,7 +1682,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkerConfig.addChild(treeWalkerConfig);
 
         checkerConfig.addProperty("haltOnException", "false");
-        final Path file = new File("InputNonChecker.java");
+        final Path file = Path.of("InputNonChecker.java");
         final String filePath = file.toAbsolutePath().toString();
         final String[] expected = {
             "1: " + getCheckMessage(EXCEPTION_MSG, filePath
