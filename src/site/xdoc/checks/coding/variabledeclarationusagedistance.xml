@@ -76,7 +76,7 @@ public class Example1 {
   public void foo1() {
     // violation below, 'variable 'num' declaration and its first usage is 4.'
     int num;
-    final double PI;   // OK, final variables not checked
+    final double PI;   // ok, final variables not checked
     System.out.println("Statement 1");
     System.out.println("Statement 2");
     System.out.println("Statement 3");
@@ -85,9 +85,9 @@ public class Example1 {
   }
 
   public void foo2() {
-    int a;          // OK, used in different scope
-    int b;          // OK, used in different scope
-    int count = 0;  // OK, used in different scope
+    int a;          // ok, used in different scope
+    int b;          // ok, used in different scope
+    int count = 0;  // ok, used in different scope
 
     {
       System.out.println("Inside inner scope");
@@ -118,7 +118,7 @@ public class Example1 {
 public class Example2 {
 
   public void case1(long timeNow, int hh, int min) {
-    int minutes = min + 5; // Ok, No violation reported
+    int minutes = min + 5; // ok, No violation reported
     Calendar cal = Calendar.getInstance();
     cal.setTimeInMillis(timeNow);
     cal.set(Calendar.SECOND, 0);
@@ -166,8 +166,8 @@ public class Example2 {
 public class Example3 {
 
   public void foo1() {
-    int num;        // OK, distance = 4
-    final double PI;   // OK, final variables not checked
+    int num;        // ok, distance = 4
+    final double PI;   // ok, final variables not checked
     System.out.println("Statement 1");
     System.out.println("Statement 2");
     System.out.println("Statement 3");
@@ -176,9 +176,9 @@ public class Example3 {
   }
 
   public void foo2() {
-    int a;          // OK, used in different scope
-    int b;          // OK, used in different scope
-    int count = 0;  // OK, used in different scope
+    int a;          // ok, used in different scope
+    int b;          // ok, used in different scope
+    int count = 0;  // ok, used in different scope
 
     {
       System.out.println("Inside inner scope");
@@ -209,8 +209,8 @@ public class Example3 {
 public class Example4 {
 
   public void foo1() {
-    int num;        // OK, variable ignored
-    final double PI;   // OK, final variables not checked
+    int num;        // ok, variable ignored
+    final double PI;   // ok, final variables not checked
     System.out.println("Statement 1");
     System.out.println("Statement 2");
     System.out.println("Statement 3");
@@ -219,9 +219,9 @@ public class Example4 {
   }
 
   public void foo2() {
-    int a;          // OK, used in different scope
-    int b;          // OK, used in different scope
-    int count = 0;  // OK, used in different scope
+    int a;          // ok, used in different scope
+    int b;          // ok, used in different scope
+    int count = 0;  // ok, used in different scope
 
     {
       System.out.println("Inside inner scope");
@@ -251,7 +251,7 @@ public class Example5 {
   public void foo1() {
     // violation below, 'variable 'num' declaration and its first usage is 4.'
     int num;
-    final double PI;   // OK, final variables not checked
+    final double PI;   // ok, final variables not checked
     System.out.println("Statement 1");
     System.out.println("Statement 2");
     System.out.println("Statement 3");
@@ -260,8 +260,8 @@ public class Example5 {
   }
 
   public void foo2() {
-    int a;          // OK, distance = 2
-    int b;          // OK, distance = 3
+    int a;          // ok, distance = 2
+    int b;          // ok, distance = 3
     // violation below, 'variable 'count' declaration and its first usage is 4.'
     int count = 0;
 
@@ -303,9 +303,9 @@ public class Example6 {
   }
 
   public void foo2() {
-    int a;          // OK, used in different scope
-    int b;          // OK, used in different scope
-    int count = 0;  // OK, used in different scope
+    int a;          // ok, used in different scope
+    int b;          // ok, used in different scope
+    int count = 0;  // ok, used in different scope
 
     {
       System.out.println("Inside inner scope");
