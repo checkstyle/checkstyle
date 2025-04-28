@@ -19,7 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.URI;
 import java.nio.file.FileSystem;
 import java.nio.file.LinkOption;
