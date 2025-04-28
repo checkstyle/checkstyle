@@ -10,6 +10,188 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.23.1">
+      <div class="releaseDate">27.04.2025</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            JavadocParagraph false violation when &lt;p&gt; is inside of
+            &lt;div&gt;&lt;/div&gt;.
+            Author: MedAzizFrigui
+            <a href="https://github.com/checkstyle/checkstyle/issues/16630">#16630</a>
+          </li>
+          <li>
+            google_checks.xml: remove xpath suppression and false-positive indentation violations
+            for block codes.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/15769">#15769</a>
+          </li>
+          <li>
+            Fix false-negatives regarding LITERAL_CATCH to detect K&amp;R Blocks in
+            google_checks.xml.
+            Author: Anmol
+            <a href="https://github.com/checkstyle/checkstyle/issues/15792">#15792</a>
+          </li>
+          <li>
+            SuppressWarningsHolder should allow usage of simple name of Checks in aliasList.
+            Author: Harsh-Agrawal96
+            <a href="https://github.com/checkstyle/checkstyle/issues/11641">#11641</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            doc: remove outdated note about ANTLR versions in Javadoc vs Java grammar explanation.
+            Author: mahfouz72
+          </li>
+          <li>
+            Define violation messages for all violations.
+            Author: Praveen Kumar, Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            Missing test for InputIndentationInvalidArrayInitIndent.java with
+            forceStrictCondition=false.
+            Author: Praveen Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/16869">#16869</a>
+          </li>
+          <li>
+            Update Filters Exampes to use verifyFilterWithInlineConfigParser.
+            Author: Usman Shaikh
+            <a href="https://github.com/checkstyle/checkstyle/issues/16738">#16738</a>
+          </li>
+          <li>
+            Cover pitest survivals with tests.
+            Author: Priyambada Roul, atharv, abdelrhmansersawy, Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/14019">#14019</a>
+          </li>
+          <li>
+            disallow import of `java.util.concurrent.atomic.AtomicInteger` yet, it is still used in
+            `api\SeverityLevelCounter.java` and `checks\UniquePropertiesCheck.java`.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/16903">#16903</a>
+          </li>
+          <li>
+            Update CLI help to mention that folder also can be used .
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/12910">#12910</a>
+          </li>
+          <li>
+            Extend documentation on no lombok support.
+            Author: Praveen Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/13538">#13538</a>
+          </li>
+          <li>
+            separate examples by horizontal line.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/16333">#16333</a>
+          </li>
+          <li>
+            Configuration website does not allow linking to Examples.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/14879">#14879</a>
+          </li>
+          <li>
+            Remove usage of AtomicInteger from NPathComplexityCheck.
+            Author: atharv, Muratcan Yeldan
+            <a href="https://github.com/checkstyle/checkstyle/issues/16882">#16882</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: yukti-nandwana, Praveen Kumar, Brijeshthummar02, ZaeemSheikh
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            chore: use span classes for layout .
+            Author: Seth Falco
+            <a href="https://github.com/checkstyle/checkstyle/issues/16839">#16839</a>
+          </li>
+          <li>
+            Website layout breaks at viewport width &gt;= 1999px.
+            Author: Seth Falco
+            <a href="https://github.com/checkstyle/checkstyle/issues/16825">#16825</a>
+          </li>
+          <li>
+            fix `OSX build` when `.DS_Store` is present.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/16559">#16559</a>
+          </li>
+          <li>
+            doc: remove SonarCloud badge from README.md.
+            Author: Brijeshthummar02
+          </li>
+          <li>
+            use new nio jdk api instead of all api.
+            Author: Priyambada Roul
+            <a href="https://github.com/checkstyle/checkstyle/issues/16155">#16155</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: Praveen Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            infra: verify-no-exception-configs is in semaphore ci.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/16841">#16841</a>
+          </li>
+          <li>
+            align ubuntu image version `ubuntu-22.04` -&gt; `ubuntu-24.04`.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/16829">#16829</a>
+          </li>
+          <li>
+            doc: improve variableDeclarationUsage...Check&#39;s docs to avoid confusion on
+            calculation of distance.
+            Author: Mohit Attry
+          </li>
+          <li>
+            Resolve CheckerFramework violations.
+            Author: Rohanraj123
+            <a href="https://github.com/checkstyle/checkstyle/issues/14084">#14084</a>
+          </li>
+          <li>
+            fix whitespace typo in `Note : ` -&gt; `Note: `.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/16811">#16811</a>
+          </li>
+          <li>
+            Bad links on Sponsoring page.
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/16753">#16753</a>
+          </li>
+          <li>
+            add Content section to config.xml and writinglisteners.xml.vm.
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/1241">#1241</a>
+          </li>
+          <li>
+            Broken Backport Links on Website.
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/16816">#16816</a>
+          </li>
+          <li>
+            Fix existing cases of `getFileContents()` usage.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/11166">#11166</a>
+          </li>
+          <li>
+            Broken Flattr Link and Image on Sponsoring Page.
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/16759">#16759</a>
+          </li>
+          <li>
+            Resolve Pitest Suppression in Pitest-Javadoc Profile.
+            Author: Prarthana-Ramesh
+            <a href="https://github.com/checkstyle/checkstyle/issues/13999">#13999</a>
+          </li>
+          <li>
+            SarifLoggerTest.java to use verifyWithInlineConfigParserAndLogger.
+            Author: sersawy
+            <a href="https://github.com/checkstyle/checkstyle/issues/16361">#16361</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.23.0">
       <div class="releaseDate">02.04.2025</div>
       <p>New:</p>
