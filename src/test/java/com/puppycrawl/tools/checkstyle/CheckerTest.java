@@ -148,7 +148,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // should remove all listeners, file sets, and filters
         checker.destroy();
 
-        final File tempFile = createTempFile("junit");
+        final Path tempFile = createTempFile("junit");
         checker.process(Collections.singletonList(tempFile));
         final SortedSet<Violation> violations = new TreeSet<>();
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
@@ -358,7 +358,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testFileExtensions() throws Exception {
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
         checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
-        checkerConfig.addProperty("cacheFile", createTempFile("junit").getPath());
+        checkerConfig.addProperty("cacheFile", createTempFile("junit").toAbsolutePath().toString());
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -368,13 +368,13 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addListener(auditAdapter);
 
         final List<File> files = new ArrayList<>();
-        final File file = Path.of("file.pdf");
+        final Path file = Path.of("file.pdf");
         files.add(file);
-        final File otherFile = Path.of("file.java");
+        final Path otherFile = Path.of("file.java");
         files.add(otherFile);
         final String[] fileExtensions = {"java", "xml", "properties"};
         checker.setFileExtensions(fileExtensions);
-        checker.setCacheFile(createTempFile("junit").getPath());
+        checker.setCacheFile(createTempFile("junit").toAbsolutePath().toString());
         final int counter = checker.process(files);
 
         // comparing to 1 as there is only one legal file in input
@@ -398,8 +398,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testIgnoredFileExtensions() throws Exception {
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
         checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
-        final File tempFile = createTempFile("junit");
-        checkerConfig.addProperty("cacheFile", tempFile.getPath());
+        final Path tempFile = createTempFile("junit");
+        checkerConfig.addProperty("cacheFile", tempFile.toAbsolutePath().toString());
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -409,11 +409,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addListener(auditAdapter);
 
         final List<File> allIgnoredFiles = new ArrayList<>();
-        final File ignoredFile = Path.of("file.pdf");
+        final Path ignoredFile = Path.of("file.pdf");
         allIgnoredFiles.add(ignoredFile);
         final String[] fileExtensions = {"java", "xml", "properties"};
         checker.setFileExtensions(fileExtensions);
-        checker.setCacheFile(createTempFile("junit").getPath());
+        checker.setCacheFile(createTempFile("junit").toAbsolutePath().toString());
         final int counter = checker.process(allIgnoredFiles);
 
         // comparing to 0 as there is no legal file in input
@@ -617,19 +617,20 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
         checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
 
-        final File cacheFile = createTempFile("junit");
-        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
+        final Path cacheFile = createTempFile("junit");
+        checkerConfig.addProperty("cacheFile", cacheFile.toAbsolutePath().toString());
+        checkerConfig.addProperty("cacheFile", cacheFile.toAbsolutePath().toString());
 
-        final File tmpFile = createTempFile("file", ".java");
+        final Path tmpFile = createTempFile("file", ".java");
 
-        execute(checkerConfig, tmpFile.getPath());
+        execute(checkerConfig, tmpFile.toAbsolutePath().toString());
         final Properties cacheAfterFirstRun = new Properties();
         try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
             cacheAfterFirstRun.load(reader);
         }
 
         // one more time to reuse cache
-        execute(checkerConfig, tmpFile.getPath());
+        execute(checkerConfig, tmpFile.toAbsolutePath().toString());
         final Properties cacheAfterSecondRun = new Properties();
         try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
             cacheAfterSecondRun.load(reader);
@@ -648,11 +649,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleFactory(factory);
         checker.configure(createModuleConfig(TranslationCheck.class));
 
-        final File cacheFile = createTempFile("junit");
-        checker.setCacheFile(cacheFile.getPath());
+        final Path cacheFile = createTempFile("junit");
+        checker.setCacheFile(cacheFile.toAbsolutePath().toString());
 
         checker.setupChild(createModuleConfig(TranslationCheck.class));
-        final File tmpFile = createTempFile("file", ".java");
+        final Path tmpFile = createTempFile("file", ".java");
         final List<File> files = new ArrayList<>(1);
         files.add(tmpFile);
         checker.process(files);
@@ -685,8 +686,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testClearExistingCache() throws Exception {
         final DefaultConfiguration checkerConfig = createRootConfig(null);
         checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
-        final File cacheFile = createTempFile("junit");
-        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
+        final Path cacheFile = createTempFile("junit");
+        checkerConfig.addProperty("cacheFile", cacheFile.toAbsolutePath().toString());
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -737,8 +738,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 createModuleConfig(DummyFileSetViolationCheck.class);
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("myConfig");
         checkerConfig.addProperty("charset", "UTF-8");
-        final File cacheFile = createTempFile("junit");
-        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
+        final Path cacheFile = createTempFile("junit");
+        checkerConfig.addProperty("cacheFile", cacheFile.toAbsolutePath().toString());
         checkerConfig.addChild(violationCheck);
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -797,7 +798,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final File mock = Path.of("testFile") {
+        final Path mock = Path.of("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -851,7 +852,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final File mock = Path.of("testFile") {
+        final Path mock = Path.of("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -911,8 +912,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration filterConfig = createModuleConfig(DummyFilter.class);
 
         final DefaultConfiguration checkerConfig = createRootConfig(filterConfig);
-        final File cacheFile = createTempFile("junit");
-        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
+        final Path cacheFile = createTempFile("junit");
+        checkerConfig.addProperty("cacheFile", cacheFile.toAbsolutePath().toString());
 
         final String pathToEmptyFile = createTempFile("file", ".java").getPath();
 
@@ -966,8 +967,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         check.setFirstExternalResourceLocation(firstExternalResourceLocation);
 
         final DefaultConfiguration checkerConfig = createRootConfig(null);
-        final File cacheFile = createTempFile("junit");
-        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
+        final Path cacheFile = createTempFile("junit");
+        checkerConfig.addProperty("cacheFile", cacheFile.toAbsolutePath().toString());
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -1042,7 +1043,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCacheOnViolationSuppression() throws Exception {
-        final File cacheFile = createTempFile("junit");
+        final Path cacheFile = createTempFile("junit");
         final DefaultConfiguration violationCheck =
                 createModuleConfig(DummyFileSetViolationCheck.class);
 
@@ -1050,7 +1051,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         filterConfig.addProperty("file", getPath("InputCheckerSuppressAll.xml"));
 
         final DefaultConfiguration checkerConfig = createRootConfig(violationCheck);
-        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
+        checkerConfig.addProperty("cacheFile", cacheFile.toAbsolutePath().toString());
         checkerConfig.addChild(filterConfig);
 
         final String fileViolationPath = createTempFile("ViolationFile", ".java").getPath();
@@ -1085,7 +1086,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testExceptionWithCache() throws Exception {
-        final File cacheFile = createTempFile("junit");
+        final Path cacheFile = createTempFile("junit");
 
         final DefaultConfiguration checkConfig =
                 createModuleConfig(CheckWhichThrowsError.class);
@@ -1096,7 +1097,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final DefaultConfiguration checkerConfig = createRootConfig(treewalkerConfig);
         checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
-        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
+        checkerConfig.addProperty("cacheFile", cacheFile.toAbsolutePath().toString());
         checkerConfig.addChild(treewalkerConfig);
 
         final Checker checker = createChecker(checkerConfig);
@@ -1137,17 +1138,17 @@ public class CheckerTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testCatchErrorWithCache() throws Exception {
-        final File cacheFile = createTempFile("junit");
+        final Path cacheFile = createTempFile("junit");
 
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
         checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
-        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
+        checkerConfig.addProperty("cacheFile", cacheFile.toAbsolutePath().toString());
 
         final String errorMessage = "Java Virtual Machine is broken"
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final File mock = Path.of("testFile") {
+        final Path mock = Path.of("testFile") {
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -1215,17 +1216,17 @@ public class CheckerTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testCatchErrorWithCacheWithNoFileName() throws Exception {
-        final File cacheFile = createTempFile("junit");
+        final Path cacheFile = createTempFile("junit");
 
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
         checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
-        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
+        checkerConfig.addProperty("cacheFile", cacheFile.toAbsolutePath().toString());
 
         final String errorMessage = "Java Virtual Machine is broken"
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final File mock = Path.of("testFile") {
+        final Path mock = Path.of("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1289,7 +1290,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String errorMessage = "Security Exception";
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
-        final File mock = Path.of("testFile") {
+        final Path mock = Path.of("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1334,16 +1335,16 @@ public class CheckerTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testExceptionWithCacheAndNoFileName() throws Exception {
-        final File cacheFile = createTempFile("junit");
+        final Path cacheFile = createTempFile("junit");
 
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
         checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
-        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
+        checkerConfig.addProperty("cacheFile", cacheFile.toAbsolutePath().toString());
 
         final String errorMessage = "Security Exception";
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
-        final File mock = Path.of("testFile") {
+        final Path mock = Path.of("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1528,9 +1529,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             checker.addListener(new DefaultLogger(testInfoOutputStream,
                 OutputStreamOptions.CLOSE, testErrorOutputStream, OutputStreamOptions.CLOSE));
 
-            final File tmpFile = createTempFile("file", ".java");
+            final Path tmpFile = createTempFile("file", ".java");
 
-            execute(checker, tmpFile.getPath());
+            execute(checker, tmpFile.toAbsolutePath().toString());
 
             assertWithMessage("Output stream close count")
                     .that(testInfoOutputStream.getCloseCount())
@@ -1556,9 +1557,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
             checker.addListener(new XMLLogger(testInfoOutputStream, OutputStreamOptions.CLOSE));
 
-            final File tmpFile = createTempFile("file", ".java");
+            final Path tmpFile = createTempFile("file", ".java");
 
-            execute(checker, tmpFile.getPath(), tmpFile.getPath());
+            execute(checker, tmpFile.getPath(), tmpFile.toAbsolutePath().toString());
 
             assertWithMessage("Output stream close count")
                     .that(testInfoOutputStream.getCloseCount())
@@ -1726,9 +1727,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             "1: " + violationMessage,
         };
 
-        final File tempFile = createTempFile("InputCheckerTestExcludeRelativizedFile", ".java");
+        final Path tempFile = createTempFile("InputCheckerTestExcludeRelativizedFile", ".java");
 
-        final File[] processedFiles = {tempFile};
+        final Path[] processedFiles = {tempFile};
 
         verify(createChecker(checkerConfig), processedFiles,
                 tempFile.getName(), expected);
