@@ -217,8 +217,8 @@ import org.apache.http.conn.ClientConnectionManager;
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static java.io.File.createTempFile;
-import static java.lang.Math.abs; // OK, alphabetical case-sensitive ASCII order, 'i' &lt; 'l'
-import java.lang.Math.sqrt; // OK, follows property 'Option' value 'above'
+import static java.lang.Math.abs; // ok, alphabetical case-sensitive ASCII order, 'i' &lt; 'l'
+import java.lang.Math.sqrt; // ok, follows property 'Option' value 'above'
 import java.io.File; // violation, alphabetical case-sensitive ASCII order, 'i' &lt; 'l'
 
 import java.io.IOException; // violation, extra separation in 'java' import group
@@ -358,8 +358,8 @@ import static javax.windowConstants.*;
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static java.lang.Math.PI;
-import static java.lang.Math.abs; // OK, alphabetical case-sensitive ASCII order, 'P' &lt; 'a'
-import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphabetical order
+import static java.lang.Math.abs; // ok, alphabetical case-sensitive ASCII order, 'P' &lt; 'a'
+import static org.abego.treelayout.Configuration.AlignmentInLevel; // ok, alphabetical order
 
 import java.util.Set; // violation, extra separation in import group
 import static java.lang.Math.abs; // violation, wrong order, all static imports comes at 'top'

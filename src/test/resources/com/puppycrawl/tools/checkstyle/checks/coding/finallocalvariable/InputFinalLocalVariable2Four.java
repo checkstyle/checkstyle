@@ -12,7 +12,7 @@ public class InputFinalLocalVariable2Four {
     class Class32 {
         public void test1() {
             final boolean b = true;
-            int shouldBeFinal;        //Violation
+            int shouldBeFinal;        // violation Variable 'shouldBeFinal' should be declared final
 
             if (b) {
                 shouldBeFinal = 1;
@@ -24,7 +24,7 @@ public class InputFinalLocalVariable2Four {
 
         public void test2() {
             final int b = 10;
-            int shouldBeFinal;        //Violation
+            int shouldBeFinal;        // violation Variable 'shouldBeFinal' should be declared final
 
             switch (b) {
                 case 0:
@@ -68,7 +68,7 @@ public class InputFinalLocalVariable2Four {
 
         public void test5() {
             final boolean b = false;
-            int shouldBeFinal;    //Violation
+            int shouldBeFinal;    // violation Variable 'shouldBeFinal' should be declared final
             if(b) {
             }
             if (b) {

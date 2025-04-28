@@ -24,7 +24,7 @@ public class InputDefaultComesLastOne
         case 2: break;
         }
 
-        // VIOLATION!!! default is not the last one.
+        // violation !!! default is not the last one.
         switch (i) {
         case 1:
             break;

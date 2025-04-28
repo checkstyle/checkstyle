@@ -12,7 +12,7 @@ class InputModifiedControlVariableBothForLoops
     int k;
     void method1()
     {
-        //Violations:
+        // violation :
         for (int i = 0; i < 1; i++) {
             i++; // violation
         }
@@ -28,7 +28,7 @@ class InputModifiedControlVariableBothForLoops
             j++;
         }
 
-        // Ok:
+        // ok :
         for (int i = 0; i < 1; i++) {
         }
         for (int i = 0; i < 1; i++) {

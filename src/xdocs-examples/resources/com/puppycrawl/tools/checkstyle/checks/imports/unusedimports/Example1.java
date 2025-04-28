@@ -10,11 +10,11 @@ package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
 // xdoc section -- start
 // limitation as it match field name in code
-import java.awt.Component; //OK
+import java.awt.Component;
 
 // no ability to recognize what import is not used
-import static java.util.Map.copyOf; //OK
-import static java.util.Arrays.copyOf; //OK
+import static java.util.Map.copyOf;
+import static java.util.Arrays.copyOf;
 
 import java.lang.String; // violation 'Unused import - java.lang.String.'
 

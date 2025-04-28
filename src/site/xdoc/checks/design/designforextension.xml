@@ -176,28 +176,28 @@ public abstract class Example1 {
 
   public int m2() {return 8;}  // violation
 
-  private void m3() {m4();}  // OK. Private method.
+  private void m3() {m4();}  // ok, Private method.
 
-  protected void m4() { }  // OK. No implementation.
+  protected void m4() { }  // ok, No implementation.
 
-  public abstract void m5();  // OK. Abstract method.
+  public abstract void m5();  // ok, Abstract method.
 
   /**
    * This implementation ...
    @return some int value.
    */
-  public int m6() {return 1;}  // OK. Have javadoc on overridable method.
+  public int m6() {return 1;}  // ok, Have javadoc on overridable method.
 
   /**
    * Some comments ...
    */
-  public int m7() {return 1;}  // OK. Have javadoc on overridable method.
+  public int m7() {return 1;}  // ok, Have javadoc on overridable method.
 
   /**
    * This
    * implementation ...
    */
-  public int m8() {return 2;}  // OK. Have javadoc on overridable method.
+  public int m8() {return 2;}  // ok, Have javadoc on overridable method.
 
   @Override                   // violation
   public String toString() {
@@ -227,28 +227,28 @@ public abstract class Example2 {
 
   public int m2() {return 8;}  // violation
 
-  private void m3() {m4();}  // OK. Private method.
+  private void m3() {m4();}  // ok, Private method.
 
-  protected void m4() { }  // OK. No implementation.
+  protected void m4() { }  // ok, No implementation.
 
-  public abstract void m5();  // OK. Abstract method.
+  public abstract void m5();  // ok, Abstract method.
 
   /**
    * This implementation ...
    @return some int value.
    */
-  public int m6() {return 1;}  // OK. Have javadoc on overridable method.
+  public int m6() {return 1;}  // ok, Have javadoc on overridable method.
 
   /**
    * Some comments ...
    */
-  public int m7() {return 1;}  // OK. Have javadoc on overridable method.
+  public int m7() {return 1;}  // ok, Have javadoc on overridable method.
 
   /**
    * This
    * implementation ...
    */
-  public int m8() {return 2;}  // OK. Have javadoc on overridable method.
+  public int m8() {return 2;}  // ok, Have javadoc on overridable method.
 
   @Override
   public String toString() {
@@ -278,17 +278,17 @@ public abstract class Example3 {
 
   public int m2() {return 8;}  // violation
 
-  private void m3() {m4();}  // OK. Private method.
+  private void m3() {m4();}  // ok, Private method.
 
-  protected void m4() { }  // OK. No implementation.
+  protected void m4() { }  // ok, No implementation.
 
-  public abstract void m5();  // OK. Abstract method.
+  public abstract void m5();  // ok, Abstract method.
 
   /**
    * This implementation ...
    @return some int value.
    */
-  public int m6() {return 1;}  // OK. Have required javadoc.
+  public int m6() {return 1;}  // ok, Have required javadoc.
 
   /**
    * Some comments ...
@@ -332,15 +332,15 @@ public abstract class Example4 {
 
   private void m3() {m4();}
 
-  protected void m4() { }  // OK. No implementation.
+  protected void m4() { }  // ok, No implementation.
 
-  public abstract void m5();  // OK. Abstract method.
+  public abstract void m5();  // ok, Abstract method.
 
   /**
    * This implementation ...
    @return some int value.
    */
-  public int m6() {return 1;}  // OK. Have required javadoc.
+  public int m6() {return 1;}  // ok, Have required javadoc.
 
   /**
    * Some comments ...
@@ -351,7 +351,7 @@ public abstract class Example4 {
    * This
    * implementation ...
    */
-  public int m8() {return 2;}  // OK. Have required javadoc.
+  public int m8() {return 2;}  // ok, Have required javadoc.
 
   @Override                    // violation
   public String toString() {
