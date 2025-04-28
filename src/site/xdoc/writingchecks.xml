@@ -629,7 +629,7 @@ public class MethodLimitCheck extends AbstractCheck
 
       <p>For Linux/Unix OS:</p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           java -classpath mycompanychecks.jar:checkstyle-${projectVersion}-all.jar \
           &#xa0;&#xa0;&#xa0;&#xa0;com.puppycrawl.tools.checkstyle.Main -c config.xml myproject
         </code></pre></div>
