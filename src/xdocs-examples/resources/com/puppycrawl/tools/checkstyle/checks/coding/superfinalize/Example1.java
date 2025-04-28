@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.superfinalize;
 // xdoc section -- start
 class Example1 {
   protected void finalize() throws Throwable {
-    super.finalize(); // OK, calls super.finalize()
+    super.finalize(); // ok, calls super.finalize()
   }
 }
 class InvalidExample {

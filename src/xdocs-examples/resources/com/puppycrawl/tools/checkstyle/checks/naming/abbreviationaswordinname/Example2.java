@@ -17,23 +17,23 @@ import java.util.HashSet;
 import java.util.Set;
 
 // xdoc section -- start
-class Example2 extends SuperClass { // OK, camel case
+class Example2 extends SuperClass { // ok, camel case
   int CURRENT_COUNTER; // violation 'no more than '4' consecutive capital letters'
   // violation below 'no more than '4' consecutive capital letters'
   static int GLOBAL_COUNTER;
-  final Set<String> stringsFOUND = new HashSet<>(); // OK, final is ignored
+  final Set<String> stringsFOUND = new HashSet<>(); // ok, final is ignored
 
   @Override // violation below 'no more than '4' consecutive capital letters'
   public void printCOUNTER() {
-    System.out.println(CURRENT_COUNTER); // OK, only definitions are checked
+    System.out.println(CURRENT_COUNTER); // ok, only definitions are checked
   }
   // violation below 'no more than '4' consecutive capital letters'
   void incrementCOUNTER() {
-    CURRENT_COUNTER++; // OK, only definitions are checked
+    CURRENT_COUNTER++; // ok, only definitions are checked
   }
   // violation below 'no more than '4' consecutive capital letters'
   static void incrementGLOBAL() {
-    GLOBAL_COUNTER++; // OK, only definitions are checked
+    GLOBAL_COUNTER++; // ok, only definitions are checked
   }
 }
 // xdoc section -- end
