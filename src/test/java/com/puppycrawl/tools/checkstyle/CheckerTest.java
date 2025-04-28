@@ -41,6 +41,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -102,15 +103,15 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @TempDir
     public File temporaryFolder;
 
-    private File createTempFile(String prefix) throws IOException {
+    private Path createTempFile(String prefix) throws IOException {
         return createTempFile(prefix, ".tmp");
     }
 
-    private File createTempFile(String prefix, String suffix) throws IOException {
+    private Path createTempFile(String prefix, String suffix) throws IOException {
         final String name = Objects.requireNonNull(prefix)
                 + UUID.randomUUID()
                 + Objects.requireNonNull(suffix);
-        return Files.createFile(temporaryFolder.toPath().resolve(name)).toFile();
+        return Files.createFile(temporaryFolder.toPath().resolve(name));
     }
 
     private static Method getFireAuditFinished() throws NoSuchMethodException {
@@ -1637,11 +1638,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
             new DefaultLoggerWithCounter(infoStream, OutputStreamOptions.CLOSE,
                                          errorStream, OutputStreamOptions.CLOSE);
         checker.addListener(loggerWithCounter);
-        final File cacheFile = createTempFile("cacheFile", ".txt");
-        checker.setCacheFile(cacheFile.getAbsolutePath());
+        final Path cacheFile = createTempFile("cacheFile", ".txt");
+        checker.setCacheFile(cacheFile.toAbsolutePath().toString());
 
-        final File testFile = createTempFile("testFile", ".java");
-        final List<File> files = List.of(testFile, testFile);
+        final Path testFile = createTempFile("testFile", ".java");
+        final List<Path> files = List.of(testFile, testFile);
         checker.process(files);
 
         assertWithMessage("Cached file should not be processed twice")
@@ -1681,8 +1682,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkerConfig.addChild(treeWalkerConfig);
 
         checkerConfig.addProperty("haltOnException", "false");
-        final File file = new File("InputNonChecker.java");
-        final String filePath = file.getAbsolutePath();
+        final Path file = new File("InputNonChecker.java");
+        final String filePath = file.toAbsolutePath().toString();
         final String[] expected = {
             "1: " + getCheckMessage(EXCEPTION_MSG, filePath
                         + " (No such file or directory)"),
