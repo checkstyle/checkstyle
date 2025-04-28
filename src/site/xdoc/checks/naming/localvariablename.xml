@@ -117,7 +117,7 @@ class Example3 {
           <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
           initialization expressions</a> in FOR loop, where regexp allows 2 or more chars:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LocalVariableName"&gt;

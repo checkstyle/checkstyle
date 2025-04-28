@@ -107,22 +107,22 @@ messages_fr.properties
 messages_es.properties
         </source>
         <p id="messages-raw">Contents of messages.properties file:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 hello=Hello
 cancel=Cancel
 </code></pre></div>
         <p id="messages_es-raw">Contents of messages_es.properties file:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 greeting=Saludo
 age=Edad
 </code></pre></div>
         <p id="messages_fr-raw">Contents of messages_fr.properties file:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 greeting=Bonjour
 name=Nom
 </code></pre></div>
         <p id="Example1-code">Validation for Example1:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 messages.properties     // violation 'Key 'age', 'name' and 'greeting' missing.'
 messages_fr.properties  // violation 'Key 'age', 'cancel' and 'hello' missing.'
 messages_es.properties  // violation 'Key 'cancel', 'name' and 'hello' missing.'
@@ -145,17 +145,17 @@ ButtonLabels.properties
 ButtonLabels_fr.properties
         </source>
         <p id="ButtonLabels-raw">Contents of ButtonLabels.properties file:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 hello=Hello
 cancel=Cancel
 </code></pre></div>
         <p id="ButtonLabels_fr-raw">Contents of ButtonLabels_fr.properties file:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 hello=Bonjour
 name=Nom
 </code></pre></div>
         <p id="Example2-code">Validation for Example2:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 ButtonLabels.properties     // violation 'Key 'name' is missing.'
 ButtonLabels_fr.properties  // violation 'Key 'cancel' is missing.'
 </code></pre></div><hr class="example-separator"/>
@@ -178,17 +178,17 @@ messages_home.properties
 messages_home.translations
         </source>
         <p id="messages_home-raw">Contents of messages_home.properties file:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 hello=Hello
 cancel=Cancel
 </code></pre></div>
         <p id="messages_home-code">Contents of messages_home.translations file:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 hello=Hallo
 ok=OK
 </code></pre></div>
         <p id="Example3-code">Validation for Example3:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 messages_home.properties   // violation,
                           'Properties file 'messages_home_fr.properties' missing.'
 messages_home.translations // violation,

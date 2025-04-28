@@ -149,7 +149,7 @@
 public class Example1 {}
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-code">Example2 with violation:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 /* violation on first line 'Required pattern missing in a file.' */
 /*
  * Some Copyright
@@ -211,7 +211,7 @@ class Example41 {}
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example5-code">Example5 with violation:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 /*
  * violation on first line 'Required pattern 'Copyright' missing in file.'
 */

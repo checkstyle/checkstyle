@@ -183,7 +183,7 @@ public class Example4 {
         <p id="Example5-raw">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 key.one=41 # // SUPPRESS CHECKSTYLE because I want to
 key.one=42 # ok as within line range
 key.one=43 # ok as within line range
@@ -204,7 +204,7 @@ key.two=45
         <p id="Example6-raw">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 key.one=41 # ok as within line range
 key.one=42 # SUPPRESS CHECKSTYLE because I want to
 key.two=43 # // violation 'Duplicated property 'key.two' (2 occurrence(s)).'
