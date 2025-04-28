@@ -395,7 +395,7 @@ class Example1 {
     catch (Exception e){} // 3 violations
     // no space after ')' and '{', no space before '}'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
-    for (char item: vowels) { // OK, ignoreEnhancedForColon is true by default
+    for (char item: vowels) { // ok, ignoreEnhancedForColon is true by default
 
     }
   }

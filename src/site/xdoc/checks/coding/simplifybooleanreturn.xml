@@ -72,7 +72,7 @@ class Example1 {
     }
   }
 
-  // Ok, can be simplified but doesn't return a Boolean
+  // ok, can be simplified but doesn't return a Boolean
   int choose1() {
     if (cond) {
       return a;

@@ -34,6 +34,6 @@ class Example1 {
   private int [] ARR; // violation ''int' is followed by whitespace'
   // violation above, 'Name 'ARR' must match pattern'
   @SuppressWarnings("all")
-  private int [] ARRAY; // violations suppressed
+  private int [] ARRAY; // violation suppressed
 }
 // xdoc section -- end

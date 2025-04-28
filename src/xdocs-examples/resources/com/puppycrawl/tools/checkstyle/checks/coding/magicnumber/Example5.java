@@ -41,7 +41,7 @@ public class Example5 {
     // 2 violations above:
     //  ''3' is a magic number.'
     //  ''4' is a magic number.'
-    final int j = (int) 3.4; //ok as waiver is TYPECAST
+    final int j = (int) 3.4; // ok as waiver is TYPECAST
   }
   private int method3(int a, int b) {
     return a + b;

@@ -146,7 +146,7 @@ final class InputFileTabCharacterSimple1
 
     // A very, very long line that is OK because it matches the regexp "^.*is OK.*regexp.*$"
     // long line that has a tab ->	<- and would be // violation 'Line contains a tab character'
-    // OK if tab counted as 1 char
+    // ok if tab counted as 1 char
     // tabs that count as one char because
     // of their position ->	<-   ->	<-, OK // violation 'Line contains a tab character'
 

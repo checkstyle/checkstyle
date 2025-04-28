@@ -22,11 +22,11 @@ class Example3 {
   void foo(int a,
                 int b) { // violation above '',' should be on a new line'
     int r
-      , t; // OK, because it is on a new line
+      , t; // ok, because it is on a new line
   }
 
   void bar(int p
-                , int q) { // OK, because it is on a new line
+                , int q) { // ok, because it is on a new line
   }
 }
 // xdoc section -- end
