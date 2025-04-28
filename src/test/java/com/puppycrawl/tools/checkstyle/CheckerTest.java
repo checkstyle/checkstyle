@@ -799,7 +799,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final Path mock = Path.of("testFile") {
+        final File mock = new File("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -817,7 +817,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final Checker checker = new Checker();
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(mock);
+        filesToProcess.add(mock.toPath());
         try {
             checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();
@@ -853,7 +853,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final Path mock = Path.of("testFile") {
+        final File mock = new File("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -876,7 +876,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final Checker checker = new Checker();
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(mock);
+        filesToProcess.add(mock.toPath());
         try {
             checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();
@@ -1149,7 +1149,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             + " or has run out of resources necessary for it to continue operating.";
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
-        final Path mock = Path.of("testFile") {
+        final File mock = new File("testFile") {
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -1174,7 +1174,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(mock);
+        filesToProcess.add(mock.toPath());
         try {
             checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();
