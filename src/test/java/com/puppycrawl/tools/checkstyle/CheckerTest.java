@@ -367,7 +367,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         checker.addListener(auditAdapter);
 
-        final List<File> files = new ArrayList<>();
+        final List<Path> files = new ArrayList<>();
         final Path file = Path.of("file.pdf");
         files.add(file);
         final Path otherFile = Path.of("file.java");
@@ -390,7 +390,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .that(auditAdapter.getNumFilesFinished())
             .isEqualTo(numLegalFiles);
         assertWithMessage("Cache shout not contain any file")
-            .that(cache.get(Path.of("file.java").getCanonicalPath()))
+//            .that(cache.get(Path.of("file.java").toFile().getCanonicalPath()))
+            .that(cache.get(Path.of("file.java").toAbsolutePath().toString()))
             .isNull();
     }
 
@@ -408,7 +409,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         checker.addListener(auditAdapter);
 
-        final List<File> allIgnoredFiles = new ArrayList<>();
+        final List<Path> allIgnoredFiles = new ArrayList<>();
         final Path ignoredFile = Path.of("file.pdf");
         allIgnoredFiles.add(ignoredFile);
         final String[] fileExtensions = {"java", "xml", "properties"};
@@ -654,7 +655,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         checker.setupChild(createModuleConfig(TranslationCheck.class));
         final Path tmpFile = createTempFile("file", ".java");
-        final List<File> files = new ArrayList<>(1);
+        final List<Path> files = new ArrayList<>(1);
         files.add(tmpFile);
         checker.process(files);
 
@@ -815,7 +816,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         };
 
         final Checker checker = new Checker();
-        final List<File> filesToProcess = new ArrayList<>();
+        final List<Path> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
         try {
             checker.process(filesToProcess);
@@ -874,7 +875,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         };
 
         final Checker checker = new Checker();
-        final List<File> filesToProcess = new ArrayList<>();
+        final List<Path> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
         try {
             checker.process(filesToProcess);
@@ -1172,7 +1173,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
-        final List<File> filesToProcess = new ArrayList<>();
+        final List<Path> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
         try {
             checker.process(filesToProcess);
@@ -1245,7 +1246,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
-        final List<File> filesToProcess = new ArrayList<>();
+        final List<Path> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
         try {
             checker.process(filesToProcess);
@@ -1307,7 +1308,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         };
 
         final Checker checker = new Checker();
-        final List<File> filesToProcess = new ArrayList<>();
+        final List<Path> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
         try {
             checker.process(filesToProcess);
@@ -1363,7 +1364,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
-        final List<File> filesToProcess = new ArrayList<>();
+        final List<Path> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
         try {
             checker.process(filesToProcess);
