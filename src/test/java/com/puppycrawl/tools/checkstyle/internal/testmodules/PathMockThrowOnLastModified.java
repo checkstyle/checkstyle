@@ -20,31 +20,23 @@
 package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
 import java.io.File;
-import java.io.IOError;
 import java.io.Serializable;
 import java.net.URI;
-import java.nio.file.*;
+import java.nio.file.FileSystem;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
+import java.nio.file.WatchEvent;
+import java.nio.file.WatchKey;
+import java.nio.file.WatchService;
 
-public class PathMock implements Path, Serializable {
+public class PathMockThrowOnLastModified implements Path, Serializable {
 
     /** A unique serial version identifier. */
     private static final long serialVersionUID = -7801807253540916684L;
 
-    private final FileMock filemock;
-    private final Throwable expectedThrowable; // Use Throwable to accept both Error and Exception
-
-    public PathMock(Throwable expectedThrowable) { // Use Throwable
-        this.expectedThrowable = expectedThrowable;
-        this.filemock = new FileMock(expectedThrowable);
-    }
-
-    public PathMock(String errorMessage) {
-        this(new IOError(new InternalError(errorMessage)));
-    }
-
     @Override
     public File toFile() {
-        return filemock;
+        return new FileMock();
     }
 
     @Override
@@ -129,14 +121,7 @@ public class PathMock implements Path, Serializable {
 
     @Override
     public Path toAbsolutePath() {
-        if (expectedThrowable instanceof Error) {
-            throw (Error) expectedThrowable;
-        } else if (expectedThrowable instanceof RuntimeException) {
-            throw (RuntimeException) expectedThrowable;
-        } else if (expectedThrowable != null) {
-            throw new RuntimeException(expectedThrowable); // Wrap checked exceptions
-        }
-        return null; // Should not reach here if an exception was provided
+        return null;
     }
 
     @Override
@@ -157,33 +142,18 @@ public class PathMock implements Path, Serializable {
     }
 
     private static final class FileMock extends File {
+        /** A unique serial version identifier. */
+        private static final long serialVersionUID = -2903929010510199407L;
 
-        private static final long serialVersionUID = 1L;
-
-        private final Throwable expectedThrowable; // Use Throwable
-
-        public FileMock(Throwable expectedThrowable) { // Use Throwable
-            super("FileMock");
-            this.expectedThrowable = expectedThrowable;
+        private FileMock() {
+            super("mock");
         }
 
-        /**
-         * Test is checking catch clause when exception is thrown.
-         *
-         * @noinspection ProhibitedExceptionThrown
-         * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-         * throw exception as part of test
-         */
         @Override
-        public String getAbsolutePath() {
-            if (expectedThrowable instanceof Error) {
-                throw (Error) expectedThrowable;
-            } else if (expectedThrowable instanceof RuntimeException) {
-                throw (RuntimeException) expectedThrowable;
-            } else if (expectedThrowable != null) {
-                throw new RuntimeException(expectedThrowable); // Wrap checked exceptions
-            }
-            return null; // Should not reach here if an exception was provided
+        public long lastModified() {
+            // origin: CheckstyleAntTaskTest#testCheckerException
+            // trigger: throw new BuildException("Unable to process files: " + files, ex);
+            throw new SecurityException("mock");
         }
     }
 }

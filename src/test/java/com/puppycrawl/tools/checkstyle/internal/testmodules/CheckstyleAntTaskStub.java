@@ -29,7 +29,7 @@ public class CheckstyleAntTaskStub extends CheckstyleAntTask {
 
     @Override
     protected List<Path> scanFileSets() {
-        return Collections.singletonList(new PathMock());
+        return Collections.singletonList(new PathMockThrowOnLastModified());
     }
 
 }

@@ -56,6 +56,7 @@ import java.util.TreeSet;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.internal.testmodules.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -81,11 +82,6 @@ import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
-import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckWhichThrowsError;
-import com.puppycrawl.tools.checkstyle.internal.testmodules.DebugAuditAdapter;
-import com.puppycrawl.tools.checkstyle.internal.testmodules.DebugFilter;
-import com.puppycrawl.tools.checkstyle.internal.testmodules.TestBeforeExecutionFileFilter;
-import com.puppycrawl.tools.checkstyle.internal.testmodules.TestFileSetCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -797,27 +793,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // Assume that I/O error is happened when we try to invoke 'lastModified()' method.
         final String errorMessage = "Java Virtual Machine is broken"
             + " or has run out of resources necessary for it to continue operating.";
-        final Error expectedError = new IOError(new InternalError(errorMessage));
-
-        final File mock = new File("testFile") {
-            private static final long serialVersionUID = 1L;
-
-            /**
-             * Test is checking catch clause when exception is thrown.
-             *
-             * @noinspection ProhibitedExceptionThrown
-             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-             *      throw exception as part of test
-             */
-            @Override
-            public long lastModified() {
-                throw expectedError;
-            }
-        };
 
         final Checker checker = new Checker();
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(mock.toPath());
+        filesToProcess.add(new PathMock(new IOError(new InternalError(errorMessage))));
         try {
             checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();
@@ -851,32 +830,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // Assume that I/O error is happened when we try to invoke 'lastModified()' method.
         final String errorMessage = "Java Virtual Machine is broken"
             + " or has run out of resources necessary for it to continue operating.";
-        final Error expectedError = new IOError(new InternalError(errorMessage));
-
-        final File mock = new File("testFile") {
-            private static final long serialVersionUID = 1L;
-
-            /**
-             * Test is checking catch clause when exception is thrown.
-             *
-             * @noinspection ProhibitedExceptionThrown
-             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-             *      throw exception as part of test
-             */
-            @Override
-            public long lastModified() {
-                throw expectedError;
-            }
-
-            @Override
-            public String getAbsolutePath() {
-                return null;
-            }
-        };
 
         final Checker checker = new Checker();
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(mock.toPath());
+        filesToProcess.add(new PathMock(new IOError(new InternalError(errorMessage))));
         try {
             checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();
@@ -1147,34 +1104,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final String errorMessage = "Java Virtual Machine is broken"
             + " or has run out of resources necessary for it to continue operating.";
-        final Error expectedError = new IOError(new InternalError(errorMessage));
-
-        final File mock = new File("testFile") {
-            private static final long serialVersionUID = 1L;
-
-            @Override
-            public String getAbsolutePath() {
-                return "testFile";
-            }
-
-            /**
-             * Test is checking catch clause when exception is thrown.
-             *
-             * @noinspection ProhibitedExceptionThrown
-             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-             *      throw exception as part of test
-             */
-            @Override
-            public File getAbsoluteFile() {
-                throw expectedError;
-            }
-        };
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(mock.toPath());
+        filesToProcess.add(new PathMock(new IOError(new InternalError(errorMessage))));
         try {
             checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();
@@ -1225,29 +1160,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final String errorMessage = "Java Virtual Machine is broken"
             + " or has run out of resources necessary for it to continue operating.";
-        final Error expectedError = new IOError(new InternalError(errorMessage));
-
-        final File mock = new File("testFile") {
-            private static final long serialVersionUID = 1L;
-
-            /**
-             * Test is checking catch clause when exception is thrown.
-             *
-             * @noinspection ProhibitedExceptionThrown
-             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-             *      throw exception as part of test
-             */
-            @Override
-            public String getAbsolutePath() {
-                throw expectedError;
-            }
-        };
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(mock.toPath());
+        filesToProcess.add(new PathMock(new IOError(new InternalError(errorMessage))));
         try {
             checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();
@@ -1289,27 +1207,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testExceptionWithNoFileName() {
         final String errorMessage = "Security Exception";
-        final RuntimeException expectedError = new SecurityException(errorMessage);
-
-        final File mock = new File("testFile") {
-            private static final long serialVersionUID = 1L;
-
-            /**
-             * Test is checking catch clause when exception is thrown.
-             *
-             * @noinspection ProhibitedExceptionThrown
-             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-             *      throw exception as part of test
-             */
-            @Override
-            public String getAbsolutePath() {
-                throw expectedError;
-            }
-        };
-
         final Checker checker = new Checker();
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(mock.toPath());
+        filesToProcess.add(new PathMock(new SecurityException(errorMessage)));
         try {
             checker.process(filesToProcess);
             assertWithMessage("SecurityException is expected!").fail();
@@ -1343,29 +1243,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("cacheFile", cacheFile.toAbsolutePath().toString());
 
         final String errorMessage = "Security Exception";
-        final RuntimeException expectedError = new SecurityException(errorMessage);
-
-        final File mock = new File("testFile") {
-            private static final long serialVersionUID = 1L;
-
-            /**
-             * Test is checking catch clause when exception is thrown.
-             *
-             * @noinspection ProhibitedExceptionThrown
-             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-             *      throw exception as part of test
-             */
-            @Override
-            public String getAbsolutePath() {
-                throw expectedError;
-            }
-        };
-
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(mock.toPath());
+        filesToProcess.add(new PathMock(new SecurityException(errorMessage)));
         try {
             checker.process(filesToProcess);
             assertWithMessage("SecurityException is expected!").fail();
