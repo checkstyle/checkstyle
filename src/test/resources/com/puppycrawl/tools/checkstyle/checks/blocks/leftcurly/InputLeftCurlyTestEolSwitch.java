@@ -36,7 +36,7 @@ public class InputLeftCurlyTestEolSwitch {
             case 3:
             case 4:
                 x++;
-                { // OK, standalone block
+                { // ok, standalone block
                 }
                 break;
             case 5: {

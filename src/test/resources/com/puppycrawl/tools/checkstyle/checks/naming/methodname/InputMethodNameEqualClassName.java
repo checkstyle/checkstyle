@@ -43,7 +43,7 @@ public class InputMethodNameEqualClassName {
                         return 0;
         }
 
-        //OK name - name of the outter class's ctor
+        // ok name - name of the outter class's ctor
         // violation below 'Name 'InputMethodNameEqualClassName' must match pattern.'
         public int InputMethodNameEqualClassName() {
                         return 0;

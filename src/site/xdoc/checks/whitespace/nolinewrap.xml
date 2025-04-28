@@ -132,14 +132,14 @@ import static java.math.BigInteger.ONE;
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-package com.puppycrawl. // OK, PACKAGE_DEF is not part of the tokens
+package com.puppycrawl. // ok, PACKAGE_DEF is not part of the tokens
   tools.checkstyle.checks.whitespace.nolinewrap;
 
 import java.io.*;
 import java.lang. // violation 'should not be line-wrapped'
   Boolean;
 
-import static java.math. // OK, STATIC_IMPORT is not part of the tokens
+import static java.math. // ok, STATIC_IMPORT is not part of the tokens
   BigInteger.ZERO;
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
