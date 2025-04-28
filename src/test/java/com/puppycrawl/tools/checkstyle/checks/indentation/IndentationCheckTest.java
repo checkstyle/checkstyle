@@ -1277,7 +1277,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "55:9: " + getCheckMessage(MSG_ERROR, "\"\"\"", 8, 12),
             "73:15: " + getCheckMessage(MSG_ERROR, "\"\"\"", 14, 12),
         };
-        verify(checkConfig, getNonCompilablePath("InputIndentationTextBlock.java"),
+        verifyWarns(checkConfig, getNonCompilablePath("InputIndentationTextBlock.java"),
             expected);
     }
 
