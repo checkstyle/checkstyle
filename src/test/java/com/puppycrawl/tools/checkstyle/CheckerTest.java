@@ -1109,7 +1109,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(new PathMock2());
+        filesToProcess.add(new PathMock(new IOError(new InternalError(errorMessage))));
         try {
             checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();

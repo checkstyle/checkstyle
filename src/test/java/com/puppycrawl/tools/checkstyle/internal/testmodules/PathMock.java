@@ -29,17 +29,39 @@ public class PathMock implements Path, Serializable {
     /** A unique serial version identifier. */
     private static final long serialVersionUID = -7801807253540916684L;
 
-    private final FileMock filemock;
     private final Throwable expectedThrowable;
 
     public PathMock(Throwable expectedThrowable) {
         this.expectedThrowable = expectedThrowable;
-        this.filemock = new FileMock(expectedThrowable);
     }
 
     @Override
     public File toFile() {
-        return filemock;
+        return new File("FileMock") {
+            private static final long serialVersionUID = 1L;
+
+            /**
+             * Test is checking catch clause when exception is thrown.
+             *
+             * @noinspection ProhibitedExceptionThrown
+             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
+             * throw exception as part of test
+             */
+            @Override
+            public String getAbsolutePath() {
+                if (expectedThrowable instanceof Error) {
+                    throw (Error) expectedThrowable;
+                } else if (expectedThrowable instanceof RuntimeException) {
+                    throw (RuntimeException) expectedThrowable;
+                }
+                return "testFile";
+            }
+
+            @Override
+            public File getAbsoluteFile() {
+                throw (Error) expectedThrowable;
+            }
+        };
     }
 
     @Override
@@ -151,38 +173,4 @@ public class PathMock implements Path, Serializable {
         return 0;
     }
 
-    private static final class FileMock extends File {
-
-        private static final long serialVersionUID = 1L;
-
-        private final Throwable expectedThrowable;
-
-        public FileMock(Throwable expectedThrowable) {
-            super("FileMock");
-            this.expectedThrowable = expectedThrowable;
-        }
-        @Override
-        public long lastModified() {
-            getAbsolutePath();
-            return 0;
-        }
-        /**
-         * Test is checking catch clause when exception is thrown.
-         *
-         * @noinspection ProhibitedExceptionThrown
-         * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
-         * throw exception as part of test
-         */
-        @Override
-        public String getAbsolutePath() {
-            if (expectedThrowable instanceof Error) {
-                throw (Error) expectedThrowable;
-            } else if (expectedThrowable instanceof RuntimeException) {
-                throw (RuntimeException) expectedThrowable;
-            } else if (expectedThrowable != null) {
-                throw new RuntimeException(expectedThrowable);
-            }
-            return null;
-        }
-    }
 }
