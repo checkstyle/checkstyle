@@ -1059,7 +1059,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         execute(checkerConfig, fileViolationPath);
 
-        try (InputStream input = Files.newInputStream(cacheFile.toPath())) {
+        try (InputStream input = Files.newInputStream(cacheFile.toAbsolutePath())) {
             final Properties details = new Properties();
             details.load(input);
 
@@ -1728,9 +1728,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             "1: " + violationMessage,
         };
 
-        final Path tempFile = createTempFile("InputCheckerTestExcludeRelativizedFile", ".java");
+        final File tempFile = createTempFile("InputCheckerTestExcludeRelativizedFile", ".java").toFile();
 
-        final Path[] processedFiles = {tempFile};
+        final File[] processedFiles = {tempFile};
 
         verify(createChecker(checkerConfig), processedFiles,
                 tempFile.getName(), expected);
