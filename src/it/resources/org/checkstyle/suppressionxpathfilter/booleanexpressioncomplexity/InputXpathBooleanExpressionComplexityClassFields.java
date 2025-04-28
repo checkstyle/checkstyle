@@ -5,7 +5,7 @@ public class InputXpathBooleanExpressionComplexityClassFields {
         boolean a = true;
         boolean b = false;
 
-        boolean c = (a & b) | (b ^ a); // OK
+        boolean c = (a & b) | (b ^ a);
         boolean d = (a & b) | (b ^ a) | (a ^ b) | // warn
                 (a & b) | (b ^ a) | (a ^ b);
     }

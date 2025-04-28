@@ -58,7 +58,7 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-  Runnable r = () -&gt; { // OK, length is 10
+  Runnable r = () -&gt; { // ok, length is 10
     System.out.println(2); // line 2 of lambda
     System.out.println(3);
     System.out.println(4);
@@ -110,7 +110,7 @@ class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-  Runnable r = () -&gt; { // OK, length is 5
+  Runnable r = () -&gt; { // ok, length is 5
     System.out.println(2);
     System.out.println(3);
     System.out.println(4);

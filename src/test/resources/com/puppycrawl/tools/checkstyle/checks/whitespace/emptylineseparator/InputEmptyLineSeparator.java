@@ -21,7 +21,7 @@ import java.util.Collections;
 /* ok: block comment after token*/
 
 import java.io.PrintWriter;
-//ok: single-line comment after token
+// ok : single-line comment after token
 
 import javax.swing.AbstractAction; /* ok: no trailing comment
 */

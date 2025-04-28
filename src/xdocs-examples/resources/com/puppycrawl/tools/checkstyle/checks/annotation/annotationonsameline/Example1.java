@@ -18,7 +18,7 @@ class Example1 {
   public Example1() {
   }
 
-  @SuppressWarnings("unchecked") public void fun2() {  // OK
+  @SuppressWarnings("unchecked") public void fun2() {
   }
 
   public void fun1() {
@@ -26,9 +26,9 @@ class Example1 {
 
 }
 
-@SuppressWarnings("unchecked") class Test1 extends Example1 {  // OK
+@SuppressWarnings("unchecked") class Test1 extends Example1 {
 
-  @Deprecated public Test1() {  // OK
+  @Deprecated public Test1() {
   }
 
   @Override // violation, "should be on the same line with its target."
@@ -36,7 +36,7 @@ class Example1 {
   }
 
   @Before // violation, "should be on the same line with its target."
-  @Override public void fun2() {  // OK
+  @Override public void fun2() {
   }
 
   // violation below, "should be on the same line with its target."
