@@ -22,21 +22,24 @@ package com.puppycrawl.tools.checkstyle.internal.testmodules;
 import java.io.File;
 import java.io.Serializable;
 import java.net.URI;
-import java.nio.file.FileSystem;
-import java.nio.file.LinkOption;
-import java.nio.file.Path;
-import java.nio.file.WatchEvent;
-import java.nio.file.WatchKey;
-import java.nio.file.WatchService;
+import java.nio.file.*;
 
 public class PathMockThrowOnLastModified implements Path, Serializable {
 
     /** A unique serial version identifier. */
     private static final long serialVersionUID = -7801807253540916684L;
 
+    private final FileMock filemock;
+    private final Throwable expectedThrowable;
+
+    public PathMockThrowOnLastModified(Throwable expectedThrowable) {
+        this.expectedThrowable = expectedThrowable;
+        this.filemock = new FileMock(expectedThrowable);
+    }
+
     @Override
     public File toFile() {
-        return new FileMock();
+        return filemock;
     }
 
     @Override
@@ -121,7 +124,14 @@ public class PathMockThrowOnLastModified implements Path, Serializable {
 
     @Override
     public Path toAbsolutePath() {
-        return null;
+        if (expectedThrowable instanceof Error) {
+            throw (Error) expectedThrowable;
+        } else if (expectedThrowable instanceof RuntimeException) {
+            throw (RuntimeException) expectedThrowable;
+        } else if (expectedThrowable != null) {
+            throw new RuntimeException(expectedThrowable); // Wrap checked exceptions
+        }
+        return null; // Should not reach here if an exception was provided
     }
 
     @Override
@@ -142,22 +152,35 @@ public class PathMockThrowOnLastModified implements Path, Serializable {
     }
 
     private static final class FileMock extends File {
-        /** A unique serial version identifier. */
-        private static final long serialVersionUID = -2903929010510199407L;
 
-        private FileMock() {
-            super("mock");
+        private static final long serialVersionUID = 1L;
+
+        private final Throwable expectedThrowable;
+
+        public FileMock(Throwable expectedThrowable) {
+            super("FileMock");
+            this.expectedThrowable = expectedThrowable;
         }
-
         @Override
         public long lastModified() {
-            // origin: CheckstyleAntTaskTest#testCheckerException
-            // trigger: throw new BuildException("Unable to process files: " + files, ex);
-            throw new SecurityException("mock");
+            throw (Error) expectedThrowable;
         }
-
+        /**
+         * Test is checking catch clause when exception is thrown.
+         *
+         * @noinspection ProhibitedExceptionThrown
+         * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
+         * throw exception as part of test
+         */
         @Override
         public String getAbsolutePath() {
+            if (expectedThrowable instanceof Error) {
+                throw (Error) expectedThrowable;
+            } else if (expectedThrowable instanceof RuntimeException) {
+                throw (RuntimeException) expectedThrowable;
+            } else if (expectedThrowable != null) {
+                throw new RuntimeException(expectedThrowable);
+            }
             return null;
         }
     }

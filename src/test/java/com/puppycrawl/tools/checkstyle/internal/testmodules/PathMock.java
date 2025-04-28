@@ -155,9 +155,9 @@ public class PathMock implements Path, Serializable {
 
         private static final long serialVersionUID = 1L;
 
-        private final Throwable expectedThrowable; // Use Throwable
+        private final Throwable expectedThrowable;
 
-        public FileMock(Throwable expectedThrowable) { // Use Throwable
+        public FileMock(Throwable expectedThrowable) {
             super("FileMock");
             this.expectedThrowable = expectedThrowable;
         }
