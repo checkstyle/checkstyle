@@ -212,9 +212,32 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
     @Override
     public int process(Collection<Path> files) throws CheckstyleException {
-        return process(files.stream()
+        if (cacheFile != null) {
+            cacheFile.putExternalResources(getExternalResourceLocations());
+        }
+
+        // Prepare to start
+        fireAuditStarted();
+        for (final FileSetCheck fsc : fileSetChecks) {
+            fsc.beginProcessing(charset);
+        }
+
+        final List<File> targetFiles = files.stream()
                 .map(Path::toFile)
-                .collect(Collectors.toUnmodifiableList()));
+                .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
+                .collect(Collectors.toUnmodifiableList());
+        processFiles(targetFiles);
+
+        // Finish up
+        // It may also log!!!
+        fileSetChecks.forEach(FileSetCheck::finishProcessing);
+
+        // It may also log!!!
+        fileSetChecks.forEach(FileSetCheck::destroy);
+
+        final int errorCount = counter.getCount();
+        fireAuditFinished();
+        return errorCount;
     }
 
     @Override
