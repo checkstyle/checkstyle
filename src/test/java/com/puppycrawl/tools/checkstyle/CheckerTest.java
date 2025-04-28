@@ -916,7 +916,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Path cacheFile = createTempFile("junit");
         checkerConfig.addProperty("cacheFile", cacheFile.toAbsolutePath().toString());
 
-        final String pathToEmptyFile = createTempFile("file", ".java").getPath();
+        final String pathToEmptyFile = createTempFile("file", ".java").toAbsolutePath().toString();
 
         execute(checkerConfig, pathToEmptyFile);
         final Properties cacheAfterFirstRun = new Properties();
@@ -978,7 +978,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.configure(checkerConfig);
         checker.addListener(getBriefUtLogger());
 
-        final String pathToEmptyFile = createTempFile("file", ".java").getPath();
+        final String pathToEmptyFile = createTempFile("file", ".java").toAbsolutePath().toString();
 
         execute(checker, pathToEmptyFile);
         final Properties cacheAfterFirstRun = new Properties();
@@ -1055,7 +1055,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("cacheFile", cacheFile.toAbsolutePath().toString());
         checkerConfig.addChild(filterConfig);
 
-        final String fileViolationPath = createTempFile("ViolationFile", ".java").getPath();
+        final String fileViolationPath = createTempFile("ViolationFile", ".java").toAbsolutePath().toString();
 
         execute(checkerConfig, fileViolationPath);
 
@@ -1592,7 +1592,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 OutputStreamOptions.NONE, new AuditEventDefaultFormatter());
         checker.addListener(logger);
 
-        final String path = createTempFile("file", ".java").getPath();
+        final String path = createTempFile("file", ".java").toAbsolutePath().toString();
         final String violationMessage =
                 getCheckMessage(NewlineAtEndOfFileCheck.class, MSG_KEY_NO_NEWLINE_EOF);
         final String[] expected = {
