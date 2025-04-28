@@ -36,6 +36,10 @@ public class PathMockThrowOnLastModified implements Path, Serializable {
         this.expectedThrowable = expectedThrowable;
         this.filemock = new FileMock(expectedThrowable);
     }
+    public PathMockThrowOnLastModified() {
+        this.expectedThrowable = new SecurityException("mock");
+        this.filemock = new FileMock(expectedThrowable);
+    }
 
     @Override
     public File toFile() {
@@ -174,13 +178,6 @@ public class PathMockThrowOnLastModified implements Path, Serializable {
          */
         @Override
         public String getAbsolutePath() {
-            if (expectedThrowable instanceof Error) {
-                throw (Error) expectedThrowable;
-            } else if (expectedThrowable instanceof RuntimeException) {
-                throw (RuntimeException) expectedThrowable;
-            } else if (expectedThrowable != null) {
-                throw new RuntimeException(expectedThrowable);
-            }
             return null;
         }
     }
