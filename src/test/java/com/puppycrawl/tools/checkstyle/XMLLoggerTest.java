@@ -200,16 +200,24 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
 
     @Test
     public void testAddErrorModuleId() throws Exception {
+        final String inputFile = "InputXMLLoggerErrorModuleId.java";
+        final String expectedXmlReport = "ExpectedXMLLoggerErrorModuleId.xml";
+        verifyWithInlineConfigParserAndXmlLogger(inputFile, expectedXmlReport);
+    }
+
+    // Test input for "<i></i>-->" and usage of verifyXml due to #16951
+    @Test
+    public void testAddErrorModuleId1() throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final Violation violation =
-            new Violation(1, 1,
-                "messages.properties", "key", null, SeverityLevel.ERROR, "<i></i>-->",
-                    getClass(), null);
+                new Violation(1, 1,
+                        "messages.properties", "key", null, SeverityLevel.ERROR, "<i></i>-->",
+                        getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
         logger.addError(ev);
         logger.auditFinished(null);
-        verifyXml(getPath("ExpectedXMLLoggerErrorModuleId.xml"), outStream,
+        verifyXml(getPath("ExpectedXMLLoggerErrorModuleId1.xml"), outStream,
                 violation.getViolation());
     }
 
