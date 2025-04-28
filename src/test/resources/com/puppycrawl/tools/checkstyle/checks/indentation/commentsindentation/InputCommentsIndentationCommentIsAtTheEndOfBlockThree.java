@@ -18,7 +18,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockThree {
     public void foo30() {
         // comment
         int a = 5;
-//violation '.* incorrect .* level 0, expected is 8, .* same .* as line 20.'
+// violation '.* incorrect .* level 0, expected is 8, .* same .* as line 20.'
     }
 
     public void foo31() {
@@ -32,14 +32,14 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockThree {
         String s = new String ("A"
             + "B"
             + "C");
-            //violation '.* incorrect .* level 12, expected is 8, .* same .* as line 32.'
+            // violation '.* incorrect .* level 12, expected is 8, .* same .* as line 32.'
     }
 
     public void foo33() {
         // comment
         new InputCommentsIndentationCommentIsAtTheEndOfBlockTwo().foo22();
 
-//        violation '.* incorrect .* level 0, expected is 8, .* same .* as line 40.'
+// violation '.* incorrect .* level 0, expected is 8, .* same .* as line 40.'
     }
 
     public void foo34() throws Exception {
@@ -53,14 +53,14 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockThree {
         throw new Exception("",
                 new Exception()
         );
-            //violation '.* incorrect .* level 12, expected is 8, .* same .* as line 53.'
+            // violation '.* incorrect .* level 12, expected is 8, .* same .* as line 53.'
     }
 
     public void foo36() throws Exception {
         throw new Exception("",
                 new Exception()
         );
-//      violation '.* incorrect .* level 0, expected is 8, .* same .* as line 60.'
+// violation '.* incorrect .* level 0, expected is 8, .* same .* as line 60.'
     }
 
     public void foo37() throws Exception {
@@ -70,19 +70,19 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockThree {
 
     public void foo38() throws Exception {
         throw new Exception("", new Exception());
-              //violation '.* incorrect .* level 14, expected is 8, .* same .* as line 72.'
+              // violation '.* incorrect .* level 14, expected is 8, .* same .* as line 72.'
     }
 
     public void foo39() throws Exception {
         throw new Exception("",
                 new Exception());
-         //violation '.* incorrect .* level 9, expected is 8, .* same .* as line 77.'
+         // violation '.* incorrect .* level 9, expected is 8, .* same .* as line 77.'
     }
 
     public void foo40() throws Exception {
         int a = 88;
         throw new Exception("", new Exception());
-         //violation '.* incorrect .* level 9, expected is 8, .* same .* as line 84.'
+         // violation '.* incorrect .* level 9, expected is 8, .* same .* as line 84.'
     }
 
     public void foo41() throws Exception {

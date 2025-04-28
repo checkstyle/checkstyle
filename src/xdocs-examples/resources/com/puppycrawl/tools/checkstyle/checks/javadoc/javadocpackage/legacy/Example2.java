@@ -7,6 +7,6 @@
 */
 // xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.legacy;
-// OK as package.html file is present in directory
+// ok as package.html file is present in directory
 public class Example2 { }
 // xdoc section -- end

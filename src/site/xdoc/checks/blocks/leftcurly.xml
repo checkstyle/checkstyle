@@ -170,10 +170,10 @@ class Example1
 
   private
     class
-    MyClass { // OK
+    MyClass {
   }
 
-  enum Colors {RED, // OK
+  enum Colors {RED,
     BLUE,
     GREEN;
   }
@@ -196,9 +196,9 @@ class Example1
         <p id="Example2-code">Example: </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2
-{ // OK
+{
   private interface TestInterface
-  { // OK
+  {
   }
 
   private
@@ -206,7 +206,7 @@ class Example2
     MyClass { // violation, ''{' at column 13 should be on a new line.'
   }
 
-  enum Colors {RED, // OK
+  enum Colors {RED,
     BLUE,
     GREEN;
   }
@@ -230,7 +230,7 @@ class Example2
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3
 { // violation, ''{' at column 1 should be on the previous line.'
-  private interface TestInterface { // OK
+  private interface TestInterface {
   }
 
   private
@@ -238,7 +238,7 @@ class Example3
     MyClass { // violation, ''{' at column 13 should be on a new line.'
   }
 
-  enum Colors {RED, // OK
+  enum Colors {RED,
     BLUE,
     GREEN;
   }
@@ -266,7 +266,7 @@ class Example4
 
   private
     class
-    MyClass { // OK
+    MyClass {
   }
 
   enum Colors {RED, // violation, ''{' at column 15 should have line break after.'
