@@ -2992,7 +2992,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "14:9: " + getCheckMessage(MSG_ERROR, "(", 8, 12),
             "19:5: " + getCheckMessage(MSG_ERROR, "(", 4, 8),
         };
-        verify(checkConfig, fileName, expected);
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test
