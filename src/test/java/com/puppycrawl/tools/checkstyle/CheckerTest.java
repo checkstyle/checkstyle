@@ -626,14 +626,14 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         execute(checkerConfig, tmpFile.toAbsolutePath().toString());
         final Properties cacheAfterFirstRun = new Properties();
-        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toAbsolutePath())) {
             cacheAfterFirstRun.load(reader);
         }
 
         // one more time to reuse cache
         execute(checkerConfig, tmpFile.toAbsolutePath().toString());
         final Properties cacheAfterSecondRun = new Properties();
-        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toAbsolutePath())) {
             cacheAfterSecondRun.load(reader);
         }
 
@@ -663,7 +663,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.destroy();
 
         final Properties cache = new Properties();
-        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toAbsolutePath())) {
             cache.load(reader);
         }
 
@@ -679,7 +679,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .isEqualTo(expectedConfigHash);
 
         assertWithMessage("Cache file has null path")
-            .that(cache.getProperty(tmpFile.getPath()))
+            .that(cache.getProperty(tmpFile.toAbsolutePath().toString()))
             .isNotNull();
     }
 
@@ -700,7 +700,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.destroy();
 
         final Properties cacheAfterClear = new Properties();
-        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toAbsolutePath())) {
             cacheAfterClear.load(reader);
         }
 
@@ -711,12 +711,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .that(cacheAfterClear.getProperty(PropertyCacheFile.CONFIG_HASH_KEY))
             .isNotNull();
 
-        final String pathToEmptyFile = createTempFile("file", ".java").getPath();
+        final String pathToEmptyFile = createTempFile("file", ".java").toAbsolutePath().toString();
 
         // file that should be audited is not in cache
         execute(checkerConfig, pathToEmptyFile);
         final Properties cacheAfterSecondRun = new Properties();
-        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toAbsolutePath())) {
             cacheAfterSecondRun.load(reader);
         }
 
@@ -754,7 +754,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         cache.persist();
 
         final Properties cacheAfterClear = new Properties();
-        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toAbsolutePath())) {
             cacheAfterClear.load(reader);
         }
 
@@ -920,14 +920,14 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         execute(checkerConfig, pathToEmptyFile);
         final Properties cacheAfterFirstRun = new Properties();
-        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toAbsolutePath())) {
             cacheAfterFirstRun.load(reader);
         }
 
         // One more time to use cache.
         execute(checkerConfig, pathToEmptyFile);
         final Properties cacheAfterSecondRun = new Properties();
-        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toAbsolutePath())) {
             cacheAfterSecondRun.load(reader);
         }
 
@@ -982,7 +982,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         execute(checker, pathToEmptyFile);
         final Properties cacheAfterFirstRun = new Properties();
-        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toAbsolutePath())) {
             cacheAfterFirstRun.load(reader);
         }
 
@@ -1002,7 +1002,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         execute(checker, pathToEmptyFile);
         final Properties cacheAfterSecondRun = new Properties();
-        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toAbsolutePath())) {
             cacheAfterSecondRun.load(reader);
         }
 
@@ -1117,7 +1117,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             checker.destroy();
 
             final Properties cache = new Properties();
-            try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+            try (BufferedReader reader = Files.newBufferedReader(cacheFile.toAbsolutePath())) {
                 cache.load(reader);
             }
 
@@ -1195,7 +1195,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             checker.destroy();
 
             final Properties cache = new Properties();
-            try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+            try (BufferedReader reader = Files.newBufferedReader(cacheFile.toAbsolutePath())) {
                 cache.load(reader);
             }
 
@@ -1269,7 +1269,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             checker.destroy();
 
             final Properties cache = new Properties();
-            try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+            try (BufferedReader reader = Files.newBufferedReader(cacheFile.toAbsolutePath())) {
                 cache.load(reader);
             }
 
@@ -1345,7 +1345,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String errorMessage = "Security Exception";
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
-        final Path mock = Path.of("testFile") {
+        final File mock = new File("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1365,7 +1365,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(mock);
+        filesToProcess.add(mock.toPath());
         try {
             checker.process(filesToProcess);
             assertWithMessage("SecurityException is expected!").fail();
@@ -1385,7 +1385,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             checker.destroy();
 
             final Properties cache = new Properties();
-            try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+            try (BufferedReader reader = Files.newBufferedReader(cacheFile.toAbsolutePath())) {
                 cache.load(reader);
             }
 
@@ -1560,7 +1560,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
             final Path tmpFile = createTempFile("file", ".java");
 
-            execute(checker, tmpFile.getPath(), tmpFile.toAbsolutePath().toString());
+            execute(checker, tmpFile.toAbsolutePath().toString(), tmpFile.toAbsolutePath().toString());
 
             assertWithMessage("Output stream close count")
                     .that(testInfoOutputStream.getCloseCount())
