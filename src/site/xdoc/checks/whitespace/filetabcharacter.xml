@@ -80,8 +80,8 @@
 class Example1 {
   int a; // violation 'File contains tab characters'
 
-  public void foo (int arg) { // OK, only first occurrence in file reported
-    a = arg; // OK, indented using spaces
+  public void foo (int arg) { // ok, only first occurrence in file reported
+    a = arg; // ok, indented using spaces
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -99,7 +99,7 @@ class Example2 {
   int a; // violation 'contains a tab character'
 
   public void foo (int arg) { // violation 'contains a tab character'
-    a = arg; // OK, indented using spaces
+    a = arg; // ok, indented using spaces
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -118,8 +118,8 @@ class Example2 {
 class Example3 {
   int a; // violation 'File contains tab characters'
 
-  public void foo (int arg) { // OK, only first occurrence in file reported
-    a = arg; // OK, indented using spaces
+  public void foo (int arg) { // ok, only first occurrence in file reported
+    a = arg; // ok, indented using spaces
   }
 }
 </code></pre></div><hr class="example-separator"/>

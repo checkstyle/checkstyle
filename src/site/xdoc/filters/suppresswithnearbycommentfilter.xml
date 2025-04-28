@@ -141,7 +141,7 @@ public class Example2 {
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure a filter so that
-          <code>// OK to catch (Throwable|Exception|RuntimeException) here</code>
+          <code>// ok to catch (Throwable|Exception|RuntimeException) here</code>
           permits the current and previous line to avoid generating an IllegalCatch
           audit event:
         </p>
@@ -149,7 +149,7 @@ public class Example2 {
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressWithNearbyCommentFilter"&gt;
-      &lt;property name="commentFormat" value="OK to catch (\w+) here"/&gt;
+      &lt;property name="commentFormat"  value="ok,?\s*to catch (\w+) here"/&gt;
       &lt;property name="checkFormat" value="IllegalCatchCheck"/&gt;
       &lt;property name="messageFormat" value="$1"/&gt;
       &lt;property name="influenceFormat" value="-1"/&gt;
@@ -166,7 +166,7 @@ public class Example3 {
       // blah blah blah
     }
     catch(RuntimeException re) {
-      // OK to catch RuntimeException here
+      // ok, to catch RuntimeException here
     }
   }
 }

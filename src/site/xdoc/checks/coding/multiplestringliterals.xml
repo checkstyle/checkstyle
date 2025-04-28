@@ -74,7 +74,7 @@
 public class Example1 {
   String a = "StringContents"; // violation, "StringContents" occurs twice
   String a1 = "unchecked";
-  @SuppressWarnings("unchecked") // OK, duplicate strings are ignored in annotations
+  @SuppressWarnings("unchecked") // ok, duplicate strings are ignored in annotations
   public void myTest() {
     String a2 = "StringContents";
     String a3 = "DuoString" + "DuoString"; // violation, "DuoString" occurs twice
@@ -99,12 +99,12 @@ public class Example1 {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
-  String a = "StringContents"; // OK, two occurrences are allowed
+  String a = "StringContents"; // ok, two occurrences are allowed
   String a1 = "unchecked";
-  @SuppressWarnings("unchecked") // OK, duplicate strings are ignored in annotations
+  @SuppressWarnings("unchecked") // ok, duplicate strings are ignored in annotations
   public void myTest() {
     String a2 = "StringContents";
-    String a3 = "DuoString" + "DuoString"; // OK, two occurrences are allowed
+    String a3 = "DuoString" + "DuoString"; // ok, two occurrences are allowed
     String a4 = "SingleString";
     String a5 = ", " + ", " + ", "; // violation, three occurrences are NOT allowed
   }
@@ -128,12 +128,12 @@ public class Example2 {
 public class Example3 {
   String a = "StringContents"; // violation, "StringContents" occurs twice
   String a1 = "unchecked";
-  @SuppressWarnings("unchecked") // OK, duplicate strings are ignored in annotations
+  @SuppressWarnings("unchecked") // ok, duplicate strings are ignored in annotations
   public void myTest() {
     String a2 = "StringContents";
     String a3 = "DuoString" + "DuoString"; // violation, "DuoString" occurs twice
     String a4 = "SingleString";
-    String a5 = ", " + ", " + ", "; // OK, multiple occurrences of ", " are allowed
+    String a5 = ", " + ", " + ", "; // ok, multiple occurrences of ", " are allowed
   }
 }
 </code></pre></div><hr class="example-separator"/>

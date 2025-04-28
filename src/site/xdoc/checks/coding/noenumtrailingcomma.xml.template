@@ -28,7 +28,7 @@ enum Foo1 {
         <source>
 enum Foo1 {
   FOO,
-  BAR, //violation
+  BAR, // violation
 }
         </source>
       </subsection>

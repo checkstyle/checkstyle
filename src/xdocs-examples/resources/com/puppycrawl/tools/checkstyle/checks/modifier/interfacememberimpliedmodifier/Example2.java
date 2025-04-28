@@ -29,8 +29,8 @@ public interface Example2 {
   //    'Implied modifier 'abstract' should be explicit'
   //    'Implied modifier 'public' should be explicit'
   interface Address {
-    // OK above because of configured properties
-    // OK above because of configured properties
+    // ok above because of configured properties
+    // ok above because of configured properties
 
     String getCity();
     // 2 violations above:
