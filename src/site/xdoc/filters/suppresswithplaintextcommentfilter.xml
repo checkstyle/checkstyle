@@ -114,7 +114,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-raw">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 # // CHECKSTYLE:OFF
 # suppressed violation below
 keyB=value1
@@ -144,7 +144,7 @@ keyC=value5
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-raw">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 # STOP CHECK
 # suppressed violation below
 keyB=value1
@@ -177,7 +177,7 @@ keyC=value5
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-raw">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 # STOP UNIQUE CHECK
 # (OrderedProperties check is still enabled)
 # suppressed violation below
@@ -216,7 +216,7 @@ keyC=value5
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-raw">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;project&gt;
   &lt;p&gt;Examples:&lt;/p&gt;
 &lt;!-- CSOFF: RegexpSinglelineCheck --&gt;
@@ -262,7 +262,7 @@ keyC=value5
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example5-raw">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;project&gt;
   &lt;p&gt;Examples:&lt;/p&gt;
 &lt;!-- CSOFF: ALMOST_ALL --&gt;
@@ -317,7 +317,7 @@ keyC=value5
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example6-raw">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;project&gt;
   &lt;p&gt;Examples:&lt;/p&gt;
 &lt;!-- CSOFF --&gt;
@@ -378,7 +378,7 @@ keyC=value5
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example7-raw">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;project&gt;
   &lt;p&gt;Examples:&lt;/p&gt;
 &lt;!-- CSOFF typeCode (OK to use examples of type code here) --&gt;
@@ -424,7 +424,7 @@ keyC=value5
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example8-raw">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 -- CSOFF: RegexpSinglelineCheck
 -- CSOFF: LineLengthCheck
 SELECT name, job_name

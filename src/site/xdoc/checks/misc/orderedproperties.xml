@@ -66,7 +66,7 @@
         <p id="Example1-raw">
           Example properties file:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 A=65
 a=97
 key=107 than nothing

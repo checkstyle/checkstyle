@@ -183,7 +183,7 @@ class Example1
           To configure the check to apply the <code>nl</code> policy to
           type blocks:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="LeftCurly"&gt;

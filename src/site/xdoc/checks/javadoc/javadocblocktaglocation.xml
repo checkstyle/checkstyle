@@ -83,7 +83,7 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 /**
  * Escaped tag &amp;#64;version (OK)
  * Plain text with {@code @see} (OK)
