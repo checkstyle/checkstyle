@@ -1247,7 +1247,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(mock);
+        filesToProcess.add(mock.toPath());
         try {
             checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();
@@ -1291,7 +1291,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String errorMessage = "Security Exception";
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
-        final Path mock = Path.of("testFile") {
+        final File mock = new File("testFile") {
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1309,7 +1309,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final Checker checker = new Checker();
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(mock);
+        filesToProcess.add(mock.toPath());
         try {
             checker.process(filesToProcess);
             assertWithMessage("SecurityException is expected!").fail();
