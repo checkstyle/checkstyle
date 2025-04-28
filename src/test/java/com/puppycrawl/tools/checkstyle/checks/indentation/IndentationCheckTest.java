@@ -1262,6 +1262,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         verifyWarns(checkConfig, getPath("InputIndentationNew.java"), expected);
     }
 
+    // we can not use verifyWarns() due to usage of multi line string syntax in input
     @Test
     public void testTextBlockLiteral() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
