@@ -44,7 +44,7 @@ public class Example1 {
     while (someVal = false) {} // violation, 'Inner assignments should be avoided'
 
     InputStream is = new FileInputStream("textFile.txt");
-    while ((b = is.read()) != -1) { // OK, this is a common idiom
+    while ((b = is.read()) != -1) { // ok, this is a common idiom
         // some code
     }
   }

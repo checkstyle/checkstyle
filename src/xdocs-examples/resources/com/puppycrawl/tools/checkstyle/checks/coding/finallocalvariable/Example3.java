@@ -17,7 +17,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 class Example3
 {
   static int foo(int x, int y) {
-    //ok, because PARAMETER_DEF is not configured in tokens
+    // ok, because PARAMETER_DEF is not configured in tokens
     return x+y;
   }
   public static void main (String []args) {

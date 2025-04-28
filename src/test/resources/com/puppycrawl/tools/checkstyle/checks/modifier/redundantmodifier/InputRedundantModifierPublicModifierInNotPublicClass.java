@@ -14,7 +14,7 @@ public class InputRedundantModifierPublicModifierInNotPublicClass {
         public ProtectedClass() {}
     }
     public class PublicInnerClass {
-        public PublicInnerClass() { } // OK for class accessible from public scope
+        public PublicInnerClass() { } // ok for class accessible from public scope
     }
 }
 

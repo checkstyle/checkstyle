@@ -23,7 +23,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockSix {
                 break;
         }
 
-          //violation '.* incorrect .* level 10, expected is 8, .* same .* as line 19.'
+          // violation '.* incorrect .* level 10, expected is 8, .* same .* as line 19.'
     }
 
     void foo72() {
@@ -49,7 +49,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockSix {
             A;
         }
 
-    //violation '.* incorrect .* level 4, expected is 8, .* same .* as line 48.'
+    // violation '.* incorrect .* level 4, expected is 8, .* same .* as line 48.'
     }
     static class Bar3 {
         @interface Foo { }
@@ -79,7 +79,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockSix {
         return 0;
         /* test
          * test */
-//         violation '.* incorrect .* level 0, expected is 8, .* same .* as line 79.'
+// violation '.* incorrect .* level 0, expected is 8, .* same .* as line 79.'
     }
 
     void foo77() {
@@ -91,7 +91,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockSix {
         /* violation */
         new Object()
                 .toString();
-            //violation '.* incorrect .* level 12, expected is 8, .* same .* as line 92.'
+            // violation '.* incorrect .* level 12, expected is 8, .* same .* as line 92.'
     }
     void foo79() {
         /* violation */

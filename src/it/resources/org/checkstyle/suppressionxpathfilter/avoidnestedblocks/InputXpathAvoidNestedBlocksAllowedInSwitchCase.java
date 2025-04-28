@@ -12,7 +12,7 @@ public class InputXpathAvoidNestedBlocksAllowedInSwitchCase {
                 y = -1;
                 break;
             }
-            case 1: { // ok: allowInSwitchCase=true
+            case 1: { // ok : allowInSwitchCase=true
                 x = 2;
                 y = -2;
                 break;
