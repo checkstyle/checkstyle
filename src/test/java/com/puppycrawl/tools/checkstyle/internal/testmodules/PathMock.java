@@ -29,9 +29,15 @@ public class PathMock implements Path, Serializable {
     /** A unique serial version identifier. */
     private static final long serialVersionUID = -7801807253540916684L;
 
+    private final String absolutePath;
     private final Throwable expectedThrowable;
 
     public PathMock(Throwable expectedThrowable) {
+        this(null,expectedThrowable);
+    }
+
+    public PathMock(String absolutePath,Throwable expectedThrowable) {
+        this.absolutePath = absolutePath;
         this.expectedThrowable = expectedThrowable;
     }
 
@@ -49,12 +55,15 @@ public class PathMock implements Path, Serializable {
              */
             @Override
             public String getAbsolutePath() {
+                if(absolutePath!=null){
+                    return absolutePath;
+                }
                 if (expectedThrowable instanceof Error) {
                     throw (Error) expectedThrowable;
                 } else if (expectedThrowable instanceof RuntimeException) {
                     throw (RuntimeException) expectedThrowable;
                 }
-                return "testFile";
+                return null;
             }
 
             @Override
