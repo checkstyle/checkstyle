@@ -2975,7 +2975,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String fileName =
             getPath("InputIndentationMethodPrecededByAnnotationWithParameterOnSeparateLine.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, fileName, expected);
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test
