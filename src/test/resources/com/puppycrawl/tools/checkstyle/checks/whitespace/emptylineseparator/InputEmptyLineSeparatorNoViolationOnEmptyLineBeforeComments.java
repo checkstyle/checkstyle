@@ -52,8 +52,7 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
 
     // Should
     // not
-    // have
-    // oks
+    // have ok
     public int testNoViolation3 = 3;
 
     /*
