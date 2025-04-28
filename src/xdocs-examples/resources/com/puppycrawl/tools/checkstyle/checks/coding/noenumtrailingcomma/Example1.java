@@ -19,7 +19,7 @@ class Example1 {
   }
   enum Foo3 {
     FOO,
-    BAR, //violation, 'Enum should not contain trailing comma'
+    BAR, // violation, 'Enum should not contain trailing comma'
   }
   enum Foo4 {
     FOO,

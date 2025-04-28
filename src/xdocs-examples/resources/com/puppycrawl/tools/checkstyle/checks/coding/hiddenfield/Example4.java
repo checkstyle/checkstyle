@@ -15,7 +15,7 @@ class Example4 {
   private String field;
   private String testField;
 
-  Example4(String testField) { // OK, because ignoreConstructorParameter is true
+  Example4(String testField) { // ok, because ignoreConstructorParameter is true
   }
   void method(String param) {
     String field = param; // violation, ''field' hides a field' field
