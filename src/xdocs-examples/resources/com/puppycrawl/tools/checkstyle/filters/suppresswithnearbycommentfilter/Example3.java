@@ -2,7 +2,8 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="SuppressWithNearbyCommentFilter">
-      <property name="commentFormat" value="OK to catch (\w+) here"/>
+      <property name="commentFormat"
+                value="ok,?\s*(?:allowed\s+)?to catch (\w+) here"/>
       <property name="checkFormat" value="IllegalCatchCheck"/>
       <property name="messageFormat" value="$1"/>
       <property name="influenceFormat" value="-1"/>
@@ -19,7 +20,7 @@ public class Example3 {
       // blah blah blah
     }
     catch(RuntimeException re) {
-      // OK to catch RuntimeException here
+      // ok, allowed to catch RuntimeException here
     }
   }
 }
