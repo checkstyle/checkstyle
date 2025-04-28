@@ -36,7 +36,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
-import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -100,10 +99,7 @@ import de.thetaphi.forbiddenapis.SuppressForbidden;
  * @noinspectionreason ClassWithTooManyDependencies - complex tests require a large number
  *      of imports
  */
-public class CheckerTest extends AbstractModuleTestSupport implements Serializable {
-
-    /** A unique serial version identifier. */
-    private static final long serialVersionUID = -7694345455463706442L;
+public class CheckerTest extends AbstractModuleTestSupport {
 
     @TempDir
     public File temporaryFolder;
@@ -1109,7 +1105,7 @@ public class CheckerTest extends AbstractModuleTestSupport implements Serializab
 
         final String filePath = getPath("InputChecker.java");
         try {
-            checker.process(Collections.singletonList(new File(filePath)));
+            checker.process(Collections.singletonList(Path.of(filePath)));
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
@@ -1293,9 +1289,27 @@ public class CheckerTest extends AbstractModuleTestSupport implements Serializab
     @Test
     public void testExceptionWithNoFileName() {
         final String errorMessage = "Security Exception";
+        final RuntimeException expectedError = new SecurityException(errorMessage);
+
+        final File mock = new File("testFile") {
+            private static final long serialVersionUID = 1L;
+
+            /**
+             * Test is checking catch clause when exception is thrown.
+             *
+             * @noinspection ProhibitedExceptionThrown
+             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
+             *      throw exception as part of test
+             */
+            @Override
+            public String getAbsolutePath() {
+                throw expectedError;
+            }
+        };
+
         final Checker checker = new Checker();
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(PathMock.ofFile(getFileMock()));
+        filesToProcess.add(PathMock.ofFile(mock));
         try {
             checker.process(filesToProcess);
             assertWithMessage("SecurityException is expected!").fail();
@@ -1329,11 +1343,30 @@ public class CheckerTest extends AbstractModuleTestSupport implements Serializab
         checkerConfig.addProperty("cacheFile", cacheFile.toAbsolutePath().toString());
 
         final String errorMessage = "Security Exception";
+        final RuntimeException expectedError = new SecurityException(errorMessage);
+
+        final File mock = new File("testFile") {
+            private static final long serialVersionUID = 1L;
+
+            /**
+             * Test is checking catch clause when exception is thrown.
+             *
+             * @noinspection ProhibitedExceptionThrown
+             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
+             *      throw exception as part of test
+             */
+            @Override
+            public String getAbsolutePath() {
+                throw expectedError;
+            }
+        };
+
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(PathMock.ofFile(getFileMock()));
+        filesToProcess.add(PathMock.ofFile(mock
+        ));
         try {
             checker.process(filesToProcess);
             assertWithMessage("SecurityException is expected!").fail();
@@ -1590,7 +1623,7 @@ public class CheckerTest extends AbstractModuleTestSupport implements Serializab
 
         // super.verify does not work here, for we change the logger
         out.flush();
-        final int errs = checker.process(Collections.singletonList(new File(path)));
+        final int errs = checker.process(Collections.singletonList(Path.of(path)));
         try (ByteArrayInputStream inputStream =
                 new ByteArrayInputStream(out.toByteArray());
             LineNumberReader lnr = new LineNumberReader(
