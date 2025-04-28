@@ -195,7 +195,7 @@ public class Example3 {
     }
     switch (a) {
       case 1: { someMethod(); }
-      default: // OK, as there is no block
+      default: // ok, as there is no block
     }
   }
 

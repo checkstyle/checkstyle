@@ -32,7 +32,7 @@ public class InputMissingJavadocTypeIncorrect {
     class MyMethodClass {}
   }
 
-  // OK, not public
+  // ok, not public
   class AdditionalClass {}
 
   // violation below 'Missing a Javadoc comment.'

@@ -12,7 +12,7 @@ public abstract class Example1 {
   final int a = 0;
   int b = 0;
 
-  public void foo() { // OK, NPath complexity is less than default threshold
+  public void foo() { // ok, NPath complexity is less than default threshold
     // function consists of one if-else block with an NPath Complexity of 3
     if (a > 10) {
       if (a > b) { // nested if-else decision tree adds 2 to the complexity count

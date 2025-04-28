@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.avoidescapedunicodecharacters;
 
 // xdoc section -- start
 public class Example5 {
-  // OK, a normal String below.
+  // ok, a normal String below.
   String unitAbbrev = "μs";
   // violation below, printable escape character. 'should be avoided.'
   String unitAbbrev1 = "\u03bcs";
@@ -24,7 +24,7 @@ public class Example5 {
   String unitAbbrev4 = "\u03bc\u03bcs";
   public static int content() {
     char content = 'r';
-    // OK, non-printable escape character below
+    // ok, non-printable escape character below
     return '\ufeff' + content;
   }
 }
