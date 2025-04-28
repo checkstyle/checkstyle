@@ -833,7 +833,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final Checker checker = new Checker();
         final List<Path> filesToProcess = new ArrayList<>();
-        filesToProcess.add(new PathMock(new IOError(new InternalError(errorMessage))));
+//        filesToProcess.add(new PathMock(new IOError(new InternalError(errorMessage))));
+        filesToProcess.add(new PathMockThrowOnLastModified());
         try {
             checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();

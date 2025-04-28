@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
 import java.io.File;
-import java.io.IOError;
 import java.io.Serializable;
 import java.net.URI;
 import java.nio.file.*;
@@ -31,15 +30,11 @@ public class PathMock implements Path, Serializable {
     private static final long serialVersionUID = -7801807253540916684L;
 
     private final FileMock filemock;
-    private final Throwable expectedThrowable; // Use Throwable to accept both Error and Exception
+    private final Throwable expectedThrowable;
 
-    public PathMock(Throwable expectedThrowable) { // Use Throwable
+    public PathMock(Throwable expectedThrowable) {
         this.expectedThrowable = expectedThrowable;
         this.filemock = new FileMock(expectedThrowable);
-    }
-
-    public PathMock(String errorMessage) {
-        this(new IOError(new InternalError(errorMessage)));
     }
 
     @Override
@@ -166,7 +161,11 @@ public class PathMock implements Path, Serializable {
             super("FileMock");
             this.expectedThrowable = expectedThrowable;
         }
-
+        @Override
+        public long lastModified() {
+            getAbsolutePath();
+            return 0;
+        }
         /**
          * Test is checking catch clause when exception is thrown.
          *
@@ -181,9 +180,9 @@ public class PathMock implements Path, Serializable {
             } else if (expectedThrowable instanceof RuntimeException) {
                 throw (RuntimeException) expectedThrowable;
             } else if (expectedThrowable != null) {
-                throw new RuntimeException(expectedThrowable); // Wrap checked exceptions
+                throw new RuntimeException(expectedThrowable);
             }
-            return null; // Should not reach here if an exception was provided
+            return null;
         }
     }
 }

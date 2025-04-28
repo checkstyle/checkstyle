@@ -155,5 +155,10 @@ public class PathMockThrowOnLastModified implements Path, Serializable {
             // trigger: throw new BuildException("Unable to process files: " + files, ex);
             throw new SecurityException("mock");
         }
+
+        @Override
+        public String getAbsolutePath() {
+            return null;
+        }
     }
 }
