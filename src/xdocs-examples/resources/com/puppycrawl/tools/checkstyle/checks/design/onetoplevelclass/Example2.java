@@ -9,7 +9,7 @@
 package com.puppycrawl.tools.checkstyle.checks.design.onetoplevelclass;
 
 // xdoc section -- start
-class Example2 { // OK, first top-level class
+class Example2 { // ok, first top-level class
   // methods
 }
 

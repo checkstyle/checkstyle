@@ -27,7 +27,7 @@ int[] foo = new int[] {
         <source>
 String[] foo = new String[] {
   &quot;FOO&quot;,
-  &quot;BAR&quot;, //violation
+  &quot;BAR&quot;, // violation
 }
         </source>
       </subsection>

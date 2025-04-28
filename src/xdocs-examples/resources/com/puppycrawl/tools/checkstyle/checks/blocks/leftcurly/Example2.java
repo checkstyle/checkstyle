@@ -13,9 +13,9 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 // xdoc section -- start
 class Example2
-{ // OK
+{
   private interface TestInterface
-  { // OK
+  {
   }
 
   private
@@ -23,7 +23,7 @@ class Example2
     MyClass { // violation, ''{' at column 13 should be on a new line.'
   }
 
-  enum Colors {RED, // OK
+  enum Colors {RED,
     BLUE,
     GREEN;
   }

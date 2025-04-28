@@ -426,7 +426,8 @@ class TestConcatenations {
         s.equals(getInt() + getInt());
         s.endsWith("a");
         String s = "";
-        if (!s.equals("Hi[EOL]"+System.getProperty("line.separator")))//violation 'left.*of.*equals'
+        if (!s.equals("Hi[EOL]"+System.getProperty("line.separator")))
+            // violation above 'left.*of.*equals'
             foo();
     }
 
