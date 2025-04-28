@@ -39,7 +39,7 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   protected void finalize() throws Throwable {
-    super.finalize(); // OK, calls super.finalize()
+    super.finalize(); // ok, calls super.finalize()
   }
 }
 class InvalidExample {

@@ -93,7 +93,7 @@ public class Example1 { }
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.legacy;
-// OK as package.html file is present in directory
+// ok as package.html file is present in directory
 public class Example2 { }
 </code></pre></div>
 

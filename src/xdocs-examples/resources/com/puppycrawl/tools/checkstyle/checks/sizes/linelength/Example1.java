@@ -13,7 +13,7 @@ import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_K
  * ThisJavadocCommentIsAReallyLongWordThatExceedsDefaultLineLimitOfEightyCharacters.
  */
 class Example1 {
-  //violation 3 lines above 'Line is longer than 80 characters'
+  // violation 3 lines above 'Line is longer than 80 characters'
   void testMethod(String str) {
     str = MSG_KEY;
     System.out.println("This is a short line.");

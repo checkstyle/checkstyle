@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicolonaftero
 class Example2 {
   class Nested {
 
-  }; // OK, nested type declarations are ignored
+  }; // ok, nested type declarations are ignored
 
 }; // violation 'Unnecessary semicolon'
 
