@@ -40,7 +40,7 @@ public class InputLeftCurlyTestNlSwitch
             }
             case 3:
             case 4:
-                x++; { // OK, standalone block
+                x++; { // ok, standalone block
                 }
                 break;
             case 5:

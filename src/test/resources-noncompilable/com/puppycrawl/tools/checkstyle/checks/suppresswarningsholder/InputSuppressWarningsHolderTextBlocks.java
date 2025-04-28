@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.suppresswarningsholder;
  */
 public class InputSuppressWarningsHolderTextBlocks {
     @SuppressWarnings({"membername"})
-    String STRING1 = "string"; //ok, suppressed
+    String STRING1 = "string"; // ok, suppressed
 
     @SuppressWarnings({"membername"})
     String STRING2 = """

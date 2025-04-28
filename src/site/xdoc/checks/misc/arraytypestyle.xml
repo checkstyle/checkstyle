@@ -93,9 +93,9 @@ public class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   int[] nums; // violation, 'Array brackets at illegal position'
-  String strings[]; // OK as follows C style since 'javaStyle' set to false
+  String strings[]; // ok as follows C style since 'javaStyle' set to false
 
-  char[] toCharArray() { // OK
+  char[] toCharArray() {
     return null;
   }
 

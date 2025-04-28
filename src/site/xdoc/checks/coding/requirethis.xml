@@ -100,11 +100,11 @@ class Example1 {
   Example1(int field1) {
     this.field1 = field1;
     field2 = 0;
-    foo(5); // OK, methods cannot be overlapped in java.
+    foo(5); // ok, methods cannot be overlapped in java.
   }
 
   void method2(int i) {
-    foo(i); // OK, methods cannot be overlapped in java.
+    foo(i); // ok, methods cannot be overlapped in java.
   }
 
   void foo(int field3) {
@@ -171,11 +171,11 @@ class Example2 {
   Example2(int field1) {
     this.field1 = field1;
     field2 = 0; // violation, reference to instance variable "field2" requires "this"
-    foo(5); // OK, checkMethods is false
+    foo(5); // ok, checkMethods is false
   }
 
   void method2(int i) {
-    foo(i); // OK, checkMethods is false
+    foo(i); // ok, checkMethods is false
   }
 
   void foo(int field3) {
@@ -250,7 +250,7 @@ class Example6 {
   String prefix;
 
   String modifyPrefix(String prefix) {
-    prefix = "^" + prefix + "$";  //OK, because method parameter is returned
+    prefix = "^" + prefix + "$";  // ok, because method parameter is returned
     return prefix;
   }
 }

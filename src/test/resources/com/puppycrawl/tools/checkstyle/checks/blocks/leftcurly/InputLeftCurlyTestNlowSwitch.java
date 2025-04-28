@@ -24,7 +24,7 @@ public class InputLeftCurlyTestNlowSwitch {
             }
             case (1
                 + 0):
-            { // OK, wrapped line
+            { // ok, wrapped line
                 break;
             }
             case 2: {
@@ -32,13 +32,13 @@ public class InputLeftCurlyTestNlowSwitch {
             }
             default
                 :
-            { // OK, wrapped line
+            { // ok, wrapped line
                 break;
             }
             case 3:
             case 4:
                 x++;
-                { // OK, standalone block
+                { // ok, standalone block
                 }
                 break;
             case 5: {
@@ -50,7 +50,7 @@ public class InputLeftCurlyTestNlowSwitch {
         switch (x) {
             case
                 0:
-            { // OK, wrapped line
+            { // ok, wrapped line
                 break;
             }
             default:

@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 // xdoc section -- start
 class Example3
 { // violation, ''{' at column 1 should be on the previous line.'
-  private interface TestInterface { // OK
+  private interface TestInterface {
   }
 
   private
@@ -22,7 +22,7 @@ class Example3
     MyClass { // violation, ''{' at column 13 should be on a new line.'
   }
 
-  enum Colors {RED, // OK
+  enum Colors {RED,
     BLUE,
     GREEN;
   }

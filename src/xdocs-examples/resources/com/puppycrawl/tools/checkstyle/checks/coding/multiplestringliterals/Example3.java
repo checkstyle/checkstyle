@@ -15,12 +15,12 @@ package com.puppycrawl.tools.checkstyle.checks.coding.multiplestringliterals;
 public class Example3 {
   String a = "StringContents"; // violation, "StringContents" occurs twice
   String a1 = "unchecked";
-  @SuppressWarnings("unchecked") // OK, duplicate strings are ignored in annotations
+  @SuppressWarnings("unchecked") // ok, duplicate strings are ignored in annotations
   public void myTest() {
     String a2 = "StringContents";
     String a3 = "DuoString" + "DuoString"; // violation, "DuoString" occurs twice
     String a4 = "SingleString";
-    String a5 = ", " + ", " + ", "; // OK, multiple occurrences of ", " are allowed
+    String a5 = ", " + ", " + ", "; // ok, multiple occurrences of ", " are allowed
   }
 }
 // xdoc section -- end
