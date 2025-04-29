@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.site;
 
 import java.beans.PropertyDescriptor;
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
@@ -681,8 +680,7 @@ public final class SiteUtil {
         treeWalkerConfig.addChild(scraperCheckConfig);
         try {
             checker.configure(defaultConfiguration);
-            final List<File> filesToProcess = List.of(modulePath.toFile());
-            checker.process(filesToProcess);
+            checker.process(List.of(modulePath));
             checker.destroy();
         }
         catch (CheckstyleException checkstyleException) {
