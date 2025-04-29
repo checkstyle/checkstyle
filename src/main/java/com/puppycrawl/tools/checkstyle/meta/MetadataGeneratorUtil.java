@@ -91,11 +91,14 @@ public final class MetadataGeneratorUtil {
         for (String folder : moduleFolders) {
             try (Stream<Path> files = Files.walk(Path.of(path + "/" + folder))) {
                 validFiles.addAll(
-                    files.filter(
-                        file
-                        -> file.endsWith("SuppressWarningsHolder.java")
-                        || file.endsWith("Check.java")
-                        || file.endsWith("Filter.java"))
+                        files.map(Path::toFile)
+                        .filter(file -> {
+                            final String fileName = file.getName();
+                            return fileName.endsWith("SuppressWarningsHolder.java")
+                                    || fileName.endsWith("Check.java")
+                                    || fileName.endsWith("Filter.java");
+                        })
+                        .map(File::toPath)
                         .collect(Collectors.toUnmodifiableList()));
             }
         }

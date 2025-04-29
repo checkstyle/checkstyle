@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.site;
 
 import java.beans.PropertyDescriptor;
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
