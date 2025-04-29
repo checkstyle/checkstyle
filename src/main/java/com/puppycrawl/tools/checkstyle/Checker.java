@@ -240,13 +240,6 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         return errorCount;
     }
 
-    @Override
-    public int process(List<File> files) throws CheckstyleException {
-        return process(files.stream()
-                .map(File::toPath)
-                .collect(Collectors.toUnmodifiableList()));
-    }
-
     /**
      * Returns a set of external configuration resource locations which are used by all file set
      * checks and filters.

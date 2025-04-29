@@ -19,10 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * The first module that is run as part of Checkstyle and controls its entire
@@ -32,20 +30,6 @@ public interface RootModule extends Configurable {
 
     /** Cleans up the object. **/
     void destroy();
-
-    /**
-     * Processes a set of files.
-     * Once this is done, it is highly recommended to call for
-     * the destroy method to close and remove the listeners.
-     *
-     * @param files the list of files to be audited.
-     * @return the total number of audit events with error severity found
-     * @throws CheckstyleException if error condition within Checkstyle occurs
-     * @see #destroy()
-     * @deprecated Use {@link #process(Collection)}
-     */
-    @Deprecated(since = "10.23.1")
-    int process(List<File> files) throws CheckstyleException;
 
     /**
      * Processes a set of files.
