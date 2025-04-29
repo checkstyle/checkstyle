@@ -26,7 +26,9 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -209,7 +211,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     }
 
     @Override
-    public int process(List<File> files) throws CheckstyleException {
+    public int process(Collection<Path> files) throws CheckstyleException {
         if (cacheFile != null) {
             cacheFile.putExternalResources(getExternalResourceLocations());
         }
@@ -221,6 +223,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         }
 
         final List<File> targetFiles = files.stream()
+                .map(Path::toFile)
                 .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
                 .collect(Collectors.toUnmodifiableList());
         processFiles(targetFiles);
