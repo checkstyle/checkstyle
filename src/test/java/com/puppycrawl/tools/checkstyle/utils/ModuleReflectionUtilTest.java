@@ -299,11 +299,6 @@ public class ModuleReflectionUtilTest {
         }
 
         @Override
-        public int process(List<File> files) {
-            return 0;
-        }
-
-        @Override
         public int process(Collection<Path> files) {
             return 0;
         }

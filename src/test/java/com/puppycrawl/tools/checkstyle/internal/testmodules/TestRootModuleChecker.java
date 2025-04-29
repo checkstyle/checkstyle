@@ -52,17 +52,11 @@ public class TestRootModuleChecker implements RootModule {
     }
 
     @Override
-    public int process(List<File> files) {
-        processed = true;
-        filesToCheck = new ArrayList<>(files);
-        return 0;
-    }
-
-    @Override
     public int process(Collection<Path> files) {
-        return process(files.stream()
-                .map(Path::toFile)
-                .collect(Collectors.toUnmodifiableList()));
+        processed = true;
+        filesToCheck = new ArrayList<>(
+                files.stream().map(Path::toFile).collect(Collectors.toUnmodifiableList()));
+        return 0;
     }
 
     @Override
