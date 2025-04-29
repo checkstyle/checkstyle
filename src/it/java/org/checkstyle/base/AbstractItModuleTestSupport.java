@@ -32,7 +32,14 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.MessageFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Properties;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -408,6 +415,12 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         stream.reset();
         final List<Integer> theWarnings = new ArrayList<>();
         Collections.addAll(theWarnings, warnsExpected);
+        final int errs = checker.process(
+                Arrays
+                    .stream(processedFiles)
+                    .map(File::toPath)
+                    .collect(Collectors.toUnmodifiableList())
+        );
         // process each of the lines
         try (ByteArrayInputStream inputStream =
                 new ByteArrayInputStream(stream.toByteArray());
@@ -434,12 +447,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
                     .isTrue();
                 previousLineNumber = lineNumber;
             }
-            final int errs = checker.process(
-                    Arrays
-                            .stream(processedFiles)
-                            .map(File::toPath)
-                            .collect(Collectors.toUnmodifiableList())
-            );
+
             assertWithMessage("unexpected output: %s", lnr.readLine())
                 .that(errs)
                 .isEqualTo(expected.length);
