@@ -228,16 +228,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
 
     @Test
     public void testAddIgnored() throws Exception {
-        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
-        logger.auditStarted(null);
-        final Violation violation =
-                new Violation(1, 1,
-                        "messages.properties", "key", null, SeverityLevel.IGNORE, null,
-                        getClass(), null);
-        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
-        logger.addError(ev);
-        logger.auditFinished(null);
-        verifyXml(getPath("ExpectedXMLLoggerEmpty.xml"), outStream);
+        final String inputFile = "InputXMLLoggerIgnored.java";
+        final String expectedXmlReport = "ExpectedXMLLoggerIgnored.xml";
+        verifyWithInlineConfigParserAndXmlLogger(inputFile, expectedXmlReport);
     }
 
     @Test
