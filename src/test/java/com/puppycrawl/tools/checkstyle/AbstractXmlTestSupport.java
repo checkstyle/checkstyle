@@ -25,6 +25,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -290,7 +291,7 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
         final XMLLogger logger = new XMLLogger(actualXmlOutput,
                 AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         checker.addListener(logger);
-        final List<File> filesToCheck = Collections.singletonList(new File(configFilePath));
+        final List<Path> filesToCheck = Collections.singletonList(Path.of(configFilePath));
         checker.process(filesToCheck);
 
         verifyXml(getPath(expectedXmlReportPath), actualXmlOutput);
@@ -321,9 +322,9 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
                 AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         checker.addListener(logger);
 
-        final List<File> filesToCheck = new ArrayList<>();
+        final List<Path> filesToCheck = new ArrayList<>();
         for (String path : targetFilePaths) {
-            filesToCheck.add(new File(getPath(path)));
+            filesToCheck.add(Path.of(getPath(path)));
         }
 
         checker.process(filesToCheck);
