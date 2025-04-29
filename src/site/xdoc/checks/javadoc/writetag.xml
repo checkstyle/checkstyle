@@ -72,6 +72,8 @@
                     RECORD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
                     COMPACT_CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
+                    BLOCK_COMMENT_BEGIN</a>
                   .
               </td>
               <td>
@@ -85,6 +87,8 @@
                     ANNOTATION_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
                     RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
+                    BLOCK_COMMENT_BEGIN</a>
                   .
               </td>
               <td>4.2</td>
@@ -167,7 +171,7 @@ public class Example2 {
     &lt;module name="WriteTag"&gt;
       &lt;property name="tokens"
                 value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
-                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
+                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF, BLOCK_COMMENT_BEGIN" /&gt;
       &lt;property name="tag" value="@since"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
@@ -205,7 +209,7 @@ public class Example3 {
     &lt;module name="WriteTag"&gt;
       &lt;property name="tokens"
                 value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
-                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
+                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF, BLOCK_COMMENT_BEGIN" /&gt;
       &lt;property name="tag" value="@since"/&gt;
       &lt;property name="tagFormat" value="[1-9\.]"/&gt;
       &lt;property name="tagSeverity" value="ignore"/&gt;
@@ -244,7 +248,7 @@ public class Example4 {
     &lt;module name="WriteTag"&gt;
       &lt;property name="tokens"
                 value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
-                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
+                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF, BLOCK_COMMENT_BEGIN" /&gt;
       &lt;property name="tag" value="@since"/&gt;
       &lt;property name="tagFormat" value="[1-9\.]"/&gt;
       &lt;property name="tagSeverity" value="error"/&gt;
