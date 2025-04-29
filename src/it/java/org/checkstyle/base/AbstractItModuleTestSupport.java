@@ -33,6 +33,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -412,12 +413,14 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
             throws Exception {
         stream.flush();
         stream.reset();
-        final List<File> theFiles = new ArrayList<>();
-        Collections.addAll(theFiles, processedFiles);
         final List<Integer> theWarnings = new ArrayList<>();
         Collections.addAll(theWarnings, warnsExpected);
-        final int errs = checker.process(theFiles);
-
+        final int errs = checker.process(
+                Arrays
+                    .stream(processedFiles)
+                    .map(File::toPath)
+                    .collect(Collectors.toUnmodifiableList())
+        );
         // process each of the lines
         try (ByteArrayInputStream inputStream =
                 new ByteArrayInputStream(stream.toByteArray());
@@ -483,7 +486,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
           String file) throws Exception {
         stream.flush();
         stream.reset();
-        final List<File> files = Collections.singletonList(new File(file));
+        final List<Path> files = Collections.singletonList(Path.of(file));
         final Checker checker = createChecker(config);
         final Map<String, List<String>> actualViolations =
                 getActualViolations(checker.process(files));
