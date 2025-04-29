@@ -72,7 +72,7 @@ public final class MetadataGeneratorUtil {
 
         checker.addListener(new MetadataGeneratorLogger(out, OutputStreamOptions.NONE));
 
-        final List<File> moduleFiles = getTargetFiles(path, moduleFolders);
+        final List<Path> moduleFiles = getTargetFiles(path, moduleFolders);
 
         checker.process(moduleFiles);
     }
@@ -85,19 +85,17 @@ public final class MetadataGeneratorUtil {
      * @return files for scrapping javadoc and generation of metadata files
      * @throws IOException ioException
      */
-    private static List<File> getTargetFiles(String path, String... moduleFolders)
+    private static List<Path> getTargetFiles(String path, String... moduleFolders)
             throws IOException {
-        final List<File> validFiles = new ArrayList<>();
+        final List<Path> validFiles = new ArrayList<>();
         for (String folder : moduleFolders) {
             try (Stream<Path> files = Files.walk(Path.of(path + "/" + folder))) {
                 validFiles.addAll(
-                        files.map(Path::toFile)
-                        .filter(file -> {
-                            final String fileName = file.getName();
-                            return fileName.endsWith("SuppressWarningsHolder.java")
-                                    || fileName.endsWith("Check.java")
-                                    || fileName.endsWith("Filter.java");
-                        })
+                    files.filter(
+                        file
+                        -> file.endsWith("SuppressWarningsHolder.java")
+                        || file.endsWith("Check.java")
+                        || file.endsWith("Filter.java"))
                         .collect(Collectors.toUnmodifiableList()));
             }
         }
