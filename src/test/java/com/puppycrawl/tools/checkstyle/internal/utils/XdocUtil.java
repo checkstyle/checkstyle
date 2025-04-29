@@ -97,9 +97,7 @@ public final class XdocUtil {
         final Set<Path> xdocs = new HashSet<>();
         for (Path entry : files) {
             final String fileName = entry.getFileName().toString();
-            // until https://github.com/checkstyle/checkstyle/issues/13132
-            if (fileName.startsWith("config_")
-                    || !entry.getParent().toString().matches("src[\\\\/]site[\\\\/]xdocs")
+            if (!entry.getParent().toString().matches("src[\\\\/]site[\\\\/]xdocs")
                     && fileName.endsWith(".xml")) {
                 xdocs.add(entry);
             }
