@@ -600,7 +600,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
                 .filter(typeDeclDesc -> {
                     return hasSameNameAsSuperClass(superClassName, typeDeclDesc);
                 })
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
     }
 
     /**
