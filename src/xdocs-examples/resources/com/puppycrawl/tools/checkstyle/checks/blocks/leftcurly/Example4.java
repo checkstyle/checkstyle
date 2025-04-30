@@ -19,7 +19,7 @@ class Example4
 
   private
     class
-    MyClass { // OK
+    MyClass {
   }
 
   enum Colors {RED, // violation, ''{' at column 15 should have line break after.'

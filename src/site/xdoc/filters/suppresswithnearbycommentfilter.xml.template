@@ -77,7 +77,7 @@
         </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure a filter so that
-          <code>// OK to catch (Throwable|Exception|RuntimeException) here</code>
+          <code>// ok to catch (Throwable|Exception|RuntimeException) here</code>
           permits the current and previous line to avoid generating an IllegalCatch
           audit event:
         </p>

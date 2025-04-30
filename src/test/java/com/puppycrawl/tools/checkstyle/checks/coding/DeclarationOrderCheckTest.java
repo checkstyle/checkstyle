@@ -181,14 +181,14 @@ public class DeclarationOrderCheckTest
     public void testForwardReference() throws Exception {
         final String[] expected = {
             "20:5: " + getCheckMessage(MSG_ACCESS),
-            "21:5: " + getCheckMessage(MSG_ACCESS),
             "22:5: " + getCheckMessage(MSG_ACCESS),
             "23:5: " + getCheckMessage(MSG_ACCESS),
             "24:5: " + getCheckMessage(MSG_ACCESS),
             "25:5: " + getCheckMessage(MSG_ACCESS),
-            "31:5: " + getCheckMessage(MSG_ACCESS),
-            "49:5: " + getCheckMessage(MSG_STATIC),
-            "69:5: " + getCheckMessage(MSG_ACCESS),
+            "26:5: " + getCheckMessage(MSG_ACCESS),
+            "32:5: " + getCheckMessage(MSG_ACCESS),
+            "50:5: " + getCheckMessage(MSG_STATIC),
+            "70:5: " + getCheckMessage(MSG_ACCESS),
         };
         verifyWithInlineConfigParser(
                 getPath("InputDeclarationOrderForwardReference.java"), expected);
