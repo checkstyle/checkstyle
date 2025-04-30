@@ -9,7 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.explicitinitialization;
 
 public class InputExplicitInitializationOnlyObjectReference {
     private int x = 0;
-    private Object bar = /* comment test */null; // violation
+    private Object bar = /* comment test */null; // violation 'explicitly initialized'
     private int y = 1;
     private long y1 = 1 - 1;
     private long y3;

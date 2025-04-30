@@ -19,7 +19,7 @@ public class Example2 {
     return null;
   }
 
-  byte getData()[] { // violation, 'Array brackets at illegal position'
+  byte getData()[] { // violation 'Array brackets at illegal position'
     return null;
   }
 }

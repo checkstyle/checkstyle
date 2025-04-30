@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.arraytypestyle;
 
 // xdoc section -- start
 public class Example1 {
-  int[] nums; // ok since default format checks for Java style
+  int[] nums; // violation 'explicitly initialized'
   String strings[]; // violation, 'Array brackets at illegal position'
 
   char[] toCharArray() {
