@@ -19,14 +19,14 @@ public class Example4 {
   public int m1(int p1) { return p1; }
   // 1 violations above:
   //    'Expected @param tag for 'p1''
-  // OK, No missing @return tag violation
+  // ok, No missing @return tag violation
 
   /**
    * @param p1 The first number
    */
   @Deprecated
   private int m2(int p1) { return p1; }
-  // OK, No missing @return tag violation
+  // ok, No missing @return tag violation
 
   /** */
   void m3(int p1) {}

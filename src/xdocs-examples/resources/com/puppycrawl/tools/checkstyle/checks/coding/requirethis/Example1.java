@@ -14,11 +14,11 @@ class Example1 {
   Example1(int field1) {
     this.field1 = field1;
     field2 = 0;
-    foo(5); // OK, methods cannot be overlapped in java.
+    foo(5); // ok, methods cannot be overlapped in java.
   }
 
   void method2(int i) {
-    foo(i); // OK, methods cannot be overlapped in java.
+    foo(i); // ok, methods cannot be overlapped in java.
   }
 
   void foo(int field3) {

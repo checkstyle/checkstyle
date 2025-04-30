@@ -24,7 +24,7 @@
  &lt;pre&gt;
  enum Foo1 {
    FOO,
-   BAR, //violation
+   BAR, // violation
  }
  &lt;/pre&gt;</description>
          <message-keys>

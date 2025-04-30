@@ -22,7 +22,7 @@ public class Example2 {
   public int bar() {
     return 42;
   }
-  //ok below, because inline tag is ignored
+  // ok below, because inline tag is ignored
   /** {@link #equals(Object)} */
   public int baz() {
     return 42;

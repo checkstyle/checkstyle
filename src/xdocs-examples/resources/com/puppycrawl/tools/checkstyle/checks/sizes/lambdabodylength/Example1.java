@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.lambdabodylength;
 
 // xdoc section -- start
 class Example1 {
-  Runnable r = () -> { // OK, length is 10
+  Runnable r = () -> { // ok, length is 10
     System.out.println(2); // line 2 of lambda
     System.out.println(3);
     System.out.println(4);
