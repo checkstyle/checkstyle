@@ -15,7 +15,7 @@ public class Example1
     boolean a = true;
     boolean b = false;
 
-    boolean c = (a & b) | (b ^ a); // OK, 1(&) + 1(|) + 1(^) = 3 (max allowed 3)
+    boolean c = (a & b) | (b ^ a); // ok, 1(&) + 1(|) + 1(^) = 3 (max allowed 3)
 
     boolean d = (a & b) | (b ^ a) | (a ^ b);
     // violation above, 'Boolean expression complexity is 5 (max allowed is 3)'

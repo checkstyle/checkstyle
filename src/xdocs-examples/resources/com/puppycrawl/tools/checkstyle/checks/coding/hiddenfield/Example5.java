@@ -20,7 +20,7 @@ class Example5 {
   void method(String param) {
     String field = param; // violation, ''field' hides a field'
   }
-  void setTestField(String testField) { // OK, because ignoreSetter is true
+  void setTestField(String testField) { // ok, because ignoreSetter is true
     this.field = field;
   }
   Example5 setField(String field) { // violation, ''field' hides a field'
