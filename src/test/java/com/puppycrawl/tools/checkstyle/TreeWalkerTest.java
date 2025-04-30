@@ -412,7 +412,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testRequiredTokenIsEmptyIntArray() throws Exception {
         final File file = new File(temporaryFolder, "file.java");
         try (Writer writer = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
-            // use block: https://github.com/checkstyle/checkstyle/issues/16984
+            // use """ when fixed: https://github.com/checkstyle/checkstyle/issues/16984
             final String configComment = "/*\n"
                     + "com.puppycrawl.tools.checkstyle.TreeWalkerTest"
                     + "$RequiredTokenIsEmptyIntArray\n\n"

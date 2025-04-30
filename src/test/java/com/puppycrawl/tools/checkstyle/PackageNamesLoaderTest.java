@@ -188,7 +188,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
                 return null;
             }
         };
-        final URL url = URL.of(URI.create("https://github.com"), new URLStreamHandler() {
+        final URL url = URL.of(URI.create("https://checkstyle.org"), new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL u) {
                 return urlConnection;

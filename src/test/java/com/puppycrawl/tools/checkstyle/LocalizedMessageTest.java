@@ -114,7 +114,7 @@ public class LocalizedMessageTest {
                 return inputStream;
             }
         };
-        final URL url = URL.of(URI.create("https://github.com"), new URLStreamHandler() {
+        final URL url = URL.of(URI.create("https://checkstyle.org"), new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL u) {
                 return urlConnection;
@@ -171,7 +171,7 @@ public class LocalizedMessageTest {
                 return inputStream;
             }
         };
-        final URL url = URL.of(URI.create("https://github.com"), new URLStreamHandler() {
+        final URL url = URL.of(URI.create("https://checkstyle.org"), new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL u) {
                 return urlConnection;
@@ -196,7 +196,7 @@ public class LocalizedMessageTest {
 
     @Test
     public void testBundleReloadUrlNotNullStreamNull() throws IOException {
-        final URL url = URL.of(URI.create("https://github.com"), new URLStreamHandler() {
+        final URL url = URL.of(URI.create("https://checkstyle.org"), new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL ignore) {
                 return null;
