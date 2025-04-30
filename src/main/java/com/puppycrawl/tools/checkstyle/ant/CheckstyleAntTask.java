@@ -498,7 +498,7 @@ public class CheckstyleAntTask extends Task {
         final List<Path> filesFromPaths = scanPaths();
         allFiles.addAll(filesFromPaths.stream()
             .map(Path::toFile)
-            .collect(Collectors.toUnmodifiableList()));
+            .toList());
 
         return allFiles;
     }
@@ -573,7 +573,7 @@ public class CheckstyleAntTask extends Task {
 
         return allFiles.stream()
             .map(Path::toFile)
-            .collect(Collectors.toUnmodifiableList());
+            .toList();
     }
 
     /**
@@ -591,7 +591,7 @@ public class CheckstyleAntTask extends Task {
 
         return Arrays.stream(fileNames)
           .map(scanner.getBasedir().toPath()::resolve)
-          .collect(Collectors.toUnmodifiableList());
+          .toList();
     }
 
     /**

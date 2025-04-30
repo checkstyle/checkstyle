@@ -5487,22 +5487,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
-    <specifier>type.arguments.not.inferred</specifier>
-    <message>Could not infer type arguments for Stream.collect</message>
-    <lineContent>.collect(Collectors.toUnmodifiableList());</lineContent>
-    <details>
-      unsatisfiable constraint: @Initialized @PolyNull AbstractNode &lt;: @Initialized @NonNull AbstractNode
-      use of T from Collectors.toUnmodifiableList() = @Initialized @NonNull AbstractNode
-      From complementary bound.: use of T from Collectors.toUnmodifiableList() &lt;= @Initialized @NonNull AbstractNode
-      inference type: java.util.List&lt;T&gt; &lt;: @UnknownInitialization @Nullable List&lt;@Initialized @NonNull AbstractNode&gt;
-      use of R from getItems(event).stream().map(AbstractNode.class::cast).collect(Collectors.toUnmodifiableList()) &lt;: @UnknownInitialization @Nullable List&lt;@Initialized @NonNull AbstractNode&gt;
-      From complementary bound.: use of R from getItems(event).stream().map(AbstractNode.class::cast).collect(Collectors.toUnmodifiableList()) -&gt; @UnknownInitialization @Nullable List&lt;@Initialized @NonNull AbstractNode&gt;
-      From: Constraint between method call type and target type for method call:getItems(event).stream().map(AbstractNode.class::cast).collect(Collectors.toUnmodifiableList())
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/BaseCellEditor.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>

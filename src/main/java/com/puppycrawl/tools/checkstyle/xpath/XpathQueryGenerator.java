@@ -145,7 +145,7 @@ public class XpathQueryGenerator {
         return getMatchingAstElements()
             .stream()
             .map(XpathQueryGenerator::generateXpathQuery)
-            .collect(Collectors.toUnmodifiableList());
+            .toList();
     }
 
     /**

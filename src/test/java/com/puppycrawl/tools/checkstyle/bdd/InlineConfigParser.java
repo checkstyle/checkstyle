@@ -512,7 +512,7 @@ public final class InlineConfigParser {
         return lines.stream()
                 .skip(1)
                 .takeWhile(line -> !line.startsWith("*/"))
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
     }
 
     private static void handleXmlConfig(TestInputConfiguration.Builder testInputConfigBuilder,

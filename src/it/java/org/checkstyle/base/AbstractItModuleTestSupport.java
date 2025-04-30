@@ -536,10 +536,10 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         final List<Integer> actualViolationLines = actualViolations.stream()
                 .map(violation -> violation.substring(0, violation.indexOf(':')))
                 .map(Integer::valueOf)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
         final List<Integer> expectedViolationLines = testInputViolations.stream()
                 .map(TestInputViolation::getLineNo)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
         assertWithMessage("Violation lines for %s differ.", file)
                 .that(actualViolationLines)
                 .isEqualTo(expectedViolationLines);

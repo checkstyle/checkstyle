@@ -66,7 +66,7 @@ public final class UnmodifiableCollectionUtil {
     public static <S, T> List<T> unmodifiableList(Collection<S> items, Class<T> elementType) {
         return items.stream()
                 .map(elementType::cast)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
     }
 
     /**
