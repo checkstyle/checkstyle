@@ -3066,6 +3066,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.UpperEllCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.SuppressionFileGeneratorAuditListener</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheckTest</param>
