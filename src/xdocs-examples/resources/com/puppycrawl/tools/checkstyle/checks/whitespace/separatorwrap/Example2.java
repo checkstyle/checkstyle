@@ -23,7 +23,7 @@ class Example2 {
     Arrays.sort(stringArray, String::
       compareToIgnoreCase);
     Arrays.sort(stringArray, String
-      ::compareTo); // OK, because it is on a new line
+      ::compareTo); // ok, because it is on a new line
   }
 }
 // xdoc section -- end

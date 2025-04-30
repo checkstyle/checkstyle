@@ -36,8 +36,8 @@ class InputFormattedWhitespaceAroundBasic {
     b = 1;
     b += 1;
     b -= -1 + (+b);
-    b = b++ + b--; // ok
-    b = ++b - --b; // ok
+    b = b++ + b--;
+    b = ++b - --b;
   }
 
   /** method. */
@@ -76,10 +76,10 @@ class InputFormattedWhitespaceAroundBasic {
 
   /** test casts. */
   private void testCasts() {
-    Object o = (Object) new Object(); // ok
-    o = (Object) o; // ok
-    o = (Object) o; // ok
-    o = (Object) o; // ok
+    Object o = (Object) new Object();
+    o = (Object) o;
+    o = (Object) o;
+    o = (Object) o;
   }
 
   /** test questions. */
@@ -126,10 +126,9 @@ class InputFormattedWhitespaceAroundBasic {
 
   /** assert statement test. */
   public void assertTest() {
-    // OK
+
     assert true;
 
-    // OK
     assert true : "Whups";
 
     // evil colons, should be OK
@@ -209,7 +208,7 @@ class InputFormattedWhitespaceAroundBasic {
       for (int x : ll) {}
       for (int x : ll) {}
       for (int x : ll) {}
-      for (int x : ll) {} // ok
+      for (int x : ll) {}
     }
   }
 
@@ -220,8 +219,8 @@ class InputFormattedWhitespaceAroundBasic {
 
       l = () -> {};
       l = () -> {};
-      l = () -> {}; // ok
-      l = () -> {}; // ok
+      l = () -> {};
+      l = () -> {};
 
       java.util.Arrays.sort(null, String::compareToIgnoreCase);
       java.util.Arrays.sort(null, String::compareToIgnoreCase);

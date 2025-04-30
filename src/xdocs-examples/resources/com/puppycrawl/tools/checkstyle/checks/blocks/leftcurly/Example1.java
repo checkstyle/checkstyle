@@ -17,10 +17,10 @@ class Example1
 
   private
     class
-    MyClass { // OK
+    MyClass {
   }
 
-  enum Colors {RED, // OK
+  enum Colors {RED,
     BLUE,
     GREEN;
   }
