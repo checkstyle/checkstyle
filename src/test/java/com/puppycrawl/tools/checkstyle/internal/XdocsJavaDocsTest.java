@@ -272,7 +272,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         result.append("\n<ul>");
 
         for (List<Node> property : CHECK_PROPERTIES) {
-            final String propertyName = getNodeText(property.get(0));
+            final String propertyName = getNodeText(property.getFirst());
 
             result.append("\n<li>\nProperty {@code ");
             result.append(propertyName);

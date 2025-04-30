@@ -107,7 +107,7 @@ public class XdocsUrlTest {
         }
         final Map<String, List<String>> checksNamesMap = getXdocsMap();
         for (List<String> sub : checkHandler.checkNamesList) {
-            final String moduleName = sub.get(0);
+            final String moduleName = sub.getFirst();
             final String checkNameInAttribute = sub.get(1);
             final String checkNameInText = sub.get(2);
             final String checkNameInconsistentErrorMsg = String.format(Locale.ROOT,

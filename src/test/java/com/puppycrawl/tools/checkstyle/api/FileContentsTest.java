@@ -93,7 +93,7 @@ public class FileContentsTest {
         assertWithMessage("Invalid cpp comment")
                 .that(lineComment)
                 .isEqualTo(cppComment.toString());
-        final String blockComment = fileContents.getBlockComments().get(1).get(0).toString();
+        final String blockComment = fileContents.getBlockComments().get(1).getFirst().toString();
         assertWithMessage("Invalid c comment")
                 .that(blockComment)
                 .isEqualTo(cComment.toString());
@@ -153,7 +153,7 @@ public class FileContentsTest {
         final Map<Integer, List<TextBlock>> comments = fileContents.getBlockComments();
 
         assertWithMessage("Invalid comment")
-                .that(comments.get(1).get(0).toString())
+                .that(comments.get(1).getFirst().toString())
                 .isEqualTo(new Comment(new String[] {"/"}, 2, 1, 2).toString());
     }
 
@@ -310,7 +310,7 @@ public class FileContentsTest {
         fileContents.reportBlockComment(3, 2, 4, 2);
         final Map<Integer, List<TextBlock>> blockComments =
             fileContents.getBlockComments();
-        final String[] text = blockComments.get(3).get(0).getText();
+        final String[] text = blockComments.get(3).getFirst().getText();
 
         assertWithMessage("Invalid comment text")
                 .that(text)

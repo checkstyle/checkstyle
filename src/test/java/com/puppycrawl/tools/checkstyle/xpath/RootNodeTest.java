@@ -74,7 +74,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid number of nodes")
             .that(nodes)
             .hasSize(1);
-        final NodeInfo firstNode = nodes.get(0);
+        final NodeInfo firstNode = nodes.getFirst();
         assertWithMessage("Should return true, because selected node is RootNode")
                 .that(firstNode)
                 .isInstanceOf(RootNode.class);

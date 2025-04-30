@@ -372,10 +372,9 @@ public final class CommonUtil {
     public static URI getWebOrFileProtocolUri(String filename) {
         URI uri;
         try {
-            final URL url = new URL(filename);
-            uri = url.toURI();
+            uri = URI.create(filename).toURL().toURI();
         }
-        catch (URISyntaxException | MalformedURLException ignored) {
+        catch (URISyntaxException | MalformedURLException | IllegalArgumentException ignored) {
             uri = null;
         }
         return uri;

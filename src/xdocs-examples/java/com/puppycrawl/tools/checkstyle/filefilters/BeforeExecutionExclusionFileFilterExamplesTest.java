@@ -23,7 +23,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +51,7 @@ public class BeforeExecutionExclusionFileFilterExamplesTest
         expected.put(getNonCompilablePath("test/generated_TestCase1.java"), messages);
         expected.put(getNonCompilablePath("module-info.java"), messages);
 
-        final Path path = Paths.get("src/xdocs-examples/resources-noncompilable/"
+        final Path path = Path.of("src/xdocs-examples/resources-noncompilable/"
                 + getPackageLocation() + "/");
 
         final String fileWithConfig = getNonCompilablePath("Example1.java");
@@ -72,7 +71,7 @@ public class BeforeExecutionExclusionFileFilterExamplesTest
         expected.put(getNonCompilablePath("test/generated_StubBankRemote.java"), messages);
         expected.put(getNonCompilablePath("test/generated_TestCase1.java"), messages);
 
-        final Path path = Paths.get("src/xdocs-examples/resources-noncompilable/"
+        final Path path = Path.of("src/xdocs-examples/resources-noncompilable/"
                 + getPackageLocation() + "/");
 
         final String fileWithConfig = getNonCompilablePath("Example2.java");
@@ -91,7 +90,7 @@ public class BeforeExecutionExclusionFileFilterExamplesTest
                 List.of("1: File name must start with an uppercase.");
         expected.put(getNonCompilablePath("test/generated_StubBankRemote.java"), messages);
 
-        final Path path = Paths.get("src/xdocs-examples/resources-noncompilable/"
+        final Path path = Path.of("src/xdocs-examples/resources-noncompilable/"
                 + getPackageLocation() + "/");
 
         final String fileWithConfig = getNonCompilablePath("Example3.java");
@@ -107,7 +106,7 @@ public class BeforeExecutionExclusionFileFilterExamplesTest
     public void testExample4() throws Exception {
         final Map<String, List<String>> expected = new HashMap<>();
 
-        final Path path = Paths.get("src/xdocs-examples/resources-noncompilable/"
+        final Path path = Path.of("src/xdocs-examples/resources-noncompilable/"
                 + getPackageLocation() + "/");
 
         final String fileWithConfig = getNonCompilablePath("Example4.java");

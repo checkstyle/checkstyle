@@ -119,11 +119,13 @@ public class TreeTableTest extends AbstractGuiTestSupport {
         xpathTextArea.setText("//CLASS_DEF");
         findNodeButton.doClick();
 
-        final String expected = "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='InputTreeTableXpathAreaPanel']]\n"
-                + "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputTreeTableXpathAreaPanel']]"
-                + "/OBJBLOCK/CLASS_DEF"
-                + "[./IDENT[@text='Inner']]\n";
+        final String expected = """
+                /COMPILATION_UNIT/CLASS_DEF[./IDENT\
+                [@text='InputTreeTableXpathAreaPanel']]
+                /COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputTreeTableXpathAreaPanel']]\
+                /OBJBLOCK/CLASS_DEF\
+                [./IDENT[@text='Inner']]
+                """;
 
         assertWithMessage("Expected and actual XPath queries should match.")
                 .that(xpathTextArea.getText())
@@ -139,25 +141,27 @@ public class TreeTableTest extends AbstractGuiTestSupport {
         xpathTextArea.setText("//IDENT");
         findNodeButton.doClick();
 
-        final String expected = "/COMPILATION_UNIT/CLASS_DEF/IDENT"
-                + "[@text='InputTreeTableXpathAreaPanel']\n"
-                + "/COMPILATION_UNIT/PACKAGE_DEF/DOT/IDENT[@text='treetable']\n"
-                + "/COMPILATION_UNIT/PACKAGE_DEF/DOT[./IDENT[@text='treetable']]/DOT/IDENT"
-                + "[@text='gui']\n"
-                + "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputTreeTableXpathAreaPanel']]"
-                + "/OBJBLOCK/CLASS_DEF/IDENT[@text='Inner']\n"
-                + "/COMPILATION_UNIT/PACKAGE_DEF/DOT[./IDENT[@text='treetable']]/DOT[./IDENT"
-                + "[@text='gui']]/DOT/IDENT[@text='checkstyle']\n"
-                + "/COMPILATION_UNIT/PACKAGE_DEF/DOT[./IDENT[@text='treetable']]/DOT[./IDENT"
-                + "[@text='gui']]/DOT[./IDENT[@text='checkstyle']]/DOT/IDENT[@text='tools']\n"
-                + "/COMPILATION_UNIT/PACKAGE_DEF/DOT[./IDENT[@text='treetable']]/DOT[./IDENT"
-                + "[@text='gui']]"
-                + "/DOT[./IDENT[@text='checkstyle']]/DOT[./IDENT[@text='tools']]/DOT/IDENT"
-                + "[@text='com']\n"
-                + "/COMPILATION_UNIT/PACKAGE_DEF/DOT[./IDENT[@text='treetable']]/DOT[./IDENT"
-                + "[@text='gui']]"
-                + "/DOT[./IDENT[@text='checkstyle']]/DOT[./IDENT[@text='tools']]/DOT[./IDENT"
-                + "[@text='com']]/IDENT[@text='puppycrawl']\n";
+        final String expected = """
+                /COMPILATION_UNIT/CLASS_DEF/IDENT\
+                [@text='InputTreeTableXpathAreaPanel']
+                /COMPILATION_UNIT/PACKAGE_DEF/DOT/IDENT[@text='treetable']
+                /COMPILATION_UNIT/PACKAGE_DEF/DOT[./IDENT[@text='treetable']]/DOT/IDENT\
+                [@text='gui']
+                /COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputTreeTableXpathAreaPanel']]\
+                /OBJBLOCK/CLASS_DEF/IDENT[@text='Inner']
+                /COMPILATION_UNIT/PACKAGE_DEF/DOT[./IDENT[@text='treetable']]/DOT[./IDENT\
+                [@text='gui']]/DOT/IDENT[@text='checkstyle']
+                /COMPILATION_UNIT/PACKAGE_DEF/DOT[./IDENT[@text='treetable']]/DOT[./IDENT\
+                [@text='gui']]/DOT[./IDENT[@text='checkstyle']]/DOT/IDENT[@text='tools']
+                /COMPILATION_UNIT/PACKAGE_DEF/DOT[./IDENT[@text='treetable']]/DOT[./IDENT\
+                [@text='gui']]\
+                /DOT[./IDENT[@text='checkstyle']]/DOT[./IDENT[@text='tools']]/DOT/IDENT\
+                [@text='com']
+                /COMPILATION_UNIT/PACKAGE_DEF/DOT[./IDENT[@text='treetable']]/DOT[./IDENT\
+                [@text='gui']]\
+                /DOT[./IDENT[@text='checkstyle']]/DOT[./IDENT[@text='tools']]/DOT[./IDENT\
+                [@text='com']]/IDENT[@text='puppycrawl']
+                """;
 
         assertWithMessage("Expected and actual XPath queries should match.")
                 .that(xpathTextArea.getText())

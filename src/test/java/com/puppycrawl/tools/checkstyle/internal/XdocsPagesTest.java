@@ -32,7 +32,6 @@ import java.lang.reflect.ParameterizedType;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
@@ -454,20 +453,20 @@ public class XdocsPagesTest {
 
     @Test
     public void testAlphabetOrderAtIndexPages() throws Exception {
-        final Path allChecks = Paths.get("src/site/xdoc/checks.xml");
+        final Path allChecks = Path.of("src/site/xdoc/checks.xml");
         validateOrder(allChecks, "Check");
 
         final String[] groupNames = {"annotation", "blocks", "design",
             "coding", "header", "imports", "javadoc", "metrics",
             "misc", "modifier", "naming", "regexp", "sizes", "whitespace"};
         for (String name : groupNames) {
-            final Path checks = Paths.get("src/site/xdoc/checks/" + name + "/index.xml");
+            final Path checks = Path.of("src/site/xdoc/checks/" + name + "/index.xml");
             validateOrder(checks, "Check");
         }
-        final Path filters = Paths.get("src/site/xdoc/filters/index.xml");
+        final Path filters = Path.of("src/site/xdoc/filters/index.xml");
         validateOrder(filters, "Filter");
 
-        final Path fileFilters = Paths.get("src/site/xdoc/filefilters/index.xml");
+        final Path fileFilters = Path.of("src/site/xdoc/filefilters/index.xml");
         validateOrder(fileFilters, "File Filter");
     }
 
@@ -1027,7 +1026,7 @@ public class XdocsPagesTest {
                     .that(columns)
                     .hasSize(5);
 
-                final String propertyName = columns.get(0).getTextContent();
+                final String propertyName = columns.getFirst().getTextContent();
                 tablePropertyNames.add(propertyName);
             });
 
@@ -1113,7 +1112,7 @@ public class XdocsPagesTest {
             if (skip) {
                 assertWithMessage(fileName + " section '" + sectionName
                                 + "' should have the specific title")
-                    .that(columns.get(0).getTextContent())
+                    .that(columns.getFirst().getTextContent())
                     .isEqualTo("name");
                 assertWithMessage(fileName + " section '" + sectionName
                                 + "' should have the specific title")
@@ -1141,7 +1140,7 @@ public class XdocsPagesTest {
                     .that(didTokens)
                     .isFalse();
 
-            final String propertyName = columns.get(0).getTextContent();
+            final String propertyName = columns.getFirst().getTextContent();
             assertWithMessage(fileName + " section '" + sectionName
                         + "' should not contain the property: " + propertyName)
                     .that(properties.remove(propertyName))
@@ -1420,8 +1419,7 @@ public class XdocsPagesTest {
     private static String getPatternArrayPropertyValue(Object fieldValue) {
         Object value = fieldValue;
         String result;
-        if (value instanceof Collection) {
-            final Collection<?> collection = (Collection<?>) value;
+        if (value instanceof Collection<?> collection) {
             final Pattern[] newArray = new Pattern[collection.size()];
             final Iterator<?> iterator = collection.iterator();
             int index = 0;
@@ -1468,8 +1466,7 @@ public class XdocsPagesTest {
         }
         else {
             final Stream<?> valuesStream;
-            if (value instanceof Collection) {
-                final Collection<?> collection = (Collection<?>) value;
+            if (value instanceof Collection<?> collection) {
                 valuesStream = collection.stream();
             }
             else {
@@ -1501,13 +1498,12 @@ public class XdocsPagesTest {
      */
     private static String getIntArrayPropertyValue(Object value) {
         final IntStream stream;
-        if (value instanceof Collection) {
-            final Collection<?> collection = (Collection<?>) value;
+        if (value instanceof Collection<?> collection) {
             stream = collection.stream()
                     .mapToInt(number -> (int) number);
         }
-        else if (value instanceof BitSet) {
-            stream = ((BitSet) value).stream();
+        else if (value instanceof BitSet set) {
+            stream = set.stream();
         }
         else {
             stream = Arrays.stream((int[]) value);
@@ -1624,8 +1620,10 @@ public class XdocsPagesTest {
         }
 
         if (expectedText.length() > 0) {
-            expectedText.append("All messages can be customized if the default message doesn't "
-                    + "suit you.\nPlease see the documentation to learn how to.");
+            expectedText.append("""
+                    All messages can be customized if the default message doesn't \
+                    suit you.
+                    Please see the documentation to learn how to.""");
         }
 
         if (subSection == null) {
@@ -1831,7 +1829,7 @@ public class XdocsPagesTest {
                         fileName, lastRuleName, lastRuleNumberParts, ruleName);
 
                 if (!"--".equals(ruleName)) {
-                    validateStyleAnchors(XmlUtil.findChildElementsByTag(columns.get(0), "a"),
+                    validateStyleAnchors(XmlUtil.findChildElementsByTag(columns.getFirst(), "a"),
                             fileName, ruleName);
                 }
 

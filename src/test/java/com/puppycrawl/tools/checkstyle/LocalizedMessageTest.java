@@ -24,6 +24,7 @@ import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
@@ -113,7 +114,7 @@ public class LocalizedMessageTest {
                 return inputStream;
             }
         };
-        final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
+        final URL url = URL.of(URI.create("https://github.com"), new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL u) {
                 return urlConnection;
@@ -170,7 +171,7 @@ public class LocalizedMessageTest {
                 return inputStream;
             }
         };
-        final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
+        final URL url = URL.of(URI.create("https://github.com"), new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL u) {
                 return urlConnection;
@@ -195,7 +196,7 @@ public class LocalizedMessageTest {
 
     @Test
     public void testBundleReloadUrlNotNullStreamNull() throws IOException {
-        final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
+        final URL url = URL.of(URI.create("https://github.com"), new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL ignore) {
                 return null;

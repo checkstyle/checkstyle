@@ -64,14 +64,14 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     private static final Locale[] ALL_LOCALES = {
         Locale.CHINESE,
         Locale.ENGLISH,
-        new Locale("es"),
-        new Locale("fi"),
+            Locale.of("es"),
+            Locale.of("fi"),
         Locale.FRENCH,
         Locale.GERMAN,
         Locale.JAPANESE,
-        new Locale("pt"),
-        new Locale("ru"),
-        new Locale("tr"),
+            Locale.of("pt"),
+            Locale.of("ru"),
+            Locale.of("tr"),
     };
 
     private static final Map<String, Set<String>> CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE =
@@ -415,9 +415,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 throw new CheckstyleException("Couldn't find check: " + checkName, ex);
             }
             final AbstractCheck check;
-            if (instance instanceof AbstractCheck
-                    && !isAllTokensAcceptable((AbstractCheck) instance)) {
-                check = (AbstractCheck) instance;
+            if (instance instanceof AbstractCheck abstractCheck
+                    && !isAllTokensAcceptable(abstractCheck)) {
+                check = abstractCheck;
             }
             else {
                 // we can not have in our config test for all tokens

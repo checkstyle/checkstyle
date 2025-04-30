@@ -17,10 +17,10 @@ jobs:
     if: github.repository == 'checkstyle/checkstyle'
     runs-on: ubuntu-latest
     steps:
-      - name: Set up JDK 11
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: 11
+          java-version: 21
           distribution: 'temurin'
 
       - name: Install dependencies
@@ -35,10 +35,10 @@ jobs:
     if: github.repository == 'checkstyle/checkstyle'
     runs-on: ubuntu-latest
     steps:
-      - name: Set up JDK 11
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: 11
+          java-version: 21
           distribution: 'temurin'
 
       - name: Install dependencies
@@ -53,10 +53,10 @@ jobs:
     if: github.repository == 'checkstyle/checkstyle'
     runs-on: ubuntu-latest
     steps:
-      - name: Set up JDK 11
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: 11
+          java-version: 21
           distribution: 'temurin'
 
       - name: Install dependencies
@@ -71,10 +71,10 @@ jobs:
     if: github.repository == 'checkstyle/checkstyle'
     runs-on: ubuntu-latest
     steps:
-      - name: Set up JDK 11
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: 11
+          java-version: 21
           distribution: 'temurin'
 
       - name: Install dependencies

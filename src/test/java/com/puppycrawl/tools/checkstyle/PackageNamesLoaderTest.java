@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpecte
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
@@ -187,7 +188,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
                 return null;
             }
         };
-        final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
+        final URL url = URL.of(URI.create("https://github.com"), new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL u) {
                 return urlConnection;

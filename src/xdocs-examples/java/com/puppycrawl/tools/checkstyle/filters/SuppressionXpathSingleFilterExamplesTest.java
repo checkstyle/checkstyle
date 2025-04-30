@@ -27,7 +27,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -274,7 +273,7 @@ public class SuppressionXpathSingleFilterExamplesTest extends AbstractExamplesMo
                             "^[A-Z][a-zA-Z0-9]*$"));
         expected.put(getPath("src/myApplication.java"), messages);
 
-        final Path path = Paths.get("src/xdocs-examples/resources/" + getPackageLocation() + "/");
+        final Path path = Path.of("src/xdocs-examples/resources/" + getPackageLocation() + "/");
 
         final String fileWithConfig = getPath("Example14.java");
         final TestInputConfiguration testInputConfiguration =

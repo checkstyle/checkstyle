@@ -93,7 +93,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
             .that(headerRegexps.size())
             .isEqualTo(1);
         assertWithMessage("Invalid header regexp")
-            .that(headerRegexps.get(0).pattern())
+            .that(headerRegexps.getFirst().pattern())
             .isEqualTo(header);
     }
 

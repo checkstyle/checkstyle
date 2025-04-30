@@ -79,11 +79,12 @@ public class GeneratedJavaTokenTypesTest {
      */
     @Test
     public void testTokenNumbering() {
-        final String message = "A token's number has changed. Please open"
-                + " 'GeneratedJavaTokenTypesTest' and confirm which token is at fault.\n"
-                + "Token numbers must not change or else they will create a conflict"
-                + " with users.\n\n"
-                + "See Issue: https://github.com/checkstyle/checkstyle/issues/505";
+        final String message = """
+                A token's number has changed. Please open\
+                 'GeneratedJavaTokenTypesTest' and confirm which token is at fault.
+                Token numbers must not change or else they will create a conflict\
+                 with users.
+                See Issue: https://github.com/checkstyle/checkstyle/issues/505""";
 
         // Read JavaDoc before changing
         assertWithMessage(message)

@@ -201,7 +201,7 @@ public class XpathUtilTest {
                 .that(children)
                 .hasSize(1);
         assertWithMessage("Node depth should be 1")
-                .that(children.get(0).getDepth())
+                .that(children.getFirst().getDepth())
                 .isEqualTo(1);
     }
 

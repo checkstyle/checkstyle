@@ -25,7 +25,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,7 +49,7 @@ public class RegexpOnFilenameCheckExamplesTest extends AbstractExamplesModuleTes
         final List<String> messages = List.of("1: " + getCheckMessage(MSG_MATCH, "", "\\s"));
         expected.put(getPath("Test Example1.xml"), messages);
 
-        final Path path = Paths.get("src/xdocs-examples/resources/" + getPackageLocation() + "/");
+        final Path path = Path.of("src/xdocs-examples/resources/" + getPackageLocation() + "/");
 
         final String configFilePath = getPath("Example1.java");
         final TestInputConfiguration testInputConfiguration1 =
@@ -69,7 +68,7 @@ public class RegexpOnFilenameCheckExamplesTest extends AbstractExamplesModuleTes
         expected.put(getPath("TestExample2.xml"), messages);
         expected.put(getPath("TestExample4.xml"), messages);
 
-        final Path path = Paths.get("src/xdocs-examples/resources/" + getPackageLocation() + "/");
+        final Path path = Path.of("src/xdocs-examples/resources/" + getPackageLocation() + "/");
 
         final String configFilePath = getPath("Example2.java");
         final TestInputConfiguration testInputConfiguration1 =
@@ -86,7 +85,7 @@ public class RegexpOnFilenameCheckExamplesTest extends AbstractExamplesModuleTes
         expected.put(getPath("TestExample3.md"),
                 List.of("1: No *.md files other than README.md"));
 
-        final Path path = Paths.get("src/xdocs-examples/resources/" + getPackageLocation() + "/");
+        final Path path = Path.of("src/xdocs-examples/resources/" + getPackageLocation() + "/");
 
         final String configFilePath = getPath("Example3.java");
         final TestInputConfiguration testInputConfiguration1 =
@@ -110,7 +109,7 @@ public class RegexpOnFilenameCheckExamplesTest extends AbstractExamplesModuleTes
         expected.put(getPath("Example4.java"), messages);
         expected.put(getPath("Example5.java"), messages);
 
-        final Path path = Paths.get("src/xdocs-examples/resources/" + getPackageLocation() + "/");
+        final Path path = Path.of("src/xdocs-examples/resources/" + getPackageLocation() + "/");
 
         final String configFilePath = getPath("Example4.java");
         final TestInputConfiguration testInputConfiguration1 =
@@ -128,7 +127,7 @@ public class RegexpOnFilenameCheckExamplesTest extends AbstractExamplesModuleTes
         expected.put(getPath("checkstyle.xml"), messages);
         expected.put(getPath("Test Example1.xml"), messages);
 
-        final Path path = Paths.get("src/xdocs-examples/resources/" + getPackageLocation() + "/");
+        final Path path = Path.of("src/xdocs-examples/resources/" + getPackageLocation() + "/");
 
         final String configFilePath = getPath("Example5.java");
         final TestInputConfiguration testInputConfiguration1 =
