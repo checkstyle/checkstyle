@@ -291,7 +291,7 @@ public class AbstractAutomaticBeanTest {
 
         final List<String> actualPatternStrings = Arrays.stream(bean.patterns)
                 .map(Pattern::pattern)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
 
         assertWithMessage("invalid size of result")
                 .that(bean.patterns)
@@ -312,7 +312,7 @@ public class AbstractAutomaticBeanTest {
 
         final List<String> actualPatternStrings = Arrays.stream(bean.patterns)
                 .map(Pattern::pattern)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
 
         assertWithMessage("invalid size of result")
                 .that(bean.patterns)

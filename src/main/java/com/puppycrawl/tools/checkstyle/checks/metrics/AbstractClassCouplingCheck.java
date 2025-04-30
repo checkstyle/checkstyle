@@ -169,7 +169,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     public final void setExcludedPackages(String... excludedPackages) {
         final List<String> invalidIdentifiers = Arrays.stream(excludedPackages)
             .filter(Predicate.not(CommonUtil::isName))
-            .collect(Collectors.toUnmodifiableList());
+            .toList();
         if (!invalidIdentifiers.isEmpty()) {
             throw new IllegalArgumentException(
                 "the following values are not valid identifiers: " + invalidIdentifiers);

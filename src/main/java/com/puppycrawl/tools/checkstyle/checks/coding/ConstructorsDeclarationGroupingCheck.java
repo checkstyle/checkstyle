@@ -121,7 +121,7 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
             // create a list of all constructors that are not grouped to log
             final List<DetailAST> constructorsToLog = childrenAfterFirstNonConstructor.stream()
                     .filter(ConstructorsDeclarationGroupingCheck::isConstructor)
-                    .collect(Collectors.toUnmodifiableList());
+                    .toList();
 
             // find the last grouped constructor
             final DetailAST lastGroupedConstructor = childrenAfterFirstConstructor.stream()
