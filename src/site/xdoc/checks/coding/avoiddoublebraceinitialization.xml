@@ -62,7 +62,7 @@ class Example1 {
     }
   };
   List&lt;Object&gt; list = new ArrayList&lt;&gt;() {
-    // OK, as it is not double brace pattern
+    // ok, as it is not double brace pattern
     private int field;
     {
       add(new Object());
