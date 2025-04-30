@@ -23,7 +23,7 @@
  &lt;pre&gt;
  String[] foo = new String[] {
    "FOO",
-   "BAR", //violation
+   "BAR", // violation
  }
  &lt;/pre&gt;</description>
          <message-keys>

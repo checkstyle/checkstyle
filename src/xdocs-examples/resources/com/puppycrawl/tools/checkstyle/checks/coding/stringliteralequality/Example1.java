@@ -23,7 +23,7 @@ class Example1 {
     boolean flag1 = (status.equals("done"));
     String name = "X";
     if (name == getName()) {}
-    // OK, limitation that check cannot tell runtime type returned from method call
+    // ok, limitation that check cannot tell runtime type returned from method call
   }
 }
 // xdoc section -- end
