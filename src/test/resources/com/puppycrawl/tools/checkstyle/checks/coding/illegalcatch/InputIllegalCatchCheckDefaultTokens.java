@@ -20,11 +20,11 @@ public class InputIllegalCatchCheckDefaultTokens {
     public void bar() {
         try { /* fully qualified class names */
         } catch (java.lang.RuntimeException e) {
-            //violation above "Catching 'java.lang.RuntimeException' is not allowed"
+            // violation above "Catching 'java.lang.RuntimeException' is not allowed"
         } catch (java.lang.Exception e) {
-            //violation above "Catching 'java.lang.Exception' is not allowed"
+            // violation above "Catching 'java.lang.Exception' is not allowed"
         } catch (java.lang.Throwable e) {
-            //violation above "Catching 'java.lang.Throwable' is not allowed"
+            // violation above "Catching 'java.lang.Throwable' is not allowed"
         }
     }
 }
