@@ -8,7 +8,7 @@ onlyObjectReferences = (default)false
 package com.puppycrawl.tools.checkstyle.checks.coding.explicitinitialization;
 
 public class InputExplicitInitialization {
-    private int x = 0; // violation
+    private int x = 0; // violation 'explicitly initialized'
     private Object bar = /* comment test */null; // violation
     private int y = 1;
     private long y1 = 1 - 1;
