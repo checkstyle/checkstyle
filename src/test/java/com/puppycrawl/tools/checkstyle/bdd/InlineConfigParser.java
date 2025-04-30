@@ -27,23 +27,10 @@ import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.BitSet;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
-import org.xml.sax.InputSource;
 
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
@@ -51,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+import org.xml.sax.InputSource;
 
 public final class InlineConfigParser {
 
@@ -217,7 +205,6 @@ public final class InlineConfigParser {
      */
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
             "com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck",
@@ -566,7 +553,7 @@ public final class InlineConfigParser {
         else {
             final String path = SLASH_PATTERN.matcher(filePath).replaceAll(".");
             final int endIndex = path.lastIndexOf(moduleName.toLowerCase(Locale.ROOT));
-            if (endIndex == -1) {
+            if (-1 == endIndex) {
                 throw new CheckstyleException("Unable to resolve module name: " + moduleName
                 + ". Please check for spelling errors or specify fully qualified class name.");
             }
@@ -696,7 +683,7 @@ public final class InlineConfigParser {
         }
         else {
             actualDefault = getPropertyDefaultValue(checkInstance, propertyName);
-            if (actualDefault == null) {
+            if (null == actualDefault) {
                 propertyType = null;
             }
             else {
@@ -723,7 +710,7 @@ public final class InlineConfigParser {
 
     private static String convertDefaultValueToString(Object value) {
         final String defaultValueAsString;
-        if (value == null) {
+        if (null == value) {
             defaultValueAsString = NULL_STRING;
         }
         else if (value instanceof String) {
@@ -783,7 +770,7 @@ public final class InlineConfigParser {
         else if (isNumericType(fieldType)) {
             final BigDecimal specified = new BigDecimal(propertyDefaultValue);
             final BigDecimal actual = new BigDecimal(actualDefault);
-            result = specified.compareTo(actual) == 0;
+            result = 0 == specified.compareTo(actual);
         }
         else if (fieldType.isArray()
             || Collection.class.isAssignableFrom(fieldType)
@@ -894,7 +881,7 @@ public final class InlineConfigParser {
                                       List<String> lines, boolean useFilteredViolations)
             throws CheckstyleException {
         final List<ModuleInputConfiguration> moduleLists = inputConfigBuilder.getChildrenModules();
-        final boolean specifyViolationMessage = moduleLists.size() == 1
+        final boolean specifyViolationMessage = 1 == moduleLists.size()
                 && !PERMANENT_SUPPRESSED_CHECKS.contains(moduleLists.get(0).getModuleName())
                 && !SUPPRESSED_CHECKS.contains(moduleLists.get(0).getModuleName());
         for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
@@ -1141,7 +1128,7 @@ public final class InlineConfigParser {
      */
     private static void checkWhetherViolationSpecified(boolean shouldViolationMsgBeSpecified,
             String violationMessage, int lineNum) throws CheckstyleException {
-        if (shouldViolationMsgBeSpecified && violationMessage == null) {
+        if (shouldViolationMsgBeSpecified && null == violationMessage) {
             throw new CheckstyleException(
                     "Violation message should be specified on line " + lineNum);
         }
@@ -1166,7 +1153,7 @@ public final class InlineConfigParser {
             throws IllegalAccessException {
         Object result = null;
         Class<?> currentClass = checkInstance.getClass();
-        while (currentClass != null) {
+        while (null != currentClass) {
             try {
                 final Field field = currentClass.getDeclaredField(propertyName);
                 field.setAccessible(true);
