@@ -37,7 +37,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
      [-t | --tree] [-T | --treeWithComments] [-J | --treeWithJavadoc] [-j | --javadocTree] \
      [-V | --version] [-b | --branch-matching-xpath &lt;xpathQuery&gt;] [-h | --help] \
      [-e | --exclude &lt;excludedPath&gt;] [-E | --executeIgnoredModules] [-d | --debug] \
-     [-x | --exclude-regexp &lt;excludedPathPattern&gt;] \
+     [-x | --exclude-regexp &lt;excludedPathPattern&gt;] [-G | --generate-suppression] \
      file(s) or folder(s) ...
         </code></pre></div>
       </p>
@@ -168,6 +168,26 @@ java -D&lt;property&gt;=&lt;value&gt;  \
                 </td>
                 <td>
                   <code>-g--generate-xpath-suppression</code>
+                </td>
+                <td>
+                  Generates to output a xpath suppression xml to use to suppress all violations from
+                  user's config. Instead of printing every violation, all violations will be
+                  catched and single suppressions xml file will be printed out. Used only with
+                  <code>-c</code> option. Output location can be specified
+                  with <code>-o</code> option.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a name="G"/>
+                  <a href="#G">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <code>-G--generate-suppression</code>
                 </td>
                 <td>
                   Generates to output a suppression xml to use to suppress all violations from
@@ -485,6 +505,12 @@ java -D&lt;property&gt;=&lt;value&gt;  \
     <li>
         <a href="#Generating_Suppressions_XML">
             Generating Suppressions XML (-g, --generate-xpath-suppression)
+        </a>
+    </li>
+
+    <li>
+        <a href="#Generating_Suppressions_XML">
+            Generating Suppressions XML (-G, --generate-suppression)
         </a>
     </li>
 
@@ -890,8 +916,9 @@ class Test {
   </code></pre>
 </div>
 
-<h4 id="Generating_Suppressions_XML"><span>
-6. Generating Suppressions XML (<span class="no-transform">-g, --generate-xpath-suppression</span>)
+<h4 id="Generating_Xpath_Suppressions_XML"><span>
+6. Generating Xpath Suppressions XML
+(<span class="no-transform">-g, --generate-xpath-suppression</span>)
 </span></h4>
 <p><strong>Goal:</strong> Generate an XML file containing suppressions for all
 violations using the experimental XPath suppression filter.</p>
@@ -961,8 +988,77 @@ class Test {
   </code></pre>
 </div>
 
+<h4 id="Generating_Suppressions_XML"><span>
+7. Generating Suppressions XML (<span class="no-transform">-G, --generate-suppression</span>)
+</span></h4>
+<p><strong>Goal:</strong> Generate an XML file containing suppressions for all
+violations using the experimental suppression filter.</p>
+
+<span class ="inline-command" ><strong>Command:</strong> <code class="prettyprint">
+java -jar checkstyle-${projectVersion}-all.jar -c config.xml -G -o suppressions.xml Test.java
+</code></span>
+
+<p><strong>Content of config.xml:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE module PUBLIC
+  "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+  "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="FallThrough"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+  </code></pre>
+</div>
+
+<p><strong>Content of Test.java:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-java">
+/**
+ * Javadoc summary.
+ *
+ * Some description.
+ */
+class Test {
+  /**
+   * Some summary on method.
+   */
+  public void foo() {
+    int i = 0;
+    while (i >= 0) {
+      switch (i) {
+      case 1:
+      case 2:
+        i++;
+      case 3: // violation
+        i++;
+      }
+    }
+  }
+}
+  </code></pre>
+</div>
+
+<p><strong>Content of suppressions.xml:</strong></p>
+<div class="wrapper">
+  <pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD Checkstyle Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+&lt;suppressions&gt;
+&lt;suppress
+       files="Test.java"
+       checks="FallThroughCheck"
+/&gt;
+&lt;/suppressions&gt;
+  </code></pre>
+</div>
+
 <h4 id="Setting_Tab_Width"><span>
-7. Setting Tab Width (<span class="no-transform">-w, --tabWidth</span>)
+8. Setting Tab Width (<span class="no-transform">-w, --tabWidth</span>)
 </span></h4>
 <p>
 <strong>Goal:</strong>
@@ -1013,7 +1109,7 @@ class Test {
 </div>
 
 <h4 id="Displaying_Abstract_Syntax_Tree"><span>
-8. Displaying Abstract Syntax Tree (<span class="no-transform">-t, --tree</span>)
+9. Displaying Abstract Syntax Tree (<span class="no-transform">-t, --tree</span>)
 </span></h4>
 <p><strong>Goal:</strong>
 Display the Abstract Syntax Tree (AST) of a file without comments.</p>
@@ -1125,7 +1221,7 @@ COMPILATION_UNIT -> COMPILATION_UNIT [6:0]
 </div>
 
 <h4 id="Displaying_AST_with_Comments"><span>
-9. Displaying AST with Comments (<span class="no-transform">-T, --treeWithComments</span>)
+10. Displaying AST with Comments (<span class="no-transform">-T, --treeWithComments</span>)
 </span></h4>
 <p><strong>Goal:</strong>
 Display the AST including comment nodes, but excluding Javadoc.
@@ -1246,7 +1342,7 @@ COMPILATION_UNIT -> COMPILATION_UNIT [6:0]
 </div>
 
 <h4 id="Displaying_AST_with_Javadoc"><span>
-10. Displaying AST with Javadoc (<span class="no-transform">-J, --treeWithJavadoc</span>)
+11. Displaying AST with Javadoc (<span class="no-transform">-J, --treeWithJavadoc</span>)
 </span></h4>
 <p><strong>Goal:</strong>
 Display the AST including Javadoc comment nodes.
@@ -1386,7 +1482,7 @@ COMPILATION_UNIT -> COMPILATION_UNIT [6:0]
 </div>
 
 <h4 id="Printing_Javadoc_Parse_Tree"><span>
-11. Printing Javadoc Parse Tree (<span class="no-transform">-j, --javadocTree</span>)
+12. Printing Javadoc Parse Tree (<span class="no-transform">-j, --javadocTree</span>)
 </span></h4>
 <p><strong>Goal:</strong>
 Print the full parse tree of a Javadoc comment extracted from a file.
@@ -1445,7 +1541,7 @@ JAVADOC -> JAVADOC [0:0]
 </div>
 
 <h4 id="Debugging_CheckStyle"><span>
-12. Debugging CheckStyle (<span class="no-transform">-d, --debug</span>)
+13. Debugging CheckStyle (<span class="no-transform">-d, --debug</span>)
 </span></h4>
 <p><strong>Goal:</strong>
 Run Checkstyle in debug mode to produce detailed logging information and troubleshooting.
@@ -1514,7 +1610,7 @@ Checkstyle ends with 1 errors.
 </div>
 
 <h4 id="Excluding_Specific_Files_or_Directories"><span>
-13. Excluding Specific Files/Directories (<span class="no-transform">-e, --exclude</span>)
+14. Excluding Specific Files/Directories (<span class="no-transform">-e, --exclude</span>)
 </span></h4>
 <p><strong>Goal:</strong>
 Exclude designated files or directories from the Checkstyle audit so that they are not processed.
@@ -1577,7 +1673,7 @@ Audit done.
 </div>
 
 <h4 id="Excluding_Files_Using_Regex"><span>
-14. Excluding Files Using Regular Expressions (<span class="no-transform">-x, --exclude-regexp
+15. Excluding Files Using Regular Expressions (<span class="no-transform">-x, --exclude-regexp
 </span>)
 </span></h4>
 <p><strong>Goal:</strong>
@@ -1642,7 +1738,7 @@ Audit done.
 </div>
 
 <h4 id="Displaying_Checkstyle_Version"><span>
-15. Displaying Checkstyle Version (<span class="no-transform">-V, --version</span>)
+16. Displaying Checkstyle Version (<span class="no-transform">-V, --version</span>)
 </span></h4>
 <p><strong>Goal:</strong> Print the current Checkstyle version information.
 </p>
@@ -1659,7 +1755,7 @@ Checkstyle ${projectVersion}
 </div>
 
 <h4 id="Matching_AST_Branches"><span>
-16. Matching AST Branches (<span class="no-transform">-b, --branch-matching-xpath</span>)
+17. Matching AST Branches (<span class="no-transform">-b, --branch-matching-xpath</span>)
 </span></h4>
 <p><strong>Goal:</strong>
 Show AST branches matching a given XPath query for the variable declaration of "x".
@@ -1702,7 +1798,7 @@ COMPILATION_UNIT -> COMPILATION_UNIT [6:0]
 </div>
 
 <h4 id="Displaying_Help_Message"><span>
-17. Displaying Help Message (<span class="no-transform">-h, --help</span>)
+18. Displaying Help Message (<span class="no-transform">-h, --help</span>)
 </span></h4>
 <p><strong>Goal:</strong>
 Display the full usage instructions for the Checkstyle CLI, detailing available options and syntax.
@@ -1741,6 +1837,12 @@ Checkstyle requires a configuration XML file that configures the checks to apply
                               XMLLogger, SarifLogger, and DefaultLogger respectively. Defaults to
                               plain.
   -g, --generate-xpath-suppression
+                            Generates to output a xpath suppression xml to use to suppress all
+                              violations from user's config. Instead of printing every violation,
+                              all violations will be catched and single suppressions xml file will
+                              be printed out. Used only with -c option. Output location can be
+                              specified with -o option.
+  -G, --generate-suppression
                             Generates to output a suppression xml to use to suppress all violations
                               from user's config. Instead of printing every violation, all
                               violations will be catched and single suppressions xml file will be
@@ -1782,7 +1884,7 @@ Checkstyle requires a configuration XML file that configures the checks to apply
 </div>
 
 <h4 id="Executing_Ignored_Modules"><span>
-18. Executing Ignored Modules (<span class="no-transform">-E, --executeIgnoredModules</span>)
+19. Executing Ignored Modules (<span class="no-transform">-E, --executeIgnoredModules</span>)
 </span></h4>
 <p><strong>Goal:</strong>
 Force execution of modules that are normally ignored (e.g., those set with severity "ignore")
