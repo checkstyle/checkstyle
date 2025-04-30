@@ -16,8 +16,8 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 // xdoc section -- start
 import static java.io.File.createTempFile;
-import static java.lang.Math.abs; // OK, alphabetical case-sensitive ASCII order, 'i' < 'l'
-import java.lang.Math.sqrt; // OK, follows property 'Option' value 'above'
+import static java.lang.Math.abs; // ok, alphabetical case-sensitive ASCII order, 'i' < 'l'
+import java.lang.Math.sqrt; // ok, follows property 'Option' value 'above'
 import java.io.File; // violation, alphabetical case-sensitive ASCII order, 'i' < 'l'
 
 import java.io.IOException; // violation, extra separation in 'java' import group

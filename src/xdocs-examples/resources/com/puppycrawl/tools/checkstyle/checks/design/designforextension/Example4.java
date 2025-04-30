@@ -20,15 +20,15 @@ public abstract class Example4 {
 
   private void m3() {m4();}
 
-  protected void m4() { }  // OK. No implementation.
+  protected void m4() { }  // ok, No implementation.
 
-  public abstract void m5();  // OK. Abstract method.
+  public abstract void m5();  // ok, Abstract method.
 
   /**
    * This implementation ...
    @return some int value.
    */
-  public int m6() {return 1;}  // OK. Have required javadoc.
+  public int m6() {return 1;}  // ok, Have required javadoc.
 
   /**
    * Some comments ...
@@ -39,7 +39,7 @@ public abstract class Example4 {
    * This
    * implementation ...
    */
-  public int m8() {return 2;}  // OK. Have required javadoc.
+  public int m8() {return 2;}  // ok, Have required javadoc.
 
   @Override                    // violation
   public String toString() {

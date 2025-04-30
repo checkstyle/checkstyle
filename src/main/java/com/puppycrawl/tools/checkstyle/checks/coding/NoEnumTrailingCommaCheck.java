@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * enum Foo1 {
  *   FOO,
- *   BAR, //violation
+ *   BAR, // violation
  * }
  * </pre>
  *
