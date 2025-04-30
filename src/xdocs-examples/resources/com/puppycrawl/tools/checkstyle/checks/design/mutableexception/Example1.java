@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.design.mutableexception;
 
 // xdoc section -- start
 class Example1 extends Exception {
-  private int code; // OK, class name doesn't match with default pattern
+  private int code; // ok, class name doesn't match with default pattern
 
   public Example1() {
     code = 1;
@@ -28,7 +28,7 @@ class FirstException extends Exception {
 }
 
 class FirstThrowable extends Throwable {
-  final int code; // OK
+  final int code;
   String message; // violation
 
   public FirstThrowable(int code, String message) {

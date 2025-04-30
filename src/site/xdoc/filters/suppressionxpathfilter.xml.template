@@ -255,7 +255,7 @@ public class InputTest {
   private int age = 23;
 
   public void changeAge() {
-    age = 24; //violation will be suppressed
+    age = 24; // violation will be suppressed
   }
 }
         </source>

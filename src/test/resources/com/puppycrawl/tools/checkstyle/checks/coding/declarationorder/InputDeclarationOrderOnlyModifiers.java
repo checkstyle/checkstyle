@@ -193,6 +193,7 @@ enum InputDeclarationOrderEnum3
     class AsyncProcess {
         private final int startLogErrorsCnt = 0;
 
-        protected final int maxTotalConcurrentTasks = 0;//violation 'Variable.*access.*wrong.*order'
+        protected final int maxTotalConcurrentTasks = 0;
+        // violation above 'Variable.*access.*wrong.*order'
     }
 }

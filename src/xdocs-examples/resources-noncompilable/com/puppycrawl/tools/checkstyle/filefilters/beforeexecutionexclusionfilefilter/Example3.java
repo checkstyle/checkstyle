@@ -26,10 +26,10 @@ public class Example3 {}
 .../Example2.java
 .../Example3.java
 .../Example4.java
-.../test/generated_TestCase1.java // OK, the file is not audited
+.../test/generated_TestCase1.java // ok, the file is not audited
 .../test/generated_StubBankRemote.java // violation, must start with an uppercase
 .../test/MockPaymentRemote.java
-.../module-info.java // OK, the file is not audited
+.../module-info.java // ok, the file is not audited
 // xdoc section -- end
 */
 

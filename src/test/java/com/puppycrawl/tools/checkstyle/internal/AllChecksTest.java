@@ -285,7 +285,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
             final DefaultConfiguration moduleConfig = createModuleConfig(module);
             if (module.equals(ImportControlCheck.class)) {
                 // ImportControlCheck must have the import control configuration file to avoid
-                // violation.
+                // violation
                 moduleConfig.addProperty("file", getPath(
                         "InputAllChecksImportControl.xml"));
             }
