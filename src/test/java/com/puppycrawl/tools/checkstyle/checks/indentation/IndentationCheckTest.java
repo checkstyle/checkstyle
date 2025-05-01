@@ -1804,6 +1804,33 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCatchParametersOnNewLine()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("arrayInitIndent", "2");
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String fileName =
+            getNonCompilablePath("InputIndentationCatchParametersOnNewLine.java");
+
+        final String[] expected = {
+            "24:1: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 0, 8),
+            "33:5: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 4, 8),
+            "40:5: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 4, 8),
+            "50:13: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 12, 8),
+            "66:9: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 8, 12),
+            "75:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 6, 8),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testInvalidClassDefWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
