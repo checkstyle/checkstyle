@@ -1713,7 +1713,35 @@ public final class JavadocTokenTypes {
     /** Col tag name. */
     public static final int COL_HTML_TAG_NAME = JavadocParser.COL_HTML_TAG_NAME;
 
-    /** Frame tag name. */
+<<<<<<< Updated upstream
+    /**
+     * Frame tag name.
+     *
+     * <p><b>Example:</b></p>
+     *
+     * <pre>{@code
+     * &lt;frame src="example.html"&gt;
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     *
+     * <pre>
+     * HTML_ELEMENT -&gt; HTML_ELEMENT
+     *  `--SINGLETON_ELEMENT -&gt; SINGLETON_ELEMENT
+     *     `--FRAME_TAG -&gt; FRAME_TAG
+     *         |--START -&gt; &lt;
+     *         |--FRAME_HTML_TAG_NAME -&gt; frame
+     *         |--WS -&gt;
+     *         |--ATTRIBUTE -&gt; ATTRIBUTE
+     *         |   |--HTML_TAG_NAME -&gt; src
+     *         |   |--EQUALS -&gt; =
+     *         |   `--ATTR_VALUE -&gt; "example.html"
+     *         `--END -&gt; &gt;
+     * </pre>
+     */
+=======
+
+>>>>>>> Stashed changes
     public static final int FRAME_HTML_TAG_NAME = JavadocParser.FRAME_HTML_TAG_NAME;
 
     /**
@@ -2574,9 +2602,9 @@ public final class JavadocTokenTypes {
     public static final int DT_TAG_END = JavadocParser.RULE_dtTagEnd + RULE_TYPES_OFFSET;
 
     /** Head html tag. */
-    public static final int HEAD = JavadocParser.RULE_head + RULE_TYPES_OFFSET;
-    /** Start head tag. */
-    public static final int HEAD_TAG_START = JavadocParser.RULE_headTagStart + RULE_TYPES_OFFSET;
+        public static final int HEAD = JavadocParser.RULE_head + RULE_TYPES_OFFSET;
+        /** Start head tag. */
+        public static final int HEAD_TAG_START = JavadocParser.RULE_headTagStart + RULE_TYPES_OFFSET;
     /** End head tag. */
     public static final int HEAD_TAG_END = JavadocParser.RULE_headTagEnd + RULE_TYPES_OFFSET;
 
