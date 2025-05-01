@@ -263,7 +263,9 @@ public class CheckstyleAntTask extends Task {
         final long startTime = System.currentTimeMillis();
 
         try {
-            final String version = CheckstyleAntTask.class.getPackage().getImplementationVersion();
+            final String version = Objects.toString(
+                    CheckstyleAntTask.class.getPackage().getImplementationVersion(),
+                    "");
 
             log("checkstyle version " + version, Project.MSG_VERBOSE);
 
@@ -334,7 +336,7 @@ public class CheckstyleAntTask extends Task {
             Project.MSG_VERBOSE);
 
         log("Running Checkstyle "
-                + Objects.toString(checkstyleVersion, "")
+                + checkstyleVersion
                 + " on " + files.size()
                 + " files", Project.MSG_INFO);
         log("Using configuration " + config, Project.MSG_VERBOSE);

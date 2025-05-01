@@ -21,7 +21,7 @@ class Example2 {
    *     Indentation spacing is 4
    */
   public void testMethod1(String input) {
-    // OK, Indentation above 1 is fine as offset value is 2
+    // ok, Indentation above 1 is fine as offset value is 2
   }
 
   /**
@@ -29,7 +29,7 @@ class Example2 {
    *   Indentation spacing is 2
    */
   public void testMethod2(String input) {
-    // OK, Indentation above 1 is fine as offset value is 2
+    // ok, Indentation above 1 is fine as offset value is 2
   }
 }
 // xdoc section -- end

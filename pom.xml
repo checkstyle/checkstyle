@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.23.1-SNAPSHOT</version>
+  <version>10.23.2-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -386,7 +386,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.19.3</version>
+      <version>3.19.4</version>
       <scope>test</scope>
     </dependency>
     <dependency>

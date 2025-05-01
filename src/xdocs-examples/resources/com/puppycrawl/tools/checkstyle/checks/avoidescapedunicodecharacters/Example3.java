@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.avoidescapedunicodecharacters;
 
 // xdoc section -- start
 public class Example3 {
-  // OK, a normal String below
+  // ok, a normal String below
   String unitAbbrev = "μs";
   // violation below
   String unitAbbrev1 = "\u03bcs";

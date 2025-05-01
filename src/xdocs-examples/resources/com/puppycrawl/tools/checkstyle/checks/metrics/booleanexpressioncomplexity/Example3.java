@@ -17,10 +17,10 @@ public class Example3
     boolean a = true;
     boolean b = false;
 
-    boolean c = (a & b) | (b ^ a); // OK, 1(^) = 1 (max allowed 3)
+    boolean c = (a & b) | (b ^ a); // ok, 1(^) = 1 (max allowed 3)
 
     boolean d = (a & b) | (b ^ a) | (a ^ b);
-    // OK above, 1(^) + 1(^) = 2, & and | are ignored here
+    // ok above, 1(^) + 1(^) = 2, & and | are ignored here
 
     boolean e = a ^ (a || b) ^ (b || a) & (a | b);
     // violation above, 'Boolean expression complexity is 4 (max allowed is 3)'

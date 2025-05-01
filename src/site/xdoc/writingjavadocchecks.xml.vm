@@ -197,15 +197,6 @@ public class MyClass {
         these block comment ASTs into our Javadoc AST.
       </p>
       <p>
-        The difference is that Java grammar uses ANTLR v2, while Javadoc grammar uses ANTLR v4.
-        Because of that, these two grammars and their trees are not compatible.
-        Java AST consists of
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a>
-        objects, while Javadoc AST consists of
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailNode.html">DetailNode</a>
-        objects.
-      </p>
-      <p>
         Our Java grammar ignores whitespace in most cases, since Java itself does not care about
         whitespace; however, whitespace is critical in Javadocs. For this reason, our Javadoc AST
         retains most whitespace that is present in the Javadoc.
