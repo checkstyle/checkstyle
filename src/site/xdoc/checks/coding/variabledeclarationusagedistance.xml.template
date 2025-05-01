@@ -39,47 +39,14 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p>
-          Check can detect a block of initialization methods. If a variable is used in
-          such a block and there are no other statements after variable declaration,
-          then distance = 1.
+          Check is able to detect a block of initialization methods, as a single point for distance.
+          If a variable is used in such a block and there are no other statements after
+          variable declaration, then distance = 1.
         </p>
-        <p>
-          Case #1:
-        </p>
-        <source>
-int minutes = 5;
-Calendar cal = Calendar.getInstance();
-cal.setTimeInMillis(timeNow);
-cal.set(Calendar.SECOND, 0);
-cal.set(Calendar.MILLISECOND, 0);
-cal.set(Calendar.HOUR_OF_DAY, hh);
-cal.set(Calendar.MINUTE, minutes);
-        </source>
-        <p>
-          The distance for the variable "minutes" is 1 even
-          though this variable is used in the fifth method's call.
-        </p>
-        <p>
-          Case #2:
-        </p>
-        <source>
-int minutes = 5;
-Calendar cal = Calendar.getInstance();
-cal.setTimeInMillis(timeNow);
-cal.set(Calendar.SECOND, 0);
-cal.set(Calendar.MILLISECOND, 0);
-System.out.println(cal);
-cal.set(Calendar.HOUR_OF_DAY, hh);
-cal.set(Calendar.MINUTE, minutes);
-        </source>
-        <p>
-          The distance for the variable "minutes" is 6 because there is one more expression
-          (except the initialization block) between the declaration of this variable and its usage.
-        </p><hr class="example-separator"/>
         <p id="Example2-config">
-            To configure the check to set allowed distance:
+          Configure the check to default:
         </p>
         <macro name="example">
           <param name="path"
@@ -91,18 +58,24 @@ cal.set(Calendar.MINUTE, minutes);
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example2.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
+        <p>
+          The distance for the variable "minutes" in the method <code>case1</code> is 1 even
+          though this variable is used in the fifth method's call.
+        </p>
+        <p>
+          The distance for the variable "minutes" in the method <code>case2</code> is 6
+          because there is one more expression (except the initialization block) between the
+          declaration of this variable and its usage.
+        </p><hr class="example-separator"/>
         <p id="Example3-config">
-            To configure the check to ignore certain variables:
+            To configure the check to set allowed distance:
         </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p>
-            This configuration ignores variables named "num".
-        </p>
         <p id="Example3-code">Example:</p>
         <macro name="example">
           <param name="path"
@@ -110,13 +83,16 @@ cal.set(Calendar.MINUTE, minutes);
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
-            To configure the check to force validation between scopes:
+            To configure the check to ignore certain variables:
         </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
+        <p>
+            This configuration ignores variables named "num".
+        </p>
         <p id="Example4-code">Example:</p>
         <macro name="example">
           <param name="path"
@@ -124,7 +100,7 @@ cal.set(Calendar.MINUTE, minutes);
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example5-config">
-            To configure the check to check final variables:
+            To configure the check to force validation between scopes:
         </p>
         <macro name="example">
           <param name="path"
@@ -135,6 +111,20 @@ cal.set(Calendar.MINUTE, minutes);
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example6-config">
+            To configure the check to check final variables:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example6.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
