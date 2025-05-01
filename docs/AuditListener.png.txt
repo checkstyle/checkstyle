@@ -1,0 +1,10 @@
+This diagram represents the class relationship of the AuditListener interface within Checkstyle.
+
+It replaces an older, low-resolution image that was difficult to read and understand (previous version attached for reference). The updated diagram was recreated using https://www.mermaidchart.com/ for clarity and readability.
+
+Details of the diagram:
+- **AuditListener** is an interface extending **EventListener**, and it declares methods to handle various audit phases: `auditStarted`, `auditFinished`, `fileStarted`, `fileFinished`, `addError`, and `addException`, all accepting an **AuditEvent** as a parameter.
+- **AuditEvent** is a subclass of **EventObject** and provides methods like `getFileName()`, `getLine()`, `getMessage()`, `getColumn()`, `getSeverityLevel()`, `getSourceName()`, and `getLocalizedMessage()` to access event-related information.
+
+Purpose of update:
+- The new version improves visual clarity, aiding users in understanding how audit events are structured and propagated within Checkstyle.
