@@ -14,10 +14,14 @@
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
 // xdoc section -- start
 public class Example4 {
-  // CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 4 LINES
+  // CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 8 LINES
+  // filtered violation below 'must match pattern'
   static final int lowerCaseConstant1 = 1;
+  // filtered violation below 'must match pattern'
   static final int lowerCaseConstant2 = 2;
+  // filtered violation below 'must match pattern'
   static final int lowerCaseConstant3 = 3;
+  // filtered violation below 'must match pattern'
   static final int lowerCaseConstant4 = 4;
   static final int lowerCaseConstant5 = 5; // violation 'must match pattern'
 }
