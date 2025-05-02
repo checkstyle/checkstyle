@@ -13,6 +13,7 @@
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
 // xdoc section -- start
 public class Example5 {
+  // filtered violation below
   private int D2;
   // ALLOW MemberName ON PREVIOUS LINE
 }
