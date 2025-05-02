@@ -18,6 +18,7 @@ public class Example3 {
     try {
       // blah blah blah
     }
+    // filtered violation below
     catch(RuntimeException re) {
       // OK to catch RuntimeException here
     }

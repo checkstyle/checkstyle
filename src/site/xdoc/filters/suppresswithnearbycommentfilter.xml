@@ -114,6 +114,7 @@
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
+  // filtered violation below
   private int [] array; // SUPPRESS CHECKSTYLE NoWhitespaceAfter
 }
 </code></pre></div><hr class="example-separator"/>
@@ -136,6 +137,7 @@ public class Example1 {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
+  // filtered violation below
   public static final int lowerCaseConstant = 1; // CHECKSTYLE IGNORE THIS LINE
 }
 </code></pre></div><hr class="example-separator"/>
@@ -165,6 +167,7 @@ public class Example3 {
     try {
       // blah blah blah
     }
+    // filtered violation below
     catch(RuntimeException re) {
       // OK to catch RuntimeException here
     }
@@ -193,10 +196,14 @@ public class Example3 {
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
-  // CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 4 LINES
+  // CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 8 LINES
+  // filtered violation below
   static final int lowerCaseConstant1 = 1;
+  // filtered violation below
   static final int lowerCaseConstant2 = 2;
+  // filtered violation below
   static final int lowerCaseConstant3 = 3;
+  // filtered violation below
   static final int lowerCaseConstant4 = 4;
   static final int lowerCaseConstant5 = 5; // violation 'must match pattern'
 }
@@ -219,6 +226,7 @@ public class Example4 {
         <p id="Example5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example5 {
+  // filtered violation below
   private int D2;
   // ALLOW MemberName ON PREVIOUS LINE
 }
@@ -245,7 +253,8 @@ public class Example5 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example6 {
   // @cs.suppress [ConstantName|NoWhitespaceAfter] A comment here
-  public static final int [] array = {};
+  public static final int [] array = {}; // filtered violation
+  // filtered violation above
 }
 </code></pre></div>
         <p>
@@ -319,10 +328,10 @@ public class Example7 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // @cs-: ClassDataAbstractionCoupling influence 2
 // @cs-: MagicNumber influence 4
-public class Example8 { // no violations from ClassDataAbstractionCoupling here
+public class Example8 { // filtered violation
   private Example1 foo = new Example1();
   private Example2 bar = new Example2();
-  private int value = 10022; // no violations from MagicNumber here
+  private int value = 10022; // filtered violation
 }
 </code></pre></div>
       </subsection>

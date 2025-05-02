@@ -9,6 +9,7 @@
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
 // xdoc section -- start
 public class Example1 {
+  // filtered violation below
   private int [] array; // SUPPRESS CHECKSTYLE NoWhitespaceAfter
 }
 // xdoc section -- end
