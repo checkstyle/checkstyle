@@ -16,6 +16,7 @@ package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
 // xdoc section -- start
 public class Example6 {
   // @cs.suppress [ConstantName|NoWhitespaceAfter] A comment here
-  public static final int [] array = {};
+  public static final int [] array = {}; // filtered violation
+  // filtered violation above
 }
 // xdoc section -- end
