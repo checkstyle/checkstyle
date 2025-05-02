@@ -31,73 +31,112 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
+        final String[] expectedWithFilter = {
 
         };
+        final String[] expectedWithoutFilter = {
+            "13:15: 'int' is followed by whitespace.",
+        };
 
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example1.java"), expectedWithoutFilter,
+                expectedWithFilter);
     }
 
     @Test
     public void testExample2() throws Exception {
-        final String[] expected = {
+        final String[] expectedWithFilter = {
 
         };
+        final String[] expectedWithoutFilter = {
+            "17:27: Name 'lowerCaseConstant' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+        };
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example2.java"), expectedWithoutFilter,
+                expectedWithFilter);
     }
 
     @Test
     public void testExample3() throws Exception {
-        final String[] expected = {
+        final String[] expectedWithFilter = {
 
         };
+        final String[] expectedWithoutFilter = {
+            "23:5: Catching 'RuntimeException' is not allowed.",
+        };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example3.java"), expectedWithoutFilter,
+                expectedWithFilter);
     }
 
     @Test
     public void testExample4() throws Exception {
-        final String[] expected = {
-            "22:20: Name 'lowerCaseConstant5' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+        final String[] expectedWithFilter = {
+            "26:20: Name 'lowerCaseConstant5' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+        };
+        final String[] expectedWithoutFilter = {
+            "19:20: Name 'lowerCaseConstant1' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "21:20: Name 'lowerCaseConstant2' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "23:20: Name 'lowerCaseConstant3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "25:20: Name 'lowerCaseConstant4' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "26:20: Name 'lowerCaseConstant5' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example4.java"), expectedWithoutFilter,
+                expectedWithFilter);
     }
 
     @Test
     public void testExample5() throws Exception {
-        final String[] expected = {
+        final String[] expectedWithFilter = {
 
         };
+        final String[] expectedWithoutFilter = {
+            "17:15: Name 'D2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+        };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example5.java"), expectedWithoutFilter,
+                expectedWithFilter);
     }
 
     @Test
     public void testExample6() throws Exception {
-        final String[] expected = {
+        final String[] expectedWithFilters = {
 
         };
+        final String[] expectedWithoutFilters = {
+            "19:27: 'int' is followed by whitespace.",
+            "19:30: Name 'array' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+        };
 
-        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example6.java"), expectedWithoutFilters,
+                expectedWithFilters);
     }
 
     @Test
     public void testExample7() throws Exception {
-        final String[] expected = {
+        final String[] expectedWithFilter = {
+
+        };
+        final String[] expectedWithoutFilter = {
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example7.java"), expectedWithoutFilter,
+                expectedWithFilter);
     }
 
     @Test
     public void testExample8() throws Exception {
-        final String[] expected = {
+        final String[] expectedWithFilter = {
 
         };
+        final String[] expectedWithoutFilter = {
+            "21:1: Class Data Abstraction Coupling is 2 (max allowed is 1) "
+                    + "classes [Example1, Example2].",
+            "24:23: '10022' is a magic number.",
+        };
 
-        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example8.java"), expectedWithoutFilter,
+                expectedWithFilter);
     }
 }
