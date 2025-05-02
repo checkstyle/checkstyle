@@ -67,7 +67,7 @@ blocks:
             - echo "eval of CMD is completed";
             - ./.ci/validation.sh git-diff
 
-        - name: No Error Test (openjdk17, fast pool)
+        - name: No Error Test (openjdk21, fast pool)
           matrix:
             - env_var: CMD
               values:

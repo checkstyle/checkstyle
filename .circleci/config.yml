@@ -33,7 +33,7 @@ jobs:
     parameters: &script_parameters
       image-name:
         type: string
-        default: "cimg/openjdk:11.0.16"
+        default: "cimg/openjdk:21-jdk"
         description: "docker image to use"
       command:
         description: "command to run"
@@ -135,7 +135,7 @@ workflows:
       # validation script
       - validate-with-maven-script:
           name: "no-error-xwiki"
-          image-name: "cimg/openjdk:18.0.1"
+          image-name: "cimg/openjdk:21-jdk"
           command: "./.ci/validation.sh no-error-xwiki"
       - validate-with-maven-script:
           name: "no-error-pmd"
@@ -217,7 +217,7 @@ workflows:
           command: "./.ci/validation.sh assembly-run-all-jar"
       - validate-with-maven-script:
           name: "no-error-test-sbe"
-          image-name: "cimg/openjdk:17.0.1"
+          image-name: "cimg/openjdk:21-jdk"
           command: "./.ci/validation.sh no-error-test-sbe"
       - validate-with-maven-script:
           name: "no-error-spotbugs"
@@ -225,20 +225,20 @@ workflows:
           command: "./.ci/validation.sh no-error-spotbugs"
       - validate-with-maven-script:
           name: "linkcheck-plugin"
-          image-name: "cimg/openjdk:11.0.19"
+          image-name: "cimg/openjdk:21-jdk"
           command: "./.ci/run-link-check-plugin.sh --skip-external"
       - validate-with-maven-script:
           name: "no-exception-samples-gradle"
-          image-name: "cimg/openjdk:11.0.19"
+          image-name: "cimg/openjdk:21-jdk"
           command: "./.ci/no-exception-test.sh no-exception-samples-gradle"
       - validate-with-maven-script:
           name: "no-exception-samples-maven"
-          image-name: "cimg/openjdk:11.0.19"
+          image-name: "cimg/openjdk:21-jdk"
           command: "./.ci/no-exception-test.sh no-exception-samples-maven"
 
       - validate-with-maven-script:
           name: "no-exception-samples-ant"
-          image-name: "circleci/openjdk:11-jdk"
+          image-name: "circleci/openjdk:21-jdk"
           command: "./.ci/no-exception-test.sh no-exception-samples-ant"
 
   idea:
@@ -290,14 +290,14 @@ workflows:
           command: "./.ci/validation.sh javac20"
       - validate-with-script:
           name: "javac21"
-          image-name: "cimg/openjdk:21.0.0"
+          image-name: "cimg/openjdk:21-jdk"
           command: "./.ci/validation.sh javac21"
 
   site-validation:
     jobs:
       - validate-with-maven-script:
-          name: "jdk17-package-site"
-          image-name: "cimg/openjdk:17.0.7"
+          name: "jdk21-package-site"
+          image-name: "cimg/openjdk:21-jdk"
           command: "./.ci/validation.sh package-site"
       - validate-with-maven-script:
           name: "jdk11-package-site"
