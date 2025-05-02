@@ -2,8 +2,8 @@ version: v1.0
 name: "Checkstyle CI pipeline on Semaphore"
 agent:
   machine:
-    type: e1-standard-2
-    os_image: ubuntu2004
+    type: e2-standard-4
+    os_image: ubuntu2204
 auto_cancel:
   running:
     when: "branch != 'master'"
@@ -67,14 +67,14 @@ blocks:
             - echo "eval of CMD is completed";
             - ./.ci/validation.sh git-diff
 
-        - name: No Error Test (openjdk17, fast pool)
+        - name: No Error Test (openjdk21, fast pool)
           matrix:
             - env_var: CMD
               values:
                 - .ci/validation.sh no-error-pgjdbc
 
           commands:
-            - sem-version java 17
+            - sem-version java 21
             - echo "eval of CMD is starting";
             - echo "CMD=$CMD";
             - eval $CMD;
