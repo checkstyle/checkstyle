@@ -2596,8 +2596,29 @@ public final class JavadocTokenTypes {
 
     /** Head html tag. */
     public static final int HEAD = JavadocParser.RULE_head + RULE_TYPES_OFFSET;
-    /** Start head tag. */
-    public static final int HEAD_TAG_START = JavadocParser.RULE_headTagStart + RULE_TYPES_OFFSET;
+
+    /**
+     * Start head tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <head>
+     *   <title>Title of the document</title>
+     * </head>
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>
+     * HTML_ELEMENT -> HTML_ELEMENT
+     *   `--OPEN_TAG -> OPEN_TAG
+     *     `--HEAD_TAG_START -> head
+     *     |--TITLE -> title
+     *     |--TEXT -> Title of the document
+     *     `--CLOSE_TAG -> </head>
+     * </pre>
+     */
+    public static final int HEAD_TAG_START = JavadocParser.HEAD_TAG_START;
+
     /** End head tag. */
     public static final int HEAD_TAG_END = JavadocParser.RULE_headTagEnd + RULE_TYPES_OFFSET;
 
