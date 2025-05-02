@@ -1719,23 +1719,23 @@ public final class JavadocTokenTypes {
      * <p><b>Example:</b></p>
      *
      * <pre>{@code
-     * &lt;frame src="example.html"&gt;
+     * <frame src="frame_a.htm">
      * }</pre>
      *
      * <p><b>Tree:</b></p>
      *
      * <pre>
-     * HTML_ELEMENT -&gt; HTML_ELEMENT
-     *  `--SINGLETON_ELEMENT -&gt; SINGLETON_ELEMENT
-     *     `--FRAME_TAG -&gt; FRAME_TAG
-     *         |--START -&gt; &lt;
-     *         |--FRAME_HTML_TAG_NAME -&gt; frame
-     *         |--WS -&gt;
-     *         |--ATTRIBUTE -&gt; ATTRIBUTE
-     *         |   |--HTML_TAG_NAME -&gt; src
-     *         |   |--EQUALS -&gt; =
-     *         |   `--ATTR_VALUE -&gt; "example.html"
-     *         `--END -&gt; &gt;
+     * HTML_ELEMENT -> HTML_ELEMENT
+     *  `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *     `--FRAME_TAG -> FRAME_TAG
+     *         |--START -> <
+     *         |--FRAME_HTML_TAG_NAME -> frame
+     *         |--WS ->
+     *         |--ATTRIBUTE -> ATTRIBUTE
+     *         |   |--HTML_TAG_NAME -> src
+     *         |   |--EQUALS -> =
+     *         |   `--ATTR_VALUE -> "frame_a.htm"
+     *         `--END -> >
      * </pre>
      */
     public static final int FRAME_HTML_TAG_NAME = JavadocParser.FRAME_HTML_TAG_NAME;
