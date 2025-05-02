@@ -24,19 +24,19 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file:Test.java"
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerSingleErrorColumn1.java"
                 },
                 "region": {
                   "startColumn": 1,
-                  "startLine": 1
+                  "startLine": 11
                 }
               }
             }
           ],
           "message": {
-            "text": "found an error\ntry again"
+            "text": "Redundant import from the java.lang package - java.lang.String."
           },
-          "ruleId": "ruleId"
+          "ruleId": "import.lang"
         }
       ]
     }
