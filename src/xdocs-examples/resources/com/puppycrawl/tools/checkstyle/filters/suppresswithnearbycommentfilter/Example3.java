@@ -18,6 +18,7 @@ public class Example3 {
     try {
       // blah blah blah
     }
+    // filtered violation below 'Catching 'RuntimeException' is not allowed'
     catch(RuntimeException re) {
       // OK to catch RuntimeException here
     }
