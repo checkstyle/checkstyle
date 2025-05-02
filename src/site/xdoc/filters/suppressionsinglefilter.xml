@@ -107,6 +107,7 @@
     &lt;property name="checks" value="JavadocStyle|MagicNumber"/&gt;
     &lt;property name="files" value="Example1.java"/&gt;
     &lt;property name="lines" value="1,5-100"/&gt;
+    &lt;property name="columns" value="17-30"/&gt;
   &lt;/module&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="message" value="Missing a Javadoc comment"/&gt;
@@ -130,12 +131,16 @@ public class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="JavadocMethod"/&gt;
-    &lt;module name="EqualsAvoidNull"/&gt;
+    &lt;module name="JavadocMethod"&gt;
+      &lt;property name="id" value="javadocMethod"/&gt;
+    &lt;/module&gt;
+    &lt;module name="EqualsAvoidNull"&gt;
+      &lt;property name="id" value="equalsAvoidNull"/&gt;
+    &lt;/module&gt;
   &lt;/module&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="files" value="Example2.java"/&gt;
-    &lt;property name="checks" value="JavadocMethod|EqualsAvoidNull"/&gt;
+    &lt;property name="id" value="javadocMethod"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -367,6 +372,44 @@ public class Example10 {
   // filtered violation below 'Name 'log' must match pattern'
   private String log = "Some log message";
 
+}
+</code></pre></div>
+        <p id="Example11-config">
+          To configure a filter to suppress violations of <code>WhitespaceAround</code> check
+          but allow <code>MethodLength</code> violations in <code>Example11.java</code> using
+          <code>SuppressionSingleFilter</code> with both 'id' and 'columns' properties:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="WhitespaceAround"&gt;
+      &lt;property name="id" value="whitespaceCheck"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MethodLength"&gt;
+      &lt;property name="id" value="methodLengthCheck"/&gt;
+      &lt;property name="max" value="2"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+  &lt;module name="SuppressionSingleFilter"&gt;
+    &lt;property name="files" value="Example11.java"/&gt;
+    &lt;property name="id" value="whitespaceCheck"/&gt;
+    &lt;property name="columns" value="12-30"/&gt;
+    &lt;property name="lines" value="17"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example11-code">
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example11 {
+  // This method demonstrates the combined usage of id and columns properties
+  public void exampleMethod() {
+    int x=5; // filtered violation, WhitespaceAround check will be suppressed by id and columns
+    
+    // MethodLength violation is not filtered since we only filter the whitespaceCheck id
+    int y = 10;
+    int z = 15;
+  }
 }
 </code></pre></div>
       </subsection>
