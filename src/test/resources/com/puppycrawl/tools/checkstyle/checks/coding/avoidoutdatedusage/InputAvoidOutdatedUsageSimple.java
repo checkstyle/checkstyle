@@ -1,0 +1,25 @@
+/*
+AvoidOutdatedUsage
+
+*/
+package com.puppycrawl.tools.checkstyle.checks.coding.avoidoutdatedusage;
+
+import java.util.stream.Collectors;
+import static java.util.stream.Collectors.toList;
+import java.util.stream.Stream;
+
+public class InputAvoidOutdatedUsageSimple {
+
+    static String FOO = "foo";
+
+    static {
+        // violation below Avoid outdated API ''.collect(Collectors.toList()) -> .toList()''.
+        toList();
+        // violation below Avoid outdated API ''.collect(Collectors.toList()) -> .toList()''.
+        Collectors.toList();
+        // violation below Avoid outdated API ''.collect(Collectors.toList()) -> .toList()''.
+        Stream.of(FOO).collect(Collectors.toList());
+        // Stream.of(FOO).toList()); // ok
+    }
+
+}
