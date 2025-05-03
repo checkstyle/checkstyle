@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <div>
- * Checks to avoid outdated API.
+ * Checks to avoid outdated API usage.
  * </div>
  *
  * <p>
