@@ -18,13 +18,13 @@ public class InputAvoidOutdatedUsageForCollectors {
     private static void Collectors() {
         // TODO Usage of API documented as @since 16+
         // Stream.of(FOO).toList(); // ok, as modern
-        Stream.of(FOO).collect(toList()); // violation, Avoid outdated api ''.collect(Collectors.toList()) -> .toList()''.
-        Stream.of(FOO).collect(Collectors.toList()); // violation, Avoid outdated api ''.collect(Collectors.toList()) -> .toList()''.
+        Stream.of(FOO).collect(toList()); // violation, Avoid outdated API ''.collect(Collectors.toList()) -> .toList()''.
+        Stream.of(FOO).collect(Collectors.toList()); // violation, Avoid outdated API ''.collect(Collectors.toList()) -> .toList()''.
         // Can be replaced with 'java.util.ArrayList' constructor
         new ArrayList<>(List.of(FOO)); // ok, as modern
-        Collector<Object, ?, List<Object>> list = Collectors.toList(); // violation, Avoid outdated api ''.collect(Collectors.toList()) -> .toList()''.
-        Collectors.toList(); // violation, Avoid outdated api ''.collect(Collectors.toList()) -> .toList()''.
-        toList(); // violation, Avoid outdated api ''.collect(Collectors.toList()) -> .toList()''.
+        Collector<Object, ?, List<Object>> list = Collectors.toList(); // violation, Avoid outdated API ''.collect(Collectors.toList()) -> .toList()''.
+        Collectors.toList(); // violation, Avoid outdated API ''.collect(Collectors.toList()) -> .toList()''.
+        toList(); // violation, Avoid outdated API ''.collect(Collectors.toList()) -> .toList()''.
         // TODO Usage of API documented as @since 16+
         // List.of(FOO).stream().toList(); // ok, as modern
         // Stream.of(FOO).toList(); // ok, as modern
@@ -36,7 +36,7 @@ public class InputAvoidOutdatedUsageForCollectors {
 
     static class Foo {
         public static Collector<Object, ?, List<Object>> toList() {
-            return Collectors.toList(); // violation, Avoid outdated api ''.collect(Collectors.toList()) -> .toList()''.
+            return Collectors.toList(); // violation, Avoid outdated API ''.collect(Collectors.toList()) -> .toList()''.
         }
     }
 }
