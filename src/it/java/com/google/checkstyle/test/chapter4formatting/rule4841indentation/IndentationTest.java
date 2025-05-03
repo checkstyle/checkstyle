@@ -99,4 +99,9 @@ public class IndentationTest extends AbstractIndentationTestSupport {
     public void testSwitchOnTheStartOfTheLine() throws Exception {
         verifyWithWholeConfig(getNonCompilablePath("InputSwitchOnStartOfTheLine.java"));
     }
+
+    @Test
+    public void testMultilineParameters() throws Exception {
+        verifyWithWholeConfig(getNonCompilablePath("InputCatchParametersOnNewLine.java"));
+    }
 }
