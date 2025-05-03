@@ -29,7 +29,7 @@ class Example7 {
     return null;
   }
   abstract class Inner {
-    abstract int method(String field); // OK, because ignoreAbstractMethods is true
+    abstract int method(String field); // ok, because ignoreAbstractMethods is true
   }
 }
 // xdoc section -- end

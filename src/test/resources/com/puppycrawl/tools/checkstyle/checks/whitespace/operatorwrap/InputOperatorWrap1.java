@@ -45,7 +45,7 @@ class InputOperatorWrap1
     void testAssignment()
     {
         int x
-            = 0; //violation when checking assignment operators with EOL wrap option
+            = 0; // violation when checking assignment operators with EOL wrap option
         int y =
             0;
     }

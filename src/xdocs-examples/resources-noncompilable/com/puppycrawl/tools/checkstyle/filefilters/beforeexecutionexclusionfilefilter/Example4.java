@@ -26,9 +26,9 @@ public class Example4 {}
 .../Example2.java
 .../Example3.java
 .../Example4.java
-.../test/generated_TestCase1.java // OK, 'test' folder is not audited
-.../test/generated_StubBankRemote.java // OK, 'test' folder is not audited
+.../test/generated_TestCase1.java // ok, 'test' folder is not audited
+.../test/generated_StubBankRemote.java // ok, 'test' folder is not audited
 .../test/MockPaymentRemote.java
-.../module-info.java // OK, the file is not audited
+.../module-info.java // ok, the file is not audited
 // xdoc section -- end
 */

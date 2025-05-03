@@ -161,7 +161,7 @@ public class Example1 {
   private void bar() {
   }
 
-  public void testSingleLine() { bar(); } // OK, because singleline is allowed
+  public void testSingleLine() { bar(); } // ok, because singleline is allowed
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -201,7 +201,7 @@ public class Example2 {
     try {
       bar();
     } catch (Exception e) {
-      // OK above because config is set to token METHOD_DEF and LITERAL_ELSE
+      // ok above because config is set to token METHOD_DEF and LITERAL_ELSE
       bar();
     }
 
@@ -303,7 +303,7 @@ public class Example4 {
 
     try {
       bar();
-    } catch (Exception e) { // OK because config did not set token LITERAL_TRY
+    } catch (Exception e) { // ok because config did not set token LITERAL_TRY
       bar();
     }
 
@@ -312,7 +312,7 @@ public class Example4 {
   private void bar() {
   }
 
-  public void violate() { bar(); } // OK , because singleline
+  public void violate() { bar(); } // ok , because singleline
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">

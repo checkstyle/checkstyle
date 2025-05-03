@@ -15,7 +15,7 @@ public class Example2 {
     try {
       doSomething();
     } catch (Exception e) {
-      System.exit(1); // OK, as only there is only one occurrence.
+      System.exit(1); // ok, as only there is only one occurrence.
     }
   }
 

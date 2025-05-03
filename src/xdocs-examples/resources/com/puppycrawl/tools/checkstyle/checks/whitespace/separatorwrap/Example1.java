@@ -11,13 +11,13 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace.separatorwrap;
 // xdoc section -- start
 import java.io.
-          IOException; // OK, dot is on the previous line
+          IOException; // ok, dot is on the previous line
 
 class Example1 {
   String s;
 
   public void foo(int a,
-                    int b) { // OK, comma is on the previous line
+                    int b) { // ok, comma is on the previous line
   }
 
   public void bar(int p
