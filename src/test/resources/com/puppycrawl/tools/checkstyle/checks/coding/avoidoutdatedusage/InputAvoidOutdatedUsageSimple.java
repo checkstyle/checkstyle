@@ -13,7 +13,8 @@ public class InputAvoidOutdatedUsageSimple {
     static String FOO = "foo";
 
     static {
-        toList(); // violation, Avoid outdated api ''.collect(Collectors.toList()) -> .toList()''.
+        // violation below, Avoid outdated api ''.collect(Collectors.toList()) -> .toList()''.
+        toList();
         // violation below, Avoid outdated api ''.collect(Collectors.toList()) -> .toList()''.
         Collectors.toList();
         // violation below, Avoid outdated api ''.collect(Collectors.toList()) -> .toList()''.
