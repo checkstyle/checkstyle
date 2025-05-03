@@ -27,7 +27,20 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * AvoidOutdatedUsageCheck AvoidOutdatedUsageCheck AvoidOutdatedUsageCheck.
+ * <div>Checks that a local method is declared but not used, except for overloaded ones.</div>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code outdated.api.usage}
+ * </li>
+ * </ul>
+ *
+ * @since 10.24.0
  */
 @StatelessCheck
 public class AvoidOutdatedUsageCheck extends AbstractCheck {
