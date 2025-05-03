@@ -55,7 +55,7 @@ public class AvoidOutdatedUsageCheck extends AbstractCheck {
     public static final String MSG_OUTDATED_API_USAGE = "outdated.api.usage";
 
     /**
-     * Outdated method and its successor (migration): "foo", ".foo(Foo) -> .bar(Bar)"
+     * Outdated method and its successor (migration): "foo", ".foo(Foo) -> .bar(Bar)".
      */
     private static final Map<String, String> OUTDATED_METHODS = Map.of(
         "toList", ".collect(Collectors.toList()) -> .toList()"
@@ -69,7 +69,7 @@ public class AvoidOutdatedUsageCheck extends AbstractCheck {
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {
-            TokenTypes.METHOD_CALL
+            TokenTypes.METHOD_CALL,
         };
     }
 
@@ -82,11 +82,11 @@ public class AvoidOutdatedUsageCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final DetailAST child = ast.getFirstChild();
         if (child.getFirstChild() == null) {
-            logOutdated(child,child.getText());
+            logOutdated(child.getText(), child);
         }
         else {
             final DetailAST nextSibling = child.getFirstChild().getNextSibling();
-            logOutdated(nextSibling, nextSibling.getText());
+            logOutdated(nextSibling.getText(), nextSibling);
         }
     }
 
@@ -94,8 +94,9 @@ public class AvoidOutdatedUsageCheck extends AbstractCheck {
      * Log outdated.
      *
      * @param methodName the method name to check
+     * @param ast        ast to check
      */
-    private void logOutdated(DetailAST ast, String methodName) {
+    private void logOutdated(String methodName, DetailAST ast) {
         if (isOutdated(methodName)) {
             log(ast,
                 MSG_OUTDATED_API_USAGE,
