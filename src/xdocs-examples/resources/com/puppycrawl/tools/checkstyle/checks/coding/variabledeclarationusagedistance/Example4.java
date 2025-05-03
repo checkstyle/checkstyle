@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="VariableDeclarationUsageDistance">
-      <property name="validateBetweenScopes" value="true"/>
+      <property name="ignoreVariablePattern" value="^num$"/>
     </module>
   </module>
 </module>
@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedi
 public class Example4 {
 
   public void foo1() {
-    int num;        // violation, distance = 4
+    int num;        // OK, variable ignored
     final double PI;   // OK, final variables not checked
     System.out.println("Statement 1");
     System.out.println("Statement 2");
@@ -23,9 +23,9 @@ public class Example4 {
   }
 
   public void foo2() {
-    int a;          // OK, distance = 2
-    int b;          // OK, distance = 3
-    int count = 0;  // violation, distance = 4
+    int a;          // OK, used in different scope
+    int b;          // OK, used in different scope
+    int count = 0;  // OK, used in different scope
 
     {
       System.out.println("Inside inner scope");

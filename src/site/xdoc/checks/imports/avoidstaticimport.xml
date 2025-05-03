@@ -71,8 +71,8 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static java.lang.Math.pow;          // violation, 'Using a static member import should be avoided.'
 import static java.lang.System.*;          // violation, 'Using a static member import should be avoided.'
-import java.io.File;                       // OK
-import java.util.*;                        // OK
+import java.io.File;
+import java.util.*;
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that the <code>java.lang.System.out</code>
@@ -91,11 +91,11 @@ import java.util.*;                        // OK
          Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-import static java.lang.Math.*;            // OK
-import static java.lang.System.out;        // OK
+import static java.lang.Math.*;
+import static java.lang.System.out;
 import static java.lang.Integer.parseInt;  // violation, 'Using a static member import should be avoided.'
-import java.io.*;                          // OK
-import java.util.*;                        // OK
+import java.io.*;
+import java.util.*;
 </code></pre></div>
       </subsection>
 

@@ -1839,7 +1839,28 @@ public final class JavadocTokenTypes {
      */
     public static final int LINK_HTML_TAG_NAME = JavadocParser.LINK_HTML_TAG_NAME;
 
-    /** Meta tag name. */
+    /**
+     *  Meta tag name.
+     *
+     *   <p><b>Example:</b></p>
+     *   <pre>{@code &lt;meta charset="UTF-8"&gt;}</pre>
+     *   <b>Tree:</b>
+     *   <pre>
+     *   {@code
+     *   HTML_ELEMENT -> HTML_ELEMENT
+     *    `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *       `--META_TAG -> META_TAG
+     *          |--START -> <
+     *          |--META_HTML_TAG_NAME -> meta
+     *          |--WS ->
+     *          |--ATTRIBUTE -> ATTRIBUTE
+     *          |   |--HTML_TAG_NAME -> charset
+     *          |   |--EQUALS -> =
+     *          |   `--ATTR_VALUE -> "UTF-8"
+     *           `--END -> >
+     *  }
+     * </pre>
+     */
     public static final int META_HTML_TAG_NAME = JavadocParser.META_HTML_TAG_NAME;
 
     /** Param tag name. */
@@ -2803,7 +2824,52 @@ public final class JavadocTokenTypes {
     /** Col html tag. */
     public static final int COL_TAG = JavadocParser.RULE_colTag + RULE_TYPES_OFFSET;
 
-    /** Frame html tag. */
+    /**
+     * Frame html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code &lt;frameset cols="50%,50%"&gt;
+     * &lt;frame src="page1.html"&gt;
+     * &lt;/frameset&gt;}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     *  `--HTML_TAG -> HTML_TAG
+     *     |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *     |   |--START -> <
+     *     |   |--HTML_TAG_NAME -> frameset
+     *     |   |--WS ->
+     *     |   |--ATTRIBUTE -> ATTRIBUTE
+     *     |   |   |--HTML_TAG_NAME -> cols
+     *     |   |   |--EQUALS -> =
+     *     |   |   `--ATTR_VALUE -> "50%,50%"
+     *     |   `--END -> >
+     *     |--NEWLINE -> \r\n
+     *     |--LEADING_ASTERISK ->  *
+     *     |--TEXT ->
+     *     |--HTML_ELEMENT -> HTML_ELEMENT
+     *     |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *     |       `--FRAME_TAG -> FRAME_TAG
+     *     |           |--START -> <
+     *     |           |--FRAME_HTML_TAG_NAME -> frame
+     *     |           |--WS ->
+     *     |           |--ATTRIBUTE -> ATTRIBUTE
+     *     |           |   |--HTML_TAG_NAME -> src
+     *     |           |   |--EQUALS -> =
+     *     |           |   `--ATTR_VALUE -> "page1.html"
+     *     |           `--END -> >
+     *     |--NEWLINE -> \r\n
+     *     |--LEADING_ASTERISK ->  *
+     *     |--TEXT ->
+     *     `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *         |--START -> <
+     *         |--SLASH -> /
+     *         |--HTML_TAG_NAME -> frameset
+     *         `--END -> >
+     * }
+     * </pre>
+     */
     public static final int FRAME_TAG = JavadocParser.RULE_frameTag + RULE_TYPES_OFFSET;
 
     /**

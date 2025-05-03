@@ -6,7 +6,7 @@ public class InputAntlr4AstRegressionForLoops {
    int k;
     void method1()
     {
-        //Violations:
+        // violation :
         for (int i = 0; i < 1; i++) {
             i++;
         }
@@ -22,7 +22,7 @@ public class InputAntlr4AstRegressionForLoops {
             j++;
         }
 
-        // Ok:
+        // ok :
         for (int i = 0; i < 1; i++) {
         }
         for (int i = 0; i < 1; i++) {
