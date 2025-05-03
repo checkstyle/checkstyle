@@ -13,6 +13,7 @@
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
 // xdoc section -- start
 public class Example2 {
+  // filtered violation below
   public static final int lowerCaseConstant = 1; // CHECKSTYLE IGNORE THIS LINE
 }
 // xdoc section -- end
