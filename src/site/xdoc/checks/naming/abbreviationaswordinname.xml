@@ -164,22 +164,22 @@
 </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example1 extends SuperClass { // OK, camel case
+class Example1 extends SuperClass { // ok, camel case
   int CURRENT_COUNTER; // violation 'no more than '4' consecutive capital letters'
-  static int GLOBAL_COUNTER; // OK, static is ignored
-  final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;(); // OK, final is ignored
+  static int GLOBAL_COUNTER; // ok, static is ignored
+  final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;(); // ok, final is ignored
 
   @Override
-  public void printCOUNTER() { // OK, overridden method is ignored
+  public void printCOUNTER() { // ok, overridden method is ignored
     System.out.println(CURRENT_COUNTER);
   }
   // violation below 'no more than '4' consecutive capital letters'
   void incrementCOUNTER() {
-    CURRENT_COUNTER++; // OK, only definitions are checked
+    CURRENT_COUNTER++; // ok, only definitions are checked
   }
   // violation below 'no more than '4' consecutive capital letters'
   static void incrementGLOBAL() {
-    GLOBAL_COUNTER++; // OK, only definitions are checked
+    GLOBAL_COUNTER++; // ok, only definitions are checked
   }
 }
 </code></pre></div>
@@ -200,23 +200,23 @@ class Example1 extends SuperClass { // OK, camel case
 </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example2 extends SuperClass { // OK, camel case
+class Example2 extends SuperClass { // ok, camel case
   int CURRENT_COUNTER; // violation 'no more than '4' consecutive capital letters'
   // violation below 'no more than '4' consecutive capital letters'
   static int GLOBAL_COUNTER;
-  final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;(); // OK, final is ignored
+  final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;(); // ok, final is ignored
 
   @Override // violation below 'no more than '4' consecutive capital letters'
   public void printCOUNTER() {
-    System.out.println(CURRENT_COUNTER); // OK, only definitions are checked
+    System.out.println(CURRENT_COUNTER); // ok, only definitions are checked
   }
   // violation below 'no more than '4' consecutive capital letters'
   void incrementCOUNTER() {
-    CURRENT_COUNTER++; // OK, only definitions are checked
+    CURRENT_COUNTER++; // ok, only definitions are checked
   }
   // violation below 'no more than '4' consecutive capital letters'
   static void incrementGLOBAL() {
-    GLOBAL_COUNTER++; // OK, only definitions are checked
+    GLOBAL_COUNTER++; // ok, only definitions are checked
   }
 }
 </code></pre></div>
@@ -244,14 +244,14 @@ class Example2 extends SuperClass { // OK, camel case
 class Example3 {
   int firstNum;
   int secondNUM; // violation 'no more than '1' consecutive capital letters'
-  static int thirdNum; // OK, the static modifier would be checked
+  static int thirdNum; // ok, the static modifier would be checked
   static int fourthNUm; // violation 'no more than '1' consecutive capital letters'
-  String firstXML; // OK, XML abbreviation is allowed
-  String firstURL; // OK, URL abbreviation is allowed
-  final int TOTAL = 5; // OK, final is ignored
-  static final int LIMIT = 10; // OK, static final is ignored
-  void newOAuth2Client() {} // OK, O abbreviation is allowed
-  void OAuth2() {} // OK, O abbreviation is allowed
+  String firstXML; // ok, XML abbreviation is allowed
+  String firstURL; // ok, URL abbreviation is allowed
+  final int TOTAL = 5; // ok, final is ignored
+  static final int LIMIT = 10; // ok, static final is ignored
+  void newOAuth2Client() {} // ok, O abbreviation is allowed
+  void OAuth2() {} // ok, O abbreviation is allowed
   void OAUth2() {}
 }
 </code></pre></div>
@@ -275,16 +275,16 @@ class Example3 {
 </code></pre></div>
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 { // OK, ignore checking the class name
-  int firstNum; // OK, abbreviation "N" is of allowed length 1
+class Example4 { // ok, ignore checking the class name
+  int firstNum; // ok, abbreviation "N" is of allowed length 1
   int secondNUm;
   int secondMYNum; // violation 'no more than '2' consecutive capital letters'
   int thirdNUM; // violation 'no more than '2' consecutive capital letters'
-  static int fourthNUM; // OK, variables with static modifier would be ignored
-  String firstCSV; // OK, CSV abbreviation is allowed
+  static int fourthNUM; // ok, variables with static modifier would be ignored
+  String firstCSV; // ok, CSV abbreviation is allowed
   String firstXML; // violation 'no more than '2' consecutive capital letters'
-  final int TOTAL = 5; // OK, final is ignored
-  static final int LIMIT = 10; // OK, static final is ignored
+  final int TOTAL = 5; // ok, final is ignored
+  static final int LIMIT = 10; // ok, static final is ignored
 }
 </code></pre></div>
         <p>
@@ -312,7 +312,7 @@ class Example5 {
   // violation below 'no more than '1' consecutive capital letters'
   final int customerID = 2;
   static int nextID = 3; // violation 'no more than '1' consecutive capital letters'
-  static final int MAX_ALLOWED = 4; // OK, ignored
+  static final int MAX_ALLOWED = 4; // ok, ignored
 }
 </code></pre></div>
         <p>
@@ -339,7 +339,7 @@ class Example6 {
   int counterXYZ = 1; // violation 'no more than '1' consecutive capital letters'
   // violation below 'no more than '1' consecutive capital letters'
   final int customerID = 2;
-  static int nextID = 3; // OK, ignored
+  static int nextID = 3; // ok, ignored
   // violation below 'no more than '1' consecutive capital letters'
   static final int MAX_ALLOWED = 4;
 }
@@ -366,7 +366,7 @@ class Example7 {
   int counterXYZ = 1;
   final int customerID = 2;
   static int nextID = 3;
-  static final int MAX_ALLOWED = 4; // OK, abbreviation is allowed
+  static final int MAX_ALLOWED = 4; // ok, abbreviation is allowed
 }
 </code></pre></div>
       </subsection>

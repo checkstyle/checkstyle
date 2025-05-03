@@ -36,7 +36,7 @@ public class VariableDeclarationUsageDistanceCheckExamplesTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "16:5: " + getCheckMessage(MSG_KEY_EXT, "num", 4, 3),
+            "17:5: " + getCheckMessage(MSG_KEY_EXT, "num", 4, 3),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -45,7 +45,7 @@ public class VariableDeclarationUsageDistanceCheckExamplesTest
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "28:5: " + getCheckMessage(MSG_KEY_EXT, "minutes", 6, 3),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -63,8 +63,7 @@ public class VariableDeclarationUsageDistanceCheckExamplesTest
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "16:5: " + getCheckMessage(MSG_KEY_EXT, "num", 4, 3),
-            "28:5: " + getCheckMessage(MSG_KEY_EXT, "count", 4, 3),
+
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
@@ -73,10 +72,21 @@ public class VariableDeclarationUsageDistanceCheckExamplesTest
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "16:5: " + getCheckMessage(MSG_KEY, "num", 4, 3),
-            "17:5: " + getCheckMessage(MSG_KEY, "PI", 5, 3),
+            "17:5: " + getCheckMessage(MSG_KEY_EXT, "num", 4, 3),
+            "30:5: " + getCheckMessage(MSG_KEY_EXT, "count", 4, 3),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_KEY, "num", 4, 3),
+            "19:5: " + getCheckMessage(MSG_KEY, "PI", 5, 3),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+    }
+
 }

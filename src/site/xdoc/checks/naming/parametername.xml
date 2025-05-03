@@ -122,7 +122,7 @@ class Example3 {
   void method1(int v1) {}
   void method2(int V2) {} // violation
   @Override
-  public boolean equals(Object V3) { // OK
+  public boolean equals(Object V3) {
     return true;
   }
 }

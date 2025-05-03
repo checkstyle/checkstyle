@@ -29,7 +29,7 @@ public class InputOneStatementPerLineTryWithResources {
         try (s1; OutputStream s6 = new PipedOutputStream(); s2) {
         }
         try (
-                //violation below 'Only one statement per line allowed.'
+                // violation below 'Only one statement per line allowed.'
 OutputStream s7 = new PipedOutputStream();OutputStream s8 = new PipedOutputStream();
            s2;
         ) {}

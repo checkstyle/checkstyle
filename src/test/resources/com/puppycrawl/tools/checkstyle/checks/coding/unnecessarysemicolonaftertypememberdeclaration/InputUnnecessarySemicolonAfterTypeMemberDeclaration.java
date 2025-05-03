@@ -10,7 +10,7 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, VARIABLE_D
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicolonaftertypememberdeclaration;
 
 public class InputUnnecessarySemicolonAfterTypeMemberDeclaration {
-    ; //violation
+    ; // violation
 
     {/*init block*/}; // violation
 
@@ -22,13 +22,13 @@ public class InputUnnecessarySemicolonAfterTypeMemberDeclaration {
 
     void method(){}; // violation
 
-    interface aa{}; //violation
+    interface aa{}; // violation
 
     enum aa1{}; // violation
 
     @interface anno {}; // violation
 
-    int field;; //violation
+    int field;; // violation
 
     enum c{
         B,C;; // violation
@@ -43,10 +43,10 @@ enum e {
     int enumField;
 };
 @interface an {
-    ; //violation
+    ; // violation
 };
 interface i {
-    ; //violation
+    ; // violation
 };
 @interface annotation {
     String value();; // violation

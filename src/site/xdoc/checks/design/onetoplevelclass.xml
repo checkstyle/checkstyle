@@ -38,7 +38,7 @@
           An example of code with violations:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example1 { // OK, first top-level class
+public class Example1 { // ok, first top-level class
   // methods
 }
 
@@ -50,7 +50,7 @@ class ViolationExample1 { // violation, "has to reside in its own source file."
           An example of code without public top-level type:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example2 { // OK, first top-level class
+class Example2 { // ok, first top-level class
   // methods
 }
 

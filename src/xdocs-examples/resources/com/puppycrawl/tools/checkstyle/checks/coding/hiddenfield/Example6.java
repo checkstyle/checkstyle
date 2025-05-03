@@ -21,10 +21,10 @@ class Example6 {
   void method(String param) {
     String field = param; // violation, ''field' hides a field'
   }
-  void setTestField(String testField) { // OK, because ignoreSetter is true
+  void setTestField(String testField) { // ok, because ignoreSetter is true
     this.field = field;
   }
-  Example6 setField(String field) { // OK, because setterCanReturnItsClass is true
+  Example6 setField(String field) { // ok, because setterCanReturnItsClass is true
     this.field = field;
     return null;
   }

@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationonsameline;
 import javax.annotation.Nullable;
 
 // xdoc section -- start
-@Deprecated interface Foo {  // OK
+@Deprecated interface Foo {
 
   void doSomething();
 
@@ -27,7 +27,7 @@ class Example2 implements Foo {
   public Example2() {
   }
 
-  @Override  // OK
+  @Override
   public void doSomething() {
   }
 
