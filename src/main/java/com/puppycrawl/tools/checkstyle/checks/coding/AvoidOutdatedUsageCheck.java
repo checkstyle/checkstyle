@@ -26,12 +26,14 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
+/**
+ * AvoidOutdatedUsageCheck AvoidOutdatedUsageCheck AvoidOutdatedUsageCheck.
+ */
 @StatelessCheck
 public class AvoidOutdatedUsageCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_OUTDATED_API_USAGE = "outdated.api.usage";
 
@@ -62,7 +64,7 @@ public class AvoidOutdatedUsageCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST child = ast.getFirstChild();
-            if (child.getFirstChild() == null) {
+        if (child.getFirstChild() == null) {
             logOutdated(child,child.getText());
         }
         else {
