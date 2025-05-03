@@ -9,7 +9,7 @@
     <section name="AvoidOutdatedUsage">
       <p>Since Checkstyle 10.24.0</p>
       <subsection name="Description" id="Description">
-        <div>Checks that a local method is declared but not used, except for overloaded ones.</div>
+        <div>Checks to avoid outdated API usage.</div>
       </subsection>
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">

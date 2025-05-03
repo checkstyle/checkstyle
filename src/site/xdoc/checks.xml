@@ -131,7 +131,7 @@
                 AvoidOutdatedUsage
               </a>
             </td>
-            <td>Checks that a local method is declared but not used, except for overloaded ones.
+            <td>Checks to avoid outdated API usage.
             </td>
           </tr>
           <tr>

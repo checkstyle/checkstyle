@@ -5,7 +5,7 @@
              name="AvoidOutdatedUsage"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks that a local method is declared but not used, except for overloaded ones.
+ Checks to avoid outdated API usage.
  &lt;/div&gt;</description>
          <message-keys>
             <message-key key="outdated.api.usage"/>
