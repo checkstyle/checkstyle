@@ -37,9 +37,9 @@ public class AvoidOutdatedUsageCheckTest extends AbstractModuleTestSupport {
     @Test
     public void simple() throws Exception {
         final String[] expected = {
-            "16:9: " + getCheckMessage(MSG_OUTDATED_API_USAGE, TO_LIST),
-            "17:20: " + getCheckMessage(MSG_OUTDATED_API_USAGE, TO_LIST),
-            "18:43: " + getCheckMessage(MSG_OUTDATED_API_USAGE, TO_LIST),
+            "17:9: " + getCheckMessage(MSG_OUTDATED_API_USAGE, TO_LIST),
+            "19:20: " + getCheckMessage(MSG_OUTDATED_API_USAGE, TO_LIST),
+            "21:43: " + getCheckMessage(MSG_OUTDATED_API_USAGE, TO_LIST),
         };
         verifyWithInlineConfigParser(getPath("InputAvoidOutdatedUsageSimple.java"), expected);
     }
