@@ -51,6 +51,15 @@
           </tr>
           <tr>
             <td>
+              <a href="avoidoutdatedusage.html#AvoidOutdatedUsage">
+                AvoidOutdatedUsage
+              </a>
+            </td>
+            <td>Checks to avoid outdated API usage.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="constructorsdeclarationgrouping.html#ConstructorsDeclarationGrouping">
                 ConstructorsDeclarationGrouping
               </a>
