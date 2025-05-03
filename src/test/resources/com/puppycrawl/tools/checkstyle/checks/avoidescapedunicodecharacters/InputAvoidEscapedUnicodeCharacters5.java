@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.avoidescapedunicodecharacters;
 public class InputAvoidEscapedUnicodeCharacters5 {
     private String a = "🎄"; // violation below
     private String b = "\uD83E\uDD73abs😀";
-    private String c = "\uD83C\uDF84😀\uD83C\uDF84"; // OK, allowed by trailing comment
+    private String c = "\uD83C\uDF84😀\uD83C\uDF84"; // ok, allowed by trailing comment
     // violation below
     private String d = "\uD83C\uDF84😀\uD83C\uDF84asdas\uD83C\uDF84abcd";
 
@@ -28,7 +28,7 @@ public class InputAvoidEscapedUnicodeCharacters5 {
 
     public boolean matches(String c) {
         switch (c) {
-            //violation below
+            // violation below
             case "\u03bc🎄":
             case "🎄\u03bc": /* OK, allowed by trailing comment */
                 // violation below
@@ -40,7 +40,7 @@ public class InputAvoidEscapedUnicodeCharacters5 {
             case "😂\uD83D\uDE02":
                 return false;
             default:
-                return c.equals("\u2000😂\u2000"); // OK, allowed by trailing comment
+                return c.equals("\u2000😂\u2000"); // ok, allowed by trailing comment
         }
     }
 }

@@ -96,7 +96,7 @@ public class InputJavadocStyleScopePublic3
      */
     public void method20() {}
 
-    //violation 5 lines below 'Extra HTML tag found: </string>'
+    // violation 5 lines below 'Extra HTML tag found: </string>'
     /**
      * Checks HTML tags in javadoc.
      *

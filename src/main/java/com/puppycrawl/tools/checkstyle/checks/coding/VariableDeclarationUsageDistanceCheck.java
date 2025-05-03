@@ -42,8 +42,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </div>
  * <ul>
  * <li>
- * Property {@code allowedDistance} - Specify distance between declaration
- * of variable and its first usage. Values should be greater than 0.
+ * Property {@code allowedDistance} - Specify the maximum distance between a
+ * variable's declaration and its first usage. Value should be greater than 0.
  * Type is {@code int}.
  * Default value is {@code 3}.
  * </li>
@@ -59,8 +59,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code ""}.
  * </li>
  * <li>
- * Property {@code validateBetweenScopes} - Allow to calculate the distance between
- * declaration of variable and its first usage in the different scopes.
+ * Property {@code validateBetweenScopes} - Allow to calculate the distance between a
+ * variable's declaration and its first usage across different scopes.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
@@ -104,8 +104,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     private static final int DEFAULT_DISTANCE = 3;
 
     /**
-     * Specify distance between declaration of variable and its first usage.
-     * Values should be greater than 0.
+     * Specify the maximum distance between a variable's declaration and its first usage.
+     * Value should be greater than 0.
      */
     private int allowedDistance = DEFAULT_DISTANCE;
 
@@ -116,8 +116,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     private Pattern ignoreVariablePattern = Pattern.compile("");
 
     /**
-     * Allow to calculate the distance between declaration of variable and its
-     * first usage in the different scopes.
+     * Allow to calculate the distance between a variable's declaration and its first usage
+     * across different scopes.
      */
     private boolean validateBetweenScopes;
 
@@ -125,8 +125,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     private boolean ignoreFinal = true;
 
     /**
-     * Setter to specify distance between declaration of variable and its first usage.
-     * Values should be greater than 0.
+     * Setter to specify the maximum distance between a variable's declaration and its first usage.
+     * Value should be greater than 0.
      *
      * @param allowedDistance
      *        Allowed distance between declaration of variable and its first
@@ -148,8 +148,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to allow to calculate the distance between declaration of
-     * variable and its first usage in the different scopes.
+     * Setter to allow to calculate the distance between a variable's declaration
+     * and its first usage across different scopes.
      *
      * @param validateBetweenScopes
      *        Defines if allow to calculate distance between declaration of

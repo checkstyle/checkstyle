@@ -58,7 +58,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockFive {
     void foo64()  {
         new InputCommentsIndentationCommentIsAtTheEndOfBlockOne().foo1();
 
-//  violation '.* incorrect .* level 0, expected is 8, .* same .* as line 59.'
+// violation '.* incorrect .* level 0, expected is 8, .* same .* as line 59.'
     }
 
     void foo65() {
@@ -73,7 +73,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockFive {
         if (true) {
             getClass();
         }
-        //violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 73.'
+        // violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 73.'
           /* violation */
     }
 
@@ -83,7 +83,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockFive {
         } finally {
             hashCode();
         }
-        //violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 81.'
+        // violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 81.'
           /* violation */
     }
 
@@ -91,7 +91,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockFive {
         for (int i = 0; i < 0; i++) {
             getClass();
         }
-        //violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 91.'
+        // violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 91.'
           /* violation */
     }
 
@@ -99,7 +99,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockFive {
         while (true) {
             getClass();
         }
-        //violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 99.'
+        // violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 99.'
           /* violation */
     }
 
@@ -107,7 +107,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockFive {
         do {
             getClass();
         } while (true);
-        //violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 107.'
+        // violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 107.'
           /* violation */
     }
 
