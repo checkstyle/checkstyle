@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.AvoidOutdatedUsageCh
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class AvoidOutdatedUsageCheckTest extends AbstractModuleTestSupport {
 
@@ -43,7 +44,8 @@ public class AvoidOutdatedUsageCheckTest extends AbstractModuleTestSupport {
             "18:43: " + getCheckMessage(MSG_OUTDATED_API_USAGE, TO_LIST),
         };
         verifyWithInlineConfigParser(getPath("InputAvoidOutdatedUsageSimple.java"), expected);
-        assertThat(new AvoidOutdatedUsageCheck().getRequiredTokens()).isNull();
+        assertThat(new AvoidOutdatedUsageCheck().getRequiredTokens())
+            .isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
     }
 
     @Test
