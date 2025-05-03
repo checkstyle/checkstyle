@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <div>
- * Checks that a local method is declared but not used, except for overloaded ones.
+ * Checks to avoid outdated API.
  * </div>
  *
  * <p>
@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
- * {@code unused.local.method}
+ * {@code outdated.api.usage}
  * </li>
  * </ul>
  *
