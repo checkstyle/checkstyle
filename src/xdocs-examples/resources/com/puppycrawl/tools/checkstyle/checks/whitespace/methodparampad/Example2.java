@@ -27,6 +27,6 @@ class Example2 {
   public void method() {} // violation ''(' is not preceded with whitespace'
 
   public void methodWithVeryLongName
-  () {} // OK, because allowLineBreaks is true
+  () {} // ok, because allowLineBreaks is true
 }
 // xdoc section -- end

@@ -118,12 +118,12 @@ d = e / f;        // Another comment for this line
 public class Example1 {
   public static void main(String[] args) {
     int x = 10;
-    // OK
+
     if (/* OK */ x &gt; 5) {}
     int a = 5; // violation
     doSomething(
             "param1"
-    ); // OK, by default such trailing of method/code-block ending is allowed
+    ); // ok, by default such trailing of method/code-block ending is allowed
 
   }
 
@@ -152,7 +152,7 @@ public class Example1 {
 public class Example2 {
   public static void main(String[] args) {
     int x = new Random().nextInt(100);
-    // OK
+
     if (/* OK, this comment does not end the line */ x &gt; 5) {}
     int a = 5; // violation, line content before comment should match pattern "^\s*$"
     doSomething(

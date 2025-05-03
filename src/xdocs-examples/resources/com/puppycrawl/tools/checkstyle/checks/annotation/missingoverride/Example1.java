@@ -19,7 +19,7 @@ class Example1 extends ParentClass1 {
 
   /** {@inheritDoc} */
   @Override
-  public void test1() { // OK
+  public void test1() {
 
   }
 

@@ -14,7 +14,7 @@ public class InputFinalLocalVariable2Five {
             int shouldBeFinal;
             class Bar {
                 void bar () {
-                    int shouldBeFinal;    //Violation
+                    int shouldBeFinal;// violation Variable 'shouldBeFinal' should be declared final
                     final boolean b = false;
                     if (b) {
                         shouldBeFinal = 1;
@@ -29,7 +29,7 @@ public class InputFinalLocalVariable2Five {
     class class52 {
         public void test1(){
             final boolean b = false;
-            int shouldBeFinal;    //Violation
+            int shouldBeFinal;    // violation Variable 'shouldBeFinal' should be declared final
             if(b){
                 if(b){
                     shouldBeFinal = 1;
@@ -40,7 +40,7 @@ public class InputFinalLocalVariable2Five {
         }
         public void test2() {
             final int b = 10;
-            int shouldBeFinal;        //Violation
+            int shouldBeFinal;        // violation Variable 'shouldBeFinal' should be declared final
 
             switch (b) {
                 case 0:
@@ -75,7 +75,7 @@ public class InputFinalLocalVariable2Five {
             int shouldBeFinal;
             class Bar {
                 void bar () {
-                    int shouldBeFinal;    //Violation
+                    int shouldBeFinal;// violation Variable 'shouldBeFinal' should be declared final
                     final boolean b = false;
                     if (b) {
                         if (b) {

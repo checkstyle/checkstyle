@@ -11,11 +11,11 @@
 package com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport;
 
 // xdoc section -- start
-import static java.lang.Math.*;            // OK
-import static java.lang.System.out;        // OK
+import static java.lang.Math.*;
+import static java.lang.System.out;
 import static java.lang.Integer.parseInt;  // violation, 'Using a static member import should be avoided.'
-import java.io.*;                          // OK
-import java.util.*;                        // OK
+import java.io.*;
+import java.util.*;
 // xdoc section -- end
 
 class Example2{}
