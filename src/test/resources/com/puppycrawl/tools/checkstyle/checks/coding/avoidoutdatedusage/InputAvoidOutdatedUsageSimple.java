@@ -14,8 +14,10 @@ public class InputAvoidOutdatedUsageSimple {
 
     static {
         toList(); // violation, Avoid outdated api ''.collect(Collectors.toList()) -> .toList()''.
-        Collectors.toList(); // violation, Avoid outdated api ''.collect(Collectors.toList()) -> .toList()''.
-        Stream.of(FOO).collect(Collectors.toList()); // violation, Avoid outdated api ''.collect(Collectors.toList()) -> .toList()''.
+        // violation below, Avoid outdated api ''.collect(Collectors.toList()) -> .toList()''.
+        Collectors.toList();
+        // violation below, Avoid outdated api ''.collect(Collectors.toList()) -> .toList()''.
+        Stream.of(FOO).collect(Collectors.toList());
         // Stream.of(FOO).toList()); // ok
     }
 
