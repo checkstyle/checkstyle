@@ -38,7 +38,7 @@ public class AvoidOutdatedUsageCheck extends AbstractCheck {
     public static final String MSG_OUTDATED_API_USAGE = "outdated.api.usage";
 
     /**
-     *  Set of outdated method names to check for
+     * Outdated method and its successor (migration): "foo", ".foo(Foo) -> .bar(Bar)"
      */
     private static final Map<String, String> OUTDATED_METHODS = Map.of(
         "toList", ".collect(Collectors.toList()) -> .toList()"
