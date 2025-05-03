@@ -1713,7 +1713,31 @@ public final class JavadocTokenTypes {
     /** Col tag name. */
     public static final int COL_HTML_TAG_NAME = JavadocParser.COL_HTML_TAG_NAME;
 
-    /** Frame tag name. */
+    /**
+     * Frame tag name.
+     *
+     * <p><b>Example:</b></p>
+     *
+     * <pre>{@code
+     * &lt;frame src="example.html"&gt;
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     *
+     * <pre>
+     * HTML_ELEMENT -&gt; HTML_ELEMENT
+     *  `--SINGLETON_ELEMENT -&gt; SINGLETON_ELEMENT
+     *     `--FRAME_TAG -&gt; FRAME_TAG
+     *         |--START -&gt; &lt;
+     *         |--FRAME_HTML_TAG_NAME -&gt; frame
+     *         |--WS -&gt;
+     *         |--ATTRIBUTE -&gt; ATTRIBUTE
+     *         |   |--HTML_TAG_NAME -&gt; src
+     *         |   |--EQUALS -&gt; =
+     *         |   `--ATTR_VALUE -&gt; "example.html"
+     *         `--END -&gt; &gt;
+     * </pre>
+     */
     public static final int FRAME_HTML_TAG_NAME = JavadocParser.FRAME_HTML_TAG_NAME;
 
     /**
@@ -2595,9 +2619,46 @@ public final class JavadocTokenTypes {
     public static final int DT_TAG_END = JavadocParser.RULE_dtTagEnd + RULE_TYPES_OFFSET;
 
     /** Head html tag. */
-    public static final int HEAD = JavadocParser.RULE_head + RULE_TYPES_OFFSET;
-    /** Start head tag. */
-    public static final int HEAD_TAG_START = JavadocParser.RULE_headTagStart + RULE_TYPES_OFFSET;
+        public static final int HEAD = JavadocParser.RULE_head + RULE_TYPES_OFFSET;
+
+    /**
+     * Start head tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <head>
+     *   <title>Title of the document</title>
+     * </head>
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>
+     * HTML_ELEMENT -> HTML_ELEMENT
+     *  `--HEAD -> HEAD
+     *     |--HEAD_TAG_START -> HEAD_TAG_START
+     *     |   |--START -> < (Start of head tag)
+     *     |   |--HEAD_HTML_TAG_NAME -> head
+     *     |   `--END -> > (End of head tag)
+     *     |--HTML_TAG -> HTML_TAG
+     *     |   |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *     |   |   |--START -> < (Start of title tag)
+     *     |   |   |--HTML_TAG_NAME -> title
+     *     |   |   `--END -> > (End of title tag)
+     *     |   |--TEXT -> Title of the document
+     *     |   `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *     |       |--START -> < (Start of closing title tag)
+     *     |       |--SLASH -> / (Slash for closing tag)
+     *     |       |--HTML_TAG_NAME -> title
+     *     |       `--END -> > (End of closing title tag)
+     *     `--HEAD_TAG_END -> HEAD_TAG_END
+     *         |--START -> < (Start of closing head tag)
+     *         |--SLASH -> / (Slash for closing tag)
+     *         |--HEAD_HTML_TAG_NAME -> head
+     *         `--END -> > (End of closing head tag)
+     * </pre>
+     */
+    public static final int HEAD_TAG_START = JavadocParser.HEAD_TAG_START;
+
     /** End head tag. */
     public static final int HEAD_TAG_END = JavadocParser.RULE_headTagEnd + RULE_TYPES_OFFSET;
 
