@@ -782,7 +782,8 @@
                        TokenStreamRecognitionException, RecognitionException,
                        TokenStreamException, IOException, Override, Deprecated, SafeVarargs,
                        SuppressWarnings, FunctionalInterface, NoSuchMethodException,
-                       InvocationTargetException, IllegalAccessException"/>
+                       InvocationTargetException, IllegalAccessException, EnsuresNonNull,
+                       MonotonicNonNull, RequiresNonNull"/>
     </module>
     <module name="CyclomaticComplexity">
       <property name="switchBlockAsSingleDecisionPoint" value="true"/>
