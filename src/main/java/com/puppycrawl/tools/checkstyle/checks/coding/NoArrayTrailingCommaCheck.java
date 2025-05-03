@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * String[] foo = new String[] {
  *   "FOO",
- *   "BAR", //violation
+ *   "BAR", // violation
  * }
  * </pre>
  *

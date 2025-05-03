@@ -28,7 +28,7 @@
     <section name="Command line usage">
       <p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
 java -D&lt;property&gt;=&lt;value&gt;  \
      com.puppycrawl.tools.checkstyle.Main \
      -c &lt;configurationFile&gt; \
@@ -622,7 +622,7 @@ class Test {
 
 <p><strong>Output:</strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-bash">
+  <pre class="prettyprint"><code class="language-text">
 Starting audit...
 [ERROR] Test.java:17:17: Fall through from previous branch of the switch statement.
 [FallThrough]
@@ -1003,7 +1003,7 @@ class Test {
 
 <p><strong>Output: </strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-bash">
+  <pre class="prettyprint"><code class="language-text">
 /COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Test']]/OBJBLOCK/METHOD_DEF
 ./IDENT[@text='foo']]/SLIST/LITERAL_WHILE/SLIST/LITERAL_SWITCH/CASE_GROUP
 [./LITERAL_CASE/EXPR/NUM_INT[@text='3']]/COMPILATION_UNIT/CLASS_DEF[./IDENT
@@ -1052,7 +1052,7 @@ class Test {
 
 <p><strong>Output: </strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-bash">
+  <pre class="prettyprint"><code class="language-java">
 COMPILATION_UNIT -> COMPILATION_UNIT [6:0]
 `--CLASS_DEF -> CLASS_DEF [6:0]
     |--MODIFIERS -> MODIFIERS [6:0]
@@ -1165,7 +1165,7 @@ class Test {
 
 <p><strong>Output: </strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-bash">
+  <pre class="prettyprint"><code class="language-java">
 COMPILATION_UNIT -> COMPILATION_UNIT [6:0]
 `--CLASS_DEF -> CLASS_DEF [6:0]
     |--MODIFIERS -> MODIFIERS [6:0]
@@ -1286,7 +1286,7 @@ class Test {
 
 <p><strong>Output: </strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-bash">
+  <pre class="prettyprint"><code class="language-java">
 COMPILATION_UNIT -> COMPILATION_UNIT [6:0]
 `--CLASS_DEF -> CLASS_DEF [6:0]
     |--MODIFIERS -> MODIFIERS [6:0]
@@ -1410,7 +1410,7 @@ java -jar checkstyle-${projectVersion}-all.jar --javadocTree Javadoc.txt
 
 <p><strong>Output: </strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-bash">
+  <pre class="prettyprint"><code class="language-java">
 JAVADOC -> JAVADOC [0:0]
  |--TEXT -> /** [0:0]
  |--NEWLINE -> \r\n [0:3]
@@ -1653,7 +1653,7 @@ java -jar checkstyle-${projectVersion}-all.jar --version
 
 <p><strong>Output: </strong></p>
 <div class="wrapper">
-  <pre class="prettyprint"><code class="language-bash">
+  <pre class="prettyprint"><code class="language-text">
 Checkstyle ${projectVersion}
   </code></pre>
 </div>
@@ -1946,7 +1946,7 @@ Checkstyle ends with 2 errors.
         Download and compile:
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           git clone https://github.com/checkstyle/checkstyle.git
           cd checkstyle
           mvn clean compile
@@ -1956,7 +1956,7 @@ Checkstyle ends with 2 errors.
         Run validation with arguments:
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.Main" \
           &#xa0;&#xa0;&#xa0;&#xa0;-Dexec.args="-c /sun_checks.xml src/main/java"
         </code></pre></div>
@@ -1965,7 +1965,7 @@ Checkstyle ends with 2 errors.
         Run UI application for file :
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.gui.Main" -Dexec.args=\
           &#xa0;&#xa0;&#xa0;&#xa0;"src/main/java/com/puppycrawl/tools/checkstyle/Checker.java"
         </code></pre></div>
@@ -1974,7 +1974,7 @@ Checkstyle ends with 2 errors.
         Build all jars, and launch CLI from new build:
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           mvn clean package -Passembly,no-validations
           java -jar target/checkstyle-X.X-SNAPSHOT-all.jar -c /sun_checks.xml MyClass.java
         </code></pre></div>
@@ -2005,7 +2005,7 @@ Checkstyle ends with 2 errors.
         </b>
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml Check.java
         </code></pre></div>
       </div>
@@ -2017,7 +2017,7 @@ Checkstyle ends with 2 errors.
         </b>
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml src/
         </code></pre></div>
       </div>
@@ -2030,7 +2030,7 @@ Checkstyle ends with 2 errors.
         </b>
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           java -Dcheckstyle.cache.file=target/cachefile com.puppycrawl.tools.checkstyle.Main \
           &#xa0;&#xa0;&#xa0;&#xa0;-c /sun_checks.xml Check.java
         </code></pre></div>
@@ -2044,7 +2044,7 @@ Checkstyle ends with 2 errors.
         </b>
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml \
           &#xa0;&#xa0;&#xa0;&#xa0;-p myCheckstyle.properties Check.java
         </code></pre></div>
@@ -2058,7 +2058,7 @@ Checkstyle ends with 2 errors.
         </b>
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml -f xml \
           &#xa0;&#xa0;&#xa0;&#xa0;-o build/checkstyle_errors.xml Check.java
         </code></pre></div>
@@ -2071,7 +2071,7 @@ Checkstyle ends with 2 errors.
         </b>
       </p>
       <div class="wrap-content">
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           java -classpath MyCustom.jar;checkstyle-${projectVersion}-all.jar \
           &#xa0;&#xa0;&#xa0;&#xa0;com.puppycrawl.tools.checkstyle.Main -c config.xml Check.java
         </code></pre></div>

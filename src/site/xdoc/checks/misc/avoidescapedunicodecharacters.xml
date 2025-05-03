@@ -80,7 +80,7 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  // OK, perfectly clear even without a comment.
+  // ok, perfectly clear even without a comment.
   String unitAbbrev = "μs";
   // violation below, the reader has no idea what this is. 'should be avoided.'
   String unitAbbrev1 = "\u03bcs";
@@ -115,7 +115,7 @@ public class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
-  // OK, a normal String below
+  // ok, a normal String below
   String unitAbbrev = "μs";
   // violation below, μs is a printable character. 'should be avoided.'
   String unitAbbrev1 = "\u03bcs";
@@ -127,7 +127,7 @@ public class Example2 {
   String unitAbbrev4 = "\u03bc\u03bcs";
   public static int content() {
     char content = 'r';
-    // OK, non-printable control character.
+    // ok, non-printable control character.
     return '\ufeff' + content;
   }
 }
@@ -150,7 +150,7 @@ public class Example2 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
-  // OK, a normal String below
+  // ok, a normal String below
   String unitAbbrev = "μs";
   // violation below
   String unitAbbrev1 = "\u03bcs";
@@ -183,7 +183,7 @@ public class Example3 {
         <p id="Example4-code">Example of using escapes if all characters in literal are escaped:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
-  // OK, a normal String below
+  // ok, a normal String below
   String unitAbbrev = "μs";
   // violation below, not all characters are escaped ('s'). 'should be avoided.'
   String unitAbbrev1 = "\u03bcs";
@@ -195,7 +195,7 @@ public class Example4 {
   String unitAbbrev4 = "\u03bc\u03bcs";
   public static int content() {
     char content = 'r';
-    // OK, all control characters are escaped below
+    // ok, all control characters are escaped below
     return '\ufeff' + content;
   }
 }
@@ -216,7 +216,7 @@ public class Example4 {
         <p id="Example5-code">Example of using escapes for non-printable whitespace characters:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example5 {
-  // OK, a normal String below.
+  // ok, a normal String below.
   String unitAbbrev = "μs";
   // violation below, printable escape character. 'should be avoided.'
   String unitAbbrev1 = "\u03bcs";
@@ -228,7 +228,7 @@ public class Example5 {
   String unitAbbrev4 = "\u03bc\u03bcs";
   public static int content() {
     char content = 'r';
-    // OK, non-printable escape character below
+    // ok, non-printable escape character below
     return '\ufeff' + content;
   }
 }

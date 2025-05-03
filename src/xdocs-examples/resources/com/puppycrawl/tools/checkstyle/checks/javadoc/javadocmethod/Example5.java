@@ -26,7 +26,7 @@ public class Example5 {
    */
   @Deprecated
   private int m2(int p1) { return p1; }
-  // OK, No missing @return tag violation
+  // ok, No missing @return tag violation
 
   /** */
   void m3(int p1) {}

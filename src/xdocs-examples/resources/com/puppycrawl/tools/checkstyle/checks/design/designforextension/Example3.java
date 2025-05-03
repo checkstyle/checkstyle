@@ -17,17 +17,17 @@ public abstract class Example3 {
 
   public int m2() {return 8;}  // violation
 
-  private void m3() {m4();}  // OK. Private method.
+  private void m3() {m4();}  // ok, Private method.
 
-  protected void m4() { }  // OK. No implementation.
+  protected void m4() { }  // ok, No implementation.
 
-  public abstract void m5();  // OK. Abstract method.
+  public abstract void m5();  // ok, Abstract method.
 
   /**
    * This implementation ...
    @return some int value.
    */
-  public int m6() {return 1;}  // OK. Have required javadoc.
+  public int m6() {return 1;}  // ok, Have required javadoc.
 
   /**
    * Some comments ...
