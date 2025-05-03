@@ -1,3 +1,22 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2025 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Map;
@@ -10,10 +29,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 @StatelessCheck
 public class AvoidOutdatedUsageCheck extends AbstractCheck {
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
     public static final String MSG_OUTDATED_API_USAGE = "outdated.api.usage";
 
-    /** Set of outdated method names to check for */
-    private static final Map<String,String> OUTDATED_METHODS = Map.of("toList", "Collectors.toList()");
+    /**
+     *  Set of outdated method names to check for
+     */
+    private static final Map<String, String> OUTDATED_METHODS = Map.of(
+        "toList", ".collect(Collectors.toList()) -> .toList()"
+    );
 
     @Override
     public int[] getDefaultTokens() {
@@ -23,39 +50,44 @@ public class AvoidOutdatedUsageCheck extends AbstractCheck {
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {
-            TokenTypes.METHOD_REF,
-            TokenTypes.METHOD_CALL,
-            TokenTypes.CTOR_CALL
+            TokenTypes.METHOD_CALL
         };
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        // return CommonUtil.EMPTY_INT_ARRAY;
+        return null;
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST child = ast.getFirstChild();
-        if (ast.getType() == TokenTypes.METHOD_CALL) {
-            if (child.getFirstChild() == null) {
-                logOutdated(child,child.getText());
-            }
-            else {
-                final DetailAST nextSibling = child.getFirstChild().getNextSibling();
-                logOutdated(nextSibling, nextSibling.getText());
-            }
+        if (child.getFirstChild() == null) {
+            logOutdated(child,child.getText());
+        }
+        else {
+            final DetailAST nextSibling = child.getFirstChild().getNextSibling();
+            logOutdated(nextSibling, nextSibling.getText());
         }
     }
 
+    /**
+     * Log outdated.
+     *
+     * @param methodName the method name to check
+     */
     private void logOutdated(DetailAST ast, String methodName) {
         if (isOutdated(methodName)) {
-            log(ast, MSG_OUTDATED_API_USAGE, OUTDATED_METHODS.get(methodName));
+            log(ast,
+                MSG_OUTDATED_API_USAGE,
+                OUTDATED_METHODS.get(methodName));
         }
     }
 
     /**
      * Checks if the method name is in our outdated set.
+     *
      * @param methodName the method name to check
      * @return true if the method is outdated
      */

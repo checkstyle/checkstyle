@@ -19,10 +19,11 @@
 
 package org.checkstyle.suppressionxpathfilter;
 
-import com.puppycrawl.tools.checkstyle.checks.coding.AvoidOutdatedUsageCheck;
+import static com.google.common.truth.Truth.assertWithMessage;
+
 import org.junit.jupiter.api.Test;
 
-import static com.google.common.truth.Truth.assertWithMessage;
+import com.puppycrawl.tools.checkstyle.checks.coding.AvoidOutdatedUsageCheck;
 
 public class XpathRegressionAvoidOutdatedUsageTest extends AbstractXpathTestSupport {
 
