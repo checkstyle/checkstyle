@@ -1,0 +1,51 @@
+=======================
+Checkstyle: AuditListener Class Relationship Diagram
+=======================
+
+This text-based Mermaid diagram illustrates the class relationships and
+interface structure of `AuditListener` within Checkstyle.
+
+----------------------------------------
+Mermaid Diagram Code (Paste into https://www.mermaidchart.com/  or https://mermaid.live/edit)
+----------------------------------------
+
+Direct access link:
+https://www.mermaidchart.com/app/projects/39d0649c-6c6e-4135-bf24-dbbe2f13f8a0/
+diagrams/50621826-f5d1-4013-aae7-406b16d969ab/version/v0.1/edit
+
+
+```mermaid
+%%{init: {"theme":"default", "themeVariables": {
+  "primaryColor": "#ffffff",
+  "primaryBorderColor": "#000000",
+  "primaryTextColor": "#000000",
+  "shadow1": "2px 2px 4px #888888"
+}}}%%
+
+classDiagram
+    class EventListener
+    class EventObject
+
+    class AuditListener {
+        <<interface>>
+        +auditStarted(aEvt: AuditEvent): void
+        +auditFinished(aEvt: AuditEvent): void
+        +fileStarted(aEvt: AuditEvent): void
+        +fileFinished(aEvt: AuditEvent): void
+        +addError(aEvt: AuditEvent): void
+        +addException(aEvt: AuditEvent, aThrowable: Throwable): void
+    }
+
+    class AuditEvent {
+        +getFileName(): String
+        +getLine(): int
+        +getMessage(): String
+        +getColumn(): int
+        +getSeverityLevel(): SeverityLevel
+        +getSourceName(): String
+        +getLocalizedMessage(): LocalizedMessage
+    }
+
+    AuditListener ..|> EventListener
+    AuditListener ..> AuditEvent
+    AuditEvent --|> EventObject
