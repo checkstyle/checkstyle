@@ -233,9 +233,9 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
                     getPath("InputImportOrder_Top1.java"), expected);
             assertWithMessage("exception expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                         + "cannot initialize module com.puppycrawl.tools.checkstyle.checks"
                         + ".imports.ImportOrderCheck - "
@@ -549,15 +549,15 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
             execute(checkConfig, getNonCompilablePath("InputImportOrder5.java"));
             assertWithMessage("exception expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                         + "cannot initialize module com.puppycrawl.tools.checkstyle.checks"
                         + ".imports.ImportOrderCheck - "
                         + "Cannot set property 'groups' to '/^javax'");
             assertWithMessage("Invalid exception message")
-                .that(ex.getCause().getCause().getCause().getCause().getMessage())
+                .that(exc.getCause().getCause().getCause().getCause().getMessage())
                 .isEqualTo("Invalid group: /^javax");
         }
     }
@@ -608,9 +608,9 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
             mock.visitToken(astImport);
             assertWithMessage("An exception is expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             assertWithMessage("invalid exception message")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .endsWith(": null");
         }
     }

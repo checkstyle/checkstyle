@@ -119,10 +119,10 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception is expected")
                     .fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             // exception is expected
             assertWithMessage("Invalid exception message")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .isEqualTo("Test");
         }
 
@@ -140,10 +140,10 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception is expected")
                 .fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             // exception is expected
             assertWithMessage("Invalid exception message")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .isEqualTo("Test");
         }
 

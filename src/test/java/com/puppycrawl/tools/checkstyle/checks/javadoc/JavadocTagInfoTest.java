@@ -422,9 +422,9 @@ public class JavadocTagInfoTest {
             JavadocTagInfo.fromName(null);
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("the name is null");
         }
 
@@ -432,9 +432,9 @@ public class JavadocTagInfoTest {
             JavadocTagInfo.fromName("myname");
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("the name [myname] is not a valid Javadoc tag name");
         }
 
@@ -442,9 +442,9 @@ public class JavadocTagInfoTest {
             JavadocTagInfo.fromText(null);
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("the text is null");
         }
 
@@ -452,9 +452,9 @@ public class JavadocTagInfoTest {
             JavadocTagInfo.fromText("myname");
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("the text [myname] is not a valid Javadoc tag text");
         }
 

@@ -223,8 +223,8 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
             );
             assertWithMessage("CheckstyleException is expected").fail();
         }
-        catch (CheckstyleException ex) {
-            final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
+        catch (CheckstyleException exc) {
+            final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
             assertWithMessage("Invalid exception message")
                 .that(cause)
                 .hasMessageThat()
@@ -250,8 +250,8 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
             );
             assertWithMessage("CheckstyleException is expected").fail();
         }
-        catch (CheckstyleException ex) {
-            final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
+        catch (CheckstyleException exc) {
+            final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
             assertWithMessage("Invalid exception message")
                 .that(cause)
                 .hasMessageThat()
@@ -286,8 +286,8 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
             );
             assertWithMessage("CheckstyleException is expected").fail();
         }
-        catch (CheckstyleException ex) {
-            final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
+        catch (CheckstyleException exc) {
+            final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
             assertWithMessage("Invalid exception message")
                 .that(cause)
                 .hasMessageThat()
@@ -320,8 +320,8 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
             );
             assertWithMessage("CheckstyleException is expected").fail();
         }
-        catch (CheckstyleException ex) {
-            final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
+        catch (CheckstyleException exc) {
+            final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
             assertWithMessage("Invalid exception message")
                 .that(cause)
                 .hasMessageThat()
@@ -537,12 +537,12 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
             filter.accept(auditEvent);
             assertWithMessage(IllegalStateException.class.getSimpleName() + " is expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Cannot read source file: " + fileName);
 
-            final Throwable cause = ex.getCause();
+            final Throwable cause = exc.getCause();
             assertWithMessage("Exception cause has invalid type")
                     .that(cause)
                     .isInstanceOf(FileNotFoundException.class);

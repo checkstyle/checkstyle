@@ -100,9 +100,9 @@ public final class XmlMetaReader {
                 moduleDetails = read(XmlMetaReader.class.getResourceAsStream("/" + fileName),
                         moduleType);
             }
-            catch (ParserConfigurationException | IOException | SAXException ex) {
+            catch (ParserConfigurationException | IOException | SAXException exc) {
                 throw new IllegalStateException("Problem to read all modules including third "
-                        + "party if any. Problem detected at file: " + fileName, ex);
+                        + "party if any. Problem detected at file: " + fileName, exc);
             }
             result.add(moduleDetails);
         }
