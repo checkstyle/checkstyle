@@ -109,9 +109,9 @@ public class InlineTagUtilTest {
             InlineTagUtil.extractInlineTags("abc\ndef");
             assertWithMessage("IllegalArgumentException expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Unexpected error message")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .contains("newline");
         }
     }
@@ -122,9 +122,9 @@ public class InlineTagUtilTest {
             InlineTagUtil.extractInlineTags("abc\rdef");
             assertWithMessage("IllegalArgumentException expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid error message")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .contains("newline");
         }
     }

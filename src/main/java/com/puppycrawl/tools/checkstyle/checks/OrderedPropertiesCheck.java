@@ -116,8 +116,8 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
         try (InputStream inputStream = Files.newInputStream(file.toPath())) {
             properties.load(inputStream);
         }
-        catch (IOException | IllegalArgumentException ex) {
-            log(1, MSG_IO_EXCEPTION_KEY, file.getPath(), ex.getLocalizedMessage());
+        catch (IOException | IllegalArgumentException exc) {
+            log(1, MSG_IO_EXCEPTION_KEY, file.getPath(), exc.getLocalizedMessage());
         }
 
         String previousProp = "";

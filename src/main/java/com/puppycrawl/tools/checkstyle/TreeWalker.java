@@ -155,9 +155,9 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
                 bean.configure(childConf);
             }
         }
-        catch (final CheckstyleException ex) {
+        catch (final CheckstyleException exc) {
             throw new CheckstyleException("cannot initialize module " + name
-                    + " - " + ex.getMessage(), ex);
+                    + " - " + exc.getMessage(), exc);
         }
         if (module instanceof AbstractCheck) {
             final AbstractCheck check = (AbstractCheck) module;
@@ -195,13 +195,13 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
                 rootAST = JavaParser.parse(contents);
             }
             // -@cs[IllegalCatch] There is no other way to obey skipFileOnJavaParseException field
-            catch (Exception ex) {
+            catch (Exception exc) {
                 if (!skipFileOnJavaParseException) {
-                    throw ex;
+                    throw exc;
                 }
                 skip = true;
                 violations.add(new Violation(1, Definitions.CHECKSTYLE_BUNDLE, PARSE_EXCEPTION_MSG,
-                            new Object[] {ex.getMessage()}, javaParseExceptionSeverity, null,
+                            new Object[] {exc.getMessage()}, javaParseExceptionSeverity, null,
                             getClass(), null));
                 addViolations(violations);
             }

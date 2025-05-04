@@ -111,9 +111,9 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
                     headerFile.toURL().openStream()), charset)) {
             loadHeader(headerReader);
         }
-        catch (final IOException ex) {
+        catch (final IOException exc) {
             throw new CheckstyleException(
-                    "unable to load header file " + headerFile, ex);
+                    "unable to load header file " + headerFile, exc);
         }
     }
 
@@ -163,8 +163,8 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
             try (Reader headerReader = new StringReader(headerExpandedNewLines)) {
                 loadHeader(headerReader);
             }
-            catch (final IOException ex) {
-                throw new IllegalArgumentException("unable to load header", ex);
+            catch (final IOException exc) {
+                throw new IllegalArgumentException("unable to load header", exc);
             }
         }
     }
