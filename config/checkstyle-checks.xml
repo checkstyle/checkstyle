@@ -36,6 +36,10 @@
   <module name="SuppressionFilter">
     <property name="file" value="${checkstyle.suppressions.file}"/>
   </module>
+  <!-- SuppressionFilter for CatchParameterName -->
+  <module name="SuppressionFilter">
+    <property name="file" value="config/catch-suppression.xml"/>
+  </module>
   <!-- Tone down the checking for test code -->
   <module name="SuppressionSingleFilter">
     <property name="checks" value="JavadocPackage"/>
@@ -865,7 +869,7 @@
       <property name="format" value="^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$"/>
     </module>
     <module name="CatchParameterName">
-      <property name="format" value="^(ex|[a-z][a-z][a-zA-Z]+)$"/>
+      <property name="format" value="^[a-z][a-z][a-zA-Z]+$"/>
     </module>
     <module name="StaticVariableName">
       <property name="format" value="^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$"/>

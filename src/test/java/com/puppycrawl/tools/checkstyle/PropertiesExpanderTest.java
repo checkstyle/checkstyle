@@ -33,9 +33,9 @@ public class PropertiesExpanderTest {
             final Object test = new PropertiesExpander(null);
             assertWithMessage("exception expected but got " + test).fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .isEqualTo("cannot pass null");
         }
     }

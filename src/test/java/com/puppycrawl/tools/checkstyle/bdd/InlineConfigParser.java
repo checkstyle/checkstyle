@@ -392,15 +392,15 @@ public final class InlineConfigParser {
         try {
             setModules(testInputConfigBuilder, inputFilePath, lines);
         }
-        catch (Exception ex) {
+        catch (Exception exc) {
             throw new CheckstyleException("Config comment not specified properly in "
-                    + inputFilePath, ex);
+                    + inputFilePath, exc);
         }
         try {
             setViolations(testInputConfigBuilder, lines, setFilteredViolations);
         }
-        catch (CheckstyleException ex) {
-            throw new CheckstyleException(ex.getMessage() + " in " + inputFilePath, ex);
+        catch (CheckstyleException exc) {
+            throw new CheckstyleException(exc.getMessage() + " in " + inputFilePath, exc);
         }
         return testInputConfigBuilder.build();
     }
@@ -417,8 +417,8 @@ public final class InlineConfigParser {
                 setViolations(testInputConfigBuilder, lines, false, lineNo, true);
             }
         }
-        catch (CheckstyleException ex) {
-            throw new CheckstyleException(ex.getMessage() + " in " + inputFilePath, ex);
+        catch (CheckstyleException exc) {
+            throw new CheckstyleException(exc.getMessage() + " in " + inputFilePath, exc);
         }
 
         return testInputConfigBuilder.build().getViolations();
@@ -463,8 +463,8 @@ public final class InlineConfigParser {
         try {
             setViolations(testInputConfigBuilder, lines, false);
         }
-        catch (CheckstyleException ex) {
-            throw new CheckstyleException(ex.getMessage() + " in " + inputFilePath, ex);
+        catch (CheckstyleException exc) {
+            throw new CheckstyleException(exc.getMessage() + " in " + inputFilePath, exc);
         }
         return testInputConfigBuilder.buildWithXmlConfiguration();
     }
@@ -619,8 +619,8 @@ public final class InlineConfigParser {
         try {
             return Files.readAllLines(filePath);
         }
-        catch (IOException ex) {
-            throw new CheckstyleException("Failed to read " + filePath, ex);
+        catch (IOException exc) {
+            throw new CheckstyleException("Failed to read " + filePath, exc);
         }
     }
 
@@ -1173,7 +1173,7 @@ public final class InlineConfigParser {
                 result = field.get(checkInstance);
                 break;
             }
-            catch (NoSuchFieldException ex) {
+            catch (NoSuchFieldException exc) {
                 currentClass = currentClass.getSuperclass();
             }
         }
