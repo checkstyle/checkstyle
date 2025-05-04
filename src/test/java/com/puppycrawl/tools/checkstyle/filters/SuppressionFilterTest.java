@@ -100,9 +100,9 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
             createSuppressionFilter(fileName, optional);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid error message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unable to find: " + fileName);
         }
     }
@@ -115,9 +115,9 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
             createSuppressionFilter(fileName, optional);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid error message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unable to parse " + fileName
                         + " - invalid files or checks or message format");
         }
@@ -236,16 +236,17 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
                     available = stream.read() != -1;
                     break;
                 }
-                catch (IOException ex) {
+                catch (IOException exc) {
                     // for some reason Travis CI failed sometimes (unstable) on reading the file
-                    if (attemptCount < attemptLimit && ex.getMessage().contains("Unable to read")) {
+                    if (attemptCount < attemptLimit && exc.getMessage()
+                            .contains("Unable to read")) {
                         attemptCount++;
                         available = false;
                         // wait for bad / disconnection time to pass
                         Thread.sleep(1000);
                     }
                     else {
-                        throw ex;
+                        throw exc;
                     }
                 }
             }

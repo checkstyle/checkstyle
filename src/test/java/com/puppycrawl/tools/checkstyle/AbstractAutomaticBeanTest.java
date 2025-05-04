@@ -49,13 +49,13 @@ public class AbstractAutomaticBeanTest {
             assertWithMessage("Exception is expected")
                     .fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Exceptions cause should be null")
-                    .that(ex)
+                    .that(exc)
                     .hasCauseThat()
                     .isNull();
             assertWithMessage("Invalid exception message")
-                    .that(ex)
+                    .that(exc)
                     .hasMessageThat()
                     .isEqualTo("Property 'NonExistent' does not exist,"
                             + " please check the documentation");
@@ -72,13 +72,13 @@ public class AbstractAutomaticBeanTest {
             assertWithMessage("Exception is expected")
                     .fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Exceptions cause should be null")
-                    .that(ex)
+                    .that(exc)
                     .hasCauseThat()
                     .isNull();
             assertWithMessage("Invalid exception message")
-                    .that(ex)
+                    .that(exc)
                     .hasMessageThat()
                     .isEqualTo("Property 'privateField' does not exist,"
                             + " please check the documentation");
@@ -95,12 +95,12 @@ public class AbstractAutomaticBeanTest {
             assertWithMessage("Exception is expected")
                     .fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             final String expectedMessage = "dummy is not allowed as a child in bean config. "
                     + "Please review 'Parent Module' section for this Check"
                     + " in web documentation if Check is standard.";
             assertWithMessage("Invalid exception message")
-                    .that(ex)
+                    .that(exc)
                     .hasMessageThat()
                     .isEqualTo(expectedMessage);
         }
@@ -118,9 +118,9 @@ public class AbstractAutomaticBeanTest {
             assertWithMessage("expecting checkstyle exception")
                     .fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid exception message")
-                    .that(ex)
+                    .that(exc)
                     .hasMessageThat()
                     .isEqualTo("childConf is not allowed as a "
                             + "child in parentConf. Please review 'Parent Module' section "
@@ -138,14 +138,14 @@ public class AbstractAutomaticBeanTest {
             assertWithMessage("InvocationTargetException is expected")
                     .fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             final String expected = "Cannot set property 'exceptionalMethod' to '123.0'";
             assertWithMessage("Invalid exception cause, should be: ReflectiveOperationException")
-                    .that(ex)
+                    .that(exc)
                     .hasCauseThat()
                     .isInstanceOf(ReflectiveOperationException.class);
             assertWithMessage("Invalid exception message, should start with: " + expected)
-                    .that(ex)
+                    .that(exc)
                     .hasMessageThat()
                     .isEqualTo(expected);
         }
@@ -161,14 +161,14 @@ public class AbstractAutomaticBeanTest {
             assertWithMessage("InvocationTargetException is expected")
                     .fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             final String expected = "illegal value ";
             assertWithMessage("Invalid exception cause, should be: ConversionException")
-                    .that(ex)
+                    .that(exc)
                     .hasCauseThat()
                     .isInstanceOf(ConversionException.class);
             assertWithMessage("Invalid exception message, should start with: " + expected)
-                    .that(ex)
+                    .that(exc)
                     .hasMessageThat()
                     .startsWith(expected);
         }
@@ -185,9 +185,9 @@ public class AbstractAutomaticBeanTest {
             assertWithMessage("exception expected")
                     .fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             assertWithMessage("Invalid exception message")
-                    .that(ex)
+                    .that(exc)
                     .hasMessageThat()
                     .isEqualTo("null,wrongVal,0,someValue");
         }
@@ -272,9 +272,9 @@ public class AbstractAutomaticBeanTest {
             assertWithMessage("Exception is expected")
                     .fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Error message is not expected")
-                    .that(ex)
+                    .that(exc)
                     .hasMessageThat()
                     .isEqualTo("illegal value 'BAD' for property 'uri'");
         }

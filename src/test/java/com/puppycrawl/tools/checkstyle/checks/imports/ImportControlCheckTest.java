@@ -121,8 +121,8 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
                     getPath("InputImportControl7.java"), expected);
             assertWithMessage("Test should fail if exception was not thrown").fail();
         }
-        catch (CheckstyleException ex) {
-            final String message = getCheckstyleExceptionMessage(ex);
+        catch (CheckstyleException exc) {
+            final String message = getCheckstyleExceptionMessage(exc);
             final String messageStart = "Unable to find: ";
 
             assertWithMessage("Invalid message, should start with: %s", messageStart)
@@ -138,8 +138,8 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             verifyWithInlineConfigParser(getPath("InputImportControl8.java"), expected);
             assertWithMessage("Test should fail if exception was not thrown").fail();
         }
-        catch (CheckstyleException ex) {
-            final String message = getCheckstyleExceptionMessage(ex);
+        catch (CheckstyleException exc) {
+            final String message = getCheckstyleExceptionMessage(exc);
             final String messageStart = "Unable to load ";
 
             assertWithMessage("Invalid message, should start with: %s", messageStart)
@@ -296,8 +296,8 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             verifyWithInlineConfigParser(getPath("InputImportControl18.java"), expected);
             assertWithMessage("Test should fail if exception was not thrown").fail();
         }
-        catch (CheckstyleException ex) {
-            final String message = getCheckstyleExceptionMessage(ex);
+        catch (CheckstyleException exc) {
+            final String message = getCheckstyleExceptionMessage(exc);
             final String messageStart = "Unable to find: ";
 
             assertWithMessage("Invalid message, should start with: %s", messageStart)
@@ -323,8 +323,8 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
                     getPath("InputImportControl20.java"), expected);
             assertWithMessage("Test should fail if exception was not thrown").fail();
         }
-        catch (CheckstyleException ex) {
-            final String message = getCheckstyleExceptionMessage(ex);
+        catch (CheckstyleException exc) {
+            final String message = getCheckstyleExceptionMessage(exc);
             final String messageStart = "Unable to load ";
 
             assertWithMessage("Invalid message, should start with: %s", messageStart)
