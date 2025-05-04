@@ -369,8 +369,8 @@ public class PackageObjectFactory implements ModuleFactory {
             try {
                 instance = clazz.getDeclaredConstructor().newInstance();
             }
-            catch (final ReflectiveOperationException ex) {
-                throw new CheckstyleException("Unable to instantiate " + className, ex);
+            catch (final ReflectiveOperationException exc) {
+                throw new CheckstyleException("Unable to instantiate " + className, exc);
             }
         }
 

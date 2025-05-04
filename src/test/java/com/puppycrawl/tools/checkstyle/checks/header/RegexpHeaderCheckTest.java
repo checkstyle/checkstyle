@@ -110,9 +110,9 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
             assertWithMessage(String.format(Locale.ROOT, "%s should have been thrown",
                     IllegalArgumentException.class)).fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unable to parse format: ^/**\\n *"
                     + " Licensed to the Apache Software Foundation (ASF)");
         }
@@ -135,9 +135,9 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
             createChecker(checkConfig);
             assertWithMessage("Checker creation should not succeed with invalid headerFile").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck"
                     + " - Cannot set property 'headerFile' to ''");
@@ -204,9 +204,9 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
             assertWithMessage(
                     "Checker creation should not succeed when regexp spans multiple lines").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck"
                     + " - Cannot set property 'header' to '^(.*\\n.*)'");
@@ -373,9 +373,9 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
             verify(checkConfig, path, expected);
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("line 3 in header specification is not a regular expression");
         }
     }

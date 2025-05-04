@@ -472,9 +472,9 @@ public class SuppressionCommentFilter
                     tagIdRegexp = Pattern.compile(format);
                 }
             }
-            catch (final PatternSyntaxException ex) {
+            catch (final PatternSyntaxException exc) {
                 throw new IllegalArgumentException(
-                    "unable to parse expanded comment " + format, ex);
+                    "unable to parse expanded comment " + format, exc);
             }
         }
 
