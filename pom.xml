@@ -2184,6 +2184,8 @@
             <excludedLink>http://www.mojohaus.org/build-helper-maven-plugin/</excludedLink>
             <!-- until new plugins are released to generate link with trailing '/' -->
             <excludedLink>https://www.mojohaus.org/exec-maven-plugin</excludedLink>
+            <!-- until plugin generate link without redirection -->
+            <excludedLink>https://www.eclipse.org/legal/epl-v20.html</excludedLink>
             <!-- permanent 403 -->
             <excludedLink>https://www.ej-technologies.com/*</excludedLink>
             <excludedLink>https://travis-ci.com/</excludedLink>
@@ -2197,6 +2199,7 @@
             <excludedLink>https://qalab.sourceforge.net/</excludedLink>
             <excludedLink>https://codeclimate.com</excludedLink>
             <excludedLink>https://saxon.sourceforge.net/saxon7.1/expressions.html</excludedLink>
+            <excludedLink>https://www.baeldung.com/*</excludedLink>
             <!-- until https://github.com/checkstyle/checkstyle/issues/11754 -->
             <excludedLink>https://checkstyle.sourceforge.io/version/6.18</excludedLink>
           </excludedLinks>
