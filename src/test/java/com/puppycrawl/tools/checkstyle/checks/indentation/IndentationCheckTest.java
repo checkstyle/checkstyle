@@ -52,57 +52,106 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  */
 public class IndentationCheckTest extends AbstractModuleTestSupport {
 
-    private static final Pattern LINE_WITH_COMMENT_REGEX =
-                    Pattern.compile(".*?//indent:(\\d+)(?: ioffset:(\\d+))?"
-                        + " exp:(>=)?(\\d+(?:,\\d+)*?)( warn)?$");
+    private static final Pattern LINE_WITH_COMMENT_REGEX = Pattern.compile(
+        ".*?//(?:below )?indent:(\\d+)(?:"
+                + " ioffset:(\\d+))? exp:(>=)?(\\d+(?:,\\d+)*?)( warn)?$");
 
     private static final IndentComment[] EMPTY_INDENT_COMMENT_ARRAY = new IndentComment[0];
 
     private static IndentComment[] getLinesWithWarnAndCheckComments(String aFileName,
             final int tabWidth)
-                    throws IOException {
+            throws IOException {
         final List<IndentComment> result = new ArrayList<>();
         try (BufferedReader br = Files.newBufferedReader(Path.of(aFileName),
                 StandardCharsets.UTF_8)) {
             int lineNumber = 1;
-            for (String line = br.readLine(); line != null; line = br.readLine()) {
+            String line = br.readLine();
+            IndentComment pendingBelowComment = null;
+
+            while (line != null) {
                 final Matcher match = LINE_WITH_COMMENT_REGEX.matcher(line);
-                if (match.matches()) {
-                    final IndentComment warn = new IndentComment(match, lineNumber);
+                if (pendingBelowComment != null) {
                     final int actualIndent = getLineStart(line, tabWidth);
 
-                    if (actualIndent != warn.getIndent()) {
-                        throw new IllegalStateException(String.format(Locale.ROOT,
-                                        "File \"%1$s\" has incorrect indentation in comment. "
-                                                        + "Line %2$d: comment:%3$d, actual:%4$d.",
-                                        aFileName,
-                                        lineNumber,
-                                        warn.getIndent(),
-                                        actualIndent));
-                    }
+                    processPendingBelowComment(pendingBelowComment, actualIndent,
+                            lineNumber, result);
 
-                    if (!isCommentConsistent(warn)) {
-                        throw new IllegalStateException(String.format(Locale.ROOT,
-                                        "File \"%1$s\" has inconsistent comment on line %2$d",
-                                        aFileName,
-                                        lineNumber));
-                    }
+                    pendingBelowComment = null;
+                }
+                else if (match.matches()) {
+                    final boolean isBelow = line.contains("//below indent:");
+                    final IndentComment warn = new IndentComment(match, lineNumber);
 
-                    if (warn.isWarning()) {
-                        result.add(warn);
+                    if (isBelow) {
+                        pendingBelowComment = warn;
+                    }
+                    else {
+                        final int actualIndent = getLineStart(line, tabWidth);
+                        processInlineComment(warn, actualIndent, lineNumber, aFileName, result);
                     }
                 }
-                else if (!line.isEmpty()) {
+                else if (pendingBelowComment == null && !line.isEmpty()) {
                     throw new IllegalStateException(String.format(Locale.ROOT,
-                                    "File \"%1$s\" has no indentation comment or its format "
-                                                    + "malformed. Error on line: %2$d",
-                                    aFileName,
-                                    lineNumber));
+                            "File \"%1$s\" has no indentation comment or its format "
+                                    + "malformed. Error on line: %2$d",
+                            aFileName,
+                            lineNumber));
                 }
+
+                line = br.readLine();
                 lineNumber++;
             }
         }
+
         return result.toArray(EMPTY_INDENT_COMMENT_ARRAY);
+    }
+
+    private static void processPendingBelowComment(IndentComment pendingBelowComment,
+            int actualIndent, int lineNumber, List<IndentComment> result) {
+        if (actualIndent != pendingBelowComment.getIndent()) {
+            throw new IllegalStateException(String.format(Locale.ROOT,
+                    "Incorrect indentation in 'below' comment. "
+                            + "Line %1$d (from line %2$d): comment:%3$d, actual:%4$d.",
+                    lineNumber,
+                    pendingBelowComment.getLineNumber(),
+                    pendingBelowComment.getIndent(),
+                    actualIndent));
+        }
+
+        if (!isCommentConsistent(pendingBelowComment)) {
+            throw new IllegalStateException(String.format(Locale.ROOT,
+                    "Inconsistent 'below' comment on line %1$d",
+                    pendingBelowComment.getLineNumber()));
+        }
+
+        if (pendingBelowComment.isWarning()) {
+            result.add(new IndentComment(pendingBelowComment, lineNumber));
+        }
+    }
+
+    private static void processInlineComment(IndentComment warn, int actualIndent,
+        int lineNumber, String fileName, List<IndentComment> result) {
+
+        if (actualIndent != warn.getIndent()) {
+            throw new IllegalStateException(String.format(Locale.ROOT,
+                    "File \"%1$s\" has incorrect indentation in comment. "
+                            + "Line %2$d: comment:%3$d, actual:%4$d.",
+                    fileName,
+                    lineNumber,
+                    warn.getIndent(),
+                    actualIndent));
+        }
+
+        if (!isCommentConsistent(warn)) {
+            throw new IllegalStateException(String.format(Locale.ROOT,
+                    "File \"%1$s\" has inconsistent comment on line %2$d",
+                    fileName,
+                    lineNumber));
+        }
+
+        if (warn.isWarning()) {
+            result.add(warn);
+        }
     }
 
     private static boolean isCommentConsistent(IndentComment comment) {
@@ -1272,13 +1321,13 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = {
             "18:1: " + getCheckMessage(MSG_ERROR, "\"\"\"", 0, 8),
-            "28:17: " + getCheckMessage(MSG_ERROR, "\"\"\"", 16, 12),
-            "44:1: " + getCheckMessage(MSG_ERROR, "\"\"\"", 0, 12),
-            "50:1: " + getCheckMessage(MSG_ERROR, "\"\"\"", 0, 12),
-            "55:9: " + getCheckMessage(MSG_ERROR, "\"\"\"", 8, 12),
-            "73:15: " + getCheckMessage(MSG_ERROR, "\"\"\"", 14, 12),
+            "29:17: " + getCheckMessage(MSG_ERROR, "\"\"\"", 16, 12),
+            "46:1: " + getCheckMessage(MSG_ERROR, "\"\"\"", 0, 12),
+            "52:1: " + getCheckMessage(MSG_ERROR, "\"\"\"", 0, 12),
+            "59:9: " + getCheckMessage(MSG_ERROR, "\"\"\"", 8, 12),
+            "78:15: " + getCheckMessage(MSG_ERROR, "\"\"\"", 14, 12),
         };
-        verify(checkConfig, getNonCompilablePath("InputIndentationTextBlock.java"),
+        verifyWarns(checkConfig, getNonCompilablePath("InputIndentationTextBlock.java"),
             expected);
     }
 
@@ -1693,18 +1742,18 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String fileName = getPath(
             "InputIndentationInvalidArrayInitIndentWithoutTrailingComments.java");
         final String[] expected = {
-            "28:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
+            "29:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 12, "16, 46, 48"),
-            "32:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
+            "35:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 14, "12, 16"),
-            "36:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
+            "39:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 14, "16, 28, 30"),
-            "37:9: " + getCheckMessage(MSG_ERROR_MULTI, "annotation array initialization rcurly",
+            "40:9: " + getCheckMessage(MSG_ERROR_MULTI, "annotation array initialization rcurly",
                 8, "12, 16"),
-            "39:13: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization",
+            "43:13: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization",
                 12, 16),
         };
-        verify(checkConfig, fileName, expected);
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     // Test Input without trailing comment and usage of 'verify' method is due to #16906
@@ -1724,18 +1773,18 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String fileName = getPath(
             "InputIndentationInvalidArrayInitIndentWithoutTrailingComments.java");
         final String[] expected = {
-            "28:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
+            "29:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 12, "16, 46, 48"),
-            "32:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
+            "35:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 14, "12, 16"),
-            "36:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
+            "39:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 14, "16, 28, 30"),
-            "37:9: " + getCheckMessage(MSG_ERROR_MULTI, "annotation array initialization rcurly",
+            "40:9: " + getCheckMessage(MSG_ERROR_MULTI, "annotation array initialization rcurly",
                 8, "12, 16"),
-            "39:13: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization",
+            "43:13: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization",
                 12, 16),
         };
-        verify(checkConfig, fileName, expected);
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test
@@ -3878,6 +3927,15 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         private final boolean expectedNonStrict;
         private final String expectedWarning;
         private final boolean warning;
+
+        private IndentComment(IndentComment original, int newLineNumber) {
+            lineNumber = newLineNumber;
+            indent = original.indent;
+            indentOffset = original.indentOffset;
+            expectedNonStrict = original.expectedNonStrict;
+            expectedWarning = original.expectedWarning;
+            warning = original.warning;
+        }
 
         private IndentComment(Matcher match, int lineNumber) {
             this.lineNumber = lineNumber;

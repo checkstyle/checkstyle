@@ -17,7 +17,8 @@ public class InputDeclarationOrderForwardReference {
 
     public static final int TAB_LENGTH = 4;
     private static final ArrayList<String> EMPTY_ARRAY_LIST = new ArrayList<String>();
-    public static final int MAX_INT = Integer.MAX_VALUE;//violation 'Variable.*access.*wrong.*order'
+    public static final int MAX_INT = Integer.MAX_VALUE;
+    // violation above 'Variable.*access.*wrong.*order'
     public static final int MAX_BYTE = Byte.MIN_VALUE;// violation 'Variable.*access.*wrong.*order'
     public static final int ROWS = 18; // violation 'Variable access definition in wrong order.'
     public static final int COLUMNS = 18; // violation 'Variable access definition in wrong order.'

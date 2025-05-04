@@ -234,7 +234,7 @@
     <junit.version>5.12.2</junit.version>
     <forbiddenapis.version>3.9</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
-    <checkerframework.version>3.49.2</checkerframework.version>
+    <checkerframework.version>3.49.3</checkerframework.version>
     <error-prone.version>2.31.0</error-prone.version>
     <error-prone-support.version>0.15.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
@@ -386,7 +386,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.19.3</version>
+      <version>3.19.4</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -2184,6 +2184,8 @@
             <excludedLink>http://www.mojohaus.org/build-helper-maven-plugin/</excludedLink>
             <!-- until new plugins are released to generate link with trailing '/' -->
             <excludedLink>https://www.mojohaus.org/exec-maven-plugin</excludedLink>
+            <!-- until plugin generate link without redirection -->
+            <excludedLink>https://www.eclipse.org/legal/epl-v20.html</excludedLink>
             <!-- permanent 403 -->
             <excludedLink>https://www.ej-technologies.com/*</excludedLink>
             <excludedLink>https://travis-ci.com/</excludedLink>
@@ -2197,6 +2199,7 @@
             <excludedLink>https://qalab.sourceforge.net/</excludedLink>
             <excludedLink>https://codeclimate.com</excludedLink>
             <excludedLink>https://saxon.sourceforge.net/saxon7.1/expressions.html</excludedLink>
+            <excludedLink>https://www.baeldung.com/*</excludedLink>
             <!-- until https://github.com/checkstyle/checkstyle/issues/11754 -->
             <excludedLink>https://checkstyle.sourceforge.io/version/6.18</excludedLink>
           </excludedLinks>

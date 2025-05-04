@@ -28,6 +28,6 @@ public class Example2 {}
 .../test/generated_TestCase1.java // violation, name must start with an uppercase
 .../test/generated_StubBankRemote.java // violation, must start with an uppercase
 .../test/MockPaymentRemote.java
-.../module-info.java // OK, the file is not audited
+.../module-info.java // ok, the file is not audited
 // xdoc section -- end
 */

@@ -25,7 +25,7 @@ public class Example2 {
     // This method does nothing
   }
 
-  Example2(int a) {            // OK, validation of constructors ignored
+  Example2(int a) {            // ok, validation of constructors ignored
     this.a = a;
   }
 

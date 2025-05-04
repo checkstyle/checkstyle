@@ -29,7 +29,7 @@ public class InputCommentsIndentationCheckWithEmoji {
     String s = String.format(java.util.Locale.ENGLISH, " 🥳 🥳 🥳asdda   🥳"
                     + "🎄" + "🎄  🎄🎄       ",
             " ");
-    // OK 🥳
+    // ok 🥳
 
     public void test2() {
         String a = "🥳";

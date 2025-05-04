@@ -14,7 +14,7 @@ class Example6 {
   String prefix;
 
   String modifyPrefix(String prefix) {
-    prefix = "^" + prefix + "$";  //OK, because method parameter is returned
+    prefix = "^" + prefix + "$";  // ok, because method parameter is returned
     return prefix;
   }
 }

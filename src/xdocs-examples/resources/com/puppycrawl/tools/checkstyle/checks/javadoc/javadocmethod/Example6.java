@@ -17,8 +17,8 @@ public class Example6 {
   // violation above, 'Expected @param tag for 'x''
   /** */
   public int m1(int p1) { return p1; }
-  // OK, No missing param tag violation
-  // OK, No missing @return tag violation
+  // ok, No missing param tag violation
+  // ok, No missing @return tag violation
   // only constructors are checked
 
   /**
@@ -26,7 +26,7 @@ public class Example6 {
    */
   @Deprecated
   private int m2(int p1) { return p1; }
-  // OK, No missing @return tag violation
+  // ok, No missing @return tag violation
 
   /** */
   void m3(int p1) {}
