@@ -53,9 +53,9 @@ public class FileTextTest extends AbstractPathTestSupport {
             assertWithMessage("UnsupportedEncodingException is expected but got %s", test)
                     .fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             assertWithMessage("Invalid exception message")
-                    .that(ex)
+                    .that(exc)
                     .hasMessageThat()
                     .isEqualTo("Unsupported charset: " + charsetName);
         }
@@ -70,9 +70,9 @@ public class FileTextTest extends AbstractPathTestSupport {
             assertWithMessage("FileNotFoundException is expected but got " + test)
                     .fail();
         }
-        catch (FileNotFoundException ex) {
+        catch (FileNotFoundException exc) {
             assertWithMessage("Invalid exception message")
-                    .that(ex)
+                    .that(exc)
                     .hasMessageThat()
                     .isEqualTo("any name (No such file or directory)");
         }
