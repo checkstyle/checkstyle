@@ -639,8 +639,6 @@ no-error-pgjdbc)
   echo "Checkout target sources ..."
   checkout_from https://github.com/pgjdbc/pgjdbc.git
   cd .ci-temp/pgjdbc
-  # until https://github.com/checkstyle/checkstyle/issues/17001
-  git checkout "24c49425dc""ad91d9cb""e493810d38d""fe4c6de6504"
   ./gradlew --no-parallel --no-daemon checkstyleAll \
             -PenableMavenLocal -Pcheckstyle.version="${CS_POM_VERSION}"
   cd ../
