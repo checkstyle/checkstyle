@@ -15,6 +15,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AvoidOutdatedUsageCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter args of AbstractCheck.log.</message>
+    <lineContent>OUTDATED_METHODS.get(methodName));</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull Object
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java</fileName>
     <specifier>toarray.nullable.elements.not.newarray</specifier>
     <message>call of toArray on collection of non-null elements yields an array of possibly-null elements; omit the argument to toArray or make it an explicit array constructor</message>
