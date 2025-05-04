@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.Checker.EXCEPTION_MSG;
 import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_FINISHED_MESSAGE;
@@ -55,8 +56,10 @@ import java.util.TreeSet;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.RandomUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.mockito.Mockito;
 
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -143,12 +146,44 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addFilter(filter);
         final TestBeforeExecutionFileFilter fileFilter = new TestBeforeExecutionFileFilter();
         checker.addBeforeExecutionFileFilter(fileFilter);
-
         // should remove all listeners, file sets, and filters
         checker.destroy();
+        checker.process(Collections.singletonList(createTempFile("junit")));
+        assertDestroy(checker, auditAdapter, fileSet, filter, fileFilter);
+    }
 
-        final File tempFile = createTempFile("junit");
-        checker.process(Collections.singletonList(tempFile));
+    @Test
+    public void testDestroyPath() throws Exception {
+        final Checker checker = new Checker();
+        final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
+        checker.addListener(auditAdapter);
+        final TestFileSetCheck fileSet = new TestFileSetCheck();
+        checker.addFileSetCheck(fileSet);
+        final DebugFilter filter = new DebugFilter();
+        checker.addFilter(filter);
+        final TestBeforeExecutionFileFilter fileFilter = new TestBeforeExecutionFileFilter();
+        checker.addBeforeExecutionFileFilter(fileFilter);
+        // should remove all listeners, file sets, and filters
+        checker.destroy();
+        checker.process(Collections.singletonList(createTempFile("junit").toPath()));
+        assertDestroy(checker, auditAdapter, fileSet, filter, fileFilter);
+    }
+
+    @Test
+    public void testPath() throws Exception {
+        final Checker checker = Mockito.spy(new Checker());
+        final File file = new File("");
+        final int count = RandomUtils.nextInt();
+        Mockito.when(checker.process(List.of(file))).thenReturn(count);
+        Mockito.verify(checker).process(List.of(file));
+        assertThat(checker.process(Set.of(file.toPath()))).isEqualTo(count);
+    }
+
+    private void assertDestroy(Checker checker,
+                               DebugAuditAdapter auditAdapter,
+                               TestFileSetCheck fileSet,
+                               DebugFilter filter,
+                               TestBeforeExecutionFileFilter fileFilter) {
         final SortedSet<Violation> violations = new TreeSet<>();
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
