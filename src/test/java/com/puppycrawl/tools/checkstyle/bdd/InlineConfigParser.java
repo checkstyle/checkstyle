@@ -200,6 +200,20 @@ public final class InlineConfigParser {
             ConfigurationLoader.DTD_PUBLIC_CS_ID_1_3);
 
     /**
+     * ALLOWED: any code, then "// ok" or "// violation" (lowercase),
+     * optionally followed by either a space or a comma (with optional spaces)
+     * plus explanation text.
+     */
+    private static final Pattern ALLOWED_OK_VIOLATION_PATTERN =
+            Pattern.compile(".*//\\s*(ok|violation)\\b(?:[ ,]\\s*.*)?$");
+
+    /**
+     * DETECT any comment containing ok/violation in any case/spacing.
+     */
+    private static final Pattern ANY_OK_VIOLATION_PATTERN =
+            Pattern.compile(".*//\\s*(?i)(ok|violation).*");
+
+    /**
      *  Inlined configs can not be used in non-java checks, as Inlined config is java style
      *  multiline comment.
      *  Such check files needs to be permanently suppressed.
@@ -922,6 +936,13 @@ public final class InlineConfigParser {
                                       List<String> lines, boolean useFilteredViolations,
                                       int lineNo, boolean specifyViolationMessage)
             throws CheckstyleException {
+        final String line = lines.get(lineNo);
+        if (ANY_OK_VIOLATION_PATTERN.matcher(line).matches()
+                && !ALLOWED_OK_VIOLATION_PATTERN.matcher(line).matches()) {
+            throw new CheckstyleException(
+                    "Invalid format (must be \"// ok...\" or \"// violation...\"): " + line);
+        }
+
         final Matcher violationMatcher =
                 VIOLATION_PATTERN.matcher(lines.get(lineNo));
         final Matcher violationAboveMatcher =
