@@ -144,13 +144,13 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
 
             assertWithMessage("Expected CheckstyleException is not thrown.").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             final String expectedMsg = String.format(Locale.ROOT,
                     "FileNotFoundException occurred while opening file %s.",
                     nonExistentFile.getPath());
 
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(expectedMsg);
         }
     }
@@ -164,13 +164,13 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
 
             assertWithMessage("Expected CheckstyleException is not thrown.").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             final String expectedMsg = String.format(Locale.ROOT,
                     "IllegalStateException occurred while parsing file %s.",
                     nonCompilableFile.getPath());
 
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(expectedMsg);
         }
     }

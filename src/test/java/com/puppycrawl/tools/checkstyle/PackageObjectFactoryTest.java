@@ -89,9 +89,9 @@ public class PackageObjectFactoryTest {
             final Object test = new PackageObjectFactory(new HashSet<>(), null);
             assertWithMessage("Exception is expected but got " + test).fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(NULL_LOADER_MESSAGE);
         }
     }
@@ -102,9 +102,9 @@ public class PackageObjectFactoryTest {
             final Object test = new PackageObjectFactory("test", null);
             assertWithMessage("Exception is expected but got " + test).fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(NULL_LOADER_MESSAGE);
         }
     }
@@ -116,9 +116,9 @@ public class PackageObjectFactoryTest {
             final Object test = new PackageObjectFactory(Collections.singleton(null), classLoader);
             assertWithMessage("Exception is expected but got " + test).fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(NULL_PACKAGE_MESSAGE);
         }
     }
@@ -130,9 +130,9 @@ public class PackageObjectFactoryTest {
             final Object test = new PackageObjectFactory((String) null, classLoader);
             assertWithMessage("Exception is expected but got " + test).fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(NULL_PACKAGE_MESSAGE);
         }
     }
@@ -145,9 +145,9 @@ public class PackageObjectFactoryTest {
                     TRY_IN_ALL_REGISTERED_PACKAGES);
             assertWithMessage("Exception is expected but got " + test).fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(NULL_PACKAGE_MESSAGE);
         }
     }
@@ -170,12 +170,12 @@ public class PackageObjectFactoryTest {
             factory.createModule(name);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             final LocalizedMessage exceptionMessage = new LocalizedMessage(
                     Definitions.CHECKSTYLE_BUNDLE, factory.getClass(),
                     UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE, name, null);
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(exceptionMessage.getMessage());
         }
     }
@@ -188,7 +188,7 @@ public class PackageObjectFactoryTest {
                 factory.createModule(name);
                 assertWithMessage("Exception is expected").fail();
             }
-            catch (CheckstyleException ex) {
+            catch (CheckstyleException exc) {
                 final String attemptedNames = BASE_PACKAGE + PACKAGE_SEPARATOR + name
                     + STRING_SEPARATOR + name + CHECK_SUFFIX + STRING_SEPARATOR
                     + BASE_PACKAGE + PACKAGE_SEPARATOR + name + CHECK_SUFFIX;
@@ -196,7 +196,7 @@ public class PackageObjectFactoryTest {
                     Definitions.CHECKSTYLE_BUNDLE, factory.getClass(),
                     UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE, name, attemptedNames);
                 assertWithMessage("Invalid exception message")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .isEqualTo(exceptionMessage.getMessage());
             }
         }
@@ -262,14 +262,14 @@ public class PackageObjectFactoryTest {
             objectFactory.createModule(name);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             final String optionalNames = barPackage + PACKAGE_SEPARATOR + name
                     + STRING_SEPARATOR + fooPackage + PACKAGE_SEPARATOR + name;
             final LocalizedMessage exceptionMessage = new LocalizedMessage(
                     Definitions.CHECKSTYLE_BUNDLE, getClass(),
                     AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE, name, optionalNames);
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(exceptionMessage.getMessage());
         }
     }
@@ -287,7 +287,7 @@ public class PackageObjectFactoryTest {
             objectFactory.createModule(name);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             final String attemptedNames = package1 + PACKAGE_SEPARATOR + name + STRING_SEPARATOR
                     + package2 + PACKAGE_SEPARATOR + name + STRING_SEPARATOR
                     + checkName + STRING_SEPARATOR
@@ -297,7 +297,7 @@ public class PackageObjectFactoryTest {
                     Definitions.CHECKSTYLE_BUNDLE, getClass(),
                     UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE, name, attemptedNames);
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(exceptionMessage.getMessage());
         }
     }
@@ -316,7 +316,7 @@ public class PackageObjectFactoryTest {
             objectFactory.createModule(name);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             final String attemptedNames = package1 + PACKAGE_SEPARATOR + name + STRING_SEPARATOR
                     + package2 + PACKAGE_SEPARATOR + name + STRING_SEPARATOR
                     + checkName + STRING_SEPARATOR
@@ -326,7 +326,7 @@ public class PackageObjectFactoryTest {
                     Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
                     new String[] {name, attemptedNames}, null, getClass(), null);
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(exceptionMessage.getViolation());
         }
     }
@@ -419,13 +419,13 @@ public class PackageObjectFactoryTest {
             factory.createModule(FailConstructorFileSet.class.getName());
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unable to instantiate com.puppycrawl.tools.checkstyle."
                     + "PackageObjectFactoryTest$FailConstructorFileSet");
             assertWithMessage("Invalid exception cause class")
-                .that(ex.getCause().getClass().getSimpleName())
+                .that(exc.getCause().getClass().getSimpleName())
                 .isEqualTo("IllegalAccessException");
         }
     }
@@ -574,7 +574,7 @@ public class PackageObjectFactoryTest {
             objectFactory.createModule(name);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             final String optionalNames = abcPackage + PACKAGE_SEPARATOR + name
                     + STRING_SEPARATOR + barPackage + PACKAGE_SEPARATOR + name
                     + STRING_SEPARATOR + fooPackage + PACKAGE_SEPARATOR + name
@@ -583,7 +583,7 @@ public class PackageObjectFactoryTest {
                     Definitions.CHECKSTYLE_BUNDLE, getClass(),
                     AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE, name, optionalNames);
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(exceptionMessage.getMessage());
         }
     }

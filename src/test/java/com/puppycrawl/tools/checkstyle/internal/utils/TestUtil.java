@@ -275,11 +275,11 @@ public final class TestUtil {
             final Field field = getClassDeclaredField(instance.getClass(), fieldName);
             return (T) field.get(instance);
         }
-        catch (ReflectiveOperationException ex) {
+        catch (ReflectiveOperationException exc) {
             final String message = String.format(Locale.ROOT,
                     "Failed to get field '%s' for instance of class '%s'",
                     fieldName, instance.getClass().getSimpleName());
-            throw new IllegalStateException(message, ex);
+            throw new IllegalStateException(message, exc);
         }
     }
 
@@ -298,11 +298,11 @@ public final class TestUtil {
             final Field field = getClassDeclaredField(clss, fieldName);
             return (T) field.get(null);
         }
-        catch (ReflectiveOperationException ex) {
+        catch (ReflectiveOperationException exc) {
             final String message = String.format(Locale.ROOT,
                     "Failed to get static field '%s' for class '%s'",
                     fieldName, clss);
-            throw new IllegalStateException(message, ex);
+            throw new IllegalStateException(message, exc);
         }
     }
 
@@ -320,11 +320,11 @@ public final class TestUtil {
             final Field field = getClassDeclaredField(instance.getClass(), fieldName);
             field.set(instance, value);
         }
-        catch (ReflectiveOperationException ex) {
+        catch (ReflectiveOperationException exc) {
             final String message = String.format(Locale.ROOT,
                     "Failed to set field '%s' for instance of class '%s'",
                     fieldName, instance.getClass().getSimpleName());
-            throw new IllegalStateException(message, ex);
+            throw new IllegalStateException(message, exc);
         }
     }
 

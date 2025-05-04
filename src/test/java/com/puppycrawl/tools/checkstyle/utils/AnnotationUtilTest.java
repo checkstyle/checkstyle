@@ -46,9 +46,9 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
             isUtilsClassHasPrivateConstructor(AnnotationUtil.class);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (ReflectiveOperationException ex) {
+        catch (ReflectiveOperationException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex)
+                .that(exc)
                 .hasCauseThat()
                 .hasMessageThat()
                 .isEqualTo("do not instantiate.");
@@ -61,9 +61,9 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
             AnnotationUtil.containsAnnotation(null);
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("the ast is null");
         }
     }
@@ -74,9 +74,9 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
             AnnotationUtil.containsAnnotation(null, "");
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("the ast is null");
         }
     }
@@ -123,9 +123,9 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
             AnnotationUtil.getAnnotationHolder(null);
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("the ast is null");
         }
     }
@@ -136,9 +136,9 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
             AnnotationUtil.getAnnotation(null, null);
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("the ast is null");
         }
     }
@@ -149,9 +149,9 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
             AnnotationUtil.getAnnotation(new DetailAstImpl(), null);
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("the annotation is null");
         }
     }
@@ -162,9 +162,9 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
             AnnotationUtil.getAnnotation(new DetailAstImpl(), "");
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("the annotation is empty or spaces");
         }
     }
@@ -175,9 +175,9 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
             AnnotationUtil.getAnnotation(null, "");
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("the ast is null");
         }
     }
@@ -188,9 +188,9 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
             AnnotationUtil.containsAnnotation(null, Set.of("Override"));
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("the ast is null");
         }
     }
@@ -203,9 +203,9 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
             AnnotationUtil.containsAnnotation(ast, annotations);
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("annotations cannot be null");
         }
     }

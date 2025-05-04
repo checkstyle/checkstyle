@@ -110,8 +110,8 @@ public class XpathFilterElement implements TreeWalkerFilter {
             try {
                 xpathExpression = xpathEvaluator.createExpression(xpathQuery);
             }
-            catch (XPathException ex) {
-                throw new IllegalArgumentException("Incorrect xpath query: " + xpathQuery, ex);
+            catch (XPathException exc) {
+                throw new IllegalArgumentException("Incorrect xpath query: " + xpathQuery, exc);
             }
         }
         isEmptyConfig = fileRegexp == null
@@ -202,9 +202,9 @@ public class XpathFilterElement implements TreeWalkerFilter {
                     xpathExpression.createDynamicContext(rootNode);
             items = xpathExpression.evaluate(xpathDynamicContext);
         }
-        catch (XPathException ex) {
+        catch (XPathException exc) {
             throw new IllegalStateException("Cannot initialize context and evaluate query: "
-                    + xpathQuery, ex);
+                    + xpathQuery, exc);
         }
         return items;
     }

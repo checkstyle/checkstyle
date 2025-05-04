@@ -29,8 +29,8 @@ class InputNoWildcardImports {
     try {
       createTempFile("temp", ".txt");
       File[] roots = listRoots();
-    } catch (IOException e) {
-      e.printStackTrace();
+    } catch (IOException exc) {
+      exc.printStackTrace();
     }
     int closeOperation = EXIT_ON_CLOSE;
 
