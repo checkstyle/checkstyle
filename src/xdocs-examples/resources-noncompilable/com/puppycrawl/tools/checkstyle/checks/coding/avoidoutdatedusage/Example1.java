@@ -12,22 +12,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding.avoidoutdatedusage;
 // xdoc section -- start
 public class Example1 {
   public void unusedPublic() {
+    Collectors.toList(); // violation, Avoid ''.collect(Collectors.toList()) -> .toList()''.
+    // Stream.of(FOO).toList()); // ok, as successor
   }
-
-  protected void unusedProtected() {
-  }
-
-  void unusedPackageProtected() {
-  }
-
-  private void unusedPrivate() { // violation, "Outdated api usage 'unusedPrivate'"
-  }
-
-  private void unusedPrivateOverloaded(String s) { // ok, as overloaded
-  }
-
-  private void unusedPrivateOverloaded(Integer i) { // ok, as overloaded
-  }
-
 }
 // xdoc section -- end

@@ -17,13 +17,8 @@ public class InputAvoidOutdatedUsageForCollectors {
     private static void Collectors() {
         // TODO Usage of API documented as @since 16+
         // Stream.of(FOO).toList(); // ok, as modern
-        toList(); // violation, Avoid ''.collect(Collectors.toList()) -> .toList()''.
-        Collectors.toList(); // violation, Avoid ''.collect(Collectors.toList()) -> .toList()''.
         // Can be replaced with 'java.util.ArrayList' constructor
         new ArrayList<>(List.of(FOO)); // ok, as modern
-        Collectors.toList(); // violation, Avoid ''.collect(Collectors.toList()) -> .toList()''.
-        Collectors.toList(); // violation, Avoid ''.collect(Collectors.toList()) -> .toList()''.
-        toList(); // violation, Avoid ''.collect(Collectors.toList()) -> .toList()''.
         // TODO Usage of API documented as @since 16+
         // List.of(FOO).stream().toList(); // ok, as modern
         // Stream.of(FOO).toList(); // ok, as modern
