@@ -718,9 +718,9 @@ public class XdocsPagesTest {
                     checker.destroy();
                 }
             }
-            catch (CheckstyleException ex) {
+            catch (CheckstyleException exc) {
                 throw new CheckstyleException(fileName + " has invalid Checkstyle xml ("
-                        + ex.getMessage() + "): " + unserializedSource, ex);
+                        + exc.getMessage() + "): " + unserializedSource, exc);
             }
         }
         return true;
@@ -808,8 +808,8 @@ public class XdocsPagesTest {
         try {
             instance = moduleFactory.createModule(sectionName);
         }
-        catch (CheckstyleException ex) {
-            throw new CheckstyleException(fileName + " couldn't find class: " + sectionName, ex);
+        catch (CheckstyleException exc) {
+            throw new CheckstyleException(fileName + " couldn't find class: " + sectionName, exc);
         }
 
         int subSectionPos = 0;
