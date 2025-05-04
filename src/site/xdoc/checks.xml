@@ -127,6 +127,15 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/avoidoutdatedusage.html#AvoidOutdatedUsage">
+                AvoidOutdatedUsage
+              </a>
+            </td>
+            <td>Checks to avoid outdated API usage.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/imports/avoidstarimport.html#AvoidStarImport">
                 AvoidStarImport
               </a>
