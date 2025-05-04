@@ -206,8 +206,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             execute(checkConfig, getPath("InputTreeWalker.java"));
             assertWithMessage("CheckstyleException is expected").fail();
         }
-        catch (CheckstyleException ex) {
-            final String errorMsg = ex.getMessage();
+        catch (CheckstyleException exc) {
+            final String errorMsg = exc.getMessage();
             final Pattern expected = Pattern.compile(Pattern.quote("cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.TreeWalker - Token ")
                     + "\"(ENUM_DEF|CLASS_DEF|METHOD_DEF|IMPORT)\""
@@ -263,9 +263,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             treeWalker.setupChild(config);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Error message is not expected")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("TreeWalker is not allowed as a parent of java.lang.String "
                     + "Please review 'Parent Module' section for this Check in "
                     + "web documentation if Check is standard.");
@@ -299,16 +299,16 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             execute(checkConfig, pathToEmptyFile.toString());
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Error message is unexpected")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle."
                             + "TreeWalker - Check 'com.puppycrawl.tools.checkstyle."
                             + "TreeWalkerTest$BadJavaDocCheck' waits for comment type token "
                             + "('SINGLE_LINE_COMMENT') and should override "
                             + "'isCommentNodesRequired()' method to return 'true'");
             assertWithMessage("Error message is unexpected")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .contains("isCommentNodesRequired");
         }
     }
@@ -332,9 +332,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             treeWalker.processFiltered(file, fileText);
             assertWithMessage("Exception expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("IllegalStateException occurred while parsing file input.java.");
         }
     }

@@ -135,10 +135,10 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
             assertWithMessage("IllegalStateException is expected")
                     .fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             // exception is expected
             assertWithMessage("Invalid exception message")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .isEqualTo("interface[0x-1]");
         }
     }

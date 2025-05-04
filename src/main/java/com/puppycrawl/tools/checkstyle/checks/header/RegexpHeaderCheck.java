@@ -224,11 +224,11 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
                     headerRegexps.add(Pattern.compile(line));
                 }
             }
-            catch (final PatternSyntaxException ex) {
+            catch (final PatternSyntaxException exc) {
                 throw new IllegalArgumentException("line "
                         + (headerRegexps.size() + 1)
                         + " in header specification"
-                        + " is not a regular expression", ex);
+                        + " is not a regular expression", exc);
             }
         }
     }
