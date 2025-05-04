@@ -87,9 +87,9 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             SuppressionsLoader.loadSuppressions("http");
             assertWithMessage("exception expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid error message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unable to find: http");
         }
     }
@@ -100,9 +100,9 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             SuppressionsLoader.loadSuppressions("http://^%$^* %&% %^&");
             assertWithMessage("exception expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid error message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unable to find: http://^%$^* %&% %^&");
         }
     }
@@ -140,16 +140,16 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             SuppressionsLoader.loadSuppressions(fn);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             final String messageStart = "Unable to parse " + fn;
             assertWithMessage("Exception message should start with: " + messageStart)
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .startsWith("Unable to parse " + fn);
             assertWithMessage("Exception message should contain \"files\"")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .contains("\"files\"");
             assertWithMessage("Exception message should contain \"suppress\"")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .contains("\"suppress\"");
         }
     }
@@ -161,16 +161,16 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             SuppressionsLoader.loadSuppressions(fn);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             final String messageStart = "Unable to parse " + fn;
             assertWithMessage("Exception message should start with: " + messageStart)
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .startsWith(messageStart);
             assertWithMessage("Exception message should contain \"checks\"")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .contains("\"checks\"");
             assertWithMessage("Exception message should contain \"suppress\"")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .contains("\"suppress\"");
         }
     }
@@ -182,9 +182,9 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             SuppressionsLoader.loadSuppressions(fn);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
-            assertWithMessage(ex.getMessage())
-                .that(ex.getMessage())
+        catch (CheckstyleException exc) {
+            assertWithMessage(exc.getMessage())
+                .that(exc.getMessage())
                 .startsWith("Number format exception " + fn + " - For input string: \"a\"");
         }
     }
@@ -201,15 +201,16 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
                     filterSet = SuppressionsLoader.loadSuppressions(url);
                     break;
                 }
-                catch (CheckstyleException ex) {
+                catch (CheckstyleException exc) {
                     // for some reason Travis CI failed sometimes (unstable) on reading this file
-                    if (attemptCount < attemptLimit && ex.getMessage().contains("Unable to read")) {
+                    if (attemptCount < attemptLimit && exc.getMessage()
+                            .contains("Unable to read")) {
                         attemptCount++;
                         // wait for bad/disconnection time to pass
                         Thread.sleep(1000);
                     }
                     else {
-                        throw ex;
+                        throw exc;
                     }
                 }
             }
@@ -239,9 +240,9 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
                     new InputSource(sourceName), sourceName);
             assertWithMessage("InvocationTargetException is expected").fail();
         }
-        catch (ReflectiveOperationException ex) {
+        catch (ReflectiveOperationException exc) {
             assertWithMessage("Invalid exception cause message")
-                .that(ex)
+                .that(exc)
                     .hasCauseThat()
                         .hasMessageThat()
                         .isEqualTo("Unable to find: " + sourceName);
@@ -257,9 +258,9 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
                     new InputSource(), sourceName);
             assertWithMessage("InvocationTargetException is expected").fail();
         }
-        catch (ReflectiveOperationException ex) {
+        catch (ReflectiveOperationException exc) {
             assertWithMessage("Invalid exception cause message")
-                .that(ex)
+                .that(exc)
                     .hasCauseThat()
                         .hasMessageThat()
                         .isEqualTo("Unable to read " + sourceName);
@@ -273,9 +274,9 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             SuppressionsLoader.loadSuppressions(fn);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid error message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unable to parse " + fn
                         + " - missing checks or id or message attribute");
         }
@@ -298,9 +299,9 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             SuppressionsLoader.loadSuppressions(fn);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid error message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unable to parse " + fn
                         + " - invalid files or checks or message format");
         }
@@ -353,9 +354,9 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             SuppressionsLoader.loadXpathSuppressions(fn);
             assertWithMessage("Exception should be thrown").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid error message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unable to parse " + fn
                         + " - invalid files or checks or message format for suppress-xpath");
         }
@@ -369,9 +370,9 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             SuppressionsLoader.loadXpathSuppressions(fn);
             assertWithMessage("Exception should be thrown").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid error message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unable to parse " + fn
                         + " - missing checks or id or message attribute for suppress-xpath");
         }

@@ -204,8 +204,8 @@ public class MainFrame extends JFrame {
             textArea.setText(model.getText());
             treeTable.setLinePositionList(model.getLinesToPosition());
         }
-        catch (final CheckstyleException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
+        catch (final CheckstyleException exc) {
+            JOptionPane.showMessageDialog(this, exc.getMessage());
         }
     }
 
