@@ -24,8 +24,8 @@ public class InputFormattedOrderingAndSpacing3 {
 
     try {
       createTempFile("temp", ".txt");
-    } catch (Exception e) {
-      e.printStackTrace();
+    } catch (Exception exc) {
+      exc.printStackTrace();
     }
 
     // Use of java.awt and javax.swing classes
