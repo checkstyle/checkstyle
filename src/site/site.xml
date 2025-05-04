@@ -246,6 +246,7 @@
           <item name="ArrayTypeStyle" href="checks/misc/arraytypestyle.html"/>
           <item name="AvoidEscapedUnicodeCharacters"
                 href="checks/misc/avoidescapedunicodecharacters.html"/>
+          <item name="AvoidOutdatedUsage" href="checks/coding/avoidoutdatedusage.html"/>
           <item name="CommentsIndentation" href="checks/misc/commentsindentation.html"/>
           <item name="DescendantToken" href="checks/misc/descendanttoken.html"/>
           <item name="FinalParameters" href="checks/misc/finalparameters.html"/>
