@@ -60,12 +60,12 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
             DetailNodeTreeStringPrinter.printFileAst(file);
             assertWithMessage("Javadoc parser didn't fail on missing end tag").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                     "getParseErrorMessage",
                     new ParseErrorMessage(0, MSG_JAVADOC_MISSED_HTML_CLOSE, 1, "qwe"));
             assertWithMessage("Generated and expected parse error messages don't match")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(expected);
         }
     }
@@ -141,12 +141,12 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
             DetailNodeTreeStringPrinter.printFileAst(file);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                     "getParseErrorMessage",
                     new ParseErrorMessage(35, MSG_JAVADOC_MISSED_HTML_CLOSE, 7, "parsing"));
             assertWithMessage("Generated and expected parse error messages don't match")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(expected);
         }
     }
@@ -159,13 +159,13 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
             DetailNodeTreeStringPrinter.printFileAst(file);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                     "getParseErrorMessage",
                     new ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
                             9, "no viable alternative at input '<<'", "HTML_ELEMENT"));
             assertWithMessage("Generated and expected parse error messages don't match")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(expected);
         }
     }
@@ -178,13 +178,13 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
             DetailNodeTreeStringPrinter.printFileAst(file);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                     "getParseErrorMessage",
                     new ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
                             4, "no viable alternative at input '</tag'", "HTML_ELEMENT"));
             assertWithMessage("Generated and expected parse error messages don't match")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(expected);
         }
     }
@@ -197,12 +197,12 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
             DetailNodeTreeStringPrinter.printFileAst(file);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                     "getParseErrorMessage",
                     new ParseErrorMessage(0, MSG_JAVADOC_MISSED_HTML_CLOSE, 10, "tag2"));
             assertWithMessage("Generated and expected parse error messages don't match")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(expected);
         }
     }
@@ -215,12 +215,12 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
             DetailNodeTreeStringPrinter.printFileAst(file);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                     "getParseErrorMessage",
                     new ParseErrorMessage(0, MSG_JAVADOC_MISSED_HTML_CLOSE, 3, "a"));
             assertWithMessage("Generated and expected parse error messages don't match")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(expected);
         }
     }
