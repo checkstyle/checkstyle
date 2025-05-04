@@ -47,4 +47,7 @@
   <!-- Required for reversing a list -->
   <suppress checks="ForbidCertainImports" files="SiteUtil\.java"/>
 
+  <!-- Suppress CatchParameterName for sevntu-checkstyle files to allow 'ex' -->
+  <suppress checks="CatchParameterName"
+              files=".*[\\/]com[\\/]github[\\/]sevntu[\\/]checkstyle[\\/].*\.java"/>
 </suppressions>

@@ -159,9 +159,9 @@ public final class FileText {
             decoder.onMalformedInput(CodingErrorAction.REPLACE);
             decoder.onUnmappableCharacter(CodingErrorAction.REPLACE);
         }
-        catch (final UnsupportedCharsetException ex) {
+        catch (final UnsupportedCharsetException exc) {
             final String message = "Unsupported charset: " + charsetName;
-            throw new IllegalStateException(message, ex);
+            throw new IllegalStateException(message, exc);
         }
 
         fullText = readFile(file, decoder);

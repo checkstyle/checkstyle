@@ -67,8 +67,8 @@ public class XpathFileGeneratorAuditListenerTest {
         try {
             constructEvents();
         }
-        catch (Exception ex) {
-            throw new ExceptionInInitializerError(ex);
+        catch (Exception exc) {
+            throw new ExceptionInInitializerError(exc);
         }
     }
 
@@ -150,9 +150,9 @@ public class XpathFileGeneratorAuditListenerTest {
             logger.addException(ev, null);
             assertWithMessage("Exception is excepted").fail();
         }
-        catch (UnsupportedOperationException ex) {
+        catch (UnsupportedOperationException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Operation is not supported");
         }
     }
