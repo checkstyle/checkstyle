@@ -364,9 +364,9 @@ public class VisibilityModifierCheckTest
             obj.visitToken(ast);
             assertWithMessage("exception expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unexpected token type: class");
         }
     }

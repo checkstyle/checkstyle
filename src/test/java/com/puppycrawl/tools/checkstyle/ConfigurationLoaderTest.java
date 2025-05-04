@@ -109,9 +109,9 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                 configPath, propertiesExpander, multiThreadModeSettings);
             assertWithMessage("An exception is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Multi thread mode for Checker module is not implemented");
         }
     }
@@ -157,15 +157,15 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             loadConfiguration("InputConfigurationLoaderMissingPropertyName.xml");
             assertWithMessage("missing property name").fail();
         }
-        catch (CheckstyleException ex) {
-            assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage())
+        catch (CheckstyleException exc) {
+            assertWithMessage("Invalid exception message: " + exc.getMessage())
+                    .that(exc.getMessage())
                     .contains("\"name\"");
-            assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage())
+            assertWithMessage("Invalid exception message: " + exc.getMessage())
+                    .that(exc.getMessage())
                     .contains("\"property\"");
-            assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage())
+            assertWithMessage("Invalid exception message: " + exc.getMessage())
+                    .that(exc.getMessage())
                     .endsWith(":8:41");
         }
     }
@@ -179,15 +179,15 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
             assertWithMessage("missing property name").fail();
         }
-        catch (CheckstyleException ex) {
-            assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage())
+        catch (CheckstyleException exc) {
+            assertWithMessage("Invalid exception message: " + exc.getMessage())
+                    .that(exc.getMessage())
                     .contains("\"name\"");
-            assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage())
+            assertWithMessage("Invalid exception message: " + exc.getMessage())
+                    .that(exc.getMessage())
                     .contains("\"property\"");
-            assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage())
+            assertWithMessage("Invalid exception message: " + exc.getMessage())
+                    .that(exc.getMessage())
                     .endsWith(":8:41");
         }
     }
@@ -198,15 +198,15 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             loadConfiguration("InputConfigurationLoaderMissingPropertyValue.xml");
             assertWithMessage("missing property value").fail();
         }
-        catch (CheckstyleException ex) {
-            assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage())
+        catch (CheckstyleException exc) {
+            assertWithMessage("Invalid exception message: " + exc.getMessage())
+                    .that(exc.getMessage())
                     .contains("\"value\"");
-            assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage())
+            assertWithMessage("Invalid exception message: " + exc.getMessage())
+                    .that(exc.getMessage())
                     .contains("\"property\"");
-            assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage())
+            assertWithMessage("Invalid exception message: " + exc.getMessage())
+                    .that(exc.getMessage())
                     .endsWith(":8:43");
         }
     }
@@ -217,15 +217,15 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             loadConfiguration("InputConfigurationLoaderMissingConfigName.xml");
             assertWithMessage("missing module name").fail();
         }
-        catch (CheckstyleException ex) {
-            assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage())
+        catch (CheckstyleException exc) {
+            assertWithMessage("Invalid exception message: " + exc.getMessage())
+                    .that(exc.getMessage())
                     .contains("\"name\"");
-            assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage())
+            assertWithMessage("Invalid exception message: " + exc.getMessage())
+                    .that(exc.getMessage())
                     .contains("\"module\"");
-            assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage())
+            assertWithMessage("Invalid exception message: " + exc.getMessage())
+                    .that(exc.getMessage())
                     .endsWith(":7:23");
         }
     }
@@ -236,15 +236,15 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             loadConfiguration("InputConfigurationLoaderMissingConfigParent.xml");
             assertWithMessage("missing module parent").fail();
         }
-        catch (CheckstyleException ex) {
-            assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage())
+        catch (CheckstyleException exc) {
+            assertWithMessage("Invalid exception message: " + exc.getMessage())
+                    .that(exc.getMessage())
                     .contains("\"property\"");
-            assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage())
+            assertWithMessage("Invalid exception message: " + exc.getMessage())
+                    .that(exc.getMessage())
                     .contains("\"module\"");
-            assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage())
+            assertWithMessage("Invalid exception message: " + exc.getMessage())
+                    .that(exc.getMessage())
                     .endsWith(":8:38");
         }
     }
@@ -370,9 +370,9 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                 null, "${a", new PropertiesExpander(props), null);
             assertWithMessage("expected to fail, instead got: " + value).fail();
         }
-        catch (ReflectiveOperationException ex) {
+        catch (ReflectiveOperationException exc) {
             assertWithMessage("Invalid exception cause message")
-                .that(ex)
+                .that(exc)
                 .hasCauseThat()
                 .hasMessageThat()
                 .isEqualTo("Syntax error in property: ${a");
@@ -387,9 +387,9 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                 null, "${c}", new PropertiesExpander(props), null);
             assertWithMessage("expected to fail, instead got: " + value).fail();
         }
-        catch (ReflectiveOperationException ex) {
+        catch (ReflectiveOperationException exc) {
             assertWithMessage("Invalid exception cause message")
-                .that(ex)
+                .that(exc)
                 .hasCauseThat()
                 .hasMessageThat()
                 .isEqualTo("Property ${c} has not been set");
@@ -520,9 +520,9 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
             assertWithMessage("InvocationTargetException is expected").fail();
         }
-        catch (ReflectiveOperationException ex) {
+        catch (ReflectiveOperationException exc) {
             assertWithMessage("Invalid exception cause message")
-                .that(ex)
+                .that(exc)
                     .hasCauseThat()
                         .hasMessageThat()
                         .isEqualTo("Unknown name:" + "hello" + ".");
@@ -535,18 +535,18 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             loadConfiguration("InputConfigurationLoaderNonexistentProperty.xml");
             assertWithMessage("exception in expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("unable to parse configuration stream");
             assertWithMessage("Expected cause of type SAXException")
-                .that(ex.getCause())
+                .that(exc.getCause())
                 .isInstanceOf(SAXException.class);
             assertWithMessage("Expected cause of type CheckstyleException")
-                .that(ex.getCause().getCause())
+                .that(exc.getCause().getCause())
                 .isInstanceOf(CheckstyleException.class);
             assertWithMessage("Invalid exception cause message")
-                .that(ex)
+                .that(exc)
                 .hasCauseThat()
                 .hasCauseThat()
                 .hasMessageThat()
@@ -605,9 +605,9 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unable to find: ;InputConfigurationLoaderModuleIgnoreSeverity.xml");
         }
     }
