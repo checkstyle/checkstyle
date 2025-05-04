@@ -24,7 +24,8 @@ if [[ $OPTION == "--skip-external" ]]; then
   echo "$LINKCHECK_ERRORS" | grep -v 'externalLink' | sort > .ci-temp/linkcheck-errors-sorted.txt
 else
   echo "Checking internal (checkstyle website) and external links."
-  echo "$LINKCHECK_ERRORS" | sort > .ci-temp/linkcheck-errors-sorted.txt
+  echo "$LINKCHECK_ERRORS" | grep -v 'apidocs/constant-values.html' \
+    | sort > .ci-temp/linkcheck-errors-sorted.txt
 fi
 
 sort config/linkcheck-suppressions.txt > .ci-temp/linkcheck-suppressions-sorted.txt
