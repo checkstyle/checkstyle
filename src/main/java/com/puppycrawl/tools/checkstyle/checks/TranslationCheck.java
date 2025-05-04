@@ -535,8 +535,8 @@ public class TranslationCheck extends AbstractFileSetCheck {
         }
         // -@cs[IllegalCatch] It is better to catch all exceptions since it can throw
         // a runtime exception.
-        catch (final Exception ex) {
-            logException(ex, file);
+        catch (final Exception exc) {
+            logException(exc, file);
         }
         return keys;
     }
