@@ -129,9 +129,9 @@ public class NewlineAtEndOfFileCheckTest
             createChecker(checkConfig);
             assertWithMessage("exception expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Error message is unexpected")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle."
                             + "checks.NewlineAtEndOfFileCheck - "
                             + "Cannot set property 'lineSeparator' to 'ct'");
@@ -203,9 +203,9 @@ public class NewlineAtEndOfFileCheckTest
                 LineSeparatorOption.LF);
             assertWithMessage("ReflectiveOperationException is expected").fail();
         }
-        catch (ReflectiveOperationException ex) {
+        catch (ReflectiveOperationException exc) {
             assertWithMessage("Error message is unexpected")
-                .that(ex)
+                .that(exc)
                     .hasCauseThat()
                         .hasMessageThat()
                         .isEqualTo("Unable to read 1 bytes, got 0");

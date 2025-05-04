@@ -55,12 +55,12 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
             AstTreeStringPrinter.printFileAst(input, JavaParser.Options.WITHOUT_COMMENTS);
             assertWithMessage("exception expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid class")
-                .that(ex.getCause())
+                .that(exc.getCause())
                 .isInstanceOf(IllegalStateException.class);
             assertWithMessage("Invalid exception message")
-                .that(ex.getCause().getMessage())
+                .that(exc.getCause().getMessage())
                 .isEqualTo("2:0: no viable alternative at input 'classD'");
         }
     }

@@ -76,9 +76,9 @@ public class FileLengthCheckTest
             createChecker(checkConfig);
             assertWithMessage("Should indicate illegal args").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.checks."
                     + "sizes.FileLengthCheck - "
                     + "illegal value 'abc' for property 'max'");
@@ -108,9 +108,9 @@ public class FileLengthCheckTest
             check.setFileExtensions((String[]) null);
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Extensions array can not be null");
         }
     }
