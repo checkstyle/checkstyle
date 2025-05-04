@@ -201,6 +201,7 @@ public class JavadocVariableCheckTest
             "97:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "108:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "109:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "130:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableNoJavadoc2.java"),
