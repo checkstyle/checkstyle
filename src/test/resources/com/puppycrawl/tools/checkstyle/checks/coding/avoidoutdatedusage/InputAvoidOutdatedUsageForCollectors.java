@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import static java.util.stream.Collectors.toList;
 
 public class InputAvoidOutdatedUsageForCollectors {
@@ -17,8 +19,13 @@ public class InputAvoidOutdatedUsageForCollectors {
     private static void Collectors() {
         // TODO Usage of API documented as @since 16+
         // Stream.of(FOO).toList(); // ok, as modern
+        Stream.of(FOO).collect(
+        Collectors.toList()); // violation, Avoid ''.collect(Collectors.toList()) -> .toList()''.
         // Can be replaced with 'java.util.ArrayList' constructor
         new ArrayList<>(List.of(FOO)); // ok, as modern
+        Collector<Object, ?, List<Object>> list =
+            Collectors.toList(); // violation, Avoid ''.collect(Collectors.toList()) -> .toList()''.
+        toList(); // violation, Avoid ''.collect(Collectors.toList()) -> .toList()''.
         // TODO Usage of API documented as @since 16+
         // List.of(FOO).stream().toList(); // ok, as modern
         // Stream.of(FOO).toList(); // ok, as modern
