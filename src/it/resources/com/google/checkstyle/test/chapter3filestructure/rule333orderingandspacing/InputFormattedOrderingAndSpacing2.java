@@ -19,8 +19,8 @@ public class InputFormattedOrderingAndSpacing2 {
   public static void main(String[] args) {
     try {
       createTempFile("temp", ".txt");
-    } catch (Exception e) {
-      e.printStackTrace();
+    } catch (Exception exc) {
+      exc.printStackTrace();
     }
     int abortAction = ABORT;
     int closeOperation = EXIT_ON_CLOSE;
