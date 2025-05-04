@@ -123,7 +123,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
             check.visitToken(classDefAst);
             assertWithMessage("IllegalStateException is expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             // it is OK
         }
 
@@ -131,7 +131,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
             check.leaveToken(classDefAst);
             assertWithMessage("IllegalStateException is expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             // it is OK
         }
     }

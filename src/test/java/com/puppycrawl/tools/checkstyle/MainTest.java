@@ -807,9 +807,9 @@ public class MainTest {
             method.invoke(null, new File("."));
             assertWithMessage("Exception was expected").fail();
         }
-        catch (ReflectiveOperationException ex) {
+        catch (ReflectiveOperationException exc) {
             assertWithMessage("Invalid error cause")
-                    .that(ex)
+                    .that(exc)
                     .hasCauseThat()
                     .isInstanceOf(CheckstyleException.class);
             // We do separate validation for message as in Windows
@@ -818,7 +818,7 @@ public class MainTest {
             final Violation loadPropertiesMessage = new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, Main.LOAD_PROPERTIES_EXCEPTION,
                     new String[] {""}, null, getClass(), null);
-            final String causeMessage = ex.getCause().getLocalizedMessage();
+            final String causeMessage = exc.getCause().getLocalizedMessage();
             final String violation = loadPropertiesMessage.getViolation();
             final boolean samePrefix = causeMessage.substring(0, causeMessage.indexOf(' '))
                     .equals(violation

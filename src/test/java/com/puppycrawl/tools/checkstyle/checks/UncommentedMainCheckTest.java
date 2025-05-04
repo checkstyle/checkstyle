@@ -124,9 +124,9 @@ public class UncommentedMainCheckTest
             check.visitToken(ast);
             assertWithMessage("IllegalStateException is expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             assertWithMessage("Error message is unexpected")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(ast.toString());
         }
     }
