@@ -184,8 +184,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             try {
                 cacheFile.persist();
             }
-            catch (IOException ex) {
-                throw new IllegalStateException("Unable to persist cache file.", ex);
+            catch (IOException exc) {
+                throw new IllegalStateException("Unable to persist cache file.", exc);
             }
         }
     }
@@ -302,14 +302,14 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             }
             // -@cs[IllegalCatch] There is no other way to deliver filename that was under
             // processing. See https://github.com/checkstyle/checkstyle/issues/2285
-            catch (Exception ex) {
+            catch (Exception exc) {
                 if (fileName != null && cacheFile != null) {
                     cacheFile.remove(fileName);
                 }
 
                 // We need to catch all exceptions to put a reason failure (file name) in exception
                 throw new CheckstyleException(
-                        getLocalizedMessage("Checker.processFilesException", filePath), ex);
+                        getLocalizedMessage("Checker.processFilesException", filePath), exc);
             }
             catch (Error error) {
                 if (fileName != null && cacheFile != null) {
@@ -347,17 +347,17 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                     new String[] {ioe.getMessage()}, null, getClass(), null));
         }
         // -@cs[IllegalCatch] There is no other way to obey haltOnException field
-        catch (Exception ex) {
+        catch (Exception exc) {
             if (haltOnException) {
-                throw ex;
+                throw exc;
             }
 
-            log.debug("Exception occurred.", ex);
+            log.debug("Exception occurred.", exc);
 
             final StringWriter sw = new StringWriter();
             final PrintWriter pw = new PrintWriter(sw, true);
 
-            ex.printStackTrace(pw);
+            exc.printStackTrace(pw);
 
             fileMessages.add(new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
@@ -479,9 +479,9 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 bean.configure(childConf);
             }
         }
-        catch (final CheckstyleException ex) {
+        catch (final CheckstyleException exc) {
             throw new CheckstyleException(
-                    getLocalizedMessage("Checker.setupChildModule", name, ex.getMessage()), ex);
+                    getLocalizedMessage("Checker.setupChildModule", name, exc.getMessage()), exc);
         }
         if (child instanceof FileSetCheck) {
             final FileSetCheck fsc = (FileSetCheck) child;

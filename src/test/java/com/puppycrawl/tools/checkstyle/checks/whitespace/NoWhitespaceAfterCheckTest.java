@@ -235,9 +235,9 @@ public class NoWhitespaceAfterCheckTest
             check.visitToken(astArrayDeclarator);
             assertWithMessage("no intended exception thrown").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("unexpected ast syntax import[0x-1]");
         }
     }
