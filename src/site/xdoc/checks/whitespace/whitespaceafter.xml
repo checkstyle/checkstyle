@@ -176,7 +176,7 @@ class Example1 {
   void switchExample() {
     int a = switch ("hello") {
       case "got":
-        yield (1); // OK, followed by whitespace
+        yield (1); // ok, followed by whitespace
       case "my":
         yield(3); // violation ''yield' is not followed by whitespace'
       default:

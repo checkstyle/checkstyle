@@ -42,7 +42,7 @@ public class InputHiddenFieldRecords {
         static {
 
             if (OBJ instanceof String hiddenStaticField) {
-            //violation above, ''hiddenStaticField' hides a field'
+            // violation above, ''hiddenStaticField' hides a field'
                 System.out.println(hiddenStaticField
                         .toLowerCase(Locale.forLanguageTag(hiddenStaticField)));
                 boolean stringCheck = "test".equals(hiddenStaticField);

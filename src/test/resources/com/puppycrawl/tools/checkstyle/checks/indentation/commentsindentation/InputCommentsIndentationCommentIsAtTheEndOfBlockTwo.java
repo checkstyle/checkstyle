@@ -19,7 +19,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockTwo {
         String
             .valueOf(new Integer(0))
             .trim()
-                             //violation '.* incorrect .* level 29, expected is 12,.*as line 23.'
+                             // violation '.* incorrect .* level 29, expected is 12,.*as line 23.'
             .length();
     }
 
@@ -42,7 +42,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockTwo {
             }
         })).
             run();
-                          //violation '.* incorrect .* level 26, expected is 8, .* as line 38.'
+                          // violation '.* incorrect .* level 26, expected is 8, .* as line 38.'
     }
 
     public void foo21() {
@@ -68,7 +68,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockTwo {
         String s = String.format(java.util.Locale.ENGLISH, "The array element "
                         + "immediately following the end of the collection should be nulled",
                 array[1]);
-                                 //violation '.*incorrect.*level 33, expected is 8,.*as line 68.'
+                                 // violation '.*incorrect.*level 33, expected is 8,.*as line 68.'
     }
 
     public void foo23() {
@@ -78,7 +78,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockTwo {
 
     public void foo24() {
         new Object();
-                     //violation '.* incorrect .* level 21, expected is 8,.* same .* as line 80.'
+                     // violation '.* incorrect .* level 21, expected is 8,.* same .* as line 80.'
     }
 
     public String foo25() {
@@ -90,7 +90,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockTwo {
     public String foo26() {
         return String.format(java.util.Locale.ENGLISH, "%d",
                 1);
-                                  //violation '.*incorrect.*level 34, expected is 8,.*as line 91.'
+                                  // violation '.*incorrect.*level 34, expected is 8,.*as line 91.'
     }
 
     public void foo27() {
@@ -112,7 +112,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockTwo {
         int a = 5;
         return String.format(java.util.Locale.ENGLISH, "%d",
             1);
-                          //violation '.* incorrect .* level 26, expected is 8, .* as line 113.'
+                          // violation '.* incorrect .* level 26, expected is 8, .* as line 113.'
     }
 
 
