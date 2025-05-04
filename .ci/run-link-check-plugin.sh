@@ -22,13 +22,13 @@ LINKCHECK_ERRORS=$(grep -E "doesn't exist|externalLink" target/site/linkcheck.ht
 if [[ $OPTION == "--skip-external" ]]; then
   echo "Checking internal (checkstyle website) links only."
   echo "$LINKCHECK_ERRORS" | grep -v 'externalLink' | sort > .ci-temp/linkcheck-errors-sorted.txt
+  sort config/linkcheck-suppressions.txt > .ci-temp/linkcheck-suppressions-sorted.txt
 else
   echo "Checking internal (checkstyle website) and external links."
   echo "$LINKCHECK_ERRORS" | sort > .ci-temp/linkcheck-errors-sorted.txt
+  sort config/linkcheck-suppressions.txt | grep -v 'apidocs/constant-values.html' \
+    > .ci-temp/linkcheck-suppressions-sorted.txt
 fi
-
-sort config/linkcheck-suppressions.txt | grep -v 'apidocs/constant-values.html' \
-  > .ci-temp/linkcheck-suppressions-sorted.txt
 
 # Suppressions exist until https://github.com/checkstyle/checkstyle/issues/11572
 diff -u .ci-temp/linkcheck-suppressions-sorted.txt .ci-temp/linkcheck-errors-sorted.txt || true
