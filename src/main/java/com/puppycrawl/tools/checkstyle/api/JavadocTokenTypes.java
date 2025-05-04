@@ -1713,7 +1713,34 @@ public final class JavadocTokenTypes {
     /** Col tag name. */
     public static final int COL_HTML_TAG_NAME = JavadocParser.COL_HTML_TAG_NAME;
 
-    /** Frame tag name. */
+    /**
+     * Frame tag html.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <frame name="top" src="./frame.html" />}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     *  `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *      `--FRAME_TAG -> FRAME_TAG
+     *          |--START -> <
+     *          |--FRAME_HTML_TAG_NAME -> frame
+     *          |--WS ->
+     *          |--ATTRIBUTE -> ATTRIBUTE
+     *          |   |--HTML_TAG_NAME -> name
+     *          |   |--EQUALS -> =
+     *          |   `--ATTR_VALUE -> "top"
+     *          |--WS ->
+     *          |--ATTRIBUTE -> ATTRIBUTE
+     *          |   |--HTML_TAG_NAME -> src
+     *          |   |--EQUALS -> =
+     *          |   `--ATTR_VALUE -> "./frame.html"
+     *          `--END -> />
+     * }
+     * </pre>
+     */
     public static final int FRAME_HTML_TAG_NAME = JavadocParser.FRAME_HTML_TAG_NAME;
 
     /**
