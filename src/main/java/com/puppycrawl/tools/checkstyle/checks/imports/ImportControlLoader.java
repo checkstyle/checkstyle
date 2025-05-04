@@ -270,12 +270,12 @@ public final class ImportControlLoader extends XmlLoader {
             loader.parseInputSource(source);
             return loader.getRoot();
         }
-        catch (ParserConfigurationException | SAXException ex) {
+        catch (ParserConfigurationException | SAXException exc) {
             throw new CheckstyleException("unable to parse " + uri
-                    + " - " + ex.getMessage(), ex);
+                    + " - " + exc.getMessage(), exc);
         }
-        catch (IOException ex) {
-            throw new CheckstyleException("unable to read " + uri, ex);
+        catch (IOException exc) {
+            throw new CheckstyleException("unable to read " + uri, exc);
         }
     }
 
@@ -291,11 +291,11 @@ public final class ImportControlLoader extends XmlLoader {
             final InputSource source = new InputSource(inputStream);
             return load(source, uri);
         }
-        catch (MalformedURLException ex) {
-            throw new CheckstyleException("syntax error in url " + uri, ex);
+        catch (MalformedURLException exc) {
+            throw new CheckstyleException("syntax error in url " + uri, exc);
         }
-        catch (IOException ex) {
-            throw new CheckstyleException("unable to find " + uri, ex);
+        catch (IOException exc) {
+            throw new CheckstyleException("unable to find " + uri, exc);
         }
     }
 

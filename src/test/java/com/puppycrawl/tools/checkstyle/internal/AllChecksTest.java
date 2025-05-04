@@ -411,8 +411,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
             try {
                 instance = moduleFactory.createModule(checkName);
             }
-            catch (CheckstyleException ex) {
-                throw new CheckstyleException("Couldn't find check: " + checkName, ex);
+            catch (CheckstyleException exc) {
+                throw new CheckstyleException("Couldn't find check: " + checkName, exc);
             }
             final AbstractCheck check;
             if (instance instanceof AbstractCheck
@@ -447,7 +447,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 configTokens.addAll(Arrays.asList(checkConfig.getProperty("tokens").trim()
                         .split(",\\s*")));
             }
-            catch (CheckstyleException ex) {
+            catch (CheckstyleException exc) {
                 // no tokens defined, so it is using default
                 if (defaultTokensMustBeExplicit) {
                     validateDefaultTokens(checkConfig, check, configTokens);
@@ -598,10 +598,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 result = CheckUtil.getCheckMessage(module, locale, messageString);
             }
             // -@cs[IllegalCatch] There is no other way to deliver filename that was used
-            catch (Exception ex) {
+            catch (Exception exc) {
                 assertWithMessage(module.getSimpleName() + " with the message '" + messageString
                         + "' in locale '" + locale.getLanguage() + "' failed with: "
-                        + ex.getClass().getSimpleName() + " - " + ex.getMessage()).fail();
+                        + exc.getClass().getSimpleName() + " - " + exc.getMessage()).fail();
             }
 
             assertWithMessage(module.getSimpleName() + " should have text for the message '"
