@@ -143,12 +143,34 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addFilter(filter);
         final TestBeforeExecutionFileFilter fileFilter = new TestBeforeExecutionFileFilter();
         checker.addBeforeExecutionFileFilter(fileFilter);
-
         // should remove all listeners, file sets, and filters
         checker.destroy();
+        checker.process(Collections.singletonList(createTempFile("junit")));
+        assertDestroy(checker, auditAdapter, fileSet, filter, fileFilter);
+    }
 
-        final File tempFile = createTempFile("junit");
-        checker.process(Collections.singletonList(tempFile));
+    @Test
+    public void testDestroyPath() throws Exception {
+        final Checker checker = new Checker();
+        final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
+        checker.addListener(auditAdapter);
+        final TestFileSetCheck fileSet = new TestFileSetCheck();
+        checker.addFileSetCheck(fileSet);
+        final DebugFilter filter = new DebugFilter();
+        checker.addFilter(filter);
+        final TestBeforeExecutionFileFilter fileFilter = new TestBeforeExecutionFileFilter();
+        checker.addBeforeExecutionFileFilter(fileFilter);
+        // should remove all listeners, file sets, and filters
+        checker.destroy();
+        checker.process(Collections.singletonList(createTempFile("junit").toPath()));
+        assertDestroy(checker, auditAdapter, fileSet, filter, fileFilter);
+    }
+
+    private void assertDestroy(Checker checker,
+                               DebugAuditAdapter auditAdapter,
+                               TestFileSetCheck fileSet,
+                               DebugFilter filter,
+                               TestBeforeExecutionFileFilter fileFilter) {
         final SortedSet<Violation> violations = new TreeSet<>();
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
