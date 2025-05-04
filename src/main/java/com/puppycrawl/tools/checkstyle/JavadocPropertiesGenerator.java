@@ -87,9 +87,9 @@ public final class JavadocPropertiesGenerator {
                 writePropertiesFile(cliOptions);
             }
         }
-        catch (ParameterException ex) {
-            System.err.println(ex.getMessage());
-            ex.getCommandLine().usage(System.err);
+        catch (ParameterException exc) {
+            System.err.println(exc.getMessage());
+            exc.getCommandLine().usage(System.err);
         }
     }
 
@@ -108,9 +108,9 @@ public final class JavadocPropertiesGenerator {
                 iteratePublicStaticIntFields(objBlock, writer::println);
             }
         }
-        catch (IOException ex) {
+        catch (IOException exc) {
             throw new CheckstyleException("Failed to write javadoc properties of '"
-                    + options.inputFile + "' to '" + options.outputFile + "'", ex);
+                    + options.inputFile + "' to '" + options.outputFile + "'", exc);
         }
     }
 

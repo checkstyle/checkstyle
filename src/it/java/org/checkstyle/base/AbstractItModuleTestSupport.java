@@ -154,8 +154,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         try {
             return conf.getProperty("id").equals(moduleId);
         }
-        catch (CheckstyleException ex) {
-            throw new IllegalStateException("problem to get ID attribute from " + conf, ex);
+        catch (CheckstyleException exc) {
+            throw new IllegalStateException("problem to get ID attribute from " + conf, exc);
         }
     }
 
