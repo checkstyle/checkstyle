@@ -370,8 +370,8 @@ public class SuppressionCommentFilterTest
             execute(treeWalkerConfig, getPath("InputSuppressionCommentFilter10.java"));
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
-            final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
+        catch (CheckstyleException exc) {
+            final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
             assertWithMessage("Invalid exception message")
                 .that(cause)
                 .hasMessageThat()
@@ -395,8 +395,8 @@ public class SuppressionCommentFilterTest
             execute(treeWalkerConfig, getPath("InputSuppressionCommentFilter11.java"));
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
-            final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
+        catch (CheckstyleException exc) {
+            final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
             assertWithMessage("Invalid exception message")
                 .that(cause)
                 .hasMessageThat()

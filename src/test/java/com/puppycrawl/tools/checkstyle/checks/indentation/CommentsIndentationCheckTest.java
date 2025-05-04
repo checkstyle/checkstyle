@@ -283,8 +283,8 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
             check.visitToken(methodDef);
             assertWithMessage("IllegalArgumentException should have been thrown!").fail();
         }
-        catch (IllegalArgumentException ex) {
-            final String msg = ex.getMessage();
+        catch (IllegalArgumentException exc) {
+            final String msg = exc.getMessage();
             assertWithMessage("Invalid exception message")
                 .that(msg)
                 .isEqualTo("Unexpected token type: methodStub");

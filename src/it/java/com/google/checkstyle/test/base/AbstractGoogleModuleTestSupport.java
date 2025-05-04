@@ -48,14 +48,14 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
             CONFIGURATION = ConfigurationLoader.loadConfiguration(XML_NAME,
                     expander);
         }
-        catch (CheckstyleException ex) {
-            throw new IllegalStateException(ex);
+        catch (CheckstyleException exc) {
+            throw new IllegalStateException(exc);
         }
         try {
             CHECKSTYLE_MODULES = CheckUtil.getCheckstyleModules();
         }
-        catch (IOException ex) {
-            throw new IllegalStateException(ex);
+        catch (IOException exc) {
+            throw new IllegalStateException(exc);
         }
     }
 
