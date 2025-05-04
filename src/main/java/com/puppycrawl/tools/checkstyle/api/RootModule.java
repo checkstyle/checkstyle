@@ -42,7 +42,9 @@ public interface RootModule extends Configurable {
      * @return the total number of audit events with error severity found
      * @throws CheckstyleException if error condition within Checkstyle occurs
      * @see #destroy()
+     * @deprecated Use {@link #process(Collection)}
      */
+    @Deprecated(since = "10.23.1")
     int process(List<File> files) throws CheckstyleException;
 
     /**
