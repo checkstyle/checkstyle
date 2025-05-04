@@ -232,11 +232,11 @@ public class MainFrameModel {
                 linesToPosition = linesToPositionTemp;
                 text = sb.toString();
             }
-            catch (IOException ex) {
+            catch (IOException exc) {
                 final String exceptionMsg = String.format(Locale.ROOT,
                     "%s occurred while opening file %s.",
-                    ex.getClass().getSimpleName(), file.getPath());
-                throw new CheckstyleException(exceptionMsg, ex);
+                    exc.getClass().getSimpleName(), file.getPath());
+                throw new CheckstyleException(exceptionMsg, exc);
             }
         }
     }

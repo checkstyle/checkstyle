@@ -126,9 +126,9 @@ public class AbstractViolationReporterTest {
             assertWithMessage("exception expected")
                     .fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Error violation is unexpected")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .isEqualTo("Unmatched braces in the pattern.");
         }
     }
