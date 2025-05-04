@@ -392,9 +392,9 @@ public class SuppressWithNearbyCommentFilterTest
                     getPath("InputSuppressWithNearbyCommentFilterByCheckAndInfluence.java"));
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex)
+                .that(exc)
                 .hasCauseThat()
                 .hasMessageThat()
                 .isEqualTo("unable to parse influence"
@@ -452,8 +452,8 @@ public class SuppressWithNearbyCommentFilterTest
                     getPath("InputSuppressWithNearbyCommentFilterByCheckAndInfluence.java"));
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
-            final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
+        catch (CheckstyleException exc) {
+            final IllegalArgumentException cause = (IllegalArgumentException) exc.getCause();
             assertWithMessage("Invalid exception message")
                 .that(cause)
                 .hasMessageThat()

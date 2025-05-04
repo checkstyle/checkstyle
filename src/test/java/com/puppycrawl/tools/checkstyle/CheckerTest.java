@@ -446,9 +446,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             checker.setCharset("UNKNOWN-CHARSET");
             assertWithMessage("Exception is expected").fail();
         }
-        catch (UnsupportedEncodingException ex) {
+        catch (UnsupportedEncodingException exc) {
             assertWithMessage("Error message is not expected")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("unsupported charset: 'UNKNOWN-CHARSET'");
         }
     }
@@ -468,9 +468,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             checker.finishLocalSetup();
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Error message is not expected")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("if no custom moduleFactory is set,"
                     + " moduleClassLoader must be specified");
         }
@@ -535,9 +535,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             checker.setupChild(config);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Error message is not expected")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("java.lang.String is not allowed as a child in Checker");
         }
     }
@@ -550,9 +550,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             createChecker(checkConfig);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Error message is not expected")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker"
                         + " - cannot initialize module " + checkConfig.getName()
                         + " - Property '$$No such property'"
@@ -592,9 +592,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             checker.destroy();
             assertWithMessage("Exception did not happen").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             assertWithMessage("Cause of exception differs from IOException")
-                    .that(ex.getCause())
+                    .that(exc.getCause())
                     .isInstanceOf(IOException.class);
         }
     }
@@ -1075,9 +1075,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             execute(checkConfig, filePath);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Error message is not expected")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Exception was thrown while processing " + filePath);
         }
     }
@@ -1105,9 +1105,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             checker.process(Collections.singletonList(new File(filePath)));
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Error message is not expected")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Exception was thrown while processing " + filePath);
 
             // destroy is called by Main
@@ -1311,13 +1311,13 @@ public class CheckerTest extends AbstractModuleTestSupport {
             checker.process(filesToProcess);
             assertWithMessage("SecurityException is expected!").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Error cause differs from SecurityException")
-                    .that(ex)
+                    .that(exc)
                     .hasCauseThat()
                     .isInstanceOf(SecurityException.class);
             assertWithMessage("Error message is not expected")
-                    .that(ex)
+                    .that(exc)
                     .hasCauseThat()
                     .hasMessageThat()
                     .isEqualTo(errorMessage);
@@ -1367,13 +1367,13 @@ public class CheckerTest extends AbstractModuleTestSupport {
             checker.process(filesToProcess);
             assertWithMessage("SecurityException is expected!").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Error cause differs from SecurityException")
-                    .that(ex)
+                    .that(exc)
                     .hasCauseThat()
                     .isInstanceOf(SecurityException.class);
             assertWithMessage("Error message is not expected")
-                    .that(ex)
+                    .that(exc)
                     .hasCauseThat()
                     .hasMessageThat()
                     .isEqualTo(errorMessage);

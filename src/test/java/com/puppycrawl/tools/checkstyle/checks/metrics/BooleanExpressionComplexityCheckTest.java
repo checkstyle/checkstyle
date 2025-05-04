@@ -80,9 +80,9 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
             booleanExpressionComplexityCheckObj.visitToken(ast);
             assertWithMessage("exception expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unknown type: interface[0x-1]");
         }
     }

@@ -58,9 +58,9 @@ public class SeverityLevelTest {
             SeverityLevel.getInstance("unknown");
             assertWithMessage("exception expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("No enum constant "
                     + "com.puppycrawl.tools.checkstyle.api.SeverityLevel.UNKNOWN");
         }
