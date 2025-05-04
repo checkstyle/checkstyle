@@ -38,7 +38,7 @@ public class InputSingleSpaceSeparatorCommentsWithEmoji {
         if (s.substring(0).equals("da🎄")) {  // some comment
             // violation above 'Use a single space to separate non-whitespace characters'
             /*🧐 🧐 🧐*/  /* comment */ if ("🧐".isEmpty()){
-            //  violation above 'Use a single space to separate non-whitespace characters'
+            // violation above 'Use a single space to separate non-whitespace characters'
             }
         }
 

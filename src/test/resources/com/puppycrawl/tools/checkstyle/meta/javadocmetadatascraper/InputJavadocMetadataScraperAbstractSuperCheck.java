@@ -16,7 +16,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 
 
 
-/** //violation
+/** // violation
  * <p>
  * Abstract class for checking that an overriding method with no parameters
  * invokes the super method.

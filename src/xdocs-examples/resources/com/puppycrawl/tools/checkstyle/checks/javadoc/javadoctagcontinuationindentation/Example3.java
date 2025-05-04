@@ -21,7 +21,7 @@ class Example3 {
    *     Indentation spacing is 4
    */
   public void testMethod1(String input) {
-    // OK, Default expected Indentation is 4
+    // ok, Default expected Indentation is 4
   }
 
   /**

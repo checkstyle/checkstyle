@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.multiplestringliterals;
 public class Example1 {
   String a = "StringContents"; // violation, "StringContents" occurs twice
   String a1 = "unchecked";
-  @SuppressWarnings("unchecked") // OK, duplicate strings are ignored in annotations
+  @SuppressWarnings("unchecked") // ok, duplicate strings are ignored in annotations
   public void myTest() {
     String a2 = "StringContents";
     String a3 = "DuoString" + "DuoString"; // violation, "DuoString" occurs twice

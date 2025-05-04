@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.nestedtrydepth;
 public class Example1 {
   void testMethod() {
     try {
-      try { // OK, current depth is 1, default max allowed depth is also 1
+      try { // ok, current depth is 1, default max allowed depth is also 1
       } catch (Exception e) {}
     } catch (Exception e) {}
 

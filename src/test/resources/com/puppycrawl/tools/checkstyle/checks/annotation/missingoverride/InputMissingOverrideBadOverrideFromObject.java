@@ -71,7 +71,8 @@ enum enum3 {
     /**
      * {@inheritDoc}
      */
-    public String toString(){//violation 'include @java.lang.Override annotation when '@inheritDoc''
+    public String toString(){
+        // violation above 'include @java.lang.Override annotation when '@inheritDoc''
         return "B";
     }
 

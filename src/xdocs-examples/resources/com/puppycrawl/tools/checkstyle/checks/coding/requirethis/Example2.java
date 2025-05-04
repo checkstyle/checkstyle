@@ -17,11 +17,11 @@ class Example2 {
   Example2(int field1) {
     this.field1 = field1;
     field2 = 0; // violation, reference to instance variable "field2" requires "this"
-    foo(5); // OK, checkMethods is false
+    foo(5); // ok, checkMethods is false
   }
 
   void method2(int i) {
-    foo(i); // OK, checkMethods is false
+    foo(i); // ok, checkMethods is false
   }
 
   void foo(int field3) {

@@ -95,13 +95,13 @@ public class InputFinalLocalVariable2Three {
         public void method(final int i) {
             switch (i) {
                 case 1:
-                    int foo = 1;    // Violation
+                    int foo = 1;    // violation Variable 'foo' should be declared final
                     break;
                 default:
             }
             switch (i) {
                 case 1:
-                    int foo = 1;    // No Violation
+                    int foo = 1;    // No violation
                     break;
                 case 2:
                     foo = 2;
