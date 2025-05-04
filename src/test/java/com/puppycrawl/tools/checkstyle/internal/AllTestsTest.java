@@ -110,8 +110,8 @@ public class AllTestsTest {
                 path = getSimplePath(file.getCanonicalPath()).replace("CheckTest.java", "")
                         .replace("Test.java", "");
             }
-            catch (IOException ex) {
-                throw new IllegalStateException(ex);
+            catch (IOException exc) {
+                throw new IllegalStateException(exc);
             }
 
             // override for 'AbstractCheck' naming
@@ -134,8 +134,8 @@ public class AllTestsTest {
             try {
                 path = getSimplePath(file.getCanonicalPath());
             }
-            catch (IOException ex) {
-                throw new IllegalStateException(ex);
+            catch (IOException exc) {
+                throw new IllegalStateException(exc);
             }
 
             final int slash = path.lastIndexOf(File.separatorChar);
@@ -153,8 +153,8 @@ public class AllTestsTest {
             try {
                 path = getSimplePath(file.getCanonicalPath());
             }
-            catch (IOException ex) {
-                throw new IllegalStateException(ex);
+            catch (IOException exc) {
+                throw new IllegalStateException(exc);
             }
 
             // until https://github.com/checkstyle/checkstyle/issues/5105
@@ -240,8 +240,8 @@ public class AllTestsTest {
                 try {
                     path = getSimplePath(file.getCanonicalPath());
                 }
-                catch (IOException ex) {
-                    throw new IllegalStateException(ex);
+                catch (IOException exc) {
+                    throw new IllegalStateException(exc);
                 }
 
                 if (!path.contains(File.separatorChar + "grammar" + File.separatorChar)

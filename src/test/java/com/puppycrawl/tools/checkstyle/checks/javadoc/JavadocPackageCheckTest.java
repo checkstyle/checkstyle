@@ -122,9 +122,9 @@ public class JavadocPackageCheckTest
             check.processFiltered(fileWithInvalidPath, mockFileText);
             assertWithMessage("CheckstyleException expected to be thrown").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid exception message. Expected: " + expectedExceptionMessage)
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(expectedExceptionMessage);
         }
     }

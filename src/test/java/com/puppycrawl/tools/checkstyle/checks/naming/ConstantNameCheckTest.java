@@ -57,9 +57,9 @@ public class ConstantNameCheckTest
             createChecker(checkConfig);
             assertWithMessage("CheckstyleException is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                     + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
                     + "naming.ConstantNameCheck - "

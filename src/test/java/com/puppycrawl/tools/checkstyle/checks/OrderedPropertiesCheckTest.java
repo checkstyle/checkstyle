@@ -200,8 +200,8 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
         try (InputStream stream = Files.newInputStream(file.toPath())) {
             throw new IllegalStateException("File " + file.getPath() + " should not exist");
         }
-        catch (IOException ex) {
-            return ex.getLocalizedMessage();
+        catch (IOException exc) {
+            return exc.getLocalizedMessage();
         }
     }
 }
