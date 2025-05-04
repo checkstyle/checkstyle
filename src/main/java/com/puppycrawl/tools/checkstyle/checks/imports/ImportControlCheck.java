@@ -301,8 +301,8 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
                 root = ImportControlLoader.load(uri);
                 file = uri;
             }
-            catch (CheckstyleException ex) {
-                throw new IllegalArgumentException(UNABLE_TO_LOAD + uri, ex);
+            catch (CheckstyleException exc) {
+                throw new IllegalArgumentException(UNABLE_TO_LOAD + uri, exc);
             }
         }
     }
