@@ -118,7 +118,7 @@ public class ModifiedControlVariableCheckTest
             check.visitToken(classDefAst);
             assertWithMessage("IllegalStateException is expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             // it is OK
         }
 
@@ -126,7 +126,7 @@ public class ModifiedControlVariableCheckTest
             check.leaveToken(classDefAst);
             assertWithMessage("IllegalStateException is expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             // it is OK
         }
     }
