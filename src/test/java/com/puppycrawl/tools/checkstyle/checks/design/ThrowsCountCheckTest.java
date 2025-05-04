@@ -88,9 +88,9 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
             obj.visitToken(ast);
             assertWithMessage("IllegalStateException is expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(ast.toString());
         }
     }
