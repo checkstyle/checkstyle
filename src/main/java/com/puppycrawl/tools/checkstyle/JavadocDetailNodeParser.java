@@ -125,12 +125,12 @@ public class JavadocDetailNodeParser {
             result.firstNonTightHtmlTag = getFirstNonTightHtmlTag(javadocParser,
                     errorListener.offset);
         }
-        catch (ParseCancellationException | IllegalArgumentException ex) {
+        catch (ParseCancellationException | IllegalArgumentException exc) {
             ParseErrorMessage parseErrorMessage = null;
 
-            if (ex.getCause() instanceof FailedPredicateException
-                    || ex.getCause() instanceof NoViableAltException) {
-                final RecognitionException recognitionEx = (RecognitionException) ex.getCause();
+            if (exc.getCause() instanceof FailedPredicateException
+                    || exc.getCause() instanceof NoViableAltException) {
+                final RecognitionException recognitionEx = (RecognitionException) exc.getCause();
                 if (recognitionEx.getCtx() instanceof JavadocParser.HtmlTagContext) {
                     final Token htmlTagNameStart = getMissedHtmlTag(recognitionEx);
                     parseErrorMessage = new ParseErrorMessage(

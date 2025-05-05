@@ -297,9 +297,9 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
             parseTree.getValueAt(node, parseTree.getColumnCount());
             assertWithMessage("IllegalStateException expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             assertWithMessage("Invalid error message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unknown column");
         }
     }
@@ -355,9 +355,9 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
             parseTree.getValueAt(child, parseTree.getColumnCount());
             assertWithMessage("IllegalStateException expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             assertWithMessage("Invalid error message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unknown column");
         }
     }
@@ -385,9 +385,9 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
             parseTree.getColumnClass(parseTree.getColumnCount());
             assertWithMessage("IllegalStateException expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             assertWithMessage("Invalid error message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unknown column");
         }
 

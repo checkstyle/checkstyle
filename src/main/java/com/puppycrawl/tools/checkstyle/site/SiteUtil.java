@@ -395,10 +395,10 @@ public final class SiteUtil {
 
             return checkstyleMessages;
         }
-        catch (ClassNotFoundException ex) {
+        catch (ClassNotFoundException exc) {
             final String message = String.format(Locale.ROOT, "Couldn't find class: %s",
                     module.getName());
-            throw new MacroExecutionException(message, ex);
+            throw new MacroExecutionException(message, exc);
         }
     }
 
@@ -417,8 +417,8 @@ public final class SiteUtil {
             field.trySetAccessible();
             return field.get(instance);
         }
-        catch (IllegalAccessException ex) {
-            throw new MacroExecutionException("Couldn't get field value", ex);
+        catch (IllegalAccessException exc) {
+            throw new MacroExecutionException("Couldn't get field value", exc);
         }
     }
 
@@ -434,8 +434,8 @@ public final class SiteUtil {
         try {
             return factory.createModule(moduleName);
         }
-        catch (CheckstyleException ex) {
-            throw new MacroExecutionException("Couldn't find class: " + moduleName, ex);
+        catch (CheckstyleException exc) {
+            throw new MacroExecutionException("Couldn't find class: " + moduleName, exc);
         }
     }
 
@@ -451,8 +451,8 @@ public final class SiteUtil {
             final Set<String> packageNames = PackageNamesLoader.getPackageNames(cl);
             return new PackageObjectFactory(packageNames, cl);
         }
-        catch (CheckstyleException ex) {
-            throw new MacroExecutionException("Couldn't load checkstyle modules", ex);
+        catch (CheckstyleException exc) {
+            throw new MacroExecutionException("Couldn't load checkstyle modules", exc);
         }
     }
 
