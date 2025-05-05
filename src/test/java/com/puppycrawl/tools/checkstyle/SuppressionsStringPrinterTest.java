@@ -109,9 +109,9 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
                     invalidLineAndColumnNumber, tabWidth);
             assertWithMessage("exception expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("abc-432 does not match valid format 'line:column'.");
         }
     }
@@ -126,12 +126,12 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
                     lineAndColumnNumber, tabWidth);
             assertWithMessage("exception expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid class")
-                .that(ex.getCause())
+                .that(exc.getCause())
                 .isInstanceOf(IllegalStateException.class);
             assertWithMessage("Invalid exception message")
-                .that(ex.getCause().toString())
+                .that(exc.getCause().toString())
                 .isEqualTo(IllegalStateException.class.getName()
                             + ": 2:0: no viable alternative at input 'classD'");
         }
