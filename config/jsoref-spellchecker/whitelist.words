@@ -25,6 +25,7 @@ allclasses
 allowlegacy
 alot
 amazonaws
+amd
 androidx
 annotationlocation
 annotationonsameline
@@ -47,6 +48,7 @@ applet
 appveyor
 APRV
 Aqj
+ARCHITEW
 archunit
 arget
 Arial
@@ -145,6 +147,7 @@ caciocavallosilano
 calledmethods
 camelcase
 casegroup
+casesensitive
 catchparametername
 cba
 cbeaff
@@ -256,10 +259,13 @@ csv
 ctc
 ctor
 ctx
+CTYPE
 customimportorder
 CVS
 cyclomatic
 cyclomaticcomplexity
+cygpath
+cygwin
 cz
 dalvik
 Daniil
@@ -396,6 +402,7 @@ Eslint
 esslingen
 esversion
 etsy
+euf
 ev
 Evt
 exceptionoverrides
@@ -491,7 +498,7 @@ gav
 Gdrox
 generalform
 genericwhitespace
-Getenv
+getenv
 gg
 gh
 gitattributes
@@ -562,6 +569,7 @@ hurz
 hyperlinks
 hz
 iae
+icm
 ico
 icu
 identifiernames
@@ -622,6 +630,7 @@ isrutf
 isset
 issuecomment
 issuehunt
+Itemtype
 itemvalue
 ith
 itr
@@ -635,6 +644,8 @@ Jakub
 jarchitect
 javaastvisitor
 javac
+JAVACCMD
+JAVACMD
 javadoc
 javadocblocktaglocation
 javadoccontentlocation
@@ -822,6 +833,7 @@ mfussenegger
 MHTML
 Micha
 microsoft
+mingw
 minimalistic
 Mipmap
 misconfigured
@@ -838,6 +850,7 @@ missingtag
 mixin
 mkdir
 mkordas
+mktemp
 MLINKCHECK
 moby
 mockit
@@ -866,8 +879,10 @@ mutableexception
 mutationtest
 MVC
 mvn
+mvnd
 mvnrepository
 mvnw
+MWRAPPER
 Mycheckstyle
 mycompany
 mycompanychecks
@@ -938,6 +953,7 @@ nonrequiredjavadoc
 nonvalidating
 noparentfile
 NOPMD
+noprofile
 noreply
 noscript
 NOSONAR
@@ -966,6 +982,7 @@ numericliterals
 nutsandbolts
 nvim
 nvuillam
+nx
 OAuth
 objblock
 oburn
@@ -1074,6 +1091,7 @@ Pointcut
 POJO
 Popup
 Postgresql
+powershell
 ppc
 prebuilts
 prefs
@@ -1091,6 +1109,8 @@ propkey
 PROTECTE
 protonpack
 Psevntu
+PSHOME
+PSMODULEP
 Pstatic
 pubconstr
 pubifc
@@ -1142,6 +1162,7 @@ relativized
 releasenotes
 remkop
 reportyml
+REPOURL
 requireemptylinebeforeblocktaggroup
 requirethis
 resourceleak
@@ -1193,6 +1214,7 @@ Schneeberger
 scm
 scp
 screenshot
+Scriptblock
 Scss
 sdk
 sealedshouldhavepermitslist
@@ -1207,6 +1229,7 @@ servlet
 severitymatchfilter
 sevntu
 shanegenschaw
+shasum
 shellcheck
 shengchen
 Shiell
@@ -1413,6 +1436,7 @@ upsss
 urandom
 uri
 url
+usebackq
 userguide
 username
 usr
@@ -1431,7 +1455,6 @@ Verdana
 Versioning
 verticalwhitespace
 Vetrenko
-Veyor
 Vfs
 vh
 viesure
@@ -1450,6 +1473,7 @@ Wakelock
 Warni
 wbr
 Weakento
+webclient
 Webflow
 webjar
 Weblogic
@@ -1539,6 +1563,7 @@ xxxxxx
 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 xy
 XYzz
+xzf
 xzvf
 yaml
 yamllint
