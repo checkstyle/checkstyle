@@ -76,6 +76,7 @@
                 file="config/checkstyle-non-main-files-suppressions.xml"/>
       <path>
         <fileset dir="${basedir}" includes="**/*">
+          <exclude name="docs/**/*.png"/>
           <exclude name=".git/**/*"/>
           <!-- TeamCity config is generated and contains embedded CDATA -->
           <exclude name=".teamcity/**/*"/>
