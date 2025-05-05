@@ -201,4 +201,11 @@
   <!-- Uses non-ascii symbols intentionally -->
   <suppress id="checkASCII"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]ConfigurationLoaderTest.java"/>
+
+  <!-- Suppress CatchParameterName for some files to allow 'ex' -->
+  <suppress checks="CatchParameterName"
+            files=".*sevntu-checks[\\/]src[\\/](main|test)[\\/]java[\\/]com[\\/]github[\\/]sevntu[\\/]checkstyle[\\/].*\.java"/>
+
+  <suppress checks="CatchParameterName"
+            files=".*contribution[\\/]patch-diff-report-tool[\\/]src[\\/](main|test)[\\/]java[\\/]com[\\/]github[\\/]checkstyle[\\/].*\.java"/>
 </suppressions>

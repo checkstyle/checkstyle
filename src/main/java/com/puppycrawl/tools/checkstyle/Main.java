@@ -131,16 +131,16 @@ public final class Main {
                 errorCounter = exitStatus;
             }
         }
-        catch (ParameterException ex) {
+        catch (ParameterException exc) {
             exitStatus = EXIT_WITH_INVALID_USER_INPUT_CODE;
-            System.err.println(ex.getMessage());
+            System.err.println(exc.getMessage());
             System.err.println("Usage: checkstyle [OPTIONS]... file(s) or folder(s) ...");
             System.err.println("Try 'checkstyle --help' for more information.");
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             exitStatus = EXIT_WITH_CHECKSTYLE_EXCEPTION_CODE;
             errorCounter = 1;
-            ex.printStackTrace();
+            exc.printStackTrace();
         }
         finally {
             // return exit code base on validation of Checker
@@ -446,11 +446,11 @@ public final class Main {
         try (InputStream stream = Files.newInputStream(file.toPath())) {
             properties.load(stream);
         }
-        catch (final IOException ex) {
+        catch (final IOException exc) {
             final LocalizedMessage loadPropertiesExceptionMessage = new LocalizedMessage(
                     Definitions.CHECKSTYLE_BUNDLE, Main.class,
                     LOAD_PROPERTIES_EXCEPTION, file.getAbsolutePath());
-            throw new CheckstyleException(loadPropertiesExceptionMessage.getMessage(), ex);
+            throw new CheckstyleException(loadPropertiesExceptionMessage.getMessage(), exc);
         }
 
         return ChainedPropertyUtil.getResolvedProperties(properties);

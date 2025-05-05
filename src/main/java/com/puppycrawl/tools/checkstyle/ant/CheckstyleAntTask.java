@@ -350,8 +350,8 @@ public class CheckstyleAntTask extends Task {
             log("To process the files took " + (processingEndTime - processingStartTime)
                 + TIME_SUFFIX, Project.MSG_VERBOSE);
         }
-        catch (CheckstyleException ex) {
-            throw new BuildException("Unable to process files: " + files, ex);
+        catch (CheckstyleException exc) {
+            throw new BuildException("Unable to process files: " + files, exc);
         }
         final int numWarnings = warningCounter.getCount();
         final boolean okStatus = numErrs <= maxErrors && numWarnings <= maxWarnings;
@@ -404,9 +404,9 @@ public class CheckstyleAntTask extends Task {
             rootModule.setModuleClassLoader(moduleClassLoader);
             rootModule.configure(configuration);
         }
-        catch (final CheckstyleException ex) {
+        catch (final CheckstyleException exc) {
             throw new BuildException(String.format(Locale.ROOT, "Unable to create Root Module: "
-                    + "config {%s}.", config), ex);
+                    + "config {%s}.", config), exc);
         }
         return rootModule;
     }
@@ -426,9 +426,9 @@ public class CheckstyleAntTask extends Task {
             try (InputStream inStream = Files.newInputStream(properties)) {
                 returnValue.load(inStream);
             }
-            catch (final IOException ex) {
+            catch (final IOException exc) {
                 throw new BuildException("Error loading Properties file '"
-                        + properties + "'", ex, getLocation());
+                        + properties + "'", exc, getLocation());
             }
         }
 
@@ -473,9 +473,9 @@ public class CheckstyleAntTask extends Task {
                 }
             }
         }
-        catch (IOException ex) {
+        catch (IOException exc) {
             throw new BuildException(String.format(Locale.ROOT, "Unable to create listeners: "
-                    + "formatters {%s}.", formatters), ex);
+                    + "formatters {%s}.", formatters), exc);
         }
         return listeners;
     }

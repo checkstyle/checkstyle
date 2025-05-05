@@ -603,8 +603,8 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
                     "IllegalArgumentException is expected. Specified language code is incorrect.")
                             .fail();
         }
-        catch (IllegalArgumentException ex) {
-            final String exceptionMessage = ex.getMessage();
+        catch (IllegalArgumentException exc) {
+            final String exceptionMessage = exc.getMessage();
             assertWithMessage("Error message is unexpected")
                     .that(exceptionMessage)
                     .contains("11");
