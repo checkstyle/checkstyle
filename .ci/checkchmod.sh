@@ -19,7 +19,7 @@ if [[ -n $CHMOD ]]; then
 fi
 
 # On Travis, after clone, all 'sh' files have executable bit
-CHMOD=$(find -type f -not -path '*/\.git/*' -a -type f -name '*.sh' -a -not -executable)
+CHMOD=$(find -type f -not -path '*/.git/*' -not -path './mvnw' -a -name '*.sh' -a -not -executable)
 if [[ -n $CHMOD ]]; then
     echo "Expected mode for '.sh' files is 755.";
     echo "Files that violates this rule:"
