@@ -27,7 +27,7 @@
             </tr>
             <tr>
               <td>accessModifiers</td>
-              <td>Specify the set of access modifiers used to determine which fields should be checked. This includes both explicitly declared modifiers and implicit ones, such as package-private for fields without an explicit modifier. It also accounts for special cases where fields have implicit modifiers, such as <code>public static final</code> for interface fields and <code>public static</code> for enum constants. Only fields matching the specified modifiers will be analyzed.</td>
+              <td>Specify the set of access modifiers used to determine which fields should be checked. This includes both explicitly declared modifiers and implicit ones, such as package-private for fields without an explicit modifier. It also accounts for special cases where fields have implicit modifiers, such as <code>public static final</code> for interface fields and <code>public static</code> for enum constants, or where the nesting types accessibility is more restrictive and hides the nested field. Only fields matching the specified modifiers will be analyzed.</td>
               <td><a href="../../property_types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
               <td><code>public, protected, package, private</code></td>
               <td>10.22.0</td>
