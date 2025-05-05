@@ -192,10 +192,10 @@ public final class XpathUtil {
                 .map(AstTreeStringPrinter::printBranch)
                 .collect(Collectors.joining(DELIMITER));
         }
-        catch (XPathException ex) {
+        catch (XPathException exc) {
             final String errMsg = String.format(Locale.ROOT,
                 "Error during evaluation for xpath: %s, file: %s", xpath, file.getCanonicalPath());
-            throw new CheckstyleException(errMsg, ex);
+            throw new CheckstyleException(errMsg, exc);
         }
     }
 

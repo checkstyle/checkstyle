@@ -97,11 +97,11 @@ public final class JavaParser {
         try {
             compilationUnit = parser.compilationUnit();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             final String exceptionMsg = String.format(Locale.ROOT,
                 "%s occurred while parsing file %s.",
-                ex.getClass().getSimpleName(), contents.getFileName());
-            throw new CheckstyleException(exceptionMsg, ex);
+                exc.getClass().getSimpleName(), contents.getFileName());
+            throw new CheckstyleException(exceptionMsg, exc);
         }
 
         return new JavaAstVisitor(tokenStream).visit(compilationUnit);
