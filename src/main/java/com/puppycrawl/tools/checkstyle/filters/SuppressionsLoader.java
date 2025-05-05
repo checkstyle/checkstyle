@@ -171,9 +171,9 @@ public final class SuppressionsLoader
             final String columns = attributes.getValue(ATTRIBUTE_NAME_COLUMNS);
             suppress = new SuppressFilterElement(files, checks, message, modId, lines, columns);
         }
-        catch (final PatternSyntaxException ex) {
+        catch (final PatternSyntaxException exc) {
             // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
-            throw new SAXException("invalid files or checks or message format", ex);
+            throw new SAXException("invalid files or checks or message format", exc);
         }
         return suppress;
     }
@@ -200,10 +200,10 @@ public final class SuppressionsLoader
             final String xpathQuery = attributes.getValue(ATTRIBUTE_NAME_QUERY);
             filter = new XpathFilterElement(files, checks, message, modId, xpathQuery);
         }
-        catch (final PatternSyntaxException ex) {
+        catch (final PatternSyntaxException exc) {
             // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
             throw new SAXException("invalid files or checks or message format for suppress-xpath",
-                    ex);
+                    exc);
         }
         return filter;
     }
@@ -276,21 +276,21 @@ public final class SuppressionsLoader
             suppressionsLoader.parseInputSource(source);
             return suppressionsLoader;
         }
-        catch (final FileNotFoundException ex) {
-            throw new CheckstyleException(UNABLE_TO_FIND_ERROR_MESSAGE + sourceName, ex);
+        catch (final FileNotFoundException exc) {
+            throw new CheckstyleException(UNABLE_TO_FIND_ERROR_MESSAGE + sourceName, exc);
         }
-        catch (final ParserConfigurationException | SAXException ex) {
+        catch (final ParserConfigurationException | SAXException exc) {
             final String message = String.format(Locale.ROOT, "Unable to parse %s - %s",
-                    sourceName, ex.getMessage());
-            throw new CheckstyleException(message, ex);
+                    sourceName, exc.getMessage());
+            throw new CheckstyleException(message, exc);
         }
-        catch (final IOException ex) {
-            throw new CheckstyleException("Unable to read " + sourceName, ex);
+        catch (final IOException exc) {
+            throw new CheckstyleException("Unable to read " + sourceName, exc);
         }
-        catch (final NumberFormatException ex) {
+        catch (final NumberFormatException exc) {
             final String message = String.format(Locale.ROOT, "Number format exception %s - %s",
-                    sourceName, ex.getMessage());
-            throw new CheckstyleException(message, ex);
+                    sourceName, exc.getMessage());
+            throw new CheckstyleException(message, exc);
         }
     }
 
