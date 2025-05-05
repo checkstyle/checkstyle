@@ -136,9 +136,9 @@ public class ExecutableStatementCountCheckTest
             checkObj.visitToken(ast);
             assertWithMessage("exception expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("ENUM[0x-1]");
         }
     }
@@ -154,9 +154,9 @@ public class ExecutableStatementCountCheckTest
             checkObj.leaveToken(ast);
             assertWithMessage("exception expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("ENUM[0x-1]");
         }
     }

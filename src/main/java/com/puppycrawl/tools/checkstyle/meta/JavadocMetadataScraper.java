@@ -239,10 +239,10 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
                 try {
                     XmlMetaWriter.write(moduleDetails);
                 }
-                catch (TransformerException | ParserConfigurationException ex) {
+                catch (TransformerException | ParserConfigurationException exc) {
                     throw new IllegalStateException(
                             "Failed to write metadata into XML file for module: "
-                                    + getModuleSimpleName(), ex);
+                                    + getModuleSimpleName(), exc);
                 }
             }
             if (!writeXmlOutput) {

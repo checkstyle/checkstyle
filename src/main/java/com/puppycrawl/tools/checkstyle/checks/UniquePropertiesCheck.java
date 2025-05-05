@@ -100,9 +100,9 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
         try (InputStream inputStream = Files.newInputStream(file.toPath())) {
             properties.load(inputStream);
         }
-        catch (IOException ex) {
+        catch (IOException exc) {
             log(1, MSG_IO_EXCEPTION_KEY, file.getPath(),
-                    ex.getLocalizedMessage());
+                    exc.getLocalizedMessage());
         }
 
         for (Entry<String, Integer> duplication : properties

@@ -178,12 +178,12 @@ public class XpathUtilTest {
             XpathUtil.printXpathBranch(invalidXpath, file);
             assertWithMessage("Should end with exception").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             final String expectedMessage =
                 "Error during evaluation for xpath: " + invalidXpath
                     + ", file: " + file.getCanonicalPath();
             assertWithMessage("Exception message is different")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(expectedMessage);
         }
     }

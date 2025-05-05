@@ -58,9 +58,9 @@ public class AttributeNodeTest {
             attributeNode.compareOrder(null);
             assertWithMessage("Exception is excepted").fail();
         }
-        catch (UnsupportedOperationException ex) {
+        catch (UnsupportedOperationException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Operation is not supported");
         }
     }
@@ -88,9 +88,9 @@ public class AttributeNodeTest {
             attributeNode.getAttributeValue("", "");
             assertWithMessage("Exception is excepted").fail();
         }
-        catch (UnsupportedOperationException ex) {
+        catch (UnsupportedOperationException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Operation is not supported");
         }
     }
@@ -111,9 +111,9 @@ public class AttributeNodeTest {
             attributeNode.getParent();
             assertWithMessage("Exception is excepted").fail();
         }
-        catch (UnsupportedOperationException ex) {
+        catch (UnsupportedOperationException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Operation is not supported");
         }
     }
@@ -124,9 +124,9 @@ public class AttributeNodeTest {
             attributeNode.getRoot();
             assertWithMessage("Exception is excepted").fail();
         }
-        catch (UnsupportedOperationException ex) {
+        catch (UnsupportedOperationException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Operation is not supported");
         }
     }
@@ -143,9 +143,9 @@ public class AttributeNodeTest {
         try (AxisIterator ignored = attributeNode.iterateAxis(AxisInfo.SELF)) {
             assertWithMessage("Exception is excepted").fail();
         }
-        catch (UnsupportedOperationException ex) {
+        catch (UnsupportedOperationException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Operation is not supported");
         }
     }
@@ -156,9 +156,9 @@ public class AttributeNodeTest {
             attributeNode.getLineNumber();
             assertWithMessage("Exception is excepted").fail();
         }
-        catch (UnsupportedOperationException ex) {
+        catch (UnsupportedOperationException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Operation is not supported");
         }
     }
@@ -169,9 +169,9 @@ public class AttributeNodeTest {
             attributeNode.getColumnNumber();
             assertWithMessage("Exception is excepted").fail();
         }
-        catch (UnsupportedOperationException ex) {
+        catch (UnsupportedOperationException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Operation is not supported");
         }
     }
@@ -182,9 +182,9 @@ public class AttributeNodeTest {
             attributeNode.getTokenType();
             assertWithMessage("Exception is excepted").fail();
         }
-        catch (UnsupportedOperationException ex) {
+        catch (UnsupportedOperationException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Operation is not supported");
         }
     }
@@ -195,9 +195,9 @@ public class AttributeNodeTest {
             attributeNode.getUnderlyingNode();
             assertWithMessage("Exception is excepted").fail();
         }
-        catch (UnsupportedOperationException ex) {
+        catch (UnsupportedOperationException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Operation is not supported");
         }
     }
@@ -208,9 +208,9 @@ public class AttributeNodeTest {
             attributeNode.getAllNamespaces();
             assertWithMessage("Exception is excepted").fail();
         }
-        catch (UnsupportedOperationException ex) {
+        catch (UnsupportedOperationException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Operation is not supported");
         }
     }
