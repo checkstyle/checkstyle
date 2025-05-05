@@ -338,13 +338,13 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             verifyWithInlineConfigParser(path, expected);
             assertWithMessage("CheckstyleException is expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             final String expected = "Javadoc Token "
                     + "\"RETURN_LITERAL\" was not found in "
                     + "Acceptable javadoc tokens list in check "
                     + TokenIsNotInAcceptablesCheck.class.getName();
             assertWithMessage("Invalid exception, should start with: " + expected)
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .startsWith(expected);
         }
     }
@@ -366,13 +366,13 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             execute(checkConfig, pathToEmptyFile.toString());
             assertWithMessage("CheckstyleException is expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             final String expected = "Javadoc Token \""
                     + JavadocTokenTypes.RETURN_LITERAL + "\" from required"
                     + " javadoc tokens was not found in default javadoc tokens list in check "
                     + RequiredTokenIsNotInDefaultsJavadocCheck.class.getName();
             assertWithMessage("Invalid exception, should start with: " + expected)
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .startsWith(expected);
         }
     }
