@@ -111,8 +111,8 @@ public class MatchXpathCheck extends AbstractCheck {
                         new XPathEvaluator(Configuration.newConfiguration());
                 xpathExpression = xpathEvaluator.createExpression(query);
             }
-            catch (XPathException ex) {
-                throw new IllegalStateException("Creating Xpath expression failed: " + query, ex);
+            catch (XPathException exc) {
+                throw new IllegalStateException("Creating Xpath expression failed: " + query, exc);
             }
         }
     }
@@ -162,8 +162,8 @@ public class MatchXpathCheck extends AbstractCheck {
                     .map(item -> (DetailAST) ((AbstractNode) item).getUnderlyingNode())
                     .collect(Collectors.toUnmodifiableList());
         }
-        catch (XPathException ex) {
-            throw new IllegalStateException("Evaluation of Xpath query failed: " + query, ex);
+        catch (XPathException exc) {
+            throw new IllegalStateException("Evaluation of Xpath query failed: " + query, exc);
         }
     }
 }

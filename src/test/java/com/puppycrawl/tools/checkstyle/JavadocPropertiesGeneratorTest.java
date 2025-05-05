@@ -169,13 +169,13 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
                 "--destfile", DESTFILE_ABSOLUTE_PATH, "NotExistent.java");
             assertWithMessage("Exception was expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid error message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Failed to write javadoc properties of 'NotExistent.java' to '"
                     + DESTFILE_ABSOLUTE_PATH + "'");
 
-            final Throwable cause = ex.getCause();
+            final Throwable cause = exc.getCause();
             assertWithMessage("Invalid error message")
                     .that(cause)
                     .isInstanceOf(FileNotFoundException.class);
@@ -201,14 +201,14 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
                 getPath("InputJavadocPropertiesGeneratorCorrect.java"));
             assertWithMessage("Exception was expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             final String expectedError = "Failed to write javadoc properties of '"
                 + getPath("InputJavadocPropertiesGeneratorCorrect.java") + "' to '..'";
             assertWithMessage("Invalid error message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(expectedError);
 
-            final Throwable cause = ex.getCause();
+            final Throwable cause = exc.getCause();
             assertWithMessage("Invalid error message")
                     .that(cause)
                     .isInstanceOf(FileNotFoundException.class);
@@ -303,9 +303,9 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             JavadocPropertiesGenerator.main(path, "--destfile", DESTFILE_ABSOLUTE_PATH);
             assertWithMessage("Exception was expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid error message")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .contains("mismatched input '<EOF>' expecting JAVADOC_INLINE_TAG_END");
         }
         final long size = FileUtils.sizeOf(DESTFILE);
@@ -321,9 +321,9 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             JavadocPropertiesGenerator.main(path, "--destfile", DESTFILE_ABSOLUTE_PATH);
             assertWithMessage("Exception was expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid error message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unsupported inline tag LINK_LITERAL");
         }
         final long size = FileUtils.sizeOf(DESTFILE);
@@ -339,12 +339,12 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             JavadocPropertiesGenerator.main(path, "--destfile", DESTFILE_ABSOLUTE_PATH);
             assertWithMessage("Exception was expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid error message")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .contains("InputJavadocPropertiesGeneratorParseError.java");
 
-            final Throwable cause = ex.getCause();
+            final Throwable cause = exc.getCause();
             assertWithMessage("Invalid error message")
                     .that(cause)
                     .isInstanceOf(IllegalStateException.class);
