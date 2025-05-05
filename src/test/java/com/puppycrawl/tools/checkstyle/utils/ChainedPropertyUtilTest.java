@@ -133,8 +133,8 @@ public class ChainedPropertyUtilTest extends AbstractModuleTestSupport {
         try (InputStream stream = Files.newInputStream(file.toPath())) {
             properties.load(stream);
         }
-        catch (final IOException ex) {
-            throw new CheckstyleException(ex.getMessage(), ex);
+        catch (final IOException exc) {
+            throw new CheckstyleException(exc.getMessage(), exc);
         }
 
         return properties;

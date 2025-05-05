@@ -234,8 +234,8 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
             try {
                 result = new FileText(file, StandardCharsets.UTF_8.name());
             }
-            catch (IOException ex) {
-                throw new IllegalStateException("Cannot read source file: " + fileName, ex);
+            catch (IOException exc) {
+                throw new IllegalStateException("Cannot read source file: " + fileName, exc);
             }
         }
 
@@ -351,9 +351,9 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
                 firstLine = Math.min(lineNo, lineNo + range);
                 lastLine = Math.max(lineNo, lineNo + range);
             }
-            catch (final PatternSyntaxException ex) {
+            catch (final PatternSyntaxException exc) {
                 throw new IllegalArgumentException(
-                    "unable to parse expanded comment " + format, ex);
+                    "unable to parse expanded comment " + format, exc);
             }
         }
 
@@ -370,9 +370,9 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
             try {
                 return Integer.parseInt(format);
             }
-            catch (final NumberFormatException ex) {
+            catch (final NumberFormatException exc) {
                 throw new IllegalArgumentException("unable to parse line range from '" + text
-                        + "' using " + lineRange, ex);
+                        + "' using " + lineRange, exc);
             }
         }
 

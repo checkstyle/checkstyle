@@ -225,9 +225,9 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
         try {
             return file.getCanonicalFile().getParent();
         }
-        catch (IOException ex) {
+        catch (IOException exc) {
             throw new CheckstyleException("unable to create canonical path names for "
-                    + file.getAbsolutePath(), ex);
+                    + file.getAbsolutePath(), exc);
         }
     }
 

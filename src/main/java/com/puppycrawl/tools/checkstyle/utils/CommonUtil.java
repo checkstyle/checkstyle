@@ -104,9 +104,9 @@ public final class CommonUtil {
         try {
             return Pattern.compile(pattern, flags);
         }
-        catch (final PatternSyntaxException ex) {
+        catch (final PatternSyntaxException exc) {
             throw new IllegalArgumentException(
-                "Failed to initialise regular expression " + pattern, ex);
+                "Failed to initialise regular expression " + pattern, exc);
         }
     }
 
@@ -287,8 +287,8 @@ public final class CommonUtil {
         try {
             return targetClass.getConstructor(parameterTypes);
         }
-        catch (NoSuchMethodException ex) {
-            throw new IllegalStateException(ex);
+        catch (NoSuchMethodException exc) {
+            throw new IllegalStateException(exc);
         }
     }
 
@@ -309,8 +309,8 @@ public final class CommonUtil {
         try {
             return constructor.newInstance(parameters);
         }
-        catch (InstantiationException | IllegalAccessException | InvocationTargetException ex) {
-            throw new IllegalStateException(ex);
+        catch (InstantiationException | IllegalAccessException | InvocationTargetException exc) {
+            throw new IllegalStateException(exc);
         }
     }
 
@@ -326,8 +326,8 @@ public final class CommonUtil {
             try {
                 closeable.close();
             }
-            catch (IOException ex) {
-                throw new IllegalStateException("Cannot close the stream", ex);
+            catch (IOException exc) {
+                throw new IllegalStateException("Cannot close the stream", exc);
             }
         }
     }
@@ -435,8 +435,8 @@ public final class CommonUtil {
         try {
             uri = configUrl.toURI();
         }
-        catch (final URISyntaxException ex) {
-            throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename, ex);
+        catch (final URISyntaxException exc) {
+            throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename, exc);
         }
 
         return uri;

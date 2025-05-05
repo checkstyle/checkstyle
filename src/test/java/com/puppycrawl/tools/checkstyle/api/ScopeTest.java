@@ -58,9 +58,9 @@ public class ScopeTest {
             Scope.getInstance("unknown");
             assertWithMessage("exception expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid error message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("No enum constant com.puppycrawl.tools.checkstyle.api.Scope.UNKNOWN");
         }
     }
