@@ -81,7 +81,7 @@
     <lineContent>final String version = Objects.toString(</lineContent>
   </mutation>
 
-  <mutation unstable="false">
+    <mutation unstable="false">
     <sourceFile>CheckstyleAntTask.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
     <mutatedMethod>getListeners</mutatedMethod>
