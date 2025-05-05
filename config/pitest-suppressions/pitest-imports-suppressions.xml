@@ -6,7 +6,7 @@
     <mutatedMethod>setFile</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/lang/String::valueOf</description>
-    <lineContent>throw new IllegalArgumentException(UNABLE_TO_LOAD + uri, ex);</lineContent>
+    <lineContent>throw new IllegalArgumentException(UNABLE_TO_LOAD + uri, exc);</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -15,7 +15,7 @@
     <mutatedMethod>load</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/lang/String::valueOf</description>
-    <lineContent>throw new CheckstyleException(&quot;unable to read &quot; + uri, ex);</lineContent>
+    <lineContent>throw new CheckstyleException(&quot;unable to read &quot; + uri, exc);</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -24,7 +24,7 @@
     <mutatedMethod>loadUri</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/lang/String::valueOf</description>
-    <lineContent>throw new CheckstyleException(&quot;syntax error in url &quot; + uri, ex);</lineContent>
+    <lineContent>throw new CheckstyleException(&quot;syntax error in url &quot; + uri, exc);</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -33,7 +33,7 @@
     <mutatedMethod>loadUri</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/lang/String::valueOf</description>
-    <lineContent>throw new CheckstyleException(&quot;unable to find &quot; + uri, ex);</lineContent>
+    <lineContent>throw new CheckstyleException(&quot;unable to find &quot; + uri, exc);</lineContent>
   </mutation>
 
   <mutation unstable="false">
