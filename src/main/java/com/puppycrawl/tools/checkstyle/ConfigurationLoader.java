@@ -310,14 +310,14 @@ public final class ConfigurationLoader {
                             omitIgnoreModules, threadModeSettings);
             return loader.parseInputSource(configSource);
         }
-        catch (final SAXParseException ex) {
+        catch (final SAXParseException exc) {
             final String message = String.format(Locale.ROOT, SAX_PARSE_EXCEPTION_FORMAT,
                     UNABLE_TO_PARSE_EXCEPTION_PREFIX,
-                    ex.getMessage(), ex.getLineNumber(), ex.getColumnNumber());
-            throw new CheckstyleException(message, ex);
+                    exc.getMessage(), exc.getLineNumber(), exc.getColumnNumber());
+            throw new CheckstyleException(message, exc);
         }
-        catch (final ParserConfigurationException | IOException | SAXException ex) {
-            throw new CheckstyleException(UNABLE_TO_PARSE_EXCEPTION_PREFIX, ex);
+        catch (final ParserConfigurationException | IOException | SAXException exc) {
+            throw new CheckstyleException(UNABLE_TO_PARSE_EXCEPTION_PREFIX, exc);
         }
     }
 
@@ -526,10 +526,10 @@ public final class ConfigurationLoader {
                     value = replaceProperties(attributesValue,
                         overridePropsResolver, attributes.getValue(DEFAULT));
                 }
-                catch (final CheckstyleException ex) {
+                catch (final CheckstyleException exc) {
                     // -@cs[IllegalInstantiation] SAXException is in the overridden
                     // method signature
-                    throw new SAXException(ex);
+                    throw new SAXException(exc);
                 }
 
                 final String name = attributes.getValue(NAME);
@@ -570,12 +570,12 @@ public final class ConfigurationLoader {
                         final String severity = recentModule.getProperty(SEVERITY);
                         level = SeverityLevel.getInstance(severity);
                     }
-                    catch (final CheckstyleException ex) {
+                    catch (final CheckstyleException exc) {
                         // -@cs[IllegalInstantiation] SAXException is in the overridden
                         // method signature
                         throw new SAXException(
                                 "Problem during accessing '" + SEVERITY + "' attribute for "
-                                        + recentModule.getName(), ex);
+                                        + recentModule.getName(), exc);
                     }
                 }
 

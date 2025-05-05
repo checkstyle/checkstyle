@@ -32,9 +32,9 @@ public class SeverityLevelCounterTest {
             assertWithMessage("exception expected but got %s", test)
                     .fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                    .that(ex)
+                    .that(exc)
                     .hasMessageThat()
                     .isEqualTo("'level' cannot be null");
         }

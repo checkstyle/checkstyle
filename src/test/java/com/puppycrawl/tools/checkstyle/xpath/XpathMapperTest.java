@@ -534,9 +534,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
             getXpathItems(xpath, rootNode);
             assertWithMessage("Exception is excepted").fail();
         }
-        catch (UnsupportedOperationException ex) {
+        catch (UnsupportedOperationException exc) {
             assertWithMessage("Invalid exception")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .isEqualTo("Operation is not supported");
         }
     }
@@ -549,9 +549,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
             getXpathItems(xpath, rootNode);
             assertWithMessage("Exception is excepted").fail();
         }
-        catch (UnsupportedOperationException ex) {
+        catch (UnsupportedOperationException exc) {
             assertWithMessage("Invalid exception")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .isEqualTo("Operation is not supported");
         }
     }

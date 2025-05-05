@@ -199,17 +199,17 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             JavaParser.parseFile(input, JavaParser.Options.WITH_COMMENTS);
             assertWithMessage("exception expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.toString())
+                .that(exc.toString())
                 .isEqualTo(CheckstyleException.class.getName()
                             + ": IllegalStateException occurred while parsing file "
                             + input.getAbsolutePath() + ".");
             assertWithMessage("Invalid class")
-                .that(ex.getCause())
+                .that(exc.getCause())
                 .isInstanceOf(IllegalStateException.class);
             assertWithMessage("Invalid exception message")
-                .that(ex.getCause().toString())
+                .that(exc.getCause().toString())
                 .isEqualTo(IllegalStateException.class.getName()
                             + ": 2:0: no viable alternative at input 'classD'");
         }
