@@ -2604,10 +2604,10 @@ public final class JavadocTokenTypes {
      * <head>
      *   <meta charset="UTF-8">
      *   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     *   <title>Sample Head Tag</title>
+     *   <title>Sample Head Tag</ti" + "tle>
      *   <link rel="stylesheet" href="styles.css">
-     *   <script src="script.js"></script>
-     * </head>
+     *   <script src="script.js"></scr" + "ipt>
+     * </he" + "ad>
      * }</pre>
      *
      * <b>Tree:</b>
@@ -2661,7 +2661,7 @@ public final class JavadocTokenTypes {
      *      |       |   |--EQUALS -> =
      *      |       |   `--ATTR_VALUE -> "stylesheet"
      *      |       |--ATTRIBUTE -> ATTRIBUTE
-     *      |       |   |--HTML_TAG_NAME -> href
+     *       |       |   |--HTML_TAG_NAME -> href
      *      |       |   |--EQUALS -> =
      *      |       |   `--ATTR_VALUE -> "styles.css"
      *      |       `--END -> >
