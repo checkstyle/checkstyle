@@ -159,8 +159,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         try {
             instance = moduleFactory.createModule(sectionName);
         }
-        catch (CheckstyleException ex) {
-            throw new CheckstyleException(fileName + " couldn't find class: " + sectionName, ex);
+        catch (CheckstyleException exc) {
+            throw new CheckstyleException(fileName + " couldn't find class: " + sectionName, exc);
         }
 
         CHECK_TEXT.clear();
@@ -710,8 +710,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 result = getNodeText(XmlUtil.getRawXml(checkName, text, text).getFirstChild())
                         .replace("\r", "");
             }
-            catch (ParserConfigurationException ex) {
-                assertWithMessage("Exception: " + ex.getClass() + " - " + ex.getMessage()).fail();
+            catch (ParserConfigurationException exc) {
+                assertWithMessage("Exception: " + exc.getClass() + " - " + exc.getMessage()).fail();
             }
 
             return result;

@@ -134,9 +134,9 @@ public class SuppressionXpathSingleFilterTest
                     null, null, xpath);
             assertWithMessage("Exception was expected but got " + test).fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Message should be: Unexpected xpath query")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .contains("Incorrect xpath query");
         }
     }
@@ -189,9 +189,9 @@ public class SuppressionXpathSingleFilterTest
             filter.setFiles("e[l");
             assertWithMessage("PatternSyntaxException is expected").fail();
         }
-        catch (PatternSyntaxException ex) {
+        catch (PatternSyntaxException exc) {
             assertWithMessage("Message should be: Unclosed character class")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .contains("Unclosed character class");
         }
     }
@@ -203,9 +203,9 @@ public class SuppressionXpathSingleFilterTest
             filter.setChecks("e[l");
             assertWithMessage("PatternSyntaxException is expected").fail();
         }
-        catch (PatternSyntaxException ex) {
+        catch (PatternSyntaxException exc) {
             assertWithMessage("Message should be: Unclosed character class")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .contains("Unclosed character class");
         }
     }
@@ -322,9 +322,9 @@ public class SuppressionXpathSingleFilterTest
             filter.accept(ev);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             assertWithMessage("Exception message does not match expected one")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .contains("Cannot initialize context and evaluate query");
         }
     }

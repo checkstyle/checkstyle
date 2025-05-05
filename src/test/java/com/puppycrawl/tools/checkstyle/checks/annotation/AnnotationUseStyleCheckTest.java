@@ -331,11 +331,11 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             check.setElementStyle("SHOULD_PRODUCE_ERROR");
             assertWithMessage("ConversionException is expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             final String messageStart = "unable to parse";
 
             assertWithMessage("Invalid exception message, should start with: " + messageStart)
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .startsWith(messageStart);
         }
     }

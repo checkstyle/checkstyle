@@ -170,7 +170,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
     <specifier>call.ui</specifier>
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
-    <lineContent>JOptionPane.showMessageDialog(this, ex.getMessage());</lineContent>
+    <lineContent>JOptionPane.showMessageDialog(this, exc.getMessage());</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
