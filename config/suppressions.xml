@@ -201,4 +201,8 @@
   <!-- Uses non-ascii symbols intentionally -->
   <suppress id="checkASCII"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]ConfigurationLoaderTest.java"/>
+
+  <!-- Suppress all Checkstyle violations in mvnw.cmd -->
+  <suppress files=".*[\\/]mvnw\.cmd"/>
+
 </suppressions>
