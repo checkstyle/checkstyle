@@ -86,9 +86,9 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
             createSuppressionXpathFilter(fileName, optional);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid error message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unable to find: " + fileName);
         }
     }
@@ -101,9 +101,9 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
             createSuppressionXpathFilter(fileName, optional);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid error message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unable to parse " + fileName
                     + " - invalid files or checks or message format for suppress-xpath");
         }

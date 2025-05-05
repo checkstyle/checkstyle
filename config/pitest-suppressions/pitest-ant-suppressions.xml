@@ -15,7 +15,7 @@
     <mutatedMethod>createOverridingProperties</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask::getLocation</description>
-    <lineContent>+ properties + &quot;&apos;&quot;, ex, getLocation());</lineContent>
+    <lineContent>+ properties + &quot;&apos;&quot;, exc, getLocation());</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -75,15 +75,6 @@
   <mutation unstable="false">
     <sourceFile>CheckstyleAntTask.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
-    <mutatedMethod>getListeners</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/List::size</description>
-    <lineContent>final int formatterCount = Math.max(1, formatters.size());</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckstyleAntTask.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
     <mutatedMethod>execute</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
     <description>replaced call to java/util/Objects::toString with argument</description>
@@ -93,10 +84,19 @@
   <mutation unstable="false">
     <sourceFile>CheckstyleAntTask.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
+    <mutatedMethod>getListeners</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::size</description>
+    <lineContent>final int formatterCount = Math.max(1, formatters.size());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CheckstyleAntTask.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
     <mutatedMethod>processFiles</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/lang/String::valueOf</description>
-    <lineContent>throw new BuildException(&quot;Unable to process files: &quot; + files, ex);</lineContent>
+    <lineContent>throw new BuildException(&quot;Unable to process files: &quot; + files, exc);</lineContent>
   </mutation>
 
   <mutation unstable="false">

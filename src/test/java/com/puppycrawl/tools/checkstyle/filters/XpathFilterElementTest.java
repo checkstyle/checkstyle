@@ -137,9 +137,9 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
                     ".*", "e[l", ".*", "moduleId", "query");
             assertWithMessage("Exception is expected but got " + test).fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Message should be: Failed to initialise regular expression")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .contains("Failed to initialise regular expression");
         }
     }
@@ -152,9 +152,9 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
                     "Test", null, null, xpath);
             assertWithMessage("Exception is expected but got " + test).fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Message should be: Incorrect xpath query")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .contains("Incorrect xpath query");
         }
     }
@@ -336,9 +336,9 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
             filter.accept(ev);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             assertWithMessage("Exception message does not match expected one")
-                    .that(ex.getMessage())
+                    .that(exc.getMessage())
                     .contains("Cannot initialize context and evaluate query");
         }
     }

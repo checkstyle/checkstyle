@@ -223,9 +223,9 @@ public final class PropertyCacheFile {
 
             return new BigInteger(1, digest.digest()).toString(BASE_16).toUpperCase(Locale.ROOT);
         }
-        catch (final IOException | NoSuchAlgorithmException ex) {
+        catch (final IOException | NoSuchAlgorithmException exc) {
             // rethrow as unchecked exception
-            throw new IllegalStateException("Unable to calculate hashcode.", ex);
+            throw new IllegalStateException("Unable to calculate hashcode.", exc);
         }
     }
 
@@ -272,12 +272,12 @@ public final class PropertyCacheFile {
                 resources.add(new ExternalResource(EXTERNAL_RESOURCE_KEY_PREFIX + location,
                         contentHashSum));
             }
-            catch (CheckstyleException | IOException ex) {
+            catch (CheckstyleException | IOException exc) {
                 // if exception happened (configuration resource was not found, connection is not
                 // available, resource is broken, etc.), we need to calculate hash sum based on
                 // exception object content in order to check whether problem is resolved later
                 // and/or the configuration is changed.
-                final String contentHashSum = getHashCodeBasedOnObjectContent(ex);
+                final String contentHashSum = getHashCodeBasedOnObjectContent(exc);
                 resources.add(new ExternalResource(EXTERNAL_RESOURCE_KEY_PREFIX + location,
                         contentHashSum));
             }
