@@ -459,10 +459,10 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * <code>
-     * |--JAVADOC_INLINE_TAG -&gt; JAVADOC_INLINE_TAG
-     *      |--JAVADOC_INLINE_TAG_START -&gt; {
-     *      |--DOC_ROOT_LITERAL -&gt; @docRoot
-     *      `--JAVADOC_INLINE_TAG_END -&gt; }
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *      |--JAVADOC_INLINE_TAG_START -> {
+     *      |--DOC_ROOT_LITERAL -> @docRoot
+     *      `--JAVADOC_INLINE_TAG_END -> }
      * </code>
      * </pre>
      *
