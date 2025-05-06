@@ -42,7 +42,7 @@ echo "Clean up from previous run"
 rm -f "$run_output"
 
 echo "Run w"
-(git 'ls-files' -z 2> /dev/null || hg locate -0) |\
+(git ls-files 'src/test/' '*.java' '*.txt' '*.xml' '*.html' '*.properties' -z 2> /dev/null) |\
   "$spellchecker/exclude.pl" |\
   xargs -0 "$word_splitter" |\
   "$word_splitter" |\
