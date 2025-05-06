@@ -2689,7 +2689,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
-    <lineContent>return result;</lineContent>
+    <lineContent>return enclosingBlockNode;</lineContent>
     <details>
       type of expression: @Initialized @Nullable DetailAST
       method return type: @Initialized @NonNull DetailAST
