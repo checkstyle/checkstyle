@@ -18,9 +18,9 @@ package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
 // xdoc section -- start
 // @cs-: ClassDataAbstractionCoupling influence 2
 // @cs-: MagicNumber influence 4
-public class Example8 { // no violations from ClassDataAbstractionCoupling here
+public class Example8 { // filtered violation 'Class Data Abstraction Coupling is 2'
   private Example1 foo = new Example1();
   private Example2 bar = new Example2();
-  private int value = 10022; // no violations from MagicNumber here
+  private int value = 10022; // filtered violation ''10022' is a magic number.'
 }
 // xdoc section -- end
