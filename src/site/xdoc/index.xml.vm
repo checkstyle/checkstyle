@@ -526,6 +526,13 @@
               <td><a href="https://github.com/rife2/bld-checkstyle">Checkstyle Extension</a> for bld</td>
               <td>An extension for checking source code in a bld project</td>
             </tr>
+            <tr>
+              <td><a href="https://www.vim.org/">Vim editor</a></td>
+              <td>Community (syntastic)</td>
+              <td><a href="https://github.com/vim-syntastic/syntastic">Plugin syntastic</a></td>
+              <td><a href="https://medium.com/@Sohjiro/setup-vim-checkstyle-java-d0dd74dca1e1">
+                  how to setup.</a></td>
+            </tr>
           </table>
         </div>
       </subsection>
@@ -544,13 +551,6 @@
               <td>Benoit Xhenseval</td>
               <td><a href="https://qalab.sourceforge.net">QALab Home Page</a></td>
               <td>Supports tracking Checkstyle statistics over time.</td>
-            </tr>
-            <tr>
-              <td><a href="https://www.vim.org/">Vim editor</a></td>
-              <td>Xandy Johnson</td>
-              <td><a href="https://www.vim.org/scripts/script.php?script_id=448">
-                  Plugin Homepage</a></td>
-              <td>Vim file-type plug-in</td>
             </tr>
           </table>
         </div>
