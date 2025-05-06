@@ -425,9 +425,9 @@ public class SuppressWithNearbyCommentFilter
                     lastLine = line;
                 }
             }
-            catch (final PatternSyntaxException ex) {
+            catch (final PatternSyntaxException exc) {
                 throw new IllegalArgumentException(
-                    "unable to parse expanded comment " + format, ex);
+                    "unable to parse expanded comment " + format, exc);
             }
         }
 
@@ -444,9 +444,9 @@ public class SuppressWithNearbyCommentFilter
             try {
                 return Integer.parseInt(format);
             }
-            catch (final NumberFormatException ex) {
+            catch (final NumberFormatException exc) {
                 throw new IllegalArgumentException("unable to parse influence from '" + text
-                        + "' using " + influenceFormat, ex);
+                        + "' using " + influenceFormat, exc);
             }
         }
 

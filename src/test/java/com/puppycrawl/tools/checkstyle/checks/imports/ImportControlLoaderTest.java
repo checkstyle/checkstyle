@@ -66,12 +66,12 @@ public class ImportControlLoaderTest {
                     + getPath("InputImportControlLoaderComplete.xml")));
             assertWithMessage("exception expected").fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException exc) {
             assertWithMessage("Invalid exception class")
-                .that(ex.getCause())
+                .that(exc.getCause())
                 .isInstanceOf(MalformedURLException.class);
             assertWithMessage("Invalid exception message")
-                .that(ex)
+                .that(exc)
                 .hasCauseThat()
                 .hasMessageThat()
                 .isEqualTo("unknown protocol: aaa");
@@ -105,12 +105,12 @@ public class ImportControlLoaderTest {
             privateMethod.invoke(null, attr, "you_cannot_find_me");
             assertWithMessage("exception expected").fail();
         }
-        catch (ReflectiveOperationException ex) {
+        catch (ReflectiveOperationException exc) {
             assertWithMessage("Invalid exception class")
-                .that(ex.getCause())
+                .that(exc.getCause())
                 .isInstanceOf(SAXException.class);
             assertWithMessage("Invalid exception message")
-                .that(ex)
+                .that(exc)
                 .hasCauseThat()
                 .hasMessageThat()
                 .isEqualTo("missing attribute you_cannot_find_me");
@@ -132,12 +132,12 @@ public class ImportControlLoaderTest {
                     new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
             assertWithMessage("exception expected").fail();
         }
-        catch (ReflectiveOperationException ex) {
+        catch (ReflectiveOperationException exc) {
             assertWithMessage("Invalid exception class")
-                .that(ex.getCause())
+                .that(exc.getCause())
                 .isInstanceOf(CheckstyleException.class);
-            assertWithMessage("Invalid exception message: " + ex.getCause().getMessage())
-                    .that(ex)
+            assertWithMessage("Invalid exception message: " + exc.getCause().getMessage())
+                    .that(exc)
                     .hasCauseThat()
                     .hasMessageThat()
                     .startsWith("unable to read");

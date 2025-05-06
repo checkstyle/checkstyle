@@ -25,7 +25,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter args of Checker.getLocalizedMessage.</message>
-    <lineContent>getLocalizedMessage(&quot;Checker.setupChildModule&quot;, name, ex.getMessage()), ex);</lineContent>
+    <lineContent>getLocalizedMessage(&quot;Checker.setupChildModule&quot;, name, exc.getMessage()), exc);</lineContent>
     <details>
       found   : @Initialized @Nullable String
       required: @Initialized @NonNull Object
@@ -884,7 +884,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter args of Violation constructor.</message>
-    <lineContent>new Object[] {ex.getMessage()}, javaParseExceptionSeverity, null,</lineContent>
+    <lineContent>new Object[] {exc.getMessage()}, javaParseExceptionSeverity, null,</lineContent>
     <details>
       found   : @Initialized @Nullable Object @Initialized @NonNull []
       required: @Initialized @NonNull Object @Initialized @NonNull []
@@ -917,7 +917,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter moduleId of Violation constructor.</message>
-    <lineContent>new Object[] {ex.getMessage()}, javaParseExceptionSeverity, null,</lineContent>
+    <lineContent>new Object[] {exc.getMessage()}, javaParseExceptionSeverity, null,</lineContent>
     <details>
       found   : null (NullType)
       required: @Initialized @NonNull String
@@ -1444,7 +1444,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter args of AbstractFileSetCheck.log.</message>
-    <lineContent>log(1, MSG_IO_EXCEPTION_KEY, file.getPath(), ex.getLocalizedMessage());</lineContent>
+    <lineContent>log(1, MSG_IO_EXCEPTION_KEY, file.getPath(), exc.getLocalizedMessage());</lineContent>
     <details>
       found   : @Initialized @Nullable String
       required: @Initialized @NonNull Object
@@ -1626,7 +1626,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UniquePropertiesCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter args of AbstractFileSetCheck.log.</message>
-    <lineContent>ex.getLocalizedMessage());</lineContent>
+    <lineContent>exc.getLocalizedMessage());</lineContent>
     <details>
       found   : @Initialized @Nullable String
       required: @Initialized @NonNull Object

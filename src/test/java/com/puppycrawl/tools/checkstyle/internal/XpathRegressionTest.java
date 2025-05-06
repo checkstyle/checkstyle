@@ -107,8 +107,8 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         try {
             return CheckUtil.getSimpleNames(CheckUtil.getCheckstyleChecks());
         }
-        catch (IOException ex) {
-            throw new ExceptionInInitializerError(ex);
+        catch (IOException exc) {
+            throw new ExceptionInInitializerError(exc);
         }
     }
 

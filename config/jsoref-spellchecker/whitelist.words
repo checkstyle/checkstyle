@@ -383,6 +383,7 @@ ent
 enum
 eol
 eot
+epl
 equalsavoidnull
 equalshashcode
 equalsverifier
@@ -1074,6 +1075,7 @@ Popup
 Postgresql
 ppc
 prebuilts
+prefs
 PRESIZE
 prettyprint
 printf

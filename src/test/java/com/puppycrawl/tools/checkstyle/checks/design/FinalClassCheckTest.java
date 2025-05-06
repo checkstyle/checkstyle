@@ -133,9 +133,9 @@ public class FinalClassCheckTest
             finalClassCheck.visitToken(badAst);
             assertWithMessage("IllegalStateException is expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo(badAst.toString());
         }
     }

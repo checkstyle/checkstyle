@@ -200,6 +200,20 @@ public final class InlineConfigParser {
             ConfigurationLoader.DTD_PUBLIC_CS_ID_1_3);
 
     /**
+     * ALLOWED: any code, then "// ok" or "// violation" (lowercase),
+     * optionally followed by either a space or a comma (with optional spaces)
+     * plus explanation text.
+     */
+    private static final Pattern ALLOWED_OK_VIOLATION_PATTERN =
+            Pattern.compile(".*//\\s*(ok|violation)\\b(?:[ ,]\\s*.*)?$");
+
+    /**
+     * DETECT any comment containing ok/violation in any case/spacing.
+     */
+    private static final Pattern ANY_OK_VIOLATION_PATTERN =
+            Pattern.compile(".*//\\s*(?i)(ok|violation).*");
+
+    /**
      *  Inlined configs can not be used in non-java checks, as Inlined config is java style
      *  multiline comment.
      *  Such check files needs to be permanently suppressed.
@@ -392,15 +406,15 @@ public final class InlineConfigParser {
         try {
             setModules(testInputConfigBuilder, inputFilePath, lines);
         }
-        catch (Exception ex) {
+        catch (Exception exc) {
             throw new CheckstyleException("Config comment not specified properly in "
-                    + inputFilePath, ex);
+                    + inputFilePath, exc);
         }
         try {
             setViolations(testInputConfigBuilder, lines, setFilteredViolations);
         }
-        catch (CheckstyleException ex) {
-            throw new CheckstyleException(ex.getMessage() + " in " + inputFilePath, ex);
+        catch (CheckstyleException exc) {
+            throw new CheckstyleException(exc.getMessage() + " in " + inputFilePath, exc);
         }
         return testInputConfigBuilder.build();
     }
@@ -417,8 +431,8 @@ public final class InlineConfigParser {
                 setViolations(testInputConfigBuilder, lines, false, lineNo, true);
             }
         }
-        catch (CheckstyleException ex) {
-            throw new CheckstyleException(ex.getMessage() + " in " + inputFilePath, ex);
+        catch (CheckstyleException exc) {
+            throw new CheckstyleException(exc.getMessage() + " in " + inputFilePath, exc);
         }
 
         return testInputConfigBuilder.build().getViolations();
@@ -463,8 +477,8 @@ public final class InlineConfigParser {
         try {
             setViolations(testInputConfigBuilder, lines, false);
         }
-        catch (CheckstyleException ex) {
-            throw new CheckstyleException(ex.getMessage() + " in " + inputFilePath, ex);
+        catch (CheckstyleException exc) {
+            throw new CheckstyleException(exc.getMessage() + " in " + inputFilePath, exc);
         }
         return testInputConfigBuilder.buildWithXmlConfiguration();
     }
@@ -619,8 +633,8 @@ public final class InlineConfigParser {
         try {
             return Files.readAllLines(filePath);
         }
-        catch (IOException ex) {
-            throw new CheckstyleException("Failed to read " + filePath, ex);
+        catch (IOException exc) {
+            throw new CheckstyleException("Failed to read " + filePath, exc);
         }
     }
 
@@ -922,6 +936,13 @@ public final class InlineConfigParser {
                                       List<String> lines, boolean useFilteredViolations,
                                       int lineNo, boolean specifyViolationMessage)
             throws CheckstyleException {
+        final String line = lines.get(lineNo);
+        if (ANY_OK_VIOLATION_PATTERN.matcher(line).matches()
+                && !ALLOWED_OK_VIOLATION_PATTERN.matcher(line).matches()) {
+            throw new CheckstyleException(
+                    "Invalid format (must be \"// ok...\" or \"// violation...\"): " + line);
+        }
+
         final Matcher violationMatcher =
                 VIOLATION_PATTERN.matcher(lines.get(lineNo));
         final Matcher violationAboveMatcher =
@@ -1173,7 +1194,7 @@ public final class InlineConfigParser {
                 result = field.get(checkInstance);
                 break;
             }
-            catch (NoSuchFieldException ex) {
+            catch (NoSuchFieldException exc) {
                 currentClass = currentClass.getSuperclass();
             }
         }
