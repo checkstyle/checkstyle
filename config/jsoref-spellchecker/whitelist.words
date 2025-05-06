@@ -200,6 +200,7 @@ classmemberimpliedmodifier
 classname
 classpath
 classtypeparametername
+classworlds
 clazz
 clemens
 Clickable
@@ -260,6 +261,8 @@ customimportorder
 CVS
 cyclomatic
 cyclomaticcomplexity
+cygpath
+cygwin
 cz
 dalvik
 Daniil
@@ -377,6 +380,7 @@ emptystatement
 emptytag
 Emtpy
 endline
+endlocal
 enegger
 ENMI
 ent
@@ -398,6 +402,7 @@ etsy
 ev
 Evt
 exceptionoverrides
+exe
 executablestatementcount
 Exif
 explicitinitialization
@@ -545,7 +550,9 @@ hiddenfield
 hideutilityclassconstructor
 hipparchus
 hne
+HOMEDRIVE
 homepage
+HOMEPATH
 horizontalwhitespace
 Hostname
 href
@@ -634,6 +641,7 @@ Jakub
 jarchitect
 javaastvisitor
 javac
+JAVACMD
 javadoc
 javadocblocktaglocation
 javadoccontentlocation
@@ -667,6 +675,7 @@ javastrangefolder
 javax
 Jax
 JB
+JBEAP
 JBoss
 JButton
 JCheck
@@ -689,6 +698,7 @@ JFrame
 jgit
 jgrasp
 jguru
+JHome
 jhu
 jide
 jidesoft
@@ -763,6 +773,7 @@ lhmap
 LHSOf
 libcore
 liberapay
+libexec
 lifecycle
 linebreak
 linecolumn
@@ -800,6 +811,7 @@ markdownlint
 Massol
 matchxpath
 mavenbadge
+mavenrc
 maxdepth
 maxmem
 maxmethods
@@ -821,6 +833,7 @@ mfussenegger
 MHTML
 Micha
 microsoft
+mingw
 minimalistic
 Mipmap
 misconfigured
@@ -1073,6 +1086,7 @@ Pointcut
 POJO
 Popup
 Postgresql
+powershell
 ppc
 prebuilts
 prefs
@@ -1085,6 +1099,7 @@ priva
 PRMC
 programpractice
 Proguard
+PROJECTBASEDIR
 propertycachefile
 propkey
 PROTECTE
@@ -1118,6 +1133,7 @@ rcurly
 rdiachenko
 RDz
 reactivex
+readlink
 README
 Readonly
 rebased
@@ -1141,6 +1157,7 @@ relativized
 releasenotes
 remkop
 reportyml
+REPOURL
 requireemptylinebeforeblocktaggroup
 requirethis
 resourceleak
@@ -1183,6 +1200,7 @@ Saludo
 Sameline
 sariflogger
 sarifweb
+saveddir
 Savinov
 saxonica
 sbe
@@ -1203,6 +1221,7 @@ SEO
 separatorwrap
 SERIALVERSIONUID
 servlet
+setlocal
 severitymatchfilter
 sevntu
 shanegenschaw
@@ -1229,6 +1248,7 @@ Sms
 smth
 snyk
 socio
+Solaris
 solr
 someinner
 somename
@@ -1244,6 +1264,7 @@ sourceforge
 sourcepath
 sourcesets
 spacebar
+Sparc
 specialescape
 spellchecker
 spliterator
@@ -1309,6 +1330,7 @@ suse
 svg
 svn
 sxpath
+symlinks
 Sys
 sysextensions
 sysprop
@@ -1316,6 +1338,7 @@ systemout
 tac
 Taglib
 taglist
+takari
 taskdef
 tbody
 tcr
@@ -1410,6 +1433,7 @@ upsss
 urandom
 uri
 url
+usebackq
 userguide
 username
 usr
@@ -1446,7 +1470,9 @@ Wadl
 Wakelock
 Warni
 wbr
+wdir
 Weakento
+webclient
 Webflow
 webjar
 Weblogic
@@ -1488,6 +1514,7 @@ Xandy
 xar
 xargs
 XDcompile
+Xdebug
 xdoc
 xdocspagetitle
 Xep
@@ -1525,6 +1552,7 @@ xpathquerygenerator
 Xpkginfo
 Xplugin
 xright
+Xrunjdwp
 xsd
 xsi
 xsl
