@@ -131,6 +131,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 @GlobalStatefulCheck
 public class TranslationCheck extends AbstractFileSetCheck {
 
+    /** Logger for TranslationCheck. */
+    private final Log log;
+
+    /** The files to process. */
+    private final Set<File> filesToProcess = new HashSet<>();
+
     /**
      * A key is pointing to the warning message text for missing key
      * in "messages.properties" file.
@@ -189,12 +195,6 @@ public class TranslationCheck extends AbstractFileSetCheck {
         "^%1$s\\_%2$s(\\_[A-Z]{2})?\\.%3$s$|^%1$s\\_%2$s\\_[A-Z]{2}\\_[A-Za-z]+\\.%3$s$";
     /** Formatting string to form regexp to validate default translations file names. */
     private static final String REGEXP_FORMAT_TO_CHECK_DEFAULT_TRANSLATIONS = "^%s\\.%s$";
-
-    /** Logger for TranslationCheck. */
-    private final Log log;
-
-    /** The files to process. */
-    private final Set<File> filesToProcess = new HashSet<>();
 
     /**
      * Specify
