@@ -247,7 +247,7 @@
 
   <module name="TreeWalker">
     <property name="tabWidth" value="4"/>
-
+    <module name="AvoidOutdatedUsage"/>
     <!-- Annotations -->
     <module name="AnnotationLocation">
       <property name="tokens" value="ANNOTATION_DEF"/>

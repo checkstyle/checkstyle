@@ -83,6 +83,7 @@ avoidescapedunicodecharacters
 avoidinlineconditionals
 avoidnestedblocks
 avoidnoargumentsuperconstructorcall
+avoidoutdatedusage
 avoidstarimport
 avoidstaticimport
 Awarns
