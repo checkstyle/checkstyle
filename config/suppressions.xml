@@ -37,6 +37,9 @@
   <!-- The Check generates too many violations, fixing them will make code unmanageable. -->
   <suppress checks="MagicNumber" files="(ParseTreeTablePresentation|MainFrame)\.java"/>
 
+  <!-- we give CustomDeclarationOrder preference to validate order, logger should on top -->
+  <suppress checks="DeclarationOrder" files="(Checker|TranslationCheck)\.java"/>
+
   <!-- Methods that build fake AST are very long -->
   <suppress checks="MethodLength" files=".*(Generated)?Java(doc)?TokenTypesTest\.java"/>
   <suppress checks="ExecutableStatementCount"
