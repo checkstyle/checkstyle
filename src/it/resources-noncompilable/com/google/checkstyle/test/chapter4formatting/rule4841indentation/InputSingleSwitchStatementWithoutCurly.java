@@ -52,8 +52,8 @@ System.out.println("Test");        // violation '.* incorrect indentation level 
           && y != 5;
       case 3 ->
           y != 4
-            && z != 2
-            && y != z;
+              && z != 2
+              && y != z;
       default -> false;
     };
   }
