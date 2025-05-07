@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.ExpiredTodoCommentCheck"
+             name="ExpiredTodoComment"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks for expired {@code } comments. Actually it is a generic
+ &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html"&gt;
+ pattern&lt;/a&gt; matcher on Java comments. To check for other patterns
+ in Java comments, set the {@code pattern} property.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+     Live template example from &lt;a href=
+     "https://www.jetbrains.com/help/idea/creating-and-editing-live-templates.html"&gt;
+     IntelliJ IDEA&lt;/a&gt;.
+     Example:
+     //TODO $DATE$ $USER$ requires remove ISSUE-1234$END$
+     env:
+     date("dd.MM.Y")
+     user()
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Using {@code } comments is a great way to keep track of tasks that need to be done.
+ Having them reported by Checkstyle makes it very hard to forget about them.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="dd.MM.yyyy" name="format" type="java.lang.String">
+               <description>Specify format to match date.</description>
+            </property>
+            <property default-value="(?i)(TODO|FIXME)\s*(?&amp;lt;date&amp;gt;(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4})\s*(?&amp;lt;comment&amp;gt;.*)"
+                      name="pattern"
+                      type="java.util.regex.Pattern">
+               <description>Specify pattern to match comments against.
+ Should contain groups {@code date} and {@code comment}</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="todo.expired.match"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

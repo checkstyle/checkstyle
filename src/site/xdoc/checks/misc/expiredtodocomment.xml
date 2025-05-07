@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ExpiredTodoComment</title>
+  </head>
+  <body>
+    <section name="ExpiredTodoComment">
+      <p>Since Checkstyle 10.24.0</p>
+      <subsection name="Description" id="Description">
+        <div>
+          Checks for expired <code>TODO</code> comments. Actually
+          it is a generic
+          <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html">
+          pattern</a> matcher on Java comments. To check for other
+          patterns in Java comments, set the <code>pattern</code> property.
+        </div>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Specify format to match date.</td>
+              <td><a href="../../property_types.html#String">String</a></td>
+              <td><code>&quot;dd.MM.yyyy&quot;</code></td>
+              <td>10.24.0</td>
+            </tr>
+            <tr>
+              <td>pattern</td>
+              <td>Specify pattern to match comments against. Should contain groups <code>date</code> and <code>comment</code></td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;(?i)(TODO|FIXME)\s*(?&lt;date&gt;(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4})\s*(?&lt;comment&gt;.*)&quot;</code></td>
+              <td>10.24.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Notes" id="Notes">
+        <p>
+          Live template example from <a href="https://www.jetbrains.com/help/idea/creating-and-editing-live-templates.html">IntelliJ IDEA</a>.
+          Example:
+          //TODO $DATE$ $USER$ requires remove ISSUE-1234$END$
+          env:
+          date(&quot;dd.MM.Y&quot;)
+          user()
+        </p>
+        <p>
+          Using <code>TODO</code> comments is a great way
+          to keep track of tasks that need to be done. Having them
+          reported by Checkstyle makes it very hard to forget about
+          them.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ExpiredTodoComment"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+  int i;
+  int x;
+  public void test() {
+    i++;   // TODO 01.01.2000 do differently in future    // violation
+    i++;   // todo 01 01 2000 do differently in future
+    i=i/x; // FIXME 01.01.2050 handle x = 0 case
+    i=i/x; // FIX :  handle x = 0 case
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check for comments that contain <code>TODO</code> and <code>FIXME</code>,
+          case-insensitive:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ExpiredTodoComment"&gt;
+      &lt;property name="pattern" value=
+"(?i)(TODO|FIXME)\s*(?&amp;lt;date&amp;gt;\d{4}\.\d{2}\.\d{2})\s*(?&amp;lt;comment&amp;gt;.*)"/&gt;
+      &lt;property name="format" value="yyyy.dd.MM"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+  int i;
+  int x;
+  public void test() {
+    i++;   // TODO 2000.01.01 do differently in future    // violation
+    i++;   // todo 2000.01.01 do differently in future    // violation
+    i=i/x; // FIXME 2000.01.01 handle x = 0 case          // violation
+    i=i/x; // FIX 2000-01-01 handle x = 0 case
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ExpiredTodoComment">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22todo.expired.match%22">
+              todo.expired.match
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

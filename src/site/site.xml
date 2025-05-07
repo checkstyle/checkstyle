@@ -248,6 +248,7 @@
                 href="checks/misc/avoidescapedunicodecharacters.html"/>
           <item name="CommentsIndentation" href="checks/misc/commentsindentation.html"/>
           <item name="DescendantToken" href="checks/misc/descendanttoken.html"/>
+          <item name="ExpiredTodoComment" href="checks/misc/expiredtodocomment.html"/>
           <item name="FinalParameters" href="checks/misc/finalparameters.html"/>
           <item name="Indentation" href="checks/misc/indentation.html"/>
           <item name="NewlineAtEndOfFile" href="checks/misc/newlineatendoffile.html"/>

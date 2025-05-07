@@ -797,6 +797,10 @@
     </module>
     <module name="CommentsIndentation"/>
     <module name="DescendantToken"/>
+    <module name="ExpiredTodoComment">
+      <property name="pattern" value="(?i)(TODO|FIXME)\s*(?&lt;date&gt;(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4})\s*(?&lt;comment&gt;.*)" />
+      <property name="format" value="dd.MM.yyyy" />
+    </module>
     <module name="FinalParameters">
       <!--
         we will not use that fanatic validation, extra modifiers pollute a code

@@ -170,6 +170,7 @@ public class XdocsPagesTest {
             "EmptyBlock",
             "EmptyForIteratorPad",
             "EmptyStatement",
+            "ExpiredTodoComment",
             "EqualsHashCode",
             "FileLength",
             "FileTabCharacter",

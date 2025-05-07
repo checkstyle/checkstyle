@@ -358,6 +358,11 @@
             <td>Restricts the number of executable statements to a specified limit.</td>
           </tr>
           <tr>
+            <td><a href="checks/misc/expiredtodocomment.html#ExpiredTodoComment">
+              ExpiredTodoComment</a></td>
+            <td>Checks for expired TODO comments.</td>
+          </tr>
+          <tr>
             <td>
               <a href="checks/coding/explicitinitialization.html#ExplicitInitialization">
                 ExplicitInitialization
