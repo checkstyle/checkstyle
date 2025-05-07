@@ -299,6 +299,7 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.sizes.OuterTypeNumberCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck",
+            "com.puppycrawl.tools.checkstyle.checks.ExpiredTodoCommentCheck",
             "com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck",
             "com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck",

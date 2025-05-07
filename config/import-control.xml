@@ -19,6 +19,7 @@
   <allow pkg="java.io"/>
   <allow pkg="java.nio"/>
   <allow pkg="java.net"/>
+  <allow pkg="java.time"/>
   <allow pkg="java.util"/>
   <allow class="javax.annotation.Nullable"/>
   <allow pkg="javax.xml.parsers"/>
