@@ -261,14 +261,7 @@ public class CheckstyleAntTask extends Task {
     @Override
     public void execute() {
         final long startTime = System.currentTimeMillis();
-
         try {
-            final String version = Objects.toString(
-                    CheckstyleAntTask.class.getPackage().getImplementationVersion(),
-                    "");
-
-            log("checkstyle version " + version, Project.MSG_VERBOSE);
-
             // Check for no arguments
             if (fileName == null
                     && fileSets.isEmpty()
@@ -280,6 +273,9 @@ public class CheckstyleAntTask extends Task {
             if (config == null) {
                 throw new BuildException("Must specify 'config'.", getLocation());
             }
+            final String version = CheckstyleAntTask.class.getPackage().getImplementationVersion();
+            log("Checkstyle version: " + version, Project.MSG_VERBOSE);
+            log("Using config " + config, Project.MSG_VERBOSE);
             realExecute(version);
         }
         finally {
@@ -332,10 +328,10 @@ public class CheckstyleAntTask extends Task {
         final long startTime = System.currentTimeMillis();
         final List<File> files = getFilesToCheck();
         final long endTime = System.currentTimeMillis();
-        log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
+        log("File discovery took " + (endTime - startTime) + TIME_SUFFIX,
             Project.MSG_VERBOSE);
 
-        log("Running Checkstyle "
+        log("Running Checkstyle"
                 + checkstyleVersion
                 + " on " + files.size()
                 + " files", Project.MSG_INFO);
@@ -347,7 +343,7 @@ public class CheckstyleAntTask extends Task {
             final long processingStartTime = System.currentTimeMillis();
             numErrs = rootModule.process(files);
             final long processingEndTime = System.currentTimeMillis();
-            log("To process the files took " + (processingEndTime - processingStartTime)
+            log("File processing took " + (processingEndTime - processingStartTime)
                 + TIME_SUFFIX, Project.MSG_VERBOSE);
         }
         catch (CheckstyleException exc) {
