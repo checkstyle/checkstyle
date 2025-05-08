@@ -262,12 +262,6 @@ public class CheckstyleAntTask extends Task {
     public void execute() {
         final long startTime = System.currentTimeMillis();
         try {
-            final String version = Objects.toString(
-                    CheckstyleAntTask.class.getPackage().getImplementationVersion(),
-                    "");
-
-            log("checkstyle version " + version, Project.MSG_VERBOSE);
-
             // Check for no arguments
             if (fileName == null
                     && fileSets.isEmpty()
