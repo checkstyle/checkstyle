@@ -882,14 +882,14 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final String auditFinishedMessage = bundle.getString(DefaultLogger.AUDIT_FINISHED_MESSAGE);
 
         final List<MessageLevelPair> expectedList = Arrays.asList(
-                new MessageLevelPair("Checkstyle version: .*", Project.MSG_VERBOSE),
-                new MessageLevelPair("Using config file:.*", Project.MSG_VERBOSE),
+                new MessageLevelPair("checkstyle version .*", Project.MSG_VERBOSE),
                 new MessageLevelPair("Adding standalone file for audit", Project.MSG_VERBOSE),
-                new MessageLevelPair("File discovery took \\d+ ms.", Project.MSG_VERBOSE),
-                new MessageLevelPair("Running Checkstyle on 1 file.", Project.MSG_INFO),
+                new MessageLevelPair("To locate the files took \\d+ ms.", Project.MSG_VERBOSE),
+                new MessageLevelPair("Running Checkstyle on 1 files", Project.MSG_INFO),
+                new MessageLevelPair("Using configuration file:.*", Project.MSG_VERBOSE),
                 new MessageLevelPair(auditStartedMessage, Project.MSG_DEBUG),
                 new MessageLevelPair(auditFinishedMessage, Project.MSG_DEBUG),
-                new MessageLevelPair("File processing took \\d+ ms.", Project.MSG_VERBOSE),
+                new MessageLevelPair("To process the files took \\d+ ms.", Project.MSG_VERBOSE),
                 new MessageLevelPair("Total execution took \\d+ ms.", Project.MSG_VERBOSE)
         );
 
@@ -946,8 +946,8 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final List<MessageLevelPair> loggedMessages = antTask.getLoggedMessages();
 
         assertLoggedTime(loggedMessages, testingTime, "Total execution");
-        assertLoggedTime(loggedMessages, testingTime, "File discovery took");
-        assertLoggedTime(loggedMessages, testingTime, "File processing took");
+        assertLoggedTime(loggedMessages, testingTime, "To locate the files");
+        assertLoggedTime(loggedMessages, testingTime, "To process the files");
     }
 
     private static void assertLoggedTime(List<MessageLevelPair> loggedMessages,

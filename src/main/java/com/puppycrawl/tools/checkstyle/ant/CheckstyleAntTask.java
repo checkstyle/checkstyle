@@ -261,9 +261,14 @@ public class CheckstyleAntTask extends Task {
     @Override
     public void execute() {
         final long startTime = System.currentTimeMillis();
+
         try {
-            final String version = CheckstyleAntTask.class.getPackage().getImplementationVersion();
-            log("Checkstyle version: " + version, Project.MSG_VERBOSE);
+            final String version = Objects.toString(
+                    CheckstyleAntTask.class.getPackage().getImplementationVersion(),
+                    "");
+
+            log("checkstyle version " + version, Project.MSG_VERBOSE);
+
             // Check for no arguments
             if (fileName == null
                     && fileSets.isEmpty()
@@ -327,7 +332,7 @@ public class CheckstyleAntTask extends Task {
         final long startTime = System.currentTimeMillis();
         final List<File> files = getFilesToCheck();
         final long endTime = System.currentTimeMillis();
-        log("File discovery took " + (endTime - startTime) + TIME_SUFFIX,
+        log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
             Project.MSG_VERBOSE);
 
         log("Running Checkstyle"
@@ -342,7 +347,7 @@ public class CheckstyleAntTask extends Task {
             final long processingStartTime = System.currentTimeMillis();
             numErrs = rootModule.process(files);
             final long processingEndTime = System.currentTimeMillis();
-            log("File processing took " + (processingEndTime - processingStartTime)
+            log("To process the files took " + (processingEndTime - processingStartTime)
                 + TIME_SUFFIX, Project.MSG_VERBOSE);
         }
         catch (CheckstyleException exc) {
