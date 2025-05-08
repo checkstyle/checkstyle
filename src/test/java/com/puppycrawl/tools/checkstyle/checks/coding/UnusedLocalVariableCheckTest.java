@@ -154,6 +154,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     public void testUnusedLocalVar3() throws Exception {
         final String[] expected = {
             "21:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "30:33: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "os"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariable3.java"),
