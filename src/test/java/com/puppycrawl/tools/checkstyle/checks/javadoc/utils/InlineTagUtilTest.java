@@ -27,17 +27,17 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-public class InlineTagUtilTest {
+class InlineTagUtilTest {
 
     @Test
-    public void testHasPrivateConstructor() throws Exception {
+    void hasPrivateConstructor() throws Exception {
         assertWithMessage("Constructor is not private")
                 .that(TestUtil.isUtilsClassHasPrivateConstructor(InlineTagUtil.class))
                 .isTrue();
     }
 
     @Test
-    public void testExtractInlineTags() {
+    void testExtractInlineTags() {
         final String[] text = {
             "/** @see elsewhere ",
             " * {@link List }, {@link List link text }",
@@ -57,7 +57,7 @@ public class InlineTagUtilTest {
     }
 
     @Test
-    public void testMultiLineLinkTag() {
+    void multiLineLinkTag() {
         final String[] text = {
             "/**",
             " * {@link foo",
@@ -73,7 +73,7 @@ public class InlineTagUtilTest {
     }
 
     @Test
-    public void testCollapseWhitespace() {
+    void collapseWhitespace() {
         final String[] text = {
             "/**",
             " * {@code     foo\t\t   bar   baz\t    }",
@@ -88,7 +88,7 @@ public class InlineTagUtilTest {
     }
 
     @Test
-    public void extractInlineTags() {
+    void extractInlineTags() {
         final String[] source = {
             "  {@link foo}",
         };
@@ -104,7 +104,7 @@ public class InlineTagUtilTest {
     }
 
     @Test
-    public void testBadInputExtractInlineTagsLineFeed() {
+    void badInputExtractInlineTagsLineFeed() {
         try {
             InlineTagUtil.extractInlineTags("abc\ndef");
             assertWithMessage("IllegalArgumentException expected").fail();
@@ -117,7 +117,7 @@ public class InlineTagUtilTest {
     }
 
     @Test
-    public void testBadInputExtractInlineTagsCarriageReturn() {
+    void badInputExtractInlineTagsCarriageReturn() {
         try {
             InlineTagUtil.extractInlineTags("abc\rdef");
             assertWithMessage("IllegalArgumentException expected").fail();

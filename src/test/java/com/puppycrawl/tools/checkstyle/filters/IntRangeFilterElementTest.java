@@ -26,10 +26,10 @@ import org.junit.jupiter.api.Test;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 
-public class IntRangeFilterElementTest {
+class IntRangeFilterElementTest {
 
     @Test
-    public void testDecide() {
+    void decide() {
         final IntFilterElement filter = new IntRangeFilterElement(0, 10);
         assertWithMessage("less than")
                 .that(filter.accept(-1))
@@ -49,7 +49,7 @@ public class IntRangeFilterElementTest {
     }
 
     @Test
-    public void testDecideSingle() {
+    void decideSingle() {
         final IntFilterElement filter = new IntRangeFilterElement(0, 0);
         assertWithMessage("less than")
                 .that(filter.accept(-1))
@@ -63,7 +63,7 @@ public class IntRangeFilterElementTest {
     }
 
     @Test
-    public void testDecideEmpty() {
+    void decideEmpty() {
         final IntFilterElement filter = new IntRangeFilterElement(10, 0);
         assertWithMessage("out")
                 .that(filter.accept(-1))
@@ -83,7 +83,7 @@ public class IntRangeFilterElementTest {
     }
 
     @Test
-    public void testEqualsAndHashCode() {
+    void equalsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(IntRangeFilterElement.class)
                 .usingGetClass().report();
         assertWithMessage("Error: " + ev.getMessage())

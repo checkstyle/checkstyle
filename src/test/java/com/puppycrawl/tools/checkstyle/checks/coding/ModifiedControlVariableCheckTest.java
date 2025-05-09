@@ -37,8 +37,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class ModifiedControlVariableCheckTest
-    extends AbstractModuleTestSupport {
+class ModifiedControlVariableCheckTest
+        extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -46,7 +46,7 @@ public class ModifiedControlVariableCheckTest
     }
 
     @Test
-    public void testModifiedControlVariable() throws Exception {
+    void modifiedControlVariable() throws Exception {
         final String[] expected = {
             "17:14: " + getCheckMessage(MSG_KEY, "i"),
             "20:15: " + getCheckMessage(MSG_KEY, "i"),
@@ -63,7 +63,7 @@ public class ModifiedControlVariableCheckTest
     }
 
     @Test
-    public void testEnhancedForLoopVariableTrue() throws Exception {
+    void enhancedForLoopVariableTrue() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -72,7 +72,7 @@ public class ModifiedControlVariableCheckTest
     }
 
     @Test
-    public void testEnhancedForLoopVariableFalse() throws Exception {
+    void enhancedForLoopVariableFalse() throws Exception {
 
         final String[] expected = {
             "16:18: " + getCheckMessage(MSG_KEY, "line"),
@@ -83,7 +83,7 @@ public class ModifiedControlVariableCheckTest
     }
 
     @Test
-    public void testEnhancedForLoopVariable2() throws Exception {
+    void enhancedForLoopVariable2() throws Exception {
 
         final String[] expected = {
             "21:18: " + getCheckMessage(MSG_KEY, "i"),
@@ -94,7 +94,7 @@ public class ModifiedControlVariableCheckTest
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -108,7 +108,7 @@ public class ModifiedControlVariableCheckTest
     }
 
     @Test
-    public void testImproperToken() {
+    void improperToken() {
         final ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
 
         final DetailAstImpl classDefAst = new DetailAstImpl();
@@ -132,7 +132,7 @@ public class ModifiedControlVariableCheckTest
     }
 
     @Test
-    public void testVariousAssignments() throws Exception {
+    void variousAssignments() throws Exception {
         final String[] expected = {
             "14:15: " + getCheckMessage(MSG_KEY, "i"),
             "15:15: " + getCheckMessage(MSG_KEY, "k"),
@@ -163,7 +163,7 @@ public class ModifiedControlVariableCheckTest
     }
 
     @Test
-    public void testRecordDecompositionInEnhancedForLoop() throws Exception {
+    void recordDecompositionInEnhancedForLoop() throws Exception {
         final String[] expected = {
             "32:15: " + getCheckMessage(MSG_KEY, "p"),
         };
@@ -181,7 +181,7 @@ public class ModifiedControlVariableCheckTest
      */
     @Test
     @SuppressWarnings("unchecked")
-    public void testClearState() throws Exception {
+    void clearState() throws Exception {
         final ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
         final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(
             JavaParser.parseFile(

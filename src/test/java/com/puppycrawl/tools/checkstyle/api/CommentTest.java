@@ -23,10 +23,10 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import org.junit.jupiter.api.Test;
 
-public class CommentTest {
+class CommentTest {
 
     @Test
-    public void test() {
+    void test() {
         final String[] text = {"test"};
         final Comment comment = new Comment(text, 1, 2, 3);
 
@@ -52,7 +52,7 @@ public class CommentTest {
     }
 
     @Test
-    public void testIntersects() {
+    void intersects() {
         final String[] text = {"test", "test"};
         final Comment comment = new Comment(text, 2, 4, 4);
 
@@ -75,7 +75,7 @@ public class CommentTest {
     }
 
     @Test
-    public void testIntersects2() {
+    void intersects2() {
         final String[] text = {"a"};
         final Comment comment = new Comment(text, 2, 2, 2);
 
@@ -85,7 +85,7 @@ public class CommentTest {
     }
 
     @Test
-    public void testIntersects3() {
+    void intersects3() {
         final String[] text = {"test"};
         final Comment comment = new Comment(text, 1, 1, 2);
 

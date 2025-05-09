@@ -34,10 +34,10 @@ import com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class XdocsPropertyTypeTest {
+class XdocsPropertyTypeTest {
 
     @Test
-    public void testAllPropertyTypesAreUsed() throws IOException {
+    void allPropertyTypesAreUsed() throws IOException {
         final Set<PropertyType> propertyTypes = Stream.concat(
                 Stream.of(AbstractHeaderCheck.class, Checker.class),
                 CheckUtil.getCheckstyleChecks().stream())
@@ -54,7 +54,7 @@ public class XdocsPropertyTypeTest {
     }
 
     @Test
-    public void testAllPropertyTypesHaveDescription() {
+    void allPropertyTypesHaveDescription() {
         for (PropertyType value : PropertyType.values()) {
             assertWithMessage("Property type '%s' has no description", value)
                 .that(CommonUtil.isBlank(value.getDescription()))

@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class FinalParametersCheckTest extends AbstractModuleTestSupport {
+class FinalParametersCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -34,7 +34,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefaultTokens() throws Exception {
+    void defaultTokens() throws Exception {
         final String[] expected = {
             "27:26: " + getCheckMessage(MSG_KEY, "s"),
             "42:26: " + getCheckMessage(MSG_KEY, "i"),
@@ -53,7 +53,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCtorToken() throws Exception {
+    void ctorToken() throws Exception {
         final String[] expected = {
             "28:27: " + getCheckMessage(MSG_KEY, "s"),
             "43:27: " + getCheckMessage(MSG_KEY, "i"),
@@ -64,7 +64,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMethodToken() throws Exception {
+    void methodToken() throws Exception {
         final String[] expected = {
             "58:17: " + getCheckMessage(MSG_KEY, "s"),
             "74:17: " + getCheckMessage(MSG_KEY, "s"),
@@ -80,7 +80,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCatchToken() throws Exception {
+    void catchToken() throws Exception {
         final String[] expected = {
             "130:16: " + getCheckMessage(MSG_KEY, "npe"),
             "136:16: " + getCheckMessage(MSG_KEY, "e"),
@@ -91,7 +91,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testForEachClauseToken() throws Exception {
+    void forEachClauseToken() throws Exception {
         final String[] expected = {
             "157:13: " + getCheckMessage(MSG_KEY, "s"),
             "165:13: " + getCheckMessage(MSG_KEY, "s"),
@@ -101,7 +101,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIgnorePrimitiveTypesParameters() throws Exception {
+    void ignorePrimitiveTypesParameters() throws Exception {
         final String[] expected = {
             "14:22: " + getCheckMessage(MSG_KEY, "k"),
             "15:15: " + getCheckMessage(MSG_KEY, "s"),
@@ -116,7 +116,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPrimitiveTypesParameters() throws Exception {
+    void primitiveTypesParameters() throws Exception {
         final String[] expected = {
             "13:14: " + getCheckMessage(MSG_KEY, "i"),
             "14:15: " + getCheckMessage(MSG_KEY, "i"),
@@ -138,14 +138,14 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testReceiverParameters() throws Exception {
+    void receiverParameters() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFinalParametersReceiver.java"), expected);
     }
 
     @Test
-    public void testUnnamedParametersPropertyTrue() throws Exception {
+    void unnamedParametersPropertyTrue() throws Exception {
         final String[] expected = {
             "25:18: " + getCheckMessage(MSG_KEY, "__"),
             "30:18: " + getCheckMessage(MSG_KEY, "_e"),
@@ -159,7 +159,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testUnnamedParametersPropertyFalse() throws Exception {
+    void unnamedParametersPropertyFalse() throws Exception {
         final String[] expected = {
             "20:18: " + getCheckMessage(MSG_KEY, "_"),
             "25:18: " + getCheckMessage(MSG_KEY, "__"),
