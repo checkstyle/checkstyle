@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport {
+class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -35,7 +35,7 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void testGetClassRequiredTokens() {
+    void getClassRequiredTokens() {
         final RecordTypeParameterNameCheck checkObj =
                 new RecordTypeParameterNameCheck();
         final int[] expected = {TokenTypes.TYPE_PARAMETER};
@@ -45,7 +45,7 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void testRecordDefault()
+    void recordDefault()
             throws Exception {
 
         final String pattern = "^[A-Z]$";
@@ -60,7 +60,7 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void testClassFooName()
+    void classFooName()
             throws Exception {
 
         final String pattern = "^foo$";
@@ -75,7 +75,7 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    void getAcceptableTokens() {
         final RecordTypeParameterNameCheck typeParameterNameCheckObj =
                 new RecordTypeParameterNameCheck();
         final int[] actual = typeParameterNameCheckObj.getAcceptableTokens();

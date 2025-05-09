@@ -34,7 +34,7 @@ public class NoArrayTrailingCommaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
         final String[] expected = {
             "20:14: " + getCheckMessage(MSG_KEY),
             "25:32: " + getCheckMessage(MSG_KEY),
@@ -49,7 +49,7 @@ public class NoArrayTrailingCommaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final NoArrayTrailingCommaCheck check = new NoArrayTrailingCommaCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
