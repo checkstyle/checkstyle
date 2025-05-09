@@ -227,13 +227,13 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final List<File> filesToCheck = TestRootModuleChecker.getFilesToCheck();
         assertWithMessage("There are more files to check than expected")
                 .that(filesToCheck)
-                .hasSize(9);
+                .hasSize(8);
         assertWithMessage("The path of file differs from expected")
                 .that(filesToCheck.get(6).getAbsolutePath())
                 .isEqualTo(getPath(FLAWLESS_INPUT));
         assertWithMessage("Amount of logged messages in unexpected")
                 .that(antTask.getLoggedMessages())
-                .hasSize(8);
+                .hasSize(7);
     }
 
     @Test

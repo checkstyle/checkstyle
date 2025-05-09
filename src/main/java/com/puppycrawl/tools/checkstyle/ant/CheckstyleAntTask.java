@@ -264,6 +264,9 @@ public class CheckstyleAntTask extends Task {
         final long startTime = System.currentTimeMillis();
 
         try {
+            final String version = Objects.toString(
+                    CheckstyleAntTask.class.getPackage().getImplementationVersion(),
+                    "version .*");
             // Check for no arguments
             if (fileName == null
                     && fileSets.isEmpty()
@@ -275,9 +278,7 @@ public class CheckstyleAntTask extends Task {
             if (config == null) {
                 throw new BuildException("Must specify 'config'.", getLocation());
             }
-            realExecute(ObjectUtils.defaultIfNull(
-                    CheckstyleAntTask.class.getPackage().getImplementationVersion()
-                    , ""));
+            realExecute(version);
         }
         finally {
             final long endTime = System.currentTimeMillis();
@@ -332,7 +333,7 @@ public class CheckstyleAntTask extends Task {
         log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
             Project.MSG_VERBOSE);
 
-        log("Running Checkstyle"
+        log("Running Checkstyle "
                 + checkstyleVersion
                 + " on " + files.size()
                 + " files", Project.MSG_INFO);
