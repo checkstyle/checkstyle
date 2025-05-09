@@ -28,8 +28,8 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class FileSetCheckTest
-    extends AbstractModuleTestSupport {
+class FileSetCheckTest
+        extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -37,7 +37,7 @@ public class FileSetCheckTest
     }
 
     @Test
-    public void testTranslation() throws Exception {
+    void translation() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputFileSetIllegalTokens.java"), expected);
 
@@ -47,7 +47,7 @@ public class FileSetCheckTest
     }
 
     @Test
-    public void testProcessCallsFinishBeforeCallingDestroy() throws Exception {
+    void processCallsFinishBeforeCallingDestroy() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputFileSetIllegalTokens.java"), expected);
 

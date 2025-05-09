@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  *      testing. The class loader is nested in this class, so the custom class loader we
  *      are using is safe.
  */
-public class PackageNamesLoaderTest extends AbstractPathTestSupport {
+class PackageNamesLoaderTest extends AbstractPathTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -56,7 +56,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testDefault()
+    void testDefault()
             throws CheckstyleException {
         final Set<String> packageNames = PackageNamesLoader
                 .getPackageNames(Thread.currentThread()
@@ -67,7 +67,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testNoPackages() throws Exception {
+    void noPackages() throws Exception {
         final Set<String> actualPackageNames = PackageNamesLoader
                 .getPackageNames(new TestUrlsClassLoader(Collections.emptyEnumeration()));
 
@@ -77,7 +77,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testPackagesFile() throws Exception {
+    void packagesFile() throws Exception {
         final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(
                 new File(getPath("InputPackageNamesLoaderFile.xml")).toURI().toURL()));
 
@@ -115,7 +115,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testPackagesWithDots() throws Exception {
+    void packagesWithDots() throws Exception {
         final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(
                 new File(getPath("InputPackageNamesLoaderWithDots.xml")).toURI().toURL()));
 
@@ -136,7 +136,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testPackagesWithDotsEx() throws Exception {
+    void packagesWithDotsEx() throws Exception {
         final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(
                 new File(getPath("InputPackageNamesLoaderWithDotsEx.xml")).toURI().toURL()));
 
@@ -158,7 +158,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testPackagesWithSaxException() throws Exception {
+    void packagesWithSaxException() throws Exception {
         final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(
                 new File(getPath("InputPackageNamesLoaderNotXml.java")).toURI().toURL()));
 
@@ -175,7 +175,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testPackagesWithIoException() throws Exception {
+    void packagesWithIoException() throws Exception {
         final URLConnection urlConnection = new URLConnection(null) {
             @Override
             public void connect() {
@@ -213,7 +213,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testPackagesWithIoExceptionGetResources() {
+    void packagesWithIoExceptionGetResources() {
         try {
             PackageNamesLoader.getPackageNames(new TestIoExceptionClassLoader());
             assertWithMessage("CheckstyleException is expected").fail();
@@ -230,7 +230,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testUnmodifiableCollection() throws Exception {
+    void unmodifiableCollection() throws Exception {
         final Set<String> actualPackageNames = PackageNamesLoader
                 .getPackageNames(new TestUrlsClassLoader(Collections.emptyEnumeration()));
 
@@ -243,7 +243,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testMapping() throws Exception {
+    void mapping() throws Exception {
         final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(
                 new File(getPath("InputPackageNamesLoader1.xml")).toURI().toURL()));
 
@@ -256,7 +256,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testMapping2() throws Exception {
+    void mapping2() throws Exception {
         final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(
                 new File(getPath("InputPackageNamesLoader2.xml")).toURI().toURL()));
 

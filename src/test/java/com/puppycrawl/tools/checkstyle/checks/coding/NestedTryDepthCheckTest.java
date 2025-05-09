@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
-public class NestedTryDepthCheckTest extends AbstractModuleTestSupport {
+class NestedTryDepthCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -34,7 +34,7 @@ public class NestedTryDepthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
 
         final String[] expected = {
             "29:17: " + getCheckMessage(MSG_KEY, 2, 1),
@@ -47,7 +47,7 @@ public class NestedTryDepthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCustomizedDepth() throws Exception {
+    void customizedDepth() throws Exception {
 
         final String[] expected = {
             "41:21: " + getCheckMessage(MSG_KEY, 3, 2),
@@ -58,7 +58,7 @@ public class NestedTryDepthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final NestedTryDepthCheck check = new NestedTryDepthCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())

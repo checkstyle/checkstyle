@@ -26,17 +26,17 @@ import java.lang.reflect.Field;
 
 import org.junit.jupiter.api.Test;
 
-public class JavadocTokenTypesTest {
+class JavadocTokenTypesTest {
 
     @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException {
+    void isProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(JavadocTokenTypes.class))
                 .isTrue();
     }
 
     @Test
-    public void testTokenValues() {
+    void tokenValues() {
         final String msg = "Please ensure that token values in `JavadocTokenTypes.java` have not"
                 + " changed.";
         assertWithMessage(msg)
@@ -585,7 +585,7 @@ public class JavadocTokenTypesTest {
     }
 
     @Test
-    public void testRuleOffsetValue() throws Exception {
+    void ruleOffsetValue() throws Exception {
         final Field ruleTypesOffset = JavadocTokenTypes.class.getDeclaredField("RULE_TYPES_OFFSET");
         ruleTypesOffset.setAccessible(true);
         assertWithMessage("Please ensure that the field `RULE_TYPES_OFFSET` in"

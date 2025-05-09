@@ -32,8 +32,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * NoFinalizerCheck test.
  *
  */
-public class NoFinalizerCheckTest
-    extends AbstractModuleTestSupport {
+class NoFinalizerCheckTest
+        extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -41,7 +41,7 @@ public class NoFinalizerCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    void getAcceptableTokens() {
         final NoFinalizerCheck noFinalizerCheck =
                 new NoFinalizerCheck();
         final int[] expected = {TokenTypes.METHOD_DEF};
@@ -52,7 +52,7 @@ public class NoFinalizerCheckTest
     }
 
     @Test
-    public void testHasFinalizer()
+    void hasFinalizer()
             throws Exception {
         final String[] expected = {
             "11:5: " + getCheckMessage(MSG_KEY),
@@ -62,7 +62,7 @@ public class NoFinalizerCheckTest
     }
 
     @Test
-    public void testHasNoFinalizer()
+    void hasNoFinalizer()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -70,7 +70,7 @@ public class NoFinalizerCheckTest
     }
 
     @Test
-    public void testHasNoFinalizerTryWithResource()
+    void hasNoFinalizerTryWithResource()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(

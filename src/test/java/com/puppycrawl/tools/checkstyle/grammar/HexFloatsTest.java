@@ -27,8 +27,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * Tests hex floats and doubles can be parsed.
  */
-public class HexFloatsTest
-    extends AbstractModuleTestSupport {
+class HexFloatsTest
+        extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -36,7 +36,7 @@ public class HexFloatsTest
     }
 
     @Test
-    public void testCanParse()
+    void canParse()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputHexFloat.java"), expected);

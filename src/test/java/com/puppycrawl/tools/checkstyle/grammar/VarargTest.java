@@ -27,8 +27,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * Tests varargs can be parsed.
  */
-public class VarargTest
-    extends AbstractModuleTestSupport {
+class VarargTest
+        extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -36,7 +36,7 @@ public class VarargTest
     }
 
     @Test
-    public void testCanParse()
+    void canParse()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputVararg.java"), expected);

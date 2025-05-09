@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Unit test for AnonInnerLengthCheck.
  */
-public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
+class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -38,7 +38,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    void getRequiredTokens() {
         final AnonInnerLengthCheck checkObj = new AnonInnerLengthCheck();
         final int[] expected = {TokenTypes.LITERAL_NEW};
         assertWithMessage("Default required tokens are invalid")
@@ -47,7 +47,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    void getAcceptableTokens() {
         final AnonInnerLengthCheck anonInnerLengthCheckObj =
                 new AnonInnerLengthCheck();
         final int[] actual = anonInnerLengthCheckObj.getAcceptableTokens();
@@ -59,7 +59,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
         final String[] expected = {
             "53:35: " + getCheckMessage(MSG_KEY, 21, 20),
         };
@@ -68,7 +68,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonDefault() throws Exception {
+    void nonDefault() throws Exception {
         final String[] expected = {
             "54:35: " + getCheckMessage(MSG_KEY, 21, 6),
             "79:35: " + getCheckMessage(MSG_KEY, 20, 6),
