@@ -34,6 +34,7 @@ import java.util.Objects;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
 import org.apache.tools.ant.FileScanner;
@@ -263,12 +264,6 @@ public class CheckstyleAntTask extends Task {
         final long startTime = System.currentTimeMillis();
 
         try {
-            final String version = Objects.toString(
-                    CheckstyleAntTask.class.getPackage().getImplementationVersion(),
-                    "");
-
-            log("checkstyle version " + version, Project.MSG_VERBOSE);
-
             // Check for no arguments
             if (fileName == null
                     && fileSets.isEmpty()
@@ -280,7 +275,9 @@ public class CheckstyleAntTask extends Task {
             if (config == null) {
                 throw new BuildException("Must specify 'config'.", getLocation());
             }
-            realExecute(version);
+            realExecute(ObjectUtils.defaultIfNull(
+                    CheckstyleAntTask.class.getPackage().getImplementationVersion()
+                    , ""));
         }
         finally {
             final long endTime = System.currentTimeMillis();
