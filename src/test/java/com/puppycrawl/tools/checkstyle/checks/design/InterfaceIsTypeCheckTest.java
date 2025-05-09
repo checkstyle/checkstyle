@@ -27,8 +27,8 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class InterfaceIsTypeCheckTest
-    extends AbstractModuleTestSupport {
+class InterfaceIsTypeCheckTest
+        extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -36,7 +36,7 @@ public class InterfaceIsTypeCheckTest
     }
 
     @Test
-    public void testDefault()
+    void testDefault()
             throws Exception {
         final String[] expected = {
             "28:5: " + getCheckMessage(MSG_KEY),
@@ -46,7 +46,7 @@ public class InterfaceIsTypeCheckTest
     }
 
     @Test
-    public void testAllowMarker()
+    void allowMarker()
             throws Exception {
         final String[] expected = {
             "23:5: " + getCheckMessage(MSG_KEY),
@@ -57,7 +57,7 @@ public class InterfaceIsTypeCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    void getAcceptableTokens() {
         final InterfaceIsTypeCheck obj = new InterfaceIsTypeCheck();
         final int[] expected = {TokenTypes.INTERFACE_DEF};
         assertWithMessage("Default acceptable tokens are invalid")
@@ -66,7 +66,7 @@ public class InterfaceIsTypeCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    void getRequiredTokens() {
         final InterfaceIsTypeCheck obj = new InterfaceIsTypeCheck();
         final int[] expected = {TokenTypes.INTERFACE_DEF};
         assertWithMessage("Default required tokens are invalid")

@@ -34,8 +34,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * Tests GeneratedJava14Lexer.
  */
-public class GeneratedJava14LexerTest
-    extends AbstractModuleTestSupport {
+class GeneratedJava14LexerTest
+        extends AbstractModuleTestSupport {
 
     /**
      * Is {@code true} if current default encoding is UTF-8.
@@ -49,7 +49,7 @@ public class GeneratedJava14LexerTest
     }
 
     @Test
-    public void testUnexpectedChar() throws Exception {
+    void unexpectedChar() throws Exception {
         // Encoding problems will occur if default encoding is not UTF-8
         Assumptions.assumeTrue(IS_UTF8, "Problems with encoding may occur");
 
@@ -62,7 +62,7 @@ public class GeneratedJava14LexerTest
     }
 
     @Test
-    public void testSemicolonBetweenImports() throws Exception {
+    void semicolonBetweenImports() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputSemicolonBetweenImports.java"), expected);

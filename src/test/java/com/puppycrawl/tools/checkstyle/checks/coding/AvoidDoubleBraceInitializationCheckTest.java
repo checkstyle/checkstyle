@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class AvoidDoubleBraceInitializationCheckTest extends AbstractModuleTestSupport {
+class AvoidDoubleBraceInitializationCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -35,7 +35,7 @@ public class AvoidDoubleBraceInitializationCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
         final String[] expected = {
             "15:53: " + getCheckMessage(MSG_KEY),
             "20:40: " + getCheckMessage(MSG_KEY),
@@ -57,7 +57,7 @@ public class AvoidDoubleBraceInitializationCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final AvoidDoubleBraceInitializationCheck check =
             new AvoidDoubleBraceInitializationCheck();
         final int[] expected = {

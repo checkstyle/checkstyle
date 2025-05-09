@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * Tests Java 9 try-with-resources can be parsed.
  */
-public class Java9TryWithResourcesTest extends AbstractModuleTestSupport {
+class Java9TryWithResourcesTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -35,7 +35,7 @@ public class Java9TryWithResourcesTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCanParse() throws Exception {
+    void canParse() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputJava9TryWithResources.java"), expected);

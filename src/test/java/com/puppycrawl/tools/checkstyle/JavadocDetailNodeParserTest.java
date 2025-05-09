@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
-public class JavadocDetailNodeParserTest extends AbstractModuleTestSupport {
+class JavadocDetailNodeParserTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -37,7 +37,7 @@ public class JavadocDetailNodeParserTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testParseJavadocAsDetailNode() throws Exception {
+    void parseJavadocAsDetailNode() throws Exception {
         final DetailAST ast = JavaParser.parseFile(
             new File(getPath("InputJavadocDetailNodeParser.java")),
             JavaParser.Options.WITH_COMMENTS)

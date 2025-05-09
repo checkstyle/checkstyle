@@ -24,10 +24,10 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpecte
 
 import org.junit.jupiter.api.Test;
 
-public class AuditEventTest {
+class AuditEventTest {
 
     @Test
-    public void test() {
+    void test() {
         final AuditEvent event = new AuditEvent(getClass());
 
         assertWithMessage("invalid file name")
@@ -45,7 +45,7 @@ public class AuditEventTest {
     }
 
     @Test
-    public void testNoSource() {
+    void noSource() {
         final IllegalArgumentException ex = getExpectedThrowable(IllegalArgumentException.class,
                 () -> new AuditEvent(null),
                 "IllegalArgumentException expected");
@@ -55,7 +55,7 @@ public class AuditEventTest {
     }
 
     @Test
-    public void testFullConstructor() {
+    void fullConstructor() {
         final Violation message = new Violation(1, 2, 3, "bundle", "key", null,
                 SeverityLevel.ERROR, "moduleId", getClass(), "customMessage");
         final AuditEvent event = new AuditEvent(getClass(), "fileName", message);

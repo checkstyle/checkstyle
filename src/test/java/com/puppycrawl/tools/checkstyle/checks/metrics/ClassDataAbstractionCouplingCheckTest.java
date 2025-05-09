@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSupport {
+class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -40,7 +40,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testTokens() {
+    void tokens() {
         final ClassDataAbstractionCouplingCheck check = new ClassDataAbstractionCouplingCheck();
         assertWithMessage("Required tokens should not be null")
             .that(check.getRequiredTokens())
@@ -57,7 +57,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void test() throws Exception {
+    void test() throws Exception {
 
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
@@ -70,7 +70,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testExcludedPackageDirectPackages() throws Exception {
+    void excludedPackageDirectPackages() throws Exception {
         final String[] expected = {
             "28:1: " + getCheckMessage(MSG_KEY, 2, 0, "[BasicHttpContext, TlsCiphers]"),
         };
@@ -81,7 +81,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testExcludedPackageCommonPackages() throws Exception {
+    void excludedPackageCommonPackages() throws Exception {
         final String[] expected = {
             "28:1: " + getCheckMessage(MSG_KEY, 2, 0, "[BasicHttpContext, TlsCiphers]"),
             "32:5: " + getCheckMessage(MSG_KEY, 2, 0, "[BasicClientTlsStrategy, CommandSupport]"),
@@ -93,7 +93,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testExcludedPackageWithEndingDot() throws Exception {
+    void excludedPackageWithEndingDot() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
@@ -121,7 +121,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testExcludedPackageCommonPackagesAllIgnored() throws Exception {
+    void excludedPackageCommonPackagesAllIgnored() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputClassDataAbstractionCouplingExcludedPackagesAllIgnored.java"),
@@ -129,14 +129,14 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testDefaultConfiguration() throws Exception {
+    void defaultConfiguration() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputClassDataAbstractionCoupling2.java"), expected);
     }
 
     @Test
-    public void testWrongToken() {
+    void wrongToken() {
         final ClassDataAbstractionCouplingCheck classDataAbstractionCouplingCheckObj =
             new ClassDataAbstractionCouplingCheck();
         final DetailAstImpl ast = new DetailAstImpl();
@@ -153,7 +153,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testRegularExpression() throws Exception {
+    void regularExpression() throws Exception {
 
         final String[] expected = {
             "22:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AnotherInnerClass, int]"),
@@ -165,7 +165,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testEmptyRegularExpression() throws Exception {
+    void emptyRegularExpression() throws Exception {
 
         final String[] expected = {
             "22:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
@@ -178,7 +178,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testClassDataAbstractionCouplingRecords() throws Exception {
+    void classDataAbstractionCouplingRecords() throws Exception {
 
         final int maxAbstraction = 1;
         final String[] expected = {
@@ -195,7 +195,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testNew() throws Exception {
+    void testNew() throws Exception {
 
         final String[] expected = {
             "19:1: " + getCheckMessage(MSG_KEY, 2, 0, "[File, Random]"),
