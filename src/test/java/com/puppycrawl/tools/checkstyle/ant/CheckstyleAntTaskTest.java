@@ -233,7 +233,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 .isEqualTo(getPath(FLAWLESS_INPUT));
         assertWithMessage("Amount of logged messages in unexpected")
                 .that(antTask.getLoggedMessages())
-                .hasSize(8);
+                .hasSize(7);
     }
 
     @Test
@@ -882,11 +882,10 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final String auditFinishedMessage = bundle.getString(DefaultLogger.AUDIT_FINISHED_MESSAGE);
 
         final List<MessageLevelPair> expectedList = Arrays.asList(
-                new MessageLevelPair("checkstyle version .*", Project.MSG_VERBOSE),
                 new MessageLevelPair("Adding standalone file for audit", Project.MSG_VERBOSE),
                 new MessageLevelPair("To locate the files took \\d+ ms.", Project.MSG_VERBOSE),
-                new MessageLevelPair("Running Checkstyle  on 1 files", Project.MSG_INFO),
                 new MessageLevelPair("Using configuration file:.*", Project.MSG_VERBOSE),
+                new MessageLevelPair("Running Checkstyle (version .*) on 1 files", Project.MSG_INFO),
                 new MessageLevelPair(auditStartedMessage, Project.MSG_DEBUG),
                 new MessageLevelPair(auditFinishedMessage, Project.MSG_DEBUG),
                 new MessageLevelPair("To process the files took \\d+ ms.", Project.MSG_VERBOSE),
