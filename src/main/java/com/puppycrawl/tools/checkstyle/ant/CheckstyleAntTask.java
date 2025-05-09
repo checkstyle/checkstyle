@@ -34,7 +34,6 @@ import java.util.Objects;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.ObjectUtils;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
 import org.apache.tools.ant.FileScanner;
@@ -319,54 +318,78 @@ public class CheckstyleAntTask extends Task {
     /**
      * Scans and processes files by means given root module.
      *
-     * @param rootModule Root module to process files
-     * @param warningCounter Root Module's counter of warnings
-     * @param checkstyleVersion Checkstyle compile version
+     * @param root Root module to process files
+     * @param warnings Root Module's counter of warnings
+     * @param version Checkstyle compile version
      * @throws BuildException if the files could not be processed,
      *     or if the build failed due to violations.
      */
-    private void processFiles(RootModule rootModule, final SeverityLevelCounter warningCounter,
-            final String checkstyleVersion) {
-        final long startTime = System.currentTimeMillis();
-        final List<File> files = getFilesToCheck();
-        final long endTime = System.currentTimeMillis();
-        log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
-            Project.MSG_VERBOSE);
-
-        log("Running Checkstyle "
-                + checkstyleVersion
-                + " on " + files.size()
-                + " files", Project.MSG_INFO);
-        log("Using configuration " + config, Project.MSG_VERBOSE);
-
-        final int numErrs;
-
+    private void processFiles(RootModule root, SeverityLevelCounter warnings, String version) {
+        final List<File> files = logStartup(version);
+        final int errors;
         try {
             final long processingStartTime = System.currentTimeMillis();
-            numErrs = rootModule.process(files);
+            errors = root.process(files);
             final long processingEndTime = System.currentTimeMillis();
             log("To process the files took " + (processingEndTime - processingStartTime)
                 + TIME_SUFFIX, Project.MSG_VERBOSE);
         }
-        catch (CheckstyleException exc) {
-            throw new BuildException("Unable to process files: " + files, exc);
+        catch (CheckstyleException ex) {
+            throw new BuildException("Unable to process files: " + files, ex);
         }
-        final int numWarnings = warningCounter.getCount();
-        final boolean okStatus = numErrs <= maxErrors && numWarnings <= maxWarnings;
+        handleReturnStatus(warnings, errors);
+    }
 
-        // Handle the return status
-        if (!okStatus) {
-            final String failureMsg =
-                    "Got " + numErrs + " errors (max allowed: " + maxErrors + ") and "
-                            + numWarnings + " warnings.";
+    /**
+     * Processes the result of Checkstyle validation and handles any violations.
+     * If the number of errors or warnings exceeds the configured maximum limits,
+     /**
+     * Processes Checkstyle validation results and handles violations based on configured thresholds.
+     *
+     * <p>Compares the number of errors and warnings against the configured maximum limits.
+     * If either exceeds their respective maximum:
+     * <ul>
+     *   <li>Sets the failure property with an error message (if failureProperty is configured)</li>
+     *   <li>Throws a BuildException (if failOnViolation is true)</li>
+     * </ul>
+     *
+     * @param warnings Counter tracking the number of validation warnings (must not be null)
+     * @param errors Number of validation errors found (must be >= 0)
+     * @throws BuildException if violation thresholds are exceeded and failOnViolation is true
+     * @throws NullPointerException if warnings parameter is null
+     * @throws IllegalArgumentException if errors is negative
+     */
+    private void handleReturnStatus(SeverityLevelCounter warnings, int errors) {
+        if (!(errors <= maxErrors && warnings.getCount() <= maxWarnings)) {
+            final String error = "Got " + errors + " errors (max allowed: " + maxErrors + ") and "
+                    + warnings.getCount() + " warnings.";
             if (failureProperty != null) {
-                getProject().setProperty(failureProperty, failureMsg);
+                getProject().setProperty(failureProperty, error);
             }
-
             if (failOnViolation) {
-                throw new BuildException(failureMsg, getLocation());
+                throw new BuildException(error, getLocation());
             }
         }
+    }
+
+    /**
+     * Logs startup information for the Checkstyle process including file location time,
+     * configuration being used, and the number of files to be checked.
+     *
+     * @param checkstyleVersion the version of Checkstyle being used
+     * @return List of files that will be checked
+     */
+    private List<File> logStartup(String checkstyleVersion) {
+        final long start = System.currentTimeMillis();
+        final List<File> files = getFilesToCheck();
+        final long end = System.currentTimeMillis();
+        log("To locate the files took " + (end - start) + TIME_SUFFIX, Project.MSG_VERBOSE);
+        log("Using configuration " + config, Project.MSG_VERBOSE);
+        log("Running Checkstyle "
+                + checkstyleVersion
+                + " on " + files.size()
+                + " files", Project.MSG_INFO);
+        return files;
     }
 
     /**
@@ -402,7 +425,7 @@ public class CheckstyleAntTask extends Task {
             rootModule.setModuleClassLoader(moduleClassLoader);
             rootModule.configure(configuration);
         }
-        catch (final CheckstyleException exc) {
+        catch (CheckstyleException exc) {
             throw new BuildException(String.format(Locale.ROOT, "Unable to create Root Module: "
                     + "config {%s}.", config), exc);
         }
@@ -424,7 +447,7 @@ public class CheckstyleAntTask extends Task {
             try (InputStream inStream = Files.newInputStream(properties)) {
                 returnValue.load(inStream);
             }
-            catch (final IOException exc) {
+            catch (IOException exc) {
                 throw new BuildException("Error loading Properties file '"
                         + properties + "'", exc, getLocation());
             }
