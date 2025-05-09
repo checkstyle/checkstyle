@@ -26,8 +26,8 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
-public class EmptyStatementCheckTest
-    extends AbstractModuleTestSupport {
+class EmptyStatementCheckTest
+        extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -35,7 +35,7 @@ public class EmptyStatementCheckTest
     }
 
     @Test
-    public void testEmptyStatements()
+    void emptyStatements()
             throws Exception {
         final String[] expected = {
             "18:7: " + getCheckMessage(MSG_KEY),
@@ -61,7 +61,7 @@ public class EmptyStatementCheckTest
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final EmptyStatementCheck check = new EmptyStatementCheck();
         assertWithMessage("Acceptable tokens should not be null")
                 .that(check.getAcceptableTokens())

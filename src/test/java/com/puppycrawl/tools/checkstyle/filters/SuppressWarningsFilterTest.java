@@ -32,8 +32,8 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class SuppressWarningsFilterTest
-    extends AbstractModuleTestSupport {
+class SuppressWarningsFilterTest
+        extends AbstractModuleTestSupport {
 
     private static final String[] ALL_MESSAGES = {
         "48:5: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
@@ -83,14 +83,14 @@ public class SuppressWarningsFilterTest
     }
 
     @Test
-    public void testNone() throws Exception {
+    void none() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifySuppressedWithParser(
             getPath("InputSuppressWarningsFilterWithoutFilter.java"), suppressed);
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
         final String[] suppressed = {
             "56:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -114,7 +114,7 @@ public class SuppressWarningsFilterTest
     }
 
     @Test
-    public void testSuppressById() throws Exception {
+    void suppressById() throws Exception {
         final String[] suppressedViolationMessages = {
             "49:17: "
                 + getCheckMessage(AbstractNameCheck.class,

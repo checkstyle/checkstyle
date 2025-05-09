@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -42,7 +42,7 @@ import org.xml.sax.helpers.AttributesImpl;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
-public class ImportControlLoaderTest {
+class ImportControlLoaderTest {
 
     private static String getPath(String filename) {
         return "src/test/resources/com/puppycrawl/tools/"
@@ -50,7 +50,7 @@ public class ImportControlLoaderTest {
     }
 
     @Test
-    public void testLoad() throws CheckstyleException {
+    void load() throws CheckstyleException {
         final AbstractImportControl root =
                 ImportControlLoader.load(
                     new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
@@ -60,7 +60,7 @@ public class ImportControlLoaderTest {
     }
 
     @Test
-    public void testWrongFormatUri() throws Exception {
+    void wrongFormatUri() throws Exception {
         try {
             ImportControlLoader.load(new URI("aaa://"
                     + getPath("InputImportControlLoaderComplete.xml")));
@@ -79,7 +79,7 @@ public class ImportControlLoaderTest {
     }
 
     @Test
-    public void testExtraElementInConfig() throws Exception {
+    void extraElementInConfig() throws Exception {
         final AbstractImportControl root =
                 ImportControlLoader.load(
                     new File(getPath("InputImportControlLoaderWithNewElement.xml")).toURI());
@@ -88,9 +88,9 @@ public class ImportControlLoaderTest {
             .isNotNull();
     }
 
-    @Test
     // UT uses Reflection to avoid removing null-validation from static method
-    public void testSafeGetThrowsException() {
+    @Test
+    void safeGetThrowsException() {
         final AttributesImpl attr = new AttributesImpl() {
             @Override
             public String getValue(int index) {
@@ -117,11 +117,11 @@ public class ImportControlLoaderTest {
         }
     }
 
-    @Test
     // UT uses Reflection to cover IOException from 'loader.parseInputSource(source);'
     // because this is possible situation (though highly unlikely), which depends on hardware
     // and is difficult to emulate
-    public void testLoadThrowsException() {
+    @Test
+    void loadThrowsException() {
         final InputSource source = new InputSource();
         try {
             final Class<?> clazz = ImportControlLoader.class;
@@ -145,7 +145,7 @@ public class ImportControlLoaderTest {
     }
 
     @Test
-    public void testInputStreamFailsOnRead() throws Exception {
+    void inputStreamFailsOnRead() throws Exception {
         try (InputStream inputStream = mock()) {
             final int available = doThrow(IOException.class).when(inputStream).available();
             final URL url = mock();
@@ -153,9 +153,8 @@ public class ImportControlLoaderTest {
             final URI uri = mock();
             when(uri.toURL()).thenReturn(url);
 
-            final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
-                ImportControlLoader.load(uri);
-            });
+            final CheckstyleException ex = assertThatExceptionOfType(CheckstyleException.class).isThrownBy(() ->
+                    ImportControlLoader.load(uri)).actual();
             assertWithMessage("Invalid exception class")
                     .that(ex)
                     .hasCauseThat()

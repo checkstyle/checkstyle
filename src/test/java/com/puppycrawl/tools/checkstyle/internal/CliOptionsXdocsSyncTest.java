@@ -42,10 +42,10 @@ import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 import picocli.CommandLine;
 import picocli.CommandLine.Model.OptionSpec;
 
-public class CliOptionsXdocsSyncTest {
+class CliOptionsXdocsSyncTest {
 
     @Test
-    public void validateCliDocSections() throws Exception {
+    void validateCliDocSections() throws Exception {
         final NodeList sections = getSectionsFromXdoc("src/site/xdoc/cmdline.xml.vm");
         final Node cmdUsageSection = sections.item(2);
         final Map<String, String> cmdOptions = getOptions(cmdUsageSection);
@@ -80,7 +80,7 @@ public class CliOptionsXdocsSyncTest {
     }
 
     @Test
-    public void validateCliUsageSection() throws Exception {
+    void validateCliUsageSection() throws Exception {
         final NodeList sections = getSectionsFromXdoc("src/site/xdoc/cmdline.xml.vm");
         final Node usageSource = XmlUtil.getFirstChildElement(sections.item(2));
         final String usageText = XmlUtil.getFirstChildElement(usageSource).getTextContent();

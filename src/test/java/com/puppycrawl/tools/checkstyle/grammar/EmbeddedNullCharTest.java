@@ -27,8 +27,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * Tests that embedded nulls in string literals does not halt parsing.
  */
-public class EmbeddedNullCharTest
-    extends AbstractModuleTestSupport {
+class EmbeddedNullCharTest
+        extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -36,7 +36,7 @@ public class EmbeddedNullCharTest
     }
 
     @Test
-    public void testCanParse()
+    void canParse()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(

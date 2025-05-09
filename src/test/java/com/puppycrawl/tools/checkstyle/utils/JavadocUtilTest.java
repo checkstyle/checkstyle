@@ -37,10 +37,10 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
 
-public class JavadocUtilTest {
+class JavadocUtilTest {
 
     @Test
-    public void testTags() {
+    void tags() {
         final String[] text = {
             "/** @see elsewhere ",
             " * {@link List }, {@link List link text }",
@@ -56,7 +56,7 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testBlockTag() {
+    void blockTag() {
         final String[] text = {
             "/** @see elsewhere ",
             " */",
@@ -70,7 +70,7 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testTagType() {
+    void tagType() {
         final String[] text = {
             "/** @see block",
             " * {@link List inline}, {@link List#add(Object)}",
@@ -89,7 +89,7 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testInlineTagLinkText() {
+    void inlineTagLinkText() {
         final String[] text = {
             "/** {@link List link text }",
         };
@@ -102,7 +102,7 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testInlineTagMethodRef() {
+    void inlineTagMethodRef() {
         final String[] text = {
             "/** {@link List#add(Object)}",
         };
@@ -115,7 +115,7 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testTagPositions() {
+    void tagPositions() {
         final String[] text = {
             "/** @see elsewhere",
             "    also {@link Name value} */",
@@ -153,7 +153,7 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testInlineTagPositions() {
+    void inlineTagPositions() {
         final String[] text = {"/** Also {@link Name value} */"};
         final Comment comment = new Comment(text, 1, 0, text[0].length());
 
@@ -174,7 +174,7 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testInvalidTags() {
+    void invalidTags() {
         final String[] text = {
             "/** @fake block",
             " * {@bogus inline}",
@@ -198,7 +198,7 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testEmptyBlockComment() {
+    void emptyBlockComment() {
         final String emptyComment = "";
         assertWithMessage("Should return false when empty string is passed")
                 .that(JavadocUtil.isJavadocComment(emptyComment))
@@ -206,7 +206,7 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testEmptyBlockCommentAst() {
+    void emptyBlockCommentAst() {
         final DetailAstImpl commentBegin = new DetailAstImpl();
         commentBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
         commentBegin.setText("/*");
@@ -228,7 +228,7 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testEmptyJavadocComment() {
+    void emptyJavadocComment() {
         final String emptyJavadocComment = "*";
         assertWithMessage("Should return true when empty javadoc comment is passed")
                 .that(JavadocUtil.isJavadocComment(emptyJavadocComment))
@@ -236,7 +236,7 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testEmptyJavadocCommentAst() {
+    void emptyJavadocCommentAst() {
         final DetailAstImpl commentBegin = new DetailAstImpl();
         commentBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
         commentBegin.setText("/*");
@@ -265,21 +265,21 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException {
+    void isProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(JavadocUtil.class))
                 .isTrue();
     }
 
     @Test
-    public void testGetTokenNameForId() {
+    void getTokenNameForId() {
         assertWithMessage("Invalid token name")
             .that(JavadocUtil.getTokenName(JavadocTokenTypes.EOF))
             .isEqualTo("EOF");
     }
 
     @Test
-    public void testGetTokenNameForLargeId() {
+    void getTokenNameForLargeId() {
         try {
             JavadocUtil.getTokenName(30073);
             assertWithMessage("exception expected").fail();
@@ -292,7 +292,7 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testGetTokenNameForInvalidId() {
+    void getTokenNameForInvalidId() {
         try {
             JavadocUtil.getTokenName(110);
             assertWithMessage("exception expected").fail();
@@ -305,7 +305,7 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testGetTokenNameForLowerBoundInvalidId() {
+    void getTokenNameForLowerBoundInvalidId() {
         try {
             JavadocUtil.getTokenName(10095);
             assertWithMessage("exception expected").fail();
@@ -318,7 +318,7 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testGetTokenIdThatIsUnknown() {
+    void getTokenIdThatIsUnknown() {
         try {
             JavadocUtil.getTokenId("");
             assertWithMessage("exception expected").fail();
@@ -331,7 +331,7 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testGetTokenId() {
+    void getTokenId() {
         final int tokenId = JavadocUtil.getTokenId("JAVADOC");
 
         assertWithMessage("Invalid token id")
@@ -340,7 +340,7 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testGetJavadocCommentContent() {
+    void getJavadocCommentContent() {
         final DetailAstImpl detailAST = new DetailAstImpl();
         final DetailAstImpl javadoc = new DetailAstImpl();
 
@@ -354,7 +354,7 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testGetFirstToken() {
+    void getFirstToken() {
         final JavadocNodeImpl javadocNode = new JavadocNodeImpl();
         final JavadocNodeImpl basetag = new JavadocNodeImpl();
         basetag.setType(JavadocTokenTypes.BASE_TAG);
@@ -373,7 +373,7 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testGetPreviousSibling() {
+    void getPreviousSibling() {
         final JavadocNodeImpl root = new JavadocNodeImpl();
 
         final JavadocNodeImpl node = new JavadocNodeImpl();
@@ -394,14 +394,14 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testGetLastTokenName() {
+    void getLastTokenName() {
         assertWithMessage("Unexpected token name")
             .that(JavadocUtil.getTokenName(10094))
             .isEqualTo("RP");
     }
 
     @Test
-    public void testEscapeAllControlChars() {
+    void escapeAllControlChars() {
         assertWithMessage("invalid result")
             .that(JavadocUtil.escapeAllControlChars("abc"))
             .isEqualTo("abc");

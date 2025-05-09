@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import java.io.ByteArrayOutputStream;
@@ -42,17 +42,17 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-public class DefaultLoggerTest {
+class DefaultLoggerTest {
 
     private static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
         ResourceBundle.clearCache();
     }
 
     @Test
-    public void testCtor() {
+    void ctor() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
@@ -74,7 +74,7 @@ public class DefaultLoggerTest {
      * We keep this test for 100% coverage. Until #12873.
      */
     @Test
-    public void testCtorWithTwoParameters() {
+    void ctorWithTwoParameters() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE);
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
@@ -89,7 +89,7 @@ public class DefaultLoggerTest {
      * We keep this test for 100% coverage. Until #12873.
      */
     @Test
-    public void testCtorWithTwoParametersCloseStreamOptions() {
+    void ctorWithTwoParametersCloseStreamOptions() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream,
                 AutomaticBean.OutputStreamOptions.CLOSE);
@@ -104,7 +104,7 @@ public class DefaultLoggerTest {
      * We keep this test for 100% coverage. Until #12873.
      */
     @Test
-    public void testCtorWithTwoParametersNoneStreamOptions() {
+    void ctorWithTwoParametersNoneStreamOptions() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream,
                 AutomaticBean.OutputStreamOptions.NONE);
@@ -116,7 +116,7 @@ public class DefaultLoggerTest {
     }
 
     @Test
-    public void testCtorWithNullParameter() {
+    void ctorWithNullParameter() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE);
         dl.addException(new AuditEvent(5000), new IllegalStateException("upsss"));
@@ -128,7 +128,7 @@ public class DefaultLoggerTest {
     }
 
     @Test
-    public void testNewCtorWithTwoParameters() {
+    void newCtorWithTwoParameters() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.NONE);
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
@@ -139,11 +139,9 @@ public class DefaultLoggerTest {
     }
 
     @Test
-    public void testNullInfoStreamOptions() {
+    void nullInfoStreamOptions() {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
-                () -> new DefaultLogger(outputStream, (OutputStreamOptions) null),
-                "IllegalArgumentException expected");
+        final IllegalArgumentException ex = assertThatExceptionOfType(IllegalArgumentException.class).as("IllegalArgumentException expected").isThrownBy(() -> new DefaultLogger(outputStream, (OutputStreamOptions) null)).actual();
         assertWithMessage("Invalid error message")
                 .that(ex)
                 .hasMessageThat()
@@ -151,19 +149,17 @@ public class DefaultLoggerTest {
     }
 
     @Test
-    public void testNullErrorStreamOptions() {
+    void nullErrorStreamOptions() {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
-                () -> {
-                    final DefaultLogger defaultLogger = new DefaultLogger(outputStream,
+        final DefaultLogger defaultLogger = new DefaultLogger(outputStream,
                             OutputStreamOptions.CLOSE, outputStream, null);
+        final IllegalArgumentException ex = assertThatExceptionOfType(IllegalArgumentException.class).as("IllegalArgumentException expected").isThrownBy(() -> {
 
-                    // Workaround for Eclipse error "The allocated object is never used"
-                    assertWithMessage("defaultLogger should be non-null")
-                            .that(defaultLogger)
-                            .isNotNull();
-                },
-                "IllegalArgumentException expected");
+            // Workaround for Eclipse error "The allocated object is never used"
+            assertWithMessage("defaultLogger should be non-null")
+                    .that(defaultLogger)
+                    .isNotNull();
+        }).actual();
         assertWithMessage("Invalid error message")
                 .that(ex)
                 .hasMessageThat()
@@ -171,7 +167,7 @@ public class DefaultLoggerTest {
     }
 
     @Test
-    public void testAddError() {
+    void addError() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final OutputStream errorStream = new ByteArrayOutputStream();
         final String auditStartMessage = getAuditStartMessage();
@@ -197,7 +193,7 @@ public class DefaultLoggerTest {
     }
 
     @Test
-    public void testAddErrorModuleId() {
+    void addErrorModuleId() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final OutputStream errorStream = new ByteArrayOutputStream();
         final String auditFinishMessage = getAuditFinishMessage();
@@ -222,7 +218,7 @@ public class DefaultLoggerTest {
     }
 
     @Test
-    public void testAddErrorIgnoreSeverityLevel() {
+    void addErrorIgnoreSeverityLevel() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final OutputStream errorStream = new ByteArrayOutputStream();
         final DefaultLogger defaultLogger = new DefaultLogger(
@@ -241,7 +237,7 @@ public class DefaultLoggerTest {
     }
 
     @Test
-    public void testFinishLocalSetup() {
+    void finishLocalSetup() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream,
                 OutputStreamOptions.CLOSE);
@@ -257,7 +253,7 @@ public class DefaultLoggerTest {
      * Verifies that the language specified with the system property {@code user.language} exists.
      */
     @Test
-    public void testLanguageIsValid() {
+    void languageIsValid() {
         final String language = DEFAULT_LOCALE.getLanguage();
         assumeFalse(language.isEmpty(), "Locale not set");
         assertWithMessage("Invalid language")
@@ -269,7 +265,7 @@ public class DefaultLoggerTest {
      * Verifies that the country specified with the system property {@code user.country} exists.
      */
     @Test
-    public void testCountryIsValid() {
+    void countryIsValid() {
         final String country = DEFAULT_LOCALE.getCountry();
         assumeFalse(country.isEmpty(), "Locale not set");
         assertWithMessage("Invalid country")
@@ -278,7 +274,7 @@ public class DefaultLoggerTest {
     }
 
     @Test
-    public void testNewCtor() throws Exception {
+    void newCtor() throws Exception {
         final ResourceBundle bundle = ResourceBundle.getBundle(
                 Definitions.CHECKSTYLE_BUNDLE, Locale.ENGLISH);
         final String auditStartedMessage = bundle.getString(DefaultLogger.AUDIT_STARTED_MESSAGE);
@@ -323,7 +319,7 @@ public class DefaultLoggerTest {
     }
 
     @Test
-    public void testStreamsNotClosedByLogger() throws IOException {
+    void streamsNotClosedByLogger() throws IOException {
         try (MockByteArrayOutputStream infoStream = new MockByteArrayOutputStream();
              MockByteArrayOutputStream errorStream = new MockByteArrayOutputStream()) {
             final DefaultLogger defaultLogger = new DefaultLogger(

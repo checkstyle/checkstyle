@@ -24,7 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class DefaultMethodsTest extends AbstractModuleTestSupport {
+class DefaultMethodsTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -32,7 +32,7 @@ public class DefaultMethodsTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCanParse()
+    void canParse()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -40,7 +40,7 @@ public class DefaultMethodsTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSwitch()
+    void testSwitch()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(

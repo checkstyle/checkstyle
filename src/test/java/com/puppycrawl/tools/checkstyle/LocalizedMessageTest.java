@@ -46,13 +46,13 @@ import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
  * @noinspectionreason ClassLoaderInstantiation - Custom class loader is needed to
  *      pass URLs for testing
  */
-public class LocalizedMessageTest {
+class LocalizedMessageTest {
 
     private static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
 
     @DefaultLocale("en")
     @Test
-    public void testNullArgs() {
+    void nullArgs() {
         final LocalizedMessage messageClass = new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
                 DefaultLogger.class, "DefaultLogger.addException", "myfile");
         assertWithMessage("Violation should contain exception info")
@@ -68,7 +68,7 @@ public class LocalizedMessageTest {
     }
 
     @Test
-    public void testBundleReloadUrlNull() throws IOException {
+    void bundleReloadUrlNull() throws IOException {
         final Utf8Control control = new Utf8Control();
         final ResourceBundle bundle = control.newBundle(
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages",
@@ -88,7 +88,7 @@ public class LocalizedMessageTest {
      *      testing
      */
     @Test
-    public void testBundleReloadUrlNotNull() throws IOException {
+    void bundleReloadUrlNotNull() throws IOException {
         final AtomicBoolean closed = new AtomicBoolean();
 
         final InputStream inputStream = new InputStream() {
@@ -145,7 +145,7 @@ public class LocalizedMessageTest {
      *      testing
      */
     @Test
-    public void testBundleReloadUrlNotNullFalseReload() throws IOException {
+    void bundleReloadUrlNotNullFalseReload() throws IOException {
         final AtomicBoolean closed = new AtomicBoolean();
 
         final InputStream inputStream = new InputStream() {
@@ -194,7 +194,7 @@ public class LocalizedMessageTest {
     }
 
     @Test
-    public void testBundleReloadUrlNotNullStreamNull() throws IOException {
+    void bundleReloadUrlNotNullStreamNull() throws IOException {
         final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL ignore) {
@@ -216,7 +216,7 @@ public class LocalizedMessageTest {
      * Verifies that the language specified with the system property {@code user.language} exists.
      */
     @Test
-    public void testLanguageIsValid() {
+    void languageIsValid() {
         final String language = DEFAULT_LOCALE.getLanguage();
         assumeFalse(language.isEmpty(), "Locale not set");
         assertWithMessage("Invalid language")
@@ -229,7 +229,7 @@ public class LocalizedMessageTest {
      * Verifies that the country specified with the system property {@code user.country} exists.
      */
     @Test
-    public void testCountryIsValid() {
+    void countryIsValid() {
         final String country = DEFAULT_LOCALE.getCountry();
         assumeFalse(country.isEmpty(), "Locale not set");
         assertWithMessage("Invalid country")
@@ -239,7 +239,7 @@ public class LocalizedMessageTest {
     }
 
     @Test
-    public void testMessageInFrench() {
+    void messageInFrench() {
         final LocalizedMessage violation = createSampleViolation();
         LocalizedMessage.setLocale(Locale.FRENCH);
 
@@ -250,7 +250,7 @@ public class LocalizedMessageTest {
 
     @DefaultLocale("fr")
     @Test
-    public void testEnforceEnglishLanguageBySettingUnitedStatesLocale() {
+    void enforceEnglishLanguageBySettingUnitedStatesLocale() {
         LocalizedMessage.setLocale(Locale.US);
         final LocalizedMessage violation = createSampleViolation();
 
@@ -261,7 +261,7 @@ public class LocalizedMessageTest {
 
     @DefaultLocale("fr")
     @Test
-    public void testEnforceEnglishLanguageBySettingRootLocale() {
+    void enforceEnglishLanguageBySettingRootLocale() {
         LocalizedMessage.setLocale(Locale.ROOT);
         final LocalizedMessage violation = createSampleViolation();
 
@@ -276,7 +276,7 @@ public class LocalizedMessageTest {
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
         LocalizedMessage.setLocale(DEFAULT_LOCALE);
     }
 

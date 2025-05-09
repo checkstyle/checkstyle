@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
  * @noinspectionreason ClassIndependentOfModule - architecture of test modules
  *      requires this structure
  */
-public class GeneratedJavaTokenTypesTest {
+class GeneratedJavaTokenTypesTest {
 
     /**
      * The following tokens are not declared in the lexer's 'tokens' block,
@@ -78,7 +78,7 @@ public class GeneratedJavaTokenTypesTest {
      * </p>
      */
     @Test
-    public void testTokenNumbering() {
+    void tokenNumbering() {
         final String message = "A token's number has changed. Please open"
                 + " 'GeneratedJavaTokenTypesTest' and confirm which token is at fault.\n"
                 + "Token numbers must not change or else they will create a conflict"
@@ -767,7 +767,7 @@ public class GeneratedJavaTokenTypesTest {
      * Collections#lastIndexOfSubList to return a -1 and fail the test.
      */
     @Test
-    public void testTokenHasBeenAddedToTokensBlockInLexerGrammar() {
+    void tokenHasBeenAddedToTokensBlockInLexerGrammar() {
         final VocabularyImpl vocabulary = (VocabularyImpl) JavaLanguageLexer.VOCABULARY;
         final String[] nullableSymbolicNames = vocabulary.getSymbolicNames();
         final List<String> allTokenNames = Arrays.stream(nullableSymbolicNames)

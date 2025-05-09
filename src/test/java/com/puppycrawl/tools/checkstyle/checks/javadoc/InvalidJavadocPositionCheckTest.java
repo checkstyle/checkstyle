@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
+class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -35,7 +35,7 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    void getAcceptableTokens() {
         final int[] expected = {
             TokenTypes.BLOCK_COMMENT_BEGIN,
         };
@@ -48,7 +48,7 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    void getRequiredTokens() {
         final int[] expected = {
             TokenTypes.BLOCK_COMMENT_BEGIN,
         };
@@ -61,7 +61,7 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
         final String[] expected = {
             "7:9: " + getCheckMessage(MSG_KEY),
             "10:1: " + getCheckMessage(MSG_KEY),
@@ -95,7 +95,7 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPackageInfo() throws Exception {
+    void packageInfo() throws Exception {
         final String[] expected = {
             "7:1: " + getCheckMessage(MSG_KEY),
         };
@@ -104,7 +104,7 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPackageInfoComment() throws Exception {
+    void packageInfoComment() throws Exception {
         final String[] expected = {
             "7:1: " + getCheckMessage(MSG_KEY),
         };

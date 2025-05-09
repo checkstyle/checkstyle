@@ -24,8 +24,8 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class MultiDimensionalArraysInGenericsTest
-    extends AbstractModuleTestSupport {
+class MultiDimensionalArraysInGenericsTest
+        extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -33,7 +33,7 @@ public class MultiDimensionalArraysInGenericsTest
     }
 
     @Test
-    public void testCanParse()
+    void canParse()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(

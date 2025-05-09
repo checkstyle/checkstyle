@@ -27,8 +27,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * Tests Java 7 multi-catch can be parsed.
  */
-public class Java7MultiCatchTest
-    extends AbstractModuleTestSupport {
+class Java7MultiCatchTest
+        extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -36,7 +36,7 @@ public class Java7MultiCatchTest
     }
 
     @Test
-    public void testCanParse()
+    void canParse()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
