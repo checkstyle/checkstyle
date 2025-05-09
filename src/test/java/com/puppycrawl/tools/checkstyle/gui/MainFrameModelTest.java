@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 
-public class MainFrameModelTest extends AbstractModuleTestSupport {
+class MainFrameModelTest extends AbstractModuleTestSupport {
 
     private static final String FILE_NAME_TEST_DATA = "InputMainFrameModel.java";
     private static final String FILE_NAME_NON_EXISTENT = "non-existent.file";
@@ -51,13 +51,13 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @BeforeEach
-    public void prepareTestData() throws IOException {
+    void prepareTestData() throws IOException {
         model = new MainFrameModel();
         testData = new File(getPath(FILE_NAME_TEST_DATA));
     }
 
     @Test
-    public void testParseModeEnum() {
+    void parseModeEnum() {
         for (final ParseMode parseMode : ParseMode.values()) {
             switch (parseMode) {
                 case PLAIN_JAVA:
@@ -82,7 +82,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOpenFileWithParseModePlainJava() throws Exception {
+    void openFileWithParseModePlainJava() throws Exception {
         // Default parse mode: Plain Java
         model.openFile(testData);
         verifyCorrectTestDataInFrameModel();
@@ -92,7 +92,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOpenFileWithParseModeJavaWithComments() throws Exception {
+    void openFileWithParseModeJavaWithComments() throws Exception {
         model.setParseMode(ParseMode.JAVA_WITH_COMMENTS);
         model.openFile(testData);
 
@@ -100,7 +100,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOpenFileWithParseModeJavaWithJavadocAndComments() throws Exception {
+    void openFileWithParseModeJavaWithJavadocAndComments() throws Exception {
         model.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         model.openFile(testData);
 
@@ -108,7 +108,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOpenFileNullParameter() throws Exception {
+    void openFileNullParameter() throws Exception {
         model.openFile(testData);
 
         model.openFile(null);
@@ -118,7 +118,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOpenFileNullParameter2() throws Exception {
+    void openFileNullParameter2() throws Exception {
         model.openFile(null);
 
         assertWithMessage("Test is null")
@@ -136,7 +136,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOpenFileNonExistentFile() throws IOException {
+    void openFileNonExistentFile() throws IOException {
         final File nonExistentFile = new File(getPath(FILE_NAME_NON_EXISTENT));
 
         try {
@@ -156,7 +156,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOpenFileNonCompilableFile() throws IOException {
+    void openFileNonCompilableFile() throws IOException {
         final File nonCompilableFile = new File(getNonCompilablePath(FILE_NAME_NON_COMPILABLE));
 
         try {
@@ -210,7 +210,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testShouldAcceptDirectory() {
+    void shouldAcceptDirectory() {
         final File directory = mock();
         when(directory.isDirectory()).thenReturn(true);
         assertWithMessage("MainFrame should accept directory")
@@ -219,7 +219,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testShouldAcceptFile() throws IOException {
+    void shouldAcceptFile() throws IOException {
         final File javaFile = new File(getPath(FILE_NAME_TEST_DATA));
         assertWithMessage("MainFrame should accept java file")
                 .that(MainFrameModel.shouldAcceptFile(javaFile))
@@ -227,7 +227,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testShouldNotAcceptNonJavaFile() {
+    void shouldNotAcceptNonJavaFile() {
         final File nonJavaFile = mock();
         when(nonJavaFile.isDirectory()).thenReturn(false);
         when(nonJavaFile.getName()).thenReturn(FILE_NAME_NON_JAVA);
@@ -237,7 +237,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testShouldNotAcceptNonExistentFile() throws IOException {
+    void shouldNotAcceptNonExistentFile() throws IOException {
         final File nonExistentFile = new File(getPath(FILE_NAME_NON_EXISTENT));
         assertWithMessage("MainFrame should not accept non-existent file")
                 .that(MainFrameModel.shouldAcceptFile(nonExistentFile))
@@ -245,7 +245,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOpenFileForUnknownParseMode() throws IOException {
+    void openFileForUnknownParseMode() throws IOException {
         final File javaFile = new File(getPath(FILE_NAME_TEST_DATA));
         final ParseMode mock = mock();
         model.setParseMode(mock);

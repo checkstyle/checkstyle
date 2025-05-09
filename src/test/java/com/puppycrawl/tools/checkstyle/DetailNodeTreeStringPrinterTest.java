@@ -32,7 +32,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
+class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -40,20 +40,20 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException {
+    void isProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(DetailNodeTreeStringPrinter.class))
                 .isTrue();
     }
 
     @Test
-    public void testParseFile() throws Exception {
+    void parseFile() throws Exception {
         verifyJavadocTree(getPath("ExpectedDetailNodeTreeStringPrinterJavadocComment.txt"),
                 getPath("InputDetailNodeTreeStringPrinterJavadocComment.javadoc"));
     }
 
     @Test
-    public void testParseFileWithError() throws Exception {
+    void parseFileWithError() throws Exception {
         final File file = new File(
                 getPath("InputDetailNodeTreeStringPrinterJavadocWithError.javadoc"));
         try {
@@ -71,14 +71,14 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testNoUnnecessaryTextInJavadocAst() throws Exception {
+    void noUnnecessaryTextInJavadocAst() throws Exception {
         verifyJavadocTree(
                 getPath("ExpectedDetailNodeTreeStringPrinterNoUnnecessaryTextInJavadocAst.txt"),
                 getPath("InputDetailNodeTreeStringPrinterNoUnnecessaryTextInJavadocAst.javadoc"));
     }
 
     @Test
-    public void testMissedHtmlTagParseErrorMessage() throws Exception {
+    void missedHtmlTagParseErrorMessage() throws Exception {
         final String actual = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                 "getParseErrorMessage",
                 new ParseErrorMessage(35, MSG_JAVADOC_MISSED_HTML_CLOSE, 7, "xyz"));
@@ -96,7 +96,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testParseErrorMessage() throws Exception {
+    void parseErrorMessage() throws Exception {
         final String actual = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                 "getParseErrorMessage",
                 new ParseErrorMessage(10, MSG_JAVADOC_PARSE_RULE_ERROR,
@@ -114,7 +114,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testWrongSingletonParseErrorMessage() throws Exception {
+    void wrongSingletonParseErrorMessage() throws Exception {
         final String actual = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                 "getParseErrorMessage",
                 new ParseErrorMessage(100, MSG_JAVADOC_WRONG_SINGLETON_TAG,
@@ -133,7 +133,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testUnescapedJavaCodeWithGenericsInJavadoc() throws Exception {
+    void unescapedJavaCodeWithGenericsInJavadoc() throws Exception {
         final File file = new File(
                 getPath("InputDetailNodeTreeStringPrinter"
                         + "UnescapedJavaCodeWithGenericsInJavadoc.javadoc"));
@@ -152,7 +152,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testNoViableAltException() throws Exception {
+    void noViableAltException() throws Exception {
         final File file = new File(
                 getPath("InputDetailNodeTreeStringPrinterNoViableAltException.javadoc"));
         try {
@@ -171,7 +171,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testHtmlTagCloseBeforeTagOpen() throws Exception {
+    void htmlTagCloseBeforeTagOpen() throws Exception {
         final File file = new File(
                 getPath("InputDetailNodeTreeStringPrinterHtmlTagCloseBeforeTagOpen.javadoc"));
         try {
@@ -190,7 +190,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testWrongHtmlTagOrder() throws Exception {
+    void wrongHtmlTagOrder() throws Exception {
         final File file = new File(
                 getPath("InputDetailNodeTreeStringPrinterWrongHtmlTagOrder.javadoc"));
         try {
@@ -208,7 +208,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testOmittedStartTagForHtmlElement() throws Exception {
+    void omittedStartTagForHtmlElement() throws Exception {
         final File file = new File(
                 getPath("InputDetailNodeTreeStringPrinterOmittedStartTagForHtmlElement.javadoc"));
         try {

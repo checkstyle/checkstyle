@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
 @ExtendWith(SystemOutGuard.class)
-public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
+final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
 
     private final Set<String> modulesContainingNoMetadataFile = Set.of(
             "Checker",
@@ -68,7 +68,7 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
      *      requires {@code System.out} for error messages
      */
     @Test
-    public void testMetadataFilesGenerationAllFiles(@SystemOutGuard.SysOut Capturable systemOut)
+    void metadataFilesGenerationAllFiles(@SystemOutGuard.SysOut Capturable systemOut)
             throws Exception {
         systemOut.captureMuted();
 

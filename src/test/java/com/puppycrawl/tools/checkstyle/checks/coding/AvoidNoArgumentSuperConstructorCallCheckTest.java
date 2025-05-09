@@ -27,8 +27,8 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class AvoidNoArgumentSuperConstructorCallCheckTest
-    extends AbstractModuleTestSupport {
+class AvoidNoArgumentSuperConstructorCallCheckTest
+        extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -36,7 +36,7 @@ public class AvoidNoArgumentSuperConstructorCallCheckTest
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
 
         final String[] expected = {
             "13:9: " + getCheckMessage(MSG_CTOR),
@@ -50,7 +50,7 @@ public class AvoidNoArgumentSuperConstructorCallCheckTest
     }
 
     @Test
-    public void testTokens() {
+    void tokens() {
         final AvoidNoArgumentSuperConstructorCallCheck check =
             new AvoidNoArgumentSuperConstructorCallCheck();
         final int[] expected = {

@@ -38,9 +38,9 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-public class AbstractAutomaticBeanTest {
+class AbstractAutomaticBeanTest {
     @Test
-    public void testConfigureNoSuchAttribute() {
+    void configureNoSuchAttribute() {
         final TestBean testBean = new TestBean();
         final DefaultConfiguration conf = new DefaultConfiguration("testConf");
         conf.addProperty("NonExistent", "doesn't matter");
@@ -63,7 +63,7 @@ public class AbstractAutomaticBeanTest {
     }
 
     @Test
-    public void testConfigureNoSuchAttribute2() {
+    void configureNoSuchAttribute2() {
         final TestBean testBean = new TestBean();
         final DefaultConfiguration conf = new DefaultConfiguration("testConf");
         conf.addProperty("privateField", "doesn't matter");
@@ -86,7 +86,7 @@ public class AbstractAutomaticBeanTest {
     }
 
     @Test
-    public void testSetupChildFromBaseClass() throws CheckstyleException {
+    void setupChildFromBaseClass() throws CheckstyleException {
         final TestBean testBean = new TestBean();
         testBean.configure(new DefaultConfiguration("bean config"));
         testBean.setupChild(null);
@@ -107,7 +107,7 @@ public class AbstractAutomaticBeanTest {
     }
 
     @Test
-    public void testSetupInvalidChildFromBaseClass() {
+    void setupInvalidChildFromBaseClass() {
         final TestBean testBean = new TestBean();
         final DefaultConfiguration parentConf = new DefaultConfiguration("parentConf");
         final DefaultConfiguration childConf = new DefaultConfiguration("childConf");
@@ -129,7 +129,7 @@ public class AbstractAutomaticBeanTest {
     }
 
     @Test
-    public void testContextualizeInvocationTargetException() {
+    void contextualizeInvocationTargetException() {
         final TestBean testBean = new TestBean();
         final DefaultContext context = new DefaultContext();
         context.add("exceptionalMethod", 123.0f);
@@ -152,7 +152,7 @@ public class AbstractAutomaticBeanTest {
     }
 
     @Test
-    public void testContextualizeConversionException() {
+    void contextualizeConversionException() {
         final TestBean testBean = new TestBean();
         final DefaultContext context = new DefaultContext();
         context.add("val", "some string");
@@ -175,7 +175,7 @@ public class AbstractAutomaticBeanTest {
     }
 
     @Test
-    public void testTestBean() {
+    void testBean() {
         final TestBean testBean = new TestBean();
         testBean.setVal(0);
         testBean.setWrong("wrongVal");
@@ -194,7 +194,7 @@ public class AbstractAutomaticBeanTest {
     }
 
     @Test
-    public void testRegisterIntegralTypes() throws Exception {
+    void registerIntegralTypes() throws Exception {
         final ConvertUtilsBeanStub convertUtilsBean = new ConvertUtilsBeanStub();
         TestUtil.invokeStaticMethod(AbstractAutomaticBean.class,
                 "registerIntegralTypes", convertUtilsBean);
@@ -204,7 +204,7 @@ public class AbstractAutomaticBeanTest {
     }
 
     @Test
-    public void testBeanConverters() throws Exception {
+    void beanConverters() throws Exception {
         final ConverterBean bean = new ConverterBean();
 
         // methods are not seen as used by reflection
@@ -250,7 +250,7 @@ public class AbstractAutomaticBeanTest {
     }
 
     @Test
-    public void testBeanConvertersUri2() throws Exception {
+    void beanConvertersUri2() throws Exception {
         final ConverterBean bean = new ConverterBean();
         final DefaultConfiguration config = new DefaultConfiguration("bean");
         config.addProperty("uri", "");
@@ -262,7 +262,7 @@ public class AbstractAutomaticBeanTest {
     }
 
     @Test
-    public void testBeanConvertersUri3() {
+    void beanConvertersUri3() {
         final ConverterBean bean = new ConverterBean();
         final DefaultConfiguration config = new DefaultConfiguration("bean");
         config.addProperty("uri", "BAD");
@@ -281,7 +281,7 @@ public class AbstractAutomaticBeanTest {
     }
 
     @Test
-    public void testBeanConverterPatternArray() throws Exception {
+    void beanConverterPatternArray() throws Exception {
         final ConverterBean bean = new ConverterBean();
         final DefaultConfiguration config = new DefaultConfiguration("bean");
         final String patternString = "^a*$  , ^b*$ , ^c*$ ";
@@ -302,7 +302,7 @@ public class AbstractAutomaticBeanTest {
     }
 
     @Test
-    public void testBeanConverterPatternArraySingleElement() throws Exception {
+    void beanConverterPatternArraySingleElement() throws Exception {
         final ConverterBean bean = new ConverterBean();
         final DefaultConfiguration config = new DefaultConfiguration("bean");
         final String patternString = "^a*$";
@@ -323,7 +323,7 @@ public class AbstractAutomaticBeanTest {
     }
 
     @Test
-    public void testBeanConverterPatternArrayEmptyString() throws Exception {
+    void beanConverterPatternArrayEmptyString() throws Exception {
         final ConverterBean bean = new ConverterBean();
         final DefaultConfiguration config = new DefaultConfiguration("bean");
         config.addProperty("patterns", "");

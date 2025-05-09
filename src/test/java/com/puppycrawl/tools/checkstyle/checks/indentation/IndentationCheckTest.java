@@ -50,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * Unit test for IndentationCheck.
  */
-public class IndentationCheckTest extends AbstractModuleTestSupport {
+class IndentationCheckTest extends AbstractModuleTestSupport {
 
     private static final Pattern LINE_WITH_COMMENT_REGEX = Pattern.compile(
         ".*?//(?:below )?indent:(\\d+)(?:"
@@ -220,7 +220,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    void getRequiredTokens() {
         final IndentationCheck checkObj = new IndentationCheck();
         final int[] requiredTokens = checkObj.getRequiredTokens();
         final HandlerFactory handlerFactory = new HandlerFactory();
@@ -233,7 +233,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    void getAcceptableTokens() {
         final IndentationCheck checkObj = new IndentationCheck();
         final int[] acceptableTokens = checkObj.getAcceptableTokens();
         final HandlerFactory handlerFactory = new HandlerFactory();
@@ -246,7 +246,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testThrowsIndentProperty() {
+    void throwsIndentProperty() {
         final IndentationCheck indentationCheck = new IndentationCheck();
 
         indentationCheck.setThrowsIndent(1);
@@ -257,7 +257,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStrictCondition() throws Exception {
+    void strictCondition() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("arrayInitIndent", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -276,7 +276,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void forbidOldStyle() throws Exception {
+    void forbidOldStyle() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("arrayInitIndent", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -294,7 +294,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testZeroCaseLevel() throws Exception {
+    void zeroCaseLevel() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("arrayInitIndent", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -309,7 +309,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAndroidStyle() throws Exception {
+    void androidStyle() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("arrayInitIndent", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -334,7 +334,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMethodCallLineWrap() throws Exception {
+    void methodCallLineWrap() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -354,7 +354,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDifficultAnnotations() throws Exception {
+    void difficultAnnotations() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -377,7 +377,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAnnotationClosingParenthesisEndsInSameIndentationAsOpening() throws Exception {
+    void annotationClosingParenthesisEndsInSameIndentationAsOpening() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("basicOffset", "4");
@@ -399,7 +399,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAnnotationsFromGuava() throws Exception {
+    void annotationsFromGuava() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -415,7 +415,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAnnotationsFromGuava1() throws Exception {
+    void annotationsFromGuava1() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -431,7 +431,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAnnotationsFromGuava2() throws Exception {
+    void annotationsFromGuava2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -447,7 +447,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAnnotationsFromGuava3() throws Exception {
+    void annotationsFromGuava3() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -463,7 +463,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAnnotationsFromGuava4() throws Exception {
+    void annotationsFromGuava4() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -479,7 +479,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCorrectIfAndParameters() throws Exception {
+    void correctIfAndParameters() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -500,7 +500,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCorrectIfAndParameters1() throws Exception {
+    void correctIfAndParameters1() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -519,7 +519,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAnonymousClasses() throws Exception {
+    void anonymousClasses() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -535,7 +535,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testArrays() throws Exception {
+    void arrays() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "2");
@@ -551,7 +551,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLabels() throws Exception {
+    void labels() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -567,7 +567,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLabels1() throws Exception {
+    void labels1() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -583,7 +583,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testClassesAndMethods() throws Exception {
+    void classesAndMethods() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -599,7 +599,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCtorCall() throws Exception {
+    void ctorCall() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("basicOffset", "2");
@@ -632,7 +632,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCtorCall1() throws Exception {
+    void ctorCall1() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("basicOffset", "2");
@@ -644,7 +644,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMembers() throws Exception {
+    void members() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -664,7 +664,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAnnotationArrayInit() throws Exception {
+    void annotationArrayInit() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "6");
@@ -698,7 +698,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAnnotationArrayInitTwo() throws Exception {
+    void annotationArrayInitTwo() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "0");
@@ -727,7 +727,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAnnotationArrayInitWithEmoji() throws Exception {
+    void annotationArrayInitWithEmoji() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "0");
@@ -764,7 +764,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOddAnnotations()
+    void oddAnnotations()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -786,7 +786,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAnnotationOddStyles() throws Exception {
+    void annotationOddStyles() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("tabWidth", "8");
@@ -799,7 +799,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testZeroAnnotationArrayInit()
+    void zeroAnnotationArrayInit()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -821,7 +821,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAnnotationArrayInitGoodCase()
+    void annotationArrayInitGoodCase()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -839,7 +839,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAnnotationArrayInitGoodCaseTwo()
+    void annotationArrayInitGoodCaseTwo()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -857,7 +857,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidLabel() throws Exception {
+    void invalidLabel() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -880,7 +880,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidLabelWithWhileLoop() throws Exception {
+    void invalidLabelWithWhileLoop() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -900,7 +900,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidLabel() throws Exception {
+    void validLabel() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -916,7 +916,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidIfWithChecker() throws Exception {
+    void validIfWithChecker() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -935,7 +935,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidIfWithChecker1() throws Exception {
+    void validIfWithChecker1() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -952,7 +952,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidIfWithChecker2() throws Exception {
+    void validIfWithChecker2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -969,7 +969,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidDotWithChecker()
+    void validDotWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -987,7 +987,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidMethodWithChecker()
+    void validMethodWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1008,7 +1008,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidMethodWithChecker1()
+    void validMethodWithChecker1()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1026,7 +1026,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidMethodWithChecker1()
+    void invalidMethodWithChecker1()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1058,7 +1058,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidMethodWithChecker2()
+    void invalidMethodWithChecker2()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1099,7 +1099,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAlternativeGoogleStyleSwitchCaseAndEnums()
+    void alternativeGoogleStyleSwitchCaseAndEnums()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1123,7 +1123,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidSwitchWithChecker()
+    void invalidSwitchWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1171,7 +1171,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIfElseWithNoCurly()
+    void ifElseWithNoCurly()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1196,7 +1196,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWhileWithNoCurly()
+    void whileWithNoCurly()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1220,7 +1220,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testForWithNoCurly()
+    void forWithNoCurly()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1246,7 +1246,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDoWhileWithoutCurly()
+    void doWhileWithoutCurly()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1268,7 +1268,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidSwitchWithChecker()
+    void validSwitchWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1286,7 +1286,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNewKeyword() throws Exception {
+    void newKeyword() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("basicOffset", "4");
@@ -1299,7 +1299,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNewKeyword2() throws Exception {
+    void newKeyword2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("basicOffset", "4");
@@ -1313,7 +1313,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
     // we can not use verifyWarns() due to usage of multi line string syntax in input
     @Test
-    public void testTextBlockLiteral() throws Exception {
+    void textBlockLiteral() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("lineWrappingIndentation", "4");
@@ -1332,7 +1332,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidNewKeywordWithForceStrictCondition() throws Exception {
+    void validNewKeywordWithForceStrictCondition() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("basicOffset", "4");
@@ -1345,7 +1345,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidNewKeywordWithForceStrictCondition() throws Exception {
+    void invalidNewKeywordWithForceStrictCondition() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("basicOffset", "4");
@@ -1374,7 +1374,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidArrayInitDefaultIndentWithChecker()
+    void validArrayInitDefaultIndentWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1392,7 +1392,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidArrayInitWithChecker()
+    void validArrayInitWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1410,7 +1410,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidArrayInitTwoDimensional() throws Exception {
+    void validArrayInitTwoDimensional() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "2");
@@ -1427,7 +1427,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidArrayInitTwoDimensional() throws Exception {
+    void invalidArrayInitTwoDimensional() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "2");
@@ -1457,7 +1457,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidArrayInit()
+    void validArrayInit()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1475,7 +1475,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testArrayInitWithEmoji() throws Exception {
+    void arrayInitWithEmoji() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "2");
@@ -1501,7 +1501,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testYieldKeywordWithForceStrictCondition() throws Exception {
+    void yieldKeywordWithForceStrictCondition() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("forceStrictCondition", "true");
         checkConfig.addProperty("tabWidth", "4");
@@ -1520,7 +1520,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testChainedMethodCalling() throws Exception {
+    void chainedMethodCalling() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "2");
@@ -1542,7 +1542,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidArrayInitWithTrueStrictCondition()
+    void invalidArrayInitWithTrueStrictCondition()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1591,7 +1591,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidArrayInitWithTrueStrictCondition1()
+    void invalidArrayInitWithTrueStrictCondition1()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1634,7 +1634,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidArrayInitWithFalseStrictCondition()
+    void invalidArrayInitWithFalseStrictCondition()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1683,7 +1683,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidArrayInitWithFalseStrictCondition1()
+    void invalidArrayInitWithFalseStrictCondition1()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1727,7 +1727,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
     // Test Input without trailing comment and usage of 'verify' method is due to #16906
     @Test
-    public void testInvalidArrayInitIndentNoCommentsTrueStrictCondition()
+    void invalidArrayInitIndentNoCommentsTrueStrictCondition()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1758,7 +1758,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
     // Test Input without trailing comment and usage of 'verify' method is due to #16906
     @Test
-    public void testInvalidArrayInitIndentNoCommentsFalseStrictCondition()
+    void invalidArrayInitIndentNoCommentsFalseStrictCondition()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1788,7 +1788,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidTryWithChecker()
+    void validTryWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1806,7 +1806,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidTryWithChecker()
+    void invalidTryWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1853,7 +1853,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCatchParametersOnNewLine()
+    void catchParametersOnNewLine()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1879,7 +1879,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultiLineStatements()
+    void multiLineStatements()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1904,7 +1904,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidClassDefWithChecker()
+    void invalidClassDefWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1938,7 +1938,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidClassDefWithChecker1()
+    void invalidClassDefWithChecker1()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1977,7 +1977,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidBlockWithChecker()
+    void invalidBlockWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -2019,7 +2019,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidBlockWithChecker1()
+    void invalidBlockWithChecker1()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -2061,7 +2061,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidIfWithChecker()
+    void invalidIfWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -2113,7 +2113,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidIfWithChecker1()
+    void invalidIfWithChecker1()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -2156,7 +2156,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidIfWithChecker2()
+    void invalidIfWithChecker2()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -2197,7 +2197,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidWhileWithChecker()
+    void invalidWhileWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -2248,7 +2248,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidInvalidAnonymousClass() throws Exception {
+    void invalidInvalidAnonymousClass() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -2265,7 +2265,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidForWithChecker()
+    void invalidForWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -2317,7 +2317,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidForWithChecker()
+    void validForWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -2335,7 +2335,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidDoWhileWithChecker()
+    void validDoWhileWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -2353,7 +2353,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidDoWhileWithChecker()
+    void invalidDoWhileWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -2389,7 +2389,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidBlockWithChecker()
+    void validBlockWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -2407,7 +2407,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidBlockWithChecker1()
+    void validBlockWithChecker1()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -2425,7 +2425,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidWhileWithChecker()
+    void validWhileWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -2443,7 +2443,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidClassDefWithChecker()
+    void validClassDefWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -2463,7 +2463,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidClassDefWithChecker1()
+    void validClassDefWithChecker1()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -2483,7 +2483,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidInterfaceDefWithChecker()
+    void validInterfaceDefWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -2501,7 +2501,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidCommaWithChecker()
+    void validCommaWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -2519,7 +2519,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTabs() throws Exception {
+    void tabs() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -2537,7 +2537,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationLevel() throws Exception {
+    void indentationLevel() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -2555,7 +2555,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testThrowsIndentationLevel() throws Exception {
+    void throwsIndentationLevel() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -2571,7 +2571,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testThrowsIndentationLevel2() throws Exception {
+    void throwsIndentationLevel2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("basicOffset", "1");
@@ -2598,7 +2598,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCaseLevel() throws Exception {
+    void caseLevel() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -2616,7 +2616,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testBraceAdjustment() throws Exception {
+    void braceAdjustment() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -2638,7 +2638,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidAssignWithChecker() throws Exception {
+    void invalidAssignWithChecker() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -2659,7 +2659,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidImportIndent() throws Exception {
+    void invalidImportIndent() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("basicOffset", "8");
         checkConfig.addProperty("tabWidth", "4");
@@ -2671,7 +2671,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidAssignWithChecker() throws Exception {
+    void validAssignWithChecker() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -2687,7 +2687,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void test15Extensions() throws Exception {
+    void test15Extensions() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -2703,7 +2703,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTryResources() throws Exception {
+    void tryResources() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -2720,7 +2720,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSwitchCustom() throws Exception {
+    void switchCustom() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -2737,7 +2737,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSynchronizedStatement() throws Exception {
+    void synchronizedStatement() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("arrayInitIndent", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -2755,7 +2755,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSynchronizedMethod() throws Exception {
+    void synchronizedMethod() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("arrayInitIndent", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -2770,7 +2770,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAnonymousClassInMethod() throws Exception {
+    void anonymousClassInMethod() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "8");
         checkConfig.addProperty("basicOffset", "2");
@@ -2791,7 +2791,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAnonymousClassInMethodWithCurlyOnNewLine() throws Exception {
+    void anonymousClassInMethodWithCurlyOnNewLine() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -2814,7 +2814,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAnnotationDefinition() throws Exception {
+    void annotationDefinition() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -2822,7 +2822,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPackageDeclaration() throws Exception {
+    void packageDeclaration() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = {
@@ -2832,7 +2832,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPackageDeclaration2() throws Exception {
+    void packageDeclaration2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = {
@@ -2843,7 +2843,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPackageDeclaration3() throws Exception {
+    void packageDeclaration3() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -2851,7 +2851,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPackageDeclaration4() throws Exception {
+    void packageDeclaration4() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = {
@@ -2862,7 +2862,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLambda() throws Exception {
+    void lambda() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "2");
         checkConfig.addProperty("basicOffset", "2");
@@ -2879,7 +2879,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLambda1() throws Exception {
+    void lambda1() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "2");
         checkConfig.addProperty("basicOffset", "2");
@@ -2893,7 +2893,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLambda2() throws Exception {
+    void lambda2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -2903,7 +2903,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLambda3() throws Exception {
+    void lambda3() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -2920,7 +2920,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLambda4() throws Exception {
+    void lambda4() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -2930,7 +2930,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLambda5() throws Exception {
+    void lambda5() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "3");
         checkConfig.addProperty("basicOffset", "3");
@@ -2941,7 +2941,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLambdaFalseForceStrictCondition() throws Exception {
+    void lambdaFalseForceStrictCondition() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -2960,7 +2960,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLambdaTrueForceStrictCondition() throws Exception {
+    void lambdaTrueForceStrictCondition() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -2989,7 +2989,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLambdaOddConditions() throws Exception {
+    void lambdaOddConditions() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "3");
@@ -3002,7 +3002,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSeparatedStatements() throws Exception {
+    void separatedStatements() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String fileName = getPath("InputIndentationSeparatedStatements.java");
@@ -3011,7 +3011,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSeparatedLineWithJustSpaces() throws Exception {
+    void separatedLineWithJustSpaces() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String fileName = getPath("InputIndentationSeparatedStatementWithSpaces.java");
@@ -3020,7 +3020,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTwoStatementsPerLine() throws Exception {
+    void twoStatementsPerLine() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -3030,7 +3030,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMethodChaining() throws Exception {
+    void methodChaining() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -3040,7 +3040,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultipleAnnotationsWithWrappedLines() throws Exception {
+    void multipleAnnotationsWithWrappedLines() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -3052,7 +3052,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultipleAnnotationsWithWrappedLines1() throws Exception {
+    void multipleAnnotationsWithWrappedLines1() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -3064,7 +3064,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMethodPrecedeByAnnotationsWithParameterOnSeparateLine() throws Exception {
+    void methodPrecedeByAnnotationsWithParameterOnSeparateLine() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "2");
@@ -3080,7 +3080,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAnnotationIncorrect() throws Exception {
+    void annotationIncorrect() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -3097,7 +3097,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInputAnnotationScopeIndentationCheck() throws Exception {
+    void inputAnnotationScopeIndentationCheck() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -3111,7 +3111,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInputAnnotationDefIndentationCheck() throws Exception {
+    void inputAnnotationDefIndentationCheck() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -3150,7 +3150,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInputAnnotationDefIndentationCheck1() throws Exception {
+    void inputAnnotationDefIndentationCheck1() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("arrayInitIndent", "4");
@@ -3171,7 +3171,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTryResourcesStrict() throws Exception {
+    void tryResourcesStrict() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("forceStrictCondition", "true");
@@ -3191,7 +3191,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTryResourcesStrict1() throws Exception {
+    void tryResourcesStrict1() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("forceStrictCondition", "true");
@@ -3219,7 +3219,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTryResourcesNotStrict() throws Exception {
+    void tryResourcesNotStrict() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("braceAdjustment", "0");
@@ -3234,7 +3234,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTryResourcesNotStrict1() throws Exception {
+    void tryResourcesNotStrict1() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("braceAdjustment", "0");
@@ -3270,7 +3270,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
      * @see IndentComment#getExpectedMessagePostfix(String)
      */
     @Test
-    public void testArgumentOrderOfErrorMessages() {
+    void argumentOrderOfErrorMessages() {
         final Object[] arguments = {"##0##", "##1##", "##2##"};
         final String[] messages = {
             getCheckMessage(MSG_ERROR, arguments),
@@ -3294,7 +3294,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEmptyArray() throws Exception {
+    void emptyArray() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -3302,7 +3302,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNewHandler() throws Exception {
+    void newHandler() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = {
@@ -3316,7 +3316,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTryHandler() throws Exception {
+    void tryHandler() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("braceAdjustment", "0");
@@ -3327,7 +3327,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTryHandler2() throws Exception {
+    void tryHandler2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("braceAdjustment", "0");
@@ -3341,7 +3341,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testChainedMethodWithBracketOnNewLine() throws Exception {
+    void chainedMethodWithBracketOnNewLine() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addProperty("arrayInitIndent", "2");
@@ -3365,7 +3365,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationSwitchExpression() throws Exception {
+    void indentationSwitchExpression() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = {
@@ -3390,7 +3390,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationYieldStatement() throws Exception {
+    void indentationYieldStatement() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = {
@@ -3408,7 +3408,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationSwitchExpressionCorrect() throws Exception {
+    void indentationSwitchExpressionCorrect() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -3418,7 +3418,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationSwitchExpressionDeclaration() throws Exception {
+    void indentationSwitchExpressionDeclaration() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("caseIndent", "4");
@@ -3439,7 +3439,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationSwitchExpressionDeclarationLeftCurlyNewLine() throws Exception {
+    void indentationSwitchExpressionDeclarationLeftCurlyNewLine() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = {
@@ -3455,7 +3455,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationRecords() throws Exception {
+    void indentationRecords() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -3474,7 +3474,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationRecordsAndCompactCtors() throws Exception {
+    void indentationRecordsAndCompactCtors() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = {
@@ -3492,7 +3492,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationSwitchExpressionNewLine() throws Exception {
+    void indentationSwitchExpressionNewLine() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = {
@@ -3506,7 +3506,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationMethodParenthesisOnNewLine() throws Exception {
+    void indentationMethodParenthesisOnNewLine() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = {
@@ -3520,7 +3520,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationMethodParenthesisOnNewLine1() throws Exception {
+    void indentationMethodParenthesisOnNewLine1() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = {
@@ -3535,7 +3535,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationLineWrappedRecordDeclaration() throws Exception {
+    void indentationLineWrappedRecordDeclaration() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -3573,7 +3573,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationAnnotationFieldDefinition() throws Exception {
+    void indentationAnnotationFieldDefinition() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "4");
@@ -3594,7 +3594,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationLongConcatenatedString() throws Exception {
+    void indentationLongConcatenatedString() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
 
@@ -3605,7 +3605,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationLongConcatenatedString1() throws Exception {
+    void indentationLongConcatenatedString1() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
 
@@ -3616,7 +3616,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationLongConcatenatedString2() throws Exception {
+    void indentationLongConcatenatedString2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
 
@@ -3627,7 +3627,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationLongConcatenatedString3() throws Exception {
+    void indentationLongConcatenatedString3() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
 
@@ -3638,7 +3638,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationLongConcatenatedString4() throws Exception {
+    void indentationLongConcatenatedString4() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
 
@@ -3649,7 +3649,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationLongConcatenatedString5() throws Exception {
+    void indentationLongConcatenatedString5() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
 
@@ -3660,7 +3660,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationLongConcatenatedString6() throws Exception {
+    void indentationLongConcatenatedString6() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
 
@@ -3671,7 +3671,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationLongConcatenatedString7() throws Exception {
+    void indentationLongConcatenatedString7() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
 
@@ -3682,7 +3682,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationLongConcatenatedString8() throws Exception {
+    void indentationLongConcatenatedString8() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
 
@@ -3693,7 +3693,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationLongConcatenatedString9() throws Exception {
+    void indentationLongConcatenatedString9() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
 
@@ -3704,7 +3704,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationLongConcatenatedString10() throws Exception {
+    void indentationLongConcatenatedString10() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
 
@@ -3715,7 +3715,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationLongConcatenatedString11() throws Exception {
+    void indentationLongConcatenatedString11() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
 
@@ -3726,7 +3726,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationLineBreakVariableDeclaration()
+    void indentationLineBreakVariableDeclaration()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
@@ -3737,7 +3737,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationSwitchExpressionOnStartOfTheLine() throws Exception {
+    void indentationSwitchExpressionOnStartOfTheLine() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "2");
@@ -3763,7 +3763,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationSwitchExpressionWrappingIndentation() throws Exception {
+    void indentationSwitchExpressionWrappingIndentation() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "2");
@@ -3786,7 +3786,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationPatternMatchingForSwitch()
+    void indentationPatternMatchingForSwitch()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("forceStrictCondition", "true");
@@ -3815,7 +3815,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationSingleSwitchStatementsWithoutCurly()
+    void indentationSingleSwitchStatementsWithoutCurly()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("forceStrictCondition", "true");
@@ -3839,7 +3839,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationRecordPattern()
+    void indentationRecordPattern()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("forceStrictCondition", "true");
@@ -3883,7 +3883,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationCodeBlocks1() throws Exception {
+    void indentationCodeBlocks1() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "2");
@@ -3903,7 +3903,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationCodeBlocks2() throws Exception {
+    void indentationCodeBlocks2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("basicOffset", "2");
@@ -3920,7 +3920,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIndentationSealedClasses()
+    void indentationSealedClasses()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("forceStrictCondition", "true");

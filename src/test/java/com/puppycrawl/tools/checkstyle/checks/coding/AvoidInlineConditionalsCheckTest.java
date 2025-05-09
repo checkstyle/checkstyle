@@ -26,8 +26,8 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
-public class AvoidInlineConditionalsCheckTest
-    extends AbstractModuleTestSupport {
+class AvoidInlineConditionalsCheckTest
+        extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -35,7 +35,7 @@ public class AvoidInlineConditionalsCheckTest
     }
 
     @Test
-    public void testDefault()
+    void testDefault()
             throws Exception {
         final String[] expected = {
             "34:29: " + getCheckMessage(MSG_KEY),
@@ -47,7 +47,7 @@ public class AvoidInlineConditionalsCheckTest
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final AvoidInlineConditionalsCheck check = new AvoidInlineConditionalsCheck();
         assertWithMessage("Acceptable tokens should not be null")
                 .that(check.getAcceptableTokens())

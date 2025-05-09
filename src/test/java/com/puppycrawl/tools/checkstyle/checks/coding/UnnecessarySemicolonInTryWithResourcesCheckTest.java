@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class UnnecessarySemicolonInTryWithResourcesCheckTest extends AbstractModuleTestSupport {
+class UnnecessarySemicolonInTryWithResourcesCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -36,7 +36,7 @@ public class UnnecessarySemicolonInTryWithResourcesCheckTest extends AbstractMod
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
 
         final String[] expected = {
             "17:42: " + getCheckMessage(MSG_SEMI),
@@ -49,7 +49,7 @@ public class UnnecessarySemicolonInTryWithResourcesCheckTest extends AbstractMod
     }
 
     @Test
-    public void testNoBraceAfterAllowed() throws Exception {
+    void noBraceAfterAllowed() throws Exception {
         final String[] expected = {
             "16:42: " + getCheckMessage(MSG_SEMI),
             "19:13: " + getCheckMessage(MSG_SEMI),
@@ -62,7 +62,7 @@ public class UnnecessarySemicolonInTryWithResourcesCheckTest extends AbstractMod
     }
 
     @Test
-    public void testTokensAreCorrect() {
+    void tokensAreCorrect() {
         final UnnecessarySemicolonInTryWithResourcesCheck check =
             new UnnecessarySemicolonInTryWithResourcesCheck();
         final int[] expected = {
