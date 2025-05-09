@@ -2596,8 +2596,96 @@ public final class JavadocTokenTypes {
 
     /** Head html tag. */
     public static final int HEAD = JavadocParser.RULE_head + RULE_TYPES_OFFSET;
-    /** Start head tag. */
-    public static final int HEAD_TAG_START = JavadocParser.RULE_headTagStart + RULE_TYPES_OFFSET;
+    /**
+     *  Start head tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <head>
+     *   <title>Sample Head Tag</title>
+     *   <script src="script.js"></script>
+     * </head>
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     *  `--HEAD -> HEAD
+     *      |--HEAD_TAG_START -> HEAD_TAG_START
+     *      |   |--START -> <
+     *      |   |--HEAD_HTML_TAG_NAME -> head
+     *      |   `--END -> >
+     *      |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *      |   `--META_TAG -> META_TAG
+     *      |       |--START -> <
+     *      |       |--META_HTML_TAG_NAME -> meta
+     *      |       |--ATTRIBUTE -> ATTRIBUTE
+     *      |       |   |--HTML_TAG_NAME -> charset
+     *      |       |   |--EQUALS -> =
+     *      |       |   `--ATTR_VALUE -> "UTF-8"
+     *      |       `--END -> >
+     *      |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *      |   `--META_TAG -> META_TAG
+     *      |       |--START -> <
+     *      |       |--META_HTML_TAG_NAME -> meta
+     *      |       |--ATTRIBUTE -> ATTRIBUTE
+     *      |       |   |--HTML_TAG_NAME -> name
+     *      |       |   |--EQUALS -> =
+     *      |       |   `--ATTR_VALUE -> "viewport"
+     *      |       |--ATTRIBUTE -> ATTRIBUTE
+     *      |       |   |--HTML_TAG_NAME -> content
+     *      |       |   |--EQUALS -> =
+     *      |       |   `--ATTR_VALUE -> "width=device-width, initial-scale=1.0"
+     *      |       `--END -> >
+     *      |--HTML_TAG -> HTML_TAG
+     *      |   |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *      |   |   |--START -> <
+     *      |   |   |--HTML_TAG_NAME -> title
+     *      |   |   `--END -> >
+     *      |   |--TEXT -> Sample Head Tag
+     *      |   `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *      |       |--START -> <
+     *      |       |--SLASH -> /
+     *      |       |--HTML_TAG_NAME -> title
+     *      |       `--END -> >
+     *      |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *      |   `--LINK_TAG -> LINK_TAG
+     *      |       |--START -> <
+     *      |       |--LINK_HTML_TAG_NAME -> link
+     *      |       |--ATTRIBUTE -> ATTRIBUTE
+     *      |       |   |--HTML_TAG_NAME -> rel
+     *      |       |   |--EQUALS -> =
+     *      |       |   `--ATTR_VALUE -> "stylesheet"
+     *      |       |--ATTRIBUTE -> ATTRIBUTE
+     *      |       |   |--HTML_TAG_NAME -> href
+     *      |       |   |--EQUALS -> =
+     *      |       |   `--ATTR_VALUE -> "styles.css"
+     *      |       `--END -> >
+     *      |--HTML_TAG -> HTML_TAG
+     *      |   |--HTML_ELEMENT_START -> HTML_ELEMENT_START
+     *      |   |   |--START -> <
+     *      |   |   |--HTML_TAG_NAME -> script
+     *      |   |   |--ATTRIBUTE -> ATTRIBUTE
+     *      |   |   |   |--HTML_TAG_NAME -> src
+     *      |   |   |   |--EQUALS -> =
+     *      |   |   |   `--ATTR_VALUE -> "script.js"
+     *      |   |   `--END -> >
+     *      |   `--HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *      |       |--START -> <
+     *      |       |--SLASH -> /
+     *      |       |--HTML_TAG_NAME -> script
+     *      |       `--END -> >
+     *      `--HEAD_TAG_END -> HEAD_TAG_END
+     *          |--START -> <
+     *          |--SLASH -> /
+     *          |--HEAD_HTML_TAG_NAME -> head
+     *          `--END -> >
+     * }
+     * </pre>
+     */
+    public static final int HEAD_TAG_START = JavadocParser.HEAD_TAG_START;
+
     /** End head tag. */
     public static final int HEAD_TAG_END = JavadocParser.RULE_headTagEnd + RULE_TYPES_OFFSET;
 
