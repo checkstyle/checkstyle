@@ -129,7 +129,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     }
 
     @BeforeEach
-    public void setUp() throws Exception {
+    void setUp() throws Exception {
         javaDir = Path.of("src/it/java/" + getPackageLocation());
         inputDir = Path.of(getPath(""));
     }
@@ -145,7 +145,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void validateIncompatibleJavadocCheckNames() throws IOException {
+    void validateIncompatibleJavadocCheckNames() throws IOException {
         // subclasses of AbstractJavadocCheck
         final Set<Class<?>> abstractJavadocCheckNames = CheckUtil.getCheckstyleChecks()
                 .stream()
@@ -163,7 +163,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void validateIntegrationTestClassNames() throws Exception {
+    void validateIntegrationTestClassNames() throws Exception {
         final Set<String> compatibleChecks = new HashSet<>();
         final Pattern pattern = Pattern.compile("^XpathRegression(.+)Test\\.java$");
         try (DirectoryStream<Path> javaPaths = Files.newDirectoryStream(javaDir)) {
@@ -213,7 +213,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void validateInputFiles() throws Exception {
+    void validateInputFiles() throws Exception {
         try (DirectoryStream<Path> dirs = Files.newDirectoryStream(inputDir, IS_DIRECTORY)) {
             for (Path dir : dirs) {
                 // input directory must be named in lower case

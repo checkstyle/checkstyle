@@ -25,8 +25,8 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
-public class SuperFinalizeCheckTest
-    extends AbstractModuleTestSupport {
+class SuperFinalizeCheckTest
+        extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -34,7 +34,7 @@ public class SuperFinalizeCheckTest
     }
 
     @Test
-    public void testIt() throws Exception {
+    void it() throws Exception {
         final String[] expected = {
             "34:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
             "41:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
@@ -45,7 +45,7 @@ public class SuperFinalizeCheckTest
     }
 
     @Test
-    public void testMethodReference() throws Exception {
+    void methodReference() throws Exception {
         final String[] expected = {
             "23:20: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
         };

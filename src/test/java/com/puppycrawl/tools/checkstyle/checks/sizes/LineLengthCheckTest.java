@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import de.thetaphi.forbiddenapis.SuppressForbidden;
 
-public class LineLengthCheckTest extends AbstractModuleTestSupport {
+class LineLengthCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -37,7 +37,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSimpleOne()
+    void simpleOne()
             throws Exception {
         final String[] expected = {
             "22: " + getCheckMessage(MSG_KEY, 80, 81),
@@ -47,7 +47,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSimpleTwo()
+    void simpleTwo()
             throws Exception {
         final String[] expected = {
             "88: " + getCheckMessage(MSG_KEY, 80, 83),
@@ -57,7 +57,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void shouldLogActualLineLengthOne()
+    void shouldLogActualLineLengthOne()
             throws Exception {
         final String[] expected = {
             "23: 80,81",
@@ -67,7 +67,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void shouldLogActualLineLengthTwo()
+    void shouldLogActualLineLengthTwo()
             throws Exception {
         final String[] expected = {
             "89: 80,83",
@@ -77,7 +77,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void shouldNotLogLongImportStatements() throws Exception {
+    void shouldNotLogLongImportStatements() throws Exception {
         final String[] expected = {
             "18: " + getCheckMessage(MSG_KEY, 80, 100),
         };
@@ -86,7 +86,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void shouldNotLogLongPackageStatements() throws Exception {
+    void shouldNotLogLongPackageStatements() throws Exception {
         final String[] expected = {
             "17: " + getCheckMessage(MSG_KEY, 80, 100),
         };
@@ -96,7 +96,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void shouldNotLogLongLinks() throws Exception {
+    void shouldNotLogLongLinks() throws Exception {
         final String[] expected = {
             "13: " + getCheckMessage(MSG_KEY, 80, 111),
         };
@@ -105,7 +105,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void countUnicodePointsOnce() throws Exception {
+    void countUnicodePointsOnce() throws Exception {
         final String[] expected = {
             "15: " + getCheckMessage(MSG_KEY, 100, 149),
             "16: " + getCheckMessage(MSG_KEY, 100, 149),
@@ -115,7 +115,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLineLengthIgnoringPackageStatements() throws Exception {
+    void lineLengthIgnoringPackageStatements() throws Exception {
         final String[] expected = {
             "13: " + getCheckMessage(MSG_KEY, 75, 76),
             "22: " + getCheckMessage(MSG_KEY, 75, 86),
@@ -128,7 +128,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLineLengthIgnoringImportStatements() throws Exception {
+    void lineLengthIgnoringImportStatements() throws Exception {
         final String[] expected = {
             "12: " + getCheckMessage(MSG_KEY, 75, 79),
             "21: " + getCheckMessage(MSG_KEY, 75, 81),
@@ -150,7 +150,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
      */
     @SuppressForbidden
     @Test
-    public void testUnmappableCharacters() throws Exception {
+    void unmappableCharacters() throws Exception {
         final String[] expected = {
             "4: " + getCheckMessage(MSG_KEY, 75, 238),
         };

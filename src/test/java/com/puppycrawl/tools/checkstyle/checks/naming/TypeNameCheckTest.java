@@ -26,8 +26,8 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
-public class TypeNameCheckTest
-    extends AbstractModuleTestSupport {
+class TypeNameCheckTest
+        extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -35,7 +35,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    public void testSpecified()
+    void specified()
             throws Exception {
         final String[] expected = {
             "25:14: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -46,7 +46,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    public void testDefault()
+    void testDefault()
             throws Exception {
         final String[] expected = {
             "15:7: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -63,7 +63,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    public void testClassSpecific()
+    void classSpecific()
             throws Exception {
         final String[] expected = {
             "15:7: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -74,7 +74,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    public void testInterfaceSpecific()
+    void interfaceSpecific()
             throws Exception {
         final String[] expected = {
             "17:22: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -85,7 +85,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    public void testEnumSpecific()
+    void enumSpecific()
             throws Exception {
         final String[] expected = {
             "19:17: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -96,7 +96,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    public void testAnnotationSpecific()
+    void annotationSpecific()
             throws Exception {
         final String[] expected = {
             "21:23: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -107,7 +107,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    public void testTypeNameRecords() throws Exception {
+    void typeNameRecords() throws Exception {
 
         final String[] expected = {
             "23:10: " + getCheckMessage(MSG_INVALID_PATTERN, "Third_Name", DEFAULT_PATTERN),

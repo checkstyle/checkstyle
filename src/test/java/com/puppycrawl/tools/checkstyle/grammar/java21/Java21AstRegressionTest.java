@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.grammar.java21;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.Assert.assertThrows;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
 import java.io.File;
 
@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
-public class Java21AstRegressionTest extends AbstractTreeTestSupport {
+class Java21AstRegressionTest extends AbstractTreeTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -38,7 +38,7 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testUnnamedVariableBasic() throws Exception {
+    void unnamedVariableBasic() throws Exception {
         verifyAst(
                 getNonCompilablePath(
                         "ExpectedUnnamedVariableBasic.txt"),
@@ -47,7 +47,7 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testUnnamedVariableSwitch() throws Exception {
+    void unnamedVariableSwitch() throws Exception {
         verifyAst(
                 getNonCompilablePath(
                         "ExpectedUnnamedVariableSwitch.txt"),
@@ -56,7 +56,7 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testTextBlockConsecutiveEscapes() throws Exception {
+    void textBlockConsecutiveEscapes() throws Exception {
         verifyAst(
                 getNonCompilablePath(
                         "ExpectedTextBlockConsecutiveEscapes.txt"),
@@ -73,15 +73,12 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
      * @throws Exception if an error occurs
      */
     @Test
-    public void testTextBlockParsingFail() throws Exception {
+    void textBlockParsingFail() throws Exception {
         final File file =
                 new File(getNonCompilablePath("InputTextBlockParsingFail.java.fail"));
 
         final Throwable throwable =
-                assertThrows("Exception should be thrown due to parsing failure.",
-                        CheckstyleException.class,
-                        () -> JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS)
-                );
+                assertThatExceptionOfType(CheckstyleException.class).as("Exception should be thrown due to parsing failure.").isThrownBy(() -> JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS)).actual();
 
         final String incorrectThrowableCauseMessage =
                 "Cause of CheckstyleException should be IllegalStateException.";

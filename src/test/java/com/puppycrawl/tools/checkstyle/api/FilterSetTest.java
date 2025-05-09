@@ -29,10 +29,10 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter;
 
-public class FilterSetTest {
+class FilterSetTest {
 
     @Test
-    public void testGetFilters() {
+    void getFilters() {
         final FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new SeverityMatchFilter());
         assertWithMessage("Invalid filter set size")
@@ -41,7 +41,7 @@ public class FilterSetTest {
     }
 
     @Test
-    public void testRemoveFilters() {
+    void removeFilters() {
         final FilterSet filterSet = new FilterSet();
         final Filter filter = new SeverityMatchFilter();
         filterSet.addFilter(filter);
@@ -52,7 +52,7 @@ public class FilterSetTest {
     }
 
     @Test
-    public void testToString() {
+    void testToString() {
         final FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new SeverityMatchFilter());
         assertWithMessage("Invalid filter set size")
@@ -61,7 +61,7 @@ public class FilterSetTest {
     }
 
     @Test
-    public void testClear() {
+    void clear() {
         final FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new SeverityMatchFilter());
 
@@ -77,7 +77,7 @@ public class FilterSetTest {
     }
 
     @Test
-    public void testAccept() {
+    void accept() {
         final FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new DummyFilter(true));
         assertWithMessage("invalid accept response")
@@ -86,7 +86,7 @@ public class FilterSetTest {
     }
 
     @Test
-    public void testNotAccept() {
+    void notAccept() {
         final FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new DummyFilter(false));
         assertWithMessage("invalid accept response")
@@ -95,7 +95,7 @@ public class FilterSetTest {
     }
 
     @Test
-    public void testNotAcceptEvenIfOneAccepts() {
+    void notAcceptEvenIfOneAccepts() {
         final FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new DummyFilter(true));
         filterSet.addFilter(new DummyFilter(false));
@@ -110,7 +110,7 @@ public class FilterSetTest {
       done for the time being
     */
     @Test
-    public void testUnmodifiableSet() {
+    void unmodifiableSet() {
         final FilterSet filterSet = new FilterSet();
         final Filter filter = new FilterSet();
         filterSet.addFilter(filter);
@@ -127,7 +127,7 @@ public class FilterSetTest {
       be useful for third party integrations
     */
     @Test
-    public void testEmptyToString() {
+    void emptyToString() {
         final FilterSet filterSet = new FilterSet();
         assertWithMessage("toString() result shouldn't be an empty string")
                 .that(filterSet.toString())

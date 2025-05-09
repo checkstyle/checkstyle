@@ -382,6 +382,12 @@
       <artifactId>truth</artifactId>
       <version>1.4.4</version>
       <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>

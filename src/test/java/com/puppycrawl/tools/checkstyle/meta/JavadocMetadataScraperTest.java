@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.meta;
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper.MSG_DESC_MISSING;
-import static org.junit.Assert.assertThrows;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
+class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -41,7 +41,7 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAtclauseOrderCheck() throws Exception {
+    void atclauseOrderCheck() throws Exception {
         JavadocMetadataScraper.resetModuleDetailsStore();
         verifyWithInlineConfigParser(getPath("InputJavadocMetadataScraperAtclauseOrderCheck.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
@@ -52,7 +52,7 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAnnotationUseStyleCheck() throws Exception {
+    void annotationUseStyleCheck() throws Exception {
         JavadocMetadataScraper.resetModuleDetailsStore();
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMetadataScraperAnnotationUseStyleCheck.java"),
@@ -64,7 +64,7 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testBeforeExecutionExclusionFileFilter() throws Exception {
+    void beforeExecutionExclusionFileFilter() throws Exception {
         JavadocMetadataScraper.resetModuleDetailsStore();
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMetadataScraperBeforeExecutionExclusionFileFilter.java"),
@@ -76,7 +76,7 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoCodeInFileCheck() throws Exception {
+    void noCodeInFileCheck() throws Exception {
         JavadocMetadataScraper.resetModuleDetailsStore();
         verifyWithInlineConfigParser(getPath("InputJavadocMetadataScraperNoCodeInFileCheck.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
@@ -87,62 +87,58 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPropertyMisplacedDefaultValueCheck() {
+    void propertyMisplacedDefaultValueCheck() {
         JavadocMetadataScraper.resetModuleDetailsStore();
-        final CheckstyleException exc = assertThrows(CheckstyleException.class, () -> {
-            verifyWithInlineConfigParser(
-                    getPath("InputJavadocMetadataScraperPropertyMisplacedDefaultValueCheck.java"),
-                    CommonUtil.EMPTY_STRING_ARRAY);
-        });
+        final CheckstyleException exc = assertThatExceptionOfType(CheckstyleException.class).isThrownBy(() ->
+                verifyWithInlineConfigParser(
+                        getPath("InputJavadocMetadataScraperPropertyMisplacedDefaultValueCheck.java"),
+                        CommonUtil.EMPTY_STRING_ARRAY)).actual();
         assertThat(exc.getCause()).isInstanceOf(MetadataGenerationException.class);
         assertThat(exc.getCause().getMessage())
                 .isEqualTo("Default value for property 'misplacedDefaultValue' is missing");
     }
 
     @Test
-    public void testPropertyMisplacedTypeCheck() {
+    void propertyMisplacedTypeCheck() {
         JavadocMetadataScraper.resetModuleDetailsStore();
-        final CheckstyleException exc = assertThrows(CheckstyleException.class, () -> {
-            verifyWithInlineConfigParser(
+        verifyWithInlineConfigParser(
                     getPath("InputJavadocMetadataScraperPropertyMisplacedTypeCheck.java"),
                     CommonUtil.EMPTY_STRING_ARRAY);
-            assertWithMessage("Exception expected").fail();
-        });
+        final CheckstyleException exc = assertThatExceptionOfType(CheckstyleException.class).isThrownBy(() ->
+                assertWithMessage("Exception expected").fail()).actual();
         assertThat(exc.getCause()).isInstanceOf(MetadataGenerationException.class);
         assertThat(exc.getCause().getMessage())
                 .isEqualTo("Type for property 'misplacedType' is missing");
     }
 
     @Test
-    public void testPropertyMissingDefaultValueCheck() {
+    void propertyMissingDefaultValueCheck() {
         JavadocMetadataScraper.resetModuleDetailsStore();
-        final CheckstyleException exc = assertThrows(CheckstyleException.class, () -> {
-            verifyWithInlineConfigParser(
+        verifyWithInlineConfigParser(
                     getPath("InputJavadocMetadataScraperPropertyMissingDefaultValueCheck.java"),
                     CommonUtil.EMPTY_STRING_ARRAY);
-            assertWithMessage("Exception expected").fail();
-        });
+        final CheckstyleException exc = assertThatExceptionOfType(CheckstyleException.class).isThrownBy(() ->
+                assertWithMessage("Exception expected").fail()).actual();
         assertThat(exc.getCause()).isInstanceOf(MetadataGenerationException.class);
         assertThat(exc.getCause().getMessage())
                 .isEqualTo("Default value for property 'missingDefaultValue' is missing");
     }
 
     @Test
-    public void testPropertyMissingTypeCheck() {
+    void propertyMissingTypeCheck() {
         JavadocMetadataScraper.resetModuleDetailsStore();
-        final CheckstyleException exc = assertThrows(CheckstyleException.class, () -> {
-            verifyWithInlineConfigParser(
+        verifyWithInlineConfigParser(
                     getPath("InputJavadocMetadataScraperPropertyMissingTypeCheck.java"),
                     CommonUtil.EMPTY_STRING_ARRAY);
-            assertWithMessage("Exception expected").fail();
-        });
+        final CheckstyleException exc = assertThatExceptionOfType(CheckstyleException.class).isThrownBy(() ->
+                assertWithMessage("Exception expected").fail()).actual();
         assertThat(exc.getCause()).isInstanceOf(MetadataGenerationException.class);
         assertThat(exc.getCause().getMessage())
                 .isEqualTo("Type for property 'missingType' is missing");
     }
 
     @Test
-    public void testPropertyWithNoCodeTagCheck() throws Exception {
+    void propertyWithNoCodeTagCheck() throws Exception {
         JavadocMetadataScraper.resetModuleDetailsStore();
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMetadataScraperPropertyWithNoCodeTagCheck.java"),
@@ -154,7 +150,7 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testRightCurlyCheck() throws Exception {
+    void rightCurlyCheck() throws Exception {
         JavadocMetadataScraper.resetModuleDetailsStore();
         verifyWithInlineConfigParser(getPath("InputJavadocMetadataScraperRightCurlyCheck.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
@@ -164,7 +160,7 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSummaryJavadocCheck() throws Exception {
+    void summaryJavadocCheck() throws Exception {
         JavadocMetadataScraper.resetModuleDetailsStore();
         verifyWithInlineConfigParser(getPath("InputJavadocMetadataScraperSummaryJavadocCheck.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
@@ -175,7 +171,7 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSuppressWarningsFilter() throws Exception {
+    void suppressWarningsFilter() throws Exception {
         JavadocMetadataScraper.resetModuleDetailsStore();
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMetadataScraperSuppressWarningsFilter.java"),
@@ -187,7 +183,7 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWriteTagCheck() throws Exception {
+    void writeTagCheck() throws Exception {
         JavadocMetadataScraper.resetModuleDetailsStore();
         verifyWithInlineConfigParser(getPath("InputJavadocMetadataScraperWriteTagCheck.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
@@ -197,7 +193,7 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEmptyDescription() throws Exception {
+    void emptyDescription() throws Exception {
         JavadocMetadataScraper.resetModuleDetailsStore();
 
         final String[] expected = {

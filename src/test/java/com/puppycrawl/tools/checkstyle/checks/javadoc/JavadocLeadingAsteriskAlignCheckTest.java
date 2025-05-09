@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class JavadocLeadingAsteriskAlignCheckTest extends AbstractModuleTestSupport {
+class JavadocLeadingAsteriskAlignCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -34,7 +34,7 @@ public class JavadocLeadingAsteriskAlignCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    public void testCorrectJavadoc() throws Exception {
+    void correctJavadoc() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final String filePath = getPath("InputJavadocLeadingAsteriskAlignCorrect.java");
@@ -42,7 +42,7 @@ public class JavadocLeadingAsteriskAlignCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    public void testIncorrectJavadoc() throws Exception {
+    void incorrectJavadoc() throws Exception {
         final String[] expected = {
             "12:1: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 1, 2),
             "17:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 5, 4),
@@ -66,7 +66,7 @@ public class JavadocLeadingAsteriskAlignCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    public void testTabs() throws Exception {
+    void tabs() throws Exception {
         final String[] expected = {
             "49:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 5, 4),
             "60:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 5, 6),

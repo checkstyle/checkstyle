@@ -26,8 +26,8 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
-public class CovariantEqualsCheckTest
-    extends AbstractModuleTestSupport {
+class CovariantEqualsCheckTest
+        extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -35,7 +35,7 @@ public class CovariantEqualsCheckTest
     }
 
     @Test
-    public void testDefaultOne()
+    void defaultOne()
             throws Exception {
         final String[] expected = {
             "17:24: " + getCheckMessage(MSG_KEY),
@@ -48,7 +48,7 @@ public class CovariantEqualsCheckTest
     }
 
     @Test
-    public void testDefaultTwo()
+    void defaultTwo()
             throws Exception {
         final String[] expected = {
             "41:20: " + getCheckMessage(MSG_KEY),
@@ -59,7 +59,7 @@ public class CovariantEqualsCheckTest
     }
 
     @Test
-    public void testCovariantEqualsRecords()
+    void covariantEqualsRecords()
             throws Exception {
         final String[] expected = {
             "13:24: " + getCheckMessage(MSG_KEY),
@@ -70,7 +70,7 @@ public class CovariantEqualsCheckTest
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final CovariantEqualsCheck check = new CovariantEqualsCheck();
         assertWithMessage("Acceptable tokens should not be null")
                 .that(check.getAcceptableTokens())

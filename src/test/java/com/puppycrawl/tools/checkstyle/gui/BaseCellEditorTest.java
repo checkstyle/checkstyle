@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
 class BaseCellEditorTest {
 
     @Test
-    public void testToString() {
+    void testToString() {
 
         final BaseCellEditor cellEditor = new BaseCellEditor();
 
@@ -39,7 +39,7 @@ class BaseCellEditorTest {
     }
 
     @Test
-    public void testStopCellEditing() {
+    void stopCellEditing() {
 
         final BaseCellEditor cellEditor = new BaseCellEditor();
 
@@ -49,7 +49,7 @@ class BaseCellEditorTest {
     }
 
     @Test
-    public void testFireEditingStoppedAndCanceled() {
+    void fireEditingStoppedAndCanceled() {
 
         final BaseCellEditor cellEditor = new BaseCellEditor();
 
