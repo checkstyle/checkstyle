@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport;
 
-public class Java20AstRegressionTest extends AbstractTreeTestSupport {
+class Java20AstRegressionTest extends AbstractTreeTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -31,7 +31,7 @@ public class Java20AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testRecordDecompositionEnhancedForLoop() throws Exception {
+    void recordDecompositionEnhancedForLoop() throws Exception {
         verifyAst(
                 getNonCompilablePath(
                         "ExpectedJava20RecordDecompositionEnhancedForLoop.txt"),
@@ -40,7 +40,7 @@ public class Java20AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testRecordDecompositionEnhancedForLoopTricky() throws Exception {
+    void recordDecompositionEnhancedForLoopTricky() throws Exception {
         verifyAst(
                 getNonCompilablePath(
                         "ExpectedJava20RecordDecompositionEnhancedForLoopTricky.txt"),

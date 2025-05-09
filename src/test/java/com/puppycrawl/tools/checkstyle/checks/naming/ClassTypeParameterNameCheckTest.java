@@ -27,8 +27,8 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class ClassTypeParameterNameCheckTest
-    extends AbstractModuleTestSupport {
+class ClassTypeParameterNameCheckTest
+        extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -36,7 +36,7 @@ public class ClassTypeParameterNameCheckTest
     }
 
     @Test
-    public void testGetClassRequiredTokens() {
+    void getClassRequiredTokens() {
         final ClassTypeParameterNameCheck checkObj =
             new ClassTypeParameterNameCheck();
         final int[] expected = {TokenTypes.TYPE_PARAMETER};
@@ -46,7 +46,7 @@ public class ClassTypeParameterNameCheckTest
     }
 
     @Test
-    public void testClassDefault()
+    void classDefault()
             throws Exception {
 
         final String pattern = "^[A-Z]$";
@@ -61,7 +61,7 @@ public class ClassTypeParameterNameCheckTest
     }
 
     @Test
-    public void testClassFooName()
+    void classFooName()
             throws Exception {
 
         final String pattern = "^foo$";
@@ -75,7 +75,7 @@ public class ClassTypeParameterNameCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    void getAcceptableTokens() {
         final ClassTypeParameterNameCheck typeParameterNameCheckObj =
             new ClassTypeParameterNameCheck();
         final int[] actual = typeParameterNameCheckObj.getAcceptableTokens();

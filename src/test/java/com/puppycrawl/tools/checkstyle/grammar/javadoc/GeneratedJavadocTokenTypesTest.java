@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
  * @noinspectionreason ClassIndependentOfModule - architecture of test modules
  *      requires this structure
  */
-public class GeneratedJavadocTokenTypesTest {
+class GeneratedJavadocTokenTypesTest {
 
     private static final String MSG = "Ensure that token numbers generated for the elements"
             + "present in JavadocParser are consistent with what the tests assert.";
@@ -50,7 +50,7 @@ public class GeneratedJavadocTokenTypesTest {
      * @see "https://github.com/checkstyle/checkstyle/issues/5186"
      */
     @Test
-    public void testTokenNumbers() {
+    void tokenNumbers() {
         assertWithMessage(MSG)
             .that(JavadocParser.LEADING_ASTERISK)
             .isEqualTo(1);
@@ -379,7 +379,7 @@ public class GeneratedJavadocTokenTypesTest {
      * @see "https://github.com/checkstyle/checkstyle/issues/5186"
      */
     @Test
-    public void testRuleNumbers() {
+    void ruleNumbers() {
         assertWithMessage(MSG)
             .that(JavadocParser.RULE_javadoc)
             .isEqualTo(0);

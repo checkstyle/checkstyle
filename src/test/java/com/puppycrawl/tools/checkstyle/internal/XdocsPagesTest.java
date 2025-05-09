@@ -267,12 +267,12 @@ public class XdocsPagesTest {
      * @throws Exception if something goes wrong
      */
     @BeforeAll
-    public static void generateXdocContent() throws Exception {
+    static void generateXdocContent() throws Exception {
         XdocGenerator.generateXdocContent(temporaryFolder);
     }
 
     @Test
-    public void testAllChecksPresentOnAvailableChecksPage() throws Exception {
+    void allChecksPresentOnAvailableChecksPage() throws Exception {
         final String availableChecks = Files.readString(AVAILABLE_CHECKS_PATH);
 
         CheckUtil.getSimpleNames(CheckUtil.getCheckstyleChecks())
@@ -296,7 +296,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    public void testAllConfigsHaveLinkInSite() throws Exception {
+    void allConfigsHaveLinkInSite() throws Exception {
         final String siteContent = Files.readString(SITE_PATH);
 
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
@@ -320,7 +320,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    public void testAllChecksPageInSyncWithChecksSummaries() throws Exception {
+    void allChecksPageInSyncWithChecksSummaries() throws Exception {
         final Pattern endOfSentence = Pattern.compile("(.*?\\.)\\s", Pattern.DOTALL);
         final Map<String, String> summaries = readSummaries();
 
@@ -362,7 +362,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    public void testCategoryIndexPageTableInSyncWithAllChecksPageTable() throws Exception {
+    void categoryIndexPageTableInSyncWithAllChecksPageTable() throws Exception {
         final Map<String, String> summaries = readSummaries();
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
@@ -392,7 +392,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    public void testAlphabetOrderInNames() throws Exception {
+    void alphabetOrderInNames() throws Exception {
         final String input = Files.readString(SITE_PATH);
         final Document document = XmlUtil.getRawXml(SITE_PATH.toString(), input, input);
         final NodeList nodes = document.getElementsByTagName("item");
@@ -453,7 +453,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    public void testAlphabetOrderAtIndexPages() throws Exception {
+    void alphabetOrderAtIndexPages() throws Exception {
         final Path allChecks = Paths.get("src/site/xdoc/checks.xml");
         validateOrder(allChecks, "Check");
 
@@ -558,7 +558,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    public void testAllSubSections() throws Exception {
+    void allSubSections() throws Exception {
         for (Path path : XdocUtil.getXdocsFilePaths()) {
             final String input = Files.readString(path);
             final String fileName = path.getFileName().toString();
@@ -614,7 +614,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    public void testAllXmlExamples() throws Exception {
+    void allXmlExamples() throws Exception {
         for (Path path : XdocUtil.getXdocsFilePaths()) {
             final String input = Files.readString(path);
             final String fileName = path.getFileName().toString();
@@ -727,7 +727,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    public void testAllCheckSections() throws Exception {
+    void allCheckSections() throws Exception {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
 
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
@@ -779,7 +779,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    public void testAllCheckSectionsEx() throws Exception {
+    void allCheckSectionsEx() throws Exception {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
 
         final Path path = Path.of(XdocUtil.DIRECTORY_PATH + "/config.xml");
@@ -1789,7 +1789,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    public void testAllStyleRules() throws Exception {
+    void allStyleRules() throws Exception {
         for (Path path : XdocUtil.getXdocsStyleFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
             final String styleName = fileName.substring(0, fileName.lastIndexOf('_'));
@@ -2164,7 +2164,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    public void testAllExampleMacrosHaveParagraphWithIdBeforeThem() throws Exception {
+    void allExampleMacrosHaveParagraphWithIdBeforeThem() throws Exception {
         for (Path path : XdocUtil.getXdocsTemplatesFilePaths()) {
             final String fileName = path.getFileName().toString();
             final String input = Files.readString(path);

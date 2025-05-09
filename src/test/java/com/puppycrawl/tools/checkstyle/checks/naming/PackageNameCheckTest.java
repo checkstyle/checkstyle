@@ -28,8 +28,8 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class PackageNameCheckTest
-    extends AbstractModuleTestSupport {
+class PackageNameCheckTest
+        extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -37,7 +37,7 @@ public class PackageNameCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    void getRequiredTokens() {
         final PackageNameCheck checkObj = new PackageNameCheck();
         final int[] expected = {TokenTypes.PACKAGE_DEF};
         assertWithMessage("Default required tokens are invalid")
@@ -46,7 +46,7 @@ public class PackageNameCheckTest
     }
 
     @Test
-    public void testSpecified()
+    void specified()
             throws Exception {
 
         final String pattern = "[A-Z]+";
@@ -60,7 +60,7 @@ public class PackageNameCheckTest
     }
 
     @Test
-    public void testDefault()
+    void testDefault()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -68,7 +68,7 @@ public class PackageNameCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    void getAcceptableTokens() {
         final PackageNameCheck packageNameCheckObj = new PackageNameCheck();
         final int[] actual = packageNameCheckObj.getAcceptableTokens();
         final int[] expected = {

@@ -35,8 +35,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class VisibilityModifierCheckTest
-    extends AbstractModuleTestSupport {
+class VisibilityModifierCheckTest
+        extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -44,7 +44,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    void getRequiredTokens() {
         final VisibilityModifierCheck checkObj = new VisibilityModifierCheck();
         final int[] expected = {
             TokenTypes.VARIABLE_DEF,
@@ -56,7 +56,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testInner()
+    void inner()
             throws Exception {
         final String[] expected = {
             "47:24: " + getCheckMessage(MSG_KEY, "rData"),
@@ -72,7 +72,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testIgnoreAccess()
+    void ignoreAccess()
             throws Exception {
         final String[] expected = {
             "34:20: " + getCheckMessage(MSG_KEY, "fData"),
@@ -83,7 +83,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testSimple() throws Exception {
+    void simple() throws Exception {
         final String[] expected = {
             "49:19: " + getCheckMessage(MSG_KEY, "mNumCreated2"),
             "59:23: " + getCheckMessage(MSG_KEY, "sTest1"),
@@ -97,7 +97,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testStrictJavadoc() throws Exception {
+    void strictJavadoc() throws Exception {
         final String[] expected = {
             "49:9: " + getCheckMessage(MSG_KEY, "mLen"),
             "50:19: " + getCheckMessage(MSG_KEY, "mDeer"),
@@ -108,7 +108,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testAllowPublicFinalFieldsInImmutableClass() throws Exception {
+    void allowPublicFinalFieldsInImmutableClass() throws Exception {
         final String[] expected = {
             "33:39: " + getCheckMessage(MSG_KEY, "includes"),
             "34:39: " + getCheckMessage(MSG_KEY, "excludes"),
@@ -123,7 +123,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testAllowPublicFinalFieldsInImmutableClassWithNonCanonicalClasses()
+    void allowPublicFinalFieldsInImmutableClassWithNonCanonicalClasses()
             throws Exception {
         final String[] expected = {
             "28:39: " + getCheckMessage(MSG_KEY, "includes"),
@@ -143,7 +143,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testDisAllowPublicFinalAndImmutableFieldsInImmutableClass() throws Exception {
+    void disAllowPublicFinalAndImmutableFieldsInImmutableClass() throws Exception {
         final String[] expected = {
             "32:22: " + getCheckMessage(MSG_KEY, "someIntValue"),
             "33:39: " + getCheckMessage(MSG_KEY, "includes"),
@@ -166,7 +166,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testAllowPublicFinalFieldsInNonFinalClass() throws Exception {
+    void allowPublicFinalFieldsInNonFinalClass() throws Exception {
         final String[] expected = {
             "55:20: " + getCheckMessage(MSG_KEY, "value"),
             "57:24: " + getCheckMessage(MSG_KEY, "bValue"),
@@ -177,7 +177,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testUserSpecifiedImmutableClassesList() throws Exception {
+    void userSpecifiedImmutableClassesList() throws Exception {
         final String[] expected = {
             "30:29: " + getCheckMessage(MSG_KEY, "money"),
             "47:35: " + getCheckMessage(MSG_KEY, "uri"),
@@ -193,7 +193,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testImmutableSpecifiedSameTypeName() throws Exception {
+    void immutableSpecifiedSameTypeName() throws Exception {
         final String[] expected = {
             "23:46: " + getCheckMessage(MSG_KEY, "calendar"),
             "26:36: " + getCheckMessage(MSG_KEY, "address"),
@@ -205,7 +205,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testImmutableValueSameTypeName() throws Exception {
+    void immutableValueSameTypeName() throws Exception {
         final String[] expected = {
             "28:46: " + getCheckMessage(MSG_KEY, "calendar"),
             "29:59: " + getCheckMessage(MSG_KEY, "calendar2"),
@@ -217,14 +217,14 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testImmutableStarImportFalseNegative() throws Exception {
+    void immutableStarImportFalseNegative() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutableStarImport.java"), expected);
     }
 
     @Test
-    public void testImmutableStarImportNoWarn() throws Exception {
+    void immutableStarImportNoWarn() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutableStarImport2.java"),
@@ -232,7 +232,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testDefaultAnnotationPatterns() throws Exception {
+    void defaultAnnotationPatterns() throws Exception {
         final String[] expected = {
             "61:19: " + getCheckMessage(MSG_KEY, "customAnnotatedPublic"),
             "64:12: " + getCheckMessage(MSG_KEY, "customAnnotatedPackage"),
@@ -246,7 +246,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testCustomAnnotationPatterns() throws Exception {
+    void customAnnotationPatterns() throws Exception {
         final String[] expected = {
             "37:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
             "40:28: " + getCheckMessage(MSG_KEY, "fqPublicJUnitRule"),
@@ -267,7 +267,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testIgnoreAnnotationNoPattern() throws Exception {
+    void ignoreAnnotationNoPattern() throws Exception {
         final String[] expected = {
             "36:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
             "39:28: " + getCheckMessage(MSG_KEY, "fqPublicJUnitRule"),
@@ -291,7 +291,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testIgnoreAnnotationSameName() throws Exception {
+    void ignoreAnnotationSameName() throws Exception {
         final String[] expected = {
             "33:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
             "36:28: " + getCheckMessage(MSG_KEY, "publicJUnitClassRule"),
@@ -302,7 +302,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    void getAcceptableTokens() {
         final VisibilityModifierCheck obj = new VisibilityModifierCheck();
         final int[] expected = {
             TokenTypes.VARIABLE_DEF,
@@ -314,7 +314,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testPublicImmutableFieldsNotAllowed() throws Exception {
+    void publicImmutableFieldsNotAllowed() throws Exception {
         final String[] expected = {
             "31:22: " + getCheckMessage(MSG_KEY, "someIntValue"),
             "32:39: " + getCheckMessage(MSG_KEY, "includes"),
@@ -327,7 +327,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testPublicFinalFieldsNotAllowed() throws Exception {
+    void publicFinalFieldsNotAllowed() throws Exception {
         final String[] expected = {
             "31:22: " + getCheckMessage(MSG_KEY, "someIntValue"),
             "32:39: " + getCheckMessage(MSG_KEY, "includes"),
@@ -340,14 +340,14 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testPublicFinalFieldsAllowed() throws Exception {
+    void publicFinalFieldsAllowed() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifiersPublicImmutable3.java"), expected);
     }
 
     @Test
-    public void testPublicFinalFieldInEnum() throws Exception {
+    void publicFinalFieldInEnum() throws Exception {
         final String[] expected = {
             "35:23: " + getCheckMessage(MSG_KEY, "hole"),
         };
@@ -356,7 +356,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testWrongTokenType() {
+    void wrongTokenType() {
         final VisibilityModifierCheck obj = new VisibilityModifierCheck();
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(new CommonToken(TokenTypes.CLASS_DEF, "class"));
@@ -372,7 +372,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testNullModifiers() throws Exception {
+    void nullModifiers() throws Exception {
         final String[] expected = {
             "32:50: " + getCheckMessage(MSG_KEY, "i"),
         };
@@ -381,7 +381,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testVisibilityModifiersOfGenericFields() throws Exception {
+    void visibilityModifiersOfGenericFields() throws Exception {
         final String[] expected = {
             "31:56: " + getCheckMessage(MSG_KEY, "perfSeries"),
             "32:66: " + getCheckMessage(MSG_KEY, "peopleMap"),
@@ -417,7 +417,7 @@ public class VisibilityModifierCheckTest
      * @throws Exception when exception occurred during execution.
      */
     @Test
-    public void testIsStarImportNullAst() throws Exception {
+    void isStarImportNullAst() throws Exception {
         final DetailAST importAst = JavaParser.parseFile(
             new File(getPath("InputVisibilityModifierIsStarImport.java")),
             JavaParser.Options.WITHOUT_COMMENTS).getFirstChild().getNextSibling();
@@ -430,7 +430,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testPackageClassName() throws Exception {
+    void packageClassName() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputVisibilityModifierPackageClassName.java"),
