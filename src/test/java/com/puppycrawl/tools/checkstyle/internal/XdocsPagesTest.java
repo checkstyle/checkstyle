@@ -115,6 +115,7 @@ public class XdocsPagesTest {
             "name=\"SuppressWarningsFilter\"",
             "name=\"BeforeExecutionExclusionFileFilter\"",
             "name=\"RegexpHeader\"",
+            "name=\"MultiFileRegexpHeader\"",
             "name=\"RegexpOnFilename\"",
             "name=\"RegexpSingleline\"",
             "name=\"RegexpMultiline\"",
