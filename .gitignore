@@ -18,6 +18,10 @@ nb-configuration.xml
 target
 bin
 
+# Maven Wrapper (modern setup — do not include jar/downloader)
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/MavenWrapperDownloader.java
+
 # IDEA project files
 checkstyle.iml
 checkstyle.ipr
