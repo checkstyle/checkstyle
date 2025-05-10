@@ -1853,6 +1853,57 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCatchParametersOnNewLine()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("arrayInitIndent", "2");
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String fileName =
+            getPath("InputIndentationCatchParametersOnNewLine.java");
+
+        final String[] expected = {
+            "22:1: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 0, 8),
+            "31:5: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 4, 8),
+            "38:5: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 4, 8),
+            "48:13: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 12, 8),
+            "64:9: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 8, 12),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testMultiLineStatements()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("arrayInitIndent", "2");
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String fileName =
+            getNonCompilablePath("InputIndentationMultilineStatements.java");
+
+        final String[] expected = {
+            "23:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 6, 8),
+            "39:7: " + getCheckMessage(MSG_ERROR, 0, 6, 8),
+            "40:7: " + getCheckMessage(MSG_ERROR, 1, 6, 8),
+            "65:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 6, 8),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testInvalidClassDefWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
@@ -3712,6 +3763,29 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIndentationSwitchExpressionWrappingIndentation() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+
+        final String fileName = getNonCompilablePath(
+                "InputIndentationSwitchExpressionWrappingIndentation.java");
+        final String[] expected = {
+            "41:7: " + getCheckMessage(MSG_ERROR, "switch", 6, 8),
+            "42:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 10),
+            "43:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 10),
+            "44:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 10),
+            "45:7: " + getCheckMessage(MSG_ERROR, "switch rcurly", 6, 8),
+            "51:9: " + getCheckMessage(MSG_CHILD_ERROR, "lambda", 8, 10),
+            "52:11: " + getCheckMessage(MSG_CHILD_ERROR, "case", 10, 12),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testIndentationPatternMatchingForSwitch()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
@@ -3735,6 +3809,31 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "88:1: " + getCheckMessage(MSG_CHILD_ERROR, "case", 0, 16),
             "89:1: " + getCheckMessage(MSG_CHILD_ERROR, "case", 0, 16),
             "90:1: " + getCheckMessage(MSG_ERROR, "lambda", 0, 16),
+            "91:1: " + getCheckMessage(MSG_CHILD_ERROR, "lambda", 0, 20),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testIndentationSingleSwitchStatementsWithoutCurly()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+
+        final String fileName = getNonCompilablePath(
+                "InputIndentationCheckSingleSwitchStatementsWithoutCurly.java");
+        final String[] expected = {
+            "31:13: " + getCheckMessage(MSG_ERROR, "lambda", 12, 16),
+            "32:13: " + getCheckMessage(MSG_CHILD_ERROR, "lambda", 12, 20),
+            "33:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
+            "34:1: " + getCheckMessage(MSG_CHILD_ERROR, "lambda", 0, 16),
+            "44:25: " + getCheckMessage(MSG_CHILD_ERROR, "lambda", 24, 16),
+            "47:13: " + getCheckMessage(MSG_CHILD_ERROR, "block", 12, 16),
         };
         verifyWarns(checkConfig, fileName, expected);
     }

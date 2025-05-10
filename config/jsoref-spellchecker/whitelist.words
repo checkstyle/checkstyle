@@ -351,6 +351,7 @@ Duser
 Dversion
 Dxml
 eb
+EBFF
 EBNF
 ecj
 eclemma
@@ -1089,6 +1090,7 @@ Postgresql
 powershell
 ppc
 prebuilts
+prefs
 PRESIZE
 prettyprint
 printf
@@ -1510,7 +1512,6 @@ writinglisteners
 Wsdl
 www
 xa
-Xandy
 xar
 xargs
 XDcompile
