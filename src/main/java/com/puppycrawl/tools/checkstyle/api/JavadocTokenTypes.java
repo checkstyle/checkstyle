@@ -3104,6 +3104,14 @@ public final class JavadocTokenTypes {
     /**
      * HTML void element {@code <keygen>}.
      *
+     * <p>Example usage in Javadoc:
+     * <pre>
+     * &#47;**
+     *  * This is an example of keygen tag.
+     *  * <keygen name="name" challenge="challengeString">
+     *  *&#47;
+     * </pre>
+     *
      * @see #SINGLETON_ELEMENT
      * @see <a href="https://www.w3.org/TR/html51/sec-forms.html#elementdef-keygen">
      *     W3 docs</a>
