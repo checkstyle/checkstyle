@@ -2749,11 +2749,31 @@ public final class JavadocTokenTypes {
     public static final int SINGLETON_ELEMENT = JavadocParser.RULE_singletonElement
             + RULE_TYPES_OFFSET;
 
-    /**
-     * Non-special empty html tag.
-     */
-    public static final int EMPTY_TAG = JavadocParser.RULE_emptyTag
-            + RULE_TYPES_OFFSET;
+     /**
+      * Non-special empty html tag.
+      *
+      * <p>Example:
+      * <pre>
+      * {@code
+      * /**
+      *  * Example for empty tag.
+      *  *
+      *  * <br>
+      *  *\/
+      * public class Test { }
+      * }
+      * </pre>
+      *
+      * <p>AST:
+      * <pre>
+      * `--EMPTY_TAG -> EMPTY_TAG
+      *     `--BR_TAG -> BR_TAG
+      *         |--START -> <
+      *         |--BR_HTML_TAG_NAME -> br
+      *         `--END -> >
+      * </pre>
+      */
+     public static final int EMPTY_TAG = JavadocParser.RULE_emptyTag + RULE_TYPES_OFFSET;
 
     /**
      * Area html tag.
