@@ -3028,7 +3028,32 @@ public final class JavadocTokenTypes {
      */
     public static final int ISINDEX_TAG = JavadocParser.RULE_isindexTag + RULE_TYPES_OFFSET;
 
-    /** Link html tag. */
+    /**
+     * Link html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <link rel="stylesheet" href="styles.css">}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     *     `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *      `--LINK_TAG -> LINK_TAG
+     *          |--START -> <
+     *          |--LINK_HTML_TAG_NAME -> link
+     *          |--ATTRIBUTE -> ATTRIBUTE
+     *          |   |--HTML_TAG_NAME -> rel
+     *          |   |--EQUALS -> =
+     *          |   `--ATTR_VALUE -> "stylesheet"
+     *          |--ATTRIBUTE -> ATTRIBUTE
+     *          |   |--HTML_TAG_NAME -> href
+     *          |   |--EQUALS -> =
+     *          |   `--ATTR_VALUE -> "styles.css"
+     *          `--END -> >
+     * }
+     * </pre>
+     */
     public static final int LINK_TAG = JavadocParser.RULE_linkTag + RULE_TYPES_OFFSET;
 
     /**
