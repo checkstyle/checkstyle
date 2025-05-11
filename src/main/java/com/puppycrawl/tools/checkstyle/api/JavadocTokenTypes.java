@@ -2751,6 +2751,22 @@ public final class JavadocTokenTypes {
 
     /**
      * Non-special empty html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <br>}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     *  `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *      `--BR_TAG -> BR_TAG
+     *          |--START -> <
+     *          |--BR_HTML_TAG_NAME -> br
+     *          `--END -> >
+     * TEXT ->  - Test for EMPTY_TAG
+     * }
+     * </pre>
      */
     public static final int EMPTY_TAG = JavadocParser.RULE_emptyTag
             + RULE_TYPES_OFFSET;
