@@ -138,7 +138,6 @@ jobs:
       - name: Copy site to AWS S3 Bucket
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
           bash
           TIME=$(date +%Y%m%d%H%M%S)
