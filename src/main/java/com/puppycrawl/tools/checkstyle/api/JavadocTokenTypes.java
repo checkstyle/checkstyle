@@ -2750,10 +2750,29 @@ public final class JavadocTokenTypes {
             + RULE_TYPES_OFFSET;
 
     /**
-     * Non-special empty html tag.
+     * Non-special empty HTML tag.
+     *
+     * <p>Example:</p>
+     * <pre>
+     * &#47;**
+     *  * Example for empty tag.
+     *  *
+     *  * &lt;custom /&gt;
+     *  *
+     *  * public class Test { }
+     *  &#42;&#47;
+     * </pre>
+     *
+     * <p>AST:</p>
+     * <pre>
+     * `--EMPTY_TAG -&gt; EMPTY_TAG
+     *     |--START -&gt; &lt;
+     *     |--HTML_TAG_NAME -&gt; custom
+     *     |--WS -&gt;
+     *     `--SLASH_END -&gt; /&gt;
+     * </pre>
      */
-    public static final int EMPTY_TAG = JavadocParser.RULE_emptyTag
-            + RULE_TYPES_OFFSET;
+    public static final int EMPTY_TAG = JavadocParser.RULE_emptyTag + RULE_TYPES_OFFSET;
 
     /**
      * Area html tag.
