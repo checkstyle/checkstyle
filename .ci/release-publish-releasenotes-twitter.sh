@@ -8,7 +8,7 @@ checkForVariable "TWITTER_CONSUMER_SECRET"
 checkForVariable "TWITTER_ACCESS_TOKEN"
 checkForVariable "TWITTER_ACCESS_TOKEN_SECRET"
 checkForVariable "GITHUB_READ_ONLY_TOKEN"
-checkForVariable "REPOSITORY_OWNER"
+checkForVariable "GITHUB_REPOSITORY_OWNER"
 
 checkout_from https://github.com/checkstyle/contribution
 
@@ -24,13 +24,13 @@ if [ -d .ci-temp/checkstyle ]; then
   cd ../../
 else
   cd .ci-temp/
-  git clone https://github.com/"$REPOSITORY_OWNER"/checkstyle
+  git clone https://github.com/"$GITHUB_REPOSITORY_OWNER"/checkstyle
   cd ../
 fi
 
 cd .ci-temp/checkstyle
 
-curl --fail-with-body https://api.github.com/repos/"$REPOSITORY_OWNER"/checkstyle/releases \
+curl --fail-with-body https://api.github.com/repos/"$GITHUB_REPOSITORY_OWNER"/checkstyle/releases \
  -H "Authorization: token $GITHUB_READ_ONLY_TOKEN" \
  -o /var/tmp/cs-releases.json
 
@@ -53,7 +53,7 @@ cd ../
 BUILDER_RESOURCE_DIR="contribution/releasenotes-builder/src/main/resources/com/github/checkstyle"
 
 java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.jar \
-     -remoteRepoPath "$REPOSITORY_OWNER"/checkstyle \
+     -remoteRepoPath "$GITHUB_REPOSITORY_OWNER"/checkstyle \
      -localRepoPath checkstyle \
      -startRef "$START_REF" \
      -endRef "$END_REF" \

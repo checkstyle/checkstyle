@@ -44,6 +44,5 @@ jobs:
       - name: Run GitHub Update Script
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
           ./.ci/release-upload-all-jar.sh ${{ inputs.version }}

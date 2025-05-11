@@ -10,7 +10,7 @@ if [[ -z $1 ]]; then
   exit 1
 fi
 
-checkForVariable "REPOSITORY_OWNER"
+checkForVariable "GITHUB_REPOSITORY_OWNER"
 
 TARGET_VERSION=$1
 echo TARGET_VERSION="$TARGET_VERSION"
@@ -23,6 +23,6 @@ SKIP_OTHERS="-Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dxml.skip=
 git checkout "checkstyle-$TARGET_VERSION"
 echo "Deploying jars to maven central (release:perform) ..."
 mvn -e --no-transfer-progress -Pgpg -Pgpgv2 release:perform \
-  -DconnectionUrl=scm:git:https://github.com/"$REPOSITORY_OWNER"/checkstyle.git \
+  -DconnectionUrl=scm:git:https://github.com/"$GITHUB_REPOSITORY_OWNER"/checkstyle.git \
   -Dtag=checkstyle-"$TARGET_VERSION" \
   -Darguments="$SKIP_TEST $SKIP_CHECKSTYLE $SKIP_OTHERS"
