@@ -2200,6 +2200,7 @@
             <excludedLink>https://codeclimate.com</excludedLink>
             <excludedLink>https://saxon.sourceforge.net/saxon7.1/expressions.html</excludedLink>
             <excludedLink>https://www.baeldung.com/*</excludedLink>
+            <excludedLink>https://medium.com/*</excludedLink>
             <!-- until https://github.com/checkstyle/checkstyle/issues/11754 -->
             <excludedLink>https://checkstyle.sourceforge.io/version/6.18</excludedLink>
           </excludedLinks>
