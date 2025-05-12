@@ -52,7 +52,7 @@
       </p>
     </section>
 
-    <section name="Report an issue">
+    <section name="Report An Issue">
 
       <p>
         All functional changes in the project must be linked to an approved issue.
@@ -84,7 +84,7 @@
       </p>
     </section>
 
-    <section name="Quality matters">
+    <section name="Quality Matters">
 
       <p>
         We use a set of development tools to ensure that
@@ -130,7 +130,7 @@
       </p>
     </section>
 
-    <section name="Submitting your contribution">
+    <section name="Submitting Your Contribution">
 
       <p>
         Once you have made sure that your changes pass the Maven command
