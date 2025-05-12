@@ -84,6 +84,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ChecksAndFilesSuppressionFileGeneratorAuditListener.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter fileName of ChecksAndFilesSuppressionFileGeneratorAuditListener.suppressXmlWriter.</message>
+    <lineContent>suppressXmlWriter(fileName, checkName, moduleIdName);</lineContent>
+    <details>
+      found   : @Initialized @Nullable Path
+      required: @Initialized @NonNull Path
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ConfigurationLoader.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of Collection.add.</message>
