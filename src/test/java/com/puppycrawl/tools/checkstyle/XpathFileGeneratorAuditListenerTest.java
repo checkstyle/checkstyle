@@ -51,10 +51,10 @@ public class XpathFileGeneratorAuditListenerTest {
     private static final Violation FIRST_MESSAGE = createViolation(3, 51,
             TokenTypes.LCURLY, null, LeftCurlyCheck.class);
 
-    private static final Violation SECOND_MESSAGE = createViolation(15, 5,
+    private static final Violation SECOND_MESSAGE = createViolation(7, 5,
             TokenTypes.METHOD_DEF, "MyModule", MethodParamPadCheck.class);
 
-    private static final Violation THIRD_MESSAGE = createViolation(17, 13,
+    private static final Violation THIRD_MESSAGE = createViolation(9, 13,
             TokenTypes.LITERAL_FOR, null, NestedForDepthCheck.class);
 
     private static final Violation FOURTH_MESSAGE = createViolation(5, 5,

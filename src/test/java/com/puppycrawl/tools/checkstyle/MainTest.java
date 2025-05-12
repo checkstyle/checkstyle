@@ -73,7 +73,7 @@ public class MainTest {
             + "Try 'checkstyle --help' for more information.%n");
 
     private static final String USAGE = String.format(Locale.ROOT,
-          "Usage: checkstyle [-dEghjJtTV] [-b=<xpath>] [-c=<configurationFile>] "
+          "Usage: checkstyle [-dEgGhjJtTV] [-b=<xpath>] [-c=<configurationFile>] "
                   + "[-f=<format>]%n"
                   + "                  [-o=<outputPath>] [-p=<propertiesFile>] "
                   + "[-s=<suppressionLineColumnNumber>]%n"
@@ -108,13 +108,25 @@ public class MainTest {
                   + "DefaultLogger respectively. Defaults to%n"
                   + "                              plain.%n"
                   + "  -g, --generate-xpath-suppression%n"
-                  + "                            Generates to output a suppression xml to use"
-                  + " to suppress all violations%n"
-                  + "                              from user's config. Instead of printing every"
-                  + " violation, all%n"
-                  + "                              violations will be catched and single"
-                  + " suppressions xml file will be%n"
-                  + "                              printed out. Used only with -c option. Output"
+                  + "                            Generates to output a xpath suppression xml to use"
+                  + " to suppress all%n"
+                  + "                              violations from user's config. Instead of"
+                  + " printing every violation,%n"
+                  + "                              all violations will be catched and single"
+                  + " suppressions xml file will%n"
+                  + "                              be printed out. Used only with -c option. Output"
+                  + " location can be%n"
+                  + "                              specified with -o option.%n"
+                  + "  -G, --generate-checks-and-files-suppression%n"
+                  + "                            Generates to output a suppression xml that will"
+                  + " have suppress elements%n"
+                  + "                              with \"checks\" and \"files\" attributes only to"
+                  + " use to suppress all%n"
+                  + "                              violations from user's config. Instead of"
+                  + " printing every violation,%n"
+                  + "                              all violations will be catched and single"
+                  + " suppressions xml file will%n"
+                  + "                              be printed out. Used only with -c option. Output"
                   + " location can be%n"
                   + "                              specified with -o option.%n"
                   + "  -h, --help                Show this help message and exit.%n"
@@ -1497,6 +1509,172 @@ public class MainTest {
         assertMainReturnCode(0, "-c", getPath("InputMainConfig-xpath-suppressions.xml"),
                 "--generate-xpath-suppression", "--tabWidth", "20",
                 getPath("InputMainGenerateXpathSuppressionsTabWidth.java"));
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+    }
+
+    @Test
+    public void testGenerateSuppressionOptionOne(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) {
+        final String expected = addEndOfLine(
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                "<!DOCTYPE suppressions PUBLIC",
+                "    \"-//Checkstyle//DTD Checkstyle Configuration 1.3"
+                    + "//EN\"",
+                "    \"https://checkstyle.org/dtds/configuration_1_3.dtd\">",
+                "<suppressions>",
+                "<suppress",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"MissingJavadocMethodCheck\"",
+                "/>",
+                "<suppress",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       id=\"LeftCurlyEol\"",
+                "/>",
+                "</suppressions>");
+
+        assertMainReturnCode(0, "-c", "/google_checks.xml",
+                "--generate-checks-and-files-suppression",
+                getPath("InputMainComplexityOverflow.java"));
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+    }
+
+    @Test
+    public void testGenerateSuppressionOptionTwo(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) {
+        final String expected = addEndOfLine(
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE suppressions PUBLIC",
+            "    \"-//Checkstyle//DTD Checkstyle Configuration 1.3"
+                    + "//EN\"",
+            "    \"https://checkstyle.org/dtds/configuration_1_3.dtd\">",
+            "<suppressions>",
+            "<suppress",
+            "       files=\"InputMainGenerateFilterSuppressions.java\"",
+            "       checks=\"ExplicitInitializationCheck\"",
+            "/>",
+            "<suppress",
+            "       files=\"InputMainGenerateFilterSuppressions.java\"",
+            "       checks=\"IllegalThrowsCheck\"",
+            "/>",
+            "<suppress",
+            "       files=\"InputMainGenerateFilterSuppressions.java\"",
+            "       checks=\"NestedForDepthCheck\"",
+            "/>",
+            "</suppressions>");
+
+        assertMainReturnCode(0, "-c", getPath("InputMainConfig-Filter-suppressions.xml"),
+                "--generate-checks-and-files-suppression",
+                getPath("InputMainGenerateFilterSuppressions.java"));
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+    }
+
+    @Test
+    public void testGenerateSuppressionOptionEmptyConfig(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) {
+        final String expected = "";
+
+        assertMainReturnCode(0, "-c", getPath("InputMainConfig-empty.xml"),
+                "--generate-checks-and-files-suppression",
+                getPath("InputMainComplexityOverflow.java"));
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+    }
+
+    @Test
+    public void testGenerateSuppressionOptionCustomOutput(@SysErr Capturable systemErr)
+            throws IOException {
+        final String expected = addEndOfLine(
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                "<!DOCTYPE suppressions PUBLIC",
+                "    \"-//Checkstyle//DTD Checkstyle Configuration 1.3"
+                    + "//EN\"",
+                "    \"https://checkstyle.org/dtds/configuration_1_3.dtd\">",
+                "<suppressions>",
+                "<suppress",
+                "       files=\"InputMainGenerateFilterSuppressionsTabWidth.java\"",
+                "       checks=\"ExplicitInitializationCheck\"",
+                "/>",
+                "</suppressions>");
+        final File file = new File(temporaryFolder, "file.output");
+        assertMainReturnCode(0, "-c", getPath("InputMainConfig-Filter-suppressions.xml"), "-o",
+                file.getPath(), "--generate-checks-and-files-suppression",
+                getPath("InputMainGenerateFilterSuppressionsTabWidth.java"));
+        try (BufferedReader br = Files.newBufferedReader(file.toPath())) {
+            final String fileContent = br.lines().collect(Collectors.joining(EOL, "", EOL));
+            assertWithMessage("Unexpected output log")
+                .that(fileContent)
+                .isEqualTo(expected);
+            assertWithMessage("Unexpected system error log")
+                .that(systemErr.getCapturedData())
+                .isEqualTo("");
+        }
+    }
+
+    @Test
+    public void testGenerateSuppressionOptionDefaultTabWidth(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) {
+        final String expected = addEndOfLine(
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                "<!DOCTYPE suppressions PUBLIC",
+                "    \"-//Checkstyle//DTD Checkstyle Configuration 1.3"
+                    + "//EN\"",
+                "    \"https://checkstyle.org/dtds/configuration_1_3.dtd\">",
+                "<suppressions>",
+                "<suppress",
+                "       files=\"InputMainGenerateFilterSuppressionsTabWidth.java\"",
+                "       checks=\"ExplicitInitializationCheck\"",
+                "/>",
+                "</suppressions>");
+
+        assertMainReturnCode(0, "-c", getPath("InputMainConfig-Filter-suppressions.xml"),
+                "--generate-checks-and-files-suppression",
+                getPath("InputMainGenerateFilterSuppressionsTabWidth.java"));
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+    }
+
+    @Test
+    public void testGenerateSuppressionOptionCustomTabWidth(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) {
+        final String expected = addEndOfLine(
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                "<!DOCTYPE suppressions PUBLIC",
+                "    \"-//Checkstyle//DTD Checkstyle Configuration 1.3"
+                    + "//EN\"",
+                "    \"https://checkstyle.org/dtds/configuration_1_3.dtd\">",
+                "<suppressions>",
+                "<suppress",
+                "       files=\"InputMainGenerateFilterSuppressionsTabWidth.java\"",
+                "       checks=\"ExplicitInitializationCheck\"",
+                "/>",
+                "</suppressions>");
+
+        assertMainReturnCode(0, "-c", getPath("InputMainConfig-Filter-suppressions.xml"),
+                "--generate-checks-and-files-suppression", "--tabWidth", "20",
+                getPath("InputMainGenerateFilterSuppressionsTabWidth.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo(expected);
