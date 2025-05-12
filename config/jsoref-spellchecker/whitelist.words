@@ -184,6 +184,7 @@ CHDHJECF
 CHDJBFDB
 checkchmod
 checkerframework
+checksandfilessuppressionfilegeneratorauditlistener
 checkstyle
 checkstyleanttask
 checkstylemeta
@@ -501,6 +502,7 @@ genericwhitespace
 getenv
 gg
 gh
+Ghj
 gitattributes
 github
 githubusercontent
