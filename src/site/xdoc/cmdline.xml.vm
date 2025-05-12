@@ -25,7 +25,7 @@
       </p>
     </section>
 
-    <section name="Command line usage">
+    <section name="Command Line Usage">
       <p>
 
         <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
@@ -410,7 +410,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
       </p>
     </section>
 
-    <section name="Download and Run">
+    <section name="Download And Run">
       <p>
         It is possible to run Checkstyle directly from the JAR file using
         the <code>-jar</code> option. Download latest
@@ -1941,7 +1941,7 @@ Checkstyle ends with 2 errors.
 
 </section>
 
-    <section name="Run after compilation">
+    <section name="Run After Compilation">
       <p>
         Download and compile:
       </p>
@@ -1981,7 +1981,7 @@ Checkstyle ends with 2 errors.
       </div>
     </section>
 
-    <section name="Usage by Classpath update">
+    <section name="Usage By Classpath Update">
       <p>
         The easiest way is to include
         <a href=
