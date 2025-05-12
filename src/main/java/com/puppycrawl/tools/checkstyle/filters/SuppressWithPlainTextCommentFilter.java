@@ -24,7 +24,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -127,6 +126,12 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     /** Default check format to suppress. By default, the filter suppress all checks. */
     private static final String DEFAULT_CHECK_FORMAT = ".*";
 
+    /** List of suppressions from the file. By default, Its null. */
+    private final Collection<Suppression> currentFileSuppressionCache = new ArrayList<>();
+
+    /** File name that was suppressed. By default, Its empty. */
+    private String currentFileName = "";
+
     /** Specify comment pattern to trigger filter to begin suppression. */
     private Pattern offCommentFormat = CommonUtil.createPattern(DEFAULT_OFF_FORMAT);
 
@@ -199,11 +204,18 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     public boolean accept(AuditEvent event) {
         boolean accepted = true;
         if (event.getViolation() != null) {
-            final FileText fileText = getFileText(event.getFileName());
-            if (fileText != null) {
-                final List<Suppression> suppressions = getSuppressions(fileText);
-                accepted = getNearestSuppression(suppressions, event) == null;
+            final String eventFileName = event.getFileName();
+
+            if (!currentFileName.equals(eventFileName)) {
+                currentFileName = eventFileName;
+                final FileText fileText = getFileText(eventFileName);
+                currentFileSuppressionCache.clear();
+                if (fileText != null) {
+                    cacheSuppressions(fileText);
+                }
             }
+
+            accepted = getNearestSuppression(currentFileSuppressionCache, event) == null;
         }
         return accepted;
     }
@@ -214,7 +226,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     }
 
     /**
-     * Returns {@link FileText} instance created based on the given file name.
+     * Caches {@link FileText} instance created based on the given file name.
      *
      * @param fileName the name of the file.
      * @return {@link FileText} instance.
@@ -229,8 +241,8 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
             try {
                 result = new FileText(file, StandardCharsets.UTF_8.name());
             }
-            catch (IOException ex) {
-                throw new IllegalStateException("Cannot read source file: " + fileName, ex);
+            catch (IOException exc) {
+                throw new IllegalStateException("Cannot read source file: " + fileName, exc);
             }
         }
 
@@ -238,18 +250,15 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     }
 
     /**
-     * Returns the list of {@link Suppression} instances retrieved from the given {@link FileText}.
+     * Collects the list of {@link Suppression} instances retrieved from the given {@link FileText}.
      *
      * @param fileText {@link FileText} instance.
-     * @return list of {@link Suppression} instances.
      */
-    private List<Suppression> getSuppressions(FileText fileText) {
-        final List<Suppression> suppressions = new ArrayList<>();
+    private void cacheSuppressions(FileText fileText) {
         for (int lineNo = 0; lineNo < fileText.size(); lineNo++) {
             final Optional<Suppression> suppression = getSuppression(fileText, lineNo);
-            suppression.ifPresent(suppressions::add);
+            suppression.ifPresent(currentFileSuppressionCache::add);
         }
-        return suppressions;
     }
 
     /**
@@ -372,9 +381,9 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
                     eventIdRegexp = Pattern.compile(format);
                 }
             }
-            catch (final PatternSyntaxException ex) {
+            catch (final PatternSyntaxException exc) {
                 throw new IllegalArgumentException(
-                    "unable to parse expanded comment " + format, ex);
+                    "unable to parse expanded comment " + format, exc);
             }
         }
 

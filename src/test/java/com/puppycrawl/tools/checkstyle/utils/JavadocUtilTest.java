@@ -284,9 +284,9 @@ public class JavadocUtilTest {
             JavadocUtil.getTokenName(30073);
             assertWithMessage("exception expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unknown javadoc token id. Given id: 30073");
         }
     }
@@ -297,9 +297,9 @@ public class JavadocUtilTest {
             JavadocUtil.getTokenName(110);
             assertWithMessage("exception expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unknown javadoc token id. Given id: 110");
         }
     }
@@ -310,9 +310,9 @@ public class JavadocUtilTest {
             JavadocUtil.getTokenName(10095);
             assertWithMessage("exception expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unknown javadoc token id. Given id: 10095");
         }
     }
@@ -323,9 +323,9 @@ public class JavadocUtilTest {
             JavadocUtil.getTokenId("");
             assertWithMessage("exception expected").fail();
         }
-        catch (IllegalArgumentException ex) {
+        catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(exc.getMessage())
                 .isEqualTo("Unknown javadoc token name. Given name ");
         }
     }

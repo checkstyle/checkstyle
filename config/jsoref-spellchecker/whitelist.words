@@ -349,6 +349,7 @@ Duser
 Dversion
 Dxml
 eb
+EBFF
 EBNF
 ecj
 eclemma
@@ -1076,6 +1077,7 @@ Popup
 Postgresql
 ppc
 prebuilts
+prefs
 PRESIZE
 prettyprint
 printf
@@ -1229,6 +1231,7 @@ Sms
 smth
 snyk
 socio
+Sohjiro
 solr
 someinner
 somename
@@ -1309,6 +1312,7 @@ suse
 svg
 svn
 sxpath
+syntastic
 Sys
 sysextensions
 sysprop
@@ -1484,7 +1488,6 @@ writinglisteners
 Wsdl
 www
 xa
-Xandy
 xar
 xargs
 XDcompile
