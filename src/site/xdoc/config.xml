@@ -783,7 +783,7 @@
       </p>
     </section>
 
-    <section name="tabWidth">
+    <section name="TabWidth">
       <p>
         Each module has a <code>tabWidth</code> property that can specify how many spaces
         a tab character uses. The default width by all modules is 8 spaces. Overriding the
@@ -830,7 +830,7 @@
 
     </section>
 
-    <section name="Custom messages">
+    <section name="Custom Messages">
       <p>
         As of Checkstyle 5 all checks can be configured to report
         custom, configuration specific messages instead of the
