@@ -107,6 +107,11 @@
           <exclude name="target/**/*" />
           <exclude name="bin/**/*" />
 
+          <!-- Maven wrapper and scripts -->
+          <exclude name=".mvn/**/*"/>
+          <exclude name="mvnw"/>
+          <exclude name="mvnw.cmd"/>
+
           <!-- IDEA project files -->
           <exclude name="*.iml"/>
           <exclude name="*.ipr"/>
