@@ -69,4 +69,13 @@ public class MatchXpathCheckExamplesTest extends AbstractExamplesModuleTestSuppo
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "18:3: " + "Classes with more than 1 constructor are not allowed",
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
 }

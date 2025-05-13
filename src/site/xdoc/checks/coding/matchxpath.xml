@@ -199,6 +199,31 @@ public class Example4 {
     var b = new Object();
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To violate if class has more than <b>1</b> constructor
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MatchXpath"&gt;
+      &lt;property name="query"
+           value="//CLASS_DEF[count(./OBJBLOCK/CTOR_DEF) &gt; 1]"/&gt;
+      &lt;message key="matchxpath.match"
+           value="Classes with more than 1 constructor are not allowed"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example5 {
+  public Example5() { }
+  class Inner { // violation
+    public Inner(int a) { }
+    public Inner() { }
+  }
+}
 </code></pre></div>
       </subsection>
 
