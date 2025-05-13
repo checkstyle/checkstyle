@@ -108,7 +108,10 @@ public final class FileText {
         lines = fileText.lines.clone();
         if (fileText.lineBreaks != null) {
             lineBreaks = fileText.lineBreaks.clone();
+        } else {
+            lineBreaks = null;
         }
+
     }
 
     /**
