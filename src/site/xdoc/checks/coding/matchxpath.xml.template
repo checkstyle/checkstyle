@@ -131,7 +131,8 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
-          To violate if new instance creation was done without <b>var</b> type
+          To violate if new instance creation was done without <b>var</b> type to avoid duplication
+          of reference in statement
         </p>
         <macro name="example">
           <param name="path"
@@ -142,6 +143,20 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example4.java"/>
+          <param name="type" value="code"/>
+                  </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          To violate if class has more than <b>1</b> constructor
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
