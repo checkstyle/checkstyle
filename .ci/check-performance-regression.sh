@@ -68,7 +68,7 @@ compare_results() {
   if [ -z "$EXECUTION_TIME_SECONDS" ]; then
         echo "Missing EXECUTION_TIME_SECONDS as an argument."
         return 1
-    fi
+  fi
   # Calculate absolute percentage difference for execution time
   local DEVIATION_IN_SECONDS=$(echo "scale=4; \
     ((${EXECUTION_TIME_SECONDS} - ${BASELINE_SECONDS}) / ${BASELINE_SECONDS}) * 100" | bc)
@@ -90,7 +90,7 @@ compare_results() {
 }
 
 # package patch
-mvn -e --no-transfer-progress -Passembly,no-validations package
+./mvnw -e --no-transfer-progress -Passembly,no-validations package
 
 # start benchmark
 echo "Benchmark launching..."
