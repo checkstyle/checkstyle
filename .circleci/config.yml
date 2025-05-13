@@ -12,7 +12,7 @@ jobs:
           name: Print versions
           command: |
             echo "Maven version:"
-            mvn --version
+            ./mvnw --version
             echo "Java version:"
             java --version
             echo "IDEA version:"
@@ -44,7 +44,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          name: Restore Maven repo cache
+          name: Restore Maven repo and wrapper cache
           keys:
             - mvn-cache-{{ checksum "pom.xml" }}
       - run:
@@ -54,10 +54,11 @@ jobs:
             ./.ci/validation.sh git-diff
             ./.ci/validation.sh ci-temp-check
       - save_cache:
-          name: Save Maven repo cache
+          name: Save Maven repo and wrapper cache
           key: mvn-cache-{{ checksum "pom.xml" }}
           paths:
             - .m2
+            - .mvn/wrapper
 
   validate-with-script:
     description: "Runs a non-maven script using the job name as the argument."
