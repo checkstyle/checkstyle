@@ -25,6 +25,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Nullable;
+
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.grammar.CommentListener;
@@ -212,6 +215,7 @@ public final class FileContents implements CommentListener {
      * @param lineNoBefore the line number to check before
      * @return the Javadoc comment, or {@code null} if none
      **/
+    @Nullable
     public TextBlock getJavadocBefore(int lineNoBefore) {
         // Lines start at 1 to the callers perspective, so need to take off 2
         int lineNo = lineNoBefore - 2;
