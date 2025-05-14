@@ -74,6 +74,7 @@
     <allow pkg="org.apache.maven" local-only="true"/>
     <allow pkg="java.nio" local-only="true"/>
     <allow pkg="org.codehaus.plexus" local-only="true"/>
+    <allow class="java.lang.module.ModuleDescriptor.Version" local-only="true"/>
     <allow class="java.lang.reflect.Field" local-only="true"/>
     <allow class="java.lang.reflect.Array" local-only="true"/>
     <allow class="java.lang.reflect.ParameterizedType" local-only="true"/>
