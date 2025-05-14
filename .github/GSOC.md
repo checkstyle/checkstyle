@@ -111,5 +111,12 @@ you are excited to work with us.
     accumulate contributions, and refine your proposal.
 - **Communicate Effectively.** We are looking for participants who can communicate effectively. This
     includes using clear and concise language, being responsive to feedback, and being proactive.
+- **Learn About Software Development Beyond Just Code.** To be a great open-source
+    contributor, it helps to understand more than just writing code. Knowing about
+    common practices like code reviews, and how developers feel about them, is
+    valuable. This article on developer feelings about code reviews is a good example:
+    "[Developer Sentiment in Code Reviews](code-review-feelings-article-link)".
 - **Contribute, Contribute, Contribute.** This is the single best way to show us that you are
     serious becoming a valuable member of our community.
+
+[code-review-feelings-article-link]: https://roman--ivanov-blogspot-com.translate.goog/?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en
