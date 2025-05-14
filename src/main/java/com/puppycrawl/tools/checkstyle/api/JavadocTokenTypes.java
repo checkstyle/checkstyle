@@ -1640,8 +1640,39 @@ public final class JavadocTokenTypes {
     /** `rtc` tag name. */
     public static final int RTC_HTML_TAG_NAME = JavadocParser.RTC_HTML_TAG_NAME;
 
-    /** `rp` tag name. */
+    /**
+     * RP tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code &lt;rp&gt;Fallback&lt;/rp&gt;}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * JAVADOC -> JAVADOC
+     *     |--NEWLINE -> \r\n
+     *     |--LEADING_ASTERISK ->  *
+     *     |--TEXT ->
+     *     |--HTML_ELEMENT -> HTML_ELEMENT
+     *     |   `--RP -> RP
+     *     |       |--RP_TAG_START -> RP_TAG_START
+     *     |       |   |--START -> <
+     *     |       |   |--RP_HTML_TAG_NAME -> rp
+     *     |       |   `--END -> >
+     *     |       |--TEXT -> Fallback
+     *     |       `--RP_TAG_END -> RP_TAG_END
+     *     |           |--START -> <
+     *     |           |--SLASH -> /
+     *     |           |--RP_HTML_TAG_NAME -> rp
+     *     |           `--END -> >
+     *     |--NEWLINE -> \r\n
+     *     |--TEXT ->
+     *     `--EOF -> <EOF>
+     * }
+     * </pre>
+     */
     public static final int RP_HTML_TAG_NAME = JavadocParser.RP_HTML_TAG_NAME;
+
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /////////////////////// SINGLETON HTML TAGS  //////////////////////////////////////////////////
