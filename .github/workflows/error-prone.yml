@@ -34,13 +34,24 @@ jobs:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
+      - name: Cache Maven Wrapper
+        uses: actions/cache@v4
+        with:
+          path: |
+            .mvn/wrapper
+            .mvn/jvm.config
+          key: >
+            checkstyle-maven-wrapper-cache-${{
+              hashFiles('.mvn/wrapper/maven-wrapper.properties')
+            }}
+
       - name: Execute Error-Prone on compile phase
         run: groovy ./.ci/error-prone-check.groovy compile
 
       # Require to compile again in case previous step fails and sources are not compiled
       - name: Do a clean compile
         if: always()
-        run: mvn -e --no-transfer-progress clean compile
+        run: ./mvnw -e --no-transfer-progress clean compile
 
       - name: Execute Error-Prone on test-compile phase
         if: always()

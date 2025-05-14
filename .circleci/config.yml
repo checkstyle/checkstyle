@@ -12,7 +12,7 @@ jobs:
           name: Print versions
           command: |
             echo "Maven version:"
-            mvn --version
+            ./mvnw --version
             echo "Java version:"
             java --version
             echo "IDEA version:"
@@ -47,6 +47,7 @@ jobs:
           name: Restore Maven repo cache
           keys:
             - mvn-cache-{{ checksum "pom.xml" }}
+
       - run:
           command: << parameters.command >>
       - run:

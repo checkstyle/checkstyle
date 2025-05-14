@@ -90,7 +90,7 @@ compare_results() {
 }
 
 # package patch
-mvn -e --no-transfer-progress -Passembly,no-validations package
+./mvnw -e --no-transfer-progress -Passembly,no-validations package
 
 # start benchmark
 echo "Benchmark launching..."

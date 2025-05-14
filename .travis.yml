@@ -7,6 +7,7 @@ language: java
 cache:
   directories:
     - ~/.m2
+    - ~/.mvn/wrapper
     - ~/.ivy2
 
 branches:
@@ -28,7 +29,7 @@ jobs:
     - jdk: openjdk11
       env:
         - DESC="tests and deploy"
-        - CMD="mvn -e --no-transfer-progress clean integration-test failsafe:verify
+        - CMD="./mvnw -e --no-transfer-progress clean integration-test failsafe:verify
           -DargLine='-Xms1g -Xmx2g'"
         - DEPLOY="true"
         - USE_MAVEN_REPO="true"
