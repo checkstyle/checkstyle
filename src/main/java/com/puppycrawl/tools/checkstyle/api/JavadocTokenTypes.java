@@ -3179,9 +3179,50 @@ public final class JavadocTokenTypes {
     /**
      * HTML void element {@code <track>}.
      *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <track kind="subtitles" src="subtitles_en.vtt" srclang="en" label="English" />
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * JAVADOC -> JAVADOC
+     *     |--NEWLINE -> \r\n
+     *     |--LEADING_ASTERISK ->  *
+     *     |--TEXT ->
+     *     |--HTML_ELEMENT -> HTML_ELEMENT
+     *     |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *     |       `--TRACK_TAG -> TRACK_TAG
+     *     |           |--START -> <
+     *     |           |--TRACK_HTML_TAG_NAME -> track
+     *     |           |--WS ->
+     *     |           |--ATTRIBUTE -> ATTRIBUTE
+     *     |           |   |--HTML_TAG_NAME -> kind
+     *     |           |   |--EQUALS -> =
+     *     |           |   `--ATTR_VALUE -> "subtitles"
+     *     |           |--WS ->
+     *     |           |--ATTRIBUTE -> ATTRIBUTE
+     *     |           |   |--HTML_TAG_NAME -> src
+     *     |           |   |--EQUALS -> =
+     *     |           |   `--ATTR_VALUE -> "subtitles_en.vtt"
+     *     |           |--WS ->
+     *     |           |--ATTRIBUTE -> ATTRIBUTE
+     *     |           |   |--HTML_TAG_NAME -> srclang
+     *     |           |   |--EQUALS -> =
+     *     |           |   `--ATTR_VALUE -> "en"
+     *     |           |--WS ->
+     *     |           |--ATTRIBUTE -> ATTRIBUTE
+     *     |           |   |--HTML_TAG_NAME -> label
+     *     |           |   |--EQUALS -> =
+     *     |           |   `--ATTR_VALUE -> "English"
+     *     |           |--WS ->
+     *     |           `--SLASH_END -> />
+     *     |--NEWLINE -> \r\n
+     *     |--TEXT ->
+     *     `--EOF -> <EOF>
+     * </pre>
+     *
      * @see #SINGLETON_ELEMENT
-     * @see <a
-     *     href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-track">
+     * @see <a href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-track">
      *     W3 docs</a>
      */
     public static final int TRACK_TAG = JavadocParser.RULE_trackTag + RULE_TYPES_OFFSET;
