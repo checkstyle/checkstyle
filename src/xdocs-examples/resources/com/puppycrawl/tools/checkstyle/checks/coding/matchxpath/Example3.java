@@ -14,9 +14,11 @@ package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
 // xdoc section -- start
 public class Example3 {
-  public void test() {} // violation
+  // violation below 'Method name should not be test or foo'
+  public void test() {}
   public void getName() {}
-  public void foo() {} // violation
+  // violation below 'Method name should not be test or foo'
+  public void foo() {}
   public void sayHello() {}
 }
 // xdoc section -- end
