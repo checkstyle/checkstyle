@@ -91,7 +91,7 @@ $ java -jar checkstyle-X.XX-all.jar Main.java -b "//METHOD_DEF[./IDENT[@text='sa
 CLASS_DEF -&gt; CLASS_DEF [1:0]
 `--OBJBLOCK -&gt; OBJBLOCK [1:18]
 |--METHOD_DEF -&gt; METHOD_DEF [2:4]
-        </source>
+        </source><hr class="example-separator"/>
         <p id="Example1-config">
           The following example demonstrates validation of methods order, so that public methods
           should come before the private ones:</p>
