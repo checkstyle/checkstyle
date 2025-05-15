@@ -21,33 +21,21 @@ package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
 import java.io.File;
 import java.nio.file.Path;
-import java.util.Collections;
-import java.util.List;
 
-import com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask;
+import org.mockito.Mockito;
 
-public class CheckstyleAntTaskStub extends CheckstyleAntTask {
+public final class PathMock {
 
-    @Override
-    protected List<Path> scanFileSets() {
-        return Collections.singletonList(PathMock.ofFile(new MockFile()));
+    private PathMock() {
     }
 
-    private static final class MockFile extends File {
+    public static Path ofFile(File file) {
+        return whenToFileThenReturn(file, Mockito.mock(Path.class));
+    }
 
-        /** A unique serial version identifier. */
-        private static final long serialVersionUID = -2903929010510199407L;
-
-        private MockFile() {
-            super("mock");
-        }
-
-        /** This method is overridden to simulate an exception. */
-        @Override
-        public long lastModified() {
-            throw new SecurityException("mock");
-        }
-
+    private static Path whenToFileThenReturn(File file, Path mock) {
+        Mockito.when(mock.toFile()).thenReturn(file);
+        return mock;
     }
 
 }
