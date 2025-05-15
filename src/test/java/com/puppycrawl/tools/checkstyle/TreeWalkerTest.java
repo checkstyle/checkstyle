@@ -30,6 +30,7 @@ import java.io.File;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -661,8 +662,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalkerConfig.addChild(configuration2);
         treeWalkerConfig.addChild(configuration1);
 
-        final List<File> files =
-                Collections.singletonList(new File(getPath("InputTreeWalker2.java")));
+        final List<Path> files =
+                Collections.singletonList(Path.of(getPath("InputTreeWalker2.java")));
         final Checker checker = createChecker(treeWalkerConfig);
 
         try {

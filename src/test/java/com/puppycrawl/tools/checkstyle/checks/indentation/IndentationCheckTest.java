@@ -3016,7 +3016,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tabWidth", "4");
         final String fileName = getPath("InputIndentationSeparatedStatementWithSpaces.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, fileName, expected);
+        verify(checkConfig, fileName, expected);
     }
 
     @Test
@@ -3076,7 +3076,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String fileName =
             getPath("InputIndentationMethodPrecededByAnnotationWithParameterOnSeparateLine.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, fileName, expected);
+        verify(checkConfig, fileName, expected);
     }
 
     @Test
@@ -3093,7 +3093,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "14:9: " + getCheckMessage(MSG_ERROR, "(", 8, 12),
             "19:5: " + getCheckMessage(MSG_ERROR, "(", 4, 8),
         };
-        verifyWarns(checkConfig, fileName, expected);
+        verify(checkConfig, fileName, expected);
     }
 
     @Test

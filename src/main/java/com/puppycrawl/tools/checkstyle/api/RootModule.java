@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.io.File;
-import java.util.List;
+import java.nio.file.Path;
+import java.util.Collection;
 
 /**
  * The first module that is run as part of Checkstyle and controls its entire
@@ -41,7 +41,7 @@ public interface RootModule extends Configurable {
      * @throws CheckstyleException if error condition within Checkstyle occurs
      * @see #destroy()
      */
-    int process(List<File> files) throws CheckstyleException;
+    int process(Collection<Path> files) throws CheckstyleException;
 
     /**
      * Add the listener that will be used to receive events from the audit.
