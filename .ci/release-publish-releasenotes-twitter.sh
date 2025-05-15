@@ -13,7 +13,7 @@ checkForVariable "GITHUB_REPOSITORY_OWNER"
 checkout_from https://github.com/checkstyle/contribution
 
 cd .ci-temp/contribution/releasenotes-builder
-mvn -e --no-transfer-progress clean compile package
+./mvnw -e --no-transfer-progress clean compile package
 cd ../../../
 
 if [ -d .ci-temp/checkstyle ]; then
