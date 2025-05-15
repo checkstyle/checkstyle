@@ -22,9 +22,9 @@ init-m2-repo)
       fi
     fi
     if [[ $USE_MAVEN_REPO == 'true' && ! -d "$HOME/.m2" ]]; then
-     echo "Maven local repo cache is not found, initializing it ..."
-     mvn -e --no-transfer-progress -B install -Pno-validations;
-     mvn -e --no-transfer-progress clean;
+     echo "Maven local repo cache and Maven Wrapper cache is not found, initializing it ..."
+     ./mvnw -e --no-transfer-progress -B install -Pno-validations;
+     ./mvnw -e --no-transfer-progress clean;
     fi
   else
     echo "$1 is skipped";
@@ -67,13 +67,13 @@ deploy-snapshot)
           && $SKIP_DEPLOY == 'false'
      ]];
   then
-      mvn -e --no-transfer-progress -s config/deploy-settings.xml -Pno-validations deploy;
+      ./mvnw -e --no-transfer-progress -s config/deploy-settings.xml -Pno-validations deploy;
       echo "deploy to maven snapshot repository is finished";
   fi
   ;;
 
 quarterly-cache-cleanup)
-  MVN_REPO=$(mvn -e --no-transfer-progress help:evaluate -Dexpression=settings.localRepository \
+  MVN_REPO=$(./mvnw -e --no-transfer-progress help:evaluate -Dexpression=settings.localRepository \
     -q -DforceStdout);
   if [[ -d ${MVN_REPO} ]]; then
     find "$MVN_REPO" -maxdepth 4 -type d -mtime +90 -exec rm -rf {} \; || true;
