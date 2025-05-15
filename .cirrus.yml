@@ -17,6 +17,8 @@ task:
   maven_cache:
     # should be under %CIRRUS_WORKING_DIR%
     folder: .m2
+    include:
+      - .mvn/wrapper
   matrix:
     # add more JDK versions here
     - name: Cirrus - JDK17
@@ -30,16 +32,10 @@ task:
     MAVEN_OPTS: "-Dhttp.keepAlive=false \
       -Dmaven.repo.local=%CIRRUS_WORKING_DIR%/.m2 \
       -Dmaven.wagon.http.retryHandler.count=3"
-    # This Maven version here should be same as minimum defined maven version in pom.xml
-    MAVEN_VERSION: "3.6.3"
-    PATH: "%PATH%;C:/Program Files/OpenJDK/%OPENJDK_PATH%/bin;\
-      C:/ProgramData/chocolatey/lib/maven/apache-maven-%MAVEN_VERSION%/bin;\
-      C:/ProgramData/chocolatey/bin"
   install_script:
     - choco config set cacheLocation %CIRRUS_WORKING_DIR%/.chocolatey
     - choco upgrade -y chocolatey
     - choco install -y --no-progress ant
-    - choco install -y --no-progress maven --version %MAVEN_VERSION%
     - choco install -y --no-progress openjdk --version %OPENJDK_VERSION%
     # - choco install -y --no-progress xsltproc
     # - choco install -y --no-progress xmlstarlet
@@ -47,7 +43,7 @@ task:
     - set
     - ant -version
     - java --version
-    - mvn --version
+    - ./mvnw --version
     # - xsltproc --version
     # - xml --version
   sevntu_script:
