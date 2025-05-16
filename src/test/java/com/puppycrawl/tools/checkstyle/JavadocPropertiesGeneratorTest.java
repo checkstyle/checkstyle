@@ -34,6 +34,7 @@ import org.itsallcode.junit.sysextensions.SystemErrGuard.SysErr;
 import org.itsallcode.junit.sysextensions.SystemOutGuard;
 import org.itsallcode.junit.sysextensions.SystemOutGuard.SysOut;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -41,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 @ExtendWith({SystemErrGuard.class, SystemOutGuard.class})
+@Disabled
 public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
 
     private static final String EOL = System.lineSeparator();

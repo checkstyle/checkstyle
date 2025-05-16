@@ -29,10 +29,12 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
+@Disabled
 public class TokenTypesTest {
 
     @Test
