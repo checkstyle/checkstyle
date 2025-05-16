@@ -344,7 +344,12 @@ public final class Main {
             }
 
             // run Checker
-            result = runCheckstyle(options, filesToProcess);
+            result = runCheckstyle(
+                options,
+                filesToProcess
+                    .stream()
+                    .map(File::toPath)
+                    .collect(Collectors.toUnmodifiableList()));
         }
 
         return result;
@@ -361,7 +366,7 @@ public final class Main {
      * @throws CheckstyleException
      *         when properties file could not be loaded
      */
-    private static int runCheckstyle(CliOptions options, List<File> filesToProcess)
+    private static int runCheckstyle(CliOptions options, List<Path> filesToProcess)
             throws CheckstyleException, IOException {
         // setup the properties
         final Properties props;
