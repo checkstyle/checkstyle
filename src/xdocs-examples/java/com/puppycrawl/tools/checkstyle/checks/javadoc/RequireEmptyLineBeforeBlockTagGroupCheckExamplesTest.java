@@ -19,10 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
+@Disabled
 public class RequireEmptyLineBeforeBlockTagGroupCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
     @Override

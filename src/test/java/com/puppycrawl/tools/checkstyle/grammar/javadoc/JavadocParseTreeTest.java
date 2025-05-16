@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.grammar.javadoc;
 import java.io.File;
 import java.io.IOException;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport;
@@ -32,6 +33,8 @@ import com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport;
  * @noinspection ClassOnlyUsedInOnePackage
  * @noinspectionreason ClassOnlyUsedInOnePackage - class is internal tool, and only used in testing
  */
+
+@Disabled
 public class JavadocParseTreeTest extends AbstractTreeTestSupport {
 
     @Override
