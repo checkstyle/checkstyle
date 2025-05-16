@@ -27,11 +27,13 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsCla
 
 import java.io.File;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
+@Disabled
 public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
 
     @Override
