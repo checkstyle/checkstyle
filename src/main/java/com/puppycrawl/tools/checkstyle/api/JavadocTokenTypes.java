@@ -2750,10 +2750,23 @@ public final class JavadocTokenTypes {
             + RULE_TYPES_OFFSET;
 
     /**
-     * Non-special empty html tag.
+     * Represents an empty (self-closing) HTML tag in Javadoc comments, such as {@code <justsometag />}.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <justsometag />}</pre>
+     *
+     * <p><b>AST Tree:</b></p>
+     * <pre>
+     * --HTML_ELEMENT -> HTML_ELEMENT
+     *     `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *         `--EMPTY_TAG -> EMPTY_TAG
+     *             |--START -> &lt;
+     *             |--HTML_TAG_NAME -> justsometag
+     *             |--WS ->
+     *             `--SLASH_END -> />
+     * </pre>
      */
-    public static final int EMPTY_TAG = JavadocParser.RULE_emptyTag
-            + RULE_TYPES_OFFSET;
+    public static final int EMPTY_TAG = JavadocParser.RULE_emptyTag + RULE_TYPES_OFFSET;
 
     /**
      * Area html tag.
