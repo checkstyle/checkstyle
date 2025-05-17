@@ -1949,7 +1949,7 @@ Checkstyle ends with 2 errors.
         <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
           git clone https://github.com/checkstyle/checkstyle.git
           cd checkstyle
-          mvn clean compile
+          ./mvnw clean compile
         </code></pre></div>
       </div>
       <p>
@@ -1957,7 +1957,7 @@ Checkstyle ends with 2 errors.
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
-          mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.Main" \
+          ./mvnw exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.Main" \
           &#xa0;&#xa0;&#xa0;&#xa0;-Dexec.args="-c /sun_checks.xml src/main/java"
         </code></pre></div>
       </div>
@@ -1966,7 +1966,7 @@ Checkstyle ends with 2 errors.
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
-          mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.gui.Main" -Dexec.args=\
+          ./mvnw exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.gui.Main" -Dexec.args=\
           &#xa0;&#xa0;&#xa0;&#xa0;"src/main/java/com/puppycrawl/tools/checkstyle/Checker.java"
         </code></pre></div>
       </div>
@@ -1975,7 +1975,7 @@ Checkstyle ends with 2 errors.
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
-          mvn clean package -Passembly,no-validations
+          ./mvnw clean package -Passembly,no-validations
           java -jar target/checkstyle-X.X-SNAPSHOT-all.jar -c /sun_checks.xml MyClass.java
         </code></pre></div>
       </div>
