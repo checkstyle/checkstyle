@@ -14,6 +14,14 @@ public class Example5 {
   int variablePackage; // violation, 'Missing a Javadoc comment'
   private int variablePrivate; // violation, 'Missing a Javadoc comment'
 
+  public enum PublicEnum {
+    CONSTANT // violation, 'Missing a Javadoc comment'
+  }
+
+  private enum PrivateEnum {
+    CONSTANT // violation, 'Missing a Javadoc comment'
+  }
+
   public void testMethodInnerClass() {
 
     // This check ignores local classes.

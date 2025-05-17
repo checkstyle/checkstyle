@@ -16,7 +16,8 @@
  such as package-private for fields without an explicit modifier.
  It also accounts for special cases where fields have implicit modifiers,
  such as {@code public static final} for interface fields and {@code public static}
- for enum constants. Only fields matching the specified modifiers will be analyzed.</description>
+ for enum constants, or where the nesting types accessibility is more restrictive and hides the
+ nested field. Only fields matching the specified modifiers will be analyzed.</description>
             </property>
             <property name="ignoreNamePattern" type="java.util.regex.Pattern">
                <description>Specify the regexp to define variable names to ignore.</description>
