@@ -121,6 +121,8 @@
   <suppress checks="FileTabCharacter"
     files="[\\/]InputFileTabCharacter\.java"/>
   <suppress checks="FileTabCharacter"
+    files="[\\/]InputMainGenerateFilterSuppressionsTabWidth\.java"/>
+  <suppress checks="FileTabCharacter"
     files="[\\/]InputMainGenerateXpathSuppressionsTabWidth\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputXpathQueryGeneratorTabWidth\.java"/>
