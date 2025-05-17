@@ -7,6 +7,9 @@
 <suppressions>
 
   <!-- intentional problem for testing -->
+  <suppress checks="PackageDeclaration"
+            files="src[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorCompactNoPackage.java"/>
+  <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
     files="packagedeclaration[\\/]InputPackageDeclarationNoPackage\.java"/>
   <suppress checks="PackageDeclarationCheck"
