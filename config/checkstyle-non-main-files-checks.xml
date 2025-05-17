@@ -63,10 +63,11 @@
 
   <module name="RegexpSingleline">
     <property name="id" value="properMavenCommand"/>
-    <property name="format" value="^[^#]*mvn (?!(-e --no-transfer-progress|--version))"/>
+    <property name="format"
+             value="^[^#]*(mvn|\.\/mvnw)(?!\s+-e\s+--no-transfer-progress)(?!\s+--version)"/>
     <property name="fileExtensions" value="sh, yml"/>
     <property name="message"
-      value="mvn command should be '--version' or start with '-e --no-transfer-progress' options"/>
+      value="All Maven/mvnw command must use '--version' or start with '-e --no-transfer-progress' options"/>
   </module>
 
   <module name="RegexpSingleline">
