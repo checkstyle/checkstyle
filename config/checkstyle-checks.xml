@@ -573,6 +573,7 @@
     <module name="StringLiteralEquality"/>
     <module name="SuperClone"/>
     <module name="SuperFinalize"/>
+    <module name="UnnecessaryNullCheckWithInstanceOf"/>
     <module name="UnnecessaryParentheses">
       <property name="tokens"
                 value="EXPR, IDENT, NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG, STRING_LITERAL,
