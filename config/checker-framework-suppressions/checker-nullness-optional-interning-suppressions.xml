@@ -1257,13 +1257,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileText.java</fileName>
-    <specifier>initialization.fields.uninitialized</specifier>
-    <message>the constructor does not initialize fields: lineBreaks</message>
-    <lineContent>public FileText(FileText fileText) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileText.java</fileName>
     <specifier>toarray.nullable.elements.not.newarray</specifier>
     <message>call of toArray on collection of non-null elements yields an array of possibly-null elements; omit the argument to toArray or make it an explicit array constructor</message>
     <lineContent>lines = textLines.toArray(CommonUtil.EMPTY_STRING_ARRAY);</lineContent>
