@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -127,7 +128,8 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
             final CatchParameterDetails catchParameter = new CatchParameterDetails(ast);
             catchParameters.push(catchParameter);
         }
-        else if (isCatchParameterIdentifierCandidate(ast) && !isLeftHandOfAssignment(ast)) {
+        else if (isCatchParameterIdentifierCandidate(ast)
+                && !CheckUtil.isLeftHandOfAssignment(ast)) {
             // we do not count reassignment as usage
             catchParameters.stream()
                     .filter(parameter -> parameter.getName().equals(ast.getText()))
@@ -164,33 +166,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
         // we should ignore the ident if it is in the exception declaration
         return identifierAst.getParent().getParent().getType() != TokenTypes.LITERAL_CATCH
             && (!TokenUtil.isOfType(identifierAst.getParent(), INVALID_CATCH_PARAM_IDENT_PARENTS)
-                 || isMethodInvocation(identifierAst));
-    }
-
-    /**
-     * Check if the given {@link TokenTypes#IDENT} is a child of a dot operator
-     * and is a candidate for catch parameter.
-     *
-     * @param identAst token representing {@link TokenTypes#IDENT}
-     * @return true if the given {@link TokenTypes#IDENT} is a child of a dot operator
-     *     and a candidate for catch parameter.
-     */
-    private static boolean isMethodInvocation(DetailAST identAst) {
-        final DetailAST parent = identAst.getParent();
-        return parent.getType() == TokenTypes.DOT
-                && identAst.equals(parent.getFirstChild());
-    }
-
-    /**
-     * Check if the given {@link TokenTypes#IDENT} is a left hand side value.
-     *
-     * @param identAst token representing {@link TokenTypes#IDENT}
-     * @return true if the given {@link TokenTypes#IDENT} is a left hand side value.
-     */
-    private static boolean isLeftHandOfAssignment(DetailAST identAst) {
-        final DetailAST parent = identAst.getParent();
-        return parent.getType() == TokenTypes.ASSIGN
-                && !identAst.equals(parent.getLastChild());
+                 || CheckUtil.isMethodInvocation(identifierAst));
     }
 
     /**

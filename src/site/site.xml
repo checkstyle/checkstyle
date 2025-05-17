@@ -183,6 +183,8 @@
           <item name="UnusedLambdaParameterShouldBeUnnamed"
                 href="checks/coding/unusedlambdaparametershouldbeunnamed.html"/>
           <item name="UnusedLocalVariable" href="checks/coding/unusedlocalvariable.html"/>
+          <item name="UnusedTryResourceShouldBeUnnamed"
+                href="checks/coding/unusedtryresourceshouldbeunnamed.html"/>
           <item name="VariableDeclarationUsageDistance"
                 href="checks/coding/variabledeclarationusagedistance.html"/>
           <item name="WhenShouldBeUsed"

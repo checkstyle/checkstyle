@@ -571,4 +571,29 @@ public final class CheckUtil {
         final Path filename = Path.of(filePath).getFileName();
         return filename != null && "package-info.java".equals(filename.toString());
     }
+
+    /**
+     * Check if the given {@link TokenTypes#IDENT} is a child of a dot operator.
+     *
+     * @param identAst token representing {@link TokenTypes#IDENT}
+     * @return true if the given {@link TokenTypes#IDENT} is a child of a dot operator.
+     */
+    public static boolean isMethodInvocation(DetailAST identAst) {
+        final DetailAST parent = identAst.getParent();
+        return parent.getType() == TokenTypes.DOT
+                && identAst.equals(parent.getFirstChild());
+    }
+
+    /**
+     * Check if the given {@link TokenTypes#IDENT} is a left hand side value.
+     *
+     * @param identAst token representing {@link TokenTypes#IDENT}
+     * @return true if the given {@link TokenTypes#IDENT} is a left hand side value.
+     */
+    public static boolean isLeftHandOfAssignment(DetailAST identAst) {
+        final DetailAST parent = identAst.getParent();
+        return parent.getType() == TokenTypes.ASSIGN
+                && !identAst.equals(parent.getLastChild());
+    }
+
 }
