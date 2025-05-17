@@ -67,20 +67,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public enum JavadocTagInfo {
 
     /**
-     * {@code @author}.
-     */
-    AUTHOR("@author", "author", Type.BLOCK) {
-
-        @Override
-        public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
-            return astType == TokenTypes.PACKAGE_DEF
-                || TokenUtil.isTypeDeclaration(astType);
-        }
-
-    },
-
-    /**
      * {@code {@code}}.
      */
     CODE("{@code}", "code", Type.INLINE) {

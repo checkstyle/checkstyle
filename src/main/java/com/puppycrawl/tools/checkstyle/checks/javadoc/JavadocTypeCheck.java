@@ -201,6 +201,11 @@ public class JavadocTypeCheck
     private static final Pattern TYPE_NAME_IN_JAVADOC_TAG_SPLITTER =
             Pattern.compile("\\s+");
 
+    /**
+     * Specifies the JavaDoc tag name used for authors.
+     */
+    private static final String AUTHOR_TAG_NAME = "author";
+
     /** Specify the visibility scope where Javadoc comments are checked. */
     private Scope scope = Scope.PRIVATE;
     /** Specify the visibility scope where Javadoc comments are not checked. */
@@ -328,7 +333,7 @@ public class JavadocTypeCheck
                 final List<JavadocTag> tags = getJavadocTags(textBlock);
                 if (ScopeUtil.isOuterMostType(ast)) {
                     // don't check author/version for inner classes
-                    checkTag(ast, tags, JavadocTagInfo.AUTHOR.getName(),
+                    checkTag(ast, tags, AUTHOR_TAG_NAME,
                             authorFormat);
                     checkTag(ast, tags, JavadocTagInfo.VERSION.getName(),
                             versionFormat);
