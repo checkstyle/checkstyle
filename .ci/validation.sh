@@ -222,7 +222,7 @@ no-error-pmd)
   cd ..
   git clone https://github.com/pmd/pmd.git
   cd pmd
-  ./mvnw verify --show-version --errors --batch-mode --no-transfer-progress \
+  mvn -e --no-transfer-progress verify --show-version --errors --batch-mode \
                 -DskipTests \
                 -Dmaven.javadoc.skip=true \
                 -Dmaven.source.skip=true \
