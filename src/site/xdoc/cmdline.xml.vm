@@ -951,7 +951,7 @@ class Test {
     "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
     "https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
 &lt;suppressions&gt;
-&lt;suppress-xpath
+  &lt;suppress-xpath
        files="Test.java"
        checks="FallThroughCheck"
        query="/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Test']]/OBJBLOCK/METHOD_DEF

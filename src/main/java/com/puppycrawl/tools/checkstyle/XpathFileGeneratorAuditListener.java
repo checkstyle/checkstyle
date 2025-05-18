@@ -98,7 +98,7 @@ public class XpathFileGeneratorAuditListener
 
             final Path path = Path.of(event.getFileName());
 
-            writer.println("<suppress-xpath");
+            writer.println("  <suppress-xpath");
             writer.print("       files=\"");
             writer.print(path.getFileName());
             writer.println(QUOTE_CHAR);
