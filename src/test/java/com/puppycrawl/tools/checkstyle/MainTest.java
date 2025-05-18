@@ -1346,13 +1346,13 @@ public class MainTest {
                     + "//EN\"",
                 "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">",
                 "<suppressions>",
-                "<suppress-xpath",
+                "  <suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"MissingJavadocMethodCheck\"",
                 "       query=\"/COMPILATION_UNIT/CLASS_DEF"
                     + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]\"/>",
-                "<suppress-xpath",
+                "  <suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       id=\"LeftCurlyEol\"",
                 "       query=\"/COMPILATION_UNIT/CLASS_DEF"
@@ -1380,20 +1380,20 @@ public class MainTest {
                 + "//EN\"",
             "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">",
             "<suppressions>",
-            "<suppress-xpath",
+            "  <suppress-xpath",
             "       files=\"InputMainGenerateXpathSuppressions.java\"",
             "       checks=\"ExplicitInitializationCheck\"",
             "       query=\"/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputMainGenerateXpathSuppressions']]"
                 + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='low']\"/>",
-            "<suppress-xpath",
+            "  <suppress-xpath",
             "       files=\"InputMainGenerateXpathSuppressions.java\"",
             "       checks=\"IllegalThrowsCheck\"",
             "       query=\"/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputMainGenerateXpathSuppressions']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/LITERAL_THROWS"
                 + "/IDENT[@text='RuntimeException']\"/>",
-            "<suppress-xpath",
+            "  <suppress-xpath",
             "       files=\"InputMainGenerateXpathSuppressions.java\"",
             "       checks=\"NestedForDepthCheck\"",
             "       query=\"/COMPILATION_UNIT/CLASS_DEF"
@@ -1438,7 +1438,7 @@ public class MainTest {
                     + "//EN\"",
                 "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">",
                 "<suppressions>",
-                "<suppress-xpath",
+                "  <suppress-xpath",
                 "       files=\"InputMainGenerateXpathSuppressionsTabWidth.java\"",
                 "       checks=\"ExplicitInitializationCheck\"",
                 "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT["
@@ -1470,7 +1470,7 @@ public class MainTest {
                     + "//EN\"",
                 "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">",
                 "<suppressions>",
-                "<suppress-xpath",
+                "  <suppress-xpath",
                 "       files=\"InputMainGenerateXpathSuppressionsTabWidth.java\"",
                 "       checks=\"ExplicitInitializationCheck\"",
                 "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT["
