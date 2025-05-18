@@ -169,7 +169,7 @@ public class XpathFileGeneratorAuditListenerTest {
                 + "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">"
                 + EOL
                 + "<suppressions>" + EOL
-                + "<suppress-xpath" + EOL
+                + "  <suppress-xpath" + EOL
                 + "       files=\"InputXpathFileGeneratorAuditListener.java\"" + EOL
                 + "       checks=\"LeftCurlyCheck\""
                 + EOL
@@ -196,13 +196,13 @@ public class XpathFileGeneratorAuditListenerTest {
                 + "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">"
                 + EOL
                 + "<suppressions>" + EOL
-                + "<suppress-xpath" + EOL
+                + "  <suppress-xpath" + EOL
                 + "       files=\"InputXpathFileGeneratorAuditListener.java\"" + EOL
                 + "       id=\"MyModule\"" + EOL
                 + "       query=\"/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathFileGeneratorAuditListener']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='sort']]\"/>" + EOL
-                + "<suppress-xpath" + EOL
+                + "  <suppress-xpath" + EOL
                 + "       files=\"InputXpathFileGeneratorAuditListener.java\"" + EOL
                 + "       checks=\"NestedForDepthCheck\"" + EOL
                 + "       query=\"/COMPILATION_UNIT/CLASS_DEF"
@@ -232,7 +232,7 @@ public class XpathFileGeneratorAuditListenerTest {
                 + "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">"
                 + EOL
                 + "<suppressions>" + EOL
-                + "<suppress-xpath" + EOL
+                + "  <suppress-xpath" + EOL
                 + "       files=\"InputXpathFileGeneratorAuditListener.java\"" + EOL
                 + "       id=\"JavadocModuleId\"" + EOL
                 + "       query=\"/COMPILATION_UNIT/CLASS_DEF"
