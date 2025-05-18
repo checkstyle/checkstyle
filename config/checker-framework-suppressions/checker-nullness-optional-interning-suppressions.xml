@@ -2861,6 +2861,46 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/MultiFileRegexpHeaderCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter messageArg of MatchResult constructor.</message>
+    <lineContent>return new MatchResult(true, 0, null, null);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/MultiFileRegexpHeaderCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter messageArg of MatchResult.mismatch.</message>
+    <lineContent>return MatchResult.mismatch(lineToLog, messageKey, messageArg);</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/MultiFileRegexpHeaderCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter messageKey of MatchResult constructor.</message>
+    <lineContent>return new MatchResult(true, 0, null, null);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/MultiFileRegexpHeaderCheck.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field headerFiles</message>
+    <lineContent>private String headerFiles;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/CustomImportOrderCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter previousImport of CustomImportOrderCheck.isAlphabeticalOrderBroken.</message>
