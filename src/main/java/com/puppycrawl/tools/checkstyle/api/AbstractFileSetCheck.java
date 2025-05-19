@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.io.File;
+import java.nio.file.InvalidPathException;
 import java.util.Arrays;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -97,9 +98,15 @@ public abstract class AbstractFileSetCheck
         fileContext.fileContents = new FileContents(fileText);
         fileContext.violations.clear();
         // Process only what interested in
-        if (CommonUtil.matchesFileExtension(file, fileExtensions)) {
-            processFiltered(file, fileText);
+        try {
+            if (CommonUtil.matchesFileExtension(file.toPath(), fileExtensions)) {
+                processFiltered(file, fileText);
+            }
         }
+        catch (InvalidPathException exception) {
+            throw new CheckstyleException("Invalid file path: " + file.getPath(), exception);
+        }
+
         final SortedSet<Violation> result = new TreeSet<>(fileContext.violations);
         fileContext.violations.clear();
         return result;
