@@ -97,9 +97,9 @@ public abstract class AbstractFileSetCheck
         fileContext.fileContents = new FileContents(fileText);
         fileContext.violations.clear();
         // Process only what interested in
-        if (CommonUtil.matchesFileExtension(file, fileExtensions)) {
-            processFiltered(file, fileText);
-        }
+         if (CommonUtil.matchesFileExtension(file.toPath(), fileExtensions)) {
+                processFiltered(file, fileText);
+         }
         final SortedSet<Violation> result = new TreeSet<>(fileContext.violations);
         fileContext.violations.clear();
         return result;
