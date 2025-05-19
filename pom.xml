@@ -935,6 +935,9 @@
                       com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer
                     </exclude>
                     <exclude>
+                      com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck
+                    </exclude>
+                    <exclude>
                       com.puppycrawl.tools.checkstyle.CheckstyleParserErrorStrategy
                     </exclude>
                     <exclude>

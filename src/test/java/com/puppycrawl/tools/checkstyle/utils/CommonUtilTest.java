@@ -36,6 +36,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.util.Dictionary;
 import java.util.Properties;
 import java.util.regex.Pattern;
@@ -142,33 +143,33 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     @Test
     public void testFileExtensions() {
         final String[] fileExtensions = {"java"};
-        final File pdfFile = new File("file.pdf");
+        final Path pdfPath = Path.of("file.pdf");
         assertWithMessage("Invalid file extension")
-                .that(CommonUtil.matchesFileExtension(pdfFile, fileExtensions))
+                .that(CommonUtil.matchesFileExtension(pdfPath, fileExtensions))
                 .isFalse();
         assertWithMessage("Invalid file extension")
-                .that(CommonUtil.matchesFileExtension(pdfFile))
+                .that(CommonUtil.matchesFileExtension(pdfPath))
                 .isTrue();
         assertWithMessage("Invalid file extension")
-                .that(CommonUtil.matchesFileExtension(pdfFile, (String[]) null))
+                .that(CommonUtil.matchesFileExtension(pdfPath, (String[]) null))
                 .isTrue();
         final File javaFile = new File("file.java");
         assertWithMessage("Invalid file extension")
-                .that(CommonUtil.matchesFileExtension(javaFile, fileExtensions))
+                .that(CommonUtil.matchesFileExtension(javaFile.toPath(), fileExtensions))
                 .isTrue();
-        final File invalidJavaFile = new File("file,java");
+        final Path invalidJavaPath = Path.of("file,java");
         assertWithMessage("Invalid file extension")
-                .that(CommonUtil.matchesFileExtension(invalidJavaFile, fileExtensions))
+                .that(CommonUtil.matchesFileExtension(invalidJavaPath, fileExtensions))
                 .isFalse();
-        final File emptyExtensionFile = new File("file.");
+        final Path emptyExtensionPath = Path.of("file.");
         assertWithMessage("Invalid file extension")
-                .that(CommonUtil.matchesFileExtension(emptyExtensionFile, ""))
+                .that(CommonUtil.matchesFileExtension(emptyExtensionPath, ""))
                 .isTrue();
         assertWithMessage("Invalid file extension")
-                .that(CommonUtil.matchesFileExtension(pdfFile, ".noMatch"))
+                .that(CommonUtil.matchesFileExtension(pdfPath, ".noMatch"))
                 .isFalse();
         assertWithMessage("Invalid file extension")
-                .that(CommonUtil.matchesFileExtension(pdfFile, ".pdf"))
+                .that(CommonUtil.matchesFileExtension(pdfPath, ".pdf"))
                 .isTrue();
     }
 
