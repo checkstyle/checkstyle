@@ -613,6 +613,7 @@ inplace
 instanceof
 Intelli
 intellij
+ij
 intercell
 interfaceistype
 interfacememberimpliedmodifier
@@ -759,6 +760,7 @@ KDoc
 keygen
 keyname
 keyscan
+kkoutsilis
 konstantinos
 Kordas
 Kotlin
@@ -1430,6 +1432,7 @@ unsubscribe
 unusedcatchparametershouldbeunnamed
 unusedimports
 unusedlambdaparametershouldbeunnamed
+inlinevariable
 unusedlocalvariable
 uppercased
 upperell
