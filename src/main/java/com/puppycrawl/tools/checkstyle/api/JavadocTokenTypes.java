@@ -3163,9 +3163,34 @@ public final class JavadocTokenTypes {
     /**
      * HTML void element {@code <track>}.
      *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <track kind="subtitles" src="subtitles_en.vtt" />
+     * }</pre>
+     *
+     * <p><b>AST Tree:</b></p>
+     * <pre>{@code
+     * --HTML_ELEMENT -> HTML_ELEMENT
+     *   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *     `--TRACK_TAG -> TRACK_TAG
+     *       |--START -> <
+     *       |--TRACK_HTML_TAG_NAME -> track
+     *       |--WS ->
+     *       |--ATTRIBUTE -> ATTRIBUTE
+     *       |   |--HTML_TAG_NAME -> kind
+     *       |   |--EQUALS -> =
+     *       |   `--ATTR_VALUE -> "subtitles"
+     *       |--WS ->
+     *       |--ATTRIBUTE -> ATTRIBUTE
+     *       |   |--HTML_TAG_NAME -> src
+     *       |   |--EQUALS -> =
+     *       |   `--ATTR_VALUE -> "subtitles_en.vtt"
+     *       |--WS ->
+     *       `--SLASH_END -> />
+     * }</pre>
+     *
      * @see #SINGLETON_ELEMENT
-     * @see <a
-     *     href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-track">
+     * @see <a href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-track">
      *     W3 docs</a>
      */
     public static final int TRACK_TAG = JavadocParser.RULE_trackTag + RULE_TYPES_OFFSET;
