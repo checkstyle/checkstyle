@@ -602,6 +602,7 @@
       -->
       <property name="severity" value="ignore"/>
     </module>
+    <module name="InlineVariable"/>
     <module name="UnusedLocalVariable"/>
     <module name="VariableDeclarationUsageDistance"/>
     <module name="WhenShouldBeUsed">
