@@ -3105,41 +3105,41 @@ public final class JavadocTokenTypes {
     public static final int PARAM_TAG = JavadocParser.RULE_paramTag + RULE_TYPES_OFFSET;
 
     /**
-     * HTML void element.
+     * HTML void element {@code <track>}.
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
-     * <embed src="URL" type="MIME_type">
+     * <track kind="subtitles" src="subtitles_en.file" />
      * }</pre>
      * <b>Tree:</b>
      * <pre>
      * {@code
      *    |--HTML_ELEMENT -> HTML_ELEMENT
      *    |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
-     *    |       `--EMBED_TAG -> EMBED_TAG
+     *    |       `--TRACK_TAG -> TRACK_TAG
      *    |           |--START -> <
-     *    |           |--EMBED_HTML_TAG_NAME -> embed
+     *    |           |--TRACK_HTML_TAG_NAME -> track
+     *    |           |--WS ->
+     *    |           |--ATTRIBUTE -> ATTRIBUTE
+     *    |           |   |--HTML_TAG_NAME -> kind
+     *    |           |   |--EQUALS -> =
+     *    |           |   `--ATTR_VALUE -> "subtitles"
      *    |           |--WS ->
      *    |           |--ATTRIBUTE -> ATTRIBUTE
      *    |           |   |--HTML_TAG_NAME -> src
      *    |           |   |--EQUALS -> =
-     *    |           |   `--ATTR_VALUE -> "URL"
-     *    |           |--WS ->
-     *    |           |--ATTRIBUTE -> ATTRIBUTE
-     *    |           |   |--HTML_TAG_NAME -> type
-     *    |           |   |--EQUALS -> =
-     *    |           |   `--ATTR_VALUE -> "MIME_type"
-     *    |           `--END -> >
+     *    |           |   `--ATTR_VALUE -> "subtitles_en.file"
+     *    |           `--END -> />
      *    |--NEWLINE -> \r\n
      *    |--TEXT ->
      * }
      * </pre>
      *
-     * @see #EMBED_TAG
-     * @see <a href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-embed">
+     * @see #TRACK_TAG
+     * @see <a href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-track">
      *     W3 docs</a>
      */
-    public static final int EMBED_TAG = JavadocParser.RULE_embedTag + RULE_TYPES_OFFSET;
+    public static final int TRACK_TAG = JavadocParser.RULE_trackTag + RULE_TYPES_OFFSET;
 
     /**
      * HTML void element {@code <keygen>}.
