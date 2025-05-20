@@ -160,8 +160,7 @@ public final class FileText {
             decoder.onUnmappableCharacter(CodingErrorAction.REPLACE);
         }
         catch (final UnsupportedCharsetException exc) {
-            final String message = "Unsupported charset: " + charsetName;
-            throw new IllegalStateException(message, exc);
+            throw new IllegalStateException("Unsupported charset: " + charsetName, exc);
         }
 
         fullText = readFile(file, decoder);

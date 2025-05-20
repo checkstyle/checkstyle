@@ -381,8 +381,7 @@ public class VisibilityModifierCheck
                 visitImport(ast);
                 break;
             default:
-                final String exceptionMsg = "Unexpected token type: " + ast.getText();
-                throw new IllegalArgumentException(exceptionMsg);
+                throw new IllegalArgumentException("Unexpected token type: " + ast.getText());
         }
     }
 
