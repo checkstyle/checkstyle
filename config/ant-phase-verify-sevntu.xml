@@ -40,7 +40,7 @@
     <tstamp>
       <format property="FINISHED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
     </tstamp>
-    <echo level="info">Checkstyle finished (${check.config}) : ${FINISHED}</echo>
+    <echo level="info">Checkstyle finished (${check.config}): ${FINISHED}</echo>
 
     <fail if="checkstyle.failure.property"
           message="Checkstyle failed: ${checkstyle.failure.property}"
