@@ -60,7 +60,7 @@
     <tstamp>
       <format property="FINISHED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
     </tstamp>
-    <echo level="info">Checkstyle finished (checkstyle-checks.xml) : ${FINISHED}</echo>
+    <echo level="info">Checkstyle finished (checkstyle-checks.xml): ${FINISHED}</echo>
 
     <tstamp>
       <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
