@@ -7,7 +7,7 @@
   </head>
   <body>
     <section name="InlineVariable">
-      <p>Since Checkstyle 9.3</p>
+      <p>Since Checkstyle 10.23.2</p>
       <subsection name="Description" id="Description">
         <div>Local variable should not be declared and then immediately returned or thrown.</div>
       </subsection>
