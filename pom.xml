@@ -4409,6 +4409,7 @@
                 <param>com.puppycrawl.tools.checkstyle.TreeWalkerFilter*</param>
                 <param>com.puppycrawl.tools.checkstyle.GlobalStatefulCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.CommentListener*</param>
+                <param>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener*</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.AbstractAutomaticBeanTest</param>
@@ -4442,6 +4443,9 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest</param>
                 <!-- kills mutation in ConfigurationLoader -->
                 <param>com.sun.checkstyle.test.chapter5comments.rule52documentationcomments.InvalidJavadocPositionTest</param>
+                <param>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListenerTest</param>
+                <!-- kills mutation in ChecksAndFilesSuppressionFileGeneratorAuditListener -->
+                <param>com.puppycrawl.tools.checkstyle.MainTest</param>
               </targetTests>
               <avoidCallsTo>
                 <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
