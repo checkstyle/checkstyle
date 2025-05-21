@@ -44,7 +44,8 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * such as package-private for fields without an explicit modifier.
  * It also accounts for special cases where fields have implicit modifiers,
  * such as {@code public static final} for interface fields and {@code public static}
- * for enum constants. Only fields matching the specified modifiers will be analyzed.
+ * for enum constants, or where the nesting types accessibility is more restrictive and hides the
+ * nested field. Only fields matching the specified modifiers will be analyzed.
  * Type is {@code com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]}.
  * Default value is {@code public, protected, package, private}.
  * </li>
@@ -93,7 +94,8 @@ public class JavadocVariableCheck
      *  This includes both explicitly declared modifiers and implicit ones, such as package-private
      *  for fields without an explicit modifier. It also accounts for special cases where fields
      *  have implicit modifiers, such as {@code public static final} for interface fields and
-     *  {@code public static} for enum constants.
+     *  {@code public static} for enum constants, or where the nesting types accessibility is more
+     *  restrictive and hides the nested field.
      *  Only fields matching the specified modifiers will be analyzed.
      */
     private AccessModifierOption[] accessModifiers = {
@@ -111,7 +113,8 @@ public class JavadocVariableCheck
      * checked. This includes both explicitly declared modifiers and implicit ones, such as
      * package-private for fields without an explicit modifier. It also accounts for special
      * cases where fields have implicit modifiers, such as {@code public static final}
-     * for interface fields and {@code public static} for enum constants.
+     * for interface fields and {@code public static} for enum constants, or where the nesting
+     * types accessibility is more restrictive and hides the nested field.
      * Only fields matching the specified modifiers will be analyzed.
      *
      * @param accessModifiers access modifiers of fields to check.
@@ -204,7 +207,7 @@ public class JavadocVariableCheck
         boolean result = false;
         if (!ScopeUtil.isInCodeBlock(ast) && !isIgnored(ast)) {
             final AccessModifierOption accessModifier =
-                    CheckUtil.getAccessModifierFromModifiersToken(ast);
+                    CheckUtil.getAccessModifierFromModifiersTokenWithPrivateEnumSupport(ast);
             result = matchAccessModifiers(accessModifier);
         }
         return result;
