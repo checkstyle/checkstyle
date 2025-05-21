@@ -123,6 +123,24 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInterface() throws Exception {
+        final String[] expected = {
+            "15: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
+        };
+        verifyWithInlineConfigParserTwice(
+                getPath("InputWriteTagInterface.java"), expected
+        );
+    }
+
+    @Test
+    public void testBlockComment() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParserTwice(
+                getPath("InputWriteTagBlockComment.java"), expected
+        );
+    }
+
+    @Test
     public void testMethod() throws Exception {
         final String[] expected = {
             "24: " + getCheckMessage(MSG_WRITE_TAG, "@todo",
