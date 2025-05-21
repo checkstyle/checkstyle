@@ -10,6 +10,195 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.24.0">
+      <div class="releaseDate">21.05.2025</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            CLI: generate suppresion xml content (SuppressionFilter) for certain Checks but whole
+            file with violation.
+            Author: Harsh-Agrawal96
+            <a href="https://github.com/checkstyle/checkstyle/issues/5983">#5983</a>
+          </li>
+          <li>
+            New Check: MultiFileRegexpHeader to allow specify few header file to validate.
+            Author: abdelrhmansersawy
+            <a href="https://github.com/checkstyle/checkstyle/issues/16174">#16174</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            `private` enums being treated as public in `JavadocVariableCheck`.
+            Author: Jack
+            <a href="https://github.com/checkstyle/checkstyle/issues/16786">#16786</a>
+          </li>
+          <li>
+            EmptyLineSeparator check does not validate newlines before comments in Interfaces.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/16564">#16564</a>
+          </li>
+          <li>
+            SuppressWithPlainTextCommentFilter is slow on files with multiple errors.
+            Author: Harsh-Agrawal96
+            <a href="https://github.com/checkstyle/checkstyle/issues/8807">#8807</a>
+          </li>
+          <li>
+            incompatibility with google-java-format: CatchFormalParameter is indented by 4 spaces
+            instead of 2.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/14654">#14654</a>
+          </li>
+          <li>
+            Indentation of the Block child of switch rule is not validated when no braces.
+            Author: MedAzizFrigui
+            <a href="https://github.com/checkstyle/checkstyle/issues/15098">#15098</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            fix log typo.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/17110">#17110</a>
+          </li>
+          <li>
+            Resolve Pitest Suppression in Pitest-Javadoc Profile.
+            Author: abdelrhmansersawy
+            <a href="https://github.com/checkstyle/checkstyle/issues/13999">#13999</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: yukti-nandwana
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            doc: Add GSoC guide tip on learning beyond code, link article on code review sentiment.
+            Author: Sersawy
+          </li>
+          <li>
+            Validate that all Inputs mentioned all default properties in config.
+            Author: Anmol
+            <a href="https://github.com/checkstyle/checkstyle/issues/16378">#16378</a>
+          </li>
+          <li>
+            Fix indentation of generated content cli for mode &#39;-g&#39;.
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/17106">#17106</a>
+          </li>
+          <li>
+            Adopt Maven Wrapper and Update CI to Fully Use It.
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/16850">#16850</a>
+          </li>
+          <li>
+            doc: update AuditListener image format and dimensions.
+            Author: Brijeshthummar02
+          </li>
+          <li>
+            include PMD `UnusedPrivateMethod`.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/16961">#16961</a>
+          </li>
+          <li>
+            include PMD `GuardLogStatement`.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/16962">#16962</a>
+          </li>
+          <li>
+            Add example to MatchXpatch on how to validate Constructor Count in classes .
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/17059">#17059</a>
+          </li>
+          <li>
+            Resolve CheckerFramework violations.
+            Author: Rohanraj123
+            <a href="https://github.com/checkstyle/checkstyle/issues/14084">#14084</a>
+          </li>
+          <li>
+            Infra: Replace REPOSITORY_OWNER CI ENV var with built-in GITHUB_REPOSITORY_OWNER.
+            Author: Jack Green
+            <a href="https://github.com/checkstyle/checkstyle/issues/17061">#17061</a>
+          </li>
+          <li>
+            Update Filters Exampes to use verifyFilterWithInlineConfigParser.
+            Author: Usman Shaikh, Ziad Abd El-Fatah
+            <a href="https://github.com/checkstyle/checkstyle/issues/16738">#16738</a>
+          </li>
+          <li>
+            Update vim plugin details.
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/6173">#6173</a>
+          </li>
+          <li>
+            doc: Add UML diagram for Filter and update image reference in documentation.
+            Author: Brijeshthummar02
+          </li>
+          <li>
+            Rename all &#39;ex&#39; varaibles to &#39;exc&#39; and forrbit by cheksttyle check
+            &#39;ex&#39;.
+            Author: Praveen Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/17017">#17017</a>
+          </li>
+          <li>
+            migrate pgjdbc no-error execution to jdk21.
+            Author: MD. Zaid
+            <a href="https://github.com/checkstyle/checkstyle/issues/17001">#17001</a>
+          </li>
+          <li>
+            SarifLoggerTest.java to use verifyWithInlineConfigParserAndLogger.
+            Author: Praveen Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/16361">#16361</a>
+          </li>
+          <li>
+            Enforce formatting of `// violation` and `// ok` comments.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/11249">#11249</a>
+          </li>
+          <li>
+            inconsistent linkcheck errors.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/17015">#17015</a>
+          </li>
+          <li>
+            Incorrect language class assigned to code blocks in documentation (e.g., logs getting
+            language-xml, Java code getting language-xml).
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/16790">#16790</a>
+          </li>
+          <li>
+            update documentation: VariableDeclarationUsageDistance on  block of initialization
+            methods.
+            Author: Praveen Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/13155">#13155</a>
+          </li>
+          <li>
+            Update IndentationCheckTest to use verifyWarns.
+            Author: Praveen Kumar, Prarthana-Ramesh
+            <a href="https://github.com/checkstyle/checkstyle/issues/16880">#16880</a>
+          </li>
+          <li>
+            Remove config_ conditions from xdocs tests.
+            Author: MD. Zaid
+            <a href="https://github.com/checkstyle/checkstyle/issues/13132">#13132</a>
+          </li>
+          <li>
+            XMLLoggerTest.java to use verifyWithInlineConfigParserAndXmlLogger.
+            Author: Praveen Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/16360">#16360</a>
+          </li>
+          <li>
+            use new nio jdk api instead of all api.
+            Author: Amit Kumar Deohoria, atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/16155">#16155</a>
+          </li>
+          <li>
+            Cover pitest survivals with tests.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/14019">#14019</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.23.1">
       <div class="releaseDate">27.04.2025</div>
       <p>Bug fixes:</p>
