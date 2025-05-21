@@ -443,7 +443,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
           java -jar checkstyle-${projectVersion}-all.jar -c /sun_checks.xml MyClass.java
-          java -jar checkstyle-${projectVersion}-all.jar -c /google_checks.xml MyClass.java
+java -jar checkstyle-${projectVersion}-all.jar -c /google_checks.xml MyClass.java
         </code></pre></div>
       </div>
       <p>
@@ -466,8 +466,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-          java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gui.Main \
-          &#xa0;&#xa0;&#xa0;&#xa0;MyClass.java
+java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gui.Main MyClass.java
         </code></pre></div>
       </div>
     </section>
