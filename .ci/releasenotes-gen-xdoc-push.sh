@@ -16,7 +16,7 @@ echo TARGET_VERSION="$TARGET_VERSION"
 checkout_from https://github.com/checkstyle/contribution
 
 cd .ci-temp/contribution/releasenotes-builder
-./mvnw -e --no-transfer-progress clean compile package
+mvn -e --no-transfer-progress clean compile package
 cd ../../../
 
 if [ -d .ci-temp/checkstyle ]; then
