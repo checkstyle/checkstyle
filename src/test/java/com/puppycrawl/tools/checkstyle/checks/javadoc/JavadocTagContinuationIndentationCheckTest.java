@@ -177,4 +177,18 @@ public class JavadocTagContinuationIndentationCheckTest
                 getPath("InputJavadocTagContinuationIndentationCheckHtml.java"),
                 expected);
     }
+
+    @Test
+    public void testJavadocTagContinuationIndentationCheckForceStrictCondition() throws Exception {
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_KEY, 4),
+            "29: " + getCheckMessage(MSG_KEY, 4),
+            "40: " + getCheckMessage(MSG_KEY, 4),
+            "41: " + getCheckMessage(MSG_KEY, 4),
+            "43: " + getCheckMessage(MSG_KEY, 4),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTagContinuationIndentationForceStrictCondition.java"),
+                expected);
+    }
 }

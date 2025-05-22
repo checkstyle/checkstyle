@@ -12,6 +12,11 @@
  properties below.
  &lt;/div&gt;</description>
          <properties>
+            <property default-value="false" name="forceStrictCondition" type="boolean">
+               <description>Force strict indent level of the continuations lines in
+ the javadoc. If value is true, continuation lines indent have to be same as offset parameter. If
+ value is false, line wrap indent could be bigger on any value user would like.</description>
+            </property>
             <property default-value="4" name="offset" type="int">
                <description>Specify how many spaces to use for new indentation level.</description>
             </property>
