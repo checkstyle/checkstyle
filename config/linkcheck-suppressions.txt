@@ -1451,6 +1451,7 @@
 <a href="google_style.html#a7.3.4">#a7.3.4</a>: doesn't exist.
 <a href="google_style.html#a7.3">#a7.3</a>: doesn't exist.
 <a href="google_style.html#a7">#a7</a>: doesn't exist.
+<a href="multifileregexpheader.html#MultiFileRegexpHeader">multifileregexpheader.html#MultiFileRegexpHeader</a>: doesn't exist.
 <a href="sun_style.html#a10.1">#a10.1</a>: doesn't exist.
 <a href="sun_style.html#a10.2">#a10.2</a>: doesn't exist.
 <a href="sun_style.html#a10.3">#a10.3</a>: doesn't exist.
