@@ -1424,6 +1424,7 @@ uniq
 uniqueproperties
 Unitless
 unnecessaryparentheses
+unnecessarypermitsclause
 unnecessarysemicolonafteroutertypedeclaration
 unnecessarysemicolonaftertypememberdeclaration
 unnecessarysemicoloninenumeration
