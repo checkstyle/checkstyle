@@ -569,7 +569,7 @@ htmlunit
 http
 httpcomponents
 hurz
-hyperlinks
+hyperlink
 hz
 iae
 icm
@@ -799,6 +799,7 @@ Loggable
 lombok
 lookaround
 Loughran
+lowercased
 lparen
 lucene
 lui
