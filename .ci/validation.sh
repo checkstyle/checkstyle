@@ -234,6 +234,20 @@ no-error-pmd)
   removeFolderWithProtectedFiles pmd
   ;;
 
+no-error-hazelcast)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  echo "CS_version: ${CS_POM_VERSION}"
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout Hazelcast sources ..."
+  checkout_from "https://github.com/hazelcast/hazelcast.git"
+  cd .ci-temp/hazelcast
+  mvn -e --no-transfer-progress checkstyle:check \
+    -Dcheckstyle.version="${CS_POM_VERSION}" \
+    -Dcheckstyle.configLocation=../../../checkstyle/config/checkstyle-checks.xml
+  cd ..
+  removeFolderWithProtectedFiles hazelcast
+  ;;
+
 no-violation-test-configurate)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
