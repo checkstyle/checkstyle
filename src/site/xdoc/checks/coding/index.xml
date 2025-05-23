@@ -514,6 +514,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/unnecessarynullcheckwithinstanceof.html#UnnecessaryNullCheckWithInstanceOf">
+                UnnecessaryNullCheckWithInstanceOf
+              </a>
+            </td>
+            <td>
+              Checks for redundant null checks with the instanceof operator.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="unnecessaryparentheses.html#UnnecessaryParentheses">
                 UnnecessaryParentheses
               </a>
