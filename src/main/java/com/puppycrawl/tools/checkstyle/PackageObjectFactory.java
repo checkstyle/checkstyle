@@ -563,6 +563,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.OverloadMethodsDeclarationOrderCheck");
         NAME_TO_FULL_MODULE_NAME.put("PackageDeclarationCheck",
                 BASE_PACKAGE + ".checks.coding.PackageDeclarationCheck");
+        NAME_TO_FULL_MODULE_NAME.put("PatternVariableAssignmentCheck",
+                BASE_PACKAGE + ".checks.coding.PatternVariableAssignmentCheck");
         NAME_TO_FULL_MODULE_NAME.put("ParameterAssignmentCheck",
                 BASE_PACKAGE + ".checks.coding.ParameterAssignmentCheck");
         NAME_TO_FULL_MODULE_NAME.put("RequireThisCheck",
