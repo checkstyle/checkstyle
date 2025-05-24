@@ -779,9 +779,20 @@
         <version>2.44.4</version>
         <configuration>
           <java>
+            <removeUnusedImports />
+            <formatAnnotations />
             <googleJavaFormat/>
           </java>
         </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <!-- <goal>apply</goal> -->
+              <goal>check</goal>
+            </goals>
+            <phase>verify</phase>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.codehaus.plexus</groupId>
