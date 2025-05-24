@@ -119,4 +119,9 @@ public class IndentationTest extends AbstractIndentationTestSupport {
     public void testLambdaChild() throws Exception {
         verifyWithWholeConfig(getNonCompilablePath("InputLambdaChild.java"));
     }
+
+    @Test
+    public void testAnnotationArrayInitMultiline() throws Exception {
+        verifyWithWholeConfig(getPath("InputAnnotationArrayInitMultiline.java"));
+    }
 }
