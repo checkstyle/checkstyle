@@ -275,8 +275,7 @@ public abstract class AbstractExpressionHandler {
         if (!astSet.isEmpty()) {
             // check first line
             final DetailAST startLineAst = astSet.firstLine();
-            final int endLine = astSet.lastLine();
-            int startCol = expandedTabsColumnNo(astSet.firstLine());
+            int startCol = expandedTabsColumnNo(startLineAst);
 
             final int realStartCol =
                 getLineStart(indentCheck.getLine(startLineAst.getLineNo() - 1));
@@ -290,28 +289,48 @@ public abstract class AbstractExpressionHandler {
                     firstLineMatches);
             }
 
-            // if first line starts the line, following lines are indented
-            // one level; but if the first line of this expression is
-            // nested with the previous expression (which is assumed if it
-            // doesn't start the line) then don't indent more, the first
-            // indentation is absorbed by the nesting
+            checkRemainingLines(firstLineMatches, indentLevel, firstLine, astSet);
 
-            IndentLevel theLevel = indentLevel;
-            if ((firstLineMatches || firstLine > mainAst.getLineNo())
-                    && shouldIncreaseIndent()) {
-                theLevel = new IndentLevel(indentLevel, indentCheck.getLineWrappingIndentation());
-            }
+        }
+    }
 
-            // check following lines
-            for (int i = startLineAst.getLineNo() + 1; i <= endLine; i++) {
-                final Integer col = astSet.getStartColumn(i);
-                // startCol could be null if this line didn't have an
-                // expression that was required to be checked (it could be
-                // checked by a child expression)
+    /**
+     * Check the indentation of remaining lines present in the astSet.
+     *
+     * @param firstLineMatches   whether or not the first line has to match
+     * @param indentLevel        the indentation level
+     * @param firstLine          first line of whole expression
+     * @param astSet             the set of abstract syntax tree to check
+     */
+    private void checkRemainingLines(boolean firstLineMatches,
+                                     IndentLevel indentLevel,
+                                     int firstLine,
+                                     DetailAstSet astSet) {
+        // if first line starts the line, following lines are indented
+        // one level; but if the first line of this expression is
+        // nested with the previous expression (which is assumed if it
+        // doesn't start the line) then don't indent more, the first
+        // indentation is absorbed by the nesting
+        final DetailAST startLineAst = astSet.firstLine();
+        final int endLine = astSet.lastLine();
+        IndentLevel theLevel = indentLevel;
 
-                if (col != null) {
-                    checkLineIndent(astSet.getAst(i), theLevel, false);
-                }
+        if (shouldIncreaseIndent()
+                && startLineAst.getType() != TokenTypes.ANNOTATION
+                && (firstLineMatches || firstLine > mainAst.getLineNo())) {
+            theLevel = new IndentLevel(indentLevel,
+                    indentCheck.getLineWrappingIndentation());
+        }
+
+        // check following lines
+        for (int index = startLineAst.getLineNo() + 1; index <= endLine; index++) {
+            final Integer col = astSet.getStartColumn(index);
+            // startCol could be null if this line didn't have an
+            // expression that was required to be checked (it could be
+            // checked by a child expression)
+
+            if (col != null) {
+                checkLineIndent(astSet.getAst(index), theLevel, false);
             }
         }
     }
