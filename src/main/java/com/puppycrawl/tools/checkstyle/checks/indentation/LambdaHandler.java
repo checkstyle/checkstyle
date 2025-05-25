@@ -53,9 +53,17 @@ public class LambdaHandler extends AbstractExpressionHandler {
     public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
         IndentLevel childIndent = getIndent();
         if (isLambdaCorrectlyIndented) {
+            // If the lambda is correctly indented, include its line start as acceptable to
+            // avoid false positives. When "forceStrictCondition" is off, we allow indents
+            // larger than expected (e.g., 12 instead of 6 or 8). These larger indents are
+            // accepted but not recorded, so child indent suggestions may be inaccurate.
+            // Adding the actual line start ensures the tool recognizes the lambda’s real indent
+            // context.
+            childIndent = IndentLevel.addAcceptable(childIndent, getLineStart(getMainAst()));
+
             if (child instanceof SlistHandler) {
-                // // Lambda with block body (enclosed in {})
-                childIndent = IndentLevel.addAcceptable(childIndent, getLineStart(getMainAst()),
+                // Lambda with block body (enclosed in {})
+                childIndent = IndentLevel.addAcceptable(childIndent,
                     getLineStart(getMainAst().getFirstChild()));
             }
             else {
