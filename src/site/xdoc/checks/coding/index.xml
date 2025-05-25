@@ -439,6 +439,16 @@
           </tr>
           <tr>
             <td>
+              <a href="patternvariableassignment.html#PatternVariableAssignment">
+                PatternVariableAssignment
+              </a>
+            </td>
+            <td>
+              Checks for assignment of pattern variables.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="requirethis.html#RequireThis">
                 RequireThis
               </a>
