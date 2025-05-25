@@ -2,6 +2,51 @@ version: 2.1
 
 jobs:
 
+  run-formatter:
+    docker:
+      - image: checkstyle/idea-docker:jdk11-idea2023.3.4
+
+    steps:
+      - checkout
+      - run:
+          name: Print versions
+          command: |
+            echo "Maven version:"
+            mvn --version
+            echo "Java version:"
+            java --version
+            echo "IDEA version:"
+            echo $IDEA_VERSION
+      - run:
+          name: Run code formatter
+          command: |
+            ./.ci/idea-format.sh
+          no_output_timeout: 15m
+          working_directory: ~/project
+      - run:
+          name: Check for formatting changes
+          command: |
+            echo "Checking for uncommitted changes after formatting..."
+            git diff --exit-code || (
+              echo "Formatting changes detected.";
+              echo "Diff:";
+              git --no-pager diff;
+              exit 1
+            )
+          working_directory: ~/project
+      - run:
+          name: Updating suppressions-xpath.xml
+          command: |
+            ./.ci/idea-suppression-update.sh
+      - run:
+          name: Run checkstyle
+          command: |
+            echo "Running Checkstyle..."
+            ./mvnw -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
+          working_directory: ~/project
+      - store_artifacts:
+          path: /home/circleci/project/target/format-results
+
   run-inspections:
     docker:
       - image: checkstyle/idea-docker:jdk11-idea2022.3.3
@@ -249,6 +294,7 @@ workflows:
   idea:
     jobs:
       - run-inspections
+      - run-formatter
 
   git-validation:
     jobs:
