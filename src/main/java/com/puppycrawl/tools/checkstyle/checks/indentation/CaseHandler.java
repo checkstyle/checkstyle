@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Handler for case statements.
@@ -59,7 +60,11 @@ public class CaseHandler extends AbstractExpressionHandler {
      * Check the indentation of the case statement.
      */
     private void checkCase() {
-        checkChildren(getMainAst(), CASE_CHILDREN, getIndent(), true, false);
+        // only need to check if the case statement is not on the same line as
+        // the parent switch statement
+        if (!isSameLineAsSwitch()) {
+            checkChildren(getMainAst(), CASE_CHILDREN, getIndent(), true, false);
+        }
     }
 
     @Override
@@ -70,6 +75,16 @@ public class CaseHandler extends AbstractExpressionHandler {
     @Override
     public void checkIndentation() {
         checkCase();
+    }
+
+    /**
+     * Checks if CASE_GROUP node is placed at the same line as SWITCH_LITERAL node.
+     *
+     * @return true, if CASE_GROUP node is places at the same line as SWITCH_LITERAL node.
+     */
+    private boolean isSameLineAsSwitch() {
+        final DetailAST parentNode = getMainAst().getParent();
+        return TokenUtil.areOnSameLine(getMainAst(), parentNode);
     }
 
 }
