@@ -114,4 +114,9 @@ public class IndentationTest extends AbstractIndentationTestSupport {
     public void testMultilineParameters() throws Exception {
         verifyWithWholeConfig(getNonCompilablePath("InputCatchParametersOnNewLine.java"));
     }
+
+    @Test
+    public void testLambdaChild() throws Exception {
+        verifyWithWholeConfig(getNonCompilablePath("InputLambdaChild.java"));
+    }
 }
