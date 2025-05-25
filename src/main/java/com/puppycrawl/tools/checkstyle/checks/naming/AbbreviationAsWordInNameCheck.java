@@ -397,11 +397,11 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     }
 
     /**
-     * Gets the disallowed abbreviation contained in given String.
+     * Gets the forbidden abbreviation contained in given String.
      *
      * @param str
      *        the given String.
-     * @return the disallowed abbreviation contained in given String as a
+     * @return the forbidden abbreviation contained in given String as a
      *         separate String.
      */
     private String getDisallowedAbbreviation(String str) {
