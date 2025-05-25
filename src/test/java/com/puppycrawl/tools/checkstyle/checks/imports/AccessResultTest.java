@@ -47,6 +47,7 @@ public class AccessResultTest {
         final AccessResult[] expected = {
             AccessResult.ALLOWED,
             AccessResult.DISALLOWED,
+            AccessResult.FORBIDDEN,
             AccessResult.UNKNOWN,
         };
         assertWithMessage("Invalid access result values")
