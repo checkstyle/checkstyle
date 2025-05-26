@@ -57,7 +57,7 @@
           </li>
           <li>
             If there is matching allow/disallow rule inside the current file/subpackage
-            then the Check returns the first "allowed" or "disallowed" message.
+            then the Check returns the first "allowed" or "forbidden" message.
           </li>
           <li>
             If there is no matching allow/disallow rule inside the current file/subpackage
@@ -65,13 +65,13 @@
           </li>
           <li>
             If there is no matching allow/disallow rule in any of the files/subpackages,
-            including the root level (import-control), then the import is disallowed by default.
+            including the root level (import-control), then the import is forbidden by default.
           </li>
         </ul>
 
         <p>
-          The DTD for an import control XML document is at <a href="/dtds/import_control_1_4.dtd">
-          https://checkstyle.org/dtds/import_control_1_4.dtd</a>. It
+          The DTD for an import control XML document is at <a href="/dtds/import_control_1_5.dtd">
+          https://checkstyle.org/dtds/import_control_1_5.dtd</a>. It
           contains documentation on each of the elements and attributes.
         </p>
 
@@ -84,8 +84,8 @@
         <div class="wrapper">
           <pre>
 &lt;!DOCTYPE import-control PUBLIC
-    "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
-    "https://checkstyle.org/dtds/import_control_1_4.dtd"&gt;
+    "-//Checkstyle//DTD ImportControl Configuration 1.5//EN"
+    "https://checkstyle.org/dtds/import_control_1_5.dtd"&gt;
           </pre>
         </div>
       </subsection>
@@ -129,29 +129,29 @@
           <code>com.puppycrawl.tools.checkstyle.checks</code> and its subpackages is
           allowed from anywhere in <code>com.puppycrawl.tools.checkstyle</code> except
           from the <code>filters</code> subpackage where access to all
-          <code>check</code>'s subpackages is disallowed. Two <code>java.lang.ref</code>
+          <code>check</code>'s subpackages is forbidden. Two <code>java.lang.ref</code>
           classes are allowed by virtue of one regular expression instead of listing
           them in two separate allow rules (as it is done with the <code>Files</code>
           and <code>ClassPath</code> classes).
         </p>
 
         <source>
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle"&gt;
-  &lt;disallow pkg="sun"/&gt;
-  &lt;allow pkg="com.puppycrawl.tools.checkstyle.api"/&gt;
-  &lt;allow pkg="com.puppycrawl.tools.checkstyle.checks"/&gt;
+&lt;import-control package="com.puppycrawl.tools.checkstyle"&gt;
+  &lt;disallow package="sun"/&gt;
+  &lt;allow package="com.puppycrawl.tools.checkstyle.api"/&gt;
+  &lt;allow package="com.puppycrawl.tools.checkstyle.checks"/&gt;
   &lt;allow class="com.google.common.io.Files"/&gt;
   &lt;allow class="com.google.common.reflect.ClassPath"/&gt;
   &lt;subpackage name="filters"&gt;
     &lt;allow class="java\.lang\.ref\.(Weak|Soft)Reference"
       regex="true"/&gt;
-    &lt;disallow pkg="com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+"
+    &lt;disallow package="com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+"
       regex="true"/&gt;
-    &lt;disallow pkg="com.puppycrawl.tools.checkstyle.ant"/&gt;
-    &lt;disallow pkg="com.puppycrawl.tools.checkstyle.gui"/&gt;
+    &lt;disallow package="com.puppycrawl.tools.checkstyle.ant"/&gt;
+    &lt;disallow package="com.puppycrawl.tools.checkstyle.gui"/&gt;
   &lt;/subpackage&gt;
   &lt;subpackage name="dao"&gt;
-    &lt;disallow pkg="javax.swing" exact-match="true"/&gt;
+    &lt;disallow package="javax.swing" exact-match="true"/&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
         </source>
@@ -166,13 +166,13 @@
         </p>
 
         <source>
-&lt;import-control pkg="(de.olddomain|de.newdomain)\..*" regex="true"&gt;
-  &lt;subpackage pkg="[^.]+\.dao" regex="true"&gt;
-    &lt;disallow pkg=".*\.ui" regex="true"/&gt;
-    &lt;disallow pkg=".*\.(awt|swing).\.*" regex="true"/&gt;
+&lt;import-control package="(de.olddomain|de.newdomain)\..*" regex="true"&gt;
+  &lt;subpackage package="[^.]+\.dao" regex="true"&gt;
+    &lt;disallow package=".*\.ui" regex="true"/&gt;
+    &lt;disallow package=".*\.(awt|swing).\.*" regex="true"/&gt;
   &lt;/subpackage&gt;
-  &lt;subpackage pkg="[^.]+\.ui" regex="true"&gt;
-    &lt;disallow pkg=".*\.(dao|service)" regex="true"/&gt;
+  &lt;subpackage package="[^.]+\.ui" regex="true"&gt;
+    &lt;disallow package=".*\.(dao|service)" regex="true"/&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
         </source>
@@ -185,9 +185,9 @@
           Property can have the following values for <code>import-control</code> tag:
         </p>
         <ul>
-          <li>disallowed (default value) - if there is no matching allow/disallow rule in any of
+          <li>forbidden (default value) - if there is no matching allow/disallow rule in any of
               the subpackages, including the root level (import-control), then the import is
-              disallowed.</li>
+              forbidden.</li>
           <li>allowed - if there is no matching allow/disallow rule in any of the subpackages,
               including the root level, then the import is allowed.</li>
         </ul>
@@ -200,8 +200,8 @@
               subpackage.</li>
           <li>allowed - if there is no matching allow/disallow rule inside the current
               subpackage, then the import is allowed.</li>
-          <li>disallowed - if there is no matching allow/disallow rule inside the current
-              subpackage, then the import is disallowed.</li>
+          <li>forbidden - if there is no matching allow/disallow rule inside the current
+              subpackage, then the import is forbidden.</li>
         </ul>
 
         <p>
@@ -210,7 +210,7 @@
           <code>java.awt.Image</code> and <code>java.io.File</code> classes.
         </p>
         <source>
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"
+&lt;import-control package="com.puppycrawl.tools.checkstyle.checks"
   strategyOnMismatch="allowed"&gt;
   &lt;disallow class="java.awt.Image"/&gt;
   &lt;disallow class="java.io.File"/&gt;
@@ -218,24 +218,24 @@
         </source>
 
         <p>
-          In the example below, any import is disallowed inside
+          In the example below, any import is forbidden inside
           <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package except imports from
           package <code>javax.swing</code> and class <code>java.io.File</code>.
           However, any import is allowed in the classes outside of
           <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package.
         </p>
         <source>
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"
+&lt;import-control package="com.puppycrawl.tools.checkstyle.checks"
   strategyOnMismatch="allowed"&gt;
-  &lt;subpackage name="imports" strategyOnMismatch="disallowed"&gt;
-    &lt;allow pkg="javax.swing"/&gt;
+  &lt;subpackage name="imports" strategyOnMismatch="forbidden"&gt;
+    &lt;allow package="javax.swing"/&gt;
     &lt;allow class="java.io.File"/&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
         </source>
 
         <p>
-          When <code>strategyOnMismatch</code> has <code>allowed</code> or <code>disallowed</code>
+          When <code>strategyOnMismatch</code> has <code>allowed</code> or <code>forbidden</code>
           value for <code>subpackage</code> tag, it makes <code>subpackage</code> isolated from
           parent rules.
           In the next example, if no matching rule was found inside
@@ -245,12 +245,12 @@
           default.
         </p>
         <source>
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"&gt;
+&lt;import-control package="com.puppycrawl.tools.checkstyle.checks"&gt;
   &lt;allow class="java\.awt\.Image" regex="true"/&gt;
   &lt;allow class="java\..*\.File" local-only="true" regex="true"/&gt;
   &lt;subpackage name="imports" strategyOnMismatch="allowed"&gt;
-    &lt;allow pkg="javax\.swing" regex="true"/&gt;
-    &lt;allow pkg="java\.io" exact-match="true"
+    &lt;allow package="javax\.swing" regex="true"/&gt;
+    &lt;allow package="java\.io" exact-match="true"
       local-only="true" regex="true"/&gt;
   &lt;/subpackage&gt;
   &lt;subpackage name="filters"&gt;
@@ -260,21 +260,21 @@
         </source>
         <p>
           In the example below, only file names that end with "Panel", "View", or "Dialog"
-          in the package <code>gui</code> are disallowed to have imports from
+          in the package <code>gui</code> are forbidden to have imports from
           <code>com.mycompany.dao</code> and any <code>jdbc</code> package. In addition, only
           the file name named "PresentationModel" in the package <code>gui</code> are
-          disallowed to have imports that match <code>javax.swing.J*</code>.
+          forbidden to have imports that match <code>javax.swing.J*</code>.
           All other imports in the package are allowed.
         </p>
         <source>
-&lt;import-control pkg="com.mycompany.billing"&gt;
+&lt;import-control package="com.mycompany.billing"&gt;
   &lt;subpackage name="gui" strategyOnMismatch="allowed"&gt;
     &lt;file name=".*(Panel|View|Dialog)" regex="true"&gt;
-      &lt;disallow pkg="com.mycompany.dao"/&gt;
-      &lt;disallow pkg=".*\.jdbc" regex="true"/&gt;
+      &lt;disallow package="com.mycompany.dao"/&gt;
+      &lt;disallow package=".*\.jdbc" regex="true"/&gt;
     &lt;/file&gt;
     &lt;file name="PresentationModel"&gt;
-      &lt;disallow pkg="javax\.swing\.J.*" regex="true"/&gt;
+      &lt;disallow package="javax\.swing\.J.*" regex="true"/&gt;
     &lt;/file&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
@@ -299,8 +299,8 @@
           <code>com.puppycrawl.tools.checkstyle.filters</code>.
         </p>
         <source>
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle"&gt;
-  &lt;allow pkg="java.util"/&gt;
+&lt;import-control package="com.puppycrawl.tools.checkstyle"&gt;
+  &lt;allow package="java.util"/&gt;
   &lt;subpackage name="filters" &gt;
     &lt;disallow class="java.util.Map"/&gt;
   &lt;/subpackage&gt;
@@ -308,14 +308,14 @@
         </source>
         <p>
           In the next example imports <code>java.util.stream.Stream</code> and
-          <code>java.util.stream.Collectors</code> are disallowed inside
+          <code>java.util.stream.Collectors</code> are forbidden inside
           <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package,
-          but because of <code>&lt;allow pkg="java.util.stream"/&gt;</code> every import
+          but because of <code>&lt;allow package="java.util.stream"/&gt;</code> every import
           from <code>java.util.stream</code> is allowed except described ones.
         </p>
         <source>
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"&gt;
-  &lt;allow pkg="java.util.stream"/&gt;
+&lt;import-control package="com.puppycrawl.tools.checkstyle.checks"&gt;
+  &lt;allow package="java.util.stream"/&gt;
   &lt;subpackage name="imports"&gt;
     &lt;disallow class="java.util.stream.Stream"/&gt;
     &lt;disallow class="java.util.stream.Collectors"/&gt;
@@ -335,12 +335,12 @@ import java.util.stream.IntStream;
           <code>java.util.Date</code>, <code>java.util.List</code> and package <code>sun</code>.
         </p>
         <source>
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"&gt;
-  &lt;allow pkg=".*" regex="true"/&gt;
+&lt;import-control package="com.puppycrawl.tools.checkstyle.checks"&gt;
+  &lt;allow package=".*" regex="true"/&gt;
   &lt;subpackage name="imports"&gt;
     &lt;disallow class="java.util.Date"/&gt;
     &lt;disallow class="java.util.List"/&gt;
-    &lt;disallow pkg="sun"/&gt;
+    &lt;disallow package="sun"/&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
         </source>
@@ -349,10 +349,10 @@ import java.util.stream.IntStream;
           except the <code>java.util.Date</code> class.
         </p>
         <source>
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"&gt;
+&lt;import-control package="com.puppycrawl.tools.checkstyle.checks"&gt;
   &lt;disallow class="java.util.Date"/&gt;
 
-  &lt;allow pkg="java.util"/&gt;
+  &lt;allow package="java.util"/&gt;
 &lt;/import-control&gt;
         </source>
 
@@ -412,14 +412,14 @@ import java.util.stream.IntStream;
           <code>java.util.Map.Entry</code> use the following configuration:
         </p>
         <source>
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle"&gt;
+&lt;import-control package="com.puppycrawl.tools.checkstyle"&gt;
   &lt;allow class="java.util.Map"/&gt;
   &lt;allow class="java.util.Map.Entry"/&gt;
 &lt;/import-control&gt;
         </source>
         <p>It is also possible to use a regex with a wildcard:</p>
         <source>
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle"&gt;
+&lt;import-control package="com.puppycrawl.tools.checkstyle"&gt;
   &lt;allow class="java.util.Map"/&gt;
   &lt;allow class="java.util.Map.*" regex="true" /&gt;
 &lt;/import-control&gt;

@@ -41,8 +41,8 @@ public enum MismatchStrategy {
 
     /**
      * In a case if matching allow/disallow rule was not found,
-     * import will be disallowed by default.
+     * import will be forbidden by default.
      */
-    DISALLOWED,
+    FORBIDDEN,
 
 }

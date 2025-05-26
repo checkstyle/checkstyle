@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 public class PkgImportControlTest {
 
     private final PkgImportControl icRoot = new PkgImportControl(
-            "com.kazgroup.courtlink", false, MismatchStrategy.DISALLOWED);
+            "com.kazgroup.courtlink", false, MismatchStrategy.FORBIDDEN);
     private final PkgImportControl icCommon = new PkgImportControl(icRoot,
             "common", false, MismatchStrategy.DELEGATE_TO_PARENT);
     private final PkgImportControl icUncommon = new PkgImportControl(icRoot,
@@ -106,7 +106,7 @@ public class PkgImportControlTest {
             .that(icCommon.checkAccess(
                 "com.kazgroup.courtlink.common", "MyClass",
                 "org.springframework.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
+            .isEqualTo(AccessResult.FORBIDDEN);
         assertWithMessage("Unexpected access result")
             .that(icCommon
                 .checkAccess("com.kazgroup.courtlink.common", "MyClass",
@@ -116,7 +116,7 @@ public class PkgImportControlTest {
             .that(icCommon.checkAccess(
                 "com.kazgroup.courtlink.common", "MyClass",
                 "org.apache.commons"))
-            .isEqualTo(AccessResult.DISALLOWED);
+            .isEqualTo(AccessResult.FORBIDDEN);
         assertWithMessage("Unexpected access result")
             .that(icCommon.checkAccess(
                 "com.kazgroup.courtlink.common", "MyClass",
@@ -126,12 +126,12 @@ public class PkgImportControlTest {
             .that(icCommon.checkAccess(
                 "com.kazgroup.courtlink.common", "MyClass",
                 "com.badpackage.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
+            .isEqualTo(AccessResult.FORBIDDEN);
         assertWithMessage("Unexpected access result")
             .that(icRoot.checkAccess(
                 "com.kazgroup.courtlink", "MyClass",
                 "org.hibernate.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
+            .isEqualTo(AccessResult.FORBIDDEN);
     }
 
     @Test
@@ -159,19 +159,19 @@ public class PkgImportControlTest {
         assertWithMessage("Unexpected access result")
             .that(icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
                         "org.springframework.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
+            .isEqualTo(AccessResult.FORBIDDEN);
         assertWithMessage("Unexpected access result")
             .that(icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
                         "org.luiframework.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
+            .isEqualTo(AccessResult.FORBIDDEN);
         assertWithMessage("Unexpected access result")
             .that(icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
                         "de.springframework.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
+            .isEqualTo(AccessResult.FORBIDDEN);
         assertWithMessage("Unexpected access result")
             .that(icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
                 "de.luiframework.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
+            .isEqualTo(AccessResult.FORBIDDEN);
         assertWithMessage("Unexpected access result")
             .that(icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
                         "org.apache.commons.something"))
@@ -183,11 +183,11 @@ public class PkgImportControlTest {
         assertWithMessage("Unexpected access result")
             .that(icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
                         "org.apache.commons"))
-            .isEqualTo(AccessResult.DISALLOWED);
+            .isEqualTo(AccessResult.FORBIDDEN);
         assertWithMessage("Unexpected access result")
             .that(icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
                         "org.lui.commons"))
-            .isEqualTo(AccessResult.DISALLOWED);
+            .isEqualTo(AccessResult.FORBIDDEN);
         assertWithMessage("Unexpected access result")
             .that(icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
                         "org.hibernate.something"))
@@ -195,11 +195,11 @@ public class PkgImportControlTest {
         assertWithMessage("Unexpected access result")
             .that(icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
                         "com.badpackage.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
+            .isEqualTo(AccessResult.FORBIDDEN);
         assertWithMessage("Unexpected access result")
             .that(icRootRegexpChild.checkAccess("com.kazgroup.courtlink", "MyClass",
                         "org.hibernate.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
+            .isEqualTo(AccessResult.FORBIDDEN);
     }
 
     @Test
@@ -254,7 +254,7 @@ public class PkgImportControlTest {
     public void testRegExpParentAlternationInParentIsHandledCorrectly() {
         // the regular expression has to be adjusted to (com\.foo|com\.bar)
         final PkgImportControl root = new PkgImportControl("com\\.foo|com\\.bar", true,
-                MismatchStrategy.DISALLOWED);
+                MismatchStrategy.FORBIDDEN);
         final PkgImportControl common = new PkgImportControl(root, "common", false,
                 MismatchStrategy.DELEGATE_TO_PARENT);
         root.addChild(common);
@@ -276,7 +276,7 @@ public class PkgImportControlTest {
     public void testRegExpParentAlternationInParentIfUserCaresForIt() {
         // the regular expression has to be adjusted to (com\.foo|com\.bar)
         final PkgImportControl root = new PkgImportControl("(com\\.foo|com\\.bar)", true,
-                MismatchStrategy.DISALLOWED);
+                MismatchStrategy.FORBIDDEN);
         final PkgImportControl common = new PkgImportControl(root, "common", false,
                 MismatchStrategy.DELEGATE_TO_PARENT);
         root.addChild(common);
@@ -297,7 +297,7 @@ public class PkgImportControlTest {
     @Test
     public void testRegExpParentAlternationInSubpackageIsHandledCorrectly() {
         final PkgImportControl root = new PkgImportControl("org.somewhere", false,
-                MismatchStrategy.DISALLOWED);
+                MismatchStrategy.FORBIDDEN);
         // the regular expression has to be adjusted to (foo|bar)
         final PkgImportControl subpackages = new PkgImportControl(root, "foo|bar", true,
                 MismatchStrategy.DELEGATE_TO_PARENT);
