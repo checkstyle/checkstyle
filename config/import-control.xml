@@ -1,39 +1,39 @@
 <?xml version="1.0"?>
 <!DOCTYPE import-control PUBLIC
-    "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
-    "https://checkstyle.org/dtds/import_control_1_4.dtd">
+    "-//Checkstyle//DTD ImportControl Configuration 1.5//EN"
+    "https://checkstyle.org/dtds/import_control_1_5.dtd">
 
-<import-control pkg="com.puppycrawl.tools.checkstyle">
-  <disallow pkg="java.util.concurrent"/>
+<import-control package="com.puppycrawl.tools.checkstyle">
+  <forbid package="java.util.concurrent"/>
   <!-- java.io.FileInputStream and java.io.FileOutputStream are disallowed in favor of
          Files.newInputStream and Files.newOutputStream.
          See https://github.com/checkstyle/checkstyle/issues/5638 -->
-  <disallow class="java.io.FileInputStream"/>
-  <disallow class="java.io.FileOutputStream"/>
+  <forbid class="java.io.FileInputStream"/>
+  <forbid class="java.io.FileOutputStream"/>
 
   <!-- guava causes issues with other libraries since not everyone is on the same version -->
-  <disallow pkg="com\.google.*" regex="true"/>
+  <forbid package="com\.google.*" regex="true"/>
 
-  <allow pkg="com.puppycrawl.tools.checkstyle.api"/>
-  <allow pkg="com.puppycrawl.tools.checkstyle.checks"/>
-  <allow pkg="java.io"/>
-  <allow pkg="java.nio"/>
-  <allow pkg="java.net"/>
-  <allow pkg="java.util"/>
+  <allow package="com.puppycrawl.tools.checkstyle.api"/>
+  <allow package="com.puppycrawl.tools.checkstyle.checks"/>
+  <allow package="java.io"/>
+  <allow package="java.nio"/>
+  <allow package="java.net"/>
+  <allow package="java.util"/>
   <allow class="javax.annotation.Nullable"/>
-  <allow pkg="javax.xml.parsers"/>
-  <allow pkg="org.apache.commons.beanutils"/>
-  <allow pkg="org.apache.commons.logging"/>
-  <allow pkg="org.xml.sax"/>
+  <allow package="javax.xml.parsers"/>
+  <allow package="org.apache.commons.beanutils"/>
+  <allow package="org.apache.commons.logging"/>
+  <allow package="org.xml.sax"/>
 
   <!-- The local ones -->
-  <allow pkg="java.lang.reflect" local-only="true" />
-  <allow pkg="java.nio" local-only="true" />
+  <allow package="java.lang.reflect" local-only="true" />
+  <allow package="java.nio" local-only="true" />
   <allow class="java.security.MessageDigest" local-only="true"/>
   <allow class="java.security.NoSuchAlgorithmException" local-only="true"/>
-  <allow pkg="com.puppycrawl.tools.checkstyle.utils" local-only="true"/>
-  <allow pkg="com.puppycrawl.tools.checkstyle.grammar" local-only="true"/>
-  <allow pkg="picocli" local-only="true"/>
+  <allow package="com.puppycrawl.tools.checkstyle.utils" local-only="true"/>
+  <allow package="com.puppycrawl.tools.checkstyle.grammar" local-only="true"/>
+  <allow package="picocli" local-only="true"/>
   <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.+"
           local-only="true" regex="true"/>
   <allow class="java.lang.annotation.ElementType" local-only="true"/>
@@ -49,10 +49,10 @@
          local-only="true"/>
 
   <file name="DetailAstImpl|JavaParser|JavaAstVisitor|CheckstyleParserErrorStrategy" regex="true">
-    <allow pkg="org.antlr.v4.runtime"/>
+    <allow package="org.antlr.v4.runtime"/>
   </file>
   <file name="JavadocDetailNodeParser">
-    <allow pkg="org.antlr.v4.runtime"/>
+    <allow package="org.antlr.v4.runtime"/>
   </file>
   <file name="PropertyCacheFile">
     <allow class="java.math.BigInteger"/>
@@ -71,9 +71,9 @@
   </file>
 
   <subpackage name="site">
-    <allow pkg="org.apache.maven" local-only="true"/>
-    <allow pkg="java.nio" local-only="true"/>
-    <allow pkg="org.codehaus.plexus" local-only="true"/>
+    <allow package="org.apache.maven" local-only="true"/>
+    <allow package="java.nio" local-only="true"/>
+    <allow package="org.codehaus.plexus" local-only="true"/>
     <allow class="java.lang.reflect.Field" local-only="true"/>
     <allow class="java.lang.reflect.Array" local-only="true"/>
     <allow class="java.lang.reflect.ParameterizedType" local-only="true"/>
@@ -104,13 +104,13 @@
 
   <subpackage name="utils">
 
-    <allow pkg="java.lang.reflect" local-only="true" />
-    <allow pkg="java.nio" local-only="true" />
+    <allow package="java.lang.reflect" local-only="true" />
+    <allow package="java.nio" local-only="true" />
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerFilter"/>
     <allow class="com.google.common.reflect.ClassPath" local-only="true"/>
 
     <file name="XpathUtil" regex="true">
-      <allow pkg="net.sf.saxon"/>
+      <allow package="net.sf.saxon"/>
       <allow class="com.puppycrawl.tools.checkstyle.AstTreeStringPrinter"/>
       <allow class="com.puppycrawl.tools.checkstyle.JavaParser"/>
       <allow class="com.puppycrawl.tools.checkstyle.xpath.AbstractNode"/>
@@ -123,22 +123,22 @@
   </subpackage>
 
   <subpackage name="ant">
-    <disallow pkg="com.puppycrawl.tools.checkstyle.checks"/>
-    <disallow pkg="com.puppycrawl.tools.checkstyle.filters"/>
-    <disallow pkg="com.puppycrawl.tools.checkstyle.gui"/>
+    <forbid package="com.puppycrawl.tools.checkstyle.checks"/>
+    <forbid package="com.puppycrawl.tools.checkstyle.filters"/>
+    <forbid package="com.puppycrawl.tools.checkstyle.gui"/>
 
-    <allow pkg="org.apache.tools.ant" local-only="true"/>
-    <allow pkg="com.puppycrawl.tools.checkstyle"/>
+    <allow package="org.apache.tools.ant" local-only="true"/>
+    <allow package="com.puppycrawl.tools.checkstyle"/>
 
     <allow class="java.nio.file.Files" local-only="true"/>
   </subpackage>
 
   <subpackage name="api">
-    <disallow pkg="org.antlr.v4.runtime"/>
+    <forbid package="org.antlr.v4.runtime"/>
 
-    <allow pkg="com.puppycrawl.tools.checkstyle.grammar"/>
-    <allow pkg="java.lang.reflect" local-only="true"/>
-    <allow pkg="java.nio.charset" local-only="true"/>
+    <allow package="com.puppycrawl.tools.checkstyle.grammar"/>
+    <allow package="java.lang.reflect" local-only="true"/>
+    <allow package="java.nio.charset" local-only="true"/>
     <!-- until https://github.com/checkstyle/checkstyle/issues/12873 -->
     <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean" local-only="true"/>
     <allow class="java.beans.PropertyDescriptor" local-only="true"/>
@@ -153,7 +153,7 @@
 
     <allow class="com.puppycrawl.tools.checkstyle.Checker" local-only="true"/>
     <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3817 -->
-    <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
+    <allow package="com.puppycrawl.tools.checkstyle.utils"/>
     <file name="DetailAST">
       <allow class="org.antlr.v4.runtime.Token"/>
     </file>
@@ -166,8 +166,8 @@
   </subpackage>
 
   <subpackage name="checks">
-    <allow pkg="java.math"/>
-    <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
+    <allow package="java.math"/>
+    <allow package="com.puppycrawl.tools.checkstyle.utils"/>
     <allow class="java.nio.charset.StandardCharsets" local-only="true"/>
     <allow class="java.nio.file.Files" local-only="true"/>
     <allow class="java.nio.file.NoSuchFileException" local-only="true"/>
@@ -187,7 +187,7 @@
       <allow class="org.checkerframework.checker.index.qual.IndexOrLow"/>
     </subpackage>
     <subpackage name="indentation">
-      <allow pkg="java.lang.reflect"/>
+      <allow package="java.lang.reflect"/>
     </subpackage>
     <subpackage name="header">
       <allow class="java.nio.charset.Charset" local-only="true"/>
@@ -195,8 +195,8 @@
       <allow class="java.nio.charset.UnsupportedCharsetException" local-only="true" />
     </subpackage>
     <subpackage name="javadoc">
-      <allow pkg="com.puppycrawl.tools.checkstyle.grammar.javadoc"/>
-      <allow pkg="java.lang.reflect"/>
+      <allow package="com.puppycrawl.tools.checkstyle.grammar.javadoc"/>
+      <allow package="java.lang.reflect"/>
       <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser"
         local-only="true"/>
       <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.+"
@@ -204,8 +204,8 @@
     </subpackage>
     <subpackage name="coding">
       <file name="MatchXpathCheck">
-        <allow pkg="net.sf.saxon"/>
-        <allow pkg="com.puppycrawl.tools.checkstyle.xpath"/>
+        <allow package="net.sf.saxon"/>
+        <allow package="com.puppycrawl.tools.checkstyle.xpath"/>
       </file>
     </subpackage>
   </subpackage>
@@ -217,9 +217,9 @@
   </subpackage>
 
   <subpackage name="filters">
-    <disallow pkg="com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+" regex="true"/>
+    <forbid package="com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+" regex="true"/>
 
-    <allow pkg="net.sf.saxon"/>
+    <allow package="net.sf.saxon"/>
     <allow class="java.lang.ref.WeakReference" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent" local-only="true"/>
@@ -227,33 +227,33 @@
     <allow class="com.puppycrawl.tools.checkstyle.XmlLoader" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.XdocsPropertyType" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.PropertyType" local-only="true"/>
-    <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
-    <allow pkg="com.puppycrawl.tools.checkstyle.xpath"/>
+    <allow package="com.puppycrawl.tools.checkstyle.utils"/>
+    <allow package="com.puppycrawl.tools.checkstyle.xpath"/>
     <allow class="java.nio.charset.StandardCharsets" local-only="true"/>
   </subpackage>
 
-  <subpackage name="gui" strategyOnMismatch="disallowed">
+  <subpackage name="gui" strategyOnMismatch="forbidden">
     <allow class="com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator" />
 
 
-    <allow pkg="java.awt"/>
-    <allow pkg="java.io"/>
-    <allow pkg="java.nio"/>
-    <allow pkg="javax.swing"/>
-    <allow pkg="java.util" exact-match="true"/>
-    <allow pkg="com.puppycrawl.tools.checkstyle.api" local-only="true"/>
+    <allow package="java.awt"/>
+    <allow package="java.io"/>
+    <allow package="java.nio"/>
+    <allow package="javax.swing"/>
+    <allow package="java.util" exact-match="true"/>
+    <allow package="com.puppycrawl.tools.checkstyle.api" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode"
            local-only="true"/>
-    <disallow pkg="com\.puppycrawl\.tools\.checkstyle\.(checks|ant|doclets|filters)" regex="true"/>
+    <forbid package="com\.puppycrawl\.tools\.checkstyle\.(checks|ant|doclets|filters)" regex="true"/>
 
     <file name=".*(Model|Presentation)" regex="true">
-      <disallow pkg="java.awt.Graphics"/>
-      <disallow pkg="java.awt.Component"/>
-      <disallow pkg="javax\.swing\.J.*" regex="true"/>
+      <forbid package="java.awt.Graphics"/>
+      <forbid package="java.awt.Component"/>
+      <forbid package="javax\.swing\.J.*" regex="true"/>
       <allow class="java.nio.charset.StandardCharsets" />
       <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser"/>
       <allow class="com.puppycrawl.tools.checkstyle.JavaParser"/>
-      <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
+      <allow package="com.puppycrawl.tools.checkstyle.utils"/>
     </file>
     <file name="TreeTable" regex="true">
       <allow class="java.util.stream.Collectors"/>
@@ -266,10 +266,10 @@
 
   <subpackage name="meta">
 
-    <allow pkg="java.nio"/>
-    <allow pkg="javax.xml"/>
-    <allow pkg="org.reflections"/>
-    <allow pkg="org.w3c.dom"/>
+    <allow package="java.nio"/>
+    <allow package="javax.xml"/>
+    <allow package="org.reflections"/>
+    <allow package="org.w3c.dom"/>
 
     <allow class="com.puppycrawl.tools.checkstyle.Checker"/>
     <allow class="com.puppycrawl.tools.checkstyle.DefaultConfiguration"/>
@@ -285,33 +285,33 @@
   </subpackage>
 
   <subpackage name="xpath">
-    <allow pkg="net.sf.saxon"/>
+    <allow package="net.sf.saxon"/>
     <allow class="java.lang.reflect.Field"/>
     <allow class="java.nio.charset.StandardCharsets" local-only="true"/>
-    <allow pkg="com.puppycrawl.tools.checkstyle.utils" local-only="true"/>
+    <allow package="com.puppycrawl.tools.checkstyle.utils" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.xpath.AbstractNode"/>
-    <allow pkg="com.puppycrawl.tools.checkstyle.xpath.iterators" local-only="true"/>
+    <allow package="com.puppycrawl.tools.checkstyle.xpath.iterators" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent" local-only="true"/>
 
     <file name="Abstract.*Node" regex="true">
       <!-- These are more saxon utilities, and should not have anything checkstyle specific -->
-      <allow pkg="com.puppycrawl.tools.checkstyle.xpath.iterators"/>
-      <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
-      <disallow pkg="com\.puppycrawl.*" regex="true"/>
+      <allow package="com.puppycrawl.tools.checkstyle.xpath.iterators"/>
+      <allow package="com.puppycrawl.tools.checkstyle.utils"/>
+      <forbid package="com\.puppycrawl.*" regex="true"/>
     </file>
 
     <subpackage name="iterators">
       <!-- These are more saxon utilities, and should not have anything checkstyle specific -->
-      <disallow pkg="com\.puppycrawl.*" regex="true"/>
+      <forbid package="com\.puppycrawl.*" regex="true"/>
     </subpackage>
   </subpackage>
 
   <subpackage name="grammar">
     <file name="CrAwareLexerSimulator">
-      <allow pkg="org.antlr.v4.runtime"/>
+      <allow package="org.antlr.v4.runtime"/>
     </file>
     <file name="CompositeLexerContextCache">
-      <allow pkg="org.antlr.v4.runtime"/>
+      <allow package="org.antlr.v4.runtime"/>
       <allow class="com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer"/>
     </file>
   </subpackage>

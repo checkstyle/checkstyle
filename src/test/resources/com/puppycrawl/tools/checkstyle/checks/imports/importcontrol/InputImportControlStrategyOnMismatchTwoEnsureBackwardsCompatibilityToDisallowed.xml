@@ -6,8 +6,10 @@
 <import-control package="com.puppycrawl.tools.checkstyle.checks.imports" strategyOnMismatch="allowed">
   <allow class="java\.awt\.Image" regex="true"/>
   <allow class="java\..*\.File" local-only="true" regex="true"/>
-  <subpackage name="importcontrol" strategyOnMismatch="forbidden">
-    <forbid class="java\..*\.Image" local-only="true" regex="true"/>
+  <!-- keep strategyOnMismatch="disallowed" to ensure test coverage and downwards compatibility -->
+  <subpackage name="importcontrol" strategyOnMismatch="disallowed">
+    <!-- keep "<disallow class=" to ensure test coverage and downwards compatibility -->
+    <disallow class="java\..*\.Image" local-only="true" regex="true"/>
     <allow package="javax\.swing" regex="true"/>
     <allow package="java\.io" exact-match="true" local-only="true" regex="true"/>
   </subpackage>
