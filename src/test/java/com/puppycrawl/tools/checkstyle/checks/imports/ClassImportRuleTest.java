@@ -96,6 +96,9 @@ public class ClassImportRuleTest {
             .that(rule.verifyImport("pkg.a")) // why here no package?
             .isEqualTo(AccessResult.ALLOWED);
         assertWithMessage("Invalid access result")
+            .that(rule.verifyImport("package.a"))
+            .isEqualTo(AccessResult.UNKNOWN); // is this correct?
+        assertWithMessage("Invalid access result")
             .that(rule.verifyImport("pkx.a"))
             .isEqualTo(AccessResult.ALLOWED);
         assertWithMessage("Invalid access result")
