@@ -1893,7 +1893,7 @@ public class XdocsPagesTest {
             styleChecks.remove("SuppressWarningsFilter");
             styleChecks.remove("SuppressWarningsHolder");
             styleChecks.remove("SuppressWithNearbyTextFilter");
-
+            styleChecks.remove("SuppressWithPlainTextCommentFilter");
             assertWithMessage(
                     fileName + " requires the following check(s) to appear: " + styleChecks)
                 .that(styleChecks)
