@@ -1,4 +1,4 @@
-only_if: $CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH
+only_if: $CIRRUS_PR != "" || $CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH
 task:
   name: Windows build
   windows_container:
@@ -37,13 +37,18 @@ task:
     - choco upgrade -y chocolatey
     - choco install -y --no-progress ant
     - choco install -y --no-progress openjdk --version %OPENJDK_VERSION%
-    # - choco install -y --no-progress xsltproc
-    # - choco install -y --no-progress xmlstarlet
+    - set "JAVA_HOME=%ProgramFiles%\OpenJDK\%OPENJDK_PATH%"
+    - set "PATH=%JAVA_HOME%\bin;%PATH%"
+    - java -version
+    - javac -version
+
   version_script:
+    - set "JAVA_HOME=%ProgramFiles%\OpenJDK\%OPENJDK_PATH%"
+    - set "PATH=%JAVA_HOME%\bin;%PATH%"
     - set
     - ant -version
     - java --version
-    - ./mvnw --version
+    - mvnw.cmd --version
     # - xsltproc --version
     # - xml --version
   sevntu_script:
