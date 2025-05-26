@@ -1,4 +1,4 @@
-<import-control pkg=".*" strategyOnMismatch="allowed">
-  <disallow class="java.awt.Image"/>
-  <disallow class="java.io.File"/>
+<import-control package=".*" strategyOnMismatch="allowed">
+  <forbid class="java.awt.Image"/>
+  <forbid class="java.io.File"/>
 </import-control>

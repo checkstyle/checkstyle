@@ -27,7 +27,7 @@ public class PkgImportRuleTest {
 
     @Test
     public void testPkgImportRule() {
-        final PkgImportRule rule = new PkgImportRule(true, false, "pkg", false, false);
+        final PkgImportRule rule = new PkgImportRule(true, false, "package", false, false);
         assertWithMessage("Rule must not be null")
             .that(rule)
             .isNotNull();
@@ -41,19 +41,19 @@ public class PkgImportRuleTest {
             .that(rule.verifyImport("pkga"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg.a"))
+            .that(rule.verifyImport("package.a"))
             .isEqualTo(AccessResult.ALLOWED);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg.a.b"))
+            .that(rule.verifyImport("package.a.b"))
             .isEqualTo(AccessResult.ALLOWED);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg"))
+            .that(rule.verifyImport("package"))
             .isEqualTo(AccessResult.UNKNOWN);
     }
 
     @Test
     public void testPkgImportRuleExactMatch() {
-        final PkgImportRule rule = new PkgImportRule(true, false, "pkg", true, false);
+        final PkgImportRule rule = new PkgImportRule(true, false, "package", true, false);
         assertWithMessage("Rule must not be null")
             .that(rule)
             .isNotNull();
@@ -64,19 +64,19 @@ public class PkgImportRuleTest {
             .that(rule.verifyImport("p"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg.a"))
+            .that(rule.verifyImport("package.a"))
             .isEqualTo(AccessResult.ALLOWED);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg.a.b"))
+            .that(rule.verifyImport("package.a.b"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg"))
+            .that(rule.verifyImport("package"))
             .isEqualTo(AccessResult.UNKNOWN);
     }
 
     @Test
     public void testPkgImportRuleRegexpSimple() {
-        final PkgImportRule rule = new PkgImportRule(true, false, "pkg", false, true);
+        final PkgImportRule rule = new PkgImportRule(true, false, "package", false, true);
         assertWithMessage("Rule must not be null")
             .that(rule)
             .isNotNull();
@@ -90,19 +90,19 @@ public class PkgImportRuleTest {
             .that(rule.verifyImport("pkga"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg.a"))
+            .that(rule.verifyImport("package.a"))
             .isEqualTo(AccessResult.ALLOWED);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg.a.b"))
+            .that(rule.verifyImport("package.a.b"))
             .isEqualTo(AccessResult.ALLOWED);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg"))
+            .that(rule.verifyImport("package"))
             .isEqualTo(AccessResult.UNKNOWN);
     }
 
     @Test
     public void testPkgImportRuleExactMatchRegexpSimple() {
-        final PkgImportRule rule = new PkgImportRule(true, false, "pkg", true, true);
+        final PkgImportRule rule = new PkgImportRule(true, false, "package", true, true);
         assertWithMessage("Rule must not be null")
             .that(rule)
             .isNotNull();
@@ -113,19 +113,19 @@ public class PkgImportRuleTest {
             .that(rule.verifyImport("p"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg.a"))
+            .that(rule.verifyImport("package.a"))
             .isEqualTo(AccessResult.ALLOWED);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg.a.b"))
+            .that(rule.verifyImport("package.a.b"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg"))
+            .that(rule.verifyImport("package"))
             .isEqualTo(AccessResult.UNKNOWN);
     }
 
     @Test
     public void testPkgImportRuleRegexp() {
-        final PkgImportRule rule = new PkgImportRule(true, false, "(pkg|hallo)", false, true);
+        final PkgImportRule rule = new PkgImportRule(true, false, "(package|hallo)", false, true);
         assertWithMessage("Rule must not be null")
             .that(rule)
             .isNotNull();
@@ -139,13 +139,13 @@ public class PkgImportRuleTest {
             .that(rule.verifyImport("pkga"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg.a"))
+            .that(rule.verifyImport("package.a"))
             .isEqualTo(AccessResult.ALLOWED);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg.a.b"))
+            .that(rule.verifyImport("package.a.b"))
             .isEqualTo(AccessResult.ALLOWED);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg"))
+            .that(rule.verifyImport("package"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
             .that(rule.verifyImport("halloa"))
@@ -163,7 +163,7 @@ public class PkgImportRuleTest {
 
     @Test
     public void testPkgImportRuleNoRegexp() {
-        final PkgImportRule rule = new PkgImportRule(true, false, "(pkg|hallo)", false, false);
+        final PkgImportRule rule = new PkgImportRule(true, false, "(package|hallo)", false, false);
         assertWithMessage("Rule must not be null")
             .that(rule)
             .isNotNull();
@@ -171,13 +171,13 @@ public class PkgImportRuleTest {
             .that(rule.verifyImport("pkga"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg.a"))
+            .that(rule.verifyImport("package.a"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg.a.b"))
+            .that(rule.verifyImport("package.a.b"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg"))
+            .that(rule.verifyImport("package"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
             .that(rule.verifyImport("halloa"))
@@ -192,13 +192,13 @@ public class PkgImportRuleTest {
             .that(rule.verifyImport("hallo"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("(pkg|hallo).a"))
+            .that(rule.verifyImport("(package|hallo).a"))
             .isEqualTo(AccessResult.ALLOWED);
     }
 
     @Test
     public void testPkgImportRuleExactMatchRegexp() {
-        final PkgImportRule rule = new PkgImportRule(true, false, "(pkg|hallo)", true, true);
+        final PkgImportRule rule = new PkgImportRule(true, false, "(package|hallo)", true, true);
         assertWithMessage("Rule must not be null")
             .that(rule)
             .isNotNull();
@@ -209,13 +209,13 @@ public class PkgImportRuleTest {
             .that(rule.verifyImport("p"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg.a"))
+            .that(rule.verifyImport("package.a"))
             .isEqualTo(AccessResult.ALLOWED);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg.a.b"))
+            .that(rule.verifyImport("package.a.b"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg"))
+            .that(rule.verifyImport("package"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
             .that(rule.verifyImport("hallo.a"))

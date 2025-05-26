@@ -7,9 +7,14 @@
                 strategyOnMismatch="allowed">
   <allow class="java\.awt\.Image" regex="true"/>
   <allow class="java\..*\.File" local-only="true" regex="true"/>
-  <subpackage name="importcontrol" strategyOnMismatch="forbidden">
-    <forbid class="java\..*\.Image" local-only="true" regex="true"/>
+  <!-- keep to ensure test coverage and backwards compatibility -->
+  <subpackage name="importcontrol" strategyOnMismatch="disallowed">
+    <!-- keep to ensure test coverage and backwards compatibility -->
+    <disallow class="java\..*\.Image" local-only="true" regex="true"/>
     <allow package="javax\.swing" regex="true"/>
     <allow package="java\.io" exact-match="true" local-only="true" regex="true"/>
+  </subpackage>
+  <subpackage name="importcontrol" strategyOnMismatch="forbidden">
+    <forbid class="java\..*\.Image" local-only="true" regex="true"/>
   </subpackage>
 </import-control>
