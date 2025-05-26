@@ -102,7 +102,13 @@ public class ClassImportRuleTest {
             .that(rule.verifyImport("pkx.a"))
             .isEqualTo(AccessResult.ALLOWED);
         assertWithMessage("Invalid access result")
+            .that(rule.verifyImport("pkg.a.b"))
+            .isEqualTo(AccessResult.UNKNOWN);
+        assertWithMessage("Invalid access result")
             .that(rule.verifyImport("package.a.b"))
+            .isEqualTo(AccessResult.UNKNOWN);
+        assertWithMessage("Invalid access result")
+            .that(rule.verifyImport("pkg"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
             .that(rule.verifyImport("package"))
