@@ -120,6 +120,9 @@ public final class ImportControlLoader extends XmlLoader {
     /** Name for attribute 'pkg'. */
     private static final String PKG_ATTRIBUTE_NAME = "pkg";
 
+    /** Name for attribute 'pkg'. */
+    private static final String PACKAGE_ATTRIBUTE_NAME = "pkg";
+
     /** Name for attribute 'name'. */
     private static final String NAME_ATTRIBUTE_NAME = "name";
 

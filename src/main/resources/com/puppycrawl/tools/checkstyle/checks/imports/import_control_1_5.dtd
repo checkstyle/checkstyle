@@ -25,7 +25,8 @@ Attributes for import-control:
               Values: allowed | disallowed | forbidden (default: forbidden)
 -->
 <!ATTLIST import-control
-    pkg CDATA #REQUIRED
+    package CDATA #REQUIRED
+    pkg CDATA #IMPLIED
     strategyOnMismatch (allowed|disallowed|forbidden) #IMPLIED
     regex (true) #IMPLIED
     >
