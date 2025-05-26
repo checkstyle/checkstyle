@@ -58,7 +58,7 @@ public final class ModuleReflectionUtil {
             Collection<String> packages, ClassLoader loader) throws IOException {
         final ClassPath classPath = ClassPath.from(loader);
         return packages.stream()
-                .flatMap(pkg -> classPath.getTopLevelClasses(pkg).stream())
+                .flatMap(_package -> classPath.getTopLevelClasses(_package).stream())
                 .map(ClassPath.ClassInfo::load)
                 .filter(ModuleReflectionUtil::isCheckstyleModule)
                 .collect(Collectors.toUnmodifiableSet());

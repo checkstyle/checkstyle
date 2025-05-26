@@ -70,7 +70,7 @@ class FileImportControl extends AbstractImportControl {
     }
 
     @Override
-    protected boolean matchesExactly(String pkg, String fileName) {
+    protected boolean matchesExactly(String _package, String fileName) {
         final boolean result;
         if (fileName == null) {
             result = false;

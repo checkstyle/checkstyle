@@ -467,8 +467,8 @@ import java.util.stream.IntStream;
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.unknown.pkg%22">
-              import.control.unknown.pkg
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.unknown.package%22">
+              import.control.unknown.package
             </a>
           </li>
         </ul>

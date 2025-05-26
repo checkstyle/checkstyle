@@ -140,7 +140,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * {@code import.control.missing.file}
  * </li>
  * <li>
- * {@code import.control.unknown.pkg}
+ * {@code import.control.unknown.package}
  * </li>
  * </ul>
  *
@@ -159,7 +159,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_UNKNOWN_PKG = "import.control.unknown.pkg";
+    public static final String MSG_UNKNOWN_PKG = "import.control.unknown.package";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

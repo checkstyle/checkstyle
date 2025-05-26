@@ -117,8 +117,11 @@ public final class ImportControlLoader extends XmlLoader {
     /** The map to look up the resource name by the id. */
     private static final Map<String, String> DTD_RESOURCE_BY_ID = new HashMap<>();
 
-    /** Name for attribute 'pkg'. */
-    private static final String PKG_ATTRIBUTE_NAME = "pkg";
+    /** Name for attribute '_package'. */
+    private static final String PKG_ATTRIBUTE_NAME = "package";
+
+    /** Name for attribute 'package'. */
+    private static final String PACKAGE_ATTRIBUTE_NAME = "package";
 
     /** Name for attribute 'pkg'. */
     private static final String PACKAGE_ATTRIBUTE_NAME = "pkg";
@@ -185,10 +188,10 @@ public final class ImportControlLoader extends XmlLoader {
                              Attributes attributes)
             throws SAXException {
         if ("import-control".equals(qName)) {
-            final String pkg = safeGet(attributes, PKG_ATTRIBUTE_NAME);
+            final String _package = safeGet(attributes, PACKAGE_ATTRIBUTE_NAME);
             final MismatchStrategy strategyOnMismatch = getStrategyForImportControl(attributes);
             final boolean regex = containsRegexAttribute(attributes);
-            stack.push(new PkgImportControl(pkg, regex, strategyOnMismatch));
+            stack.push(new PkgImportControl(_package, regex, strategyOnMismatch));
         }
         else if (SUBPACKAGE_ELEMENT_NAME.equals(qName)) {
             final String name = safeGet(attributes, NAME_ATTRIBUTE_NAME);
@@ -226,15 +229,15 @@ public final class ImportControlLoader extends XmlLoader {
      */
     private static AbstractImportRule createImportRule(String qName, Attributes attributes)
             throws SAXException {
-        // Need to handle either "pkg" or "class" attribute.
-        // May have "exact-match" for "pkg"
+        // Need to handle either "package" or "class" attribute.
+        // May have "exact-match" for "package"
         // May have "local-only"
         final boolean isAllow = ALLOW_ELEMENT_NAME.equals(qName);
         final boolean isLocalOnly = attributes.getValue("local-only") != null;
-        final String pkg = attributes.getValue(PKG_ATTRIBUTE_NAME);
+        final String _package = attributes.getValue(PACKAGE_ATTRIBUTE_NAME);
         final boolean regex = containsRegexAttribute(attributes);
         final AbstractImportRule rule;
-        if (pkg == null) {
+        if (_package == null) {
             // handle class names which can be normal class names or regular
             // expressions
             final String clazz = safeGet(attributes, "class");
@@ -243,7 +246,7 @@ public final class ImportControlLoader extends XmlLoader {
         else {
             final boolean exactMatch =
                     attributes.getValue("exact-match") != null;
-            rule = new PkgImportRule(isAllow, isLocalOnly, pkg, exactMatch, regex);
+            rule = new PkgImportRule(isAllow, isLocalOnly, _package, exactMatch, regex);
         }
         return rule;
     }

@@ -94,7 +94,7 @@
          <message-keys>
             <message-key key="import.control.forbidden"/>
             <message-key key="import.control.missing.file"/>
-            <message-key key="import.control.unknown.pkg"/>
+            <message-key key="import.control.unknown.package"/>
          </message-keys>
       </check>
    </module>

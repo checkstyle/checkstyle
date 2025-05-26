@@ -220,16 +220,16 @@ class PkgImportControl extends AbstractImportControl {
     /**
      * Matches other package name exactly or partially at front.
      *
-     * @param pkg the package to compare with.
+     * @param _package the package to compare with.
      * @return if it matches.
      */
-    private boolean matchesAtFront(String pkg) {
+    private boolean matchesAtFront(String _package) {
         final boolean result;
         if (regex) {
-            result = patternForPartialMatch.matcher(pkg).matches();
+            result = patternForPartialMatch.matcher(_package).matches();
         }
         else {
-            result = matchesAtFrontNoRegex(pkg);
+            result = matchesAtFrontNoRegex(_package);
         }
         return result;
     }
@@ -238,23 +238,23 @@ class PkgImportControl extends AbstractImportControl {
      * Non-regex case. Ensure a trailing dot for subpackages, i.e. "com.puppy"
      * will match "com.puppy.crawl" but not "com.puppycrawl.tools".
      *
-     * @param pkg the package to compare with.
+     * @param _package the package to compare with.
      * @return if it matches.
      */
-    private boolean matchesAtFrontNoRegex(String pkg) {
+    private boolean matchesAtFrontNoRegex(String _package) {
         final int length = fullPackageName.length();
-        return pkg.startsWith(fullPackageName)
-                && (pkg.length() == length || pkg.charAt(length) == '.');
+        return _package.startsWith(fullPackageName)
+                && (_package.length() == length || _package.charAt(length) == '.');
     }
 
     @Override
-    protected boolean matchesExactly(String pkg, String fileName) {
+    protected boolean matchesExactly(String _package, String fileName) {
         final boolean result;
         if (regex) {
-            result = patternForExactMatch.matcher(pkg).matches();
+            result = patternForExactMatch.matcher(_package).matches();
         }
         else {
-            result = fullPackageName.equals(pkg);
+            result = fullPackageName.equals(_package);
         }
         return result;
     }
