@@ -40,4 +40,13 @@ public class ColumnLimit100Test extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputFormattedColumnLimit.java"));
     }
 
+    @Test
+    public void testTextBlockLineLimit() throws Exception {
+        verifyWithWholeConfig(getPath("InputTextBlockColumnLimit.java"));
+    }
+
+    @Test
+    public void testFormattedTextBlockLineLimit() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedTextBlockColumnLimit.java"));
+    }
 }
