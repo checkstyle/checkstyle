@@ -276,7 +276,7 @@
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]annotations[\\/]neg[\\/]Z13.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]annotations[\\/]neg[\\/]package[\\/]package-info.java$"/>
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]annotations[\\/]neg[\\/]pkg[\\/]package-info.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]annotations[\\/]neg[\\/]Z14.java$"/>
