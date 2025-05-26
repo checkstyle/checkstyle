@@ -117,14 +117,8 @@ public final class ImportControlLoader extends XmlLoader {
     /** The map to look up the resource name by the id. */
     private static final Map<String, String> DTD_RESOURCE_BY_ID = new HashMap<>();
 
-    /** Name for attribute '_package'. */
-    private static final String PKG_ATTRIBUTE_NAME = "package";
-
     /** Name for attribute 'package'. */
     private static final String PACKAGE_ATTRIBUTE_NAME = "package";
-
-    /** Name for attribute 'pkg'. */
-    private static final String PACKAGE_ATTRIBUTE_NAME = "pkg";
 
     /** Name for attribute 'name'. */
     private static final String NAME_ATTRIBUTE_NAME = "name";

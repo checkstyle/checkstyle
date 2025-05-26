@@ -11,7 +11,7 @@
 <!ELEMENT import-control ((allow|disallow)*,subpackage*)>
 
 <!--
-  pkg - The root package to be checked. For example "com.puppycrawl".
+  package - The root package to be checked. For example "com.puppycrawl".
 
   regex - Root package name has to be interpreted as
   regular expression.
@@ -21,7 +21,7 @@
   If not defined explicitly, has "disallowed" value by default.
 -->
 <!ATTLIST import-control
-  pkg CDATA #REQUIRED
+  package CDATA #REQUIRED
   strategyOnMismatch (allowed|disallowed) #IMPLIED
   regex (true) #IMPLIED>
 
@@ -52,14 +52,14 @@
   Represents attributes for an import rule which can either allow or
   disallow access.
 
-  pkg - The fully qualified name of the package to allow/disallow.
+  package - The fully qualified name of the package to allow/disallow.
   Cannot be specified in conjunction with "class".
 
   class - The fully qualified name of the class to allow/disallow.
   Cannot be specified in conjunction with "package".
 
   exact-match - Only valid with "package". Specifies whether the package
-  name matching should be exact. For example, the pkg
+  name matching should be exact. For example, the package
   "com.puppycrawl.tools" will match the import
   "com.puppycrawl.tools.checkstyle.api.*" when the option is not set,
   but will not match if the option is set.
@@ -71,7 +71,7 @@
   regular expression.
 -->
 <!ENTITY % attlist.importrule "
-  pkg CDATA #IMPLIED
+  package CDATA #IMPLIED
   exact-match (true) #IMPLIED
   class CDATA #IMPLIED
   local-only (true) #IMPLIED

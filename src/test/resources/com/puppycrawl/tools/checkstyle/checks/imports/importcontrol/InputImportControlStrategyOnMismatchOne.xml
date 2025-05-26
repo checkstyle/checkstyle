@@ -4,13 +4,13 @@
     "https://checkstyle.org/dtds/import_control_1_5.dtd">
 
 <!-- keep strategyOnMismatch="disallowed" to ensure test coverage and downwards compatibility -->
-<import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports"
+<import-control package="com.puppycrawl.tools.checkstyle.checks.imports"
                 strategyOnMismatch="disallowed">
   <allow class="java\.awt\.Image" regex="true"/>
   <allow class="java\..*\.File" local-only="true" regex="true"/>
   <subpackage name="importcontrol" strategyOnMismatch="delegateToParent">
     <forbid class="java\..*\.Image" local-only="true" regex="true"/>
-    <allow pkg="javax\.swing" exact-match="true" regex="true"/>
-    <allow pkg="java\.io" exact-match="true" local-only="true" regex="true"/>
+    <allow package="javax\.swing" exact-match="true" regex="true"/>
+    <allow package="java\.io" exact-match="true" local-only="true" regex="true"/>
   </subpackage>
 </import-control>

@@ -11,10 +11,10 @@
 <!ELEMENT import-control ((allow|disallow)*,subpackage*)>
 
 <!--
-  pkg - The root package to be checked. For example "com.puppycrawl".
+  package - The root package to be checked. For example "com.puppycrawl".
 -->
 <!ATTLIST import-control
-          pkg NMTOKEN #REQUIRED>
+          package NMTOKEN #REQUIRED>
 
 <!--
   Represents a subpackage of the parent element.
@@ -33,14 +33,14 @@
   Represents attributes for a guard which can either allow or disallow
   access.
 
-  pkg - The fully qualified name of the package to guard. Cannot be
+  package - The fully qualified name of the package to guard. Cannot be
   specified in conjunction with "class".
 
   class - The fully qualified name of the class to guard. Cannot be
   specified in conjunction with "package".
 
   exact-match - Only valid with "package". Specifies whether the package
-  name matching should be exact. For example, the pkg
+  name matching should be exact. For example, the package
   "com.puppycrawl.tools" will match the import
   "com.puppycrawl.tools.checkstyle.api.*" when the option is not set,
   but will not match is the option is set.
@@ -52,7 +52,7 @@
   regular expression.
 -->
 <!ENTITY % attlist.guard "
-  pkg CDATA #IMPLIED
+  package CDATA #IMPLIED
   exact-match (true) #IMPLIED
   class CDATA #IMPLIED
   local-only (true) #IMPLIED

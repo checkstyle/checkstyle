@@ -1060,10 +1060,10 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/PkgImportControl.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter index of String.charAt.</message>
-    <lineContent>&amp;&amp; (pkg.length() == length || pkg.charAt(length) == &apos;.&apos;);</lineContent>
+    <lineContent>&amp;&amp; (package.length() == length || package.charAt(length) == &apos;.&apos;);</lineContent>
     <details>
       found   : @LTEqLengthOf(&quot;this.fullPackageName&quot;) int
-      required: @LTLengthOf(&quot;pkg&quot;) int
+      required: @LTLengthOf(&quot;package&quot;) int
     </details>
   </checkerFrameworkError>
 

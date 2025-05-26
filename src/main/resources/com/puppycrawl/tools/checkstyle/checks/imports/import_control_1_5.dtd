@@ -19,14 +19,13 @@ Contains a hierarchy of allow/disallow/forbid rules and subpackage/file definiti
 
 <!--
 Attributes for import-control:
-- pkg:        [Required] Root package to validate (e.g., "com.puppycrawl")
+- package:    [Required] Root package to validate (e.g., "com.puppycrawl")
 - regex:      [Optional] Treat root package name as regex pattern
 - strategyOnMismatch: [Optional] Default action when no rule matches
               Values: allowed | disallowed | forbidden (default: forbidden)
 -->
 <!ATTLIST import-control
     package CDATA #REQUIRED
-    pkg CDATA #IMPLIED
     strategyOnMismatch (allowed|disallowed|forbidden) #IMPLIED
     regex (true) #IMPLIED
     >
@@ -69,14 +68,14 @@ Attributes for file:
 <!-- ==================== IMPORT RULE ATTRIBUTES ==================== -->
 <!--
 Shared attributes for allow/disallow/forbid rules:
-- pkg:        Package to allow/disallow (mutually exclusive with 'class')
-- class:      Specific class to allow/disallow (mutually exclusive with 'pkg')
-- exact-match: [For 'pkg' only] Requires exact package match (no subpackages)
+- package:        Package to allow/disallow (mutually exclusive with 'class')
+- class:      Specific class to allow/disallow (mutually exclusive with 'package')
+- exact-match: [For 'package' only] Requires exact package match (no subpackages)
 - local-only:  Restricts rule to current package (no subpackages)
 - regex:      Treat package/class name as regex pattern
 -->
 <!ENTITY % attlist.importrule "
-pkg CDATA #IMPLIED
+package CDATA #IMPLIED
 exact-match (true) #IMPLIED
 class CDATA #IMPLIED
 local-only (true) #IMPLIED
