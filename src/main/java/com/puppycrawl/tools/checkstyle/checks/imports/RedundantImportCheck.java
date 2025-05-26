@@ -156,16 +156,16 @@ public class RedundantImportCheck
      * Determines if an import statement is for types from a specified package.
      *
      * @param importName the import name
-     * @param _package the package name
+     * @param pkg the package name
      * @return whether from the package
      */
-    private static boolean isFromPackage(String importName, String _package) {
+    private static boolean isFromPackage(String importName, String pkg) {
         // imports from unnamed package are not allowed:
         // https://docs.oracle.com/javase/specs/jls/se7/html/jls-7.html#jls-7.5
         // So '.' must be present in member name and we are not checking for it
         final int index = importName.lastIndexOf('.');
         final String front = importName.substring(0, index);
-        return _package.equals(front);
+        return pkg.equals(front);
     }
 
 }

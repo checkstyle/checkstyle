@@ -231,10 +231,10 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     /**
      * Stores package of current class we check.
      *
-     * @param _package package definition.
+     * @param pkg package definition.
      */
-    private void visitPackageDef(DetailAST _package) {
-        final FullIdent ident = FullIdent.createFullIdent(_package.getLastChild().getPreviousSibling());
+    private void visitPackageDef(DetailAST pkg) {
+        final FullIdent ident = FullIdent.createFullIdent(pkg.getLastChild().getPreviousSibling());
         packageName = ident.getText();
     }
 

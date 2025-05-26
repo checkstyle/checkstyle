@@ -93,7 +93,7 @@ public class ClassImportRuleTest {
             .that(rule.verifyImport("pkga"))
             .isEqualTo(AccessResult.UNKNOWN);
         assertWithMessage("Invalid access result")
-            .that(rule.verifyImport("pkg.a")) // TODO: why here no package?
+            .that(rule.verifyImport("pkg.a")) // TODO: why no package?
             .isEqualTo(AccessResult.ALLOWED);
         assertWithMessage("Invalid access result")
             .that(rule.verifyImport("package.a"))

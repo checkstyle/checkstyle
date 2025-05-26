@@ -776,25 +776,25 @@ public class ImportOrderCheck
     private static Pattern[] compilePatterns(String... packageGroups) {
         final Pattern[] patterns = new Pattern[packageGroups.length];
         for (int i = 0; i < packageGroups.length; i++) {
-            String _package = packageGroups[i];
+            String pkg = packageGroups[i];
             final Pattern grp;
 
-            // if the _package name is the wildcard, make it match zero chars
+            // if the pkg name is the wildcard, make it match zero chars
             // from any name, so it will always be used as last resort.
-            if (WILDCARD_GROUP_NAME.equals(_package)) {
+            if (WILDCARD_GROUP_NAME.equals(pkg)) {
                 // matches any package
                 grp = Pattern.compile("");
             }
-            else if (_package.startsWith(FORWARD_SLASH)) {
-                if (!_package.endsWith(FORWARD_SLASH)) {
-                    throw new IllegalArgumentException("Invalid group: " + _package);
+            else if (pkg.startsWith(FORWARD_SLASH)) {
+                if (!pkg.endsWith(FORWARD_SLASH)) {
+                    throw new IllegalArgumentException("Invalid group: " + pkg);
                 }
-                _package = _package.substring(1, _package.length() - 1);
-                grp = Pattern.compile(_package);
+                pkg = pkg.substring(1, pkg.length() - 1);
+                grp = Pattern.compile(pkg);
             }
             else {
-                final StringBuilder pkgBuilder = new StringBuilder(_package);
-                if (!_package.endsWith(".")) {
+                final StringBuilder pkgBuilder = new StringBuilder(pkg);
+                if (!pkg.endsWith(".")) {
                     pkgBuilder.append('.');
                 }
                 grp = Pattern.compile("^" + Pattern.quote(pkgBuilder.toString()));
