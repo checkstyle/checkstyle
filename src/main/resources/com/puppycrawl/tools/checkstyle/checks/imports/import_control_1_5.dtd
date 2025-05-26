@@ -1,0 +1,104 @@
+<!--
+================================================================================
+Checkstyle Import Control DTD (Version 1.5)
+Defines the structure for XML-based import control rules in Java projects.
+Usage: Add the following DOCTYPE declaration to your import control file:
+
+<!DOCTYPE import-control PUBLIC
+    "-//Checkstyle//DTD ImportControl Configuration 1.5//EN"
+    "https://checkstyle.org/dtds/import_control_1_5.dtd">
+================================================================================
+-->
+
+<!-- ==================== ROOT ELEMENT ==================== -->
+<!--
+The root element of the import control configuration.
+Contains a hierarchy of allow/disallow/forbid rules and subpackage/file definitions.
+-->
+<!ELEMENT import-control ((allow|disallow|forbid)*, (subpackage|file)*)>
+
+<!--
+Attributes for import-control:
+- pkg:        [Required] Root package to validate (e.g., "com.puppycrawl")
+- regex:      [Optional] Treat root package name as regex pattern
+- strategyOnMismatch: [Optional] Default action when no rule matches
+              Values: allowed | disallowed | forbidden (default: forbidden)
+-->
+<!ATTLIST import-control
+    package CDATA #REQUIRED
+    pkg CDATA #IMPLIED
+    strategyOnMismatch (allowed|disallowed|forbidden) #IMPLIED
+    regex (true) #IMPLIED
+    >
+
+<!-- ==================== SUBPACKAGE ELEMENT ==================== -->
+<!--
+Defines rules for a subpackage within the parent package hierarchy.
+-->
+<!ELEMENT subpackage ((allow|disallow|forbid)*, (subpackage|file)*)>
+
+<!--
+Attributes for subpackage:
+- name:       [Required] Subpackage name (e.g., "tools" under "com.puppycrawl" → "com.puppycrawl.tools")
+- regex:      [Optional] Treat subpackage name as regex pattern
+- strategyOnMismatch: [Optional] Default action when no rule matches
+              Values: delegateToParent (default) | allowed | disallowed | forbidden
+-->
+<!ATTLIST subpackage
+    name CDATA #REQUIRED
+    strategyOnMismatch (delegateToParent|allowed|disallowed|forbidden) #IMPLIED
+    regex (true) #IMPLIED
+    >
+
+<!-- ==================== FILE ELEMENT ==================== -->
+<!--
+Defines rules for a specific file within a package/subpackage.
+-->
+<!ELEMENT file (allow|disallow|forbid)*>
+
+<!--
+Attributes for file:
+- name:       [Required] Filename (e.g., "MyClass.java")
+- regex:      [Optional] Treat filename as regex pattern
+-->
+<!ATTLIST file
+    name CDATA #REQUIRED
+    regex (true) #IMPLIED
+    >
+
+<!-- ==================== IMPORT RULE ATTRIBUTES ==================== -->
+<!--
+Shared attributes for allow/disallow/forbid rules:
+- pkg:        Package to allow/disallow (mutually exclusive with 'class')
+- class:      Specific class to allow/disallow (mutually exclusive with 'pkg')
+- exact-match: [For 'pkg' only] Requires exact package match (no subpackages)
+- local-only:  Restricts rule to current package (no subpackages)
+- regex:      Treat package/class name as regex pattern
+-->
+<!ENTITY % attlist.importrule "
+pkg CDATA #IMPLIED
+exact-match (true) #IMPLIED
+class CDATA #IMPLIED
+local-only (true) #IMPLIED
+regex (true) #IMPLIED
+">
+
+<!-- ==================== RULE DEFINITIONS ==================== -->
+<!--
+Allows imports matching the specified package/class.
+-->
+<!ELEMENT allow EMPTY>
+<!ATTLIST allow %attlist.importrule;>
+
+<!--
+Disallows imports matching the specified package/class.
+-->
+<!ELEMENT disallow EMPTY>
+<!ATTLIST disallow %attlist.importrule;>
+
+<!--
+Forbids imports matching the specified package/class.
+(Modern replacement for 'disallow')
+-->
+<!ELEMENT forbid EMPTY>
+<!ATTLIST forbid %attlist.importrule;>

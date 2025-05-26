@@ -82,6 +82,14 @@ public final class ImportControlLoader extends XmlLoader {
     private static final String DTD_PUBLIC_CS_ID_1_4 =
         "-//Checkstyle//DTD ImportControl Configuration 1.4//EN";
 
+    /** The public ID for the configuration dtd. */
+    private static final String DTD_PUBLIC_ID_1_5 =
+        "-//Puppy Crawl//DTD Import Control 1.5//EN";
+
+    /** The new public ID for version 1_5 of the configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_5 =
+        "-//Checkstyle//DTD ImportControl Configuration 1.5//EN";
+
     /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_0 =
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_0.dtd";
@@ -102,11 +110,21 @@ public final class ImportControlLoader extends XmlLoader {
     private static final String DTD_RESOURCE_NAME_1_4 =
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_4.dtd";
 
+    /** The resource for the configuration dtd. */
+    private static final String DTD_RESOURCE_NAME_1_5 =
+        "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_5.dtd";
+
     /** The map to look up the resource name by the id. */
     private static final Map<String, String> DTD_RESOURCE_BY_ID = new HashMap<>();
 
+    /** Name for attribute '_package'. */
+    private static final String PKG_ATTRIBUTE_NAME = "package";
+
+    /** Name for attribute 'package'. */
+    private static final String PACKAGE_ATTRIBUTE_NAME = "package";
+
     /** Name for attribute 'pkg'. */
-    private static final String PKG_ATTRIBUTE_NAME = "pkg";
+    private static final String PACKAGE_ATTRIBUTE_NAME = "pkg";
 
     /** Name for attribute 'name'. */
     private static final String NAME_ATTRIBUTE_NAME = "name";
@@ -117,8 +135,13 @@ public final class ImportControlLoader extends XmlLoader {
     /** Value "allowed" for attribute 'strategyOnMismatch'. */
     private static final String STRATEGY_ON_MISMATCH_ALLOWED_VALUE = "allowed";
 
-    /** Value "disallowed" for attribute 'strategyOnMismatch'. */
+    /**
+     * Value "disallowed" for attribute 'strategyOnMismatch'.
+     */
     private static final String STRATEGY_ON_MISMATCH_DISALLOWED_VALUE = "disallowed";
+
+    /** Value "forbidden" for attribute 'strategyOnMismatch'. */
+    private static final String STRATEGY_ON_MISMATCH_FORBIDDEN_VALUE = "forbidden";
 
     /** Qualified name for element 'subpackage'. */
     private static final String SUBPACKAGE_ELEMENT_NAME = "subpackage";
@@ -138,11 +161,13 @@ public final class ImportControlLoader extends XmlLoader {
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_2, DTD_RESOURCE_NAME_1_2);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_3, DTD_RESOURCE_NAME_1_3);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_4, DTD_RESOURCE_NAME_1_4);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_5, DTD_RESOURCE_NAME_1_5);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_0, DTD_RESOURCE_NAME_1_0);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_1, DTD_RESOURCE_NAME_1_1);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_2, DTD_RESOURCE_NAME_1_2);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_3, DTD_RESOURCE_NAME_1_3);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_4, DTD_RESOURCE_NAME_1_4);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_5, DTD_RESOURCE_NAME_1_5);
     }
 
     /**
@@ -163,10 +188,10 @@ public final class ImportControlLoader extends XmlLoader {
                              Attributes attributes)
             throws SAXException {
         if ("import-control".equals(qName)) {
-            final String pkg = safeGet(attributes, PKG_ATTRIBUTE_NAME);
+            final String _package = safeGet(attributes, PACKAGE_ATTRIBUTE_NAME);
             final MismatchStrategy strategyOnMismatch = getStrategyForImportControl(attributes);
             final boolean regex = containsRegexAttribute(attributes);
-            stack.push(new PkgImportControl(pkg, regex, strategyOnMismatch));
+            stack.push(new PkgImportControl(_package, regex, strategyOnMismatch));
         }
         else if (SUBPACKAGE_ELEMENT_NAME.equals(qName)) {
             final String name = safeGet(attributes, NAME_ATTRIBUTE_NAME);
@@ -204,15 +229,15 @@ public final class ImportControlLoader extends XmlLoader {
      */
     private static AbstractImportRule createImportRule(String qName, Attributes attributes)
             throws SAXException {
-        // Need to handle either "pkg" or "class" attribute.
-        // May have "exact-match" for "pkg"
+        // Need to handle either "package" or "class" attribute.
+        // May have "exact-match" for "package"
         // May have "local-only"
         final boolean isAllow = ALLOW_ELEMENT_NAME.equals(qName);
         final boolean isLocalOnly = attributes.getValue("local-only") != null;
-        final String pkg = attributes.getValue(PKG_ATTRIBUTE_NAME);
+        final String _package = attributes.getValue(PACKAGE_ATTRIBUTE_NAME);
         final boolean regex = containsRegexAttribute(attributes);
         final AbstractImportRule rule;
-        if (pkg == null) {
+        if (_package == null) {
             // handle class names which can be normal class names or regular
             // expressions
             final String clazz = safeGet(attributes, "class");
@@ -221,7 +246,7 @@ public final class ImportControlLoader extends XmlLoader {
         else {
             final boolean exactMatch =
                     attributes.getValue("exact-match") != null;
-            rule = new PkgImportRule(isAllow, isLocalOnly, pkg, exactMatch, regex);
+            rule = new PkgImportRule(isAllow, isLocalOnly, _package, exactMatch, regex);
         }
         return rule;
     }
@@ -316,7 +341,7 @@ public final class ImportControlLoader extends XmlLoader {
      */
     private static MismatchStrategy getStrategyForImportControl(Attributes attributes) {
         final String returnValue = attributes.getValue(STRATEGY_ON_MISMATCH_ATTRIBUTE_NAME);
-        MismatchStrategy strategyOnMismatch = MismatchStrategy.DISALLOWED;
+        MismatchStrategy strategyOnMismatch = MismatchStrategy.FORBIDDEN;
         if (STRATEGY_ON_MISMATCH_ALLOWED_VALUE.equals(returnValue)) {
             strategyOnMismatch = MismatchStrategy.ALLOWED;
         }
@@ -335,8 +360,10 @@ public final class ImportControlLoader extends XmlLoader {
         if (STRATEGY_ON_MISMATCH_ALLOWED_VALUE.equals(returnValue)) {
             strategyOnMismatch = MismatchStrategy.ALLOWED;
         }
-        else if (STRATEGY_ON_MISMATCH_DISALLOWED_VALUE.equals(returnValue)) {
-            strategyOnMismatch = MismatchStrategy.DISALLOWED;
+        else if (STRATEGY_ON_MISMATCH_FORBIDDEN_VALUE.equals(returnValue)
+            || STRATEGY_ON_MISMATCH_DISALLOWED_VALUE.equals(returnValue)
+        ) {
+            strategyOnMismatch = MismatchStrategy.FORBIDDEN;
         }
         return strategyOnMismatch;
     }

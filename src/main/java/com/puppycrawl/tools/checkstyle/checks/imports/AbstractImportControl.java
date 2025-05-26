@@ -58,13 +58,13 @@ abstract class AbstractImportControl {
     public abstract AbstractImportControl locateFinest(String forPkg, String forFileName);
 
     /**
-     * Check for equality of this with pkg.
+     * Check for equality of this with _package.
      *
-     * @param pkg the package to compare with.
+     * @param _package the package to compare with.
      * @param fileName the file name to compare with.
      * @return if it matches.
      */
-    protected abstract boolean matchesExactly(String pkg, String fileName);
+    protected abstract boolean matchesExactly(String _package, String fileName);
 
     /**
      * Adds an {@link AbstractImportRule} to the node.
@@ -98,15 +98,15 @@ abstract class AbstractImportControl {
                 result = AccessResult.ALLOWED;
             }
             else {
-                result = AccessResult.DISALLOWED;
+                result = AccessResult.FORBIDDEN;
             }
         }
         else {
             if (strategyOnMismatch == MismatchStrategy.ALLOWED) {
                 result = AccessResult.ALLOWED;
             }
-            else if (strategyOnMismatch == MismatchStrategy.DISALLOWED) {
-                result = AccessResult.DISALLOWED;
+            else if (strategyOnMismatch == MismatchStrategy.FORBIDDEN) {
+                result = AccessResult.FORBIDDEN;
             }
             else {
                 result = parent.checkAccess(inPkg, inFileName, forImport);
