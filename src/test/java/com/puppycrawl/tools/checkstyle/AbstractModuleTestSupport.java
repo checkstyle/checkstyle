@@ -30,14 +30,7 @@ import java.io.LineNumberReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.google.common.collect.ImmutableMap;
@@ -575,21 +568,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                                   List<TestInputViolation> testInputViolations)
             throws Exception {
         final List<String> actualViolations = getActualViolationsForFile(config, file);
-        final List<Integer> actualViolationLines = actualViolations.stream()
-                .map(violation -> violation.substring(0, violation.indexOf(':')))
-                .map(Integer::valueOf)
-                .collect(Collectors.toUnmodifiableList());
-        final List<Integer> expectedViolationLines = testInputViolations.stream()
-                .map(TestInputViolation::getLineNo)
-                .collect(Collectors.toUnmodifiableList());
-        assertWithMessage("Violation lines for %s differ.", file)
-                .that(actualViolationLines)
-                .isEqualTo(expectedViolationLines);
-        for (int index = 0; index < actualViolations.size(); index++) {
-            assertWithMessage("Actual and expected violations differ.")
-                    .that(actualViolations.get(index))
-                    .matches(testInputViolations.get(index).toRegex());
-        }
+        verifyViolations(file, testInputViolations, actualViolations);
     }
 
     /**
@@ -612,10 +591,17 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         assertWithMessage("Violation lines for %s differ.", file)
                 .that(actualViolationLines)
                 .isEqualTo(expectedViolationLines);
-        for (int index = 0; index < actualViolations.size(); index++) {
+        final Set<String> matchedViolations = new HashSet<>();
+        for (TestInputViolation testInputViolation : testInputViolations) {
+            final String actualViolation = actualViolations.stream()
+                    .filter(violation -> violation.matches(testInputViolation.toRegex()))
+                    .filter(violation -> !matchedViolations.contains(violation))
+                    .findFirst()
+                    .orElse(null);
+            matchedViolations.add(actualViolation);
             assertWithMessage("Actual and expected violations differ.")
-                    .that(actualViolations.get(index))
-                    .matches(testInputViolations.get(index).toRegex());
+                    .that(actualViolation)
+                    .matches(testInputViolation.toRegex());
         }
     }
 
