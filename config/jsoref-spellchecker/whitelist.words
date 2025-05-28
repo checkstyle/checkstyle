@@ -1094,6 +1094,7 @@ Popup
 Postgresql
 powershell
 prebuilts
+prefs
 PRESIZE
 prettyprint
 printf
@@ -1434,6 +1435,7 @@ unusedcatchparametershouldbeunnamed
 unusedimports
 unusedlambdaparametershouldbeunnamed
 unusedlocalvariable
+unusedtryresourceshouldbeunnamed
 upperell
 upsss
 urandom
