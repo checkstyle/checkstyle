@@ -32,12 +32,15 @@ task:
     - dir C:\
     - dir "C:\Program Files\"
     - dir "C:\Program Files\OpenJDK"
+    - dir "C:\Program Files\OpenJDK\jdk-17"
+    - set JAVA_HOME=%ProgramFiles%\OpenJDK\%OPENJDK_PATH%
+    - set PATH=%JAVA_HOME%\bin;%PATH%    
     # - choco install -y --no-progress xsltproc
     # - choco install -y --no-progress xmlstarlet
   version_script:
     - set
-    - ant -version
     - java --version
+    - ant -version
     - ./mvnw --version
     # - xsltproc --version
     # - xml --version
