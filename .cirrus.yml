@@ -24,7 +24,7 @@ task:
     - choco upgrade -y chocolatey
     - choco install -y --no-progress ant
     - choco install -y --no-progress openjdk --version %OPENJDK_VERSION%
-    - dif C:\ProgramData\chocolatey\
+    - dir C:\ProgramData\chocolatey\
     # - choco install -y --no-progress xsltproc
     # - choco install -y --no-progress xmlstarlet
   version_script:
