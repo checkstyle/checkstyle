@@ -26,6 +26,7 @@ task:
     - choco install -y --no-progress openjdk --version %OPENJDK_VERSION%
     - dir C:\ProgramData\chocolatey\
     - dir C:\ProgramData\chocolatey\lib\
+    - dir C:\ProgramData\chocolatey\lib\openjdk
     - dir C:\ProgramData\chocolatey\lib\openjdk\tools
     - dir C:\ProgramData\chocolatey\tools\
     - tree C:\ProgramData\chocolatey\tools\ /f
