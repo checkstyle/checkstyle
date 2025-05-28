@@ -1,4 +1,4 @@
-only_if: $CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH
+only_if: $CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH || $CIRRUS_BRANCH !=~ 'pull/.*'
 task:
   name: Windows build
   windows_container:
@@ -37,6 +37,8 @@ task:
     - choco upgrade -y chocolatey
     - choco install -y --no-progress ant
     - choco install -y --no-progress openjdk --version %OPENJDK_VERSION%
+    - dir %ProgramFiles%\
+    - dif C:\ProgramData\chocolatey\
     # - choco install -y --no-progress xsltproc
     # - choco install -y --no-progress xmlstarlet
   version_script:
