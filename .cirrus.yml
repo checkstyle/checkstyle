@@ -31,6 +31,7 @@ task:
     - dir C:\ProgramData\chocolatey\tools\
     - dir C:\
     - dir "C:\Program Files\"
+    - dir "C:\Program Files\OpenJDK"
     # - choco install -y --no-progress xsltproc
     # - choco install -y --no-progress xmlstarlet
   version_script:
