@@ -254,8 +254,8 @@ public class Example5 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example6 {
   // @cs.suppress [ConstantName|NoWhitespaceAfter] A comment here
-  public static final int [] array = {}; // filtered violation
-  // filtered violation above
+  public static final int [] array = {}; // filtered violation 'must match pattern'
+  // filtered violation above 'followed by whitespace'
 }
 </code></pre></div>
         <p>
