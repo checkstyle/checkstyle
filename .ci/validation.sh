@@ -1100,6 +1100,8 @@ git-no-merge-commits)
   ;;
 
 git-check-pull-number)
+  PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
+  echo "PR_NUMBER=${PR_NUMBER}"
   COMMITS="$(git log --format=format:%B master.."$PR_HEAD_SHA")"
 
   echo "$COMMITS" | while read -r COMMIT ; do
