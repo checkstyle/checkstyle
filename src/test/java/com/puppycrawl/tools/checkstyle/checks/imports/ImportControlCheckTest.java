@@ -212,6 +212,19 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testStrategyOnMismatchTwoEnsureBackwardsCompatibilityToDisallowed()
+            throws Exception {
+        final String[] expected = {
+            "11:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
+            "14:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Button.ABORT"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputImportControl13EnsureBackwardsCompatibilityToDisallowed.java"),
+                expected);
+    }
+
+    @Test
     public void testStrategyOnMismatchThree() throws Exception {
         final String[] expected = {
             "11:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
