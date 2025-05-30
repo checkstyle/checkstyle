@@ -56,8 +56,8 @@
             declaration in the XML file, which is from top (first) to bottom (last).
           </li>
           <li>
-            If there is matching allow/disallow rule inside the current file/subpackage
-            then the Check returns the first &quot;allowed&quot; or &quot;forbidden&quot; message.
+            If there is matching allow/forbidden/disallow rule inside the current file/subpackage
+            then the Check returns the first &quot;allowed&quot; or &quot;forbidden/disallow&quot; message.
           </li>
           <li>
             If there is no matching allow/disallow rule inside the current file/subpackage
