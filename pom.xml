@@ -2205,6 +2205,9 @@
             <excludedLink>https://medium.com/*</excludedLink>
             <!-- until https://github.com/checkstyle/checkstyle/issues/11754 -->
             <excludedLink>https://checkstyle.sourceforge.io/version/6.18</excludedLink>
+            <!-- 404 Not Found,
+             from broken link check to avoid false positives due to old certificate issues -->
+            <excludedLink>https://bugs.eclipse.org/</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
