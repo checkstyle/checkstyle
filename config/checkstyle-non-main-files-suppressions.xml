@@ -92,6 +92,8 @@
             files="src[\\/]test[\\/]resources[\\/].*[\\/]ant[\\/]checkstyleanttask[\\/]ExpectedCheckstyleAntTaskSarifOutput\.sarif"/>
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]translation[\\/]Expected.*\.xml"/>
+  <suppress id="lineLength"
+            files="src[\\/]test[\\/]resources[\\/].*[\\/]sariflogger[\\/]ExpectedSarifLoggerMultipleRules\.sarif"/>
 
   <!-- the files in this folder cannot be line wrapped, we can not change expected AST -->
   <suppress id="lineLength"
