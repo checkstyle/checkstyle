@@ -45,4 +45,10 @@ public enum MismatchStrategy {
      */
     DISALLOWED,
 
+    /**
+     * In a case if matching allow/disallow rule was not found,
+     * import will be forbidden by default.
+     */
+    FORBIDDEN,
+
 }
