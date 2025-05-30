@@ -11,7 +11,7 @@
           "language": "en",
           "name": "Checkstyle",
           "organization": "Checkstyle",
-          "rules": [
+          "rules": [${rules}
           ],
           "semanticVersion": "${version}",
           "version": "${version}"
