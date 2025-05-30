@@ -134,7 +134,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <ul>
  * <li>
- * {@code import.control.forbidden}
+ * {@code import.control.disallowed}
  * </li>
  * <li>
  * {@code import.control.missing.file}
@@ -165,7 +165,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_DISALLOWED = "import.control.forbidden";
+    public static final String MSG_DISALLOWED = "import.control.disallowed";
 
     /**
      * A part of message for exception.

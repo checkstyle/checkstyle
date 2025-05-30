@@ -92,7 +92,7 @@
             </property>
          </properties>
          <message-keys>
-            <message-key key="import.control.forbidden"/>
+            <message-key key="import.control.disallowed"/>
             <message-key key="import.control.missing.file"/>
             <message-key key="import.control.unknown.pkg"/>
          </message-keys>
