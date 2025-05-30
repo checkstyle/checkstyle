@@ -1104,10 +1104,12 @@ git-check-pull-number)
 
   echo "$COMMITS" | while read -r COMMIT ; do
     if [[ $COMMIT =~ 'Pull #' ]]; then
+      echo "COMMIT=${COMMIT}"
       PULL_MESSAGE_NUMBER=$(echo "$COMMIT" | cut -d'#' -f 2 | cut -d':' -f 1)
+      echo "PULL_MESSAGE_NUMBER=${PULL_MESSAGE_NUMBER}"
       if [[ $PULL_MESSAGE_NUMBER != "$PR_NUMBER" ]]; then
         echo "Referenced PR and this PR number do not match."
-        echo "Commit message should reference $PR_NUMBER"
+        echo "Commit message should reference '$PR_NUMBER'"
         exit 1
       fi
     fi
