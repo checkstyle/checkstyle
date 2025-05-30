@@ -27,8 +27,14 @@ enum AccessResult {
 
     /** Represents that access is allowed. */
     ALLOWED,
-    /** Represents that access is disallowed. */
+    /**
+     * Represents that access is disallowed.
+     */
     DISALLOWED,
+    /**
+     * Represents that access is forbidden. Synonym for {@link #DISALLOWED}.
+     */
+    FORBIDDEN,
     /** Represents that access is unknown. */
     UNKNOWN,
 
