@@ -226,6 +226,17 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testMultipleRules() throws Exception {
+        final String inputFile = "InputSarifLoggerMultipleRules.java";
+        final String expectedReportFile = "ExpectedSarifLoggerMultipleRules.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
     public void testEmpty() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);

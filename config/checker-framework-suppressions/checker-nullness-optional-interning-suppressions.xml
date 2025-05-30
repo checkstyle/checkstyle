@@ -848,6 +848,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to loadModuleMetadata() not allowed on the given receiver.</message>
+    <lineContent>loadModuleMetadata();</lineContent>
+    <details>
+      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.class) @NonNull SarifLogger
+      required: @Initialized @NonNull SarifLogger
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SuppressionsStringPrinter.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter s of Integer.parseInt.</message>
