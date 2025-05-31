@@ -10,6 +10,74 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.25.0">
+      <div class="releaseDate">31.05.2025</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            Add Check Support for Java 21 Record Pattern : New Check
+            UnnecessaryNullCheckWithInstanceof.
+            Author: Anmol
+            <a href="https://github.com/checkstyle/checkstyle/issues/14945">#14945</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            False positives for google_checks when using switch expression in lambda.
+            Author: Aziz-755
+            <a href="https://github.com/checkstyle/checkstyle/issues/17120">#17120</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            infra: allow cirrus to run on PR from its own repository.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/17146">#17146</a>
+          </li>
+          <li>
+            CI Failure in Check no broken links.
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/17142">#17142</a>
+          </li>
+          <li>
+            cirrus CI is faililng with java.exe is not recognized.
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/17139">#17139</a>
+          </li>
+          <li>
+            Add hazelcast project to no-error CI job.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17127">#17127</a>
+          </li>
+          <li>
+            Add JUnit Validation to Ensure New Checks Are Listed in `index.xml` Categories.
+            Author: Sersawy
+            <a href="https://github.com/checkstyle/checkstyle/issues/17125">#17125</a>
+          </li>
+          <li>
+            Missing MultiFileRegexpHeader into Header index.html.
+            Author: Sersawy
+            <a href="https://github.com/checkstyle/checkstyle/issues/17123">#17123</a>
+          </li>
+          <li>
+            Fix code blocks formatting in cmdline.html#Download_and_Run.
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/17113">#17113</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: yukti-nandwana
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            Fix existing cases of `getFileContents()` usage.
+            Author: Rohanraj123
+            <a href="https://github.com/checkstyle/checkstyle/issues/11166">#11166</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.24.0">
       <div class="releaseDate">21.05.2025</div>
       <p>New:</p>
