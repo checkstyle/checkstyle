@@ -1,0 +1,8 @@
+#Organize Import Order
+#Wed Jan 23 12:03:29 AEDT 2019
+#ij_java_imports_layout = $*, |, java.**, |, javax.**, |, org.**, |, com.**, |, *
+0=java
+1=javax
+2=jakarta
+3=org
+4=com
