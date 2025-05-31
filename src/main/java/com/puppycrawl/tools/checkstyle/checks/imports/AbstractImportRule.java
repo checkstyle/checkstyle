@@ -92,7 +92,7 @@ abstract class AbstractImportRule {
                 result = AccessResult.ALLOWED;
             }
             else {
-                result = AccessResult.FORBIDDEN;
+                result = AccessResult.DISALLOWED;
             }
         }
 

@@ -335,7 +335,7 @@ public final class ImportControlLoader extends XmlLoader {
      */
     private static MismatchStrategy getStrategyForImportControl(Attributes attributes) {
         final String returnValue = attributes.getValue(STRATEGY_ON_MISMATCH_ATTRIBUTE_NAME);
-        MismatchStrategy strategyOnMismatch = MismatchStrategy.FORBIDDEN;
+        MismatchStrategy strategyOnMismatch = MismatchStrategy.DISALLOWED;
         if (STRATEGY_ON_MISMATCH_ALLOWED_VALUE.equals(returnValue)) {
             strategyOnMismatch = MismatchStrategy.ALLOWED;
         }
@@ -357,7 +357,7 @@ public final class ImportControlLoader extends XmlLoader {
         else if (STRATEGY_ON_MISMATCH_FORBIDDEN_VALUE.equals(returnValue)
             || STRATEGY_ON_MISMATCH_DISALLOWED_VALUE.equals(returnValue)
         ) {
-            strategyOnMismatch = MismatchStrategy.FORBIDDEN;
+            strategyOnMismatch = MismatchStrategy.DISALLOWED;
         }
         return strategyOnMismatch;
     }

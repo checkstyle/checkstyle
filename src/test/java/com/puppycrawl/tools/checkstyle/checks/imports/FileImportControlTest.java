@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 public class FileImportControlTest {
 
     private final PkgImportControl root = new PkgImportControl("com.kazgroup.courtlink",
-            false, MismatchStrategy.FORBIDDEN);
+            false, MismatchStrategy.DISALLOWED);
 
     private final FileImportControl fileNode = new FileImportControl(root, "MyClass",
             false);
