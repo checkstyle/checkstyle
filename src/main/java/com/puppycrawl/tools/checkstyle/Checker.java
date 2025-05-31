@@ -221,7 +221,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         }
 
         final List<File> targetFiles = files.stream()
-                .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
+                .filter(file -> CommonUtil.matchesFileExtension(file.toPath(), fileExtensions))
                 .collect(Collectors.toUnmodifiableList());
         processFiles(targetFiles);
 
