@@ -575,21 +575,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                                   List<TestInputViolation> testInputViolations)
             throws Exception {
         final List<String> actualViolations = getActualViolationsForFile(config, file);
-        final List<Integer> actualViolationLines = actualViolations.stream()
-                .map(violation -> violation.substring(0, violation.indexOf(':')))
-                .map(Integer::valueOf)
-                .collect(Collectors.toUnmodifiableList());
-        final List<Integer> expectedViolationLines = testInputViolations.stream()
-                .map(TestInputViolation::getLineNo)
-                .collect(Collectors.toUnmodifiableList());
-        assertWithMessage("Violation lines for %s differ.", file)
-                .that(actualViolationLines)
-                .isEqualTo(expectedViolationLines);
-        for (int index = 0; index < actualViolations.size(); index++) {
-            assertWithMessage("Actual and expected violations differ.")
-                    .that(actualViolations.get(index))
-                    .matches(testInputViolations.get(index).toRegex());
-        }
+        verifyViolations(file, testInputViolations, actualViolations);
     }
 
     /**
@@ -612,10 +598,16 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         assertWithMessage("Violation lines for %s differ.", file)
                 .that(actualViolationLines)
                 .isEqualTo(expectedViolationLines);
-        for (int index = 0; index < actualViolations.size(); index++) {
+        final List<String> remainingViolations = new ArrayList<>(actualViolations);
+        for (TestInputViolation testInputViolation : testInputViolations) {
+            final String actualViolation = remainingViolations.stream()
+                    .filter(violation -> violation.matches(testInputViolation.toRegex()))
+                    .findFirst()
+                    .orElse(null);
+            remainingViolations.remove(actualViolation);
             assertWithMessage("Actual and expected violations differ.")
-                    .that(actualViolations.get(index))
-                    .matches(testInputViolations.get(index).toRegex());
+                    .that(actualViolation)
+                    .matches(testInputViolation.toRegex());
         }
     }
 
