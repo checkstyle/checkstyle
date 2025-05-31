@@ -320,4 +320,9 @@
     <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions"
            local-only="true"/>
   </file>
+
+  <file name="SarifLogger">
+    <allow pkg="com.puppycrawl.tools.checkstyle.meta"
+           local-only="true"/>
+  </file>
 </import-control>
