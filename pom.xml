@@ -726,10 +726,52 @@
             </execution>
           </executions>
         </plugin>
-
+        <plugin>
+          <groupId>com.diffplug.spotless</groupId>
+          <artifactId>spotless-maven-plugin</artifactId>
+          <version>2.44.4</version>
+          <configuration>
+            <java>
+              <removeUnusedImports />
+              <eclipse>
+                <file>${project.basedir}/config/eclipse-format.xml</file>
+              </eclipse>
+              <importOrder>
+                <file>${project.basedir}/config/eclipse.importorder</file>
+              </importOrder>
+              <includes>
+                <include>src/it/java/**/**</include>
+                <include>src/main/java/**/**</include>
+                <include>src/test/java/**/**</include>
+              </includes>
+              <excludes>
+                <excluded>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocContentLocationCheck.java</excluded>
+              </excludes>
+            </java>
+<!--            <formats>-->
+<!--              <format>-->
+<!--                <trimTrailingWhitespace/>-->
+<!--                <endWithNewline/>-->
+<!--                <indent>-->
+<!--                  <spaces>true</spaces>-->
+<!--                  <spacesPerTab>2</spacesPerTab>-->
+<!--                </indent>-->
+<!--                <includes>-->
+<!--                  <include>src/it/java/**</include>-->
+<!--                  <include>src/main/java/**</include>-->
+<!--                  <include>src/test/java/**</include>-->
+<!--                </includes>-->
+<!--              </format>-->
+<!--            </formats>-->
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+      </plugin>
       <plugin>
         <groupId>org.codehaus.plexus</groupId>
         <artifactId>plexus-component-metadata</artifactId>
@@ -1437,7 +1479,7 @@
           <visitor>true</visitor>
           <listener>false</listener>
           <sourceDirectory>${basedir}/src/main/resources/</sourceDirectory>
-          <outputDirectory>${project.build.directory}/generated-sources/antlr/</outputDirectory>
+          <outputDirectory>${project.basedir}/generated-sources/antlr/</outputDirectory>
           <includes>
             <include>com/puppycrawl/tools/checkstyle/grammar/javadoc/*.g4</include>
             <include>com/puppycrawl/tools/checkstyle/grammar/java/*.g4</include>
@@ -1465,7 +1507,7 @@
             </goals>
             <configuration>
               <sources>
-                <source>${project.build.directory}/generated-sources/antlr/</source>
+                <source>${project.basedir}/generated-sources/antlr/</source>
               </sources>
             </configuration>
           </execution>
@@ -1566,7 +1608,7 @@
         <configuration>
           <argLine>-Dfile.encoding=UTF-8 ${surefire.options}</argLine>
           <systemPropertyVariables>
-            <jacoco-agent.destfile>${project.build.directory}/jacoco.exec</jacoco-agent.destfile>
+            <jacoco-agent.destfile>${project.basedir}/jacoco.exec</jacoco-agent.destfile>
             <!-- Virtual AWT driver for GUI unit tests -->
             <awt.toolkit>com.github.caciocavallosilano.cacio.ctc.CTCToolkit</awt.toolkit>
             <java.awt.headless>false</java.awt.headless>
@@ -1597,7 +1639,7 @@
             </goals>
             <configuration>
               <target>
-                <property name="mvn.project.build.directory" value="${project.build.directory}" />
+                <property name="mvn.project.basedir" value="${project.basedir}" />
                 <property name="mvn.runtime_classpath" refid="maven.runtime.classpath" />
                 <property name="mvn.java.version" value="${java.version}" />
                 <ant antfile="config/ant-phase-verify.xml" />
@@ -2280,7 +2322,7 @@
                 </goals>
                 <configuration>
                   <target>
-                    <property name="mvn.project.build.directory" value="${project.build.directory}" />
+                    <property name="mvn.project.basedir" value="${project.basedir}" />
                     <ant antfile="config/ant-phase-verify-sevntu.xml" />
                   </target>
                 </configuration>
@@ -5263,6 +5305,52 @@
               <threads>${pitest.plugin.threads}</threads>
               <outputFormats>${pitest.plugin.output.formats}</outputFormats>
             </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>format</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.diffplug.spotless</groupId>
+            <artifactId>spotless-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>spotless-apply</id>
+                <phase>verify</phase>
+                <goals>
+                   <goal>apply</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>validate</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.diffplug.spotless</groupId>
+            <artifactId>spotless-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>spotless-check</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
