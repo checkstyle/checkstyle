@@ -12,24 +12,23 @@
         regex="true">
 
   <!-- Disallow obsolete Junit API -->
-  <forbid pkg="org.junit" exact-match="true"/>
+  <disallow pkg="org.junit" exact-match="true"/>
   <forbid pkg="junit.framework" />
   <!-- Disallow hamcrest and only allow Truth -->
-  <forbid pkg="org.hamcrest.CoreMatchers"/>
-  <forbid pkg="org.hamcrest.MatcherAssert"/>
+  <disallow pkg="org.hamcrest.CoreMatchers"/>
+  <disallow pkg="org.hamcrest.MatcherAssert"/>
   <!-- Disallow @BeforeAll, see https://github.com/checkstyle/checkstyle/issues/12100 -->
-  <forbid class="org.junit.jupiter.api.BeforeAll"/>
+  <disallow class="org.junit.jupiter.api.BeforeAll"/>
   <!-- Disallow Junit assert in favor of Truth asserts in few exceptions -->
   <allow class="org.junit.jupiter.api.Assertions.assertDoesNotThrow"/>
-  <forbid pkg="org.junit.jupiter.api.Assertions"/>
+  <disallow pkg="org.junit.jupiter.api.Assertions"/>
 
   <!-- Reflection shouldn't be used in tests. -->
-  <forbid pkg="java\.lang\.reflect\.*" regex="true" />
-  <forbid pkg="java\.lang\.reflect\.*" regex="true" />
+  <disallow pkg="java\.lang\.reflect\.*" regex="true" />
 
   <!-- see reason at https://github.com/checkstyle/checkstyle/issues/11343 -->
-  <forbid pkg="org.junit.jupiter.api.Assertions.assertThrows"/>
-  <forbid pkg="org.junit.Assert.assertThrows"/>
+  <disallow pkg="org.junit.jupiter.api.Assertions.assertThrows"/>
+  <disallow pkg="org.junit.Assert.assertThrows"/>
 
   <allow pkg=".*" regex="true" />
 

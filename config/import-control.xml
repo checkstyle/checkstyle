@@ -4,15 +4,15 @@
     "https://checkstyle.org/dtds/import_control_1_5.dtd">
 
 <import-control pkg="com.puppycrawl.tools.checkstyle">
-  <forbid pkg="java.util.concurrent"/>
+  <disallow pkg="java.util.concurrent"/>
   <!-- java.io.FileInputStream and java.io.FileOutputStream are disallowed in favor of
          Files.newInputStream and Files.newOutputStream.
          See https://github.com/checkstyle/checkstyle/issues/5638 -->
   <forbid class="java.io.FileInputStream"/>
-  <forbid class="java.io.FileOutputStream"/>
+  <disallow class="java.io.FileOutputStream"/>
 
   <!-- guava causes issues with other libraries since not everyone is on the same version -->
-  <forbid pkg="com\.google.*" regex="true"/>
+  <disallow pkg="com\.google.*" regex="true"/>
 
   <allow pkg="com.puppycrawl.tools.checkstyle.api"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.checks"/>
