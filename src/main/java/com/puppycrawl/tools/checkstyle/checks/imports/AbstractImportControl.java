@@ -105,7 +105,8 @@ abstract class AbstractImportControl {
             if (strategyOnMismatch == MismatchStrategy.ALLOWED) {
                 result = AccessResult.ALLOWED;
             }
-            else if (strategyOnMismatch == MismatchStrategy.DISALLOWED) {
+            else if (strategyOnMismatch == MismatchStrategy.DISALLOWED
+                    || strategyOnMismatch == MismatchStrategy.FORBIDDEN) {
                 result = AccessResult.DISALLOWED;
             }
             else {

@@ -60,6 +60,16 @@ public class ImportControlLoaderTest {
     }
 
     @Test
+    public void testForbiddenSynonym() throws CheckstyleException {
+        final AbstractImportControl root =
+                ImportControlLoader.load(
+                    new File(getPath("InputImportControlLoaderCompleteForbiddenSynonym.xml")).toURI());
+        assertWithMessage("Import root should not be null")
+            .that(root)
+            .isNotNull();
+    }
+
+    @Test
     public void testWrongFormatUri() throws Exception {
         try {
             ImportControlLoader.load(new URI("aaa://"
