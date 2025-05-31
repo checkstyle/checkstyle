@@ -80,7 +80,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * <li>
  * If there is matching allow/forbidden/disallow rule inside the current file/subpackage
- * then the Check returns the first "allowed" or "forbidden/disallow" message.
+ * then the Check returns the first "allowed" or "disallow" message.
  * </li>
  * <li>
  * If there is no matching allow/disallow rule inside the current file/subpackage
@@ -88,7 +88,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * <li>
  * If there is no matching allow/disallow rule in any of the files/subpackages,
- * including the root level (import-control), then the import is forbidden by default.
+ * including the root level (import-control), then the import is disallowed by default.
  * </li>
  * </ul>
  *
