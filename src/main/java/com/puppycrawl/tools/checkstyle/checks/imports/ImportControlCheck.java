@@ -79,8 +79,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * in the XML file, which is from top (first) to bottom (last).
  * </li>
  * <li>
- * If there is matching allow/forbidden/disallow rule inside the current file/subpackage
- * then the Check returns the first "allowed" or "disallow" message.
+ * If there is matching allow/disallow rule inside the current file/subpackage
+ * then the Check returns the first "allowed" or "disallowed" message.
  * </li>
  * <li>
  * If there is no matching allow/disallow rule inside the current file/subpackage
@@ -94,8 +94,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <p>
  * The DTD for an import control XML document is at
- * <a href="https://checkstyle.org/dtds/import_control_1_5.dtd">
- * https://checkstyle.org/dtds/import_control_1_5.dtd</a>.
+ * <a href="https://checkstyle.org/dtds/import_control_1_4.dtd">
+ * https://checkstyle.org/dtds/import_control_1_4.dtd</a>.
  * It contains documentation on each of the elements and attributes.
  * </p>
  *
@@ -105,8 +105,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <pre>
  * &lt;!DOCTYPE import-control PUBLIC
- *     "-//Checkstyle//DTD ImportControl Configuration 1.5//EN"
- *     "https://checkstyle.org/dtds/import_control_1_5.dtd"&gt;
+ *     "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
+ *     "https://checkstyle.org/dtds/import_control_1_4.dtd"&gt;
  * </pre>
  * <ul>
  * <li>
