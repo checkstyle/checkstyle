@@ -4,6 +4,6 @@
     "https://checkstyle.org/dtds/import_control_1_5.dtd">
 
 <import-control pkg="com" strategyOnMismatch="forbidden">
-  <disallow />
-  <forbid />
+  <disallow class="some.class" />
+  <forbid class="some.class" />
 </import-control>
