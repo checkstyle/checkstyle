@@ -65,7 +65,7 @@
           </li>
           <li>
             If there is no matching allow/disallow rule in any of the files/subpackages,
-            including the root level (import-control), then the import is forbidden by default.
+            including the root level (import-control), then the import is disallowed by default.
           </li>
         </ul>
 
