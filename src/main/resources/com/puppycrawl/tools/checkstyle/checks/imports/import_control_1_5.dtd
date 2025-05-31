@@ -22,7 +22,7 @@ Attributes for import-control:
 - pkg:        [Required] Root package to validate (e.g., "com.puppycrawl")
 - regex:      [Optional] Treat root package name as regex pattern
 - strategyOnMismatch: [Optional] Default action when no rule matches
-              Values: allowed | forbidden (default: forbidden) | disallowed (synonym)
+              Values: allowed | disallowed | forbidden (synonym)
 -->
 <!ATTLIST import-control
     pkg CDATA #REQUIRED
