@@ -16,7 +16,7 @@
         <ul>
           <li>
             Add Check Support for Java 21 Record Pattern : New Check
-            UnnecessaryNullCheckWithInstanceof.
+            UnnecessaryNullCheckWithInstanceOf.
             Author: Anmol
             <a href="https://github.com/checkstyle/checkstyle/issues/14945">#14945</a>
           </li>
