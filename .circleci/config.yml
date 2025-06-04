@@ -118,7 +118,7 @@ workflows:
       # no-exception-test script
       - validate-with-maven-script:
           name: "no-exception-lucene-and-others-javadoc"
-          image-name: &cs_img "checkstyle/jdk-11-groovy-git-mvn:11.0.20.1__2.4.21__2.42.0__3.9.5"
+          image-name: &cs_img "cimg/openjdk:17.0.7"
           command: "./.ci/no-exception-test.sh no-exception-lucene-and-others-javadoc"
       - validate-with-maven-script:
           name: "no-exception-cassandra-storm-tapestry-javadoc"
@@ -230,20 +230,20 @@ workflows:
           command: "./.ci/validation.sh no-error-pgjdbc"
       - validate-with-maven-script:
           name: "linkcheck-plugin"
-          image-name: "cimg/openjdk:11.0.19"
+          image-name: "cimg/openjdk:17.0.7"
           command: "./.ci/run-link-check-plugin.sh --skip-external"
       - validate-with-maven-script:
           name: "no-exception-samples-gradle"
-          image-name: "cimg/openjdk:11.0.19"
+          image-name: "cimg/openjdk:17.0.7"
           command: "./.ci/no-exception-test.sh no-exception-samples-gradle"
       - validate-with-maven-script:
           name: "no-exception-samples-maven"
-          image-name: "cimg/openjdk:11.0.19"
+          image-name: "cimg/openjdk:17.0.7"
           command: "./.ci/no-exception-test.sh no-exception-samples-maven"
 
       - validate-with-maven-script:
           name: "no-exception-samples-ant"
-          image-name: "circleci/openjdk:11-jdk"
+          image-name: "circleci/openjdk:17-jdk"
           command: "./.ci/no-exception-test.sh no-exception-samples-ant"
       - validate-with-maven-script:
           name: "no-error-hazelcast"
@@ -283,11 +283,8 @@ workflows:
           name: "check-since-version"
           command: "./.ci/validation.sh check-since-version"
       - validate-with-script:
-          name: "javac11"
-          command: "./.ci/validation.sh javac11"
-      - validate-with-script:
           name: "javac17"
-          image-name: "cimg/openjdk:17.0.5"
+          image-name: "cimg/openjdk:17.0.7"
           command: "./.ci/validation.sh javac17"
       - validate-with-script:
           name: "javac19"
@@ -307,8 +304,4 @@ workflows:
       - validate-with-maven-script:
           name: "jdk17-package-site"
           image-name: "cimg/openjdk:17.0.7"
-          command: "./.ci/validation.sh package-site"
-      - validate-with-maven-script:
-          name: "jdk11-package-site"
-          image-name: *cs_img
           command: "./.ci/validation.sh package-site"
