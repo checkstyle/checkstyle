@@ -312,6 +312,8 @@ no-error-xwiki)
     -DpomFile=xwiki-commons-pom/pom.xml
   mvn -e --no-transfer-progress -f xwiki-commons-tools/xwiki-commons-tool-webjar-handlers/pom.xml \
     install -Dmaven.test.skip -Dcheckstyle.version="${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress -f xwiki-commons-tools/xwiki-commons-tool-webjar-node-handlers/pom.xml \
+    install -Dmaven.test.skip -Dcheckstyle.version="${CS_POM_VERSION}"
   mvn -e --no-transfer-progress -f xwiki-commons-tools/xwiki-commons-tool-xar/pom.xml \
     install -Dmaven.test.skip -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ..
