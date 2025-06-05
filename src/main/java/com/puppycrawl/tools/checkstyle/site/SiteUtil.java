@@ -318,7 +318,8 @@ public final class SiteUtil {
         Map.entry("PatternVariableNameCheck.format", VERSION_8_36),
         Map.entry("RecordTypeParameterNameCheck.format", VERSION_8_36),
         Map.entry("RecordComponentNameCheck.format", "8.40"),
-        Map.entry("TypeNameCheck.format", VERSION_3_0)
+        Map.entry("TypeNameCheck.format", VERSION_3_0),
+        Map.entry("JavadocTagContinuationIndentation.forceStrictCondition", "10.24.0")
     );
 
     /** Map of all superclasses properties and their javadocs. */

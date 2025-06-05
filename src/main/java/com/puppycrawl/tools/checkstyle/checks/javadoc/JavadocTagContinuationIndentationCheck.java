@@ -38,6 +38,13 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </div>
  * <ul>
  * <li>
+ * Property {@code forceStrictCondition} - Force strict indent level of the continuations lines in
+ * the javadoc. If value is true, continuation lines indent have to be same as offset parameter. If
+ * value is false, line wrap indent could be bigger on any value user would like.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
  * Property {@code offset} - Specify how many spaces to use for new indentation level.
  * Type is {@code int}.
  * Default value is {@code 4}.
@@ -97,6 +104,13 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     private int offset = DEFAULT_INDENTATION;
 
     /**
+     * Force strict indent level of the continuations lines in the javadoc. If value is true,
+     * continuation lines indent have to be same as offset parameter. If value is false, line wrap
+     * indent could be bigger on any value user would like.
+     */
+    private boolean forceStrictCondition;
+
+    /**
      * Setter to specify how many spaces to use for new indentation level.
      *
      * @param offset custom value.
@@ -104,6 +118,18 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      */
     public void setOffset(int offset) {
         this.offset = offset;
+    }
+
+    /**
+     * Setter to force strict indent level of the continuations lines in the javadoc.
+     * If value is true, continuation lines indent have to be same as offset parameter.
+     * If value is false, line wrap indent could be bigger on any value user would like.
+     *
+     * @param value value.
+     * @since 10.24.0
+     */
+    public void setForceStrictCondition(boolean value) {
+        forceStrictCondition = value;
     }
 
     @Override
@@ -143,6 +169,10 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     private boolean isViolation(DetailNode textNode) {
         boolean result = false;
         final String text = textNode.getText();
+        final int indentSize = getIndentSize(text);
+        if (forceStrictCondition && offset != indentSize) {
+            result = true;
+        }
         if (text.length() <= offset) {
             if (CommonUtil.isBlank(text)) {
                 final DetailNode nextNode = JavadocUtil.getNextSibling(textNode);
@@ -161,6 +191,25 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
             result = true;
         }
         return result;
+    }
+
+    /**
+     * Counts the indent size from the given javadoc comment.
+     *
+     * @param text a javadoc comment line.
+     * @return indent size of the given comment.
+     */
+    private static int getIndentSize(String text) {
+        int indentSize = 0;
+        for (char chr : text.toCharArray()) {
+            if (chr != ' ') {
+                break;
+            }
+            indentSize++;
+        }
+
+        // As javadoc text always has a single space which is not considered in indent
+        return indentSize - 1;
     }
 
     /**
