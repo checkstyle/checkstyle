@@ -352,32 +352,32 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testLeftCurlySwitchExpressions() throws Exception {
         final String[] expected = {
-            "20:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
-            "22:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 17),
-            "27:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 17),
-            "32:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 17),
-            "36:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 17),
-            "45:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 17),
-            "47:21: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 21),
-            "51:21: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 21),
-            "55:21: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 21),
-            "59:21: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 21),
+            "19:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+            "21:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 17),
+            "26:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 17),
+            "31:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 17),
+            "35:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 17),
+            "44:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 17),
+            "46:21: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 21),
+            "50:21: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 21),
+            "54:21: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 21),
+            "58:21: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 21),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputLeftCurlyTestSwitchExpressions.java"), expected);
+                getPath("InputLeftCurlyTestSwitchExpressions.java"), expected);
     }
 
     @Test
     public void testLeftCurlySwitchExpressionsNewLine() throws Exception {
 
         final String[] expected = {
-            "17:57: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 57),
-            "18:25: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 25),
-            "43:25: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 25),
-            "54:23: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 23),
+            "16:57: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 57),
+            "17:25: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 25),
+            "42:25: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 25),
+            "53:23: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 23),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputLeftCurlyTestSwitchExpressionsNewLine.java"),
+                getPath("InputLeftCurlyTestSwitchExpressionsNewLine.java"),
             expected);
     }
 
@@ -443,15 +443,15 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testLeftCurlyRecordsAndCompactCtors() throws Exception {
         final String[] expected = {
-            "22:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "24:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
-            "34:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "36:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "43:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
-            "56:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "21:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "23:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+            "33:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "35:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "42:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+            "55:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputLeftCurlyTestRecordsAndCompactCtors.java"), expected);
+                getPath("InputLeftCurlyTestRecordsAndCompactCtors.java"), expected);
     }
 
     @Test
