@@ -228,20 +228,20 @@ public class EmptyBlockCheckTest
     @Test
     public void testEmptyBlockSwitchExpressionsOne() throws Exception {
         final String[] expected = {
-            "17:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "16:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputEmptyBlockSwitchExpressionsOne.java"), expected);
+                getPath("InputEmptyBlockSwitchExpressionsOne.java"), expected);
     }
 
     @Test
     public void testEmptyBlockSwitchExpressionsTwo() throws Exception {
         final String[] expected = {
-            "25:32: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "27:26: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "24:32: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "26:26: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputEmptyBlockSwitchExpressionsTwo.java"), expected);
+                getPath("InputEmptyBlockSwitchExpressionsTwo.java"), expected);
     }
 
     @Test
