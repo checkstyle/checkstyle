@@ -718,7 +718,6 @@ jls
 JNDI
 jooq
 JOption
-josm
 Jpa
 JPanel
 Jpdl
@@ -1009,7 +1008,6 @@ oopsla
 OOQ
 opencollective
 openjdk
-openstreetmap
 operatorwrap
 opsummary
 optgroup
@@ -1339,7 +1337,6 @@ suppresswithnearbytextfilter
 suppresswithplaintextcommentfilter
 suse
 svg
-svn
 sxpath
 syntastic
 Sys
