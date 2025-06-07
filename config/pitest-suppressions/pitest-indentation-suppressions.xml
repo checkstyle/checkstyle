@@ -127,15 +127,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>NewHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler</mutatedClass>
-    <mutatedMethod>shouldIncreaseIndent</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator</mutator>
-    <description>replaced boolean return with true for com/puppycrawl/tools/checkstyle/checks/indentation/NewHandler::shouldIncreaseIndent</description>
-    <lineContent>return false;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>SwitchHandler.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.SwitchHandler</mutatedClass>
     <mutatedMethod>checkIndentation</mutatedMethod>
