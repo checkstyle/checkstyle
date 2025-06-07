@@ -116,6 +116,11 @@ public class IndentationTest extends AbstractIndentationTestSupport {
     }
 
     @Test
+    public void testNewKeywordChildren() throws Exception {
+        verifyWithWholeConfig(getPath("InputNewKeywordChildren.java"));
+    }
+
+    @Test
     public void testLambdaChild() throws Exception {
         verifyWithWholeConfig(getNonCompilablePath("InputLambdaChild.java"));
     }
