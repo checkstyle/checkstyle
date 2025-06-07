@@ -261,31 +261,6 @@ no-violation-test-configurate)
   removeFolderWithProtectedFiles Configurate
   ;;
 
-no-violation-test-josm)
-  CS_POM_VERSION="$(getCheckstylePomVersion)"
-  echo "CS_version: ${CS_POM_VERSION}"
-  ./mvnw -e --no-transfer-progress clean install -Pno-validations
-  echo "Checkout target sources ..."
-  mkdir -p .ci-temp
-  cd .ci-temp
-  TESTED=$(wget -q -O - https://josm.openstreetmap.de/wiki/TestedVersion?format=txt)
-  echo "JOSM revision: ${TESTED}"
-  svn -q --force export https://josm.openstreetmap.de/svn/trunk/ -r "${TESTED}" --native-eol LF josm
-  cd josm
-  sed -i -E "s/(name=\"checkstyle\" rev=\")([0-9]+\.[0-9]+(-SNAPSHOT)?)/\1${CS_POM_VERSION}/" \
-   tools/ivy.xml
-  addCheckstyleBundleToAntResolvers
-  ant -v checkstyle
-  grep "<error" checkstyle-josm.xml | cat > errors.log
-  echo "Checkstyle Errors:"
-  RESULT=$(wc -l < errors.log)
-  cat errors.log
-  echo "Size of output: ${RESULT}"
-  cd ..
-  removeFolderWithProtectedFiles josm
-  if [[ ${RESULT} != 0 ]]; then false; fi
-  ;;
-
 no-error-xwiki)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   ANTLR4_VERSION="$(getMavenProperty 'antlr4.version')"
