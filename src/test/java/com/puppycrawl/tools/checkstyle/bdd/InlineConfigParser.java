@@ -680,7 +680,7 @@ public final class InlineConfigParser {
             final int endIndex = path.lastIndexOf(moduleName.toLowerCase(Locale.ROOT));
             if (endIndex == -1) {
                 throw new CheckstyleException("Unable to resolve module name: " + moduleName
-                + ". Please check for spelling errors or specify fully qualified class name.");
+                    + ". Please check for spelling errors or specify fully qualified class name.");
             }
             final int beginIndex = path.indexOf("com.puppycrawl");
             fullyQualifiedClassName = path.substring(beginIndex, endIndex) + moduleName;
