@@ -218,7 +218,7 @@ workflows:
           command: "./.ci/validation.sh assembly-run-all-jar"
       - validate-with-maven-script:
           name: "no-error-test-sbe"
-          image-name: "cimg/openjdk:17.0.1"
+          image-name: "cimg/openjdk:17.0.7"
           command: "./.ci/validation.sh no-error-test-sbe"
       - validate-with-maven-script:
           name: "no-error-spotbugs"
@@ -230,20 +230,20 @@ workflows:
           command: "./.ci/validation.sh no-error-pgjdbc"
       - validate-with-maven-script:
           name: "linkcheck-plugin"
-          image-name: "cimg/openjdk:11.0.19"
+          image-name: "cimg/openjdk:17.0.7"
           command: "./.ci/run-link-check-plugin.sh --skip-external"
       - validate-with-maven-script:
           name: "no-exception-samples-gradle"
-          image-name: "cimg/openjdk:11.0.19"
+          image-name: "cimg/openjdk:17.0.7"
           command: "./.ci/no-exception-test.sh no-exception-samples-gradle"
       - validate-with-maven-script:
           name: "no-exception-samples-maven"
-          image-name: "cimg/openjdk:11.0.19"
+          image-name: "cimg/openjdk:17.0.7"
           command: "./.ci/no-exception-test.sh no-exception-samples-maven"
 
       - validate-with-maven-script:
           name: "no-exception-samples-ant"
-          image-name: "circleci/openjdk:11-jdk"
+          image-name: "circleci/openjdk:17-jdk"
           command: "./.ci/no-exception-test.sh no-exception-samples-ant"
       - validate-with-maven-script:
           name: "no-error-hazelcast"
@@ -287,7 +287,7 @@ workflows:
           command: "./.ci/validation.sh javac11"
       - validate-with-script:
           name: "javac17"
-          image-name: "cimg/openjdk:17.0.5"
+          image-name: "cimg/openjdk:17.0.7"
           command: "./.ci/validation.sh javac17"
       - validate-with-script:
           name: "javac19"
