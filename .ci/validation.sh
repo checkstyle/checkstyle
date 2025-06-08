@@ -511,7 +511,8 @@ check-since-version)
 
 compile-test-resources)
   # this task is useful during migration to new JDK to let compile resources on new jdk only
-  ./mvnw -e --no-transfer-progress clean test-compile -Dcheckstyle.skipCompileInputResources=false
+  ./mvnw -e --no-transfer-progress clean test-compile \
+  -Dcheckstyle.skipCompileInputResources=false -Dmaven.compiler.release=17
   ;;
 
 javac11)
