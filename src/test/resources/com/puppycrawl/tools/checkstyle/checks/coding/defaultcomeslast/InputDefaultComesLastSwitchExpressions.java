@@ -1,19 +1,18 @@
 /*
 DefaultComesLast
-skipIfLastAndSharedWithCase = true
+skipIfLastAndSharedWithCase = (default)false
 
 
 */
 
-//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.defaultcomeslast;
 
-public class InputDefaultComesLastSwitchExpressionsSkipIfLast {
+public class InputDefaultComesLastSwitchExpressions {
     public int method1(int i) {
         int x = 7;
         switch (i) {
             case 1:
-            default:
+            default: // violation 'Default should be last label in the switch.'
                 x = 9;
                 break;
             case 2:
@@ -23,7 +22,6 @@ public class InputDefaultComesLastSwitchExpressionsSkipIfLast {
         return x;
     }
 
-    // This should still be a violation, since switch rules are not subject to fall through
     public int method2(int i) {
         int x = 7;
         switch (i) {
@@ -41,20 +39,11 @@ public class InputDefaultComesLastSwitchExpressionsSkipIfLast {
         return x;
     }
 
-    // This should still be a violation, since switch rules are not subject to fall through
     public int method3(int i) {
         return switch (i) {
             case 1 -> 8;
             default -> 9; // violation 'Default should be last label in the switch.'
             case 2 -> 7;
-        };
-    }
-
-    public int method4(int i) {
-        return switch (i) {
-            case 1 -> 8;
-            case 2 -> 7;
-            default -> 9; //
         };
     }
 }
