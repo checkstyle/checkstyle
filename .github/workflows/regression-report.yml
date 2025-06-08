@@ -156,7 +156,7 @@ jobs:
         env:
           COMMENT_BODY: ${{ github.event.comment.body }}
         run: |
-          PATTERN_FOR_DESCRIPTION='^Git[Hh]ub, generate report for configs in PR description$'
+          PATTERN_FOR_DESCRIPTION='^Git[Hh]ub, generate report for configs in PR description[[:space:]]*$'
           PATTERN_FOR='^Git[Hh]ub, generate report for'
           PATTERN_BY_CONFIG_FROM='^Git[Hh]ub, generate report by config from'
 
