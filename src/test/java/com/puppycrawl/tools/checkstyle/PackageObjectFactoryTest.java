@@ -206,7 +206,7 @@ public class PackageObjectFactoryTest {
     public void testCreateObjectFromMap() throws Exception {
         final String moduleName = "Foo";
         final String name = moduleName + CHECK_SUFFIX;
-        final String packageName = BASE_PACKAGE + ".packageobjectfactory.bar";
+        final String packageName = BASE_PACKAGE + ".internal.testmodules.packageobjectfactory.bar";
         final String fullName = packageName + PACKAGE_SEPARATOR + name;
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         final PackageObjectFactory objectFactory =
@@ -224,7 +224,7 @@ public class PackageObjectFactoryTest {
     @Test
     public void testCreateStandardModuleObjectFromMap() throws Exception {
         final String moduleName = "TreeWalker";
-        final String packageName = BASE_PACKAGE + ".packageobjectfactory.bar";
+        final String packageName = BASE_PACKAGE + ".internal.testmodules.packageobjectfactory.bar";
         final String fullName = BASE_PACKAGE + PACKAGE_SEPARATOR + moduleName;
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         final PackageObjectFactory objectFactory =
@@ -238,7 +238,7 @@ public class PackageObjectFactoryTest {
     @Test
     public void testCreateStandardCheckModuleObjectFromMap() throws Exception {
         final String moduleName = "TypeName";
-        final String packageName = BASE_PACKAGE + ".packageobjectfactory.bar";
+        final String packageName = BASE_PACKAGE + ".internal.testmodules.packageobjectfactory.bar";
         final String fullName = BASE_PACKAGE + PACKAGE_SEPARATOR + "checks" + PACKAGE_SEPARATOR
             + "naming" + PACKAGE_SEPARATOR + moduleName + CHECK_SUFFIX;
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -252,8 +252,8 @@ public class PackageObjectFactoryTest {
 
     @Test
     public void testCreateObjectFromFullModuleNamesWithAmbiguousException() {
-        final String barPackage = BASE_PACKAGE + ".packageobjectfactory.bar";
-        final String fooPackage = BASE_PACKAGE + ".packageobjectfactory.foo";
+        final String barPackage = BASE_PACKAGE + ".internal.testmodules.packageobjectfactory.bar";
+        final String fooPackage = BASE_PACKAGE + ".internal.testmodules.packageobjectfactory.foo";
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         final PackageObjectFactory objectFactory = new PackageObjectFactory(
                 new LinkedHashSet<>(Arrays.asList(barPackage, fooPackage)), classLoader);
@@ -561,10 +561,10 @@ public class PackageObjectFactoryTest {
 
     @Test
     public void testExceptionMessage() {
-        final String barPackage = BASE_PACKAGE + ".packageobjectfactory.bar";
-        final String fooPackage = BASE_PACKAGE + ".packageobjectfactory.foo";
-        final String zooPackage = BASE_PACKAGE + ".packageobjectfactory.zoo";
-        final String abcPackage = BASE_PACKAGE + ".packageobjectfactory.abc";
+        final String barPackage = BASE_PACKAGE + ".internal.testmodules.packageobjectfactory.bar";
+        final String fooPackage = BASE_PACKAGE + ".internal.testmodules.packageobjectfactory.foo";
+        final String zooPackage = BASE_PACKAGE + ".internal.testmodules.packageobjectfactory.zoo";
+        final String abcPackage = BASE_PACKAGE + ".internal.testmodules.packageobjectfactory.abc";
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         final PackageObjectFactory objectFactory = new PackageObjectFactory(
                 new HashSet<>(Arrays.asList(abcPackage, barPackage,
