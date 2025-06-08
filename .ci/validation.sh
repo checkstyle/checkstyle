@@ -528,6 +528,7 @@ javac11)
   mkdir -p target
   for file in "${files[@]}"
   do
+    echo "${file}"
     javac -d target "${file}"
   done
   ;;
