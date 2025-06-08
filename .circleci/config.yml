@@ -230,15 +230,15 @@ workflows:
           command: "./.ci/validation.sh no-error-pgjdbc"
       - validate-with-maven-script:
           name: "linkcheck-plugin"
-          image-name: "cimg/openjdk:11.0.19"
+          image-name: "cimg/openjdk:17.0.7"
           command: "./.ci/run-link-check-plugin.sh --skip-external"
       - validate-with-maven-script:
           name: "no-exception-samples-gradle"
-          image-name: "cimg/openjdk:11.0.19"
+          image-name: "cimg/openjdk:17.0.7"
           command: "./.ci/no-exception-test.sh no-exception-samples-gradle"
       - validate-with-maven-script:
           name: "no-exception-samples-maven"
-          image-name: "cimg/openjdk:11.0.19"
+          image-name: "cimg/openjdk:17.0.7"
           command: "./.ci/no-exception-test.sh no-exception-samples-maven"
 
       - validate-with-maven-script:
@@ -287,7 +287,7 @@ workflows:
           command: "./.ci/validation.sh javac11"
       - validate-with-script:
           name: "javac17"
-          image-name: "cimg/openjdk:17.0.5"
+          image-name: "cimg/openjdk:17.0.7"
           command: "./.ci/validation.sh javac17"
       - validate-with-script:
           name: "javac19"
