@@ -112,7 +112,7 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
             "46:13: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputDefaultComesLastSwitchExpressions.java"),
+                getPath("InputDefaultComesLastSwitchExpressions.java"),
             expected);
     }
 
@@ -124,7 +124,7 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
             "48:13: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputDefaultComesLastSwitchExpressionsSkipIfLast.java"),
+                getPath("InputDefaultComesLastSwitchExpressionsSkipIfLast.java"),
             expected);
     }
 
