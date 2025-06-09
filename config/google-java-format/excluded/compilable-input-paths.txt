@@ -31,6 +31,8 @@ src/it/resources/com/google/checkstyle/test/chapter4formatting/rule451wheretobre
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak/InputSeparatorWrapArrayDeclarator.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak/InputLambdaBodyWrap.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak/InputIllegalLineBreakAroundLambda.java
+src/it/resources/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak/InputNoWrappingAfterRecordName.java
+src/it/resources/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak/InputNoWrappingAfterRecordName2.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule452indentcontinuationlines/InputClassWithChainedMethods2.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule461verticalwhitespace/InputVerticalWhitespace.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputWhitespaceAroundBasic.java
