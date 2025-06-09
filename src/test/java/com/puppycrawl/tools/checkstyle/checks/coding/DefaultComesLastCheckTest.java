@@ -107,12 +107,12 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultComesLastSwitchExpressions() throws Exception {
         final String[] expected = {
-            "16:13: " + getCheckMessage(MSG_KEY),
-            "32:13: " + getCheckMessage(MSG_KEY),
-            "46:13: " + getCheckMessage(MSG_KEY),
+            "15:13: " + getCheckMessage(MSG_KEY),
+            "31:13: " + getCheckMessage(MSG_KEY),
+            "45:13: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputDefaultComesLastSwitchExpressions.java"),
+                getPath("InputDefaultComesLastSwitchExpressions.java"),
             expected);
     }
 
@@ -120,11 +120,11 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
     public void testDefaultComesLastSwitchExpressionsSkipIfLast() throws Exception {
 
         final String[] expected = {
-            "33:13: " + getCheckMessage(MSG_KEY),
-            "48:13: " + getCheckMessage(MSG_KEY),
+            "32:13: " + getCheckMessage(MSG_KEY),
+            "47:13: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputDefaultComesLastSwitchExpressionsSkipIfLast.java"),
+                getPath("InputDefaultComesLastSwitchExpressionsSkipIfLast.java"),
             expected);
     }
 
