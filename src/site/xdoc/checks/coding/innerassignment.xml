@@ -99,7 +99,7 @@ public class Example1 {
     return val = true; // violation, 'Inner assignments should be avoided'
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example2-code">Example 2:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {

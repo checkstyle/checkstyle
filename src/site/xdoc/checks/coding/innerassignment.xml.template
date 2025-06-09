@@ -61,7 +61,7 @@ while ((line = bufferedReader.readLine()) != null); // OK
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/innerassignment/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example2-code">Example 2:</p>
         <macro name="example">
           <param name="path"
