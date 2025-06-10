@@ -5,7 +5,7 @@ tokens = LITERAL_YIELD
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 
 public class InputWhitespaceAfterLiteralYield {
