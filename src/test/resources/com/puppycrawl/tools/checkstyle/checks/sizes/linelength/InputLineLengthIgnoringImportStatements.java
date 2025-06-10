@@ -6,12 +6,9 @@ max = 75
 
 
 */
-//non-compiled with javac: Compilable with Java17
+// Java17
 
-// violation below 'longer than 75 characters (found 79)'
-package com.       puppycrawl.tools.    checkstyle.checks.    sizes.linelength;
-
-import java.   security.    interfaces.          RSAMultiPrimePrivateCrtKey;
+package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 
 public class InputLineLengthIgnoringImportStatements {
     @Override

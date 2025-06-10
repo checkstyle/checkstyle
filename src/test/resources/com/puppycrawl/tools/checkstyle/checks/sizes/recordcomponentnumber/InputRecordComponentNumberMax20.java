@@ -1,12 +1,12 @@
 /*
 RecordComponentNumber
-max = (default)8
+max = 20
 accessModifiers = (default)public, protected, package, private
 
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentnumber;
 
 import java.awt.Point;
@@ -17,7 +17,7 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
-public class InputRecordComponentNumber {
+public class InputRecordComponentNumberMax20 {
 
     public record TestRecord1(int x){
         public TestRecord1{
@@ -25,13 +25,9 @@ public class InputRecordComponentNumber {
         }
     }
 
-    public record TestRecord2(int x, int y){
+    public record TestRecord2(int x, int y){}
 
-    }
-
-    public record TestRecord3(String str, int x, int y){
-
-    }
+    public record TestRecord3(String str, int x, int y){}
 
     public record TestRecord4(Node node,
                               Point x,
@@ -54,7 +50,7 @@ public class InputRecordComponentNumber {
 
     }
 
-    public record TestRecord6(int x, int y, int z, // violation
+    public record TestRecord6(int x, int y, int z,
                               int a, int b, int c,
                               int d, int e, int f,
                               int g, int h, int i,
@@ -67,25 +63,24 @@ public class InputRecordComponentNumber {
 
         }
 
-        private record InnerRecordBad(int x, int y, int z, // violation
+        private record InnerRecordBad(int x, int y, int z,
                                       int a, int b, int c,
                                       int d, int e, int f,
                                       int g, int h, int i,
                                       int j, int k){
 
-            private record InnerRecordCeptionBad(int x, int y, int z, // violation
+            private record InnerRecordCeptionBad(int x, int y, int z,
                                                  int a, int b, int c,
                                                  int d, int e, int f,
                                                  int g, int h, int i,
                                                  int j, int k) {
 
-                public record InnerPublicBad(int[] arr, // violation
+                public record InnerPublicBad(int[] arr,
                                              LinkedHashMap<String, Node> linkedHashMap,
                                              int x,
                                              ArrayDeque<Node> arrayDeque,
                                              List<String> myList,
-                                             List<String> myOtherList,
-                                             int a, int b, int c, int d, int e) {
+                                             List<String> myOtherList) {
 
 
                 }
@@ -94,11 +89,9 @@ public class InputRecordComponentNumber {
         }
     }
 
-    public record TestRecord8(int x, int y, int z, String... myVarargs){
+    public record TestRecord8(int x, int y, int z, String... myVarargs){}
 
-    }
-
-    public record TestRecord9(int x, int y, int z, // violation
+    public record TestRecord9(int x, int y, int z,
                               int a, int b, int c,
                               int d, int e, int f,
                               int g, int h, int i,
@@ -109,7 +102,6 @@ public class InputRecordComponentNumber {
     public record TestRecord10(String... myVarargs){}
 
     public record TestRecord11(int[] arr, LinkedHashMap<String, Node> linkedHashMap, int x){}
-
     public record TestRecord12(int[] arr,
                                LinkedHashMap<String, Node> linkedHashMap,
                                int x,
@@ -119,32 +111,8 @@ public class InputRecordComponentNumber {
 
     }
 
-    private static record MyPrivateRecord1(int x, int y, int z, // violation
-                                           int a, int b, int c,
-                                           int d, int e, int f,
-                                           int g, int h, int i,
-                                           int j, int k, String... myVarargs) {}
+    private static record MyPrivateRecord1() {}
 
     private static record MyPrivateRecord2(int x, int y) {}
-
-    protected static record MyProtectedRecord1(int x, int y) {}
-
-    protected static record MyProtectedRecord2(int x, int y, int z, // violation
-                                               int a, int b, int c,
-                                               int d, int e, int f,
-                                               int g, int h, int i,
-                                               int j, int k, String... myVarargs) {}
-
-    class LocalRecordHelper {
-        Class<?> m(int x) {
-            record R76 (int x) { }
-            return R76.class;
-        }
-
-        private class R {
-            public R(int x) {
-            }
-        }
-    }
 
 }

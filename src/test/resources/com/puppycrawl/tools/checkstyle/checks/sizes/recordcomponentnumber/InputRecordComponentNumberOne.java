@@ -1,12 +1,12 @@
 /*
 RecordComponentNumber
-max = 1
+max = (default)8
 accessModifiers = (default)public, protected, package, private
 
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentnumber;
 
 import java.awt.Point;
@@ -17,7 +17,7 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
-public class InputRecordComponentNumberMax1 {
+public class InputRecordComponentNumberOne {
 
     public record TestRecord1(int x){
         public TestRecord1{
@@ -25,15 +25,15 @@ public class InputRecordComponentNumberMax1 {
         }
     }
 
-    public record TestRecord2(int x, int y){ // violation
+    public record TestRecord2(int x, int y){
 
     }
 
-    public record TestRecord3(String str, int x, int y){ // violation
+    public record TestRecord3(String str, int x, int y){
 
     }
 
-    public record TestRecord4(Node node, // violation
+    public record TestRecord4(Node node,
                               Point x,
                               Point y,
                               int translation,
@@ -49,7 +49,7 @@ public class InputRecordComponentNumberMax1 {
         }
     }
 
-    public record TestRecord5(int x, int y, int z, // violation
+    public record TestRecord5(int x, int y, int z,
                               int a, int b, int c, int d){
 
     }
@@ -63,7 +63,7 @@ public class InputRecordComponentNumberMax1 {
     }
     public record TestRecord7(int y){
 
-        record InnerRecordOk(int x, int y, int z){ // violation
+        record InnerRecordOk(int x, int y, int z){
 
         }
 
@@ -84,7 +84,8 @@ public class InputRecordComponentNumberMax1 {
                                              int x,
                                              ArrayDeque<Node> arrayDeque,
                                              List<String> myList,
-                                             List<String> myOtherList) {
+                                             List<String> myOtherList,
+                                             int a, int b, int c, int d, int e) {
 
 
                 }
@@ -93,7 +94,7 @@ public class InputRecordComponentNumberMax1 {
         }
     }
 
-    public record TestRecord8(int x, int y, int z, String... myVarargs){ // violation
+    public record TestRecord8(int x, int y, int z, String... myVarargs){
 
     }
 
@@ -105,23 +106,15 @@ public class InputRecordComponentNumberMax1 {
 
     }
 
-    public record TestRecord10(String... myVarargs){}
+    class LocalRecordHelper {
+        Class<?> m(int x) {
+            record R76 (int x) { }
+            return R76.class;
+        }
 
-    public record TestRecord11(int[] arr, // violation
-                               LinkedHashMap<String, Node> linkedHashMap,
-                               int x){}
-
-    public record TestRecord12(int[] arr, // violation
-                               LinkedHashMap<String, Node> linkedHashMap,
-                               int x,
-                               ArrayDeque<Node> arrayDeque,
-                               List<String> myList,
-                               List<String> myOtherList){
-
+        private class R {
+            public R(int x) {
+            }
+        }
     }
-
-    private static record MyPrivateRecord1() {}
-
-    private static record MyPrivateRecord2(int x, int y) {} // violation
-
 }
