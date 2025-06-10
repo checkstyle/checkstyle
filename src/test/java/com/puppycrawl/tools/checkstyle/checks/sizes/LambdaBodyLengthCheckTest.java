@@ -74,7 +74,7 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
     public void testDefaultSwitchExpressions() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputLambdaBodyLengthSwitchExps.java"), expected);
+                getPath("InputLambdaBodyLengthSwitchExps.java"), expected);
     }
 
     @Test

@@ -7,7 +7,7 @@ accessModifiers = private
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentnumber;
 
 import java.awt.Point;
@@ -18,7 +18,7 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
-public class InputRecordComponentNumberPrivateModifier {
+public class InputRecordComponentNumberPrivateModifierOne {
 
     public record TestRecord1(int x){
         public TestRecord1{
@@ -97,43 +97,6 @@ public class InputRecordComponentNumberPrivateModifier {
     public record TestRecord8(int x, int y, int z, String... myVarargs){
 
     }
-
-    public record TestRecord9(int x, int y, int z,
-                              int a, int b, int c,
-                              int d, int e, int f,
-                              int g, int h, int i,
-                              int j, int k, String... myVarargs){
-
-    }
-
-    public record TestRecord10(String... myVarargs){}
-
-    public record TestRecord11(int[] arr, LinkedHashMap<String, Node> linkedHashMap, int x){}
-
-    public record TestRecord12(int[] arr,
-                               LinkedHashMap<String, Node> linkedHashMap,
-                               int x,
-                               ArrayDeque<Node> arrayDeque,
-                               List<String> myList,
-                               List<String> myOtherList){
-
-    }
-
-    private static record MyPrivateRecord1(int x, int y, int z, // violation
-                                           int a, int b, int c,
-                                           int d, int e, int f,
-                                           int g, int h, int i,
-                                           int j, int k, String... myVarargs) {}
-
-    private static record MyPrivateRecord2(int x, int y) {}
-
-    protected static record MyProtectedRecord1(int x, int y) {}
-
-    protected static record MyProtectedRecord2(int x, int y, int z,
-                                               int a, int b, int c,
-                                               int d, int e, int f,
-                                               int g, int h, int i,
-                                               int j, int k, String... myVarargs) {}
 
     class LocalRecordHelper {
         Class<?> m(int x) {

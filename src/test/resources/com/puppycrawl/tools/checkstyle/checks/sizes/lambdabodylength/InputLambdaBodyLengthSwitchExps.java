@@ -5,7 +5,7 @@ max = (default)10
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.sizes.lambdabodylength;
 
 import java.util.stream.Stream;

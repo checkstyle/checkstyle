@@ -117,27 +117,25 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testLineLengthIgnoringPackageStatements() throws Exception {
         final String[] expected = {
-            "13: " + getCheckMessage(MSG_KEY, 75, 76),
-            "22: " + getCheckMessage(MSG_KEY, 75, 86),
-            "26: " + getCheckMessage(MSG_KEY, 75, 76),
-            "34: " + getCheckMessage(MSG_KEY, 75, 77),
+            "17: " + getCheckMessage(MSG_KEY, 75, 86),
+            "21: " + getCheckMessage(MSG_KEY, 75, 76),
+            "29: " + getCheckMessage(MSG_KEY, 75, 77),
         };
 
         verifyWithInlineConfigParser(
-            getNonCompilablePath("InputLineLengthIgnoringPackageStatements.java"), expected);
+            getPath("InputLineLengthIgnoringPackageStatements.java"), expected);
     }
 
     @Test
     public void testLineLengthIgnoringImportStatements() throws Exception {
         final String[] expected = {
-            "12: " + getCheckMessage(MSG_KEY, 75, 79),
-            "21: " + getCheckMessage(MSG_KEY, 75, 81),
-            "25: " + getCheckMessage(MSG_KEY, 75, 84),
-            "33: " + getCheckMessage(MSG_KEY, 75, 77),
+            "18: " + getCheckMessage(MSG_KEY, 75, 81),
+            "22: " + getCheckMessage(MSG_KEY, 75, 84),
+            "30: " + getCheckMessage(MSG_KEY, 75, 77),
         };
 
         verifyWithInlineConfigParser(
-            getNonCompilablePath("InputLineLengthIgnoringImportStatements.java"), expected);
+            getPath("InputLineLengthIgnoringImportStatements.java"), expected);
     }
 
     /**
