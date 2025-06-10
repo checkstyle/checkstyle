@@ -5,7 +5,7 @@ tokens = LITERAL_SWITCH
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 import java.io.IOException;
@@ -63,7 +63,7 @@ public class InputRightCurlyTestSwitchExpression5 {
     }
 }
 
-class InputMissingSwitchDefaultCheckSwitchExpressionsThree {
+class InputMissingSwitchDefaultCheckSwitchExpressionsFour {
     public enum Day {
         SUN,
     }
@@ -76,7 +76,7 @@ class InputMissingSwitchDefaultCheckSwitchExpressionsThree {
     }
 }
 
-class InputExecutableStatementCountRecords {
+class InputExecutableStatementCountRecordsOne {
 
     private int id(int i) {
         return i;

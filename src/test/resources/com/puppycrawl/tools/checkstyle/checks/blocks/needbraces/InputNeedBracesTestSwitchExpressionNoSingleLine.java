@@ -7,15 +7,15 @@ tokens = LITERAL_CASE, LITERAL_DEFAULT, LAMBDA
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
 public class InputNeedBracesTestSwitchExpressionNoSingleLine {
-    void howMany1(Nums k) {
+    void howMany1(NumsOne k) {
         switch (k) {
             case ONE: // violation ''case' construct must use '{}'s'
                 System.out.println("case two");
-                MathOperation2 case5 = (a, b) -> // violation ''->' construct must use '{}'s'
+                MathOperationOne case5 = (a, b) -> // violation ''->' construct must use '{}'s'
                     (a + b);
             case TWO, THREE: // violation ''case' construct must use '{}'s'
                 System.out.println("case two");
@@ -28,7 +28,7 @@ public class InputNeedBracesTestSwitchExpressionNoSingleLine {
         }
     }
 
-    void howMany2(Nums k) {
+    void howMany2(NumsOne k) {
         switch (k) { // cannot have more than one statement without block
             case ONE -> // violation ''case' construct must use '{}'s'
                 System.out.println("case one");
@@ -44,10 +44,10 @@ public class InputNeedBracesTestSwitchExpressionNoSingleLine {
         }
     }
 
-    int howMany3(Nums k) {
+    int howMany3(NumsOne k) {
         return switch (k) {
             case ONE: // violation ''case' construct must use '{}'s'
-                MathOperation2 case5 = (a, b) -> // violation ''->' construct must use '{}'s'
+                MathOperationOne case5 = (a, b) -> // violation ''->' construct must use '{}'s'
                     (a + b);
                 yield 3;
             case TWO, THREE: // violation ''case' construct must use '{}'s'
@@ -64,13 +64,13 @@ public class InputNeedBracesTestSwitchExpressionNoSingleLine {
     /**
      * Braces required in switch expression with switch labled block
      */
-    int howMany4(Nums k) {
+    int howMany4(NumsOne k) {
         return switch (k) {
             case ONE -> {
                 yield 4;
             }
             case TWO, THREE -> {
-                MathOperation2 case5 = (a, b) -> // violation ''->' construct must use '{}'s'
+                MathOperationOne case5 = (a, b) -> // violation ''->' construct must use '{}'s'
                     (a + b);
                 yield 42;
             }
@@ -83,7 +83,7 @@ public class InputNeedBracesTestSwitchExpressionNoSingleLine {
         };
     }
 
-    int howMany5(Nums k) {
+    int howMany5(NumsOne k) {
         return switch (k) {
             case ONE -> 1; // violation ''case' construct must use '{}'s'
             case TWO, THREE -> 3; // violation ''case' construct must use '{}'s'
@@ -95,9 +95,9 @@ public class InputNeedBracesTestSwitchExpressionNoSingleLine {
     }
 }
 
-enum Nums {ONE, TWO, THREE, FOUR}
+enum NumsOne {ONE, TWO, THREE, FOUR}
 
-interface MathOperation2 {
+interface MathOperationOne {
     int operation(int a, int b);
 }
 

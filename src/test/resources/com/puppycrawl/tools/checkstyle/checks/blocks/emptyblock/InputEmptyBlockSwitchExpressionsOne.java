@@ -6,11 +6,11 @@ tokens = LITERAL_DEFAULT, LITERAL_CASE, LITERAL_SWITCH
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
 
 public class InputEmptyBlockSwitchExpressionsOne {
-    void howMany1(Nums k) {
+    void howMany1(NumsOne k) {
         switch (k) {
             case ONE:
                 System.out.println("case two");
@@ -27,7 +27,7 @@ public class InputEmptyBlockSwitchExpressionsOne {
         }
     }
 
-    void howMany2(Nums k) {
+    void howMany2(NumsOne k) {
         switch (k) {
             case ONE ->
                     System.out.println("case one");
@@ -43,7 +43,7 @@ public class InputEmptyBlockSwitchExpressionsOne {
         }
     }
 
-    int howMany3(Nums k) {
+    int howMany3(NumsOne k) {
         return switch (k) {
             case ONE:
                 yield 3;
@@ -59,7 +59,7 @@ public class InputEmptyBlockSwitchExpressionsOne {
         };
     }
 
-    int howMany4(Nums k) {
+    int howMany4(NumsOne k) {
         return switch (k) {
             case ONE -> {
                 yield 4;
@@ -76,7 +76,7 @@ public class InputEmptyBlockSwitchExpressionsOne {
     }
 
 
-    int howMany5(Nums k) {
+    int howMany5(NumsOne k) {
         return switch (k) {
             case ONE -> 1;
             case TWO, THREE -> 3;
@@ -85,7 +85,7 @@ public class InputEmptyBlockSwitchExpressionsOne {
         };
     }
 
-    void howMany6(Nums k) {
+    void howMany6(NumsOne k) {
         switch (k) {
             case ONE:
                 System.out.println("case two");
@@ -102,4 +102,4 @@ public class InputEmptyBlockSwitchExpressionsOne {
     }
 }
 
-enum Nums {ONE, TWO, THREE, FOUR}
+enum NumsOne {ONE, TWO, THREE, FOUR}
