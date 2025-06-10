@@ -296,7 +296,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
                     "Failed to recognize 'record' introduced in Java 14."),
         };
         verifyWithInlineConfigParserTwice(
-            getNonCompilablePath("InputWriteTagRecordsAndCompactCtors.java"), expected);
+            getPath("InputWriteTagRecordsAndCompactCtors.java"), expected);
     }
 
     @Override

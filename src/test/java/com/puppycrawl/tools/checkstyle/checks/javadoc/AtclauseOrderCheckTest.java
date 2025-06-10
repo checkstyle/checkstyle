@@ -241,7 +241,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
             "92: " + getCheckMessage(MSG_KEY, tagOrder),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputAtclauseOrderRecords.java"), expected);
+                getPath("InputAtclauseOrderRecords.java"), expected);
     }
 
     @Test
@@ -262,7 +262,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputAtclauseOrderLotsOfRecords1.java"), expected);
+                getPath("InputAtclauseOrderLotsOfRecords1.java"), expected);
     }
 
     @Test
@@ -270,7 +270,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputAtclauseOrderLotsOfRecords2.java"), expected);
+                getPath("InputAtclauseOrderLotsOfRecords2.java"), expected);
     }
 
     @Test
@@ -278,7 +278,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputAtclauseOrderLotsOfRecords3.java"), expected);
+                getPath("InputAtclauseOrderLotsOfRecords3.java"), expected);
     }
 
     @Test
@@ -286,7 +286,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputAtclauseOrderLotsOfRecords4.java"), expected);
+                getPath("InputAtclauseOrderLotsOfRecords4.java"), expected);
     }
 
     @Test
