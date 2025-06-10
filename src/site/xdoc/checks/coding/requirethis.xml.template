@@ -115,7 +115,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p>
           Please, be aware of the following logic, which is implemented in the check:
@@ -128,7 +128,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example5.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example6-code">
           2) If method parameter is returned from the method, the check will not raise violation for
              returned variable/parameter, for example:

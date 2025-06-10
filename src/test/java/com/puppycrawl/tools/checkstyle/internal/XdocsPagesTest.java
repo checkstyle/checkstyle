@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static java.lang.Integer.parseInt;
 
@@ -55,11 +56,15 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.apache.commons.beanutils.PropertyUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -2246,5 +2251,85 @@ public class XdocsPagesTest {
             precedingNode = precedingNode.getPreviousSibling();
         }
         return precedingNode;
+    }
+
+    @Test
+    public void validateExampleSectionSeparation() throws Exception {
+        final List<Path> templates = collectAllXmlTemplatesUnderSrcSite();
+
+        for (final Path template : templates) {
+            final Document doc = parseXmlToDomDocument(template);
+            final NodeList subsectionList = doc.getElementsByTagName("subsection");
+
+            for (int index = 0; index < subsectionList.getLength(); index++) {
+                final Element subsection = (Element) subsectionList.item(index);
+                if (!"Examples".equals(subsection.getAttribute("name"))) {
+                    continue;
+                }
+
+                final NodeList children = subsection.getChildNodes();
+                String lastExampleIdPrefix = null;
+                boolean separatorSeen = false;
+
+                for (int childIndex = 0; childIndex < children.getLength(); childIndex++) {
+                    final Node child = children.item(childIndex);
+                    if (child.getNodeType() != Node.ELEMENT_NODE) {
+                        continue;
+                    }
+
+                    final Element element = (Element) child;
+                    if ("hr".equals(element.getTagName())
+                            && "example-separator".equals(element.getAttribute("class"))) {
+                        separatorSeen = true;
+                        continue;
+                    }
+
+                    final String currentId = element.getAttribute("id");
+                    if (currentId != null && currentId.startsWith("Example")) {
+                        final String currentExPrefix = getExamplePrefix(currentId);
+                        if (lastExampleIdPrefix != null
+                                && !lastExampleIdPrefix.equals(currentExPrefix)) {
+                            assertWithMessage("Missing <hr class=\"example-separator\"/> "
+                                    + "between " + lastExampleIdPrefix + " and " + currentExPrefix
+                                    + " in file: " + template)
+                                    .that(separatorSeen)
+                                    .isTrue();
+                            separatorSeen = false;
+                        }
+                        lastExampleIdPrefix = currentExPrefix;
+                    }
+                }
+            }
+        }
+    }
+
+    private static List<Path> collectAllXmlTemplatesUnderSrcSite() throws IOException {
+        final Path root = Paths.get("src/site/xdoc");
+        try (Stream<Path> walk = Files.walk(root)) {
+            return walk
+                    .filter(path -> path.getFileName().toString().endsWith(".xml.template"))
+                    .collect(toImmutableList());
+        }
+    }
+
+    private static Document parseXmlToDomDocument(Path template) throws Exception {
+        final DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        dbFactory.setNamespaceAware(true);
+        final DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        final Document doc = dBuilder.parse(template.toFile());
+        doc.getDocumentElement().normalize();
+        return doc;
+    }
+
+    private static String getExamplePrefix(String id) {
+        final int dash = id.indexOf('-');
+        final String result;
+        if (dash == -1) {
+            result = id;
+        }
+        else {
+            result = id.substring(0, dash);
+        }
+        return result;
     }
 }
