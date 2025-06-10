@@ -672,14 +672,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]main[\\/]InputMainComplexityOverflow\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]recordcomponentnumber[\\/]InputRecordComponentNumberMax1\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]recordcomponentnumber[\\/]InputRecordComponentNumberMax20\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]recordcomponentnumber[\\/]InputRecordComponentNumberPrivateModifier\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]recordcomponentnumber[\\/]InputRecordComponentNumber\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]variabledeclarationusagedistance[\\/]InputVariableDeclarationUsageDistanceCheckSwitchExpressions\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableCheckSwitchExpressions\.java"/>
