@@ -6,7 +6,7 @@ allowEmptyTypes = (default)false
 allowEmptyLoops = (default)false
 allowEmptyLambdas = (default)false
 allowEmptyCatches = (default)false
-allowEmptySwitchBlockStatements = true
+allowEmptySwitchBlockStatements = (default)false
 ignoreEnhancedForColon = (default)true
 tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, BXOR, \
          BXOR_ASSIGN, COLON, DIV, DIV_ASSIGN, DO_WHILE, EQUAL, GE, GT, LAMBDA, LAND, \
@@ -19,10 +19,10 @@ tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, B
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
-public class InputWhitespaceAroundSwitchCasesParensWithAllowEmptySwitchBlockStatements {
+public class InputWhitespaceAroundSwitchCasesParens {
 
     void m(int k) {
         switch (k) {
@@ -31,19 +31,29 @@ public class InputWhitespaceAroundSwitchCasesParensWithAllowEmptySwitchBlockStat
             case 2: { }
             case 3:
             case 4: {}
+            // 2 violations above:
+            //                  ''{' is not followed by whitespace.'
+            //                  ''}' is not preceded with whitespace.'
             default: {}
+            // 2 violations above:
+            //                  ''{' is not followed by whitespace.'
+            //                  ''}' is not preceded with whitespace.'
         }
     }
-
     void m2(int k) {
         switch (k) {
             case 1 -> System.out.println("1");
             case 2 -> { }
             case 3 -> {}
+            // 2 violations above:
+            //                  ''{' is not followed by whitespace.'
+            //                  ''}' is not preceded with whitespace.'
             default -> {}
+            // 2 violations above:
+            //                  ''{' is not followed by whitespace.'
+            //                  ''}' is not preceded with whitespace.'
         }
     }
-
     void m3(int k) {
         switch (k) {
             case 1 -> {System.out.println("1");}
@@ -53,7 +63,6 @@ public class InputWhitespaceAroundSwitchCasesParensWithAllowEmptySwitchBlockStat
             default -> { }
         }
     }
-
     void m4(int k) {
         switch (k) {
             case 1 : {System.out.println("1");}
@@ -63,7 +72,6 @@ public class InputWhitespaceAroundSwitchCasesParensWithAllowEmptySwitchBlockStat
             default : { }
         }
     }
-
     void m5(int k) {
         {}
         // 2 violations above:
@@ -76,10 +84,14 @@ public class InputWhitespaceAroundSwitchCasesParensWithAllowEmptySwitchBlockStat
         //                  ''}' is not preceded with whitespace.'
 
     }
-
     void m6(int k) {
         switch (k) {
             case 1: {} {}
+            // 4 violations above:
+            //                  ''{' is not followed by whitespace.'
+            //                  ''}' is not preceded with whitespace.'
+            //                  ''{' is not followed by whitespace.'
+            //                  ''}' is not preceded with whitespace.'
             case 2: { } { }
             case 3: {;}
             // 2 violations above:
@@ -100,7 +112,7 @@ public class InputWhitespaceAroundSwitchCasesParensWithAllowEmptySwitchBlockStat
             case 6: { { } }
             case 7:  {
 
-            }break;
+            }break; // violation, ''}' is not followed by whitespace.'
         }
     }
 }
