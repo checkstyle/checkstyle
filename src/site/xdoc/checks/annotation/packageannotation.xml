@@ -53,7 +53,7 @@ class Example1 {}
 package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
 
 class Example2 {}
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
         <p id="package-info-code">Example of validating package-info.java:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 @Deprecated
