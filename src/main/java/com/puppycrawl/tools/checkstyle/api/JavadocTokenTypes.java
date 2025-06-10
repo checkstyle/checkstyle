@@ -1418,7 +1418,7 @@ public final class JavadocTokenTypes {
      *   |       |   |--START -> <
      *   |       |   |--COLGROUP_HTML_TAG_NAME -> colgroup
      *   |       |   `--END -> >
-     *   |       |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *   |       |--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *   |       |   `--COL_TAG -> COL_TAG
      *   |       |       |--START -> <
      *   |       |       |--COL_HTML_TAG_NAME -> col
@@ -1588,7 +1588,7 @@ public final class JavadocTokenTypes {
      *   |--NEWLINE -> \r\n
      *   |--LEADING_ASTERISK ->  *
      *   |--TEXT ->
-     *   |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *   |--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *   |   `--META_TAG -> META_TAG
      *   |       |--START -> <
      *   |       |--META_HTML_TAG_NAME -> meta
@@ -1684,7 +1684,7 @@ public final class JavadocTokenTypes {
      *        |--LEADING_ASTERISK ->  *
      *        |--TEXT ->
      *        |--HTML_ELEMENT -> HTML_ELEMENT
-     *        |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *        |   '--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *        |       `--AREA_TAG -> AREA_TAG
      *        |           |--START -> <
      *        |           |--AREA_HTML_TAG_NAME -> area
@@ -1722,7 +1722,7 @@ public final class JavadocTokenTypes {
      *       |--LEADING_ASTERISK ->  *
      *       |--TEXT ->  text before break
      *       |--HTML_ELEMENT -> HTML_ELEMENT
-     *       |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *       |   '--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *       |       `--BR_TAG -> BR_TAG
      *       |           |--START -> <
      *       |           |--BR_HTML_TAG_NAME -> br
@@ -1749,7 +1749,7 @@ public final class JavadocTokenTypes {
      * <pre>
      * {@code
      * |--HTML_ELEMENT -> HTML_ELEMENT
-     * |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     * |   '--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      * |       `--FRAME_TAG -> FRAME_TAG
      * |           |--START -> <
      * |           |--FRAME_HTML_TAG_NAME -> frame
@@ -1774,7 +1774,7 @@ public final class JavadocTokenTypes {
      * {@code
      *  |--TEXT ->  text before horizontal rule
      *  |--HTML_ELEMENT -> HTML_ELEMENT
-     *  |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *  |   '--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *  |       `--HR_TAG -> HR_TAG
      *  |           |--START -> <
      *  |           |--HR_HTML_TAG_NAME -> hr
@@ -1799,7 +1799,7 @@ public final class JavadocTokenTypes {
      *  <pre>
      *  {@code
      *    HTML_ELEMENT -> HTML_ELEMENT
-     *       `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *       '--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *         `--INPUT_TAG -> INPUT_TAG
      *             |--START -> <
      *             |--INPUT_HTML_TAG_NAME -> input
@@ -1841,7 +1841,7 @@ public final class JavadocTokenTypes {
      *  <pre>
      *  {@code
      *  HTML_ELEMENT -> HTML_ELEMENT
-     *  `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *  '--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *      `--LINK_TAG -> LINK_TAG
      *          |--START -> <
      *          |--LINK_HTML_TAG_NAME -> link
@@ -1875,7 +1875,7 @@ public final class JavadocTokenTypes {
      *   <pre>
      *   {@code
      *   HTML_ELEMENT -> HTML_ELEMENT
-     *    `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *    '--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *       `--META_TAG -> META_TAG
      *          |--START -> <
      *          |--META_HTML_TAG_NAME -> meta
@@ -2540,7 +2540,7 @@ public final class JavadocTokenTypes {
      *       |       |--NEWLINE -> \n
      *       |       |--LEADING_ASTERISK ->  *
      *       |       |--TEXT ->
-     *       |       |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *       |       |--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *       |       |   `--COL_TAG -> COL_TAG
      *       |       |       |--START -> <
      *       |       |       |--COL_HTML_TAG_NAME -> col
@@ -2549,7 +2549,7 @@ public final class JavadocTokenTypes {
      *       |       |--NEWLINE -> \n
      *       |       |--LEADING_ASTERISK ->  *
      *       |       |--TEXT ->
-     *       |       |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *       |       |--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *       |       |   `--COL_TAG -> COL_TAG
      *       |       |       |--START -> <
      *       |       |       |--COL_HTML_TAG_NAME -> col
@@ -2768,12 +2768,14 @@ public final class JavadocTokenTypes {
     public static final int RP_TAG_END =
             JavadocParser.RULE_rpTagEnd + RULE_TYPES_OFFSET;
 
-    /////////////////////// SINGLETON HTML TAGS  //////////////////////////////////////////////////
+    /////////////////////// VOID HTML ELEMENTS //////////////////////////////////////////////////
     /**
-     * Parent node for all singleton html tags.
-     */
-    public static final int SINGLETON_ELEMENT = JavadocParser.RULE_singletonElement
-            + RULE_TYPES_OFFSET;
+    * Parent node for all void (self-closing) HTML tags.
+    * Example: {@code <br>, <img>, <col>}
+    */
+    public static final int VOID_HTML_ELEMENT = JavadocParser.RULE_singletonElement
+          + RULE_TYPES_OFFSET;
+
 
     /**
      * Represents an empty (self-closing) HTML tag in Javadoc comments,
@@ -2785,7 +2787,7 @@ public final class JavadocTokenTypes {
      * <p><b>AST Tree:</b></p>
      * <pre>{@code
      * --HTML_ELEMENT -&gt; HTML_ELEMENT
-     *   `--SINGLETON_ELEMENT -&gt; SINGLETON_ELEMENT
+     *   `--VOID_HTML_ELEMENT -&gt; VOID_HTML_ELEMENT
      *     `--EMPTY_TAG -&gt; EMPTY_TAG
      *       |--START -&gt; &lt;
      *       |--HTML_TAG_NAME -&gt; justsometag
@@ -2809,7 +2811,7 @@ public final class JavadocTokenTypes {
      *        |--LEADING_ASTERISK ->  *
      *        |--TEXT ->
      *        |--HTML_ELEMENT -> HTML_ELEMENT
-     *        |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *        |   '--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *        |       `--AREA_TAG -> AREA_TAG
      *        |           |--START -> <
      *        |           |--AREA_HTML_TAG_NAME -> area
@@ -2846,14 +2848,14 @@ public final class JavadocTokenTypes {
      * |--LEADING_ASTERISK ->  *
      * |--TEXT ->
      * |--HTML_ELEMENT -> HTML_ELEMENT
-     * |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     * |   '--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      * |       `--BR_TAG -> BR_TAG
      * |           |--START -> <
      * |           |--BR_HTML_TAG_NAME -> br
      * |           `--END -> >
      * |--TEXT ->  line breaks
      * |--HTML_ELEMENT -> HTML_ELEMENT
-     * |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     * |   '--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      * |       `--BR_TAG -> BR_TAG
      * |           |--START -> <
      * |           |--BR_HTML_TAG_NAME -> br
@@ -2891,7 +2893,7 @@ public final class JavadocTokenTypes {
      *     |--LEADING_ASTERISK ->  *
      *     |--TEXT ->
      *     |--HTML_ELEMENT -> HTML_ELEMENT
-     *     |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *     |   '--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *     |       `--FRAME_TAG -> FRAME_TAG
      *     |           |--START -> <
      *     |           |--FRAME_HTML_TAG_NAME -> frame
@@ -2925,7 +2927,7 @@ public final class JavadocTokenTypes {
      *   |--LEADING_ASTERISK ->  *
      *   |--TEXT ->  text above line
      *   |--HTML_ELEMENT -> HTML_ELEMENT
-     *   |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *   |   '--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *   |       `--HR_TAG -> HR_TAG
      *   |           |--START -> <
      *   |           |--HR_HTML_TAG_NAME -> hr
@@ -2951,7 +2953,7 @@ public final class JavadocTokenTypes {
      *        |--LEADING_ASTERISK ->  *
      *        |--TEXT ->
      *        |--HTML_ELEMENT -> HTML_ELEMENT
-     *        |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *        |   '--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *        |       `--IMG_TAG -> IMG_TAG
      *        |           |--START -> <
      *        |           |--IMG_HTML_TAG_NAME -> img
@@ -2996,7 +2998,7 @@ public final class JavadocTokenTypes {
      *        |--LEADING_ASTERISK ->  *
      *        |--TEXT ->   Type here:
      *        |--HTML_ELEMENT -> HTML_ELEMENT
-     *        |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *        |   '--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *        |       `--INPUT_TAG -> INPUT_TAG
      *        |           |--START -> <
      *        |           |--INPUT_HTML_TAG_NAME -> input
@@ -3044,7 +3046,7 @@ public final class JavadocTokenTypes {
      *   |       |--NEWLINE -> \r\n
      *   |       |--LEADING_ASTERISK ->  *
      *   |       |--TEXT ->
-     *   |       |--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *   |       |--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *   |       |   `--ISINDEX_TAG -> ISINDEX_TAG
      *   |       |       |--START -> <
      *   |       |       |--ISINDEX_HTML_TAG_NAME -> isindex
@@ -3079,7 +3081,7 @@ public final class JavadocTokenTypes {
      * <pre>
      * {@code
      * HTML_ELEMENT -> HTML_ELEMENT
-     *     `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *     '--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *      `--LINK_TAG -> LINK_TAG
      *          |--START -> <
      *          |--LINK_HTML_TAG_NAME -> link
@@ -3110,7 +3112,7 @@ public final class JavadocTokenTypes {
      *        |--LEADING_ASTERISK ->  *
      *        |--TEXT ->
      *        |--HTML_ELEMENT -> HTML_ELEMENT
-     *        |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *        |   '--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *        |       `--META_TAG -> META_TAG
      *        |           |--START -> <
      *        |           |--META_HTML_TAG_NAME -> meta
@@ -3141,7 +3143,7 @@ public final class JavadocTokenTypes {
      * <pre>
      * {@code
      *    |--HTML_ELEMENT -> HTML_ELEMENT
-     *    |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *    |   '--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *    |       `--EMBED_TAG -> EMBED_TAG
      *    |           |--START -> <
      *    |           |--EMBED_HTML_TAG_NAME -> embed
@@ -3170,7 +3172,7 @@ public final class JavadocTokenTypes {
     /**
      * HTML void element {@code <keygen>}.
      *
-     * @see #SINGLETON_ELEMENT
+     * @see #VOID_HTML_ELEMENT
      * @see <a href="https://www.w3.org/TR/html51/sec-forms.html#elementdef-keygen">
      *     W3 docs</a>
      */
@@ -3179,7 +3181,7 @@ public final class JavadocTokenTypes {
     /**
      * HTML void element {@code <source>}.
      *
-     * @see #SINGLETON_ELEMENT
+     * @see #VOID_HTML_ELEMENT
      * @see <a href=
      *     "https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-media-source">
      *     W3 docs</a>
@@ -3197,7 +3199,7 @@ public final class JavadocTokenTypes {
      * <pre>
      * {@code
      *    |--HTML_ELEMENT -> HTML_ELEMENT
-     *    |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *    |   '--VOID_HTML_ELEMENT -> VOID_HTML_ELEMENT
      *    |       `--TRACK_TAG -> TRACK_TAG
      *    |           |--START -> <
      *    |           |--TRACK_HTML_TAG_NAME -> track
@@ -3226,7 +3228,7 @@ public final class JavadocTokenTypes {
     /**
      * HTML void element {@code <wbr>}.
      *
-     * @see #SINGLETON_ELEMENT
+     * @see #VOID_HTML_ELEMENT
      * @see <a href="https://www.w3.org/TR/html51/textlevel-semantics.html#elementdef-wbr">
      *     W3 docs</a>
      */

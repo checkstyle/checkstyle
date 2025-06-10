@@ -457,7 +457,7 @@ public class JavadocTokenTypesTest {
             .that(JavadocTokenTypes.THEAD_TAG_END)
             .isEqualTo(10049);
         assertWithMessage(msg)
-            .that(JavadocTokenTypes.SINGLETON_ELEMENT)
+            .that(JavadocTokenTypes.VOID_HTML_ELEMENT)
             .isEqualTo(10051);
         assertWithMessage(msg)
             .that(JavadocTokenTypes.EMPTY_TAG)
