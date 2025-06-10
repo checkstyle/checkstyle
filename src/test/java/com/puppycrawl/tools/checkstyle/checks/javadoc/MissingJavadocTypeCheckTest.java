@@ -348,7 +348,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
             "41:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMissingJavadocTypeRecords.java"),
+                getPath("InputMissingJavadocTypeRecords.java"),
             expected);
     }
 
