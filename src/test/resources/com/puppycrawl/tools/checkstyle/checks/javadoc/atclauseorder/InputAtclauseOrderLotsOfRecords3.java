@@ -9,7 +9,7 @@ tagOrder = @author, @version, @param, @return, @throws, @exception, @see, @since
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 
 import java.io.IOException;
@@ -84,7 +84,7 @@ public class InputAtclauseOrderLotsOfRecords3 {
     record R5(String...args) {
     }
 
-    record R6(long l, String...args) implements java.io.Serializable {
+    record R6(long l, String...args) implements Serializable {
     }
 
     record R7(String s1, String s2, String...args) {

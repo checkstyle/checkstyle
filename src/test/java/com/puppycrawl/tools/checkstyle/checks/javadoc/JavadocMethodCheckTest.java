@@ -464,7 +464,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "102:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputJavadocMethodRecordsAndCompactCtors.java"), expected);
+                getPath("InputJavadocMethodRecordsAndCompactCtors.java"), expected);
     }
 
     @Test
@@ -487,7 +487,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCompilationUnit() throws Exception {
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputJavadocMethodCompilationUnit.java"),
+                getPath("InputJavadocMethodCompilationUnit.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 
@@ -556,7 +556,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     public void testJavadocMethodRecords() throws Exception {
         final String[] expected = {};
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputJavadocMethodRecords.java"), expected);
+                getPath("InputJavadocMethodRecords.java"), expected);
     }
 
     @Test
@@ -566,14 +566,14 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "52:12: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "lastName"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputJavadocMethodRecords2.java"), expected);
+                getPath("InputJavadocMethodRecords2.java"), expected);
     }
 
     @Test
     public void testJavadocMethodRecords3() throws Exception {
         final String[] expected = {};
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputJavadocMethodRecords3.java"), expected);
+                getPath("InputJavadocMethodRecords3.java"), expected);
     }
 
     @Test

@@ -357,7 +357,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "65:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputJavadocTypeRecords.java"), expected);
+                getPath("InputJavadocTypeRecords.java"), expected);
     }
 
     @Test
@@ -366,7 +366,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputJavadocTypeRecordComponents.java"), expected);
+                getPath("InputJavadocTypeRecordComponents.java"), expected);
     }
 
     @Test
@@ -393,7 +393,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputJavadocTypeRecordParamDescriptionWithAngularTags.java"),
                 expected);
     }
@@ -416,7 +416,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "81:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myString"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputJavadocTypeRecordComponents2.java"), expected);
+                getPath("InputJavadocTypeRecordComponents2.java"), expected);
     }
 
     @Test
