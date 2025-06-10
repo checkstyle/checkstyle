@@ -62,8 +62,8 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     /**
      * Message key of error message.
      */
-    public static final String MSG_JAVADOC_WRONG_SINGLETON_TAG =
-            JavadocDetailNodeParser.MSG_JAVADOC_WRONG_SINGLETON_TAG;
+    public static final String MSG_JAVADOC_WRONG_VOID_TAG =
+            JavadocDetailNodeParser.MSG_JAVADOC_WRONG_VOID_TAG;
 
     /**
      * Parse error while rule recognition.

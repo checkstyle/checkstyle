@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_MISSED_HTML_CLOSE;
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_PARSE_RULE_ERROR;
-import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_WRONG_SINGLETON_TAG;
+import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_WRONG_VOID_TAG;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
 import java.io.File;
@@ -117,12 +117,12 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     public void testWrongSingletonParseErrorMessage() throws Exception {
         final String actual = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                 "getParseErrorMessage",
-                new ParseErrorMessage(100, MSG_JAVADOC_WRONG_SINGLETON_TAG,
+                new ParseErrorMessage(100, MSG_JAVADOC_WRONG_VOID_TAG,
                         9, "tag"));
         final LocalizedMessage violation = new LocalizedMessage(
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
                 DetailNodeTreeStringPrinter.class,
-                MSG_JAVADOC_WRONG_SINGLETON_TAG,
+                MSG_JAVADOC_WRONG_VOID_TAG,
                 9,
                 "tag");
         final String expected = "[ERROR:100] " + violation.getMessage();
