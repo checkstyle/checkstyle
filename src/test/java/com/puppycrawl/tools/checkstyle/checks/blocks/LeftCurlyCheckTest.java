@@ -364,7 +364,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
             "59:21: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 21),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputLeftCurlyTestSwitchExpressions.java"), expected);
+                getPath("InputLeftCurlyTestSwitchExpressions.java"), expected);
     }
 
     @Test
@@ -377,7 +377,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
             "54:23: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 23),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputLeftCurlyTestSwitchExpressionsNewLine.java"),
+                getPath("InputLeftCurlyTestSwitchExpressionsNewLine.java"),
             expected);
     }
 
@@ -451,7 +451,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
             "56:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputLeftCurlyTestRecordsAndCompactCtors.java"), expected);
+                getPath("InputLeftCurlyTestRecordsAndCompactCtors.java"), expected);
     }
 
     @Test

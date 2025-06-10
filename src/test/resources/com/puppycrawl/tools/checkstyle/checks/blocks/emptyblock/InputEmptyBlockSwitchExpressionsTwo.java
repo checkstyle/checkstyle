@@ -6,11 +6,11 @@ tokens = LITERAL_DEFAULT, LITERAL_CASE, LITERAL_SWITCH
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
 
 public class InputEmptyBlockSwitchExpressionsTwo {
-    void howMany7(Nums k) {
+    void howMany7(NumsTwo k) {
         switch (k) {
             case ONE -> System.out.println("case one");
             case TWO, THREE -> { System.out.println("case two");}
@@ -19,7 +19,7 @@ public class InputEmptyBlockSwitchExpressionsTwo {
         }
     }
 
-    void howMany8(Nums k) {
+    void howMany8(NumsTwo k) {
         switch (k) {
             case ONE -> System.out.println("case two");
             case TWO, THREE -> {} // violation, 'Must have at least one statement'
@@ -31,4 +31,4 @@ public class InputEmptyBlockSwitchExpressionsTwo {
     }
 }
 
-enum Nums {ONE, TWO, THREE, FOUR}
+enum NumsTwo {ONE, TWO, THREE, FOUR}

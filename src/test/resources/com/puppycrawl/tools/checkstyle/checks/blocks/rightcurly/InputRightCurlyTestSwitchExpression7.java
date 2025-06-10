@@ -5,12 +5,12 @@ tokens = LITERAL_SWITCH
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 public class InputRightCurlyTestSwitchExpression7 {
 
-      String isDayNameLong(Day day) {
+      String isDayNameLong(DayOne day) {
           return switch (day) {
               case MON, FRI, SUN -> 6;
               case TUE -> 7;
@@ -19,7 +19,7 @@ public class InputRightCurlyTestSwitchExpression7 {
           } > 7 ? "long" : "short";
       }
 
-     int arithmetic(Day day) {
+     int arithmetic(DayOne day) {
          return switch (day) {
              case MON, FRI, SUN -> 6;
              case TUE -> 7;
@@ -28,7 +28,7 @@ public class InputRightCurlyTestSwitchExpression7 {
          } % 2;
      }
 
-     int signArithmetic(Day day) {
+     int signArithmetic(DayOne day) {
          return -switch (day) {
              case MON, FRI, SUN -> 6;
              case TUE -> 7;
@@ -37,7 +37,7 @@ public class InputRightCurlyTestSwitchExpression7 {
          };
      }
 
-     int usedOnBothSidesOfArithmeticExpression(Day day) {
+     int usedOnBothSidesOfArithmeticExpression(DayOne day) {
          return switch (day) {
              case MON, TUE -> 0;
              case WED -> 1;
@@ -85,6 +85,6 @@ class DefiniteAssignment1 {
     }
 }
 
-enum Day {
+enum DayOne {
     MON, TUE, WED, THU, FRI, SAT, SUN
 }
