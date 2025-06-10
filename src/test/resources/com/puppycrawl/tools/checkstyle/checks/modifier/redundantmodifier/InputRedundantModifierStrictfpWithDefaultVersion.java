@@ -2,15 +2,14 @@
 RedundantModifier
 tokens = (default)METHOD_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, INTERFACE_DEF, \
          CTOR_DEF, CLASS_DEF, ENUM_DEF, RESOURCE
-jdkVersion = 17
 
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
-public class InputRedundantModifierStrictfpWithJava17 {
+public class InputRedundantModifierStrictfpWithDefaultVersion {
 
     public static strictfp class Test { }
     // violation above, 'Redundant 'strictfp' modifier'
