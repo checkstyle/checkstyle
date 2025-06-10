@@ -146,7 +146,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMethodLengthTextBlocksCountEmpty.java"),
+                getPath("InputMethodLengthTextBlocksCountEmpty.java"),
                 expected);
     }
 
@@ -164,7 +164,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMethodLengthRecordsAndCompactCtors.java"),
+                getPath("InputMethodLengthRecordsAndCompactCtors.java"),
                 expected);
     }
 
@@ -181,7 +181,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMethodLengthCompactCtorsCountEmpty.java"),
+                getPath("InputMethodLengthCompactCtorsCountEmpty.java"),
                 expected);
     }
 
