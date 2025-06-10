@@ -4,14 +4,14 @@ BooleanExpressionComplexity
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.metrics.booleanexpressioncomplexity;
 
 public record InputBooleanExpressionComplexityRecordLeaves() {
     public InputBooleanExpressionComplexityRecordLeaves {
     }
 
-    public static final ConstructingObjectParser PARSER = new ConstructingObjectParser(
+    public static final ConstructingObjectParserTwo PARSER = new ConstructingObjectParserTwo(
         "restore_snapshot",
         true,
         () -> {
@@ -22,6 +22,6 @@ public record InputBooleanExpressionComplexityRecordLeaves() {
         }
     );
 }
-class ConstructingObjectParser {
-    public ConstructingObjectParser(String name, boolean value, Runnable t) {}
+class ConstructingObjectParserTwo {
+    public ConstructingObjectParserTwo(String name, boolean value, Runnable t) {}
 }

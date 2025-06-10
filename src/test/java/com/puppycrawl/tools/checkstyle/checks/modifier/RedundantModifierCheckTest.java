@@ -342,7 +342,7 @@ public class RedundantModifierCheckTest
             "47:15: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRedundantModifierRecords.java"), expected);
+                getPath("InputRedundantModifierRecords.java"), expected);
     }
 
     @Test
@@ -375,7 +375,7 @@ public class RedundantModifierCheckTest
             "34:9: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRedundantModifierStrictfpWithVersionBeforeJava9.java"),
+                getPath("InputRedundantModifierStrictfpWithVersionBeforeJava9.java"),
                 expected);
     }
 
@@ -388,7 +388,7 @@ public class RedundantModifierCheckTest
             "34:9: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRedundantModifierStrictfpWithOldVersion.java"),
+                getPath("InputRedundantModifierStrictfpWithOldVersion.java"),
                 expected);
     }
 
@@ -409,7 +409,7 @@ public class RedundantModifierCheckTest
             "42:15: " + getCheckMessage(MSG_KEY, "strictfp"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRedundantModifierStrictfpWithJava17.java"),
+                getPath("InputRedundantModifierStrictfpWithJava17.java"),
                 expected);
     }
 
@@ -430,7 +430,7 @@ public class RedundantModifierCheckTest
             "41:15: " + getCheckMessage(MSG_KEY, "strictfp"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRedundantModifierStrictfpWithDefaultVersion.java"),
+                getPath("InputRedundantModifierStrictfpWithDefaultVersion.java"),
                 expected);
     }
 

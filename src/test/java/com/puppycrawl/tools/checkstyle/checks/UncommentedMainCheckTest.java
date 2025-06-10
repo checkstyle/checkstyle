@@ -142,16 +142,16 @@ public class UncommentedMainCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                 "InputUncommentedMainRecords.java"), expected);
     }
 
     @Test
     public void testStateIsClearedOnBeginTree() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
-        final String file1 = getNonCompilablePath(
+        final String file1 = getPath(
                 "InputUncommentedMainRecords2.java");
-        final String file2 = getNonCompilablePath(
+        final String file2 = getPath(
                 "InputUncommentedMainBeginTree2.java");
         final List<String> expectedFirstInput = List.of(
                 "12:5: " + getCheckMessage(MSG_KEY),
