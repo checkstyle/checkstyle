@@ -82,7 +82,7 @@ public class NoLineWrapCheckTest
             "49:13: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputNoLineWrapRecordsAndCompactCtors.java"),
+                getPath("InputNoLineWrapRecordsAndCompactCtors.java"),
                 expected);
     }
 
