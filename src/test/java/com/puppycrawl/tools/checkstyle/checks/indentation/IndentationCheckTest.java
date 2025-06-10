@@ -1327,7 +1327,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "59:9: " + getCheckMessage(MSG_ERROR, "\"\"\"", 8, 12),
             "78:15: " + getCheckMessage(MSG_ERROR, "\"\"\"", 14, 12),
         };
-        verifyWarns(checkConfig, getNonCompilablePath("InputIndentationTextBlock.java"),
+        verifyWarns(checkConfig, getPath("InputIndentationTextBlock.java"),
             expected);
     }
 
@@ -1516,7 +1516,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "77:9: " + getCheckMessage(MSG_ERROR, "yield", 8, 16),
         };
         verifyWarns(checkConfig,
-                getNonCompilablePath("InputIndentationYieldForceStrict.java"), expected);
+                getPath("InputIndentationYieldForceStrict.java"), expected);
     }
 
     @Test
@@ -1892,7 +1892,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("throwsIndent", "4");
         final String fileName =
-            getNonCompilablePath("InputIndentationMultilineStatements.java");
+            getPath("InputIndentationMultilineStatements.java");
 
         final String[] expected = {
             "23:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 6, 8),
@@ -3385,7 +3385,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWarns(checkConfig,
-                getNonCompilablePath("InputIndentationCheckSwitchExpression.java"),
+                getPath("InputIndentationCheckSwitchExpression.java"),
                 expected);
     }
 
@@ -3403,7 +3403,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWarns(checkConfig,
-            getNonCompilablePath("InputIndentationYieldStatement.java"),
+            getPath("InputIndentationYieldStatement.java"),
             expected);
     }
 
@@ -3413,7 +3413,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig,
-            getNonCompilablePath("InputIndentationCheckSwitchExpressionCorrect.java"),
+            getPath("InputIndentationCheckSwitchExpressionCorrect.java"),
             expected);
     }
 
@@ -3434,7 +3434,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "58:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
         };
         verifyWarns(checkConfig,
-            getNonCompilablePath("InputIndentationCheckSwitchExpressionDeclaration.java"),
+            getPath("InputIndentationCheckSwitchExpressionDeclaration.java"),
             expected);
     }
 
@@ -3449,7 +3449,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "58:13: " + getCheckMessage(MSG_ERROR, "switch lcurly", 12, 8),
         };
         verifyWarns(checkConfig,
-            getNonCompilablePath(
+            getPath(
                     "InputIndentationCheckSwitchExpressionDeclarationLCurlyNewLine.java"),
             expected);
     }
@@ -3469,7 +3469,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWarns(checkConfig,
-            getNonCompilablePath("InputIndentationRecords.java"),
+            getPath("InputIndentationRecords.java"),
             expected);
     }
 
@@ -3487,7 +3487,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWarns(checkConfig,
-            getNonCompilablePath("InputIndentationRecordsAndCompactCtors.java"),
+            getPath("InputIndentationRecordsAndCompactCtors.java"),
             expected);
     }
 
@@ -3501,7 +3501,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWarns(checkConfig,
-            getNonCompilablePath("InputIndentationCheckSwitchExpressionNewLine.java"),
+            getPath("InputIndentationCheckSwitchExpressionNewLine.java"),
             expected);
     }
 
@@ -3568,7 +3568,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWarns(checkConfig,
-            getNonCompilablePath("InputIndentationLineWrappedRecordDeclaration.java"),
+            getPath("InputIndentationLineWrappedRecordDeclaration.java"),
             expected);
     }
 
@@ -3759,7 +3759,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWarns(checkConfig,
-                getNonCompilablePath("InputIndentationSwitchOnStartOfLine.java"), expected);
+                getPath("InputIndentationSwitchOnStartOfLine.java"), expected);
     }
 
     @Test
@@ -3771,7 +3771,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("caseIndent", "2");
         checkConfig.addProperty("lineWrappingIndentation", "4");
 
-        final String fileName = getNonCompilablePath(
+        final String fileName = getPath(
                 "InputIndentationSwitchExpressionWrappingIndentation.java");
         final String[] expected = {
             "41:7: " + getCheckMessage(MSG_ERROR, "switch", 6, 8),
@@ -3794,7 +3794,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("caseIndent", "2");
         checkConfig.addProperty("lineWrappingIndentation", "4");
 
-        final String fileName = getNonCompilablePath(
+        final String fileName = getPath(
                 "InputIndentationLambdaChild.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, fileName, expected);
@@ -3840,7 +3840,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("caseIndent", "4");
         checkConfig.addProperty("throwsIndent", "4");
 
-        final String fileName = getNonCompilablePath(
+        final String fileName = getPath(
                 "InputIndentationCheckSingleSwitchStatementsWithoutCurly.java");
         final String[] expected = {
             "31:13: " + getCheckMessage(MSG_ERROR, "lambda", 12, 16),
@@ -3931,7 +3931,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "47:13: " + getCheckMessage(MSG_ERROR, "for rcurly", 12, 14),
         };
         verifyWarns(checkConfig,
-                getNonCompilablePath("InputIndentationCodeBlocks2.java"), expected);
+                getPath("InputIndentationCodeBlocks2.java"), expected);
     }
 
     @Test
