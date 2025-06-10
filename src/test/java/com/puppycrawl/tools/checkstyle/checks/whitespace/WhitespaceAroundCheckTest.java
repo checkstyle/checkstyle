@@ -264,7 +264,7 @@ public class WhitespaceAroundCheckTest
     public void testSwitchExpressionWhitespaceAround() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputWhitespaceAroundSwitchExpressions.java"), expected);
+                getPath("InputWhitespaceAroundSwitchExpressions.java"), expected);
     }
 
     @Test
@@ -484,7 +484,7 @@ public class WhitespaceAroundCheckTest
             "74:29: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputWhitespaceAroundRecords.java"), expected);
+                getPath("InputWhitespaceAroundRecords.java"), expected);
     }
 
     @Test
@@ -523,7 +523,7 @@ public class WhitespaceAroundCheckTest
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputWhitespaceAroundRecordsAllowEmptyTypes.java"),
+                getPath("InputWhitespaceAroundRecordsAllowEmptyTypes.java"),
                 expected);
     }
 
@@ -647,7 +647,7 @@ public class WhitespaceAroundCheckTest
             "115:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "}"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputWhitespaceAroundSwitchCasesParens.java"),
+                getPath("InputWhitespaceAroundSwitchCasesParens.java"),
                 expected);
     }
 
@@ -677,7 +677,7 @@ public class WhitespaceAroundCheckTest
             "96:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(fileName),
+                getPath(fileName),
                 expected);
     }
 }
