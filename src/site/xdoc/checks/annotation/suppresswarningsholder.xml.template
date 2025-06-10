@@ -66,7 +66,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example3-config">
           You can also use simple check name like <code>ParameterNumberCheck=paramnum</code>
           instead to use fully qualified name of check in the <code>aliasList</code>:
@@ -81,7 +81,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example3.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           The check can also be used without suffix of &quot;Check&quot; like
           <code>ParameterNumber=paramnum</code> in the <code>aliasList</code>:
