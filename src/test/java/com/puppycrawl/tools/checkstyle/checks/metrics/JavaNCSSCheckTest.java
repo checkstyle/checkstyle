@@ -102,7 +102,7 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputJavaNCSSRecordsAndCompactCtors.java"),
+                getPath("InputJavaNCSSRecordsAndCompactCtors.java"),
                 expected);
     }
 
@@ -125,7 +125,7 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputJavaNCSSRecordsMax.java"),
+                getPath("InputJavaNCSSRecordsMax.java"),
                 expected);
     }
 

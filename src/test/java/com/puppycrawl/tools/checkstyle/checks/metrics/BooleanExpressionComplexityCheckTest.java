@@ -109,7 +109,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputBooleanExpressionComplexityRecordsAndCompactCtors.java"),
                 expected);
     }
@@ -129,7 +129,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputBooleanExpressionComplexityRecordLeaves.java"),
+                getPath("InputBooleanExpressionComplexityRecordLeaves.java"),
                 expected);
     }
 

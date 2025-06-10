@@ -190,7 +190,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputClassDataAbstractionCouplingRecords.java"),
+                getPath("InputClassDataAbstractionCouplingRecords.java"),
             expected);
     }
 
