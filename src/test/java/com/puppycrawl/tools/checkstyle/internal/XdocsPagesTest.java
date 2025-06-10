@@ -55,11 +55,15 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.apache.commons.beanutils.PropertyUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -2246,5 +2250,87 @@ public class XdocsPagesTest {
             precedingNode = precedingNode.getPreviousSibling();
         }
         return precedingNode;
+    }
+
+    /**
+     * Verifies that all example blocks in XDoc templates are correctly separated by
+     * <hr class="example-separator"/> tags to maintain visual consistency.
+     */
+    @Test
+    public void validateExampleSectionSeparation() throws Exception {
+        final Path root = Paths.get("src/site/xdoc");
+        // Collect all .xml.template files under src/site/xdoc
+        final List<Path> templates = Files.walk(root)
+                .filter(path -> path.getFileName().toString().endsWith(".xml.template"))
+                .collect(Collectors.toList());
+
+        for (final Path template : templates) {
+            // Set up XML DOM parser
+            final DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            dbFactory.setNamespaceAware(true);
+            final DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            final Document doc = dBuilder.parse(template.toFile());
+            doc.getDocumentElement().normalize();
+            // Only process <subsection name="Examples">
+            final NodeList subsectionList = doc.getElementsByTagName("subsection");
+            for (int index = 0; index < subsectionList.getLength(); index++) {
+                final Element subsection = (Element) subsectionList.item(index);
+                if (!"Examples".equals(subsection.getAttribute("name"))) {
+                    continue;
+                }
+
+                final NodeList children = subsection.getChildNodes();
+                String lastExampleIdPrefix = null;
+                boolean separatorSeen = false;
+                // Iterate through all child nodes in the "Examples" subsection
+                for (int childIndex = 0; childIndex < children.getLength(); childIndex++) {
+                    final Node child = children.item(childIndex);
+                    if (Node.ELEMENT_NODE != child.getNodeType()) {
+                        continue;
+                    }
+                    // Check the presence of the required separator tag
+                    final Element element = (Element) child;
+                    if ("hr".equals(element.getTagName())
+                            && "example-separator".equals(element.getAttribute("class"))) {
+                        separatorSeen = true;
+                        continue;
+                    }
+
+                    final String currentId = element.getAttribute("id");
+                    if (null != currentId && currentId.startsWith("Example")) {
+                        final String currentExamplePrefix = getExamplePrefix(currentId);
+                        // If we transition to a new example block, assert a separator was seen
+                        if (null != lastExampleIdPrefix
+                                && !lastExampleIdPrefix.equals(currentExamplePrefix)) {
+                            assertWithMessage("Missing <hr class=\"example-separator\"/> between "
+                                    + lastExampleIdPrefix + " and " + currentExamplePrefix
+                                    + " in file: " + template)
+                                    .that(separatorSeen)
+                                    .isTrue();
+                            separatorSeen = false;
+                        }
+                        lastExampleIdPrefix = currentExamplePrefix;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Extracts the prefix (e.g., "Example1") from an id like "Example1-code".
+     *
+     * @param id the full ID attribute
+     * @return the example prefix before the first dash, or the full ID if no dash is found
+     */
+    private static String getExamplePrefix(String id) {
+        final int dash = id.indexOf('-');
+        final String result;
+        if (dash == -1) {
+            result = id;
+        }
+        else {
+            result = id.substring(0, dash);
+        }
+        return result;
     }
 }
