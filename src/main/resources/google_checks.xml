@@ -59,6 +59,12 @@
              value="^package.*|^import.*|href\s*=\s*&quot;[^&quot;]*&quot;|http://|https://|ftp://"/>
   </module>
 
+  <module name="RegexpMultiline">
+    <property name="id" value="WhitespaceAfterDoubleSlashs"/>
+    <property name="format" value="(?&lt;!:)\/\/(?!/)[^ \n]" />
+    <property name="message" value="Trailing comments must have a whitespace after // ."/>
+  </module>
+
   <module name="TreeWalker">
     <module name="OuterTypeFilename"/>
     <module name="IllegalTokenText">
