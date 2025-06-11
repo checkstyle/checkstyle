@@ -1,4 +1,4 @@
-//non-compiled with javac: Compilable with Java21
+// non-compiled with javac: Compilable with Java21
 
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
 
