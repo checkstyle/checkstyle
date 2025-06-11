@@ -61,7 +61,7 @@ public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
         };
 
         verifyWithInlineConfigParser(
-            getNonCompilablePath("InputUnnecessarySemicolonAfterOuterTypeDeclarationRecords.java"),
+            getPath("InputUnnecessarySemicolonAfterOuterTypeDeclarationRecords.java"),
             expected);
     }
 

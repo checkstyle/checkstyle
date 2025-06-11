@@ -157,7 +157,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "58:18: " + getCheckMessage(MSG_RETURN),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputUnnecessaryParenthesesCheckSwitchExpression.java"),
                 expected);
     }
@@ -178,7 +178,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "28:32: " + getCheckMessage(MSG_STRING, "\"\\n        and another li...\""),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                 "InputUnnecessaryParenthesesCheckTextBlocks.java"),
             expected);
     }

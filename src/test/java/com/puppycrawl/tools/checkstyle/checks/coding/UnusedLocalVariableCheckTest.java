@@ -367,7 +367,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
             "36:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "var2"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputUnusedLocalVariableRecords.java"),
+                getPath("InputUnusedLocalVariableRecords.java"),
                 expected);
     }
 
@@ -415,7 +415,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
             "16:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "line2"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputUnusedLocalVariableSwitchExpression.java"),
+                getPath("InputUnusedLocalVariableSwitchExpression.java"),
                 expected);
     }
 
