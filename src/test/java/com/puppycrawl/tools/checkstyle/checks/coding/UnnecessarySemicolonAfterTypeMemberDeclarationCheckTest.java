@@ -76,7 +76,7 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
         };
 
         verifyWithInlineConfigParser(
-            getNonCompilablePath(
+            getPath(
                     "InputUnnecessarySemicolonAfterTypeMemberDeclarationRecords.java"),
             expected);
     }

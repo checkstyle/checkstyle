@@ -48,7 +48,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
             "85:19: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
         };
         verifyWithInlineConfigParser(getPath(
-            "InputUnnecessaryNullCheckWithInstanceOf.java"), expected);
+            "InputUnnecessaryNullCheckWithInstanceOfOne.java"), expected);
     }
 
     @Test
@@ -162,8 +162,8 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
             "12:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
-                "InputUnnecessaryNullCheckWithInstanceOf.java"),
+                getPath(
+                "InputUnnecessaryNullCheckWithInstanceOfTwo.java"),
             expected);
     }
 
