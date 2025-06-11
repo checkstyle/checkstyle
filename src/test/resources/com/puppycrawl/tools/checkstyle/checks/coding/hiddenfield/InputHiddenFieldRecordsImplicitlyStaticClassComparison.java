@@ -8,16 +8,13 @@ tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, REC
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-
-import java.time.Clock;
-import java.time.Instant;
 
 public class InputHiddenFieldRecordsImplicitlyStaticClassComparison {
 }
