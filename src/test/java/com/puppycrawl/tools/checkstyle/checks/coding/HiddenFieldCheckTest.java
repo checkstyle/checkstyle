@@ -406,7 +406,7 @@ public class HiddenFieldCheckTest
             "37:35: " + getCheckMessage(MSG_KEY, "hiddenStaticField"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputHiddenFieldEnhancedInstanceof.java"), expected);
+                getPath("InputHiddenFieldEnhancedInstanceof.java"), expected);
     }
 
     @Test
@@ -429,7 +429,7 @@ public class HiddenFieldCheckTest
             "73:21: " + getCheckMessage(MSG_KEY, "b"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputHiddenFieldSwitchExpression.java"), expected);
+                getPath("InputHiddenFieldSwitchExpression.java"), expected);
     }
 
     @Test
@@ -447,7 +447,7 @@ public class HiddenFieldCheckTest
             "86:20: " + getCheckMessage(MSG_KEY, "string"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputHiddenFieldRecords.java"), expected);
+                getPath("InputHiddenFieldRecords.java"), expected);
     }
 
     @Test
@@ -466,7 +466,7 @@ public class HiddenFieldCheckTest
             "23:26: " + getCheckMessage(MSG_KEY, "a"),
         };
         verifyWithInlineConfigParser(
-            getNonCompilablePath("InputHiddenFieldClassNestedInRecord.java"),
+            getPath("InputHiddenFieldClassNestedInRecord.java"),
             expected);
     }
 
@@ -478,7 +478,7 @@ public class HiddenFieldCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputHiddenFieldInnerRecordsImplicitlyStatic.java"),
+                getPath("InputHiddenFieldInnerRecordsImplicitlyStatic.java"),
                 expected);
     }
 
@@ -486,11 +486,11 @@ public class HiddenFieldCheckTest
     public void testHiddenFieldRecordsImplicitlyStaticClassComparison() throws Exception {
 
         final String[] expected = {
-            "49:27: " + getCheckMessage(MSG_KEY, "x"),
+            "46:27: " + getCheckMessage(MSG_KEY, "x"),
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputHiddenFieldRecordsImplicitlyStaticClassComparison.java"),
+                getPath("InputHiddenFieldRecordsImplicitlyStaticClassComparison.java"),
                 expected);
     }
 
