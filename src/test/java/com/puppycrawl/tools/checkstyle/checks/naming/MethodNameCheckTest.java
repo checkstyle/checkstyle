@@ -222,7 +222,7 @@ public class MethodNameCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMethodNameRecordInInterfaceBody.java"), expected);
+                getPath("InputMethodNameRecordInInterfaceBody.java"), expected);
     }
 
 }

@@ -5,7 +5,7 @@ format = (default)^[A-Z]$
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.naming.recordtypeparametername;
 
 import java.io.Serializable;
@@ -20,7 +20,7 @@ public record InputRecordTypeParameterName<t>(Integer x, String str) { // violat
     }
 }
 
-record Other <foo extends Serializable & Cloneable> // violation
+record OtherOne <foo extends Serializable & Cloneable> // violation
 (LinkedHashMap<String, Node> linkedHashMap) {
 
     foo getOne() {
@@ -41,7 +41,7 @@ record Other <foo extends Serializable & Cloneable> // violation
     }
 }
 
-record MoreOther <T extends Cloneable>(char c, String string) {
+record MoreOtherOne <T extends Cloneable>(char c, String string) {
 
     interface Boo<Input> {
         Input boo();

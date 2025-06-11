@@ -614,7 +614,7 @@ public class EmptyLineSeparatorCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputEmptyLineSeparatorRecordsAndCompactCtors.java"),
+                getPath("InputEmptyLineSeparatorRecordsAndCompactCtors.java"),
                 expected);
     }
 
@@ -628,7 +628,7 @@ public class EmptyLineSeparatorCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputEmptyLineSeparatorRecordsAndCompactCtorsNoEmptyLines.java"),
                 expected);
     }
@@ -724,7 +724,7 @@ public class EmptyLineSeparatorCheckTest
             "24:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputEmptyLineSeparatorMultipleLines3.java"),
+                getPath("InputEmptyLineSeparatorMultipleLines3.java"),
                 expected);
     }
 
