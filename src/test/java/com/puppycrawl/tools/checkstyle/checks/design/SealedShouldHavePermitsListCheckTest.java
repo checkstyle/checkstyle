@@ -56,7 +56,7 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
             "15:5: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputSealedShouldHavePermitsListInnerClass.java"),
+                getPath("InputSealedShouldHavePermitsListInnerClass.java"),
                 expected);
     }
 
@@ -66,7 +66,7 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
             "10:5: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputSealedShouldHavePermitsListInnerInterface.java"),
+                getPath("InputSealedShouldHavePermitsListInnerInterface.java"),
                 expected);
     }
 
@@ -76,7 +76,7 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
             "9:1: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputSealedShouldHavePermitsListTopLevelSealedClass.java"),
+                getPath("InputSealedShouldHavePermitsListTopLevelSealedClass.java"),
                 expected);
     }
 
@@ -86,7 +86,7 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
             "9:1: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputSealedShouldHavePermitsListTopLevelSealedInterface.java"),
                 expected);
     }
@@ -98,7 +98,7 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
             "24:1: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputSealedShouldHavePermitsListJepExample.java"),
                 expected);
     }

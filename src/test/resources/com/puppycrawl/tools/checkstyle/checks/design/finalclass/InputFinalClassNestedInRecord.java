@@ -4,7 +4,7 @@ FinalClass
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
 
 public record InputFinalClassNestedInRecord(int a) {
@@ -37,7 +37,7 @@ public record InputFinalClassNestedInRecord(int a) {
 
     static class h {
         record f() {
-            final static f.j obj = new f.j() {
+            final static j obj = new j() {
             };
 
             static class j {

@@ -148,7 +148,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             "58:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputAnnotationOnSameLineRecordsAndCompactCtors.java"),
+                getPath("InputAnnotationOnSameLineRecordsAndCompactCtors.java"),
             expected);
     }
 
@@ -172,7 +172,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             "43:17: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAnnotationOnSameLine.java"), expected);
+                getPath("InputAnnotationOnSameLineOne.java"), expected);
     }
 
     @Test
@@ -184,7 +184,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             "30:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputAnnotationOnSameLine.java"),
+                getPath("InputAnnotationOnSameLineTwo.java"),
             expected);
     }
 }

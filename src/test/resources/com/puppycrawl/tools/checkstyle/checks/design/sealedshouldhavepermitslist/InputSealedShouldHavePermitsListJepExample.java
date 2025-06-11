@@ -3,7 +3,7 @@ SealedShouldHavePermitsList
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.design.sealedshouldhavepermitslist;
 
 // violation below 'Sealed classes or interfaces should explicitly declare permitted subclasses'
