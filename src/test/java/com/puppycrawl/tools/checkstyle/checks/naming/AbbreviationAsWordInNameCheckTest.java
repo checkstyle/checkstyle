@@ -398,7 +398,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputAbbreviationAsWordInNameCheckEnhancedInstanceof.java"),
                 expected);
     }
@@ -418,7 +418,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputAbbreviationAsWordInNameCheckEnhanced"
                                 + "InstanceofAllowXmlLength1.java"),
                 expected);
@@ -449,7 +449,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputAbbreviationAsWordInNameCheckRecords.java"),
                 expected);
     }

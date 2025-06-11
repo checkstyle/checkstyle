@@ -57,7 +57,7 @@ public class RecordComponentNameCheckTest extends AbstractModuleTestSupport {
             "24:9: " + getCheckMessage(MSG_INVALID_PATTERN, "$age", pattern),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRecordComponentNameDefault.java"), expected);
+                getPath("InputRecordComponentNameDefault.java"), expected);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class RecordComponentNameCheckTest extends AbstractModuleTestSupport {
             "24:9: " + getCheckMessage(MSG_INVALID_PATTERN, "$age", pattern),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRecordComponentNameLowercase.java"), expected);
+                getPath("InputRecordComponentNameLowercase.java"), expected);
     }
 
     @Test

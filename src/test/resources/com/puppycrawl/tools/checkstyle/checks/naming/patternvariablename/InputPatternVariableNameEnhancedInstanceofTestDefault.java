@@ -5,7 +5,7 @@ format = (default)^([a-z][a-zA-Z0-9]*|_)$
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.naming.patternvariablename;
 
 import java.util.*;
