@@ -393,7 +393,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example14.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
         <p id="Example15-code">
           To force checking imports sequence such as:
         </p>
@@ -401,7 +401,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example15.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
         <p id="Example15-config">
           configure as follows:
         </p>
