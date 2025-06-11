@@ -6,10 +6,10 @@ reliefPattern = (default)falls?[ -]?thr(u|ough)
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.fallthrough;
 
-public class InputFallThrough4 {
+public class InputFallThrough10 {
     private static boolean commonNeedIncrement(int roundingMode, int qsign,
                                                int cmpFracHalf, boolean oddQuot) {
         switch (roundingMode) {

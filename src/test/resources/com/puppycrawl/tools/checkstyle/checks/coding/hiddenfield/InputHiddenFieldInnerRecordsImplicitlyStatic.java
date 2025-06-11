@@ -8,7 +8,7 @@ tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, REC
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
 import java.time.Clock;
@@ -38,7 +38,7 @@ class Scratch {
     }
 }
 
-class Test {
+class TestOne {
 
     String name;
 
