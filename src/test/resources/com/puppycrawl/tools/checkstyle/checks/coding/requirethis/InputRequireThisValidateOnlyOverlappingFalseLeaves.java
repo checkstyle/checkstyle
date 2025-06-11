@@ -6,7 +6,7 @@ validateOnlyOverlapping = false
 
 
 */
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 public class InputRequireThisValidateOnlyOverlappingFalseLeaves {
@@ -36,4 +36,4 @@ class Method {
         return _a; // violation 'Reference to instance variable '_a' needs "this.".'
     }
 }
-class NestedClass {}
+class NestedClassOne {}

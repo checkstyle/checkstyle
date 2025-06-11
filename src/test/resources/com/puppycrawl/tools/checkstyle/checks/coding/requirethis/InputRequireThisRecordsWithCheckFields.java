@@ -7,7 +7,7 @@ validateOnlyOverlapping = (default)true
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 public record InputRequireThisRecordsWithCheckFields(String a) {
@@ -23,10 +23,10 @@ public record InputRequireThisRecordsWithCheckFields(String a) {
         a += a; // ok, local variable
     }
 }
-class InputRequireThisRecordsWithCheckFieldsClass {
+class InputRequireThisRecordsWithCheckFieldsClassOne {
     public final String a;
 
-    public InputRequireThisRecordsWithCheckFieldsClass(String a) {
+    public InputRequireThisRecordsWithCheckFieldsClassOne(String a) {
         this.a = a;
     }
 

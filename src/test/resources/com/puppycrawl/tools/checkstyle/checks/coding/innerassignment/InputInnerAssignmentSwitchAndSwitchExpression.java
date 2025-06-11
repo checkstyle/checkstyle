@@ -3,7 +3,7 @@ InnerAssignment
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.innerassignment;
 
 public class InputInnerAssignmentSwitchAndSwitchExpression {
