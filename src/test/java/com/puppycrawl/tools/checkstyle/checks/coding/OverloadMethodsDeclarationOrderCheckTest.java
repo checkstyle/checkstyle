@@ -62,7 +62,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
             "66:9: " + getCheckMessage(MSG_KEY, 59),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputOverloadMethodsDeclarationOrderRecords.java"),
+                getPath("InputOverloadMethodsDeclarationOrderRecords.java"),
             expected);
     }
 
