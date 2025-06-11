@@ -7,7 +7,7 @@ illegalClassNames = (default)HashMap, HashSet, LinkedHashMap, LinkedHashSet, Tre
 legalAbstractClassNames = (default)
 ignoredMethodNames = (default)getEnvironment, getInitialContext
 illegalAbstractClassNameFormat = (default)^(.*[.])?Abstract.*$
-memberModifiers = LITERAL_PRIVATE, FINAL
+memberModifiers = (default)
 tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, INTERFACE_DEF, METHOD_CALL, METHOD_DEF, \
          METHOD_REF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, RECORD_DEF, \
          RECORD_COMPONENT_DEF
@@ -15,12 +15,12 @@ tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, INTERFACE_DEF, METHOD_CALL, M
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 
 import java.util.*;
 
-public class InputIllegalTypeRecordsWithMemberModifiersPrivateFinal
+public class InputIllegalTypeRecordsWithMemberModifiersDefault
 {
 
     public record IdentifiersPair(
@@ -60,3 +60,4 @@ public class InputIllegalTypeRecordsWithMemberModifiersPrivateFinal
     }
 
 }
+
