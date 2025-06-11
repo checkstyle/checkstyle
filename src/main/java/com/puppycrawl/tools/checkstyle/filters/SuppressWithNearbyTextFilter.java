@@ -19,9 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -226,13 +228,13 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
      * @throws IllegalStateException if the file could not be read.
      */
     private static FileText getFileText(String fileName) {
-        final File file = new File(fileName);
+        final Path path = Paths.get(fileName);
         FileText result = null;
 
         // some violations can be on a directory, instead of a file
-        if (!file.isDirectory()) {
+        if (!Files.isDirectory(path)) {
             try {
-                result = new FileText(file, StandardCharsets.UTF_8.name());
+                result = new FileText(path.toFile(), StandardCharsets.UTF_8.name());
             }
             catch (IOException exc) {
                 throw new IllegalStateException("Cannot read source file: " + fileName, exc);
