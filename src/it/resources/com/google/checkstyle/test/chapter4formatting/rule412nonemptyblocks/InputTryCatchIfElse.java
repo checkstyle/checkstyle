@@ -3,7 +3,7 @@ package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 /** some javadoc. */
 public class InputTryCatchIfElse {
 
-  @interface TesterAnnotation {} //ok
+  @interface TesterAnnotation {} // ok
 
   void foo() throws Exception {
     int a = 90;
