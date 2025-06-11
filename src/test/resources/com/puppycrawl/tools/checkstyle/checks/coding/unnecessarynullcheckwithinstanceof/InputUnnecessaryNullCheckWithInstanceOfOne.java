@@ -7,7 +7,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarynullcheckwithin
 
 import java.util.Objects;
 
-public class InputUnnecessaryNullCheckWithInstanceOf {
+public class InputUnnecessaryNullCheckWithInstanceOfOne {
     public void basicIfStatements(Object obj) {
         if (obj != null && obj instanceof String) { // violation, 'Unnecessary nullity check'
             String str = (String) obj;

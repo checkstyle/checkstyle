@@ -8,7 +8,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unusedlocalvariable;
 
 import java.util.function.Predicate;
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 public record InputUnusedLocalVariableRecords(int a, int b) {
     public InputUnusedLocalVariableRecords {
         int ab = 12;
@@ -34,7 +34,7 @@ public record InputUnusedLocalVariableRecords(int a, int b) {
     public InputUnusedLocalVariableRecords(int a) {
         this(a, -1);
         int var2 = 12; // violation, 'Unused local variable'
-        inner obj = new InputUnusedLocalVariableRecords.inner() {
+        inner obj = new inner() {
             {
                 var2 += 12;
             }

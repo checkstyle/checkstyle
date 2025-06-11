@@ -14,7 +14,7 @@ tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
 public class InputMagicNumberIgnoreFieldDeclarationRecords {
