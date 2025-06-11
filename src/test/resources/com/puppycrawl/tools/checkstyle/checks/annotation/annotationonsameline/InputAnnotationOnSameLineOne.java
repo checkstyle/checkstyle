@@ -14,7 +14,7 @@ import static java.lang.annotation.ElementType.TYPE_USE;
 import java.lang.annotation.Target;
 import java.util.List;
 
-public class InputAnnotationOnSameLine {
+public class InputAnnotationOnSameLineOne {
     // violation below, "Annotation 'Ann' should be on the same line with its target."
     @Ann public
     @Ann2 class E {}
