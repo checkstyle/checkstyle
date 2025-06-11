@@ -6,10 +6,10 @@ reliefPattern = (default)falls?[ -]?thr(u|ough)
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.fallthrough;
 
-public class InputFallThrough3
+public class InputFallThrough9
 {
     int hasYield() {
         int i = 0;
