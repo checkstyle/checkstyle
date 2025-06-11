@@ -18,11 +18,16 @@ case $1 in
   PROFILES=$(list_profiles "${0}");
 
   if [[ $(echo "$PROFILES" | grep -w -- "${1}" | cat) != "" ]]; then
+    echo "Generation of pitest report:"
+    echo "./mvnw -e --no-transfer-progress -P$1 clean test-compile \
+                org.pitest:pitest-maven:mutationCoverage"
     set +e
     ./mvnw -e --no-transfer-progress -P"$1" clean test-compile \
       org.pitest:pitest-maven:mutationCoverage
     EXIT_CODE=$?
     set -e
+    echo "Execution of comparison of suppressed mutations survivals and current survivals:"
+    echo "groovy ./.ci/pitest-survival-check-xml.groovy $1"
     groovy ./.ci/pitest-survival-check-xml.groovy "$1"
     exit $EXIT_CODE
   else
