@@ -7,7 +7,7 @@
   </module>
 </module>
 */
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.uncommentedmain;
 
 // xdoc section -- start

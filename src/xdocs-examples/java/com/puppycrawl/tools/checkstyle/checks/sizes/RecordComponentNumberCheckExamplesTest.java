@@ -36,7 +36,7 @@ public class RecordComponentNumberCheckExamplesTest extends AbstractExamplesModu
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("Example1.java"), expected);
+                getPath("Example1.java"), expected);
     }
 
     @Test
@@ -47,7 +47,7 @@ public class RecordComponentNumberCheckExamplesTest extends AbstractExamplesModu
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("Example2.java"), expected);
+                getPath("Example2.java"), expected);
     }
 
     @Test
@@ -58,6 +58,6 @@ public class RecordComponentNumberCheckExamplesTest extends AbstractExamplesModu
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("Example3.java"), expected);
+                getPath("Example3.java"), expected);
     }
 }
