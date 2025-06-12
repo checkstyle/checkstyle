@@ -1,19 +1,21 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="RecordComponentNumber"/>
+    <module name="RecordComponentNumber">
+      <property name="max" value="5"/>
+    </module>
   </module>
 </module>
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentnumber;
 
 // xdoc section -- start
-class Example1{
+class Example2{
   public record MyRecord1(int x, int y, String str) {}
 
-  public record MyRecord2(int x, int y, double d,
+  public record MyRecord2(int x, int y, double d, // violation, 6 components
                     String str, char c, float f) {}
 
   record MyRecord3(int x, int y, int z, double d, // violation, 9 components
