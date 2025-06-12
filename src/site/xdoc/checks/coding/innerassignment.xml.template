@@ -65,7 +65,7 @@ while ((line = bufferedReader.readLine()) != null); // OK
         <p id="Example2-code">Example 2:</p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/innerassignment/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/innerassignment/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

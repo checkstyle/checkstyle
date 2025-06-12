@@ -40,13 +40,13 @@ public class CovariantEqualsCheckExamplesTest extends AbstractExamplesModuleTest
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("Example1.java"), expected);
+                getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("Example2.java"), expected);
+                getPath("Example2.java"), expected);
     }
 }

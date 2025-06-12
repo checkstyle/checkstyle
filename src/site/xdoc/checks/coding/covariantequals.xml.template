@@ -69,7 +69,7 @@ public boolean equals(Foo obj) {...}
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example1.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
 
@@ -78,7 +78,7 @@ public boolean equals(Foo obj) {...}
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example1.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example2-code">
@@ -86,7 +86,7 @@ public boolean equals(Foo obj) {...}
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

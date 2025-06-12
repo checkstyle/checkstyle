@@ -5,25 +5,17 @@
   </module>
 </module>
 */
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.covariantequals;
 
 // xdoc section -- start
-public class Example2 {
-  public boolean equals(Example2 same) {  // no violation
-    return false;
-  }
-
-  public boolean equals(Object o) {
+public class Example1 {
+  public boolean equals(Example1 same) {  // violation 'covariant equals'
     return false;
   }
 
   record Test(String str) {
-    public boolean equals(Test same) {  // no violation
-      return false;
-    }
-
-    public boolean equals(Object o) {
+    public boolean equals(Test same) {  // violation 'covariant equals'
       return false;
     }
   }
