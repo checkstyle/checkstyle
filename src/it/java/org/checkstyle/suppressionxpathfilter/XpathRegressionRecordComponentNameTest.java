@@ -40,7 +40,7 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess = new File(getNonCompilablePath(
+        final File fileToProcess = new File(getPath(
                 "InputXpathRecordComponentNameDefault.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -63,7 +63,7 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
 
     @Test
     public void testFormat() throws Exception {
-        final File fileToProcess = new File(getNonCompilablePath(
+        final File fileToProcess = new File(getPath(
                 "InputXpathRecordComponentNameFormat.java"));
 
         final DefaultConfiguration moduleConfig =

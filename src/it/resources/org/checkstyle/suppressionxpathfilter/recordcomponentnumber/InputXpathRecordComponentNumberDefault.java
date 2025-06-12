@@ -1,5 +1,5 @@
-//non-compiled with javac: Compilable with Java17
-package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentnumber;
+// Java17
+package org.checkstyle.suppressionxpathfilter.recordcomponentnumber;
 
 /* Config:
  *
