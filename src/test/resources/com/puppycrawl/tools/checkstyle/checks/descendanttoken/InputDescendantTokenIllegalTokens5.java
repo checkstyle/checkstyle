@@ -1,13 +1,13 @@
 /*
 DescendantToken
 limitedTokens = LITERAL_DEFAULT
-minimumDepth = 3
 maximumDepth = (default)2147483647
-minimumNumber = (default)0
-maximumNumber = 0
-sumTokenCounts = (default)false
-minimumMessage = (default)null
 maximumMessage = (default)null
+maximumNumber = 0
+minimumDepth = 3
+minimumMessage = (default)null
+minimumNumber = (default)0
+sumTokenCounts = (default)false
 tokens = LITERAL_SWITCH
 
 
