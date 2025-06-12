@@ -39,7 +39,7 @@ public class SealedShouldHavePermitsListCheckExamplesTest extends
             "18:3: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("Example1.java"),
+                getPath("Example1.java"),
                 expected);
     }
 }
