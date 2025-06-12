@@ -1,13 +1,13 @@
 /*
 DescendantToken
 limitedTokens = LITERAL_THIS, LITERAL_NULL
-minimumDepth = (default)0
 maximumDepth = 1
-minimumNumber = (default)0
-maximumNumber = 1
-sumTokenCounts = true
-minimumMessage = (default)null
 maximumMessage = this cannot be null.
+maximumNumber = 1
+minimumDepth = (default)0
+minimumMessage = (default)null
+minimumNumber = (default)0
+sumTokenCounts = true
 tokens = NOT_EQUAL, EQUAL
 
 

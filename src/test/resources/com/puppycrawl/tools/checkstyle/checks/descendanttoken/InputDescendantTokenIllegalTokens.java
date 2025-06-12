@@ -1,15 +1,14 @@
 /*
 DescendantToken
 limitedTokens = (default)
-minimumDepth = (default)0
 maximumDepth = (default)2147483647
-minimumNumber = (default)0
-maximumNumber = (default)2147483647
-sumTokenCounts = (default)false
-minimumMessage = (default)null
 maximumMessage = (default)null
+maximumNumber = (default)2147483647
+minimumDepth = (default)0
+minimumMessage = (default)null
+minimumNumber = (default)0
+sumTokenCounts = (default)false
 tokens = (default)
-
 
 */
 
