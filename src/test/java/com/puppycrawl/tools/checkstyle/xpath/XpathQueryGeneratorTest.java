@@ -586,7 +586,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTextBlocks() throws Exception {
-        final File testFile = new File(getNonCompilablePath(
+        final File testFile = new File(getPath(
                 "InputXpathQueryGeneratorTextBlock.java"));
         final FileText testFileText = new FileText(testFile,
                 StandardCharsets.UTF_8.name());
@@ -613,7 +613,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTextBlocksWithNewLine() throws Exception {
-        final File testFile = new File(getNonCompilablePath(
+        final File testFile = new File(getPath(
                 "InputXpathQueryGeneratorTextBlockNewLine.java"));
         final FileText testFileText = new FileText(testFile,
                 StandardCharsets.UTF_8.name());
@@ -640,7 +640,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTextBlocksWithNewCrlf() throws Exception {
-        final File testFile = new File(getNonCompilablePath(
+        final File testFile = new File(getPath(
                 "InputXpathQueryGeneratorTextBlockCrlf.java"));
         final FileText testFileText = new FileText(testFile,
                 StandardCharsets.UTF_8.name());
