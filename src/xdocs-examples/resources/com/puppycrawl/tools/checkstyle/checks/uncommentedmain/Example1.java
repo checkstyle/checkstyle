@@ -5,7 +5,7 @@
   </module>
 </module>
 */
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.uncommentedmain;
 
 // xdoc section -- start
@@ -14,24 +14,24 @@ class Example1 {
   public static void main(String... args){}
 }
 
-class Main {
+class MainOne {
   // violation below, 'Uncommented main method found'
   public static void main(String[] args){}
 }
 
-class Launch {
+class LaunchOne {
   //public static void main(String[] args){}
 }
 
-class Start {
+class StartOne {
   public void main(){}
 }
 
-record MyRecord1() {
+record MyRecordOne() {
   public void main(){}
 }
 
-record MyRecord2() {
+record MyRecordTwo() {
   //public void main(){}
 }
 // xdoc section -- end

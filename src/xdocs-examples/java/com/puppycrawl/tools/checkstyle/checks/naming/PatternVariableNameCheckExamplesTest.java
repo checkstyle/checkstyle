@@ -41,7 +41,7 @@ public class PatternVariableNameCheckExamplesTest extends AbstractExamplesModule
             "17:31: " + getCheckMessage(MSG_INVALID_PATTERN, "num_1", pattern),
         };
 
-        verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
@@ -53,7 +53,7 @@ public class PatternVariableNameCheckExamplesTest extends AbstractExamplesModule
             "17:30: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", pattern),
         };
 
-        verifyWithInlineConfigParser(getNonCompilablePath("Example2.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class PatternVariableNameCheckExamplesTest extends AbstractExamplesModule
             "20:31: " + getCheckMessage(MSG_INVALID_PATTERN, "n", pattern),
         };
 
-        verifyWithInlineConfigParser(getNonCompilablePath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
@@ -77,6 +77,6 @@ public class PatternVariableNameCheckExamplesTest extends AbstractExamplesModule
             "40:36: " + getCheckMessage(MSG_INVALID_PATTERN, "bad", "^[A-Z][A-Z0-9]*$"),
         };
 
-        verifyWithInlineConfigParser(getNonCompilablePath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 }

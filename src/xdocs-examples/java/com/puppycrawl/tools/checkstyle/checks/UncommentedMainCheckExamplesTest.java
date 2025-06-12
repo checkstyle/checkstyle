@@ -37,7 +37,7 @@ public class UncommentedMainCheckExamplesTest extends AbstractExamplesModuleTest
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("Example1.java"), expected);
+                getPath("Example1.java"), expected);
     }
 
     @Test
@@ -47,6 +47,6 @@ public class UncommentedMainCheckExamplesTest extends AbstractExamplesModuleTest
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("Example2.java"), expected);
+                getPath("Example2.java"), expected);
     }
 }
