@@ -586,7 +586,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTextBlocks() throws Exception {
-        final File testFile = new File(getNonCompilablePath(
+        final File testFile = new File(getPath(
                 "InputXpathQueryGeneratorTextBlock.java"));
         final FileText testFileText = new FileText(testFile,
                 StandardCharsets.UTF_8.name());
@@ -613,7 +613,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTextBlocksWithNewLine() throws Exception {
-        final File testFile = new File(getNonCompilablePath(
+        final File testFile = new File(getPath(
                 "InputXpathQueryGeneratorTextBlockNewLine.java"));
         final FileText testFileText = new FileText(testFile,
                 StandardCharsets.UTF_8.name());
@@ -640,7 +640,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTextBlocksWithNewCrlf() throws Exception {
-        final File testFile = new File(getNonCompilablePath(
+        final File testFile = new File(getPath(
                 "InputXpathQueryGeneratorTextBlockCrlf.java"));
         final FileText testFileText = new FileText(testFile,
                 StandardCharsets.UTF_8.name());
@@ -657,8 +657,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathQueryGeneratorTextBlockCrlf']]/OBJBLOCK/"
                         + "VARIABLE_DEF[./IDENT[@text='testOne']]/ASSIGN/EXPR/"
-                        + "TEXT_BLOCK_LITERAL_BEGIN/TEXT_BLOCK_CONTENT[@text='\\r\\n        "
-                        + "&amp;1line\\r\\n\\r\\n        &gt;2line\\r\\n        &lt;3line\\r\\n"
+                        + "TEXT_BLOCK_LITERAL_BEGIN/TEXT_BLOCK_CONTENT[@text='\\n        "
+                        + "&amp;1line\\n\\n        &gt;2line\\n        &lt;3line\\n"
                         + "        ']"
         );
         assertWithMessage("Generated queries do not match expected ones")
