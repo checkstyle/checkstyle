@@ -29,7 +29,7 @@ class Method {
     private boolean _a = false;
 
     public boolean equals(Object object) {
-        new NestedClass() {
+        new NestedClassOne() {
             public void method() {}
             public void method2() {}
         };

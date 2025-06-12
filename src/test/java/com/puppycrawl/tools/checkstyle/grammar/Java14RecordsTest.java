@@ -36,7 +36,7 @@ public class Java14RecordsTest extends AbstractModuleTestSupport {
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputJava14Records.java"),
+                getPath("InputJava14Records.java"),
                 expected);
     }
 }
