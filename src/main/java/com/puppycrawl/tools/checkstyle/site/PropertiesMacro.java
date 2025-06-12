@@ -577,12 +577,10 @@ public class PropertiesMacro extends AbstractMacro {
      * @param propertyName the name of the property.
      * @param moduleJavadoc the Javadoc of the module.
      * @param propertyJavadoc the Javadoc of the property containing the since version.
-     * @throws MacroExecutionException if an error occurs during retrieval of the since version.
      */
     private static void writePropertySinceVersionCell(Sink sink, String propertyName,
                                                       DetailNode moduleJavadoc,
-                                                      DetailNode propertyJavadoc)
-            throws MacroExecutionException {
+                                                      DetailNode propertyJavadoc) {
         sink.rawText(INDENT_LEVEL_14);
         sink.tableCell();
         final String sinceVersion = SiteUtil.getSinceVersion(
