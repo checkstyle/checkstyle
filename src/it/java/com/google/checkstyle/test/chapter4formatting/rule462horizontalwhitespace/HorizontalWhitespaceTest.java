@@ -19,6 +19,9 @@
 
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
 
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck;
+import com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
@@ -168,5 +171,10 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testWhitespaceAroundWhenFormatted() throws Exception {
         verifyWithWholeConfig(getNonCompilablePath("InputFormattedWhitespaceAroundWhen.java"));
+    }
+
+    @Test
+    public void testWhitespaceAfterDoubleSlashes() throws Exception {
+        verifyWithWholeConfig(getPath("InputWhitespaceAfterDoubleSlashes.java"));
     }
 }

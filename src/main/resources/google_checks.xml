@@ -61,6 +61,13 @@
 
   <module name="TreeWalker">
     <module name="OuterTypeFilename"/>
+    <module name="TodoComment">
+      <property name="id" value="commentStartWithSpace"/>
+      <property name="format" value="^([^ /*])"/>
+      <property name="tokens"
+               value=""/>
+      <message key="todo.match" value="Trailing comments must have a whitespace after // ."/>
+    </module>
     <module name="IllegalTokenText">
       <property name="tokens" value="STRING_LITERAL, CHAR_LITERAL"/>
       <property name="format"
