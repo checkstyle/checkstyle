@@ -9,13 +9,11 @@ applyToPrivate = (default)true
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.grammar.java14;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.lang.annotation.Native;
-import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -170,7 +168,7 @@ public class InputJava14Records // ok
     record Record(Record record) {}
 
     record R5(String... args) {}
-    record R6(long l, String... args) implements java.io.Serializable {}
+    record R6(long l, String... args) implements Serializable {}
     record R7(String s1, String s2, String... args) {}
 
     record RI(int... xs) { }
