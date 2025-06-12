@@ -220,7 +220,7 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
     @Test
     public void testJava16LocalEnumAndInterface() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionJava16LocalEnumAndInterface.txt"),
-                getNonCompilablePath("InputAntlr4AstRegressionJava16LocalEnumAndInterface.java"));
+                getPath("InputAntlr4AstRegressionJava16LocalEnumAndInterface.java"));
     }
 
     @Test
@@ -247,7 +247,7 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
     @Test
     public void testUncommon() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionUncommon.txt"),
-                getNonCompilablePath("InputAntlr4AstRegressionUncommon.java"),
+                getPath("InputAntlr4AstRegressionUncommon.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
@@ -275,7 +275,7 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
     @Test
     public void testUncommon3() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionUncommon3.txt"),
-                getNonCompilablePath("InputAntlr4AstRegressionUncommon3.java"),
+                getPath("InputAntlr4AstRegressionUncommon3.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
@@ -295,7 +295,7 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
     @Test
     public void testJava15FinalLocalRecord() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionJava15FinalLocalRecord.txt"),
-                getNonCompilablePath("InputAntlr4AstRegressionJava15FinalLocalRecord.java"),
+                getPath("InputAntlr4AstRegressionJava15FinalLocalRecord.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
@@ -320,6 +320,6 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
     @Test
     public void testInterfaceMemberAlternativePrecedence() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionInterfaceRecordDef.txt"),
-                getNonCompilablePath("InputAntlr4AstRegressionInterfaceRecordDef.java"));
+                getPath("InputAntlr4AstRegressionInterfaceRecordDef.java"));
     }
 }
