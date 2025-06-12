@@ -1,13 +1,13 @@
 /*
 DescendantToken
 limitedTokens = LITERAL_NATIVE
-minimumDepth = (default)0
 maximumDepth = (default)2147483647
-minimumNumber = (default)0
+maximumMessage =  Using ''native'' is not allowed.
 maximumNumber = 0
-sumTokenCounts = (default)false
+minimumDepth = (default)0
 minimumMessage = (default)null
-maximumMessage = Using ''native'' is not allowed.
+minimumNumber = (default)0
+sumTokenCounts = (default)false
 tokens = LITERAL_NATIVE
 
 
