@@ -234,7 +234,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     public void testJava14TextBlocks() throws Exception {
         final DetailAST root =
             JavaParser.parseFile(new File(
-                    getNonCompilablePath("InputJavaParserTextBlocks.java")),
+                    getPath("InputJavaParserTextBlocks.java")),
                 JavaParser.Options.WITHOUT_COMMENTS);
 
         final Optional<DetailAST> textBlockContent = TestUtil.findTokenInAstByPredicate(root,
@@ -261,7 +261,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     @Test
     public void testNoFreezeOnDeeplyNestedLambdas() throws Exception {
         final File file =
-                new File(getNonCompilablePath("InputJavaParserNoFreezeOnDeeplyNestedLambdas.java"));
+                new File(getPath("InputJavaParserNoFreezeOnDeeplyNestedLambdas.java"));
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
@@ -270,7 +270,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     @Test
     public void testFullJavaIdentifierSupport1() throws Exception {
         final File file =
-                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport1.java"));
+                new File(getPath("InputJavaParserFullJavaIdentifierSupport1.java"));
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
@@ -279,7 +279,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     @Test
     public void testFullJavaIdentifierSupport2() throws Exception {
         final File file =
-                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport2.java"));
+                new File(getPath("InputJavaParserFullJavaIdentifierSupport2.java"));
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
@@ -288,7 +288,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     @Test
     public void testFullJavaIdentifierSupport3() throws Exception {
         final File file =
-                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport3.java"));
+                new File(getPath("InputJavaParserFullJavaIdentifierSupport3.java"));
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
@@ -297,7 +297,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     @Test
     public void testFullJavaIdentifierSupport4() throws Exception {
         final File file =
-                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport4.java"));
+                new File(getPath("InputJavaParserFullJavaIdentifierSupport4.java"));
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
@@ -306,7 +306,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     @Test
     public void testFullJavaIdentifierSupport5() throws Exception {
         final File file =
-                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport5.java"));
+                new File(getPath("InputJavaParserFullJavaIdentifierSupport5.java"));
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
@@ -315,7 +315,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     @Test
     public void testFullJavaIdentifierSupport6() throws Exception {
         final File file =
-                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport6.java"));
+                new File(getPath("InputJavaParserFullJavaIdentifierSupport6.java"));
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
@@ -324,7 +324,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     @Test
     public void testFullJavaIdentifierSupport7() throws Exception {
         final File file =
-                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport7.java"));
+                new File(getPath("InputJavaParserFullJavaIdentifierSupport7.java"));
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
@@ -333,7 +333,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     @Test
     public void testFullJavaIdentifierSupport8() throws Exception {
         final File file =
-                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport8.java"));
+                new File(getPath("InputJavaParserFullJavaIdentifierSupport8.java"));
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
@@ -342,7 +342,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     @Test
     public void testFullJavaIdentifierSupport9() throws Exception {
         final File file =
-                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport9.java"));
+                new File(getPath("InputJavaParserFullJavaIdentifierSupport9.java"));
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
@@ -351,7 +351,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     @Test
     public void testFullJavaIdentifierSupport10() throws Exception {
         final File file =
-                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport10.java"));
+                new File(getPath("InputJavaParserFullJavaIdentifierSupport10.java"));
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
@@ -360,7 +360,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     @Test
     public void testFullJavaIdentifierSupport11() throws Exception {
         final File file =
-                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport11.java"));
+                new File(getPath("InputJavaParserFullJavaIdentifierSupport11.java"));
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
@@ -369,7 +369,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     @Test
     public void testFullJavaIdentifierSupport12() throws Exception {
         final File file =
-                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport12.java"));
+                new File(getPath("InputJavaParserFullJavaIdentifierSupport12.java"));
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
@@ -378,7 +378,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     @Test
     public void testFullJavaIdentifierSupport13() throws Exception {
         final File file =
-                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport13.java"));
+                new File(getPath("InputJavaParserFullJavaIdentifierSupport13.java"));
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
@@ -387,7 +387,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     @Test
     public void testFullJavaIdentifierSupport14() throws Exception {
         final File file =
-                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport14.java"));
+                new File(getPath("InputJavaParserFullJavaIdentifierSupport14.java"));
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
@@ -396,7 +396,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     @Test
     public void testFullJavaIdentifierSupport15() throws Exception {
         final File file =
-                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport15.java"));
+                new File(getPath("InputJavaParserFullJavaIdentifierSupport15.java"));
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
@@ -405,7 +405,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     @Test
     public void testFullJavaIdentifierSupport16() throws Exception {
         final File file =
-                new File(getNonCompilablePath("InputJavaParserFullJavaIdentifierSupport16.java"));
+                new File(getPath("InputJavaParserFullJavaIdentifierSupport16.java"));
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
