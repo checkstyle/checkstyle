@@ -1,5 +1,5 @@
-//non-compiled with javac: Compilable with Java17
-package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentname;
+// Java17
+package org.checkstyle.suppressionxpathfilter.recordcomponentname;
 
 /* Config:
  * format = ^[a-z][a-zA-Z0-9]*$

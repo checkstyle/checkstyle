@@ -85,7 +85,7 @@ public class XpathRegressionCovariantEqualsTest extends AbstractXpathTestSupport
     @Test
     public void testCovariantEqualsInRecord() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
+                new File(getPath(
                         "InputXpathCovariantEqualsInRecord.java"));
 
         final DefaultConfiguration moduleConfig =
