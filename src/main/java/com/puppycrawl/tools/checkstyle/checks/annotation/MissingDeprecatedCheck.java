@@ -78,6 +78,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Tight-HTML Rules</a>.
  * Type is {@code boolean}.
  * Default value is {@code false}.
+ * Since version 8.24
  * </li>
  * </ul>
  *
