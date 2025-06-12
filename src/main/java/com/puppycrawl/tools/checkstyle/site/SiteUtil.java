@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.site;
 import java.beans.PropertyDescriptor;
 import java.io.File;
 import java.io.IOException;
+import java.lang.module.ModuleDescriptor.Version;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -116,6 +117,10 @@ public final class SiteUtil {
     private static final String NAMING = "naming";
     /** The string 'src'. */
     private static final String SRC = "src";
+    /** The string 'snapshot'. */
+    private static final String SNAPSHOT_SUFFIX = "-SNAPSHOT";
+    /** The string 'dot_regex'. */
+    private static final String DOT_REGEX = "\\\\.";
 
     /** Precompiled regex pattern to remove the "Setter to " prefix from strings. */
     private static final Pattern SETTER_PATTERN = Pattern.compile("^Setter to ");
@@ -242,14 +247,6 @@ public final class SiteUtil {
     private static final Map<String, String> SINCE_VERSION_FOR_INHERITED_PROPERTY = Map.ofEntries(
         Map.entry("MissingDeprecatedCheck.violateExecutionOnNonTightHtml", VERSION_8_24),
         Map.entry("NonEmptyAtclauseDescriptionCheck.violateExecutionOnNonTightHtml", "8.3"),
-        Map.entry("HeaderCheck.charset", VERSION_5_0),
-        Map.entry("HeaderCheck.fileExtensions", VERSION_6_9),
-        Map.entry("HeaderCheck.headerFile", VERSION_3_2),
-        Map.entry(HEADER_CHECK_HEADER, VERSION_5_0),
-        Map.entry("RegexpHeaderCheck.charset", VERSION_5_0),
-        Map.entry("RegexpHeaderCheck.fileExtensions", VERSION_6_9),
-        Map.entry("RegexpHeaderCheck.headerFile", VERSION_3_2),
-        Map.entry(REGEXP_HEADER_CHECK_HEADER, VERSION_5_0),
         Map.entry("MultiFileRegexpHeaderCheck.fileExtensions", VERSION_10_24),
         Map.entry("MultiFileRegexpHeaderCheck.headerFiles", VERSION_10_24),
         Map.entry(MULTI_FILE_REGEXP_HEADER_CHECK_HEADER, VERSION_10_24),
@@ -271,8 +268,6 @@ public final class SiteUtil {
         Map.entry("LineLengthCheck.fileExtensions", VERSION_8_24),
         // until https://github.com/checkstyle/checkstyle/issues/14052
         Map.entry("JavadocBlockTagLocationCheck.violateExecutionOnNonTightHtml", VERSION_8_24),
-        Map.entry("JavadocLeadingAsteriskAlignCheck.violateExecutionOnNonTightHtml", "10.18"),
-        Map.entry("JavadocMissingLeadingAsteriskCheck.violateExecutionOnNonTightHtml", "8.38"),
         Map.entry(
             "RequireEmptyLineBeforeBlockTagGroupCheck.violateExecutionOnNonTightHtml",
             VERSION_8_36),
@@ -846,29 +841,84 @@ public final class SiteUtil {
     public static String getSinceVersion(String moduleName, DetailNode moduleJavadoc,
                                          String propertyName, DetailNode propertyJavadoc)
             throws MacroExecutionException {
-        final String sinceVersion;
-        final String superClassSinceVersion = SINCE_VERSION_FOR_INHERITED_PROPERTY
-                   .get(moduleName + DOT + propertyName);
-        if (superClassSinceVersion != null) {
-            sinceVersion = superClassSinceVersion;
-        }
-        else if (TOKENS.equals(propertyName)
-                        || JAVADOC_TOKENS.equals(propertyName)) {
-            // Use module's since version for inherited properties
-            sinceVersion = getSinceVersionFromJavadoc(moduleJavadoc);
-        }
-        else {
-            sinceVersion = getSinceVersionFromJavadoc(propertyJavadoc);
+        final String moduleSince = getSinceVersionFromJavadoc(moduleJavadoc);
+        String propertySince = null;
+        if (propertyJavadoc != null) {
+            propertySince = getSinceVersionFromJavadoc(propertyJavadoc);
         }
 
-        if (sinceVersion == null) {
-            final String message = String.format(Locale.ROOT,
-                    "Failed to find '@since' version for '%s' property"
-                            + " in '%s' and all parent classes.", propertyName, moduleName);
-            throw new MacroExecutionException(message);
+        final String sinceVersion;
+
+        if (isVersionAtLeast(propertySince, moduleSince)){
+            sinceVersion = propertySince;
+        }
+        else {
+            sinceVersion = moduleSince;
         }
 
         return sinceVersion;
+    }
+
+    /**
+     * Returns {@code true} if {@code actualVersion} ≥ {@code requiredVersion}.
+     * Both versions have any trailing "-SNAPSHOT" stripped before comparison.
+     *
+     * @param actualVersion   e.g. "8.3" or "8.3-SNAPSHOT"
+     * @param requiredVersion e.g. "8.3"
+     * @return {@code true} if, numerically, actualVersion is at least requiredVersion
+     */
+    private static boolean isVersionAtLeast(String actualVersion,
+                                            String requiredVersion) {
+        boolean result = false;
+
+        if (actualVersion != null && requiredVersion != null) {
+            final String actClean = actualVersion
+                    .replace(SNAPSHOT_SUFFIX, "")
+                    .trim();
+            final String reqClean = requiredVersion
+                    .replace(SNAPSHOT_SUFFIX, "")
+                    .trim();
+
+            try {
+                final Version vAct = Version.parse(actClean);
+                final Version vReq = Version.parse(reqClean);
+                result = vAct.compareTo(vReq) >= 0;
+            }
+            catch (IllegalArgumentException iae) {
+                // Fallback: compare each numeric segment
+                final String[] partsAct = actClean.split(DOT_REGEX);
+                final String[] partsReq = reqClean.split(DOT_REGEX);
+                final int length = Math.max(partsAct.length, partsReq.length);
+
+                boolean compared = false;
+                for (int index = 0; index < length; index++) {
+                    final int a;
+                    if (index < partsAct.length) {
+                        a = Integer.parseInt(partsAct[index]);
+                    }
+                    else {
+                        a = 0;
+                    }
+                    final int r;
+                    if (index < partsReq.length) {
+                        r = Integer.parseInt(partsReq[index]);
+                    }
+                    else {
+                        r = 0;
+                    }
+                    if (a != r) {
+                        result = a > r;
+                        compared = true;
+                        break;
+                    }
+                }
+                if (!compared) {
+                    result = true;
+                }
+            }
+        }
+
+        return result;
     }
 
     /**
