@@ -45,6 +45,7 @@ import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
@@ -52,6 +53,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
+import com.puppycrawl.tools.checkstyle.xpath.RootNode;
 
 public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport {
 
@@ -178,6 +180,19 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         return new File("src/" + getResourceLocation()
                 + "/resources-noncompilable/" + getPackageLocation() + "/"
                 + filename).getCanonicalPath();
+    }
+
+    /**
+     * Creates a RootNode for non-compilable test files.
+     *
+     * @param fileName name of the test file
+     * @return RootNode for the parsed AST
+     * @throws Exception if file parsing fails
+     */
+    protected RootNode getRootNodeForNonCompilable(String fileName) throws Exception {
+        final File file = new File(getNonCompilablePath(fileName));
+        final DetailAST rootAst = JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS);
+        return new RootNode(rootAst);
     }
 
     /**
