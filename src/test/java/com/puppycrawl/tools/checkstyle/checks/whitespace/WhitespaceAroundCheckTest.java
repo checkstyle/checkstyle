@@ -514,7 +514,7 @@ public class WhitespaceAroundCheckTest
             "89:23: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputWhitespaceAroundAllowEmptyCompactCtors.java"),
+                getPath("InputWhitespaceAroundAllowEmptyCompactCtors.java"),
                 expected);
     }
 
