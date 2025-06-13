@@ -260,3 +260,4 @@ public class MethodParamPadCheckTest
                 getNonCompilablePath("InputMethodParamPadCheckRecordPattern2.java"), expected);
     }
 }
+// ok
