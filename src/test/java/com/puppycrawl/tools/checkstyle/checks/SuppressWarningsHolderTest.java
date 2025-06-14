@@ -475,7 +475,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
             };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputSuppressWarningsHolderTextBlocks.java"), expected);
+                getPath("InputSuppressWarningsHolderTextBlocks.java"), expected);
 
     }
 

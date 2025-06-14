@@ -33,42 +33,42 @@ public class Java17AstRegressionTest extends AbstractTreeTestSupport {
     @Test
     public void testPatternsInSwitch() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedAntlr4AstRegressionPatternsInSwitch.txt"),
-                getNonCompilablePath("InputAntlr4AstRegressionPatternsInSwitch.java"));
+                getPath("InputAntlr4AstRegressionPatternsInSwitch.java"));
     }
 
     @Test
     public void testPatternsInIfStatement() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedAntlr4AstRegressionPatternsInIfStatement.txt"),
-                getNonCompilablePath("InputAntlr4AstRegressionPatternsInIfStatement.java"));
+                getPath("InputAntlr4AstRegressionPatternsInIfStatement.java"));
     }
 
     @Test
     public void testPatternsInWhile() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedAntlr4AstRegressionPatternsInWhile.txt"),
-                getNonCompilablePath("InputAntlr4AstRegressionPatternsInWhile.java"));
+                getPath("InputAntlr4AstRegressionPatternsInWhile.java"));
     }
 
     @Test
     public void testPatternsInTernary() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedAntlr4AstRegressionPatternsInTernary.txt"),
-                getNonCompilablePath("InputAntlr4AstRegressionPatternsInTernary.java"));
+                getPath("InputAntlr4AstRegressionPatternsInTernary.java"));
     }
 
     @Test
     public void testPatternsInFor() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedAntlr4AstRegressionPatternsInFor.txt"),
-                getNonCompilablePath("InputAntlr4AstRegressionPatternsInFor.java"));
+                getPath("InputAntlr4AstRegressionPatternsInFor.java"));
     }
 
     @Test
     public void testPatternMatchingInSwitch() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedAntlr4AstRegressionPatternMatchingInSwitch.txt"),
-                getNonCompilablePath("InputAntlr4AstRegressionPatternMatchingInSwitch.java"));
+                getPath("InputAntlr4AstRegressionPatternMatchingInSwitch.java"));
     }
 
     @Test
     public void testCaseDefault() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedAntlr4AstRegressionCaseDefault.txt"),
-                getNonCompilablePath("InputAntlr4AstRegressionCaseDefault.java"));
+                getPath("InputAntlr4AstRegressionCaseDefault.java"));
     }
 }
