@@ -61,7 +61,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
             // context.
             childIndent = IndentLevel.addAcceptable(childIndent, getLineStart(getMainAst()));
 
-            if (child instanceof SlistHandler) {
+            if (isSameLineAsSwitch(child.getMainAst()) || child instanceof SlistHandler) {
                 // Lambda with block body (enclosed in {})
                 childIndent = IndentLevel.addAcceptable(childIndent,
                     getLineStart(getMainAst().getFirstChild()));
@@ -221,5 +221,18 @@ public class LambdaHandler extends AbstractExpressionHandler {
         final DetailAST nextSibling = mainAst.getNextSibling();
         final boolean firstLineMatches = getFirstLine(nextSibling) != mainAst.getLineNo();
         checkExpressionSubtree(nextSibling, level, firstLineMatches, false);
+    }
+
+    /**
+     * Checks if the current LAMBDA node is placed on the same line
+     * as the given SWITCH_LITERAL node.
+     *
+     * @param node the SWITCH_LITERAL node to compare with
+     * @return true if the current LAMBDA node is on the same line
+     *     as the given SWITCH_LITERAL node
+     */
+    private boolean isSameLineAsSwitch(DetailAST node) {
+        return node.getType() == TokenTypes.LITERAL_SWITCH
+            && TokenUtil.areOnSameLine(getMainAst(), node);
     }
 }
