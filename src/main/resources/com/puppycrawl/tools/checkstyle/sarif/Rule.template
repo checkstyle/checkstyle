@@ -1,0 +1,9 @@
+            {
+              "id": "${ruleId}",
+              "shortDescription": {
+                "text": "${shortDescription}"
+              },
+              "fullDescription": {
+                "text": "${fullDescription}"
+              }
+            }
