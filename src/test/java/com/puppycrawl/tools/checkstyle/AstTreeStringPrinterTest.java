@@ -163,7 +163,7 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
     public void testTextBlocksEscapesAreOneChar() throws Exception {
         final String inputFilename = "InputAstTreeStringPrinterTextBlocksEscapesAreOneChar.java";
         final DetailAST ast = JavaParser.parseFile(
-                new File(getNonCompilablePath(inputFilename)), JavaParser.Options.WITHOUT_COMMENTS)
+                new File(getPath(inputFilename)), JavaParser.Options.WITHOUT_COMMENTS)
                 .getFirstChild();
 
         final DetailAST objectBlockNode = ast.findFirstToken(TokenTypes.OBJBLOCK);
