@@ -1,4 +1,4 @@
-//non-compiled with javac: Compilable with Java17
+//non-compiled with javac: compilable with java21
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
 public class InputXpathPatternVariableNameTwo {

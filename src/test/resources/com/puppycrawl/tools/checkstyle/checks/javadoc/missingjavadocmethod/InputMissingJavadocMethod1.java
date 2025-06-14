@@ -5,7 +5,7 @@ scope = private
 
 */
 
-//non-compiled with javac: Compilable with Java17
+// java17
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
 public class InputMissingJavadocMethod1 {
