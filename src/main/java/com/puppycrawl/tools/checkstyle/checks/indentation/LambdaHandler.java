@@ -66,7 +66,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
                 childIndent = IndentLevel.addAcceptable(childIndent,
                     getLineStart(getMainAst().getFirstChild()));
             }
-            else {
+            else if (!TokenUtil.areOnSameLine(getMainAst(), child.getMainAst())) {
                 // Single-expression lambda (no {} block):
                 // assume line wrapping and add additional indentation
                 // for the statement in the next line.
