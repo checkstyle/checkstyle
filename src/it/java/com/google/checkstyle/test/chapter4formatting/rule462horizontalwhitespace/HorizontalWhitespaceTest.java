@@ -176,6 +176,16 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testWhitespaceInsideArrayInitializer() throws Exception {
+        verifyWithWholeConfig(getPath("InputWhitespaceInsideArrayInitializer.java"));
+    }
+
+    @Test
+    public void testWhitespaceInsideArrayInitializerFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedWhitespaceInsideArrayInitializer.java"));
+    }
+
+    @Test
     public void testWhitespaceAroundWhenFormatted() throws Exception {
         verifyWithWholeConfig(getNonCompilablePath("InputFormattedWhitespaceAroundWhen.java"));
     }
