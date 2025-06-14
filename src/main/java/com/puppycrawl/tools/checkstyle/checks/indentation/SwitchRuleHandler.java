@@ -61,7 +61,7 @@ public class SwitchRuleHandler extends AbstractExpressionHandler {
     private void checkCase() {
         // only need to check if the case statement is not on the same line as
         // the parent switch statement
-        if (!isSameLineAsSwitch()) {
+        if (!isSameLineAsSwitch(getMainAst().getParent())) {
             checkChildren(getMainAst(), SWITCH_RULE_CHILDREN, getIndent(),
                     true, false);
         }
@@ -71,7 +71,7 @@ public class SwitchRuleHandler extends AbstractExpressionHandler {
     public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
         final IndentLevel result;
 
-        if (child instanceof SlistHandler) {
+        if (child instanceof SlistHandler || isSameLineAsSwitch(child.getMainAst())) {
             // switchRule with block body (enclosed in {})
             result = getIndent();
         }
@@ -91,13 +91,16 @@ public class SwitchRuleHandler extends AbstractExpressionHandler {
     }
 
     /**
-     * Checks if SWITCH_RULE node is placed at the same line as SWITCH_LITERAL node.
+     * Checks if the current SWITCH_RULE node is placed on the same line
+     * as the given SWITCH_LITERAL node.
      *
-     * @return true, if SWITCH_RULE node is places at the same line as SWITCH_LITERAL node.
+     * @param node the SWITCH_LITERAL node to compare with
+     * @return true if the current SWITCH_RULE node is on the same line
+     *     as the given SWITCH_LITERAL node
      */
-    private boolean isSameLineAsSwitch() {
-        final DetailAST parentNode = getMainAst().getParent();
-        return TokenUtil.areOnSameLine(getMainAst(), parentNode);
+    private boolean isSameLineAsSwitch(DetailAST node) {
+        return node.getType() == TokenTypes.LITERAL_SWITCH
+            && TokenUtil.areOnSameLine(getMainAst(), node);
     }
 
 }
