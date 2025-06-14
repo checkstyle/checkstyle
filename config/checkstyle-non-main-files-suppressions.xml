@@ -310,5 +310,7 @@
          files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppresswarningsfilter.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]whenshouldbeused.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]patternvariableassignment.xml.template"/>
 
 </suppressions>
