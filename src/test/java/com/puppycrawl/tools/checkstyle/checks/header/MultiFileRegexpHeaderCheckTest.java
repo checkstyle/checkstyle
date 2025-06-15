@@ -29,6 +29,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -346,8 +348,11 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
             .that(locationsWithHeaders.size())
             .isEqualTo(2);
 
-        final String expectedUri4 = new File(header4Path).toURI().toASCIIString();
-        final String expectedUri1 = new File(header1Path).toURI().toASCIIString();
+        final Path header4PathObj = Paths.get(header4Path);
+        final Path header1PathObj = Paths.get(header1Path);
+
+        final String expectedUri4 = header4PathObj.toUri().toASCIIString();
+        final String expectedUri1 = header1PathObj.toUri().toASCIIString();
 
         assertWithMessage(
                 "Locations should include URI for InputRegexpHeader4.header")
@@ -871,27 +876,27 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     public void testSetHeaderFilesClearsPreviousConfiguration() throws IOException {
         final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
 
-        final File headerFileA = new File(temporaryFolder, "testHeaderA_clear_check.header");
-        Files.write(headerFileA.toPath(), List.of("// Header A for clear check"),
+        final Path headerFileA = temporaryFolder.toPath().resolve("testHeaderA_clear_check.header");
+        Files.write(headerFileA, List.of("// Header A for clear check"),
                 StandardCharsets.UTF_8);
-        final String pathA = headerFileA.getAbsolutePath();
-        final URI uriA = headerFileA.toURI();
+        final String pathA = headerFileA.toAbsolutePath().toString();
+        final String uriA = headerFileA.toUri().toASCIIString();
 
         check.setHeaderFiles(pathA);
         assertWithMessage("After first set, only header A should be present")
                 .that(check.getExternalResourceLocations())
-                .containsExactly(uriA.toASCIIString());
+                .containsExactly(uriA);
 
-        final File headerFileB = new File(temporaryFolder, "testHeaderB_clear_check.header");
-        Files.write(headerFileB.toPath(), List.of("// Header B for clear check"),
+        final Path headerFileB = temporaryFolder.toPath().resolve("testHeaderB_clear_check.header");
+        Files.write(headerFileB, List.of("// Header B for clear check"),
                 StandardCharsets.UTF_8);
-        final String pathB = headerFileB.getAbsolutePath();
-        final URI uriB = headerFileB.toURI();
+        final String pathB = headerFileB.toAbsolutePath().toString();
+        final String uriB = headerFileB.toUri().toASCIIString();
 
         check.setHeaderFiles(pathB);
         assertWithMessage("After second set, only header B should be present")
                 .that(check.getExternalResourceLocations())
-                .containsExactly(uriB.toASCIIString());
+                .containsExactly(uriB);
     }
 
     @Test
