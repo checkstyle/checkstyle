@@ -30,6 +30,13 @@
               <th>since</th>
             </tr>
             <tr>
+              <td>forceStrictCondition</td>
+              <td>Force strict indent level of the continuations lines in the javadoc. If value is true, continuation lines indent have to be same as offset parameter. If value is false, line wrap indent could be bigger on any value user would like.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>10.24.0</td>
+            </tr>
+            <tr>
               <td>offset</td>
               <td>Specify how many spaces to use for new indentation level.</td>
               <td><a href="../../property_types.html#int">int</a></td>
