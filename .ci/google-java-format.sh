@@ -57,6 +57,7 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule452indentcontinuationlines/ClassWithChainedMethods.java" \
     | grep -v "rule461verticalwhitespace/InputVerticalWhitespace.java" \
     | grep -v "rule462horizontalwhitespace/InputWhitespaceAroundBasic.java" \
+    | grep -v "rule462horizontalwhitespace/InputWhitespaceAroundArrow.java" \
     | grep -v "rule462horizontalwhitespace/InputWhitespaceAfterBad.java" \
     | grep -v "rule462horizontalwhitespace/InputWhitespaceAfterGood.java" \
     | grep -v "rule462horizontalwhitespace/InputParenPad.java" \
