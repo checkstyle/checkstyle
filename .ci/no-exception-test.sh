@@ -234,6 +234,18 @@ no-exception-samples-ant)
     `"s|name=\"checkstyle\" rev=\".*\""`
     `"|name=\"checkstyle\" rev=\"$CS_POM_VERSION\"|g" ivy.xml
 
+  # Resolve certificate directory conflict
+  sudo rm -rf /etc/ssl/certs/java
+  sudo mkdir -p /etc/ssl/certs/java
+  sudo apt-get update -y
+
+  sudo apt-get install -y --reinstall --allow-downgrades --fix-broken \
+       ca-certificates-java openjdk-17-jre-headless
+
+  sudo update-ca-certificates -f
+
+  sudo apt-get install -y ant
+
   ant checkstyle
 
   cd ../..
