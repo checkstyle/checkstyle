@@ -828,6 +828,7 @@
 <a href="com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.ScopeConverter.html#%3Cinit%3E()">com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.ScopeConverter.html#%3Cinit%3E()</a>: doesn't exist.
 <a href="com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.SeverityLevelConverter.html#%3Cinit%3E()">com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.SeverityLevelConverter.html#%3Cinit%3E()</a>: doesn't exist.
 <a href="com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.UriConverter.html#%3Cinit%3E()">com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.UriConverter.html#%3Cinit%3E()</a>: doesn't exist.
+<a href="apidocs/constant-values.html#com.puppycrawl">#com.puppycrawl</a>: doesn't exist.
 <a href="com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.html#%3Cinit%3E()">com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.html#%3Cinit%3E()</a>: doesn't exist.
 <a href="com/puppycrawl/tools/checkstyle/AstTreeStringPrinter.html#%3Cinit%3E()">com/puppycrawl/tools/checkstyle/AstTreeStringPrinter.html#%3Cinit%3E()</a>: doesn't exist.
 <a href="com/puppycrawl/tools/checkstyle/AuditEventDefaultFormatter.html#%3Cinit%3E()">com/puppycrawl/tools/checkstyle/AuditEventDefaultFormatter.html#%3Cinit%3E()</a>: doesn't exist.
