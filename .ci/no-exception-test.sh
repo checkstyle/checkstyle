@@ -234,6 +234,9 @@ no-exception-samples-ant)
     `"s|name=\"checkstyle\" rev=\".*\""`
     `"|name=\"checkstyle\" rev=\"$CS_POM_VERSION\"|g" ivy.xml
 
+  sudo apt-get update -y
+  sudo apt-get install -y ant
+
   ant checkstyle
 
   cd ../..
