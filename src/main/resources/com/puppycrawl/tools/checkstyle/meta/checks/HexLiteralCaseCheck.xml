@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.HexLiteralCaseCheck"
+             name="HexLiteralCase"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt; Checks that hexadecimal literals are defined using uppercase letters &lt;code&gt;(A-F)&lt;/code&gt;
+ rather than lowercase &lt;code&gt;(a-f)&lt;/code&gt;.
+ This improves readability and avoids confusion with suffixes like &lt;code&gt;f&lt;/code&gt;(float)
+ and &lt;code&gt;d&lt;/code&gt;(double). For example, use &lt;code&gt;0xFF&lt;/code&gt; instead of &lt;code&gt;0xff&lt;/code&gt;.
+ All other numerical prefixes, infixes, and suffixes (such as &lt;code&gt;0x&lt;/code&gt;, &lt;code&gt;0b&lt;/code&gt;,
+ &lt;code&gt;f&lt;/code&gt;, &lt;code&gt;d&lt;/code&gt;) should remain lowercase.
+ This convention follows the
+ &lt;a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-literals"&gt;
+ OpenJDK Style Guide&lt;/a&gt;.
+ &lt;/div&gt;</description>
+         <message-keys>
+            <message-key key="hex.Literal"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
