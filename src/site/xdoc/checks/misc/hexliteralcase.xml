@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>HexLiteralCase</title>
+  </head>
+  <body>
+    <section name="HexLiteralCase">
+      <p>Since Checkstyle 10.27.0</p>
+
+      <subsection name="Description" id="Description">
+        <div>
+            Checks that hexadecimal literals are defined using uppercase letters <code>(A-F)</code>
+            rather than lowercase <code>(a-f)</code>. This improves readability and avoids confusion
+            with suffixes like <code>f</code> (float) and <code>d</code> (double).
+            For example, use <code>0xFF</code> instead of <code>0xff</code>.
+            All other numerical prefixes, infixes, and suffixes
+            (such as <code>0x</code>, <code>0b</code>, <code>f</code>, <code>d</code>)
+            should remain lowercase.
+            This convention follows the
+            <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-literals">
+            OpenJDK Style Guide
+          </a>.
+        </div>
+        <p>
+          For example, <code>0xAF</code> is valid, but <code>0xaf</code> is not.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="HexLiteralCase"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  byte b2  = 0x1b;          // violation  'Should use uppercase hexadecimal letters.'
+  byte b1  = 0x1B;
+
+  short s2 = 0xF5f;         // violation  'Should use uppercase hexadecimal letters.'
+  short s2 = 0xF5F;
+
+  int i1 = 0x11 + 0xabc;    // violation  'Should use uppercase hexadecimal letters.'
+  int i2 = 0x11 + 0xABC;
+  int i3 = 0X123 + 0Xabc;   // violation  'Should use uppercase hexadecimal letters.'
+  int i4 = 0X123 + 0XABC;
+  int i5 = 0xdeadbeef;      // violation  'Should use uppercase hexadecimal letters.'
+  int i6 = 0xDEADBEEF;
+
+  long l1 = 0x7fff_ffff_ffff_ffffL;
+  // violation above 'Should use uppercase hexadecimal letters.'
+  long l1 = 0x7FFF_FFFF_FFFF_FFFFL;
+
+  long l2 = 0x7FFF_AAA_bBB_DDDL;
+  // violation  above 'Should use uppercase hexadecimal letters.'
+  long l2 = 0x7FFF_AAA_BBB_DDDL;
+
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+HexLiteralCase">
+              Checkstyle Style
+            </a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22hex.Literal%22">
+              hex.Literal
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
