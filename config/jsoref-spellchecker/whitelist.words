@@ -24,6 +24,7 @@ allchecks
 allclasses
 allowlegacy
 alot
+alundblad
 amazonaws
 amd
 amitkumardeoghoria
@@ -435,6 +436,8 @@ FEF
 fenum
 ffd
 fff
+FFFA
+FFFB
 FFFD
 FFFF
 Fgoogle
@@ -553,6 +556,7 @@ hcoles
 Headerjava
 Hejl
 HEXDIGIT
+hexliteralcase
 hh
 hiddenfield
 hideutilityclassconstructor
@@ -1519,6 +1523,8 @@ writinglisteners
 Wsdl
 www
 xa
+xabc
+xaf
 xar
 xargs
 XDcompile
@@ -1527,11 +1533,7 @@ xdocspagetitle
 Xep
 Xerces
 xf
-xfeff
-xfff
-xfffa
-xfffb
-xffff
+xff
 xffffffff
 xffffffffffffffff
 xg
