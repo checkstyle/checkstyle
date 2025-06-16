@@ -225,20 +225,36 @@ no-exception-only-javadoc)
 
 no-exception-samples-ant)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
-  echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
-  ./mvnw -e --no-transfer-progress -B install -Pno-validations
-  checkout_from https://github.com/sevntu-checkstyle/checkstyle-samples
-  cd .ci-temp/checkstyle-samples/ant-project
+echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
+./mvnw -e --no-transfer-progress -B install -Pno-validations
+checkout_from https://github.com/sevntu-checkstyle/checkstyle-samples
+cd .ci-temp/checkstyle-samples/ant-project
 
-  sed -i -e "/<dependencies>/,/<\/dependencies>/ "`
-    `"s|name=\"checkstyle\" rev=\".*\""`
-    `"|name=\"checkstyle\" rev=\"$CS_POM_VERSION\"|g" ivy.xml
+sed -i -e "/<dependencies>/,/<\/dependencies>/ \
+  s|name=\"checkstyle\" rev=\".*\"|name=\"checkstyle\" rev=\"$CS_POM_VERSION\"|g" ivy.xml
 
-  ant checkstyle
+# --- FIX STARTS HERE ---
+# Resolve certificate directory conflict
+sudo rm -rf /etc/ssl/certs/java
+sudo mkdir -p /etc/ssl/certs/java
+sudo apt-get update -y
 
-  cd ../..
-  removeFolderWithProtectedFiles checkstyle-samples
-  ;;
+# Reinstall Java certificates with force
+sudo apt-get install -y --reinstall --allow-downgrades --fix-broken \
+    ca-certificates-java openjdk-17-jre-headless
+
+# Force certificate update
+sudo update-ca-certificates -f
+
+# Install Ant after certificates are fixed
+sudo apt-get install -y ant
+# --- FIX ENDS HERE ---
+
+ant checkstyle
+
+cd ../..
+removeFolderWithProtectedFiles checkstyle-samples
+;;
 
 no-exception-samples-gradle)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
