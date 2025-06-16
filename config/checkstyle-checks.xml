@@ -825,6 +825,7 @@
       <property name="excludedClasses" value="\.(Main|JavadocPropertiesGenerator)$"/>
     </module>
     <module name="UpperEll"/>
+    <module name="HexLiteralCase"/>
 
     <!-- Modifiers -->
     <module name="ClassMemberImpliedModifier">

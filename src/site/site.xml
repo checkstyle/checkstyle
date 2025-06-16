@@ -252,6 +252,7 @@
           <item name="CommentsIndentation" href="checks/misc/commentsindentation.html"/>
           <item name="DescendantToken" href="checks/misc/descendanttoken.html"/>
           <item name="FinalParameters" href="checks/misc/finalparameters.html"/>
+          <item name="HexLiteralCase" href="checks/misc/hexliteralcase.html"/>
           <item name="Indentation" href="checks/misc/indentation.html"/>
           <item name="NewlineAtEndOfFile" href="checks/misc/newlineatendoffile.html"/>
           <item name="NoCodeInFile" href="checks/misc/nocodeinfile.html"/>

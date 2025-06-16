@@ -923,6 +923,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.UniquePropertiesCheck");
         NAME_TO_FULL_MODULE_NAME.put("UpperEllCheck",
                 BASE_PACKAGE + ".checks.UpperEllCheck");
+        NAME_TO_FULL_MODULE_NAME.put("HexLiteralCaseCheck",
+                BASE_PACKAGE + ".checks.HexLiteralCaseCheck");
     }
 
     /**
