@@ -196,7 +196,8 @@ public final class BlockCommentPosition {
      * @return true if node is before compact constructor
      */
     public static boolean isOnCompactConstructor(DetailAST blockComment) {
-        return isOnTokenWithModifiers(blockComment, TokenTypes.COMPACT_CTOR_DEF)
+        return isOnPlainToken(blockComment, TokenTypes.COMPACT_CTOR_DEF, TokenTypes.IDENT)
+                || isOnTokenWithModifiers(blockComment, TokenTypes.COMPACT_CTOR_DEF)
                 || isOnTokenWithAnnotation(blockComment, TokenTypes.COMPACT_CTOR_DEF);
     }
 
