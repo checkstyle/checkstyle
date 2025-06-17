@@ -63,6 +63,10 @@ src/it/resources/com/google/checkstyle/test/chapter4formatting/rule489textblocks
 src/it/resources/com/google/checkstyle/test/chapter5naming/rule522classnames/InputClassNames.java
 src/it/resources/com/google/checkstyle/test/chapter5naming/rule53camelcase/InputCamelCaseDefined.java
 src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule711generalform/InputSingleLineJavadocAndInvalidJavadocPosition.java
+src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule711generalform/InputJavadocPositionOnCononicalConstructorsWithAnnotation.java
+src/it/resources/com/google/checkstyle/test/chapter8javadoc/rule711generalform/InputJavadocPositionOnCompactConstructorsWithAnnotation.java
+src/it/resources/com/google/checkstyle/test/chapter8javadoc/rule711generalform/InputJavadocPositionOnConstructorInRecord.java
+src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule711generalform/InputRecordClassJavadocPosition.java
 src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/InputIncorrectRequireEmptyLineBeforeBlockTagGroup.java
 src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/InputIncorrectJavadocParagraph.java
 src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/InputJavaDocTagContinuationIndentation.java
