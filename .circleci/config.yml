@@ -4,7 +4,7 @@ jobs:
 
   run-inspections:
     docker:
-      - image: checkstyle/idea-docker:jdk11-idea2022.3.3
+      - image: atharv3321/idea-image
 
     steps:
       - checkout
@@ -33,7 +33,7 @@ jobs:
     parameters: &script_parameters
       image-name:
         type: string
-        default: "cimg/openjdk:11.0.16"
+        default: "cimg/openjdk:17.0.7"
         description: "docker image to use"
       command:
         description: "command to run"
