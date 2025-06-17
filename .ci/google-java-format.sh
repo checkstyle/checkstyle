@@ -87,6 +87,8 @@ COMPILABLE_INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -nam
     | grep -v "rule522classnames/InputClassNames.java" \
     | grep -v "rule53camelcase/InputCamelCaseDefined.java" \
     | grep -v "rule711generalform/InputSingleLineJavadocAndInvalidJavadocPosition.java" \
+    | grep -v "rule711generalform/InputJavadocPositionOnCompactConstructors.java" \
+    | grep -v "rule711generalform/InputJavadocPositionOnCompactConstructorsWithAnnotation.java" \
     | grep -v "rule712paragraphs/InputIncorrectRequireEmptyLineBeforeBlockTagGroup.java" \
     | grep -v "rule712paragraphs/InputIncorrectJavadocParagraph.java" \
     | grep -v "rule713atclauses/InputJavaDocTagContinuationIndentation.java" \
