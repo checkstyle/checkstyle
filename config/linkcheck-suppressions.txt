@@ -1515,3 +1515,4 @@
 <a href="com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseListIterator.html#%3Cinit%3E(java.util.Collection)">com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseListIterator.html#%3Cinit%3E(java.util.Collection)</a>: doesn't exist.
 <a href="com/puppycrawl/tools/checkstyle/utils/UnmodifiableCollectionUtil.html#copyOfArray(T%5B%5D,int)">com/puppycrawl/tools/checkstyle/utils/UnmodifiableCollectionUtil.html#copyOfArray(T%5B%5D,int)</a>: doesn't exist.
 <a href="com/puppycrawl/tools/checkstyle/site/XdocsTemplateSink.CustomPrintWriter.html#%3Cinit%3E(java.io.Writer)">com/puppycrawl/tools/checkstyle/site/XdocsTemplateSink.CustomPrintWriter.html#%3Cinit%3E(java.io.Writer)</a>: doesn't exist.
+apidocs/constant-values.html#com.puppycrawl
