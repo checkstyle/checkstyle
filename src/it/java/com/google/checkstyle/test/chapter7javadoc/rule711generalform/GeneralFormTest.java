@@ -41,4 +41,9 @@ public class GeneralFormTest extends AbstractGoogleModuleTestSupport {
                 getPath("InputFormattedSingleLineJavadocAndInvalidJavadocPosition.java"));
     }
 
+    @Test
+    public void testJavadocPositionOnCompactConstructorInRecord() throws Exception {
+        verifyWithWholeConfig(
+            getNonCompilablePath("InputJavadocPositionOnCompactConstructors.java"));
+    }
 }
