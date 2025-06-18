@@ -33,7 +33,7 @@ jobs:
     parameters: &script_parameters
       image-name:
         type: string
-        default: "cimg/openjdk:11.0.16"
+        default: "cimg/openjdk:17.0.7"
         description: "docker image to use"
       command:
         description: "command to run"
