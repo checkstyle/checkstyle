@@ -240,7 +240,6 @@ public final class SiteUtil {
      * @noinspectionreason JavacQuirks until #14052
      */
     private static final Map<String, String> SINCE_VERSION_FOR_INHERITED_PROPERTY = Map.ofEntries(
-        Map.entry("MissingDeprecatedCheck.violateExecutionOnNonTightHtml", VERSION_8_24),
         Map.entry("NonEmptyAtclauseDescriptionCheck.violateExecutionOnNonTightHtml", "8.3"),
         Map.entry("HeaderCheck.charset", VERSION_5_0),
         Map.entry("HeaderCheck.fileExtensions", VERSION_6_9),
@@ -849,8 +848,14 @@ public final class SiteUtil {
         final String sinceVersion;
         final String superClassSinceVersion = SINCE_VERSION_FOR_INHERITED_PROPERTY
                    .get(moduleName + DOT + propertyName);
+        final String specifiedPropertyVersion =
+            getSpecifiedPropertyVersion(propertyName, moduleJavadoc);
+
         if (superClassSinceVersion != null) {
             sinceVersion = superClassSinceVersion;
+        }
+        else if (specifiedPropertyVersion != null) {
+            sinceVersion = specifiedPropertyVersion;
         }
         else if (TOKENS.equals(propertyName)
                         || JAVADOC_TOKENS.equals(propertyName)) {
@@ -869,6 +874,99 @@ public final class SiteUtil {
         }
 
         return sinceVersion;
+    }
+
+    /**
+     * Gets the specifically indicated version of module's property from the javadoc of module.
+     *
+     * @param propertyName the name of property.
+     * @param moduleJavadoc the javadoc of module.
+     * @return the specific since version of module's property.
+     */
+    private static String getSpecifiedPropertyVersion(String propertyName,
+                                                      DetailNode moduleJavadoc) {
+        String specifiedVersion = null;
+
+        final DetailNode propertyModuleJavadoc =
+            getPropertyJavadocNodeInModule(propertyName, moduleJavadoc);
+
+        final DetailNode primaryJavdocInlineTag = JavadocUtil.findFirstToken(propertyModuleJavadoc,
+                        JavadocTokenTypes.JAVADOC_INLINE_TAG);
+
+        for (DetailNode textNode = JavadocUtil
+            .getNextSibling(primaryJavdocInlineTag, JavadocTokenTypes.TEXT);
+             textNode != null && specifiedVersion == null;
+             textNode = JavadocUtil.getNextSibling(
+                 textNode, JavadocTokenTypes.TEXT)) {
+
+            if (textNode.getText().contains("Since version")) {
+                final String textNodeText = textNode.getText();
+                final int sinceVersionIndex = textNodeText.indexOf('.') - 1;
+
+                specifiedVersion = textNodeText.substring(sinceVersionIndex);
+            }
+        }
+
+        return specifiedVersion;
+    }
+
+    /**
+     * Gets the javadoc node part of the property from the javadoc of the module.
+     *
+     * @param propertyName the name of property.
+     * @param moduleJavadoc the javadoc of module.
+     * @return the javadoc node part of the property.
+     */
+    private static DetailNode getPropertyJavadocNodeInModule(String propertyName,
+                                                             DetailNode moduleJavadoc) {
+        DetailNode propertyJavadocNode = null;
+
+        for (DetailNode htmlElement = JavadocUtil.getNextSibling(
+                JavadocUtil.getFirstChild(moduleJavadoc), JavadocTokenTypes.HTML_ELEMENT);
+            htmlElement != null && propertyJavadocNode == null;
+            htmlElement = JavadocUtil.getNextSibling(
+                htmlElement, JavadocTokenTypes.HTML_ELEMENT)) {
+
+            final DetailNode htmlTag = JavadocUtil.findFirstToken(
+                htmlElement, JavadocTokenTypes.HTML_TAG);
+            final String htmlTagName = Optional.ofNullable(htmlTag)
+                .map(JavadocUtil::getFirstChild)
+                .map(htmlStart -> {
+                    return JavadocUtil.findFirstToken(htmlStart, JavadocTokenTypes.HTML_TAG_NAME);
+                })
+                .map(DetailNode::getText).orElse(null);
+
+            if (htmlTag != null && "ul".equals(htmlTagName)) {
+
+                for (DetailNode innerHtmlElement = JavadocUtil.getNextSibling(
+                        JavadocUtil.getFirstChild(htmlTag), JavadocTokenTypes.HTML_ELEMENT);
+                    innerHtmlElement != null && propertyJavadocNode == null;
+                    innerHtmlElement = JavadocUtil.getNextSibling(
+                        innerHtmlElement, JavadocTokenTypes.HTML_ELEMENT)) {
+
+                    final DetailNode liTag = JavadocUtil.getFirstChild(innerHtmlElement);
+
+                    if (liTag.getType() == JavadocTokenTypes.LI) {
+
+                        final DetailNode primeJavadocInlineTag = JavadocUtil.findFirstToken(liTag,
+                            JavadocTokenTypes.JAVADOC_INLINE_TAG);
+
+                        if (primeJavadocInlineTag == null) {
+                            break;
+                        }
+
+                        final String examinedPropertyName = JavadocUtil.findFirstToken(
+                            primeJavadocInlineTag, JavadocTokenTypes.TEXT).getText();
+
+                        if (examinedPropertyName.equals(propertyName)) {
+                            propertyJavadocNode = liTag;
+                        }
+                    }
+                }
+            }
+        }
+
+        return propertyJavadocNode;
     }
 
     /**
