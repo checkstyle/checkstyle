@@ -581,8 +581,7 @@ public class PropertiesMacro extends AbstractMacro {
      */
     private static void writePropertySinceVersionCell(Sink sink, String propertyName,
                                                       DetailNode moduleJavadoc,
-                                                      DetailNode propertyJavadoc)
-            throws MacroExecutionException {
+                                                      DetailNode propertyJavadoc) {
         sink.rawText(INDENT_LEVEL_14);
         sink.tableCell();
         final String sinceVersion = SiteUtil.getSinceVersion(
