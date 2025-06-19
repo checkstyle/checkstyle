@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.site;
 import java.beans.PropertyDescriptor;
 import java.io.File;
 import java.io.IOException;
+import java.lang.module.ModuleDescriptor.Version;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -116,6 +117,10 @@ public final class SiteUtil {
     private static final String NAMING = "naming";
     /** The string 'src'. */
     private static final String SRC = "src";
+    /** The string 'snapshot'. */
+    private static final String SNAPSHOT_SUFFIX = "-SNAPSHOT";
+    /** The string 'dot_regex'. */
+    private static final String DOT_REGEX = "\\\\.";
 
     /** Precompiled regex pattern to remove the "Setter to " prefix from strings. */
     private static final Pattern SETTER_PATTERN = Pattern.compile("^Setter to ");
@@ -151,12 +156,6 @@ public final class SiteUtil {
      */
     private static final String REGEXP_HEADER_CHECK_HEADER = "RegexpHeaderCheck.header";
 
-    /**
-     * Check and property name.
-     */
-    private static final String MULTI_FILE_REGEXP_HEADER_CHECK_HEADER =
-            "MultiFileRegexpHeaderCheck.header";
-
     /** Set of properties that are undocumented. Those are internal properties. */
     private static final Set<String> UNDOCUMENTED_PROPERTIES = Set.of(
         "SuppressWithNearbyCommentFilter.fileContents",
@@ -179,37 +178,12 @@ public final class SiteUtil {
     /**
      * Frequent version.
      */
-    private static final String VERSION_6_9 = "6.9";
-
-    /**
-     * Frequent version.
-     */
     private static final String VERSION_5_0 = "5.0";
 
     /**
      * Frequent version.
      */
-    private static final String VERSION_3_2 = "3.2";
-
-    /**
-     * Frequent version.
-     */
     private static final String VERSION_8_24 = "8.24";
-
-    /**
-     * Frequent version.
-     */
-    private static final String VERSION_8_36 = "8.36";
-
-    /**
-     * Frequent version.
-     */
-    private static final String VERSION_10_24 = "10.24";
-
-    /**
-     * Frequent version.
-     */
-    private static final String VERSION_3_0 = "3.0";
 
     /**
      * Frequent version.
@@ -236,89 +210,39 @@ public final class SiteUtil {
      * are not specified in code because they are inherited from their super class(es).
      * Until <a href="https://github.com/checkstyle/checkstyle/issues/14052">#14052</a>.
      *
-     * @noinspection JavacQuirks
      * @noinspectionreason JavacQuirks until #14052
      */
     private static final Map<String, String> SINCE_VERSION_FOR_INHERITED_PROPERTY = Map.ofEntries(
         Map.entry("MissingDeprecatedCheck.violateExecutionOnNonTightHtml", VERSION_8_24),
-        Map.entry("NonEmptyAtclauseDescriptionCheck.violateExecutionOnNonTightHtml", "8.3"),
-        Map.entry("HeaderCheck.charset", VERSION_5_0),
-        Map.entry("HeaderCheck.fileExtensions", VERSION_6_9),
-        Map.entry("HeaderCheck.headerFile", VERSION_3_2),
-        Map.entry(HEADER_CHECK_HEADER, VERSION_5_0),
-        Map.entry("RegexpHeaderCheck.charset", VERSION_5_0),
-        Map.entry("RegexpHeaderCheck.fileExtensions", VERSION_6_9),
-        Map.entry("RegexpHeaderCheck.headerFile", VERSION_3_2),
-        Map.entry(REGEXP_HEADER_CHECK_HEADER, VERSION_5_0),
-        Map.entry("MultiFileRegexpHeaderCheck.fileExtensions", VERSION_10_24),
-        Map.entry("MultiFileRegexpHeaderCheck.headerFiles", VERSION_10_24),
-        Map.entry(MULTI_FILE_REGEXP_HEADER_CHECK_HEADER, VERSION_10_24),
         Map.entry("ClassDataAbstractionCouplingCheck.excludeClassesRegexps", VERSION_7_7),
         Map.entry("ClassDataAbstractionCouplingCheck.excludedClasses", VERSION_5_7),
         Map.entry("ClassDataAbstractionCouplingCheck.excludedPackages", VERSION_7_7),
-        Map.entry("ClassDataAbstractionCouplingCheck.max", VERSION_3_4),
         Map.entry("ClassFanOutComplexityCheck.excludeClassesRegexps", VERSION_7_7),
         Map.entry("ClassFanOutComplexityCheck.excludedClasses", VERSION_5_7),
         Map.entry("ClassFanOutComplexityCheck.excludedPackages", VERSION_7_7),
-        Map.entry("ClassFanOutComplexityCheck.max", VERSION_3_4),
         Map.entry("NonEmptyAtclauseDescriptionCheck.javadocTokens", "7.3"),
-        Map.entry("FileTabCharacterCheck.fileExtensions", VERSION_5_0),
-        Map.entry("NewlineAtEndOfFileCheck.fileExtensions", "3.1"),
-        Map.entry("JavadocPackageCheck.fileExtensions", VERSION_5_0),
-        Map.entry("OrderedPropertiesCheck.fileExtensions", "8.22"),
-        Map.entry("UniquePropertiesCheck.fileExtensions", VERSION_5_7),
-        Map.entry("TranslationCheck.fileExtensions", VERSION_3_0),
         Map.entry("LineLengthCheck.fileExtensions", VERSION_8_24),
         // until https://github.com/checkstyle/checkstyle/issues/14052
-        Map.entry("JavadocBlockTagLocationCheck.violateExecutionOnNonTightHtml", VERSION_8_24),
-        Map.entry("JavadocLeadingAsteriskAlignCheck.violateExecutionOnNonTightHtml", "10.18"),
-        Map.entry("JavadocMissingLeadingAsteriskCheck.violateExecutionOnNonTightHtml", "8.38"),
-        Map.entry(
-            "RequireEmptyLineBeforeBlockTagGroupCheck.violateExecutionOnNonTightHtml",
-            VERSION_8_36),
-        Map.entry("ParenPadCheck.option", VERSION_3_0),
-        Map.entry("TypecastParenPadCheck.option", VERSION_3_2),
-        Map.entry("FileLengthCheck.fileExtensions", VERSION_5_0),
         Map.entry("StaticVariableNameCheck.applyToPackage", VERSION_5_0),
         Map.entry("StaticVariableNameCheck.applyToPrivate", VERSION_5_0),
         Map.entry("StaticVariableNameCheck.applyToProtected", VERSION_5_0),
         Map.entry("StaticVariableNameCheck.applyToPublic", VERSION_5_0),
-        Map.entry("StaticVariableNameCheck.format", VERSION_3_0),
         Map.entry("TypeNameCheck.applyToPackage", VERSION_5_0),
         Map.entry("TypeNameCheck.applyToPrivate", VERSION_5_0),
         Map.entry("TypeNameCheck.applyToProtected", VERSION_5_0),
         Map.entry("TypeNameCheck.applyToPublic", VERSION_5_0),
-        Map.entry("RegexpMultilineCheck.fileExtensions", VERSION_5_0),
-        Map.entry("RegexpOnFilenameCheck.fileExtensions", "6.15"),
-        Map.entry("RegexpSinglelineCheck.fileExtensions", VERSION_5_0),
-        Map.entry("ClassTypeParameterNameCheck.format", VERSION_5_0),
-        Map.entry("CatchParameterNameCheck.format", "6.14"),
-        Map.entry("LambdaParameterNameCheck.format", "8.11"),
-        Map.entry("IllegalIdentifierNameCheck.format", VERSION_8_36),
-        Map.entry("ConstantNameCheck.format", VERSION_3_0),
         Map.entry("ConstantNameCheck.applyToPackage", VERSION_5_0),
         Map.entry("ConstantNameCheck.applyToPrivate", VERSION_5_0),
         Map.entry("ConstantNameCheck.applyToProtected", VERSION_5_0),
         Map.entry("ConstantNameCheck.applyToPublic", VERSION_5_0),
-        Map.entry("InterfaceTypeParameterNameCheck.format", "5.8"),
-        Map.entry("LocalFinalVariableNameCheck.format", VERSION_3_0),
-        Map.entry("LocalVariableNameCheck.format", VERSION_3_0),
-        Map.entry("MemberNameCheck.format", VERSION_3_0),
         Map.entry("MemberNameCheck.applyToPackage", VERSION_3_4),
         Map.entry("MemberNameCheck.applyToPrivate", VERSION_3_4),
         Map.entry("MemberNameCheck.applyToProtected", VERSION_3_4),
         Map.entry("MemberNameCheck.applyToPublic", VERSION_3_4),
-        Map.entry("MethodNameCheck.format", VERSION_3_0),
         Map.entry("MethodNameCheck.applyToPackage", VERSION_5_1),
         Map.entry("MethodNameCheck.applyToPrivate", VERSION_5_1),
         Map.entry("MethodNameCheck.applyToProtected", VERSION_5_1),
-        Map.entry("MethodNameCheck.applyToPublic", VERSION_5_1),
-        Map.entry("MethodTypeParameterNameCheck.format", VERSION_5_0),
-        Map.entry("ParameterNameCheck.format", VERSION_3_0),
-        Map.entry("PatternVariableNameCheck.format", VERSION_8_36),
-        Map.entry("RecordTypeParameterNameCheck.format", VERSION_8_36),
-        Map.entry("RecordComponentNameCheck.format", "8.40"),
-        Map.entry("TypeNameCheck.format", VERSION_3_0)
+        Map.entry("MethodNameCheck.applyToPublic", VERSION_5_1)
     );
 
     /** Map of all superclasses properties and their javadocs. */
@@ -841,31 +765,38 @@ public final class SiteUtil {
      * @param propertyName the name of the property.
      * @param propertyJavadoc the Javadoc of the property setter method.
      * @return the since version of the property.
-     * @throws MacroExecutionException if the since version could not be extracted.
+     * @throws MacroExecutionException if the module since version could not be extracted.
      */
     public static String getSinceVersion(String moduleName, DetailNode moduleJavadoc,
                                          String propertyName, DetailNode propertyJavadoc)
             throws MacroExecutionException {
         final String sinceVersion;
-        final String superClassSinceVersion = SINCE_VERSION_FOR_INHERITED_PROPERTY
-                   .get(moduleName + DOT + propertyName);
-        if (superClassSinceVersion != null) {
-            sinceVersion = superClassSinceVersion;
-        }
-        else if (TOKENS.equals(propertyName)
-                        || JAVADOC_TOKENS.equals(propertyName)) {
-            // Use module's since version for inherited properties
-            sinceVersion = getSinceVersionFromJavadoc(moduleJavadoc);
+
+        final String hardCodedPropertyVersion = SINCE_VERSION_FOR_INHERITED_PROPERTY.get(
+            moduleName + DOT + propertyName);
+
+        if (hardCodedPropertyVersion != null) {
+            sinceVersion = hardCodedPropertyVersion;
         }
         else {
-            sinceVersion = getSinceVersionFromJavadoc(propertyJavadoc);
-        }
+            final String moduleSince = getSinceVersionFromJavadoc(moduleJavadoc);
 
-        if (sinceVersion == null) {
-            final String message = String.format(Locale.ROOT,
-                    "Failed to find '@since' version for '%s' property"
-                            + " in '%s' and all parent classes.", propertyName, moduleName);
-            throw new MacroExecutionException(message);
+            if (moduleSince == null) {
+                throw new MacroExecutionException(
+                        "Missing @since on module " + moduleName);
+            }
+
+            String propertySince = null;
+            if (propertyJavadoc != null) {
+                propertySince = getSinceVersionFromJavadoc(propertyJavadoc);
+            }
+
+            if (propertySince != null && isVersionAtLeast(propertySince, moduleSince)) {
+                sinceVersion = propertySince;
+            }
+            else {
+                sinceVersion = moduleSince;
+            }
         }
 
         return sinceVersion;
@@ -907,6 +838,68 @@ public final class SiteUtil {
             }
         }
         return javadocTagWithSince;
+    }
+
+    /**
+     * Returns {@code true} if {@code actualVersion} ≥ {@code requiredVersion}.
+     * Both versions have any trailing "-SNAPSHOT" stripped before comparison.
+     *
+     * @param actualVersion   e.g. "8.3" or "8.3-SNAPSHOT"
+     * @param requiredVersion e.g. "8.3"
+     * @return {@code true} if actualVersion exists, and, numerically, is at least requiredVersion
+     */
+    private static boolean isVersionAtLeast(String actualVersion,
+                                            String requiredVersion) {
+        boolean result = false;
+
+        final String actClean = actualVersion
+                .replace(SNAPSHOT_SUFFIX, "")
+                .trim();
+        final String reqClean = requiredVersion
+                .replace(SNAPSHOT_SUFFIX, "")
+                .trim();
+
+        try {
+            final Version vAct = Version.parse(actClean);
+            final Version vReq = Version.parse(reqClean);
+            result = vAct.compareTo(vReq) >= 0;
+        }
+        catch (IllegalArgumentException iae) {
+            // Fallback: compare each numeric segment
+            final Pattern compiledDotRegexPattern = Pattern.compile(DOT_REGEX);
+
+            final String[] partsAct = compiledDotRegexPattern.split(actClean);
+            final String[] partsReq = compiledDotRegexPattern.split(reqClean);
+            final int length = Math.max(partsAct.length, partsReq.length);
+
+            boolean compared = false;
+            for (int index = 0; index < length; index++) {
+                final int a;
+                if (index < partsAct.length) {
+                    a = Integer.parseInt(partsAct[index]);
+                }
+                else {
+                    a = 0;
+                }
+                final int r;
+                if (index < partsReq.length) {
+                    r = Integer.parseInt(partsReq[index]);
+                }
+                else {
+                    r = 0;
+                }
+                if (a != r) {
+                    result = a > r;
+                    compared = true;
+                    break;
+                }
+            }
+            if (!compared) {
+                result = true;
+            }
+        }
+
+        return result;
     }
 
     /**
