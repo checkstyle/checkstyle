@@ -40,6 +40,7 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledOnOs;
@@ -280,6 +281,17 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         final String fileName = "temp.cache";
         final Path filePath = Path.of(fileName);
         final PropertyCacheFile cache = new PropertyCacheFile(config, fileName);
+
+        if (Files.exists(filePath) && Files.isDirectory(filePath)) {
+            try (Stream<Path> entries = Files.list(filePath)) {
+                if (entries.findAny().isEmpty()) {
+                    Files.delete(filePath);
+                }
+            }
+            catch (IOException | SecurityException exception) {
+                // Could not delete temp.cache directory
+            }
+        }
 
         // no exception expected
         cache.persist();
