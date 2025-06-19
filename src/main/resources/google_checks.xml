@@ -61,6 +61,16 @@
 
   <module name="TreeWalker">
     <module name="OuterTypeFilename"/>
+    <module name="MatchXpath">
+      <property name="id" value="singleLineCommentStartWithSpace"/>
+      <property name="query"
+                value="//SINGLE_LINE_COMMENT[./COMMENT_CONTENT[not(starts-with(@text, ' '))
+                       and not(starts-with(@text, '/'))
+                       and not(@text = '\n') and not(ends-with(@text, '//\n'))
+                       and not(@text = '\r') and not(ends-with(@text, '//\r'))
+                       and not(@text = '\r\n') and not(ends-with(@text, '//\r\n'))]]"/>
+      <message key="matchxpath.match" value="''//'' must be followed by a whitespace."/>
+    </module>
     <module name="IllegalTokenText">
       <property name="tokens" value="STRING_LITERAL, CHAR_LITERAL"/>
       <property name="format"
