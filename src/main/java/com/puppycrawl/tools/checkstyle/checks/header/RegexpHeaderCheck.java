@@ -87,7 +87,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  *
- * @since 6.9
+ * @since 3.2
  */
 @StatelessCheck
 public class RegexpHeaderCheck extends AbstractHeaderCheck {

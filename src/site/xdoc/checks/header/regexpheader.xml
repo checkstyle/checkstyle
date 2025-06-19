@@ -7,7 +7,7 @@
   </head>
   <body>
     <section name="RegexpHeader">
-      <p>Since Checkstyle 6.9</p>
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
         <div>
           Checks the header of a source file against a header that contains a
@@ -31,14 +31,14 @@
               <td>Specify the character encoding to use when reading the headerFile.</td>
               <td><a href="../../property_types.html#String">String</a></td>
               <td><code>the charset property of the parent &lt;a href=&quot;https://checkstyle.org/config.html#Checker&quot;&gt;Checker&lt;/a&gt; module</code></td>
-              <td>5.0</td>
+              <td>3.2</td>
             </tr>
             <tr>
               <td>fileExtensions</td>
               <td>Specify the file extensions of the files to process.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>all files</code></td>
-              <td>6.9</td>
+              <td>3.2</td>
             </tr>
             <tr>
               <td>header</td>

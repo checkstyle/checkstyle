@@ -7,7 +7,7 @@
   </head>
   <body>
     <section name="RegexpHeader">
-      <p>Since Checkstyle 6.9</p>
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
         <div>
           Checks the header of a source file against a header that contains a
