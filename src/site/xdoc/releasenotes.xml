@@ -10,6 +10,60 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.25.1">
+      <div class="releaseDate">21.06.2025</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            checkstyle expects different indentation for switch cases..
+            Author: Aziz-755
+            <a href="https://github.com/checkstyle/checkstyle/issues/17167">#17167</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Fix the problem when property of module has older version than the module&#39;s.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17237">#17237</a>
+          </li>
+          <li>
+            Preparation for Migration of  Checkstyle Codebase to Java 17.
+            Author: Amit Kumar Deohoria, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/17168">#17168</a>
+          </li>
+          <li>
+            Updating properties in Input files to mention all default properties,.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/16807">#16807</a>
+          </li>
+          <li>
+            use new nio jdk api instead of all api.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/16155">#16155</a>
+          </li>
+          <li>
+            Validattion of xdoc files to have separtor between examples.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/17186">#17186</a>
+          </li>
+          <li>
+            Review latest changes at Google style guide.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/17162">#17162</a>
+          </li>
+          <li>
+            CI is failing on &#39;validation.sh no-violation-test-josm&#39;.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/9807">#9807</a>
+          </li>
+          <li>
+            Typo in check name in 10.25.0 release notes.
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/17160">#17160</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.25.0">
       <div class="releaseDate">31.05.2025</div>
       <p>New:</p>
