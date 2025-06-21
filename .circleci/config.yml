@@ -249,6 +249,10 @@ workflows:
           name: "no-error-hazelcast"
           image-name: *cs_img
           command: "./.ci/validation.sh no-error-hazelcast"
+      - validate-with-maven-script:
+          name: "no-error-trino"
+          image-name: "cimg/openjdk:17.0.7"
+          command: "./.ci/validation.sh no-error-trino"
 
   idea:
     jobs:
