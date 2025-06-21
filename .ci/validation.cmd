@@ -1,8 +1,8 @@
 @echo off
 
 ::----------------------------------------------------------------------
-:: Validation script to run on local for windows users.
-:: Example of usage
+:: Validation script to run on local for Windows users.
+:: Example of usage:
 :: ./.ci/validation.cmd  verify_without_checkstyle
 ::----------------------------------------------------------------------
 
@@ -32,6 +32,42 @@ if "%OPTION%" ==  "site_without_verify" (
   goto :END_CASE
 )
 
+if "%OPTION%" == "no-error-trino" (
+  echo Detecting Checkstyle version from pom.xml...
+  for /f "tokens=2 delims=<>" %%a in ('findstr "<version>" pom.xml') do (
+    set CS_POM_VERSION=%%a
+    goto :found_version
+  )
+
+  :found_version
+  echo CS_version: %CS_POM_VERSION%
+
+  call mvnw.cmd -e --no-transfer-progress clean install -Pno-validations || goto :ERROR
+
+  echo Checkout Trino sources...
+  rmdir /s /q .ci-temp\trino 2>nul
+  mkdir .ci-temp 2>nul
+  cd .ci-temp
+
+  git clone --depth 1 https://github.com/trinodb/trino.git || goto :ERROR
+  cd trino
+
+  echo Checking Java version...
+  java -version 2>&1 | findstr "version \"17" >nul
+  if errorlevel 1 (
+    echo Java 17+ is required for Trino checkstyle.
+    echo Please set JAVA_HOME to a Java 17+ installation.
+    goto :ERROR
+  )
+
+  call mvn -e --no-transfer-progress checkstyle:check ^
+    -Dcheckstyle.version=%CS_POM_VERSION% ^
+    -Dcheckstyle.plugin.version=%CS_POM_VERSION% || goto :ERROR
+
+  cd ..\..
+  goto :END_CASE
+)
+
 if "%OPTION%" == "git_diff" (
   for /f "delims=" %%a in ('git status ^| findstr /c:"Changes not staged"') do set output=%%a
   if defined output (
@@ -45,7 +81,7 @@ if "%OPTION%" == "git_diff" (
   goto :END_CASE
 )
 
-echo  Unexpected argument %OPTION%
+echo Unexpected argument %OPTION%
 SET ERRORLEVEL=-1
 goto :END_CASE
 
