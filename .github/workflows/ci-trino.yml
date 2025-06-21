@@ -1,0 +1,38 @@
+name: Trino Integration Check
+
+on:
+  workflow_dispatch: null
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  trino-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Checkstyle
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Grant execute permissions on validation script
+        run: chmod +x .ci/validation.sh
+
+      - name: Clean up previous Trino clone
+        run: rm -rf .ci-temp/trino
+
+      - name: Run Checkstyle against Trino (no-error test)
+        run: ./.ci/validation.sh no-error-trino

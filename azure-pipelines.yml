@@ -100,6 +100,11 @@ strategy:
       image: 'macOS-14'
       cmd: "JAVA_HOME=$JAVA_HOME_17_X64 ./mvnw -e --no-transfer-progress verify"
 
+    # no-error-trino
+    'no-error-trino':
+      image: 'ubuntu-24.04'
+      cmd: "./.ci/validation.sh no-error-trino"
+
     # versions to update
     'versions':
       image: 'ubuntu-24.04'
