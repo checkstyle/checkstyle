@@ -1,4 +1,4 @@
-//non-compiled with eclipse: extra semicolumn in imports
+// non-compiled with eclipse: extra semicolumn in imports
 
 package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
 
