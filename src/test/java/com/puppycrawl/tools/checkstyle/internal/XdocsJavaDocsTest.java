@@ -700,11 +700,16 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         }
 
         private static String getJavaDocText(DetailAST node) {
-            final String text = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document>\n"
+            String text = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document>\n"
                     + node.getFirstChild().getText().replaceAll("(^|\\r?\\n)\\s*\\* ?", "\n")
                             .replaceAll("\\n?@noinspection.*\\r?\\n[^@]*", "\n")
                             .trim() + "\n</document>";
             String result = null;
+
+            // until https://github.com/checkstyle/checkstyle/issues/17251
+            if (text.contains("\nSince version")) {
+                text = text.replaceAll("\nSince version .*", "");
+            }
 
             try {
                 result = getNodeText(XmlUtil.getRawXml(checkName, text, text).getFirstChild())

@@ -81,6 +81,7 @@
     <allow class="java.lang.reflect.InvocationTargetException" local-only="true"/>
     <allow class="java.beans.Introspector" local-only="true"/>
     <allow class="java.beans.PropertyDescriptor" local-only="true"/>
+    <allow class="javax.annotation.Nonnegative;" local-only="true"/>
     <allow class="javax.swing.text.MutableAttributeSet" local-only="true"/>
     <allow class="javax.swing.text.html.HTML.Attribute" local-only="true"/>
     <allow class="com.google.common.collect.Lists" local-only="true"/>
