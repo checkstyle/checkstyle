@@ -4,7 +4,7 @@ jobs:
 
   run-inspections:
     docker:
-      - image: atharv3321/idea-image
+      - image: checkstyle/idea-docker:jdk11-idea2022.3.3
 
     steps:
       - checkout
