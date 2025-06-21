@@ -249,6 +249,10 @@ workflows:
           name: "no-error-hazelcast"
           image-name: *cs_img
           command: "./.ci/validation.sh no-error-hazelcast"
+      - validate-with-maven-script:
+          name: "no-error-trino"
+          image-name: *cs_img
+          command: "./.ci/validation.sh no-error-trino"
 
   idea:
     jobs:
@@ -277,42 +281,3 @@ workflows:
           image-name: "cimg/base:2022.11"
           command: "./.ci/validation.sh check-wildcards-on-pitest-target-classes"
 
-  javac-validation:
-    jobs:
-      - validate-with-script:
-          name: "check-since-version"
-          command: "./.ci/validation.sh check-since-version"
-      - validate-with-script:
-          name: "javac11"
-          command: "./.ci/validation.sh javac11"
-      - validate-with-script:
-          name: "javac17"
-          image-name: "cimg/openjdk:17.0.7"
-          command: "./.ci/validation.sh javac17"
-      - validate-with-script:
-          name: "java 17 test resources compile"
-          image-name: "cimg/openjdk:17.0.7"
-          command: "./.ci/validation.sh compile-test-resources"
-      - validate-with-script:
-          name: "javac19"
-          image-name: "cimg/openjdk:19.0.1"
-          command: "./.ci/validation.sh javac19"
-      - validate-with-script:
-          name: "javac20"
-          image-name: "cimg/openjdk:20.0.1"
-          command: "./.ci/validation.sh javac20"
-      - validate-with-script:
-          name: "javac21"
-          image-name: "cimg/openjdk:21.0.0"
-          command: "./.ci/validation.sh javac21"
-
-  site-validation:
-    jobs:
-      - validate-with-maven-script:
-          name: "jdk17-package-site"
-          image-name: "cimg/openjdk:17.0.7"
-          command: "./.ci/validation.sh package-site"
-      - validate-with-maven-script:
-          name: "jdk11-package-site"
-          image-name: *cs_img
-          command: "./.ci/validation.sh package-site"

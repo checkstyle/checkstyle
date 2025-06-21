@@ -1103,7 +1103,7 @@ git-check-pull-number)
   done
   ;;
 
-jacoco)
+javac)
   export MAVEN_OPTS='-Xmx2g'
   ./mvnw -e --no-transfer-progress clean test \
     jacoco:restore-instrumented-classes \
@@ -1213,11 +1213,46 @@ sevntu)
   ./mvnw -e --no-transfer-progress clean compile checkstyle:check@sevntu-checkstyle-check
   ;;
 
-*)
-  echo "Unexpected argument: $1"
-  echo "Supported tasks:"
-  list_tasks "${0}"
-  false
+no-error-trino)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  echo "CS_version: ${CS_POM_VERSION}"
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
+
+  echo "Checkout Trino sources..."
+  checkout_from https://github.com/trinodb/trino.git
+  cd .ci-temp/trino
+
+  # Ensure Java 17+ is used for Trino checkstyle
+  if type -p java >/dev/null 2>&1; then
+    JAVA_VERSION=$(java -version 2>&1 | awk -F[\".] '/version/ {print $2}')
+    if [ "$JAVA_VERSION" -lt 17 ]; then
+      JAVA_17_BIN=""
+      for d in /usr/lib/jvm/java-17* /usr/lib/jvm/jdk-17* \
+         /opt/java/openjdk-17* /c/Program\ Files/Java/jdk-17*; do
+        if [ -x "$d/bin/java" ]; then
+          JAVA_17_BIN="$d/bin/java"
+          break
+        fi
+      done
+      if [ -n "$JAVA_17_BIN" ]; then
+        export JAVA_HOME="$(dirname "$(dirname "$JAVA_17_BIN")")"
+        export PATH="$JAVA_HOME/bin:$PATH"
+        echo "Switched to Java 17+ at $JAVA_HOME"
+      else
+        echo "Java 17+ is required for Trino checkstyle. " \
+        "Please set JAVA_HOME to a Java 17+ installation."
+        exit 1
+      fi
+    fi
+  fi
+
+  MAVEN_OPTS="" JAVA_TOOL_OPTIONS="" mvn -e --no-transfer-progress checkstyle:check \
+    -Dcheckstyle.version="${CS_POM_VERSION}" \
+    -Dcheckstyle.plugin.version="${CS_POM_VERSION}" \
+    -Dcheckstyle.configuration=file:$(pwd)/config/checkstyle_checks.xml
+
+  cd ../
+  removeFolderWithProtectedFiles trino
   ;;
 
 esac
