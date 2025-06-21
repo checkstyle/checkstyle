@@ -491,12 +491,14 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("throwsIndent", "4");
         final String[] expected = {
-            "65:11: " + getCheckMessage(MSG_ERROR_MULTI, "new", 10, "12, 14"),
-            "72:13: " + getCheckMessage(MSG_ERROR_MULTI, "new", 12, "14, 16"),
-            "94:13: " + getCheckMessage(MSG_ERROR_MULTI, "new", 12, "14, 16"),
-            "101:15: " + getCheckMessage(MSG_ERROR_MULTI, "new", 14, "16, 18"),
+            "65:15: " + getCheckMessage(MSG_ERROR_MULTI, "new", 14, "16, 18"),
+            "72:19: " + getCheckMessage(MSG_ERROR_MULTI, "new", 18, "40, 42"),
+            "92:17: " + getCheckMessage(MSG_ERROR_MULTI, "new", 16, "18, 20"),
+            "96:11: " + getCheckMessage(MSG_ERROR, "+", 10, 12),
+            "99:31: " + getCheckMessage(MSG_ERROR_MULTI, "new", 30, "38, 40"),
+            "101:17: " + getCheckMessage(MSG_CHILD_ERROR, "new", 16, 44),
         };
-        verifyWarns(checkConfig, getPath("InputIndentationCorrectIfAndParameter.java"), expected);
+        verifyWarns(checkConfig, getPath("InputIndentationIfAndParameter.java"), expected);
     }
 
     @Test
@@ -512,8 +514,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("throwsIndent", "4");
         final String[] expected = {
-            "38:9: " + getCheckMessage(MSG_ERROR_MULTI, "new", 8, "10, 12"),
-            "45:9: " + getCheckMessage(MSG_ERROR_MULTI, "new", 8, "10, 12"),
+            "38:13: " + getCheckMessage(MSG_ERROR_MULTI, "new", 12, "14, 16"),
+            "42:17: " + getCheckMessage(MSG_CHILD_ERROR, "new", 16, 28),
+            "45:25: " + getCheckMessage(MSG_ERROR_MULTI, "new", 24, "42, 44"),
         };
         verifyWarns(checkConfig, getPath("InputIndentationCorrectIfAndParameter1.java"), expected);
     }
@@ -1296,6 +1299,28 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("throwsIndent", "8");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, getPath("InputIndentationNew.java"), expected);
+    }
+
+    @Test
+    public void testNewKeywordChildren() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("arrayInitIndent", "2");
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String[] expected = {
+            "27:1: " + getCheckMessage(MSG_ERROR_MULTI, "new", 0, "14, 16"),
+            "28:1: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "new", 0, "18, 20"),
+            "36:1: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "new", 0, "18, 20"),
+            "42:9: " + getCheckMessage(MSG_ERROR, "new", 8, 12),
+            "43:11: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "object def", 10, "14, 16, 18"),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationNewChildren.java"), expected);
     }
 
     @Test
