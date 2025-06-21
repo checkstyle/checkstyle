@@ -52,7 +52,7 @@ if [[ $IDEA_OUTPUT == "Already running" ]]; then
 fi
 
 echo "Checking results ..."
-PROBLEM_COUNT=$(grep -R "<problems" "$RESULTS_DIR"/ | cat | wc -l )
+PROBLEM_COUNT=$(grep -R "<problem" "$RESULTS_DIR"/ | cat | wc -l )
 
 if [[ $PROBLEM_COUNT -gt 0 ]] && [[ "$CIRCLECI" == "true" ]]; then
     echo ""
@@ -68,7 +68,7 @@ if [[ $PROBLEM_COUNT -gt 0 ]] && [[ "$CIRCLECI" == "true" ]]; then
     exit 1;
 elif [[ $PROBLEM_COUNT -gt 0 ]]; then
     echo "There are inspection problems. Review results at $RESULTS_DIR folder. Files:"
-    grep -Rl "<problems" "$RESULTS_DIR"/
+    grep -Rl "<problem" "$RESULTS_DIR"/
     exit 1;
 else
     echo "Inspection did not find any problems"
