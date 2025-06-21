@@ -52,7 +52,7 @@ if [[ $IDEA_OUTPUT == "Already running" ]]; then
 fi
 
 echo "Checking results ..."
-PROBLEM_COUNT=$(grep -R "<problems" "$RESULTS_DIR"/ | cat | wc -l )
+PROBLEM_COUNT=$(grep -R "<problem" "$RESULTS_DIR"/ | cat | wc -l )
 
 if [[ $PROBLEM_COUNT -gt 0 ]] && [[ "$CIRCLECI" == "true" ]]; then
     echo ""
