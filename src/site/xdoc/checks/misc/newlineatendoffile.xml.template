@@ -14,7 +14,7 @@
         </div>
 
         <p>
-          Rationale: Any source files and text files in general should
+          Rationale: Any not empty source files and text files in general should
           end with a line separator to let other easily add new content
           at the end of file and "diff" command does not show previous lines as changed.
         </p>

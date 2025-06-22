@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </div>
  *
  * <p>
- * Rationale: Any source files and text files in general should end with a line
+ * Rationale: Any not empty source files and text files in general should end with a line
  * separator to let other easily add new content at the end of file and "diff"
  * command does not show previous lines as changed.
  * </p>
@@ -196,7 +196,10 @@ public class NewlineAtEndOfFileCheck
             throws IOException {
         final boolean result;
         final int len = separator.length();
-        if (file.length() < len) {
+        if (file.length() == 0) {
+            result = true;
+        }
+        else if (file.length() < len) {
             result = false;
         }
         else {
