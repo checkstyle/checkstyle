@@ -30,6 +30,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOError;
 import java.io.IOException;
 import java.io.InputStream;
@@ -1589,7 +1590,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 OutputStreamOptions.NONE, new AuditEventDefaultFormatter());
         checker.addListener(logger);
 
-        final String path = createTempFile("file", ".java").getPath();
+        final File tempFile = createTempFile("file", ".java");
+        try (FileWriter fileWriter = new FileWriter(tempFile)) {
+            fileWriter.write(';');
+        }
+        final String path = tempFile.getPath();
         final String violationMessage =
                 getCheckMessage(NewlineAtEndOfFileCheck.class, MSG_KEY_NO_NEWLINE_EOF);
         final String[] expected = {
@@ -1726,6 +1731,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         };
 
         final File tempFile = createTempFile("InputCheckerTestExcludeRelativizedFile", ".java");
+        try (FileWriter fileWriter = new FileWriter(tempFile)) {
+            fileWriter.write(';');
+        }
 
         final File[] processedFiles = {tempFile};
 
