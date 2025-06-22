@@ -25,8 +25,8 @@ jobs:
   include:
 
     # this job do deploy maven repository
-    # unit tests (openjdk11)
-    - jdk: openjdk11
+    # unit tests (openjdk17)
+    - jdk: openjdk17
       env:
         - DESC="tests and deploy"
         - CMD="./mvnw -e --no-transfer-progress clean integration-test failsafe:verify
