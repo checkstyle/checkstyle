@@ -196,7 +196,10 @@ public class NewlineAtEndOfFileCheck
             throws IOException {
         final boolean result;
         final int len = separator.length();
-        if (file.length() < len) {
+        if (file.length() == 0) {
+            result = true;
+        }
+        else if (file.length() < len) {
             result = false;
         }
         else {
