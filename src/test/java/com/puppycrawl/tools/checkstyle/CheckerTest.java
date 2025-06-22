@@ -27,6 +27,7 @@ import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -1589,7 +1590,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 OutputStreamOptions.NONE, new AuditEventDefaultFormatter());
         checker.addListener(logger);
 
-        final String path = createTempFile("file", ".java").getPath();
+        final File tempFile = createTempFile("file", ".java");
+        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(tempFile.toPath())) {
+            bufferedWriter.write(';');
+        }
+        final String path = tempFile.getPath();
         final String violationMessage =
                 getCheckMessage(NewlineAtEndOfFileCheck.class, MSG_KEY_NO_NEWLINE_EOF);
         final String[] expected = {
@@ -1726,6 +1731,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         };
 
         final File tempFile = createTempFile("InputCheckerTestExcludeRelativizedFile", ".java");
+        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(tempFile.toPath())) {
+            bufferedWriter.write(';');
+        }
 
         final File[] processedFiles = {tempFile};
 
