@@ -29,71 +29,79 @@ strategy:
       image: 'ubuntu-24.04'
       cmd: "./.ci/test-spelling-unknown-words.sh"
       skipCache: true
+      javaVersion: '17'
 
-    # unit tests (openjdk11)
+    # unit tests (openjdk17)
     'test':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test"
+      javaVersion: '17'
 
-    # unit tests in German locale (openjdk11)
+    # unit tests in German locale (openjdk17)
     'test-de':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-de"
+      javaVersion: '17'
 
-    # unit tests in Spanish locale (openjdk11)
+    # unit tests in Spanish locale (openjdk17)
     'test-es':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-es"
+      javaVersion: '17'
 
-    # unit tests in Finnish locale (openjdk11)
+    # unit tests in Finnish locale (openjdk17)
     'test-fi':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-fi"
+      javaVersion: '17'
 
-    # unit tests in French locale (openjdk11)
+    # unit tests in French locale (openjdk17)
     'test-fr':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-fr"
+      javaVersion: '17'
 
-    # unit tests in Chinese locale (openjdk11)
+    # unit tests in Chinese locale (openjdk17)
     'test-zh':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-zh"
+      javaVersion: '17'
 
-    # unit tests in Japanese locale (openjdk11)
+    # unit tests in Japanese locale (openjdk17)
     'test-ja':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-ja"
+      javaVersion: '17'
 
-    # unit tests in Portuguese locale (openjdk11)
+    # unit tests in Portuguese locale (openjdk17)
     'test-pt':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-pt"
+      javaVersion: '17'
 
-    # unit tests in Turkish locale (openjdk11)
+    # unit tests in Turkish locale (openjdk17)
     'test-tr':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-tr"
+      javaVersion: '17'
 
-    # unit tests in Russian locale (openjdk11)
+    # unit tests in Russian locale (openjdk17)
     'test-ru':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-ru"
+      javaVersion: '17'
 
-    # unit tests in Albanian locale (openjdk11)
+    # unit tests in Albanian locale (openjdk17)
     'test-al':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-al"
+      javaVersion: '17'
 
-    # OpenJDK11 verify
-    'OpenJDK11 verify':
+    # OpenJDK17 verify
+    'OpenJDK17 verify':
       image: 'ubuntu-24.04'
       cmd: "./mvnw -e --no-transfer-progress verify"
-
-    # MacOS JDK11 verify
-    'MacOS JDK11 verify':
-      image: 'macOS-14'
-      cmd: "JAVA_HOME=$JAVA_HOME_11_X64 ./mvnw -e --no-transfer-progress verify"
+      javaVersion: '17'
 
     # MacOS JDK17 verify
     'MacOS JDK17 verify':
@@ -105,6 +113,7 @@ strategy:
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh versions"
       onCronOnly: true
+      javaVersion: '17'
 
     # lint for .md files, OSX is used because there is problem to install gem on linux
     'markdownlint':
@@ -141,10 +150,10 @@ steps:
 
   - task: JavaToolInstaller@0
     inputs:
-      versionSpec: 11
+      versionSpec: $(javaVersion)
       jdkArchitectureOption: 'X64'
       jdkSourceOption: 'PreInstalled'
-
+    condition: ne(variables['javaVersion'], '')
   - task: Cache@2
     inputs:
       key: 'maven | "$(Agent.OS)" | **/pom.xml'
