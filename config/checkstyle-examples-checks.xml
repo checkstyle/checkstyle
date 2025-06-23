@@ -78,7 +78,7 @@
   </module>
   <module name="RegexpSingleline">
     <property name="id" value="presenceOfCompilationComment"/>
-    <property name="format" value="^//non-compiled with javac: Compilable with Java(\d+)"/>
+    <property name="format" value="^// non-compiled with javac: Compilable with Java(\d+)"/>
     <property name="message"
               value="Missing compilation comment"/>
     <property name="minimum" value="1"/>

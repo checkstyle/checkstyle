@@ -1,4 +1,4 @@
-//non-compiled with javac: compiling on jdk before 9
+// non-compiled with javac: compiling on jdk before 9
 
 package org.checkstyle.suppressionxpathfilter.illegalinstantiation;
 
