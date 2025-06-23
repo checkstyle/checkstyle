@@ -23,88 +23,115 @@ strategy:
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh pr-age"
       skipCache: true
+      requireDisplay: false
+      needXmlstarlet: true  
 
     # spelling
     'spelling':
       image: 'ubuntu-24.04'
       cmd: "./.ci/test-spelling-unknown-words.sh"
       skipCache: true
+      requireDisplay: false
+      needXmlstarlet: false
 
-    # unit tests (openjdk11)
+    # unit tests (openjdk17)
     'test':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test"
+      requireDisplay: true
+      needXmlstarlet: true  
 
-    # unit tests in German locale (openjdk11)
+    # unit tests in German locale (openjdk17)
     'test-de':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-de"
+      requireDisplay: true
+      needXmlstarlet: true  
 
-    # unit tests in Spanish locale (openjdk11)
+    # unit tests in Spanish locale (openjdk17)
     'test-es':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-es"
+      requireDisplay: true
+      needXmlstarlet: true  
 
-    # unit tests in Finnish locale (openjdk11)
+    # unit tests in Finnish locale (openjdk17)
     'test-fi':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-fi"
+      requireDisplay: true
+      needXmlstarlet: true  
 
-    # unit tests in French locale (openjdk11)
+    # unit tests in French locale (openjdk17)
     'test-fr':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-fr"
+      requireDisplay: true
+      needXmlstarlet: true  
 
-    # unit tests in Chinese locale (openjdk11)
+    # unit tests in Chinese locale (openjdk17)
     'test-zh':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-zh"
+      requireDisplay: true
+      needXmlstarlet: true  
 
-    # unit tests in Japanese locale (openjdk11)
+    # unit tests in Japanese locale (openjdk17)
     'test-ja':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-ja"
+      requireDisplay: true
+      needXmlstarlet: true  
 
-    # unit tests in Portuguese locale (openjdk11)
+    # unit tests in Portuguese locale (openjdk17)
     'test-pt':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-pt"
+      requireDisplay: true
+      needXmlstarlet: true  
 
-    # unit tests in Turkish locale (openjdk11)
+    # unit tests in Turkish locale (openjdk17)
     'test-tr':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-tr"
+      requireDisplay: true
+      needXmlstarlet: true  
 
-    # unit tests in Russian locale (openjdk11)
+    # unit tests in Russian locale (openjdk17)
     'test-ru':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-ru"
+      requireDisplay: true
+      needXmlstarlet: true  
 
-    # unit tests in Albanian locale (openjdk11)
+    # unit tests in Albanian locale (openjdk17)
     'test-al':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-al"
+      requireDisplay: true
+      needXmlstarlet: true  
 
-    # OpenJDK11 verify
-    'OpenJDK11 verify':
+    # OpenJDK17 verify
+    'OpenJDK17 verify':
       image: 'ubuntu-24.04'
       cmd: "./mvnw -e --no-transfer-progress verify"
-
-    # MacOS JDK11 verify
-    'MacOS JDK11 verify':
-      image: 'macOS-14'
-      cmd: "JAVA_HOME=$JAVA_HOME_11_X64 ./mvnw -e --no-transfer-progress verify"
+      requireDisplay: true
+      needXmlstarlet: true  
 
     # MacOS JDK17 verify
     'MacOS JDK17 verify':
       image: 'macOS-14'
       cmd: "JAVA_HOME=$JAVA_HOME_17_X64 ./mvnw -e --no-transfer-progress verify"
+      requireDisplay: false
+      needXmlstarlet: false
 
     # versions to update
     'versions':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh versions"
       onCronOnly: true
+      requireDisplay: false
+      needXmlstarlet: true  
 
     # lint for .md files, OSX is used because there is problem to install gem on linux
     'markdownlint':
@@ -112,6 +139,8 @@ strategy:
       cmd: "./.ci/validation.sh markdownlint"
       skipCache: true
       needMdl: true
+      requireDisplay: false
+      needXmlstarlet: false
 
 pool:
   vmImage: $(image)
@@ -125,26 +154,46 @@ variables:
   NEED_XMLSTARLET: $(needXmlstarlet)
   NEED_MDL: $(needMdl)
   BUILD_REASON: $[variables['Build.Reason']]
+  REQUIRE_DISPLAY: $(requireDisplay)
 
 steps:
+  # Install xvfb for Linux GUI tests
   - bash: |
-      apt-fast install -y xmlstarlet
+      sudo apt-get update
+      # Always install XMLStarlet for Linux jobs that need it
+      if [ "$NEED_XMLSTARLET" = "true" ]; then
+        sudo apt-get install -y xmlstarlet
+      fi
+      # Install xvfb only for GUI tests
+      if [ "$REQUIRE_DISPLAY" = "true" ]; then
+        sudo apt-get install -y xvfb
+      fi
+    displayName: 'Install Linux dependencies'
+    condition: eq(variables['Agent.OS'], 'Linux')
+
+  # Install xmlstarlet if needed
+  - bash: |
+      brew install xmlstarlet
+    displayName: 'Install xmlstarlet (macOS)'
     condition: |
         and(
              ne(variables['Agent.OS'], 'Darwin'),
              eq(variables.NEED_XMLSTARLET, 'true')
            )
 
+  # Install markdown linter if needed
   - bash: |
       gem install mdl
     condition: eq(variables.NEED_MDL, 'true')
 
+  # Java installation
   - task: JavaToolInstaller@0
     inputs:
-      versionSpec: 11
+      versionSpec: 17
       jdkArchitectureOption: 'X64'
       jdkSourceOption: 'PreInstalled'
 
+  # Maven caching
   - task: Cache@2
     inputs:
       key: 'maven | "$(Agent.OS)" | **/pom.xml'
@@ -157,15 +206,31 @@ steps:
     displayName: Cache Maven local repo and wrapper
     condition: ne(variables.SKIP_CACHE, 'true')
 
+  # Main build and test execution
   - bash: |
       set -e
       ./mvnw --version
-      echo "ON_CRON_ONLY:"$ON_CRON_ONLY
-      echo "BUILD_REASON:"$BUILD_REASON
-      echo "cmd: "$(cmd)
-      eval "$(cmd)"
+      echo "ON_CRON_ONLY: $ON_CRON_ONLY"
+      echo "BUILD_REASON: $BUILD_REASON"
+      echo "REQUIRE_DISPLAY: $REQUIRE_DISPLAY"
+      echo "AGENT_OS: $AGENT_OS"
+      echo "cmd: $(cmd)"
+      # Conditionally run with xvfb for Linux GUI tests
+      if [ "$REQUIRE_DISPLAY" = "true" ] && [ "$AGENT_OS" = "Linux" ]; then
+        echo "Starting xvfb for GUI tests"
+        export DISPLAY=:99
+        Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+        sleep 3
+        eval "$(cmd)"
+        pkill Xvfb
+      else
+        eval "$(cmd)"
+      fi
       ./.ci/validation.sh git-diff
       ./.ci/validation.sh ci-temp-check
+    displayName: 'Run build and validations'
+    env:
+      AGENT_OS: $(Agent.OS)
     condition: |
         or (
             ne(variables.ON_CRON_ONLY, 'true'),
