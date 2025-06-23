@@ -10,7 +10,7 @@ sortImportsInGroupAlphabetically = (default)false
 
 */
 
-//non-compiled with javac: special package and requires imports from the same package
+// non-compiled with javac: special package and requires imports from the same package
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 
