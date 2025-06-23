@@ -5,7 +5,7 @@ aliasList = (default)
 
 */
 
-//non-compiled with eclipse: The value for annotation attribute must be a constant expression
+// non-compiled with eclipse: The value for annotation attribute must be a constant expression
 package com.puppycrawl.tools.checkstyle.checks.suppresswarningsholder;
 public class InputSuppressWarningsHolderNonConstant {
     static final String UNUSED = "unused";

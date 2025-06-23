@@ -6,7 +6,7 @@ tokens = CLASS_DEF
 
 */
 
-//non-compiled with eclipse: non-compilable annotation, for testing
+// non-compiled with eclipse: non-compilable annotation, for testing
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 import java.lang.annotation.Documented;
 

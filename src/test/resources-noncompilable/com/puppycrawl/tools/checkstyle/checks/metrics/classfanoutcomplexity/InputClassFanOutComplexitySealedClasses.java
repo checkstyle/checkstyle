@@ -18,7 +18,7 @@ excludedPackages = (default)
 
 */
 
-//non-compiled with javac: Compilable with Java21
+// non-compiled with javac: Compilable with Java21
 package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 
 // violation below, 'Class Fan-Out Complexity is 2 (max allowed is 0)'
