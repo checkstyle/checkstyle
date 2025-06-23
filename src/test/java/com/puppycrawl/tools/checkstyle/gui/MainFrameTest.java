@@ -28,6 +28,7 @@ import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.when;
 
 import java.awt.Component;
+import java.awt.GraphicsEnvironment;
 import java.awt.Window;
 import java.io.File;
 import java.io.IOException;
@@ -41,6 +42,7 @@ import javax.swing.JTextArea;
 import javax.swing.filechooser.FileFilter;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedConstruction;
@@ -63,13 +65,18 @@ public class MainFrameTest extends AbstractGuiTestSupport {
 
     @BeforeEach
     public void prepare() {
+        // Skip test in headless environments
+        Assumptions.assumeFalse(GraphicsEnvironment.isHeadless(),
+            "Skipping GUI test in headless environment");
         mainFrame = new MainFrame();
     }
 
     @AfterEach
     public void tearDown() {
-        Arrays.stream(mainFrame.getOwnedWindows())
-                .forEach(Window::dispose);
+        if (mainFrame != null) {
+            Arrays.stream(mainFrame.getOwnedWindows())
+                    .forEach(Window::dispose);
+        }
     }
 
     @Test
