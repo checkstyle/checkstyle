@@ -10,7 +10,7 @@ sortImportsInGroupAlphabetically = (default)false
 
 */
 
-//non-compiled with javac: contains no package declaration
+// non-compiled with javac: contains no package declaration
 
 import static java.awt.Button.ABORT;
 import static java.io.File.createTempFile;

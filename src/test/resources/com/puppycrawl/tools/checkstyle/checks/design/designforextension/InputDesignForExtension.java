@@ -89,7 +89,7 @@ public abstract class InputDesignForExtension
 
     public class nonFinalClass
     {
-    //private ctor
+    // private ctor
     private nonFinalClass(){}
         public void someMethod()
         {
