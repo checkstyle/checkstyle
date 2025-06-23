@@ -1573,7 +1573,7 @@
             <jacoco-agent.destfile>${project.build.directory}/jacoco.exec</jacoco-agent.destfile>
             <!-- Virtual AWT driver for GUI unit tests -->
             <awt.toolkit>com.github.caciocavallosilano.cacio.ctc.CTCToolkit</awt.toolkit>
-            <java.awt.headless>false</java.awt.headless>
+            <java.awt.headless>true</java.awt.headless>
             <java.awt.graphicsenv>
               com.github.caciocavallosilano.cacio.ctc.CTCGraphicsEnvironment
             </java.awt.graphicsenv>
