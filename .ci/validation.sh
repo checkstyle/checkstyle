@@ -523,7 +523,7 @@ javac11)
         --exclude='InputCustomImportOrderNoPackage2.java' \
         --exclude='InputIllegalTypePackageClassName.java' \
         --exclude='InputVisibilityModifierPackageClassName.java' \
-        '//non-compiled (syntax|with javac)?\:' \
+        '// non-compiled (syntax|with javac)?\:' \
         src/test/resources-noncompilable \
         src/xdocs-examples/resources-noncompilable))
   mkdir -p target
