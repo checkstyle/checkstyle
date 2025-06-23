@@ -8,7 +8,7 @@
 </module>
 */
 
-//non-compiled with javac: Compilable with Java8
+// non-compiled with javac: Compilable with Java8
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
 // xdoc section -- start

@@ -14,7 +14,7 @@ tokens = (default)STATIC_IMPORT
 
 */
 
-//non-compiled with javac: contains specially crafted set of imports for testing
+// non-compiled with javac: contains specially crafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 import static android.app.slice.Slice.HINT_ACTIONS;
 import static android.app.slice.Slice.HINT_ERROR;

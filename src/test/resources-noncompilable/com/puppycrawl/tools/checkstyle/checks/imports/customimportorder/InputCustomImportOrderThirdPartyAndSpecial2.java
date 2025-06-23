@@ -11,7 +11,7 @@ sortImportsInGroupAlphabetically = (default)false
 
 */
 
-//non-compiled with javac: contains specially crafted set of imports for testing
+// non-compiled with javac: contains specially crafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import static java.awt.Button.ABORT; // STATIC
