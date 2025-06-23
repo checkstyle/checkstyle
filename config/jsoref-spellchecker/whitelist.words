@@ -1100,7 +1100,6 @@ Postgresql
 powershell
 ppc
 prebuilts
-prefs
 PRESIZE
 prettyprint
 printf
@@ -1563,6 +1562,7 @@ xsl
 xslt
 xsltproc
 XSO
+xvfb
 xwiki
 XXXX
 xxxxxx
