@@ -85,6 +85,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * expressions to ignore classes.
  * Type is {@code java.util.regex.Pattern[]}.
  * Default value is {@code ^$}.
+ * Since version 7.7
  * </li>
  * <li>
  * Property {@code excludedClasses} - Specify user-configured class names to ignore.
@@ -103,6 +104,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Property {@code excludedPackages} - Specify user-configured packages to ignore.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
+ * Since version 7.7
  * </li>
  * <li>
  * Property {@code max} - Specify the maximum threshold allowed.
