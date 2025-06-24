@@ -283,9 +283,6 @@ workflows:
           name: "check-since-version"
           command: "./.ci/validation.sh check-since-version"
       - validate-with-script:
-          name: "javac11"
-          command: "./.ci/validation.sh javac11"
-      - validate-with-script:
           name: "javac17"
           image-name: "cimg/openjdk:17.0.7"
           command: "./.ci/validation.sh javac17"
