@@ -175,59 +175,6 @@ public final class SiteUtil {
         "CustomImportOrderCheck.customImportOrderRules"
     );
 
-    /**
-     * Frequent version.
-     */
-    private static final String VERSION_5_0 = "5.0";
-
-    /**
-     * Frequent version.
-     */
-    private static final String VERSION_5_7 = "5.7";
-
-    /**
-     * Frequent version.
-     */
-    private static final String VERSION_5_1 = "5.1";
-
-    /**
-     * Frequent version.
-     */
-    private static final String VERSION_3_4 = "3.4";
-
-    /**
-     * Map of properties whose since version is different from module version but
-     * are not specified in code because they are inherited from their super class(es).
-     * Until <a href="https://github.com/checkstyle/checkstyle/issues/14052">#14052</a>.
-     *
-     * @noinspectionreason JavacQuirks until #14052
-     */
-    private static final Map<String, String> SINCE_VERSION_FOR_INHERITED_PROPERTY = Map.ofEntries(
-        Map.entry("ClassDataAbstractionCouplingCheck.excludedClasses", VERSION_5_7),
-        Map.entry("ClassFanOutComplexityCheck.excludedClasses", VERSION_5_7),
-        // until https://github.com/checkstyle/checkstyle/issues/14052
-        Map.entry("StaticVariableNameCheck.applyToPackage", VERSION_5_0),
-        Map.entry("StaticVariableNameCheck.applyToPrivate", VERSION_5_0),
-        Map.entry("StaticVariableNameCheck.applyToProtected", VERSION_5_0),
-        Map.entry("StaticVariableNameCheck.applyToPublic", VERSION_5_0),
-        Map.entry("TypeNameCheck.applyToPackage", VERSION_5_0),
-        Map.entry("TypeNameCheck.applyToPrivate", VERSION_5_0),
-        Map.entry("TypeNameCheck.applyToProtected", VERSION_5_0),
-        Map.entry("TypeNameCheck.applyToPublic", VERSION_5_0),
-        Map.entry("ConstantNameCheck.applyToPackage", VERSION_5_0),
-        Map.entry("ConstantNameCheck.applyToPrivate", VERSION_5_0),
-        Map.entry("ConstantNameCheck.applyToProtected", VERSION_5_0),
-        Map.entry("ConstantNameCheck.applyToPublic", VERSION_5_0),
-        Map.entry("MemberNameCheck.applyToPackage", VERSION_3_4),
-        Map.entry("MemberNameCheck.applyToPrivate", VERSION_3_4),
-        Map.entry("MemberNameCheck.applyToProtected", VERSION_3_4),
-        Map.entry("MemberNameCheck.applyToPublic", VERSION_3_4),
-        Map.entry("MethodNameCheck.applyToPackage", VERSION_5_1),
-        Map.entry("MethodNameCheck.applyToPrivate", VERSION_5_1),
-        Map.entry("MethodNameCheck.applyToProtected", VERSION_5_1),
-        Map.entry("MethodNameCheck.applyToPublic", VERSION_5_1)
-    );
-
     /** Map of all superclasses properties and their javadocs. */
     private static final Map<String, DetailNode> SUPER_CLASS_PROPERTIES_JAVADOCS =
             new HashMap<>();
@@ -755,15 +702,10 @@ public final class SiteUtil {
             throws MacroExecutionException {
         final String sinceVersion;
 
-        final String hardCodedPropertyVersion = SINCE_VERSION_FOR_INHERITED_PROPERTY.get(
-            moduleName + DOT + propertyName);
         final Optional<String> specifiedPropertyVersion =
             getSpecifiedPropertyVersion(propertyName, moduleJavadoc);
 
-        if (hardCodedPropertyVersion != null) {
-            sinceVersion = hardCodedPropertyVersion;
-        }
-        else if (specifiedPropertyVersion.isPresent()) {
+        if (specifiedPropertyVersion.isPresent()) {
             sinceVersion = specifiedPropertyVersion.get();
         }
         else {

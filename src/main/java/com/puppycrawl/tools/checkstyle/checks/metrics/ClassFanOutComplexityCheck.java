@@ -66,6 +66,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * SortedMap, SortedSet, Stream, String, StringBuffer, StringBuilder, SuppressWarnings, Throwable,
  * TreeMap, TreeSet, UnsupportedOperationException, Void, boolean, byte, char, double,
  * float, int, long, short, var, void}.
+ * Since version 5.7
  * </li>
  * <li>
  * Property {@code excludedPackages} - Specify user-configured packages to ignore.
