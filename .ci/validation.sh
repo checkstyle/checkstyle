@@ -515,7 +515,7 @@ compile-test-resources)
   -Dcheckstyle.skipCompileInputResources=false -Dmaven.compiler.release=17
   ;;
 
-javac11)
+javac17_standard)
   # InputCustomImportOrderNoPackage2 - nothing is required in front of first import
   # InputIllegalTypePackageClassName - bad import for testing
   # InputVisibilityModifierPackageClassName - bad import for testing
@@ -530,7 +530,7 @@ javac11)
   mkdir -p target
   for file in "${files[@]}"
   do
-    echo "${file}"
+    echo "Compiling ${file} with standard JDK17"
     javac -d target "${file}"
   done
   ;;
