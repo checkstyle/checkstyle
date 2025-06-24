@@ -183,16 +183,6 @@ public final class SiteUtil {
     /**
      * Frequent version.
      */
-    private static final String VERSION_8_24 = "8.24";
-
-    /**
-     * Frequent version.
-     */
-    private static final String VERSION_7_7 = "7.7";
-
-    /**
-     * Frequent version.
-     */
     private static final String VERSION_5_7 = "5.7";
 
     /**
@@ -213,14 +203,8 @@ public final class SiteUtil {
      * @noinspectionreason JavacQuirks until #14052
      */
     private static final Map<String, String> SINCE_VERSION_FOR_INHERITED_PROPERTY = Map.ofEntries(
-        Map.entry("ClassDataAbstractionCouplingCheck.excludeClassesRegexps", VERSION_7_7),
         Map.entry("ClassDataAbstractionCouplingCheck.excludedClasses", VERSION_5_7),
-        Map.entry("ClassDataAbstractionCouplingCheck.excludedPackages", VERSION_7_7),
-        Map.entry("ClassFanOutComplexityCheck.excludeClassesRegexps", VERSION_7_7),
         Map.entry("ClassFanOutComplexityCheck.excludedClasses", VERSION_5_7),
-        Map.entry("ClassFanOutComplexityCheck.excludedPackages", VERSION_7_7),
-        Map.entry("NonEmptyAtclauseDescriptionCheck.javadocTokens", "7.3"),
-        Map.entry("LineLengthCheck.fileExtensions", VERSION_8_24),
         // until https://github.com/checkstyle/checkstyle/issues/14052
         Map.entry("StaticVariableNameCheck.applyToPackage", VERSION_5_0),
         Map.entry("StaticVariableNameCheck.applyToPrivate", VERSION_5_0),
