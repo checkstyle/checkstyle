@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>HexLiteralCase</title>
+  </head>
+  <body>
+    <section name="HexLiteralCase">
+      <p>Since Checkstyle 10.26.0</p>
+
+      <subsection name="Description" id="Description">
+        <div>
+          Checks that hexadecimal literals are defined using uppercase letters <code>(A-F)</code>
+          rather than lowercase <code>(a-f)</code>. This follows the
+          <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-literals">
+          OpenJDK Style Guide</a>.
+        </div>
+        <p>
+          For example, <code>0xAF</code> is valid, but <code>0xaf</code> is not.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/hexliteralcase/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/hexliteralcase/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+HexLiteralCase">
+              Checkstyle Style
+            </a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="HexLiteralCase"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="HexLiteralCase"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>
