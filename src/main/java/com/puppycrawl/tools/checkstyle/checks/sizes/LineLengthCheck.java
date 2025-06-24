@@ -64,6 +64,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Property {@code fileExtensions} - Specify the file extensions of the files to process.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
+ * Since version 8.24
  * </li>
  * <li>
  * Property {@code ignorePattern} - Specify pattern for lines to ignore.
