@@ -425,6 +425,11 @@
             <td>Checks that a source file begins with a specified header.</td>
           </tr>
           <tr>
+            <td><a href="checks/misc/hexliteralcase.html#HexLiteralCase">HexLiteralCase</a></td>
+            <td>Checks that hexadecimal literals are defined using uppercase letters (A-F)
+              rather than lowercase (a-f).</td>
+          </tr>
+          <tr>
             <td><a href="checks/coding/hiddenfield.html#HiddenField">HiddenField</a></td>
             <td>Checks that a local variable or a parameter does not shadow
             a field that is defined in the same class.</td>

@@ -312,5 +312,7 @@
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]whenshouldbeused.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]patternvariableassignment.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]misc[\\/]hexliteralcase.xml.template"/>
 
 </suppressions>
