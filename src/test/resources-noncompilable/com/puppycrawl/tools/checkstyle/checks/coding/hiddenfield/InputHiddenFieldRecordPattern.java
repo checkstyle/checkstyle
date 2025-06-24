@@ -3,7 +3,7 @@ HiddenField
 
 */
 
-//non-compiled with javac: Compilable with Java21
+// non-compiled with javac: Compilable with Java21
 package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
 public class InputHiddenFieldRecordPattern {

@@ -6,7 +6,7 @@ reliefPattern = (default)falls?[ -]?thr(u|ough)
 
 */
 
-//non-compiled with javac: Compilable with Java19
+// non-compiled with javac: Compilable with Java19
 package com.puppycrawl.tools.checkstyle.checks.coding.fallthrough;
 
 public class InputFallThrough5 {

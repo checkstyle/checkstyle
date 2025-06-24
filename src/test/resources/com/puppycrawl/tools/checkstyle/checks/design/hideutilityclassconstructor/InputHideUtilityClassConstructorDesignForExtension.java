@@ -97,7 +97,7 @@ public abstract class InputHideUtilityClassConstructorDesignForExtension
 
     public class anotherNonFinalClass
     {
-    //nonPrivate ctor
+    // nonPrivate ctor
     public anotherNonFinalClass(){}
         public void someMethod()
         {
