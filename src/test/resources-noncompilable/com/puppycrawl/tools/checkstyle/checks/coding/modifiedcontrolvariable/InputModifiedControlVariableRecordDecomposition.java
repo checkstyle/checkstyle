@@ -4,7 +4,7 @@ ModifiedControlVariable
 
 */
 
-//non-compiled with javac: Compilable with Java20
+// non-compiled with javac: Compilable with Java20
 package com.puppycrawl.tools.checkstyle.checks.coding.modifiedcontrolvariable;
 
 import java.util.List;

@@ -4,7 +4,7 @@ ConstructorsDeclarationGrouping
 
 */
 
-//non-compiled with javac: Compilable with Java14
+// non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.coding.constructorsdeclarationgrouping;
 
 public class InputConstructorsDeclarationGroupingRecords {

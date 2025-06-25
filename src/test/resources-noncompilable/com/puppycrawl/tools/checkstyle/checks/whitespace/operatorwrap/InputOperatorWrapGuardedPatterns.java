@@ -7,7 +7,7 @@ tokens = (default)QUESTION, COLON, EQUAL, NOT_EQUAL, DIV, PLUS, MINUS, STAR, MOD
 
 
 */
-//non-compiled with javac: compilable with java21
+// non-compiled with javac: compilable with java21
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.operatorwrap;
 

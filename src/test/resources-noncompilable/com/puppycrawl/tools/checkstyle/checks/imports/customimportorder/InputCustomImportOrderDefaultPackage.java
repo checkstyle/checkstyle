@@ -10,7 +10,7 @@ sortImportsInGroupAlphabetically = true
 
 */
 
-//non-compiled with javac: contains specially crafted set of imports for testing
+// non-compiled with javac: contains specially crafted set of imports for testing
 
 //////////////////////////////////////////
 //Some header
