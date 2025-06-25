@@ -9,9 +9,8 @@ applyToPrivate = (default)true
 
 */
 
-//non-compiled with eclipse: syntax error but works fine in jdk
+// non-compiled with eclipse: syntax error but works fine in jdk
 package com.puppycrawl.tools.checkstyle.grammar;
-import java.util.Arrays;
 ; // non-compilable by eclipse
 import java.util.ArrayList;
 /**
