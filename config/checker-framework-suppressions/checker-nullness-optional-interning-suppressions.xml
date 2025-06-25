@@ -6101,6 +6101,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/DescriptionMacro.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter moduleJavadoc of DescriptionMacro.getDescriptionEndIndex.</message>
+    <lineContent>final int descriptionEndIndex = getDescriptionEndIndex(moduleJavadoc, propertyNames);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailNode
+      required: @Initialized @NonNull DetailNode
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/PropertiesMacro.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter justification of XdocSink.tableRows.</message>
