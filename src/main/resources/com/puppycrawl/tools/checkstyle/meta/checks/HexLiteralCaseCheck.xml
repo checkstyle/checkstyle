@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.HexLiteralCaseCheck"
+             name="HexLiteralCase"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;Checks that hexadecimal literals are defined using uppercase letters {@code (A-F)}
+ rather than lowercase {@code (a-f)}. This follows the
+ &lt;a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-literals"&gt;
+ OpenJDK Style Guide&lt;/a&gt;.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ For example, {@code 0xAF} is valid, but {@code 0xaf} is not.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="hex.Literal"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
