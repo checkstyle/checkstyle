@@ -23,88 +23,105 @@ strategy:
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh pr-age"
       skipCache: true
+      CI: true
 
     # spelling
     'spelling':
       image: 'ubuntu-24.04'
       cmd: "./.ci/test-spelling-unknown-words.sh"
       skipCache: true
+      CI: true
 
     # unit tests (openjdk11)
     'test':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test"
+      CI: true
 
     # unit tests in German locale (openjdk11)
     'test-de':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-de"
+      CI: true
 
     # unit tests in Spanish locale (openjdk11)
     'test-es':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-es"
+      CI: true
 
     # unit tests in Finnish locale (openjdk11)
     'test-fi':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-fi"
+      CI: true
 
     # unit tests in French locale (openjdk11)
     'test-fr':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-fr"
+      CI: true
 
     # unit tests in Chinese locale (openjdk11)
     'test-zh':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-zh"
+      CI: true
 
     # unit tests in Japanese locale (openjdk11)
     'test-ja':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-ja"
+      CI: true
 
     # unit tests in Portuguese locale (openjdk11)
     'test-pt':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-pt"
+      CI: true
 
     # unit tests in Turkish locale (openjdk11)
     'test-tr':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-tr"
+      CI: true
 
     # unit tests in Russian locale (openjdk11)
     'test-ru':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-ru"
+      CI: true
 
     # unit tests in Albanian locale (openjdk11)
     'test-al':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-al"
+      CI: true
 
     # OpenJDK11 verify
     'OpenJDK11 verify':
       image: 'ubuntu-24.04'
       cmd: "./mvnw -e --no-transfer-progress verify"
+      CI: true
 
     # MacOS JDK11 verify
     'MacOS JDK11 verify':
       image: 'macOS-14'
       cmd: "JAVA_HOME=$JAVA_HOME_11_X64 ./mvnw -e --no-transfer-progress verify"
+      CI: true
 
     # MacOS JDK17 verify
     'MacOS JDK17 verify':
       image: 'macOS-14'
       cmd: "JAVA_HOME=$JAVA_HOME_17_X64 ./mvnw -e --no-transfer-progress verify"
+      CI: true
 
     # versions to update
     'versions':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh versions"
       onCronOnly: true
+      CI: true
 
     # lint for .md files, OSX is used because there is problem to install gem on linux
     'markdownlint':
@@ -112,6 +129,7 @@ strategy:
       cmd: "./.ci/validation.sh markdownlint"
       skipCache: true
       needMdl: true
+      CI: true
 
 pool:
   vmImage: $(image)
@@ -141,7 +159,7 @@ steps:
 
   - task: JavaToolInstaller@0
     inputs:
-      versionSpec: 11
+      versionSpec: 17
       jdkArchitectureOption: 'X64'
       jdkSourceOption: 'PreInstalled'
 
