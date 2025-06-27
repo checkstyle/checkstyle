@@ -23,6 +23,7 @@ strategy:
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh pr-age"
       skipCache: true
+      CI: true
 
     # spelling
     'spelling':
@@ -99,7 +100,6 @@ strategy:
     'MacOS JDK17 verify':
       image: 'macOS-14'
       cmd: "JAVA_HOME=$JAVA_HOME_17_X64 ./mvnw -e --no-transfer-progress verify"
-
     # versions to update
     'versions':
       image: 'ubuntu-24.04'
@@ -141,7 +141,7 @@ steps:
 
   - task: JavaToolInstaller@0
     inputs:
-      versionSpec: 11
+      versionSpec: 17
       jdkArchitectureOption: 'X64'
       jdkSourceOption: 'PreInstalled'
 
