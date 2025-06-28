@@ -13,47 +13,45 @@ import javax.swing.JCheckBox;
 /** some javadoc. */
 public class InputWhitespaceAroundArrowCorrect {
   static {
-    new JCheckBox().addActionListener((final ActionEvent e) -> {
-      test3();
-    });
+    new JCheckBox()
+        .addActionListener(
+            (final ActionEvent e) -> {
+              test3();
+            });
   }
 
   /** some javadoc. */
   void foo1(Object o) {
     switch (o) {
       case String s when (s.equals("a")) -> {}
-      case String s2 -> {
-      }
+      case String s2 -> {}
       default -> {}
     }
   }
 
   /** method. */
-  void test(Object o, Object o2 ,int y) {
+  void test(Object o, Object o2, int y) {
     switch (o) {
-      case String s when (
-          s.equals("a")) ->
-        {
-        }
+      case String s when (s.equals("a")) -> {}
       case Point(int x, int xy) when !(x >= 0 && xy >= 0) -> {}
-      default ->
-        {}
+      default -> {}
     }
 
-    int x = switch (o) {
-      case String s -> {
-        switch (o2) {
-          case Integer newInt when newInt == 0 -> {
-            if (y == 0) {
-              System.out.println(0);
+    int x =
+        switch (o) {
+          case String s -> {
+            switch (o2) {
+              case Integer newInt when newInt == 0 -> {
+                if (y == 0) {
+                  System.out.println(0);
+                }
+              }
+              default -> {}
             }
+            yield 3;
           }
-          default -> {}
-        }
-        yield 3;
-      }
-      default -> 3;
-    };
+          default -> 3;
+        };
   }
 
   /** some javadoc. */
@@ -65,35 +63,38 @@ public class InputWhitespaceAroundArrowCorrect {
     List<Integer> ints = new LinkedList<Integer>();
 
     ints.stream()
-        .map(t -> {
-            return t * 2;
-          }
-        )
-        .filter(t -> {
-          return false;
-        });
+        .map(
+            t -> {
+              return t * 2;
+            })
+        .filter(
+            t -> {
+              return false;
+            });
     return k * 2;
   }
 
   /** some javadoc. */
   static void test3() {
-    ArrayList<Boolean> boolList
-        = new ArrayList<Boolean>(Arrays.asList(false, true, false, false));
+    ArrayList<Boolean> boolList = new ArrayList<Boolean>(Arrays.asList(false, true, false, false));
 
-    List<Boolean> filtered = boolList.stream()
-        .filter(statement -> {
-          if (!statement) {
-            return true;
-          } else {
-            return false;
-          }
-        })
-        .collect(Collectors.toList());
+    List<Boolean> filtered =
+        boolList.stream()
+            .filter(
+                statement -> {
+                  if (!statement) {
+                    return true;
+                  } else {
+                    return false;
+                  }
+                })
+            .collect(Collectors.toList());
 
-    Object result = boolList.stream().filter(
-        statement -> false)
-        .findFirst()
-        .orElseThrow(() -> new IllegalStateException("big problem"));
+    Object result =
+        boolList.stream()
+            .filter(statement -> false)
+            .findFirst()
+            .orElseThrow(() -> new IllegalStateException("big problem"));
   }
 
   /** some javadoc. */
