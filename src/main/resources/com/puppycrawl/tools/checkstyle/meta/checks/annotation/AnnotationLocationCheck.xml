@@ -14,7 +14,7 @@
 
  &lt;p&gt;
  Attention: Elements that cannot have JavaDoc comments like local variables are not in the
- scope of this check even though a token type like {@code } would match them.
+ scope of this check even though a token type like {@code VARIABLE_DEF} would match them.
  &lt;/p&gt;
 
  &lt;p&gt;

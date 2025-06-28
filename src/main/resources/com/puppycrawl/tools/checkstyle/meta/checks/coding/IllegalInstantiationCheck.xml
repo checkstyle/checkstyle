@@ -17,7 +17,7 @@
  &lt;p&gt;
  A simple example is the {@code java.lang.Boolean} class.
  For performance reasons, it is preferable to use the predefined constants
- {@code } and {@code }.
+ {@code TRUE} and {@code FALSE}.
  Constructor invocations should be replaced by calls to {@code Boolean.valueOf()}.
  &lt;/p&gt;
 
