@@ -5,7 +5,7 @@
              name="MissingSwitchDefault"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks that switch statement has a {@code default} clause.
+ Checks that switch statement has a &lt;code&gt;default&lt;/code&gt; clause.
  &lt;/div&gt;
 
  &lt;p&gt;

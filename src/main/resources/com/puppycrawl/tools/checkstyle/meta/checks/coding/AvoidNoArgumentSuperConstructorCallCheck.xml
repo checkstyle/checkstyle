@@ -7,7 +7,7 @@
          <description>&lt;div&gt;
  Checks if call to superclass constructor without arguments is present.
  Such invocation is redundant because constructor body implicitly
- begins with a superclass constructor invocation {@code super();}
+ begins with a superclass constructor invocation &lt;code&gt;super();&lt;/code&gt;
  See &lt;a href="https://docs.oracle.com/javase/specs/jls/se13/html/jls-8.html#jls-8.8.7"&gt;
  specification&lt;/a&gt; for detailed information.
  &lt;/div&gt;</description>

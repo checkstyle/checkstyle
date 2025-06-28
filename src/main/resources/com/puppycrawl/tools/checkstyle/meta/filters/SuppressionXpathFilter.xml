@@ -5,10 +5,10 @@
               name="SuppressionXpathFilter"
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Filter {@code SuppressionXpathFilter} works as
+ Filter &lt;code&gt;SuppressionXpathFilter&lt;/code&gt; works as
  &lt;a href="https://checkstyle.org/filters/suppressionfilter.html#SuppressionFilter"&gt;
  SuppressionFilter&lt;/a&gt;.
- Additionally, filter processes {@code suppress-xpath} elements,
+ Additionally, filter processes &lt;code&gt;suppress-xpath&lt;/code&gt; elements,
  which contains xpath-expressions. Xpath-expressions are queries for
  suppressed nodes inside the AST tree.
  &lt;/div&gt;
@@ -142,11 +142,11 @@
  as a filesystem location
  &lt;/li&gt;
  &lt;li&gt;
- if no file found, and the location starts with either {@code http://} or {@code https://},
+ if no file found, and the location starts with either &lt;code&gt;http://&lt;/code&gt; or &lt;code&gt;https://&lt;/code&gt;,
  then it is interpreted as a URL
  &lt;/li&gt;
  &lt;li&gt;
- if no file found, then passed to the {@code ClassLoader.getResource()} method.
+ if no file found, then passed to the &lt;code&gt;ClassLoader.getResource()&lt;/code&gt; method.
  &lt;/li&gt;
  &lt;/ol&gt;
 

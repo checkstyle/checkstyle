@@ -15,7 +15,7 @@
  &lt;/p&gt;
  &lt;ul&gt;
  &lt;li&gt;
- {@code first_line} - Javadoc content starts from the first line:
+ &lt;code&gt;first_line&lt;/code&gt; - Javadoc content starts from the first line:
  &lt;pre&gt;
  &amp;#47;** Summary text.
    * More details.
@@ -24,7 +24,7 @@
  &lt;/pre&gt;
  &lt;/li&gt;
  &lt;li&gt;
- {@code second_line} - Javadoc content starts from the second line:
+ &lt;code&gt;second_line&lt;/code&gt; - Javadoc content starts from the second line:
  &lt;pre&gt;
  &amp;#47;**
    * Summary text.

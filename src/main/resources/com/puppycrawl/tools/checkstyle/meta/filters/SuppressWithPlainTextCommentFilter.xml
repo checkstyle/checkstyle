@@ -5,7 +5,7 @@
               name="SuppressWithPlainTextCommentFilter"
               parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;div&gt;
- Filter {@code SuppressWithPlainTextCommentFilter} uses plain text to suppress
+ Filter &lt;code&gt;SuppressWithPlainTextCommentFilter&lt;/code&gt; uses plain text to suppress
  audit events. The filter can be used only to suppress audit events received
  from the checks which implement FileSetCheck interface. In other words, the
  checks which have Checker as a parent module. The filter knows nothing about
@@ -35,7 +35,7 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- Properties {@code offCommentFormat} and {@code onCommentFormat} must have equal
+ Properties &lt;code&gt;offCommentFormat&lt;/code&gt; and &lt;code&gt;onCommentFormat&lt;/code&gt; must have equal
  &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html#groupCount()"&gt;
  paren counts&lt;/a&gt;.
  &lt;/p&gt;
