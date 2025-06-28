@@ -7,18 +7,18 @@
          <description>&lt;div&gt;
  Checks visibility of class members. Only static final, immutable or annotated
  by specified annotation members may be public;
- other class members must be private unless the property {@code protectedAllowed}
- or {@code packageAllowed} is set.
+ other class members must be private unless the property &lt;code&gt;protectedAllowed&lt;/code&gt;
+ or &lt;code&gt;packageAllowed&lt;/code&gt; is set.
  &lt;/div&gt;
 
  &lt;p&gt;
  Public members are not flagged if the name matches the public
- member regular expression (contains {@code "^serialVersionUID$"} by
+ member regular expression (contains &lt;code&gt;"^serialVersionUID$"&lt;/code&gt; by
  default).
  &lt;/p&gt;
 
  &lt;p&gt;
- Note that Checkstyle 2 used to include {@code "^f[A-Z][a-zA-Z0-9]*$"} in the default pattern
+ Note that Checkstyle 2 used to include &lt;code&gt;"^f[A-Z][a-zA-Z0-9]*$"&lt;/code&gt; in the default pattern
  to allow names used in container-managed persistence for Enterprise JavaBeans (EJB) 1.1 with
  the default settings. With EJB 2.0 it is no longer necessary to have public access for
  persistent fields, so the default has been changed.

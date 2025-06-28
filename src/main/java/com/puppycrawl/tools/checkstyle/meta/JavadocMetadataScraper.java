@@ -389,12 +389,14 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
         while (!stack.isEmpty()) {
             detailNode = stack.removeFirst();
 
-            if (visited.add(detailNode)) {
-                final String childText = detailNode.getText();
-                if (detailNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
-                        && !TOKEN_TEXT_PATTERN.matcher(childText).matches()) {
-                    result.insert(0, childText);
+            if (visited.add(detailNode) && isContentToWrite(detailNode)) {
+                String childText = detailNode.getText();
+
+                if (detailNode.getParent().getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                    childText = adjustCodeInlineTagComponentToHtml(detailNode);
                 }
+
+                result.insert(0, childText);
             }
 
             for (DetailNode child : detailNode.getChildren()) {
@@ -409,6 +411,48 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
             }
         }
         return result.toString().trim();
+    }
+
+    /**
+     * Checks whether selected Javadoc node is considered as something to write.
+     *
+     * @param detailNode javadoc node to check.
+     * @return whether javadoc node is something to write.
+     */
+    private static boolean isContentToWrite(DetailNode detailNode) {
+
+        return detailNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
+            && (detailNode.getType() == JavadocTokenTypes.TEXT
+            || !TOKEN_TEXT_PATTERN.matcher(detailNode.getText()).matches());
+    }
+
+    /**
+     * Adjusts components of {@code @code} Javadoc inline tag to html format.
+     *
+     * @param codeComponent {@code @code} component to convert.
+     * @return converted {@code @code} component, otherwise just the true text.
+     */
+    private static String adjustCodeInlineTagComponentToHtml(DetailNode codeComponent) {
+        String result = codeComponent.getText();
+
+        switch (codeComponent.getType()) {
+            case JavadocTokenTypes.JAVADOC_INLINE_TAG_END:
+                result = "</code>";
+                break;
+            case JavadocTokenTypes.WS:
+                result = "";
+                break;
+            case JavadocTokenTypes.CODE_LITERAL:
+                result = result.replace("@", "") + ">";
+                break;
+            case JavadocTokenTypes.JAVADOC_INLINE_TAG_START:
+                result = "<";
+                break;
+            default:
+                break;
+        }
+
+        return result;
     }
 
     /**

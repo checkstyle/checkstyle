@@ -6,16 +6,16 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks if any class or object member is explicitly initialized
- to default for its type value ({@code null} for object
- references, zero for numeric types and {@code char}
- and {@code false} for {@code boolean}.
+ to default for its type value (&lt;code&gt;null&lt;/code&gt; for object
+ references, zero for numeric types and &lt;code&gt;char&lt;/code&gt;
+ and &lt;code&gt;false&lt;/code&gt; for &lt;code&gt;boolean&lt;/code&gt;.
  &lt;/div&gt;
 
  &lt;p&gt;
  Rationale: Each instance variable gets
  initialized twice, to the same value. Java
  initializes each instance variable to its default
- value ({@code 0} or {@code null}) before performing any
+ value (&lt;code&gt;0&lt;/code&gt; or &lt;code&gt;null&lt;/code&gt;) before performing any
  initialization specified in the code.
  So there is a minor inefficiency.
  &lt;/p&gt;</description>

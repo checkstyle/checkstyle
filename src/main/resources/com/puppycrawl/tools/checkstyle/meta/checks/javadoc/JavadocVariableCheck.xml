@@ -5,7 +5,7 @@
              name="JavadocVariable"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks that a variable has a Javadoc comment. Ignores {@code serialVersionUID} fields.
+ Checks that a variable has a Javadoc comment. Ignores &lt;code&gt;serialVersionUID&lt;/code&gt; fields.
  &lt;/div&gt;</description>
          <properties>
             <property default-value="public, protected, package, private"
@@ -15,7 +15,7 @@
  fields should be checked. This includes both explicitly declared modifiers and implicit ones,
  such as package-private for fields without an explicit modifier.
  It also accounts for special cases where fields have implicit modifiers,
- such as {@code public static final} for interface fields and {@code public static}
+ such as &lt;code&gt;public static final&lt;/code&gt; for interface fields and &lt;code&gt;public static&lt;/code&gt;
  for enum constants, or where the nesting types accessibility is more restrictive and hides the
  nested field. Only fields matching the specified modifiers will be analyzed.</description>
             </property>
