@@ -21,8 +21,8 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 
 /**
  * <p>
- * Checks the placement of right curly braces ({@code '}'}) for code blocks. This check supports
- * if-else, try-catch-finally blocks, while-loops, for-loops,
+ * Checks the placement of right curly braces (<code>'}'</code>) for code blocks. This check
+ * supports if-else, try-catch-finally blocks, while-loops, for-loops,
  * method definitions, class definitions, constructor definitions,
  * instance, static initialization blocks, annotation definitions and enum definitions.
  * For right curly brace of expression blocks of arrays, lambdas and class instances

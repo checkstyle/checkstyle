@@ -10,7 +10,7 @@
  &lt;/div&gt;
 
  &lt;p&gt;
- This check is almost exactly the same as the {@code NoFinalizerCheck}.
+ This check is almost exactly the same as the &lt;code&gt;NoFinalizerCheck&lt;/code&gt;.
  &lt;/p&gt;
 
  &lt;p&gt;

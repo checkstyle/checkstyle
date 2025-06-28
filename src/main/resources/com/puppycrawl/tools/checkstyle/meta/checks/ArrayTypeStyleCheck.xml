@@ -6,8 +6,8 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks the style of array type definitions.
- Some like Java style: {@code public static void main(String[] args)}
- and some like C style: {@code public static void main(String args[])}.
+ Some like Java style: &lt;code&gt;public static void main(String[] args)&lt;/code&gt;
+ and some like C style: &lt;code&gt;public static void main(String args[])&lt;/code&gt;.
  &lt;/div&gt;
 
  &lt;p&gt;
@@ -16,7 +16,7 @@
 
  &lt;p&gt;
  This check strictly enforces only Java style for method return types regardless
- of the value for 'javaStyle'. For example, {@code byte[] getData()}.
+ of the value for 'javaStyle'. For example, &lt;code&gt;byte[] getData()&lt;/code&gt;.
  This is because C doesn't compile methods with array declarations on the name.
  &lt;/p&gt;</description>
          <properties>

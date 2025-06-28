@@ -11,8 +11,8 @@
  &lt;ul&gt;
    &lt;li&gt;It is a duplicate of another import. This is, when a class is imported
    more than once.&lt;/li&gt;
-   &lt;li&gt;The class non-statically imported is from the {@code java.lang}
-   package, e.g. importing {@code java.lang.String}.&lt;/li&gt;
+   &lt;li&gt;The class non-statically imported is from the &lt;code&gt;java.lang&lt;/code&gt;
+   package, e.g. importing &lt;code&gt;java.lang.String&lt;/code&gt;.&lt;/li&gt;
    &lt;li&gt;The class non-statically imported is from the same package as the
    current package.&lt;/li&gt;
  &lt;/ul&gt;</description>

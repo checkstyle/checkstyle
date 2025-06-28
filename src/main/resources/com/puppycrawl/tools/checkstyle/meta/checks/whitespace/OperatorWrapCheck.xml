@@ -12,7 +12,7 @@
 
  &lt;p&gt;
  See the &lt;a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-15.html#jls-15.20.2"&gt;
- Java Language Specification&lt;/a&gt; for more information about {@code instanceof} operator.
+ Java Language Specification&lt;/a&gt; for more information about &lt;code&gt;instanceof&lt;/code&gt; operator.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="nl"
