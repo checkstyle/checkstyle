@@ -18,7 +18,7 @@
          <properties>
             <property default-value="false" name="allowClassName" type="boolean">
                <description>Control whether to allow a method name to have the same name
- as the enclosing class name. Setting this property {@code false} helps to avoid
+ as the enclosing class name. Setting this property &lt;code&gt;false&lt;/code&gt; helps to avoid
  confusion between constructors and methods.</description>
             </property>
             <property default-value="true" name="applyToPackage" type="boolean">
