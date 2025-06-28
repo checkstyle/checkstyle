@@ -15,10 +15,10 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- A simple example is the {@code java.lang.Boolean} class.
+ A simple example is the &lt;code&gt;java.lang.Boolean&lt;/code&gt; class.
  For performance reasons, it is preferable to use the predefined constants
- {@code } and {@code }.
- Constructor invocations should be replaced by calls to {@code Boolean.valueOf()}.
+ &lt;code&gt;TRUE&lt;/code&gt; and &lt;code&gt;FALSE&lt;/code&gt;.
+ Constructor invocations should be replaced by calls to &lt;code&gt;Boolean.valueOf()&lt;/code&gt;.
  &lt;/p&gt;
 
  &lt;p&gt;
