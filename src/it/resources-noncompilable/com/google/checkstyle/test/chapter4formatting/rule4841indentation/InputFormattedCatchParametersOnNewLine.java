@@ -3,7 +3,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
 /** some javadoc. */
-public class InputCatchParametersOnNewLine {
+public class InputFormattedCatchParametersOnNewLine {
 
   /** some test Method. */
   public void test1() {
@@ -49,19 +49,18 @@ public class InputCatchParametersOnNewLine {
   }
 
   private static String test5() {
-    final String simplePropertyUpdateScript = """
+    final String simplePropertyUpdateScript =
+        """
         s
         """;
     return ("""
-        def newInstance = params.instance;
-        def existingInstance = ctx._source;
-      """ // violation '.* incorrect indentation level 6, expected .* 8.'
+      def newInstance = params.instance;
+      def existingInstance = ctx._source;
+    """ // violation '.* incorrect indentation level 4, expected .* 8.'
         + simplePropertyUpdateScript);
   }
 
   void test2Incorrect(boolean result) {
-    int collect = result
-      ? 0 : // violation '.* incorrect indentation level 6, expected .* 8.'
-      1; // violation '.* incorrect indentation level 6, expected .* 8.'
+    int collect = result ? 0 : 1;
   }
 }
