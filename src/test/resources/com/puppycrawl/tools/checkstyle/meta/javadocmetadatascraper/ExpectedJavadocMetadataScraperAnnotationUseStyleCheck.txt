@@ -12,54 +12,54 @@ Description: <p>
  </p>
  <ul>
  <li>
- {@code ElementStyleOption.COMPACT_NO_ARRAY}
+ <code> ElementStyleOption.COMPACT_NO_ARRAY</code>
  </li>
  <li>
- {@code ElementStyleOption.COMPACT}
+ <code>ElementStyleOption.COMPACT</code>
  </li>
  <li>
- {@code ElementStyleOption.EXPANDED}
+ <code>ElementStyleOption.EXPANDED</code>
  </li>
  </ul>
  <p>
- To not enforce an element style a {@code ElementStyleOption.IGNORE} type is provided.
- The desired style can be set through the {@code elementStyle} property.
+ To not enforce an element style a <code>ElementStyleOption.IGNORE</code> type is provided.
+ The desired style can be set through the <code>elementStyle</code> property.
  </p>
  <p>
- Using the {@code ElementStyleOption.EXPANDED} style is more verbose.
+ Using the <code>ElementStyleOption.EXPANDED</code> style is more verbose.
  The expanded version is sometimes referred to as "named parameters" in other languages.
  </p>
  <p>
- Using the {@code ElementStyleOption.COMPACT} style is less verbose.
+ Using the <code>ElementStyleOption.COMPACT</code> style is less verbose.
  This style can only be used when there is an element called 'value' which is either
  the sole element or all other elements have default values.
  </p>
  <p>
- Using the {@code ElementStyleOption.COMPACT_NO_ARRAY} style is less verbose.
- It is similar to the {@code ElementStyleOption.COMPACT} style but single value arrays are
+ Using the <code>ElementStyleOption.COMPACT_NO_ARRAY</code> style is less verbose.
+ It is similar to the <code>ElementStyleOption.COMPACT</code> style but single value arrays are
  flagged.
  With annotations a single value array does not need to be placed in an array initializer.
  </p>
  <p>
  The ending parenthesis are optional when using annotations with no elements.
- To always require ending parenthesis use the {@code ClosingParensOption.ALWAYS} type.
- To never have ending parenthesis use the {@code ClosingParensOption.NEVER} type.
- To not enforce a closing parenthesis preference a {@code ClosingParensOption.IGNORE} type is
+ To always require ending parenthesis use the <code>ClosingParensOption.ALWAYS</code> type.
+ To never have ending parenthesis use the <code>ClosingParensOption.NEVER</code> type.
+ To not enforce a closing parenthesis preference a <code>ClosingParensOption.IGNORE</code> type is
  provided.
- Set this through the {@code closingParens} property.
+ Set this through the <code>closingParens</code> property.
  </p>
  <p>
  Annotations also allow you to specify arrays of elements in a standard format.
  As with normal arrays, a trailing comma is optional.
- To always require a trailing comma use the {@code TrailingArrayCommaOption.ALWAYS} type.
- To never have a trailing comma use the {@code TrailingArrayCommaOption.NEVER} type.
- To not enforce a trailing array comma preference a {@code TrailingArrayCommaOption.IGNORE} type
- is provided. Set this through the {@code trailingArrayComma} property.
+ To always require a trailing comma use the <code>TrailingArrayCommaOption.ALWAYS</code> type.
+ To never have a trailing comma use the <code>TrailingArrayCommaOption.NEVER</code> type.
+ To not enforce a trailing array comma preference a <code>TrailingArrayCommaOption.IGNORE</code> type
+ is provided. Set this through the <code>trailingArrayComma</code> property.
  </p>
  <p>
- By default, the {@code ElementStyleOption} is set to {@code },
- the {@code TrailingArrayCommaOption} is set to {@code },
- and the {@code ClosingParensOption} is set to {@code }.
+ By default, the <code>ElementStyleOption</code> is set to <code>COMPACT_NO_ARRAY</code>,
+ the <code>TrailingArrayCommaOption</code> is set to <code>NEVER</code>,
+ and the <code>ClosingParensOption</code> is set to <code>NEVER</code>.
  </p>
  <p>
  According to the JLS, it is legal to include a trailing comma

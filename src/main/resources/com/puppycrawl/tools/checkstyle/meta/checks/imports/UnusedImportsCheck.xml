@@ -12,12 +12,12 @@
  &lt;ul&gt;
  &lt;li&gt;
  It is not referenced in the file. The algorithm does not support wild-card
- imports like {@code import java.io.*;}. Most IDE's provide very sophisticated
+ imports like &lt;code&gt;import java.io.*;&lt;/code&gt;. Most IDE's provide very sophisticated
  checks for imports that handle wild-card imports.
  &lt;/li&gt;
  &lt;li&gt;
- The class imported is from the {@code java.lang} package. For example
- importing {@code java.lang.String}.
+ The class imported is from the &lt;code&gt;java.lang&lt;/code&gt; package. For example
+ importing &lt;code&gt;java.lang.String&lt;/code&gt;.
  &lt;/li&gt;
  &lt;li&gt;
  The class imported is from the same package.
@@ -30,9 +30,9 @@
  &lt;b&gt;Optionally:&lt;/b&gt; it is referenced in Javadoc comments. This check is on by
  default, but it is considered bad practice to introduce a compile-time
  dependency for documentation purposes only. As an example, the import
- {@code java.util.List} would be considered referenced with the Javadoc
- comment {@code {@link List}}. The alternative to avoid introducing a compile-time
- dependency would be to write the Javadoc comment as {@code {&amp;#64;link java.util.List}}.
+ &lt;code&gt;java.util.List&lt;/code&gt; would be considered referenced with the Javadoc
+ comment &lt;code&gt;{@link List}&lt;/code&gt;. The alternative to avoid introducing a compile-time
+ dependency would be to write the Javadoc comment as &lt;code&gt;{&amp;#64;link java.util.List}&lt;/code&gt;.
  &lt;/li&gt;
  &lt;/ul&gt;
 

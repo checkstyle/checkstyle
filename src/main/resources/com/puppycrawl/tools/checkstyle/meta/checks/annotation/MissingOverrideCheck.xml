@@ -5,8 +5,8 @@
              name="MissingOverride"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Verifies that the {@code @Override} annotation is present
- when the {@code @inheritDoc} javadoc tag is present.
+ Verifies that the &lt;code&gt;@Override&lt;/code&gt; annotation is present
+ when the &lt;code&gt;@inheritDoc&lt;/code&gt; javadoc tag is present.
  &lt;/div&gt;
 
  &lt;p&gt;
@@ -29,10 +29,10 @@
 
  &lt;p&gt;
  As a result of the aforementioned difference between Java 5 and Java 6, a
- property called {@code javaFiveCompatibility} is available. This
+ property called &lt;code&gt;javaFiveCompatibility&lt;/code&gt; is available. This
  property will only check classes, interfaces, etc. that do not contain the
  extends or implements keyword or are not anonymous classes. This means it
- only checks methods overridden from {@code java.lang.Object}.
+ only checks methods overridden from &lt;code&gt;java.lang.Object&lt;/code&gt;.
  &lt;b&gt;Java 5 Compatibility mode severely limits this check. It is recommended to
  only use it on Java 5 source.&lt;/b&gt;
  &lt;/p&gt;</description>
