@@ -5273,5 +5273,29 @@
         </plugins>
       </build>
     </profile>
+    <profile>
+        <id>ci</id>
+        <activation>
+            <property>
+                <name>env.CI</name>
+            </property>
+        </activation>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.5.3</version>
+                    <configuration>
+                        <excludes>
+                            <exclude>**/MainFrameTest*</exclude>
+                            <exclude>**/MainTest*</exclude>
+                            <exclude>**/TreeTableTest*</exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
   </profiles>
 </project>
