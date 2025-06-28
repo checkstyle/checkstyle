@@ -13,7 +13,6 @@ tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
 package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 import java.util.HashMap;
-
 import org.w3c.dom.Node;
 
 public class InputParenPadCheckWhenExpression {

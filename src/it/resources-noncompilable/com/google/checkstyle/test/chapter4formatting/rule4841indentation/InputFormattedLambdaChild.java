@@ -7,8 +7,20 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 /** some javadoc. */
-public class InputLambdaChildCorrect {
+public class InputFormattedLambdaChild {
   String testMethod1(List<Integer> operations) {
+    return operations.stream()
+        .map(
+            op ->
+                switch (op) {
+                  case 1 -> "test";
+                  default -> "TEST";
+                })
+        .findFirst()
+        .orElse("defaultValue");
+  }
+
+  String testMethod2(List<Integer> operations) {
     return operations.stream()
         .map(
             op ->
