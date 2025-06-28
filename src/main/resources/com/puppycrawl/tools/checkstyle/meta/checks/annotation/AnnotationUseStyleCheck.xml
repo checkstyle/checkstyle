@@ -65,9 +65,9 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- By default, the {@code ElementStyleOption} is set to {@code },
- the {@code TrailingArrayCommaOption} is set to {@code },
- and the {@code ClosingParensOption} is set to {@code }.
+ By default, the {@code ElementStyleOption} is set to {@code COMPACT_NO_ARRAY},
+ the {@code TrailingArrayCommaOption} is set to {@code NEVER},
+ and the {@code ClosingParensOption} is set to {@code NEVER}.
  &lt;/p&gt;
 
  &lt;p&gt;
