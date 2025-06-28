@@ -1,6 +1,186 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>addCheckOrModuleId</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/ChecksAndFilesSuppressionFileGeneratorAuditListener::addToCollector</description>
+    <lineContent>addToCollector(filesAndChecksCollector, fileName, checkName);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>addCheckOrModuleId</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/ChecksAndFilesSuppressionFileGeneratorAuditListener::addToCollector</description>
+    <lineContent>addToCollector(filesAndModuleIdCollector, fileName, moduleIdName);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>addCheckOrModuleId</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (moduleIdName == null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>addCheckOrModuleId</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (moduleIdName == null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>addCheckOrModuleId</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (moduleIdName == null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>addError</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (moduleIdName == null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>addError</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (moduleIdName == null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>addError</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (moduleIdName == null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>addError</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/ChecksAndFilesSuppressionFileGeneratorAuditListener::isFileAndCheckNamePresent</description>
+    <lineContent>isAlreadyPresent = isFileAndCheckNamePresent(fileName, checkName);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>addError</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/ChecksAndFilesSuppressionFileGeneratorAuditListener::isFileAndModuleIdPresent</description>
+    <lineContent>isAlreadyPresent = isFileAndModuleIdPresent(fileName, moduleIdName);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>addToCollector</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Set::add</description>
+    <lineContent>values.add(value);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>isFileAndCheckNamePresent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::get</description>
+    <lineContent>final Set&lt;String&gt; checks = filesAndChecksCollector.get(fileName);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>isFileAndCheckNamePresent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (checks != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>isFileAndCheckNamePresent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Set::contains</description>
+    <lineContent>isPresent = checks.contains(checkName);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>isFileAndCheckNamePresent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator</mutator>
+    <description>replaced boolean return with false for com/puppycrawl/tools/checkstyle/ChecksAndFilesSuppressionFileGeneratorAuditListener::isFileAndCheckNamePresent</description>
+    <lineContent>return isPresent;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>isFileAndModuleIdPresent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::get</description>
+    <lineContent>final Set&lt;String&gt; moduleIds = filesAndModuleIdCollector.get(fileName);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>isFileAndModuleIdPresent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (moduleIds != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>isFileAndModuleIdPresent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Set::contains</description>
+    <lineContent>isPresent = moduleIds.contains(moduleIdName);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>isFileAndModuleIdPresent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator</mutator>
+    <description>replaced boolean return with false for com/puppycrawl/tools/checkstyle/ChecksAndFilesSuppressionFileGeneratorAuditListener::isFileAndModuleIdPresent</description>
+    <lineContent>return isPresent;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ChecksAndFilesSuppressionFileGeneratorAuditListener.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener</mutatedClass>
+    <mutatedMethod>suppressXmlWriter</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/ChecksAndFilesSuppressionFileGeneratorAuditListener::addCheckOrModuleId</description>
+    <lineContent>addCheckOrModuleId(fileName, checkName, moduleIdName);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
     <sourceFile>LocalizedMessage.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.LocalizedMessage</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
