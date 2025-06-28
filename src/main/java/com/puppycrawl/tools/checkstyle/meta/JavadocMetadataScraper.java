@@ -391,8 +391,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
 
             if (visited.add(detailNode)) {
                 final String childText = detailNode.getText();
-                if (detailNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
-                        && !TOKEN_TEXT_PATTERN.matcher(childText).matches()) {
+                if (isContentToWrite(detailNode)) {
                     result.insert(0, childText);
                 }
             }
@@ -409,6 +408,24 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
             }
         }
         return result.toString().trim();
+    }
+
+    /**
+     * Checks whether selected Javadoc node is considered as something to write.
+     *
+     * @param detailNode javadoc node to check.
+     * @return whether javadoc node is something to write.
+     */
+    private static boolean isContentToWrite(DetailNode detailNode) {
+        boolean isToWrite = false;
+
+        if (detailNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
+                && (detailNode.getType() == JavadocTokenTypes.TEXT
+                    || !TOKEN_TEXT_PATTERN.matcher(detailNode.getText()).matches())) {
+            isToWrite = true;
+        }
+
+        return isToWrite;
     }
 
     /**
