@@ -3,10 +3,1900 @@
   <mutation unstable="false">
     <sourceFile>Main.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>createListener</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main::getOutputStream</description>
+    <lineContent>final OutputStream out = getOutputStream(outputLocation);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>createListener</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main::getOutputStreamOptions</description>
+    <lineContent>getOutputStreamOptions(outputLocation);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>createListener</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main$OutputFormat::createListener</description>
+    <lineContent>return format.createListener(out, closeOutputStreamOption);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>createListener</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator</mutator>
+    <description>replaced return value with null for com/puppycrawl/tools/checkstyle/Main::createListener</description>
+    <lineContent>return format.createListener(out, closeOutputStreamOption);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>execute</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main::runCli</description>
+    <lineContent>exitStatus = runCli(options, filesToProcess);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>execute</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main::getFilesToProcess</description>
+    <lineContent>final List&lt;File&gt; filesToProcess = getFilesToProcess(options);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>execute</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main$CliOptions::validateCli</description>
+    <lineContent>final List&lt;String&gt; messages = options.validateCli(parseResult, filesToProcess);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>execute</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/Main$CliOptions::validateCli with argument</description>
+    <lineContent>final List&lt;String&gt; messages = options.validateCli(parseResult, filesToProcess);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>execute</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>final boolean hasMessages = !messages.isEmpty();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>execute</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::isEmpty</description>
+    <lineContent>final boolean hasMessages = !messages.isEmpty();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>execute</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>final boolean hasMessages = !messages.isEmpty();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>execute</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>final boolean hasMessages = !messages.isEmpty();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>execute</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (hasMessages) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>execute</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (hasMessages) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>execute</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (hasMessages) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>execute</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::forEach</description>
+    <lineContent>messages.forEach(System.out::println);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>execute</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator</mutator>
+    <description>replaced int return with 0 for com/puppycrawl/tools/checkstyle/Main::execute</description>
+    <lineContent>return exitStatus;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getFilesToProcess</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to java/util/LinkedList::&lt;init&gt;</description>
+    <lineContent>final List&lt;File&gt; result = new LinkedList&lt;&gt;();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getFilesToProcess</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main$CliOptions::getExclusions</description>
+    <lineContent>final List&lt;Pattern&gt; patternsToExclude = options.getExclusions();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getFilesToProcess</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main::listFiles</description>
+    <lineContent>result.addAll(listFiles(file, patternsToExclude));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getFilesToProcess</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::addAll</description>
+    <lineContent>result.addAll(listFiles(file, patternsToExclude));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getFilesToProcess</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/Main::listFiles with argument</description>
+    <lineContent>result.addAll(listFiles(file, patternsToExclude));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getFilesToProcess</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
+    <description>replaced return value with Collections.emptyList for com/puppycrawl/tools/checkstyle/Main::getFilesToProcess</description>
+    <lineContent>return result;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getOutputStream</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (outputPath == null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getOutputStream</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (outputPath == null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getOutputStream</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (outputPath == null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getOutputStream</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/nio/file/Files::newOutputStream</description>
+    <lineContent>result = Files.newOutputStream(outputPath);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getOutputStream</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator</mutator>
+    <description>replaced return value with null for com/puppycrawl/tools/checkstyle/Main::getOutputStream</description>
+    <lineContent>return result;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getOutputStreamOptions</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (outputPath == null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getOutputStreamOptions</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (outputPath == null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getOutputStreamOptions</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (outputPath == null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getOutputStreamOptions</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator</mutator>
+    <description>replaced return value with null for com/puppycrawl/tools/checkstyle/Main::getOutputStreamOptions</description>
+    <lineContent>return result;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getRootModule</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/PackageObjectFactory::&lt;init&gt;</description>
+    <lineContent>Checker.class.getPackage().getName(), moduleClassLoader);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getRootModule</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Class::getPackage</description>
+    <lineContent>Checker.class.getPackage().getName(), moduleClassLoader);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getRootModule</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Package::getName</description>
+    <lineContent>Checker.class.getPackage().getName(), moduleClassLoader);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getRootModule</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/ModuleFactory::createModule</description>
+    <lineContent>return (RootModule) factory.createModule(name);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getRootModule</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator</mutator>
+    <description>replaced return value with null for com/puppycrawl/tools/checkstyle/Main::getRootModule</description>
+    <lineContent>return (RootModule) factory.createModule(name);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getTreeWalkerConfig</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/Configuration::getChildren</description>
+    <lineContent>final Configuration[] children = config.getChildren();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getTreeWalkerConfig</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (&quot;TreeWalker&quot;.equals(child.getName())) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getTreeWalkerConfig</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/Configuration::getName</description>
+    <lineContent>if (&quot;TreeWalker&quot;.equals(child.getName())) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getTreeWalkerConfig</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::equals</description>
+    <lineContent>if (&quot;TreeWalker&quot;.equals(child.getName())) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getTreeWalkerConfig</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (&quot;TreeWalker&quot;.equals(child.getName())) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getTreeWalkerConfig</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (&quot;TreeWalker&quot;.equals(child.getName())) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getTreeWalkerConfig</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator</mutator>
+    <description>replaced return value with null for com/puppycrawl/tools/checkstyle/Main::getTreeWalkerConfig</description>
+    <lineContent>return result;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>isPathExcluded</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (pattern.matcher(path).find()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>isPathExcluded</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/regex/Matcher::find</description>
+    <lineContent>if (pattern.matcher(path).find()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>isPathExcluded</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/regex/Pattern::matcher</description>
+    <lineContent>if (pattern.matcher(path).find()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>isPathExcluded</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (pattern.matcher(path).find()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>isPathExcluded</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (pattern.matcher(path).find()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>isPathExcluded</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator</mutator>
+    <description>replaced boolean return with false for com/puppycrawl/tools/checkstyle/Main::isPathExcluded</description>
+    <lineContent>return result;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>isPathExcluded</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator</mutator>
+    <description>replaced boolean return with true for com/puppycrawl/tools/checkstyle/Main::isPathExcluded</description>
+    <lineContent>return result;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>else if (node.isFile()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/io/File::isFile</description>
+    <lineContent>else if (node.isFile()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>else if (node.isFile()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>else if (node.isFile()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/io/File::listFiles</description>
+    <lineContent>final File[] files = node.listFiles();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to java/util/LinkedList::&lt;init&gt;</description>
+    <lineContent>final List&lt;File&gt; result = new LinkedList&lt;&gt;();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (files != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (files != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (files != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (node.canRead() &amp;&amp; !isPathExcluded(node.getAbsolutePath(), patternsToExclude)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main::isPathExcluded</description>
+    <lineContent>if (node.canRead() &amp;&amp; !isPathExcluded(node.getAbsolutePath(), patternsToExclude)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/io/File::canRead</description>
+    <lineContent>if (node.canRead() &amp;&amp; !isPathExcluded(node.getAbsolutePath(), patternsToExclude)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/io/File::getAbsolutePath</description>
+    <lineContent>if (node.canRead() &amp;&amp; !isPathExcluded(node.getAbsolutePath(), patternsToExclude)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (node.canRead() &amp;&amp; !isPathExcluded(node.getAbsolutePath(), patternsToExclude)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (node.canRead() &amp;&amp; !isPathExcluded(node.getAbsolutePath(), patternsToExclude)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (node.isDirectory()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/io/File::isDirectory</description>
+    <lineContent>if (node.isDirectory()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (node.isDirectory()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (node.isDirectory()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::add</description>
+    <lineContent>result.add(node);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main::listFiles</description>
+    <lineContent>result.addAll(listFiles(element, patternsToExclude));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::addAll</description>
+    <lineContent>result.addAll(listFiles(element, patternsToExclude));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/Main::listFiles with argument</description>
+    <lineContent>result.addAll(listFiles(element, patternsToExclude));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>listFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
+    <description>replaced return value with Collections.emptyList for com/puppycrawl/tools/checkstyle/Main::listFiles</description>
+    <lineContent>return result;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>loadProperties</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/LocalizedMessage::&lt;init&gt;</description>
+    <lineContent>LOAD_PROPERTIES_EXCEPTION, file.getAbsolutePath());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>loadProperties</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/io/File::getAbsolutePath</description>
+    <lineContent>LOAD_PROPERTIES_EXCEPTION, file.getAbsolutePath());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>loadProperties</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to java/util/Properties::&lt;init&gt;</description>
+    <lineContent>final Properties properties = new Properties();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>loadProperties</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Properties::load</description>
+    <lineContent>properties.load(stream);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>loadProperties</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/utils/ChainedPropertyUtil::getResolvedProperties</description>
+    <lineContent>return ChainedPropertyUtil.getResolvedProperties(properties);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>loadProperties</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/utils/ChainedPropertyUtil::getResolvedProperties with argument</description>
+    <lineContent>return ChainedPropertyUtil.getResolvedProperties(properties);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>loadProperties</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator</mutator>
+    <description>replaced return value with null for com/puppycrawl/tools/checkstyle/Main::loadProperties</description>
+    <lineContent>return ChainedPropertyUtil.getResolvedProperties(properties);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>loadProperties</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/CheckstyleException::&lt;init&gt;</description>
+    <lineContent>throw new CheckstyleException(loadPropertiesExceptionMessage.getMessage(), exc);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>loadProperties</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/LocalizedMessage::getMessage</description>
+    <lineContent>throw new CheckstyleException(loadPropertiesExceptionMessage.getMessage(), exc);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>loadProperties</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/io/File::toPath</description>
+    <lineContent>try (InputStream stream = Files.newInputStream(file.toPath())) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>loadProperties</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/nio/file/Files::newInputStream</description>
+    <lineContent>try (InputStream stream = Files.newInputStream(file.toPath())) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/LocalizedMessage::&lt;init&gt;</description>
+    <lineContent>ERROR_COUNTER, String.valueOf(errorCounter));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::valueOf</description>
+    <lineContent>ERROR_COUNTER, String.valueOf(errorCounter));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Runtime::getRuntime</description>
+    <lineContent>Runtime.getRuntime().exit(exitStatus);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Runtime::exit</description>
+    <lineContent>Runtime.getRuntime().exit(exitStatus);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to java/io/PrintStream::println</description>
+    <lineContent>System.err.println(&quot;Try &apos;checkstyle --help&apos; for more information.&quot;);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to java/io/PrintStream::println</description>
+    <lineContent>System.err.println(&quot;Usage: checkstyle [OPTIONS]... file(s) or folder(s) ...&quot;);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/LocalizedMessage::getMessage</description>
+    <lineContent>System.err.println(errorCounterViolation.getMessage());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to java/io/PrintStream::println</description>
+    <lineContent>System.err.println(errorCounterViolation.getMessage());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to picocli/CommandLine$ParameterException::getMessage</description>
+    <lineContent>System.err.println(exc.getMessage());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to java/io/PrintStream::println</description>
+    <lineContent>System.err.println(exc.getMessage());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to picocli/CommandLine::setCaseInsensitiveEnumValuesAllowed</description>
+    <lineContent>commandLine.setCaseInsensitiveEnumValuesAllowed(true);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to picocli/CommandLine::setCaseInsensitiveEnumValuesAllowed with receiver</description>
+    <lineContent>commandLine.setCaseInsensitiveEnumValuesAllowed(true);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to picocli/CommandLine::setUsageHelpWidth</description>
+    <lineContent>commandLine.setUsageHelpWidth(CliOptions.HELP_WIDTH);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to picocli/CommandLine::setUsageHelpWidth with receiver</description>
+    <lineContent>commandLine.setUsageHelpWidth(CliOptions.HELP_WIDTH);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to picocli/CommandLine::usage</description>
+    <lineContent>commandLine.usage(System.out);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>else if (parseResult.isUsageHelpRequested()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to picocli/CommandLine$ParseResult::isUsageHelpRequested</description>
+    <lineContent>else if (parseResult.isUsageHelpRequested()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>else if (parseResult.isUsageHelpRequested()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>else if (parseResult.isUsageHelpRequested()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/CheckstyleException::printStackTrace</description>
+    <lineContent>exc.printStackTrace();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main::execute</description>
+    <lineContent>exitStatus = execute(parseResult, cliOptions);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main$CliOptions::&lt;init&gt;</description>
+    <lineContent>final CliOptions cliOptions = new CliOptions();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to picocli/CommandLine::&lt;init&gt;</description>
+    <lineContent>final CommandLine commandLine = new CommandLine(cliOptions);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to picocli/CommandLine::parseArgs</description>
+    <lineContent>final ParseResult parseResult = commandLine.parseArgs(args);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
+    <description>changed conditional boundary</description>
+    <lineContent>if (errorCounter &gt; 0) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (errorCounter &gt; 0) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_ELSE</mutator>
+    <description>removed conditional - replaced comparison check with false</description>
+    <lineContent>if (errorCounter &gt; 0) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_IF</mutator>
+    <description>removed conditional - replaced comparison check with true</description>
+    <lineContent>if (errorCounter &gt; 0) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (parseResult.isVersionHelpRequested()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to picocli/CommandLine$ParseResult::isVersionHelpRequested</description>
+    <lineContent>if (parseResult.isVersionHelpRequested()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (parseResult.isVersionHelpRequested()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (parseResult.isVersionHelpRequested()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>main</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main::printVersionToSystemOutput</description>
+    <lineContent>printVersionToSystemOutput();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/DefaultConfiguration::addChild</description>
+    <lineContent>((DefaultConfiguration) treeWalkerConfig).addChild(moduleConfig);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::valueOf</description>
+    <lineContent>String.valueOf(options.tabWidth));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/DefaultConfiguration::&lt;init&gt;</description>
+    <lineContent>XpathFileGeneratorAstFilter.class.getName());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Class::getName</description>
+    <lineContent>XpathFileGeneratorAstFilter.class.getName());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>else if (options.generateCheckAndFileSuppressionsFile) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>else if (options.generateCheckAndFileSuppressionsFile) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>else if (options.generateCheckAndFileSuppressionsFile) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/RootModule::process</description>
+    <lineContent>errorCounter = rootModule.process(filesToProcess);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Class::getClassLoader</description>
+    <lineContent>final ClassLoader moduleClassLoader = Checker.class.getClassLoader();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/PropertiesExpander::&lt;init&gt;</description>
+    <lineContent>final Configuration config = ConfigurationLoader.loadConfiguration(</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/ConfigurationLoader::loadConfiguration</description>
+    <lineContent>final Configuration config = ConfigurationLoader.loadConfiguration(</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main::getTreeWalkerConfig</description>
+    <lineContent>final Configuration treeWalkerConfig = getTreeWalkerConfig(config);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/Main::getTreeWalkerConfig with argument</description>
+    <lineContent>final Configuration treeWalkerConfig = getTreeWalkerConfig(config);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main::getRootModule</description>
+    <lineContent>final RootModule rootModule = getRootModule(config.getName(), moduleClassLoader);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/Configuration::getName</description>
+    <lineContent>final RootModule rootModule = getRootModule(config.getName(), moduleClassLoader);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/ThreadModeSettings::&lt;init&gt;</description>
+    <lineContent>final ThreadModeSettings multiThreadModeSettings =</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main::getOutputStream</description>
+    <lineContent>getOutputStream(options.outputPath),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/ChecksAndFilesSuppressionFileGeneratorAuditListener::&lt;init&gt;</description>
+    <lineContent>getOutputStreamOptions(options.outputPath));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/XpathFileGeneratorAuditListener::&lt;init&gt;</description>
+    <lineContent>getOutputStreamOptions(options.outputPath));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
     <mutatedMethod>runCheckstyle</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to com/puppycrawl/tools/checkstyle/Main::getOutputStreamOptions</description>
     <lineContent>getOutputStreamOptions(options.outputPath));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (options.executeIgnoredModules) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (options.executeIgnoredModules) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (options.executeIgnoredModules) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (options.generateXpathSuppressionsFile) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (options.generateXpathSuppressionsFile) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (options.generateXpathSuppressionsFile) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (options.propertiesFile == null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (options.propertiesFile == null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (options.propertiesFile == null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (treeWalkerConfig != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (treeWalkerConfig != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (treeWalkerConfig != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main::createListener</description>
+    <lineContent>listener = createListener(options.format, options.outputPath);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main::getOutputStream</description>
+    <lineContent>listener = new XpathFileGeneratorAuditListener(getOutputStream(options.outputPath),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/DefaultConfiguration::addProperty</description>
+    <lineContent>moduleConfig.addProperty(CliOptions.ATTRIB_TAB_WIDTH_NAME,</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/System::getProperties</description>
+    <lineContent>props = System.getProperties();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main::loadProperties</description>
+    <lineContent>props = loadProperties(options.propertiesFile);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator</mutator>
+    <description>replaced int return with 0 for com/puppycrawl/tools/checkstyle/Main::runCheckstyle</description>
+    <lineContent>return errorCounter;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/RootModule::addListener</description>
+    <lineContent>rootModule.addListener(listener);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/RootModule::configure</description>
+    <lineContent>rootModule.configure(config);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/RootModule::destroy</description>
+    <lineContent>rootModule.destroy();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/RootModule::setModuleClassLoader</description>
+    <lineContent>rootModule.setModuleClassLoader(moduleClassLoader);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/SuppressionsStringPrinter::printSuppressions</description>
+    <lineContent>SuppressionsStringPrinter.printSuppressions(file,</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/SuppressionsStringPrinter::printSuppressions with argument</description>
+    <lineContent>SuppressionsStringPrinter.printSuppressions(file,</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to java/io/PrintStream::print</description>
+    <lineContent>System.out.print(branch);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to java/io/PrintStream::print</description>
+    <lineContent>System.out.print(stringAst);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to java/io/PrintStream::print</description>
+    <lineContent>System.out.print(stringSuppressions);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>else if (Objects.nonNull(options.xpath)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Objects::nonNull</description>
+    <lineContent>else if (Objects.nonNull(options.xpath)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>else if (Objects.nonNull(options.xpath)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>else if (Objects.nonNull(options.xpath)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>else if (hasSuppressionLineColumnNumber) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>else if (hasSuppressionLineColumnNumber) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>else if (hasSuppressionLineColumnNumber) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>else if (options.printAstWithComments) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>else if (options.printAstWithComments) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>else if (options.printAstWithComments) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>else if (options.printJavadocTree) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>else if (options.printJavadocTree) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>else if (options.printJavadocTree) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>else if (options.printTreeWithJavadoc) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>else if (options.printTreeWithJavadoc) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>else if (options.printTreeWithJavadoc) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::get</description>
+    <lineContent>final File file = filesToProcess.get(0);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/utils/XpathUtil::printXpathBranch</description>
+    <lineContent>final String branch = XpathUtil.printXpathBranch(options.xpath, filesToProcess.get(0));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::get</description>
+    <lineContent>final String branch = XpathUtil.printXpathBranch(options.xpath, filesToProcess.get(0));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/utils/XpathUtil::printXpathBranch with argument</description>
+    <lineContent>final String branch = XpathUtil.printXpathBranch(options.xpath, filesToProcess.get(0));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/AstTreeStringPrinter::printFileAst</description>
+    <lineContent>final String stringAst = AstTreeStringPrinter.printFileAst(file,</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/AstTreeStringPrinter::printJavaAndJavadocTree</description>
+    <lineContent>final String stringAst = AstTreeStringPrinter.printJavaAndJavadocTree(file);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/DetailNodeTreeStringPrinter::printFileAst</description>
+    <lineContent>final String stringAst = DetailNodeTreeStringPrinter.printFileAst(file);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>final boolean hasSuppressionLineColumnNumber = options.suppressionLineColumnNumber != null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>final boolean hasSuppressionLineColumnNumber = options.suppressionLineColumnNumber != null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>final boolean hasSuppressionLineColumnNumber = options.suppressionLineColumnNumber != null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (options.debug) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (options.debug) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (options.debug) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (options.printAst) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (options.printAst) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (options.printAst) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main::runCheckstyle</description>
+    <lineContent>result = runCheckstyle(options, filesToProcess);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator</mutator>
+    <description>replaced int return with 0 for com/puppycrawl/tools/checkstyle/Main::runCli</description>
+    <lineContent>return result;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable format</description>
+    <lineContent>@Option(names = &quot;-f&quot;,</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to java/util/ArrayList::&lt;init&gt;</description>
+    <lineContent>@Option(names = {&quot;-e&quot;, &quot;--exclude&quot;},</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable exclude</description>
+    <lineContent>@Option(names = {&quot;-e&quot;, &quot;--exclude&quot;},</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable tabWidth</description>
+    <lineContent>@Option(names = {&quot;-w&quot;, &quot;--tabWidth&quot;},</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to java/util/ArrayList::&lt;init&gt;</description>
+    <lineContent>@Option(names = {&quot;-x&quot;, &quot;--exclude-regexp&quot;},</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable excludeRegex</description>
+    <lineContent>@Option(names = {&quot;-x&quot;, &quot;--exclude-regexp&quot;},</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>getExclusions</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/stream/Collectors::toCollection</description>
+    <lineContent>.collect(Collectors.toCollection(ArrayList::new));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>getExclusions</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/stream/Stream::collect</description>
+    <lineContent>.collect(Collectors.toCollection(ArrayList::new));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>getExclusions</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/stream/Stream::map</description>
+    <lineContent>.map(File::getAbsolutePath)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>getExclusions</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/util/stream/Stream::map with receiver</description>
+    <lineContent>.map(File::getAbsolutePath)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>getExclusions</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/stream/Stream::map</description>
+    <lineContent>.map(Pattern::quote)</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -16,5 +1906,734 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to java/util/stream/Stream::map with receiver</description>
     <lineContent>.map(Pattern::quote)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>getExclusions</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/stream/Stream::map</description>
+    <lineContent>.map(pattern -&gt; Pattern.compile(&quot;^&quot; + pattern + &quot;$&quot;))</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>getExclusions</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/util/stream/Stream::map with receiver</description>
+    <lineContent>.map(pattern -&gt; Pattern.compile(&quot;^&quot; + pattern + &quot;$&quot;))</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>getExclusions</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::stream</description>
+    <lineContent>final List&lt;Pattern&gt; result = exclude.stream()</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>getExclusions</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::addAll</description>
+    <lineContent>result.addAll(excludeRegex);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>getExclusions</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
+    <description>replaced return value with Collections.emptyList for com/puppycrawl/tools/checkstyle/Main$CliOptions::getExclusions</description>
+    <lineContent>return result;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>lambda$getExclusions$0</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/regex/Pattern::compile</description>
+    <lineContent>.map(pattern -&gt; Pattern.compile(&quot;^&quot; + pattern + &quot;$&quot;))</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>lambda$getExclusions$0</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator</mutator>
+    <description>replaced return value with null for com/puppycrawl/tools/checkstyle/Main$CliOptions::lambda$getExclusions$0</description>
+    <lineContent>.map(pattern -&gt; Pattern.compile(&quot;^&quot; + pattern + &quot;$&quot;))</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/utils/CommonUtil::getUriByFilename</description>
+    <lineContent>CommonUtil.getUriByFilename(configurationFile);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
+    <description>changed conditional boundary</description>
+    <lineContent>else if (filesToProcess.size() &gt; 1) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>else if (filesToProcess.size() &gt; 1) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::size</description>
+    <lineContent>else if (filesToProcess.size() &gt; 1) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_ELSE</mutator>
+    <description>removed conditional - replaced comparison check with false</description>
+    <lineContent>else if (filesToProcess.size() &gt; 1) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_IF</mutator>
+    <description>removed conditional - replaced comparison check with true</description>
+    <lineContent>else if (filesToProcess.size() &gt; 1) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>else if (hasConfigurationFile) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>else if (hasConfigurationFile) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>else if (hasConfigurationFile) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>else if (hasSuppressionLineColumnNumber) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>else if (hasSuppressionLineColumnNumber) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>else if (hasSuppressionLineColumnNumber) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>else if (printAst || printAstWithComments || printJavadocTree || printTreeWithJavadoc</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>else if (printAst || printAstWithComments || printJavadocTree || printTreeWithJavadoc</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>else if (printAst || printAstWithComments || printJavadocTree || printTreeWithJavadoc</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to java/util/ArrayList::&lt;init&gt;</description>
+    <lineContent>final List&lt;String&gt; result = new ArrayList&lt;&gt;();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>final boolean hasConfigurationFile = configurationFile != null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>final boolean hasConfigurationFile = configurationFile != null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>final boolean hasConfigurationFile = configurationFile != null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>final boolean hasSuppressionLineColumnNumber = suppressionLineColumnNumber != null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>final boolean hasSuppressionLineColumnNumber = suppressionLineColumnNumber != null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>final boolean hasSuppressionLineColumnNumber = suppressionLineColumnNumber != null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (configurationFile != null || propertiesFile != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (configurationFile != null || propertiesFile != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (configurationFile != null || propertiesFile != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (filesToProcess.isEmpty()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::isEmpty</description>
+    <lineContent>if (filesToProcess.isEmpty()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (filesToProcess.isEmpty()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (filesToProcess.isEmpty()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (suppressionLineColumnNumber != null || configurationFile != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (suppressionLineColumnNumber != null || configurationFile != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (suppressionLineColumnNumber != null || configurationFile != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::add</description>
+    <lineContent>result.add(&quot;Files to process must be specified, found 0.&quot;);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::add</description>
+    <lineContent>result.add(&quot;Must specify a config XML file.&quot;);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::add</description>
+    <lineContent>result.add(&quot;Option &apos;-s&apos; cannot be used with other options.&quot;);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::add</description>
+    <lineContent>result.add(&quot;Option &apos;-t&apos; cannot be used with other options.&quot;);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::add</description>
+    <lineContent>result.add(&quot;Printing AST is allowed for only one file.&quot;);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::add</description>
+    <lineContent>result.add(&quot;Printing xpath suppressions is allowed for only one file.&quot;);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::format</description>
+    <lineContent>result.add(String.format(Locale.ROOT, msg, configurationFile));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::add</description>
+    <lineContent>result.add(String.format(Locale.ROOT, msg, configurationFile));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/lang/String::format with argument</description>
+    <lineContent>result.add(String.format(Locale.ROOT, msg, configurationFile));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main$CliOptions::validateOptionalCliParametersIfConfigDefined</description>
+    <lineContent>result.addAll(validateOptionalCliParametersIfConfigDefined());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::addAll</description>
+    <lineContent>result.addAll(validateOptionalCliParametersIfConfigDefined());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
+    <description>replaced return value with Collections.emptyList for com/puppycrawl/tools/checkstyle/Main$CliOptions::validateCli</description>
+    <lineContent>return result;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>|| parseResult.hasMatchedOption(OUTPUT_FORMAT_OPTION)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to picocli/CommandLine$ParseResult::hasMatchedOption</description>
+    <lineContent>|| parseResult.hasMatchedOption(OUTPUT_FORMAT_OPTION)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>|| parseResult.hasMatchedOption(OUTPUT_FORMAT_OPTION)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateCli</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>|| parseResult.hasMatchedOption(OUTPUT_FORMAT_OPTION)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateOptionalCliParametersIfConfigDefined</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to java/util/ArrayList::&lt;init&gt;</description>
+    <lineContent>final List&lt;String&gt; result = new ArrayList&lt;&gt;();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateOptionalCliParametersIfConfigDefined</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (propertiesFile != null &amp;&amp; !propertiesFile.exists()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateOptionalCliParametersIfConfigDefined</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/io/File::exists</description>
+    <lineContent>if (propertiesFile != null &amp;&amp; !propertiesFile.exists()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateOptionalCliParametersIfConfigDefined</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (propertiesFile != null &amp;&amp; !propertiesFile.exists()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateOptionalCliParametersIfConfigDefined</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (propertiesFile != null &amp;&amp; !propertiesFile.exists()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateOptionalCliParametersIfConfigDefined</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::format</description>
+    <lineContent>result.add(String.format(Locale.ROOT,</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateOptionalCliParametersIfConfigDefined</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::add</description>
+    <lineContent>result.add(String.format(Locale.ROOT,</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateOptionalCliParametersIfConfigDefined</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/lang/String::format with argument</description>
+    <lineContent>result.add(String.format(Locale.ROOT,</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>validateOptionalCliParametersIfConfigDefined</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
+    <description>replaced return value with Collections.emptyList for com/puppycrawl/tools/checkstyle/Main$CliOptions::validateOptionalCliParametersIfConfigDefined</description>
+    <lineContent>return result;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$OnlyCheckstyleLoggersFilter</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Class::getPackage</description>
+    <lineContent>private final String packageName = Main.class.getPackage().getName();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$OnlyCheckstyleLoggersFilter</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Package::getName</description>
+    <lineContent>private final String packageName = Main.class.getPackage().getName();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$OnlyCheckstyleLoggersFilter</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable packageName</description>
+    <lineContent>private final String packageName = Main.class.getPackage().getName();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$OutputFormat</mutatedClass>
+    <mutatedMethod>createListener</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>else if (this == SARIF) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$OutputFormat</mutatedClass>
+    <mutatedMethod>createListener</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>else if (this == SARIF) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$OutputFormat</mutatedClass>
+    <mutatedMethod>createListener</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>else if (this == SARIF) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$OutputFormat</mutatedClass>
+    <mutatedMethod>createListener</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (this == XML) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$OutputFormat</mutatedClass>
+    <mutatedMethod>createListener</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (this == XML) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$OutputFormat</mutatedClass>
+    <mutatedMethod>createListener</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (this == XML) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$OutputFormat</mutatedClass>
+    <mutatedMethod>createListener</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/DefaultLogger::&lt;init&gt;</description>
+    <lineContent>result = new DefaultLogger(out, options);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$OutputFormat</mutatedClass>
+    <mutatedMethod>createListener</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/SarifLogger::&lt;init&gt;</description>
+    <lineContent>result = new SarifLogger(out, options);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$OutputFormat</mutatedClass>
+    <mutatedMethod>createListener</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/XMLLogger::&lt;init&gt;</description>
+    <lineContent>result = new XMLLogger(out, options);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$OutputFormat</mutatedClass>
+    <mutatedMethod>createListener</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator</mutator>
+    <description>replaced return value with null for com/puppycrawl/tools/checkstyle/Main$OutputFormat::createListener</description>
+    <lineContent>return result;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$OutputFormat</mutatedClass>
+    <mutatedMethod>toString</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main$OutputFormat::name</description>
+    <lineContent>return name().toLowerCase(Locale.ROOT);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$OutputFormat</mutatedClass>
+    <mutatedMethod>toString</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::toLowerCase</description>
+    <lineContent>return name().toLowerCase(Locale.ROOT);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$OutputFormat</mutatedClass>
+    <mutatedMethod>toString</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::toLowerCase with receiver</description>
+    <lineContent>return name().toLowerCase(Locale.ROOT);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$OutputFormat</mutatedClass>
+    <mutatedMethod>toString</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
+    <description>replaced return value with &quot;&quot; for com/puppycrawl/tools/checkstyle/Main$OutputFormat::toString</description>
+    <lineContent>return name().toLowerCase(Locale.ROOT);</lineContent>
   </mutation>
 </suppressedMutations>
