@@ -1,5 +1,3 @@
-// non-compiled with javac: compilable with java21
-
 package com.google.checkstyle.test.chapter4formatting.rule42blockindentation;
 
 import java.util.List;
@@ -7,8 +5,20 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 /** some javadoc. */
-public class InputLambdaChildCorrect {
+public class InputFormattedLambdaChild {
   String testMethod1(List<Integer> operations) {
+    return operations.stream()
+        .map(
+            op ->
+                switch (op) {
+                  case 1 -> "test";
+                  default -> "TEST";
+                })
+        .findFirst()
+        .orElse("defaultValue");
+  }
+
+  String testMethod2(List<Integer> operations) {
     return operations.stream()
         .map(
             op ->
