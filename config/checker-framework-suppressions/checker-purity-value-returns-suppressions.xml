@@ -3,7 +3,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg1 of Integer.parseInt.</message>
+    <message>incompatible argument for parameter radix of Integer.parseInt.</message>
     <lineContent>result = Integer.parseInt(txt, radix);</lineContent>
     <details>
       found   : int
@@ -14,7 +14,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg1 of Integer.parseUnsignedInt.</message>
+    <message>incompatible argument for parameter radix of Integer.parseUnsignedInt.</message>
     <lineContent>result = Integer.parseUnsignedInt(txt, radix);</lineContent>
     <details>
       found   : int
@@ -25,7 +25,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg1 of Long.parseLong.</message>
+    <message>incompatible argument for parameter radix of Long.parseLong.</message>
     <lineContent>result = Long.parseLong(txt, radix);</lineContent>
     <details>
       found   : int
@@ -36,7 +36,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg1 of Long.parseUnsignedLong.</message>
+    <message>incompatible argument for parameter radix of Long.parseUnsignedLong.</message>
     <lineContent>result = Long.parseUnsignedLong(txt, radix);</lineContent>
     <details>
       found   : int
@@ -47,7 +47,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
     <specifier>methodref.param</specifier>
-    <message>Incompatible parameter type for arg0</message>
+    <message>Incompatible parameter type for bitIndex</message>
     <lineContent>.collect(BitSet::new, BitSet::set, BitSet::or);</lineContent>
     <details>
       found   : @IntRangeFromNonNegative int
@@ -62,7 +62,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
     <specifier>methodref.param</specifier>
-    <message>Incompatible parameter type for arg0</message>
+    <message>Incompatible parameter type for bitIndex</message>
     <lineContent>.collect(BitSet::new, BitSet::set, BitSet::or);</lineContent>
     <details>
       found   : @IntRangeFromNonNegative int
