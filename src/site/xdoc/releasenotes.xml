@@ -10,6 +10,31 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.26.1">
+      <div class="releaseDate">29.06.2025</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            NewlineAtEndOfFileCheck and empty files (size 0).
+            Author: Eduard-Cristian Stefan
+            <a href="https://github.com/checkstyle/checkstyle/issues/17250">#17250</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Preparation for Migration of  Checkstyle Codebase to Java 17.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17168">#17168</a>
+          </li>
+          <li>
+            Add data to javadoc of Check to indicate true version of module properties inherited
+            from the abstract parent class.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17225">#17225</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.26.0">
       <div class="releaseDate">24.06.2025</div>
       <p>New:</p>
