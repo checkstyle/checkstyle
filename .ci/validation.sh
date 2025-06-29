@@ -283,14 +283,14 @@ no-error-xwiki)
   mvn -e --no-transfer-progress install:install-file \
     -Dfile=xwiki-commons-tools/xwiki-commons-tool-pom/pom.xml \
     -DpomFile=xwiki-commons-tools/xwiki-commons-tool-pom/pom.xml
+  mvn -e --no-transfer-progress -f xwiki-commons-tools/xwiki-commons-tool-xar/pom.xml \
+      install -Dmaven.test.skip -Dcheckstyle.version="${CS_POM_VERSION}"
   mvn -e --no-transfer-progress install:install-file -Dfile=xwiki-commons-pom/pom.xml \
     -DpomFile=xwiki-commons-pom/pom.xml
   mvn -e --no-transfer-progress -f xwiki-commons-tools/xwiki-commons-tool-webjar-handlers/pom.xml \
     install -Dmaven.test.skip -Dcheckstyle.version="${CS_POM_VERSION}"
   mvn -e --no-transfer-progress \
     -f xwiki-commons-tools/xwiki-commons-tool-webjar-node-handlers/pom.xml \
-    install -Dmaven.test.skip -Dcheckstyle.version="${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress -f xwiki-commons-tools/xwiki-commons-tool-xar/pom.xml \
     install -Dmaven.test.skip -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ..
   removeFolderWithProtectedFiles xwiki-commons
