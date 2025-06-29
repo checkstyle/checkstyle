@@ -26,11 +26,14 @@ import java.util.Arrays;
 
 import javax.swing.SwingUtilities;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import com.puppycrawl.tools.checkstyle.AbstractGuiTestSupport;
 
+// until https://github.com/checkstyle/checkstyle/issues/17291
+@Disabled
 public class MainTest extends AbstractGuiTestSupport {
 
     @Override

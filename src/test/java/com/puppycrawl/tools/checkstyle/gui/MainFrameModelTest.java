@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.util.Locale;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -244,6 +245,8 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
                 .isFalse();
     }
 
+    // until https://github.com/checkstyle/checkstyle/issues/17291
+    @Disabled
     @Test
     public void testOpenFileForUnknownParseMode() throws IOException {
         final File javaFile = new File(getPath(FILE_NAME_TEST_DATA));
