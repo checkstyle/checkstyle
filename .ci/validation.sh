@@ -630,6 +630,21 @@ sonarqube)
   .ci/sonar-break-build.sh
   ;;
 
+no-error-trino)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  echo "CS_version: ${CS_POM_VERSION}"
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
+
+  echo "Checkout Trino sources..."
+  checkout_from https://github.com/trinodb/trino.git
+  cd .ci-temp/trino
+
+  ./mvnw -e --no-transfer-progress checkstyle:check -Dcheckstyle.version="${CS_POM_VERSION}"
+
+  cd ../
+  removeFolderWithProtectedFiles trino
+  ;;
+
 no-error-pgjdbc)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
