@@ -5,19 +5,19 @@
              name="CovariantEquals"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks that classes and records which define a covariant {@code equals()} method
- also override method {@code equals(Object)}.
+ Checks that classes and records which define a covariant &lt;code&gt;equals()&lt;/code&gt; method
+ also override method &lt;code&gt;equals(Object)&lt;/code&gt;.
  &lt;/div&gt;
 
  &lt;p&gt;
- Covariant {@code equals()} - method that is similar to {@code equals(Object)},
+ Covariant &lt;code&gt;equals()&lt;/code&gt; - method that is similar to &lt;code&gt;equals(Object)&lt;/code&gt;,
  but with a covariant parameter type (any subtype of Object).
  &lt;/p&gt;
 
  &lt;p&gt;
  &lt;strong&gt;Notice&lt;/strong&gt;: the enums are also checked,
- even though they cannot override {@code equals(Object)}.
- The reason is to point out that implementing {@code equals()} in enums
+ even though they cannot override &lt;code&gt;equals(Object)&lt;/code&gt;.
+ The reason is to point out that implementing &lt;code&gt;equals()&lt;/code&gt; in enums
  is considered an awful practice: it may cause having two different enum values
  that are equal using covariant enum method, and not equal when compared normally.
  &lt;/p&gt;
@@ -28,24 +28,24 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- Java classes and records may override the {@code equals(Object)} method to define
+ Java classes and records may override the &lt;code&gt;equals(Object)&lt;/code&gt; method to define
  a predicate for object equality. This method is used by many of the Java
  runtime library classes; for example, to implement generic containers.
  &lt;/p&gt;
 
  &lt;p&gt;
- Programmers sometimes mistakenly use the type of their class {@code Foo}
- as the type of the parameter to {@code equals()}:
+ Programmers sometimes mistakenly use the type of their class &lt;code&gt;Foo&lt;/code&gt;
+ as the type of the parameter to &lt;code&gt;equals()&lt;/code&gt;:
  &lt;/p&gt;
  &lt;pre&gt;
  public boolean equals(Foo obj) {...}
  &lt;/pre&gt;
 
  &lt;p&gt;
- This covariant version of {@code equals()} does not override the version in
- the {@code Object} class, and it may lead to unexpected behavior at runtime,
+ This covariant version of &lt;code&gt;equals()&lt;/code&gt; does not override the version in
+ the &lt;code&gt;Object&lt;/code&gt; class, and it may lead to unexpected behavior at runtime,
  especially if the class is used with one of the standard collection classes
- which expect that the standard {@code equals(Object)} method is overridden.
+ which expect that the standard &lt;code&gt;equals(Object)&lt;/code&gt; method is overridden.
  &lt;/p&gt;
 
  &lt;p&gt;

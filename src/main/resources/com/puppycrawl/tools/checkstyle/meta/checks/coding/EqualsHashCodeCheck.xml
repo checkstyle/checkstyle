@@ -5,17 +5,17 @@
              name="EqualsHashCode"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks that classes that either override {@code equals()} or {@code hashCode()} also
+ Checks that classes that either override &lt;code&gt;equals()&lt;/code&gt; or &lt;code&gt;hashCode()&lt;/code&gt; also
  overrides the other.
- This check only verifies that the method declarations match {@code Object.equals(Object)} and
- {@code Object.hashCode()} exactly to be considered an override. This check does not verify
- invalid method names, parameters other than {@code Object}, or anything else.
+ This check only verifies that the method declarations match &lt;code&gt;Object.equals(Object)&lt;/code&gt; and
+ &lt;code&gt;Object.hashCode()&lt;/code&gt; exactly to be considered an override. This check does not verify
+ invalid method names, parameters other than &lt;code&gt;Object&lt;/code&gt;, or anything else.
  &lt;/div&gt;
 
  &lt;p&gt;
- Rationale: The contract of {@code equals()} and {@code hashCode()} requires that
+ Rationale: The contract of &lt;code&gt;equals()&lt;/code&gt; and &lt;code&gt;hashCode()&lt;/code&gt; requires that
  equal objects have the same hashCode. Therefore, whenever you override
- {@code equals()} you must override {@code hashCode()} to ensure that your class can
+ &lt;code&gt;equals()&lt;/code&gt; you must override &lt;code&gt;hashCode()&lt;/code&gt; to ensure that your class can
  be used in hash-based collections.
  &lt;/p&gt;</description>
          <message-keys>

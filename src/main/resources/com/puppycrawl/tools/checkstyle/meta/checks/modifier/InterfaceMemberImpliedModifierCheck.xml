@@ -17,29 +17,29 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- Methods in interfaces are {@code public} by default, however from Java 9 they can also be
- {@code private}. This check provides the ability to enforce that {@code public} is explicitly
+ Methods in interfaces are &lt;code&gt;public&lt;/code&gt; by default, however from Java 9 they can also be
+ &lt;code&gt;private&lt;/code&gt;. This check provides the ability to enforce that &lt;code&gt;public&lt;/code&gt; is explicitly
  coded and not implicitly added by the compiler.
  &lt;/p&gt;
 
  &lt;p&gt;
  From Java 8, there are three types of methods in interfaces - static methods marked with
- {@code static}, default methods marked with {@code default} and abstract methods which do not
+ &lt;code&gt;static&lt;/code&gt;, default methods marked with &lt;code&gt;default&lt;/code&gt; and abstract methods which do not
  have to be marked with anything. From Java 9, there are also private methods marked with
- {@code private}. This check provides the ability to enforce that {@code abstract} is
+ &lt;code&gt;private&lt;/code&gt;. This check provides the ability to enforce that &lt;code&gt;abstract&lt;/code&gt; is
  explicitly coded and not implicitly added by the compiler.
  &lt;/p&gt;
 
  &lt;p&gt;
- Fields in interfaces are always {@code public static final} and as such the compiler does not
+ Fields in interfaces are always &lt;code&gt;public static final&lt;/code&gt; and as such the compiler does not
  require these modifiers. This check provides the ability to enforce that these modifiers are
  explicitly coded and not implicitly added by the compiler.
  &lt;/p&gt;
 
  &lt;p&gt;
- Nested types within an interface are always {@code public static} and as such the compiler
- does not require the {@code public static} modifiers. This check provides the ability to
- enforce that the {@code public} and {@code static} modifiers are explicitly coded and not
+ Nested types within an interface are always &lt;code&gt;public static&lt;/code&gt; and as such the compiler
+ does not require the &lt;code&gt;public static&lt;/code&gt; modifiers. This check provides the ability to
+ enforce that the &lt;code&gt;public&lt;/code&gt; and &lt;code&gt;static&lt;/code&gt; modifiers are explicitly coded and not
  implicitly added by the compiler.
  &lt;/p&gt;
  &lt;pre&gt;
@@ -81,41 +81,41 @@
             <property default-value="true"
                       name="violateImpliedAbstractMethod"
                       type="boolean">
-               <description>Control whether to enforce that {@code abstract}
+               <description>Control whether to enforce that &lt;code&gt;abstract&lt;/code&gt;
  is explicitly coded on interface methods.</description>
             </property>
             <property default-value="true" name="violateImpliedFinalField" type="boolean">
-               <description>Control whether to enforce that {@code final}
+               <description>Control whether to enforce that &lt;code&gt;final&lt;/code&gt;
  is explicitly coded on interface fields.</description>
             </property>
             <property default-value="true"
                       name="violateImpliedPublicField"
                       type="boolean">
-               <description>Control whether to enforce that {@code public}
+               <description>Control whether to enforce that &lt;code&gt;public&lt;/code&gt;
  is explicitly coded on interface fields.</description>
             </property>
             <property default-value="true"
                       name="violateImpliedPublicMethod"
                       type="boolean">
-               <description>Control whether to enforce that {@code public}
+               <description>Control whether to enforce that &lt;code&gt;public&lt;/code&gt;
  is explicitly coded on interface methods.</description>
             </property>
             <property default-value="true"
                       name="violateImpliedPublicNested"
                       type="boolean">
-               <description>Control whether to enforce that {@code public}
+               <description>Control whether to enforce that &lt;code&gt;public&lt;/code&gt;
  is explicitly coded on interface nested types.</description>
             </property>
             <property default-value="true"
                       name="violateImpliedStaticField"
                       type="boolean">
-               <description>Control whether to enforce that {@code static}
+               <description>Control whether to enforce that &lt;code&gt;static&lt;/code&gt;
  is explicitly coded on interface fields.</description>
             </property>
             <property default-value="true"
                       name="violateImpliedStaticNested"
                       type="boolean">
-               <description>Control whether to enforce that {@code static}
+               <description>Control whether to enforce that &lt;code&gt;static&lt;/code&gt;
  is explicitly coded on interface nested types.</description>
             </property>
          </properties>
