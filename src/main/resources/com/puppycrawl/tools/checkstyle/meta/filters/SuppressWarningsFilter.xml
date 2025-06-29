@@ -5,13 +5,13 @@
               name="SuppressWarningsFilter"
               parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;div&gt;
- Filter {@code SuppressWarningsFilter} uses annotation
- {@code @SuppressWarnings} to suppress audit events.
+ Filter &lt;code&gt;SuppressWarningsFilter&lt;/code&gt; uses annotation
+ &lt;code&gt;@SuppressWarnings&lt;/code&gt; to suppress audit events.
  &lt;/div&gt;
 
  &lt;p&gt;
- Rationale: Same as for {@code SuppressionCommentFilter}. In the contrary to it here,
- comments are not used comments but the builtin syntax of {@code @SuppressWarnings}.
+ Rationale: Same as for &lt;code&gt;SuppressionCommentFilter&lt;/code&gt;. In the contrary to it here,
+ comments are not used comments but the builtin syntax of &lt;code&gt;@SuppressWarnings&lt;/code&gt;.
  This can be perceived as a more elegant solution than using comments.
  Also, this approach maybe supported by various IDE.
  &lt;/p&gt;
@@ -22,7 +22,7 @@
  SuppressWarningsHolder&lt;/a&gt;,
  since that check finds the annotations in the Java files and makes them available for the filter.
  Because of that, a configuration that includes this filter must also include
- {@code SuppressWarningsHolder} as a child module of the {@code TreeWalker}.
+ &lt;code&gt;SuppressWarningsHolder&lt;/code&gt; as a child module of the &lt;code&gt;TreeWalker&lt;/code&gt;.
  Name of check in annotation is case-insensitive and should be written with
  any dotted prefix or "Check" suffix removed.
  &lt;/p&gt;

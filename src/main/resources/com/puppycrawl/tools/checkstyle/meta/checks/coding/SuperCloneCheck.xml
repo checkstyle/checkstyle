@@ -5,7 +5,7 @@
              name="SuperClone"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks that an overriding {@code clone()} method invokes {@code super.clone()}.
+ Checks that an overriding &lt;code&gt;clone()&lt;/code&gt; method invokes &lt;code&gt;super.clone()&lt;/code&gt;.
  Does not check native methods, as they have no possible java defined implementation.
  &lt;/div&gt;
 

@@ -6,7 +6,7 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks that the outer type name and the file name match.
- For example, the class {@code Foo} must be in a file named {@code Foo.java}.
+ For example, the class &lt;code&gt;Foo&lt;/code&gt; must be in a file named &lt;code&gt;Foo.java&lt;/code&gt;.
  &lt;/div&gt;</description>
          <message-keys>
             <message-key key="type.file.mismatch"/>

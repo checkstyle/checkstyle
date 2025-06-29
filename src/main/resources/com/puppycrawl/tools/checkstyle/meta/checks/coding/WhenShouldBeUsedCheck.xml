@@ -5,15 +5,15 @@
              name="WhenShouldBeUsed"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Ensures that {@code when} is used instead of a single {@code if}
+ Ensures that &lt;code&gt;when&lt;/code&gt; is used instead of a single &lt;code&gt;if&lt;/code&gt;
  statement inside a case block.
  &lt;/div&gt;
 
  &lt;p&gt;
  Rationale: Java 21 has introduced enhancements for switch statements and expressions
- that allow the use of patterns in case labels. The {@code when} keyword is used to specify
+ that allow the use of patterns in case labels. The &lt;code&gt;when&lt;/code&gt; keyword is used to specify
  condition for a case label, also called as guarded case labels. This syntax is more readable
- and concise than the single {@code if} statement inside the pattern match block.
+ and concise than the single &lt;code&gt;if&lt;/code&gt; statement inside the pattern match block.
  &lt;/p&gt;
 
  &lt;p&gt;

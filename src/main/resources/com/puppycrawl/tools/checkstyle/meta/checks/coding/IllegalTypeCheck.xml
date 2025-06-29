@@ -25,7 +25,7 @@
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-6.html#jls-6.7"&gt;canonical&lt;/a&gt;
  name. Specifying illegal type invokes analyzing imports and Check puts violations at
  corresponding declarations (of variables, methods or parameters).
- This helps to avoid ambiguous cases, e.g.: {@code java.awt.List} was set as
+ This helps to avoid ambiguous cases, e.g.: &lt;code&gt;java.awt.List&lt;/code&gt; was set as
  illegal class name, then, code like:
  &lt;/p&gt;
  &lt;pre&gt;

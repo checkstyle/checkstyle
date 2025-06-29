@@ -21,16 +21,16 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- For example: Excluding {@code java.lang.Math.*}. will allow the import
+ For example: Excluding &lt;code&gt;java.lang.Math.*&lt;/code&gt;. will allow the import
  of each static member in the Math class individually like
- {@code java.lang.Math.PI, java.lang.Math.cos, ...}.
+ &lt;code&gt;java.lang.Math.PI, java.lang.Math.cos, ...&lt;/code&gt;.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="" name="excludes" type="java.lang.String[]">
                <description>Control whether to allow for certain classes via
- a star notation to be excluded such as {@code java.lang.Math.*} or specific
- static members to be excluded like {@code java.lang.System.out} for a variable
- or {@code java.lang.Math.random} for a method. See notes section for details.</description>
+ a star notation to be excluded such as &lt;code&gt;java.lang.Math.*&lt;/code&gt; or specific
+ static members to be excluded like &lt;code&gt;java.lang.System.out&lt;/code&gt; for a variable
+ or &lt;code&gt;java.lang.Math.random&lt;/code&gt; for a method. See notes section for details.</description>
             </property>
          </properties>
          <message-keys>

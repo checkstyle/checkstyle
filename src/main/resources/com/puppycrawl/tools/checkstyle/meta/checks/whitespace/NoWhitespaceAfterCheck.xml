@@ -9,7 +9,7 @@
  More specifically, it checks that it is not followed by whitespace,
  or (if linebreaks are allowed) all characters on the line after are
  whitespace. To forbid linebreaks after a token, set property
- {@code allowLineBreaks} to {@code false}.
+ &lt;code&gt;allowLineBreaks&lt;/code&gt; to &lt;code&gt;false&lt;/code&gt;.
  &lt;/div&gt;
 
  &lt;p&gt;
@@ -28,7 +28,7 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- If the annotation is between the type and the array, like {@code char @NotNull [] param},
+ If the annotation is between the type and the array, like &lt;code&gt;char @NotNull [] param&lt;/code&gt;,
  the check will skip validation for spaces.
  &lt;/p&gt;
 
@@ -37,7 +37,7 @@
  &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED"&gt;
  LITERAL_SYNCHRONIZED&lt;/a&gt; token only when it appears as a part of a
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se19/html/jls-14.html#jls-14.19"&gt;
- synchronized statement&lt;/a&gt;, i.e. {@code synchronized(this) {}}.
+ synchronized statement&lt;/a&gt;, i.e. &lt;code&gt;synchronized(this) {}&lt;/code&gt;.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="true" name="allowLineBreaks" type="boolean">

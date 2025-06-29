@@ -14,7 +14,7 @@
  &lt;p&gt;'_' is considered as word separator in identifier name.&lt;/p&gt;
 
  &lt;p&gt;
- {@code allowedAbbreviationLength} specifies how many consecutive capital letters are
+ &lt;code&gt;allowedAbbreviationLength&lt;/code&gt; specifies how many consecutive capital letters are
  allowed in the identifier.
  A value of &lt;i&gt;3&lt;/i&gt; indicates that up to 4 consecutive capital letters are allowed,
  one after the other, before a violation is printed. The identifier 'MyTEST' would be
@@ -25,12 +25,12 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- {@code ignoreFinal}, {@code ignoreStatic}, and {@code ignoreStaticFinal}
+ &lt;code&gt;ignoreFinal&lt;/code&gt;, &lt;code&gt;ignoreStatic&lt;/code&gt;, and &lt;code&gt;ignoreStaticFinal&lt;/code&gt;
  control whether variables with the respective modifiers are to be ignored.
  Note that a variable that is both static and final will always be considered under
- {@code ignoreStaticFinal} only, regardless of the values of {@code ignoreFinal}
- and {@code ignoreStatic}. So for example if {@code ignoreStatic} is true but
- {@code ignoreStaticFinal} is false, then static final variables will not be ignored.
+ &lt;code&gt;ignoreStaticFinal&lt;/code&gt; only, regardless of the values of &lt;code&gt;ignoreFinal&lt;/code&gt;
+ and &lt;code&gt;ignoreStatic&lt;/code&gt;. So for example if &lt;code&gt;ignoreStatic&lt;/code&gt; is true but
+ &lt;code&gt;ignoreStaticFinal&lt;/code&gt; is false, then static final variables will not be ignored.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="3" name="allowedAbbreviationLength" type="int">
@@ -44,18 +44,18 @@
                <description>Specify abbreviations that must be skipped for checking.</description>
             </property>
             <property default-value="true" name="ignoreFinal" type="boolean">
-               <description>Allow to skip variables with {@code final} modifier.</description>
+               <description>Allow to skip variables with &lt;code&gt;final&lt;/code&gt; modifier.</description>
             </property>
             <property default-value="true" name="ignoreOverriddenMethods" type="boolean">
-               <description>Allow to ignore methods tagged with {@code @Override}
+               <description>Allow to ignore methods tagged with &lt;code&gt;@Override&lt;/code&gt;
  annotation (that usually mean inherited name).</description>
             </property>
             <property default-value="true" name="ignoreStatic" type="boolean">
-               <description>Allow to skip variables with {@code static} modifier.</description>
+               <description>Allow to skip variables with &lt;code&gt;static&lt;/code&gt; modifier.</description>
             </property>
             <property default-value="true" name="ignoreStaticFinal" type="boolean">
-               <description>Allow to skip variables with both {@code static} and
- {@code final} modifiers.</description>
+               <description>Allow to skip variables with both &lt;code&gt;static&lt;/code&gt; and
+ &lt;code&gt;final&lt;/code&gt; modifiers.</description>
             </property>
             <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,ANNOTATION_FIELD_DEF,PARAMETER_DEF,VARIABLE_DEF,METHOD_DEF,PATTERN_VARIABLE_DEF,RECORD_DEF,RECORD_COMPONENT_DEF"
                       name="tokens"

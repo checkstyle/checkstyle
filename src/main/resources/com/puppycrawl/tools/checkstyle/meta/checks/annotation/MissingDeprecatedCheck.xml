@@ -5,8 +5,8 @@
              name="MissingDeprecated"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Verifies that the annotation {@code @Deprecated} and the Javadoc tag
- {@code @deprecated} are both present when either of them is present.
+ Verifies that the annotation &lt;code&gt;@Deprecated&lt;/code&gt; and the Javadoc tag
+ &lt;code&gt;@deprecated&lt;/code&gt; are both present when either of them is present.
  &lt;/div&gt;
 
  &lt;p&gt;

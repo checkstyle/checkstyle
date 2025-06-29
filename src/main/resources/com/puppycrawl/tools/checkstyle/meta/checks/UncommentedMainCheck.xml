@@ -5,14 +5,14 @@
              name="UncommentedMain"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Detects uncommented {@code main} methods.
+ Detects uncommented &lt;code&gt;main&lt;/code&gt; methods.
  &lt;/div&gt;
 
  &lt;p&gt;
- Rationale: A {@code main} method is often used for debugging purposes.
+ Rationale: A &lt;code&gt;main&lt;/code&gt; method is often used for debugging purposes.
  When debugging is finished, developers often forget to remove the method,
  which changes the API and increases the size of the resulting class or JAR file.
- Except for the real program entry points, all {@code main} methods
+ Except for the real program entry points, all &lt;code&gt;main&lt;/code&gt; methods
  should be removed or commented out of the sources.
  &lt;/p&gt;</description>
          <properties>
@@ -20,7 +20,7 @@
                       name="excludedClasses"
                       type="java.util.regex.Pattern">
                <description>Specify pattern for qualified names of
- classes which are allowed to have a {@code main} method.</description>
+ classes which are allowed to have a &lt;code&gt;main&lt;/code&gt; method.</description>
             </property>
          </properties>
          <message-keys>

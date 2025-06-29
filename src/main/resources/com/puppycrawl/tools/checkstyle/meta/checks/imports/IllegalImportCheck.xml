@@ -9,11 +9,11 @@
  &lt;/div&gt;
 
  &lt;p&gt;
- Note: By default, the check rejects all {@code sun.*} packages since programs
- that contain direct calls to the {@code sun.*} packages are
+ Note: By default, the check rejects all &lt;code&gt;sun.*&lt;/code&gt; packages since programs
+ that contain direct calls to the &lt;code&gt;sun.*&lt;/code&gt; packages are
  &lt;a href="https://www.oracle.com/java/technologies/faq-sun-packages.html"&gt;
  "not guaranteed to work on all Java-compatible platforms"&lt;/a&gt;. To reject other
- packages, set property {@code illegalPkgs} to a list of the illegal packages.
+ packages, set property &lt;code&gt;illegalPkgs&lt;/code&gt; to a list of the illegal packages.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="" name="illegalClasses" type="java.lang.String[]">
@@ -29,8 +29,8 @@
  Note, all properties for match will be used.</description>
             </property>
             <property default-value="false" name="regexp" type="boolean">
-               <description>Control whether the {@code illegalPkgs} and
- {@code illegalClasses} should be interpreted as regular expressions.</description>
+               <description>Control whether the &lt;code&gt;illegalPkgs&lt;/code&gt; and
+ &lt;code&gt;illegalClasses&lt;/code&gt; should be interpreted as regular expressions.</description>
             </property>
          </properties>
          <message-keys>

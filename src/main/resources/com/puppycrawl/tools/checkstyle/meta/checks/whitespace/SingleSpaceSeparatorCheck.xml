@@ -9,11 +9,11 @@
  whitespace. Separating characters by tabs or multiple spaces will be
  reported. Currently, the check doesn't permit horizontal alignment. To inspect
  whitespaces before and after comments, set the property
- {@code validateComments} to true.
+ &lt;code&gt;validateComments&lt;/code&gt; to true.
  &lt;/div&gt;
 
  &lt;p&gt;
- Setting {@code validateComments} to false will ignore cases like:
+ Setting &lt;code&gt;validateComments&lt;/code&gt; to false will ignore cases like:
  &lt;/p&gt;
 
  &lt;pre&gt;

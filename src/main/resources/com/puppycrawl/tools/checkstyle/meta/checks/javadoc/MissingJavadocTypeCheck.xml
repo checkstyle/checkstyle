@@ -6,9 +6,9 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks for missing Javadoc comments for class, enum, interface, and annotation interface
- definitions. The scope to verify is specified using the {@code Scope} class and defaults
- to {@code Scope.PUBLIC}. To verify another scope, set property scope to one of the
- {@code Scope} constants.
+ definitions. The scope to verify is specified using the &lt;code&gt;Scope&lt;/code&gt; class and defaults
+ to &lt;code&gt;Scope.PUBLIC&lt;/code&gt;. To verify another scope, set property scope to one of the
+ &lt;code&gt;Scope&lt;/code&gt; constants.
  &lt;/div&gt;</description>
          <properties>
             <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">

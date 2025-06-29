@@ -5,7 +5,7 @@
               name="SuppressionCommentFilter"
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Filter {@code SuppressionCommentFilter} uses pairs of comments to suppress audit events.
+ Filter &lt;code&gt;SuppressionCommentFilter&lt;/code&gt; uses pairs of comments to suppress audit events.
  &lt;/div&gt;
 
  &lt;p&gt;
@@ -25,14 +25,14 @@
 
  &lt;p&gt;
  Attention: This filter may only be specified within the TreeWalker module
- ({@code &amp;lt;module name="TreeWalker"/&amp;gt;}) and only applies to checks which are also
- defined within this module. To filter non-TreeWalker checks like {@code RegexpSingleline}, a
+ (&lt;code&gt;&amp;lt;module name="TreeWalker"/&amp;gt;&lt;/code&gt;) and only applies to checks which are also
+ defined within this module. To filter non-TreeWalker checks like &lt;code&gt;RegexpSingleline&lt;/code&gt;, a
  &lt;a href="https://checkstyle.org/filters/suppresswithplaintextcommentfilter.html#SuppressWithPlainTextCommentFilter"&gt;
  SuppressWithPlainTextCommentFilter&lt;/a&gt; or similar filter must be used.
  &lt;/p&gt;
 
  &lt;p&gt;
- {@code offCommentFormat} and {@code onCommentFormat} must have equal
+ &lt;code&gt;offCommentFormat&lt;/code&gt; and &lt;code&gt;onCommentFormat&lt;/code&gt; must have equal
  &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html#groupCount()"&gt;
  paren counts&lt;/a&gt;.
  &lt;/p&gt;
@@ -42,10 +42,10 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="true" name="checkC" type="boolean">
-               <description>Control whether to check C style comments ({@code &amp;#47;* ... *&amp;#47;}).</description>
+               <description>Control whether to check C style comments (&lt;code&gt;&amp;#47;* ... *&amp;#47;&lt;/code&gt;).</description>
             </property>
             <property default-value="true" name="checkCPP" type="boolean">
-               <description>Control whether to check C++ style comments ({@code //}).</description>
+               <description>Control whether to check C++ style comments (&lt;code&gt;//&lt;/code&gt;).</description>
             </property>
             <property default-value=".*"
                       name="checkFormat"

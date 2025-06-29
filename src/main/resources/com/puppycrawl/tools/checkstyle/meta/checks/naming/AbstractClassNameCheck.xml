@@ -6,7 +6,7 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Ensures that the names of abstract classes conforming to some pattern
- and check that {@code abstract} modifier exists.
+ and check that &lt;code&gt;abstract&lt;/code&gt; modifier exists.
  &lt;/div&gt;
 
  &lt;p&gt;
@@ -22,12 +22,12 @@
             </property>
             <property default-value="false" name="ignoreModifier" type="boolean">
                <description>Control whether to ignore checking for the
- {@code abstract} modifier on classes that match the name.</description>
+ &lt;code&gt;abstract&lt;/code&gt; modifier on classes that match the name.</description>
             </property>
             <property default-value="false" name="ignoreName" type="boolean">
                <description>Control whether to ignore checking the name.
  Realistically only useful if using the check to identify that match name and
- do not have the {@code abstract} modifier.</description>
+ do not have the &lt;code&gt;abstract&lt;/code&gt; modifier.</description>
             </property>
          </properties>
          <message-keys>

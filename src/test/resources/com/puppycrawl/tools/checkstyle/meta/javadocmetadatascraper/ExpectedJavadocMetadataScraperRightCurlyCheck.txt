@@ -5,8 +5,8 @@ FullQualifiedName: com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.I
 ocMetadataScraperRightCurlyCheck
 Parent: com.puppycrawl.tools.checkstyle.TreeWalker
 Description: <p>
- Checks the placement of right curly braces ({@code '}'}) for code blocks. This check supports
- if-else, try-catch-finally blocks, while-loops, for-loops,
+ Checks the placement of right curly braces (<code>'}'</code>) for code blocks. This check
+ supports if-else, try-catch-finally blocks, while-loops, for-loops,
  method definitions, class definitions, constructor definitions,
  instance, static initialization blocks, annotation definitions and enum definitions.
  For right curly brace of expression blocks of arrays, lambdas and class instances

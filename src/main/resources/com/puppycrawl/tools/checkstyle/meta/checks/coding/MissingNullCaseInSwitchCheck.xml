@@ -6,14 +6,14 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks that a given switch statement or expression that use a reference type in its selector
- expression has a {@code null} case label.
+ expression has a &lt;code&gt;null&lt;/code&gt; case label.
  &lt;/div&gt;
 
  &lt;p&gt;
  Rationale: switch statements and expressions in Java throw a
- {@code NullPointerException} if the selector expression evaluates to {@code null}.
+ &lt;code&gt;NullPointerException&lt;/code&gt; if the selector expression evaluates to &lt;code&gt;null&lt;/code&gt;.
  As of Java 21, it is now possible to integrate a null check within the switch,
- eliminating the risk of {@code NullPointerException} and simplifies the code
+ eliminating the risk of &lt;code&gt;NullPointerException&lt;/code&gt; and simplifies the code
  as there is no need for an external null check before entering the switch.
  &lt;/p&gt;
 

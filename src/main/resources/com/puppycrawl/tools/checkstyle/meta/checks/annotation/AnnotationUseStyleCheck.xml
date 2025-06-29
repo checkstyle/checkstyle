@@ -13,61 +13,61 @@
  &lt;/p&gt;
  &lt;ul&gt;
  &lt;li&gt;
- {@code ElementStyleOption.COMPACT_NO_ARRAY}
+ &lt;code&gt;ElementStyleOption.COMPACT_NO_ARRAY&lt;/code&gt;
  &lt;/li&gt;
  &lt;li&gt;
- {@code ElementStyleOption.COMPACT}
+ &lt;code&gt;ElementStyleOption.COMPACT&lt;/code&gt;
  &lt;/li&gt;
  &lt;li&gt;
- {@code ElementStyleOption.EXPANDED}
+ &lt;code&gt;ElementStyleOption.EXPANDED&lt;/code&gt;
  &lt;/li&gt;
  &lt;/ul&gt;
 
  &lt;p&gt;
- To not enforce an element style a {@code ElementStyleOption.IGNORE} type is provided.
- The desired style can be set through the {@code elementStyle} property.
+ To not enforce an element style a &lt;code&gt;ElementStyleOption.IGNORE&lt;/code&gt; type is provided.
+ The desired style can be set through the &lt;code&gt;elementStyle&lt;/code&gt; property.
  &lt;/p&gt;
 
  &lt;p&gt;
- Using the {@code ElementStyleOption.EXPANDED} style is more verbose.
+ Using the &lt;code&gt;ElementStyleOption.EXPANDED&lt;/code&gt; style is more verbose.
  The expanded version is sometimes referred to as "named parameters" in other languages.
  &lt;/p&gt;
 
  &lt;p&gt;
- Using the {@code ElementStyleOption.COMPACT} style is less verbose.
+ Using the &lt;code&gt;ElementStyleOption.COMPACT&lt;/code&gt; style is less verbose.
  This style can only be used when there is an element called 'value' which is either
  the sole element or all other elements have default values.
  &lt;/p&gt;
 
  &lt;p&gt;
- Using the {@code ElementStyleOption.COMPACT_NO_ARRAY} style is less verbose.
- It is similar to the {@code ElementStyleOption.COMPACT} style but single value arrays are
+ Using the &lt;code&gt;ElementStyleOption.COMPACT_NO_ARRAY&lt;/code&gt; style is less verbose.
+ It is similar to the &lt;code&gt;ElementStyleOption.COMPACT&lt;/code&gt; style but single value arrays are
  flagged.
  With annotations a single value array does not need to be placed in an array initializer.
  &lt;/p&gt;
 
  &lt;p&gt;
  The ending parenthesis are optional when using annotations with no elements.
- To always require ending parenthesis use the {@code ClosingParensOption.ALWAYS} type.
- To never have ending parenthesis use the {@code ClosingParensOption.NEVER} type.
- To not enforce a closing parenthesis preference a {@code ClosingParensOption.IGNORE} type is
+ To always require ending parenthesis use the &lt;code&gt;ClosingParensOption.ALWAYS&lt;/code&gt; type.
+ To never have ending parenthesis use the &lt;code&gt;ClosingParensOption.NEVER&lt;/code&gt; type.
+ To not enforce a closing parenthesis preference a &lt;code&gt;ClosingParensOption.IGNORE&lt;/code&gt; type is
  provided.
- Set this through the {@code closingParens} property.
+ Set this through the &lt;code&gt;closingParens&lt;/code&gt; property.
  &lt;/p&gt;
 
  &lt;p&gt;
  Annotations also allow you to specify arrays of elements in a standard format.
  As with normal arrays, a trailing comma is optional.
- To always require a trailing comma use the {@code TrailingArrayCommaOption.ALWAYS} type.
- To never have a trailing comma use the {@code TrailingArrayCommaOption.NEVER} type.
- To not enforce a trailing array comma preference a {@code TrailingArrayCommaOption.IGNORE} type
- is provided. Set this through the {@code trailingArrayComma} property.
+ To always require a trailing comma use the &lt;code&gt;TrailingArrayCommaOption.ALWAYS&lt;/code&gt; type.
+ To never have a trailing comma use the &lt;code&gt;TrailingArrayCommaOption.NEVER&lt;/code&gt; type.
+ To not enforce a trailing array comma preference a &lt;code&gt;TrailingArrayCommaOption.IGNORE&lt;/code&gt; type
+ is provided. Set this through the &lt;code&gt;trailingArrayComma&lt;/code&gt; property.
  &lt;/p&gt;
 
  &lt;p&gt;
- By default, the {@code ElementStyleOption} is set to {@code },
- the {@code TrailingArrayCommaOption} is set to {@code },
- and the {@code ClosingParensOption} is set to {@code }.
+ By default, the &lt;code&gt;ElementStyleOption&lt;/code&gt; is set to &lt;code&gt;COMPACT_NO_ARRAY&lt;/code&gt;,
+ the &lt;code&gt;TrailingArrayCommaOption&lt;/code&gt; is set to &lt;code&gt;NEVER&lt;/code&gt;,
+ and the &lt;code&gt;ClosingParensOption&lt;/code&gt; is set to &lt;code&gt;NEVER&lt;/code&gt;.
  &lt;/p&gt;
 
  &lt;p&gt;

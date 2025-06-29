@@ -5,13 +5,13 @@
               name="SuppressionSingleFilter"
               parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;div&gt;
- Filter {@code SuppressionSingleFilter} suppresses audit events for Checks violations in the
+ Filter &lt;code&gt;SuppressionSingleFilter&lt;/code&gt; suppresses audit events for Checks violations in the
  specified file, class, checks, message, module id, lines, and columns.
  &lt;/div&gt;
 
  &lt;p&gt;
  Rationale: To allow users to use suppressions configured in the same config as other modules.
- {@code SuppressionFilter} and {@code SuppressionXpathFilter} require a separate file.
+ &lt;code&gt;SuppressionFilter&lt;/code&gt; and &lt;code&gt;SuppressionXpathFilter&lt;/code&gt; require a separate file.
  &lt;/p&gt;
 
  &lt;p&gt;
@@ -26,8 +26,8 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- {@code SuppressionSingleFilter} can suppress Checks that have {@code Treewalker} or
- {@code Checker} as parent module.
+ &lt;code&gt;SuppressionSingleFilter&lt;/code&gt; can suppress Checks that have &lt;code&gt;Treewalker&lt;/code&gt; or
+ &lt;code&gt;Checker&lt;/code&gt; as parent module.
  &lt;/p&gt;</description>
          <properties>
             <property name="checks" type="java.util.regex.Pattern">

@@ -5,7 +5,7 @@
              name="LocalVariableName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks that local, non-{@code final} variable names conform to a specified pattern.
+ Checks that local, non-&lt;code&gt;final&lt;/code&gt; variable names conform to a specified pattern.
  A catch parameter is considered to be
  a local variable.
  &lt;/div&gt;
@@ -22,7 +22,7 @@
                <description>Allow one character variable name in
  &lt;a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html"&gt;
  initialization expressions&lt;/a&gt;
- in FOR loop if one char variable name is prohibited by {@code format} regexp.</description>
+ in FOR loop if one char variable name is prohibited by &lt;code&gt;format&lt;/code&gt; regexp.</description>
             </property>
             <property default-value="^([a-z][a-zA-Z0-9]*|_)$"
                       name="format"

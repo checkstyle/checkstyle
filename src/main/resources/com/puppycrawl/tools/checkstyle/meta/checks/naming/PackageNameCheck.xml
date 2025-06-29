@@ -9,13 +9,13 @@
  &lt;/div&gt;
 
  &lt;p&gt;
- The default value of {@code format} for module {@code PackageName} has been chosen to match
+ The default value of &lt;code&gt;format&lt;/code&gt; for module &lt;code&gt;PackageName&lt;/code&gt; has been chosen to match
  the requirements in the
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.5.3"&gt;
  Java Language specification&lt;/a&gt;
  and the Sun coding conventions. However, both underscores and uppercase letters are rather
  uncommon, so most configurations should probably assign value
- {@code ^[a-z]+(\.[a-z][a-z0-9]*)*$} to {@code format} for module {@code PackageName}.
+ &lt;code&gt;^[a-z]+(\.[a-z][a-z0-9]*)*$&lt;/code&gt; to &lt;code&gt;format&lt;/code&gt; for module &lt;code&gt;PackageName&lt;/code&gt;.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="^[a-z]+(\.[a-zA-Z_]\w*)*$"

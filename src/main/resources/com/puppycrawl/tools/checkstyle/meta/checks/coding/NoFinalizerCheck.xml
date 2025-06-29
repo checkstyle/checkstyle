@@ -5,7 +5,7 @@
              name="NoFinalizer"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks that there is no method {@code finalize} with zero parameters.
+ Checks that there is no method &lt;code&gt;finalize&lt;/code&gt; with zero parameters.
  &lt;/div&gt;
 
  &lt;p&gt;

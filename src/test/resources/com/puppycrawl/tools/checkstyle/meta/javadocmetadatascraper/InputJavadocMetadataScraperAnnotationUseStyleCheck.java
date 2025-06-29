@@ -64,8 +64,8 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
  * As with normal arrays, a trailing comma is optional.
  * To always require a trailing comma use the {@code TrailingArrayCommaOption.ALWAYS} type.
  * To never have a trailing comma use the {@code TrailingArrayCommaOption.NEVER} type.
- * To not enforce a trailing array comma preference a {@code TrailingArrayCommaOption.IGNORE} type
- * is provided. Set this through the {@code trailingArrayComma} property.
+ * To not enforce a trailing array comma preference a {@code TrailingArrayCommaOption.IGNORE}
+ * type is provided. Set this through the {@code trailingArrayComma} property.
  * </p>
  * <p>
  * By default, the {@code ElementStyleOption} is set to {@code COMPACT_NO_ARRAY},

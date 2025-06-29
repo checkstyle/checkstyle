@@ -35,12 +35,12 @@
 
  &lt;p&gt;
  In the first case, given that &lt;em&gt;a&lt;/em&gt;, &lt;em&gt;b&lt;/em&gt;, and &lt;em&gt;c&lt;/em&gt; are
- all {@code int} variables, the parentheses around {@code a + b}
+ all &lt;code&gt;int&lt;/code&gt; variables, the parentheses around &lt;code&gt;a + b&lt;/code&gt;
  are not needed.
  In the second case, parentheses are required as &lt;em&gt;q&lt;/em&gt;, &lt;em&gt;r&lt;/em&gt; are
- of type {@code int} and &lt;em&gt;p&lt;/em&gt; is of type {@code boolean}
+ of type &lt;code&gt;int&lt;/code&gt; and &lt;em&gt;p&lt;/em&gt; is of type &lt;code&gt;boolean&lt;/code&gt;
  and removing parentheses will give a compile-time error. Even if &lt;em&gt;q&lt;/em&gt;
- and &lt;em&gt;r&lt;/em&gt; were {@code boolean} still there will be no violation
+ and &lt;em&gt;r&lt;/em&gt; were &lt;code&gt;boolean&lt;/code&gt; still there will be no violation
  raised as check is not "type aware".
  &lt;/p&gt;
 

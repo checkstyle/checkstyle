@@ -5,12 +5,12 @@
               name="SuppressWithNearbyTextFilter"
               parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;div&gt;
- Filter {@code SuppressWithNearbyTextFilter} uses plain text to suppress
+ Filter &lt;code&gt;SuppressWithNearbyTextFilter&lt;/code&gt; uses plain text to suppress
  nearby audit events. The filter can suppress all checks which have Checker as a parent module.
  &lt;/div&gt;
 
  &lt;p&gt;
- Setting {@code .*} value to {@code nearbyTextPattern} property will see &lt;b&gt;any&lt;/b&gt;
+ Setting &lt;code&gt;.*&lt;/code&gt; value to &lt;code&gt;nearbyTextPattern&lt;/code&gt; property will see &lt;b&gt;any&lt;/b&gt;
  text as a suppression and will likely suppress all audit events in the file. It is
  best to set this to a key phrase not commonly used in the file to help denote it
  out of the rest of the file as a suppression. See the default value as an example.
@@ -20,8 +20,8 @@
                       name="checkPattern"
                       type="java.util.regex.Pattern">
                <description>Specify check name pattern to suppress.
- Property can also be a RegExp group index at {@code nearbyTextPattern} in
- format of {@code $x} and be picked from line that matches {@code nearbyTextPattern}.</description>
+ Property can also be a RegExp group index at &lt;code&gt;nearbyTextPattern&lt;/code&gt; in
+ format of &lt;code&gt;$x&lt;/code&gt; and be picked from line that matches &lt;code&gt;nearbyTextPattern&lt;/code&gt;.</description>
             </property>
             <property name="idPattern" type="java.util.regex.Pattern">
                <description>Specify check ID pattern to suppress.</description>
@@ -29,8 +29,8 @@
             <property default-value="0" name="lineRange" type="java.lang.String">
                <description>Specify negative/zero/positive value that
  defines the number of lines preceding/at/following the suppressing nearby text.
- Property can also be a RegExp group index at {@code nearbyTextPattern} in
- format of {@code $x} and be picked from line that matches {@code nearbyTextPattern}.</description>
+ Property can also be a RegExp group index at &lt;code&gt;nearbyTextPattern&lt;/code&gt; in
+ format of &lt;code&gt;$x&lt;/code&gt; and be picked from line that matches &lt;code&gt;nearbyTextPattern&lt;/code&gt;.</description>
             </property>
             <property name="messagePattern" type="java.util.regex.Pattern">
                <description>Specify check violation message pattern to suppress.</description>

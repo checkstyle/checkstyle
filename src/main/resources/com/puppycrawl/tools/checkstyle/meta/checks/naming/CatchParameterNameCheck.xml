@@ -5,7 +5,7 @@
              name="CatchParameterName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks that {@code catch} parameter names conform to a specified pattern.
+ Checks that &lt;code&gt;catch&lt;/code&gt; parameter names conform to a specified pattern.
  &lt;/div&gt;
 
  &lt;p&gt;
@@ -14,13 +14,13 @@
  &lt;ul&gt;
  &lt;li&gt;allows names beginning with two lowercase letters followed by at least one uppercase or
  lowercase letter&lt;/li&gt;
- &lt;li&gt;allows {@code e} abbreviation (suitable for exceptions end errors)&lt;/li&gt;
- &lt;li&gt;allows {@code ex} abbreviation (suitable for exceptions)&lt;/li&gt;
- &lt;li&gt;allows {@code t} abbreviation (suitable for throwables)&lt;/li&gt;
- &lt;li&gt;allows {@code _} for unnamed catch parameters&lt;/li&gt;
- &lt;li&gt;prohibits numbered abbreviations like {@code e1} or {@code t2}&lt;/li&gt;
- &lt;li&gt;prohibits one letter prefixes like {@code pException}&lt;/li&gt;
- &lt;li&gt;prohibits two letter abbreviations like {@code ie} or {@code ee}&lt;/li&gt;
+ &lt;li&gt;allows &lt;code&gt;e&lt;/code&gt; abbreviation (suitable for exceptions end errors)&lt;/li&gt;
+ &lt;li&gt;allows &lt;code&gt;ex&lt;/code&gt; abbreviation (suitable for exceptions)&lt;/li&gt;
+ &lt;li&gt;allows &lt;code&gt;t&lt;/code&gt; abbreviation (suitable for throwables)&lt;/li&gt;
+ &lt;li&gt;allows &lt;code&gt;_&lt;/code&gt; for unnamed catch parameters&lt;/li&gt;
+ &lt;li&gt;prohibits numbered abbreviations like &lt;code&gt;e1&lt;/code&gt; or &lt;code&gt;t2&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;prohibits one letter prefixes like &lt;code&gt;pException&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;prohibits two letter abbreviations like &lt;code&gt;ie&lt;/code&gt; or &lt;code&gt;ee&lt;/code&gt;&lt;/li&gt;
  &lt;li&gt;prohibits any other characters than letters&lt;/li&gt;
  &lt;/ul&gt;</description>
          <properties>

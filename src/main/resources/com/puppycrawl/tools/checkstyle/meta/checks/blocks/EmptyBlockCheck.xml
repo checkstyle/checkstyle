@@ -14,7 +14,7 @@
 
  &lt;p&gt;
  NOTE: This check processes LITERAL_CASE and LITERAL_DEFAULT separately.
- Verification empty block is done for single nearest {@code case} or {@code default}.
+ Verification empty block is done for single nearest &lt;code&gt;case&lt;/code&gt; or &lt;code&gt;default&lt;/code&gt;.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="statement"

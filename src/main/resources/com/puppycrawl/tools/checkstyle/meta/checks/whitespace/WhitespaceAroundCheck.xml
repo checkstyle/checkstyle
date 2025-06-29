@@ -23,10 +23,10 @@
  &lt;/pre&gt;
 
  &lt;p&gt;
- may optionally be exempted from the policy using the {@code allowEmptyMethods},
- {@code allowEmptyConstructors}, {@code allowEmptyTypes}, {@code allowEmptyLoops},
- {@code allowEmptyLambdas}, {@code allowEmptyCatches}
- and {@code allowEmptySwitchBlockStatements} properties.
+ may optionally be exempted from the policy using the &lt;code&gt;allowEmptyMethods&lt;/code&gt;,
+ &lt;code&gt;allowEmptyConstructors&lt;/code&gt;, &lt;code&gt;allowEmptyTypes&lt;/code&gt;, &lt;code&gt;allowEmptyLoops&lt;/code&gt;,
+ &lt;code&gt;allowEmptyLambdas&lt;/code&gt;, &lt;code&gt;allowEmptyCatches&lt;/code&gt;
+ and &lt;code&gt;allowEmptySwitchBlockStatements&lt;/code&gt; properties.
  &lt;/p&gt;
 
  &lt;p&gt;

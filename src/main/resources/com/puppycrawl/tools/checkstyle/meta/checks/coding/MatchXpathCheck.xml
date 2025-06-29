@@ -13,8 +13,8 @@
  &lt;p&gt;
  It is recommended to define custom message for violation to explain what is not allowed and what
  to use instead, default message might be too abstract. To customize a message you need to
- add {@code message} element with &lt;b&gt;matchxpath.match&lt;/b&gt; as {@code key} attribute and
- desired message as {@code value} attribute.
+ add &lt;code&gt;message&lt;/code&gt; element with &lt;b&gt;matchxpath.match&lt;/b&gt; as &lt;code&gt;key&lt;/code&gt; attribute and
+ desired message as &lt;code&gt;value&lt;/code&gt; attribute.
  &lt;/p&gt;
 
  &lt;p&gt;

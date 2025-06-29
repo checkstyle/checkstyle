@@ -6,7 +6,7 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Allows to specify what warnings that
- {@code @SuppressWarnings} is not allowed to suppress.
+ &lt;code&gt;@SuppressWarnings&lt;/code&gt; is not allowed to suppress.
  You can also specify a list of TokenTypes that
  the configured warning(s) cannot be suppressed on.
  &lt;/div&gt;
@@ -18,14 +18,14 @@
 
  &lt;p&gt;
  For example:
- {@code @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")}.
+ &lt;code&gt;@SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")&lt;/code&gt;.
  According to the above example, the "unused" warning is being suppressed
  not the "unchecked" or "foo" warnings.  All of these warnings will be
  considered and matched against regardless of what the conditional
  evaluates to.
- The check also does not support code like {@code @SuppressWarnings("un" + "used")},
- {@code @SuppressWarnings((String) "unused")} or
- {@code @SuppressWarnings({('u' + (char)'n') + (""+("used" + (String)"")),})}.
+ The check also does not support code like &lt;code&gt;@SuppressWarnings("un" + "used")&lt;/code&gt;,
+ &lt;code&gt;@SuppressWarnings((String) "unused")&lt;/code&gt; or
+ &lt;code&gt;@SuppressWarnings({('u' + (char)'n') + (""+("used" + (String)"")),})&lt;/code&gt;.
  &lt;/p&gt;
 
  &lt;p&gt;

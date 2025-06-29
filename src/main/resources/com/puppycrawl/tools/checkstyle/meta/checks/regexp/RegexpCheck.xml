@@ -32,16 +32,16 @@
  &lt;/p&gt;
  &lt;ul&gt;
  &lt;li&gt;
- {@code ^} means the beginning of a line, as opposed to beginning of the input.
+ &lt;code&gt;^&lt;/code&gt; means the beginning of a line, as opposed to beginning of the input.
  &lt;/li&gt;
  &lt;li&gt;
- For beginning of the input use {@code \A}.
+ For beginning of the input use &lt;code&gt;\A&lt;/code&gt;.
  &lt;/li&gt;
  &lt;li&gt;
- {@code $} means the end of a line, as opposed to the end of the input.
+ &lt;code&gt;$&lt;/code&gt; means the end of a line, as opposed to the end of the input.
  &lt;/li&gt;
  &lt;li&gt;
- For end of input use {@code \Z}.
+ For end of input use &lt;code&gt;\Z&lt;/code&gt;.
  &lt;/li&gt;
  &lt;li&gt;
  Each line in the file is terminated with a line feed character.

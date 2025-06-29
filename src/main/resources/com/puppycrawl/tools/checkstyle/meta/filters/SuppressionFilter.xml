@@ -5,7 +5,7 @@
               name="SuppressionFilter"
               parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;div&gt;
- Filter {@code SuppressionFilter} rejects audit events for Check violations according to a
+ Filter &lt;code&gt;SuppressionFilter&lt;/code&gt; rejects audit events for Check violations according to a
  &lt;a href="https://checkstyle.org/dtds/suppressions_1_2.dtd"&gt;suppressions XML document&lt;/a&gt;
  in a file. If there is no configured suppressions file or the optional is set to true and
  suppressions file was not found the Filter accepts all audit events.
@@ -13,39 +13,39 @@
 
  &lt;p&gt;
  A &lt;a href="https://checkstyle.org/dtds/suppressions_1_2.dtd"&gt;suppressions XML document&lt;/a&gt;
- contains a set of {@code suppress} elements, where each {@code suppress}
+ contains a set of &lt;code&gt;suppress&lt;/code&gt; elements, where each &lt;code&gt;suppress&lt;/code&gt;
  element can have the following attributes:
  &lt;/p&gt;
  &lt;ul&gt;
  &lt;li&gt;
- {@code files} - a &lt;a href="https://checkstyle.org/property_types.html#Pattern"&gt;
+ &lt;code&gt;files&lt;/code&gt; - a &lt;a href="https://checkstyle.org/property_types.html#Pattern"&gt;
  Pattern&lt;/a&gt; matched against the file name associated with an audit event.
  It is optional.
  &lt;/li&gt;
  &lt;li&gt;
- {@code checks} - a &lt;a href="https://checkstyle.org/property_types.html#Pattern"&gt;
+ &lt;code&gt;checks&lt;/code&gt; - a &lt;a href="https://checkstyle.org/property_types.html#Pattern"&gt;
  Pattern&lt;/a&gt; matched against the name of the check associated with an audit event.
- Optional as long as {@code id} or {@code message} is specified.
+ Optional as long as &lt;code&gt;id&lt;/code&gt; or &lt;code&gt;message&lt;/code&gt; is specified.
  &lt;/li&gt;
  &lt;li&gt;
- {@code message} - a &lt;a href="https://checkstyle.org/property_types.html#Pattern"&gt;
+ &lt;code&gt;message&lt;/code&gt; - a &lt;a href="https://checkstyle.org/property_types.html#Pattern"&gt;
  Pattern&lt;/a&gt; matched against the message of the check associated with an audit event.
- Optional as long as {@code checks} or {@code id} is specified.
+ Optional as long as &lt;code&gt;checks&lt;/code&gt; or &lt;code&gt;id&lt;/code&gt; is specified.
  &lt;/li&gt;
  &lt;li&gt;
- {@code id} - a &lt;a href="https://checkstyle.org/property_types.html#String"&gt;String&lt;/a&gt;
+ &lt;code&gt;id&lt;/code&gt; - a &lt;a href="https://checkstyle.org/property_types.html#String"&gt;String&lt;/a&gt;
  matched against the &lt;a href="https://checkstyle.org/config.html#Id"&gt;check id&lt;/a&gt;
  associated with an audit event.
- Optional as long as {@code checks} or {@code message} is specified.
+ Optional as long as &lt;code&gt;checks&lt;/code&gt; or &lt;code&gt;message&lt;/code&gt; is specified.
  &lt;/li&gt;
  &lt;li&gt;
- {@code lines} - a comma-separated list of values, where each value is an
+ &lt;code&gt;lines&lt;/code&gt; - a comma-separated list of values, where each value is an
  &lt;a href="https://checkstyle.org/property_types.html#int"&gt;int&lt;/a&gt;
  or a range of integers denoted by integer-integer.
  It is optional.
  &lt;/li&gt;
  &lt;li&gt;
- {@code columns} - a comma-separated list of values, where each value is an
+ &lt;code&gt;columns&lt;/code&gt; - a comma-separated list of values, where each value is an
  &lt;a href="https://checkstyle.org/property_types.html#int"&gt;int&lt;/a&gt;
  or a range of integers denoted by integer-integer.
  It is optional.
@@ -53,7 +53,7 @@
  &lt;/ul&gt;
 
  &lt;p&gt;
- Each audit event is checked against each {@code suppress} element.
+ Each audit event is checked against each &lt;code&gt;suppress&lt;/code&gt; element.
  It is suppressed if all specified attributes match against the audit event.
  &lt;/p&gt;
 
@@ -68,18 +68,18 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- Location of the file defined in {@code file} property is checked in the following order:
+ Location of the file defined in &lt;code&gt;file&lt;/code&gt; property is checked in the following order:
  &lt;/p&gt;
  &lt;ol&gt;
  &lt;li&gt;
  as a filesystem location
  &lt;/li&gt;
  &lt;li&gt;
- if no file found, and the location starts with either {@code http://} or {@code https://},
+ if no file found, and the location starts with either &lt;code&gt;http://&lt;/code&gt; or &lt;code&gt;https://&lt;/code&gt;,
  then it is interpreted as a URL
  &lt;/li&gt;
  &lt;li&gt;
- if no file found, then passed to the {@code ClassLoader.getResource()} method.
+ if no file found, then passed to the &lt;code&gt;ClassLoader.getResource()&lt;/code&gt; method.
  &lt;/li&gt;
  &lt;/ol&gt;
 
@@ -92,8 +92,8 @@
             </property>
             <property default-value="false" name="optional" type="boolean">
                <description>Control what to do when the file is not existing.
- If {@code optional} is set to {@code false} the file must exist, or else it
- ends with error. On the other hand if optional is {@code true} and file is
+ If &lt;code&gt;optional&lt;/code&gt; is set to &lt;code&gt;false&lt;/code&gt; the file must exist, or else it
+ ends with error. On the other hand if optional is &lt;code&gt;true&lt;/code&gt; and file is
  not found, the filter accept all audit events.</description>
             </property>
          </properties>

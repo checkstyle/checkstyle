@@ -6,14 +6,14 @@
              parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;div&gt;
  Checks that a source file begins with a specified header.
- Property {@code headerFile} specifies a file that contains the required header.
+ Property &lt;code&gt;headerFile&lt;/code&gt; specifies a file that contains the required header.
  Alternatively, the header specification can be set directly in the
- {@code header} property without the need for an external file.
+ &lt;code&gt;header&lt;/code&gt; property without the need for an external file.
  &lt;/div&gt;
 
  &lt;p&gt;
  In default configuration, if header is not specified, the default value
- of header is set to {@code null} and the check does not rise any violations.
+ of header is set to &lt;code&gt;null&lt;/code&gt; and the check does not rise any violations.
  &lt;/p&gt;</description>
          <properties>
             <property name="charset" type="java.lang.String">
@@ -24,7 +24,7 @@
             </property>
             <property name="header" type="java.lang.String">
                <description>Specify the required header specified inline.
- Individual header lines must be separated by the string {@code "\n"}
+ Individual header lines must be separated by the string &lt;code&gt;"\n"&lt;/code&gt;
  (even on platforms with a different line separator).</description>
             </property>
             <property name="headerFile" type="java.net.URI">

@@ -6,7 +6,7 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Restricts the number of return statements in methods, constructors and lambda expressions.
- Ignores specified methods ({@code equals} by default).
+ Ignores specified methods (&lt;code&gt;equals&lt;/code&gt; by default).
  &lt;/div&gt;
 
  &lt;p&gt;

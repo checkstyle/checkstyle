@@ -5,8 +5,8 @@
              name="BooleanExpressionComplexity"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Restricts the number of boolean operators ({@code &amp;amp;&amp;amp;}, {@code ||},
- {@code &amp;amp;}, {@code |} and {@code ^}) in an expression.
+ Restricts the number of boolean operators (&lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt;, &lt;code&gt;||&lt;/code&gt;,
+ &lt;code&gt;&amp;amp;&lt;/code&gt;, &lt;code&gt;|&lt;/code&gt; and &lt;code&gt;^&lt;/code&gt;) in an expression.
  &lt;/div&gt;
 
  &lt;p&gt;
@@ -15,14 +15,14 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- Note that the operators {@code &amp;amp;} and {@code |} are not only integer bitwise
+ Note that the operators &lt;code&gt;&amp;amp;&lt;/code&gt; and &lt;code&gt;|&lt;/code&gt; are not only integer bitwise
  operators, they are also the
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-15.html#jls-15.22.2"&gt;
- non-shortcut versions&lt;/a&gt; of the boolean operators {@code &amp;amp;&amp;amp;} and {@code ||}.
+ non-shortcut versions&lt;/a&gt; of the boolean operators &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; and &lt;code&gt;||&lt;/code&gt;.
  &lt;/p&gt;
 
  &lt;p&gt;
- Note that {@code &amp;amp;}, {@code |} and {@code ^} are not checked if they are part
+ Note that &lt;code&gt;&amp;amp;&lt;/code&gt;, &lt;code&gt;|&lt;/code&gt; and &lt;code&gt;^&lt;/code&gt; are not checked if they are part
  of constructor or method call because they can be applied to non-boolean
  variables and Checkstyle does not know types of methods from different classes.
  &lt;/p&gt;</description>
