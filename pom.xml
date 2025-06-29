@@ -3079,6 +3079,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.UpperEllCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.HexLiteralCaseCheck*</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheckTest</param>
@@ -3098,6 +3099,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.UpperEllCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.HexLiteralCaseCheckTest</param>
                 <!-- needed for SuppressWarningsFilter -->
                 <param>com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilterTest</param>
               </targetTests>
