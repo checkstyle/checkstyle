@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import java.io.Closeable;
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -28,6 +27,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.BitSet;
@@ -113,13 +113,13 @@ public final class CommonUtil {
     /**
      * Returns whether the file extension matches what we are meant to process.
      *
-     * @param file
-     *            the file to be checked.
+     * @param path
+     *            the path to be checked.
      * @param fileExtensions
      *            files extensions, empty property in config makes it matches to all.
      * @return whether there is a match.
      */
-    public static boolean matchesFileExtension(File file, String... fileExtensions) {
+    public static boolean matchesFileExtension(Path path, String... fileExtensions) {
         boolean result = false;
         if (fileExtensions == null || fileExtensions.length == 0) {
             result = true;
@@ -137,7 +137,7 @@ public final class CommonUtil {
                 }
             }
 
-            final String fileName = file.getName();
+            final String fileName = path.getFileName().toString();
             for (final String fileExtension : withDotExtensions) {
                 if (fileName.endsWith(fileExtension)) {
                     result = true;
@@ -392,10 +392,10 @@ public final class CommonUtil {
      */
     private static URI getFilepathOrClasspathUri(String filename) throws CheckstyleException {
         final URI uri;
-        final File file = new File(filename);
+        final Path path = Paths.get(filename);
 
-        if (file.exists()) {
-            uri = file.toURI();
+        if (Files.exists(path)) {
+            uri = path.toUri();
         }
         else {
             final int lastIndexOfClasspathProtocol;
@@ -485,7 +485,8 @@ public final class CommonUtil {
      * @return file name without extension.
      */
     public static String getFileNameWithoutExtension(String fullFilename) {
-        final String fileName = new File(fullFilename).getName();
+        final Path path = Paths.get(fullFilename);
+        final String fileName = path.getFileName().toString();
         final int dotIndex = fileName.lastIndexOf('.');
         final String fileNameWithoutExtension;
         if (dotIndex == -1) {
@@ -508,7 +509,8 @@ public final class CommonUtil {
      *         or empty string if file does not have an extension.
      */
     public static String getFileExtension(String fileNameWithExtension) {
-        final String fileName = Paths.get(fileNameWithExtension).toString();
+        final Path path = Paths.get(fileNameWithExtension);
+        final String fileName = path.getFileName().toString();
         final int dotIndex = fileName.lastIndexOf('.');
         final String extension;
         if (dotIndex == -1) {
