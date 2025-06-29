@@ -38,7 +38,7 @@ public class InputOneStatementPerLine {
    * Within the for-header there are 3 Statements, but this is legal.
    */
   public void doLegalForLoop() {
-    for (int i = 0, j = 0, k = 1; i < 20; i++) { //it's ok.
+    for (int i = 0, j = 0, k = 1; i < 20; i++) { // it's ok.
       one = i;
     }
   }
@@ -153,7 +153,7 @@ public class InputOneStatementPerLine {
    * two object creation statements on the same line.
    */
   private void foo() {
-    //Two object creation statements on the same line are illegal.
+    // Two object creation statements on the same line are illegal.
     Object obj1 = new Object(); Object obj2 = new Object();
     // 2 violations above:
     //  'Only one variable definition per line allowed.'
@@ -280,16 +280,16 @@ public class InputOneStatementPerLine {
     do {
       var9++;
       if (var10 > 4) {
-        break; //legal
+        break; // legal
       }
       var11++;
       var9++;
-    } while (var11 < 7); //legal
+    } while (var11 < 7); // legal
 
     /*
      * One statement inside for block is legal
      */
-    for (int i = 0; i < 10; i++) { one = 5; } //legal
+    for (int i = 0; i < 10; i++) { one = 5; } // legal
     // 2 violations above:
     //  ''{' at column 34 should have line break after.'
     //  ''}' at column 45 should be alone on a line.'
@@ -298,7 +298,7 @@ public class InputOneStatementPerLine {
      * One statement inside for block where
      * increment expression is empty is legal
      */
-    for (int i = 0; i < 10;) { one = 5; } //legal
+    for (int i = 0; i < 10;) { one = 5; } // legal
     // 2 violations above:
     //  ''{' at column 30 should have line break after.'
     //  ''}' at column 41 should be alone on a line.'
@@ -308,7 +308,7 @@ public class InputOneStatementPerLine {
       increment and conditional expressions are empty
       (forever loop) is legal
      */
-    for (int i = 0;;) { one = 5; } //legal
+    for (int i = 0;;) { one = 5; } // legal
     // 2 violations above:
     //  ''{' at column 23 should have line break after.'
     //  ''}' at column 34 should be alone on a line.'
@@ -317,7 +317,7 @@ public class InputOneStatementPerLine {
   /** Some javadoc. */
   public void foo5() {
     // a "forever" loop.
-    for (;;){} //legal
+    for (;;){} // legal
   }
 
   /** Some javadoc. */
@@ -325,7 +325,7 @@ public class InputOneStatementPerLine {
     // One statement inside for block is legal
     for (;;) {
       one = 5;
-    } //legal
+    } // legal
   }
 
   /**
@@ -338,7 +338,7 @@ public class InputOneStatementPerLine {
         ;
         n++, k--) {
       var1++;
-    } //legal
+    } // legal
   }
 
   /**
