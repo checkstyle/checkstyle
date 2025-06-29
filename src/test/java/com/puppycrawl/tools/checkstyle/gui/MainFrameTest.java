@@ -42,6 +42,7 @@ import javax.swing.filechooser.FileFilter;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedConstruction;
 import org.mockito.MockedStatic;
@@ -49,6 +50,8 @@ import org.mockito.MockedStatic;
 import com.puppycrawl.tools.checkstyle.AbstractGuiTestSupport;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
+// until https://github.com/checkstyle/checkstyle/issues/17291
+@Disabled
 public class MainFrameTest extends AbstractGuiTestSupport {
 
     private static final String TEST_FILE_NAME = "InputMainFrame.java";

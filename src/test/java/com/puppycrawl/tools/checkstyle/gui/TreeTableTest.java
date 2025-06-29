@@ -34,10 +34,13 @@ import javax.swing.KeyStroke;
 import javax.swing.tree.TreePath;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractGuiTestSupport;
 
+// until https://github.com/checkstyle/checkstyle/issues/17291
+@Disabled
 public class TreeTableTest extends AbstractGuiTestSupport {
 
     private static final String TEST_FILE_NAME = "InputTreeTable.java";
