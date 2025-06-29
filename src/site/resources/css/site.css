@@ -401,3 +401,11 @@ span.wrapper.inline {
     font-style: italic;
   }
 }
+
+section[id="Properties"] .wrapper table tr td:nth-child(4),
+section[id="Properties"] .wrapper table tr td:nth-child(4) pre,
+section[id="Properties"] .wrapper table tr td:nth-child(4) code {
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word;
+}
