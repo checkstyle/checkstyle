@@ -5,14 +5,14 @@
              name="UpperEll"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks that long constants are defined with an upper ell. That is {@code 'L'}
- and not {@code 'l'}. This is in accordance with the Java Language Specification,
+ Checks that long constants are defined with an upper ell. That is &lt;code&gt;'L'&lt;/code&gt;
+ and not &lt;code&gt;'l'&lt;/code&gt;. This is in accordance with the Java Language Specification,
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.10.1"&gt;
  Section 3.10.1&lt;/a&gt;.
  &lt;/div&gt;
 
  &lt;p&gt;
- Rationale: The lower-case ell {@code 'l'} looks a lot like {@code 1}.
+ Rationale: The lower-case ell &lt;code&gt;'l'&lt;/code&gt; looks a lot like &lt;code&gt;1&lt;/code&gt;.
  &lt;/p&gt;</description>
          <message-keys>
             <message-key key="upperEll"/>

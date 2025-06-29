@@ -6,8 +6,8 @@
              parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;div&gt;
  Checks that each Java package has a Javadoc file used for commenting.
- By default, it only allows a {@code package-info.java} file,
- but can be configured to allow a {@code package.html} file.
+ By default, it only allows a &lt;code&gt;package-info.java&lt;/code&gt; file,
+ but can be configured to allow a &lt;code&gt;package.html&lt;/code&gt; file.
  &lt;/div&gt;
 
  &lt;p&gt;
@@ -15,7 +15,7 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="allowLegacy" type="boolean">
-               <description>Allow legacy {@code package.html} file to be used.</description>
+               <description>Allow legacy &lt;code&gt;package.html&lt;/code&gt; file to be used.</description>
             </property>
             <property default-value=".java"
                       name="fileExtensions"

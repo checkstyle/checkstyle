@@ -5,7 +5,7 @@
              name="AvoidStarImport"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks that there are no import statements that use the {@code *} notation.
+ Checks that there are no import statements that use the &lt;code&gt;*&lt;/code&gt; notation.
  &lt;/div&gt;
 
  &lt;p&gt;
@@ -16,19 +16,19 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- Note that property {@code excludes} is not recursive, subpackages of excluded
+ Note that property &lt;code&gt;excludes&lt;/code&gt; is not recursive, subpackages of excluded
  packages are not automatically excluded.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="allowClassImports" type="boolean">
                <description>Control whether to allow starred class
- imports like {@code import java.util.*;}.</description>
+ imports like &lt;code&gt;import java.util.*;&lt;/code&gt;.</description>
             </property>
             <property default-value="false"
                       name="allowStaticMemberImports"
                       type="boolean">
                <description>Control whether to allow starred
- static member imports like {@code import static org.junit.Assert.*;}.</description>
+ static member imports like &lt;code&gt;import static org.junit.Assert.*;&lt;/code&gt;.</description>
             </property>
             <property default-value="" name="excludes" type="java.lang.String[]">
                <description>Specify packages where starred class imports are

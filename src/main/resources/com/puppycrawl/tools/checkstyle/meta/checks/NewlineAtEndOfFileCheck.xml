@@ -52,7 +52,7 @@
 
  &lt;p&gt;
  It is also possible to enforce the use of a specific line-separator across
- platforms, with the {@code lineSeparator} property.
+ platforms, with the &lt;code&gt;lineSeparator&lt;/code&gt; property.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="" name="fileExtensions" type="java.lang.String[]">
