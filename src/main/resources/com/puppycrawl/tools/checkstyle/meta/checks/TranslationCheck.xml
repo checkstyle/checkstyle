@@ -9,11 +9,11 @@
  regarding their keys. Two property files describing one and the same context
  are consistent if they contain the same keys. TranslationCheck also can check
  an existence of required translations which must exist in project, if
- {@code requiredTranslations} option is used.
+ &lt;code&gt;requiredTranslations&lt;/code&gt; option is used.
  &lt;/div&gt;
 
  &lt;p&gt;
- Language code for the property {@code requiredTranslations} is composed of
+ Language code for the property &lt;code&gt;requiredTranslations&lt;/code&gt; is composed of
  the lowercase, two-letter codes as defined by
  &lt;a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"&gt;ISO 639-1&lt;/a&gt;.
  Default value is empty String Set which means that only the existence of default
@@ -24,8 +24,8 @@
 
  &lt;p&gt;
  Note: If your project uses preprocessed translation files and the original files do not have the
- {@code properties} extension, you can specify additional file extensions
- via the {@code fileExtensions} property.
+ &lt;code&gt;properties&lt;/code&gt; extension, you can specify additional file extensions
+ via the &lt;code&gt;fileExtensions&lt;/code&gt; property.
  &lt;/p&gt;
 
  &lt;p&gt;

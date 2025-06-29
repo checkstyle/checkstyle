@@ -10,8 +10,8 @@
 
  &lt;p&gt;
  Rationale: This check can be used to prototype checks and to find common bad
- practice such as calling {@code ex.printStacktrace()},
- {@code System.out.println()}, {@code System.exit()}, etc.
+ practice such as calling &lt;code&gt;ex.printStacktrace()&lt;/code&gt;,
+ &lt;code&gt;System.out.println()&lt;/code&gt;, &lt;code&gt;System.exit()&lt;/code&gt;, etc.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="" name="fileExtensions" type="java.lang.String[]">
