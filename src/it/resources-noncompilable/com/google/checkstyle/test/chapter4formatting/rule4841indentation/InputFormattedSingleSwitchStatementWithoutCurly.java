@@ -1,7 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule42blockindentation;
 
 /** some javadoc. */
-public class InputSingleSwitchStatementWithoutCurlyCorrect {
+public class InputFormattedSingleSwitchStatementWithoutCurly {
   void testCorrectIndentation(int obj) {
     switch (obj) {
       case 0 -> System.out.println("Test");
