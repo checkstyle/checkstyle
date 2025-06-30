@@ -404,4 +404,24 @@
     <Method name="getTargetFiles" />
     <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
   </Match>
+
+  <!-- Suppress NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE -->
+  <!-- until https://github.com/checkstyle/checkstyle/issues/16979 -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.utils.CommonUtil" />
+    <Method name="getFileExtension" />
+    <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE" />
+  </Match>
+
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.utils.CommonUtil" />
+    <Method name="getFileNameWithoutExtension" />
+    <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE" />
+  </Match>
+
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.utils.CommonUtil" />
+    <Method name="matchesFileExtension" />
+    <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE" />
+  </Match>
 </FindBugsFilter>
