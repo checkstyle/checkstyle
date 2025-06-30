@@ -39,11 +39,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Checks that for loop control variables are not modified
  * inside the for block. An example is:
  * </div>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * for (int i = 0; i &lt; 1; i++) {
  *   i++; // violation
  * }
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * Rationale: If the control variable is modified inside the loop
@@ -55,21 +55,21 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * Such loop would be suppressed:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * for (int i = 0; i &lt; 10;) {
  *   i++;
  * }
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * NOTE:The check works with only primitive type variables.
  * The check will not work for arrays used as control variable.An example is
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * for (int a[]={0};a[0] &lt; 10;a[0]++) {
  *  a[0]++;   // it will skip this violation
  * }
- * </pre>
+ * </code></pre></div>
  * <ul>
  * <li>
  * Property {@code skipEnhancedForLoopVariable} - Control whether to check

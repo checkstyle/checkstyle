@@ -8,11 +8,11 @@
  Checks that for loop control variables are not modified
  inside the for block. An example is:
  &lt;/div&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  for (int i = 0; i &amp;lt; 1; i++) {
    i++; // violation
  }
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  Rationale: If the control variable is modified inside the loop
@@ -24,21 +24,21 @@
  &lt;p&gt;
  Such loop would be suppressed:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  for (int i = 0; i &amp;lt; 10;) {
    i++;
  }
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  NOTE:The check works with only primitive type variables.
  The check will not work for arrays used as control variable.An example is
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  for (int a[]={0};a[0] &amp;lt; 10;a[0]++) {
   a[0]++;   // it will skip this violation
  }
- &lt;/pre&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="false"
                       name="skipEnhancedForLoopVariable"

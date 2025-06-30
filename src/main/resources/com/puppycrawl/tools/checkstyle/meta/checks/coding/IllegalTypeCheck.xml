@@ -28,11 +28,11 @@
  This helps to avoid ambiguous cases, e.g.: {@code java.awt.List} was set as
  illegal class name, then, code like:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  import java.util.List;
  ...
  List list; //No violation here
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  will be ok.

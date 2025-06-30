@@ -37,9 +37,9 @@
  Programmers sometimes mistakenly use the type of their class {@code Foo}
  as the type of the parameter to {@code equals()}:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  public boolean equals(Foo obj) {...}
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  This covariant version of {@code equals()} does not override the version in
