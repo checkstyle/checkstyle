@@ -26,7 +26,6 @@ import static com.puppycrawl.tools.checkstyle.utils.XpathUtil.getTextAttributeVa
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.List;
 import java.util.UUID;
@@ -103,7 +102,7 @@ public class XpathUtilTest {
         final String fileContent = "class Test { public void method() {int a = 5;}}";
         final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
         final File file = new File(tempFolder, uniqueFileName);
-        Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
+        Files.writeString(file.toPath(), fileContent);
         final String expected = addEndOfLine(
             "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
             "`--CLASS_DEF -> CLASS_DEF [1:0]",
@@ -124,7 +123,7 @@ public class XpathUtilTest {
         final String fileContent = "class Test { /* comment */ }";
         final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
         final File file = new File(tempFolder, uniqueFileName);
-        Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
+        Files.writeString(file.toPath(), fileContent);
         final String expected = addEndOfLine(
             "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
             "`--CLASS_DEF -> CLASS_DEF [1:0]",
@@ -142,7 +141,7 @@ public class XpathUtilTest {
         final String fileContent = "class Test { public void method() {int a = 5; int b = 5;}}";
         final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
         final File file = new File(tempFolder, uniqueFileName);
-        Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
+        Files.writeString(file.toPath(), fileContent);
         final String expected = addEndOfLine(
             "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
             "`--CLASS_DEF -> CLASS_DEF [1:0]",
@@ -171,7 +170,7 @@ public class XpathUtilTest {
         final String fileContent = "class Test { public void method() {int a = 5; int b = 5;}}";
         final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
         final File file = new File(tempFolder, uniqueFileName);
-        Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
+        Files.writeString(file.toPath(), fileContent);
         final String invalidXpath = "\\//CLASS_DEF"
                 + "//METHOD_DEF//VARIABLE_DEF//IDENT";
         try {
