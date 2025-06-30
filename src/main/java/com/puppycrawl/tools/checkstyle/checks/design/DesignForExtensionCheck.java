@@ -116,7 +116,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * Example of code that cause violation as it is designed for extension:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * public abstract class Plant {
  *   private String roots;
  *   private String trunk;
@@ -142,12 +142,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     validate();
  *   }
  * }
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * Example of code without violation:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * public abstract class Plant {
  *   private String roots;
  *   private String trunk;
@@ -162,7 +162,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *   public abstract void grow();
  * }
- * </pre>
+ * </code></pre></div>
  * <ul>
  * <li>
  * Property {@code ignoredAnnotations} - Specify annotations which allow the check to

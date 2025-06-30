@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * For example, this check finds the obsolete braces in
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * public void guessTheOutput()
  * {
  *   int whichIsWhich = 0;
@@ -46,17 +46,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   }
  *   System.out.println("value = " + whichIsWhich);
  * }
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * and debugging / refactoring leftovers such as
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * // if (conditionThatIsNotUsedAnyLonger)
  * {
  *   System.out.println("unconditional");
  * }
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * A case in a switch statement does not implicitly form a block.

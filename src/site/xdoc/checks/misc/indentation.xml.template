@@ -34,7 +34,7 @@
           top of the line wrap and any indentations above it.
         </p>
         <p>Example:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 if ((condition1 &amp;&amp; condition2)
         || (condition3 &amp;&amp; condition4)    // line wrap with bigger indentation
         ||!(condition5 &amp;&amp; condition6)) { // line wrap with bigger indentation
@@ -44,7 +44,7 @@ if ((condition1 &amp;&amp; condition2)
         return c.doSome();               // basic offset
       });
 }
-        </source>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

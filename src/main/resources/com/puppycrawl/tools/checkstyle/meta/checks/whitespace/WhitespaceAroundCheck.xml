@@ -8,7 +8,7 @@
  Checks that a token is surrounded by whitespace. Empty constructor,
  method, class, enum, interface, loop bodies (blocks), lambdas of the form
  &lt;/div&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  public MyClass() {}      // empty constructor
  public void func() {}    // empty method
  public interface Foo {} // empty interface
@@ -20,7 +20,7 @@
  do {} while (i = 1); // empty do-while loop
  Runnable noop = () -&amp;gt; {}; // empty lambda
  public @interface Beta {} // empty annotation type
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  may optionally be exempted from the policy using the &lt;code&gt;allowEmptyMethods&lt;/code&gt;,
@@ -32,22 +32,22 @@
  &lt;p&gt;
  This check does not flag as violation double brace initialization like:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  new Properties() {{
      setProperty("key", "value");
  }};
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  Parameter allowEmptyCatches allows to suppress violations when token list
  contains SLIST to check if beginning of block is surrounded by whitespace
  and catch block is empty, for example:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  try {
      k = 5 / i;
  } catch (ArithmeticException ex) {}
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  With this property turned off, this raises violation because the beginning

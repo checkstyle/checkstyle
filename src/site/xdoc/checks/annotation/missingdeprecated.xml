@@ -41,13 +41,13 @@
           the javadoc tool faithfully supports it. An example config using
           SuppressionSingleFilter is:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;!-- required till https://bugs.openjdk.org/browse/JDK-8160601 --&gt;
 &lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
     &lt;property name=&quot;checks&quot; value=&quot;MissingDeprecatedCheck&quot;/&gt;
     &lt;property name=&quot;files&quot; value=&quot;package-info\.java&quot;/&gt;
 &lt;/module&gt;
-        </source>
+        </code></pre></div>
       </subsection>
       <subsection name="Properties" id="Properties">
         <div class="wrapper">

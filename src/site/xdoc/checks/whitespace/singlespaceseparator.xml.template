@@ -21,11 +21,11 @@
           Setting <code>validateComments</code> to false will ignore cases like:
         </p>
 
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 int i;  // Multiple whitespaces before comment tokens will be ignored.
 private void foo(int  /* whitespaces before and after block-comments will be
 ignored */  i) {
-        </source>
+        </code></pre></div>
 
         <p>
           Sometimes, users like to space similar items on different lines to the same
@@ -33,10 +33,10 @@ ignored */  i) {
           check, so both braces in the following case will be reported as violations.
         </p>
 
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public long toNanos(long d)  { return d;             } // 2 violations
 public long toMicros(long d) { return d / (C1 / C0); }
-        </source>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Properties" id="Properties">
