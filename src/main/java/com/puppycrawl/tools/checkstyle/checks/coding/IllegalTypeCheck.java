@@ -60,11 +60,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * This helps to avoid ambiguous cases, e.g.: {@code java.awt.List} was set as
  * illegal class name, then, code like:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * import java.util.List;
  * ...
  * List list; //No violation here
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * will be ok.

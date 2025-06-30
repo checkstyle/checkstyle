@@ -43,7 +43,7 @@
           the ability to enforce that the <code>public</code> and <code>static</code> modifiers
           are explicitly coded and not implicitly added by the compiler.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public interface AddressFactory {
   // check enforces code contains &quot;public static final&quot;
   public static final String UNKNOWN = &quot;Unknown&quot;;
@@ -67,7 +67,7 @@ public interface AddressFactory {
     return createAddress(OTHER, OTHER);
   }
 }
-        </source>
+        </code></pre></div>
         <p>
           Rationale for this check:
           Methods, fields and nested types are treated differently depending on whether

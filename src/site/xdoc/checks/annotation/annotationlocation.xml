@@ -28,7 +28,9 @@
           Attention: Annotations among modifiers are ignored (looks like false-negative)
           as there might be a problem with annotations for return types:
         </p>
-        <source>public @Nullable Long getStartTimeOrNull() { ... }</source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+          public @Nullable Long getStartTimeOrNull() { ... }
+        </code></pre></div>
 
         <p>
           Such annotations are better to keep close to type.
@@ -38,11 +40,11 @@
         <p>
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 @Override
 @Nullable
 public String getNameIfPresent() { ... }
-        </source>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

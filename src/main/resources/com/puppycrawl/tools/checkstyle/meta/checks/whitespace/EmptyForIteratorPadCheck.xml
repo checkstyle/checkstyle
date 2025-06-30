@@ -9,11 +9,11 @@
  space is required at an empty for iterator, or such white space is
  forbidden. No check occurs if there is a line wrap at the iterator, as in
  &lt;/div&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  for (Iterator foo = very.long.line.iterator();
      foo.hasNext();
     )
- &lt;/pre&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="nospace"
                       name="option"

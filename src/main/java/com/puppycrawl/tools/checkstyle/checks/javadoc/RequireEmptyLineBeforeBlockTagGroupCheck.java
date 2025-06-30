@@ -82,10 +82,10 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
 
     /**
      * Case when space separates the tag and the asterisk like in the below example.
-     * <pre>
+     * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
      *  /**
      *   * &#64;param noSpace there is no space here
-     * </pre>
+     * </code></pre></div>
      */
     private static final List<Integer> ONLY_TAG_VARIATION_1 = Arrays.asList(
             JavadocTokenTypes.WS,
@@ -94,10 +94,10 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
 
     /**
      * Case when no space separates the tag and the asterisk like in the below example.
-     * <pre>
+     * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
      *  /**
      *   *&#64;param noSpace there is no space here
-     * </pre>
+     * </code></pre></div>
      */
     private static final List<Integer> ONLY_TAG_VARIATION_2 = Arrays.asList(
             JavadocTokenTypes.LEADING_ASTERISK,
@@ -161,29 +161,29 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
      * Returns true when there are is only whitespace and asterisks before the provided tagNode.
      * When javadoc has only a javadoc tag like {@literal @} in it, the JAVADOC_TAG in a JAVADOC
      * detail node will always have 2 or 3 siblings before it. The parse tree looks like:
-     * <pre>
+     * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
      * JAVADOC[3x0]
      * |--NEWLINE[3x0] : [\n]
      * |--LEADING_ASTERISK[4x0] : [ *]
      * |--WS[4x2] : [ ]
      * |--JAVADOC_TAG[4x3] : [@param T The bar.\n ]
-     * </pre>
+     * </code></pre></div>
      * Or it can also look like:
-     * <pre>
+     * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
      * JAVADOC[3x0]
      * |--NEWLINE[3x0] : [\n]
      * |--LEADING_ASTERISK[4x0] : [ *]
      * |--JAVADOC_TAG[4x3] : [@param T The bar.\n ]
-     * </pre>
+     * </code></pre></div>
      * We do not include the variation
-     * <pre>
+     * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
      *  /**&#64;param noSpace there is no space here
-     * </pre>
+     * </code></pre></div>
      * which results in the tree
-     * <pre>
+     * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
      * JAVADOC[3x0]
      * |--JAVADOC_TAG[4x3] : [@param noSpace there is no space here\n ]
-     * </pre>
+     * </code></pre></div>
      * because this one is invalid. We must recommend placing a blank line to separate &#64;param
      * from the first javadoc asterisks.
      *

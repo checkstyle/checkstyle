@@ -64,7 +64,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * enforce that the {@code public} and {@code static} modifiers are explicitly coded and not
  * implicitly added by the compiler.
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * public interface AddressFactory {
  *   // check enforces code contains "public static final"
  *   public static final String UNKNOWN = "Unknown";
@@ -88,7 +88,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *     return createAddress(OTHER, OTHER);
  *   }
  * }
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * Rationale for this check: Methods, fields and nested types are treated differently

@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Checks if unnecessary parentheses are used in a statement or expression.
  * The check will flag the following with warnings:
  * </div>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * return (x);          // parens around identifier
  * return (x + 1);      // parens around return value
  * int x = (y / 2 + 1); // parens around assignment rhs
@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *             || z &lt; 9;
  * boolean b = (~a) &gt; -27            // parens around ~a
  *             &amp;&amp; (a-- &lt; 30);        // parens around expression
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * The check is not "type aware", that is to say, it can't tell if parentheses
@@ -54,12 +54,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * operator precedence but unaware about operator associativity.
  * It won't catch cases such as:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * int x = (a + b) + c; // 1st Case
  * boolean p = true; // 2nd Case
  * int q = 4;
  * int r = 3;
- * if (p == (q &lt;= r)) {}</pre>
+ * if (p == (q &lt;= r)) {}
+ * </code></pre></div>
  *
  * <p>
  * In the first case, given that <em>a</em>, <em>b</em>, and <em>c</em> are
@@ -75,7 +76,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * The partial support for operator precedence includes cases of the following type:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * boolean a = true, b = true;
  * boolean c = false, d = false;
  * if ((a &amp;&amp; b) || c) { // violation, unnecessary paren
@@ -94,7 +95,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * }
  * if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
  * }
- * </pre>
+ * </code></pre></div>
  * <ul>
  * <li>
  * Property {@code tokens} - tokens to check

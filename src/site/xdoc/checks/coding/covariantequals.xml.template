@@ -43,9 +43,9 @@
           as the type of the parameter to <code>equals()</code>:
         </p>
 
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public boolean equals(Foo obj) {...}
-        </source>
+        </code></pre></div>
 
         <p>
           This covariant version of <code>equals()</code> does not override the version in the

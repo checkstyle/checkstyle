@@ -35,11 +35,11 @@
           with HTML entity &amp;#64; or place it inside <code>{@code }</code>,
           for example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * &amp;#64;serial literal in {@code @serial} Javadoc tag.
  */
-        </source>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

@@ -101,11 +101,11 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-file">Example1 (target folder structure):</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 messages.properties
 messages_fr.properties
 messages_es.properties
-        </source>
+        </code></pre></div>
         <p id="messages-raw">Contents of messages.properties file:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 hello=Hello
@@ -140,10 +140,10 @@ messages_es.properties  // violation 'Key 'cancel', 'name' and 'hello' missing.'
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-file">Example2 (target folder structure):</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 ButtonLabels.properties
 ButtonLabels_fr.properties
-        </source>
+        </code></pre></div>
         <p id="ButtonLabels-raw">Contents of ButtonLabels.properties file:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 hello=Hello
@@ -173,10 +173,10 @@ ButtonLabels_fr.properties  // violation 'Key 'cancel' is missing.'
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-file">Example3 no messages_home_fr.* files (target folder structure):</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 messages_home.properties
 messages_home.translations
-        </source>
+        </code></pre></div>
         <p id="messages_home-raw">Contents of messages_home.properties file:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 hello=Hello

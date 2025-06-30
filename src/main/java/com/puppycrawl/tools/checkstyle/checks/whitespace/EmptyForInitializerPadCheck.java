@@ -34,10 +34,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * space is required at an empty for initializer, or such white space is
  * forbidden.  No check occurs if there is a line wrap at the initializer, as in
  * </div>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * for (
  *     ; i &lt; j; i++, j--)
- *  </pre>
+ *  </code></pre></div>
  * <ul>
  * <li>
  * Property {@code option} - Specify policy on how to pad an empty for iterator.

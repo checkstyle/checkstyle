@@ -41,22 +41,22 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <ul>
  * <li>
  * {@code first_line} - Javadoc content starts from the first line:
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * &#47;** Summary text.
  *   * More details.
  *   *&#47;
  * public void method();
- * </pre>
+ * </code></pre></div>
  * </li>
  * <li>
  * {@code second_line} - Javadoc content starts from the second line:
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * &#47;**
  *   * Summary text.
  *   * More details.
  *   *&#47;
  * public void method();
- * </pre>
+ * </code></pre></div>
  * </li>
  * </ul>
  *
@@ -73,7 +73,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Documentation Comment Specification</a> permits leading asterisks on the first line.
  * For these Javadoc comments:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * &#47;***
  *   * Some text.
  *   *&#47;
@@ -83,7 +83,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &#47;**           **
  *   * Some text.
  *   *&#47;
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * The documentation generated will be just "Some text." without any asterisks.

@@ -19,7 +19,7 @@
  &lt;p&gt;
  Note: Check allows usage of the popular assignments in loops:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  String line;
  while ((line = bufferedReader.readLine()) != null) { // OK
    // process the line
@@ -33,7 +33,7 @@
    // process the line
  }
  while ((line = bufferedReader.readLine()) != null); // OK
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  Assignment inside a condition is not a problem here, as the assignment is surrounded

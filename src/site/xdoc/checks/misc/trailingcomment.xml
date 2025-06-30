@@ -24,10 +24,10 @@
           one that is on the same line as actual code. For example:
         </p>
 
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 a = b + c;      // Some insightful comment
 d = e / f;        // Another comment for this line
-        </source>
+        </code></pre></div>
 
         <p>
           Quoting <cite>Code Complete</cite> for the justification:

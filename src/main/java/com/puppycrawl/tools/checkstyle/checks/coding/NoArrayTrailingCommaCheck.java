@@ -31,22 +31,22 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * them in other locations. To unify the coding style, the use of trailing commas should
  * be prohibited.
  * </div>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * int[] foo = new int[] {
  *   1,
  *   2
  * };
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * The check demands that there should not be any comma after the last element of an array.
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * String[] foo = new String[] {
  *   "FOO",
  *   "BAR", // violation
  * }
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}

@@ -87,7 +87,7 @@
           See the following example:
         </p>
 
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public enum EnumClass {
   FIELD_1,
   FIELD_2 {
@@ -98,7 +98,7 @@ public enum EnumClass {
   public void method1() {}
   public final void method2() {} // no violation expected
 }
-        </source>
+        </code></pre></div>
 
         <p>
           Since these methods can be overridden in these situations, the final methods are not
@@ -119,7 +119,7 @@ public enum EnumClass {
           is always obsolete:
         </p>
 
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class PublicClass {
   public PublicClass() {} // OK
 }
@@ -127,14 +127,14 @@ public class PublicClass {
 class PackagePrivateClass {
   public PackagePrivateClass() {} // violation expected
 }
-        </source>
+        </code></pre></div>
 
         <p>There is no violation in the following example,
           because removing public modifier from ProtectedInnerClass
           constructor will make this code not compiling:
         </p>
 
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package a;
 public class ClassExample {
   protected class ProtectedInnerClass {
@@ -147,7 +147,7 @@ import a.ClassExample;
 public class ClassExtending extends ClassExample {
   ProtectedInnerClass pc = new ProtectedInnerClass();
 }
-        </source>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

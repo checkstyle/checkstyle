@@ -30,19 +30,19 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Checks for over-complicated boolean return or yield statements.
  * For example the following code
  * </div>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * if (valid())
  *   return false;
  * else
  *   return true;
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * could be written as
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * return !valid();
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * The idea for this Check has been shamelessly stolen from the equivalent
@@ -121,15 +121,15 @@ public class SimplifyBooleanReturnCheck
      * or a compound statement that contains only such a return or a yield statement.
      *
      * <p>Returns {@code true} iff ast represents
-     * <pre>
+     * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
      * return/yield true/false;
-     * </pre>
+     * </code></pre></div>
      * or
-     * <pre>
+     * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
      * {
      *   return/yield true/false;
      * }
-     * </pre>
+     * </code></pre></div>
      *
      * @param ast the syntax tree to check
      * @return if ast is a return or a yield statement with a boolean literal.
@@ -147,9 +147,9 @@ public class SimplifyBooleanReturnCheck
      * Returns if an AST is a return or a yield statement with a boolean literal.
      *
      * <p>Returns {@code true} iff ast represents
-     * <pre>
+     * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
      * return/yield true/false;
-     * </pre>
+     * </code></pre></div>
      *
      * @param ast the syntax tree to check
      * @return if ast is a return or a yield statement with a boolean literal.

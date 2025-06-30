@@ -21,7 +21,7 @@
         <p>
           For example, this check finds the obsolete braces in
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public void guessTheOutput()
 {
   int whichIsWhich = 0;
@@ -30,15 +30,15 @@ public void guessTheOutput()
   }
   System.out.println(&quot;value = &quot; + whichIsWhich);
 }
-        </source>
+        </code></pre></div>
 
         <p> and debugging / refactoring leftovers such as </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // if (conditionThatIsNotUsedAnyLonger)
 {
   System.out.println(&quot;unconditional&quot;);
 }
-        </source>
+        </code></pre></div>
 
         <p>
           A case in a switch statement does not implicitly form a block.

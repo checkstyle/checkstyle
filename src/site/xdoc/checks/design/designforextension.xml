@@ -80,7 +80,7 @@ method will never affect the behavior of any other method.
         <p>
           Example of code that cause violation as it is designed for extension:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public abstract class Plant {
   private String roots;
   private String trunk;
@@ -106,11 +106,11 @@ public class Tree extends Plant {
     validate();
   }
 }
-        </source>
+        </code></pre></div>
         <p>
           Example of code without violation:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public abstract class Plant {
   private String roots;
   private String trunk;
@@ -125,7 +125,7 @@ public abstract class Plant {
 
   public abstract void grow();
 }
-        </source>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

@@ -103,29 +103,29 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * limitation of a copy constructor (or static factory). Assume
  * Square is a subclass for Shape.
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * Shape s1 = new Square();
  * System.out.println(s1 instanceof Square); //true
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * ...assume at this point the code knows nothing of s1 being a Square
  *    that's the beauty of polymorphism but the code wants to copy
  *    the Square which is declared as a Shape, its super type...
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * Shape s2 = new Shape(s1); //using the copy constructor
  * System.out.println(s2 instanceof Square); //false
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * The working solution (without knowing about all subclasses and doing many
  * casts) is to do the following (assuming correct clone implementation).
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * Shape s2 = s1.clone();
  * System.out.println(s2 instanceof Square); //true
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * Just keep in mind if this type of polymorphic cloning is required

@@ -33,7 +33,7 @@
  &lt;p&gt;
  Example:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  if ((condition1 &amp;amp;&amp;amp; condition2)
          || (condition3 &amp;amp;&amp;amp; condition4)    // line wrap with bigger indentation
          ||!(condition5 &amp;amp;&amp;amp; condition6)) { // line wrap with bigger indentation
@@ -43,7 +43,7 @@
          return c.doSome();               // basic offset
        });
  }
- &lt;/pre&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="4" name="arrayInitIndent" type="int">
                <description>Specify how far an array initialization

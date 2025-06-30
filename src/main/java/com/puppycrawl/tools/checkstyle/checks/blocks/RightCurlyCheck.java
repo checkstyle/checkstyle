@@ -298,11 +298,11 @@ public class RightCurlyCheck extends AbstractCheck {
      * right curly and the semi following it or else violations will be raised.</i>
      * Only the kind of double brace initializations shown in the following example code will be
      * skipped over:<br>
-     * <pre>
+     * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
      *     {@code Map<String, String> map = new LinkedHashMap<>() {{
      *           put("alpha", "man");
      *       }}; // no violation}
-     * </pre>
+     * </code></pre></div>
      *
      * @param details {@link Details} object containing the details relevant to the rcurly
      * @return if the double brace initialization rcurly should be skipped over by the check

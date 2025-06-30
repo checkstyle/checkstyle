@@ -8,33 +8,33 @@
  Checks that array initialization contains a trailing comma.
  &lt;/div&gt;
 
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  int[] a = new int[]
  {
    1,
    2,
    3,
  };
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  By default, the check demands a comma at the end if neither left nor right curly braces
  are on the same line as the last element of the array.
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  return new int[] { 0 };
  return new int[] { 0
    };
  return new int[] {
    0 };
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  Rationale: Putting this comma in makes it easier to change the
  order of the elements or add new elements on the end. Main benefit of a trailing
  comma is that when you add new entry to an array, no surrounding lines are changed.
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  {
    100000000000000000000,
    200000000000000000000, // OK
@@ -45,33 +45,33 @@
    200000000000000000000,
    300000000000000000000,  // Just this line added, no other changes
  }
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  If closing brace is on the same line as trailing comma, this benefit is gone
  (as the check does not demand a certain location of curly braces the following
  two cases will not produce a violation):
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  {100000000000000000000,
   200000000000000000000,} // Trailing comma not needed, line needs to be modified anyway
 
  {100000000000000000000,
   200000000000000000000, // Modified line
   300000000000000000000,} // Added line
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  If opening brace is on the same line as trailing comma there's also (more arguable) problem:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  {100000000000000000000, // Line cannot be just duplicated to slightly modify entry
  }
 
  {100000000000000000000,
   100000000000000000001, // More work needed to duplicate
  }
- &lt;/pre&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="false"
                       name="alwaysDemandTrailingComma"

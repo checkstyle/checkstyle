@@ -58,7 +58,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * <p>
  * Example:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * if ((condition1 &amp;&amp; condition2)
  *         || (condition3 &amp;&amp; condition4)    // line wrap with bigger indentation
  *         ||!(condition5 &amp;&amp; condition6)) { // line wrap with bigger indentation
@@ -68,7 +68,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *         return c.doSome();               // basic offset
  *       });
  * }
- * </pre>
+ * </code></pre></div>
  * <ul>
  * <li>
  * Property {@code arrayInitIndent} - Specify how far an array initialization

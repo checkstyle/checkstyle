@@ -54,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Counts only go towards the main type declaration parent, and are kept separate
  * from it's children's inner types.
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * public class ExampleClass {
  *   public enum Colors {
  *     RED, GREEN, YELLOW;
@@ -73,7 +73,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *                                    // but counted towards InnerExampleClass
  *   }
  * }
- * </pre>
+ * </code></pre></div>
  * <ul>
  * <li>
  * Property {@code maxPackage} - Specify the maximum number of {@code package} methods allowed.

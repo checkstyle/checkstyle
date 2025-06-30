@@ -299,7 +299,7 @@ public class FinalClassCheck
      * <p>The parameter {@code countProvider} exists because if the class being searched is the
      * super class of anonymous inner class, the rules of evaluation are a bit different,
      * consider the following example-
-     * <pre>
+     * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
      * {@code
      * public class Main {
      *     static class One {
@@ -319,7 +319,7 @@ public class FinalClassCheck
      *     }
      * }
      * }
-     * </pre>
+     * </code></pre></div>
      * If the {@link Function} {@code countProvider} hadn't used
      * {@link FinalClassCheck#getAnonSuperTypeMatchingCount} to
      * calculate the matching count then the logic would have falsely evaluated

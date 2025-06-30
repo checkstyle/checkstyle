@@ -9,10 +9,10 @@
  space is required at an empty for initializer, or such white space is
  forbidden.  No check occurs if there is a line wrap at the initializer, as in
  &lt;/div&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  for (
      ; i &amp;lt; j; i++, j--)
-  &lt;/pre&gt;</description>
+  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="nospace"
                       name="option"

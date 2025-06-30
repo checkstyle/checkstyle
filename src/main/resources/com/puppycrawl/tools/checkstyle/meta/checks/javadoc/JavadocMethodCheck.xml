@@ -61,12 +61,12 @@
  For example, if the following method is implementing a method required by
  an interface, then the Javadoc could be done as:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  &amp;#47;** {&amp;#64;inheritDoc} *&amp;#47;
  public int checkReturnTag(final int aTagIndex,
                            JavadocTag[] aTags,
                            int aLineNo)
- &lt;/pre&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="public, protected, package, private"
                       name="accessModifiers"

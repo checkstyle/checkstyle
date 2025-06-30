@@ -82,29 +82,29 @@
  limitation of a copy constructor (or static factory). Assume
  Square is a subclass for Shape.
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  Shape s1 = new Square();
  System.out.println(s1 instanceof Square); //true
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  ...assume at this point the code knows nothing of s1 being a Square
     that's the beauty of polymorphism but the code wants to copy
     the Square which is declared as a Shape, its super type...
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  Shape s2 = new Shape(s1); //using the copy constructor
  System.out.println(s2 instanceof Square); //false
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  The working solution (without knowing about all subclasses and doing many
  casts) is to do the following (assuming correct clone implementation).
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  Shape s2 = s1.clone();
  System.out.println(s2 instanceof Square); //true
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  Just keep in mind if this type of polymorphic cloning is required

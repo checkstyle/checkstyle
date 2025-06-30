@@ -401,12 +401,12 @@ import static com.google.common.primitives.Doubles.BYTES; // Group "everything e
         <p>
           For e.g. this is what is considered to be container names for the given example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static HttpConstants.COLON     =&gt; HttpConstants
 import static HttpHeaders.addHeader   =&gt; HttpHeaders
 import static HttpHeaders.setHeader   =&gt; HttpHeaders
 import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
-        </source>
+        </code></pre></div>
         <p>
           According to this logic, HttpHeaders.Names should come after HttpHeaders.
         </p><hr class="example-separator"/>
@@ -454,14 +454,14 @@ import static io.netty.handler.codec.http.HttpHeaders.Names.DATE;
         <p id="Example9-code">
           Example:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static io.netty.handler.codec.http.HttpConstants.COLON;
 import static io.netty.handler.codec.http.HttpHeaders.addHeader;
 import static io.netty.handler.codec.http.HttpHeaders.setHeader;
 import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // violation, wrong order, should sort alphabetically
 
 public class Example9 { }
-        </source>
+        </code></pre></div>
         <p>
           To configure the check to enforce static import group separation
         </p><hr class="example-separator"/>

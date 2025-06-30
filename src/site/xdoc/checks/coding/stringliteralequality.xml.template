@@ -23,14 +23,14 @@
         <p>
           Rationale: Novice Java programmers often use code like:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 if (x == &quot;something&quot;)
-        </source>
+        </code></pre></div>
 
         <p>when they mean</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 if (&quot;something&quot;.equals(x))
-        </source>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Examples" id="Examples">

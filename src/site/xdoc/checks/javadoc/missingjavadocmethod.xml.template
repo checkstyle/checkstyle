@@ -31,7 +31,7 @@
           For getters and setters for the property <code>allowMissingPropertyJavadoc</code>,
           the methods must match exactly the structures below.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public void setNumber(final int number)
 {
     mNumber = number;
@@ -46,7 +46,7 @@ public boolean isSomething()
 {
     return false;
 }
-        </source>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

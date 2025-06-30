@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * If you make the constructor protected you may want to consider the following constructor
  * implementation technique to disallow instantiating subclasses:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * public class StringUtils // not final to allow subclassing
  * {
  *   protected StringUtils() {
@@ -56,7 +56,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  *     // ...
  *   }
  * }
- * </pre>
+ * </code></pre></div>
  * <ul>
  * <li>
  * Property {@code ignoreAnnotatedBy} - Ignore classes annotated

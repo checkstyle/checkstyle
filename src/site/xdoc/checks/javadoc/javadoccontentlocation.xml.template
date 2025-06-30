@@ -20,22 +20,22 @@
         <ul>
           <li>
             {@code first_line} - Javadoc content starts from the first line:
-            <source>
+            <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /** Summary text.
   * More details.
   */
 public void method();
-            </source>
+            </code></pre></div>
           </li>
           <li>
             {@code second_line} - Javadoc content starts from the second line:
-            <source>
+            <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
   * Summary text.
   * More details.
   */
 public void method();
-            </source>
+            </code></pre></div>
           </li>
         </ul>
       </subsection>
@@ -52,7 +52,7 @@ public void method();
           Documentation Comment Specification</a> permits leading asterisks on the first line.
           For these Javadoc comments:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /***
   * Some text.
   */
@@ -62,7 +62,7 @@ public void method();
 /**           **
   * Some text.
   */
-        </source>
+        </code></pre></div>
         <p>
           The documentation generated will be just "Some text." without any asterisks.
           Since these asterisks will not appear in the generated documentation,

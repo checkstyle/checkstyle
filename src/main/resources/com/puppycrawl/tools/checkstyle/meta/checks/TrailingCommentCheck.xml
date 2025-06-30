@@ -17,10 +17,10 @@
  comments are a bad practice. An end line comment would be one that is on
  the same line as actual code. For example:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  a = b + c;      // Some insightful comment
  d = e / f;        // Another comment for this line
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  Quoting &lt;cite&gt;Code Complete&lt;/cite&gt; for the justification:

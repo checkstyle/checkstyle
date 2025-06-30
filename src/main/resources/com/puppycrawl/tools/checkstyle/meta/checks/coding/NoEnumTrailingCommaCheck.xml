@@ -10,23 +10,23 @@
   them in other locations. To unify the coding style, the use of trailing commas should
   be prohibited.
  &lt;/div&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  enum Foo1 {
    FOO,
    BAR;
  }
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
   The check demands that there should not be any comma after last constant in
   enum definition.
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  enum Foo1 {
    FOO,
    BAR, // violation
  }
- &lt;/pre&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <message-keys>
             <message-key key="no.enum.trailing.comma"/>
          </message-keys>

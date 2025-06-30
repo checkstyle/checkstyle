@@ -14,7 +14,8 @@
         method, class, enum, interface, loop bodies (blocks), lambdas of the form
         </div>
 
-        <source>public MyClass() {}      // empty constructor
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public MyClass() {}      // empty constructor
 public void func() {}    // empty method
 public interface Foo {} // empty interface
 public class Foo {} // empty class
@@ -25,7 +26,7 @@ for (int i = 1; i &gt; 1; i++) {} // empty for loop
 do {} while (i = 1); // empty do-while loop
 Runnable noop = () -&gt; {}; // empty lambda
 public @interface Beta {} // empty annotation type
-        </source>
+        </code></pre></div>
 
         <p>
           may optionally be exempted from the policy using the <code>
@@ -36,23 +37,19 @@ public @interface Beta {} // empty annotation type
           properties.
         </p>
         <p>This check does not flag as violation double brace initialization like:</p>
-        <div class="wrapper">
-          <pre><code>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 new Properties() {{
     setProperty(&quot;key&quot;, &quot;value&quot;);
 }};
-          </code></pre>
-        </div>
+        </code></pre></div>
         <p>Parameter allowEmptyCatches allows to suppress violations when token
         list contains SLIST to check if beginning of block is surrounded by
         whitespace and catch block is empty, for example:</p>
-        <div class="wrapper">
-          <pre><code>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 try {
     k = 5 / i;
 } catch (ArithmeticException ex) {}
-          </code></pre>
-        </div>
+        </code></pre></div>
         <p>
           With this property turned off, this raises violation because the beginning of the
           catch block (left curly bracket) is not separated from the end of the catch
