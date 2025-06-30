@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * Note: Check allows usage of the popular assignments in loops:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * String line;
  * while ((line = bufferedReader.readLine()) != null) { // OK
  *   // process the line
@@ -58,7 +58,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   // process the line
  * }
  * while ((line = bufferedReader.readLine()) != null); // OK
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * Assignment inside a condition is not a problem here, as the assignment is surrounded
@@ -194,22 +194,22 @@ public class InnerAssignmentCheck
     /**
      * Determines if ast is in the body of a flow control statement without
      * braces. An example of such a statement would be
-     * <pre>
+     * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
      * if (y &lt; 0)
      *     x = y;
-     * </pre>
+     * </code></pre></div>
      *
      * <p>
      * This leads to the following AST structure:
      * </p>
-     * <pre>
+     * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
      * LITERAL_IF
      *     LPAREN
      *     EXPR // test
      *     RPAREN
      *     EXPR // body
      *     SEMI
-     * </pre>
+     * </code></pre></div>
      *
      * <p>
      * We need to ensure that ast is in the body and not in the test.
@@ -230,7 +230,7 @@ public class InnerAssignmentCheck
 
     /**
      * Tests whether the given AST is used in the "assignment in loop" idiom.
-     * <pre>
+     * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
      * String line;
      * while ((line = bufferedReader.readLine()) != null) {
      *   // process the line
@@ -242,7 +242,7 @@ public class InnerAssignmentCheck
      *   // process the line
      * }
      * while ((line = bufferedReader.readLine()) != null);
-     * </pre>
+     * </code></pre></div>
      * Assignment inside a condition is not a problem here, as the assignment is surrounded by an
      * extra pair of parentheses. The comparison is {@code != null} and there is no chance that
      * intention was to write {@code line == reader.readLine()}.

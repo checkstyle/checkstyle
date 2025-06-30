@@ -16,22 +16,22 @@
  &lt;ul&gt;
  &lt;li&gt;
  &lt;code&gt;first_line&lt;/code&gt; - Javadoc content starts from the first line:
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  &amp;#47;** Summary text.
    * More details.
    *&amp;#47;
  public void method();
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  &lt;/li&gt;
  &lt;li&gt;
  &lt;code&gt;second_line&lt;/code&gt; - Javadoc content starts from the second line:
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  &amp;#47;**
    * Summary text.
    * More details.
    *&amp;#47;
  public void method();
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  &lt;/li&gt;
  &lt;/ul&gt;
 
@@ -48,7 +48,7 @@
  Documentation Comment Specification&lt;/a&gt; permits leading asterisks on the first line.
  For these Javadoc comments:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  &amp;#47;***
    * Some text.
    *&amp;#47;
@@ -58,7 +58,7 @@
  &amp;#47;**           **
    * Some text.
    *&amp;#47;
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  The documentation generated will be just "Some text." without any asterisks.

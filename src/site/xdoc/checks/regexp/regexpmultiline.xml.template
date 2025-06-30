@@ -137,9 +137,9 @@
           <param name="type" value="code"/>
         </macro>
         <p>Result:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /var/tmp/Test.java // violation, a file must not be empty.
-        </source>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
