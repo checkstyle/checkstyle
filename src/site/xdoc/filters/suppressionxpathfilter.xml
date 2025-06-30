@@ -129,12 +129,12 @@
           with suppressions
           file <code>config/suppressions.xml</code>:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;module name=&quot;SuppressionXpathFilter&quot;&gt;
   &lt;property name=&quot;file&quot; value=&quot;config/suppressions.xml&quot;/&gt;
   &lt;property name=&quot;optional&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
-        </source>
+        </code></pre></div>
         <p>
           A <a href="/dtds/suppressions_1_2_xpath_experimental.dtd"><em>suppressions XML
           document</em></a> contains a set
@@ -204,7 +204,7 @@
           more accurate results.
           Other token types always have constant values.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;?xml version=&quot;1.0&quot;?&gt;
 
 &lt;!DOCTYPE suppressions PUBLIC
@@ -216,60 +216,60 @@
   files=&quot;FileOne.java,FileTwo.java&quot;
   query=&quot;//METHOD_DEF[./IDENT[@text='sayHelloWorld']]&quot;/&gt;
 &lt;/suppressions&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress checks for package definitions:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress-xpath checks=&quot;.*&quot; query=&quot;/PACKAGE_DEF&quot;/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress checks for parent element of the first variable definition:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress-xpath checks=&quot;.*&quot; query=&quot;(//VARIABLE_DEF)[1]/..&quot;/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress checks for elements which are either class definitions,
           either method definitions.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//CLASS_DEF | //METHOD_DEF&quot;/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress checks for certain methods:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//METHOD_DEF[./IDENT[@text='getSomeVar'
           or @text='setSomeVar']]&quot;/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress checks for variable <i>testVariable</i> inside <i>testMethod</i> method
           inside <i>TestClass</i> class.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//CLASS_DEF[@text='TestClass']
           //METHOD_DEF[./IDENT[@text='testMethod']]
           //VARIABLE_DEF[./IDENT[@text='testVariable']]&quot;/&gt;
-        </source>
+        </code></pre></div>
         <p>
           In the following sample, violations for <code>LeftCurly</code> check will be suppressed
           for classes with name <i>Main</i> or for methods with name <i>calculate</i>.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress-xpath checks=&quot;LeftCurly&quot; query=&quot;//CLASS_DEF[./IDENT[@text='Main']]//*
           | //METHOD_DEF[./IDENT[@text='calculate']]/*&quot;/&gt;
-        </source>
+        </code></pre></div>
         <p>
           The following example demonstrates how to suppress <code>RequireThis</code> violations for
           variable <i>age</i> inside <i>changeAge</i> method.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress-xpath checks=&quot;RequireThis&quot;
      query=&quot;//CLASS_DEF[./IDENT[@text='InputTest']]
           //METHOD_DEF[./IDENT[@text='changeAge']]//ASSIGN/IDENT[@text='age']&quot;/&gt;
-        </source>
-        <source>
+        </code></pre></div>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class InputTest {
   private int age = 23;
 
@@ -277,7 +277,7 @@ public class InputTest {
     age = 24; // violation will be suppressed
   }
 }
-        </source>
+        </code></pre></div>
         <p>
           Suppress <code>IllegalThrows</code> violations only for methods with name
           <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions.
@@ -286,12 +286,12 @@ public class InputTest {
           <code>METHOD_DEF</code> and name <i>throwsMethod</i>. Please read more about xpath axes at
           <a href="https://www.w3schools.com/xml/xpath_axes.asp">W3Schools Xpath Axes</a>.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress-xpath checks=&quot;IllegalThrows&quot; query=&quot;//LITERAL_THROWS
           /IDENT[@text='RuntimeException' and
           ./ancestor::METHOD_DEF[./IDENT[@text='throwsMethod']]]&quot;/&gt;
-        </source>
-        <source>
+        </code></pre></div>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class InputTest {
   public void throwsMethod() throws RuntimeException { // violation will be suppressed
   }
@@ -299,7 +299,7 @@ public class InputTest {
   public void sampleMethod() throws RuntimeException { // will throw violation here
   }
 }
-        </source>
+        </code></pre></div>
         <p>
           The following sample demonstrates how to suppress all violations for method itself and
           all descendants. <code>descendant-or-self</code> axis iterates through current node and
@@ -307,21 +307,21 @@ public class InputTest {
           Please read more about xpath syntax at
           <a href="https://www.w3schools.com/xml/xpath_syntax.asp">W3Schools Xpath Syntax</a>.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//METHOD_DEF[./IDENT[@text='legacyMethod']]
           /descendant-or-self::node()&quot;/&gt;
-        </source>
+        </code></pre></div>
 
         <p>Some elements can be suppressed in different ways.
           For example, to suppress violation on variable <code>wordCount</code> in following code:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class InputTest {
     private int wordCount = 11;
 }
-        </source>
+        </code></pre></div>
         <p>You need to look at AST of such code by our CLI tool:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 $ java -jar checkstyle-X.XX-all.jar -t InputTest.java
 CLASS_DEF -&gt; CLASS_DEF [1:0]
 |--MODIFIERS -&gt; MODIFIERS [1:0]
@@ -341,28 +341,28 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
 |   |       `--NUM_INT -&gt; 11 [2:28]
 |   `--SEMI -&gt; ; [2:30]
 `--RCURLY -&gt; } [3:0]
-        </source>
+        </code></pre></div>
         <p>
           The easiest way is to suppress by variable name. As you can see <code>VARIABLE_DEF</code>
           node refers to variable declaration statement and has child node with token type
           <code>IDENT</code> which is used for storing class, method, variable names.
         </p>
         <p>The following example demonstrates how variable can be queried by its name:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress-xpath checks=&quot;.&quot; query=&quot;//VARIABLE_DEF[
             ./IDENT[@text='wordCount']]&quot;/&gt;
-        </source>
+        </code></pre></div>
         <p>Another way is to suppress by variable value. Again, if you look at the printed AST tree
         above, you will notice that one of the grandchildren of <code>VARIABLE_DEF</code> node is
         responsible for storing variable value - <code>NUM_INT</code> with value <b>11</b>.</p>
         <p>The following example demonstrates how variable can be queried by its value, same
         approach applies to <code>String, char, float, double, int, long</code> data types:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress-xpath checks=&quot;.&quot; query=&quot;//VARIABLE_DEF[.//NUM_INT[@text=11]]&quot;/&gt;
-        </source>
+        </code></pre></div>
         <p>Next example is about suppressing method with certain annotation by its name and
         element value.</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class InputTest {
     @Generated(&quot;first&quot;) // should not be suppressed
     public void test1() {
@@ -372,9 +372,9 @@ public class InputTest {
     public void test2() {
     }
 }
-        </source>
+        </code></pre></div>
         <p>First of all we need to look at AST tree printed by our CLI tool: </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 $ java -jar checkstyle-X.XX-all.jar -t InputTest.java
 CLASS_DEF -&gt; CLASS_DEF [1:0]
 |--MODIFIERS -&gt; MODIFIERS [1:0]
@@ -420,16 +420,16 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
 |   `--SLIST -&gt; { [7:24]
 |       `--RCURLY -&gt; } [8:4]
 `--RCURLY -&gt; } [9:0]
-        </source>
+        </code></pre></div>
         <p>
           AST node <code>ANNOTATION -&gt; ANNOTATION [6:4]</code> has direct child
           <code>IDENT -&gt; Generated [6:5]</code>,
           therefore can be queried by <code>IDENT</code> value:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress-xpath checks=&quot;.&quot; query=&quot;//METHOD_DEF[
             .//ANNOTATION/IDENT[@text='Generated']]//*&quot;/&gt;
-        </source>
+        </code></pre></div>
         <p>
           The problem with query above that it will suppress violations for all methods with
           annotation <code>@Generated</code>. In order to suppress methods with
@@ -438,10 +438,10 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
           <code>STRING_LITERAL</code>. Use the following query to suppress methods with
           <code>@Generated(&quot;second&quot;)</code> annotation:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress-xpath checks=&quot;.&quot; query=&quot;//METHOD_DEF[.//ANNOTATION[
             ./IDENT[@text='Generated'] and ./EXPR/STRING_LITERAL[@text='second']]]//*&quot;/&gt;
-        </source>
+        </code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

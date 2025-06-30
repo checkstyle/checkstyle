@@ -63,7 +63,7 @@
           application</a> with options to show AST and to ease usage of Xpath queries.
         </p>
         <p><b>-T</b> option prints AST tree of the checked file.</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 $ java -jar checkstyle-X.XX-all.jar -T Main.java
 CLASS_DEF -&gt; CLASS_DEF [1:0]
 |--MODIFIERS -&gt; MODIFIERS [1:0]
@@ -95,15 +95,15 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
 |       |   `--SEMI -&gt; ; [3:31]
 |       `--RCURLY -&gt; } [4:4]
 `--RCURLY -&gt; } [5:0]
-        </source>
+        </code></pre></div>
         <p><b>-b</b> option shows AST nodes that match given Xpath query. This command can be
           used to validate accuracy of Xpath query against given file.</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 $ java -jar checkstyle-X.XX-all.jar Main.java -b &quot;//METHOD_DEF[./IDENT[@text='sayHello']]&quot;
 CLASS_DEF -&gt; CLASS_DEF [1:0]
 `--OBJBLOCK -&gt; OBJBLOCK [1:18]
 |--METHOD_DEF -&gt; METHOD_DEF [2:4]
-        </source><hr class="example-separator"/>
+        </code></pre></div><hr class="example-separator"/>
         <p id="Example1-config">
           The following example demonstrates validation of methods order, so that public methods
           should come before the private ones:</p>

@@ -422,7 +422,7 @@ public class FallThroughCheck extends AbstractCheck {
      * {@code nextCase} is relieved by an appropriate comment.
      *
      * <p>Handles</p>
-     * <pre>
+     * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
      * case 1:
      * /&#42; FALLTHRU &#42;/ case 2:
      *
@@ -437,7 +437,7 @@ public class FallThroughCheck extends AbstractCheck {
      * switch(i) {
      * default:
      * // FALLTHRU
-     * </pre>
+     * </code></pre></div>
      *
      * @param currentCase AST of the case that falls through to the next case.
      * @return True if a relief comment was found

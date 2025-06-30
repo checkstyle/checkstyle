@@ -24,13 +24,13 @@
           the ability to enforce that the <code>static</code> modifier is explicitly coded and not
           implicitly added by the compiler.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public final class Person {
   enum Age {  // violation
     CHILD, ADULT
   }
 }
-        </source>
+        </code></pre></div>
         <p>
           Rationale for this check:
           Nested enums, interfaces, and records are treated differently from nested classes as they

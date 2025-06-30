@@ -110,12 +110,12 @@
             with suppressions
             file <code>config/suppressions.xml</code>:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;module name="SuppressionFilter"&gt;
   &lt;property name="file" value="config/suppressions.xml"/&gt;
   &lt;property name="optional" value="false"/&gt;
 &lt;/module&gt;
-        </source>
+        </code></pre></div>
         <p>
           The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
@@ -127,7 +127,7 @@
           and <code>'Missing a Javadoc comment'</code> violations
           for all lines and files:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;?xml version="1.0"?&gt;
 
 &lt;!DOCTYPE suppressions PUBLIC
@@ -143,64 +143,64 @@
     lines="221"/&gt;
   &lt;suppress message="Missing a Javadoc comment"/&gt;
 &lt;/suppressions&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress check by <a href="../config.html#Id">module id</a>
           when config have two instances on the same check:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress id="stringEqual" files="SomeTestCode.java"/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress all checks for hidden files and folders:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress files="[/\\]\..+" checks=".*"/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress all checks for Maven-generated code:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress files="[/\\]target[/\\]" checks=".*"/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress all checks for archives, classes and other binary files:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress files=".+\.(?:jar|zip|war|class|tar|bin)$" checks=".*"/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress all checks for image files:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress files=".+\.(?:png|gif|jpg|jpeg)$" checks=".*"/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress all checks for non-java files:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress files=".+\.(?:txt|xml|csv|sh|thrift|html|sql|eot|ttf|woff|css|png)$"
   checks=".*"/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress all checks in generated sources:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress checks=".*" files="com[\\/]mycompany[\\/]app[\\/]gen[\\/]"/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress FileLength check on integration tests in certain folder:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress checks="FileLength"
 files="com[\\/]mycompany[\\/]app[\\/].*IT.java"/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress naming violations on variable named 'log' in all files:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress message="Name 'log' must match pattern"/&gt;
-        </source>
+        </code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

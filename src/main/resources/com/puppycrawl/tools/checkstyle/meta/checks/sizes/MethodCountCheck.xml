@@ -26,7 +26,7 @@
  Counts only go towards the main type declaration parent, and are kept separate
  from it's children's inner types.
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  public class ExampleClass {
    public enum Colors {
      RED, GREEN, YELLOW;
@@ -45,7 +45,7 @@
                                     // but counted towards InnerExampleClass
    }
  }
- &lt;/pre&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="100" name="maxPackage" type="int">
                <description>Specify the maximum number of &lt;code&gt;package&lt;/code&gt; methods allowed.</description>

@@ -15,21 +15,21 @@
           them in other locations. To unify the coding style, the use of trailing commas should
           be prohibited.
         </div>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 int[] foo = new int[] {
   1,
   2
 };
-        </source>
+        </code></pre></div>
         <p>
           The check demands that there should not be any comma after the last element of an array.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 String[] foo = new String[] {
   &quot;FOO&quot;,
   &quot;BAR&quot;, // violation
 }
-        </source>
+        </code></pre></div>
       </subsection>
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">

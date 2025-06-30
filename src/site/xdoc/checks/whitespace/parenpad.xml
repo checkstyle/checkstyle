@@ -243,11 +243,11 @@ class Example2 {
         <p>
           The following cases are not checked:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 for ( ; i &lt; j; i++, j--) // no check after left parenthesis
 for (Iterator it = xs.iterator(); it.hasNext(); ) // no check before right parenthesis
 try (Closeable resource = acquire(); ) // no check before right parenthesis
-        </source>
+        </code></pre></div>
 
       </subsection>
 

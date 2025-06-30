@@ -45,14 +45,14 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>Constant definition is any variable/field that has 'final' modifier.
  * It is fine to have one constant defining multiple numeric literals within one expression:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * static final int SECONDS_PER_DAY = 24 * 60 * 60;
  * static final double SPECIAL_RATIO = 4.0 / 3.0;
  * static final double SPECIAL_SUM = 1 + Math.E;
  * static final double SPECIAL_DIFFERENCE = 4 - Math.PI;
  * static final Border STANDARD_BORDER = BorderFactory.createEmptyBorder(3, 3, 3, 3);
  * static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
- * </pre>
+ * </code></pre></div>
  * <ul>
  * <li>
  * Property {@code constantWaiverParentToken} - Specify tokens that are allowed in the AST path

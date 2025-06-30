@@ -15,11 +15,11 @@
           forbidden. No check occurs if there is a line wrap at the iterator,
           as in
         </div>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 for (Iterator foo = very.long.line.iterator();
       foo.hasNext();
      )
-        </source>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Properties" id="Properties">
