@@ -42,7 +42,7 @@
  enforce that the {@code public} and {@code static} modifiers are explicitly coded and not
  implicitly added by the compiler.
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  public interface AddressFactory {
    // check enforces code contains "public static final"
    public static final String UNKNOWN = "Unknown";
@@ -66,7 +66,7 @@
      return createAddress(OTHER, OTHER);
    }
  }
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  Rationale for this check: Methods, fields and nested types are treated differently

@@ -16,10 +16,10 @@
           initializer, as in
         </div>
 
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 for (
       ; i &lt; j; i++, j--)
-        </source>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

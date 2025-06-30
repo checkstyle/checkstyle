@@ -39,13 +39,13 @@
  forward references &lt;/a&gt; from validation due to the fact that we have Checkstyle's limitations
  to clearly detect user intention of fields location and grouping. For example:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  public class A {
    private double x = 1.0;
    private double y = 2.0;
    public double slope = x / y; // will be skipped from validation due to forward reference
  }
- &lt;/pre&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="false" name="ignoreConstructors" type="boolean">
                <description>Control whether to ignore constructors.</description>

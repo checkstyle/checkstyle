@@ -904,7 +904,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * Checks if comment and next code statement
      * (or previous code stmt like <b>case</b> in switch block) are indented at the same level,
      * e.g.:
-     * <pre>
+     * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
      * {@code
      * // some comment - same indentation level
      * int x = 10;
@@ -915,7 +915,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      *  *&#47;
      *  boolean bool = true; - same indentation level
      * }
-     * </pre>
+     * </code></pre></div>
      *
      * @param comment {@link TokenTypes#SINGLE_LINE_COMMENT single-line comment}.
      * @param prevStmt previous code statement.

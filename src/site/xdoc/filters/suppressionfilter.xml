@@ -129,12 +129,12 @@
             with suppressions
             file <code>config/suppressions.xml</code>:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;module name=&quot;SuppressionFilter&quot;&gt;
   &lt;property name=&quot;file&quot; value=&quot;config/suppressions.xml&quot;/&gt;
   &lt;property name=&quot;optional&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
-        </source>
+        </code></pre></div>
         <p>
           The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
@@ -146,7 +146,7 @@
           and <code>'Missing a Javadoc comment'</code> violations
           for all lines and files:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;?xml version=&quot;1.0&quot;?&gt;
 
 &lt;!DOCTYPE suppressions PUBLIC
@@ -162,64 +162,64 @@
     lines=&quot;221&quot;/&gt;
   &lt;suppress message=&quot;Missing a Javadoc comment&quot;/&gt;
 &lt;/suppressions&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress check by <a href="../config.html#Id">module id</a>
           when config have two instances on the same check:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress id=&quot;stringEqual&quot; files=&quot;SomeTestCode.java&quot;/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress all checks for hidden files and folders:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress files=&quot;[/\\]\..+&quot; checks=&quot;.*&quot;/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress all checks for Maven-generated code:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress files=&quot;[/\\]target[/\\]&quot; checks=&quot;.*&quot;/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress all checks for archives, classes and other binary files:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress files=&quot;.+\.(?:jar|zip|war|class|tar|bin)$&quot; checks=&quot;.*&quot;/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress all checks for image files:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress files=&quot;.+\.(?:png|gif|jpg|jpeg)$&quot; checks=&quot;.*&quot;/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress all checks for non-java files:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress files=&quot;.+\.(?:txt|xml|csv|sh|thrift|html|sql|eot|ttf|woff|css|png)$&quot;
   checks=&quot;.*&quot;/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress all checks in generated sources:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress checks=&quot;.*&quot; files=&quot;com[\\/]mycompany[\\/]app[\\/]gen[\\/]&quot;/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress FileLength check on integration tests in certain folder:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress checks=&quot;FileLength&quot;
 files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
-        </source>
+        </code></pre></div>
         <p>
           Suppress naming violations on variable named 'log' in all files:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress message=&quot;Name 'log' must match pattern&quot;/&gt;
-        </source>
+        </code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
