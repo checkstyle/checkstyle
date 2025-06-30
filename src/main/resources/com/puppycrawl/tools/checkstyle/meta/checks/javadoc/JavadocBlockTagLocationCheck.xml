@@ -27,11 +27,11 @@
  To place a tag explicitly as text, escape the &lt;code&gt;@&lt;/code&gt; symbol with HTML entity
  &amp;amp;#64; or place it inside &lt;code&gt;{@code }&lt;/code&gt;, for example:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  &amp;#47;**
   * &amp;amp;#64;serial literal in {&amp;#64;code &amp;#64;serial} Javadoc tag.
   *&amp;#47;
- &lt;/pre&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="author, deprecated, exception, hidden, param, provides, return, see, serial, serialData, serialField, since, throws, uses, version"
                       name="tags"

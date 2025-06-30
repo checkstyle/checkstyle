@@ -15,14 +15,14 @@
  &lt;p&gt;Constant definition is any variable/field that has 'final' modifier.
  It is fine to have one constant defining multiple numeric literals within one expression:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  static final int SECONDS_PER_DAY = 24 * 60 * 60;
  static final double SPECIAL_RATIO = 4.0 / 3.0;
  static final double SPECIAL_SUM = 1 + Math.E;
  static final double SPECIAL_DIFFERENCE = 4 - Math.PI;
  static final Border STANDARD_BORDER = BorderFactory.createEmptyBorder(3, 3, 3, 3);
  static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
- &lt;/pre&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="ARRAY_INIT,ASSIGN,BAND,BNOT,BOR,BSR,BXOR,COLON,DIV,ELIST,EQUAL,EXPR,GE,GT,LE,LITERAL_NEW,LT,METHOD_CALL,MINUS,MOD,NOT_EQUAL,PLUS,QUESTION,SL,SR,STAR,TYPECAST,UNARY_MINUS,UNARY_PLUS"
                       name="constantWaiverParentToken"

@@ -19,7 +19,7 @@
  If you make the constructor protected you may want to consider the following constructor
  implementation technique to disallow instantiating subclasses:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  public class StringUtils // not final to allow subclassing
  {
    protected StringUtils() {
@@ -31,7 +31,7 @@
      // ...
    }
  }
- &lt;/pre&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="" name="ignoreAnnotatedBy" type="java.lang.String[]">
                <description>Ignore classes annotated

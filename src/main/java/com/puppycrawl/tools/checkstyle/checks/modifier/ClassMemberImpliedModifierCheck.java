@@ -44,13 +44,13 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * compiler does not require the {@code static} modifier. This check provides the ability to enforce
  * that the {@code static} modifier is explicitly coded and not implicitly added by the compiler.
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * public final class Person {
  *   enum Age {  // violation
  *     CHILD, ADULT
  *   }
  * }
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * Rationale for this check: Nested enums, interfaces, and records are treated differently from
