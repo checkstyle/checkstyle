@@ -66,7 +66,7 @@ public class JavadocDetailNodeParser {
     /**
      * Message key of error message.
      */
-    public static final String MSG_JAVADOC_WRONG_SINGLETON_TAG =
+    public static final String MSG_JAVADOC_WRONG_VOID_TAG =
         "javadoc.wrong.singleton.html.tag";
 
     /**
@@ -614,9 +614,9 @@ public class JavadocDetailNodeParser {
                 String msg, RecognitionException ex) {
             final int lineNumber = offset + line;
 
-            if (MSG_JAVADOC_WRONG_SINGLETON_TAG.equals(msg)) {
+            if (MSG_JAVADOC_WRONG_VOID_TAG.equals(msg)) {
                 errorMessage = new ParseErrorMessage(lineNumber,
-                        MSG_JAVADOC_WRONG_SINGLETON_TAG, charPositionInLine,
+                        MSG_JAVADOC_WRONG_VOID_TAG, charPositionInLine,
                         ((Token) offendingSymbol).getText());
 
                 throw new IllegalArgumentException(msg);

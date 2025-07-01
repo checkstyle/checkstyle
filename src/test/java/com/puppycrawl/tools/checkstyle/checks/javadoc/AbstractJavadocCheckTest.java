@@ -23,7 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_PARSE_RULE_ERROR;
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_UNCLOSED_HTML_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_JAVADOC_MISSED_HTML_CLOSE;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_JAVADOC_WRONG_SINGLETON_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_JAVADOC_WRONG_VOID_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_TAG_FORMAT;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.MSG_SUMMARY_FIRST_SENTENCE;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -106,7 +106,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testParsingErrors(@SysErr Capturable systemErr) throws Exception {
         final String[] expected = {
             "9: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
-            "16: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 35, "img"),
+            "16: " + getCheckMessage(MSG_JAVADOC_WRONG_VOID_TAG, 35, "img"),
         };
         verifyWithInlineConfigParser(getPath("InputAbstractJavadocParsingErrors.java"), expected);
         assertWithMessage("Error is unexpected")
@@ -146,7 +146,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             @SysErr Capturable systemErr) throws Exception {
         final String[] expectedMessagesForFile1 = {
             "9: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
-            "16: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 35, "img"),
+            "16: " + getCheckMessage(MSG_JAVADOC_WRONG_VOID_TAG, 35, "img"),
         };
         verifyWithInlineConfigParser(getPath(
                 "InputAbstractJavadocParsingErrors2.java"), expectedMessagesForFile1);
@@ -450,11 +450,11 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWrongSingletonTagInJavadoc() throws Exception {
         final String[] expected = {
-            "10: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "embed"),
-            "17: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "keygen"),
-            "24: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "SOURCE"),
-            "31: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "TRACK"),
-            "38: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "WBR"),
+            "10: " + getCheckMessage(MSG_JAVADOC_WRONG_VOID_TAG, 9, "embed"),
+            "17: " + getCheckMessage(MSG_JAVADOC_WRONG_VOID_TAG, 9, "keygen"),
+            "24: " + getCheckMessage(MSG_JAVADOC_WRONG_VOID_TAG, 9, "SOURCE"),
+            "31: " + getCheckMessage(MSG_JAVADOC_WRONG_VOID_TAG, 9, "TRACK"),
+            "38: " + getCheckMessage(MSG_JAVADOC_WRONG_VOID_TAG, 9, "WBR"),
         };
         verifyWithInlineConfigParser(getPath("InputAbstractJavadocWrongSingletonTagInJavadoc.java"),
                 expected);
