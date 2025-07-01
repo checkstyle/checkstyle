@@ -37,9 +37,9 @@
  Programmers sometimes mistakenly use the type of their class &lt;code&gt;Foo&lt;/code&gt;
  as the type of the parameter to &lt;code&gt;equals()&lt;/code&gt;:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  public boolean equals(Foo obj) {...}
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  This covariant version of &lt;code&gt;equals()&lt;/code&gt; does not override the version in

@@ -21,13 +21,13 @@
  compiler does not require the &lt;code&gt;static&lt;/code&gt; modifier. This check provides the ability to enforce
  that the &lt;code&gt;static&lt;/code&gt; modifier is explicitly coded and not implicitly added by the compiler.
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  public final class Person {
    enum Age {  // violation
      CHILD, ADULT
    }
  }
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  Rationale for this check: Nested enums, interfaces, and records are treated differently from

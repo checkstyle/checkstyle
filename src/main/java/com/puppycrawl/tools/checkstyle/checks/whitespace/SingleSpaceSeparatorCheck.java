@@ -40,11 +40,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Setting {@code validateComments} to false will ignore cases like:
  * </p>
  *
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * int i;  &#47;&#47; Multiple whitespaces before comment tokens will be ignored.
  * private void foo(int  &#47;* whitespaces before and after block-comments will be
  * ignored *&#47;  i) {
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * Sometimes, users like to space similar items on different lines to the same
@@ -52,10 +52,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * check, so both braces in the following case will be reported as violations.
  * </p>
  *
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * public long toNanos(long d)  { return d;             } &#47;&#47; 2 violations
  * public long toMicros(long d) { return d / (C1 / C0); }
- * </pre>
+ * </code></pre></div>
  * <ul>
  * <li>
  * Property {@code validateComments} - Control whether to validate whitespaces

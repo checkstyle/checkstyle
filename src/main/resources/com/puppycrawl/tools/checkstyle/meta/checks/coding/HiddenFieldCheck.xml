@@ -16,9 +16,9 @@
  &lt;p&gt;
  A method is recognized as a setter if it is in the following form
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-text"&gt;
  ${returnType} set${Name}(${anyType} ${name}) { ... }
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  where ${anyType} is any primitive type, class or interface name;
@@ -26,9 +26,9 @@
  capitalized form that appears in the method name. By default, it is expected
  that setter returns void, i.e. ${returnType} is 'void'. For example
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  void setTime(long time) { ... }
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  Any other return types will not let method match a setter pattern. However,
@@ -36,11 +36,11 @@
  definition of a setter is expanded, so that setter return type can also be
  a class in which setter is declared. For example
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  class PageBuilder {
    PageBuilder setName(String name) { ... }
  }
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  Such methods are known as chain-setters and a common when Builder-pattern
