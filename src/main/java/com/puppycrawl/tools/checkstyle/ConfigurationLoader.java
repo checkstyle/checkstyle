@@ -595,7 +595,7 @@ public final class ConfigurationLoader {
          * @param attributeName name of attribute in module to find
          * @return true if attribute is present in module
          */
-        private boolean containsAttribute(Configuration module, String attributeName) {
+        private static boolean containsAttribute(Configuration module, String attributeName) {
             final String[] names = module.getPropertyNames();
             final Optional<String> result = Arrays.stream(names)
                     .filter(name -> name.equals(attributeName)).findFirst();
