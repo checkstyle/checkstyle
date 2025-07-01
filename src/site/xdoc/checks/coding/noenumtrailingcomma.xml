@@ -15,22 +15,22 @@
           them in other locations. To unify the coding style, the use of trailing commas should
           be prohibited.
         </div>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 enum Foo1 {
   FOO,
   BAR;
 }
-        </source>
+        </code></pre></div>
         <p>
           The check demands that there should not be any comma after last constant in
           enum definition.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 enum Foo1 {
   FOO,
   BAR, // violation
 }
-        </source>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Examples" id="Examples">

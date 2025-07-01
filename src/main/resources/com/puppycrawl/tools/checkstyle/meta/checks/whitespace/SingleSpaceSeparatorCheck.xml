@@ -16,11 +16,11 @@
  Setting &lt;code&gt;validateComments&lt;/code&gt; to false will ignore cases like:
  &lt;/p&gt;
 
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  int i;  &amp;#47;&amp;#47; Multiple whitespaces before comment tokens will be ignored.
  private void foo(int  &amp;#47;* whitespaces before and after block-comments will be
  ignored *&amp;#47;  i) {
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  Sometimes, users like to space similar items on different lines to the same
@@ -28,10 +28,10 @@
  check, so both braces in the following case will be reported as violations.
  &lt;/p&gt;
 
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  public long toNanos(long d)  { return d;             } &amp;#47;&amp;#47; 2 violations
  public long toMicros(long d) { return d / (C1 / C0); }
- &lt;/pre&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="false" name="validateComments" type="boolean">
                <description>Control whether to validate whitespaces

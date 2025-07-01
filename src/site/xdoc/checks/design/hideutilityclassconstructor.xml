@@ -27,7 +27,7 @@
           instantiating subclasses:
         </p>
 
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class StringUtils // not final to allow subclassing
 {
   protected StringUtils() {
@@ -39,7 +39,7 @@ public class StringUtils // not final to allow subclassing
     // ...
   }
 }
-        </source>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

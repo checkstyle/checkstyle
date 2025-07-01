@@ -51,7 +51,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * SAME_PACKAGE(n) group. This group sets the ordering of the same package imports.
  * Imports are considered on SAME_PACKAGE group if <b>n</b> first domains in package
  * name and import name are identical:
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * package java.util.concurrent.locks;
  *
  * import java.io.File;
@@ -63,7 +63,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import java.util.concurrent.locks.LockSupport; //#6
  * import java.util.regex.Pattern; //#7
  * import java.util.regex.Matcher; //#8
- * </pre>
+ * </code></pre></div>
  * If we have SAME_PACKAGE(3) on configuration file, imports #4-6 will be considered as
  * a SAME_PACKAGE group (java.util.concurrent.*, java.util.concurrent.AbstractExecutorService,
  * java.util.concurrent.locks.LockSupport). SAME_PACKAGE(2) will include #1-8.
@@ -127,10 +127,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * 1. patterns STANDARD_JAVA_PACKAGE = "Check", SPECIAL_IMPORTS="ImportOrderCheck" and input file:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * Result: imports will be assigned to SPECIAL_IMPORTS, because matching substring length is 16.
@@ -140,9 +140,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * 2. patterns STANDARD_JAVA_PACKAGE = "Check", SPECIAL_IMPORTS="Avoid" and file:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * Result: import will be assigned to SPECIAL_IMPORTS. Matching substring length is 5 for both

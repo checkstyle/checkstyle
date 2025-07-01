@@ -81,13 +81,11 @@
           document type declaration in your XML document:
         </p>
 
-        <div class="wrapper">
-          <pre>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;!DOCTYPE import-control PUBLIC
     "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
     "https://checkstyle.org/dtds/import_control_1_4.dtd"&gt;
-          </pre>
-        </div>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Properties" id="Properties">
@@ -105,11 +103,11 @@
           "config/import-control.xml", then have the following:
         </p>
 
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;module name="ImportControl"&gt;
   &lt;property name="file" value="config/import-control.xml"/&gt;
 &lt;/module&gt;
-        </source>
+        </code></pre></div>
 
         <p>
           To configure the check to only check the "src/main" directory
@@ -117,12 +115,12 @@
           then have the following:
         </p>
 
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;module name="ImportControl"&gt;
   &lt;property name="file" value="config/import-control.xml"/&gt;
   &lt;property name="path" value="^.*[\\/]src[\\/]main[\\/].*$"/&gt;
 &lt;/module&gt;
-        </source>
+        </code></pre></div>
 
         <p>
           In the example below access to package
@@ -135,7 +133,7 @@
           and <code>ClassPath</code> classes).
         </p>
 
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;import-control pkg="com.puppycrawl.tools.checkstyle"&gt;
   &lt;disallow pkg="sun"/&gt;
   &lt;allow pkg="com.puppycrawl.tools.checkstyle.api"/&gt;
@@ -154,7 +152,7 @@
     &lt;disallow pkg="javax.swing" exact-match="true"/&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
-        </source>
+        </code></pre></div>
 
         <p>
           In the next example regular expressions are used to enforce a layering rule: In all
@@ -165,7 +163,7 @@
           with the same rules.
         </p>
 
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;import-control pkg="(de.olddomain|de.newdomain)\..*" regex="true"&gt;
   &lt;subpackage pkg="[^.]+\.dao" regex="true"&gt;
     &lt;disallow pkg=".*\.ui" regex="true"/&gt;
@@ -175,7 +173,7 @@
     &lt;disallow pkg=".*\.(dao|service)" regex="true"/&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
-        </source>
+        </code></pre></div>
 
         <p>
           In the next examples usage of <code>strategyOnMismatch</code> property is shown.
@@ -209,13 +207,13 @@
           <code>import-control</code> tag. Here all imports are allowed except
           <code>java.awt.Image</code> and <code>java.io.File</code> classes.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"
   strategyOnMismatch="allowed"&gt;
   &lt;disallow class="java.awt.Image"/&gt;
   &lt;disallow class="java.io.File"/&gt;
 &lt;/import-control&gt;
-        </source>
+        </code></pre></div>
 
         <p>
           In the example below, any import is disallowed inside
@@ -224,7 +222,7 @@
           However, any import is allowed in the classes outside of
           <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">e>
 &lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"
   strategyOnMismatch="allowed"&gt;
   &lt;subpackage name="imports" strategyOnMismatch="disallowed"&gt;
@@ -232,7 +230,7 @@
     &lt;allow class="java.io.File"/&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
-        </source>
+        </code></pre></div>
 
         <p>
           When <code>strategyOnMismatch</code> has <code>allowed</code> or <code>disallowed</code>
@@ -244,7 +242,7 @@
           <code>com.puppycrawl.tools.checkstyle.checks.imports</code> import will be allowed by
           default.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"&gt;
   &lt;allow class="java\.awt\.Image" regex="true"/&gt;
   &lt;allow class="java\..*\.File" local-only="true" regex="true"/&gt;
@@ -257,7 +255,7 @@
     &lt;allow class="javax.util.Date"/&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
-        </source>
+        </code></pre></div>
         <p>
           In the example below, only file names that end with "Panel", "View", or "Dialog"
           in the package <code>gui</code> are disallowed to have imports from
@@ -266,7 +264,7 @@
           disallowed to have imports that match <code>javax.swing.J*</code>.
           All other imports in the package are allowed.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;import-control pkg="com.mycompany.billing"&gt;
   &lt;subpackage name="gui" strategyOnMismatch="allowed"&gt;
     &lt;file name=".*(Panel|View|Dialog)" regex="true"&gt;
@@ -278,7 +276,7 @@
     &lt;/file&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
-        </source>
+        </code></pre></div>
 
         <p>
           For a real-life import control file look at the file called <a href="https://github.com/checkstyle/checkstyle/blob/master/config/import-control.xml">
@@ -298,14 +296,14 @@
           <code>java.util.Map</code> inside subpackage
           <code>com.puppycrawl.tools.checkstyle.filters</code>.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;import-control pkg="com.puppycrawl.tools.checkstyle"&gt;
   &lt;allow pkg="java.util"/&gt;
   &lt;subpackage name="filters" &gt;
     &lt;disallow class="java.util.Map"/&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
-        </source>
+        </code></pre></div>
         <p>
           In the next example imports <code>java.util.stream.Stream</code> and
           <code>java.util.stream.Collectors</code> are disallowed inside
@@ -313,7 +311,7 @@
           but because of <code>&lt;allow pkg="java.util.stream"/&gt;</code> every import
           from <code>java.util.stream</code> is allowed except described ones.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"&gt;
   &lt;allow pkg="java.util.stream"/&gt;
   &lt;subpackage name="imports"&gt;
@@ -321,20 +319,20 @@
     &lt;disallow class="java.util.stream.Collectors"/&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
-        </source>
+        </code></pre></div>
 
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import java.util.stream.Stream;     // violation here
 import java.util.stream.Collectors; // violation here
 import java.util.stream.IntStream;
-        </source>
+        </code></pre></div>
         <p>
           In the following example, all imports are allowed except the classes
           <code>java.util.Date</code>, <code>java.util.List</code> and package <code>sun</code>.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"&gt;
   &lt;allow pkg=".*" regex="true"/&gt;
   &lt;subpackage name="imports"&gt;
@@ -343,18 +341,18 @@ import java.util.stream.IntStream;
     &lt;disallow pkg="sun"/&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
-        </source>
+        </code></pre></div>
         <p>
           In the following example, all imports of the <code>java.util</code> package are allowed
           except the <code>java.util.Date</code> class.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"&gt;
   &lt;disallow class="java.util.Date"/&gt;
 
   &lt;allow pkg="java.util"/&gt;
 &lt;/import-control&gt;
-        </source>
+        </code></pre></div>
 
         <h4 id="regex-notes">Notes on regular expressions</h4>
         <p>
@@ -411,19 +409,19 @@ import java.util.stream.IntStream;
           For example, to allow importing both <code>java.util.Map</code> and
           <code>java.util.Map.Entry</code> use the following configuration:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;import-control pkg="com.puppycrawl.tools.checkstyle"&gt;
   &lt;allow class="java.util.Map"/&gt;
   &lt;allow class="java.util.Map.Entry"/&gt;
 &lt;/import-control&gt;
-        </source>
+        </code></pre></div>
         <p>It is also possible to use a regex with a wildcard:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;import-control pkg="com.puppycrawl.tools.checkstyle"&gt;
   &lt;allow class="java.util.Map"/&gt;
   &lt;allow class="java.util.Map.*" regex="true" /&gt;
 &lt;/import-control&gt;
-        </source>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
