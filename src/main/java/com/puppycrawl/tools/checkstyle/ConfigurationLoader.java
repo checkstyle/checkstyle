@@ -24,6 +24,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -127,6 +128,22 @@ public final class ConfigurationLoader {
     /** Dollar sign string. */
     private static final String DOLLAR_SIGN_STRING = String.valueOf(DOLLAR_SIGN);
 
+    /** Static map of DTD IDs to resource names. */
+    private static final Map<String, String> ID_TO_RESOURCE_NAME_MAP;
+
+    static {
+        final Map<String, String> map = new HashMap<>();
+        map.put(DTD_PUBLIC_ID_1_0, DTD_CONFIGURATION_NAME_1_0);
+        map.put(DTD_PUBLIC_ID_1_1, DTD_CONFIGURATION_NAME_1_1);
+        map.put(DTD_PUBLIC_ID_1_2, DTD_CONFIGURATION_NAME_1_2);
+        map.put(DTD_PUBLIC_ID_1_3, DTD_CONFIGURATION_NAME_1_3);
+        map.put(DTD_PUBLIC_CS_ID_1_0, DTD_CONFIGURATION_NAME_1_0);
+        map.put(DTD_PUBLIC_CS_ID_1_1, DTD_CONFIGURATION_NAME_1_1);
+        map.put(DTD_PUBLIC_CS_ID_1_2, DTD_CONFIGURATION_NAME_1_2);
+        map.put(DTD_PUBLIC_CS_ID_1_3, DTD_CONFIGURATION_NAME_1_3);
+        ID_TO_RESOURCE_NAME_MAP = Collections.unmodifiableMap(map);
+    }
+
     /** The SAX document handler. */
     private final InternalLoader saxHandler;
 
@@ -157,26 +174,6 @@ public final class ConfigurationLoader {
         overridePropsResolver = overrideProps;
         this.omitIgnoredModules = omitIgnoredModules;
         this.threadModeSettings = threadModeSettings;
-    }
-
-    /**
-     * Creates mapping between local resources and dtd ids. This method can't be
-     * moved to inner class because it must stay static because it is called
-     * from constructor and inner class isn't static.
-     *
-     * @return map between local resources and dtd ids.
-     */
-    private static Map<String, String> createIdToResourceNameMap() {
-        final Map<String, String> map = new HashMap<>();
-        map.put(DTD_PUBLIC_ID_1_0, DTD_CONFIGURATION_NAME_1_0);
-        map.put(DTD_PUBLIC_ID_1_1, DTD_CONFIGURATION_NAME_1_1);
-        map.put(DTD_PUBLIC_ID_1_2, DTD_CONFIGURATION_NAME_1_2);
-        map.put(DTD_PUBLIC_ID_1_3, DTD_CONFIGURATION_NAME_1_3);
-        map.put(DTD_PUBLIC_CS_ID_1_0, DTD_CONFIGURATION_NAME_1_0);
-        map.put(DTD_PUBLIC_CS_ID_1_1, DTD_CONFIGURATION_NAME_1_1);
-        map.put(DTD_PUBLIC_CS_ID_1_2, DTD_CONFIGURATION_NAME_1_2);
-        map.put(DTD_PUBLIC_CS_ID_1_3, DTD_CONFIGURATION_NAME_1_3);
-        return map;
     }
 
     /**
@@ -322,133 +319,6 @@ public final class ConfigurationLoader {
     }
 
     /**
-     * Replaces {@code ${xxx}} style constructions in the given value
-     * with the string value of the corresponding data types. This method must remain
-     * outside inner class for easier testing since inner class requires an instance.
-     *
-     * <p>Code copied from
-     * <a href="https://github.com/apache/ant/blob/master/src/main/org/apache/tools/ant/ProjectHelper.java">
-     * ant
-     * </a>
-     *
-     * @param value The string to be scanned for property references. Must
-     *              not be {@code null}.
-     * @param props Mapping (String to String) of property names to their
-     *              values. Must not be {@code null}.
-     * @param defaultValue default to use if one of the properties in value
-     *              cannot be resolved from props.
-     *
-     * @return the original string with the properties replaced.
-     * @throws CheckstyleException if the string contains an opening
-     *                           {@code ${} without a closing
-     *                           {@code }}
-     */
-    private static String replaceProperties(
-            String value, PropertyResolver props, String defaultValue)
-            throws CheckstyleException {
-
-        final List<String> fragments = new ArrayList<>();
-        final List<String> propertyRefs = new ArrayList<>();
-        parsePropertyString(value, fragments, propertyRefs);
-
-        final StringBuilder sb = new StringBuilder(256);
-        final Iterator<String> fragmentsIterator = fragments.iterator();
-        final Iterator<String> propertyRefsIterator = propertyRefs.iterator();
-        while (fragmentsIterator.hasNext()) {
-            String fragment = fragmentsIterator.next();
-            if (fragment == null) {
-                final String propertyName = propertyRefsIterator.next();
-                fragment = props.resolve(propertyName);
-                if (fragment == null) {
-                    if (defaultValue != null) {
-                        sb.replace(0, sb.length(), defaultValue);
-                        break;
-                    }
-                    throw new CheckstyleException(
-                        "Property ${" + propertyName + "} has not been set");
-                }
-            }
-            sb.append(fragment);
-        }
-
-        return sb.toString();
-    }
-
-    /**
-     * Parses a string containing {@code ${xxx}} style property
-     * references into two collections. The first one is a collection
-     * of text fragments, while the other is a set of string property names.
-     * {@code null} entries in the first collection indicate a property
-     * reference from the second collection.
-     *
-     * <p>Code copied from
-     * <a href="https://github.com/apache/ant/blob/master/src/main/org/apache/tools/ant/ProjectHelper.java">
-     * ant
-     * </a>
-     *
-     * @param value     Text to parse. Must not be {@code null}.
-     * @param fragments Collection to add text fragments to.
-     *                  Must not be {@code null}.
-     * @param propertyRefs Collection to add property names to.
-     *                     Must not be {@code null}.
-     *
-     * @throws CheckstyleException if the string contains an opening
-     *                           {@code ${} without a closing
-     *                           {@code }}
-     */
-    private static void parsePropertyString(String value,
-                                           Collection<String> fragments,
-                                           Collection<String> propertyRefs)
-            throws CheckstyleException {
-        int prev = 0;
-        // search for the next instance of $ from the 'prev' position
-        int pos = value.indexOf(DOLLAR_SIGN, prev);
-        while (pos >= 0) {
-            // if there was any text before this, add it as a fragment
-            if (pos > 0) {
-                fragments.add(value.substring(prev, pos));
-            }
-            // if we are at the end of the string, we tack on a $
-            // then move past it
-            if (pos == value.length() - 1) {
-                fragments.add(DOLLAR_SIGN_STRING);
-                prev = pos + 1;
-            }
-            else if (value.charAt(pos + 1) == '{') {
-                // property found, extract its name or bail on a typo
-                final int endName = value.indexOf('}', pos);
-                if (endName == -1) {
-                    throw new CheckstyleException("Syntax error in property: "
-                                                    + value);
-                }
-                final String propertyName = value.substring(pos + 2, endName);
-                fragments.add(null);
-                propertyRefs.add(propertyName);
-                prev = endName + 1;
-            }
-            else {
-                if (value.charAt(pos + 1) == DOLLAR_SIGN) {
-                    // backwards compatibility two $ map to one mode
-                    fragments.add(DOLLAR_SIGN_STRING);
-                }
-                else {
-                    // new behaviour: $X maps to $X for all values of X!='$'
-                    fragments.add(value.substring(pos, pos + 2));
-                }
-                prev = pos + 2;
-            }
-
-            // search for the next instance of $ from the 'prev' position
-            pos = value.indexOf(DOLLAR_SIGN, prev);
-        }
-        // no more $ signs found
-        // if there is any tail to the file, append it
-        if (prev < value.length()) {
-            fragments.add(value.substring(prev));
-        }
-    }
-
-    /**
      * Implements the SAX document handler interfaces, so they do not
      * appear in the public API of the ConfigurationLoader.
      */
@@ -488,7 +358,131 @@ public final class ConfigurationLoader {
          */
         private InternalLoader()
                 throws SAXException, ParserConfigurationException {
-            super(createIdToResourceNameMap());
+            super(ID_TO_RESOURCE_NAME_MAP);
+        }
+
+        /**
+         * Replaces {@code ${xxx}} style constructions in the given value
+         * with the string value of the corresponding data types.
+         *
+         * <p>Code copied from
+         * <a href="https://github.com/apache/ant/blob/master/src/main/org/apache/tools/ant/ProjectHelper.java">
+         * ant
+         * </a>
+         *
+         * @param value The string to be scanned for property references. Must
+         *              not be {@code null}.
+         * @param defaultValue default to use if one of the properties in value
+         *              cannot be resolved from props.
+         *
+         * @return the original string with the properties replaced.
+         * @throws CheckstyleException if the string contains an opening
+         *                           {@code ${} without a closing
+         *                           {@code }}
+         */
+        private String replaceProperties(
+                String value, String defaultValue)
+                throws CheckstyleException {
+
+            final List<String> fragments = new ArrayList<>();
+            final List<String> propertyRefs = new ArrayList<>();
+            parsePropertyString(value, fragments, propertyRefs);
+
+            final StringBuilder sb = new StringBuilder(256);
+            final Iterator<String> fragmentsIterator = fragments.iterator();
+            final Iterator<String> propertyRefsIterator = propertyRefs.iterator();
+            while (fragmentsIterator.hasNext()) {
+                String fragment = fragmentsIterator.next();
+                if (fragment == null) {
+                    final String propertyName = propertyRefsIterator.next();
+                    fragment = overridePropsResolver.resolve(propertyName);
+                    if (fragment == null) {
+                        if (defaultValue != null) {
+                            sb.replace(0, sb.length(), defaultValue);
+                            break;
+                        }
+                        throw new CheckstyleException(
+                            "Property ${" + propertyName + "} has not been set");
+                    }
+                }
+                sb.append(fragment);
+            }
+
+            return sb.toString();
+        }
+
+        /**
+         * Parses a string containing {@code ${xxx}} style property
+         * references into two collections. The first one is a collection
+         * of text fragments, while the other is a set of string property names.
+         * {@code null} entries in the first collection indicate a property
+         * reference from the second collection.
+         *
+         * <p>Code copied from
+         * <a href="https://github.com/apache/ant/blob/master/src/main/org/apache/tools/ant/ProjectHelper.java">
+         * ant
+         * </a>
+         *
+         * @param value     Text to parse. Must not be {@code null}.
+         * @param fragments Collection to add text fragments to.
+         *                  Must not be {@code null}.
+         * @param propertyRefs Collection to add property names to.
+         *                     Must not be {@code null}.
+         *
+         * @throws CheckstyleException if the string contains an opening
+         *                           {@code ${} without a closing
+         *                           {@code }}
+         */
+        private void parsePropertyString(String value,
+                                               Collection<String> fragments,
+                                               Collection<String> propertyRefs)
+                throws CheckstyleException {
+            int prev = 0;
+            // search for the next instance of $ from the 'prev' position
+            int pos = value.indexOf(DOLLAR_SIGN, prev);
+            while (pos >= 0) {
+                // if there was any text before this, add it as a fragment
+                if (pos > 0) {
+                    fragments.add(value.substring(prev, pos));
+                }
+                // if we are at the end of the string, we tack on a $
+                // then move past it
+                if (pos == value.length() - 1) {
+                    fragments.add(DOLLAR_SIGN_STRING);
+                    prev = pos + 1;
+                }
+                else if (value.charAt(pos + 1) == '{') {
+                    // property found, extract its name or bail on a typo
+                    final int endName = value.indexOf('}', pos);
+                    if (endName == -1) {
+                        throw new CheckstyleException("Syntax error in property: "
+                                                        + value);
+                    }
+                    final String propertyName = value.substring(pos + 2, endName);
+                    fragments.add(null);
+                    propertyRefs.add(propertyName);
+                    prev = endName + 1;
+                }
+                else {
+                    if (value.charAt(pos + 1) == DOLLAR_SIGN) {
+                        // backwards compatibility two $ map to one mode
+                        fragments.add(DOLLAR_SIGN_STRING);
+                    }
+                    else {
+                        // new behaviour: $X maps to $X for all values of X!='$'
+                        fragments.add(value.substring(pos, pos + 2));
+                    }
+                    prev = pos + 2;
+                }
+
+                // search for the next instance of $ from the 'prev' position
+                pos = value.indexOf(DOLLAR_SIGN, prev);
+            }
+            // no more $ signs found
+            // if there is any tail to the file, append it
+            if (prev < value.length()) {
+                fragments.add(value.substring(prev));
+            }
         }
 
         @Override
@@ -523,8 +517,7 @@ public final class ConfigurationLoader {
 
                 final String value;
                 try {
-                    value = replaceProperties(attributesValue,
-                        overridePropsResolver, attributes.getValue(DEFAULT));
+                    value = replaceProperties(attributesValue, attributes.getValue(DEFAULT));
                 }
                 catch (final CheckstyleException exc) {
                     // -@cs[IllegalInstantiation] SAXException is in the overridden
