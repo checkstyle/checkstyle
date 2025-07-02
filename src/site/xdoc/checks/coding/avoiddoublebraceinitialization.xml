@@ -16,8 +16,8 @@
         <p>
           Rationale: Double brace initialization (set of
           <a href="https://docs.oracle.com/javase/specs/jls/se12/html/jls-8.html#jls-8.6">
-          Instance Initializers</a> in class body) may look cool,
-          but it is considered as anti-pattern and should be avoided.
+          Instance Initializers</a> in class body) may look cool, but it is considered as anti-pattern
+          and should be avoided.
           This is also can lead to a hard-to-detect memory leak, if the anonymous class instance is
           returned outside and other object(s) hold reference to it.
           Created anonymous class is not static, it holds an implicit reference to the outer class

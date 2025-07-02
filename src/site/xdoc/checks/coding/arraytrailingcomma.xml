@@ -35,8 +35,8 @@ return new int[] {
         </code></pre></div>
 
         <p>
-          Rationale: Putting this comma in makes it easier to change the order
-          of the elements or add new elements on the end. Main benefit of a trailing
+          Rationale: Putting this comma in makes it easier to change the
+          order of the elements or add new elements on the end. Main benefit of a trailing
           comma is that when you add new entry to an array, no surrounding lines are changed.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -67,8 +67,7 @@ return new int[] {
         </code></pre></div>
 
         <p>
-          If opening brace is on the same line as trailing comma there's also (more arguable)
-          problem:
+          If opening brace is on the same line as trailing comma there's also (more arguable) problem:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 {100000000000000000000, // Line cannot be just duplicated to slightly modify entry
