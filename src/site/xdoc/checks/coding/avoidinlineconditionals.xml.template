@@ -9,18 +9,10 @@
     <section name="AvoidInlineConditionals">
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
-        <div>
-          Detects inline conditionals. Here is one example of an inline conditional:
-        </div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-String a = getParameter("a");
-String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
-        </code></pre></div>
-
-        <p>
-          Rationale: Some developers find inline conditionals hard to read, so
-          their employer's coding standards forbid them.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AvoidInlineConditionalsCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Examples" id="Examples">
