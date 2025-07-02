@@ -30,11 +30,11 @@ public class InputNoWhitespaceBeforeAnnotations {
   /** some javadoc. */
   public void foo4(final char @NonNull [] param) {} // ok
 
-  void test1(String... param) {} // ok until #8205
+  void test1(String... param) {}
 
-  void test2(String... param) {} // ok until #8205
+  void test2(String... param) {}
 
-  void test3(String @NonNull ... param) {} // ok until #8205
+  void test3(String @NonNull ... param) {}
 
-  void test4(String @NonNull ... param) {} // ok
+  void test4(String @NonNull ... param) {}
 }
