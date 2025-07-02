@@ -13,7 +13,7 @@
           Detects inline conditionals. Here is one example of an inline conditional:
         </div>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-String a = getParameter(&quot;a&quot;);
+String a = getParameter("a");
 String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
         </code></pre></div>
 
