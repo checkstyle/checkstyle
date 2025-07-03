@@ -24,6 +24,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -127,6 +128,22 @@ public final class ConfigurationLoader {
     /** Dollar sign string. */
     private static final String DOLLAR_SIGN_STRING = String.valueOf(DOLLAR_SIGN);
 
+    /** Static map of DTD IDs to resource names. */
+    private static final Map<String, String> ID_TO_RESOURCE_NAME_MAP;
+
+    static {
+        final Map<String, String> map = new HashMap<>();
+        map.put(DTD_PUBLIC_ID_1_0, DTD_CONFIGURATION_NAME_1_0);
+        map.put(DTD_PUBLIC_ID_1_1, DTD_CONFIGURATION_NAME_1_1);
+        map.put(DTD_PUBLIC_ID_1_2, DTD_CONFIGURATION_NAME_1_2);
+        map.put(DTD_PUBLIC_ID_1_3, DTD_CONFIGURATION_NAME_1_3);
+        map.put(DTD_PUBLIC_CS_ID_1_0, DTD_CONFIGURATION_NAME_1_0);
+        map.put(DTD_PUBLIC_CS_ID_1_1, DTD_CONFIGURATION_NAME_1_1);
+        map.put(DTD_PUBLIC_CS_ID_1_2, DTD_CONFIGURATION_NAME_1_2);
+        map.put(DTD_PUBLIC_CS_ID_1_3, DTD_CONFIGURATION_NAME_1_3);
+        ID_TO_RESOURCE_NAME_MAP = Collections.unmodifiableMap(map);
+    }
+
     /** The SAX document handler. */
     private final InternalLoader saxHandler;
 
@@ -157,26 +174,6 @@ public final class ConfigurationLoader {
         overridePropsResolver = overrideProps;
         this.omitIgnoredModules = omitIgnoredModules;
         this.threadModeSettings = threadModeSettings;
-    }
-
-    /**
-     * Creates mapping between local resources and dtd ids. This method can't be
-     * moved to inner class because it must stay static because it is called
-     * from constructor and inner class isn't static.
-     *
-     * @return map between local resources and dtd ids.
-     */
-    private static Map<String, String> createIdToResourceNameMap() {
-        final Map<String, String> map = new HashMap<>();
-        map.put(DTD_PUBLIC_ID_1_0, DTD_CONFIGURATION_NAME_1_0);
-        map.put(DTD_PUBLIC_ID_1_1, DTD_CONFIGURATION_NAME_1_1);
-        map.put(DTD_PUBLIC_ID_1_2, DTD_CONFIGURATION_NAME_1_2);
-        map.put(DTD_PUBLIC_ID_1_3, DTD_CONFIGURATION_NAME_1_3);
-        map.put(DTD_PUBLIC_CS_ID_1_0, DTD_CONFIGURATION_NAME_1_0);
-        map.put(DTD_PUBLIC_CS_ID_1_1, DTD_CONFIGURATION_NAME_1_1);
-        map.put(DTD_PUBLIC_CS_ID_1_2, DTD_CONFIGURATION_NAME_1_2);
-        map.put(DTD_PUBLIC_CS_ID_1_3, DTD_CONFIGURATION_NAME_1_3);
-        return map;
     }
 
     /**
@@ -361,7 +358,7 @@ public final class ConfigurationLoader {
          */
         private InternalLoader()
                 throws SAXException, ParserConfigurationException {
-            super(createIdToResourceNameMap());
+            super(ID_TO_RESOURCE_NAME_MAP);
         }
 
         /**
@@ -595,7 +592,7 @@ public final class ConfigurationLoader {
          * @param attributeName name of attribute in module to find
          * @return true if attribute is present in module
          */
-        private boolean containsAttribute(Configuration module, String attributeName) {
+        private static boolean containsAttribute(Configuration module, String attributeName) {
             final String[] names = module.getPropertyNames();
             final Optional<String> result = Arrays.stream(names)
                     .filter(name -> name.equals(attributeName)).findFirst();
