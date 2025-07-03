@@ -9,10 +9,10 @@
     <section name="IllegalTokenText">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks specified tokens text for matching an illegal pattern.
-          By default, no tokens are specified.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalTokenTextCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
