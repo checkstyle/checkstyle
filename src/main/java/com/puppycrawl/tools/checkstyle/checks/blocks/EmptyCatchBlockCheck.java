@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * By default, check allows empty catch block with any comment inside.
  * </div>
  *
+ * Notes:
  * <p>
  * There are two options to make validation more precise: <b>exceptionVariableName</b> and
  * <b>commentFormat</b>.
