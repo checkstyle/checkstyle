@@ -9,10 +9,10 @@
     <section name="EmptyStatement">
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
-        <div>
-          Detects empty statements (standalone <code>";"</code> semicolon).
-          Empty statements often introduce bugs that are hard to spot
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EmptyStatementCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Examples" id="Examples">
