@@ -95,6 +95,7 @@
     <allow class="com.puppycrawl.tools.checkstyle.ModuleFactory" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.PackageNamesLoader" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.PackageObjectFactory" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.utils.CommonUtil" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.utils.CheckUtil" local-only="true"/>
