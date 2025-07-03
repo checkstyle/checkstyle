@@ -1,32 +1,41 @@
+// non-compiled with javac: Compilable with Java21
+
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
+
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.JCheckBox;
 
 /** some javadoc. */
 public class InputWhitespaceAroundArrow {
-
-  static { 
+  static {
     // violation below ''->' is not preceded with whitespace.'
     new JCheckBox().addActionListener((final ActionEvent e)-> {
-      good();
+      test3();
     });
   }
 
   void foo1(Object o) {
     switch (o) {
       case String s when (s.equals("a")) -> {}
-      case 'p' -> {
+      case String s2 -> {
       }
       default -> {}
     }
   }
 
   /** method. */
-  void test(Object o) {
+  void test(Object o, Object o2, int y) {
     switch (o) {
       case String s when (
           s.equals("a"))-> // violation ''->' is not preceded with whitespace.'
         {
         }
-      case Point(int x, int y) when !(x >= 0 && y >= 0) -> {}
+      case Point(int x, int xy) when !(x >= 0 && y >= 0) -> {}
       default-> // violation ''->' is not preceded with whitespace.'
         {}
     }
@@ -34,7 +43,7 @@ public class InputWhitespaceAroundArrow {
     int x = switch (o) {
       case String s -> {
         switch (o2) {
-          case Integer newInt-> { // violation ''->' is not preceded with whitespace.'
+          case Integer nin when nin == 0-> { // violation ''->' is not preceded with whitespace.'
             if (y == 0) {
               System.out.println(0);
             }
@@ -47,24 +56,21 @@ public class InputWhitespaceAroundArrow {
     };
   }
 
-  int test2() {
+  int test2(int k, Object o1) {
     Predicate predicate = value ->(value != null);
     // 2 violations above:
     //     ''->' is not followed by whitespace.'
     //     'WhitespaceAround: '->' is not followed by whitespace. .*'
-
     Object b = ((VoidPredicate) ()->o1 instanceof String s).get();
     // 3 violations above:
     //     ''->' is not followed by whitespace.'
     //     'WhitespaceAround: '->' is not followed by whitespace. .*'
     //     'WhitespaceAround: '->' is not preceded with whitespace.'
-
-    List<Integer> ints = new LinkedList<Integer>();
     // 3 violations 5 lines below:
     //     ''->' is not followed by whitespace.'
     //     ''->' is not followed by whitespace. .*'
     //     ''{' is not preceded with whitespace.'
-    ints.stream()
+    new LinkedList<Integer>().stream()
         .map(t ->{
             return t * 2;
           }
@@ -72,11 +78,11 @@ public class InputWhitespaceAroundArrow {
         .filter(t -> {
           return false;
         });
+    return k * 2;
   }
 
-  void test3() {
-    ArrayList<Boolean> boolList
-        = new ArrayList<Boolean>(Arrays.asList(false, true, false, false));
+  static void test3() {
+    ArrayList<Boolean> boolList = new ArrayList<Boolean>(Arrays.asList(false, true, false));
     // violation 2 lines below 'WhitespaceAround: '->' is not preceded with whitespace.'
     List<Boolean> filtered = boolList.stream()
         .filter(statement-> {
@@ -87,14 +93,27 @@ public class InputWhitespaceAroundArrow {
           }
         })
         .collect(Collectors.toList());
-
-    result = boolList.stream().filter(
+    Object result = boolList.stream().filter(
         // violation below 'WhitespaceAround: '->' is not preceded with whitespace.'
-        statement-> someFunction())
-        .findFirst()
+        statement-> false).findFirst()
         .orElseThrow(() ->new IllegalStateException("big problem"));
     // 2 violations above:
     //     ''->' is not followed by whitespace.'
     //     'WhitespaceAround: '->' is not followed by whitespace. .*'
+  }
+
+  /** some javadoc. */
+  record Point(int x, int y) {}
+
+  /** some javadoc. */
+  public interface Predicate {
+    /** some javadoc. */
+    boolean test(Object value);
+  }
+
+  /** some javadoc. */
+  public interface VoidPredicate {
+    /** some javadoc. */
+    public boolean get();
   }
 }
