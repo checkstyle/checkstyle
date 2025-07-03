@@ -404,4 +404,11 @@
     <Method name="getTargetFiles" />
     <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
   </Match>
+
+  <!-- Suppress DUBIOUS_MAP_COLLECTION for ConfigurationLoader.ID_TO_RESOURCE_NAME_MAP -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.ConfigurationLoader" />
+    <Field name="ID_TO_RESOURCE_NAME_MAP" />
+    <Bug pattern="DMC_DUBIOUS_MAP_COLLECTION" />
+  </Match>
 </FindBugsFilter>
