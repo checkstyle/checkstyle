@@ -10,13 +10,13 @@
       <p>Since Checkstyle 10.26.0</p>
       <subsection name="Description" id="Description">
         <div>
-            Checks for assignment of pattern variables.
+          Checks for assignment of pattern variables.
         </div>
 
         <p>
-           Pattern variable assignment is considered bad programming practice. The pattern variable
-           is meant to be a direct reference to the object being matched. Reassigning it can break
-           this connection and mislead readers.
+          Pattern variable assignment is considered bad programming practice. The pattern variable
+          is meant to be a direct reference to the object being matched. Reassigning it can break this
+          connection and mislead readers.
         </p>
       </subsection>
 

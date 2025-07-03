@@ -785,7 +785,7 @@ public final class SiteUtil {
      * @param moduleJavadoc the javadoc of module.
      * @return the Optional of javadoc node part of the property.
      */
-    private static Optional<DetailNode> getPropertyJavadocNodeInModule(String propertyName,
+    public static Optional<DetailNode> getPropertyJavadocNodeInModule(String propertyName,
                                                              DetailNode moduleJavadoc) {
         Optional<DetailNode> propertyJavadocNode = Optional.empty();
 
@@ -829,7 +829,7 @@ public final class SiteUtil {
                             primeJavadocInlineTag, JavadocTokenTypes.TEXT).getText();
 
                         if (examinedPropertyName.equals(propertyName)) {
-                            propertyJavadocNode = Optional.ofNullable(liTag);
+                            propertyJavadocNode = Optional.of(liTag);
                             foundProperty = true;
                         }
                     }
