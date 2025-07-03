@@ -401,3 +401,38 @@ span.wrapper.inline {
     font-style: italic;
   }
 }
+
+section[id="Properties"] .wrapper table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+section[id="Properties"] .wrapper table th:nth-child(1),
+section[id="Properties"] .wrapper table td:nth-child(1),
+section[id="Properties"] .wrapper table th:nth-child(2),
+section[id="Properties"] .wrapper table td:nth-child(2),
+section[id="Properties"] .wrapper table th:nth-child(3),
+section[id="Properties"] .wrapper table td:nth-child(3),
+section[id="Properties"] .wrapper table th:nth-child(4),
+section[id="Properties"] .wrapper table td:nth-child(4) {
+  width: 22.5%;
+}
+
+section[id="Properties"] .wrapper table th:nth-child(5),
+section[id="Properties"] .wrapper table td:nth-child(5) {
+  width: 10%;
+}
+
+section[id="Properties"] .wrapper table td,
+section[id="Properties"] .wrapper table td pre,
+section[id="Properties"] .wrapper table td code {
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word;
+}
+
+section[id="Properties"] .wrapper table td a {
+  white-space: normal;
+  word-break: normal;
+  text-decoration-skip-ink: auto;
+}
