@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.recordcomponentname;
 public record InputRecordComponentName<E>(int _componentName, String componentName2) {}
 // violation above 'Record component name '_componentName' must match pattern'
 
-record InputRecordComponentName<E>(int Capital) {}
+record InputRecordComponentNameVariant<E>(int Capital) {}
 // 2 violations above:
-//  'Top-level class InputRecordComponentName has to reside in its own source file.'
+//  'Top-level class InputRecordComponentNameVariant has to reside in its own source file.'
 //  'Record component name 'Capital' must match pattern'
