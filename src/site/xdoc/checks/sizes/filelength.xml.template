@@ -7,7 +7,7 @@
   </head>
   <body>
     <section name="FileLength">
-      <p>Since Checkstyle 5.0</p>
+      <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
         <div>
           Checks for long source files.

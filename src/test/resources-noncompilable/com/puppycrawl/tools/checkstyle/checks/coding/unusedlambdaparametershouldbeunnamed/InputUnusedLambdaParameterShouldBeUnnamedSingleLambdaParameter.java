@@ -3,7 +3,7 @@ UnusedLambdaParameterShouldBeUnnamed
 
 */
 
-//non-compiled with javac: Compilable with Java21
+// non-compiled with javac: Compilable with Java21
 package com.puppycrawl.tools.checkstyle.checks.coding.unusedlambdaparametershouldbeunnamed;
 
 import java.util.List;

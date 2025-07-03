@@ -29,19 +29,22 @@ blocks:
       jobs:
         - name: sevntu
           commands:
+            - sem-version java 17
             - ./mvnw -e --no-transfer-progress compile antrun:run@ant-phase-verify-sevntu -Psevntu
 
         - name: codenarc analysis
           commands:
+            - sem-version java 17
             - rm -rf $HOME/.m2
             - ./.ci/codenarc.sh
 
         - name: ensure that all modules are used in no exception configs
           commands:
+            - sem-version java 17
             - export PULL_REQUEST=$SEMAPHORE_GIT_PR_NUMBER
             - ./.ci/validation.sh verify-no-exception-configs
 
-        - name: Validation (openjdk11, fast pool)
+        - name: Validation (openjdk17, fast pool)
           matrix:
             - env_var: CMD
               values:
@@ -57,14 +60,14 @@ blocks:
                 # permanently disabled as it is very unstable in execution
                 # - .ci/validation.sh nondex
           commands:
-            - sem-version java 11
+            - sem-version java 17
             - echo "eval of CMD is starting";
             - echo "CMD=$CMD";
             - eval $CMD;
             - echo "eval of CMD is completed";
             - ./.ci/validation.sh git-diff
 
-        - name: No Error Test (openjdk11, fast pool)
+        - name: No Error Test (openjdk17, fast pool)
           matrix:
             - env_var: CMD
               values:
@@ -77,14 +80,14 @@ blocks:
                 - .ci/validation.sh jacoco
 
           commands:
-            - sem-version java 11
+            - sem-version java 17
             - echo "eval of CMD is starting";
             - echo "CMD=$CMD";
             - eval $CMD;
             - echo "eval of CMD is completed";
             - ./.ci/validation.sh git-diff
 
-        - name: Validation (openjdk11, slow pool)
+        - name: Validation (openjdk17, slow pool)
           priority:
             - value: 80
               when: true
@@ -96,7 +99,7 @@ blocks:
                 # - ./mvnw -e clean install -Pno-validations
                 #    && .ci/validation.sh no-violation-test-configurate
           commands:
-            - sem-version java 11
+            - sem-version java 17
             - echo "eval of CMD is starting";
             - echo "CMD=$CMD";
             - eval $CMD;

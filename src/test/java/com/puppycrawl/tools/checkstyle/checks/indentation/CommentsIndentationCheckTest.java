@@ -400,7 +400,7 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
             "42:9: " + getCheckMessage(MSG_KEY_SINGLE, 40, 8, 5),
         };
         verifyWithInlineConfigParser(
-            getNonCompilablePath("InputCommentsIndentationRecordsAndCompactCtors.java"),
+            getPath("InputCommentsIndentationRecordsAndCompactCtors.java"),
             expected);
     }
 

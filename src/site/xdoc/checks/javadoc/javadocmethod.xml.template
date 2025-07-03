@@ -74,12 +74,12 @@
           Javadoc could be done as:
         </p>
 
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /** {@inheritDoc} */
 public int checkReturnTag(final int aTagIndex,
                           JavadocTag[] aTags,
                           int aLineNo)
-        </source>
+        </code></pre></div>
 
       </subsection>
 

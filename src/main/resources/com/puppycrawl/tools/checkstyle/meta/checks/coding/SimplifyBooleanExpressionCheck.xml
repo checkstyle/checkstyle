@@ -6,8 +6,8 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks for over-complicated boolean expressions. Currently, it finds code like
- {@code if (b == true)}, {@code b || true}, {@code !false},
- {@code boolean a = q &gt; 12 ? true : false},
+ &lt;code&gt;if (b == true)&lt;/code&gt;, &lt;code&gt;b || true&lt;/code&gt;, &lt;code&gt;!false&lt;/code&gt;,
+ &lt;code&gt;boolean a = q &gt; 12 ? true : false&lt;/code&gt;,
  etc.
  &lt;/div&gt;
 

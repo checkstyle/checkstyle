@@ -14,14 +14,14 @@
         </div>
 
         <p>
-          Rationale: Any source files and text files in general should
+          Rationale: Any not empty source files and text files in general should
           end with a line separator to let other easily add new content
           at the end of file and &quot;diff&quot; command does not show previous lines as changed.
         </p>
         <p>
           Example (the line with 'No newline at end of file' should not be in the diff):
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 @@ -32,4 +32,5 @@ ForbidWildcardAsReturnTypeCheck.returnTypeClassNamesIgnoreRegex
 PublicReferenceToPrivateTypeCheck.name = Public Reference To Private Type
 
@@ -30,7 +30,7 @@ StaticMethodCandidateCheck.name = Static Method Candidate
 \ No newline at end of file
 +StaticMethodCandidateCheck.desc = Checks whether private methods should be declared as static.
 +StaticMethodCandidateCheck.skippedMethods = Method names to skip during the check.
-        </source>
+        </code></pre></div>
         <p>
           It can also trick the VCS to report the wrong owner for such lines.
           An engineer who has added nothing but a newline character becomes

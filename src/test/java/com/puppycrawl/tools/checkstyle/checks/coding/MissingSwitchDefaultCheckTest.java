@@ -68,7 +68,7 @@ public class MissingSwitchDefaultCheckTest
             "14:9: " + getCheckMessage(MSG_KEY, "default"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMissingSwitchDefaultCheckSwitchExpressions.java"),
+                getPath("InputMissingSwitchDefaultCheckSwitchExpressions.java"),
             expected);
     }
 
@@ -87,7 +87,7 @@ public class MissingSwitchDefaultCheckTest
             "26:9: " + getCheckMessage(MSG_KEY, "default"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMissingSwitchDefaultCheckSwitchExpressionsTwo.java"),
+                getPath("InputMissingSwitchDefaultCheckSwitchExpressionsTwo.java"),
                 expected);
     }
 
@@ -95,7 +95,7 @@ public class MissingSwitchDefaultCheckTest
     public void testMissingSwitchDefaultSwitchExpressionsThree() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMissingSwitchDefaultCheckSwitchExpressionsThree.java"),
+                getPath("InputMissingSwitchDefaultCheckSwitchExpressionsThree.java"),
                 expected);
     }
 
@@ -121,7 +121,7 @@ public class MissingSwitchDefaultCheckTest
             "19:9: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputMissingSwitchDefaultCheckSwitchExpressionUnderMethodCall.java"),
                 expected);
     }

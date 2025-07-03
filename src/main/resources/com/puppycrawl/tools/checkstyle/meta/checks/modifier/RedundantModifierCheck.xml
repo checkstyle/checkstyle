@@ -10,7 +10,7 @@
 
  &lt;p&gt;
  Rationale: The Java Language Specification strongly discourages the usage
- of {@code public} and {@code abstract} for method declarations in interface
+ of &lt;code&gt;public&lt;/code&gt; and &lt;code&gt;abstract&lt;/code&gt; for method declarations in interface
  definitions as a matter of style.
  &lt;/p&gt;
 
@@ -23,35 +23,35 @@
  Final modifier on methods of final and anonymous classes.
  &lt;/li&gt;
  &lt;li&gt;
- Type declarations nested under interfaces that are declared as {@code public} or {@code static}.
+ Type declarations nested under interfaces that are declared as &lt;code&gt;public&lt;/code&gt; or &lt;code&gt;static&lt;/code&gt;.
  &lt;/li&gt;
  &lt;li&gt;
  Class constructors.
  &lt;/li&gt;
  &lt;li&gt;
- Nested {@code enum} definitions that are declared as {@code static}.
+ Nested &lt;code&gt;enum&lt;/code&gt; definitions that are declared as &lt;code&gt;static&lt;/code&gt;.
  &lt;/li&gt;
  &lt;li&gt;
- {@code record} definitions that are declared as {@code final} and nested
- {@code record} definitions that are declared as {@code static}.
+ &lt;code&gt;record&lt;/code&gt; definitions that are declared as &lt;code&gt;final&lt;/code&gt; and nested
+ &lt;code&gt;record&lt;/code&gt; definitions that are declared as &lt;code&gt;static&lt;/code&gt;.
  &lt;/li&gt;
  &lt;li&gt;
- {@code strictfp} modifier when using JDK 17 or later. See reason at
+ &lt;code&gt;strictfp&lt;/code&gt; modifier when using JDK 17 or later. See reason at
  &lt;a href="https://openjdk.org/jeps/306"&gt;JEP 306&lt;/a&gt;
  &lt;/li&gt;
  &lt;li&gt;
- {@code final} modifier on unnamed variables when using JDK 22 or later.
+ &lt;code&gt;final&lt;/code&gt; modifier on unnamed variables when using JDK 22 or later.
  &lt;/li&gt;
  &lt;/ol&gt;
 
  &lt;p&gt;
- interfaces by definition are abstract so the {@code abstract} modifier is redundant on them.
+ interfaces by definition are abstract so the &lt;code&gt;abstract&lt;/code&gt; modifier is redundant on them.
  &lt;/p&gt;
 
  &lt;p&gt;Type declarations nested under interfaces by definition are public and static,
- so the {@code public} and {@code static} modifiers on nested type declarations are redundant.
+ so the &lt;code&gt;public&lt;/code&gt; and &lt;code&gt;static&lt;/code&gt; modifiers on nested type declarations are redundant.
  On the other hand, classes inside of interfaces can be abstract or non abstract.
- So, {@code abstract} modifier is allowed.
+ So, &lt;code&gt;abstract&lt;/code&gt; modifier is allowed.
  &lt;/p&gt;
 
  &lt;p&gt;Fields in interfaces and annotations are automatically
@@ -69,13 +69,13 @@
  See &lt;a href="https://openjdk.org/jeps/395"&gt;JEP 395&lt;/a&gt; for more info.&lt;/p&gt;
 
  &lt;p&gt;Enums by definition are static implicit subclasses of java.lang.Enum&amp;#60;E&amp;#62;.
- So, the {@code static} modifier on the enums is redundant. In addition,
- if enum is inside of interface, {@code public} modifier is also redundant.&lt;/p&gt;
+ So, the &lt;code&gt;static&lt;/code&gt; modifier on the enums is redundant. In addition,
+ if enum is inside of interface, &lt;code&gt;public&lt;/code&gt; modifier is also redundant.&lt;/p&gt;
 
  &lt;p&gt;Enums can also contain abstract methods and methods which can be overridden by the declared
  enumeration fields.
  See the following example:&lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  public enum EnumClass {
    FIELD_1,
    FIELD_2 {
@@ -86,23 +86,23 @@
    public void method1() {}
    public final void method2() {} // no violation expected
  }
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;Since these methods can be overridden in these situations, the final methods are not
  marked as redundant even though they can't be extended by other classes/enums.&lt;/p&gt;
 
  &lt;p&gt;
- Nested {@code enum} types are always static by default.
+ Nested &lt;code&gt;enum&lt;/code&gt; types are always static by default.
  &lt;/p&gt;
 
- &lt;p&gt;Final classes by definition cannot be extended so the {@code final}
+ &lt;p&gt;Final classes by definition cannot be extended so the &lt;code&gt;final&lt;/code&gt;
  modifier on the method of a final class is redundant.
  &lt;/p&gt;
 
  &lt;p&gt;Public modifier for constructors in non-public non-protected classes
  is always obsolete: &lt;/p&gt;
 
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  public class PublicClass {
    public PublicClass() {} // OK
  }
@@ -110,13 +110,13 @@
  class PackagePrivateClass {
    public PackagePrivateClass() {} // violation expected
  }
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;There is no violation in the following example,
  because removing public modifier from ProtectedInnerClass
  constructor will make this code not compiling: &lt;/p&gt;
 
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  package a;
  public class ClassExample {
    protected class ProtectedInnerClass {
@@ -129,7 +129,7 @@
  public class ClassExtending extends ClassExample {
    ProtectedInnerClass pc = new ProtectedInnerClass();
  }
- &lt;/pre&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="22" name="jdkVersion" type="java.lang.String">
                <description>Set the JDK version that you are using.

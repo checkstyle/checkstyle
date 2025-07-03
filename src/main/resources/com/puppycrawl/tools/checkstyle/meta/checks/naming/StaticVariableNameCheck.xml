@@ -5,7 +5,7 @@
              name="StaticVariableName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks that {@code static}, non-{@code final} variable names conform to a specified pattern.
+ Checks that &lt;code&gt;static&lt;/code&gt;, non-&lt;code&gt;final&lt;/code&gt; variable names conform to a specified pattern.
  &lt;/div&gt;</description>
          <properties>
             <property default-value="true" name="applyToPackage" type="boolean">

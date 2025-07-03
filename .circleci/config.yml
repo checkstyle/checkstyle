@@ -4,7 +4,7 @@ jobs:
 
   run-inspections:
     docker:
-      - image: checkstyle/idea-docker:jdk11-idea2022.3.3
+      - image: amitkumardeoghoria/idea-image:jdk17-idea2022.3.3
 
     steps:
       - checkout
@@ -33,7 +33,7 @@ jobs:
     parameters: &script_parameters
       image-name:
         type: string
-        default: "cimg/openjdk:11.0.16"
+        default: "cimg/openjdk:17.0.7"
         description: "docker image to use"
       command:
         description: "command to run"
@@ -78,7 +78,7 @@ jobs:
             << parameters.command >>
   sonarqube:
     docker:
-      - image: checkstyle/jdk-11-groovy-git-mvn:11.0.20.1__2.4.21__2.42.0__3.9.5
+      - image: amitkumardeoghoria/jdk-17-groovy-git-mvn:v1.0
 
     steps:
       - checkout
@@ -118,7 +118,7 @@ workflows:
       # no-exception-test script
       - validate-with-maven-script:
           name: "no-exception-lucene-and-others-javadoc"
-          image-name: &cs_img "checkstyle/jdk-11-groovy-git-mvn:11.0.20.1__2.4.21__2.42.0__3.9.5"
+          image-name: &cs_img "amitkumardeoghoria/jdk-17-groovy-git-mvn:v1.0"
           command: "./.ci/no-exception-test.sh no-exception-lucene-and-others-javadoc"
       - validate-with-maven-script:
           name: "no-exception-cassandra-storm-tapestry-javadoc"
@@ -230,7 +230,7 @@ workflows:
           command: "./.ci/validation.sh no-error-pgjdbc"
       - validate-with-maven-script:
           name: "linkcheck-plugin"
-          image-name: "cimg/openjdk:11.0.19"
+          image-name: "cimg/openjdk:17.0.7"
           command: "./.ci/run-link-check-plugin.sh --skip-external"
       - validate-with-maven-script:
           name: "no-exception-samples-gradle"
@@ -243,7 +243,7 @@ workflows:
 
       - validate-with-maven-script:
           name: "no-exception-samples-ant"
-          image-name: "circleci/openjdk:11-jdk"
+          image-name: *cs_img
           command: "./.ci/no-exception-test.sh no-exception-samples-ant"
       - validate-with-maven-script:
           name: "no-error-hazelcast"
@@ -289,6 +289,10 @@ workflows:
           name: "javac17"
           image-name: "cimg/openjdk:17.0.7"
           command: "./.ci/validation.sh javac17"
+      - validate-with-script:
+          name: "java 17 test resources compile"
+          image-name: "cimg/openjdk:17.0.7"
+          command: "./.ci/validation.sh compile-test-resources"
       - validate-with-script:
           name: "javac19"
           image-name: "cimg/openjdk:19.0.1"

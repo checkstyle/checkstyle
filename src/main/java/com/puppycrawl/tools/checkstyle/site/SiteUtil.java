@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.site;
 import java.beans.PropertyDescriptor;
 import java.io.File;
 import java.io.IOException;
+import java.lang.module.ModuleDescriptor.Version;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -102,6 +103,8 @@ public final class SiteUtil {
     /** The path to the JavadocTokenTypes.html file. */
     public static final String PATH_TO_JAVADOC_TOKEN_TYPES =
             "apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html";
+    /** The string of JavaDoc module marking 'Since version'. */
+    public static final String SINCE_VERSION = "Since version";
     /** The url of the checkstyle website. */
     private static final String CHECKSTYLE_ORG_URL = "https://checkstyle.org/";
     /** The string 'charset'. */
@@ -116,6 +119,8 @@ public final class SiteUtil {
     private static final String NAMING = "naming";
     /** The string 'src'. */
     private static final String SRC = "src";
+    /** The whitespace. */
+    private static final String WHITESPACE = " ";
 
     /** Precompiled regex pattern to remove the "Setter to " prefix from strings. */
     private static final Pattern SETTER_PATTERN = Pattern.compile("^Setter to ");
@@ -151,12 +156,6 @@ public final class SiteUtil {
      */
     private static final String REGEXP_HEADER_CHECK_HEADER = "RegexpHeaderCheck.header";
 
-    /**
-     * Check and property name.
-     */
-    private static final String MULTI_FILE_REGEXP_HEADER_CHECK_HEADER =
-            "MultiFileRegexpHeaderCheck.header";
-
     /** Set of properties that are undocumented. Those are internal properties. */
     private static final Set<String> UNDOCUMENTED_PROPERTIES = Set.of(
         "SuppressWithNearbyCommentFilter.fileContents",
@@ -174,151 +173,6 @@ public final class SiteUtil {
         "RedundantModifierCheck.jdkVersion",
         // until https://github.com/checkstyle/checkstyle/issues/13376
         "CustomImportOrderCheck.customImportOrderRules"
-    );
-
-    /**
-     * Frequent version.
-     */
-    private static final String VERSION_6_9 = "6.9";
-
-    /**
-     * Frequent version.
-     */
-    private static final String VERSION_5_0 = "5.0";
-
-    /**
-     * Frequent version.
-     */
-    private static final String VERSION_3_2 = "3.2";
-
-    /**
-     * Frequent version.
-     */
-    private static final String VERSION_8_24 = "8.24";
-
-    /**
-     * Frequent version.
-     */
-    private static final String VERSION_8_36 = "8.36";
-
-    /**
-     * Frequent version.
-     */
-    private static final String VERSION_10_24 = "10.24";
-
-    /**
-     * Frequent version.
-     */
-    private static final String VERSION_3_0 = "3.0";
-
-    /**
-     * Frequent version.
-     */
-    private static final String VERSION_7_7 = "7.7";
-
-    /**
-     * Frequent version.
-     */
-    private static final String VERSION_5_7 = "5.7";
-
-    /**
-     * Frequent version.
-     */
-    private static final String VERSION_5_1 = "5.1";
-
-    /**
-     * Frequent version.
-     */
-    private static final String VERSION_3_4 = "3.4";
-
-    /**
-     * Map of properties whose since version is different from module version but
-     * are not specified in code because they are inherited from their super class(es).
-     * Until <a href="https://github.com/checkstyle/checkstyle/issues/14052">#14052</a>.
-     *
-     * @noinspection JavacQuirks
-     * @noinspectionreason JavacQuirks until #14052
-     */
-    private static final Map<String, String> SINCE_VERSION_FOR_INHERITED_PROPERTY = Map.ofEntries(
-        Map.entry("MissingDeprecatedCheck.violateExecutionOnNonTightHtml", VERSION_8_24),
-        Map.entry("NonEmptyAtclauseDescriptionCheck.violateExecutionOnNonTightHtml", "8.3"),
-        Map.entry("HeaderCheck.charset", VERSION_5_0),
-        Map.entry("HeaderCheck.fileExtensions", VERSION_6_9),
-        Map.entry("HeaderCheck.headerFile", VERSION_3_2),
-        Map.entry(HEADER_CHECK_HEADER, VERSION_5_0),
-        Map.entry("RegexpHeaderCheck.charset", VERSION_5_0),
-        Map.entry("RegexpHeaderCheck.fileExtensions", VERSION_6_9),
-        Map.entry("RegexpHeaderCheck.headerFile", VERSION_3_2),
-        Map.entry(REGEXP_HEADER_CHECK_HEADER, VERSION_5_0),
-        Map.entry("MultiFileRegexpHeaderCheck.fileExtensions", VERSION_10_24),
-        Map.entry("MultiFileRegexpHeaderCheck.headerFiles", VERSION_10_24),
-        Map.entry(MULTI_FILE_REGEXP_HEADER_CHECK_HEADER, VERSION_10_24),
-        Map.entry("ClassDataAbstractionCouplingCheck.excludeClassesRegexps", VERSION_7_7),
-        Map.entry("ClassDataAbstractionCouplingCheck.excludedClasses", VERSION_5_7),
-        Map.entry("ClassDataAbstractionCouplingCheck.excludedPackages", VERSION_7_7),
-        Map.entry("ClassDataAbstractionCouplingCheck.max", VERSION_3_4),
-        Map.entry("ClassFanOutComplexityCheck.excludeClassesRegexps", VERSION_7_7),
-        Map.entry("ClassFanOutComplexityCheck.excludedClasses", VERSION_5_7),
-        Map.entry("ClassFanOutComplexityCheck.excludedPackages", VERSION_7_7),
-        Map.entry("ClassFanOutComplexityCheck.max", VERSION_3_4),
-        Map.entry("NonEmptyAtclauseDescriptionCheck.javadocTokens", "7.3"),
-        Map.entry("FileTabCharacterCheck.fileExtensions", VERSION_5_0),
-        Map.entry("NewlineAtEndOfFileCheck.fileExtensions", "3.1"),
-        Map.entry("JavadocPackageCheck.fileExtensions", VERSION_5_0),
-        Map.entry("OrderedPropertiesCheck.fileExtensions", "8.22"),
-        Map.entry("UniquePropertiesCheck.fileExtensions", VERSION_5_7),
-        Map.entry("TranslationCheck.fileExtensions", VERSION_3_0),
-        Map.entry("LineLengthCheck.fileExtensions", VERSION_8_24),
-        // until https://github.com/checkstyle/checkstyle/issues/14052
-        Map.entry("JavadocBlockTagLocationCheck.violateExecutionOnNonTightHtml", VERSION_8_24),
-        Map.entry("JavadocLeadingAsteriskAlignCheck.violateExecutionOnNonTightHtml", "10.18"),
-        Map.entry("JavadocMissingLeadingAsteriskCheck.violateExecutionOnNonTightHtml", "8.38"),
-        Map.entry(
-            "RequireEmptyLineBeforeBlockTagGroupCheck.violateExecutionOnNonTightHtml",
-            VERSION_8_36),
-        Map.entry("ParenPadCheck.option", VERSION_3_0),
-        Map.entry("TypecastParenPadCheck.option", VERSION_3_2),
-        Map.entry("FileLengthCheck.fileExtensions", VERSION_5_0),
-        Map.entry("StaticVariableNameCheck.applyToPackage", VERSION_5_0),
-        Map.entry("StaticVariableNameCheck.applyToPrivate", VERSION_5_0),
-        Map.entry("StaticVariableNameCheck.applyToProtected", VERSION_5_0),
-        Map.entry("StaticVariableNameCheck.applyToPublic", VERSION_5_0),
-        Map.entry("StaticVariableNameCheck.format", VERSION_3_0),
-        Map.entry("TypeNameCheck.applyToPackage", VERSION_5_0),
-        Map.entry("TypeNameCheck.applyToPrivate", VERSION_5_0),
-        Map.entry("TypeNameCheck.applyToProtected", VERSION_5_0),
-        Map.entry("TypeNameCheck.applyToPublic", VERSION_5_0),
-        Map.entry("RegexpMultilineCheck.fileExtensions", VERSION_5_0),
-        Map.entry("RegexpOnFilenameCheck.fileExtensions", "6.15"),
-        Map.entry("RegexpSinglelineCheck.fileExtensions", VERSION_5_0),
-        Map.entry("ClassTypeParameterNameCheck.format", VERSION_5_0),
-        Map.entry("CatchParameterNameCheck.format", "6.14"),
-        Map.entry("LambdaParameterNameCheck.format", "8.11"),
-        Map.entry("IllegalIdentifierNameCheck.format", VERSION_8_36),
-        Map.entry("ConstantNameCheck.format", VERSION_3_0),
-        Map.entry("ConstantNameCheck.applyToPackage", VERSION_5_0),
-        Map.entry("ConstantNameCheck.applyToPrivate", VERSION_5_0),
-        Map.entry("ConstantNameCheck.applyToProtected", VERSION_5_0),
-        Map.entry("ConstantNameCheck.applyToPublic", VERSION_5_0),
-        Map.entry("InterfaceTypeParameterNameCheck.format", "5.8"),
-        Map.entry("LocalFinalVariableNameCheck.format", VERSION_3_0),
-        Map.entry("LocalVariableNameCheck.format", VERSION_3_0),
-        Map.entry("MemberNameCheck.format", VERSION_3_0),
-        Map.entry("MemberNameCheck.applyToPackage", VERSION_3_4),
-        Map.entry("MemberNameCheck.applyToPrivate", VERSION_3_4),
-        Map.entry("MemberNameCheck.applyToProtected", VERSION_3_4),
-        Map.entry("MemberNameCheck.applyToPublic", VERSION_3_4),
-        Map.entry("MethodNameCheck.format", VERSION_3_0),
-        Map.entry("MethodNameCheck.applyToPackage", VERSION_5_1),
-        Map.entry("MethodNameCheck.applyToPrivate", VERSION_5_1),
-        Map.entry("MethodNameCheck.applyToProtected", VERSION_5_1),
-        Map.entry("MethodNameCheck.applyToPublic", VERSION_5_1),
-        Map.entry("MethodTypeParameterNameCheck.format", VERSION_5_0),
-        Map.entry("ParameterNameCheck.format", VERSION_3_0),
-        Map.entry("PatternVariableNameCheck.format", VERSION_8_36),
-        Map.entry("RecordTypeParameterNameCheck.format", VERSION_8_36),
-        Map.entry("RecordComponentNameCheck.format", "8.40"),
-        Map.entry("TypeNameCheck.format", VERSION_3_0)
     );
 
     /** Map of all superclasses properties and their javadocs. */
@@ -481,7 +335,7 @@ public final class SiteUtil {
      * @return the constructed string.
      */
     public static String getNewlineAndIndentSpaces(int amountOfSpaces) {
-        return System.lineSeparator() + " ".repeat(amountOfSpaces);
+        return System.lineSeparator() + WHITESPACE.repeat(amountOfSpaces);
     }
 
     /**
@@ -841,34 +695,149 @@ public final class SiteUtil {
      * @param propertyName the name of the property.
      * @param propertyJavadoc the Javadoc of the property setter method.
      * @return the since version of the property.
-     * @throws MacroExecutionException if the since version could not be extracted.
+     * @throws MacroExecutionException if the module since version could not be extracted.
      */
     public static String getSinceVersion(String moduleName, DetailNode moduleJavadoc,
                                          String propertyName, DetailNode propertyJavadoc)
             throws MacroExecutionException {
         final String sinceVersion;
-        final String superClassSinceVersion = SINCE_VERSION_FOR_INHERITED_PROPERTY
-                   .get(moduleName + DOT + propertyName);
-        if (superClassSinceVersion != null) {
-            sinceVersion = superClassSinceVersion;
-        }
-        else if (TOKENS.equals(propertyName)
-                        || JAVADOC_TOKENS.equals(propertyName)) {
-            // Use module's since version for inherited properties
-            sinceVersion = getSinceVersionFromJavadoc(moduleJavadoc);
+
+        final Optional<String> specifiedPropertyVersion =
+            getSpecifiedPropertyVersion(propertyName, moduleJavadoc);
+
+        if (specifiedPropertyVersion.isPresent()) {
+            sinceVersion = specifiedPropertyVersion.get();
         }
         else {
-            sinceVersion = getSinceVersionFromJavadoc(propertyJavadoc);
-        }
+            final String moduleSince = getSinceVersionFromJavadoc(moduleJavadoc);
 
-        if (sinceVersion == null) {
-            final String message = String.format(Locale.ROOT,
-                    "Failed to find '@since' version for '%s' property"
-                            + " in '%s' and all parent classes.", propertyName, moduleName);
-            throw new MacroExecutionException(message);
+            if (moduleSince == null) {
+                throw new MacroExecutionException(
+                        "Missing @since on module " + moduleName);
+            }
+
+            String propertySince = null;
+            if (propertyJavadoc != null) {
+                propertySince = getSinceVersionFromJavadoc(propertyJavadoc);
+            }
+
+            if (propertySince != null && isVersionAtLeast(propertySince, moduleSince)) {
+                sinceVersion = propertySince;
+            }
+            else {
+                sinceVersion = moduleSince;
+            }
         }
 
         return sinceVersion;
+    }
+
+    /**
+     * Gets the specifically indicated version of module's property from the javadoc of module.
+     *
+     * @param propertyName the name of property.
+     * @param moduleJavadoc the javadoc of module.
+     * @return the specific since version of module's property.
+     * @throws MacroExecutionException if the module since version could not be extracted.
+     */
+    private static Optional<String> getSpecifiedPropertyVersion(String propertyName,
+                                                      DetailNode moduleJavadoc)
+            throws MacroExecutionException {
+        Optional<String> specifiedVersion = Optional.empty();
+
+        final Optional<DetailNode> propertyModuleJavadoc =
+            getPropertyJavadocNodeInModule(propertyName, moduleJavadoc);
+
+        if (propertyModuleJavadoc.isPresent()) {
+            final DetailNode primaryJavadocInlineTag = JavadocUtil.findFirstToken(
+                propertyModuleJavadoc.get(), JavadocTokenTypes.JAVADOC_INLINE_TAG);
+
+            for (DetailNode textNode = JavadocUtil
+                .getNextSibling(primaryJavadocInlineTag, JavadocTokenTypes.TEXT);
+                 textNode != null && specifiedVersion.isEmpty();
+                 textNode = JavadocUtil.getNextSibling(
+                     textNode, JavadocTokenTypes.TEXT)) {
+
+                final String textNodeText = textNode.getText();
+
+                if (textNodeText.startsWith(WHITESPACE + SINCE_VERSION)) {
+                    final int sinceVersionIndex = textNodeText.indexOf('.') - 1;
+
+                    if (sinceVersionIndex > 0) {
+                        specifiedVersion = Optional.of(textNodeText.substring(sinceVersionIndex));
+                    }
+                    else {
+                        throw new MacroExecutionException(textNodeText
+                            + " has no valid version, at least one '.' is expected.");
+                    }
+
+                }
+            }
+        }
+
+        return specifiedVersion;
+    }
+
+    /**
+     * Gets the javadoc node part of the property from the javadoc of the module.
+     *
+     * @param propertyName the name of property.
+     * @param moduleJavadoc the javadoc of module.
+     * @return the Optional of javadoc node part of the property.
+     */
+    private static Optional<DetailNode> getPropertyJavadocNodeInModule(String propertyName,
+                                                             DetailNode moduleJavadoc) {
+        Optional<DetailNode> propertyJavadocNode = Optional.empty();
+
+        for (DetailNode htmlElement = JavadocUtil.getNextSibling(
+                JavadocUtil.getFirstChild(moduleJavadoc), JavadocTokenTypes.HTML_ELEMENT);
+            htmlElement != null && propertyJavadocNode.isEmpty();
+            htmlElement = JavadocUtil.getNextSibling(
+                htmlElement, JavadocTokenTypes.HTML_ELEMENT)) {
+
+            final DetailNode htmlTag = JavadocUtil.findFirstToken(
+                htmlElement, JavadocTokenTypes.HTML_TAG);
+            final Optional<String> htmlTagName = Optional.ofNullable(htmlTag)
+                .map(JavadocUtil::getFirstChild)
+                .map(htmlStart -> {
+                    return JavadocUtil.findFirstToken(htmlStart, JavadocTokenTypes.HTML_TAG_NAME);
+                })
+                .map(DetailNode::getText);
+
+            if (htmlTag != null && "ul".equals(htmlTagName.orElse(null))) {
+
+                boolean foundProperty = false;
+
+                for (DetailNode innerHtmlElement = JavadocUtil.getNextSibling(
+                        JavadocUtil.getFirstChild(htmlTag), JavadocTokenTypes.HTML_ELEMENT);
+                    innerHtmlElement != null && !foundProperty;
+                    innerHtmlElement = JavadocUtil.getNextSibling(
+                        innerHtmlElement, JavadocTokenTypes.HTML_ELEMENT)) {
+
+                    final DetailNode liTag = JavadocUtil.getFirstChild(innerHtmlElement);
+
+                    if (liTag.getType() == JavadocTokenTypes.LI) {
+
+                        final DetailNode primeJavadocInlineTag = JavadocUtil.findFirstToken(liTag,
+                            JavadocTokenTypes.JAVADOC_INLINE_TAG);
+
+                        if (primeJavadocInlineTag == null) {
+                            break;
+                        }
+
+                        final String examinedPropertyName = JavadocUtil.findFirstToken(
+                            primeJavadocInlineTag, JavadocTokenTypes.TEXT).getText();
+
+                        if (examinedPropertyName.equals(propertyName)) {
+                            propertyJavadocNode = Optional.ofNullable(liTag);
+                            foundProperty = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return propertyJavadocNode;
     }
 
     /**
@@ -907,6 +876,22 @@ public final class SiteUtil {
             }
         }
         return javadocTagWithSince;
+    }
+
+    /**
+     * Returns {@code true} if {@code actualVersion} ≥ {@code requiredVersion}.
+     * Both versions have any trailing "-SNAPSHOT" stripped before comparison.
+     *
+     * @param actualVersion   e.g. "8.3" or "8.3-SNAPSHOT"
+     * @param requiredVersion e.g. "8.3"
+     * @return {@code true} if actualVersion exists, and, numerically, is at least requiredVersion
+     */
+    private static boolean isVersionAtLeast(String actualVersion,
+                                            String requiredVersion) {
+        final Version actualVersionParsed = Version.parse(actualVersion);
+        final Version requiredVersionParsed = Version.parse(requiredVersion);
+
+        return actualVersionParsed.compareTo(requiredVersionParsed) >= 0;
     }
 
     /**

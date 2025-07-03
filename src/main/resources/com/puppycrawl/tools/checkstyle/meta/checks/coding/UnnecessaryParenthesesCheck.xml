@@ -8,7 +8,7 @@
  Checks if unnecessary parentheses are used in a statement or expression.
  The check will flag the following with warnings:
  &lt;/div&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  return (x);          // parens around identifier
  return (x + 1);      // parens around return value
  int x = (y / 2 + 1); // parens around assignment rhs
@@ -18,7 +18,7 @@
              || z &amp;lt; 9;
  boolean b = (~a) &amp;gt; -27            // parens around ~a
              &amp;amp;&amp;amp; (a-- &amp;lt; 30);        // parens around expression
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  The check is not "type aware", that is to say, it can't tell if parentheses
@@ -26,28 +26,29 @@
  operator precedence but unaware about operator associativity.
  It won't catch cases such as:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  int x = (a + b) + c; // 1st Case
  boolean p = true; // 2nd Case
  int q = 4;
  int r = 3;
- if (p == (q &amp;lt;= r)) {}&lt;/pre&gt;
+ if (p == (q &amp;lt;= r)) {}
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  In the first case, given that &lt;em&gt;a&lt;/em&gt;, &lt;em&gt;b&lt;/em&gt;, and &lt;em&gt;c&lt;/em&gt; are
- all {@code int} variables, the parentheses around {@code a + b}
+ all &lt;code&gt;int&lt;/code&gt; variables, the parentheses around &lt;code&gt;a + b&lt;/code&gt;
  are not needed.
  In the second case, parentheses are required as &lt;em&gt;q&lt;/em&gt;, &lt;em&gt;r&lt;/em&gt; are
- of type {@code int} and &lt;em&gt;p&lt;/em&gt; is of type {@code boolean}
+ of type &lt;code&gt;int&lt;/code&gt; and &lt;em&gt;p&lt;/em&gt; is of type &lt;code&gt;boolean&lt;/code&gt;
  and removing parentheses will give a compile-time error. Even if &lt;em&gt;q&lt;/em&gt;
- and &lt;em&gt;r&lt;/em&gt; were {@code boolean} still there will be no violation
+ and &lt;em&gt;r&lt;/em&gt; were &lt;code&gt;boolean&lt;/code&gt; still there will be no violation
  raised as check is not "type aware".
  &lt;/p&gt;
 
  &lt;p&gt;
  The partial support for operator precedence includes cases of the following type:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  boolean a = true, b = true;
  boolean c = false, d = false;
  if ((a &amp;amp;&amp;amp; b) || c) { // violation, unnecessary paren
@@ -66,7 +67,7 @@
  }
  if ((++f) &amp;gt; g &amp;amp;&amp;amp; a) { // violation, unnecessary paren
  }
- &lt;/pre&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="EXPR,IDENT,NUM_DOUBLE,NUM_FLOAT,NUM_INT,NUM_LONG,STRING_LITERAL,LITERAL_NULL,LITERAL_FALSE,LITERAL_TRUE,ASSIGN,BAND_ASSIGN,BOR_ASSIGN,BSR_ASSIGN,BXOR_ASSIGN,DIV_ASSIGN,MINUS_ASSIGN,MOD_ASSIGN,PLUS_ASSIGN,SL_ASSIGN,SR_ASSIGN,STAR_ASSIGN,LAMBDA,TEXT_BLOCK_LITERAL_BEGIN,LAND,LOR,LITERAL_INSTANCEOF,GT,LT,GE,LE,EQUAL,NOT_EQUAL,UNARY_MINUS,UNARY_PLUS,INC,DEC,LNOT,BNOT,POST_INC,POST_DEC"
                       name="tokens"

@@ -14,16 +14,16 @@
 
  &lt;p&gt;
  Attention: Elements that cannot have JavaDoc comments like local variables are not in the
- scope of this check even though a token type like {@code } would match them.
+ scope of this check even though a token type like &lt;code&gt;VARIABLE_DEF&lt;/code&gt; would match them.
  &lt;/p&gt;
 
  &lt;p&gt;
  Attention: Annotations among modifiers are ignored (looks like false-negative)
  as there might be a problem with annotations for return types:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  public @Nullable Long getStartTimeOrNull() { ... }
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  Such annotations are better to keep close to type.
@@ -33,11 +33,11 @@
  &lt;p&gt;
  Example:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  &amp;#64;Override
  &amp;#64;Nullable
  public String getNameIfPresent() { ... }
- &lt;/pre&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="false"
                       name="allowSamelineMultipleAnnotations"

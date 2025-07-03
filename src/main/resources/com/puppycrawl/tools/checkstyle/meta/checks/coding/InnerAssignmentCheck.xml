@@ -6,7 +6,7 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks for assignments in subexpressions, such as in
- {@code String s = Integer.toString(i = 2);}.
+ &lt;code&gt;String s = Integer.toString(i = 2);&lt;/code&gt;.
  &lt;/div&gt;
 
  &lt;p&gt;
@@ -19,7 +19,7 @@
  &lt;p&gt;
  Note: Check allows usage of the popular assignments in loops:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  String line;
  while ((line = bufferedReader.readLine()) != null) { // OK
    // process the line
@@ -33,12 +33,12 @@
    // process the line
  }
  while ((line = bufferedReader.readLine()) != null); // OK
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  Assignment inside a condition is not a problem here, as the assignment is surrounded
- by an extra pair of parentheses. The comparison is {@code != null} and there is no chance that
- intention was to write {@code line == reader.readLine()}.
+ by an extra pair of parentheses. The comparison is &lt;code&gt;!= null&lt;/code&gt; and there is no chance that
+ intention was to write &lt;code&gt;line == reader.readLine()&lt;/code&gt;.
  &lt;/p&gt;</description>
          <message-keys>
             <message-key key="assignment.inner.avoid"/>

@@ -126,7 +126,7 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     @Test
     public void testJava14InstanceofWithPatternMatching() throws Exception {
         verifyAst(getPath("java14/ExpectedJava14InstanceofWithPatternMatchingAST.txt"),
-                getNonCompilablePath("java14/InputJava14InstanceofWithPatternMatching.java"));
+                getPath("java14/InputJava14InstanceofWithPatternMatching.java"));
     }
 
     @Test
@@ -167,67 +167,67 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     @Test
     public void testJava14Records() throws Exception {
         verifyAst(getPath("java14/ExpectedJava14Records.txt"),
-                getNonCompilablePath("java14/InputJava14Records.java"));
+                getPath("java14/InputJava14Records.java"));
     }
 
     @Test
     public void testJava14RecordsTopLevel() throws Exception {
         verifyAst(getPath("java14/ExpectedJava14RecordsTopLevel.txt"),
-                getNonCompilablePath("java14/InputJava14RecordsTopLevel.java"));
+                getPath("java14/InputJava14RecordsTopLevel.java"));
     }
 
     @Test
     public void testJava14LocalRecordAnnotation() throws Exception {
         verifyAst(getPath("java14/ExpectedJava14LocalRecordAnnotation.txt"),
-            getNonCompilablePath("java14/InputJava14LocalRecordAnnotation.java"));
+            getPath("java14/InputJava14LocalRecordAnnotation.java"));
     }
 
     @Test
     public void testJava14TextBlocks() throws Exception {
         verifyAst(getPath("java14/ExpectedJava14TextBlocks.txt"),
-                getNonCompilablePath("java14/InputJava14TextBlocks.java"));
+                getPath("java14/InputJava14TextBlocks.java"));
     }
 
     @Test
     public void testJava14TextBlocksEscapes() throws Exception {
         verifyAst(getPath("java14/ExpectedJava14TextBlocksEscapesAreOneChar.txt"),
-                getNonCompilablePath("java14/InputJava14TextBlocksEscapesAreOneChar.java"));
+                getPath("java14/InputJava14TextBlocksEscapesAreOneChar.java"));
     }
 
     @Test
     public void testJava14SwitchExpression() throws Exception {
         verifyAst(getPath("java14/ExpectedJava14SwitchExpression.txt"),
-                getNonCompilablePath("java14/InputJava14SwitchExpression.java"));
+                getPath("java14/InputJava14SwitchExpression.java"));
     }
 
     @Test
     public void testInputJava14TextBlocksTabSize() throws Exception {
         verifyAst(getPath("java14/ExpectedJava14TextBlocksTabSize.txt"),
-            getNonCompilablePath("java14/InputJava14TextBlocksTabSize.java"));
+            getPath("java14/InputJava14TextBlocksTabSize.java"));
     }
 
     @Test
     public void testInputEscapedS() throws Exception {
         verifyAst(getPath("java14/ExpectedJava14EscapedS.txt"),
-                getNonCompilablePath("java14/InputJava14EscapedS.java"));
+                getPath("java14/InputJava14EscapedS.java"));
     }
 
     @Test
     public void testInputSealedAndPermits() throws Exception {
         verifyAst(getPath("java15/ExpectedAstRegressionSealedAndPermits.txt"),
-            getNonCompilablePath("java15/InputAstRegressionSealedAndPermits.java"));
+            getPath("java15/InputAstRegressionSealedAndPermits.java"));
     }
 
     @Test
     public void testInputTopLevelNonSealed() throws Exception {
         verifyAst(getPath("java15/ExpectedTopLevelNonSealed.txt"),
-            getNonCompilablePath("java15/InputTopLevelNonSealed.java"));
+            getPath("java15/InputTopLevelNonSealed.java"));
     }
 
     @Test
     public void testPatternVariableWithModifiers() throws Exception {
         verifyAst(getPath("java16/ExpectedPatternVariableWithModifiers.txt"),
-                getNonCompilablePath("java16/InputPatternVariableWithModifiers.java"));
+                getPath("java16/InputPatternVariableWithModifiers.java"));
     }
 
     @Test

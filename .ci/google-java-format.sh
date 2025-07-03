@@ -57,6 +57,7 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule452indentcontinuationlines/ClassWithChainedMethods.java" \
     | grep -v "rule461verticalwhitespace/InputVerticalWhitespace.java" \
     | grep -v "rule462horizontalwhitespace/InputWhitespaceAroundBasic.java" \
+    | grep -v "rule462horizontalwhitespace/InputWhitespaceAroundArrow.java" \
     | grep -v "rule462horizontalwhitespace/InputWhitespaceAfterBad.java" \
     | grep -v "rule462horizontalwhitespace/InputWhitespaceAfterGood.java" \
     | grep -v "rule462horizontalwhitespace/InputParenPad.java" \
@@ -66,8 +67,12 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule462horizontalwhitespace/InputMethodParamPad.java" \
     | grep -v "rule462horizontalwhitespace/InputWhitespaceAroundGenerics.java" \
     | grep -v "rule462horizontalwhitespace/InputGenericWhitespace.java" \
+    | grep -v "rule462horizontalwhitespace/InputWhitespaceAfterDoubleSlashes.java" \
     | grep -v "rule4821onevariableperline/InputOneVariablePerDeclaration.java" \
     | grep -v "rule4841indentation/InputClassWithChainedMethods.java" \
+    | grep -v "rule4841indentation/InputAnnotationArrayInitMultiline.java" \
+    | grep -v "rule4841indentation/InputAnnotationArrayInitMultiline2.java" \
+    | grep -v "rule4841indentation/InputNewKeywordChildren.java" \
     | grep -v "rule4852classannotations/InputClassAnnotations.java" \
     | grep -v "rule4853methodsandconstructorsannotations/InputMethodsAndConstructorsAnnotations.java" \
     | grep -v "rule4854fieldannotations/InputFieldAnnotations.java" \

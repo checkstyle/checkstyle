@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.site.SiteUtil.SINCE_VERSION;
 
 import java.io.File;
 import java.net.URI;
@@ -700,11 +701,17 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         }
 
         private static String getJavaDocText(DetailAST node) {
-            final String text = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document>\n"
+            String text = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document>\n"
                     + node.getFirstChild().getText().replaceAll("(^|\\r?\\n)\\s*\\* ?", "\n")
                             .replaceAll("\\n?@noinspection.*\\r?\\n[^@]*", "\n")
                             .trim() + "\n</document>";
             String result = null;
+
+            // until https://github.com/checkstyle/checkstyle/issues/17251
+            if (text.contains("\n" + SINCE_VERSION)) {
+                final String sinceVersionLine = "\n" + SINCE_VERSION + " .*";
+                text = text.replaceAll(sinceVersionLine, "");
+            }
 
             try {
                 result = getNodeText(XmlUtil.getRawXml(checkName, text, text).getFirstChild())

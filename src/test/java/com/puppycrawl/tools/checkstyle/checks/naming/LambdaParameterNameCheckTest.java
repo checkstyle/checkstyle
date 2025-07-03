@@ -90,7 +90,7 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputLambdaParameterNameSwitchExpression.java"),
+                getPath("InputLambdaParameterNameSwitchExpression.java"),
             expected);
     }
 

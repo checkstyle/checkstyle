@@ -184,7 +184,7 @@ public class ExecutableStatementCountCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputExecutableStatementCountRecords.java"),
+                getPath("InputExecutableStatementCountRecords.java"),
                 expected);
     }
 

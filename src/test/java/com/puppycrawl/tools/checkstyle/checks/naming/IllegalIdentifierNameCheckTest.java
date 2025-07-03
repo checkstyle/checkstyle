@@ -83,7 +83,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
             "74:74: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputIllegalIdentifierName.java"), expected);
+                getPath("InputIllegalIdentifierName.java"), expected);
     }
 
     @Test
@@ -107,7 +107,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
             "76:72: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputIllegalIdentifierNameOpenTransitive.java"), expected);
+                getPath("InputIllegalIdentifierNameOpenTransitive.java"), expected);
     }
 
     @Test
@@ -116,7 +116,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputIllegalIdentifierNameParameterReceiver.java"),
+                getPath("InputIllegalIdentifierNameParameterReceiver.java"),
             expected);
     }
 
@@ -142,7 +142,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
             "42:47: " + getCheckMessage(MSG_INVALID_PATTERN, "te$t", format),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputIllegalIdentifierNameLambda.java"), expected);
+                getPath("InputIllegalIdentifierNameLambda.java"), expected);
     }
 
     @Test

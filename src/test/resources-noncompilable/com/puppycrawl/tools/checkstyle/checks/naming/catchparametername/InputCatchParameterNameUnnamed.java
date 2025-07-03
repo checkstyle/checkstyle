@@ -5,7 +5,7 @@ format = (default)^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$
 
 */
 
-//non-compiled with javac: Compilable with Java21
+// non-compiled with javac: Compilable with Java21
 package com.puppycrawl.tools.checkstyle.checks.naming.catchparametername;
 
 public class InputCatchParameterNameUnnamed {

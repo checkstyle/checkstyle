@@ -244,7 +244,7 @@
     <Bug pattern="ITC_INHERITANCE_TYPE_CHECKING"/>
   </Match>
   <Match>
-    <!-- Till https://github.com/mebigfatguy/fb-contrib/issues/405 -->
+    <!-- Till https://github.com/checkstyle/checkstyle/issues/17293 -->
     <Bug pattern="CNC_COLLECTION_NAMING_CONFUSION"/>
   </Match>
   <Match>

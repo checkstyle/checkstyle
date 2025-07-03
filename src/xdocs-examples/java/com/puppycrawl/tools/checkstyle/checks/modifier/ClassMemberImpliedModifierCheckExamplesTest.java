@@ -41,6 +41,6 @@ public class ClassMemberImpliedModifierCheckExamplesTest extends AbstractExample
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("Example1.java"), expected);
+                getPath("Example1.java"), expected);
     }
 }

@@ -52,9 +52,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * <li>
  * Trailing comments are taken into consideration while calculating the line length.
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * import java.util.regex.Pattern; // The length of this comment will be taken into consideration
- * </pre>
+ * </code></pre></div>
  * In the example above the length of the import statement is just 31 characters but total length
  * will be 94 characters.
  * </li>
@@ -64,6 +64,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Property {@code fileExtensions} - Specify the file extensions of the files to process.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
+ * Since version 8.24
  * </li>
  * <li>
  * Property {@code ignorePattern} - Specify pattern for lines to ignore.

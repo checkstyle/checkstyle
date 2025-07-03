@@ -211,7 +211,7 @@ public class Example4 {
     CONSTANT // violation, 'Missing a Javadoc comment'
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example5-code">
           This check will not report a violation for local and

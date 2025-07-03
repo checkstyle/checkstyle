@@ -437,7 +437,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
             "48:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMissingJavadocMethodRecordsAndCtors.java"), expected);
+                getPath("InputMissingJavadocMethodRecordsAndCtors.java"), expected);
     }
 
     @Test
@@ -446,7 +446,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMissingJavadocMethodRecordsAndCtorsMinLineCount.java"),
+                getPath("InputMissingJavadocMethodRecordsAndCtorsMinLineCount.java"),
             expected);
     }
 
@@ -456,7 +456,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
             "14:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMissingJavadocMethod1.java"),
+                getPath("InputMissingJavadocMethod1.java"),
                 expected);
     }
 
@@ -524,7 +524,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
             "13:5: " + getCheckMessage(MissingJavadocMethodCheck.class, MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMissingJavadocMethodBasic.java"), expected);
+                getPath("InputMissingJavadocMethodBasic.java"), expected);
     }
 
     @Test

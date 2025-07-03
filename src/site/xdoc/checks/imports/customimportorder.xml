@@ -28,7 +28,7 @@
             SAME_PACKAGE(n) group. This group sets the ordering of the same package imports.
             Imports are considered on SAME_PACKAGE group if <b>n</b> first domains in package
             name and import name are identical:
-            <source>
+            <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package java.util.concurrent.locks;
 
 import java.io.File;
@@ -40,7 +40,7 @@ import java.util.concurrent.AbstractExecutorService; //#5
 import java.util.concurrent.locks.LockSupport; //#6
 import java.util.regex.Pattern; //#7
 import java.util.regex.Matcher; //#8
-            </source>
+            </code></pre></div>
             If we have SAME_PACKAGE(3) on configuration file,
             imports #4-6 will be considered as a SAME_PACKAGE group (java.util.concurrent.*,
             java.util.concurrent.AbstractExecutorService, java.util.concurrent.locks.LockSupport).
@@ -96,10 +96,10 @@ import java.util.regex.Matcher; //#8
           1. patterns STANDARD_JAVA_PACKAGE = &quot;Check&quot;, SPECIAL_IMPORTS=&quot;ImportOrderCheck&quot;
           and input file:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
-        </source>
+        </code></pre></div>
         <p>
           Result: imports will be assigned to SPECIAL_IMPORTS, because matching
           substring length is 16. Matching substring for STANDARD_JAVA_PACKAGE is 5.
@@ -107,9 +107,9 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
         <p>
           2. patterns STANDARD_JAVA_PACKAGE = &quot;Check&quot;, SPECIAL_IMPORTS=&quot;Avoid&quot; and file:
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
-        </source>
+        </code></pre></div>
         <p>
           Result: import will be assigned to SPECIAL_IMPORTS. Matching substring length is 5 for
           both patterns. However, &quot;Avoid&quot; position is lower than &quot;Check&quot; position.
@@ -625,7 +625,7 @@ import java.awt.Dialog;
 import java.awt.Window;
 import java.awt.color.ColorSpace;
 import java.awt.Frame; // violation, in ASCII order all uppercase comes before lowercase letters
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example15-code">
           To force checking imports sequence such as:
         </p>
@@ -642,7 +642,7 @@ import static java.util.Collections.emptyList;
 import com.google.common.annotations.GwtCompatible; // violation, 'wrong order'
 
 import java.lang.String;
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
         <p id="Example15-config">
           configure as follows:
         </p>

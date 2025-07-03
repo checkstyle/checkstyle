@@ -199,7 +199,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMethodCountRecords.java"), expected);
+                getPath("InputMethodCountRecords.java"), expected);
     }
 
 }

@@ -248,7 +248,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             "53:1: " + getCheckMessage(MSG_KEY, 4, 2),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputClassFanOutComplexityRecords.java"), expected);
+                getPath("InputClassFanOutComplexityRecords.java"), expected);
     }
 
     @Test

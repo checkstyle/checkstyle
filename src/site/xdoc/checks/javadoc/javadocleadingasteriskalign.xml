@@ -43,7 +43,7 @@
      Tight-HTML Rules</a>.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
-              <td>10.18</td>
+              <td>10.18.0</td>
             </tr>
           </table>
         </div>
@@ -100,7 +100,7 @@ public class Example1 {
     TWO
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example2-code">
           Example with incorrect alignment:

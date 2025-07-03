@@ -1616,7 +1616,40 @@ public final class JavadocTokenTypes {
     /** Html tag name. */
     public static final int HTML_HTML_TAG_NAME = JavadocParser.HTML_HTML_TAG_NAME;
 
-    /** Option tag name. */
+    /**
+     * Option tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code &lt;option value="yes"&gt;Yes&lt;/option&gt;}</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * JAVADOC -> JAVADOC
+     * |--NEWLINE -> \r\n
+     * |--LEADING_ASTERISK ->  *
+     * |--HTML_ELEMENT -> HTML_ELEMENT
+     * |   `--OPTION -> OPTION
+     * |       |--OPTION_TAG_START -> OPTION_TAG_START
+     * |       |   |--START -> <
+     * |       |   |--OPTION_HTML_TAG_NAME -> option
+     * |       |   |--WS ->
+     * |       |   |--ATTRIBUTE -> ATTRIBUTE
+     * |       |   |   |--HTML_TAG_NAME -> value
+     * |       |   |   |--EQUALS -> =
+     * |       |   |   `--ATTR_VALUE -> "yes"
+     * |       |   `--END -> >
+     * |       |--TEXT -> Yes
+     * |       `--OPTION_TAG_END -> OPTION_TAG_END
+     * |           |--START -> <
+     * |           |--SLASH -> /
+     * |           |--OPTION_HTML_TAG_NAME -> option
+     * |           `--END -> >
+     * |--NEWLINE -> \r\n
+     * |--TEXT ->
+     * |--EOF -> <EOF>
+     * }
+     * </pre>
+     */
     public static final int OPTION_HTML_TAG_NAME = JavadocParser.OPTION_HTML_TAG_NAME;
 
     /** Table body tag name. */

@@ -5,7 +5,7 @@
              name="FileTabCharacter"
              parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;div&gt;
- Checks that there are no tab characters ({@code '\t'}) in the source code.
+ Checks that there are no tab characters (&lt;code&gt;'\t'&lt;/code&gt;) in the source code.
  &lt;/div&gt;
 
  &lt;p&gt;
@@ -24,7 +24,7 @@
  &lt;/ul&gt;
 
  &lt;p&gt;
- When the {@code FileTabCharacter} check is used with the default configuration,
+ When the &lt;code&gt;FileTabCharacter&lt;/code&gt; check is used with the default configuration,
  only the first instance of a tab character is reported.
  &lt;/p&gt;</description>
          <properties>

@@ -327,7 +327,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "59:34: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputAnnotationLocationRecordsAndCompactCtors.java"),
+                getPath("InputAnnotationLocationRecordsAndCompactCtors.java"),
             expected);
     }
 

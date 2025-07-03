@@ -9,7 +9,7 @@
  &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html#block-tags"&gt;
  javadoc block tag&lt;/a&gt; appears only at the beginning of a line, ignoring
  leading asterisks and white space. A block tag is a token that starts with
- {@code @} symbol and is preceded by a whitespace. This check ignores block
+ &lt;code&gt;@&lt;/code&gt; symbol and is preceded by a whitespace. This check ignores block
  tags in comments and inside inline tags {&amp;#64;code } and {&amp;#64;literal }.
  &lt;/div&gt;
 
@@ -19,19 +19,19 @@
  the specification&lt;/a&gt; all javadoc block tags should be placed at the beginning
  of a line. Tags that are not placed at the beginning are treated as plain text.
  To recognize intentional tag placement to text area it is better to escape the
- {@code @} symbol, and all non-escaped tags should be located at the beginning
+ &lt;code&gt;@&lt;/code&gt; symbol, and all non-escaped tags should be located at the beginning
  of the line. See NOTE section for details on how to escape.
  &lt;/p&gt;
 
  &lt;p&gt;
- To place a tag explicitly as text, escape the {@code @} symbol with HTML entity
- &amp;amp;#64; or place it inside {@code {@code }}, for example:
+ To place a tag explicitly as text, escape the &lt;code&gt;@&lt;/code&gt; symbol with HTML entity
+ &amp;amp;#64; or place it inside &lt;code&gt;{@code }&lt;/code&gt;, for example:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  &amp;#47;**
   * &amp;amp;#64;serial literal in {&amp;#64;code &amp;#64;serial} Javadoc tag.
   *&amp;#47;
- &lt;/pre&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="author, deprecated, exception, hidden, param, provides, return, see, serial, serialData, serialField, since, throws, uses, version"
                       name="tags"

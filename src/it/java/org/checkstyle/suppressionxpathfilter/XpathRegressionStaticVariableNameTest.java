@@ -66,7 +66,7 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
     @Test
     public void testInnerClassField() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
+                new File(getPath(
                         "InputXpathStaticVariableNameInnerClassField.java"));
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";

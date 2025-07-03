@@ -509,6 +509,12 @@ check-since-version)
   fi
   ;;
 
+compile-test-resources)
+  # this task is useful during migration to new JDK to let compile resources on new jdk only
+  ./mvnw -e --no-transfer-progress clean test-compile \
+  -Dcheckstyle.skipCompileInputResources=false -Dmaven.compiler.release=17
+  ;;
+
 javac11)
   # InputCustomImportOrderNoPackage2 - nothing is required in front of first import
   # InputIllegalTypePackageClassName - bad import for testing
@@ -517,12 +523,13 @@ javac11)
         --exclude='InputCustomImportOrderNoPackage2.java' \
         --exclude='InputIllegalTypePackageClassName.java' \
         --exclude='InputVisibilityModifierPackageClassName.java' \
-        '//non-compiled (syntax|with javac)?\:' \
+        '// non-compiled (syntax|with javac|with eclipse)?\:' \
         src/test/resources-noncompilable \
         src/xdocs-examples/resources-noncompilable))
   mkdir -p target
   for file in "${files[@]}"
   do
+    echo "${file}"
     javac -d target "${file}"
   done
   ;;

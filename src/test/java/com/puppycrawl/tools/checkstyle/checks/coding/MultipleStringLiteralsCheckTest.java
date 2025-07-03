@@ -176,7 +176,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
             };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMultipleStringLiteralsTextBlocks.java"),
+                getPath("InputMultipleStringLiteralsTextBlocks.java"),
             expected);
     }
 

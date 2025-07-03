@@ -9,7 +9,7 @@
  &lt;/div&gt;
 
  &lt;p&gt;
- Rationale: Any source files and text files in general should end with a line
+ Rationale: Any not empty source files and text files in general should end with a line
  separator to let other easily add new content at the end of file and "diff"
  command does not show previous lines as changed.
  &lt;/p&gt;
@@ -17,7 +17,7 @@
  &lt;p&gt;
  Example (the line with 'No newline at end of file' should not be in the diff):
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-text"&gt;
  &amp;#64;&amp;#64; -32,4 +32,5 &amp;#64;&amp;#64; ForbidWildcardAsReturnTypeCheck.returnTypeClassNamesIgnoreRegex
  PublicReferenceToPrivateTypeCheck.name = Public Reference To Private Type
 
@@ -26,7 +26,7 @@
  \ No newline at end of file
  +StaticMethodCandidateCheck.desc = Checks whether private methods should be declared as static.
  +StaticMethodCandidateCheck.skippedMethods = Method names to skip during the check.
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  It can also trick the VCS to report the wrong owner for such lines.
@@ -52,7 +52,7 @@
 
  &lt;p&gt;
  It is also possible to enforce the use of a specific line-separator across
- platforms, with the {@code lineSeparator} property.
+ platforms, with the &lt;code&gt;lineSeparator&lt;/code&gt; property.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="" name="fileExtensions" type="java.lang.String[]">

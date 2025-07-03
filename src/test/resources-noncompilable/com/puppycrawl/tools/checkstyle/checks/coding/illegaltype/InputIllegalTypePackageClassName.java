@@ -13,7 +13,7 @@ tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, INTERFACE_DEF, METHOD_CALL, M
 
 */
 
-//non-compiled: bad import for testing
+// non-compiled: bad import for testing
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 
 import com.PackageClass.*;

@@ -5,8 +5,8 @@
              name="MissingDeprecated"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Verifies that the annotation {@code @Deprecated} and the Javadoc tag
- {@code @deprecated} are both present when either of them is present.
+ Verifies that the annotation &lt;code&gt;@Deprecated&lt;/code&gt; and the Javadoc tag
+ &lt;code&gt;@deprecated&lt;/code&gt; are both present when either of them is present.
  &lt;/div&gt;
 
  &lt;p&gt;
@@ -34,13 +34,13 @@
  these files until the javadoc tool faithfully supports it. An example config
  using SuppressionSingleFilter is:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-xml"&gt;
  &amp;lt;!-- required till https://bugs.openjdk.org/browse/JDK-8160601 --&amp;gt;
  &amp;lt;module name="SuppressionSingleFilter"&amp;gt;
      &amp;lt;property name="checks" value="MissingDeprecatedCheck"/&amp;gt;
      &amp;lt;property name="files" value="package-info\.java"/&amp;gt;
  &amp;lt;/module&amp;gt;
- &lt;/pre&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="false"
                       name="violateExecutionOnNonTightHtml"

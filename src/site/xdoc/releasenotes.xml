@@ -10,6 +10,133 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.26.1">
+      <div class="releaseDate">29.06.2025</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            NewlineAtEndOfFileCheck and empty files (size 0).
+            Author: Eduard-Cristian Stefan
+            <a href="https://github.com/checkstyle/checkstyle/issues/17250">#17250</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Preparation for Migration of  Checkstyle Codebase to Java 17.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17168">#17168</a>
+          </li>
+          <li>
+            Add data to javadoc of Check to indicate true version of module properties inherited
+            from the abstract parent class.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17225">#17225</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.26.0">
+      <div class="releaseDate">24.06.2025</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            Add Check Support for Java 21 Record Pattern : New Check PatternVariableAssignment.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/14949">#14949</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Indentation check doesn&#39;t give violation when google formatter does.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/8965">#8965</a>
+          </li>
+          <li>
+            False positive on indentation for Annotation Arrays.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/17122">#17122</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Add data to javadoc of Check to indicate true version of module properties inherited
+            from the abstract parent class.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17225">#17225</a>
+          </li>
+          <li>
+            Preparation for Migration of  Checkstyle Codebase to Java 17.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17168">#17168</a>
+          </li>
+          <li>
+            PropertyCacheFileTest.testPathToCacheContainsOnlyFileName is failing.
+            Author: Harsh-Agrawal96
+            <a href="https://github.com/checkstyle/checkstyle/issues/13746">#13746</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: saloni-tkhule8
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.25.1">
+      <div class="releaseDate">21.06.2025</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            checkstyle expects different indentation for switch cases..
+            Author: Aziz-755
+            <a href="https://github.com/checkstyle/checkstyle/issues/17167">#17167</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Fix the problem when property of module has older version than the module&#39;s.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17237">#17237</a>
+          </li>
+          <li>
+            Preparation for Migration of  Checkstyle Codebase to Java 17.
+            Author: Amit Kumar Deohoria, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/17168">#17168</a>
+          </li>
+          <li>
+            Updating properties in Input files to mention all default properties,.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/16807">#16807</a>
+          </li>
+          <li>
+            use new nio jdk api instead of all api.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/16155">#16155</a>
+          </li>
+          <li>
+            Validattion of xdoc files to have separtor between examples.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/17186">#17186</a>
+          </li>
+          <li>
+            Review latest changes at Google style guide.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/17162">#17162</a>
+          </li>
+          <li>
+            CI is failing on &#39;validation.sh no-violation-test-josm&#39;.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/9807">#9807</a>
+          </li>
+          <li>
+            Typo in check name in 10.25.0 release notes.
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/17160">#17160</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.25.0">
       <div class="releaseDate">31.05.2025</div>
       <p>New:</p>

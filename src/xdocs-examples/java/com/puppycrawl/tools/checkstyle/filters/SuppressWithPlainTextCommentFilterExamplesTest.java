@@ -126,6 +126,6 @@ public class SuppressWithPlainTextCommentFilterExamplesTest
             "30: Line is longer than 100 characters (found 183).",
         };
 
-        verifyWithInlineConfigParser(getNonCompilablePath("Example9.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
     }
 }

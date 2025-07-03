@@ -40,7 +40,7 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
 
     @Test
     public void testTypeDeclared() throws Exception {
-        final File fileToProcess = new File(getNonCompilablePath(
+        final File fileToProcess = new File(getPath(
                 "InputXpathRecordTypeParameterNameTypeDeclared.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -49,7 +49,7 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
         final String pattern = "^[A-Z]$";
 
         final String[] expectedViolation = {
-            "7:55: " + getCheckMessage(RecordTypeParameterNameCheck.class,
+            "10:55: " + getCheckMessage(RecordTypeParameterNameCheck.class,
                     AbstractNameCheck.MSG_INVALID_PATTERN, "foo", pattern),
         };
 
@@ -68,7 +68,7 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
 
     @Test
     public void testTypeDefault() throws Exception {
-        final File fileToProcess = new File(getNonCompilablePath(
+        final File fileToProcess = new File(getPath(
                 "InputXpathRecordTypeParameterNameTypeDefault.java"));
 
         final DefaultConfiguration moduleConfig =

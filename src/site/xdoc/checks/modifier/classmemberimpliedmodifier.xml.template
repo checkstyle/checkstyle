@@ -24,13 +24,13 @@
           the ability to enforce that the <code>static</code> modifier is explicitly coded and not
           implicitly added by the compiler.
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public final class Person {
   enum Age {  // violation
     CHILD, ADULT
   }
 }
-        </source>
+        </code></pre></div>
         <p>
           Rationale for this check:
           Nested enums, interfaces, and records are treated differently from nested classes as they
@@ -58,7 +58,7 @@ public final class Person {
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/modifier/classmemberimpliedmodifier/Example1.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/classmemberimpliedmodifier/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -66,7 +66,7 @@ public final class Person {
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/modifier/classmemberimpliedmodifier/Example1.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/classmemberimpliedmodifier/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

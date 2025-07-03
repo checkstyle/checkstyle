@@ -3,15 +3,6 @@
   <mutation unstable="false">
     <sourceFile>AbstractExpressionHandler.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
-    <mutatedMethod>findSubtreeAst</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
-    <description>changed conditional boundary</description>
-    <lineContent>if (colNum == null || thisLineColumn &lt; colNum) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractExpressionHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
     <mutatedMethod>getFirstAstNode</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
     <description>changed conditional boundary</description>
@@ -133,15 +124,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
     <description>changed conditional boundary</description>
     <lineContent>if (node.getLineNo() &lt; lineStart) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>NewHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler</mutatedClass>
-    <mutatedMethod>shouldIncreaseIndent</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator</mutator>
-    <description>replaced boolean return with true for com/puppycrawl/tools/checkstyle/checks/indentation/NewHandler::shouldIncreaseIndent</description>
-    <lineContent>return false;</lineContent>
   </mutation>
 
   <mutation unstable="false">

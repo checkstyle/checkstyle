@@ -32,21 +32,25 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Property {@code applyToPackage} - Control if check should apply to package-private members.
  * Type is {@code boolean}.
  * Default value is {@code true}.
+ * Since version 3.4
  * </li>
  * <li>
  * Property {@code applyToPrivate} - Control if check should apply to private members.
  * Type is {@code boolean}.
  * Default value is {@code true}.
+ * Since version 3.4
  * </li>
  * <li>
  * Property {@code applyToProtected} - Control if check should apply to protected members.
  * Type is {@code boolean}.
  * Default value is {@code true}.
+ * Since version 3.4
  * </li>
  * <li>
  * Property {@code applyToPublic} - Control if check should apply to public members.
  * Type is {@code boolean}.
  * Default value is {@code true}.
+ * Since version 3.4
  * </li>
  * <li>
  * Property {@code format} - Sets the pattern to match valid identifiers.

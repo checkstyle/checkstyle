@@ -5,20 +5,20 @@
               name="SuppressWithNearbyCommentFilter"
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Filter {@code SuppressWithNearbyCommentFilter} uses nearby comments to suppress audit events.
+ Filter &lt;code&gt;SuppressWithNearbyCommentFilter&lt;/code&gt; uses nearby comments to suppress audit events.
  &lt;/div&gt;
 
  &lt;p&gt;
- Rationale: Same as {@code SuppressionCommentFilter}.
+ Rationale: Same as &lt;code&gt;SuppressionCommentFilter&lt;/code&gt;.
  Whereas the SuppressionCommentFilter uses matched pairs of filters to turn
- on/off comment matching, {@code SuppressWithNearbyCommentFilter} uses single comments.
+ on/off comment matching, &lt;code&gt;SuppressWithNearbyCommentFilter&lt;/code&gt; uses single comments.
  This requires fewer lines to mark a region, and may be aesthetically preferable in some contexts.
  &lt;/p&gt;
 
  &lt;p&gt;
  Attention: This filter may only be specified within the TreeWalker module
- ({@code &amp;lt;module name="TreeWalker"/&amp;gt;}) and only applies to checks which are also
- defined within this module. To filter non-TreeWalker checks like {@code RegexpSingleline},
+ (&lt;code&gt;&amp;lt;module name="TreeWalker"/&amp;gt;&lt;/code&gt;) and only applies to checks which are also
+ defined within this module. To filter non-TreeWalker checks like &lt;code&gt;RegexpSingleline&lt;/code&gt;,
  a
  &lt;a href="https://checkstyle.org/filters/suppresswithplaintextcommentfilter.html#SuppressWithPlainTextCommentFilter"&gt;
  SuppressWithPlainTextCommentFilter&lt;/a&gt; or similar filter must be used.
@@ -30,10 +30,10 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="true" name="checkC" type="boolean">
-               <description>Control whether to check C style comments ({@code &amp;#47;* ... *&amp;#47;}).</description>
+               <description>Control whether to check C style comments (&lt;code&gt;&amp;#47;* ... *&amp;#47;&lt;/code&gt;).</description>
             </property>
             <property default-value="true" name="checkCPP" type="boolean">
-               <description>Control whether to check C++ style comments ({@code //}).</description>
+               <description>Control whether to check C++ style comments (&lt;code&gt;//&lt;/code&gt;).</description>
             </property>
             <property default-value=".*"
                       name="checkFormat"

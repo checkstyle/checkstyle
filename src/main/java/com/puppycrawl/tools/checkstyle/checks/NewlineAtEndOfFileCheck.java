@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </div>
  *
  * <p>
- * Rationale: Any source files and text files in general should end with a line
+ * Rationale: Any not empty source files and text files in general should end with a line
  * separator to let other easily add new content at the end of file and "diff"
  * command does not show previous lines as changed.
  * </p>
@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * <p>
  * Example (the line with 'No newline at end of file' should not be in the diff):
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-text">
  * &#64;&#64; -32,4 +32,5 &#64;&#64; ForbidWildcardAsReturnTypeCheck.returnTypeClassNamesIgnoreRegex
  * PublicReferenceToPrivateTypeCheck.name = Public Reference To Private Type
  *
@@ -51,7 +51,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * \ No newline at end of file
  * +StaticMethodCandidateCheck.desc = Checks whether private methods should be declared as static.
  * +StaticMethodCandidateCheck.skippedMethods = Method names to skip during the check.
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * It can also trick the VCS to report the wrong owner for such lines.
@@ -196,7 +196,10 @@ public class NewlineAtEndOfFileCheck
             throws IOException {
         final boolean result;
         final int len = separator.length();
-        if (file.length() < len) {
+        if (file.length() == 0) {
+            result = true;
+        }
+        else if (file.length() < len) {
             result = false;
         }
         else {

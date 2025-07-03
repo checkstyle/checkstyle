@@ -5,18 +5,18 @@
              name="SuppressWarningsHolder"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Maintains a set of check suppressions from {@code @SuppressWarnings} annotations.
+ Maintains a set of check suppressions from &lt;code&gt;@SuppressWarnings&lt;/code&gt; annotations.
  It allows to prevent Checkstyle from reporting violations from parts of code that were
- annotated with {@code @SuppressWarnings} and using name of the check to be excluded.
- It is possible to suppress all the checkstyle warnings with the argument {@code "all"}.
- You can also use a {@code checkstyle:} prefix to prevent compiler
+ annotated with &lt;code&gt;@SuppressWarnings&lt;/code&gt; and using name of the check to be excluded.
+ It is possible to suppress all the checkstyle warnings with the argument &lt;code&gt;"all"&lt;/code&gt;.
+ You can also use a &lt;code&gt;checkstyle:&lt;/code&gt; prefix to prevent compiler
  from processing these annotations.
  You can also define aliases for check names that need to be suppressed.
  &lt;/div&gt;</description>
          <properties>
             <property default-value="" name="aliasList" type="java.lang.String[]">
                <description>Specify aliases for check names that can be used in code
- within {@code SuppressWarnings} in a format of comma separated attribute=value entries.
+ within &lt;code&gt;SuppressWarnings&lt;/code&gt; in a format of comma separated attribute=value entries.
  The attribute is the fully qualified name of the Check and value is its alias.</description>
             </property>
          </properties>

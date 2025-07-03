@@ -5,12 +5,12 @@ FullQualifiedName: com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.I
 ocMetadataScraperSuppressWarningsFilter
 Parent: com.puppycrawl.tools.checkstyle.Checker
 Description: <p>
- Filter {@code SuppressWarningsFilter} uses annotation
- {@code SuppressWarnings} to suppress audit events.
+ Filter <code>SuppressWarningsFilter</code> uses annotation
+ <code>SuppressWarnings</code> to suppress audit events.
  </p>
  <p>
- Rationale: Same as for {@code SuppressionCommentFilter}. In the contrary to it here,
- comments are not used comments but the builtin syntax of {@code @SuppressWarnings}.
+ Rationale: Same as for <code>SuppressionCommentFilter</code>. In the contrary to it here,
+ comments are not used comments but the builtin syntax of <code>@SuppressWarnings</code>.
  This can be perceived as a more elegant solution than using comments.
  Also, this approach maybe supported by various IDE.
  </p>
@@ -20,7 +20,7 @@ Description: <p>
  SuppressWarningsHolder</a>,
  since that check finds the annotations in the Java files and makes them available for the filter.
  Because of that, a configuration that includes this filter must also include
- {@code SuppressWarningsHolder} as a child module of the {@code TreeWalker}.
+ <code>SuppressWarningsHolder</code> as a child module of the <code>TreeWalker</code>.
  Name of check in annotation is case-insensitive and should be written with
  any dotted prefix or "Check" suffix removed.
  </p>
