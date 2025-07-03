@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.site.SiteUtil.SINCE_VERSION;
+import static com.puppycrawl.tools.checkstyle.site.NotesMacro.NOTES;
 
 import java.io.File;
 import java.net.URI;
@@ -711,6 +712,10 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             if (text.contains("\n" + SINCE_VERSION)) {
                 final String sinceVersionLine = "\n" + SINCE_VERSION + " .*";
                 text = text.replaceAll(sinceVersionLine, "");
+            }
+            if (text.contains("\n" + NOTES)) {
+                final String notesLine = "\n" + NOTES;
+                text = text.replaceAll(notesLine, "");
             }
 
             try {

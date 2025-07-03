@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * in Java comments, set the {@code format} property.
  * </div>
  *
+ * Notes:
  * <p>
  * Using {@code TODO:} comments is a great way to keep track of tasks that need to be done.
  * Having them reported by Checkstyle makes it very hard to forget about them.

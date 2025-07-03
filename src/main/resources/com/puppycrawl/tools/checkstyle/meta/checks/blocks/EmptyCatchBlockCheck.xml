@@ -9,6 +9,7 @@
  By default, check allows empty catch block with any comment inside.
  &lt;/div&gt;
 
+ Notes:
  &lt;p&gt;
  There are two options to make validation more precise: &lt;b&gt;exceptionVariableName&lt;/b&gt; and
  &lt;b&gt;commentFormat&lt;/b&gt;.
