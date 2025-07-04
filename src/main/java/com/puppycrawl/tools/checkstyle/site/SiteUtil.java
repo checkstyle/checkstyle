@@ -785,8 +785,8 @@ public final class SiteUtil {
      * @param moduleJavadoc the javadoc of module.
      * @return the Optional of javadoc node part of the property.
      */
-    private static Optional<DetailNode> getPropertyJavadocNodeInModule(String propertyName,
-                                                             DetailNode moduleJavadoc) {
+    public static Optional<DetailNode> getPropertyJavadocNodeInModule(String propertyName,
+                                                               DetailNode moduleJavadoc) {
         Optional<DetailNode> propertyJavadocNode = Optional.empty();
 
         for (DetailNode htmlElement = JavadocUtil.getNextSibling(

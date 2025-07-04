@@ -378,7 +378,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * @param childRightLimit the right index of root children till where to scan
      * @return constructed text of subtree
      */
-    private static String constructSubTreeText(DetailNode node, int childLeftLimit,
+    public static String constructSubTreeText(DetailNode node, int childLeftLimit,
                                                int childRightLimit) {
         DetailNode detailNode = node;
 
@@ -588,7 +588,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * @param node subtree child node
      * @return root node child index
      */
-    private static int getParentIndexOf(DetailNode node) {
+    public static int getParentIndexOf(DetailNode node) {
         DetailNode currNode = node;
         while (currNode.getParent().getIndex() != -1) {
             currNode = currNode.getParent();
@@ -729,7 +729,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * @param nodeParagraph paragraph javadoc node
      * @return true if paragraph node contains the parent text
      */
-    private static boolean isParentText(DetailNode nodeParagraph) {
+    public static boolean isParentText(DetailNode nodeParagraph) {
         return isChildNodeTextMatches(nodeParagraph, PARENT_TAG);
     }
 
