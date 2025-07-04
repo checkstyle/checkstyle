@@ -329,7 +329,6 @@ public class XdocsPagesTest {
     public void testAllChecksPageInSyncWithChecksSummaries() throws Exception {
         final Pattern endOfSentence = Pattern.compile("(.*?\\.)\\s", Pattern.DOTALL);
         final Map<String, String> summaries = readSummaries();
-
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
             if (isNonModulePage(fileName)
