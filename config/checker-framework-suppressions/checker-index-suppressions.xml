@@ -903,6 +903,28 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/TextBlockGoogleStyleFormattingCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of String.charAt.</message>
+    <lineContent>return Character.isWhitespace(text.charAt(index));</lineContent>
+    <details>
+      found   : int
+      required: @NonNegative int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/TextBlockGoogleStyleFormattingCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of String.charAt.</message>
+    <lineContent>while (text.charAt(index) == &apos; &apos;) {</lineContent>
+    <details>
+      found   : int
+      required: @NonNegative int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/InnerTypeLastCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of BitSet.get.</message>
