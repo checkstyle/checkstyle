@@ -78,7 +78,8 @@ public class GeneratedJavaTokenTypesTest {
      */
     @Test
     public void testTokenNumbering() {
-        final String message = """
+        final String message =
+                """
                 A token's number has changed. Please open\
                  'GeneratedJavaTokenTypesTest' and confirm which token is at fault.
                 Token numbers must not change or else they will create a conflict\
