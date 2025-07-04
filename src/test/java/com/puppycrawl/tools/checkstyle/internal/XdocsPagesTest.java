@@ -1676,9 +1676,11 @@ public class XdocsPagesTest {
         }
 
         if (!expectedText.isEmpty()) {
-            expectedText.append("""
-                    All messages can be customized if the default message doesn't suit you.
-                    Please see the documentation to learn how to.""");
+            expectedText.append(
+                """
+                All messages can be customized if the default message doesn't suit you.
+                Please see the documentation to learn how to.
+                """);
         }
 
         if (subSection == null) {
@@ -1911,6 +1913,7 @@ public class XdocsPagesTest {
             styleChecks.remove("SuppressWarningsHolder");
             styleChecks.remove("SuppressWithNearbyTextFilter");
             styleChecks.remove("SuppressWithPlainTextCommentFilter");
+            styleChecks.remove("TextBlockGoogleStyleFormatting");
             assertWithMessage(
                     fileName + " requires the following check(s) to appear: " + styleChecks)
                 .that(styleChecks)
