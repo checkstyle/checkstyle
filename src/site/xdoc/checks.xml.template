@@ -2101,6 +2101,19 @@
           </tr>
           <tr>
             <td>
+              <a href="textblockgooglestyleformatting.html#TextBlockGoogleStyleFormatting">
+                TextBlockGoogleStyleFormatting
+              </a>
+            </td>
+            <td>
+              <macro name="checks">
+                <param name="modulePath"
+ value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/TextBlockGoogleStyleFormattingCheck.java" />
+              </macro>
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/design/throwscount.html#ThrowsCount">ThrowsCount</a>
             </td>
             <td>
