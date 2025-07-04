@@ -1,31 +1,41 @@
+// non-compiled with javac: Compilable with Java21
+
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
+
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.JCheckBox;
 
 /** some javadoc. */
 public class InputWhitespaceAroundArrowCorrect {
-
   static {
     new JCheckBox().addActionListener((final ActionEvent e) -> {
-      good();
+      test3();
     });
   }
 
+  /** some javadoc. */
   void foo1(Object o) {
     switch (o) {
       case String s when (s.equals("a")) -> {}
-      case 'p' -> {
+      case String s2 -> {
       }
       default -> {}
     }
   }
 
   /** method. */
-  void test(Object o) {
+  void test(Object o, Object o2 ,int y) {
     switch (o) {
       case String s when (
           s.equals("a")) ->
         {
         }
-      case Point(int x, int y) when !(x >= 0 && y >= 0) -> {}
+      case Point(int x, int xy) when !(x >= 0 && xy >= 0) -> {}
       default ->
         {}
     }
@@ -33,7 +43,7 @@ public class InputWhitespaceAroundArrowCorrect {
     int x = switch (o) {
       case String s -> {
         switch (o2) {
-          case Integer newInt -> {
+          case Integer newInt when newInt == 0 -> {
             if (y == 0) {
               System.out.println(0);
             }
@@ -46,7 +56,8 @@ public class InputWhitespaceAroundArrowCorrect {
     };
   }
 
-  int test2() {
+  /** some javadoc. */
+  int test2(int k, Object o1) {
     Predicate predicate = value -> (value != null);
 
     Object b = ((VoidPredicate) () -> o1 instanceof String s).get();
@@ -61,9 +72,11 @@ public class InputWhitespaceAroundArrowCorrect {
         .filter(t -> {
           return false;
         });
+    return k * 2;
   }
 
-  void test3() {
+  /** some javadoc. */
+  static void test3() {
     ArrayList<Boolean> boolList
         = new ArrayList<Boolean>(Arrays.asList(false, true, false, false));
 
@@ -77,9 +90,25 @@ public class InputWhitespaceAroundArrowCorrect {
         })
         .collect(Collectors.toList());
 
-    result = boolList.stream().filter(
-        statement -> someFunction())
+    Object result = boolList.stream().filter(
+        statement -> false)
         .findFirst()
         .orElseThrow(() -> new IllegalStateException("big problem"));
+  }
+
+  /** some javadoc. */
+  record Point(int x, int y) {}
+
+  /** some javadoc. */
+  public interface Predicate {
+
+    /** some javadoc. */
+    boolean test(Object value);
+  }
+
+  /** some javadoc. */
+  public interface VoidPredicate {
+    /** some javadoc. */
+    public boolean get();
   }
 }

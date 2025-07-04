@@ -1,3 +1,5 @@
+// non-compiled with javac: compilable with java21
+
 package com.google.checkstyle.test.chapter4formatting.rule42blockindentation;
 
 import java.lang.reflect.Proxy;
