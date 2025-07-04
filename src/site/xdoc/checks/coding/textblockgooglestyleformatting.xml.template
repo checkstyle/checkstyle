@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>TextBlockGoogleStyleFormatting</title>
+  </head>
+  <body>
+    <section name="TextBlockGoogleStyleFormatting">
+      <p>Since Checkstyle 10.26.1</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks correct format of
+          <a href="https://docs.oracle.com/en/java/javase/17/text-blocks/index.html">Java Text Blocks</a>
+          as specified in
+          <a href="https://google.github.io/styleguide/javaguide.html#s4.8.9-text-blocks">
+          Google Java Style Guide.</a>
+        </p>
+        <p>
+        This Check has two functions: first is to make sure that both opening and closing quotes
+        (***) text block are on new lines(no other item should precede the quotes) and
+        second is to ensure opening and closing quotes are vertically aligned.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;TextBlockGoogleStyleFormatting&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+        <p id="Example1-code">Example of correct format of Text blocks:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+
+  public static String textFun() {
+
+    final String simpleScript =
+        """
+        s
+        """;
+
+    final String simpleScript1 =
+        """
+        this is simple test;
+        """;
+
+    String stringFollowedBy =
+        """
+          Hello there
+        """ + getName();
+
+    getData(
+        """
+        Hello,
+        This is a multi-line message.
+        """, 0);
+
+    return
+        """
+        this is sample text
+        """;
+  }
+}
+
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-code">
+          Example of incorrect format of Text Block:
+        </p>
+<div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+
+  public String textFun2() {
+    // violation below, should be on new line.
+    final String simpleScript2 = """
+        this is sample text
+        """;
+
+      getData(
+          """
+          Hello,
+          This is a multi-line message.""" // violation, should be on new line.
+      );
+
+      return
+          """
+            THE MULTI-LINE MESSAGE """; // violation, should be on new line.
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example3-code">
+          Example of Indentation of Text blocks:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {
+  public void textFun4() {
+
+    // OK
+    String e1 =
+        """
+      content of the block. e1
+        """;
+
+    // According to rule following is OK.
+    String e2 =
+"""
+         content of the block e2
+""";
+
+    String e3 =
+        """
+        content of the block of e3
+            """;
+    // violation above, 'Text-block quotes are not vertically aligned. '
+
+    getData(
+      """
+        Indentation of Text-block
+      """,
+      5
+    );
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+TextBlockGoogleStyleFormatting">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22textblock.open.format%22">
+              textblock.open.format
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22textblock.close.format%22">
+              textblock.close.format
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22textblock.indentation%22">
+              textblock.indentatation
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
