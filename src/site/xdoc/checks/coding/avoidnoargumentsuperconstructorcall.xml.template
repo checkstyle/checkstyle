@@ -9,13 +9,10 @@
     <section name="AvoidNoArgumentSuperConstructorCall">
       <p>Since Checkstyle 8.29</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks if call to superclass constructor without arguments is present.
-          Such invocation is redundant because constructor body implicitly
-          begins with a superclass constructor invocation <code>super();</code>
-          See <a href="https://docs.oracle.com/javase/specs/jls/se13/html/jls-8.html#jls-8.8.7">
-          specification</a> for detailed information.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AvoidNoArgumentSuperConstructorCallCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Examples" id="Examples">

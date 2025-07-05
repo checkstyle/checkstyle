@@ -9,17 +9,10 @@
     <section name="RightCurly">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks the placement of right curly braces (<code>'}'</code>) for code blocks.
-          This check supports if-else, try-catch-finally blocks, switch statements, switch cases,
-          while-loops, for-loops, method definitions, class definitions, constructor definitions,
-          instance, static initialization blocks, annotation definitions and enum definitions.
-          For right curly brace of expression blocks of arrays, lambdas and class instances
-          please follow issue
-          <a href="https://github.com/checkstyle/checkstyle/issues/5945">#5945</a>.
-          For right curly brace of enum constant please follow issue
-          <a href="https://github.com/checkstyle/checkstyle/issues/7519">#7519</a>.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

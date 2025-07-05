@@ -12,31 +12,26 @@
         <div>
           Checks that the parts of a class, record, or interface declaration appear in the order
           suggested by the
-          <a href="../../styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852">
-            Code Conventions for the Java Programming Language</a>.
+          <a href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852">
+          Code Conventions for the Java Programming Language</a>.
         </div>
 
         <p>
           According to
-          <a href="../../styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852">
-          Code Conventions for the Java Programming Language</a> , the parts
-          of a class or interface declaration should appear in the following
-          order:
+          <a href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852">
+          Code Conventions for the Java Programming Language</a>, the parts of a class
+          or interface declaration should appear in the following order:
         </p>
-
         <ol>
-          <li>
-            Class (static) variables. First the public class variables, then
-             protected, then package level (no access modifier), and then
-             private.
-          </li>
-          <li>
-            Instance variables. First the public class variables, then
-            protected, then package level (no access modifier), and then
-            private.
-          </li>
-          <li> Constructors </li>
-          <li> Methods </li>
+        <li>
+          Class (static) variables. First the public class variables, then
+          protected, then package level (no access modifier), and then private.
+        </li>
+        <li> Instance variables. First the public class variables, then
+          protected, then package level (no access modifier), and then private.
+        </li>
+        <li> Constructors </li>
+        <li> Methods </li>
         </ol>
 
         <p>
@@ -44,12 +39,10 @@
           however it still impacts on other class members.
         </p>
 
-        <p>
-          ATTENTION: the check skips class fields which have
+        <p>ATTENTION: the check skips class fields which have
           <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html#jls-8.3.3">
-              forward references</a>
-           from validation due to the fact that we have Checkstyle's limitations to clearly
-          detect user intention of fields location and grouping. For example:
+          forward references </a> from validation due to the fact that we have Checkstyle's limitations
+          to clearly detect user intention of fields location and grouping. For example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class A {

@@ -9,16 +9,10 @@
     <section name="DefaultComesLast">
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
-        <div>
-          Check that the <code>default</code> is after all the
-          cases in a <code>switch</code> statement.
-        </div>
-
-        <p>
-          Rationale: Java allows <code>default</code> anywhere
-          within the <code>switch</code> statement. But it is
-          more readable if it comes after the last <code>case</code>.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/DefaultComesLastCheck.java"/>
+        </macro>
       </subsection>
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
