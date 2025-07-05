@@ -197,6 +197,7 @@ public final class BlockCommentPosition {
      */
     public static boolean isOnCompactConstructor(DetailAST blockComment) {
         return isOnTokenWithModifiers(blockComment, TokenTypes.COMPACT_CTOR_DEF)
+                || isOnTokenWithoutModifiers(blockComment, TokenTypes.COMPACT_CTOR_DEF)
                 || isOnTokenWithAnnotation(blockComment, TokenTypes.COMPACT_CTOR_DEF);
     }
 
@@ -261,6 +262,17 @@ public final class BlockCommentPosition {
         return blockComment.getParent().getType() == TokenTypes.MODIFIERS
                 && blockComment.getParent().getParent().getType() == tokenType
                 && getPrevSiblingSkipComments(blockComment) == null;
+    }
+
+    /**
+     * Checks that block comment is on specified token without modifier.
+     *
+     * @param blockComment block comment start DetailAST
+     * @param tokenType parent token type
+     * @return true if block comment is on specified token without any modifier.
+     */
+    private static boolean isOnTokenWithoutModifiers(DetailAST blockComment, int tokenType) {
+        return blockComment.getParent().getType() == tokenType;
     }
 
     /**
