@@ -340,7 +340,7 @@
     <module name="NoWhitespaceBefore">
       <property name="tokens"
                value="COMMA, SEMI, POST_INC, POST_DEC, DOT,
-                    LABELED_STAT, METHOD_REF"/>
+                    LABELED_STAT, METHOD_REF, ELLIPSIS"/>
       <property name="allowLineBreaks" value="true"/>
     </module>
     <module name="ParenPad">

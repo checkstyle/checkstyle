@@ -111,6 +111,16 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testNoWhitespaceBeforeEllipsis() throws Exception {
+        verifyWithWholeConfig(getPath("InputNoWhitespaceBeforeEllipsis.java"));
+    }
+
+    @Test
+    public void testNoWhitespaceBeforeEllipsisFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedNoWhitespaceBeforeEllipsis.java"));
+    }
+
+    @Test
     public void testNoWhitespaceBeforeCaseDefaultColon() throws Exception {
         verifyWithWholeConfig(getPath("InputNoWhitespaceBeforeCaseDefaultColon.java"));
     }
