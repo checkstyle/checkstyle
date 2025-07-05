@@ -3,7 +3,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule42blockindentation;
 
 /** some javadoc. */
-public class InputSwitchOnStartOfTheLineCorrect {
+public class InputFormattedSwitchOnStartOfTheLine {
   String testMethod1(int i) {
     String s =
         switch (i) {
@@ -24,5 +24,24 @@ public class InputSwitchOnStartOfTheLineCorrect {
           }
           default -> 0;
         };
+  }
+
+  void testMethod3Invalid(int num) {
+    int odd =
+        switch (num) {
+          case 1, 3, 7 -> 1;
+          case 2, 4, 6 -> 2;
+          default -> 0;
+        };
+  }
+
+  String testMethod4Invalid(int i) {
+    String s =
+        switch (i) {
+          case 1 -> "one";
+          case 2 -> "two";
+          default -> "zero";
+        };
+    return s;
   }
 }

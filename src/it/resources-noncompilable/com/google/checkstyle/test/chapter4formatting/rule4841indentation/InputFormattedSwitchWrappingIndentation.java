@@ -1,11 +1,9 @@
-// non-compiled with javac: Compilable with Java17
-
 package com.google.checkstyle.test.chapter4formatting.rule42blockindentation;
 
 import java.util.List;
 
 /** some javadoc. */
-public class InputSwitchWrappingIndentationCorrect {
+public class InputFormattedSwitchWrappingIndentation {
   String testMethod1(int i) {
     String name = "";
     name =
@@ -40,7 +38,7 @@ public class InputSwitchWrappingIndentationCorrect {
         .orElse("defaultValue");
   }
 
-  String testMethod4(int x, int y) {
+  String testMethod4Invalid(int x, int y) {
     return switch (x) {
       case 1 ->
           switch (y) {
