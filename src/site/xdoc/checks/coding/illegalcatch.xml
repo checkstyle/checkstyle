@@ -10,17 +10,15 @@
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
         <div>
-        Checks that certain exception types do not appear in a <code>catch</code> statement.
+          Checks that certain exception types do not appear in a <code>catch</code> statement.
         </div>
 
         <p>
-          Rationale:
-          catching <code>java.lang.Exception</code>, <code>java.lang.Error</code> or
+          Rationale: catching <code>java.lang.Exception</code>, <code>java.lang.Error</code> or
           <code>java.lang.RuntimeException</code> is almost never acceptable.
-          Novice developers often simply catch Exception in an
-          attempt to handle multiple exception classes. This unfortunately
-          leads to code that inadvertently catches <code>NullPointerException</code>,
-          <code>OutOfMemoryError</code>, etc.
+          Novice developers often simply catch Exception in an attempt to handle
+          multiple exception classes. This unfortunately leads to code that inadvertently
+          catches <code>NullPointerException</code>, <code>OutOfMemoryError</code>, etc.
         </p>
       </subsection>
 

@@ -10,14 +10,12 @@
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
         <div>
-          Check that the <code>default</code> is after all the
-          cases in a <code>switch</code> statement.
+          Check that the <code>default</code> is after all the cases in a <code>switch</code> statement.
         </div>
 
         <p>
-          Rationale: Java allows <code>default</code> anywhere
-          within the <code>switch</code> statement. But it is
-          more readable if it comes after the last <code>case</code>.
+          Rationale: Java allows <code>default</code> anywhere within the
+          <code>switch</code> statement. But it is more readable if it comes after the last <code>case</code>.
         </p>
       </subsection>
       <subsection name="Properties" id="Properties">

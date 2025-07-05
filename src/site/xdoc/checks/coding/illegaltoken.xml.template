@@ -9,16 +9,10 @@
     <section name="IllegalToken">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks for illegal tokens. By default, labels are prohibited.
-        </div>
-
-        <p>
-          Rationale: Certain language features can harm readability, lead to
-          confusion or are not obvious to novice developers. Other features
-          may be discouraged in certain frameworks, such as not having
-          native methods in Enterprise JavaBeans components.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalTokenCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

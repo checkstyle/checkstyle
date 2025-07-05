@@ -9,44 +9,10 @@
     <section name="AvoidNestedBlocks">
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
-        <div>
-          Finds nested blocks (blocks that are used freely in the code).
-        </div>
-
-        <p>
-          Rationale: Nested blocks are often leftovers from the
-          debugging process, they confuse the reader.
-        </p>
-
-        <p>
-          For example, this check finds the obsolete braces in
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public void guessTheOutput()
-{
-  int whichIsWhich = 0;
-  {
-    whichIsWhich = 2;
-  }
-  System.out.println("value = " + whichIsWhich);
-}
-        </code></pre></div>
-
-        <p> and debugging / refactoring leftovers such as </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// if (conditionThatIsNotUsedAnyLonger)
-{
-  System.out.println("unconditional");
-}
-        </code></pre></div>
-
-        <p>
-          A case in a switch statement does not implicitly form a block.
-          Thus, to be able to introduce local variables that have case
-          scope it is necessary to open a nested block. This is
-          supported, set the allowInSwitchCase property to true and
-          include all statements of the case in the block.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/AvoidNestedBlocksCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

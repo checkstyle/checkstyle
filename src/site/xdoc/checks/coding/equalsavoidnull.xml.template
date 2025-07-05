@@ -9,21 +9,10 @@
     <section name="EqualsAvoidNull">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that any combination of String literals
-          is on the left side of an <code>equals()</code> comparison.
-          Also checks for String literals assigned to some field
-          (such as <code>someString.equals(anotherString = "text")</code>).
-        </div>
-
-        <p>
-          Rationale: Calling the <code>equals()</code>
-          method on String literals will avoid a potential
-          <code>NullPointerException</code>. Also, it is pretty common to see null
-          checks right before equals comparisons but following this rule such checks
-          are not required.
-        </p>
-
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsAvoidNullCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

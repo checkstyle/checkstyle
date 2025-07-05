@@ -63,7 +63,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <p>
  * NOTE:The check works with only primitive type variables.
- * The check will not work for arrays used as control variable.An example is
+ * The check will not work for arrays used as control variable. An example is
  * </p>
  * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * for (int a[]={0};a[0] &lt; 10;a[0]++) {
