@@ -311,9 +311,5 @@ workflows:
     jobs:
       - validate-with-maven-script:
           name: "jdk17-package-site"
-          image-name: "cimg/openjdk:17.0.7"
-          command: "./.ci/validation.sh package-site"
-      - validate-with-maven-script:
-          name: "jdk11-package-site"
           image-name: *cs_img
           command: "./.ci/validation.sh package-site"
