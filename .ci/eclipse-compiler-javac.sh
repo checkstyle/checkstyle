@@ -5,7 +5,7 @@ if [ -z "$1" ]; then
     echo "No parameters supplied!"
     echo "Usage %0 <CLASSPATH> [RELEASE]"
     echo "    CLASSPATH:  The classpath of the project and it's libraries to compile (required)."
-    echo "    RELEASE:    The optional Java release. Default is 11."
+    echo "    RELEASE:    The optional Java release. Default is 17."
     exit 1
 fi
 

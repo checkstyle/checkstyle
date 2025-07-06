@@ -152,7 +152,7 @@ public class IndentLevel {
             final StringBuilder sb = new StringBuilder(50);
             for (int i = levels.nextSetBit(0); i >= 0;
                  i = levels.nextSetBit(i + 1)) {
-                if (sb.length() > 0) {
+                if (!sb.isEmpty()) {
                     sb.append(", ");
                 }
                 sb.append(i);

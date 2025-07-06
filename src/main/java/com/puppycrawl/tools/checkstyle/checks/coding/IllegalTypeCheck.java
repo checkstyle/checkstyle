@@ -605,7 +605,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
         while (toVisit != null) {
             toVisit = getNextSubTreeNode(toVisit, importAst);
             if (toVisit != null && toVisit.getType() == TokenTypes.IDENT) {
-                if (canonicalNameBuilder.length() > 0) {
+                if (!canonicalNameBuilder.isEmpty()) {
                     canonicalNameBuilder.append('.');
                 }
                 canonicalNameBuilder.append(toVisit.getText());
