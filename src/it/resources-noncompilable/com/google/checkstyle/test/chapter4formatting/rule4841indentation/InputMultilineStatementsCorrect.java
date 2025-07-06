@@ -1,4 +1,4 @@
-// non-compiled with javac: compilable with java21
+// non-compiled with javac: Compilable with Java21
 
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
@@ -26,25 +26,20 @@ public class InputMultilineStatementsCorrect {
   private static String testCodeBlock() {
     final String simplePropertyUpdateScript = "";
     return """
-        def newInstance = params.instance;
-        def existingInstance = ctx._source;
-        """
+    def newInstance = params.instance;
+    def existingInstance = ctx._source;
+    """
         + simplePropertyUpdateScript;
   }
 
   void testConditionals(boolean result) {
-    int collect = result
-        ? 0 :
-        1;
+    int collect = result ? 0 : 1;
   }
 
   int testIfConditionMultiline(int newState, int tableName) {
     int flag = 0;
-    if (
-        (newState == 10)
-            && tableName == 1 &&  flag > 0
-                || (newState != 0
-                    && flag < 0 && tableName == 0)) {
+    if ((newState == 10) && tableName == 1 && flag > 0
+        || (newState != 0 && flag < 0 && tableName == 0)) {
       flag = 1;
     }
     return flag;
