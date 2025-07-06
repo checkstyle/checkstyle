@@ -322,7 +322,7 @@ public final class CheckUtil {
                 result.append(TokenUtil.getTokenName(token));
             }
 
-            if (result.length() != 0) {
+            if (!result.isEmpty()) {
                 result.append('.');
             }
 
@@ -369,7 +369,7 @@ public final class CheckUtil {
             result.append(JavadocUtil.getTokenName(token));
         }
 
-        if (result.length() != 0) {
+        if (!result.isEmpty()) {
             result.append('.');
         }
 
