@@ -101,8 +101,19 @@ public class IndentationTest extends AbstractIndentationTestSupport {
     }
 
     @Test
+    public void testFormattedSwitchOnTheStartOfTheLine() throws Exception {
+        verifyWithWholeConfig(getNonCompilablePath("InputFormattedSwitchOnStartOfTheLine.java"));
+    }
+
+    @Test
     public void testSingleSwitchStatementWithoutCurly() throws Exception {
         verifyWithWholeConfig(getNonCompilablePath("InputSingleSwitchStatementWithoutCurly.java"));
+    }
+
+    @Test
+    public void testFormattedSingleSwitchStatementWithoutCurly() throws Exception {
+        verifyWithWholeConfig(
+            getNonCompilablePath("InputFormattedSingleSwitchStatementWithoutCurly.java"));
     }
 
     @Test
@@ -111,8 +122,20 @@ public class IndentationTest extends AbstractIndentationTestSupport {
     }
 
     @Test
+    public void testFormattedSwitchWrappingIndentation() throws Exception {
+        verifyWithWholeConfig(
+            getNonCompilablePath("InputFormattedSwitchWrappingIndentation.java"));
+    }
+
+    @Test
     public void testMultilineParameters() throws Exception {
         verifyWithWholeConfig(getNonCompilablePath("InputCatchParametersOnNewLine.java"));
+    }
+
+    @Test
+    public void testFormattedMultilineParameters() throws Exception {
+        verifyWithWholeConfig(
+            getNonCompilablePath("InputFormattedCatchParametersOnNewLine.java"));
     }
 
     @Test
@@ -131,8 +154,19 @@ public class IndentationTest extends AbstractIndentationTestSupport {
     }
 
     @Test
+    public void testFormattedLambdaChild() throws Exception {
+        verifyWithWholeConfig(getNonCompilablePath("InputFormattedLambdaChild.java"));
+    }
+
+    @Test
     public void testLambdaAndChildOnTheSameLine() throws Exception {
         verifyWithWholeConfig(getNonCompilablePath("InputLambdaAndChildOnTheSameLine.java"));
+    }
+
+    @Test
+    public void testFormattedLambdaAndChildOnTheSameLine() throws Exception {
+        verifyWithWholeConfig(
+            getNonCompilablePath("InputFormattedLambdaAndChildOnTheSameLine.java"));
     }
 
     @Test
