@@ -47,5 +47,4 @@ script:
 
 after_success:
   - ./.ci/travis.sh run-command-after-success
-  - ./.ci/travis.sh deploy-snapshot
   - sleep 5s
