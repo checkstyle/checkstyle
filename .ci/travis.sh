@@ -51,27 +51,6 @@ run-command-after-success)
   fi
   ;;
 
-deploy-snapshot)
-  SKIP_DEPLOY=false
-  if [ "$(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l)" -lt 1 ];
-    then
-      SKIP_DEPLOY=false;
-    else
-      SKIP_DEPLOY=true;
-  fi;
-  if [[ $TRAVIS_REPO_SLUG == 'checkstyle/checkstyle'
-          && $TRAVIS_BRANCH == 'master'
-          && $TRAVIS_PULL_REQUEST == 'false'
-          && $DEPLOY == 'true'
-          && $RUN_JOB == 1
-          && $SKIP_DEPLOY == 'false'
-     ]];
-  then
-      ./mvnw -e --no-transfer-progress -s config/deploy-settings.xml -Pno-validations deploy;
-      echo "deploy to maven snapshot repository is finished";
-  fi
-  ;;
-
 quarterly-cache-cleanup)
   MVN_REPO=$(./mvnw -e --no-transfer-progress help:evaluate -Dexpression=settings.localRepository \
     -q -DforceStdout);
