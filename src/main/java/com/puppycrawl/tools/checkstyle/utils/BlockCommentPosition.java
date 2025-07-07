@@ -258,9 +258,13 @@ public final class BlockCommentPosition {
      * @return true if block comment is on specified token with modifiers
      */
     private static boolean isOnTokenWithModifiers(DetailAST blockComment, int tokenType) {
+        final boolean compactConstructorWithoutModifier =
+            blockComment.getParent().getType() == TokenTypes.COMPACT_CTOR_DEF;
+
         return blockComment.getParent().getType() == TokenTypes.MODIFIERS
-                && blockComment.getParent().getParent().getType() == tokenType
-                && getPrevSiblingSkipComments(blockComment) == null;
+            && blockComment.getParent().getParent().getType() == tokenType
+            && getPrevSiblingSkipComments(blockComment) == null
+                || compactConstructorWithoutModifier;
     }
 
     /**
