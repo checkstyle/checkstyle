@@ -1629,7 +1629,7 @@ public class XdocsPagesTest {
             expectedText.append('\n');
         }
 
-        if (expectedText.length() > 0) {
+        if (!expectedText.isEmpty()) {
             expectedText.append("All messages can be customized if the default message doesn't "
                     + "suit you.\nPlease see the documentation to learn how to.");
         }

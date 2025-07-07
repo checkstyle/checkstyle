@@ -379,7 +379,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
                         packageDef.orElseThrow(), "packageName",
-                        packageName -> ((String) packageName).isEmpty()))
+                        packageName -> ((CharSequence) packageName).isEmpty()))
                 .isTrue();
     }
 

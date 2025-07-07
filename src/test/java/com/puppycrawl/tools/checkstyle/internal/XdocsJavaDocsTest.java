@@ -460,7 +460,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     private static boolean shouldAppendSpace(StringBuilder text, char firstCharToAppend) {
         final boolean result;
 
-        if (text.length() == 0) {
+        if (text.isEmpty()) {
             result = false;
         }
         else {
