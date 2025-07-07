@@ -13,17 +13,14 @@
           Checks that any combination of String literals
           is on the left side of an <code>equals()</code> comparison.
           Also checks for String literals assigned to some field
-          (such as <code>someString.equals(anotherString = &quot;text&quot;)</code>).
+          (such as <code>someString.equals(anotherString = "text")</code>).
         </div>
 
-        <p>
-          Rationale: Calling the <code>equals()</code>
-          method on String literals will avoid a potential
-          <code>NullPointerException</code>. Also, it is pretty common to see null
-          checks right before equals comparisons but following this rule such checks
-          are not required.
+        <p>Rationale: Calling the <code>equals()</code> method on String literals
+          will avoid a potential <code>NullPointerException</code>. Also, it is
+          pretty common to see null checks right before equals comparisons
+          but following this rule such checks are not required.
         </p>
-
       </subsection>
 
       <subsection name="Properties" id="Properties">

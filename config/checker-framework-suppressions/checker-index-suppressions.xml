@@ -2653,6 +2653,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/DescriptionMacro.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter beginIndex of String.substring.</message>
+    <message>incompatible argument for parameter arg0 of String.substring.</message>
     <lineContent>.substring(1);</lineContent>
     <details>
       found   : @UpperBoundLiteral(1) int
