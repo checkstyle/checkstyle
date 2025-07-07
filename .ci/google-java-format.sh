@@ -108,6 +108,7 @@ NON_COMPILABLE_INPUT_PATHS=($(find src/it/resources-noncompilable/com/google/che
     | grep -v "rule4841indentation/InputSwitchWrappingIndentation.java" \
     | grep -v "rule526parameternames/InputRecordComponentName.java" \
     | grep -v "rule527localvariablenames/InputPatternVariableNameEnhancedInstanceofTestDefault.java" \
+    | grep -v "rule711generalform/InputJavadocPositionOnCompactConstructors.java" \
     ))
 
 for INPUT_PATH in "${NON_COMPILABLE_INPUT_PATHS[@]}"; do
