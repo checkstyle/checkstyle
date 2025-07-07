@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -e
 
 source ./.ci/util.sh
@@ -110,7 +111,6 @@ nondex)
   ;;
 
 pr-age)
-  # Travis merges the PR commit into origin/master
   # This command undoes that to work with the original branch
   # if it notices a merge commit
   if git show --summary HEAD | grep ^Merge: ;
@@ -188,7 +188,6 @@ test-al)
   ;;
 
 versions)
-  if [ -v TRAVIS_EVENT_TYPE ] && [ "$TRAVIS_EVENT_TYPE" != "cron" ] ; then exit 0; fi
   ./mvnw -e --no-transfer-progress clean versions:dependency-updates-report \
     versions:plugin-updates-report
   if [ "$(grep "<nextVersion>" target/*-updates-report.xml | cat | wc -l)" -gt 0 ]; then
@@ -465,7 +464,6 @@ assembly-run-all-jar)
   ;;
 
 check-since-version)
-  # Travis merges the PR commit into origin/master
   # This identifies the PR's original commit
   # if it notices a merge commit
   HEAD=$(git rev-parse HEAD)
