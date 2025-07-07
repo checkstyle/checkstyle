@@ -196,10 +196,6 @@
     <system>GitHub Issues</system>
     <url>https://github.com/checkstyle/checkstyle/issues</url>
   </issueManagement>
-  <ciManagement>
-    <system>travis</system>
-    <url>https://travis-ci.org/checkstyle/checkstyle</url>
-  </ciManagement>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -1932,8 +1928,6 @@
             <excludedLink>http://www.mojohaus.org/versions-maven-plugin</excludedLink>
             <excludedLink>http://www.mojohaus.org/xml-maven-plugin</excludedLink>
             <!-- SSL -->
-            <excludedLink>https://travis-ci.org/</excludedLink>
-            <excludedLink>https://travis-ci.org/checkstyle/checkstyle</excludedLink>
             <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
 
             <!-- we did too many requests to GitHub,
@@ -2028,7 +2022,6 @@
             <excludedLink>https://www.eclipse.org/legal/epl-v20.html</excludedLink>
             <!-- permanent 403 -->
             <excludedLink>https://www.ej-technologies.com/*</excludedLink>
-            <excludedLink>https://travis-ci.com/</excludedLink>
             <excludedLink>https://stackoverflow.com/questions/*</excludedLink>
             <!-- permanent 403 -->
             <excludedLink>https://docs.github.com/en/rest/checks</excludedLink>

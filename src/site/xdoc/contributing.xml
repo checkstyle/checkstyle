@@ -168,9 +168,8 @@
       </p>
 
       <p>
-        After submitting a Pull Request, it will be automatically checked by
-        <a href="https://travis-ci.org/checkstyle/checkstyle">Travis</a> and other continuous
-        integration (CI) services.
+        After submitting a Pull Request, it will be automatically checked by our continuous
+        integration (CI) systems, including GitHub Workflows, CircleCI, and Azure Pipelines.
         Therefore, please recheck after some minutes that the CIs didn't
         find any issues with your changes. If there are issues, please fix them by amending
         commit (not by separate commit) and provide an updated version of the same Pull Request.
