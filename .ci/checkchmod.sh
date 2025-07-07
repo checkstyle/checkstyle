@@ -2,8 +2,7 @@
 
 set -e
 
-# On Travis, after clone, all files are with 644 permission, on local they are 664,
-# so we check only executable bit
+# CI environments may change file permissions; only executable bits are checked.
 CHMOD=$(find -type f \
           -not -path '*/.git/*' \
           -not -path './mvnw' \

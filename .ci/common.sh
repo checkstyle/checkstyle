@@ -1,5 +1,5 @@
 #!/bin/bash
-# Attention, there is no "-x" to avoid problems on Travis
+
 set -e
 
 DEBUG=true
@@ -27,7 +27,6 @@ function should_run_job {
               echo "origin/master log: $OUT"
          fi
 
-         # Travis merges the PR commit into origin/master
          # This identifies the PR's original commit
          # if it notices a merge commit
          local HEAD=$(git rev-parse HEAD)
