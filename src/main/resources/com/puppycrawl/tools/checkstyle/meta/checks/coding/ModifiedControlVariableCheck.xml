@@ -32,7 +32,7 @@
 
  &lt;p&gt;
  NOTE:The check works with only primitive type variables.
- The check will not work for arrays used as control variable.An example is
+ The check will not work for arrays used as control variable. An example is
  &lt;/p&gt;
  &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  for (int a[]={0};a[0] &amp;lt; 10;a[0]++) {
