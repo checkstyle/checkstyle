@@ -23,12 +23,12 @@
 
  &lt;p&gt;
  Package deprecation is an exception to the rule of always using the
- javadoc tag and annotation to deprecate.  It is not clear if the javadoc
+ javadoc tag and annotation to deprecate. It is not clear if the javadoc
  tool will support it or not as newer versions keep flip-flopping on if
  it is supported or will cause an error. See
  &lt;a href="https://bugs.openjdk.org/browse/JDK-8160601"&gt;JDK-8160601&lt;/a&gt;.
  The deprecated javadoc tag is currently the only way to say why the package
- is deprecated and what to use instead.  Until this is resolved, if you don't
+ is deprecated and what to use instead. Until this is resolved, if you don't
  want to print violations on package-info, you can use a
  &lt;a href="https://checkstyle.org/filters/index.html"&gt;filter&lt;/a&gt; to ignore
  these files until the javadoc tool faithfully supports it. An example config
