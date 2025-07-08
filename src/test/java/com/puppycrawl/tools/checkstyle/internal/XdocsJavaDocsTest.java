@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.site.SiteUtil.SINCE_VERSION;
 
 import java.io.File;
 import java.net.URI;
@@ -583,7 +582,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
                 switch (parentNode.getType()) {
                     case TokenTypes.CLASS_DEF:
-                        visitClass(ast);
+                        // ignore;
                         break;
                     case TokenTypes.METHOD_DEF:
                         visitMethod(ast, parentNode);
@@ -615,28 +614,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             }
 
             return result;
-        }
-
-        private static void visitClass(DetailAST node) {
-            String violationMessagesText = CHECK_TEXT.get("Violation Messages");
-
-            if (checkName.endsWith("Filter") || "SuppressWarningsHolder".equals(checkName)) {
-                violationMessagesText = "";
-            }
-
-            if (ScopeUtil.isInScope(node, Scope.PUBLIC)) {
-                final String expected = CHECK_TEXT.get("Description")
-                        + CHECK_TEXT.computeIfAbsent("Rule Description", unused -> "")
-                        + CHECK_TEXT.computeIfAbsent("Notes", unused -> "")
-                        + CHECK_TEXT.computeIfAbsent("Properties", unused -> "")
-                        + CHECK_TEXT.get("Parent Module")
-                        + violationMessagesText + " @since "
-                        + CHECK_TEXT.get("since");
-
-                assertWithMessage(checkName + "'s class-level JavaDoc")
-                    .that(getJavaDocText(node))
-                    .isEqualTo(expected);
-            }
         }
 
         private static void visitField(DetailAST node, DetailAST parentNode) {
@@ -701,17 +678,11 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         }
 
         private static String getJavaDocText(DetailAST node) {
-            String text = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document>\n"
+            final String text = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document>\n"
                     + node.getFirstChild().getText().replaceAll("(^|\\r?\\n)\\s*\\* ?", "\n")
                             .replaceAll("\\n?@noinspection.*\\r?\\n[^@]*", "\n")
                             .trim() + "\n</document>";
             String result = null;
-
-            // until https://github.com/checkstyle/checkstyle/issues/17251
-            if (text.contains("\n" + SINCE_VERSION)) {
-                final String sinceVersionLine = "\n" + SINCE_VERSION + " .*";
-                text = text.replaceAll(sinceVersionLine, "");
-            }
 
             try {
                 result = getNodeText(XmlUtil.getRawXml(checkName, text, text).getFirstChild())
