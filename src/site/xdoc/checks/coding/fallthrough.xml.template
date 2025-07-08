@@ -9,31 +9,10 @@
     <section name="FallThrough">
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks for fall-through in <code>switch</code>
-          statements. Finds locations where a <code>case</code>
-          <b>contains</b> Java code but lacks a <code>break</code>, <code>return</code>,
-          <code>yield</code>, <code>throw</code> or <code>continue</code>
-          statement.
-        </div>
-
-        <p>
-          The check honors special comments to suppress the warning.
-          By default, the texts
-          "fallthru", "fall thru", "fall-thru",
-          "fallthrough", "fall through", "fall-through"
-          "fallsthrough", "falls through", "falls-through" (case-sensitive).
-          The comment containing these words must be all on one line,
-          and must be on the last non-empty line before the
-          <code>case</code> triggering the warning or on
-          the same line before the <code>case</code>
-          (ugly, but possible). Any other comment may follow on the same line.
-        </p>
-
-        <p>
-          Note: The check assumes that there is no unreachable
-          code in the <code>case</code>.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FallThroughCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
