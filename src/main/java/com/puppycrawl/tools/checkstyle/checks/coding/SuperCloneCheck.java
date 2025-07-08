@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
  *
  * <p>
  * Reference:
- * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html#clone%28%29">
+ * <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone%28%29">
  * Object.clone()</a>.
  * </p>
  *

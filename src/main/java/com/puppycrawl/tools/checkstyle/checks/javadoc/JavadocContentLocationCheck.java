@@ -69,7 +69,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  *
  * <p>
- * The <a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html">
+ * The <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/doc-comment-spec.html">
  * Documentation Comment Specification</a> permits leading asterisks on the first line.
  * For these Javadoc comments:
  * </p>

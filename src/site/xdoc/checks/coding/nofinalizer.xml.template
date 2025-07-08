@@ -11,7 +11,7 @@
       <subsection name="Description" id="Description">
         <div>Checks that there is no method <code>finalize</code> with zero parameters.</div>
         <p>
-          See <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html#finalize()">
+          See <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()">
           Object.finalize()</a>
         </p>
         <p>

@@ -11,7 +11,7 @@
       <subsection name="Description" id="Description">
         <div>
           Checks that a
-          <a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html#block-tags">
+          <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/doc-comment-spec.html#block-tags">
           javadoc block tag</a> appears only at the beginning of a line, ignoring
           leading asterisks and white space. A block tag is a token that starts
           with <code>@</code> symbol and is preceded by a whitespace. This check
@@ -20,7 +20,7 @@
         </div>
         <p>
           Rationale: according to
-          <a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html#block-tags">
+          <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/doc-comment-spec.html#block-tags">
           the specification</a> all javadoc block tags should be placed at the
           beginning of a line. Tags that are not placed at the beginning are treated
           as plain text. To recognize intentional tag placement to text area

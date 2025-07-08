@@ -6,7 +6,7 @@
              parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;div&gt;
  Checks the header of a source file against multiple header files that contain a
- &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html"&gt;
+ &lt;a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html"&gt;
  pattern&lt;/a&gt; for each line of the source header.
  &lt;/div&gt;</description>
          <properties>
