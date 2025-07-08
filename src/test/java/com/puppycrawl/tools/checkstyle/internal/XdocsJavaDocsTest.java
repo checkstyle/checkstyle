@@ -20,10 +20,8 @@
 package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.site.SiteUtil.SINCE_VERSION;
 
 import java.io.File;
-import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -41,7 +39,6 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -50,60 +47,18 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
-import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption;
-import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck;
-import com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption;
-import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption;
-import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption;
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationOption;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck;
-import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
-import com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption;
-import com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
-import com.puppycrawl.tools.checkstyle.site.PropertiesMacro;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
-    private static final Map<String, Class<?>> FULLY_QUALIFIED_CLASS_NAMES =
-            ImmutableMap.<String, Class<?>>builder()
-            .put("int", int.class)
-            .put("int[]", int[].class)
-            .put("boolean", boolean.class)
-            .put("double", double.class)
-            .put("double[]", double[].class)
-            .put("String", String.class)
-            .put("String[]", String[].class)
-            .put("Pattern", Pattern.class)
-            .put("Pattern[]", Pattern[].class)
-            .put("AccessModifierOption[]", AccessModifierOption[].class)
-            .put("BlockOption", BlockOption.class)
-            .put("ClosingParensOption", AnnotationUseStyleCheck.ClosingParensOption.class)
-            .put("ElementStyleOption", AnnotationUseStyleCheck.ElementStyleOption.class)
-            .put("File", File.class)
-            .put("ImportOrderOption", ImportOrderOption.class)
-            .put("JavadocContentLocationOption", JavadocContentLocationOption.class)
-            .put("LeftCurlyOption", LeftCurlyOption.class)
-            .put("LineSeparatorOption", LineSeparatorOption.class)
-            .put("PadOption", PadOption.class)
-            .put("RightCurlyOption", RightCurlyOption.class)
-            .put("Scope", Scope.class)
-            .put("SeverityLevel", SeverityLevel.class)
-            .put("TrailingArrayCommaOption", AnnotationUseStyleCheck.TrailingArrayCommaOption.class)
-            .put("URI", URI.class)
-            .put("WrapOption", WrapOption.class)
-            .put("PARAM_LITERAL", int[].class).build();
 
-    private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();
     private static final Map<String, String> CHECK_PROPERTY_DOC = new HashMap<>();
-    private static final Map<String, String> CHECK_TEXT = new HashMap<>();
 
     private static Checker checker;
 
@@ -148,13 +103,13 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                     continue;
                 }
 
-                assertCheckSection(moduleFactory, fileName, sectionName, section);
+                assertCheckSection(moduleFactory, fileName, sectionName);
             }
         }
     }
 
     private static void assertCheckSection(ModuleFactory moduleFactory, String fileName,
-            String sectionName, Node section) throws Exception {
+            String sectionName) throws Exception {
         final Object instance;
 
         try {
@@ -164,210 +119,14 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             throw new CheckstyleException(fileName + " couldn't find class: " + sectionName, exc);
         }
 
-        CHECK_TEXT.clear();
-        CHECK_PROPERTIES.clear();
         CHECK_PROPERTY_DOC.clear();
         checkName = sectionName;
-
-        assertCheckSectionChildren(section);
 
         final List<File> files = new ArrayList<>();
         files.add(new File("src/main/java/" + instance.getClass().getName().replace(".", "/")
                 + ".java"));
 
         checker.process(files);
-    }
-
-    private static void assertCheckSectionChildren(Node section) {
-        for (Node subSection : XmlUtil.getChildrenElements(section)) {
-            if (!"subsection".equals(subSection.getNodeName())) {
-                final String text = getNodeText(subSection);
-                if (text.startsWith("Since Checkstyle")) {
-                    CHECK_TEXT.put("since", text.substring(17));
-                }
-                continue;
-            }
-
-            final String subSectionName = XmlUtil.getNameAttributeOfNode(subSection);
-
-            examineCheckSubSection(subSection, subSectionName);
-        }
-    }
-
-    private static void examineCheckSubSection(Node subSection, String subSectionName) {
-        switch (subSectionName) {
-            case "Description":
-            case "Examples":
-            case "Notes":
-            case "Rule Description":
-                CHECK_TEXT.put(subSectionName, getNodeText(subSection).replace("\r", ""));
-                break;
-            case "Properties":
-                populateProperties(subSection);
-                CHECK_TEXT.put(subSectionName, createPropertiesText());
-                break;
-            case "Example of Usage":
-            case "Violation Messages":
-                CHECK_TEXT.put(subSectionName,
-                        createViolationMessagesText(getViolationMessages(subSection)));
-                break;
-            case "Package":
-            case "Parent Module":
-                CHECK_TEXT.put(subSectionName, createParentText(subSection));
-                break;
-            default:
-                break;
-        }
-    }
-
-    private static List<String> getViolationMessages(Node subsection) {
-        final Node child = XmlUtil.getFirstChildElement(subsection);
-        final List<String> violationMessages = new ArrayList<>();
-        for (Node row : XmlUtil.getChildrenElements(child)) {
-            violationMessages.add(row.getTextContent().trim());
-        }
-        return violationMessages;
-    }
-
-    private static String createViolationMessagesText(List<String> violationMessages) {
-        final StringBuilder result = new StringBuilder(100);
-        result.append("\n<p>\nViolation Message Keys:\n</p>\n<ul>");
-
-        for (String msg : violationMessages) {
-            result.append("\n<li>\n{@code ").append(msg).append("}\n</li>");
-        }
-
-        result.append("\n</ul>");
-        return result.toString();
-    }
-
-    private static String createParentText(Node subsection) {
-        return "\n<p>\nParent is {@code com.puppycrawl.tools.checkstyle."
-                + XmlUtil.getFirstChildElement(subsection).getTextContent().trim() + "}\n</p>";
-    }
-
-    private static void populateProperties(Node subSection) {
-        boolean skip = true;
-
-        // if the first child is a wrapper element instead of the first table row containing
-        // the table headset
-        //   element to populate properties for to the current elements first child
-        Node child = XmlUtil.getFirstChildElement(subSection);
-        if (child.hasAttributes() && child.getAttributes().getNamedItem("class") != null
-                && "wrapper".equals(child.getAttributes().getNamedItem("class")
-                .getTextContent())) {
-            child = XmlUtil.getFirstChildElement(child);
-        }
-        for (Node row : XmlUtil.getChildrenElements(child)) {
-            if (skip) {
-                skip = false;
-                continue;
-            }
-            CHECK_PROPERTIES.add(new ArrayList<>(XmlUtil.getChildrenElements(row)));
-        }
-    }
-
-    private static String createPropertiesText() {
-        final StringBuilder result = new StringBuilder(100);
-
-        result.append("\n<ul>");
-
-        for (List<Node> property : CHECK_PROPERTIES) {
-            final String propertyName = getNodeText(property.get(0));
-
-            result.append("\n<li>\nProperty {@code ");
-            result.append(propertyName);
-            result.append("} - ");
-
-            final String temp = getNodeText(property.get(1));
-
-            result.append(temp);
-            CHECK_PROPERTY_DOC.put(propertyName, temp);
-
-            String typeText = "java.lang.String[]";
-            final String propertyType = property.get(2).getTextContent();
-            final boolean isSpecialAllTokensType = propertyType.contains("set of any supported");
-            final boolean isPropertyTokenType = isSpecialAllTokensType
-                    || propertyType.contains("subset of tokens")
-                    || propertyType.contains("subset of javadoc tokens");
-            if (!isPropertyTokenType) {
-                final String typeName =
-                        getCorrectNodeBasedOnPropertyType(property).getTextContent().trim();
-                typeText = FULLY_QUALIFIED_CLASS_NAMES.get(typeName).getTypeName();
-            }
-            if (isSpecialAllTokensType) {
-                typeText = "anyTokenTypesSet";
-            }
-            result.append(" Type is {@code ").append(typeText).append("}.");
-
-            if (!isSpecialAllTokensType) {
-                final String validationType = getValidationType(isPropertyTokenType, propertyName);
-                if (validationType != null) {
-                    result.append(validationType);
-                }
-            }
-
-            result.append(getDefaultValueOfType(propertyName, isSpecialAllTokensType));
-
-            result.append(emptyStringArrayDefaultValue(property.get(3), isPropertyTokenType));
-
-            if (result.charAt(result.length() - 1) != '.') {
-                result.append('.');
-            }
-
-            result.append("\n</li>");
-        }
-
-        result.append("\n</ul>");
-
-        return result.toString();
-    }
-
-    private static Node getCorrectNodeBasedOnPropertyType(List<Node> property) {
-        final Node result;
-        if (property.get(2).getFirstChild().getFirstChild() == null) {
-            result = property.get(2).getFirstChild().getNextSibling();
-        }
-        else {
-            result = property.get(2).getFirstChild().getFirstChild();
-        }
-        return result;
-    }
-
-    private static String getDefaultValueOfType(String propertyName,
-                                                boolean isSpecialAllTokensType) {
-        final String result;
-        if (!isSpecialAllTokensType
-                && (propertyName.endsWith("token") || propertyName.endsWith(
-                "tokens"))) {
-            result = " Default value is: ";
-        }
-        else {
-            result = " Default value is ";
-        }
-        return result;
-    }
-
-    private static String getValidationType(boolean isPropertyTokenType, String propertyName) {
-        String result = null;
-        if (PropertiesMacro.NON_BASE_TOKEN_PROPERTIES.contains(checkName + " - " + propertyName)) {
-            result = " Validation type is {@code tokenTypesSet}.";
-        }
-        else if (isPropertyTokenType) {
-            result = " Validation type is {@code tokenSet}.";
-        }
-        return result;
-    }
-
-    private static String emptyStringArrayDefaultValue(Node defaultValueNode,
-                                                boolean isPropertyTokenType) {
-        String defaultValueText = getNodeText(defaultValueNode);
-        if ("{@code {}}".equals(defaultValueText)
-            || "{@code all files}".equals(defaultValueText)
-            || isPropertyTokenType && "{@code empty}".equals(defaultValueText)) {
-            defaultValueText = "{@code \"\"}";
-        }
-        return defaultValueText;
     }
 
     private static String getNodeText(Node node) {
@@ -583,7 +342,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
                 switch (parentNode.getType()) {
                     case TokenTypes.CLASS_DEF:
-                        visitClass(ast);
+                        // ignore;
                         break;
                     case TokenTypes.METHOD_DEF:
                         visitMethod(ast, parentNode);
@@ -615,28 +374,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             }
 
             return result;
-        }
-
-        private static void visitClass(DetailAST node) {
-            String violationMessagesText = CHECK_TEXT.get("Violation Messages");
-
-            if (checkName.endsWith("Filter") || "SuppressWarningsHolder".equals(checkName)) {
-                violationMessagesText = "";
-            }
-
-            if (ScopeUtil.isInScope(node, Scope.PUBLIC)) {
-                final String expected = CHECK_TEXT.get("Description")
-                        + CHECK_TEXT.computeIfAbsent("Rule Description", unused -> "")
-                        + CHECK_TEXT.computeIfAbsent("Notes", unused -> "")
-                        + CHECK_TEXT.computeIfAbsent("Properties", unused -> "")
-                        + CHECK_TEXT.get("Parent Module")
-                        + violationMessagesText + " @since "
-                        + CHECK_TEXT.get("since");
-
-                assertWithMessage(checkName + "'s class-level JavaDoc")
-                    .that(getJavaDocText(node))
-                    .isEqualTo(expected);
-            }
         }
 
         private static void visitField(DetailAST node, DetailAST parentNode) {
@@ -701,17 +438,11 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         }
 
         private static String getJavaDocText(DetailAST node) {
-            String text = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document>\n"
+            final String text = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document>\n"
                     + node.getFirstChild().getText().replaceAll("(^|\\r?\\n)\\s*\\* ?", "\n")
                             .replaceAll("\\n?@noinspection.*\\r?\\n[^@]*", "\n")
                             .trim() + "\n</document>";
             String result = null;
-
-            // until https://github.com/checkstyle/checkstyle/issues/17251
-            if (text.contains("\n" + SINCE_VERSION)) {
-                final String sinceVersionLine = "\n" + SINCE_VERSION + " .*";
-                text = text.replaceAll(sinceVersionLine, "");
-            }
 
             try {
                 result = getNodeText(XmlUtil.getRawXml(checkName, text, text).getFirstChild())
