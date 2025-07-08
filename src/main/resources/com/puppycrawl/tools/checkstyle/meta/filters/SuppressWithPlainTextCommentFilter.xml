@@ -36,7 +36,7 @@
 
  &lt;p&gt;
  Properties &lt;code&gt;offCommentFormat&lt;/code&gt; and &lt;code&gt;onCommentFormat&lt;/code&gt; must have equal
- &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html#groupCount()"&gt;
+ &lt;a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Matcher.html#groupCount()"&gt;
  paren counts&lt;/a&gt;.
  &lt;/p&gt;
 

@@ -45,7 +45,7 @@
                       name="baseName"
                       type="java.util.regex.Pattern">
                <description>Specify
- &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ResourceBundle.html"&gt;
+ &lt;a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ResourceBundle.html"&gt;
  Base name&lt;/a&gt; of resource bundles which contain message resources.
  It helps the check to distinguish config and localization resources.</description>
             </property>

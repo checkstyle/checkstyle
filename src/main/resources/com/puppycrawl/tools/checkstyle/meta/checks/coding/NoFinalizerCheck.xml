@@ -10,7 +10,7 @@
 
  &lt;p&gt;
  See
- &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html#finalize()"&gt;
+ &lt;a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()"&gt;
  Object.finalize()&lt;/a&gt;
  &lt;/p&gt;
 

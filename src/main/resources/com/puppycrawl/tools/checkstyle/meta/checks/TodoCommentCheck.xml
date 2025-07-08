@@ -6,7 +6,7 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks for &lt;code&gt;TODO:&lt;/code&gt; comments. Actually it is a generic
- &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html"&gt;
+ &lt;a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html"&gt;
  pattern&lt;/a&gt; matcher on Java comments. To check for other patterns
  in Java comments, set the &lt;code&gt;format&lt;/code&gt; property.
  &lt;/div&gt;
