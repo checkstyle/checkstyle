@@ -411,4 +411,10 @@
     <Field name="ID_TO_RESOURCE_NAME_MAP" />
     <Bug pattern="DMC_DUBIOUS_MAP_COLLECTION" />
   </Match>
+  <!-- not documented rule -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.DefaultContext" />
+    <Method name="getAttributeNames" />
+    <Bug pattern="IMC_IMMATURE_CLASS_COLLECTION_RETURN" />
+  </Match>
 </FindBugsFilter>
