@@ -9,28 +9,10 @@
     <section name="NoEnumTrailingComma">
       <p>Since Checkstyle 8.29</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that enum definition does not contain a trailing comma.
-          Rationale: JLS allows trailing commas in arrays and enumerations, but does not allow
-          them in other locations. To unify the coding style, the use of trailing commas should
-          be prohibited.
-        </div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-enum Foo1 {
-  FOO,
-  BAR;
-}
-        </code></pre></div>
-        <p>
-          The check demands that there should not be any comma after last constant in
-          enum definition.
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-enum Foo1 {
-  FOO,
-  BAR, // violation
-}
-        </code></pre></div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NoEnumTrailingCommaCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Examples" id="Examples">

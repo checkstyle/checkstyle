@@ -9,27 +9,10 @@
     <section name="NoArrayTrailingComma">
       <p>Since Checkstyle 8.28</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that array initialization do not contain a trailing comma.
-          Rationale: JLS allows trailing commas in arrays and enumerations, but does not allow
-          them in other locations. To unify the coding style, the use of trailing commas should
-          be prohibited.
-        </div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-int[] foo = new int[] {
-  1,
-  2
-};
-        </code></pre></div>
-        <p>
-          The check demands that there should not be any comma after the last element of an array.
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-String[] foo = new String[] {
-  &quot;FOO&quot;,
-  &quot;BAR&quot;, // violation
-}
-        </code></pre></div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NoArrayTrailingCommaCheck.java"/>
+        </macro>
       </subsection>
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">
