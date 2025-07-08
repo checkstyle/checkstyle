@@ -21,6 +21,7 @@ enum Foo1 {
   BAR;
 }
         </code></pre></div>
+
         <p>
           The check demands that there should not be any comma after last constant in
           enum definition.

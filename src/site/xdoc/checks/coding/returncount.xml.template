@@ -9,28 +9,10 @@
     <section name="ReturnCount">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <div>
-          Restricts the number of return statements in methods, constructors and lambda expressions.
-          Ignores specified methods (<code>equals</code> by default).
-        </div>
-
-        <p>
-          <b>max</b> property will only check returns in methods and lambdas that return a specific
-          value (Ex: 'return 1;').
-        </p>
-
-        <p>
-          <b>maxForVoid</b> property will only check returns in methods, constructors, and lambdas
-          that have no return type (IE 'return;').
-          It will only count visible return statements. Return statements not normally written, but
-          implied, at the end of the method/constructor definition will not be taken into account.
-          To disallow "return;" in void return type methods, use a value of 0.
-        </p>
-
-        <p>
-          Rationale: Too many return points can mean that code is
-          attempting to do too much or may be difficult to understand.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ReturnCountCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

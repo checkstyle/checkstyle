@@ -595,7 +595,7 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.UnnecessarySemicolonInTryWithResourcesCheck");
         NAME_TO_FULL_MODULE_NAME.put("VariableDeclarationUsageDistanceCheck",
                 BASE_PACKAGE + ".checks.coding.VariableDeclarationUsageDistanceCheck");
-        NAME_TO_FULL_MODULE_NAME.put("WhenShouldBeUsed",
+        NAME_TO_FULL_MODULE_NAME.put("WhenShouldBeUsedCheck",
                 BASE_PACKAGE + ".checks.coding.WhenShouldBeUsedCheck");
         NAME_TO_FULL_MODULE_NAME.put("NoArrayTrailingCommaCheck",
                 BASE_PACKAGE + ".checks.coding.NoArrayTrailingCommaCheck");

@@ -9,17 +9,10 @@
     <section name="NoFinalizer">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
-        <div>Checks that there is no method <code>finalize</code> with zero parameters.</div>
-        <p>
-          See <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()">
-          Object.finalize()</a>
-        </p>
-        <p>
-            Rationale: Finalizers are unpredictable, often dangerous, and generally unnecessary.
-            Their use can cause erratic behavior, poor performance, and portability problems.
-            For more information for the finalize method and its issues, see Effective Java:
-            Programming Language Guide Third Edition by Joshua Bloch, §8.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NoFinalizerCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Examples" id="Examples">
