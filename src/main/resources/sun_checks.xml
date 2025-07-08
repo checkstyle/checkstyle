@@ -8,7 +8,7 @@
   Checkstyle configuration that checks the sun coding conventions from:
 
     - the Java Language Specification at
-      https://docs.oracle.com/javase/specs/jls/se11/html/index.html
+      https://docs.oracle.com/javase/specs/jls/se17/html/index.html
 
     - the Sun Code Conventions at https://www.oracle.com/java/technologies/javase/codeconventions-contents.html
 
