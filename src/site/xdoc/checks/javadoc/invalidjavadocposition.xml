@@ -12,7 +12,7 @@
         <div>
           Checks that Javadocs are located at the correct position.
           As specified at
-          <a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html">
+          <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/doc-comment-spec.html">
           Documentation Comment Specification for the Standard Doclet</a>,
           Javadocs are recognized only when placed immediately before module, package, class,
           interface, constructor, method, or field declarations. Any other position, like

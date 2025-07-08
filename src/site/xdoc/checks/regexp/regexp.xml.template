@@ -43,7 +43,7 @@
           <b>Note:</b> Not all regular expression engines are created equal. Some provide extra
           functions that others do not and some elements of the syntax may vary.
           This check makes use of the
-          <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/package-summary.html">
+          <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/package-summary.html">
           java.util.regex package</a>; please check its documentation for
           details of how to construct a regular expression to achieve a particular
           goal.

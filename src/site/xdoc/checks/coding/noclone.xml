@@ -17,7 +17,7 @@
           This check is almost exactly the same as the <code>NoFinalizerCheck</code>.
         </p>
         <p>
-          See <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html#clone()">
+          See <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()">
           Object.clone()</a>
         </p>
         <p>

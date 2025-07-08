@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * <div>
  * Checks the header of a source file against multiple header files that contain a
- * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html">
+ * <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html">
  * pattern</a> for each line of the source header.
  * </div>
  * <ul>
