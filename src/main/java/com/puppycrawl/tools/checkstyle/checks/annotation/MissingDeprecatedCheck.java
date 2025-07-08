@@ -51,12 +51,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <p>
  * Package deprecation is an exception to the rule of always using the
- * javadoc tag and annotation to deprecate.  It is not clear if the javadoc
+ * javadoc tag and annotation to deprecate. It is not clear if the javadoc
  * tool will support it or not as newer versions keep flip-flopping on if
  * it is supported or will cause an error. See
  * <a href="https://bugs.openjdk.org/browse/JDK-8160601">JDK-8160601</a>.
  * The deprecated javadoc tag is currently the only way to say why the package
- * is deprecated and what to use instead.  Until this is resolved, if you don't
+ * is deprecated and what to use instead. Until this is resolved, if you don't
  * want to print violations on package-info, you can use a
  * <a href="https://checkstyle.org/filters/index.html">filter</a> to ignore
  * these files until the javadoc tool faithfully supports it. An example config
