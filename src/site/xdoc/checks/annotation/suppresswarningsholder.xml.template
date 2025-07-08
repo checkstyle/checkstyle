@@ -10,18 +10,10 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="SuppressWarningsHolder">
       <p>Since Checkstyle 5.7</p>
       <subsection name="Description" id="Description">
-        <div>
-          Maintains a set of check suppressions from
-          <code>@SuppressWarnings</code> annotations. It allows to
-          prevent Checkstyle from reporting violations from parts of code
-          that were annotated with <code>@SuppressWarnings</code> and
-          using name of the check to be excluded. It is possible to suppress
-          all the checkstyle warnings with the argument
-          <code>"all"</code>.
-          You can also use a <code>checkstyle:</code> prefix to prevent compiler from
-          processing these annotations. You can also define
-          aliases for check names that need to be suppressed.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
