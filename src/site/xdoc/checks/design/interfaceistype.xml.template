@@ -9,24 +9,10 @@
     <section name="InterfaceIsType">
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
-        <div>
-          Implements Joshua Bloch, Effective Java, Item 17 - Use Interfaces only to
-          define types.
-        </div>
-
-        <p>
-          According to Bloch, an interface should describe a <em>type</em>.
-          It is therefore inappropriate to define an interface that does not
-          contain any methods but only constants. The Standard interface <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/SwingConstants.html">
-            javax.swing.SwingConstants</a>
-          is an example of an interface that would be flagged by this check.
-        </p>
-
-        <p>
-          The check can be configured to also disallow marker interfaces like
-          <code>java.io.Serializable</code>, that do not contain methods or
-          constants at all.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/InterfaceIsTypeCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
