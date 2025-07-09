@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.xpath;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
@@ -145,7 +144,7 @@ public class XpathQueryGenerator {
         return getMatchingAstElements()
             .stream()
             .map(XpathQueryGenerator::generateXpathQuery)
-            .collect(Collectors.toUnmodifiableList());
+            .toList();
     }
 
     /**
