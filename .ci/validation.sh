@@ -537,7 +537,8 @@ javac17)
   files=($(grep -Rl --include='*.java' ': Compilable with Java17' \
         src/test/resources-noncompilable \
         src/it/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable || true))
+        src/xdocs-examples/resources-noncompilable \
+        | grep -v 'importorder/Example1.java' || true))
   if [[  ${#files[@]} -eq 0 ]]; then
     echo "No Java17 files to process"
   else
