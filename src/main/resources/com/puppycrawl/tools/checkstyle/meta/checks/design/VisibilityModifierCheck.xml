@@ -33,17 +33,17 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- &lt;b&gt;ignoreAnnotationCanonicalNames&lt;/b&gt;- the list of annotations which ignore
+ &lt;b&gt;ignoreAnnotationCanonicalNames&lt;/b&gt; - the list of annotations which ignore
  variables in consideration. If user want to provide short annotation name that
  type will match to any named the same type without consideration of package.
  &lt;/p&gt;
 
  &lt;p&gt;
- &lt;b&gt;allowPublicFinalFields&lt;/b&gt;- which allows public final fields.
+ &lt;b&gt;allowPublicFinalFields&lt;/b&gt; - which allows public final fields.
  &lt;/p&gt;
 
  &lt;p&gt;
- &lt;b&gt;allowPublicImmutableFields&lt;/b&gt;- which allows immutable fields to be
+ &lt;b&gt;allowPublicImmutableFields&lt;/b&gt; - which allows immutable fields to be
  declared as public if defined in final class.
  &lt;/p&gt;
 

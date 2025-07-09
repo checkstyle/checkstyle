@@ -9,14 +9,10 @@
     <section name="OneTopLevelClass">
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that each top-level class, interface, enum
-          or annotation resides in a source file of its own.
-          Official description of a 'top-level' term:<a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-7.html#jls-7.6">
-            7.6. Top Level Type Declarations</a>.
-          If file doesn't contain public class, interface, enum or annotation,
-          top-level type is the first type in file.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/OneTopLevelClassCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Examples" id="Examples">

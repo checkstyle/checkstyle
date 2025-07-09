@@ -9,11 +9,10 @@
     <section name="InnerTypeLast">
       <p>Since Checkstyle 5.2</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks nested (internal) classes/interfaces are declared at the bottom of the
-          primary (top-level) class after all init and static init blocks,
-          method, constructor and field declarations.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/InnerTypeLastCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Examples" id="Examples">
