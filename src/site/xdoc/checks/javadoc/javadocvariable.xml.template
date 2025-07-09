@@ -9,10 +9,10 @@
     <section name="JavadocVariable">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that a variable has a Javadoc comment. Ignores <code>serialVersionUID</code>
-          fields.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocVariableCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

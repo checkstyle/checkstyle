@@ -9,12 +9,10 @@
     <section name="WriteTag">
       <p>Since Checkstyle 4.2</p>
       <subsection name="Description" id="Description">
-        <div>
-         Requires user defined Javadoc tag to be present in Javadoc comment with
-         defined format. To define the format for a tag, set property tagFormat to a regular
-         expression. Property tagSeverity is used for severity of events when the tag exists.
-         No violation reported in case there is no javadoc.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/WriteTagCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
