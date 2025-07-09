@@ -9,16 +9,10 @@
     <section name="InvalidJavadocPosition">
       <p>Since Checkstyle 8.23</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that Javadocs are located at the correct position.
-          As specified at
-          <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/doc-comment-spec.html">
-          Documentation Comment Specification for the Standard Doclet</a>,
-          Javadocs are recognized only when placed immediately before module, package, class,
-          interface, constructor, method, or field declarations. Any other position, like
-          in the body of a method, will be ignored by the javadoc tool and is considered
-          invalid by this check.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/InvalidJavadocPositionCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Examples" id="Examples">
