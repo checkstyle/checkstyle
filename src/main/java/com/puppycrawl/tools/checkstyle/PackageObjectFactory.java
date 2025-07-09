@@ -389,7 +389,7 @@ public class PackageObjectFactory implements ModuleFactory {
         final List<String> possibleNames = packages.stream()
             .map(packageName -> packageName + PACKAGE_SEPARATOR + name)
             .flatMap(className -> Stream.of(className, className + CHECK_SUFFIX))
-            .collect(Collectors.toUnmodifiableList());
+            .toList();
         Object instance = null;
         for (String possibleName : possibleNames) {
             instance = createObject(possibleName);
