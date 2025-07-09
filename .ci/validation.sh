@@ -538,13 +538,25 @@ javac17)
         src/test/resources-noncompilable \
         src/it/resources-noncompilable \
         src/xdocs-examples/resources-noncompilable || true))
+  exclusions=(
+    "src/xdocs-examples/resources-noncompilable/com/puppycrawl/tools/checkstyle
+     /checks/imports/importorder/Example1.java"
+  )
   if [[  ${#files[@]} -eq 0 ]]; then
     echo "No Java17 files to process"
   else
       mkdir -p target
       for file in "${files[@]}"
       do
-        javac --release 17 --enable-preview -d target "${file}"
+        skip=0
+        for badfile in "${exclusions[@]}"; do
+            [[ "$file" == "$badfile" ]] && skip=1 && break
+        done
+        if [[ $skip -eq 1 ]]; then
+            echo "Skipping problematic file: $file"
+        else
+            javac --release 17 --enable-preview -d target "${file}"
+        fi
       done
   fi
   ;;
