@@ -40,7 +40,7 @@ public class ImportOrderCheckExamplesTest extends AbstractExamplesModuleTestSupp
             "15:1: " + getCheckMessage(MSG_ORDERING, "java.io.IOException"),
             "19:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "javax.net.ssl.TrustManager"),
             "22:1: " + getCheckMessage(MSG_ORDERING, "java.util.Set"),
-            "23:1: " + getCheckMessage(MSG_ORDERING, "com.neurologic.http.HttpClient"),
+            "23:1: " + getCheckMessage(MSG_ORDERING, "com.squareup.retrofit2.Retrofit"),
         };
 
         verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
