@@ -10,19 +10,20 @@
       <p>Since Checkstyle 8.22</p>
       <subsection name="Description" id="Description">
         <div>
-            Checks for missing package definition Javadoc comments in package-info.java files.
+          Checks for missing package definition Javadoc comments in package-info.java files.
         </div>
 
         <p>
           Rationale: description and other related documentation for a package can be written up
           in the package-info.java file and it gets used in the production of the Javadocs.
-          See <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#packagecomment">
-          link</a> for more info.
+          See <a
+          href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#packagecomment"
+          >link</a> for more info.
         </p>
 
         <p>
-          This check specifically only validates package definitions. It will not validate any
-          methods or interfaces declared in the package-info.java file.
+          This check specifically only validates package definitions. It will not validate any methods or
+          interfaces declared in the package-info.java file.
         </p>
       </subsection>
 

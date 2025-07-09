@@ -9,31 +9,10 @@
     <section name="JavadocType">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks the Javadoc comments for type definitions.
-          By default, does not check for author or version tags. The
-          scope to verify is specified using the <code>Scope</code>
-          class and defaults to <code>Scope.PRIVATE</code>. To verify
-          another scope, set property scope to one of the
-          <code>Scope</code> constants. To define the format for an
-          author tag or a version tag, set property authorFormat or
-          versionFormat respectively to a
-          <a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html">
-            pattern</a>.
-        </div>
-        <p>
-          Does not perform checks for author and version tags for inner
-          classes, as they should be redundant because of outer class.
-        </p>
-        <p>
-          Does not perform checks for type definitions that do not have
-          any Javadoc comments.
-        </p>
-        <p>
-          Error messages about type parameters and record components for which no
-          param tags are present can be suppressed by defining property
-          <code>allowMissingParamTags</code>.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTypeCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

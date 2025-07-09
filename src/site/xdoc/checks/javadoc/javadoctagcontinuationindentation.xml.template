@@ -9,14 +9,10 @@
     <section name="JavadocTagContinuationIndentation">
       <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks the indentation of the continuation lines in block tags.
-          That is whether the
-          continued description of at clauses should be indented or not. If the text is not properly
-          indented it throws a violation. A continuation line is when the description starts/spans
-          past the line with the tag. Default indentation required is at least 4, but this can be
-          changed with the help of properties below.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagContinuationIndentationCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

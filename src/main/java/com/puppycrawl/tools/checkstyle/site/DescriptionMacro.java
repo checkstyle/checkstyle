@@ -152,7 +152,8 @@ public class DescriptionMacro extends AbstractMacro {
         final String[] moduleDescriptionLinesSplit = description.split(NEWLINE);
 
         sink.rawText(moduleDescriptionLinesSplit[0]);
-        String previousProcessedLine = moduleDescriptionLinesSplit[0];
+        String lastHtmlTag = moduleDescriptionLinesSplit[0];
+
         for (int index = 1; index < moduleDescriptionLinesSplit.length; index++) {
             final String currentLine = moduleDescriptionLinesSplit[index].trim();
             final String processedLine;
@@ -164,13 +165,12 @@ public class DescriptionMacro extends AbstractMacro {
                 && !startsWithTextFormattingHtmlTag(currentLine)) {
 
                 processedLine = INDENT_LEVEL_8 + currentLine;
+                lastHtmlTag = currentLine;
             }
-            else if (index > 1
-                && (previousProcessedLine.contains("<pre")
-                    || !previousProcessedLine.startsWith(INDENT_LEVEL_8))) {
-
+            else if (lastHtmlTag.contains("<pre")) {
                 final String currentLineWithPreservedIndent = moduleDescriptionLinesSplit[index]
                     .substring(1);
+
                 processedLine = NEWLINE + currentLineWithPreservedIndent;
             }
             else {
@@ -178,8 +178,6 @@ public class DescriptionMacro extends AbstractMacro {
             }
 
             sink.rawText(processedLine);
-
-            previousProcessedLine = processedLine;
         }
 
     }
