@@ -14,23 +14,24 @@
           marked as final. The following are different types of classes that can be identified:
         </div>
         <ol>
-          <li>
-              Private classes with no declared constructors.
-          </li>
-          <li>
-              Classes with any modifier, and contains only private constructors.
-          </li>
+        <li>
+          Private classes with no declared constructors.
+        </li>
+        <li>
+          Classes with any modifier, and contains only private constructors.
+        </li>
         </ol>
+
         <p>
           Classes are skipped if:
         </p>
         <ol>
-          <li>
-              Class is Super class of some Anonymous inner class.
-          </li>
-          <li>
-              Class is extended by another class in the same file.
-          </li>
+        <li>
+          Class is Super class of some Anonymous inner class.
+        </li>
+        <li>
+          Class is extended by another class in the same file.
+        </li>
         </ol>
       </subsection>
 

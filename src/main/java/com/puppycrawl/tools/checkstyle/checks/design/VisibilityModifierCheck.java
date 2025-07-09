@@ -66,17 +66,17 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  *
  * <p>
- * <b>ignoreAnnotationCanonicalNames</b>- the list of annotations which ignore
+ * <b>ignoreAnnotationCanonicalNames</b> - the list of annotations which ignore
  * variables in consideration. If user want to provide short annotation name that
  * type will match to any named the same type without consideration of package.
  * </p>
  *
  * <p>
- * <b>allowPublicFinalFields</b>- which allows public final fields.
+ * <b>allowPublicFinalFields</b> - which allows public final fields.
  * </p>
  *
  * <p>
- * <b>allowPublicImmutableFields</b>- which allows immutable fields to be
+ * <b>allowPublicImmutableFields</b> - which allows immutable fields to be
  * declared as public if defined in final class.
  * </p>
  *
