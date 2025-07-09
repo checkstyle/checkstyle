@@ -9,27 +9,34 @@
     <section name="ImportOrder">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <div>Checks the ordering/grouping of imports. Features are:</div>
+        <div>
+          Checks the ordering/grouping of imports. Features are:
+        </div>
         <ul>
-          <li>groups type/static imports: ensures that groups of imports come in a
-          specific order (e.g., java. comes first, javax. comes second,
-          then everything else)</li>
-          <li>adds a separation between type import groups : ensures that a blank
-          line sit between each group</li>
-          <li>type/static import groups aren't separated internally: ensures that
-          each group aren't separated internally by blank line or comment</li>
-          <li>sorts type/static imports inside each group: ensures that imports
-          within each group are in lexicographic order</li>
-          <li>
-            sorts according to case: ensures that the comparison
-            between imports is case-sensitive, in
-            <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>
-          </li>
-          <li>
-            arrange static imports: ensures the relative order between
-            type imports and static imports (see
-            <a href="../../property_types.html#ImportOrderOption">ImportOrderOption</a>)
-          </li>
+        <li>
+          groups type/static imports: ensures that groups of imports come in a specific order
+          (e.g., java. comes first, javax. comes second, then everything else)
+        </li>
+        <li>
+          adds a separation between type import groups : ensures that a blank line sit between each group
+        </li>
+        <li>
+          type/static import groups aren't separated internally: ensures that each group aren't separated
+          internally by blank line or comment
+        </li>
+        <li>
+          sorts type/static imports inside each group: ensures that imports within each group are in
+          lexicographic order
+        </li>
+        <li>
+          sorts according to case: ensures that the comparison between imports is case-sensitive, in
+          <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>
+        </li>
+        <li>
+          arrange static imports: ensures the relative order between type imports and static imports
+          (see
+          <a href="https://checkstyle.org/property_types.html#ImportOrderOption">ImportOrderOption</a>)
+        </li>
         </ul>
       </subsection>
 
