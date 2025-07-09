@@ -9,14 +9,10 @@
     <section name="UnnecessaryNullCheckWithInstanceOf">
       <p>Since Checkstyle 10.25.0</p>
       <subsection name="Description" id="Description">
-        <div>
-            Checks for redundant null checks with the instanceof operator.
-        </div>
-
-        <p>
-           The instanceof operator inherently returns false when the left operand is null,
-           making explicit null checks redundant in boolean expressions with instanceof.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessaryNullCheckWithInstanceOfCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Examples" id="Examples">

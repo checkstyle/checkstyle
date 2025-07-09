@@ -21,13 +21,14 @@ int[] foo = new int[] {
   2
 };
         </code></pre></div>
+
         <p>
           The check demands that there should not be any comma after the last element of an array.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 String[] foo = new String[] {
-  &quot;FOO&quot;,
-  &quot;BAR&quot;, // violation
+  "FOO",
+  "BAR", // violation
 }
         </code></pre></div>
       </subsection>

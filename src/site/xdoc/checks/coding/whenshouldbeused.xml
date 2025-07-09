@@ -10,24 +10,24 @@
       <p>Since Checkstyle 10.18.0</p>
       <subsection name="Description" id="Description">
         <div>
-          Ensures that <code>when</code> is used instead of a single
-          <code>if</code> statement inside a case block.
+          Ensures that <code>when</code> is used instead of a single <code>if</code>
+          statement inside a case block.
         </div>
+
         <p>
           Rationale: Java 21 has introduced enhancements for switch statements and expressions
-          that allow the use of patterns in case labels.
-          The <code>when</code> keyword is used to specify condition for a case label,
-          also called as guarded case labels. This syntax is more readable
+          that allow the use of patterns in case labels. The <code>when</code> keyword is used to specify
+          condition for a case label, also called as guarded case labels. This syntax is more readable
           and concise than the single <code>if</code> statement inside the pattern match block.
         </p>
+
         <p>
-          See the
-          <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-14.html#jls-Guard">
+          See the <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-14.html#jls-Guard">
           Java Language Specification</a> for more information about guarded case labels.
         </p>
+
         <p>
-          See the
-          <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-14.html#jls-14.30">
+          See the <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-14.html#jls-14.30">
           Java Language Specification</a> for more information about patterns.
         </p>
       </subsection>
