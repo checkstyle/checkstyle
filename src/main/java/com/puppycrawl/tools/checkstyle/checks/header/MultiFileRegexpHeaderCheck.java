@@ -178,7 +178,7 @@ public class MultiFileRegexpHeaderCheck
         if (!headerFilesMetadata.isEmpty()) {
             final List<MatchResult> matchResult = headerFilesMetadata.stream()
                     .map(headerFile -> matchHeader(fileText, headerFile))
-                    .collect(Collectors.toUnmodifiableList());
+                    .toList();
 
             if (matchResult.stream().noneMatch(match -> match.isMatching)) {
                 final MatchResult mismatch = matchResult.get(0);
@@ -337,7 +337,7 @@ public class MultiFileRegexpHeaderCheck
                 final List<String> readerLines = getLines(headerPath, uri);
                 final List<Pattern> patterns = readerLines.stream()
                         .map(HeaderFileMetadata::createPatternFromLine)
-                        .collect(Collectors.toUnmodifiableList());
+                        .toList();
                 return new HeaderFileMetadata(uri, headerPath, patterns, readerLines);
             }
             catch (CheckstyleException exc) {

@@ -138,8 +138,8 @@ public class CliOptionsXdocsSyncTest {
             final Node tbodyNode = XmlUtil.findChildElementById(tableNode, "body");
             final Set<Node> rows = XmlUtil.findChildElementsByTag(tbodyNode, "tr");
             final List<List<Node>> columns = rows.stream()
-                    .map(row -> new ArrayList<>(XmlUtil.getChildrenElements(row)))
-                    .collect(Collectors.toUnmodifiableList());
+                    .map(row -> (List<Node>) new ArrayList<>(XmlUtil.getChildrenElements(row)))
+                    .toList();
             for (List<Node> column : columns) {
                 final Node command = column.get(1);
                 final Node description = column.get(2);

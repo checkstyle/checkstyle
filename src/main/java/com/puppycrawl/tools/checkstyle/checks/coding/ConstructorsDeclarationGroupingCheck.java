@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -121,7 +120,7 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
             // create a list of all constructors that are not grouped to log
             final List<DetailAST> constructorsToLog = childrenAfterFirstNonConstructor.stream()
                     .filter(ConstructorsDeclarationGroupingCheck::isConstructor)
-                    .collect(Collectors.toUnmodifiableList());
+                    .toList();
 
             // find the last grouped constructor
             final DetailAST lastGroupedConstructor = childrenAfterFirstConstructor.stream()

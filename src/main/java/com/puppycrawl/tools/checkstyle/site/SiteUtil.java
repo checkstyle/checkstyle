@@ -1218,7 +1218,7 @@ public final class SiteUtil {
         return Arrays.stream(tokens)
                 .boxed()
                 .filter(token -> !subtractionsSet.contains(token))
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
     }
 
     /**
