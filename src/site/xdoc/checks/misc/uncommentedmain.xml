@@ -14,12 +14,11 @@
         </div>
 
         <p>
-          Rationale: A <code>main</code> method is often used for debugging
-          purposes. When debugging is finished, developers often forget
-          to remove the method, which changes the API and increases the
-          size of the resulting class or JAR file. Except for
-          the real program entry points, all <code>main</code> methods should be
-          removed or commented out of the sources.
+          Rationale: A <code>main</code> method is often used for debugging purposes.
+          When debugging is finished, developers often forget to remove the method,
+          which changes the API and increases the size of the resulting class or JAR file.
+          Except for the real program entry points, all <code>main</code> methods
+          should be removed or commented out of the sources.
         </p>
       </subsection>
 

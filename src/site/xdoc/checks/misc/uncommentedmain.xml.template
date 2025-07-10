@@ -9,18 +9,10 @@
     <section name="UncommentedMain">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <div>
-          Detects uncommented <code>main</code> methods.
-        </div>
-
-        <p>
-          Rationale: A <code>main</code> method is often used for debugging
-          purposes. When debugging is finished, developers often forget
-          to remove the method, which changes the API and increases the
-          size of the resulting class or JAR file. Except for
-          the real program entry points, all <code>main</code> methods should be
-          removed or commented out of the sources.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

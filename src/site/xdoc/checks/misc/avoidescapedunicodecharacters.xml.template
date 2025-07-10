@@ -9,17 +9,10 @@
     <section name="AvoidEscapedUnicodeCharacters">
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="Description">
-        <div>
-          Restricts using
-          <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.3">
-          Unicode escapes</a> (such as \u221e).
-          It is possible to allow using escapes for
-          <a href="https://en.wiktionary.org/wiki/Appendix:Control_characters">
-              non-printable, control characters</a>.
-          Also, this check can be configured to allow using escapes
-          if trail comment is present. By the option it is possible to
-          allow using escapes if literal contains only them.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
