@@ -10,9 +10,8 @@
       <p>Since Checkstyle 5.3</p>
       <subsection name="Description" id="Description">
         <div>
-          Checks that the outer type name and the file name match. For example,
-          the class <code>Foo</code> must be in a file named
-          <code>Foo.java</code>.
+          Checks that the outer type name and the file name match.
+          For example, the class <code>Foo</code> must be in a file named <code>Foo.java</code>.
         </div>
       </subsection>
 
