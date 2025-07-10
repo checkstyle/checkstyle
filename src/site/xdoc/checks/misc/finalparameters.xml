@@ -10,17 +10,16 @@
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
         <div>
-          Checks that parameters for methods, constructors, catch and for-each blocks are
-          final. Interface, abstract, and native methods are not checked: the final
-          keyword does not make sense for interface, abstract, and native method
-          parameters as there is no code that could modify the parameter.
+          Checks that parameters for methods, constructors, catch and for-each blocks are final.
+          Interface, abstract, and native methods are not checked: the final keyword
+          does not make sense for interface, abstract, and native method parameters as
+          there is no code that could modify the parameter.
         </div>
 
         <p>
-          Rationale: Changing the value of parameters during the execution of
-          the method's algorithm can be confusing and should be avoided. A
-          great way to let the Java compiler prevent this coding style is to
-          declare parameters final.
+          Rationale: Changing the value of parameters during the execution of the method's
+          algorithm can be confusing and should be avoided. A great way to let the Java compiler
+          prevent this coding style is to declare parameters final.
         </p>
       </subsection>
 
