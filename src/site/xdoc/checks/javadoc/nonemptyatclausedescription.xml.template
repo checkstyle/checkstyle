@@ -9,9 +9,10 @@
     <section name="NonEmptyAtclauseDescription">
       <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that the block tag is followed by description.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/NonEmptyAtclauseDescriptionCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
