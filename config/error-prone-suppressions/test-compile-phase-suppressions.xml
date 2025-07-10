@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<suppressedErrors>
-  <error>
-    <sourceFile>CheckUtil.java</sourceFile>
-    <bugPattern>ReturnValueIgnored</bugPattern>
-    <description>Return value of &apos;findFirst&apos; must be used</description>
-    <lineContent>.findFirst();</lineContent>
-  </error>
-</suppressedErrors>
