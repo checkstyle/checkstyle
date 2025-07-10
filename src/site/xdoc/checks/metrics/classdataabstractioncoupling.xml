@@ -11,61 +11,60 @@
       <subsection name="Description" id="Description">
         <div>
           Measures the number of distinct classes that are instantiated
-          within the given class or record. This type of coupling is not
-          caused by inheritance or the object-oriented
-          paradigm. Generally speaking, any data type with other data
-          types as members or local variable that is an instantiation
-          (object) of another class has data abstraction coupling (DAC).
-          The higher the DAC, the more complex the structure of the class.
+          within the given class or record. This type of coupling is not caused by inheritance or
+          the object-oriented paradigm. Generally speaking, any data type with other
+          data types as members or local variable that is an instantiation (object)
+          of another class has data abstraction coupling (DAC). The higher the DAC,
+          the more complex the structure of the class.
         </div>
+
         <p>
           This check processes files in the following way:
         </p>
         <ol>
-          <li>
-            Iterates over the list of tokens (defined below) and counts all mentioned classes.
-            <ul>
-              <li>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
-              PACKAGE_DEF</a>
-              </li>
-              <li>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
-              IMPORT</a>
-              </li>
-              <li>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-              CLASS_DEF</a>
-              </li>
-              <li>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-              INTERFACE_DEF</a>
-              </li>
-              <li>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-              ENUM_DEF</a>
-              </li>
-              <li>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
-              LITERAL_NEW</a>
-              </li>
-              <li>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
-              RECORD_DEF</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            If a class was imported with direct import (i.e.
-            <code>import java.math.BigDecimal</code>), or the class was referenced with the
-            package name (i.e. <code>java.math.BigDecimal value</code>) and the package was
-            added to the <code>excludedPackages</code> parameter, the class does not
-            increase complexity.
-          </li>
-          <li>
-            If a class name was added to the <code>excludedClasses</code> parameter,
-            the class does not increase complexity.
-          </li>
+        <li>
+          Iterates over the list of tokens (defined below) and counts all mentioned classes.
+        <ul>
+        <li>
+          <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
+          PACKAGE_DEF</a>
+        </li>
+        <li>
+          <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
+          IMPORT</a>
+        </li>
+        <li>
+          <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+          CLASS_DEF</a>
+        </li>
+        <li>
+          <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+          INTERFACE_DEF</a>
+        </li>
+        <li>
+          <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+          ENUM_DEF</a>
+        </li>
+        <li>
+          <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
+          LITERAL_NEW</a>
+        </li>
+        <li>
+          <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+          RECORD_DEF</a>
+        </li>
+        </ul>
+        </li>
+        <li>
+          If a class was imported with direct import (i.e. <code>import java.math.BigDecimal</code>),
+          or the class was referenced with the package name (i.e. <code>java.math.BigDecimal value</code>)
+          and the package was added to the <code>excludedPackages</code> parameter, the class
+          does not increase complexity.
+        </li>
+        <li>
+          If a class name was added to the <code>excludedClasses</code> parameter,
+          the class does not increase complexity.
+        </li>
         </ol>
       </subsection>
 
