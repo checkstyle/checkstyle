@@ -56,6 +56,7 @@
  a point of diminishing return beyond which a further attempt at reduction of
  complexity distorts the logical clarity of the system structure.
  &lt;/blockquote&gt;
+ &lt;div class="wrapper"&gt;
  &lt;table&gt;
  &lt;caption&gt;Examples&lt;/caption&gt;
  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Structure&lt;/th&gt;&lt;th&gt;Complexity expression&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
@@ -78,6 +79,7 @@
  &lt;tr&gt;&lt;td&gt;Empty block {}&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Function call&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
  &lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Function(Method) declaration or Block&lt;/td&gt;&lt;td&gt;P(i=1:i=N)NP(Statement[i])&lt;/td&gt;&lt;/tr&gt;
  &lt;/table&gt;
+ &lt;/div&gt;
 
  &lt;p&gt;
  &lt;b&gt;Rationale:&lt;/b&gt; Nejmeh says that his group had an informal NPATH limit of
