@@ -12,53 +12,57 @@
         <div>
           Checks for implicit modifiers on interface members and nested types.
         </div>
+
         <p>
           This check is effectively the opposite of
-          <a href="redundantmodifier.html#RedundantModifier">RedundantModifier</a>.
-          It checks the modifiers on interface members, ensuring that certain
-          modifiers are explicitly specified even though they are actually redundant.
+          <a href="https://checkstyle.org/checks/modifier/redundantmodifier.html#RedundantModifier">
+          RedundantModifier</a>.
+          It checks the modifiers on interface members, ensuring that certain modifiers are explicitly
+          specified even though they are actually redundant.
         </p>
+
         <p>
-          Methods in interfaces are <code>public</code> by default, however from Java 9
-          they can also be <code>private</code>. This check provides the ability to enforce
-          that <code>public</code> is explicitly coded and not implicitly added by the compiler.
-        </p>
-        <p>
-          From Java 8, there are three types of methods in interfaces - static methods
-          marked with <code>static</code>, default methods marked with <code>default</code> and
-          abstract methods which do not have to be marked with anything.
-          From Java 9, there are also private methods marked with <code>private</code>.
-          This check provides the ability to enforce that <code>abstract</code> is explicitly
+          Methods in interfaces are <code>public</code> by default, however from Java 9 they can also be
+          <code>private</code>. This check provides the ability to enforce that <code>public</code> is explicitly
           coded and not implicitly added by the compiler.
         </p>
+
         <p>
-          Fields in interfaces are always <code>public static final</code> and as such the
-          compiler does not require these modifiers. This check provides the ability to
-          enforce that these modifiers are explicitly coded and not implicitly added by
-          the compiler.
+          From Java 8, there are three types of methods in interfaces - static methods marked with
+          <code>static</code>, default methods marked with <code>default</code> and abstract methods which do not
+          have to be marked with anything. From Java 9, there are also private methods marked with
+          <code>private</code>. This check provides the ability to enforce that <code>abstract</code> is
+          explicitly coded and not implicitly added by the compiler.
         </p>
+
         <p>
-          Nested types within an interface are always <code>public static</code> and as such the
-          compiler does not require the <code>public static</code> modifiers. This check provides
-          the ability to enforce that the <code>public</code> and <code>static</code> modifiers
-          are explicitly coded and not implicitly added by the compiler.
+          Fields in interfaces are always <code>public static final</code> and as such the compiler does not
+          require these modifiers. This check provides the ability to enforce that these modifiers are
+          explicitly coded and not implicitly added by the compiler.
+        </p>
+
+        <p>
+          Nested types within an interface are always <code>public static</code> and as such the compiler
+          does not require the <code>public static</code> modifiers. This check provides the ability to
+          enforce that the <code>public</code> and <code>static</code> modifiers are explicitly coded and not
+          implicitly added by the compiler.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public interface AddressFactory {
-  // check enforces code contains &quot;public static final&quot;
-  public static final String UNKNOWN = &quot;Unknown&quot;;
+  // check enforces code contains "public static final"
+  public static final String UNKNOWN = "Unknown";
 
-  String OTHER = &quot;Other&quot;;  // violation
+  String OTHER = "Other";  // violation
 
-  // check enforces code contains &quot;public&quot; or &quot;private&quot;
+  // check enforces code contains "public" or "private"
   public static AddressFactory instance();
 
-  // check enforces code contains &quot;public abstract&quot;
+  // check enforces code contains "public abstract"
   public abstract Address createAddress(String addressLine, String city);
 
   List&lt;Address&gt; findAddresses(String city);  // violation
 
-  // check enforces default methods are explicitly declared &quot;public&quot;
+  // check enforces default methods are explicitly declared "public"
   public default Address createAddress(String city) {
     return createAddress(UNKNOWN, city);
   }
@@ -68,16 +72,15 @@ public interface AddressFactory {
   }
 }
         </code></pre></div>
+
         <p>
-          Rationale for this check:
-          Methods, fields and nested types are treated differently depending on whether
-          they are part of an interface or part of a class. For example, by default methods
-          are package-scoped on classes, but public in interfaces. However, from Java 8 onwards,
-          interfaces have changed to be much more like abstract classes.
-          Interfaces now have static and instance methods with code. Developers should not have
-          to remember which modifiers are required and which are implied.
-          This check allows the simpler alternative approach to be adopted where the
-          implied modifiers must always be coded explicitly.
+          Rationale for this check: Methods, fields and nested types are treated differently
+          depending on whether they are part of an interface or part of a class. For example, by
+          default methods are package-scoped on classes, but public in interfaces. However, from
+          Java 8 onwards, interfaces have changed to be much more like abstract classes.
+          Interfaces now have static and instance methods with code. Developers should not have to
+          remember which modifiers are required and which are implied. This check allows the simpler
+          alternative approach to be adopted where the implied modifiers must always be coded explicitly.
         </p>
       </subsection>
 
