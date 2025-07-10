@@ -9,13 +9,10 @@
     <section name="CommentsIndentation">
       <p>Since Checkstyle 6.10</p>
       <subsection name="Description" id="Description">
-        <div>
-          Controls the indentation between comments and surrounding code.
-          Comments are indented at the same level as the surrounding code.
-          Detailed info about such convention can be found
-          <a href="../../styleguides/google-java-style-20220203/javaguide.html#s4.8.6.1-block-comment-style">
-          here</a>
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
