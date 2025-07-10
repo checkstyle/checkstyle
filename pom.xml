@@ -220,7 +220,7 @@
     <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
     <java.version>17</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
-    <pitest.plugin.version>1.19.4</pitest.plugin.version>
+    <pitest.plugin.version>1.20.0</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
