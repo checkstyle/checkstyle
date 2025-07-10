@@ -12,17 +12,19 @@
         <div>
           Checks for implicit modifiers on nested types in classes and records.
         </div>
+
         <p>
           This check is effectively the opposite of
-          <a href="redundantmodifier.html#RedundantModifier">RedundantModifier</a>.
-          It checks the modifiers on nested types in classes and records, ensuring that certain
-          modifiers are explicitly specified even though they are actually redundant.
+          <a href="https://checkstyle.org/checks/modifier/redundantmodifier.html#RedundantModifier">
+          RedundantModifier</a>.
+          It checks the modifiers on nested types in classes and records, ensuring that certain modifiers
+          are explicitly specified even though they are actually redundant.
         </p>
+
         <p>
-          Nested enums, interfaces, and records within a class are always <code>static</code> and as
-          such the compiler does not require the <code>static</code> modifier. This check provides
-          the ability to enforce that the <code>static</code> modifier is explicitly coded and not
-          implicitly added by the compiler.
+          Nested enums, interfaces, and records within a class are always <code>static</code> and as such the
+          compiler does not require the <code>static</code> modifier. This check provides the ability to enforce
+          that the <code>static</code> modifier is explicitly coded and not implicitly added by the compiler.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public final class Person {
@@ -31,11 +33,12 @@ public final class Person {
   }
 }
         </code></pre></div>
+
         <p>
-          Rationale for this check:
-          Nested enums, interfaces, and records are treated differently from nested classes as they
-          are only allowed to be <code>static</code>. Developers should not need to remember this
-          rule, and this check provides the means to enforce that the modifier is coded explicitly.
+          Rationale for this check: Nested enums, interfaces, and records are treated differently from
+          nested classes as they are only allowed to be <code>static</code>. Developers should not need to
+          remember this rule, and this check provides the means to enforce that the modifier is coded
+          explicitly.
         </p>
       </subsection>
 
