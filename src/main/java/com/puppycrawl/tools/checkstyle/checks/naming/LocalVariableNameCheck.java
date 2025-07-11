@@ -26,8 +26,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 /**
  * <div>
  * Checks that local, non-{@code final} variable names conform to a specified pattern.
- * A catch parameter is considered to be
- * a local variable.
+ * A catch parameter is considered to be a local variable.
  * </div>
  *
  * <p>

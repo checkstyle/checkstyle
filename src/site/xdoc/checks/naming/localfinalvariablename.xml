@@ -14,9 +14,10 @@
           A catch parameter and resources in try statements
           are considered to be a local, final variables.
         </div>
+
         <p>
           This check does not support final pattern variables. Instead, use
-          <a href="patternvariablename.html#PatternVariableName">
+          <a href="https://checkstyle.org/checks/naming/patternvariablename.html#PatternVariableName">
           PatternVariableName</a>.
         </p>
       </subsection>
