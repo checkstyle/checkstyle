@@ -82,6 +82,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * a point of diminishing return beyond which a further attempt at reduction of
  * complexity distorts the logical clarity of the system structure.
  * </blockquote>
+ * <div class="wrapper">
  * <table>
  * <caption>Examples</caption>
  * <thead><tr><th>Structure</th><th>Complexity expression</th></tr></thead>
@@ -104,6 +105,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <tr><td>Empty block {}</td><td>1</td></tr><tr><td>Function call</td><td>1</td>
  * </tr><tr><td>Function(Method) declaration or Block</td><td>P(i=1:i=N)NP(Statement[i])</td></tr>
  * </table>
+ * </div>
  *
  * <p>
  * <b>Rationale:</b> Nejmeh says that his group had an informal NPATH limit of
