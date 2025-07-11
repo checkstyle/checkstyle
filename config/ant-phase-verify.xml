@@ -177,6 +177,7 @@
           <exclude name="**/InputTreeWalkerSkipParsingException2.java"/>
           <exclude name="**/InputTreeWalkerSkipParsingExceptionConfigSeverityDefault.java"/>
           <exclude name="**/InputTreeWalkerSkipParsingExceptionConfigSeverityIgnore.java"/>
+          <exclude name="**/InputDefaultLoggerTestException.java"/>
         </fileset>
       </path>
       <formatter type="plain"/>
@@ -217,6 +218,7 @@
           <exclude name="**/InputTreeWalkerSkipParsingException2.java"/>
           <exclude name="**/InputTreeWalkerSkipParsingExceptionConfigSeverityDefault.java"/>
           <exclude name="**/InputTreeWalkerSkipParsingExceptionConfigSeverityIgnore.java"/>
+          <exclude name="**/InputDefaultLoggerTestException.java"/>
           <!-- This check does not apply to grammar input files -->
           <exclude name="**/grammar/**/*"/>
           <!-- No need to check xpathmapper files -->
