@@ -329,9 +329,12 @@ public class XdocsPagesTest {
     public void testAllChecksPageInSyncWithChecksSummaries() throws Exception {
         final Pattern endOfSentence = Pattern.compile("(.*?\\.)\\s", Pattern.DOTALL);
         final Map<String, String> summaries = readSummaries();
-
+        int reached = 0;
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
+            if (fileName.startsWith("textblock")) {
+                String sum = summaries.get("TextBlockGoogleStyleFormatting");
+            }
             if (isNonModulePage(fileName)
                 || path.toString().contains("filefilters")
                 || path.toString().contains("filters")) {
@@ -1611,6 +1614,10 @@ public class XdocsPagesTest {
     private static void validateViolationSection(String fileName, String sectionName,
                                                  Node subSection,
                                                  Object instance) throws Exception {
+        int go = 1;
+        if (fileName.startsWith("textblockgoogle")) {
+            go = 2;
+        }
         final Class<?> clss = instance.getClass();
         final Set<Field> fields = CheckUtil.getCheckMessages(clss, true);
         final Set<String> list = new TreeSet<>();
