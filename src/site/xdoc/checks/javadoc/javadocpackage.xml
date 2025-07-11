@@ -10,14 +10,13 @@
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
         <div>
-          Checks that each Java package has a Javadoc file used for
-          commenting. By default, it only allows a <code>package-info.java</code> file, but can be
-          configured to allow a <code>package.html</code>
-          file.
+          Checks that each Java package has a Javadoc file used for commenting.
+          By default, it only allows a <code>package-info.java</code> file,
+          but can be configured to allow a <code>package.html</code> file.
         </div>
+
         <p>
-          A violation will be reported if both files exist as this is not
-          allowed by the Javadoc tool.
+          A violation will be reported if both files exist as this is not allowed by the Javadoc tool.
         </p>
       </subsection>
 

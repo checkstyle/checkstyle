@@ -9,22 +9,10 @@
     <section name="JavadocLeadingAsteriskAlign">
       <p>Since Checkstyle 10.18.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks the alignment of
-          <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
-          leading asterisks</a> in a Javadoc comment. The Check ensures that leading asterisks
-          are aligned vertically under the first asterisk ( &#42; )
-          of opening Javadoc tag. The alignment of closing Javadoc tag ( &#42;/ ) is also checked.
-          If a closing Javadoc tag contains non-whitespace character before it
-          then it's alignment will be ignored.
-          If the ending javadoc line contains a leading asterisk,
-          then that leading asterisk's alignment will be considered,
-          the closing Javadoc tag will be ignored.
-        </div>
-        <p>
-          If you're using tabs then specify the the tab width in the
-          <a href="../../config.html#tabWidth">tabWidth</a> property.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocLeadingAsteriskAlignCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
