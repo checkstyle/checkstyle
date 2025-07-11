@@ -81,6 +81,8 @@ COMPILABLE_INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -nam
     | grep -v "rule4861blockcommentstyle/InputCommentsIndentationInSwitchBlock.java" \
     | grep -v "rule4861blockcommentstyle/InputCommentsIndentationSurroundingCode.java" \
     | grep -v "rule487modifiers/InputModifierOrder.java" \
+    | grep -v "rule489textblocks/InputTextBlocksGeneralForm.java" \
+    | grep -v "rule489textblocks/InputTextBlocksIndentation.java" \
     | grep -v "rule522classnames/InputClassNames.java" \
     | grep -v "rule53camelcase/InputCamelCaseDefined.java" \
     | grep -v "rule711generalform/InputSingleLineJavadocAndInvalidJavadocPosition.java" \
