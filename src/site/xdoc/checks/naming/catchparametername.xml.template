@@ -9,24 +9,10 @@
     <section name="CatchParameterName">
       <p>Since Checkstyle 6.14</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that <code>catch</code> parameter names conform to a specified pattern.
-        </div>
-        <p>
-          Default pattern has the following characteristic:
-        </p>
-        <ul>
-          <li>allows names beginning with two lowercase letters followed by at least one uppercase
-            or lowercase letter</li>
-          <li>allows <code>e</code> abbreviation (suitable for exceptions end errors)</li>
-          <li>allows <code>ex</code> abbreviation (suitable for exceptions)</li>
-          <li>allows <code>t</code> abbreviation (suitable for throwables)</li>
-          <li>allows <code>_</code> for unnamed catch parameters</li>
-          <li>prohibits numbered abbreviations like <code>e1</code> or <code>t2</code></li>
-          <li>prohibits one letter prefixes like <code>pException</code></li>
-          <li>prohibits two letter abbreviations like <code>ie</code> or <code>ee</code></li>
-          <li>prohibits any other characters than letters</li>
-        </ul>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/CatchParameterNameCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

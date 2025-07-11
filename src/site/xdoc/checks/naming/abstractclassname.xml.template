@@ -9,15 +9,10 @@
     <section name="AbstractClassName">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <div>
-          Ensures that the names of abstract classes conforming to some pattern and
-          check that <code>abstract</code> modifier exists.
-        </div>
-        <p>
-          Rationale: Abstract classes are convenience base class implementations of
-          interfaces. For this reason, it should be made obvious that a given class
-          is abstract by prefacing the class name with 'Abstract'.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbstractClassNameCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

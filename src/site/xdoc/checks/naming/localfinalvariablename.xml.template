@@ -9,16 +9,10 @@
     <section name="LocalFinalVariableName">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that local final variable names conform to a specified pattern.
-          A catch parameter and resources in try statements
-          are considered to be a local, final variables.
-        </div>
-        <p>
-          This check does not support final pattern variables. Instead, use
-          <a href="patternvariablename.html#PatternVariableName">
-          PatternVariableName</a>.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/LocalFinalVariableNameCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
