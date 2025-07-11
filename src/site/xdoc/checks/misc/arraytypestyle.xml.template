@@ -9,21 +9,10 @@
     <section name="ArrayTypeStyle">
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks the style of array type definitions. Some like Java style:
-          <code>public static void main(String[] args)</code> and some like
-          C style: <code>public static void main(String args[])</code>.
-        </div>
-
-        <p>
-          By default, the Check enforces Java style.
-        </p>
-
-        <p>
-          This check strictly enforces only Java style for method return types
-          regardless of the value for 'javaStyle'. For example, <code>byte[] getData()</code>.
-          This is because C doesn't compile methods with array declarations on the name.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/ArrayTypeStyleCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
