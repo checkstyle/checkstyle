@@ -13,9 +13,10 @@
           Checks that local, non-<code>final</code> variable names conform to a specified pattern.
           A catch parameter is considered to be a local variable.
         </div>
+
         <p>
           This check does not support pattern variables. Instead, use
-          <a href="patternvariablename.html#PatternVariableName">
+          <a href="https://checkstyle.org/checks/naming/patternvariablename.html#PatternVariableName">
           PatternVariableName</a>.
         </p>
       </subsection>

@@ -6,8 +6,7 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks that local, non-&lt;code&gt;final&lt;/code&gt; variable names conform to a specified pattern.
- A catch parameter is considered to be
- a local variable.
+ A catch parameter is considered to be a local variable.
  &lt;/div&gt;
 
  &lt;p&gt;

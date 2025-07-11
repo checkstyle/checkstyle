@@ -9,7 +9,9 @@
     <section name="RecordComponentName">
       <p>Since Checkstyle 8.40</p>
       <subsection name="Description" id="Description">
-        <div>Checks that record component names conform to a specified pattern.</div>
+        <div>
+          Checks that record component names conform to a specified pattern.
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

@@ -9,7 +9,9 @@
     <section name="ClassTypeParameterName">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
-        <div>Checks that class type parameter names conform to a specified pattern.</div>
+        <div>
+          Checks that class type parameter names conform to a specified pattern.
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">
