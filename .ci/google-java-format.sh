@@ -54,6 +54,7 @@ COMPILABLE_INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -nam
     | grep -v "rule451wheretobreak/InputSeparatorWrapEllipsis.java" \
     | grep -v "rule451wheretobreak/InputSeparatorWrapArrayDeclarator.java" \
     | grep -v "rule451wheretobreak/InputLambdaBodyWrap.java" \
+    | grep -v "rule451wheretobreak/InputIllegalLineBreakAroundLambda.java" \
     | grep -v "rule452indentcontinuationlines/ClassWithChainedMethods.java" \
     | grep -v "rule461verticalwhitespace/InputVerticalWhitespace.java" \
     | grep -v "rule462horizontalwhitespace/InputWhitespaceAroundBasic.java" \
