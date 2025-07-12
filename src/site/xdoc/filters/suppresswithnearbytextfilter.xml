@@ -189,6 +189,7 @@ public class Example4 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 key.one=41 # // SUPPRESS CHECKSTYLE because I want to
+# // filtered violation above 'Duplicated property 'key.one' (3 occurrence(s)).'
 key.one=42 # ok as within line range
 key.one=43 # ok as within line range
 key.two=44 # // violation 'Duplicated property 'key.two' (2 occurrence(s)).'
@@ -209,6 +210,7 @@ key.two=45
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+# // filtered violation below 'Duplicated property 'key.one' (2 occurrence(s)).'
 key.one=41 # ok as within line range
 key.one=42 # SUPPRESS CHECKSTYLE because I want to
 key.two=43 # // violation 'Duplicated property 'key.two' (2 occurrence(s)).'
