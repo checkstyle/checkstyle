@@ -9,22 +9,10 @@
     <section name="ParenPad">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks the policy on the padding of parentheses; that is whether a
-          space is required after a left parenthesis and before a right
-          parenthesis, or such spaces are forbidden. No check occurs at
-          the right parenthesis after an empty for iterator, at the left
-          parenthesis before an empty for initialization, or at the right
-          parenthesis of a try-with-resources resource specification where
-          the last resource variable has a trailing semicolon.
-          Use Check <a href="emptyforiteratorpad.html#EmptyForIteratorPad">
-          EmptyForIteratorPad</a> to validate empty for iterators and
-          <a href="emptyforinitializerpad.html#EmptyForInitializerPad">
-          EmptyForInitializerPad</a> to validate empty for initializers.
-          Typecasts are also not checked, as there is
-          <a href="typecastparenpad.html#TypecastParenPad">
-          TypecastParenPad</a> to validate them.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ParenPadCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

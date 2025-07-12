@@ -10,15 +10,13 @@
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
         <div>
-          Checks the padding of an empty for initializer; that is whether
-          a white space is required at an empty for initializer, or such white
-          space is forbidden.  No check occurs if there is a line wrap at the
-          initializer, as in
+          Checks the padding of an empty for initializer; that is whether a white
+          space is required at an empty for initializer, or such white space is
+          forbidden. No check occurs if there is a line wrap at the initializer, as in
         </div>
-
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 for (
-      ; i &lt; j; i++, j--)
+    ; i &lt; j; i++, j--)
         </code></pre></div>
       </subsection>
 

@@ -9,34 +9,10 @@
     <section name="SingleSpaceSeparator">
       <p>Since Checkstyle 6.19</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that non-whitespace characters are separated by no more than one
-          whitespace. Separating characters by tabs or multiple spaces will be
-          reported. Currently, the check doesn't permit horizontal alignment. To inspect
-          whitespaces before and after comments, set the property
-          <code>validateComments</code> to true.
-        </div>
-
-        <p>
-          Setting <code>validateComments</code> to false will ignore cases like:
-        </p>
-
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-int i;  // Multiple whitespaces before comment tokens will be ignored.
-private void foo(int  /* whitespaces before and after block-comments will be
-ignored */  i) {
-        </code></pre></div>
-
-        <p>
-          Sometimes, users like to space similar items on different lines to the same
-          column position for easier reading. This feature isn't supported by this
-          check, so both braces in the following case will be reported as violations.
-        </p>
-
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public long toNanos(long d)  { return d;             } // 2 violations
-public long toMicros(long d) { return d / (C1 / C0); }
-        </code></pre></div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/SingleSpaceSeparatorCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
