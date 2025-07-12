@@ -12,9 +12,7 @@
         <div>
           Checks the number of record components in the
           <a href="https://docs.oracle.com/javase/specs/jls/se14/preview/specs/records-jls.html#jls-8.10.1">
-          header
-          </a>
-          of a record definition.
+          header</a> of a record definition.
         </div>
       </subsection>
 

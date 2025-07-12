@@ -9,16 +9,10 @@
     <section name="LambdaBodyLength">
       <p>Since Checkstyle 8.37</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks lambda body length.
-        </div>
-
-        <p>
-          Rationale: Similar to anonymous inner classes, if lambda body becomes very long
-          it is hard to understand and to see the flow of the method
-          where the lambda is defined. Therefore, long lambda body
-          should usually be extracted to method.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/LambdaBodyLengthCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
