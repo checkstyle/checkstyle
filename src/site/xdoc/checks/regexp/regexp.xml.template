@@ -9,60 +9,10 @@
     <section name="Regexp">
       <p>Since Checkstyle 4.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that a specified pattern exists, exists less
-          than a set number of times, or does not exist in the file.
-        </div>
-        <p>
-          This check combines all the functionality provided by
-          <a href="../header/regexpheader.html#RegexpHeader">RegexpHeader</a>
-          except supplying the regular expression from a file.
-        </p>
-        <p>
-          It differs from them in that it works in multiline mode.
-          Its regular expression can span multiple lines and it checks this
-          against the whole file at once.
-          The others work in single-line mode.
-          Their single or multiple regular expressions can only span one line.
-          They check each of these against each line in the file in turn.
-        </p>
-        <p>
-          <b>Note:</b> Because of the different mode of operation there may be
-          some changes in the regular expressions used to achieve a particular end.
-        </p>
-        <p>In multiline mode...</p>
-        <ul>
-          <li> <code>^</code> means the beginning of a line, as opposed to beginning of the
-              input.</li>
-          <li> For beginning of the input use <code>\A</code>.</li>
-          <li> <code>$</code> means the end of a line, as opposed to the end of the input.</li>
-          <li> For end of input use <code>\Z</code>.</li>
-          <li> Each line in the file is terminated with a line feed character.</li>
-        </ul>
-        <p>
-          <b>Note:</b> Not all regular expression engines are created equal. Some provide extra
-          functions that others do not and some elements of the syntax may vary.
-          This check makes use of the
-          <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/package-summary.html">
-          java.util.regex package</a>; please check its documentation for
-          details of how to construct a regular expression to achieve a particular
-          goal.
-        </p>
-        <p>
-          <b>Note:</b> When entering a regular expression as a parameter in the
-          XML config file you must also take into account the XML rules. e.g. if
-          you want to match a &lt; symbol you need to enter &amp;lt;. The regular
-          expression should be entered on one line.
-        </p>
-        <p><b>Note:</b> To search for parentheses () in a regular expression
-          you must escape them like \(\). This is required by the regexp engine,
-          otherwise it will think they are special instruction characters.
-        </p>
-        <p><b>Note:</b> To search for things that mean something in XML, like
-          &lt; you need to escape them like &amp;lt;. This is required so the
-          XML parser does not act on them, but instead passes the correct
-          character to the regexp engine.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

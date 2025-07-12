@@ -14,9 +14,9 @@
         </div>
 
         <p>
-          Rationale: This check can be used to prototype checks and to
-          find common bad practice such as calling <code>ex.printStacktrace()</code>, <code>
-          System.out.println()</code>, <code>System.exit()</code>, etc.
+          Rationale: This check can be used to prototype checks and to find common bad
+          practice such as calling <code>ex.printStacktrace()</code>,
+          <code>System.out.println()</code>, <code>System.exit()</code>, etc.
         </p>
       </subsection>
 
