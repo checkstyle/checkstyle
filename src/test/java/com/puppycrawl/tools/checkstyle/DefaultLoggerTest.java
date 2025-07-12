@@ -42,9 +42,14 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-public class DefaultLoggerTest {
+public class DefaultLoggerTest extends AbstractModuleTestSupport {
 
     private static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/defaultlogger";
+    }
 
     @AfterEach
     public void tearDown() {
@@ -52,22 +57,21 @@ public class DefaultLoggerTest {
     }
 
     @Test
-    public void testCtor() {
-        final OutputStream infoStream = new ByteArrayOutputStream();
+    public void testCtor() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestCtor.java";
+        final String expectedInfoFile = "ExpectedDefaultLoggerDefaultOutputInfo.txt";
+        final String expectedErrorFile = "ExpectedDefaultLoggerTestCtorError.txt";
+
+        final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
         final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
                 errorStream, OutputStreamOptions.CLOSE);
-        dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
-        dl.auditFinished(new AuditEvent(6000, "myfile"));
-        final String output = errorStream.toString(StandardCharsets.UTF_8);
-        final LocalizedMessage addExceptionMessage = getAddExceptionMessageClass("myfile");
-        final String message = addExceptionMessage.getMessage();
-        assertWithMessage("Invalid exception")
-                .that(output)
-                .contains(message);
-        assertWithMessage("Invalid exception class")
-                .that(output)
-                .contains("java.lang.IllegalStateException: upsss");
+
+        verifyWithInlineConfigParserAndLoggerTwoStreams(
+                getNonCompilablePath(inputFile),
+                getNonCompilablePath(expectedInfoFile),
+                getNonCompilablePath(expectedErrorFile),
+                dl, infoStream, errorStream);
     }
 
     /**
@@ -348,11 +352,6 @@ public class DefaultLoggerTest {
     private static LocalizedMessage getAuditFinishMessageClass() {
         return new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
                 DefaultLogger.class, "DefaultLogger.auditFinished");
-    }
-
-    private static LocalizedMessage getAddExceptionMessageClass(Object... arguments) {
-        return new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
-                DefaultLogger.class, "DefaultLogger.addException", arguments);
     }
 
     private static String getAuditStartMessage() {
