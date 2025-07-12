@@ -63,13 +63,11 @@ public class ParentModuleMacro extends AbstractMacro {
         sink.setInsertNewline(false);
         sink.paragraph();
         sink.setInsertNewline(true);
-        final String indentLevel10 = SiteUtil.getNewlineAndIndentSpaces(10);
-        sink.rawText(indentLevel10);
+        sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_10);
         sink.link(linkToParentModule);
         sink.text(parentModule);
         sink.link_();
-        final String indentLevel8 = SiteUtil.getNewlineAndIndentSpaces(8);
-        sink.rawText(indentLevel8);
+        sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_8);
         sink.paragraph_();
     }
 
