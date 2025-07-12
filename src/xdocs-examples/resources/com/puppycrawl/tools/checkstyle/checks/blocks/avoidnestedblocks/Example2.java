@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.avoidnestedblocks;
 
-import static org.checkstyle.suppressionxpathfilter.interfaceistype.InputXpathInterfaceIsTypeAllowMarker.a;
+import static org.apache.commons.lang3.math.NumberUtils.INTEGER_ONE;
 
 // xdoc section -- start
 public class Example2 {
@@ -21,7 +21,7 @@ public class Example2 {
     }
     System.out.println("myInteger = " + myInteger);
 
-    switch (a) {
+    switch (INTEGER_ONE) {
       case 1: {
         System.out.println("Case 1");
         break;
