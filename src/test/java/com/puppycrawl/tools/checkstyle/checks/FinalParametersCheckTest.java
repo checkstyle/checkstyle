@@ -74,6 +74,9 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "116:18: " + getCheckMessage(MSG_KEY, "aParam"),
             "119:18: " + getCheckMessage(MSG_KEY, "args"),
             "122:18: " + getCheckMessage(MSG_KEY, "args"),
+            "187:25: " + getCheckMessage(MSG_KEY, "param1"),
+            "190:26: " + getCheckMessage(MSG_KEY, "param1"),
+            "193:26: " + getCheckMessage(MSG_KEY, "param1"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFinalParameters3.java"), expected);
@@ -172,5 +175,18 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputFinalParametersUnnamedPropertyFalse.java"), expected);
+    }
+
+    @Test
+    public void testPatternVariableDefinitions() throws Exception {
+        final String[] expected = {
+            "15:47: " + getCheckMessage(MSG_KEY, "s"),
+            "16:26: " + getCheckMessage(MSG_KEY, "i"),
+            "19:34: " + getCheckMessage(MSG_KEY, "name"),
+            "23:18: " + getCheckMessage(MSG_KEY, "s"),
+            "25:26: " + getCheckMessage(MSG_KEY, "name"),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputFinalParametersPatternVariables.java"), expected);
     }
 }
