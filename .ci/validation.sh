@@ -535,6 +535,7 @@ javac17_standard)
 
 javac17)
   files=($(grep -Rl --include='*.java' ': Compilable with Java17' \
+        --exclude-dir='com/puppycrawl/tools/checkstyle/checks/imports/importorder' \
         src/test/resources-noncompilable \
         src/it/resources-noncompilable \
         src/xdocs-examples/resources-noncompilable || true))
