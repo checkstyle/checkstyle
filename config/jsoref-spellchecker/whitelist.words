@@ -569,6 +569,7 @@ HTMLJS
 htmlunit
 http
 httpcomponents
+httpcore
 hurz
 hyperlink
 hz
