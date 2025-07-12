@@ -6,7 +6,7 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks that a
- &lt;a href="https://docs.oracle.com/en/java/javase/17/docs/specs/doc-comment-spec.html#block-tags"&gt;
+ &lt;a href="https://docs.oracle.com/en/java/javase/17/docs/specs/javadoc/doc-comment-spec.html#block-tags"&gt;
  javadoc block tag&lt;/a&gt; appears only at the beginning of a line, ignoring
  leading asterisks and white space. A block tag is a token that starts with
  &lt;code&gt;@&lt;/code&gt; symbol and is preceded by a whitespace. This check ignores block
@@ -15,7 +15,7 @@
 
  &lt;p&gt;
  Rationale: according to
- &lt;a href="https://docs.oracle.com/en/java/javase/17/docs/specs/doc-comment-spec.html#block-tags"&gt;
+ &lt;a href="https://docs.oracle.com/en/java/javase/17/docs/specs/javadoc/doc-comment-spec.html#block-tags"&gt;
  the specification&lt;/a&gt; all javadoc block tags should be placed at the beginning
  of a line. Tags that are not placed at the beginning are treated as plain text.
  To recognize intentional tag placement to text area it is better to escape the
