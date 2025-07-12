@@ -92,26 +92,42 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
                 expectedWithoutFilter, expectedWithFilter);
     }
 
-    // Not updated with verifyFilterWithInlineConfigParser due to usage of .properties file
     @Test
     public void testExample5() throws Exception {
-        final String[] expected = {
+
+        final String[] expectedWithoutFilters = {
+            "1: Duplicated property 'key.one' (3 occurrence(s)).",
+            "5: Duplicated property 'key.two' (2 occurrence(s)).",
+        };
+
+        final String[] expectedWithFilters = {
+            "5: Duplicated property 'key.two' (2 occurrence(s)).",
+        };
+
+        verifyFilterWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("Example5.java"),
+                getPath("Example5.properties"),
+                expectedWithoutFilters,
+                expectedWithFilters);
+    }
+
+    @Test
+    public void testExample6() throws Exception {
+
+        final String[] expectedWithoutFilters = {
+            "2: Duplicated property 'key.one' (2 occurrence(s)).",
             "4: Duplicated property 'key.two' (2 occurrence(s)).",
         };
 
-        verifyWithInlineConfigParserSeparateConfigAndTarget(
-                getPath("Example5.java"), getPath("Example5.properties"), expected);
-    }
-
-    // Not updating with verifyFilterWithInlineConfigParser due to usage of .properties file
-    @Test
-    public void testExample6() throws Exception {
-        final String[] expected = {
-            "3: Duplicated property 'key.two' (2 occurrence(s)).",
+        final String[] expectedWithFilters = {
+            "4: Duplicated property 'key.two' (2 occurrence(s)).",
         };
 
-        verifyWithInlineConfigParserSeparateConfigAndTarget(
-                getPath("Example6.java"), getPath("Example6.properties"), expected);
+        verifyFilterWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("Example6.java"),
+                getPath("Example6.properties"),
+                expectedWithoutFilters,
+                expectedWithFilters);
     }
 
     @Test
