@@ -706,6 +706,28 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ModuleJavadocParsingUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter regex of String.split.</message>
+    <lineContent>.replace(&quot;\r&quot;, &quot;&quot;));</lineContent>
+    <details>
+      found   : String
+      required: @Regex String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/NotesMacro.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
+    <lineContent>+ ModuleJavadocParsingUtil.NOTES);</lineContent>
+    <details>
+      found   : String
+      required: @Regex String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter regex of String.matches.</message>
