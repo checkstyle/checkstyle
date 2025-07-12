@@ -740,7 +740,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * @param pattern pattern to match
      * @return true if one of child text nodes matches pattern
      */
-    private static boolean isChildNodeTextMatches(DetailNode ast, Pattern pattern) {
+    public static boolean isChildNodeTextMatches(DetailNode ast, Pattern pattern) {
         return getFirstChildOfType(ast, JavadocTokenTypes.TEXT, 0)
                 .map(DetailNode::getText)
                 .map(pattern::matcher)

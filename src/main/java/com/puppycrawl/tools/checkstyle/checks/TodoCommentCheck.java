@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </div>
  *
  * <p>
+ * Notes:
  * Using {@code TODO:} comments is a great way to keep track of tasks that need to be done.
  * Having them reported by Checkstyle makes it very hard to forget about them.
  * </p>
