@@ -13,6 +13,7 @@
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbytextfilter;
 // xdoc section -- start
 public class Example7 {
+  // filtered violation below ''42' is a magic number'
   int a = 42; // -@cs[MagicNumber] We do not consider this number as magic.
   int b = 43; // violation "'43' is a magic number."
 }
