@@ -22,9 +22,9 @@
         </p>
 
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-int i;  // Multiple whitespaces before comment tokens will be ignored.
-private void foo(int  /* whitespaces before and after block-comments will be
-ignored */  i) {
+int i;  &#47;&#47; Multiple whitespaces before comment tokens will be ignored.
+private void foo(int  &#47;* whitespaces before and after block-comments will be
+ignored *&#47;  i) {
         </code></pre></div>
 
         <p>
@@ -34,7 +34,7 @@ ignored */  i) {
         </p>
 
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public long toNanos(long d)  { return d;             } // 2 violations
+public long toNanos(long d)  { return d;             } &#47;&#47; 2 violations
 public long toMicros(long d) { return d / (C1 / C0); }
         </code></pre></div>
       </subsection>

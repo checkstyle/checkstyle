@@ -9,29 +9,10 @@
     <section name="GenericWhitespace">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that the whitespace around the Generic tokens (angle brackets)
-          "&lt;" and "&gt;" are correct to the <i>typical</i> convention.
-          The convention is not configurable.
-        </div>
-        <p>
-          Left angle bracket ("&lt;"):
-        </p>
-        <ul>
-          <li> should be preceded with whitespace only in generic methods definitions.</li>
-          <li> should not be preceded with whitespace when it is preceded method name
-            or constructor.</li>
-          <li> should not be preceded with whitespace when following type name.</li>
-          <li> should not be followed with whitespace in all cases.</li>
-        </ul>
-        <p>
-          Right angle bracket ("&gt;"):
-        </p>
-        <ul>
-          <li> should not be preceded with whitespace in all cases.</li>
-          <li> should be followed with whitespace in almost all cases, except diamond operators
-            and when preceding a method name, constructor, or record header.</li>
-        </ul>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/GenericWhitespaceCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Examples" id="Examples">
