@@ -416,6 +416,45 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Verifies logger output using the inline configuration parser for logger with two streams.
+     * Expects an input file with configuration and violations, and separate expected output files
+     * for each stream.
+     * Uses full Checker configuration.
+     * Uses first line of exception's actual stack trace output for comparing after removing
+     * base path.
+     *
+     * @param inputFile path to the file with configuration and violations
+     * @param expectedInfoFile path to the expected info stream output file
+     * @param expectedErrorFile path to the expected error stream output file
+     * @param logger logger to test
+     * @param infoStream where the logger writes its actual info stream output
+     * @param errorStream where the logger writes its actual error stream output
+     * @throws Exception if an exception occurs during verification
+     */
+    protected final void verifyWithInlineConfigParserAndLoggerTwoStreams(String inputFile,
+                                                         String expectedInfoFile,
+                                                         String expectedErrorFile,
+                                                         AuditListener logger,
+                                                         ByteArrayOutputStream infoStream,
+                                                         ByteArrayOutputStream errorStream)
+            throws Exception {
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parseWithXmlHeader(inputFile);
+        final Configuration parsedConfig =
+                testInputConfiguration.getXmlConfiguration();
+        final List<File> filesToCheck = Collections.singletonList(new File(inputFile));
+        final String basePath = Path.of("").toAbsolutePath().toString();
+
+        final Checker checker = createChecker(parsedConfig);
+        checker.setBasedir(basePath);
+        checker.addListener(logger);
+        checker.process(filesToCheck);
+
+        verifyContent(expectedInfoFile, infoStream);
+        verifyStackTraceFirstLineContent(expectedErrorFile, errorStream, basePath);
+    }
+
+    /**
      * Performs verification of the file with the given file name. Uses specified configuration.
      * Expected messages are represented by the array of strings.
      * This implementation uses overloaded
@@ -650,6 +689,49 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         assertWithMessage("Content should match")
                 .that(actualContent)
                 .isEqualTo(expectedContent);
+    }
+
+    /**
+     * Verifies that the first line of the logger output matches the expected report file after
+     * removing {@code basePath}.
+     * Used for stack trace content verification.
+     *
+     * @param expectedOutputFile path to a file that contains the expected first line
+     * @param outputStream output stream containing the actual logger output
+     * @param basePath absolute path prefix to strip before comparison
+     * @throws IOException if an exception occurs while reading the file
+     */
+    private static void verifyStackTraceFirstLineContent(
+            String expectedOutputFile,
+            ByteArrayOutputStream outputStream,
+            String basePath) throws IOException {
+        final String expectedContent = readFile(expectedOutputFile);
+        final String actualContentFirstLine =
+                getFirstLine(outputStream.toString(StandardCharsets.UTF_8), basePath);
+        assertWithMessage("Content should match")
+                .that(actualContentFirstLine)
+                .isEqualTo(expectedContent);
+    }
+
+    /**
+     * Normalises the given text to LF line endings, then returns its first line with every
+     * occurrence of {@code basePath} removed.
+     *
+     * @param text raw text
+     * @param basePath absolute path prefix to strip out
+     * @return first line of normalized text without base path prefix
+     */
+    private static String getFirstLine(String text, String basePath) {
+        final String withLfEndings = toLfLineEnding(text);
+        final int newLineIndex = withLfEndings.indexOf('\n');
+        final String firstLine;
+        if (newLineIndex == -1) {
+            firstLine = withLfEndings;
+        }
+        else {
+            firstLine = withLfEndings.substring(0, newLineIndex + 1);
+        }
+        return firstLine.replace(basePath, "");
     }
 
     /**

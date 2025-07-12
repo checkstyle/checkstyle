@@ -32,4 +32,11 @@
                value="'// ok' comments should have an explanation, or they are unnecessary."/>
     </module>
   </module>
+
+  <!-- Intentionally unparsable files -->
+  <module name="BeforeExecutionExclusionFileFilter">
+    <property name="fileNamePattern"
+              value="defaultlogger[\\/]InputDefaultLoggerTestCtor\.java"/>
+  </module>
+
 </module>

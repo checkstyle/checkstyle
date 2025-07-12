@@ -43,4 +43,10 @@
     <property name="fileExtensions" value="java" />
   </module>
 
+  <!-- Intentionally unparsable files -->
+  <module name="BeforeExecutionExclusionFileFilter">
+    <property name="fileNamePattern"
+              value="defaultlogger[\\/]InputDefaultLoggerTestCtor\.java"/>
+  </module>
+
 </module>
