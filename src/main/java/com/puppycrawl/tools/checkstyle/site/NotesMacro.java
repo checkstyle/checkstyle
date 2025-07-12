@@ -24,6 +24,7 @@ import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import org.apache.maven.doxia.macro.AbstractMacro;
 import org.apache.maven.doxia.macro.Macro;
@@ -37,10 +38,14 @@ import com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * A macro that inserts a description of module from its Javadoc.
+ * A macro that inserts a notes subsection of module from its Javadoc.
  */
-@Component(role = Macro.class, hint = "description")
-public class DescriptionMacro extends AbstractMacro {
+@Component(role = Macro.class, hint = "notes")
+public class NotesMacro extends AbstractMacro {
+
+    /** "Notes:" line with new line accounted. */
+    public static final Pattern NOTES_LINE_WITH_NEWLINE = Pattern.compile("\r?\n\\s?"
+        + ModuleJavadocParsingUtil.NOTES);
 
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
@@ -52,29 +57,37 @@ public class DescriptionMacro extends AbstractMacro {
             propertyNames, moduleName, modulePath);
 
         final DetailNode moduleJavadoc = moduleAndPropertiesJavadocs.get(moduleName);
+        if (moduleJavadoc == null) {
+            throw new MacroExecutionException(
+                "Javadoc of module " + moduleName + " is not found.");
+        }
 
-        final int descriptionEndIndex = getDescriptionEndIndex(moduleJavadoc, propertyNames);
-        final String moduleDescription = JavadocMetadataScraper.constructSubTreeText(
-            moduleJavadoc, 0, descriptionEndIndex);
+        final int notesStartIndex = ModuleJavadocParsingUtil
+            .getNotesSectionStartIndex(moduleJavadoc);
+        final int notesEndIndex = getNotesEndIndex(moduleJavadoc, propertyNames);
 
-        ModuleJavadocParsingUtil.writeOutJavadocPortion(moduleDescription, sink);
+        final String unprocessedModuleNotes = JavadocMetadataScraper.constructSubTreeText(
+            moduleJavadoc, notesStartIndex, notesEndIndex);
+        final String moduleNotes = NOTES_LINE_WITH_NEWLINE.matcher(unprocessedModuleNotes)
+            .replaceAll("");
+
+        ModuleJavadocParsingUtil.writeOutJavadocPortion(moduleNotes, sink);
 
     }
 
     /**
-     * Gets the end index of the description.
+     * Gets the end index of the Notes.
      *
      * @param moduleJavadoc javadoc of module.
      * @param propertyNamesSet Set with property names.
      * @return the end index.
      */
-    private static int getDescriptionEndIndex(DetailNode moduleJavadoc,
+    private static int getNotesEndIndex(DetailNode moduleJavadoc,
                                               Set<String> propertyNamesSet) {
-        int descriptionEndIndex = -1;
+        int notesEndIndex = -1;
 
         if (propertyNamesSet.isEmpty()) {
-            descriptionEndIndex += ModuleJavadocParsingUtil.getParentSectionStartIndex(
-                moduleJavadoc);
+            notesEndIndex += ModuleJavadocParsingUtil.getParentSectionStartIndex(moduleJavadoc);
         }
         else {
             final String somePropertyName = propertyNamesSet.iterator().next();
@@ -84,12 +97,12 @@ public class DescriptionMacro extends AbstractMacro {
                     somePropertyName, moduleJavadoc);
 
             if (somePropertyModuleNode.isPresent()) {
-                descriptionEndIndex += JavadocMetadataScraper
+                notesEndIndex += JavadocMetadataScraper
                     .getParentIndexOf(somePropertyModuleNode.get());
             }
         }
 
-        return descriptionEndIndex;
+        return notesEndIndex;
     }
 
 }
