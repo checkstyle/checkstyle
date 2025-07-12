@@ -17,6 +17,7 @@ public class Example9 {
   /**
    * Flag description.
    * Disabled until <a href="www.github.com/owner/repo/issue/9#comment">
+   * // filtered violation above 'Line is longer ...'
    */
   public static final boolean SOME_FLAG = false;
 }
