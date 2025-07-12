@@ -9,11 +9,10 @@
     <section name="NoLineWrap">
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that chosen statements are not line-wrapped. By default, this
-          Check restricts wrapping import and package statements, but it's possible to check
-          any statement.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoLineWrapCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

@@ -9,12 +9,10 @@
     <section name="WhitespaceAfter">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that a token is followed by whitespace, with the exception that it
-          does not check for whitespace after the semicolon of an empty for iterator. Use Check
-          <a href="emptyforiteratorpad.html#EmptyForIteratorPad">
-          EmptyForIteratorPad</a> to validate empty for iterators.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAfterCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
