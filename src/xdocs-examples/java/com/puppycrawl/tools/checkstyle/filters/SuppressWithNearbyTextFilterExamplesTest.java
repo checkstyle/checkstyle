@@ -31,40 +31,68 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
-            "13:20: '7' is a magic number.",
+
+        final String[] expectedWithoutFilter = {
+            "13:20: '24' is a magic number.",
+            "14:20: '7' is a magic number.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        final String[] expectedWithFilter = {
+            "14:20: '7' is a magic number.",
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example1.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample2() throws Exception {
-        final String[] expected = {
-            "15:11: '43' is a magic number.",
+
+        final String[] expectedWithoutFilter = {
+            "15:11: '42' is a magic number.",
+            "16:11: '43' is a magic number.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        final String[] expectedWithFilter = {
+            "16:11: '43' is a magic number.",
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example2.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample3() throws Exception {
-        final String[] expected = {
+
+        final String[] expectedWithoutFilter = {
+            "16: Line is longer than 70 characters (found 74).",
+        };
+
+        final String[] expectedWithFilter = {
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example3.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample4() throws Exception {
-        final String[] expected = {
-            "20: Line is longer than 55 characters (found 65).",
+
+        final String[] expectedWithoutFilter = {
+            "20:11: '42' is a magic number.",
+            "21: Line is longer than 55 characters (found 65).",
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        final String[] expectedWithFilter = {
+            "21: Line is longer than 55 characters (found 65).",
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example4.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
+    // Not updated with verifyFilterWithInlineConfigParser due to usage of .properties file
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
@@ -75,6 +103,7 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
                 getPath("Example5.java"), getPath("Example5.properties"), expected);
     }
 
+    // Not updating with verifyFilterWithInlineConfigParser due to usage of .properties file
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
@@ -87,28 +116,51 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
 
     @Test
     public void testExample7() throws Exception {
-        final String[] expected = {
-            "17:11: '43' is a magic number.",
+
+        final String[] expectedWithoutFilter = {
+            "17:11: '42' is a magic number.",
+            "18:11: '43' is a magic number.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+        final String[] expectedWithFilter = {
+            "18:11: '43' is a magic number.",
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example7.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample8() throws Exception {
-        final String[] expected = {
-            "21:11: '46' is a magic number.",
+
+        final String[] expectedWithoutFilter = {
+            "18:11: '42' is a magic number.",
+            "19:11: '43' is a magic number.",
+            "20:11: '44' is a magic number.",
+            "21:11: '45' is a magic number.",
+            "22:11: '46' is a magic number.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+        final String[] expectedWithFilter = {
+            "22:11: '46' is a magic number.",
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example8.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample9() throws Exception {
-        final String[] expected = {
+
+        final String[] expectedWithoutFilter = {
+            "19: Line is longer than 70 characters (found 72).",
+        };
+
+        final String[] expectedWithFilter = {
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example9.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 }
