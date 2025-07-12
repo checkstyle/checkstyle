@@ -173,7 +173,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 "LITERAL_DEFAULT", "LITERAL_CASE").collect(Collectors.toUnmodifiableSet()));
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("FinalParameters", Stream.of(
                 // we prefer these to be effectively final as to not damage readability
-                "FOR_EACH_CLAUSE", "LITERAL_CATCH").collect(Collectors.toUnmodifiableSet()));
+                "FOR_EACH_CLAUSE", "LITERAL_CATCH", "PATTERN_VARIABLE_DEF").collect(Collectors.toUnmodifiableSet()));
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WhitespaceAround", Stream.of(
                 // we prefer no spaces on one side or both for these tokens
                 "ARRAY_INIT",

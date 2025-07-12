@@ -155,6 +155,7 @@ public class FinalParametersCheck extends AbstractCheck {
             TokenTypes.CTOR_DEF,
             TokenTypes.LITERAL_CATCH,
             TokenTypes.FOR_EACH_CLAUSE,
+            TokenTypes.PATTERN_VARIABLE_DEF
         };
     }
 
@@ -167,17 +168,22 @@ public class FinalParametersCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         // don't flag interfaces
         final DetailAST container = ast.getParent().getParent();
-        if (container.getType() != TokenTypes.INTERFACE_DEF) {
-            if (ast.getType() == TokenTypes.LITERAL_CATCH) {
-                visitCatch(ast);
-            }
-            else if (ast.getType() == TokenTypes.FOR_EACH_CLAUSE) {
-                visitForEachClause(ast);
-            }
-            else {
-                visitMethod(ast);
-            }
+        if (ast.getType() == TokenTypes.LITERAL_CATCH) {
+            visitCatch(ast);
         }
+        else if (ast.getType() == TokenTypes.FOR_EACH_CLAUSE) {
+            visitForEachClause(ast);
+        }
+        else if (ast.getType() == TokenTypes.PATTERN_VARIABLE_DEF) {
+            visitPatternVariableDef(ast);
+        }
+        else {
+            visitMethod(ast);
+        }
+    }
+
+    private void visitPatternVariableDef(final DetailAST patternVariableDef) {
+        checkParam(patternVariableDef);
     }
 
     /**
@@ -186,6 +192,10 @@ public class FinalParametersCheck extends AbstractCheck {
      * @param method method or ctor to check.
      */
     private void visitMethod(final DetailAST method) {
+        if (method.findFirstToken(TokenTypes.SLIST) == null) {
+            // skip if there is no method body (abstract method in abstract class or interface)
+            return;
+        }
         final DetailAST modifiers =
             method.findFirstToken(TokenTypes.MODIFIERS);
 
