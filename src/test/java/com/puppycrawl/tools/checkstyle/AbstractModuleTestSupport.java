@@ -367,6 +367,42 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
     /**
      * Performs verification of the file with the given file path using specified configuration
+     * and the array of expected messages. Also performs verification of the config with filters
+     * specified in the input file.
+     *
+     * @param fileWithConfig file path of the configuration file.
+     * @param targetFilePath file path of the target file to be verified.
+     * @param expectedUnfiltered an array of expected unfiltered config.
+     * @param expectedFiltered an array of expected config with filters.
+     * @throws Exception if exception occurs during verification process.
+     */
+    protected final void verifyFilterWithInlineConfigParserSeparateConfigAndTarget(
+            String fileWithConfig,
+            String targetFilePath,
+            String[] expectedUnfiltered,
+            String... expectedFiltered)
+            throws Exception {
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parseWithFilteredViolations(fileWithConfig);
+        final DefaultConfiguration configWithoutFilters =
+                testInputConfiguration.createConfigurationWithoutFilters();
+        final List<TestInputViolation> violationsWithoutFilters = new ArrayList<>(
+                InlineConfigParser.getFilteredViolationsFromInputFile(targetFilePath));
+        violationsWithoutFilters.addAll(
+                InlineConfigParser.getViolationsFromInputFile(targetFilePath));
+        Collections.sort(violationsWithoutFilters);
+        verifyViolations(configWithoutFilters, targetFilePath, violationsWithoutFilters);
+        verify(configWithoutFilters, targetFilePath, expectedUnfiltered);
+        final DefaultConfiguration configWithFilters =
+                testInputConfiguration.createConfiguration();
+        final List<TestInputViolation> violationsWithFilters =
+                InlineConfigParser.getViolationsFromInputFile(targetFilePath);
+        verifyViolations(configWithFilters, targetFilePath, violationsWithFilters);
+        verify(configWithFilters, targetFilePath, expectedFiltered);
+    }
+
+    /**
+     * Performs verification of the file with the given file path using specified configuration
      * and the array expected messages. Also performs verification of the config specified in
      * input file
      *
