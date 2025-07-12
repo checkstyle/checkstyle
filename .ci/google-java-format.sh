@@ -6,16 +6,39 @@ JAR_PATH="$1"
 
 echo "Checking that all excluded java files in this script have matching InputFormatted* file:"
 NOT_FOUND_CONTENT=$(grep -e '^  .*/Input' "${BASH_SOURCE}" \
-  | sed -E 's/.*Input([^\.]+)\..*java.*/\1/' \
-  | while read -r name; do \
-    [[ $(find ./src -type f -name "InputFormatted${name}.java") ]] \
-    || echo "Create InputFormatted${name}.java for Input${name}.java";\
+  | sed -E 's|^( +)(.*(Input([^\.]+)\.java).*)$|\2 \4|' \
+  | while read -r input_full_path name_part; do \
+    input_file_path="./src/it/resources/com/google/checkstyle/test/${input_full_path}"
+    formatted_file_path="./src/it/resources/com/google/checkstyle/test/InputFormatted${name_part}.java"
+
+    if [[ ! -f "$formatted_file_path" ]]; then
+      echo "Create InputFormatted${name_part}.java for ${input_full_path}";
+    else
+      # Check file sizes
+      if [[ -f "$input_file_path" ]]; then
+        input_size=$(wc -c < "$input_file_path")
+        formatted_size=$(wc -c < "$formatted_file_path")
+
+        diff_size=$(( input_size - formatted_size ))
+        if (( diff_size < 0 )); then
+          diff_size=$(( -diff_size ))
+        fi
+
+        if (( diff_size > 20 )); then
+          echo "Size mismatch for ${input_full_path}: Original size ${input_size} bytes, Formatted
+          size ${formatted_size} bytes. Difference is ${diff_size} bytes (more than 20 bytes)."
+        fi
+      else
+        echo "Warning: Original input file ${input_file_path} not found for size comparison."
+      fi
+    fi
   done)
 
 if [[ $(echo -n "$NOT_FOUND_CONTENT" | wc --chars) -eq 0 ]]; then
-  echo "Excluded Input files matches to InputFormatted files."
+  echo "Excluded Input files matches to InputFormatted files and sizes are within 20
+  bytes difference."
 else
-  echo "not found matches: $NOT_FOUND_CONTENT"
+  echo "issue found with excluded files: $NOT_FOUND_CONTENT"
   exit 1
 fi
 
