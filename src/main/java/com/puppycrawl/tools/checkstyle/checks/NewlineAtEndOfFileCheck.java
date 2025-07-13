@@ -72,6 +72,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  *
  * <p>
+ * Notes:
  * This will check against the platform-specific default line separator.
  * </p>
  *

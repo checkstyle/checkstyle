@@ -14,29 +14,30 @@
           for all Javadoc comments in the project. Any leading asterisks and spaces
           are not counted as the beginning of the content and are therefore ignored.
         </div>
+
         <p>
           It is possible to enforce two different styles:
         </p>
         <ul>
-          <li>
-            {@code first_line} - Javadoc content starts from the first line:
-            <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/** Summary text.
+        <li>
+          <code>first_line</code> - Javadoc content starts from the first line:
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+&#47;** Summary text.
   * More details.
-  */
+  *&#47;
 public void method();
-            </code></pre></div>
-          </li>
-          <li>
-            {@code second_line} - Javadoc content starts from the second line:
-            <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/**
+        </code></pre></div>
+        </li>
+        <li>
+          <code>second_line</code> - Javadoc content starts from the second line:
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+&#47;**
   * Summary text.
   * More details.
-  */
+  *&#47;
 public void method();
-            </code></pre></div>
-          </li>
+        </code></pre></div>
+        </li>
         </ul>
       </subsection>
 
@@ -44,27 +45,30 @@ public void method();
         <p>
           This check does not validate the Javadoc summary itself nor its presence.
           The check will not report any violations for missing or malformed javadoc summary.
-          To validate the Javadoc summary use <a href="summaryjavadoc.html#SummaryJavadoc">
+          To validate the Javadoc summary use
+          <a href="https://checkstyle.org/checks/javadoc/summaryjavadoc.html#SummaryJavadoc">
           SummaryJavadoc</a> check.
         </p>
+
         <p>
           The <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/javadoc/doc-comment-spec.html">
           Documentation Comment Specification</a> permits leading asterisks on the first line.
           For these Javadoc comments:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/***
+&#47;***
   * Some text.
-  */
-/************
+  *&#47;
+&#47;************
   * Some text.
-  */
-/**           **
+  *&#47;
+&#47;**           **
   * Some text.
-  */
+  *&#47;
         </code></pre></div>
+
         <p>
-          The documentation generated will be just &quot;Some text.&quot; without any asterisks.
+          The documentation generated will be just "Some text." without any asterisks.
           Since these asterisks will not appear in the generated documentation,
           they should not be considered as the beginning of the Javadoc content.
           In such cases, the check assumes that the Javadoc content begins on the second line.

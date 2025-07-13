@@ -47,6 +47,7 @@
  &lt;/p&gt;
 
  &lt;p&gt;
+ Notes:
  This will check against the platform-specific default line separator.
  &lt;/p&gt;
 

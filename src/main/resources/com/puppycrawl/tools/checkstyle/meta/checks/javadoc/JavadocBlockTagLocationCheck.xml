@@ -24,6 +24,7 @@
  &lt;/p&gt;
 
  &lt;p&gt;
+ Notes:
  To place a tag explicitly as text, escape the &lt;code&gt;@&lt;/code&gt; symbol with HTML entity
  &amp;amp;#64; or place it inside &lt;code&gt;{@code }&lt;/code&gt;, for example:
  &lt;/p&gt;
