@@ -19,11 +19,10 @@
       </subsection>
 
       <subsection name="Notes" id="Notes">
-        <p>
-          In default configuration, if header is not specified,
-          the default value of header is set to <code>null</code>
-          and the check does not rise any violations.
-        </p>
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/header/HeaderCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

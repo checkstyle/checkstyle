@@ -56,6 +56,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  *
  * <p>
+ * Notes:
  * There is a limitation that it is currently not possible to specify array classes.
  * </p>
  * <ul>
