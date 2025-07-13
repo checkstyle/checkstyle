@@ -42,7 +42,12 @@ public class OneStatementPerLineTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testOneStatementNonCompilableInput() throws Exception {
-        verifyWithWholeConfig(getNonCompilablePath("InputOneStatementPerLine.java"));
+        verifyWithWholeConfig(getNonCompilablePath("InputOneStatementPerLine2.java"));
+    }
+
+    @Test
+    public void testOneStatementNonCompilableInputFormatted() throws Exception {
+        verifyWithWholeConfig(getNonCompilablePath("InputFormattedOneStatementPerLine2.java"));
     }
 
 }
