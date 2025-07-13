@@ -9,55 +9,17 @@
     <section name="NewlineAtEndOfFile">
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks whether files end with a line separator.
-        </div>
-
-        <p>
-          Rationale: Any not empty source files and text files in general should
-          end with a line separator to let other easily add new content
-          at the end of file and "diff" command does not show previous lines as changed.
-        </p>
-        <p>
-          Example (the line with 'No newline at end of file' should not be in the diff):
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-@@ -32,4 +32,5 @@ ForbidWildcardAsReturnTypeCheck.returnTypeClassNamesIgnoreRegex
-PublicReferenceToPrivateTypeCheck.name = Public Reference To Private Type
-
-StaticMethodCandidateCheck.name = Static Method Candidate
--StaticMethodCandidateCheck.desc = Checks whether private methods should be declared as static.
-\ No newline at end of file
-+StaticMethodCandidateCheck.desc = Checks whether private methods should be declared as static.
-+StaticMethodCandidateCheck.skippedMethods = Method names to skip during the check.
-        </code></pre></div>
-        <p>
-          It can also trick the VCS to report the wrong owner for such lines.
-          An engineer who has added nothing but a newline character becomes
-          the last known author for the entire line. As a result, a mate can ask
-          him a question to which he will not give the correct answer.
-        </p>
-        <p>
-          Old Rationale: CVS source control management
-          systems will even print a warning when it
-          encounters a file that doesn't end with a line separator.
-        </p>
-        <p>
-          Attention: property fileExtensions works with files that are passed by similar property
-          for at <a href="../../config.html#Checker">Checker</a>.
-          Please make sure required file extensions are mentioned at Checker's fileExtensions
-          property.
-        </p>
+        <macro name="description">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NewlineAtEndOfFileCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Notes" id="Notes">
-        <p>
-          This will check against the platform-specific default line separator.
-        </p>
-        <p>
-          It is also possible to enforce the use of a specific line-separator
-          across platforms, with the <code>lineSeparator</code> property.
-        </p>
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NewlineAtEndOfFileCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
