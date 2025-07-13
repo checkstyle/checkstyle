@@ -114,11 +114,7 @@ public class NotesMacro extends AbstractMacro {
 
         for (DetailNode node : moduleJavadoc.getChildren()) {
             if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-                final DetailNode paragraphNode = JavadocUtil.findFirstToken(
-                    node, JavadocTokenTypes.PARAGRAPH);
-                if (paragraphNode != null && JavadocMetadataScraper.isChildNodeTextMatches(
-                    paragraphNode, NOTES_LINE)) {
-
+                if (isHtmlTagToStoreNotesSection(node)) {
                     notesStartIndex = node.getIndex() - 1;
                     break;
                 }
@@ -126,6 +122,28 @@ public class NotesMacro extends AbstractMacro {
         }
 
         return notesStartIndex;
+    }
+
+    private static boolean isHtmlTagToStoreNotesSection(DetailNode htmlElement) {
+        final DetailNode paragraphNode = JavadocUtil.findFirstToken(
+            htmlElement, JavadocTokenTypes.PARAGRAPH);
+        final DetailNode ulNode = getListContainerTagNode(htmlElement);
+
+        return paragraphNode != null && JavadocMetadataScraper.isChildNodeTextMatches(
+            paragraphNode, NOTES_LINE)
+            || ulNode != null && JavadocMetadataScraper.isChildNodeTextMatches(ulNode, NOTES_LINE);
+    }
+
+    private static DetailNode getListContainerTagNode(DetailNode htmlElement) {
+        return Optional.of(htmlElement)
+            .map(element -> JavadocUtil.findFirstToken(element, JavadocTokenTypes.HTML_TAG))
+            .map(element -> JavadocUtil.findFirstToken(element,
+                JavadocTokenTypes.HTML_ELEMENT_START))
+            .map(element -> JavadocUtil.findFirstToken(element, JavadocTokenTypes.HTML_TAG_NAME))
+            .filter(element -> "ul".equals(element.getText()) || "ol".equals(element.getText())
+                || "dl".equals(element.getText()))
+            .map(element -> element.getParent().getParent())
+            .orElse(null);
     }
 
     /**
