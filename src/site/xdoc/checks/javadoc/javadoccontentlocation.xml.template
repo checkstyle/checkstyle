@@ -41,34 +41,10 @@ public void method();
       </subsection>
 
       <subsection name="Notes" id="Notes">
-        <p>
-          This check does not validate the Javadoc summary itself nor its presence.
-          The check will not report any violations for missing or malformed javadoc summary.
-          To validate the Javadoc summary use <a href="summaryjavadoc.html#SummaryJavadoc">
-          SummaryJavadoc</a> check.
-        </p>
-        <p>
-          The <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/javadoc/doc-comment-spec.html">
-          Documentation Comment Specification</a> permits leading asterisks on the first line.
-          For these Javadoc comments:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/***
-  * Some text.
-  */
-/************
-  * Some text.
-  */
-/**           **
-  * Some text.
-  */
-        </code></pre></div>
-        <p>
-          The documentation generated will be just "Some text." without any asterisks.
-          Since these asterisks will not appear in the generated documentation,
-          they should not be considered as the beginning of the Javadoc content.
-          In such cases, the check assumes that the Javadoc content begins on the second line.
-        </p>
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocContentLocationCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

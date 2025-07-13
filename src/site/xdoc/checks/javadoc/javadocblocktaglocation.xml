@@ -31,14 +31,13 @@
       </subsection>
       <subsection name="Notes" id="Notes">
         <p>
-          To place a tag explicitly as text, escape the <code>@</code> symbol
-          with HTML entity &amp;#64; or place it inside <code>{@code }</code>,
-          for example:
+          To place a tag explicitly as text, escape the <code>@</code> symbol with HTML entity
+          &amp;#64; or place it inside <code>{@code }</code>, for example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/**
- * &amp;#64;serial literal in {@code @serial} Javadoc tag.
- */
+&#47;**
+ * &amp;#64;serial literal in {&#64;code &#64;serial} Javadoc tag.
+ *&#47;
         </code></pre></div>
       </subsection>
 

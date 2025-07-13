@@ -54,9 +54,10 @@ StaticMethodCandidateCheck.name = Static Method Candidate
         <p>
           This will check against the platform-specific default line separator.
         </p>
+
         <p>
-          It is also possible to enforce the use of a specific line-separator
-          across platforms, with the <code>lineSeparator</code> property.
+          It is also possible to enforce the use of a specific line-separator across
+          platforms, with the <code>lineSeparator</code> property.
         </p>
       </subsection>
 

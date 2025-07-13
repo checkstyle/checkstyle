@@ -51,13 +51,10 @@ StaticMethodCandidateCheck.name = Static Method Candidate
       </subsection>
 
       <subsection name="Notes" id="Notes">
-        <p>
-          This will check against the platform-specific default line separator.
-        </p>
-        <p>
-          It is also possible to enforce the use of a specific line-separator
-          across platforms, with the <code>lineSeparator</code> property.
-        </p>
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NewlineAtEndOfFileCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
