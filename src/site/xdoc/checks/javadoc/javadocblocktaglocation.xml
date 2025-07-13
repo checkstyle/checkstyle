@@ -13,32 +13,30 @@
           Checks that a
           <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/javadoc/doc-comment-spec.html#block-tags">
           javadoc block tag</a> appears only at the beginning of a line, ignoring
-          leading asterisks and white space. A block tag is a token that starts
-          with <code>@</code> symbol and is preceded by a whitespace. This check
-          ignores block tags in comments and inside inline tags {@code } and
-          {@literal }.
+          leading asterisks and white space. A block tag is a token that starts with
+          <code>@</code> symbol and is preceded by a whitespace. This check ignores block
+          tags in comments and inside inline tags {&#64;code } and {&#64;literal }.
         </div>
+
         <p>
           Rationale: according to
           <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/javadoc/doc-comment-spec.html#block-tags">
-          the specification</a> all javadoc block tags should be placed at the
-          beginning of a line. Tags that are not placed at the beginning are treated
-          as plain text. To recognize intentional tag placement to text area
-          it is better to escape the <code>@</code> symbol, and all non-escaped
-          tags should be located at the beginning of the line. See NOTE section
-          for details on how to escape.
+          the specification</a> all javadoc block tags should be placed at the beginning
+          of a line. Tags that are not placed at the beginning are treated as plain text.
+          To recognize intentional tag placement to text area it is better to escape the
+          <code>@</code> symbol, and all non-escaped tags should be located at the beginning
+          of the line. See NOTE section for details on how to escape.
         </p>
       </subsection>
       <subsection name="Notes" id="Notes">
         <p>
-          To place a tag explicitly as text, escape the <code>@</code> symbol
-          with HTML entity &amp;#64; or place it inside <code>{@code }</code>,
-          for example:
+          To place a tag explicitly as text, escape the <code>@</code> symbol with HTML entity
+          &amp;#64; or place it inside <code>{@code }</code>, for example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/**
- * &amp;#64;serial literal in {@code @serial} Javadoc tag.
- */
+&#47;**
+ * &amp;#64;serial literal in {&#64;code &#64;serial} Javadoc tag.
+ *&#47;
         </code></pre></div>
       </subsection>
 
