@@ -9,46 +9,16 @@
     <section name="HiddenField">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that a local variable or a parameter does not shadow a field
-          that is defined in the same class.
-        </div>
+        <macro name="description">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java"/>
+        </macro>
       </subsection>
       <subsection name="Notes" id="Notes">
-        <p>
-          It is possible to configure the check to ignore all property setter methods.
-        </p>
-        <p>
-          A method is recognized as a setter if it is in the following form
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-${returnType} set${Name}(${anyType} ${name}) { ... }
-        </code></pre></div>
-        <p>
-          where ${anyType} is any primitive type, class or interface name;
-          ${name} is name of the variable that is being set and ${Name} its
-          capitalized form that appears in the method name. By default, it is expected
-          that setter returns void, i.e. ${returnType} is 'void'. For example
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-void setTime(long time) { ... }
-        </code></pre></div>
-        <p>
-          Any other return types will not let method match a setter pattern. However,
-          by setting <em>setterCanReturnItsClass</em> property to <em>true</em>
-          definition of a setter is expanded, so that setter return type can also
-          be a class in which setter is declared. For example
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class PageBuilder {
-  PageBuilder setName(String name) { ... }
-}
-        </code></pre></div>
-        <p>
-          Such methods are known as chain-setters and a common when Builder-pattern
-          is used. Property <em>setterCanReturnItsClass</em> has effect only if
-          <em>ignoreSetter</em> is set to true.
-        </p>
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

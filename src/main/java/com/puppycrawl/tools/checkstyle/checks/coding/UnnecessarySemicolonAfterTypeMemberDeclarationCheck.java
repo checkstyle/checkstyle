@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </div>
  *
  * <p>
+ * Notes:
  * This check is not applicable to empty statements (unnecessary semicolons inside methods or
  * init blocks),
  * <a href="https://checkstyle.org/checks/coding/emptystatement.html">EmptyStatement</a>
