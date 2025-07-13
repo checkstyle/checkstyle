@@ -15,6 +15,7 @@
  &lt;/p&gt;
  &lt;ul&gt;
  &lt;li&gt;
+ Notes:
  The calculation of the length of a line takes into account the number of
  expanded spaces for a tab character (&lt;code&gt;'\t'&lt;/code&gt;). The default number of spaces is &lt;code&gt;8&lt;/code&gt;.
  To specify a different number of spaces, the user can set
