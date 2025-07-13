@@ -105,8 +105,9 @@ public class DescriptionMacro extends AbstractMacro {
                                               Set<String> propertyNamesSet) {
         int descriptionEndIndex = -1;
 
-        if (getNotesStartIndex(moduleJavadoc) > -1) {
-            descriptionEndIndex += getNotesStartIndex(moduleJavadoc);
+        final int notesStartingIndex = getNotesStartIndex(moduleJavadoc);
+        if (notesStartingIndex > -1) {
+            descriptionEndIndex += notesStartingIndex;
         }
         else if (propertyNamesSet.isEmpty()) {
             descriptionEndIndex += getParentSectionStartIndex(moduleJavadoc);
@@ -137,19 +138,45 @@ public class DescriptionMacro extends AbstractMacro {
         int notesStartIndex = -1;
 
         for (DetailNode node : moduleJavadoc.getChildren()) {
-            if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-                final DetailNode paragraphNode = JavadocUtil.findFirstToken(
-                    node, JavadocTokenTypes.PARAGRAPH);
-                if (paragraphNode != null && JavadocMetadataScraper.isChildNodeTextMatches(
-                    paragraphNode, NOTES_LINE)) {
+            if (node.getType() == JavadocTokenTypes.HTML_ELEMENT
+                && isStartOfNotesSection(node)) {
 
-                    notesStartIndex = node.getIndex() - 1;
-                    break;
-                }
+                notesStartIndex += node.getIndex();
+                break;
             }
         }
 
         return notesStartIndex;
+    }
+
+    /**
+     * Determines whether the given HTML node marks the start of the "Notes" section.
+     *
+     * @param htmlElement html element to check.
+     * @return true if the element starts the "Notes" section, false otherwise.
+     */
+    private static boolean isStartOfNotesSection(DetailNode htmlElement) {
+        final DetailNode paragraphNode = JavadocUtil.findFirstToken(
+            htmlElement, JavadocTokenTypes.PARAGRAPH);
+        final Optional<DetailNode> liNode = getLiTagNode(htmlElement);
+
+        return paragraphNode != null && JavadocMetadataScraper.isChildNodeTextMatches(
+            paragraphNode, NOTES_LINE)
+            || liNode.isPresent() && JavadocMetadataScraper.isChildNodeTextMatches(
+                liNode.get(), NOTES_LINE);
+    }
+
+    /**
+     * Gets the node of Li HTML tag.
+     *
+     * @param htmlElement html element to get li tag from.
+     * @return Optional of li tag node.
+     */
+    private static Optional<DetailNode> getLiTagNode(DetailNode htmlElement) {
+        return Optional.of(htmlElement)
+            .map(element -> JavadocUtil.findFirstToken(element, JavadocTokenTypes.HTML_TAG))
+            .map(element -> JavadocUtil.findFirstToken(element, JavadocTokenTypes.HTML_ELEMENT))
+            .map(element -> JavadocUtil.findFirstToken(element, JavadocTokenTypes.LI));
     }
 
     /**
