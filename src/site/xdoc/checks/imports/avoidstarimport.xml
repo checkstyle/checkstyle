@@ -23,8 +23,8 @@
 
       <subsection name="Notes" id="Notes">
         <p>
-          Note that property <code>excludes</code> is not recursive,
-          subpackages of excluded packages are not automatically excluded.
+          Note that property <code>excludes</code> is not recursive, subpackages of excluded
+          packages are not automatically excluded.
         </p>
       </subsection>
 

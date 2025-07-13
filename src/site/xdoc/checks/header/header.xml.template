@@ -9,21 +9,17 @@
     <section name="Header">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that a source file begins with a specified header. Property
-          <code>headerFile</code> specifies a file that contains
-          the required header. Alternatively, the header specification can be
-          set directly in the <code>header</code> property
-          without the need for an external file.
-        </div>
+        <macro name="description">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/header/HeaderCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Notes" id="Notes">
-        <p>
-          In default configuration, if header is not specified,
-          the default value of header is set to <code>null</code>
-          and the check does not rise any violations.
-        </p>
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/header/HeaderCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
