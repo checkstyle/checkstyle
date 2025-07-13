@@ -20,9 +20,8 @@
 
       <subsection name="Notes" id="Notes">
         <p>
-          In default configuration, if header is not specified,
-          the default value of header is set to <code>null</code>
-          and the check does not rise any violations.
+          In default configuration, if header is not specified, the default value
+          of header is set to <code>null</code> and the check does not rise any violations.
         </p>
       </subsection>
 

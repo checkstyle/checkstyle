@@ -9,6 +9,7 @@
  &lt;/div&gt;
 
  &lt;p&gt;
+ Notes:
  Note: By default, the check rejects all &lt;code&gt;sun.*&lt;/code&gt; packages since programs
  that contain direct calls to the &lt;code&gt;sun.*&lt;/code&gt; packages are
  &lt;a href="https://www.oracle.com/java/technologies/faq-sun-packages.html"&gt;
