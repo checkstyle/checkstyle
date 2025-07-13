@@ -35,7 +35,7 @@ class InputJavaDocTagContinuationIndentation implements Serializable {
    * The client's first name.
    *
    * @serialField
-   *     Some javadoc.
+   *     secondName String Some javadoc.
    */
   private String thirdName;
 

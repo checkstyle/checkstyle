@@ -72,12 +72,12 @@ public class BlockIndentation2SpacesTest extends AbstractIndentationTestSupport 
 
     @Test
     public void testCorrectChained() throws Exception {
-        verifyWithWholeConfig(getPath("ClassWithChainedMethodsCorrect.java"));
+        verifyWithWholeConfig(getPath("InputFormattedClassWithChainedMethods3.java"));
     }
 
     @Test
     public void testWarnChained() throws Exception {
-        verifyWithWholeConfig(getPath("ClassWithChainedMethods.java"));
+        verifyWithWholeConfig(getPath("InputClassWithChainedMethods3.java"));
     }
 
     @Test
