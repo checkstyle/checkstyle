@@ -9,66 +9,17 @@
     <section name="JavadocContentLocation">
       <p>Since Checkstyle 8.27</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that the Javadoc content begins from the same position
-          for all Javadoc comments in the project. Any leading asterisks and spaces
-          are not counted as the beginning of the content and are therefore ignored.
-        </div>
-        <p>
-          It is possible to enforce two different styles:
-        </p>
-        <ul>
-          <li>
-            {@code first_line} - Javadoc content starts from the first line:
-            <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/** Summary text.
-  * More details.
-  */
-public void method();
-            </code></pre></div>
-          </li>
-          <li>
-            {@code second_line} - Javadoc content starts from the second line:
-            <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/**
-  * Summary text.
-  * More details.
-  */
-public void method();
-            </code></pre></div>
-          </li>
-        </ul>
+        <macro name="description">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocContentLocationCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Notes" id="Notes">
-        <p>
-          This check does not validate the Javadoc summary itself nor its presence.
-          The check will not report any violations for missing or malformed javadoc summary.
-          To validate the Javadoc summary use <a href="summaryjavadoc.html#SummaryJavadoc">
-          SummaryJavadoc</a> check.
-        </p>
-        <p>
-          The <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/javadoc/doc-comment-spec.html">
-          Documentation Comment Specification</a> permits leading asterisks on the first line.
-          For these Javadoc comments:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/***
-  * Some text.
-  */
-/************
-  * Some text.
-  */
-/**           **
-  * Some text.
-  */
-        </code></pre></div>
-        <p>
-          The documentation generated will be just "Some text." without any asterisks.
-          Since these asterisks will not appear in the generated documentation,
-          they should not be considered as the beginning of the Javadoc content.
-          In such cases, the check assumes that the Javadoc content begins on the second line.
-        </p>
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocContentLocationCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

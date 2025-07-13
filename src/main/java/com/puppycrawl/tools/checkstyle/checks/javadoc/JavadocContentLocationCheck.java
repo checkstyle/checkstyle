@@ -61,6 +61,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </ul>
  *
  * <p>
+ * Notes:
  * This check does not validate the Javadoc summary itself nor its presence.
  * The check will not report any violations for missing or malformed javadoc summary.
  * To validate the Javadoc summary use
