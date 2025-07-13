@@ -28,7 +28,7 @@ boolean b = (~a) &gt; -27            // parens around ~a
 
       <subsection name="Notes" id="Notes">
         <p>
-          The check is not &quot;type aware&quot;, that is to say, it can't tell if parentheses
+          The check is not "type aware", that is to say, it can't tell if parentheses
           are unnecessary based on the types in an expression. The check is partially aware about
           operator precedence but unaware about operator associativity.
           It won't catch cases such as:
@@ -40,16 +40,18 @@ int q = 4;
 int r = 3;
 if (p == (q &lt;= r)) {}
         </code></pre></div>
+
         <p>
-          In the first case, given that <em>a</em>, <em>b</em>, and <em>c</em> are all
-          <code>int</code> variables, the parentheses around <code>a + b</code>
+          In the first case, given that <em>a</em>, <em>b</em>, and <em>c</em> are
+          all <code>int</code> variables, the parentheses around <code>a + b</code>
           are not needed.
           In the second case, parentheses are required as <em>q</em>, <em>r</em> are
           of type <code>int</code> and <em>p</em> is of type <code>boolean</code>
           and removing parentheses will give a compile-time error. Even if <em>q</em>
           and <em>r</em> were <code>boolean</code> still there will be no violation
-          raised as check is not &quot;type aware&quot;.
+          raised as check is not "type aware".
         </p>
+
         <p>
           The partial support for operator precedence includes cases of the following type:
         </p>

@@ -18,8 +18,8 @@
 
       <subsection name="Notes" id="Notes">
         <p>
-          When configured to check parameters, the check ignores parameters of
-          interface methods and abstract methods.
+          When configured to check parameters, the check ignores parameters of interface
+          methods and abstract methods.
         </p>
       </subsection>
 

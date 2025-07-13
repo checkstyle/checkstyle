@@ -22,10 +22,10 @@
       </subsection>
 
       <subsection name="Notes" id="Notes">
-        <p>
-          Note that property <code>excludes</code> is not recursive,
-          subpackages of excluded packages are not automatically excluded.
-        </p>
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/AvoidStarImportCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

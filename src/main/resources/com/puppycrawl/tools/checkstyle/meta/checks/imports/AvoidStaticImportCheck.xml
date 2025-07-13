@@ -16,6 +16,7 @@
  &lt;/p&gt;
 
  &lt;p&gt;
+ Notes:
  If you exclude a starred import on a class this automatically excludes
  each member individually.
  &lt;/p&gt;
