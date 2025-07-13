@@ -4,8 +4,25 @@ set -e
 
 JAR_PATH="$1"
 
+EXCLUDED_LIST="config/google-java-format/excluded/compilable-input-paths.txt \
+config/google-java-format/excluded/noncompilable-input-paths.txt"
+
+SUPPRESSION_LIST="config/google-java-format/suppressions/suppress-diff-lt-100.txt \
+config/google-java-format/suppressions/suppress-diff-lt-500.txt \
+config/google-java-format/suppressions/suppress-diff-gt-500.txt"
+
+is_suppressed() {
+  local name="$1"
+  for f in $SUPPRESSION_LIST; do
+    if grep -Fxq "$name" "$f"; then
+      return 0
+    fi
+  done
+  return 1
+}
+
 echo "Checking that all excluded java files in this script have matching InputFormatted* file:"
-NOT_FOUND_CONTENT=$(grep -e '^  .*/Input' "${BASH_SOURCE}" \
+NOT_FOUND_CONTENT=$(cat $EXCLUDED_LIST \
   | sed -E 's/.*Input([^\.]+)\..*java.*/\1/' \
   | while read -r name; do \
     [[ $(find ./src -type f -name "InputFormatted${name}.java") ]] \
@@ -19,101 +36,47 @@ else
   exit 1
 fi
 
+echo "Checking that all excluded java files have same size as matching InputFormatted* file:"
+MISMATCH_CONTENT=$(cat $EXCLUDED_LIST \
+  | while read -r path; do
+    size=$(sed -E 's|^[[:space:]]+||; s|//.*||' "$path" | wc -c)
+    name=$(echo "$path" | sed -E 's/.*Input([^\.]+)\.java.*/\1/')
+    formatted_path=$(find ./src -type f -name "InputFormatted${name}.java")
+    size_formatted=$(sed -E 's|^[[:space:]]+||; s|//.*||' "$formatted_path" | wc -c)
+    diff=$(( size - size_formatted ))
+    if (( diff < 0 )); then
+      diff=$(( -diff ))
+    fi
+    if is_suppressed "$name";then
+      continue
+    fi
+    if (( diff > 50 )); then
+      echo "Difference in $name and InputFormatted${name} is more than 50 bytes ${diff}"
+    fi
+  done)
+
+if [[ $(echo -n "$MISMATCH_CONTENT" | wc --chars) -eq 0 ]]; then
+  echo "All excluded Input files match their InputFormatted counterparts in size."
+else
+  echo "Size mismatches found:"
+  echo "$MISMATCH_CONTENT"
+  exit 1
+fi
+
 echo "Formatting all Input files file at src/it/resources/com/google/checkstyle/test :"
 COMPILABLE_INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.java" \
-    | sed "s|src/it/resources/com/google/checkstyle/test/||" \
-    | grep -v "rule231filetab/InputWhitespaceCharacters.java" \
-    | grep -v "rule3sourcefile/InputSourceFileStructure.java" \
-    | grep -v "rule332nolinewrap/InputNoLineWrapping.java" \
-    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing1.java" \
-    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing2.java" \
-    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing3.java" \
-    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing4.java" \
-    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing5.java" \
-    | grep -v "rule333orderingandspacing/InputOrderingAndSpacingValid.java" \
-    | grep -v "rule333orderingandspacing/InputOrderingAndSpacingValid2.java" \
-    | grep -v "rule412nonemptyblocks/InputNonemptyBlocksLeftRightCurly.java" \
-    | grep -v "rule412nonemptyblocks/InputLeftCurlyAnnotations.java" \
-    | grep -v "rule412nonemptyblocks/InputLeftCurlyMethod.java" \
-    | grep -v "rule412nonemptyblocks/InputRightCurly.java" \
-    | grep -v "rule412nonemptyblocks/InputRightCurlyOther.java" \
-    | grep -v "rule412nonemptyblocks/InputRightCurlySwitchCase.java" \
-    | grep -v "rule412nonemptyblocks/InputRightCurlySwitchCasesBlocks.java" \
-    | grep -v "rule412nonemptyblocks/InputTryCatchIfElse.java" \
-    | grep -v "rule412nonemptyblocks/InputTryCatchIfElse2.java" \
-    | grep -v "rule413emptyblocks/InputEmptyBlocksAndCatchBlocks.java" \
-    | grep -v "rule42blockindentation/ClassWithChainedMethods.java" \
-    | grep -v "rule42blockindentation/InputIndentationCodeBlocks.java" \
-    | grep -v "rule43onestatement/InputOneStatementPerLine.java" \
-    | grep -v "rule44columnlimit/InputColumnLimit.java" \
-    | grep -v "rule451wheretobreak/InputOperatorWrap.java" \
-    | grep -v "rule451wheretobreak/InputMethodParamPad.java" \
-    | grep -v "rule451wheretobreak/InputSeparatorWrap.java" \
-    | grep -v "rule451wheretobreak/InputSeparatorWrapComma.java" \
-    | grep -v "rule451wheretobreak/InputSeparatorWrapMethodRef.java" \
-    | grep -v "rule451wheretobreak/InputSeparatorWrapEllipsis.java" \
-    | grep -v "rule451wheretobreak/InputSeparatorWrapArrayDeclarator.java" \
-    | grep -v "rule451wheretobreak/InputLambdaBodyWrap.java" \
-    | grep -v "rule451wheretobreak/InputIllegalLineBreakAroundLambda.java" \
-    | grep -v "rule452indentcontinuationlines/ClassWithChainedMethods.java" \
-    | grep -v "rule461verticalwhitespace/InputVerticalWhitespace.java" \
-    | grep -v "rule462horizontalwhitespace/InputWhitespaceAroundBasic.java" \
-    | grep -v "rule462horizontalwhitespace/InputWhitespaceAroundArrow.java" \
-    | grep -v "rule462horizontalwhitespace/InputWhitespaceAfterBad.java" \
-    | grep -v "rule462horizontalwhitespace/InputWhitespaceAfterGood.java" \
-    | grep -v "rule462horizontalwhitespace/InputParenPad.java" \
-    | grep -v "rule462horizontalwhitespace/InputNoWhitespaceBeforeEmptyForLoop.java" \
-    | grep -v "rule462horizontalwhitespace/InputNoWhitespaceBeforeColonOfLabel.java" \
-    | grep -v "rule462horizontalwhitespace/InputNoWhitespaceBeforeCaseDefaultColon.java" \
-    | grep -v "rule462horizontalwhitespace/InputMethodParamPad.java" \
-    | grep -v "rule462horizontalwhitespace/InputWhitespaceAroundGenerics.java" \
-    | grep -v "rule462horizontalwhitespace/InputGenericWhitespace.java" \
-    | grep -v "rule462horizontalwhitespace/InputWhitespaceAfterDoubleSlashes.java" \
-    | grep -v "rule462horizontalwhitespace/InputWhitespaceBeforeLeftCurlyOfEmptyBlock.java" \
-    | grep -v "rule4821onevariableperline/InputOneVariablePerDeclaration.java" \
-    | grep -v "rule4841indentation/InputClassWithChainedMethods.java" \
-    | grep -v "rule4841indentation/InputAnnotationArrayInitMultiline.java" \
-    | grep -v "rule4841indentation/InputAnnotationArrayInitMultiline2.java" \
-    | grep -v "rule4841indentation/InputNewKeywordChildren.java" \
-    | grep -v "rule4852classannotations/InputClassAnnotations.java" \
-    | grep -v "rule4853methodsandconstructorsannotations/InputMethodsAndConstructorsAnnotations.java" \
-    | grep -v "rule4854fieldannotations/InputFieldAnnotations.java" \
-    | grep -v "rule4861blockcommentstyle/InputCommentsIndentationCommentIsAtTheEndOfBlock.java" \
-    | grep -v "rule4861blockcommentstyle/InputCommentsIndentationInEmptyBlock.java" \
-    | grep -v "rule4861blockcommentstyle/InputCommentsIndentationInSwitchBlock.java" \
-    | grep -v "rule4861blockcommentstyle/InputCommentsIndentationSurroundingCode.java" \
-    | grep -v "rule487modifiers/InputModifierOrder.java" \
-    | grep -v "rule489textblocks/InputTextBlocksGeneralForm.java" \
-    | grep -v "rule489textblocks/InputTextBlocksIndentation.java" \
-    | grep -v "rule522classnames/InputClassNames.java" \
-    | grep -v "rule53camelcase/InputCamelCaseDefined.java" \
-    | grep -v "rule711generalform/InputSingleLineJavadocAndInvalidJavadocPosition.java" \
-    | grep -v "rule712paragraphs/InputIncorrectRequireEmptyLineBeforeBlockTagGroup.java" \
-    | grep -v "rule712paragraphs/InputIncorrectJavadocParagraph.java" \
-    | grep -v "rule713atclauses/InputJavaDocTagContinuationIndentation.java" \
-    | grep -v "rule734nonrequiredjavadoc/InputInvalidJavadocPosition.java" \
-    ))
+  | grep -v -x -f config/google-java-format/excluded/compilable-input-paths.txt
+  ))
 
 for INPUT_PATH in "${COMPILABLE_INPUT_PATHS[@]}"; do
-  java -jar "$JAR_PATH" --replace src/it/resources/com/google/checkstyle/test/"$INPUT_PATH"
+  java -jar "$JAR_PATH" --replace "$INPUT_PATH"
 done
 
 echo "Formatting all Non-compilable Input files file at src/it/resources-noncompilable/com/google/checkstyle/test :"
 NON_COMPILABLE_INPUT_PATHS=($(find src/it/resources-noncompilable/com/google/checkstyle/test/ -name "Input*.java" \
-    | sed "s|src/it/resources-noncompilable/com/google/checkstyle/test/||" \
-    | grep -v "rule43onestatement/InputOneStatementPerLine.java" \
-    | grep -v "rule462horizontalwhitespace/InputWhitespaceAroundArrow.java" \
-    | grep -v "rule462horizontalwhitespace/InputWhitespaceAroundWhen.java" \
-    | grep -v "rule4841indentation/InputLambdaChild.java" \
-    | grep -v "rule4841indentation/InputSwitchOnStartOfTheLine.java" \
-    | grep -v "rule4841indentation/InputCatchParametersOnNewLine.java" \
-    | grep -v "rule4841indentation/InputLambdaAndChildOnTheSameLine.java" \
-    | grep -v "rule4841indentation/InputSingleSwitchStatementWithoutCurly.java" \
-    | grep -v "rule4841indentation/InputSwitchWrappingIndentation.java" \
-    | grep -v "rule526parameternames/InputRecordComponentName.java" \
-    | grep -v "rule527localvariablenames/InputPatternVariableNameEnhancedInstanceofTestDefault.java" \
-    ))
+  | grep -v -x -f config/google-java-format/excluded/noncompilable-input-paths.txt
+  ))
 
 for INPUT_PATH in "${NON_COMPILABLE_INPUT_PATHS[@]}"; do
-  java -jar "$JAR_PATH" --replace src/it/resources-noncompilable/com/google/checkstyle/test/"$INPUT_PATH"
+  java -jar "$JAR_PATH" --replace "$INPUT_PATH"
 done

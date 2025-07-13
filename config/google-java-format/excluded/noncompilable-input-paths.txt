@@ -1,0 +1,11 @@
+src/it/resources-noncompilable/com/google/checkstyle/test/chapter4formatting/rule43onestatement/InputOneStatementPerLine.java
+src/it/resources-noncompilable/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputWhitespaceAroundArrow.java
+src/it/resources-noncompilable/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputWhitespaceAroundWhen.java
+src/it/resources-noncompilable/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputLambdaChild.java
+src/it/resources-noncompilable/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputSwitchOnStartOfTheLine.java
+src/it/resources-noncompilable/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputCatchParametersOnNewLine.java
+src/it/resources-noncompilable/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputLambdaAndChildOnTheSameLine.java
+src/it/resources-noncompilable/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputSingleSwitchStatementWithoutCurly.java
+src/it/resources-noncompilable/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputSwitchWrappingIndentation.java
+src/it/resources-noncompilable/com/google/checkstyle/test/chapter5naming/rule526parameternames/InputRecordComponentName.java
+src/it/resources-noncompilable/com/google/checkstyle/test/chapter5naming/rule527localvariablenames/InputPatternVariableNameEnhancedInstanceofTestDefault.java
