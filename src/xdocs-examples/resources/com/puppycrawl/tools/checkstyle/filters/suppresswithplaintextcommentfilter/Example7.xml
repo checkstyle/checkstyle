@@ -11,6 +11,8 @@
     <param name="path" value="Example4.sql"/>
     <!-- suppressed violation below  -->
     <param name="type" value="code"/>
+    <!--  // filtered violation above 'Type code is not allowed. Use type raw instead'
+    -->
 <!-- CSON typeCode -->
   </macro>
 </project>
