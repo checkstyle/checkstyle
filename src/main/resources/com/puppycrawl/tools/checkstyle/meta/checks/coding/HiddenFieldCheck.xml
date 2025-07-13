@@ -10,6 +10,7 @@
  &lt;/div&gt;
 
  &lt;p&gt;
+ Notes:
  It is possible to configure the check to ignore all property setter methods.
  &lt;/p&gt;
 

@@ -16,6 +16,7 @@
  &lt;/p&gt;
 
  &lt;p&gt;
+ Notes:
  Note that property &lt;code&gt;excludes&lt;/code&gt; is not recursive, subpackages of excluded
  packages are not automatically excluded.
  &lt;/p&gt;</description>

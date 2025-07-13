@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </div>
  *
  * <p>
+ * Notes:
  * Note: By default, the check rejects all {@code sun.*} packages since programs
  * that contain direct calls to the {@code sun.*} packages are
  * <a href="https://www.oracle.com/java/technologies/faq-sun-packages.html">

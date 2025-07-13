@@ -49,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </code></pre></div>
  *
  * <p>
+ * Notes:
  * The check is not "type aware", that is to say, it can't tell if parentheses
  * are unnecessary based on the types in an expression. The check is partially aware about
  * operator precedence but unaware about operator associativity.
