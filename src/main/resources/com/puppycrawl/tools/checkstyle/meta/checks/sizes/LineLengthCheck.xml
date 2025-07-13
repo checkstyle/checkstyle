@@ -14,6 +14,7 @@
  additional information like project tree, class hierarchy, etc.
  &lt;/p&gt;
  &lt;ul&gt;
+ Notes:
  &lt;li&gt;
  The calculation of the length of a line takes into account the number of
  expanded spaces for a tab character (&lt;code&gt;'\t'&lt;/code&gt;). The default number of spaces is &lt;code&gt;8&lt;/code&gt;.
