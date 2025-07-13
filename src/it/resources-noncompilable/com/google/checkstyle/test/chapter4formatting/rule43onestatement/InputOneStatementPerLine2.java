@@ -3,7 +3,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
 
 /*
- * This file contains test inputs for InputOneStatementPerLine
+ * This file contains test inputs for InputOneStatementPerLine2
  * which cause compilation problem in Eclipse 4.2.2 but still must be tested.
  */
 
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 import javax.swing.JCheckBox;
 
 /** Some javadoc. */
-public class InputOneStatementPerLine {
+public class InputOneStatementPerLine2 {
   /*
    * According to java language specifications,
    * statements end with ';'. That is why ';;'
