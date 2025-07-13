@@ -9,20 +9,17 @@
     <section name="IllegalImport">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks for imports from a set of illegal packages.
-        </div>
+        <macro name="description">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/IllegalImportCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Notes" id="Notes">
-        <p>
-          Note: By default, the check rejects all <code>sun.*</code> packages since
-          programs that contain direct calls to the <code>sun.*</code> packages are
-          <a href="https://www.oracle.com/java/technologies/faq-sun-packages.html">
-          "not guaranteed to work on all Java-compatible platforms"</a>.
-          To reject other packages, set property <code>illegalPkgs</code> to
-          a list of the illegal packages.
-        </p>
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/IllegalImportCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
