@@ -30,16 +30,10 @@
         </p>
       </subsection>
       <subsection name="Notes" id="Notes">
-        <p>
-          To place a tag explicitly as text, escape the <code>@</code> symbol
-          with HTML entity &amp;#64; or place it inside <code>{@code }</code>,
-          for example:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/**
- * &amp;#64;serial literal in {@code @serial} Javadoc tag.
- */
-        </code></pre></div>
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocBlockTagLocationCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

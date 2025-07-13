@@ -50,6 +50,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * </p>
  *
  * <p>
+ * Notes:
  * To place a tag explicitly as text, escape the {@code @} symbol with HTML entity
  * &amp;#64; or place it inside {@code {@code }}, for example:
  * </p>
