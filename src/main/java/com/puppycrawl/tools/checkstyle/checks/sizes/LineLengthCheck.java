@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * additional information like project tree, class hierarchy, etc.
  * </p>
  * <ul>
+ * Notes:
  * <li>
  * The calculation of the length of a line takes into account the number of
  * expanded spaces for a tab character ({@code '\t'}). The default number of spaces is {@code 8}.
