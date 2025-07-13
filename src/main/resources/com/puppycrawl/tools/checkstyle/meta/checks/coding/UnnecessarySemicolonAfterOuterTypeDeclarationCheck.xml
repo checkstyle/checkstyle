@@ -9,6 +9,7 @@
  &lt;/div&gt;
 
  &lt;p&gt;
+ Notes:
  This check is not applicable to nested type declarations,
  &lt;a
  href="https://checkstyle.org/checks/coding/unnecessarysemicolonaftertypememberdeclaration.html"&gt;

@@ -12,6 +12,7 @@
  &lt;/div&gt;
 
  &lt;p&gt;
+ Notes:
  In default configuration, if header is not specified, the default value
  of header is set to &lt;code&gt;null&lt;/code&gt; and the check does not rise any violations.
  &lt;/p&gt;</description>

@@ -41,6 +41,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </div>
  *
  * <p>
+ * Notes:
  * It is possible to configure the check to ignore all property setter methods.
  * </p>
  *

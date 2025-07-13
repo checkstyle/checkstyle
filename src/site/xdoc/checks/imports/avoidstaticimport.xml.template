@@ -22,15 +22,10 @@
       </subsection>
 
       <subsection name="Notes" id="Notes">
-        <p>
-          If you exclude a starred import on a class this automatically
-          excludes each member individually.
-        </p>
-        <p>
-          For example: Excluding <code>java.lang.Math.*</code>. will allow the
-          import of each static member in the Math class
-          individually like <code>java.lang.Math.PI, java.lang.Math.cos, ...</code>.
-        </p>
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/AvoidStaticImportCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
