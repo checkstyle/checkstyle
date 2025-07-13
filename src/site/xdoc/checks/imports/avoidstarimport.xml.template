@@ -9,23 +9,17 @@
     <section name="AvoidStarImport">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that there are no import statements that use the <code>*</code> notation.
-        </div>
-
-        <p>
-          Rationale: Importing all classes from a package or static
-          members from a class leads to tight coupling between packages
-          or classes and might lead to problems when a new version of a
-          library introduces name clashes.
-        </p>
+        <macro name="description">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/AvoidStarImportCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Notes" id="Notes">
-        <p>
-          Note that property <code>excludes</code> is not recursive,
-          subpackages of excluded packages are not automatically excluded.
-        </p>
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/AvoidStarImportCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
