@@ -117,7 +117,7 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 # // CHECKSTYLE:OFF
 # suppressed violation below
-keyB=value1
+keyB=value1 # // filtered violation 'Duplicated property 'keyB' (2 occurrence(s)).'
 keyB=value2
 # // CHECKSTYLE:ON
 # // violation below 'Duplicated property 'keyC' (2 occurrence(s)).'
@@ -147,7 +147,7 @@ keyC=value5
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 # STOP CHECK
 # suppressed violation below
-keyB=value1
+keyB=value1 # // filtered violation 'Duplicated property 'keyB' (2 occurrence(s)).'
 keyB=value2
 # RESUME CHECK
 # // violation below 'Duplicated property 'keyC' (2 occurrence(s)).'
@@ -181,7 +181,7 @@ keyC=value5
 # STOP UNIQUE CHECK
 # (OrderedProperties check is still enabled)
 # suppressed violation below
-keyB=value1
+keyB=value1 # // filtered violation 'Duplicated property 'keyB' (2 occurrence(s)).'
 keyB=value2
 # // violation below 'Property key 'keyA' is not in the right order with previous property 'keyB.'
 keyA=value3
@@ -224,6 +224,8 @@ keyC=value5
     &lt;param name="path" value="Example3.java"/&gt;
     &lt;!-- suppressed violation below  --&gt;
     &lt;param name="type" value="code"/&gt;
+    &lt;!--  // filtered violation above 'Type code is not allowed. Use type raw instead'
+    --&gt;
   &lt;/macro&gt;
 &lt;!-- CSON: RegexpSinglelineCheck --&gt;
   &lt;macro name="example"&gt;
@@ -331,6 +333,8 @@ keyC=value5
     &lt;param name="path" value="Example4.java"/&gt;
     &lt;!-- suppressed violation below  --&gt;
     &lt;param name="type" value="code"/&gt;
+    &lt;!--  // filtered violation above 'Type code is not allowed. Use type raw instead'
+    --&gt;
 &lt;!-- CSON --&gt;
   &lt;/macro&gt;
 &lt;/project&gt;
@@ -392,6 +396,8 @@ keyC=value5
     &lt;param name="path" value="Example4.sql"/&gt;
     &lt;!-- suppressed violation below  --&gt;
     &lt;param name="type" value="code"/&gt;
+    &lt;!--  // filtered violation above 'Type code is not allowed. Use type raw instead'
+    --&gt;
 &lt;!-- CSON typeCode --&gt;
   &lt;/macro&gt;
 &lt;/project&gt;
@@ -433,6 +439,7 @@ FROM users AS u
 JOIN jobs AS j ON u.job_id = j.id
 -- suppressed violation below (LineLengthCheck)
 WHERE u.registration_date &gt;= '2023-01-01' AND u.status = 'active';
+-- // filtered violation above 'Line is longer ...'
 </code></pre></div><hr class="example-separator"/>
         <p id="Example9-config">
           This check is not limited to comments. It can match any symbols in the given file
@@ -465,6 +472,9 @@ public class Example9 {
           ST001,Station 001,ZONE1,Zone 1,CP1,Competitor 1,123 Street,Unit 2,Houston,TX,77033,US,29.761496813335178,-95.53049214204984
           ST002,Station 002,ZONE2,,CP2,,668 Street,Unit 23,San Jose,CA,95191,US,37.35102477242508,-121.9209934020318
           """;
+  // filtered violation 5 lines above 'Line is longer than 100 characters (found 147).'
+  // filtered violation 5 lines above 'Line is longer than 100 characters (found 133).'
+  // filtered violation 5 lines above 'Line is longer than 100 characters (found 116).'
 
   // violation below, 'Line is longer than 100 characters (found 183).'
   static final String SINGLE_LINE_SAMPLE = "locationId,label,regionId,regionLabel,vendorId,vendorLabel,address,address2,city,stateProvinceCode,zipCode,countryCode,latitude,longitude";
