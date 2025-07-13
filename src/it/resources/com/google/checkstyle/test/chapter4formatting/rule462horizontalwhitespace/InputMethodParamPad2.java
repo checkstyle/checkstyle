@@ -3,14 +3,14 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 import java.util.Vector;
 
 /** Test input for MethodDefPadCheck. */
-public class InputMethodParamPad {
+public class InputMethodParamPad2 {
   /** some javadoc. */
-  public InputMethodParamPad() {
+  public InputMethodParamPad2() {
     super();
   }
 
   /** some javadoc. */
-  public InputMethodParamPad (int param) { // violation ''(' is preceded with whitespace.'
+  public InputMethodParamPad2(int param) { // violation ''(' is preceded with whitespace.'
     super (); // violation ''(' is preceded with whitespace.'
   }
 
@@ -23,10 +23,10 @@ public class InputMethodParamPad {
   /** some javadoc. */
   public void method(double param) {
     // invoke constructor
-    InputMethodParamPad pad = new InputMethodParamPad();
-    pad = new InputMethodParamPad (); // violation ''(' is preceded with whitespace.'
+    InputMethodParamPad2 pad = new InputMethodParamPad2();
+    pad = new InputMethodParamPad2(); // violation ''(' is preceded with whitespace.'
     pad = new
-            InputMethodParamPad();
+            InputMethodParamPad2();
 
     // call method
     method();
@@ -40,7 +40,7 @@ public class InputMethodParamPad {
     this
         .method();
 
-    InputMethodParamPad p = new InputMethodParamPad();
+    InputMethodParamPad2 p = new InputMethodParamPad2();
     p.method();
     p.method (); // violation ''(' is preceded with whitespace.'
     p
